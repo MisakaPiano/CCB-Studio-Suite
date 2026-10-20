@@ -1,0 +1,9 @@
+# Windows Preview engineering checkpoints
+
+Resume: `86760bc067712ab26d7d4b74d45ad44a0d0e18e7`, branch `feature/windows-rc-continuous`, same owner. Issue #3 supersedes the generalized CP2 source STOP, while historical CP1 reports remain untouched. Latest user authorization also permits rate-limited real APIs; no real requests have yet occurred at this checkpoint.
+
+Checkpoint P1: byte-identical image-authority closure, strict Studio document/project/account foundation, synthetic Designer/revision/NAI framing and native editor/export. Initial actual tests: **69 authority + 8 Studio core PASS**, 0 failures/errors/skips. Source stable before/after each run. JDK17.0.20.1, Gradle9.1.0, Kotlin2.3.20, serial workers, isolated Suite Gradle home. Gradle built-in configuration check task SKIPPED is not a skipped JUnit case. Initial local cache seed copied 224 public artifacts / 171,287,006 bytes, then downloaded missing descriptors/dependencies from configured public repositories; exact resolved artifact inventory follows packaging.
+
+Failures retained: initial offline plugin resolution (cache lacked POM/module descriptors); native PowerShell unquoted `-Pkotlin.compiler.execution.strategy` split into a task token. Fixed by a Python argv-based isolated runner; these failed invocations executed no tests. No original failed log is overwritten. One source warning in unchanged ModelRequestException and Gradle metaspace budget warning are recorded; no tests were skipped to turn green.
+
+P1 is an engineering recovery checkpoint, **not Preview Gate or CP2/CP3 product completion**. Next: Compose UI wiring, rate-limit tests and authorized bounded real service checks, controlled launch/restart/package smoke, focused safety regressions, then centralized Preview review. CP4 real installation/update/migration remains pending.

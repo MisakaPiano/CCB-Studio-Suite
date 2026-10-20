@@ -1,0 +1,50 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "dpapiSyntheticSecretRoundTripNotInDocuments",
+    "seconds": "0.733",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "completeChainRejectsDeletedRevisionAndUnknownEntry",
+    "seconds": "0.165",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "originalProjectUndoRedoAndRestart",
+    "seconds": "0.699",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "missingFontPreventsFalseCompleteExportAndUnknownLayerRefused",
+    "seconds": "0.073",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "batchOrderUndoAndExportCategoriesAreNonDestructive",
+    "seconds": "5.104",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "generationDesignRevisionFrozenIdentityAndUncertainRestart",
+    "seconds": "3.771",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "completeRecipeComparisonIncludesNestedCharactersSeedAndIdentity",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "stagedUnknownCorruptAndFutureDocumentsNeverDefault",
+    "seconds": "0.511",
+    "status": "PASS"
+  }
+]

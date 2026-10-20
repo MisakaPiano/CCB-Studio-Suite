@@ -39,3 +39,7 @@ A0主执行者：本次Codex本地会话，工作区H:\CCB-Studio-Suite，2026-1
 用户提供原A1固定提交3c17b4c9038d821efef726b1dc84c90c87855c39已获Project PASS_WITH_SCOPE，限定两项安全补强。开始与远程一致且工作树干净，建立R1独立分支。目录全部子项严格枚举/保留异常；备份在已登记操作内完成目录检查，关闭排水不放松新操作门禁。修复前回归5失败/6项，修复后针对性6 PASS；完整模块本轮实际27 PASS，0失败/错误/跳过，9份Java源码hash稳定。首轮测试辅助/PS5回执问题及失败证据保留，不把旧21 PASS沿用。实现提交a9ac47120c6cbea98a7a04140de1071568b9a985已推送并在远程核验；Drive原始ZIP已上传，父目录/大小及原字节SHA-256回读一致，[双通道实际回执](audits/evidence/A1_001_R1/DELIVERY.json)保留文件ID/链接/大小/hash。后续提交只补回执，无源码/测试改动。完成后只等待Project审查，不进入A1-002/A2。
 
 WINDOWS-RC-CP1实际交付：9d3035b98adea32908d4d3e04267127d0d9c25f4已推送且GitHub回读一致；Drive ZIP已上传、原字节hash/CRC/25项manifest核验一致，[实际回执](audits/evidence/WINDOWS_RC/DELIVERY.json)。源码/构建未随回执改变。当前停止原因是#1/#2的权威核心来源/跨仓STOP，并非等待常规CP人工批准；RC BLOCKED，未执行/冒签CP2–CP4。
+
+## Windows Preview resume / Issue #3
+
+Latest Project correction rescinds generalized source-rights / missing-SDK STOP. Same owner resumed from 86760bc0; historical RC BLOCKED evidence remains. Current work is IN PROGRESS toward Preview Gate, with actual 69 authority + 8 Studio core synthetic tests PASS. See [Preview progress](rc/PREVIEW_PROGRESS.md) and [Issue #3](https://github.com/MisakaPiano/CCB-Studio-Suite/issues/3). Real API use is additionally authorized at <=12 attempts/rolling hour and >=300s interval; no real calls at this checkpoint. Not RC/Preview acceptance.

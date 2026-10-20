@@ -1,0 +1,416 @@
+[
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiCharacterEnabledTest",
+    "name": "both models omit folded positive negative text expansion and coordinates",
+    "seconds": "0.267",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiCharacterEnabledTest",
+    "name": "automatic centers use active order and clipboard preserves folded roles beyond capacity",
+    "seconds": "0.029",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiCharacterEnabledTest",
+    "name": "all folded roles yield base only request and disable coordinates",
+    "seconds": "0.005",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiCharacterEnabledTest",
+    "name": "old roles default active and folded content survives draft and history reload",
+    "seconds": "0.021",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiCharacterPositionTest",
+    "name": "old drafts remain automatic and new positions survive history and reordering",
+    "seconds": "0.005",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiCharacterPositionTest",
+    "name": "coordinates clamp and v45 uses grid centers while v5 retains free positions",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiCharacterPositionTest",
+    "name": "manual requests enable every coordinate flag and share positive negative centers",
+    "seconds": "0.003",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiCharacterPositionTest",
+    "name": "automatic and empty requests never enable positioning",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiCharacterPositionTest",
+    "name": "png import restores positions and respects unchecked selections",
+    "seconds": "0.009",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiDesignerTransportTest",
+    "name": "first design preserves planner scene and V5 natural prose through repair",
+    "seconds": "0.205",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageGuidanceTest",
+    "name": "normalized vibe strengths preserve order and cap total",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageGuidanceTest",
+    "name": "focused inpaint requires focus region but allows empty mask",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageGuidanceTest",
+    "name": "precise reference selects nearest supported large canvas",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageGuidanceTest",
+    "name": "vibe validation follows official sixteen image limit",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageGuidanceTest",
+    "name": "v5 pauses references without deleting v45 configuration",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageGuidanceTest",
+    "name": "shared guidance loads base precise and vibe sources independently",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageGuidanceTest",
+    "name": "history recipe marks unowned base source as missing",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageModelResolutionTest",
+    "name": "global default is final fallback",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageModelResolutionTest",
+    "name": "character default wins when explicit override is absent",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageModelResolutionTest",
+    "name": "explicit override wins over character and global defaults",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageRetryTest",
+    "name": "server error frame finishes without reading until peer closes stream",
+    "seconds": "0.08",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageRetryTest",
+    "name": "successive complete batches finish without transport EOF so callers can save history",
+    "seconds": "0.012",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageRetryTest",
+    "name": "automatic retry wait can be cancelled before sending another request",
+    "seconds": "0.009",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageRetryTest",
+    "name": "ten rate limit retries allow success on eleventh request",
+    "seconds": "0.012",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageRetryTest",
+    "name": "third 429 emits one final failure",
+    "seconds": "0.011",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageRetryTest",
+    "name": "later generation batches keep retrying rate limits and report replacement requests",
+    "seconds": "4.05",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageRetryTest",
+    "name": "automatic mode continues beyond three rate limits without counting failures as images",
+    "seconds": "4.04",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageRetryTest",
+    "name": "ten rate limit retries stop after eleventh 429",
+    "seconds": "0.007",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageRetryTest",
+    "name": "automatic mode does not retry non rate limit errors",
+    "seconds": "0.006",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageRetryTest",
+    "name": "extra final frames in received chunk still fail the batch",
+    "seconds": "0.008",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageRetryTest",
+    "name": "stream retry control frame is ignored until final image",
+    "seconds": "0.005",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageRetryTest",
+    "name": "429 retries until third attempt succeeds",
+    "seconds": "0.006",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiPngMetadataReaderTest",
+    "name": "parses image guidance and encoded vibe metadata",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiPngMetadataReaderTest",
+    "name": "parses NovelAI v4 comment metadata",
+    "seconds": "0.003",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiPngMetadataReaderTest",
+    "name": "rejects generic JSON comment without NovelAI structure",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiPromptPostProcessorTest",
+    "name": "converts only complete Stable Diffusion weight atoms",
+    "seconds": "0.008",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiPromptPostProcessorTest",
+    "name": "ambiguous rule warns without guessing",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiPromptPostProcessorTest",
+    "name": "rewrites full tag atoms ignoring case spaces and underscores",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiPromptPostProcessorTest",
+    "name": "canonicalizer runs before syntax normalizer then style is prepended",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiPromptPostProcessorTest",
+    "name": "preserves NAI wrappers and expands one tag to multiple tags",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiStudioCustomSizeTest",
+    "name": "validatesRoundedPixelBudgetAndPartialDimensions",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiStudioCustomSizeTest",
+    "name": "oldSettingsDecodeAndCustomSettingsSurviveHistoryRoundTrip",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiStudioCustomSizeTest",
+    "name": "customDimensionsRoundWithoutChangingTheEditableDraft",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiStudioCustomSizeTest",
+    "name": "pngSettingsImportRestoresCustomSizeAndPresetImportClearsIt",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiStudioRequestTest",
+    "name": "precise arrays use fixed fidelity wire adapter",
+    "seconds": "0.005",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiStudioRequestTest",
+    "name": "v5 request serializes explicit settings and ordered character negatives",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiStudioRequestTest",
+    "name": "image to image writes action source strength and noise",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiStudioRequestTest",
+    "name": "v5 inpaint selects inpainting model and mask contract",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiStudioRequestTest",
+    "name": "v5 request appends quoted text block from base and character prompts",
+    "seconds": "0.004",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiStudioRequestTest",
+    "name": "vibe arrays write cached encoding information and strength",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiStudioRequestTest",
+    "name": "request normalizes Chinese commas in every outbound prompt field",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiStudioRequestTest",
+    "name": "explicit text block disables v5 quoted text automation",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiStudioRequestTest",
+    "name": "v45 request leaves quoted text untouched",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiStudioRequestTest",
+    "name": "focused inpaint strength uses official nested img2img color correction",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiV5TextPromptPolicyTest",
+    "name": "onlyPositiveV5RequestCopyChanges",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiV5TextPromptPolicyTest",
+    "name": "onlyFirstBaseChunkIsExpandedAndRandomizerPipesArePreserved",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiV5TextPromptPolicyTest",
+    "name": "singleQuotesPreserveContractionsAndPossessives",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiV5TextPromptPolicyTest",
+    "name": "repeatedTextIsRetainedAndExpansionIsIdempotent",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiV5TextPromptPolicyTest",
+    "name": "cjkThresholdUsesAllFieldsAndIsStrictlyGreaterThanThirtyPercent",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiV5TextPromptPolicyTest",
+    "name": "explicitTextDetectionMatchesOfficialBoundaries",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiV5TextPromptPolicyTest",
+    "name": "unmatchedEmptyAndUnsupportedQuotesDoNotProduceText",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiV5TextPromptPolicyTest",
+    "name": "cjkReversesWithinEachFieldButPreservesCharacterOrder",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.PrivacyPngEncoderTest",
+    "name": "chunkedOutputRoundTripsAndRejectsInvalidDimensions",
+    "seconds": "0.08",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.PrivacyPngEncoderTest",
+    "name": "preservesDimensionsAndOnlyMinimalOrientationWhileSourceStaysUnchanged",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.PrivacyPngEncoderTest",
+    "name": "removesFullAlphaAndRgbStealthPayloadsEvenWithDamagedHeaders",
+    "seconds": "0.031",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.PrivacyPngEncoderTest",
+    "name": "erasesLsbRegardlessOfValueAndKeepsTransparencyEndpoints",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.StealthAlphaMetadataTest",
+    "name": "absent header and tiny images are not metadata",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.StealthAlphaMetadataTest",
+    "name": "invalid lengths truncated gzip and decompression bomb fail bounded",
+    "seconds": "0.091",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.StealthAlphaMetadataTest",
+    "name": "compressed and plain alpha payload use column order and UTF8",
+    "seconds": "0.001",
+    "status": "PASS"
+  }
+]

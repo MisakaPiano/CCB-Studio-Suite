@@ -1,0 +1,27 @@
+{
+  "phase": "studio-core-initial",
+  "startedUtc": "2026-10-20T19:39:45.416912+00:00",
+  "seconds": 33.413,
+  "exitCode": 0,
+  "tests": 8,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--write-verification-metadata",
+    "sha256",
+    "--write-locks",
+    ":studio-core:test"
+  ],
+  "baseCommit": "86760bc067712ab26d7d4b74d45ad44a0d0e18e7",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

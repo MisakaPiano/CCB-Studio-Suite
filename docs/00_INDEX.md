@@ -55,3 +55,7 @@ R1实际交付：[GitHub/Drive回执](audits/evidence/A1_001_R1/DELIVERY.json)�
 CP1 [实际执行/环境/测试与STOP回执](rc/CP1_EXECUTION.md)：31项完整JVM回归和8项真实TUF合成信任验证已执行；整体RC BLOCKED，未产出安装包。
 
 Windows连续任务实际远程交付：[RC BLOCKED/CP1固定审阅入口](rc/PROJECT_REVIEW.md)、[机器恢复台账](rc/CHECKPOINTS.json)、[GitHub/Drive实际回执](audits/evidence/WINDOWS_RC/DELIVERY.json)。
+
+## Windows Preview resume / Issue #3
+
+Latest Project correction rescinds generalized source-rights / missing-SDK STOP. Same owner resumed from 86760bc0; historical RC BLOCKED evidence remains. Current work is IN PROGRESS toward Preview Gate, with actual 69 authority + 8 Studio core synthetic tests PASS. See [Preview progress](rc/PREVIEW_PROGRESS.md) and [Issue #3](https://github.com/MisakaPiano/CCB-Studio-Suite/issues/3). Real API use is additionally authorized at <=12 attempts/rolling hour and >=300s interval; no real calls at this checkpoint. Not RC/Preview acceptance.

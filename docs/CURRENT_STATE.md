@@ -34,3 +34,7 @@
 R1交付：[双通道实际回执](audits/evidence/A1_001_R1/DELIVERY.json)。固定实现SHA a9ac47120c6cbea98a7a04140de1071568b9a985；原始附件75,529bytes，Drive文件ID 1kP5IBA419AY0WKNgdN4eUKaiyGh3fabw；hash/原字节回读结果见回执。包含此说明的提交仅记录交付，源码与已验证实现一致。
 
 最近可恢复实现checkpoint：9d3035b98adea32908d4d3e04267127d0d9c25f4，feature/windows-rc-continuous；含本说明的后续提交只补交付元数据，源码/测试/构建输入未改。CP1原始ZIP文件ID 1ElGLErALsdzwzMMJoNhAE33-EPT3rgOT，23,673bytes，SHA-256/原字节回读见回执。整体RC BLOCKED，没有Windows安装包，CP2–CP4未完成。
+
+## Windows Preview resume / Issue #3
+
+Latest Project correction rescinds generalized source-rights / missing-SDK STOP. Same owner resumed from 86760bc0; historical RC BLOCKED evidence remains. Current work is IN PROGRESS toward Preview Gate, with actual 69 authority + 8 Studio core synthetic tests PASS. See [Preview progress](rc/PREVIEW_PROGRESS.md) and [Issue #3](https://github.com/MisakaPiano/CCB-Studio-Suite/issues/3). Real API use is additionally authorized at <=12 attempts/rolling hour and >=300s interval; no real calls at this checkpoint. Not RC/Preview acceptance.

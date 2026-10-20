@@ -1,0 +1,29 @@
+{
+  "task": "WINDOWS_PREVIEW_GATE",
+  "issue": 3,
+  "baseline": "86760bc067712ab26d7d4b74d45ad44a0d0e18e7",
+  "branch": "feature/windows-rc-continuous",
+  "remoteMatches": true,
+  "index": "CLEAN",
+  "worktree": "CLEAN",
+  "untracked": [],
+  "ownerBefore": "STOPPED_RC_BLOCKED",
+  "suiteThreads": [
+    {
+      "id": "01a159f6-0089-77e1-adcb-8387addc7fd5",
+      "status": "active",
+      "cwd": "H:\\CCB-Studio-Suite"
+    }
+  ],
+  "readOnlyDesktopTaskObservedActive": true,
+  "claimResumedBySameOwner": true,
+  "rightsCorrection": "USER-DIRECT statement via Issue #1 comment6299072689; no independent original-grant inspection claimed",
+  "realApiAuthorization": {
+    "source": "User message in this chat, 2026-10-21 JST",
+    "scope": "Use real APIs saved in CCB Desktop; read-only credential use, no publication",
+    "maxRequestsRollingHour": 12,
+    "minimumRequestIntervalSeconds": 300,
+    "includes": "Every real HTTP API attempt, including planner/repair/retries",
+    "liveCallsAtStart": 0
+  }
+}

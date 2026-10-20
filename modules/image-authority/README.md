@@ -1,0 +1,9 @@
+# Fixed image authority
+
+The Suite consumes one byte-identical source closure from `MisakaPiano/ChatChatBar-Desktop@5ef95428421f7c693b010ac88f51d470804ab07a`. `SOURCE_MANIFEST.json` lists source path, byte size/hash and transitive reason. Reproduce with `python tools/Import-ImageAuthority.py --source-repo <read-only-repository>`; ordinary builds use the committed files, never a neighboring checkout.
+
+USER-DIRECT reuse authorization: Project Issue #1 comment6299072689 and Issue #3. Original grant documents were not independently inspected. Source comments and notices are retained. No TypeSet HTML, fonts, preset catalogs, artwork, tokenizer databases, or user content is included. Kotlin/serialization/coroutines, OkHttp/Okio, MessagePack and JUnit licenses remain those of their publishers and are retained in dependency archives; packaged notices are assembled separately.
+
+66 production files are the bounded language/type closure of PromptAuthority, Designer, NAI service/request/frame/guidance, metadata and privacy consumers; 13 upstream test files and one golden fixture are unchanged. Some DTO types reference storage/model helper types, so their declaring files are included. Suite persistence never instantiates the upstream permissive `JsonFileStorage`, model repository or settings repository. No full sharedCore application/UI/assets import, no second request serializer, and no changes to authoritative literals/fallback.
+
+Actual initial execution: 69 tests, 0 failures/errors/skips. Golden request, Designer repair, model routing, guidance, bounded retries, coordinates, metadata and privacy tests run against these exact bytes. This is semantic regression plus source identity, not live provider or exhaustive upstream equivalence acceptance. See `docs/audits/evidence/WINDOWS_PREVIEW` for run identity.
