@@ -1,3 +1,7 @@
+# 当前：Preview已交付，RC尚未达到
+
+Issue #3已解除旧推断性来源STOP。当前PREVIEW_GATE_WITH_GAPS，现代Windows Preview已实际启动并双通道交付；见[固定回执](PREVIEW_PROJECT_REVIEW.md)。完整应用内A→B、安装迁移/凭据保全仍未实施验收，没有RC安装包。以下为旧CP1历史，不作为当前来源阻塞。
+
 # Windows RC readiness — RC BLOCKED
 
 Contract: [active snapshot](../../tasks/WINDOWS_RC_CONTINUOUS.md). Current critical STOP: [authority rights/artifact boundary](DEPENDENCY_ESCALATION.md). No Windows application package or real application A→B update is delivered. An evidence ZIP is not an installer.

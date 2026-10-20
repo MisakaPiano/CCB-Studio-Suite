@@ -1,18 +1,53 @@
 {
-  "task": "WINDOWS_RC_CONTINUOUS",
-  "overallStatus": "RC BLOCKED",
+  "task": "WINDOWS_PREVIEW_GATE",
+  "overallStatus": "PREVIEW_GATE_WITH_GAPS",
   "branch": "feature/windows-rc-continuous",
   "inheritedReviewedBaseline": "27dbd5d578f364afb529fc33944386c0c107f0da",
-  "latestVerifiedImplementationCheckpoint": "9d3035b98adea32908d4d3e04267127d0d9c25f4",
-  "latestDeliveryReceipt": "Use the containing Git commit; this later commit is documentation only",
-  "checkpointScope": "CP1 automated data-maintenance and trust foundation; not product acceptance",
-  "evidence": "../audits/evidence/WINDOWS_RC/CP1_SOURCE_IDENTITY.json",
-  "delivery": "../audits/evidence/WINDOWS_RC/DELIVERY.json",
-  "stopDependency": "DEPENDENCY_ESCALATION.md",
-  "cp2": "STOP_DEPENDENCY",
-  "cp3": "NOT IMPLEMENTED / NOT TESTED",
-  "cp4": "NOT IMPLEMENTED / NOT TESTED / NO RC PACKAGE",
-  "resumeContract": "../../tasks/WINDOWS_RC_CONTINUOUS.md",
-  "ownerClaim": ".local/windows-rc/owner.json",
-  "ownerRelease": "Only after final remote verification; then STOPPED_RC_BLOCKED, no background worker continues"
+  "latestVerifiedImplementationCheckpoint": "209b5252e06ea55b6cdf970da131b330a407e882",
+  "receiptCommit": "Containing Git commit, delivery/control documentation only",
+  "checkpoints": [
+    {
+      "id": "CP1",
+      "sha": "9d3035b98adea32908d4d3e04267127d0d9c25f4",
+      "status": "HISTORICAL VERIFIED FOUNDATION"
+    },
+    {
+      "id": "P1",
+      "sha": "7d6bc80b61199e3ee9647127fea9b1e634ebeb9c",
+      "status": "PUSHED; 17-source Git omission later corrected in P3"
+    },
+    {
+      "id": "P2",
+      "sha": "57c909bbadfe134530922ffa19d693d553325139",
+      "status": "PUSHED; local 84 tests actual; Git closure corrected in P3"
+    },
+    {
+      "id": "P3",
+      "sha": "209b5252e06ea55b6cdf970da131b330a407e882",
+      "status": "PUSHED + REMOTE VERIFIED; complete pinned source closure and modern Preview"
+    }
+  ],
+  "delivery": "../audits/evidence/WINDOWS_PREVIEW/DELIVERY.json",
+  "review": "PREVIEW_PROJECT_REVIEW.md",
+  "resumeContract": "../../tasks/WINDOWS_PREVIEW_GATE.md",
+  "nextAction": "Centralized user/Project Preview review; no automatic CP4",
+  "cp4": "NOT IMPLEMENTED / NOT TESTED / NO RC",
+  "historicalRecord": {
+    "task": "WINDOWS_RC_CONTINUOUS",
+    "overallStatus": "RC BLOCKED",
+    "branch": "feature/windows-rc-continuous",
+    "inheritedReviewedBaseline": "27dbd5d578f364afb529fc33944386c0c107f0da",
+    "latestVerifiedImplementationCheckpoint": "9d3035b98adea32908d4d3e04267127d0d9c25f4",
+    "latestDeliveryReceipt": "Use the containing Git commit; this later commit is documentation only",
+    "checkpointScope": "CP1 automated data-maintenance and trust foundation; not product acceptance",
+    "evidence": "../audits/evidence/WINDOWS_RC/CP1_SOURCE_IDENTITY.json",
+    "delivery": "../audits/evidence/WINDOWS_RC/DELIVERY.json",
+    "stopDependency": "DEPENDENCY_ESCALATION.md",
+    "cp2": "STOP_DEPENDENCY",
+    "cp3": "NOT IMPLEMENTED / NOT TESTED",
+    "cp4": "NOT IMPLEMENTED / NOT TESTED / NO RC PACKAGE",
+    "resumeContract": "../../tasks/WINDOWS_RC_CONTINUOUS.md",
+    "ownerClaim": ".local/windows-rc/owner.json",
+    "ownerRelease": "Only after final remote verification; then STOPPED_RC_BLOCKED, no background worker continues"
+  }
 }

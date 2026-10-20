@@ -1,3 +1,7 @@
+# 最新恢复入口 — Windows Preview Gate
+
+最新已推送/核验实现 **209b5252e06ea55b6cdf970da131b330a407e882**，分支 feature/windows-rc-continuous。P1 7d6bc80b、P2 57c909bb、P3 209b5252均已推送；P3修正P1/P2的17份被忽略源码。现代UI、实际包自检及双通道交付见 [Project审阅](PREVIEW_PROJECT_REVIEW.md)、[机器台账](CHECKPOINTS.json)。状态PREVIEW_GATE_WITH_GAPS，停止等待集中真人验收；不自动CP4。以下旧CP1记录保留历史。
+
 # Windows RC checkpoint ledger
 
 Authoritative contract: [Issue #2](https://github.com/MisakaPiano/CCB-Studio-Suite/issues/2), activated by the human user in this chat. Formal Gate: [APPROVED_FOR_RC_RUN](https://github.com/MisakaPiano/CCB-Studio-Suite/issues/1#issuecomment-6296885017). [Contract snapshot](../../tasks/WINDOWS_RC_CONTINUOUS.md).

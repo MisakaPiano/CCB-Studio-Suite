@@ -1,5 +1,7 @@
 # 00 — 文档入口
 
+**最新入口：[Windows Preview Gate完整交付](rc/PREVIEW_PROJECT_REVIEW.md) · [集中真人验收](rc/PREVIEW_REVIEW_ITEMS.md) · [GitHub/Drive回执](audits/evidence/WINDOWS_PREVIEW/DELIVERY.json)。状态PREVIEW_GATE_WITH_GAPS；实现209b5252已推送，待集中review，历史RC BLOCKED不可替代当前状态。**
+
 ## 每次任务首读
 
 1. [当前状态](CURRENT_STATE.md)
