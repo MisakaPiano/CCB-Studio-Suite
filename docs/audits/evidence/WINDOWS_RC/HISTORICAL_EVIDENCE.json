@@ -1,0 +1,242 @@
+{
+  "baseline": "27dbd5d578f364afb529fc33944386c0c107f0da",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "5d7c19a719fd962181765ee9008351ee262f2248b87777fada56ef12e8bc014a"
+    },
+    {
+      "path": "CCB_STUDIO_SUITE_INIT_20261020.md",
+      "sha256": "baded0b363a237c8bf0eb350cc2935863d270e93005bfa9f176db666b3f4d85e"
+    },
+    {
+      "path": "docs/SOURCE_LOCK.json",
+      "sha256": "37876ec4e9611ac02f4c6fc6c087f91f2ba3b5aa2fa51ccc19d979fe34d04f90"
+    },
+    {
+      "path": "docs/audits/A0_001_DEPENDENCY_AND_GAPS.md",
+      "sha256": "e7e1308fd68dc55d181d3f245751b2425f7e7abcddd34eb6229e9327c517208f"
+    },
+    {
+      "path": "docs/audits/A0_001_REUSE_AUDIT.md",
+      "sha256": "a3de7d46f4f4f1fab7a431c288ce31b35eda496b4c2e2f766af922f5ab6f3526"
+    },
+    {
+      "path": "docs/audits/A0_001_SOURCE_EVIDENCE.json",
+      "sha256": "dcb8389bf86415336167ef561f375cd46d0d655f12ad99f073d10652f0f3c11a"
+    },
+    {
+      "path": "docs/audits/A1_001_EXECUTION.md",
+      "sha256": "cad718cf3d05d32b7ec0dce26dd9c8a17a2bda76c2c8823030419ff40a31cb82"
+    },
+    {
+      "path": "docs/audits/A1_001_R1_EXECUTION.md",
+      "sha256": "427be9f6fc07e0a98c6c051b6281546292b9d374710955b89fa1b7da1bb218e6"
+    },
+    {
+      "path": "docs/audits/A1_001_R1_PROJECT_REVIEW.md",
+      "sha256": "5c672c66714bc017ac7e87dc5bd89b48fc647c19f705cd5f899fe3135b76b6ca"
+    },
+    {
+      "path": "docs/audits/A1_001_UPDATER_DESIGN.md",
+      "sha256": "e353884a17ade5bc78f24c05ba11de83c760e898b36b6d0c25bee58e8f33ceb0"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/20261020T162815244Z/TEST-io.github.misakapiano.ccbstudio.assets.AssetBackupTest.xml",
+      "sha256": "75159d5b0040cbf5651eb632e325a75f279dd449f2f3681d1f437c084a2c8039"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/20261020T162815244Z/TEST-io.github.misakapiano.ccbstudio.assets.AssetStoreTest.xml",
+      "sha256": "629030b462b5c08be8d627a1d04aec09f482c798b5341a580f42b5673e6f9106"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/20261020T162815244Z/gradle.log",
+      "sha256": "822d6ac49324025d26572fe6f7f2af05abd9540717f1783bc3d49340a30f4f52"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/20261020T162815244Z/summary.json",
+      "sha256": "80dd340ed3101db6ef86f6be626c901086f51d0ec72613a2e0c01665a77d9789"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/20261020T163611037Z/TEST-io.github.misakapiano.ccbstudio.assets.AssetBackupTest.xml",
+      "sha256": "3b676906625112739ae1132c03991be39b137bfca57c2fa02a6741433eff47de"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/20261020T163611037Z/TEST-io.github.misakapiano.ccbstudio.assets.AssetStoreTest.xml",
+      "sha256": "cf9c347ce0b7243fffb46a4b5211b4a8b8b3ad4b173ca40bb8952d5ea6b037b6"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/20261020T163611037Z/gradle.log",
+      "sha256": "8ec8130704cc3c36cb6fa3912c1bc54db14e700ce9994a42ca1e8382c3af2343"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/20261020T163611037Z/summary.json",
+      "sha256": "f98880da8e8f13d7aa6c8ce034f342909968befa171ef12011b0172d63f66fe9"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/WORKING_TREE.json",
+      "sha256": "77ddb60406d80e906dfddf7a79cb36d8b6b73111b7b540e3f6ed36965eae8119"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/execution-history.json",
+      "sha256": "c366733a0cfd7804199a2815b3edc9eb6285768a0dede42f81b9f27a02e67fcb"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/initial-run/01-wrapper.log",
+      "sha256": "b42d2e98862f8934bc0f349f475802aa60a8151327a487091e70e7ff6bc1b419"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/initial-run/02-wrapper-isolated.log",
+      "sha256": "7d857de5d36d31afca4ab1da4e5ef30446adab5b926a7c9c7da498883cc8e796"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/initial-run/03-tests.log",
+      "sha256": "b1715405e1089d89570106fd14b8129d969ef4b9ae85d73bc634e5f30b198314"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/initial-run/04-tests-offline.log",
+      "sha256": "a8485d150d21e00af0fb5fe9ef4f495d4551b7abef50e2e1b69b425565d9db43"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/initial-run/TEST-io.github.misakapiano.ccbstudio.assets.AssetBackupTest.xml",
+      "sha256": "19f7d54b0413fdd13a5e7993d13ad57b8131e9f5e9377bcfc4a11f40be26e76e"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/initial-run/TEST-io.github.misakapiano.ccbstudio.assets.AssetStoreTest.xml",
+      "sha256": "9717957d8e03083f2c20bb295463c282a1740cc6efd02c4fda5a1478d137c447"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/initial-run/dependency-provenance.json",
+      "sha256": "ed0107bf5700763cbb1e401d9fa8fe1e41032510666b981121f75ff48a6d2564"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/java-version.log",
+      "sha256": "2c05c59b13a701146c37d79936303eb8080cd353e096756dfab1cd833a306423"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/javac-version.log",
+      "sha256": "8dc678006c02cf91275c594203ab24dd0fef9b315748b264a078a7644823a303"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/protected-files.json",
+      "sha256": "9a6137822f8b7f0839f3382929b35422aa6ee21c8040192b22e0ef95f0897a56"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/source.patch",
+      "sha256": "58480059df563b783620576fd817f5136a82157dc332e5176970b81a6b8922e2"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001_R1/20261020T171916877Z-red-targeted/TEST-io.github.misakapiano.ccbstudio.assets.AssetSafetyTest.xml",
+      "sha256": "6cece6fa8715807dd5f8e877f3903309182cdf3f1dec961b8b45cdc44b32d31e"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001_R1/20261020T171916877Z-red-targeted/gradle-excerpt.txt",
+      "sha256": "aa096d9cc0f6e75577b7992317d5b16c37b1e9ab4c78d9697b5af2f13f164667"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001_R1/20261020T171916877Z-red-targeted/summary.json",
+      "sha256": "98943ddd96b69158aad2ab86c50a00ffcdb14ce6aa68dcb2c5db40ea7db6690e"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001_R1/20261020T172104471Z-red-confirmed/TEST-io.github.misakapiano.ccbstudio.assets.AssetSafetyTest.xml",
+      "sha256": "1dc977b3abbcb479d1f02338e399b3489977af1af2232d96ef1cfb584432ba1a"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001_R1/20261020T172104471Z-red-confirmed/gradle-excerpt.txt",
+      "sha256": "63e3f9c8ff19dc3aacd6ca22eb3368c53e309cd547c358525b181049f5f84fde"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001_R1/20261020T172104471Z-red-confirmed/source-before.json",
+      "sha256": "75aa54199f4d942897f019a80d710224a80795ca4a187fed634f32311f1cda56"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001_R1/20261020T172104471Z-red-confirmed/summary.json",
+      "sha256": "8d7bbd788b1df11000e4df03efc024afb69cf50cc9ed0193d6d0741ee6c1db6f"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001_R1/20261020T172215465Z-green-targeted/TEST-io.github.misakapiano.ccbstudio.assets.AssetSafetyTest.xml",
+      "sha256": "cbf9ef146e718535b0237a7405484bee6a1530fb991f59cba3fd3811cc19808a"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001_R1/20261020T172215465Z-green-targeted/gradle-excerpt.txt",
+      "sha256": "18cd48f0f375d53c7f5536b50dcd87cee95821362d3ded04de7a63143de8d553"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001_R1/20261020T172215465Z-green-targeted/source-before.json",
+      "sha256": "d2c91c5e223d00a1037ccc343311f473a4d5b3fba709d61b8df1f57af9da617e"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001_R1/20261020T172215465Z-green-targeted/summary.json",
+      "sha256": "a07e52c97905b1a5ef1c3c16ca244a8d0be53f3aa13e576be805d8e52aaf41d3"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001_R1/20261020T172241273Z-full-module/TEST-io.github.misakapiano.ccbstudio.assets.AssetBackupTest.xml",
+      "sha256": "fb31708788d14acbfba9304fb957cac0019e7c9ee5e5b9926fc193550e23a073"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001_R1/20261020T172241273Z-full-module/TEST-io.github.misakapiano.ccbstudio.assets.AssetSafetyTest.xml",
+      "sha256": "01c631f19573a5c1e297afef2251c0a150d4b7f8c40ade03958edf60f4e817bb"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001_R1/20261020T172241273Z-full-module/TEST-io.github.misakapiano.ccbstudio.assets.AssetStoreTest.xml",
+      "sha256": "8dd425842464b61b8f1de49e746cd29947c63c2b09d32688735f28af28763085"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001_R1/20261020T172241273Z-full-module/gradle-excerpt.txt",
+      "sha256": "a8ce7ed7d9294afa2178a74467e8bed1f9186a6134b2144f50dfacb9793e08b3"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001_R1/20261020T172241273Z-full-module/source-before.json",
+      "sha256": "d2c91c5e223d00a1037ccc343311f473a4d5b3fba709d61b8df1f57af9da617e"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001_R1/20261020T172241273Z-full-module/summary.json",
+      "sha256": "9756bd7600c1de0d511e9d76077cf8c5c06a2a6c06e835d38580141c160a8972"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001_R1/DELIVERY.json",
+      "sha256": "a415c2b7c97d67f7dd187202b916a0604d89001df35bda51d03ed40a1765135a"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001_R1/ENVIRONMENT.json",
+      "sha256": "785b73c2fcfab8347b910fca83aa3ec87506039c92d94b595b414c1eb1841b33"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001_R1/FINAL_TEST_CASES.json",
+      "sha256": "751139c6fc2ab35a6ae2901bbc000ffeba722896f4e387283a018df70af56bbe"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001_R1/PROTECTED_BASELINE.json",
+      "sha256": "daad5486ddc79e2039283f6b67339dc687a355ebf4f02f55e5d52103449a19c5"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001_R1/SOURCE_IDENTITY.json",
+      "sha256": "fd0fb253e918b7697e0a00e1d4addf181a3517de7e0ff8af6d1ff258262fd66e"
+    },
+    {
+      "path": "handoff/CODEX_START_MESSAGE.md",
+      "sha256": "be80b4b1793ee01e5e6364ac1eb9143ddce8f594c6bf9a910d01f5c520cf6eac"
+    },
+    {
+      "path": "handoff/DESKTOP_COLLABORATION_NOTE.md",
+      "sha256": "743ca191b04051d1ea5c7284ddfa82be529bdee067795037408bdc745891050f"
+    },
+    {
+      "path": "handoff/GITHUB_INITIAL_PUBLISH_AFTER_A0.md",
+      "sha256": "85a754c90ba6b4801c4214f2cc009e74933c22a2823d1f468a3dd1642792d91e"
+    },
+    {
+      "path": "handoff/NEW_PROJECT_OPENING.md",
+      "sha256": "8cbfa20e2644190bd1820310eeb9c269427865dea1353f89108e5c1b7ac79197"
+    },
+    {
+      "path": "handoff/PROJECT_A0_REVIEW.md",
+      "sha256": "8e12e648f8762fba6725e413b981f291fd8c422d9460f8f2d936de06c7f0e87e"
+    },
+    {
+      "path": "handoff/PROJECT_A1_REVIEW.md",
+      "sha256": "b3e6864d4fb3e92b974305b4c2f2033a9823a7273c7641ebc24fa26f7dd08b18"
+    }
+  ],
+  "allUnchangedAtProbe": true
+}

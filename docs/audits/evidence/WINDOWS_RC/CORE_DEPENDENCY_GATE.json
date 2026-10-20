@@ -1,0 +1,64 @@
+{
+  "task": "WINDOWS_RC_CONTINUOUS",
+  "checkpointAffected": "CP2 authority adapter (and hence RC readiness)",
+  "status": "STOP_DEPENDENCY_NOT_AUTHORIZED_OR_AVAILABLE",
+  "repository": "MisakaPiano/ChatChatBar-Desktop",
+  "exactSourceCommit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+  "method": "Read-only exact git tree filename check, selected build/import boundary and README rights statements. Not a repeat whole source audit. No source copied, built, fetched or modified.",
+  "licenseNoticeFilenameMatches": [],
+  "readmeRightsStatementMatches": [],
+  "selectedSource": [
+    {
+      "path": "app/sharedCore/build.gradle.kts",
+      "gitBlob": "3c7fdda2ea8db05d0bb20239db831d5c7a34cdc2",
+      "sourceSha256": "22fb30c04bbd736e5a0dea981e8514367159b9e13d37b51fc64d64e4b7287ff6",
+      "selectedFacts": [
+        "Kotlin JVM/java-test-fixtures/serialization plugins; no publishing block in this selected module file"
+      ]
+    },
+    {
+      "path": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/prompt/NovelAiPromptAuthority.kt",
+      "gitBlob": "f845dde46567779d3b5ebb0f6f614146f61878d3",
+      "sourceSha256": "a0e0057dfec51b89eb8c92d2891865a5f865d6add2860c0f0b7fadbc9aef01da",
+      "selectedFacts": [
+        "import com.example.chatbar.data.local.entity.CharacterCard",
+        "import com.example.chatbar.data.local.entity.CharacterEditMode",
+        "import com.example.chatbar.data.local.entity.ChatMessage",
+        "import com.example.chatbar.data.local.entity.MessageRole",
+        "import com.example.chatbar.domain.image.NovelAiImageModel",
+        "import com.example.chatbar.domain.chat.PlaceholderRenderer"
+      ]
+    },
+    {
+      "path": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/NovelAiPromptDesigner.kt",
+      "gitBlob": "cd0dba56e65258727124bf8fd56a5854a1c8b9d2",
+      "sourceSha256": "4d3efa37bfeef23a4a192daf3d6a02239e9803d2ca407dec3d6af35b7e6fb661",
+      "selectedFacts": [
+        "import com.example.chatbar.data.local.entity.CharacterCard",
+        "import com.example.chatbar.data.local.entity.CharacterEditMode",
+        "import com.example.chatbar.data.local.entity.ChatMessage",
+        "import com.example.chatbar.data.local.entity.MessageRole",
+        "import com.example.chatbar.data.local.entity.ModelConfig",
+        "import com.example.chatbar.domain.chat.ChatApiMessage",
+        "import com.example.chatbar.domain.chat.ImageUnderstandingResult",
+        "import com.example.chatbar.domain.chat.ImageUnderstandingService",
+        "import com.example.chatbar.domain.chat.StreamEvent",
+        "import com.example.chatbar.domain.prompt.NovelAiTagSearchEvidence",
+        "import com.example.chatbar.domain.prompt.NovelAiCodexEvidence",
+        "import com.example.chatbar.domain.prompt.rethrowIfAiTaskTerminalFailure",
+        "import com.example.chatbar.domain.prompt.NovelAiPromptAuthority as PromptTemplates"
+      ]
+    }
+  ],
+  "providedNarrowArtifactCoordinates": null,
+  "providedSuiteRedistributionPermissionEvidence": null,
+  "scopeOfConclusion": "Absence of matching filenames is not a legal conclusion. Required traceable rights/artifact evidence has not been provided under the active Gate; user ownership is not assumed to grant all upstream/third-party rights.",
+  "whyNotWorkAround": [
+    "Do not duplicate Prompt/request/fallback logic as a second serializer",
+    "Do not include the entire sharedCore or active adjacent Desktop workspace",
+    "Do not write Desktop to extract/publish without independent target authorization",
+    "A mocked generation UI cannot satisfy REQ-02/REQ-03/REQ-12"
+  ],
+  "unaffectedWork": "Complete CP1 independent persistence/maintenance and trust-lab checkpoint. CP3/CP4 product gates are NOT TESTED, never skipped into green.",
+  "remedy": "Provide an independently reviewed fixed narrow Desktop authority artifact/source closure, rights/notices and equivalence vectors, or explicitly approve a lawful Suite-local exact-source dependency boundary; do not change upstream semantics."
+}

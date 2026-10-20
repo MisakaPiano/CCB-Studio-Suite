@@ -1,25 +1,25 @@
-# CURRENT STATE — A1-001-R1 已远程交付，等待 Project review
+# CURRENT STATE — Windows RC 连续任务 / RC BLOCKED（CP2依赖）
 
 更新日期：2026-10-21 JST；初始包版本 INIT-1.0（母本与原交付清单保留）。
 
 | 项目 | 当前事实 |
 |---|---|
 | 项目 | CCB Studio Suite |
-| 阶段 | 用户提供 A1-001@3c17b4c9 的 Project 结论 PASS_WITH_SCOPE；R1-01/R1-02 已修复，新针对性 6 PASS、完整模块 27 PASS，实现提交 a9ac4712 已远程核验，Drive 原始ZIP已上传并原字节回读验证，停止等待 Project review；不自动 A1-002/A2 |
+| 阶段 | 已实际读取 Issue #1 APPROVED_FOR_RC_RUN 和 Issue #2/R1 PASS_WITH_SCOPE；连续任务启动，CP1独立基础自动化通过（31 JVM+8 TUF tests）；CP2权威核心许可/窄SDK依赖STOP，整体RC BLOCKED |
 | 立项文件 | 已整理成分文件包与合并母本 |
 | 生产源码 | 单个JDK17 asset-library切片：原始流/不可变关系/事务恢复/索引/最小备份恢复；非完整应用 |
-| Windows本地工作区 | H:\CCB-Studio-Suite；feature/a1-001-r1-safety；R1 起点3c17b4c9038d821efef726b1dc84c90c87855c39，开始时index/worktree/untracked干净；实现身份见本次提交和源码hash |
+| Windows本地工作区 | H:\CCB-Studio-Suite；feature/windows-rc-continuous；起点27dbd5d578f364afb529fc33944386c0c107f0da，开始时index/worktree/untracked干净；完整继承R1，单执行者所有权记录见RC台账 |
 | GitHub远程仓库 | https://github.com/MisakaPiano/CCB-Studio-Suite.git；main仍6d3d2b2；A1原分支远程3c17b4c9已核验；本轮明确允许R1功能分支提交/推送及指定Drive附件上传；实际结果见 R1 DELIVERY.json；后续仅补交付回执，未改实现 |
 | 产品验收/发布 | 无 |
 | 真实用户数据 | 未授权读取/迁移 |
 | 真实付费API | 未授权 |
-| 签名密钥 | 未创建、未上传 |
+| 签名密钥 | 无正式密钥；合成lab签名对象仅内存，未创建/上传私钥文件 |
 
-## 下一项
+## 当前任务与恢复入口
 
-本轮实现 GitHub push 与 Drive 上传/回读均已实际成功，已停止，仅 Project review：[R1审阅入口](audits/A1_001_R1_PROJECT_REVIEW.md)、[实际执行与缺口](audits/A1_001_R1_EXECUTION.md)、[最终逐项测试](audits/evidence/A1_001_R1/FINAL_TEST_CASES.json)。新代码重新实际执行3 suites / 27 tests / 0 failures/errors/skipped，403.517s；针对性6项先在旧逻辑确认5失败，再在修复后6 PASS。旧A1的21 PASS只是历史快照，没有代签新版。
+[连续任务合同](../tasks/WINDOWS_RC_CONTINUOUS.md)、[checkpoint台账](rc/CHECKPOINTS.md)、[RC门槛状态](rc/RC_READINESS.md)、[依赖STOP及独立目标合同](rc/DEPENDENCY_ESCALATION.md)。当前CP1维护针对性4 PASS，真实TUF合成信任链8 PASS，完整资产模块31 PASS/0失败错误跳过，源码hash一致；旧27 PASS没有代签新版。见[真实执行回执](rc/CP1_EXECUTION.md)。
 
-A1-001 的 Project `PASS_WITH_SCOPE` 由用户明确提供，未独立读取外部Project会话；本轮R1尚待新审查。备份已登记后允许在原登记内完成目录校验；未知/暂存权威内容保留且阻止完整目录/重建，不自动清理。Windows/Android/Server真实安全更新仍未实施/未验收。
+正式Gate已经实际读取，不再只依据用户转述：#1 comment6296885017允许一次性CP1–CP4，但明确遇到权威核心/许可/跨仓边界时停止受阻切片。CP2尚无被提供的合法窄SDK制品/授权链；不复制Prompt/request/fallback、不写Desktop绕过。先完成独立CP1检查点及远程交付，再以RC BLOCKED停止。没有Windows安装包、真实应用内A→B、凭据迁移或产品人工验收PASS。
 
 ## 已知边界
 

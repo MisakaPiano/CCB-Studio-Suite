@@ -1,0 +1,35 @@
+
+Welcome to Gradle 9.1.0!
+
+Here are the highlights of this release:
+ - Full Java 25 support
+ - Native task graph visualization
+ - Enhanced console output
+
+For more details see https://docs.gradle.org/9.1.0/release-notes.html
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+> Task :asset-library:compileJava
+> Task :asset-library:processResources NO-SOURCE
+> Task :asset-library:classes
+> Task :asset-library:compileTestJava
+> Task :asset-library:processTestResources NO-SOURCE
+> Task :asset-library:testClasses
+
+> Task :asset-library:test
+
+AssetMaintenanceTest > CP1_reconciliationSurvivesRealChildTerminationAtEveryBoundary STANDARD_OUT
+    RECONCILIATION_CRASH MAINTENANCE_INTENT verified
+    RECONCILIATION_CRASH MAINTENANCE_MOVED verified
+    RECONCILIATION_CRASH MAINTENANCE_COMPLETE verified
+
+AssetMaintenanceTest > CP1_reconciliationSurvivesRealChildTerminationAtEveryBoundary PASSED
+
+AssetMaintenanceTest > CP1_pendingInspectionRecoveryAndReconciliationPreserveEveryByteAndBackup PASSED
+
+AssetMaintenanceTest > CP1_unknownCorruptFutureAndStaleCandidatesCannotBeDiscarded PASSED
+
+BUILD SUCCESSFUL in 36s
+3 actionable tasks: 3 executed
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.1.0/userguide/configuration_cache_enabling.html

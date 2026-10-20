@@ -1,0 +1,9 @@
+java.exe : openjdk version "17.0.20.1" 2026-08-18
+At H:\CCB-Studio-Suite\tools\Test-WindowsRc.ps1:68 char:9
++         & java -version *> (Join-Path $evidence 'java-version.log')
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (openjdk version "17.0.20.1" 2026-08-18:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+OpenJDK Runtime Environment Temurin-17.0.20.1+1 (build 17.0.20.1+1)
+OpenJDK 64-Bit Server VM Temurin-17.0.20.1+1 (build 17.0.20.1+1, mixed mode, sharing)

@@ -1,0 +1,13 @@
+test_authenticated_target_download_has_exact_bytes (test_trust.TrustTests) ... ok
+test_cached_metadata_cannot_roll_back (test_trust.TrustTests) ... ok
+test_disconnected_transport_has_no_successful_payload (test_trust.TrustTests) ... ok
+test_expired_metadata_freeze_is_rejected (test_trust.TrustTests) ... ok
+test_rotated_root_needs_old_and_new_signatures (test_trust.TrustTests) ... ok
+test_signed_wrong_identity_and_unsupported_reader_are_rejected (test_trust.TrustTests) ... ok
+test_tampered_payload_is_not_accepted_as_a_download (test_trust.TrustTests) ... ok
+test_wrong_target_signature_is_rejected (test_trust.TrustTests) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.414s
+
+OK

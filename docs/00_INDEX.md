@@ -5,7 +5,7 @@
 1. [当前状态](CURRENT_STATE.md)
 2. [任务登记](TASK_REGISTRY.md)
 3. [来源锁](SOURCE_LOCK.json)
-4. 本任务合同；当前为用户限定的 [A1-001-R1 实施范围与回执](audits/A1_001_R1_EXECUTION.md)，原 [A1-001 合同](../tasks/A1_001_IMPLEMENTATION_CANDIDATE.md)保留历史
+4. 当前 [Windows RC连续合同](../tasks/WINDOWS_RC_CONTINUOUS.md)与[checkpoint恢复台账](rc/CHECKPOINTS.md)；A1/R1原合同和证据保留历史，不从main重做
 
 ## 产品与工程合同
 
@@ -47,3 +47,9 @@
 原A1@3c17b4c9审查PASS_WITH_SCOPE由用户提供；本轮只修复目录完整性和备份/关闭排水竞争。见[R1 Project审阅入口](audits/A1_001_R1_PROJECT_REVIEW.md)、[真实实施/失败沿革/恢复语义](audits/A1_001_R1_EXECUTION.md)、[本轮27项实际结果](audits/evidence/A1_001_R1/FINAL_TEST_CASES.json)、[源码身份](audits/evidence/A1_001_R1/SOURCE_IDENTITY.json)。GitHub/Drive交付以实际回执为准；不改旧证据或产品验收矩阵，不自动继续更新器/其他阶段。
 
 R1实际交付：[GitHub/Drive回执](audits/evidence/A1_001_R1/DELIVERY.json)及[固定实现和附件入口](audits/A1_001_R1_PROJECT_REVIEW.md)。实现a9ac4712已远程核验；Drive ZIP原字节回读hash一致，后续提交仅补交付记录。
+
+## Windows RC 连续任务（2026-10-21）
+
+已实际读取[#1正式Gate](https://github.com/MisakaPiano/CCB-Studio-Suite/issues/1#issuecomment-6296885017)、[#2完整合同与R1审查](https://github.com/MisakaPiano/CCB-Studio-Suite/issues/2)。从R1@27dbd5d5独立分支继续；[RC状态](rc/RC_READINESS.md)、[CP台账](rc/CHECKPOINTS.md)、[更新A→B计划/真实TUF合成lab边界](rc/UPDATE_A_B_PLAN.md)、[权威依赖STOP](rc/DEPENDENCY_ESCALATION.md)、[合同原始快照](audits/evidence/WINDOWS_RC/CONTRACT_SOURCE.json)。不改历史证据，不把CP1库/信任lab称为RC。
+
+CP1 [实际执行/环境/测试与STOP回执](rc/CP1_EXECUTION.md)：31项完整JVM回归和8项真实TUF合成信任验证已执行；整体RC BLOCKED，未产出安装包。

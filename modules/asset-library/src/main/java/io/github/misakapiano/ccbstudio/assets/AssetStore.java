@@ -14,7 +14,8 @@ public final class AssetStore implements AutoCloseable {
     public enum Kind { ORIGINAL, DERIVED }
     public enum Io { READ, WRITE, MOVE }
     public enum Point { INTENT, BYTES, SEALED, ASSET, RECORD, INDEX, COMPLETE,
-        BACKUP_REGISTERED, BACKUP_FILE, BACKUP_MANIFEST, RESTORE_FILE, RESTORE_COMPLETE }
+        BACKUP_REGISTERED, BACKUP_FILE, BACKUP_MANIFEST, RESTORE_FILE, RESTORE_COMPLETE,
+        MAINTENANCE_INTENT, MAINTENANCE_MOVED, MAINTENANCE_COMPLETE }
     public interface Faults {
         default void before(Io operation, Path path) throws IOException {}
         default void after(Point point, Path path) throws IOException {}
@@ -196,7 +197,7 @@ public final class AssetStore implements AutoCloseable {
         try { return ReadResult.valid(decodeAsset(result.value())); }
         catch (IOException | IllegalArgumentException bad) { return ReadResult.error(ReadResult.Status.CORRUPT, "Malformed asset relationship"); }
     }
-    private ReadResult<Asset> readInternal(UUID id) {
+    ReadResult<Asset> readInternal(UUID id) {
         var result = decodeAssetFile(recordPath(id), "asset");
         if (result.status() != ReadResult.Status.VALID) return result;
         if (!result.value().request().id().equals(id)) return ReadResult.error(ReadResult.Status.CORRUPT, "Record filename/identity mismatch");

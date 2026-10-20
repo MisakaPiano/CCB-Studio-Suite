@@ -22,7 +22,8 @@ public final class AssetBackup {
             int assets = store.catalogInternal().size(); // Already admitted: finish under this registration even during drain.
             List<Path> sourceFiles = new ArrayList<>();
             sourceFiles.add(store.root.resolve("suite-root.rec"));
-            for (String directory : List.of("objects", "records", "transactions")) {
+            for (String directory : List.of("objects", "records", "transactions", "maintenance")) {
+                if (!Files.exists(store.root.resolve(directory), NOFOLLOW_LINKS)) continue;
                 try (var paths = Files.walk(store.root.resolve(directory))) {
                     for (Path p : paths.toList()) {
                         if (Files.isDirectory(p, NOFOLLOW_LINKS)) { StoreIO.safeChain(p); continue; }
@@ -128,7 +129,8 @@ public final class AssetBackup {
         if (relative.equals("suite-root.rec")
                 || relative.matches("objects/[0-9a-f]{64}\\.blob")
                 || relative.matches("records/(" + uuid + "\\.rec|\\.pending-" + uuid + ")")
-                || relative.matches("transactions/" + uuid + "/(request\\.rec|seal\\.rec|complete\\.rec|payload\\.part|\\.pending-" + uuid + ")")) return;
+                || relative.matches("transactions/" + uuid + "/(request\\.rec|seal\\.rec|complete\\.rec|payload\\.part|\\.pending-" + uuid + ")")
+                || relative.matches("maintenance/reconciliations/" + uuid + "/(intent\\.rec|candidate\\.rec|complete\\.rec|\\.pending-" + uuid + ")")) return;
         throw new StoreException("CORRUPT", "Unrecognized or unsafe snapshot path");
     }
     private static byte[] encode(List<Entry> entries) throws IOException {

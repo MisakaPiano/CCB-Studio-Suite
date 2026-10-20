@@ -4,11 +4,14 @@
 |---|---|---|---|
 | INIT-000 | 立项材料 | PACKAGED | 文档/参考交付，不等于软件实现 |
 | A0-001 | 核对初始化并只读复用审计 | AUDIT DELIVERED / REVIEWED WITH SCOPE | 原审计事实保留；A0-002结论见下一行 |
-| A0-002 | Project审查A0真实结果 | PASS_WITH_SCOPE | 用户本轮明确提供的Project结论，审查SHA6d3d2b22651f9744807925f74c6941f681bbef02；未独立读取外部Project会话 |
+| A0-002 | Project连续开发门禁 | APPROVED_FOR_RC_RUN | 已实际读取Issue #1正式回执comment6296885017；只解锁#2，不是产品/合并/发布/真实付费验收 |
 | BOOTSTRAP-GIT-001 | 用户追加授权的A0文档Git交付 | DELIVERY SNAPSHOT / 远程回执另报 | 仅Suite显式路径提交与正常push；交付SHA见Git；不执行A1/软件发布 |
 | A1-001 | 独立数据根与原始资产提交/恢复 | PASS_WITH_SCOPE (用户提供 Project 审查结论，固定3c17b4c9) | [实际回执](audits/A1_001_EXECUTION.md)；实施基准6d3d2b2；用户随后追加要求远程交付，见[Project审阅入口](../handoff/PROJECT_A1_REVIEW.md)，不合并main，不启动下一任务 |
-| A1-001-R1 | 资产目录完整性与维护排水补强 | IMPLEMENTED / TARGETED 6 PASS / MODULE 27 PASS / DELIVERED / AWAITING PROJECT REVIEW | [实际回执](audits/A1_001_R1_EXECUTION.md)；3c17b4c9起点，feature/a1-001-r1-safety；本轮明确允许功能分支Git和指定Drive交付，不merge/release/后续实施 |
-| A1-002 | 安全更新垂直原型 | NOT AUTHORIZED | A1-001仅产出后续设计；无签名/安装/真实A→B执行 |
+| A1-001-R1 | 资产目录完整性与维护排水补强 | PASS_WITH_SCOPE (Issue #2 comment6297274746已实读) / HISTORICAL AUTOMATION 27 PASS | [实际回执](audits/A1_001_R1_EXECUTION.md)；3c17b4c9起点，feature/a1-001-r1-safety；本轮明确允许功能分支Git和指定Drive交付，不merge/release/后续实施 |
+| WINDOWS-RC-CP1 | 继承R1、维护与更新信任基础 | AUTOMATED FOUNDATION GREEN / DELIVERY PENDING | 4 targeted / 31 full JVM / 8 trust-lab tests实际PASS；[执行回执](rc/CP1_EXECUTION.md)；非产品/安装验收 |
+| WINDOWS-RC-CP2 | 独立Compose Studio/单一权威生成核心 | STOP_DEPENDENCY / RC BLOCKED | [精确依赖证据和目标合同](rc/DEPENDENCY_ESCALATION.md)；不复制/重写上游，不写Desktop |
+| WINDOWS-RC-CP3-4 | 编辑/完整更新/Windows RC | NOT TESTED / NO RC | 关键CP2产品基础未通过；不跳过门槛、不把信任lab称应用更新 |
+| A1-002 | 历史独立更新任务 | NOT RUN AS STANDALONE | 当前更新基础/未来产品门槛改由Issue #2的CP1/CP4管理；不追改旧回执 |
 | X-000 | 向Desktop登记关系 | PROPOSED | 使用交接说明，目标项目自行登记 |
 
 ## 执行者
