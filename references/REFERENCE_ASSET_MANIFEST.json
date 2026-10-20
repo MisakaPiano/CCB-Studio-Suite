@@ -1,0 +1,41 @@
+{
+  "recordFormat": 1,
+  "recordType": "local_reference_byte_identity",
+  "recordedDate": "2026-10-20",
+  "hashVerifiedInThisPackagingRun": true,
+  "runtimeAcceptance": false,
+  "files": [
+    {
+      "path": ".reference-assets/typeset-forge-1.1/TypesetForge_1.1.html",
+      "originalName": "TypesetForge_1.1.html",
+      "libraryFileId": "file_000000001fa881fda823d0f4d32758e5",
+      "sizeBytes": 200005,
+      "sha256": "892ea08f0070bdfd264b8895d38f6239f32f436b68a74ab42a2ef3336e28bb63",
+      "byteHandling": "copied_without_content_modification",
+      "executed": false
+    },
+    {
+      "path": ".reference-assets/typeset-forge-1.1/README_1.1.md",
+      "originalName": "README(2).md",
+      "libraryFileId": "file_00000000456881f6a50288e0ee7c393e",
+      "sizeBytes": 16158,
+      "sha256": "cd6fda7d43c1993e15f075d26fa1dc3e15b3729c37cb5a3258e1bf566099bf05",
+      "byteHandling": "copied_without_content_modification",
+      "executed": false
+    },
+    {
+      "path": ".reference-assets/typeset-forge-1.1/CHANGELOG_1.1.md",
+      "originalName": "CHANGELOG_1.1.md",
+      "libraryFileId": "file_0000000074a4820d9b501c5982ed77d2",
+      "sizeBytes": 1594,
+      "sha256": "58486e13439e1593a0d07054413bbeeaadad50912d73e96cff0f9689115b3a31",
+      "byteHandling": "copied_without_content_modification",
+      "executed": false
+    }
+  ],
+  "limits": [
+    "Not proof of the latest file on the user Windows machine",
+    "Not a redistribution license",
+    "No fonts included; HTML not executed"
+  ]
+}

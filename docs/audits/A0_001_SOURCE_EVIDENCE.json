@@ -1,0 +1,569 @@
+{
+  "recordFormat": 1,
+  "task": "A0-001",
+  "date": "2026-10-21",
+  "timezone": "Asia/Tokyo",
+  "acceptance": "static audit only; no production adoption or product tests",
+  "observation": {
+    "recordedDate": "2026-10-21",
+    "timezone": "Asia/Tokyo",
+    "task": "A0-001",
+    "method": "Local exact git object reads and read-only GitHub connector GET; no source fetch/checkout/build",
+    "desktopIntegrated": {
+      "repository": "MisakaPiano/ChatChatBar-Desktop",
+      "ref": "desktop",
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a"
+    },
+    "officialObserved": {
+      "repository": "SaltyFishOTL/ChatChatBar",
+      "ref": "master",
+      "commit": "979cb505958dffb1b6d64a8de657434f198ffa96",
+      "adoption": "observation_only"
+    },
+    "desktopLocal": {
+      "branch": "feature/phase8-fish-audio",
+      "commit": "3ece1366b142210f2db7c61a9c479cd156534b69",
+      "worktree": "Initial tracked/index diff empty with pre-existing untracked; external end state recorded separately"
+    },
+    "suite": {
+      "branch": "main",
+      "head": null,
+      "index": "empty",
+      "origin": "https://github.com/MisakaPiano/CCB-Studio-Suite.git",
+      "remoteBranchCount": 0
+    },
+    "dependencyAdoption": "none; historical sources array unchanged",
+    "evidence": "audits/A0_001_SOURCE_EVIDENCE.json",
+    "desktopLocalEnd": {
+      "branch": "feature/phase8-fish-audio",
+      "head": "ba7b58c829fb583c0e22c100f5de8a3799406c20",
+      "localDesktopRef": "4c2af2576e2319e8041ffd2a6c5a205450f18246",
+      "interpretation": "External HEAD advanced during audit. This session issued read-only Desktop commands only. No whole-session unchanged-state claim; initial local desktop ref was not captured."
+    }
+  },
+  "remoteReads": {
+    "AppUpdateManager": {
+      "repository": "SaltyFishOTL/ChatChatBar",
+      "commit": "979cb505958dffb1b6d64a8de657434f198ffa96",
+      "blob": "c35019cfdcef9a9e47a59be29ba7645a61e8a14b",
+      "url": "https://github.com/SaltyFishOTL/ChatChatBar/blob/979cb505958dffb1b6d64a8de657434f198ffa96/app/app/src/main/java/com/example/chatbar/domain/update/AppUpdateManager.kt",
+      "readScope": "full file",
+      "symbols": [
+        "startDownload",
+        "validateApk",
+        "requestInstall"
+      ]
+    },
+    "AppUpdateChecker": {
+      "repository": "SaltyFishOTL/ChatChatBar",
+      "commit": "979cb505958dffb1b6d64a8de657434f198ffa96",
+      "blob": "8f0d3b171aa74cdfa435420b0d032a805ff947fc",
+      "url": "https://github.com/SaltyFishOTL/ChatChatBar/blob/979cb505958dffb1b6d64a8de657434f198ffa96/app/app/src/main/java/com/example/chatbar/domain/update/AppUpdateChecker.kt",
+      "readScope": "full file",
+      "symbols": [
+        "checkLatestRelease",
+        "parseGitHubReleasesAtom"
+      ]
+    },
+    "NovelAiCredentialStore": {
+      "repository": "SaltyFishOTL/ChatChatBar",
+      "commit": "979cb505958dffb1b6d64a8de657434f198ffa96",
+      "blob": "50e2578445fbd721daf7dff2c23bdd520d17dbef",
+      "url": "https://github.com/SaltyFishOTL/ChatChatBar/blob/979cb505958dffb1b6d64a8de657434f198ffa96/app/app/src/main/java/com/example/chatbar/data/security/NovelAiCredentialStore.kt",
+      "readScope": "full file",
+      "symbols": [
+        "load",
+        "readForBackup",
+        "replaceFromBackup"
+      ]
+    }
+  },
+  "officialCompare": {
+    "base": "5e76a9cb841736bbbf3499a2e35e5789af4c5ca8",
+    "head": "979cb505958dffb1b6d64a8de657434f198ffa96",
+    "ahead": 28,
+    "totalCommits": 28,
+    "listedFileCount": 221,
+    "url": "https://api.github.com/repos/SaltyFishOTL/ChatChatBar/compare/5e76a9cb841736bbbf3499a2e35e5789af4c5ca8...979cb505958dffb1b6d64a8de657434f198ffa96",
+    "scope": "Inventory only; not full semantic review of all listed files"
+  },
+  "localSourceReads": [
+    {
+      "commit": "5e76a9cb841736bbbf3499a2e35e5789af4c5ca8",
+      "path": ".agents/skills/chatbar-image-generation-runtime/SKILL.md",
+      "sha256": "14c0faf79cf6284f9c26422d4829f62500a090db64635d09a06fa98a5311850a",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "2-4,7-27,29-31,33-44,46-56,59-71,73-89,93-113,116-124,126-131,134-139,141-150,153-158"
+    },
+    {
+      "commit": "5e76a9cb841736bbbf3499a2e35e5789af4c5ca8",
+      "path": "app/app/src/main/AndroidManifest.xml",
+      "sha256": "be531c92fa083089df25ceaeec9a5c8da0c4c9edad1ed37efcf7cd8992a0f9c6",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "3-16,30-36,38-54,58-62,93-95,97-99"
+    },
+    {
+      "commit": "5e76a9cb841736bbbf3499a2e35e5789af4c5ca8",
+      "path": "app/app/src/main/java/com/example/chatbar/data/security/NovelAiCredentialStore.kt",
+      "sha256": "662df25cb23ddb5f37a8567e1814ee6d5b96973d8601d9039abf83080c7995f0",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "1-79"
+    },
+    {
+      "commit": "5e76a9cb841736bbbf3499a2e35e5789af4c5ca8",
+      "path": "app/app/src/main/java/com/example/chatbar/domain/image/NovelAiStudioAssetStorage.kt",
+      "sha256": "b833d93caad32cefb58b5fcef6fc203ae41e83379355a04b4a4b5af5dc836def",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "1-46,48-61,63-67,83-87,99-118,121-130,132-141,147-151,187-191,199-203,211-215,219-223,233-238"
+    },
+    {
+      "commit": "5e76a9cb841736bbbf3499a2e35e5789af4c5ca8",
+      "path": "app/app/src/main/java/com/example/chatbar/ui/components/ImageMosaicEditor.kt",
+      "sha256": "25f7ef8fa780be5fc27b509096a5c3c0b9f7a1bb183f8d952fef6e4862f2fe9f",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "2-49,76-78,82-85,88-90,94-96,100-102,116-118,133-137,139-141,152-154,188-190,228-230,234-236,245-247,286-288,297-300,302-305,309-311,372-375,378-384,396-398,435-437,492-494,501-503,506-508,533-535,541-545,558-560,562-564,567-569,572-574"
+    },
+    {
+      "commit": "5e76a9cb841736bbbf3499a2e35e5789af4c5ca8",
+      "path": "app/app/src/main/java/com/example/chatbar/ui/imageprompt/ImagePromptToolViewModel.kt",
+      "sha256": "f2d16ca95725ccd7e09584bc3c2270bf055ae975a75334ba4772a10f6bde9556",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "2-11,69-75,90-97,102-108,203-209,256-262,275-281,875-882,884-890,1030-1036,1201-1207,1214-1220,1268-1275,1508-1514"
+    },
+    {
+      "commit": "5e76a9cb841736bbbf3499a2e35e5789af4c5ca8",
+      "path": "app/app/src/test/java/com/example/chatbar/data/repository/NovelAiStudioRepositoryTest.kt",
+      "sha256": "f0e7b2f13a4e9d340175b38639c7469b39ae52b425547d719722c47aae2ee9a2",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "23,41,79,88"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopDataOperationCoordinator.kt",
+      "sha256": "132bcef5742d4103dda5e4276fb0aeaf7b52061ec582b25ac71f8d92c0325b9c",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "9-13,18-22,27-31,40-44,48-57,65-69,80-84,107-116,130-137,163-169,172-176,211-217,251-255,266-270,283-287,329-333,335-339,347-351,359-363,369-382"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopDataRootOwnership.kt",
+      "sha256": "99eb693bf15e45e8a5979053c1b4714bc7672c18ad9f8f2ec4a70745560b75d7",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "13-17,22-40,42-46,52-56,60-64,68-102,109-118,122-126,132-136,142-146,149-153,160-164,166-175,178-182,189-194,197-248,250-258,274-278,290-313,315-319,323-330"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopFilePicker.kt",
+      "sha256": "cfc88935be646ecbaa0beca3500a37879a1c817df7dd97de64c625c6dfb4f329",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "1-13,16-33,38-42,44-48,50-54"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopImageEditing.kt",
+      "sha256": "13fe35a032428bb0d2e344958c3ef9c47ab2deb9c0225cf119a2fddd58e9e4b7",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "1-19,21-25,30-34,37-48,53-57,79-83,89-95,122-126,143-147,159-164,173-177"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiGenerationRuntime.kt",
+      "sha256": "9bd28cf2fe2f399803889be3cbe0f7958c14bed1438e9ea359840045e84bcba5",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "1-79"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiGenerationStore.kt",
+      "sha256": "78b5be5a72b733a9dbbd0005af14b98ac62f839c53e9088cf81328d84547e368",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "1-41"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiInfrastructure.kt",
+      "sha256": "0f30f344eda624c41d87f8f23a7bea8d4d6a6e0eaee8e97d24f7dd8371d2d213",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "2-14,20-27,30-32,37-42"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiStudioController.kt",
+      "sha256": "4511f9329082b6877d25ce6a7f77b0302f6d5a391215ead22dd4b620c7b07de2",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "1-22,51-55,62-66,115-119,128-132,134-142,171-175,236-240,245-253,276-284,287-291,348-418,420-424,493-502"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiTextTransport.kt",
+      "sha256": "c45f973e4703ff69edf4acd3c855cb8439ac0f2e1acf263c2bdf7f6cf7eed88b",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "1-59"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/security/DesktopSecretStore.kt",
+      "sha256": "ebb4889f6ec43d0e1918260419a1be3d94f3b09df8159ad5f784e280b7912c7b",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "1-55"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/security/WindowsDpapiSecretProtector.kt",
+      "sha256": "8986343c9193acb570f5adae4ce58572b14b6a8d16671504a858dab241c1c0a4",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "1-36"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/security/WindowsSecretStore.kt",
+      "sha256": "68f83df55fa3280ab258c2587f922c4ff3286d3b313d16d013c1243c8b100fa8",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "13-21,42-48,69-75,87-93,102-108,111-124,132-145,155-172,180-186"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/desktopApp/src/test/kotlin/com/example/chatbar/desktop/DesktopApplicationLifecycleTest.kt",
+      "sha256": "20fd1bb0936dc4c014dbc4fa601f2278f5d822e4e5b142173a084930135e986d",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "19,60,87,105,116,133,150,171,192,236,268,314,338,372,394,416,435,466,479,508,528,545,565,587,613,648,657,663"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/desktopApp/src/test/kotlin/com/example/chatbar/desktop/DesktopPhase7StudioTest.kt",
+      "sha256": "6d840a3ff1289955bf5f122cab74f90eb067e39be5d6db17256fc1bf77088918",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "17,38,55,81,93,104,131,156,172,186,214"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/sharedCore/src/main/kotlin/com/example/chatbar/data/local/JsonFileStorage.kt",
+      "sha256": "02c13bb8d2adae07e1409dd4cc98aee764a0e04755efce333cdc5aeaa2ea97a9",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "79-90,135-146,189-197,199-224,231-248,265-273,288-296,370-378,543-552,562-599,766-785"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/sharedCore/src/main/kotlin/com/example/chatbar/data/local/entity/ChatMessage.kt",
+      "sha256": "f45ebffdc991f07fa5c085b48795d72e56433d97fd5717b97ab6d0efdbcacf9b",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "22-62"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/sharedCore/src/main/kotlin/com/example/chatbar/data/repository/NovelAiDesignConversationRepository.kt",
+      "sha256": "50da78e986598efb8bdd0ec4d3a043b15103e1957f478b9fbf1a00925570de1c",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "2-22,26-29,33-35,42-44,61-70,72-79,81-86,108-110,149-151,153-155,180-182,187-189,223-225,227-229,245-247,280-282,293-295,304-307,324-326,343-345,347-349,358-360,364-372,391-395"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/chat/OpenAiStreamingTransport.kt",
+      "sha256": "24892395620ea69789735f82a7b2bc8605fe777844c6d07e03a5e15429d2312d",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "2-28,33-39,44-46,52-54,60-62,69-71,77-79,90-92,94-100,180-187,197-199,206-208,232-234,246-248"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/NovelAiBatchPolicy.kt",
+      "sha256": "3cdf0e9a1303ebbfc6e95a7e2728c3b7022a660706506c11ce5fcccebb07dd75",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "1-7"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/NovelAiDesignTurnRunner.kt",
+      "sha256": "2b716d05c1ca1ddc4bab0e315da1d471bd01b29dea900cfab99ae0ea57cc5047",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "1-12,26-30,41-45,50-54,56-60,63-67"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/NovelAiImageGuidance.kt",
+      "sha256": "0c87a8de97279acde9103e883a2ecfe0c459d786508811007b641c76cb84aac5",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "1-10,13-20,22-26,30-34,42-46,55-59,63-67,75-79,109-113,124-128,133-137,150-154,162-166,209-213,215-219"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/NovelAiImageRegeneration.kt",
+      "sha256": "11b43aadd652f036272ea218ad86db04d418bc3dd02e80cca2e058bc040b53b0",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "1-7,17-21,30-39,42-49,60-64,71-75,91-95,102-109,124-128"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/NovelAiImageService.kt",
+      "sha256": "0f5f6a64a3fce6395cda32b33e44b8c1b957d8c02fc998f5235bb5d4970cc02c",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "1-54,59-73,76-84,87-101,114-131,134-142,154-171,177-188,198-206,223-231,234-242,309-317,415-430,441-454"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/NovelAiPngMetadataReader.kt",
+      "sha256": "e905d6608d351e7d21b5583770410e0a40372128f7d3a78957b53baa1865fedd",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "2-20,22-26,28-35,37-41,48-52,67-71,124-128,148-152,156-160,200-204,313-317,319-323,327-331,338-342,347-351,362-366,369-378,381-385,392-396,401-411"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/NovelAiPromptDesigner.kt",
+      "sha256": "4d3efa37bfeef23a4a192daf3d6a02239e9803d2ca407dec3d6af35b7e6fb661",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "1-45,77-83,113-127,136-148,182-188,198-211,244-250,260-273,322-328,354-410,420-431,433-439,444-456,498-506,517-523,537-544,557-571,576-587,611-619,622-628,634-640,644-655,676-682,684-690,702-724,770-776,779-785,794-800,806-812,841-847,850-856,860-871,874-884,887-893,917-923,925-931,937-943,949-955,1049-1055,1119-1125,1158-1164,1198-1204"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/NovelAiSqlDatabase.kt",
+      "sha256": "f9bf39721aedf0a410174ead4cadbfa0659efe30ddf2d5c245950fe02b9929e1",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "1-15"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/NovelAiStreamFrameDecoder.kt",
+      "sha256": "e877856acca3f584e238cd6e1a6c962110c28731f01e8e6c00e76d6c55beff73",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "1-23"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/NovelAiStudioImageImport.kt",
+      "sha256": "b5b74888eaed0cfc277da6489b203b392c299687f95a8844af5c92398f041987",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "2-4,8-10,27-29,44-46,57-59,63-65,72-74"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/NovelAiStudioModels.kt",
+      "sha256": "be02ded92c5a9116c398fb0ccb26857ef33452c535820ed68d9cf48846088a34",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "155,223"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/NovelAiTagResearchService.kt",
+      "sha256": "a24206ae6c26f32bb739b45d32e4dba239afb21eec0e78bb9309071ed5f2795c",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "2-29,33-35,42-47,58-60,67-69,72-74,77-79,82-84,90-92,94-96,102-104,108-110,115-117,126-128,154-156,164-166,183-185,187-189,197-199,256-258,311-313,322-324,346-348,363-365,367-369,388-390,412-414,437-442,457-459,466-468,498-500,515-517,652-654,760-762,789-791,815-817,831-833,838-840,845-847,851-853,860-862,870-878"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/prompt/NovelAiPromptAuthority.kt",
+      "sha256": "a0e0057dfec51b89eb8c92d2891865a5f865d6add2860c0f0b7fadbc9aef01da",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "3-8,28-29,39,52,81,86,109,117,126,145,154,171,197,204,221,252,255,379,411,416,422,444,457,466,481,497,503,521,538,555,558,579,600,620,631,656,675,685,698-699"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/sharedCore/src/test/kotlin/com/example/chatbar/data/local/JsonFileStorageStrictScanTest.kt",
+      "sha256": "cd436a73b45ae96294d0149c4c996bc68efff73a41b6f15037c96c4b4c692444",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "14,23,40"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/sharedCore/src/test/kotlin/com/example/chatbar/domain/image/NovelAiDesignerTransportTest.kt",
+      "sha256": "3b00b66d0bbd96663da9951be8f1c00554b1cc1d7a86f39396ea3e63cb3f6319",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "13,21,30"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/sharedCore/src/test/kotlin/com/example/chatbar/domain/image/NovelAiImageRetryTest.kt",
+      "sha256": "537834c974c8958c2e4e4ea981f7225f3d444bae052b46555765592e41d8bba4",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "29,34,38,71,92,119,143,176,199,227,256,270,275-276,279-281,295,306,311-312,315-317,341,354,368,384,397"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/sharedCore/src/test/kotlin/com/example/chatbar/domain/image/NovelAiStudioRequestTest.kt",
+      "sha256": "30e3f174afaa1a61bb8d95316b463ef23ad774cbf0c3b7e92f4ca92df068fa5b",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "12,51,73,84,95,133,155,181,201,237,254,263"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/sharedCore/src/test/kotlin/com/example/chatbar/domain/model/EffectiveModelResolverTest.kt",
+      "sha256": "398b11c01ec4dd2cd575917a65a1cfca531536f6f10017d119d8b223bb73842a",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "32,41,46,60,79,98,117,127,142,186"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "docs/desktop/13_FEATURE_PARITY.md",
+      "sha256": "21c903a56876b6e4162cbba845023a944aba8de018fa9d6e06338bc16f6f7d67",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "16,18,20,24,26,28,30,133-136,141,188,190,207,214,218,264"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "docs/desktop/14_UPSTREAM_COMPAT.md",
+      "sha256": "ba15d7a0e3b101bd71b4122a8a6dc3cfba504d7c65fd683cf2d3eb28f75e0a45",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "15-95"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "docs/desktop/55_PHASE7_DEFERRED_OWNER_MAP.md",
+      "sha256": "02bf86c769aaabf30eb95c962fffc593cefdf8cbb7031543bf37e5f466e695b2",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "11-14,18-24"
+    },
+    {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "docs/desktop/64_PHASE7_SCOPE_OWNER_UPDATE.md",
+      "sha256": "968f997d0968948a762a00704bb26d9d1fcf0558ddd0b0583e9a2cb4d33e07b5",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "1-62"
+    },
+    {
+      "commit": "c4098e08bec84372911a5a8bc38c2cfa72f98978",
+      "path": "docs/desktop/146_MULTI_API_ACCOUNT_PROFILES_CONTRACT.md",
+      "sha256": "165eb87bce467dbd60852218f1df7890a626c39d0a604f9d316e3296e827215f",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "1-53"
+    },
+    {
+      "commit": "initial local bytes; see SHA256",
+      "path": ".reference-assets/typeset-forge-1.1/TypesetForge_1.1.html",
+      "sha256": "892ea08f0070bdfd264b8895d38f6239f32f436b68a74ab42a2ef3336e28bb63",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "1003-1044,1562-1578,1636-1716,1935-1979,2636-2685,3108-3133,3568-3583,3698-3722,4128-4252,4282-4295,4425-4470"
+    },
+    {
+      "commit": "initial local bytes; see SHA256",
+      "path": "CCB_STUDIO_SUITE_INIT_20261020.md",
+      "sha256": "baded0b363a237c8bf0eb350cc2935863d270e93005bfa9f176db666b3f4d85e",
+      "scope": "selected static excerpts; not whole-file semantic or execution coverage",
+      "lineRanges": "14,67,106,148,214,266,280,334,338,372,387,451,497,583,622,646,701,733,756,781,799,821,864,902,941,1019,1040,1059,1080,1101,1150,1181,1195"
+    }
+  ],
+  "validation": {
+    "originalPackageBeforeEditing": {
+      "strict": "FAIL: two pre-existing addendum files EXTRA",
+      "explicitRootAllowExtra": "PASS: 36/36 SHA256 and size"
+    },
+    "defaultRoot": "FAIL reproduced at Verify-Package.ps1:4; not repaired",
+    "originalPackageAfterEditing": {
+      "status": "EXPECTED MISMATCH",
+      "files": [
+        "docs/00_INDEX.md",
+        "docs/CROSS_PROJECT_REGISTRY.md",
+        "docs/CURRENT_STATE.md",
+        "docs/SOURCE_LOCK.json",
+        "docs/TASK_REGISTRY.md",
+        "tasks/A0_001_BOOTSTRAP_AND_AUDIT.md"
+      ],
+      "unchangedOriginalManifest": true,
+      "unchangedSHA256SUMS": true
+    },
+    "referenceAssets": "PASS: three exact byte sizes/SHA256; HTML not executed",
+    "existingFilesChangedOnlyAsAllowed": true,
+    "unchangedInitialFiles": 34,
+    "suiteIndex": "empty; no staged files",
+    "gitIgnoreSentinels": [
+      ".gitignore:6:.reference-assets/\t.reference-assets/typeset-forge-1.1/TypesetForge_1.1.html",
+      ".gitignore:7:.reference-repos/\t.reference-repos/sentinel",
+      ".gitignore:8:.local/\t.local/sentinel",
+      ".gitignore:9:.runtime/\t.runtime/sentinel",
+      ".gitignore:10:.secrets/\t.secrets/sentinel",
+      ".gitignore:20:data/\tdata/sentinel",
+      ".gitignore:21:backups/\tbackups/sentinel",
+      ".gitignore:18:*.key\tsynthetic.key",
+      ".gitignore:15:*.keystore\tsynthetic.keystore",
+      ".gitignore:11:.env\t.env"
+    ],
+    "gitDiffCheck": "PASS but empty on unborn repo; per-file no-index checks below",
+    "productTests": "NOT RUN",
+    "buildEmulatorPackaging": "NOT RUN",
+    "paidApiRealUserData": "NOT ACCESSED",
+    "commitPushMerge": "NOT RUN",
+    "externalState": "External concurrent HEAD advancement recorded; no Desktop writes in this session",
+    "jsonRelativeLinksWhitespaceSensitivePatterns": {
+      "jsonFiles": 4,
+      "markdownFiles": 32,
+      "relativeFileLinks": 100,
+      "changedFilesChecked": 10,
+      "result": "PASS",
+      "scope": "File targets only; external URL/fragment validity and full-disk secret scan not claimed"
+    },
+    "perFileNoIndexDiffCheck": "PASS: all 10 changed/new deliverables, no staging",
+    "validationHarnessCorrection": "First finalizer stopped because it required exit 0 from git diff --no-index --check. Exit 1 with empty diagnostics was the ordinary diff. Second run stopped on Git CRLF-to-LF warning for Python-written JSON; JSON writers now explicitly use LF per .gitattributes. Accepted 0/1 only with empty diagnostics and reran all checks. No product test result was changed."
+  },
+  "initialFileSha256": {
+    ".gitattributes": "3b469070559c2c8a36a92bd0d13e0d61a0faed69c62725dcd971b4e1a54e2397",
+    ".gitignore": "bc3845299c53d45d6ba7832a76c8191fd9bd7b78427eba408bdc2e318a9a970e",
+    "AGENTS.md": "5d7c19a719fd962181765ee9008351ee262f2248b87777fada56ef12e8bc014a",
+    "BUNDLE_MANIFEST.json": "511ac0bc0654976ad5b186b374213b64f356cb22acd335c954236790e5e04011",
+    "CCB_STUDIO_SUITE_INIT_20261020.md": "baded0b363a237c8bf0eb350cc2935863d270e93005bfa9f176db666b3f4d85e",
+    "PACKAGING_NOTES.md": "e5be05547ac6036730e2d366821eb21b68249be7b336db9293e83479f6aa27e6",
+    "README.md": "308f73d5930faca156cd61bfb66d52d1293c26b258f3a4c092b9a624bc409a7b",
+    "SETUP_THREE_WORKSPACES_CN.md": "c7a775ea38a33786a9e7c8101364152474d23c8a4f3402015a854ce9bd24224b",
+    "SHA256SUMS.txt": "24f38c1907a56deab748af2a6959c99451975f750cf2b72b80986134a276018c",
+    "START_HERE_CN.md": "3bc5f7036daf48f97c764f1f0973c93f972f97b15ad7108805967706ed4cf48b",
+    ".reference-assets/typeset-forge-1.1/CHANGELOG_1.1.md": "58486e13439e1593a0d07054413bbeeaadad50912d73e96cff0f9689115b3a31",
+    ".reference-assets/typeset-forge-1.1/README_1.1.md": "cd6fda7d43c1993e15f075d26fa1dc3e15b3729c37cb5a3258e1bf566099bf05",
+    ".reference-assets/typeset-forge-1.1/TypesetForge_1.1.html": "892ea08f0070bdfd264b8895d38f6239f32f436b68a74ab42a2ef3336e28bb63",
+    "docs/00_INDEX.md": "56279343965d2177a95966a2dba53e6210e8e715e150134f90b7e88c34dee963",
+    "docs/01_PROJECT_CHARTER.md": "483803da931428647fbe8aa815d0569023ffc37c76034015bdaaee393b798a0b",
+    "docs/02_PRODUCT_REQUIREMENTS.md": "46a5c5012bc1a82a55cc4731089238a033e8b55580d74b3d0d270e56b511f7e1",
+    "docs/03_ARCHITECTURE_AND_REUSE.md": "20e7805f6c629840fed333d66581711065af2f821dde2801abd95e423a3a60f5",
+    "docs/04_DATA_SAFETY.md": "68230a0f455fc621c193519fd128b42d264010e45d07fd4e9baa9ed513d992a7",
+    "docs/05_UPDATE_AND_RELEASE.md": "decbb712d3b1a418fce7f7293b559c951736e045887550f61323062f138d3cf0",
+    "docs/06_SERVER_SECURITY.md": "4c6e04c0b875a075cd40262fc2a28c922ae8f2cc6a6fc6891982c9a135aa1781",
+    "docs/07_SOURCE_MAP.md": "e752ab3eca558f03cf956861fb0bf124fd4779142d6892944308d02ba5846b5d",
+    "docs/08_GIT_AND_COLLABORATION.md": "be20369f945ec5d5a8893af49c9a89c26bc868633007874a047ffc7ffe9499f3",
+    "docs/09_ROADMAP.md": "9389d79fdb306d38485ad901b2729fddd4db9b45261fd17b0b26dd0382b9965e",
+    "docs/10_ACCEPTANCE_MATRIX.md": "4d8c3e1416a339c990bb906938cfd9a0101a360150c2685053692022584453c8",
+    "docs/CROSS_PROJECT_REGISTRY.md": "04469f4e2beb912316d1381888e3f074302c80081761abc06116b385edffc2f7",
+    "docs/CURRENT_STATE.md": "3c20bdd19659190df39f01f499e7ff968bcf6f38ca24c882beb4055a3dd1dc1e",
+    "docs/DECISIONS.md": "73a1b17bf58bae82d61018262f0844e8a033ea4ec2dcbc3b20fa1bcb4b610008",
+    "docs/SOURCE_LOCK.json": "dbc0de4848832a3ec3b1ebecb19337742e5bc2c8c034233e0c07d5f690f3ca3a",
+    "docs/TASK_REGISTRY.md": "5933605cf783433c2fc4813335629dbc3d42580bd11ddd643f8080788b12205e",
+    "handoff/CODEX_START_MESSAGE.md": "be80b4b1793ee01e5e6364ac1eb9143ddce8f594c6bf9a910d01f5c520cf6eac",
+    "handoff/DESKTOP_COLLABORATION_NOTE.md": "743ca191b04051d1ea5c7284ddfa82be529bdee067795037408bdc745891050f",
+    "handoff/GITHUB_INITIAL_PUBLISH_AFTER_A0.md": "85a754c90ba6b4801c4214f2cc009e74933c22a2823d1f468a3dd1642792d91e",
+    "handoff/NEW_PROJECT_OPENING.md": "8cbfa20e2644190bd1820310eeb9c269427865dea1353f89108e5c1b7ac79197",
+    "instructions/PROJECT_INSTRUCTIONS.md": "a682b27e70a5fe545f5466c88baee27bf8925c983ee4ac346025f7ab8292bdf9",
+    "references/PUBLIC_SOURCE_LINKS.md": "c25da625929bcb300eb85ad773b5377639fb5fdbb6ec9e42667cc024cfb1294c",
+    "references/README.md": "0b0d38b55ee0c517d40f54a9ac3040cd807f1ca9e5f50156e0b698749a5ed59f",
+    "references/REFERENCE_ASSET_MANIFEST.json": "40a804e4ca775133895525ac9133daa08530b69ddd6f448b6f1f86ac01391604",
+    "tasks/A0_001_BOOTSTRAP_AND_AUDIT.md": "e05139e1d1fec946a4960fa28bbe560262c32e5b1892afce41841c0f83e4a1ae",
+    "tools/Verify-Package.ps1": "fcccbe5a5cede898401259b89f7d80323d46e231f96fd9660009aaf165e485ed",
+    "tools/verify_package.py": "ce91de8bc5859124ef3b93bee1d5d931e0d966e95493822f17f36f648acd84b4"
+  },
+  "changedExistingFiles": [
+    "docs/00_INDEX.md",
+    "docs/CROSS_PROJECT_REGISTRY.md",
+    "docs/CURRENT_STATE.md",
+    "docs/SOURCE_LOCK.json",
+    "docs/TASK_REGISTRY.md",
+    "tasks/A0_001_BOOTSTRAP_AND_AUDIT.md"
+  ],
+  "newDeliverables": [
+    "docs/audits/A0_001_DEPENDENCY_AND_GAPS.md",
+    "docs/audits/A0_001_REUSE_AUDIT.md",
+    "docs/audits/A0_001_SOURCE_EVIDENCE.json",
+    "tasks/A1_001_IMPLEMENTATION_CANDIDATE.md"
+  ],
+  "unchangedInitialFileCount": 34,
+  "environment": {
+    "os": "Windows-10-10.0.19045-SP0",
+    "python": "3.10.6",
+    "git": "git version 2.51.1.windows.1",
+    "shell": "PowerShell 7.6.5; package verifier invoked with Windows PowerShell 5.1.19041.6456"
+  },
+  "externalEndObservation": {
+    "root": "H:\\ChatChatBar-Desktop",
+    "branch": "feature/phase8-fish-audio",
+    "head": "ba7b58c829fb583c0e22c100f5de8a3799406c20",
+    "localDesktopRef": "4c2af2576e2319e8041ffd2a6c5a205450f18246",
+    "statusPorcelainV2": "# branch.oid ba7b58c829fb583c0e22c100f5de8a3799406c20\n# branch.head feature/phase8-fish-audio\n# branch.upstream origin/feature/phase8-fish-audio\n# branch.ab +0 -0\n? .codex-remote-attachments/01a10e16-9252-7930-afe1-f07cb92177e6/4bb6706b-0132-41be-bd8e-03e6c0229e46/1-1000072937.jpg\n? .codex-remote-attachments/01a10e16-9252-7930-afe1-f07cb92177e6/b5264b76-6c08-406d-af8d-bbb2f876c7c1/1-1000072937.jpg\n? .codex-remote-attachments/01a10e16-9252-7930-afe1-f07cb92177e6/ea41235d-a0f1-44c3-8db1-47f5bb5b2883/1-1000072937.jpg\n? CCB_DESKTOP_STANDARD_CONVERSATION_HANDOFF.md",
+    "trackedDiffPaths": "",
+    "indexDiffPaths": "",
+    "remoteConfig": "origin\thttps://github.com/MisakaPiano/ChatChatBar-Desktop.git (fetch)\norigin\thttps://github.com/MisakaPiano/ChatChatBar-Desktop.git (push)\nupstream\thttps://github.com/SaltyFishOTL/ChatChatBar.git (fetch)\nupstream\thttps://github.com/SaltyFishOTL/ChatChatBar.git (push)",
+    "appDeltaSinceInitialHead": "",
+    "interpretation": "External HEAD advanced during audit. This session issued read-only Desktop commands only. No whole-session unchanged-state claim; initial local desktop ref was not captured."
+  }
+}

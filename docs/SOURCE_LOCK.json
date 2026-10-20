@@ -1,0 +1,117 @@
+{
+  "recordFormat": 1,
+  "recordType": "initiation_source_observation",
+  "recordedDate": "2026-10-20",
+  "timezone": "Asia/Tokyo",
+  "isProductionDependencyLock": false,
+  "gitObservationProvenance": "Previous initiation conversation; not re-fetched during this packaging run",
+  "sources": [
+    {
+      "id": "CCB_OFFICIAL_BASELINE",
+      "repository": "SaltyFishOTL/ChatChatBar",
+      "commit": "5e76a9cb841736bbbf3499a2e35e5789af4c5ca8",
+      "versionLabel": "1.4.1",
+      "role": "desktop_declared_validated_baseline",
+      "adoption": "audit_input_only"
+    },
+    {
+      "id": "CCB_OFFICIAL_OBSERVED",
+      "repository": "SaltyFishOTL/ChatChatBar",
+      "ref": "master",
+      "commit": "979cb505958dffb1b6d64a8de657434f198ffa96",
+      "role": "observed_upstream",
+      "adoption": "not_validated_not_automatically_adopted"
+    },
+    {
+      "id": "CCB_DESKTOP_INTEGRATED",
+      "repository": "MisakaPiano/ChatChatBar-Desktop",
+      "ref": "desktop",
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "role": "initial_reuse_audit_anchor",
+      "adoption": "candidate_not_yet_extracted"
+    },
+    {
+      "id": "CCB_DESKTOP_DEVELOPMENT",
+      "repository": "MisakaPiano/ChatChatBar-Desktop",
+      "ref": "feature/phase8-fish-audio",
+      "commit": "c4098e08bec84372911a5a8bc38c2cfa72f98978",
+      "role": "development_and_requirements_reference",
+      "adoption": "no_whole_branch_import"
+    },
+    {
+      "id": "TYPESET_FORGE_REFERENCE",
+      "versionLabel": "1.1",
+      "files": [
+        {
+          "path": ".reference-assets/typeset-forge-1.1/TypesetForge_1.1.html",
+          "originalName": "TypesetForge_1.1.html",
+          "libraryFileId": "file_000000001fa881fda823d0f4d32758e5",
+          "sizeBytes": 200005,
+          "sha256": "892ea08f0070bdfd264b8895d38f6239f32f436b68a74ab42a2ef3336e28bb63",
+          "byteHandling": "copied_without_content_modification",
+          "executed": false
+        },
+        {
+          "path": ".reference-assets/typeset-forge-1.1/README_1.1.md",
+          "originalName": "README(2).md",
+          "libraryFileId": "file_00000000456881f6a50288e0ee7c393e",
+          "sizeBytes": 16158,
+          "sha256": "cd6fda7d43c1993e15f075d26fa1dc3e15b3729c37cb5a3258e1bf566099bf05",
+          "byteHandling": "copied_without_content_modification",
+          "executed": false
+        },
+        {
+          "path": ".reference-assets/typeset-forge-1.1/CHANGELOG_1.1.md",
+          "originalName": "CHANGELOG_1.1.md",
+          "libraryFileId": "file_0000000074a4820d9b501c5982ed77d2",
+          "sizeBytes": 1594,
+          "sha256": "58486e13439e1593a0d07054413bbeeaadad50912d73e96cff0f9689115b3a31",
+          "byteHandling": "copied_without_content_modification",
+          "executed": false
+        }
+      ],
+      "role": "local_read_only_workflow_and_source_reference",
+      "adoption": "no_browser_runtime_transplant",
+      "hashStatus": "sha256_computed_from_materialized_raw_bytes_in_this_packaging_run"
+    }
+  ],
+  "auditObservations": [
+    {
+      "recordedDate": "2026-10-21",
+      "timezone": "Asia/Tokyo",
+      "task": "A0-001",
+      "method": "Local exact git object reads and read-only GitHub connector GET; no source fetch/checkout/build",
+      "desktopIntegrated": {
+        "repository": "MisakaPiano/ChatChatBar-Desktop",
+        "ref": "desktop",
+        "commit": "5ef95428421f7c693b010ac88f51d470804ab07a"
+      },
+      "officialObserved": {
+        "repository": "SaltyFishOTL/ChatChatBar",
+        "ref": "master",
+        "commit": "979cb505958dffb1b6d64a8de657434f198ffa96",
+        "adoption": "observation_only"
+      },
+      "desktopLocal": {
+        "branch": "feature/phase8-fish-audio",
+        "commit": "3ece1366b142210f2db7c61a9c479cd156534b69",
+        "worktree": "Initial tracked/index diff empty with pre-existing untracked; external end state recorded separately"
+      },
+      "suite": {
+        "branch": "main",
+        "head": null,
+        "index": "empty",
+        "origin": "https://github.com/MisakaPiano/CCB-Studio-Suite.git",
+        "remoteBranchCount": 0
+      },
+      "dependencyAdoption": "none; historical sources array unchanged",
+      "evidence": "audits/A0_001_SOURCE_EVIDENCE.json",
+      "desktopLocalEnd": {
+        "branch": "feature/phase8-fish-audio",
+        "head": "ba7b58c829fb583c0e22c100f5de8a3799406c20",
+        "localDesktopRef": "4c2af2576e2319e8041ffd2a6c5a205450f18246",
+        "interpretation": "External HEAD advanced during audit. This session issued read-only Desktop commands only. No whole-session unchanged-state claim; initial local desktop ref was not captured."
+      }
+    }
+  ]
+}
