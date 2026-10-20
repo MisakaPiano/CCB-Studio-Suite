@@ -53,3 +53,5 @@ R1实际交付：[GitHub/Drive回执](audits/evidence/A1_001_R1/DELIVERY.json)�
 已实际读取[#1正式Gate](https://github.com/MisakaPiano/CCB-Studio-Suite/issues/1#issuecomment-6296885017)、[#2完整合同与R1审查](https://github.com/MisakaPiano/CCB-Studio-Suite/issues/2)。从R1@27dbd5d5独立分支继续；[RC状态](rc/RC_READINESS.md)、[CP台账](rc/CHECKPOINTS.md)、[更新A→B计划/真实TUF合成lab边界](rc/UPDATE_A_B_PLAN.md)、[权威依赖STOP](rc/DEPENDENCY_ESCALATION.md)、[合同原始快照](audits/evidence/WINDOWS_RC/CONTRACT_SOURCE.json)。不改历史证据，不把CP1库/信任lab称为RC。
 
 CP1 [实际执行/环境/测试与STOP回执](rc/CP1_EXECUTION.md)：31项完整JVM回归和8项真实TUF合成信任验证已执行；整体RC BLOCKED，未产出安装包。
+
+Windows连续任务实际远程交付：[RC BLOCKED/CP1固定审阅入口](rc/PROJECT_REVIEW.md)、[机器恢复台账](rc/CHECKPOINTS.json)、[GitHub/Drive实际回执](audits/evidence/WINDOWS_RC/DELIVERY.json)。

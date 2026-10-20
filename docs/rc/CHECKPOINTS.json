@@ -1,0 +1,18 @@
+{
+  "task": "WINDOWS_RC_CONTINUOUS",
+  "overallStatus": "RC BLOCKED",
+  "branch": "feature/windows-rc-continuous",
+  "inheritedReviewedBaseline": "27dbd5d578f364afb529fc33944386c0c107f0da",
+  "latestVerifiedImplementationCheckpoint": "9d3035b98adea32908d4d3e04267127d0d9c25f4",
+  "latestDeliveryReceipt": "Use the containing Git commit; this later commit is documentation only",
+  "checkpointScope": "CP1 automated data-maintenance and trust foundation; not product acceptance",
+  "evidence": "../audits/evidence/WINDOWS_RC/CP1_SOURCE_IDENTITY.json",
+  "delivery": "../audits/evidence/WINDOWS_RC/DELIVERY.json",
+  "stopDependency": "DEPENDENCY_ESCALATION.md",
+  "cp2": "STOP_DEPENDENCY",
+  "cp3": "NOT IMPLEMENTED / NOT TESTED",
+  "cp4": "NOT IMPLEMENTED / NOT TESTED / NO RC PACKAGE",
+  "resumeContract": "../../tasks/WINDOWS_RC_CONTINUOUS.md",
+  "ownerClaim": ".local/windows-rc/owner.json",
+  "ownerRelease": "Only after final remote verification; then STOPPED_RC_BLOCKED, no background worker continues"
+}

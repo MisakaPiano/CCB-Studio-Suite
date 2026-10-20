@@ -9,7 +9,7 @@
 | 立项文件 | 已整理成分文件包与合并母本 |
 | 生产源码 | 单个JDK17 asset-library切片：原始流/不可变关系/事务恢复/索引/最小备份恢复；非完整应用 |
 | Windows本地工作区 | H:\CCB-Studio-Suite；feature/windows-rc-continuous；起点27dbd5d578f364afb529fc33944386c0c107f0da，开始时index/worktree/untracked干净；完整继承R1，单执行者所有权记录见RC台账 |
-| GitHub远程仓库 | https://github.com/MisakaPiano/CCB-Studio-Suite.git；main仍6d3d2b2；A1原分支远程3c17b4c9已核验；本轮明确允许R1功能分支提交/推送及指定Drive附件上传；实际结果见 R1 DELIVERY.json；后续仅补交付回执，未改实现 |
+| GitHub远程仓库 | https://github.com/MisakaPiano/CCB-Studio-Suite.git；main仍6d3d2b2，R1保持27dbd5d5；当前连续分支CP1实现9d3035b9已推送/远程核验，Drive附件回读一致；见WINDOWS_RC/DELIVERY.json，整体RC BLOCKED |
 | 产品验收/发布 | 无 |
 | 真实用户数据 | 未授权读取/迁移 |
 | 真实付费API | 未授权 |
@@ -19,7 +19,7 @@
 
 [连续任务合同](../tasks/WINDOWS_RC_CONTINUOUS.md)、[checkpoint台账](rc/CHECKPOINTS.md)、[RC门槛状态](rc/RC_READINESS.md)、[依赖STOP及独立目标合同](rc/DEPENDENCY_ESCALATION.md)。当前CP1维护针对性4 PASS，真实TUF合成信任链8 PASS，完整资产模块31 PASS/0失败错误跳过，源码hash一致；旧27 PASS没有代签新版。见[真实执行回执](rc/CP1_EXECUTION.md)。
 
-正式Gate已经实际读取，不再只依据用户转述：#1 comment6296885017允许一次性CP1–CP4，但明确遇到权威核心/许可/跨仓边界时停止受阻切片。CP2尚无被提供的合法窄SDK制品/授权链；不复制Prompt/request/fallback、不写Desktop绕过。先完成独立CP1检查点及远程交付，再以RC BLOCKED停止。没有Windows安装包、真实应用内A→B、凭据迁移或产品人工验收PASS。
+正式Gate已经实际读取，不再只依据用户转述：#1 comment6296885017允许一次性CP1–CP4，但明确遇到权威核心/许可/跨仓边界时停止受阻切片。CP2尚无被提供的合法窄SDK制品/授权链；不复制Prompt/request/fallback、不写Desktop绕过。独立CP1检查点9d3035b9已推送并远程核验，Drive原始证据已上传且回读hash/25项manifest一致；以RC BLOCKED停止。见[固定交付入口](rc/PROJECT_REVIEW.md)、[双通道回执](audits/evidence/WINDOWS_RC/DELIVERY.json)。没有Windows安装包、真实应用内A→B、凭据迁移或产品人工验收PASS。
 
 ## 已知边界
 
@@ -32,3 +32,5 @@
 新项目不改变CCB Desktop活动任务、验收、Prompt或baseline。跨项目候选见CROSS_PROJECT_REGISTRY。
 
 R1交付：[双通道实际回执](audits/evidence/A1_001_R1/DELIVERY.json)。固定实现SHA a9ac47120c6cbea98a7a04140de1071568b9a985；原始附件75,529bytes，Drive文件ID 1kP5IBA419AY0WKNgdN4eUKaiyGh3fabw；hash/原字节回读结果见回执。包含此说明的提交仅记录交付，源码与已验证实现一致。
+
+最近可恢复实现checkpoint：9d3035b98adea32908d4d3e04267127d0d9c25f4，feature/windows-rc-continuous；含本说明的后续提交只补交付元数据，源码/测试/构建输入未改。CP1原始ZIP文件ID 1ElGLErALsdzwzMMJoNhAE33-EPT3rgOT，23,673bytes，SHA-256/原字节回读见回执。整体RC BLOCKED，没有Windows安装包，CP2–CP4未完成。
