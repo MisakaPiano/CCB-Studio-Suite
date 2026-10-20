@@ -1,6 +1,6 @@
 # A1-001 — 独立数据根与原始资产提交/恢复（实施候选）
 
-日期：2026-10-21 JST。状态：**PROPOSED / NOT AUTHORIZED / NOT STARTED**。由A0审计提出，须A0-002 Project review明确批准后才能执行。不是完整A1阶段、Windows首版或更新功能已通过。
+日期：2026-10-21 JST。状态：**IMPLEMENTED / AUTOMATED 21 PASS / AWAITING PROJECT REVIEW**。本轮用户明确提供A0-002结论`PASS_WITH_SCOPE`并批准本切片；未独立读取外部Project会话。实际结果见[实施回执](../docs/audits/A1_001_EXECUTION.md)。实施授权仅实现与合成验证。用户随后要求可交给Project review，追加授权本次功能分支commit/push交付；不授权merge/release、A1-002或A2。不是完整A1阶段、Windows首版或更新功能已通过。
 
 ## 问题与目标
 
@@ -8,7 +8,7 @@ Desktop运行时保存的是composeResult后图像；旧存储的单文件原子
 
 ## 精确起点与来源
 
-Suite当前main无commit/HEAD，index为空；不能凭空填写基线SHA。实施前重新读取CURRENT/TASK/AGENTS/SOURCE_LOCK与A0报告，核对当时实际HEAD/branch/index/untracked，登记实际起点。若此前已获单独发布任务并提交，用其真实commit，不执行本候选来偷偷首次提交。
+本轮实查起点为`6d3d2b22651f9744807925f74c6941f681bbef02`，与用户审查SHA一致；开始时main、index及tracked/untracked工作树干净。按本轮授权建立独立`feature/a1-001-asset-durability`，实施结束时未提交HEAD仍为该SHA；后续远程交付以包含本文件的功能分支commit为准，见[审阅入口](../handoff/PROJECT_A1_REVIEW.md)。此前候选的“main无HEAD”只属于A0历史快照，已由本轮实际起点替代。
 
 本任务独立实现Suite数据职责；D=`MisakaPiano/ChatChatBar-Desktop@5ef95428421f7c693b010ac88f51d470804ab07a`仅为`JsonFileStorage` strict读、`DesktopDataRootOwnership`、`DesktopDataOperationCoordinator`的参考。**不复制Prompt/NAI请求、不引入整个sharedCore或邻接工作树**，公开复用许可未齐全不阻塞独立合成底座。遇需复制来源代码先补可审查范围与许可，不能自行扩大任务。
 

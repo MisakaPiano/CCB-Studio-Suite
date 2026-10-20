@@ -1,15 +1,15 @@
-# CURRENT STATE — A0 审计交付，等待 Project review
+# CURRENT STATE — A1-001 已实施，等待 Project review
 
 更新日期：2026-10-21 JST；初始包版本 INIT-1.0（母本与原交付清单保留）。
 
 | 项目 | 当前事实 |
 |---|---|
 | 项目 | CCB Studio Suite |
-| 阶段 | A0-001审计交付完成；等待A0-002 Project review，不自动实施A1 |
+| 阶段 | 用户提供A0-002 PASS_WITH_SCOPE；A1-001已实施且最终合成自动化21 PASS，已停止等待Project审查，不自动A1-002/A2 |
 | 立项文件 | 已整理成分文件包与合并母本 |
-| 生产源码 | 未开始 |
-| Windows本地工作区 | H:\CCB-Studio-Suite，main；本次Git交付身份以包含本文件的commit为准。A0原报告的无HEAD/空index属于审计结束快照 |
-| GitHub远程仓库 | https://github.com/MisakaPiano/CCB-Studio-Suite.git；origin已核对；用户追加授权提交并推送A0文档，上传前GET branches仍为空；实际同步以交付commit和远程main比对回执为准 |
+| 生产源码 | 单个JDK17 asset-library切片：原始流/不可变关系/事务恢复/索引/最小备份恢复；非完整应用 |
+| Windows本地工作区 | H:\CCB-Studio-Suite；feature/a1-001-asset-durability；实施起点6d3d2b22651f9744807925f74c6941f681bbef02，开始时index/worktree/untracked干净；本次Git交付以包含本文件的功能分支commit为准 |
+| GitHub远程仓库 | https://github.com/MisakaPiano/CCB-Studio-Suite.git；A0已推送并核验6d3d2b2；用户随后要求可同步给Project review，追加授权本次功能分支Git交付；远程SHA以最终核验回执为准 |
 | 产品验收/发布 | 无 |
 | 真实用户数据 | 未授权读取/迁移 |
 | 真实付费API | 未授权 |
@@ -17,7 +17,7 @@
 
 ## 下一项
 
-执行A0-002 Project review：[Project审阅交接入口](../handoff/PROJECT_A0_REVIEW.md)、[源码审计](audits/A0_001_REUSE_AUDIT.md)、[差距/变更/验证](audits/A0_001_DEPENDENCY_AND_GAPS.md)、[来源证据](audits/A0_001_SOURCE_EVIDENCE.json)、[A1-001候选](../tasks/A1_001_IMPLEMENTATION_CANDIDATE.md)。候选NOT AUTHORIZED。用户已在A0交付后明确要求上传Git以供Project同步，本次只追加文档提交/推送，不启动A1或发布软件。
+Project审查[A1-001实际执行回执](audits/A1_001_EXECUTION.md)、[未提交补丁](audits/evidence/A1_001/source.patch)、[精确文件与验证清单](audits/evidence/A1_001/WORKING_TREE.json)，决定下一轮授权。最终2 suites / 21 tests / 0 failures / 0 errors / 0 skipped，372.034s；是模块合成验证，不是产品验收。A0-002=`PASS_WITH_SCOPE`来自本轮用户明确提供，未独立读取外部Project会话。[更新器后续设计](audits/A1_001_UPDATER_DESIGN.md)不授权安装/签名或A1-002。用户随后追加要求远程交付；见[Project A1审阅入口](../handoff/PROJECT_A1_REVIEW.md)。实施报告、WORKING_TREE和source.patch保留上传前快照，最终交付以Git commit内文件为准。
 
 ## 已知边界
 
@@ -25,6 +25,6 @@
 
 编辑前显式Root+AllowExtraFiles校验36/36 PASS；严格模式仅两份原有建项增量EXTRA。TypeSet三文件hash一致，仅静态读。默认Root参数问题已复现并单列精确修复建议，本轮未改工具/校验清单。状态文件合法编辑后原包校验出现6份MISMATCH是预期，未重写原清单。
 
-没有Gradle/编译/测试/模拟器/打包、真实API、用户资料、HTML执行或签名/安装更新；产品验收矩阵仍全部NOT TESTED。
+以上包校验与Desktop来源状态均为原A0历史观察。本轮仅运行Suite最小Gradle模块和合成测试；未运行Desktop构建/模拟器/打包、真实API、真实用户资料、HTML或签名/安装更新。产品验收矩阵仍全部NOT TESTED；A1限定自动测试结果另立执行记录，不代签产品/人工验收。
 
 新项目不改变CCB Desktop活动任务、验收、Prompt或baseline。跨项目候选见CROSS_PROJECT_REGISTRY。

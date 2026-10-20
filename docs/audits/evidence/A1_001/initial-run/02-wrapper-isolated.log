@@ -1,0 +1,20 @@
+
+Welcome to Gradle 9.1.0!
+
+Here are the highlights of this release:
+ - Full Java 25 support
+ - Native task graph visualization
+ - Enhanced console output
+
+For more details see https://docs.gradle.org/9.1.0/release-notes.html
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+Shared read-only dependency cache is an incubating feature.
+The read-only dependency cache is disabled because of a configuration problem:
+Read-only cache is configured but the directory layout isn't expected. You must have a pre-populated modules-2 directory at C:\Users\1\.gradle\caches\modules-2\modules-2 . For more instructions on how to do this, please refer to https://docs.gradle.org/9.1.0/userguide/dependency_resolution.html#sub:shared-readonly-cache in the Gradle documentation.
+> Task :wrapper
+
+BUILD SUCCESSFUL in 34s
+1 actionable task: 1 executed
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.1.0/userguide/configuration_cache_enabling.html

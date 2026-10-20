@@ -1,0 +1,2845 @@
+diff --git a/docs/00_INDEX.md b/docs/00_INDEX.md
+index 90be472..50c0083 100644
+--- a/docs/00_INDEX.md
++++ b/docs/00_INDEX.md
+@@ -5,7 +5,7 @@
+ 1. [当前状态](CURRENT_STATE.md)
+ 2. [任务登记](TASK_REGISTRY.md)
+ 3. [来源锁](SOURCE_LOCK.json)
+-4. 本任务合同；当前 [A0-001](../tasks/A0_001_BOOTSTRAP_AND_AUDIT.md)
++4. 本任务合同；当前 [A1-001](../tasks/A1_001_IMPLEMENTATION_CANDIDATE.md)
+ 
+ ## 产品与工程合同
+ 
+@@ -32,8 +32,12 @@
+ 
+ 源码未实施前不要因这些文件存在宣称功能PASS。
+ 
+-## A0-001 实际交付（2026-10-21，待 Project review）
++## A0-001 历史交付（A0-002 已 PASS_WITH_SCOPE）
+ 
+-[精确源码审计](audits/A0_001_REUSE_AUDIT.md) · [依赖、差距与变更回执](audits/A0_001_DEPENDENCY_AND_GAPS.md) · [来源及验证证据](audits/A0_001_SOURCE_EVIDENCE.json) · [A1-001实施候选（未授权）](../tasks/A1_001_IMPLEMENTATION_CANDIDATE.md)。没有产品实现或测试验收。
++[精确源码审计](audits/A0_001_REUSE_AUDIT.md) · [依赖、差距与变更回执](audits/A0_001_DEPENDENCY_AND_GAPS.md) · [来源及验证证据](audits/A0_001_SOURCE_EVIDENCE.json) · [A1-001任务（本轮限定授权）](../tasks/A1_001_IMPLEMENTATION_CANDIDATE.md)。A0没有产品实现或测试验收。
+ 
+ [Project审阅交接入口](../handoff/PROJECT_A0_REVIEW.md)：用户在A0交付后追加授权上传Git；原报告中的无commit/push是审计结束时的历史事实，当前交付使用Git实际commit定位。
++
++## A1-001（2026-10-21，实施/合成验证完成，待审查）
++
++用户提供A0-002结论PASS_WITH_SCOPE，允许从6d3d2b2在独立功能分支执行数据切片；当前授权不含Git提交/推送。见[实际实施/21项测试回执](audits/A1_001_EXECUTION.md)、[未提交补丁](audits/evidence/A1_001/source.patch)、[文件状态与SHA清单](audits/evidence/A1_001/WORKING_TREE.json)、[模块合同与运行方式](../modules/asset-library/README.md)、[更新器后续设计](audits/A1_001_UPDATER_DESIGN.md)。A0报告和来源JSON保留原始快照，产品验收矩阵不提前改PASS。
+diff --git a/docs/CURRENT_STATE.md b/docs/CURRENT_STATE.md
+index e60d969..fb9a9bb 100644
+--- a/docs/CURRENT_STATE.md
++++ b/docs/CURRENT_STATE.md
+@@ -1,15 +1,15 @@
+-# CURRENT STATE — A0 审计交付，等待 Project review
++# CURRENT STATE — A1-001 已实施，等待 Project review
+ 
+ 更新日期：2026-10-21 JST；初始包版本 INIT-1.0（母本与原交付清单保留）。
+ 
+ | 项目 | 当前事实 |
+ |---|---|
+ | 项目 | CCB Studio Suite |
+-| 阶段 | A0-001审计交付完成；等待A0-002 Project review，不自动实施A1 |
++| 阶段 | 用户提供A0-002 PASS_WITH_SCOPE；A1-001已实施且最终合成自动化21 PASS，已停止等待Project审查，不自动A1-002/A2 |
+ | 立项文件 | 已整理成分文件包与合并母本 |
+-| 生产源码 | 未开始 |
+-| Windows本地工作区 | H:\CCB-Studio-Suite，main；本次Git交付身份以包含本文件的commit为准。A0原报告的无HEAD/空index属于审计结束快照 |
+-| GitHub远程仓库 | https://github.com/MisakaPiano/CCB-Studio-Suite.git；origin已核对；用户追加授权提交并推送A0文档，上传前GET branches仍为空；实际同步以交付commit和远程main比对回执为准 |
++| 生产源码 | 单个JDK17 asset-library切片：原始流/不可变关系/事务恢复/索引/最小备份恢复；非完整应用 |
++| Windows本地工作区 | H:\CCB-Studio-Suite；feature/a1-001-asset-durability；实查起点与当前HEAD均6d3d2b22651f9744807925f74c6941f681bbef02，开始时index/worktree/untracked干净；实现保留未提交 |
++| GitHub远程仓库 | https://github.com/MisakaPiano/CCB-Studio-Suite.git；A0已推送并核验6d3d2b2；本轮没有commit/push授权，A1仅在本地 |
+ | 产品验收/发布 | 无 |
+ | 真实用户数据 | 未授权读取/迁移 |
+ | 真实付费API | 未授权 |
+@@ -17,7 +17,7 @@
+ 
+ ## 下一项
+ 
+-执行A0-002 Project review：[Project审阅交接入口](../handoff/PROJECT_A0_REVIEW.md)、[源码审计](audits/A0_001_REUSE_AUDIT.md)、[差距/变更/验证](audits/A0_001_DEPENDENCY_AND_GAPS.md)、[来源证据](audits/A0_001_SOURCE_EVIDENCE.json)、[A1-001候选](../tasks/A1_001_IMPLEMENTATION_CANDIDATE.md)。候选NOT AUTHORIZED。用户已在A0交付后明确要求上传Git以供Project同步，本次只追加文档提交/推送，不启动A1或发布软件。
++Project审查[A1-001实际执行回执](audits/A1_001_EXECUTION.md)、[未提交补丁](audits/evidence/A1_001/source.patch)、[精确文件与验证清单](audits/evidence/A1_001/WORKING_TREE.json)，决定下一轮授权。最终2 suites / 21 tests / 0 failures / 0 errors / 0 skipped，372.034s；是模块合成验证，不是产品验收。A0-002=`PASS_WITH_SCOPE`来自本轮用户明确提供，未独立读取外部Project会话。[更新器后续设计](audits/A1_001_UPDATER_DESIGN.md)不授权安装/签名或A1-002。当前无commit/push授权，A1仅在本地分支。
+ 
+ ## 已知边界
+ 
+@@ -25,6 +25,6 @@
+ 
+ 编辑前显式Root+AllowExtraFiles校验36/36 PASS；严格模式仅两份原有建项增量EXTRA。TypeSet三文件hash一致，仅静态读。默认Root参数问题已复现并单列精确修复建议，本轮未改工具/校验清单。状态文件合法编辑后原包校验出现6份MISMATCH是预期，未重写原清单。
+ 
+-没有Gradle/编译/测试/模拟器/打包、真实API、用户资料、HTML执行或签名/安装更新；产品验收矩阵仍全部NOT TESTED。
++以上包校验与Desktop来源状态均为原A0历史观察。本轮仅运行Suite最小Gradle模块和合成测试；未运行Desktop构建/模拟器/打包、真实API、真实用户资料、HTML或签名/安装更新。产品验收矩阵仍全部NOT TESTED；A1限定自动测试结果另立执行记录，不代签产品/人工验收。
+ 
+ 新项目不改变CCB Desktop活动任务、验收、Prompt或baseline。跨项目候选见CROSS_PROJECT_REGISTRY。
+diff --git a/docs/DECISIONS.md b/docs/DECISIONS.md
+index ca31e29..6fc2ede 100644
+--- a/docs/DECISIONS.md
++++ b/docs/DECISIONS.md
+@@ -35,3 +35,7 @@
+ | 公开复用授权 | 核对原记录，缺口只阻塞相应公开采用 |
+ 
+ 上述技术待决不阻塞文档初始化和已有来源的审计；不能用猜测填空，也不能擅自把候选schema写成用户批准。
++
++## A1-001 执行决策（2026-10-21）
++
++用户提供A0-002=`PASS_WITH_SCOPE`并限定批准A1-001。首个切片选择JDK17 Java库（可供Kotlin调用）、零生产外部依赖、独立原件/关系/事务/可重建索引；这是本地实现决策，不冻结Recipe/工程/远程schema。JUnit4.13.2与Hamcrest1.3仅用于合成测试，离线复用已核验缓存。没有批准完整sharedCore引入或更新器实施；签名/安装A→B仍NOT TESTED。
+diff --git a/docs/TASK_REGISTRY.md b/docs/TASK_REGISTRY.md
+index 243a8eb..974380e 100644
+--- a/docs/TASK_REGISTRY.md
++++ b/docs/TASK_REGISTRY.md
+@@ -3,10 +3,11 @@
+ | ID | 任务 | 状态 | 权限/停止点 |
+ |---|---|---|---|
+ | INIT-000 | 立项材料 | PACKAGED | 文档/参考交付，不等于软件实现 |
+-| A0-001 | 核对初始化并只读复用审计 | AUDIT DELIVERED / AWAITING PROJECT REVIEW | 2026-10-21交付，已停止；不commit/push，不实施下一阶段 |
+-| A0-002 | Project审查A0真实结果 | READY FOR REVIEW / NOT STARTED | 审当前报告与候选，不重做全历史验收 |
++| A0-001 | 核对初始化并只读复用审计 | AUDIT DELIVERED / REVIEWED WITH SCOPE | 原审计事实保留；A0-002结论见下一行 |
++| A0-002 | Project审查A0真实结果 | PASS_WITH_SCOPE | 用户本轮明确提供的Project结论，审查SHA6d3d2b22651f9744807925f74c6941f681bbef02；未独立读取外部Project会话 |
+ | BOOTSTRAP-GIT-001 | 用户追加授权的A0文档Git交付 | DELIVERY SNAPSHOT / 远程回执另报 | 仅Suite显式路径提交与正常push；交付SHA见Git；不执行A1/软件发布 |
+-| A1-001 | 独立数据根与原始资产提交/恢复 | PROPOSED / NOT AUTHORIZED | [精确实施候选](../tasks/A1_001_IMPLEMENTATION_CANDIDATE.md)；需另行批准 |
++| A1-001 | 独立数据根与原始资产提交/恢复 | IMPLEMENTED / AUTOMATED 21 PASS / AWAITING PROJECT REVIEW | [实际回执](audits/A1_001_EXECUTION.md)；HEAD仍6d3d2b2，功能分支未提交，无Git交付授权，已停止 |
++| A1-002 | 安全更新垂直原型 | NOT AUTHORIZED | A1-001仅产出后续设计；无签名/安装/真实A→B执行 |
+ | X-000 | 向Desktop登记关系 | PROPOSED | 使用交接说明，目标项目自行登记 |
+ 
+ ## 执行者
+@@ -19,6 +20,12 @@ A0主执行者：本次Codex本地会话，工作区H:\CCB-Studio-Suite，2026-1
+ 
+ ## 每项回执
+ 
++## A1-001 实际回执（2026-10-21 JST）
++
++从审查SHA6d3d2b22651f9744807925f74c6941f681bbef02、干净main建立feature/a1-001-asset-durability。一个零生产外部依赖的JDK17资产模块已实现；最终实际编译/执行2 suites、21 tests、0 failures/errors/skipped，测试期间源码hash不变。默认缓存/native及离线解析失败日志、修补前18/20项快照均保留，最终证据见[执行报告](audits/A1_001_EXECUTION.md)。只更新相关控制状态；没有修改原母本、A0来源、验收矩阵或Desktop，没有commit/push/merge。下一步Project审查未提交补丁和证据；进一步Git交付需另行明确授权。
++
++## BOOTSTRAP-GIT-001 历史回执
++
+ 2026-10-21 JST，用户在本地报告交付后明确要求“必须把文件上传到git，或者…Google drive创建文件夹”，以便同步给Project。本次选择既有Suite GitHub仓库，核验仍为空仓库后提交立项与A0文档；忽略TypeSet原件、参考仓库、初始包清单、本地辅助文件、Secrets与用户数据。当前提交即为可审查交付快照；是否实际推送成功和远程main SHA由最终工具回执报告，不用A0历史无commit状态推断。审阅入口：[Project A0交接](../handoff/PROJECT_A0_REVIEW.md)。
+ 
+ 记录：实际目录/branch/HEAD、允许范围、实际改动、源码/测试/证据身份、是否提交/推送、验证、未覆盖项、下一步、真正阻塞。模型元数据来自实际选择，不推测。无本地访问不声称worktree clean。
+diff --git a/tasks/A1_001_IMPLEMENTATION_CANDIDATE.md b/tasks/A1_001_IMPLEMENTATION_CANDIDATE.md
+index aebfb04..7e1a8c6 100644
+--- a/tasks/A1_001_IMPLEMENTATION_CANDIDATE.md
++++ b/tasks/A1_001_IMPLEMENTATION_CANDIDATE.md
+@@ -1,6 +1,6 @@
+ # A1-001 — 独立数据根与原始资产提交/恢复（实施候选）
+ 
+-日期：2026-10-21 JST。状态：**PROPOSED / NOT AUTHORIZED / NOT STARTED**。由A0审计提出，须A0-002 Project review明确批准后才能执行。不是完整A1阶段、Windows首版或更新功能已通过。
++日期：2026-10-21 JST。状态：**IMPLEMENTED / AUTOMATED 21 PASS / AWAITING PROJECT REVIEW**。本轮用户明确提供A0-002结论`PASS_WITH_SCOPE`并批准本切片；未独立读取外部Project会话。实际结果见[实施回执](../docs/audits/A1_001_EXECUTION.md)。仅实现与合成验证，不授权commit/push/merge/release、A1-002或A2。不是完整A1阶段、Windows首版或更新功能已通过。
+ 
+ ## 问题与目标
+ 
+@@ -8,7 +8,7 @@ Desktop运行时保存的是composeResult后图像；旧存储的单文件原子
+ 
+ ## 精确起点与来源
+ 
+-Suite当前main无commit/HEAD，index为空；不能凭空填写基线SHA。实施前重新读取CURRENT/TASK/AGENTS/SOURCE_LOCK与A0报告，核对当时实际HEAD/branch/index/untracked，登记实际起点。若此前已获单独发布任务并提交，用其真实commit，不执行本候选来偷偷首次提交。
++本轮实查起点为`6d3d2b22651f9744807925f74c6941f681bbef02`，与用户审查SHA一致；开始时main、index及tracked/untracked工作树干净。按本轮授权建立独立`feature/a1-001-asset-durability`，HEAD仍为该SHA。此前候选的“main无HEAD”只属于A0历史快照，已由本轮实际起点替代。
+ 
+ 本任务独立实现Suite数据职责；D=`MisakaPiano/ChatChatBar-Desktop@5ef95428421f7c693b010ac88f51d470804ab07a`仅为`JsonFileStorage` strict读、`DesktopDataRootOwnership`、`DesktopDataOperationCoordinator`的参考。**不复制Prompt/NAI请求、不引入整个sharedCore或邻接工作树**，公开复用许可未齐全不阻塞独立合成底座。遇需复制来源代码先补可审查范围与许可，不能自行扩大任务。
+ 
+diff --git a/build.gradle.kts b/build.gradle.kts
+new file mode 100644
+index 0000000..191a598
+--- /dev/null
++++ b/build.gradle.kts
+@@ -0,0 +1,7 @@
++plugins { base }
++
++tasks.wrapper {
++    gradleVersion = "9.1.0"
++    distributionType = Wrapper.DistributionType.BIN
++    distributionSha256Sum = "a17ddd85a26b6a7f5ddb71ff8b05fc5104c0202c6e64782429790c933686c806"
++}
+diff --git a/docs/audits/A1_001_EXECUTION.md b/docs/audits/A1_001_EXECUTION.md
+new file mode 100644
+index 0000000..4a5a1b2
+--- /dev/null
++++ b/docs/audits/A1_001_EXECUTION.md
+@@ -0,0 +1,83 @@
++# A1-001 — 限定数据切片实施与验证回执
++
++2026-10-21 JST。A0-002=`PASS_WITH_SCOPE`由本轮用户明确提供；未另行读取外部Project对话。限定实施授权不含commit/push/merge/release、真实API、真实数据、A1-002或A2。
++
++## 起点与实际范围
++
++根`H:\CCB-Studio-Suite`；审查与实查HEAD均`6d3d2b22651f9744807925f74c6941f681bbef02`。开始main、index和工作树（含普通untracked）干净；忽略的A0参考及本地辅助文件保留。按授权建立`feature/a1-001-asset-durability`，在该分支实现，未提交HEAD仍为6d3d2b2。没有对Desktop或官方仓库执行写入/切换/构建，没有读真实图库或凭据。
++
++只建立一个`modules/asset-library`，测试及子进程直接消费库API。采用JDK17 Java库，以便Kotlin后续调用并省去本轮无消费者的Kotlin/Compose插件与运行依赖；没有复制Desktop Prompt/请求/核心源码，没有引入sharedCore。私有v1 envelope只用于本切片的资产关系/事务，不冻结Recipe/工程/Server协议；两份业务文档作为独立opaque bytes保留。
++
++## 实现与提交点
++
++- `AssetStore`：显式独立根、身份标记、合作单写FileLock，拒绝已知CCB/Desktop路径和重定向目录，不回退其他根；关闭超时保留锁并拒绝新操作。
++- 原始/派生资产有独立UUID，派生记录引用父资产；原始内容流式写入并校验size/SHA-256，按hash寻址，名称只作显示，不成为路径。已存在hash文件必须验证，损坏不被新输入静默替换。
++- 先写事务意图、接收原始bytes、封存fingerprint和关联，再原子发布对象；不可变`records/<id>.rec`是**逻辑提交点**。随后才写可重建索引和完成标记，索引故障返回“已提交、需维护”，不伪装未提交而诱发盲重试。
++- `recover`只自动完成已封存且验证通过的输入，重复执行稳定；未封存输入报告INCOMPLETE并保留，明确检查后才能选择新操作ID。部分输入不标Saved。未知/损坏意图和权威记录不被默认值覆盖。
++- `ReadResult`分开Missing/Corrupt/ReadError/UnsupportedVersion；已提交记录引用的原件缺失属于Corrupt。损坏索引不删除原件，显式重建先严格扫描权威关系并保存被替换索引的原bytes。
++- `AssetBackup`只快照identity/objects/records/transactions，最终manifest是备份完成标记；不含锁、索引、Secrets或无关根文件。恢复先完整校验，写到新根；中断标记阻止普通打开，同一manifest可重入，冲突目标bytes保留。恢复暂存另放`.restore-staging`。
++
++详细API、格式限额和生命周期规则见[模块说明](../../modules/asset-library/README.md)。更新仅产出[后续设计](A1_001_UPDATER_DESIGN.md)，没有更新器实现、安装包、证书或密钥。
++
++## 工具与依赖证据
++
++- Windows 10 amd64；Temurin OpenJDK `17.0.20.1+1`（本机java/javac）；Gradle9.1.0复用已有安装，写缓存隔离到`.local/a1-001/gradle-home`。未改全局配置/原缓存，无Gradle分发包下载；原缓存ZIP不在本轮重新核算范围。
++- Gradle Wrapper由该安装生成；wrapper JAR SHA-256=`76805e32c009c0cf0dd5d206bddc9fb22ea42e84db904b764f3047de095493f3`已与[Gradle官方checksum表](https://gradle.org/release-checksums/)匹配；distributionSha256Sum固定9.1.0-bin的`a17ddd85a26b6a7f5ddb71ff8b05fc5104c0202c6e64782429790c933686c806`。本轮测试直接使用已安装Gradle，不冒称重新下载/验证整个distribution ZIP。
++- 生产外部依赖0；JUnit4.13.2（384581bytes）、Hamcrest-core1.3（45024bytes）从已有缓存只读复制到Suite临时Maven布局，固定坐标/锁文件/JAR SHA-256。下载字节0；缓存来源身份及hash见初始run证据。校验锁覆盖JAR内容，metadata校验和签名验证未启用；没有声称独立证明缓存发布者身份。
++- 资源限制：Gradle单worker、单次daemon、heap384MiB/metaspace256MiB/2 processors，JUnit单fork192MiB，必要子JVM64MiB/1 processor。测试顺序执行；仅并发正确性用例使用两线程，未启动其他项目构建。峰值内存未测量，不编造资源保证。
++
++## 执行沿革（失败与结果不抹平）
++
++1. `01-wrapper.log`：默认缓存启动失败，native-platform.dll无法初始化；**FAILED，不是测试PASS**。
++2. `02-wrapper-isolated.log`：切到Suite隔离缓存后Wrapper生成成功；只读依赖缓存第一次参数层级错误被Gradle禁用，此时没有产品测试。
++3. `03-tests.log`：离线依赖解析缺少元数据，**FAILED，未运行测试**。随后仅复制两份已固定hash的测试JAR到临时仓库，避免下载/污染原缓存。
++4. `04-tests-offline.log`与initial-run XML：首轮测试成功，1000资产/恢复/索引重建用例用时427915ms；这是修改前编译快照，源码在测试期间有修正，不用其结果签署最终源码。原快照逐文件源码hash未完整采集，标UNKNOWN。
++5. 在首轮耗时阶段曾尝试查询自有worker以结束旧快照；CIM访问被环境拒绝，实际停止进程数0，首轮自行完成。没有更改权限或终止其他进程。
++6. [第一次固定源码复测](evidence/A1_001/20261020T162815244Z/summary.json)：20 tests / 0 failures / 0 errors / 0 skipped，418.108s，源码前后hash一致。随后结束审阅发现`UUID.rec.rec`可能被错误识别成另一记录，增加严格文件名拒绝及回归；本次PASS保留为修补前快照，不代签最终代码。
++7. [最终固定源码复测](evidence/A1_001/20261020T163611037Z/summary.json)：**2 suites / 21 tests / 0 failures / 0 errors / 0 skipped，PASS**；完整模块重新编译并实际运行，372.034s，测试期间8份Java源码hash不变。命令为离线脚本调用的`:asset-library:test --rerun-tasks`，single worker、strict JAR verification。最终`gradle.log`为Windows PowerShell UTF-16 BOM，保留原字节；XML/summary可直接解析。
++
++初始失败/探索日志与XML见[evidence初始目录](evidence/A1_001/initial-run/)。最终run另存独立目录，包含gradle.log、JUnit XML、summary.json和实际sourceSha256。NO-SOURCE任务不是SKIPPED的测试用例。
++
++## A1-D01—D07 对照
++
++最终证据：[AssetStoreTest XML](evidence/A1_001/20261020T163611037Z/TEST-io.github.misakapiano.ccbstudio.assets.AssetStoreTest.xml)（16 tests）、[AssetBackupTest XML](evidence/A1_001/20261020T163611037Z/TEST-io.github.misakapiano.ccbstudio.assets.AssetBackupTest.xml)（5 tests）。以下PASS只针对本模块合成自动化，产品验收矩阵保持NOT TESTED，不代签人工/设备/供应商/更新安装验收。
++
++| 入口 | 实际验证 | 最终结果 |
++|---|---|---|
++| A1-D01 | 有效合成PNG/JPEG及任意bytes逐字节、size/hash、独立Recipe/工程、派生父子关系，重开/独立子JVM读回 | 2 tests PASS |
++| A1-D02 | 逻辑ID重放、同名异内容、内容去重保留关联、冲突输入拒绝、两线程并发归属 | 2 tests PASS |
++| A1-D03 | 7个实际子JVM `halt(71)`点：INTENT/BYTES/SEALED/ASSET/RECORD/INDEX/COMPLETE；重开恢复两次一致；索引写失败已提交回执/恢复 | 2 tests PASS，含7个实际进程故障子场景 |
++| A1-D04 | Missing/Corrupt/ReadError/UnsupportedVersion分离、未知/损坏bytes不覆盖、断流/注入空间权限失败、坏/缺索引重建保留原件、原件缺失、畸形意图、非规范记录名拒绝 | 5 tests PASS |
++| A1-D05 | 未识别根/CCB路径拒绝、显示名不作为路径、真实Windows junction拒绝、跨进程占用/释放、排水超时保留锁且拒新操作 | 4 tests PASS |
++| A1-D06 | 1/100/1000资产导入、关闭重开、恢复/索引重建；8MiB生成流最多64KiB单次读取；未声称256MiB容量或性能SLA | 1 test PASS；用例总344.549s，日志elapsedMs=344546 |
++| A1-D07 | 原件/文档/未封存事务备份恢复、独立Secrets目录排除、备份中断拒绝、恢复中断阻止普通开根并可重入、坏包/冲突目标不覆盖 | 5 tests PASS |
++
++没有单元测试FAILED或SKIPPED；前述环境/依赖启动FAILED仍保留。实际磁盘耗尽、OS ACL修改、断电和产品验收没有执行，保持NOT TESTED。
++
++## 实际改动与未提交身份
++
++| 范围 | 文件 |
++|---|---|
++| 最小构建/来源锁定 | 根settings.gradle.kts/build.gradle.kts/gradle.properties、gradlew/gradlew.bat、gradle/wrapper/、gradle/verification-metadata.xml |
++| 一个资产模块 | modules/asset-library/build.gradle.kts、gradle.lockfile、README.md；main的AssetStore/StoreIO/AssetBackup/ReadResult/StoreException；test的AssetStoreTest/AssetBackupTest/StoreProcess |
++| 合成执行工具 | tools/Test-AssetDurability.ps1（只运行限定模块，默认Root求值位于脚本正文） |
++| 设计/证据 | 本报告、A1_001_UPDATER_DESIGN.md、evidence/A1_001/内原始日志/XML/summary/环境及文件清单 |
++| 已有控制文件最小更新 | docs/00_INDEX.md、CURRENT_STATE.md、TASK_REGISTRY.md、DECISIONS.md、tasks/A1_001_IMPLEMENTATION_CANDIDATE.md |
++
++[可审查未提交补丁](evidence/A1_001/source.patch)包含tracked diff与新实现/构建/设计/工具文件（含二进制Wrapper补丁）；执行日志/XML等证据由[精确文件状态及SHA-256清单](evidence/A1_001/WORKING_TREE.json)另列，避免补丁自包含循环。该清单绑定基准SHA、功能分支、最终测试源码hash及全部新增/修改文件；不是新的commit SHA。
++
++原母本、A0三份报告/来源证据、SOURCE_LOCK、AGENTS、产品验收矩阵及原Verify工具均未改；三份TypeSet原件hash不变。默认Root缺陷未顺手修复。index无暂存改动，未commit/push/merge/release；本轮没有外部工程写入。
++
++## 已知局限与停止边界
++
++原始内容上限256MiB、单份Recipe/工程1MiB、元数据envelope3MiB、备份最多20000文件条目；无SQL索引、完整工程编辑器、真实用户备份UI、自动垃圾回收/迁移/密钥导出。数据格式为局部版本，不是长期公开交换协议。
++
++备份白名单排除独立凭据文件/目录，不解析opaque Recipe/工程或原件中的秘密；后续调用者必须遵守凭据仅作SecretRef、不得嵌入普通文档的合同，不能把本次目录排除测试当完整DLP证明。文件ACL/原始文件系统时间和跨设备OS凭据迁移不在此切片内。
++
++`force(true)`与原子move已在本机文件系统执行；不支持原子move则显式失败，没有静默降级。目录项断电耐久、硬件故障、OS缓存/磁盘损坏、真实磁盘耗尽/ACL变化、敌对进程路径替换/hard-link攻击和全应用所有写入者均未验证；文件锁只协调合作进程。空间/权限失败通过注入IOException/FileSystemException/AccessDeniedException测试，不冒充真实磁盘填满或OS ACL实验。
++
++未封存且来源中断的事务保留给显式恢复；没有自动重新请求付费上游或清理未知文件。事务保留和restore scratch可能增加磁盘占用，尚无清理策略。恢复CLI/图形流程、备份加密和跨设备凭据迁移未实现。恢复报告也不意味着真实用户所有资料已被迁移验证。
++
++Windows/Android/Server完整可信更新与真实内部A→B安装、签名/产品/渠道/过期/回滚/冻结、迁移和任务排水仍NOT TESTED；本轮不降低首版安全更新门槛。
++
++完成本切片、最终测试与未提交diff证据后停止，交Project审查；进一步Git交付需用户另行明确授权，不能沿用A0首次推送授权。
+diff --git a/docs/audits/A1_001_UPDATER_DESIGN.md b/docs/audits/A1_001_UPDATER_DESIGN.md
+new file mode 100644
+index 0000000..21ff45a
+--- /dev/null
++++ b/docs/audits/A1_001_UPDATER_DESIGN.md
+@@ -0,0 +1,29 @@
++# A1-001 — 后续安全更新设计记录
++
++2026-10-21 JST。仅设计，不实施A1-002、不生成签名密钥、不打安装包、不安装应用。A0-002结论PASS_WITH_SCOPE来自本轮用户明确提供，未另行读取外部Project对话。
++
++## 与当前数据切片的接口
++
++本切片提供显式根所有权、已登记IO排水和合成快照恢复。更新协调器未来先阻止新的用户写入，再flush工程/设计过程、持久化任务状态与已收到结果，等待IO结束；超时保留根锁并呈现阻塞，不能强杀。当前`AssetStore.close(Duration)`是局部资产IO能力，不是完整应用生命周期协调器；未实现生成任务、编辑器dirty-state或Server队列的排水。
++
++程序目录、原始资产、关联文档、备份、缓存、更新下载和Secrets分别归属；安装程序不能整体覆盖数据目录。当前私有envelope v1仅用于这一切片，不冻结未来工程schema、程序版本或远程协议。
++
++## 方案和可信链候选
++
++Windows安装版优先验证MSIX与系统安装设施，应用负责检查/说明/确认/下载/验证/协调/重启后确认。MSIX签名必须有效且设备信任；这不自动证明业务数据迁移与回滚安全。[微软签名说明](https://learn.microsoft.com/en-us/windows/msix/package/signing-package-overview)。尚未验证Compose/JVM打包、应用身份、Publisher、安装权限或Portable模式；不创建证书，也不为使用此候选改变系统信任配置。
++
++应用内置可信根，经过成熟实现验证的元数据绑定产品、架构、平台、渠道、程序/数据兼容范围和目标包大小/hash；再核验安装身份，安装后确认版本和数据。候选TUF用于评估过期、回滚、冻结与密钥轮换；尚未选定实现库或版本，不能手写签名JSON替代。[TUF安全模型](https://theupdateframework.io/docs/security/)。本切片的SHA-256和本地备份清单只证明字节一致，不证明发布者身份。
++
++Android保留独立applicationId和稳定签名身份；应用内下载/校验后交系统安装器，处理用户批准、拒绝、取消及失败，并在实际启动后核验程序与资料。[PackageInstaller](https://developer.android.com/reference/android/content/pm/PackageInstaller)。不静默安装、不清数据、不把InstallerLaunched当成功。Server更新仅管理员可发起；持久队列中发送不确定的付费请求不能因维护重启自动补发，客户端自更新也不得改Server程序。
++
++Portable若以后交付，需要单独版本目录/安装助手/回退和资料保全合同，不用“解压覆盖整个目录”。二进制回退也不得恢复旧快照而删除升级后新作品；旧程序读到未知新数据格式应拒写并保留资料。
++
++## 必须单独批准的后续任务
++
++1. 冻结一个Windows安装渠道、应用身份及最小支持平台，验证JVM包与系统安装约束；给出确切工具/库版本和依赖证据。
++2. 选择成熟可信元数据实现，评审可信根、过期/离线时钟、密钥轮换与签名保管边界；密钥创建与系统信任变更另行授权。
++3. 制作内部A写入合成图库/Recipe/工程/设置/测试凭据，再从应用内经真实链安装B、重启并核验身份及资料。
++4. 覆盖坏包/签名/产品/平台/架构/渠道错误、过期/回滚/冻结、取消/断网/空间不足、安装失败、新版启动失败、迁移中断与进行中任务的排水。
++5. Android及Server各自完成对应安装/维护和协议兼容实验，Windows成功不代签其他平台。
++
++上述均NOT TESTED。本次文件/子进程故障测试不计作真实A→B应用安装更新；docs/05_UPDATE_AND_RELEASE.md规定的首版门槛完整保留。没有授权A1-002、A2、Release或真实API。
+diff --git a/gradle.properties b/gradle.properties
+new file mode 100644
+index 0000000..a7de5ef
+--- /dev/null
++++ b/gradle.properties
+@@ -0,0 +1,6 @@
++org.gradle.parallel=false
++org.gradle.workers.max=1
++org.gradle.daemon=false
++org.gradle.jvmargs=-Xmx384m -XX:MaxMetaspaceSize=256m -XX:ActiveProcessorCount=2
++org.gradle.vfs.watch=false
++org.gradle.java.installations.auto-download=false
+diff --git a/gradle/verification-metadata.xml b/gradle/verification-metadata.xml
+new file mode 100644
+index 0000000..588041f
+--- /dev/null
++++ b/gradle/verification-metadata.xml
+@@ -0,0 +1,19 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<verification-metadata xmlns="https://schema.gradle.org/dependency-verification" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://schema.gradle.org/dependency-verification https://schema.gradle.org/dependency-verification/dependency-verification-1.3.xsd">
++   <configuration>
++      <verify-metadata>false</verify-metadata>
++      <verify-signatures>false</verify-signatures>
++   </configuration>
++   <components>
++      <component group="junit" name="junit" version="4.13.2">
++         <artifact name="junit-4.13.2.jar">
++            <sha256 value="8e495b634469d64fb8acfa3495a065cbacc8a0fff55ce1e31007be4c16dc57d3" origin="Generated by Gradle"/>
++         </artifact>
++      </component>
++      <component group="org.hamcrest" name="hamcrest-core" version="1.3">
++         <artifact name="hamcrest-core-1.3.jar">
++            <sha256 value="66fdef91e9739348df7a096aa384a5685f4e875584cce89386a7a47251c4d8e9" origin="Generated by Gradle"/>
++         </artifact>
++      </component>
++   </components>
++</verification-metadata>
+diff --git a/gradle/wrapper/gradle-wrapper.jar b/gradle/wrapper/gradle-wrapper.jar
+new file mode 100644
+index 0000000000000000000000000000000000000000..8bdaf60c75ab801e22807dde59e12a8735a34077
+GIT binary patch
+literal 45457
+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
+
+literal 0
+HcmV?d00001
+
+diff --git a/gradle/wrapper/gradle-wrapper.properties b/gradle/wrapper/gradle-wrapper.properties
+new file mode 100644
+index 0000000..26dec6c
+--- /dev/null
++++ b/gradle/wrapper/gradle-wrapper.properties
+@@ -0,0 +1,8 @@
++distributionBase=GRADLE_USER_HOME
++distributionPath=wrapper/dists
++distributionUrl=https\://services.gradle.org/distributions/gradle-9.1.0-bin.zip
++distributionSha256Sum=a17ddd85a26b6a7f5ddb71ff8b05fc5104c0202c6e64782429790c933686c806
++networkTimeout=10000
++validateDistributionUrl=true
++zipStoreBase=GRADLE_USER_HOME
++zipStorePath=wrapper/dists
+diff --git a/gradlew b/gradlew
+new file mode 100644
+index 0000000..adff685
+--- /dev/null
++++ b/gradlew
+@@ -0,0 +1,248 @@
++#!/bin/sh
++
++#
++# Copyright © 2015 the original authors.
++#
++# Licensed under the Apache License, Version 2.0 (the "License");
++# you may not use this file except in compliance with the License.
++# You may obtain a copy of the License at
++#
++#      https://www.apache.org/licenses/LICENSE-2.0
++#
++# Unless required by applicable law or agreed to in writing, software
++# distributed under the License is distributed on an "AS IS" BASIS,
++# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++# See the License for the specific language governing permissions and
++# limitations under the License.
++#
++# SPDX-License-Identifier: Apache-2.0
++#
++
++##############################################################################
++#
++#   Gradle start up script for POSIX generated by Gradle.
++#
++#   Important for running:
++#
++#   (1) You need a POSIX-compliant shell to run this script. If your /bin/sh is
++#       noncompliant, but you have some other compliant shell such as ksh or
++#       bash, then to run this script, type that shell name before the whole
++#       command line, like:
++#
++#           ksh Gradle
++#
++#       Busybox and similar reduced shells will NOT work, because this script
++#       requires all of these POSIX shell features:
++#         * functions;
++#         * expansions «$var», «${var}», «${var:-default}», «${var+SET}»,
++#           «${var#prefix}», «${var%suffix}», and «$( cmd )»;
++#         * compound commands having a testable exit status, especially «case»;
++#         * various built-in commands including «command», «set», and «ulimit».
++#
++#   Important for patching:
++#
++#   (2) This script targets any POSIX shell, so it avoids extensions provided
++#       by Bash, Ksh, etc; in particular arrays are avoided.
++#
++#       The "traditional" practice of packing multiple parameters into a
++#       space-separated string is a well documented source of bugs and security
++#       problems, so this is (mostly) avoided, by progressively accumulating
++#       options in "$@", and eventually passing that to Java.
++#
++#       Where the inherited environment variables (DEFAULT_JVM_OPTS, JAVA_OPTS,
++#       and GRADLE_OPTS) rely on word-splitting, this is performed explicitly;
++#       see the in-line comments for details.
++#
++#       There are tweaks for specific operating systems such as AIX, CygWin,
++#       Darwin, MinGW, and NonStop.
++#
++#   (3) This script is generated from the Groovy template
++#       https://github.com/gradle/gradle/blob/HEAD/platforms/jvm/plugins-application/src/main/resources/org/gradle/api/internal/plugins/unixStartScript.txt
++#       within the Gradle project.
++#
++#       You can find Gradle at https://github.com/gradle/gradle/.
++#
++##############################################################################
++
++# Attempt to set APP_HOME
++
++# Resolve links: $0 may be a link
++app_path=$0
++
++# Need this for daisy-chained symlinks.
++while
++    APP_HOME=${app_path%"${app_path##*/}"}  # leaves a trailing /; empty if no leading path
++    [ -h "$app_path" ]
++do
++    ls=$( ls -ld "$app_path" )
++    link=${ls#*' -> '}
++    case $link in             #(
++      /*)   app_path=$link ;; #(
++      *)    app_path=$APP_HOME$link ;;
++    esac
++done
++
++# This is normally unused
++# shellcheck disable=SC2034
++APP_BASE_NAME=${0##*/}
++# Discard cd standard output in case $CDPATH is set (https://github.com/gradle/gradle/issues/25036)
++APP_HOME=$( cd -P "${APP_HOME:-./}" > /dev/null && printf '%s\n' "$PWD" ) || exit
++
++# Use the maximum available, or set MAX_FD != -1 to use that value.
++MAX_FD=maximum
++
++warn () {
++    echo "$*"
++} >&2
++
++die () {
++    echo
++    echo "$*"
++    echo
++    exit 1
++} >&2
++
++# OS specific support (must be 'true' or 'false').
++cygwin=false
++msys=false
++darwin=false
++nonstop=false
++case "$( uname )" in                #(
++  CYGWIN* )         cygwin=true  ;; #(
++  Darwin* )         darwin=true  ;; #(
++  MSYS* | MINGW* )  msys=true    ;; #(
++  NONSTOP* )        nonstop=true ;;
++esac
++
++
++
++# Determine the Java command to use to start the JVM.
++if [ -n "$JAVA_HOME" ] ; then
++    if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
++        # IBM's JDK on AIX uses strange locations for the executables
++        JAVACMD=$JAVA_HOME/jre/sh/java
++    else
++        JAVACMD=$JAVA_HOME/bin/java
++    fi
++    if [ ! -x "$JAVACMD" ] ; then
++        die "ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME
++
++Please set the JAVA_HOME variable in your environment to match the
++location of your Java installation."
++    fi
++else
++    JAVACMD=java
++    if ! command -v java >/dev/null 2>&1
++    then
++        die "ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
++
++Please set the JAVA_HOME variable in your environment to match the
++location of your Java installation."
++    fi
++fi
++
++# Increase the maximum file descriptors if we can.
++if ! "$cygwin" && ! "$darwin" && ! "$nonstop" ; then
++    case $MAX_FD in #(
++      max*)
++        # In POSIX sh, ulimit -H is undefined. That's why the result is checked to see if it worked.
++        # shellcheck disable=SC2039,SC3045
++        MAX_FD=$( ulimit -H -n ) ||
++            warn "Could not query maximum file descriptor limit"
++    esac
++    case $MAX_FD in  #(
++      '' | soft) :;; #(
++      *)
++        # In POSIX sh, ulimit -n is undefined. That's why the result is checked to see if it worked.
++        # shellcheck disable=SC2039,SC3045
++        ulimit -n "$MAX_FD" ||
++            warn "Could not set maximum file descriptor limit to $MAX_FD"
++    esac
++fi
++
++# Collect all arguments for the java command, stacking in reverse order:
++#   * args from the command line
++#   * the main class name
++#   * -classpath
++#   * -D...appname settings
++#   * --module-path (only if needed)
++#   * DEFAULT_JVM_OPTS, JAVA_OPTS, and GRADLE_OPTS environment variables.
++
++# For Cygwin or MSYS, switch paths to Windows format before running java
++if "$cygwin" || "$msys" ; then
++    APP_HOME=$( cygpath --path --mixed "$APP_HOME" )
++
++    JAVACMD=$( cygpath --unix "$JAVACMD" )
++
++    # Now convert the arguments - kludge to limit ourselves to /bin/sh
++    for arg do
++        if
++            case $arg in                                #(
++              -*)   false ;;                            # don't mess with options #(
++              /?*)  t=${arg#/} t=/${t%%/*}              # looks like a POSIX filepath
++                    [ -e "$t" ] ;;                      #(
++              *)    false ;;
++            esac
++        then
++            arg=$( cygpath --path --ignore --mixed "$arg" )
++        fi
++        # Roll the args list around exactly as many times as the number of
++        # args, so each arg winds up back in the position where it started, but
++        # possibly modified.
++        #
++        # NB: a `for` loop captures its iteration list before it begins, so
++        # changing the positional parameters here affects neither the number of
++        # iterations, nor the values presented in `arg`.
++        shift                   # remove old arg
++        set -- "$@" "$arg"      # push replacement arg
++    done
++fi
++
++
++# Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
++DEFAULT_JVM_OPTS='"-Xmx64m" "-Xms64m"'
++
++# Collect all arguments for the java command:
++#   * DEFAULT_JVM_OPTS, JAVA_OPTS, and optsEnvironmentVar are not allowed to contain shell fragments,
++#     and any embedded shellness will be escaped.
++#   * For example: A user cannot expect ${Hostname} to be expanded, as it is an environment variable and will be
++#     treated as '${Hostname}' itself on the command line.
++
++set -- \
++        "-Dorg.gradle.appname=$APP_BASE_NAME" \
++        -jar "$APP_HOME/gradle/wrapper/gradle-wrapper.jar" \
++        "$@"
++
++# Stop when "xargs" is not available.
++if ! command -v xargs >/dev/null 2>&1
++then
++    die "xargs is not available"
++fi
++
++# Use "xargs" to parse quoted args.
++#
++# With -n1 it outputs one arg per line, with the quotes and backslashes removed.
++#
++# In Bash we could simply go:
++#
++#   readarray ARGS < <( xargs -n1 <<<"$var" ) &&
++#   set -- "${ARGS[@]}" "$@"
++#
++# but POSIX shell has neither arrays nor command substitution, so instead we
++# post-process each arg (as a line of input to sed) to backslash-escape any
++# character that might be a shell metacharacter, then use eval to reverse
++# that process (while maintaining the separation between arguments), and wrap
++# the whole thing up as a single "set" statement.
++#
++# This will of course break if any of these variables contains a newline or
++# an unmatched quote.
++#
++
++eval "set -- $(
++        printf '%s\n' "$DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS" |
++        xargs -n1 |
++        sed ' s~[^-[:alnum:]+,./:=@_]~\\&~g; ' |
++        tr '\n' ' '
++    )" '"$@"'
++
++exec "$JAVACMD" "$@"
+diff --git a/gradlew.bat b/gradlew.bat
+new file mode 100644
+index 0000000..c4bdd3a
+--- /dev/null
++++ b/gradlew.bat
+@@ -0,0 +1,93 @@
++@rem
++@rem Copyright 2015 the original author or authors.
++@rem
++@rem Licensed under the Apache License, Version 2.0 (the "License");
++@rem you may not use this file except in compliance with the License.
++@rem You may obtain a copy of the License at
++@rem
++@rem      https://www.apache.org/licenses/LICENSE-2.0
++@rem
++@rem Unless required by applicable law or agreed to in writing, software
++@rem distributed under the License is distributed on an "AS IS" BASIS,
++@rem WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++@rem See the License for the specific language governing permissions and
++@rem limitations under the License.
++@rem
++@rem SPDX-License-Identifier: Apache-2.0
++@rem
++
++@if "%DEBUG%"=="" @echo off
++@rem ##########################################################################
++@rem
++@rem  Gradle startup script for Windows
++@rem
++@rem ##########################################################################
++
++@rem Set local scope for the variables with windows NT shell
++if "%OS%"=="Windows_NT" setlocal
++
++set DIRNAME=%~dp0
++if "%DIRNAME%"=="" set DIRNAME=.
++@rem This is normally unused
++set APP_BASE_NAME=%~n0
++set APP_HOME=%DIRNAME%
++
++@rem Resolve any "." and ".." in APP_HOME to make it shorter.
++for %%i in ("%APP_HOME%") do set APP_HOME=%%~fi
++
++@rem Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
++set DEFAULT_JVM_OPTS="-Xmx64m" "-Xms64m"
++
++@rem Find java.exe
++if defined JAVA_HOME goto findJavaFromJavaHome
++
++set JAVA_EXE=java.exe
++%JAVA_EXE% -version >NUL 2>&1
++if %ERRORLEVEL% equ 0 goto execute
++
++echo. 1>&2
++echo ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH. 1>&2
++echo. 1>&2
++echo Please set the JAVA_HOME variable in your environment to match the 1>&2
++echo location of your Java installation. 1>&2
++
++goto fail
++
++:findJavaFromJavaHome
++set JAVA_HOME=%JAVA_HOME:"=%
++set JAVA_EXE=%JAVA_HOME%/bin/java.exe
++
++if exist "%JAVA_EXE%" goto execute
++
++echo. 1>&2
++echo ERROR: JAVA_HOME is set to an invalid directory: %JAVA_HOME% 1>&2
++echo. 1>&2
++echo Please set the JAVA_HOME variable in your environment to match the 1>&2
++echo location of your Java installation. 1>&2
++
++goto fail
++
++:execute
++@rem Setup the command line
++
++
++
++@rem Execute Gradle
++"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_OPTS% "-Dorg.gradle.appname=%APP_BASE_NAME%" -jar "%APP_HOME%\gradle\wrapper\gradle-wrapper.jar" %*
++
++:end
++@rem End local scope for the variables with windows NT shell
++if %ERRORLEVEL% equ 0 goto mainEnd
++
++:fail
++rem Set variable GRADLE_EXIT_CONSOLE if you need the _script_ return code instead of
++rem the _cmd.exe /c_ return code!
++set EXIT_CODE=%ERRORLEVEL%
++if %EXIT_CODE% equ 0 set EXIT_CODE=1
++if not ""=="%GRADLE_EXIT_CONSOLE%" exit %EXIT_CODE%
++exit /b %EXIT_CODE%
++
++:mainEnd
++if "%OS%"=="Windows_NT" endlocal
++
++:omega
+diff --git a/modules/asset-library/README.md b/modules/asset-library/README.md
+new file mode 100644
+index 0000000..aa0e6ee
+--- /dev/null
++++ b/modules/asset-library/README.md
+@@ -0,0 +1,35 @@
++# Asset durability slice
++
++JDK 17 library with no production dependencies. The current consumers are the synthetic import/export, recovery and backup tests, including independent child JVMs. No UI, image codec, CCB Prompt/request or Server code is included. Java keeps this first slice small and callable from future Kotlin consumers; Android compatibility is not tested.
++
++`AssetStore.open(explicitRoot)` owns a cooperative process lock. It only initializes an empty root, requires its own identity marker afterwards, rejects known CCB/Desktop path components and redirected directory paths, and never selects a fallback data root. Do not use a real user library for this experimental slice.
++
++`put(Request, InputStream)` streams at most 256 MiB without decoding. A request contains a stable UUID, opaque display name, original/derived kind, optional parent asset UUID, and separate opaque Recipe/project bytes (at most 1 MiB each). Names never become paths. Derived bytes are a separate asset; same content may share an already verified object while retaining independent associations. Reusing an operation UUID with changed content or associations fails explicitly. Unsealed interrupted requests require explicit recovery handling and cannot be silently replaced by retry.
++
++The private v1 envelope has a bounded payload, type, version and SHA-256; it is not a final Recipe, project or remote protocol schema. Unknown or corrupt envelopes are retained and refused. `ReadResult` separates Missing, Corrupt, ReadError and UnsupportedVersion. Recipe/project bytes are not parsed, migrated or reset.
++
++Commit sequence:
++
++1. Durable transaction request (`transactions/<id>/request.rec`).
++2. Stream input to `payload.part`, force file, then write a sealed size/hash/association record.
++3. Publish the verified content-addressed `objects/<sha256>.blob` using atomic rename; never overwrite existing mismatched bytes.
++4. Publish immutable `records/<id>.rec` — the logical commit point.
++5. Update a reconstructible per-record index and completion marker. Failure here returns a committed receipt requiring maintenance, not an uncommitted result.
++
++Recovery explicitly enumerates transaction outcomes, resumes only sealed validated input, and is repeatable. Unsealed bytes remain visible as INCOMPLETE. Records are authoritative; index corruption cannot delete originals. Explicit index rebuilding preserves replaced index bytes under `indexes/observed`. There is no automatic garbage collection or history pruning.
++
++File contents use `FileChannel.force(true)` and publication requires atomic moves. Unsupported atomic moves fail visibly. This is not an arbitrary-power-loss guarantee: directory-entry durability, hardware flush behavior, hostile concurrent path replacement and hard-link attacks are not proven. The lock coordinates cooperating processes, not an OS-wide security boundary.
++
++`close(Duration)` blocks new operations, drains already registered IO and releases ownership only when settled. Timeout or interruption keeps ownership and draining state; call close again after pending work finishes. Do not call close from inside an active callback. `export` reports verification failure and its caller must not publish a partially written output.
++
++`AssetBackup.create` snapshots only identity/originals/relationships/transaction artifacts, with a final manifest as completion marker; caches, secrets and unrelated root files are excluded. Restore verifies the complete manifest before writing a new root; interrupted restore blocks ordinary opens and can resume only against the same manifest. Different existing target bytes are never replaced. Restore scratch copies are retained separately in `.restore-staging`; backup manifests are checksums, not publisher authentication or encrypted backups. This is a local synthetic recovery API, not a user-facing backup UI or updater.
++
++The backup allowlist excludes separate credential files/directories; it does not inspect secrets embedded by a caller inside opaque Recipe/project bytes or originals. Callers must never place credentials there. File ACLs, original filesystem timestamps and OS-bound secret migration are outside this slice.
++
++Run the bounded tests from the Suite root:
++
++```powershell
++powershell.exe -NoProfile -File .\tools\Test-AssetDurability.ps1 -Root H:\CCB-Studio-Suite
++```
++
++The offline helper uses an existing Gradle 9.1.0 and two pinned cached test JARs, copies them into `.local/a1-001/test-maven`, and isolates Gradle writes/fixtures under `.local/a1-001`. It never edits the source cache. Pass explicit `-GradleCommand` and `-TestArtifactCache` paths on another machine. Standard Gradle builds can resolve the same coordinates from Maven Central without that optional local-repository argument. Test results include real JUnit XML, logs and source hashes; absence of a runtime/cache is a failure, not a fake PASS.
+diff --git a/modules/asset-library/build.gradle.kts b/modules/asset-library/build.gradle.kts
+new file mode 100644
+index 0000000..91de50a
+--- /dev/null
++++ b/modules/asset-library/build.gradle.kts
+@@ -0,0 +1,27 @@
++plugins { `java-library` }
++
++java { toolchain { languageVersion = JavaLanguageVersion.of(17) } }
++repositories {
++    val offline = providers.gradleProperty("assetOfflineTestRepository")
++    if (offline.isPresent) maven {
++        name = "ExplicitOfflineTestArtifacts"
++        url = uri(offline.get())
++        metadataSources { artifact() }
++    } else mavenCentral()
++}
++dependencies {
++    testImplementation("junit:junit:4.13.2") { isTransitive = false }
++    testRuntimeOnly("org.hamcrest:hamcrest-core:1.3") { isTransitive = false }
++}
++dependencyLocking { lockAllConfigurations() }
++
++tasks.withType<JavaCompile>().configureEach { options.encoding = "UTF-8" }
++tasks.test {
++    useJUnit()
++    maxParallelForks = 1
++    maxHeapSize = "192m"
++    jvmArgs("-XX:ActiveProcessorCount=2")
++    systemProperty("asset.test.root", rootProject.file(".local/a1-001/tests").absolutePath)
++    systemProperty("asset.child.classpath", sourceSets.test.get().runtimeClasspath.asPath)
++    testLogging { events("passed", "failed", "skipped"); showStandardStreams = true }
++}
+diff --git a/modules/asset-library/gradle.lockfile b/modules/asset-library/gradle.lockfile
+new file mode 100644
+index 0000000..bb5f41d
+--- /dev/null
++++ b/modules/asset-library/gradle.lockfile
+@@ -0,0 +1,6 @@
++# This is a Gradle generated file for dependency locking.
++# Manual edits can break the build and are not advised.
++# This file is expected to be part of source control.
++junit:junit:4.13.2=testCompileClasspath,testRuntimeClasspath
++org.hamcrest:hamcrest-core:1.3=testRuntimeClasspath
++empty=annotationProcessor,compileClasspath,runtimeClasspath,testAnnotationProcessor
+diff --git a/modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetBackup.java b/modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetBackup.java
+new file mode 100644
+index 0000000..81688f6
+--- /dev/null
++++ b/modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetBackup.java
+@@ -0,0 +1,156 @@
++package io.github.misakapiano.ccbstudio.assets;
++
++import java.io.*;
++import java.nio.file.*;
++import java.util.*;
++import static java.nio.file.LinkOption.NOFOLLOW_LINKS;
++
++/** Minimal local snapshots. No secrets, caches or credentials; no restore over a live populated root. */
++public final class AssetBackup {
++    private AssetBackup() {}
++    public record Entry(String relativePath, long size, String sha256) {}
++    public record Report(int files, int committedAssets) {}
++
++    public static Report create(AssetStore store, Path supplied) throws IOException {
++        return store.operation(() -> {
++            Path destination = supplied.toAbsolutePath().normalize();
++            disjoint(store.root, destination);
++            AssetStore.rejectForeignRoot(destination);
++            StoreIO.directory(destination);
++            if (!StoreIO.entries(destination, "*").isEmpty()) throw new StoreException("CONFLICT", "Backup target must be empty");
++            int assets = store.catalog().size(); // The root gate is reentrant at the Java monitor; no additional owner.
++            List<Path> sourceFiles = new ArrayList<>();
++            sourceFiles.add(store.root.resolve("suite-root.rec"));
++            for (String directory : List.of("objects", "records", "transactions")) {
++                try (var paths = Files.walk(store.root.resolve(directory))) {
++                    for (Path p : paths.toList()) {
++                        if (Files.isDirectory(p, NOFOLLOW_LINKS)) { StoreIO.safeChain(p); continue; }
++                        if (!StoreIO.regular(p)) throw new IOException("Backup source missing");
++                        sourceFiles.add(p);
++                    }
++                }
++            }
++            sourceFiles.sort(Comparator.comparing(Path::toString));
++            List<Entry> manifest = new ArrayList<>();
++            for (Path source : sourceFiles) {
++                String relative = store.root.relativize(source).toString().replace('\\', '/');
++                validateRelative(relative);
++                var expected = store.io.fingerprint(source);
++                try (var input = Files.newInputStream(source, NOFOLLOW_LINKS)) {
++                    var actual = store.io.copyNew(input, destination.resolve(relative));
++                    if (!actual.equals(expected)) throw new StoreException("CORRUPT", "Snapshot source changed during copy");
++                }
++                manifest.add(new Entry(relative, expected.size(), expected.sha256()));
++                store.io.faults.after(AssetStore.Point.BACKUP_FILE, destination.resolve(relative));
++            }
++            store.io.immutable(destination.resolve("backup-manifest.rec"), "backup-manifest", encode(manifest));
++            store.io.faults.after(AssetStore.Point.BACKUP_MANIFEST, destination);
++            validate(destination, store.io);
++            return new Report(manifest.size(), assets);
++        });
++    }
++
++    public static Report restore(Path suppliedBackup, Path suppliedRoot) throws IOException {
++        return restore(suppliedBackup, suppliedRoot, AssetStore.NONE);
++    }
++    public static Report restore(Path suppliedBackup, Path suppliedRoot, AssetStore.Faults faults) throws IOException {
++        Path backup = suppliedBackup.toAbsolutePath().normalize(), root = suppliedRoot.toAbsolutePath().normalize();
++        disjoint(backup, root);
++        StoreIO io = new StoreIO(faults);
++        List<Entry> entries = validate(backup, io); // Complete verification before touching destination.
++        byte[] identity = StoreIO.hash(io.raw(backup.resolve("backup-manifest.rec"), StoreIO.MAX_METADATA + 128))
++                .getBytes(java.nio.charset.StandardCharsets.US_ASCII);
++        try (AssetStore destination = AssetStore.open(root, faults, true)) {
++            return destination.operation(() -> {
++                Path intent = root.resolve("restore-intent.rec");
++                if (!StoreIO.regular(intent)) {
++                    if (!destination.catalog().isEmpty()
++                            || !StoreIO.entries(root.resolve("transactions"), "*").isEmpty()
++                            || !StoreIO.entries(root.resolve("objects"), "*").isEmpty())
++                        throw new StoreException("CONFLICT", "Restore requires a new empty Suite root");
++                    io.immutable(intent, "restore-intent", identity);
++                } else if (!Arrays.equals(io.read(intent, "restore-intent").require(), identity)) {
++                    throw new StoreException("CONFLICT", "Pending restore belongs to a different backup");
++                }
++                for (Entry entry : entries) {
++                    Path target = root.resolve(entry.relativePath());
++                    if (StoreIO.regular(target)) {
++                        if (!matches(io.fingerprint(target), entry)) throw new StoreException("CONFLICT", "Restore target differs; retained");
++                    } else {
++                        // A partial copy is retained under a distinct owned staging filename. Resume never replaces unknown target bytes.
++                        Path staging = root.resolve(".restore-staging").resolve(UUID.randomUUID() + ".part");
++                        try (var input = Files.newInputStream(backup.resolve(entry.relativePath()), NOFOLLOW_LINKS)) {
++                            if (!matches(io.copyNew(input, staging), entry)) throw new StoreException("CORRUPT", "Backup changed during restore");
++                        }
++                        io.publish(staging, target, false);
++                    }
++                    io.faults.after(AssetStore.Point.RESTORE_FILE, target);
++                }
++                int count = destination.catalog().size();
++                // Preserve pending transactions too; they remain explicit recovery work after reopening.
++                io.immutable(root.resolve("restore-done.rec"), "restore-done", identity);
++                io.faults.after(AssetStore.Point.RESTORE_COMPLETE, root);
++                return new Report(entries.size(), count);
++            });
++        }
++    }
++    static void disjoint(Path a, Path b) throws IOException {
++        StoreIO.safeChain(a); StoreIO.safeChain(b);
++        if (a.startsWith(b) || b.startsWith(a)) throw new StoreException("UNSAFE_PATH", "Snapshot and root must not overlap");
++    }
++    private static boolean matches(StoreIO.Fingerprint fingerprint, Entry entry) {
++        return fingerprint.size() == entry.size() && fingerprint.sha256().equals(entry.sha256());
++    }
++    private static List<Entry> validate(Path backup, StoreIO io) throws IOException {
++        StoreIO.safeChain(backup);
++        byte[] bytes = io.read(backup.resolve("backup-manifest.rec"), "backup-manifest").require();
++        List<Entry> entries = decode(bytes);
++        Set<String> expected = new HashSet<>(); expected.add("backup-manifest.rec");
++        for (Entry entry : entries) {
++            validateRelative(entry.relativePath());
++            if (!expected.add(entry.relativePath())) throw new StoreException("CORRUPT", "Duplicate snapshot entry");
++            if (!matches(io.fingerprint(backup.resolve(entry.relativePath())), entry))
++                throw new StoreException("CORRUPT", "Snapshot size/hash mismatch");
++        }
++        if (!expected.contains("suite-root.rec")) throw new StoreException("CORRUPT", "Snapshot has no root identity");
++        try (var paths = Files.walk(backup)) {
++            for (Path p : paths.toList()) {
++                if (Files.isDirectory(p, NOFOLLOW_LINKS)) { StoreIO.safeChain(p); continue; }
++                if (!StoreIO.regular(p) || !expected.contains(backup.relativize(p).toString().replace('\\', '/')))
++                    throw new StoreException("CORRUPT", "Unexpected snapshot file retained");
++            }
++        }
++        return entries;
++    }
++    private static void validateRelative(String relative) throws IOException {
++        String uuid = "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}";
++        if (relative.equals("suite-root.rec")
++                || relative.matches("objects/[0-9a-f]{64}\\.blob")
++                || relative.matches("records/(" + uuid + "\\.rec|\\.pending-" + uuid + ")")
++                || relative.matches("transactions/" + uuid + "/(request\\.rec|seal\\.rec|complete\\.rec|payload\\.part|\\.pending-" + uuid + ")")) return;
++        throw new StoreException("CORRUPT", "Unrecognized or unsafe snapshot path");
++    }
++    private static byte[] encode(List<Entry> entries) throws IOException {
++        var bytes = new ByteArrayOutputStream();
++        try (var out = new DataOutputStream(bytes)) {
++            out.writeInt(entries.size());
++            for (Entry e : entries) { out.writeUTF(e.relativePath()); out.writeLong(e.size()); out.writeUTF(e.sha256()); }
++        }
++        return bytes.toByteArray();
++    }
++    private static List<Entry> decode(byte[] bytes) throws IOException {
++        try (var in = new DataInputStream(new ByteArrayInputStream(bytes))) {
++            int count = in.readInt();
++            if (count < 1 || count > 20_000) throw new StoreException("CORRUPT", "Snapshot entry count invalid");
++            List<Entry> entries = new ArrayList<>();
++            for (int i = 0; i < count; i++) {
++                var e = new Entry(in.readUTF(), in.readLong(), in.readUTF());
++                if (e.size() < 0 || e.size() > StoreIO.MAX_ASSET || !e.sha256().matches("[0-9a-f]{64}"))
++                    throw new StoreException("CORRUPT", "Invalid snapshot fingerprint");
++                entries.add(e);
++            }
++            if (in.read() != -1) throw new StoreException("CORRUPT", "Unknown snapshot fields retained");
++            return List.copyOf(entries);
++        } catch (EOFException invalid) { throw new StoreException("CORRUPT", "Truncated snapshot manifest"); }
++    }
++}
+diff --git a/modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetStore.java b/modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetStore.java
+new file mode 100644
+index 0000000..a74a2c5
+--- /dev/null
++++ b/modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetStore.java
+@@ -0,0 +1,340 @@
++package io.github.misakapiano.ccbstudio.assets;
++
++import java.io.*;
++import java.nio.channels.*;
++import java.nio.file.*;
++import java.time.Duration;
++import java.util.*;
++import java.util.concurrent.Callable;
++import static java.nio.file.StandardOpenOption.*;
++import static java.nio.file.LinkOption.NOFOLLOW_LINKS;
++
++/** Cooperative single-writer store. A committed records/<UUID>.rec is the logical commit point. */
++public final class AssetStore implements AutoCloseable {
++    public enum Kind { ORIGINAL, DERIVED }
++    public enum Io { READ, WRITE, MOVE }
++    public enum Point { INTENT, BYTES, SEALED, ASSET, RECORD, INDEX, COMPLETE,
++        BACKUP_FILE, BACKUP_MANIFEST, RESTORE_FILE, RESTORE_COMPLETE }
++    public interface Faults {
++        default void before(Io operation, Path path) throws IOException {}
++        default void after(Point point, Path path) throws IOException {}
++    }
++    public static final Faults NONE = new Faults() {};
++
++    public record Request(UUID id, String name, Kind kind, UUID parentId, byte[] recipe, byte[] project) {
++        public Request {
++            Objects.requireNonNull(id); Objects.requireNonNull(name); Objects.requireNonNull(kind);
++            Objects.requireNonNull(recipe); Objects.requireNonNull(project);
++            if (name.length() > 512 || recipe.length > 1024 * 1024 || project.length > 1024 * 1024)
++                throw new IllegalArgumentException("Name or opaque document exceeds slice limit");
++            if ((kind == Kind.ORIGINAL) != (parentId == null) || id.equals(parentId))
++                throw new IllegalArgumentException("Original has no parent; derived requires a different parent");
++            recipe = recipe.clone(); project = project.clone();
++        }
++        @Override public byte[] recipe() { return recipe.clone(); }
++        @Override public byte[] project() { return project.clone(); }
++    }
++    public record Asset(Request request, long size, String sha256) {
++        public Asset {
++            Objects.requireNonNull(request);
++            if (size < 0 || size > StoreIO.MAX_ASSET || sha256 == null || !sha256.matches("[0-9a-f]{64}"))
++                throw new IllegalArgumentException("Invalid fingerprint");
++        }
++    }
++    public record Receipt(Asset asset, boolean indexReady, String maintenanceDetail) {}
++    public record Recovery(UUID id, String state, String detail) {}
++
++    final Path root;
++    final StoreIO io;
++    private final FileChannel channel;
++    private final FileLock ownership;
++    private final Object gate = new Object();
++    private final Object serial = new Object();
++    private int active;
++    private boolean draining, closed;
++
++    public static AssetStore open(Path root) throws IOException { return open(root, NONE); }
++    public static AssetStore open(Path root, Faults faults) throws IOException { return open(root, faults, false); }
++    static AssetStore open(Path supplied, Faults faults, boolean restoring) throws IOException {
++        Path root = supplied.toAbsolutePath().normalize();
++        rejectForeignRoot(root);
++        StoreIO.directory(root);
++        StoreIO io = new StoreIO(faults);
++        var preflight = io.read(root.resolve("suite-root.rec"), "root");
++        if (preflight.status() == ReadResult.Status.MISSING
++                && StoreIO.entries(root, "*").stream().anyMatch(p -> !p.getFileName().toString().equals(".owner.lock")))
++            throw new StoreException("FOREIGN_ROOT", "Nonempty unrecognized root refused before lock creation");
++        if (preflight.status() != ReadResult.Status.MISSING) preflight.require();
++        Path lockPath = root.resolve(".owner.lock");
++        StoreIO.regular(lockPath);
++        FileChannel channel = FileChannel.open(lockPath, CREATE, WRITE, NOFOLLOW_LINKS);
++        FileLock lock = null;
++        try {
++            try { lock = channel.tryLock(); }
++            catch (OverlappingFileLockException busy) { throw new StoreException("IN_USE", "Root already owned in this JVM"); }
++            if (lock == null) throw new StoreException("IN_USE", "Root already owned by another process");
++            var marker = io.read(root.resolve("suite-root.rec"), "root");
++            if (marker.status() == ReadResult.Status.MISSING) {
++                if (StoreIO.entries(root, "*").stream().anyMatch(p -> !p.getFileName().toString().equals(".owner.lock")))
++                    throw new StoreException("FOREIGN_ROOT", "Nonempty unrecognized root is retained and refused");
++                io.immutable(root.resolve("suite-root.rec"), "root", "CCBStudioSuite/assets/a1-001".getBytes(java.nio.charset.StandardCharsets.UTF_8));
++            } else if (!Arrays.equals(marker.require(), "CCBStudioSuite/assets/a1-001".getBytes(java.nio.charset.StandardCharsets.UTF_8))) {
++                throw new StoreException("FOREIGN_ROOT", "Different root identity");
++            }
++            if (!restoring) {
++                var intent = io.read(root.resolve("restore-intent.rec"), "restore-intent");
++                if (intent.status() != ReadResult.Status.MISSING) {
++                    byte[] identity = intent.require();
++                    var done = io.read(root.resolve("restore-done.rec"), "restore-done");
++                    if (done.status() != ReadResult.Status.VALID || !Arrays.equals(identity, done.value()))
++                        throw new StoreException("RESTORE_INCOMPLETE", "Resume the explicit restore; ordinary writes are blocked");
++                }
++            }
++            for (String directory : List.of("objects", "records", "transactions", "indexes")) StoreIO.directory(root.resolve(directory));
++            return new AssetStore(root, io, channel, lock);
++        } catch (IOException | RuntimeException bad) {
++            if (lock != null) lock.release();
++            channel.close(); throw bad;
++        }
++    }
++    private AssetStore(Path root, StoreIO io, FileChannel channel, FileLock lock) {
++        this.root = root; this.io = io; this.channel = channel; this.ownership = lock;
++    }
++    static void rejectForeignRoot(Path root) throws IOException {
++        for (Path component : root) {
++            String name = component.toString().toLowerCase(Locale.ROOT);
++            if (Set.of("chatchatbar-desktop", "chatchatbardesktop", "chatbar", "chatchatbar").contains(name))
++                throw new StoreException("FOREIGN_ROOT", "CCB/Desktop root names are not Suite roots");
++        }
++    }
++    <T> T operation(Callable<T> body) throws IOException {
++        synchronized (gate) {
++            if (draining || closed) throw new StoreException("CLOSING", "Store is draining or closed");
++            active++;
++        }
++        try {
++            synchronized (serial) {
++                try { return body.call(); }
++                catch (IOException | RuntimeException e) { throw e; }
++                catch (Exception e) { throw new IOException(e); }
++            }
++        } finally { synchronized (gate) { active--; gate.notifyAll(); } }
++    }
++    public Path root() { return root; }
++    Path recordPath(UUID id) { return root.resolve("records").resolve(id + ".rec"); }
++    Path objectPath(Asset asset) { return root.resolve("objects").resolve(asset.sha256() + ".blob"); }
++    private Path transaction(UUID id) { return root.resolve("transactions").resolve(id.toString()); }
++
++    public Receipt put(Request request, InputStream input) throws IOException {
++        Objects.requireNonNull(request); Objects.requireNonNull(input);
++        return operation(() -> {
++            var existing = readInternal(request.id());
++            if (existing.status() != ReadResult.Status.MISSING)
++                return replay(existing.require(), request, input);
++            Path tx = transaction(request.id());
++            if (Files.exists(tx, NOFOLLOW_LINKS)) {
++                recoverOne(request.id());
++                var recovered = readInternal(request.id());
++                if (recovered.status() == ReadResult.Status.VALID) return replay(recovered.value(), request, input);
++                if (recovered.status() != ReadResult.Status.MISSING) recovered.require();
++                throw new StoreException("RECOVERY_REQUIRED", "Unsealed transaction retained; inspect its staged bytes before choosing a new operation ID");
++            }
++            if (request.parentId() != null) readInternal(request.parentId()).require();
++            StoreIO.directory(tx);
++            io.immutable(tx.resolve("request.rec"), "request", encodeRequest(request));
++            io.faults.after(Point.INTENT, tx);
++            var fingerprint = io.copyNew(input, tx.resolve("payload.part"));
++            io.faults.after(Point.BYTES, tx);
++            var asset = new Asset(request, fingerprint.size(), fingerprint.sha256());
++            io.immutable(tx.resolve("seal.rec"), "asset", encodeAsset(asset));
++            io.faults.after(Point.SEALED, tx);
++            return finish(asset, tx);
++        });
++    }
++    private Receipt replay(Asset asset, Request request, InputStream input) throws IOException {
++        var fingerprint = StoreIO.transfer(input, OutputStream.nullOutputStream());
++        if (!sameRequest(asset.request(), request) || asset.size() != fingerprint.size() || !asset.sha256().equals(fingerprint.sha256()))
++            throw new StoreException("CONFLICT", "Operation ID already owns different input or association");
++        return new Receipt(asset, indexInternal(request.id()).status() == ReadResult.Status.VALID, "Idempotent existing commit");
++    }
++    private Receipt finish(Asset asset, Path tx) throws IOException {
++        if (asset.request().parentId() != null) readInternal(asset.request().parentId()).require();
++        Path object = objectPath(asset);
++        if (StoreIO.regular(object)) verifyFile(object, asset).require();
++        else {
++            verifyFile(tx.resolve("payload.part"), asset).require();
++            io.publish(tx.resolve("payload.part"), object, false);
++        }
++        io.faults.after(Point.ASSET, tx);
++        io.immutable(recordPath(asset.request().id()), "asset", encodeAsset(asset));
++        // This immutable relationship record is the commit point. Index failure cannot uncommit it.
++        try {
++            io.faults.after(Point.RECORD, tx);
++            io.cache(root.resolve("indexes").resolve(asset.request().id() + ".idx"), "index", encodeAsset(asset));
++            io.faults.after(Point.INDEX, tx);
++            io.immutable(tx.resolve("complete.rec"), "complete", asset.sha256().getBytes(java.nio.charset.StandardCharsets.US_ASCII));
++            io.faults.after(Point.COMPLETE, tx);
++            return new Receipt(asset, true, "");
++        } catch (IOException maintenance) {
++            readInternal(asset.request().id()).require();
++            return new Receipt(asset, false, "Committed; index/completion maintenance requires recovery");
++        }
++    }
++    private ReadResult<Asset> verifyFile(Path path, Asset asset) {
++        try {
++            var f = io.fingerprint(path);
++            return f.size() == asset.size() && f.sha256().equals(asset.sha256()) ? ReadResult.valid(asset)
++                : ReadResult.error(ReadResult.Status.CORRUPT, "Original size/hash differs; file retained");
++        } catch (NoSuchFileException missing) { return ReadResult.error(ReadResult.Status.MISSING, "Referenced original is absent"); }
++        catch (IOException | SecurityException bad) { return ReadResult.error(ReadResult.Status.READ_ERROR, "Original cannot be read; retained"); }
++    }
++    ReadResult<Asset> decodeAssetFile(Path path, String type) {
++        var result = io.read(path, type);
++        if (result.status() != ReadResult.Status.VALID) return ReadResult.error(result.status(), result.detail());
++        try { return ReadResult.valid(decodeAsset(result.value())); }
++        catch (IOException | IllegalArgumentException bad) { return ReadResult.error(ReadResult.Status.CORRUPT, "Malformed asset relationship"); }
++    }
++    private ReadResult<Asset> readInternal(UUID id) {
++        var result = decodeAssetFile(recordPath(id), "asset");
++        if (result.status() != ReadResult.Status.VALID) return result;
++        if (!result.value().request().id().equals(id)) return ReadResult.error(ReadResult.Status.CORRUPT, "Record filename/identity mismatch");
++        var verified = verifyFile(objectPath(result.value()), result.value());
++        if (verified.status() == ReadResult.Status.MISSING)
++            return ReadResult.error(ReadResult.Status.CORRUPT, "Committed original missing; no replacement created");
++        return verified;
++    }
++    public ReadResult<Asset> read(UUID id) throws IOException { return operation(() -> readInternal(id)); }
++    public void export(UUID id, OutputStream target) throws IOException {
++        operation(() -> {
++            Asset asset = readInternal(id).require();
++            io.faults.before(Io.READ, objectPath(asset));
++            try (var in = Files.newInputStream(objectPath(asset), READ, NOFOLLOW_LINKS)) {
++                var f = StoreIO.transfer(in, target);
++                if (f.size() != asset.size() || !f.sha256().equals(asset.sha256()))
++                    throw new StoreException("CORRUPT", "Export checksum failed; caller must not publish its partial output");
++            }
++            return null;
++        });
++    }
++    private ReadResult<Asset> indexInternal(UUID id) {
++        var cached = decodeAssetFile(root.resolve("indexes").resolve(id + ".idx"), "index");
++        if (cached.status() != ReadResult.Status.VALID) return cached;
++        var authority = readInternal(id);
++        if (authority.status() != ReadResult.Status.VALID) return authority;
++        return sameAsset(cached.value(), authority.value()) ? cached
++                : ReadResult.error(ReadResult.Status.CORRUPT, "Index differs from committed authority");
++    }
++    public ReadResult<Asset> readIndex(UUID id) throws IOException { return operation(() -> indexInternal(id)); }
++    public List<Asset> catalog() throws IOException { return operation(this::catalogInternal); }
++    private List<Asset> catalogInternal() throws IOException {
++        List<Asset> result = new ArrayList<>();
++        for (Path record : StoreIO.entries(root.resolve("records"), "*.rec")) {
++            UUID id;
++            try { id = UUID.fromString(record.getFileName().toString().replace(".rec", "")); }
++            catch (IllegalArgumentException invalid) { throw new StoreException("CORRUPT", "Unknown record filename retained"); }
++            if (!record.getFileName().toString().equals(id + ".rec"))
++                throw new StoreException("CORRUPT", "Noncanonical record filename retained");
++            result.add(readInternal(id).require());
++        }
++        return List.copyOf(result);
++    }
++    public int rebuildIndex() throws IOException {
++        return operation(() -> {
++            var assets = catalogInternal(); // Never rebuild from a silently partial scan.
++            for (Asset asset : assets) io.cache(root.resolve("indexes").resolve(asset.request().id() + ".idx"), "index", encodeAsset(asset));
++            return assets.size();
++        });
++    }
++    public List<Recovery> recover() throws IOException {
++        return operation(() -> {
++            List<Recovery> report = new ArrayList<>();
++            for (Path tx : StoreIO.entries(root.resolve("transactions"), "*")) {
++                try { report.add(recoverOne(UUID.fromString(tx.getFileName().toString()))); }
++                catch (IllegalArgumentException bad) { throw new StoreException("CORRUPT", "Unknown transaction directory retained"); }
++            }
++            return List.copyOf(report);
++        });
++    }
++    private Recovery recoverOne(UUID id) {
++        Path tx = transaction(id);
++        try {
++            StoreIO.safeChain(tx);
++            var request = io.read(tx.resolve("request.rec"), "request");
++            if (request.status() != ReadResult.Status.VALID) return new Recovery(id, request.status().name(), request.detail());
++            Request original;
++            try { original = decodeRequest(request.value()); }
++            catch (IOException | IllegalArgumentException malformed) {
++                return new Recovery(id, "CORRUPT", "Malformed intent retained");
++            }
++            if (!original.id().equals(id)) return new Recovery(id, "CORRUPT", "Transaction ID mismatch");
++            var seal = decodeAssetFile(tx.resolve("seal.rec"), "asset");
++            if (seal.status() == ReadResult.Status.MISSING) return new Recovery(id, "INCOMPLETE", "Unsealed bytes retained for explicit recovery; not Saved");
++            if (seal.status() != ReadResult.Status.VALID) return new Recovery(id, seal.status().name(), seal.detail());
++            if (!sameRequest(original, seal.value().request())) return new Recovery(id, "CORRUPT", "Intent/seal mismatch");
++            // Immutable commit conflicts/unknown versions are preserved, never overwritten.
++            var existing = readInternal(id);
++            if (existing.status() != ReadResult.Status.MISSING && existing.status() != ReadResult.Status.VALID)
++                return new Recovery(id, existing.status().name(), existing.detail());
++            Receipt receipt = finish(seal.value(), tx);
++            return new Recovery(id, receipt.indexReady() ? "COMPLETED" : "COMMITTED_MAINTENANCE_REQUIRED", receipt.maintenanceDetail());
++        } catch (StoreException failure) { return new Recovery(id, failure.code(), failure.getMessage()); }
++        catch (IOException | IllegalArgumentException failure) { return new Recovery(id, "READ_ERROR", "Recovery failed; all existing bytes retained"); }
++    }
++    public boolean close(Duration timeout) throws IOException {
++        long deadline = System.nanoTime() + timeout.toNanos();
++        synchronized (gate) {
++            draining = true;
++            if (closed) return true;
++            while (active > 0) {
++                long left = deadline - System.nanoTime();
++                if (left <= 0) return false; // Keep lock and draining state on timeout.
++                try { gate.wait(Math.max(1, left / 1_000_000)); }
++                catch (InterruptedException interrupted) { Thread.currentThread().interrupt(); return false; }
++            }
++            ownership.release(); channel.close(); closed = true; return true;
++        }
++    }
++    @Override public void close() throws IOException {
++        if (!close(Duration.ofSeconds(30))) throw new StoreException("DRAIN_TIMEOUT", "Root ownership retained until active IO settles");
++    }
++    static boolean sameRequest(Request a, Request b) {
++        return a.id().equals(b.id()) && a.name().equals(b.name()) && a.kind() == b.kind()
++            && Objects.equals(a.parentId(), b.parentId()) && Arrays.equals(a.recipe(), b.recipe()) && Arrays.equals(a.project(), b.project());
++    }
++    static boolean sameAsset(Asset a, Asset b) { return sameRequest(a.request(), b.request()) && a.size() == b.size() && a.sha256().equals(b.sha256()); }
++    static byte[] encodeRequest(Request request) throws IOException {
++        var bytes = new ByteArrayOutputStream();
++        try (var out = new DataOutputStream(bytes)) { writeRequest(out, request); }
++        return bytes.toByteArray();
++    }
++    private static void writeRequest(DataOutputStream out, Request r) throws IOException {
++        out.writeUTF(r.id().toString()); out.writeUTF(r.name()); out.writeUTF(r.kind().name());
++        out.writeUTF(r.parentId() == null ? "" : r.parentId().toString());
++        for (byte[] bytes : List.of(r.recipe(), r.project())) { out.writeInt(bytes.length); out.write(bytes); }
++    }
++    static Request decodeRequest(byte[] bytes) throws IOException {
++        try (var in = new DataInputStream(new ByteArrayInputStream(bytes))) {
++            Request request = readRequest(in); if (in.read() != -1) throw new IOException("Unknown request fields"); return request;
++        }
++    }
++    private static Request readRequest(DataInputStream in) throws IOException {
++        UUID id = UUID.fromString(in.readUTF()); String name = in.readUTF(); Kind kind = Kind.valueOf(in.readUTF());
++        String parent = in.readUTF(); byte[][] documents = new byte[2][];
++        for (int i = 0; i < 2; i++) {
++            int size = in.readInt(); if (size < 0 || size > 1024 * 1024) throw new IOException("Document size invalid");
++            documents[i] = in.readNBytes(size); if (documents[i].length != size) throw new EOFException();
++        }
++        return new Request(id, name, kind, parent.isEmpty() ? null : UUID.fromString(parent), documents[0], documents[1]);
++    }
++    static byte[] encodeAsset(Asset asset) throws IOException {
++        var bytes = new ByteArrayOutputStream();
++        try (var out = new DataOutputStream(bytes)) { writeRequest(out, asset.request()); out.writeLong(asset.size()); out.writeUTF(asset.sha256()); }
++        return bytes.toByteArray();
++    }
++    static Asset decodeAsset(byte[] bytes) throws IOException {
++        try (var in = new DataInputStream(new ByteArrayInputStream(bytes))) {
++            var asset = new Asset(readRequest(in), in.readLong(), in.readUTF());
++            if (in.read() != -1) throw new IOException("Unknown relationship fields"); return asset;
++        }
++    }
++}
+diff --git a/modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/ReadResult.java b/modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/ReadResult.java
+new file mode 100644
+index 0000000..b30b712
+--- /dev/null
++++ b/modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/ReadResult.java
+@@ -0,0 +1,14 @@
++package io.github.misakapiano.ccbstudio.assets;
++
++/** Missing is reserved for a genuinely absent path, never an unreadable or unknown file. */
++public record ReadResult<T>(Status status, T value, String detail) {
++    public enum Status { VALID, MISSING, CORRUPT, READ_ERROR, UNSUPPORTED_VERSION }
++    public static <T> ReadResult<T> valid(T value) { return new ReadResult<>(Status.VALID, value, ""); }
++    public static <T> ReadResult<T> error(Status status, String detail) {
++        return new ReadResult<>(status, null, detail);
++    }
++    public T require() throws StoreException {
++        if (status != Status.VALID) throw new StoreException(status.name(), detail);
++        return value;
++    }
++}
+diff --git a/modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/StoreException.java b/modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/StoreException.java
+new file mode 100644
+index 0000000..6c4a595
+--- /dev/null
++++ b/modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/StoreException.java
+@@ -0,0 +1,9 @@
++package io.github.misakapiano.ccbstudio.assets;
++
++import java.io.IOException;
++
++public final class StoreException extends IOException {
++    private final String code;
++    public StoreException(String code, String detail) { super(detail); this.code = code; }
++    public String code() { return code; }
++}
+diff --git a/modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/StoreIO.java b/modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/StoreIO.java
+new file mode 100644
+index 0000000..70ec422
+--- /dev/null
++++ b/modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/StoreIO.java
+@@ -0,0 +1,165 @@
++package io.github.misakapiano.ccbstudio.assets;
++
++import java.io.*;
++import java.nio.ByteBuffer;
++import java.nio.channels.FileChannel;
++import java.nio.file.*;
++import java.nio.file.attribute.BasicFileAttributes;
++import java.security.*;
++import java.util.*;
++import static java.nio.file.LinkOption.NOFOLLOW_LINKS;
++import static java.nio.file.StandardOpenOption.*;
++
++/** Private, bounded v1 envelope for this slice; not a CCB, Recipe or project schema. */
++final class StoreIO {
++    static final int MAX_METADATA = 3 * 1024 * 1024;
++    static final long MAX_ASSET = 256L * 1024 * 1024;
++    static final int BUFFER = 64 * 1024;
++    private static final int MAGIC = 0x43434241;
++    final AssetStore.Faults faults;
++    StoreIO(AssetStore.Faults faults) { this.faults = faults; }
++
++    static MessageDigest digest() {
++        try { return MessageDigest.getInstance("SHA-256"); }
++        catch (NoSuchAlgorithmException e) { throw new AssertionError(e); }
++    }
++    static String hash(byte[] bytes) { return HexFormat.of().formatHex(digest().digest(bytes)); }
++
++    static void safeChain(Path path) throws IOException {
++        Path absolute = path.toAbsolutePath().normalize();
++        Path cursor = absolute;
++        while (cursor != null) {
++            try {
++                var a = Files.readAttributes(cursor, BasicFileAttributes.class, NOFOLLOW_LINKS);
++                if (a.isSymbolicLink() || a.isOther() || !a.isDirectory()
++                        || !cursor.toRealPath().equals(cursor))
++                    throw new StoreException("UNSAFE_PATH", "Non-directory or redirected path component: " + cursor);
++                // Real-path equality also rejects redirected ancestors, without repeatedly resolving every prefix.
++                return;
++            } catch (NoSuchFileException absent) { cursor = cursor.getParent(); }
++        }
++    }
++    static void directory(Path path) throws IOException {
++        safeChain(path);
++        Files.createDirectories(path);
++        safeChain(path);
++    }
++    static boolean regular(Path path) throws IOException {
++        safeChain(path.getParent());
++        try {
++            var a = Files.readAttributes(path, BasicFileAttributes.class, NOFOLLOW_LINKS);
++            if (!a.isRegularFile() || a.isSymbolicLink() || a.isOther())
++                throw new IOException("Not a safe regular file: " + path);
++            return true;
++        } catch (NoSuchFileException absent) { return false; }
++    }
++    static List<Path> entries(Path dir, String glob) throws IOException {
++        safeChain(dir);
++        List<Path> entries = new ArrayList<>();
++        try (var stream = Files.newDirectoryStream(dir, glob)) {
++            for (Path p : stream) entries.add(p);
++        }
++        entries.sort(Comparator.comparing(p -> p.getFileName().toString()));
++        return entries;
++    }
++    byte[] raw(Path path, int bound) throws IOException {
++        faults.before(AssetStore.Io.READ, path);
++        if (!regular(path)) throw new NoSuchFileException(path.toString());
++        try (var in = Files.newInputStream(path, READ, NOFOLLOW_LINKS)) {
++            byte[] data = in.readNBytes(bound + 1);
++            if (data.length > bound) throw new StoreException("CORRUPT", "Metadata exceeds bound");
++            return data;
++        }
++    }
++    static byte[] encode(String type, byte[] payload) throws IOException {
++        if (payload.length > MAX_METADATA) throw new IOException("Metadata exceeds bound");
++        var buffer = new ByteArrayOutputStream();
++        try (var out = new DataOutputStream(buffer)) {
++            out.writeInt(MAGIC); out.writeInt(1); out.writeUTF(type);
++            out.writeInt(payload.length); out.write(digest().digest(payload)); out.write(payload);
++        }
++        return buffer.toByteArray();
++    }
++    ReadResult<byte[]> read(Path path, String type) {
++        try {
++            byte[] data = raw(path, MAX_METADATA + 128);
++            try (var in = new DataInputStream(new ByteArrayInputStream(data))) {
++                if (in.readInt() != MAGIC) return ReadResult.error(ReadResult.Status.CORRUPT, "Envelope magic mismatch");
++                if (in.readInt() != 1) return ReadResult.error(ReadResult.Status.UNSUPPORTED_VERSION, "Unknown envelope version; bytes retained");
++                if (!in.readUTF().equals(type)) return ReadResult.error(ReadResult.Status.CORRUPT, "Envelope type mismatch");
++                int size = in.readInt();
++                if (size < 0 || size > MAX_METADATA) return ReadResult.error(ReadResult.Status.CORRUPT, "Invalid metadata size");
++                byte[] expected = in.readNBytes(32), payload = in.readNBytes(size);
++                if (payload.length != size || in.read() != -1 || !Arrays.equals(expected, digest().digest(payload)))
++                    return ReadResult.error(ReadResult.Status.CORRUPT, "Truncated or altered envelope");
++                return ReadResult.valid(payload);
++            } catch (IOException bad) { return ReadResult.error(ReadResult.Status.CORRUPT, "Malformed envelope"); }
++        } catch (NoSuchFileException absent) { return ReadResult.error(ReadResult.Status.MISSING, "Path absent"); }
++        catch (StoreException bad) { return ReadResult.error(ReadResult.Status.CORRUPT, bad.getMessage()); }
++        catch (IOException | SecurityException bad) { return ReadResult.error(ReadResult.Status.READ_ERROR, "Metadata cannot be read; bytes retained"); }
++    }
++    void writeNew(Path target, byte[] bytes) throws IOException {
++        directory(target.getParent());
++        faults.before(AssetStore.Io.WRITE, target);
++        try (var channel = FileChannel.open(target, CREATE_NEW, WRITE, NOFOLLOW_LINKS)) {
++            var buffer = ByteBuffer.wrap(bytes);
++            while (buffer.hasRemaining()) channel.write(buffer);
++            channel.force(true);
++        }
++    }
++    void immutable(Path target, String type, byte[] payload) throws IOException {
++        byte[] encoded = encode(type, payload);
++        if (regular(target)) {
++            read(target, type).require(); // Unknown/corrupt content must not become a replacement.
++            if (!Arrays.equals(raw(target, MAX_METADATA + 128), encoded))
++                throw new StoreException("CONFLICT", "Existing immutable document differs");
++            return;
++        }
++        Path temporary = target.resolveSibling(".pending-" + UUID.randomUUID());
++        writeNew(temporary, encoded);
++        publish(temporary, target, false);
++    }
++    void publish(Path source, Path target, boolean replace) throws IOException {
++        directory(target.getParent());
++        if (!regular(source)) throw new NoSuchFileException(source.toString());
++        boolean exists = regular(target);
++        if (exists && !replace) throw new FileAlreadyExistsException(target.toString());
++        faults.before(AssetStore.Io.MOVE, target);
++        // Atomic rename is required. No silent non-atomic replacement fallback.
++        if (replace) Files.move(source, target, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
++        else Files.move(source, target, StandardCopyOption.ATOMIC_MOVE);
++    }
++    record Fingerprint(long size, String sha256) {}
++    Fingerprint fingerprint(Path file) throws IOException {
++        faults.before(AssetStore.Io.READ, file);
++        if (!regular(file)) throw new NoSuchFileException(file.toString());
++        try (var in = Files.newInputStream(file, READ, NOFOLLOW_LINKS)) { return transfer(in, OutputStream.nullOutputStream()); }
++    }
++    static Fingerprint transfer(InputStream in, OutputStream out) throws IOException {
++        var md = digest(); byte[] buffer = new byte[BUFFER]; long size = 0;
++        for (int n; (n = in.read(buffer)) != -1;) {
++            if (n == 0) continue;
++            size = Math.addExact(size, n);
++            if (size > MAX_ASSET) throw new IOException("Asset exceeds 256 MiB slice limit");
++            out.write(buffer, 0, n); md.update(buffer, 0, n);
++        }
++        return new Fingerprint(size, HexFormat.of().formatHex(md.digest()));
++    }
++    Fingerprint copyNew(InputStream in, Path path) throws IOException {
++        directory(path.getParent()); faults.before(AssetStore.Io.WRITE, path);
++        try (var channel = FileChannel.open(path, CREATE_NEW, WRITE, NOFOLLOW_LINKS)) {
++            var out = java.nio.channels.Channels.newOutputStream(channel);
++            var result = transfer(in, out); channel.force(true); return result;
++        }
++    }
++    void cache(Path target, String type, byte[] payload) throws IOException {
++        byte[] bytes = encode(type, payload);
++        if (regular(target)) {
++            byte[] previous = raw(target, MAX_METADATA + 128);
++            if (Arrays.equals(previous, bytes)) return;
++            writeNew(target.getParent().resolve("observed").resolve(UUID.randomUUID() + ".raw"), previous);
++        }
++        Path pending = target.resolveSibling(".pending-" + UUID.randomUUID());
++        writeNew(pending, bytes); publish(pending, target, true);
++    }
++}
+diff --git a/modules/asset-library/src/test/java/io/github/misakapiano/ccbstudio/assets/AssetBackupTest.java b/modules/asset-library/src/test/java/io/github/misakapiano/ccbstudio/assets/AssetBackupTest.java
+new file mode 100644
+index 0000000..1de1e31
+--- /dev/null
++++ b/modules/asset-library/src/test/java/io/github/misakapiano/ccbstudio/assets/AssetBackupTest.java
+@@ -0,0 +1,108 @@
++package io.github.misakapiano.ccbstudio.assets;
++
++import org.junit.Test;
++import java.io.*;
++import java.nio.file.*;
++import java.util.*;
++import java.util.concurrent.atomic.AtomicBoolean;
++import static org.junit.Assert.*;
++
++public class AssetBackupTest {
++    private Path fixture() throws IOException {
++        Path parent = Path.of(System.getProperty("asset.test.root")); Files.createDirectories(parent);
++        return Files.createDirectory(parent.resolve(UUID.randomUUID().toString()));
++    }
++    private void expect(String code, Checked action) throws Exception {
++        try { action.run(); fail("Expected " + code); }
++        catch (StoreException e) { assertEquals(code, e.code()); }
++    }
++    @FunctionalInterface interface Checked { void run() throws Exception; }
++
++    @Test public void D07_snapshotRestoresOriginalsDocumentsAndPendingInputButExcludesSecrets() throws Exception {
++        Path f = fixture(), source = f.resolve("source"), backup = f.resolve("backup"), restored = f.resolve("restored");
++        var r = StoreProcess.request(UUID.randomUUID());
++        var pending = StoreProcess.request(UUID.randomUUID());
++        try (var s = AssetStore.open(source)) {
++            s.put(r, new ByteArrayInputStream(StoreProcess.PAYLOAD));
++            try { s.put(pending, new InputStream() { @Override public int read() throws IOException { throw new IOException("synthetic source failure"); } }); fail(); }
++            catch (IOException expected) { }
++            Files.createDirectory(source.resolve("secrets")); Files.writeString(source.resolve("secrets/test-only.txt"), "synthetic-do-not-export");
++            Files.writeString(source.resolve("unrelated.txt"), "not-owned-by-backup");
++            var report = AssetBackup.create(s, backup); assertEquals(1, report.committedAssets());
++            assertFalse(Files.exists(backup.resolve(".owner.lock"))); assertFalse(Files.exists(backup.resolve("indexes")));
++            assertFalse(Files.exists(backup.resolve("secrets"))); assertFalse(Files.exists(backup.resolve("unrelated.txt")));
++            expect("UNSAFE_PATH", () -> AssetBackup.create(s, source.resolve("nested")));
++        }
++        assertEquals(1, AssetBackup.restore(backup, restored).committedAssets());
++        try (var s = AssetStore.open(restored)) {
++            assertArrayEquals(r.recipe(), s.read(r.id()).require().request().recipe());
++            assertArrayEquals(r.project(), s.read(r.id()).require().request().project());
++            var out = new ByteArrayOutputStream(); s.export(r.id(), out); assertArrayEquals(StoreProcess.PAYLOAD, out.toByteArray());
++            assertTrue(s.recover().stream().anyMatch(item -> item.id().equals(pending.id()) && item.state().equals("INCOMPLETE")));
++            assertEquals(1, s.rebuildIndex());
++        }
++        assertTrue(Files.exists(source.resolve("secrets/test-only.txt")));
++    }
++    @Test public void D07_interruptedBackupIsNotACompleteBackupAndSourceStaysUsable() throws Exception {
++        Path f = fixture(), root = f.resolve("source"), backup = f.resolve("backup"), target = f.resolve("restore");
++        var r = StoreProcess.request(UUID.randomUUID());
++        try (var s = AssetStore.open(root, new AssetStore.Faults() {
++            @Override public void after(AssetStore.Point p, Path path) throws IOException {
++                if (p == AssetStore.Point.BACKUP_FILE) throw new IOException("injected interrupted backup");
++            }
++        })) {
++            s.put(r, new ByteArrayInputStream(StoreProcess.PAYLOAD));
++            try { AssetBackup.create(s, backup); fail(); } catch (IOException expected) { }
++            assertEquals(ReadResult.Status.VALID, s.read(r.id()).status());
++            assertFalse(Files.exists(backup.resolve("backup-manifest.rec")));
++        }
++        expect("MISSING", () -> AssetBackup.restore(backup, target)); assertFalse(Files.exists(target));
++    }
++    @Test public void D07_interruptedRestoreBlocksNormalOpenAndResumesWithoutReplacingContent() throws Exception {
++        Path f = fixture(), source = f.resolve("source"), backup = f.resolve("backup"), target = f.resolve("target");
++        var r = StoreProcess.request(UUID.randomUUID());
++        try (var s = AssetStore.open(source)) { s.put(r, new ByteArrayInputStream(StoreProcess.PAYLOAD)); AssetBackup.create(s, backup); }
++        try {
++            AssetBackup.restore(backup, target, new AssetStore.Faults() {
++                @Override public void after(AssetStore.Point p, Path path) throws IOException {
++                    if (p == AssetStore.Point.RESTORE_FILE) throw new IOException("injected restore interruption");
++                }
++            }); fail();
++        } catch (IOException expected) { }
++        expect("RESTORE_INCOMPLETE", () -> AssetStore.open(target));
++        assertEquals(1, AssetBackup.restore(backup, target).committedAssets());
++        try (var s = AssetStore.open(target)) { assertEquals(ReadResult.Status.VALID, s.read(r.id()).status()); }
++        assertEquals(1, AssetBackup.restore(backup, target).committedAssets());
++    }
++    @Test public void D07_badBackupIsRejectedBeforeDestinationAndCannotOverwritePopulatedRoot() throws Exception {
++        Path f = fixture(), source = f.resolve("source"), backup = f.resolve("backup"), target = f.resolve("target");
++        var r = StoreProcess.request(UUID.randomUUID());
++        try (var s = AssetStore.open(source)) { s.put(r, new ByteArrayInputStream(StoreProcess.PAYLOAD)); AssetBackup.create(s, backup); }
++        try (var s = AssetStore.open(target)) { s.put(StoreProcess.request(UUID.randomUUID()), new ByteArrayInputStream(new byte[]{3})); }
++        expect("CONFLICT", () -> AssetBackup.restore(backup, target));
++        try (var s = AssetStore.open(target)) { assertEquals(1, s.catalog().size()); }
++        Path object = StoreIO.entries(backup.resolve("objects"), "*").get(0); Files.write(object, new byte[]{4});
++        Path untouched = f.resolve("never-created");
++        expect("CORRUPT", () -> AssetBackup.restore(backup, untouched)); assertFalse(Files.exists(untouched));
++        assertArrayEquals(new byte[]{4}, Files.readAllBytes(object));
++    }
++    @Test public void D07_restorePartialCopyRemainsRecoverableAndChangedTargetIsNotOverwritten() throws Exception {
++        Path f = fixture(), source = f.resolve("source"), backup = f.resolve("backup"), target = f.resolve("target");
++        var r = StoreProcess.request(UUID.randomUUID());
++        try (var s = AssetStore.open(source)) { s.put(r, new ByteArrayInputStream(StoreProcess.PAYLOAD)); AssetBackup.create(s, backup); }
++        var once = new AtomicBoolean();
++        try {
++            AssetBackup.restore(backup, target, new AssetStore.Faults() {
++                @Override public void before(AssetStore.Io op, Path path) throws IOException {
++                    if (op == AssetStore.Io.MOVE && path.toString().endsWith(".blob") && once.compareAndSet(false, true))
++                        throw new AccessDeniedException(path.toString());
++                }
++            }); fail();
++        } catch (AccessDeniedException expected) { }
++        assertEquals(1, StoreIO.entries(target.resolve(".restore-staging"), "*.part").size());
++        assertEquals(1, AssetBackup.restore(backup, target).committedAssets());
++        Path object = StoreIO.entries(target.resolve("objects"), "*.blob").get(0); Files.write(object, new byte[]{6});
++        expect("CONFLICT", () -> AssetBackup.restore(backup, target));
++        assertArrayEquals(new byte[]{6}, Files.readAllBytes(object));
++    }
++}
+diff --git a/modules/asset-library/src/test/java/io/github/misakapiano/ccbstudio/assets/AssetStoreTest.java b/modules/asset-library/src/test/java/io/github/misakapiano/ccbstudio/assets/AssetStoreTest.java
+new file mode 100644
+index 0000000..5cbb981
+--- /dev/null
++++ b/modules/asset-library/src/test/java/io/github/misakapiano/ccbstudio/assets/AssetStoreTest.java
+@@ -0,0 +1,316 @@
++package io.github.misakapiano.ccbstudio.assets;
++
++import org.junit.Test;
++import java.io.*;
++import java.nio.file.*;
++import java.time.Duration;
++import java.util.*;
++import java.util.concurrent.*;
++import java.util.concurrent.atomic.*;
++import static org.junit.Assert.*;
++import static io.github.misakapiano.ccbstudio.assets.ReadResult.Status.*;
++
++public class AssetStoreTest {
++    private Path fixture() throws IOException {
++        Path parent = Path.of(System.getProperty("asset.test.root")).toAbsolutePath();
++        Files.createDirectories(parent);
++        return Files.createDirectory(parent.resolve(UUID.randomUUID().toString()));
++    }
++    private AssetStore.Request request() { return StoreProcess.request(UUID.randomUUID()); }
++    private AssetStore.Receipt put(AssetStore s, AssetStore.Request r, byte[] b) throws IOException {
++        return s.put(r, new ByteArrayInputStream(b));
++    }
++    private void expect(String code, Throwing action) throws Exception {
++        try { action.run(); fail("Expected " + code); }
++        catch (StoreException e) { assertEquals(code, e.code()); }
++    }
++    @FunctionalInterface interface Throwing { void run() throws Exception; }
++    private Process child(String mode, Path root, String... extra) throws IOException {
++        var args = new ArrayList<>(List.of(Path.of(System.getProperty("java.home"), "bin", "java.exe").toString(),
++                "-Xmx64m", "-XX:ActiveProcessorCount=1", "-cp", System.getProperty("asset.child.classpath"),
++                StoreProcess.class.getName(), mode, root.toString()));
++        args.addAll(List.of(extra));
++        return new ProcessBuilder(args).redirectErrorStream(true).redirectOutput(root.getParent().resolve("child-" + UUID.randomUUID() + ".log").toFile()).start();
++    }
++    private void exit(Process process, int expected) throws Exception {
++        if (!process.waitFor(30, TimeUnit.SECONDS)) {
++            process.destroyForcibly(); fail("Only the owned synthetic child exceeded 30 seconds");
++        }
++        assertEquals(expected, process.exitValue());
++    }
++
++    @Test public void D01_rawBytesOpaqueDocumentsAndDerivedAssetsSurviveRestart() throws Exception {
++        Path root = fixture().resolve("store");
++        var original = request();
++        var synthetic = new java.awt.image.BufferedImage(2, 2, java.awt.image.BufferedImage.TYPE_INT_RGB);
++        synthetic.setRGB(0, 0, 0x123456);
++        var encoded = new ByteArrayOutputStream();
++        assertTrue(javax.imageio.ImageIO.write(synthetic, "jpeg", encoded));
++        byte[] jpeg = encoded.toByteArray();
++        assertNotNull(javax.imageio.ImageIO.read(new ByteArrayInputStream(jpeg)));
++        assertNotNull(javax.imageio.ImageIO.read(new ByteArrayInputStream(StoreProcess.PAYLOAD)));
++        UUID derivedId = UUID.randomUUID();
++        var derived = new AssetStore.Request(derivedId, "same-name.jpg", AssetStore.Kind.DERIVED, original.id(), new byte[]{9}, new byte[]{8});
++        try (var s = AssetStore.open(root)) {
++            assertTrue(put(s, original, jpeg).indexReady());
++            put(s, derived, new byte[]{99});
++            byte[] copy = original.recipe(); copy[0] = 0;
++            assertNotEquals(0, original.recipe()[0]);
++        }
++        for (int i = 0; i < 3; i++) try (var s = AssetStore.open(root)) {
++            var read = s.read(original.id()).require();
++            assertEquals(jpeg.length, read.size()); assertEquals(StoreIO.hash(jpeg), read.sha256());
++            assertArrayEquals(original.recipe(), read.request().recipe());
++            assertArrayEquals(original.project(), read.request().project());
++            var output = new ByteArrayOutputStream(); s.export(original.id(), output); assertArrayEquals(jpeg, output.toByteArray());
++            assertEquals(original.id(), s.read(derivedId).require().request().parentId());
++            assertEquals(2, s.catalog().size());
++        }
++    }
++    @Test public void D01_independentJvmReadsExactSyntheticPng() throws Exception {
++        Path root = fixture().resolve("store"); var request = request();
++        try (var s = AssetStore.open(root)) { put(s, request, StoreProcess.PAYLOAD); }
++        exit(child("verify", root, request.id().toString()), 0);
++    }
++    @Test public void D02_replayDedupNameCollisionAndConflictingId() throws Exception {
++        try (var s = AssetStore.open(fixture().resolve("store"))) {
++            var a = request(); var b = request(); var c = request();
++            put(s, a, new byte[]{1}); put(s, a, new byte[]{1});
++            put(s, b, new byte[]{1}); put(s, c, new byte[]{2});
++            assertEquals(3, s.catalog().size());
++            assertEquals(2, StoreIO.entries(s.root().resolve("objects"), "*.blob").size());
++            expect("CONFLICT", () -> put(s, a, new byte[]{2}));
++            var altered = new AssetStore.Request(a.id(), a.name(), a.kind(), null, new byte[]{7}, a.project());
++            expect("CONFLICT", () -> put(s, altered, new byte[]{1}));
++            assertEquals(StoreIO.hash(new byte[]{1}), s.read(a.id()).require().sha256());
++        }
++    }
++    @Test public void D02_concurrentSubmissionsPreserveEachAssociation() throws Exception {
++        try (var s = AssetStore.open(fixture().resolve("store"))) {
++            var executor = Executors.newFixedThreadPool(2);
++            try {
++                var requests = List.of(request(), request()); List<Future<?>> jobs = new ArrayList<>();
++                for (var r : requests) jobs.add(executor.submit(() -> { try { put(s, r, new byte[]{3}); } catch (IOException e) { throw new UncheckedIOException(e); } }));
++                for (var job : jobs) job.get(10, TimeUnit.SECONDS);
++                assertEquals(2, s.catalog().size());
++            } finally { executor.shutdownNow(); }
++        }
++    }
++    @Test public void D03_actualProcessTerminationAtEveryCommitBoundary() throws Exception {
++        for (var point : List.of(AssetStore.Point.INTENT, AssetStore.Point.BYTES, AssetStore.Point.SEALED,
++                AssetStore.Point.ASSET, AssetStore.Point.RECORD, AssetStore.Point.INDEX, AssetStore.Point.COMPLETE)) {
++            Path root = fixture().resolve("store"); var r = request();
++            exit(child("crash", root, r.id().toString(), point.name()), 71);
++            try (var s = AssetStore.open(root)) {
++                var first = s.recover(); var second = s.recover();
++                if (point == AssetStore.Point.INTENT || point == AssetStore.Point.BYTES) {
++                    assertEquals("INCOMPLETE", first.get(0).state()); assertEquals(first, second);
++                    assertEquals(MISSING, s.read(r.id()).status());
++                    expect("RECOVERY_REQUIRED", () -> put(s, r, StoreProcess.PAYLOAD));
++                    if (point == AssetStore.Point.BYTES)
++                        assertArrayEquals(StoreProcess.PAYLOAD, Files.readAllBytes(root.resolve("transactions/" + r.id() + "/payload.part")));
++                } else {
++                    assertEquals("COMPLETED", first.get(0).state()); assertEquals(first, second);
++                    assertEquals(VALID, s.read(r.id()).status());
++                    put(s, r, StoreProcess.PAYLOAD);
++                    assertEquals(1, s.catalog().size());
++                }
++            }
++            System.out.println("PROCESS_CRASH " + point + " verified");
++        }
++    }
++    @Test public void D03_indexWriteFailureReturnsCommittedReceiptAndRecovers() throws Exception {
++        Path root = fixture().resolve("store"); var r = request();
++        try (var s = AssetStore.open(root, new AssetStore.Faults() {
++            @Override public void before(AssetStore.Io op, Path p) throws IOException {
++                if (op == AssetStore.Io.MOVE && p.toString().endsWith(".idx")) throw new AccessDeniedException(p.toString());
++            }
++        })) {
++            assertFalse(put(s, r, new byte[]{4}).indexReady());
++            assertEquals(VALID, s.read(r.id()).status()); assertEquals(MISSING, s.readIndex(r.id()).status());
++        }
++        try (var s = AssetStore.open(root)) {
++            assertEquals("COMPLETED", s.recover().get(0).state());
++            assertEquals(VALID, s.readIndex(r.id()).status());
++        }
++    }
++    @Test public void D04_missingCorruptReadErrorAndUnknownVersionAreDistinct() throws Exception {
++        Path root = fixture().resolve("store"); var r = request();
++        try (var s = AssetStore.open(root)) {
++            assertEquals(MISSING, s.read(r.id()).status()); put(s, r, new byte[]{1, 2});
++        }
++        Path record = root.resolve("records/" + r.id() + ".rec"); byte[] original = Files.readAllBytes(record);
++        try (var s = AssetStore.open(root, new AssetStore.Faults() {
++            @Override public void before(AssetStore.Io op, Path path) throws IOException {
++                if (op == AssetStore.Io.READ && path.equals(record)) throw new AccessDeniedException(path.toString());
++            }
++        })) { assertEquals(READ_ERROR, s.read(r.id()).status()); }
++        assertArrayEquals(original, Files.readAllBytes(record));
++        byte[] future = original.clone(); future[7] = 2; Files.write(record, future);
++        try (var s = AssetStore.open(root)) {
++            assertEquals(UNSUPPORTED_VERSION, s.read(r.id()).status());
++            assertEquals("UNSUPPORTED_VERSION", s.recover().get(0).state());
++            expect("UNSUPPORTED_VERSION", () -> put(s, r, new byte[]{1, 2}));
++        }
++        assertArrayEquals(future, Files.readAllBytes(record));
++        Files.write(record, new byte[]{0, 1});
++        try (var s = AssetStore.open(root)) {
++            assertEquals(CORRUPT, s.read(r.id()).status());
++            expect("CORRUPT", s::rebuildIndex);
++        }
++        assertArrayEquals(new byte[]{0, 1}, Files.readAllBytes(record));
++    }
++    @Test public void D04_truncatedInputAndInjectedDiskFullRetainPendingBytes() throws Exception {
++        Path root = fixture().resolve("store"); var r = request();
++        try (var s = AssetStore.open(root)) {
++            InputStream failed = new InputStream() {
++                int reads;
++                @Override public int read() throws IOException { throw new IOException("synthetic disk/network read failure"); }
++                @Override public int read(byte[] b, int off, int len) throws IOException {
++                    if (reads++ == 0) { b[off] = 7; return 1; }
++                    throw new IOException("synthetic interrupted source");
++                }
++            };
++            try { s.put(r, failed); fail(); } catch (IOException expected) { /* received partial bytes remain */ }
++            assertEquals("INCOMPLETE", s.recover().get(0).state());
++            assertArrayEquals(new byte[]{7}, Files.readAllBytes(root.resolve("transactions/" + r.id() + "/payload.part")));
++        }
++        Path fullRoot = fixture().resolve("store");
++        try (var s = AssetStore.open(fullRoot, new AssetStore.Faults() {
++            @Override public void before(AssetStore.Io op, Path path) throws IOException {
++                if (op == AssetStore.Io.WRITE && path.endsWith("payload.part")) throw new FileSystemException(path.toString(), null, "injected disk full");
++            }
++        })) {
++            try { put(s, request(), new byte[]{1}); fail(); } catch (FileSystemException expected) { }
++            assertEquals("INCOMPLETE", s.recover().get(0).state());
++        }
++    }
++    @Test public void D04_corruptIndexRebuildPreservesEvidenceAndUniqueOriginal() throws Exception {
++        Path root = fixture().resolve("store"); var r = request();
++        try (var s = AssetStore.open(root)) {
++            var asset = put(s, r, new byte[]{9}).asset();
++            Path index = root.resolve("indexes/" + r.id() + ".idx"); Files.write(index, new byte[]{55});
++            assertEquals(CORRUPT, s.readIndex(r.id()).status()); assertEquals(VALID, s.read(r.id()).status());
++            assertEquals(1, s.rebuildIndex()); assertEquals(VALID, s.readIndex(r.id()).status());
++            assertArrayEquals(new byte[]{55}, Files.readAllBytes(StoreIO.entries(root.resolve("indexes/observed"), "*").get(0)));
++            Files.delete(index); assertEquals(MISSING, s.readIndex(r.id()).status()); s.rebuildIndex();
++            assertArrayEquals(new byte[]{9}, Files.readAllBytes(s.objectPath(asset)));
++            Files.write(s.objectPath(asset), new byte[]{8});
++            assertEquals(CORRUPT, s.read(r.id()).status());
++            expect("CORRUPT", () -> put(s, r, new byte[]{9}));
++            assertArrayEquals(new byte[]{8}, Files.readAllBytes(s.objectPath(asset)));
++        }
++    }
++    @Test public void D05_foreignRootsTraversalAndRedirectedPathsAreRefused() throws Exception {
++        Path parent = fixture(), foreign = parent.resolve("ChatChatBar-Desktop/data");
++        expect("FOREIGN_ROOT", () -> AssetStore.open(foreign)); assertFalse(Files.exists(foreign));
++        Path occupied = Files.createDirectory(parent.resolve("occupied")); Files.writeString(occupied.resolve("unrelated.txt"), "retain");
++        expect("FOREIGN_ROOT", () -> AssetStore.open(occupied));
++        assertEquals("retain", Files.readString(occupied.resolve("unrelated.txt")));
++        try (var s = AssetStore.open(parent.resolve("suite"))) {
++            expect("IN_USE", () -> AssetStore.open(s.root()));
++            // Names remain opaque strings, never filesystem destinations.
++            var r = new AssetStore.Request(UUID.randomUUID(), "../../outside.png", AssetStore.Kind.ORIGINAL, null, new byte[0], new byte[0]);
++            put(s, r, new byte[]{1}); assertFalse(Files.exists(parent.resolve("outside.png")));
++        }
++    }
++    @Test public void D05_otherProcessCannotAcquireThenCanAcquireAfterExit() throws Exception {
++        Path root = fixture().resolve("store");
++        Process owner = child("owner", root);
++        try {
++            long deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(15);
++            while (!Files.exists(root.resolve("test-owner-ready")) && owner.isAlive() && System.nanoTime() < deadline) Thread.sleep(25);
++            assertTrue("Child acquired root", Files.exists(root.resolve("test-owner-ready")));
++            expect("IN_USE", () -> AssetStore.open(root));
++        } finally { owner.getOutputStream().close(); exit(owner, 0); }
++        try (var ignored = AssetStore.open(root)) { assertTrue(Files.exists(root.resolve(".owner.lock"))); }
++    }
++    @Test public void D05_actualWindowsJunctionIsRefusedWithoutWritingThroughIt() throws Exception {
++        Path f = fixture(), actual = Files.createDirectory(f.resolve("actual")), junction = f.resolve("junction");
++        Process p = new ProcessBuilder("cmd.exe", "/c", "mklink", "/J", junction.toString(), actual.toString())
++                .redirectErrorStream(true).redirectOutput(f.resolve("junction-command.log").toFile()).start();
++        exit(p, 0);
++        expect("UNSAFE_PATH", () -> AssetStore.open(junction.resolve("store")));
++        assertFalse(Files.exists(actual.resolve("store")));
++    }
++    @Test public void D04_missingReferencedOriginalAndMalformedIntentAreCorruptNotEmptyDefaults() throws Exception {
++        Path root = fixture().resolve("store"); var r = request();
++        try (var s = AssetStore.open(root)) {
++            var a = put(s, r, new byte[]{1}).asset();
++            Files.delete(s.objectPath(a));
++            assertEquals(CORRUPT, s.read(r.id()).status());
++            assertEquals("CORRUPT", s.recover().get(0).state());
++            expect("CORRUPT", s::rebuildIndex);
++            assertFalse(Files.exists(s.objectPath(a)));
++        }
++        Path other = fixture().resolve("store"); UUID id = UUID.randomUUID();
++        try (var s = AssetStore.open(other)) {
++            s.io.immutable(other.resolve("transactions/" + id + "/request.rec"), "request", new byte[]{0, 0});
++            assertEquals("CORRUPT", s.recover().get(0).state());
++        }
++    }
++    @Test public void D05_drainTimeoutRetainsLockAndRefusesNewWrites() throws Exception {
++        Path root = fixture().resolve("store");
++        var entered = new CountDownLatch(1); var release = new CountDownLatch(1);
++        var executor = Executors.newSingleThreadExecutor();
++        var s = AssetStore.open(root);
++        try {
++            var job = executor.submit(() -> {
++                try { s.put(request(), new ByteArrayInputStream(new byte[]{1}) {
++                    @Override public synchronized int read(byte[] b, int off, int len) {
++                        entered.countDown(); try { release.await(); } catch (InterruptedException e) { throw new RuntimeException(e); }
++                        return super.read(b, off, len);
++                    }
++                }); } catch (IOException e) { throw new UncheckedIOException(e); }
++            });
++            assertTrue(entered.await(10, TimeUnit.SECONDS));
++            assertFalse(s.close(Duration.ofMillis(25)));
++            expect("IN_USE", () -> AssetStore.open(root));
++            expect("CLOSING", () -> put(s, request(), new byte[]{1}));
++            release.countDown(); job.get(10, TimeUnit.SECONDS);
++            assertTrue(s.close(Duration.ofSeconds(1)));
++            try (var reopened = AssetStore.open(root)) { assertEquals(1, reopened.catalog().size()); }
++        } finally { release.countDown(); s.close(); executor.shutdownNow(); }
++    }
++    @Test public void D04_noncanonicalRecordNameCannotMasqueradeAsAnotherRecord() throws Exception {
++        try (var s = AssetStore.open(fixture().resolve("store"))) {
++            var r = request(); put(s, r, new byte[]{1});
++            Path alias = s.root().resolve("records/" + r.id() + ".rec.rec");
++            Files.write(alias, new byte[]{42});
++            expect("CORRUPT", s::catalog);
++            expect("CORRUPT", s::rebuildIndex);
++            assertArrayEquals(new byte[]{42}, Files.readAllBytes(alias));
++            assertEquals(VALID, s.read(r.id()).status());
++        }
++    }
++    @Test public void D06_scaleOneHundredAndThousandAndStreamingAreBounded() throws Exception {
++        long start = System.nanoTime();
++        for (int count : List.of(1, 100, 1000)) {
++            Path root = fixture().resolve("store");
++            try (var s = AssetStore.open(root)) {
++                for (int i = 0; i < count; i++) put(s, request(), new byte[]{(byte)i, (byte)(i >>> 8)});
++                assertEquals(count, s.catalog().size()); assertEquals(count, s.rebuildIndex());
++            }
++            try (var s = AssetStore.open(root)) {
++                assertEquals(count, s.recover().size()); assertEquals(count, s.rebuildIndex());
++                assertEquals(count, s.catalog().size());
++            }
++            System.out.println("SCALE " + count + " verified");
++        }
++        try (var s = AssetStore.open(fixture().resolve("store"))) {
++            var maxRead = new AtomicInteger(); final long length = 8L * 1024 * 1024;
++            InputStream generated = new InputStream() {
++                long remaining = length;
++                @Override public int read() { throw new AssertionError("Expected buffered IO"); }
++                @Override public int read(byte[] b, int offset, int len) {
++                    maxRead.accumulateAndGet(len, Math::max); if (remaining == 0) return -1;
++                    int n = (int)Math.min(len, remaining); Arrays.fill(b, offset, offset+n, (byte)7); remaining-=n; return n;
++                }
++            };
++            var asset = s.put(request(), generated).asset();
++            assertEquals(length, asset.size()); assertTrue(maxRead.get() <= 64 * 1024);
++            assertEquals(VALID, s.read(asset.request().id()).status());
++        }
++        System.out.println("SCALE_AND_STREAM elapsedMs=" + (System.nanoTime()-start)/1_000_000);
++    }
++}
+diff --git a/modules/asset-library/src/test/java/io/github/misakapiano/ccbstudio/assets/StoreProcess.java b/modules/asset-library/src/test/java/io/github/misakapiano/ccbstudio/assets/StoreProcess.java
+new file mode 100644
+index 0000000..01f6e29
+--- /dev/null
++++ b/modules/asset-library/src/test/java/io/github/misakapiano/ccbstudio/assets/StoreProcess.java
+@@ -0,0 +1,54 @@
++package io.github.misakapiano.ccbstudio.assets;
++
++import java.io.*;
++import java.nio.file.*;
++import java.util.*;
++
++/** Child processes touch only the exact synthetic root passed by the tests. */
++public final class StoreProcess {
++    static final byte[] PAYLOAD = syntheticPng();
++    private static byte[] syntheticPng() {
++        var image = new java.awt.image.BufferedImage(2, 2, java.awt.image.BufferedImage.TYPE_INT_ARGB);
++        image.setRGB(0, 0, 0x12345678);
++        var bytes = new ByteArrayOutputStream();
++        try {
++            if (!javax.imageio.ImageIO.write(image, "png", bytes)) throw new AssertionError("PNG fixture encoder absent");
++        } catch (IOException e) { throw new UncheckedIOException(e); }
++        return bytes.toByteArray();
++    }
++    static AssetStore.Request request(UUID id) {
++        return new AssetStore.Request(id, "synthetic.png", AssetStore.Kind.ORIGINAL, null,
++                "{\"syntheticRecipe\":1}".getBytes(java.nio.charset.StandardCharsets.UTF_8),
++                "future project bytes\u0000".getBytes(java.nio.charset.StandardCharsets.UTF_8));
++    }
++    public static void main(String[] args) throws Exception {
++        Path root = Path.of(args[1]);
++        switch (args[0]) {
++            case "owner" -> {
++                try (var store = AssetStore.open(root)) {
++                    Files.writeString(root.resolve("test-owner-ready"), "ready");
++                    System.in.read();
++                }
++            }
++            case "crash" -> {
++                var point = AssetStore.Point.valueOf(args[3]);
++                try (var store = AssetStore.open(root, new AssetStore.Faults() {
++                    @Override public void after(AssetStore.Point reached, Path path) {
++                        if (reached == point) Runtime.getRuntime().halt(71);
++                    }
++                })) {
++                    store.put(request(UUID.fromString(args[2])), new ByteArrayInputStream(PAYLOAD));
++                }
++                throw new AssertionError("Requested crash point was not reached");
++            }
++            case "verify" -> {
++                try (var store = AssetStore.open(root)) {
++                    store.recover();
++                    var out = new ByteArrayOutputStream(); store.export(UUID.fromString(args[2]), out);
++                    if (!Arrays.equals(PAYLOAD, out.toByteArray())) throw new AssertionError("Bytes differ in new process");
++                }
++            }
++            default -> throw new IllegalArgumentException("Unknown test mode");
++        }
++    }
++}
+diff --git a/settings.gradle.kts b/settings.gradle.kts
+new file mode 100644
+index 0000000..ef837be
+--- /dev/null
++++ b/settings.gradle.kts
+@@ -0,0 +1,3 @@
++rootProject.name = "CCB-Studio-Suite"
++include(":asset-library")
++project(":asset-library").projectDir = file("modules/asset-library")
+diff --git a/tools/Test-AssetDurability.ps1 b/tools/Test-AssetDurability.ps1
+new file mode 100644
+index 0000000..b751836
+--- /dev/null
++++ b/tools/Test-AssetDurability.ps1
+@@ -0,0 +1,60 @@
++[CmdletBinding()]
++param([string]$Root = '', [string]$GradleCommand = '', [string]$TestArtifactCache = '')
++$ErrorActionPreference = 'Stop'
++if ([string]::IsNullOrWhiteSpace($Root)) { $Root = Split-Path -Parent $PSScriptRoot }
++$suiteRoot = (Resolve-Path -LiteralPath $Root).Path
++if (-not (Test-Path -LiteralPath (Join-Path $suiteRoot 'modules/asset-library/build.gradle.kts'))) { throw 'Not the Suite asset-library workspace' }
++if ((Split-Path $suiteRoot -Leaf) -eq 'ChatChatBar-Desktop') { throw 'Desktop workspace is forbidden' }
++$runRoot = Join-Path $suiteRoot '.local/a1-001'
++New-Item -ItemType Directory -Force -Path $runRoot | Out-Null
++if ([string]::IsNullOrWhiteSpace($GradleCommand)) {
++    $gradleCandidates = @(Get-ChildItem -Path (Join-Path $env:USERPROFILE '.gradle/wrapper/dists/gradle-9.1.0-bin/*/gradle-9.1.0/bin/gradle.bat') -File -ErrorAction SilentlyContinue)
++    if ($gradleCandidates.Count -ne 1) { throw 'Pass -GradleCommand with an installed Gradle 9.1.0; this offline runner does not download a distribution' }
++    $GradleCommand = $gradleCandidates[0].FullName
++}
++if ([string]::IsNullOrWhiteSpace($TestArtifactCache)) { $TestArtifactCache = Join-Path $env:USERPROFILE '.gradle/caches/modules-2/files-2.1' }
++$artifacts = @(
++    @{ Group='junit'; Name='junit'; Version='4.13.2'; Sha='8e495b634469d64fb8acfa3495a065cbacc8a0fff55ce1e31007be4c16dc57d3' },
++    @{ Group='org.hamcrest'; Name='hamcrest-core'; Version='1.3'; Sha='66fdef91e9739348df7a096aa384a5685f4e875584cce89386a7a47251c4d8e9' }
++)
++$repository = Join-Path $runRoot 'test-maven'
++foreach ($artifact in $artifacts) {
++    $name = '{0}-{1}.jar' -f $artifact.Name,$artifact.Version
++    $source = @(Get-ChildItem -LiteralPath (Join-Path $TestArtifactCache ($artifact.Group+'/'+$artifact.Name+'/'+$artifact.Version)) -Recurse -File -Filter $name)
++    if ($source.Count -ne 1) { throw "Expected one cached $name" }
++    if ((Get-FileHash -LiteralPath $source[0].FullName -Algorithm SHA256).Hash.ToLowerInvariant() -ne $artifact.Sha) { throw "Checksum mismatch: $name" }
++    $target = Join-Path $repository ($artifact.Group.Replace('.','/')+'/'+$artifact.Name+'/'+$artifact.Version+'/'+$name)
++    New-Item -ItemType Directory -Force -Path (Split-Path -Parent $target) | Out-Null
++    Copy-Item -LiteralPath $source[0].FullName -Destination $target
++}
++$stamp = [DateTimeOffset]::UtcNow.ToString('yyyyMMddTHHmmssfffZ')
++$evidence = Join-Path $suiteRoot ('docs/audits/evidence/A1_001/'+$stamp)
++New-Item -ItemType Directory -Force -Path $evidence | Out-Null
++$gradleArgs = @('-g',(Join-Path $runRoot 'gradle-home'),'--offline','--no-daemon','--max-workers=1','--console=plain','--dependency-verification=strict',
++    ('-PassetOfflineTestRepository='+$repository.Replace('\','/')),':asset-library:test','--rerun-tasks')
++Push-Location $suiteRoot
++try {
++    $before = @{}
++    foreach ($file in Get-ChildItem -LiteralPath (Join-Path $suiteRoot 'modules/asset-library/src') -Recurse -File) { $before[$file.FullName] = (Get-FileHash -LiteralPath $file.FullName -Algorithm SHA256).Hash }
++    $watch = [Diagnostics.Stopwatch]::StartNew()
++    & $GradleCommand @gradleArgs *> (Join-Path $evidence 'gradle.log')
++    $exitCode = $LASTEXITCODE
++    $watch.Stop()
++    foreach ($file in $before.Keys) { if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne $before[$file]) { throw 'Source changed during test execution' } }
++    $xmlFiles = @(Get-ChildItem -LiteralPath (Join-Path $suiteRoot 'modules/asset-library/build/test-results/test') -File -Filter '*.xml' -ErrorAction SilentlyContinue)
++    $total = 0; $failures = 0; $errors = 0; $skipped = 0
++    foreach ($xml in $xmlFiles) {
++        Copy-Item -LiteralPath $xml.FullName -Destination (Join-Path $evidence $xml.Name)
++        [xml]$data = Get-Content -LiteralPath $xml.FullName -Raw
++        $total += [int]$data.testsuite.tests; $failures += [int]$data.testsuite.failures
++        $errors += [int]$data.testsuite.errors; $skipped += [int]$data.testsuite.skipped
++    }
++    $status = if ($exitCode -eq 0 -and $total -gt 0 -and $failures -eq 0 -and $errors -eq 0) { 'PASS' } else { 'FAILED' }
++    $summary = [ordered]@{ status=$status; gradleExitCode=$exitCode; elapsedSeconds=$watch.Elapsed.TotalSeconds; tests=$total; failures=$failures; errors=$errors; skipped=$skipped;
++        gradleCommand=$GradleCommand; arguments=$gradleArgs; dependencyNetworkDownloadBytes=0; dependencySource='Explicit local copy of two checksum-verified cached test JARs; production has no external dependency';
++        sourceSha256=$before; baseCommit=(& git rev-parse HEAD); branch=(& git branch --show-current); peakMemory='NOT MEASURED'; productAcceptance='NOT TESTED'; evidence=$evidence }
++    $summary | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath (Join-Path $evidence 'summary.json') -Encoding utf8
++    Get-Content -LiteralPath (Join-Path $evidence 'gradle.log') -Tail 65
++    $summary | ConvertTo-Json -Depth 3
++    if ($status -ne 'PASS') { throw "Asset durability tests failed; preserve evidence at $evidence" }
++} finally { Pop-Location }

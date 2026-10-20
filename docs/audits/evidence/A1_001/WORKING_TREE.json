@@ -1,0 +1,520 @@
+{
+  "task": "A1-001",
+  "reviewConclusion": "PASS_WITH_SCOPE (provided by user)",
+  "baseCommit": "6d3d2b22651f9744807925f74c6941f681bbef02",
+  "branch": "feature/a1-001-asset-durability",
+  "headUnchanged": true,
+  "indexUnchanged": true,
+  "commitPushMergeRelease": "NOT AUTHORIZED / NOT RUN",
+  "finalTestSummary": "docs/audits/evidence/A1_001/20261020T163611037Z/summary.json",
+  "finalTests": [
+    {
+      "class": "io.github.misakapiano.ccbstudio.assets.AssetBackupTest",
+      "name": "D07_snapshotRestoresOriginalsDocumentsAndPendingInputButExcludesSecrets",
+      "seconds": "1.391",
+      "result": "PASS"
+    },
+    {
+      "class": "io.github.misakapiano.ccbstudio.assets.AssetBackupTest",
+      "name": "D07_interruptedRestoreBlocksNormalOpenAndResumesWithoutReplacingContent",
+      "seconds": "1.152",
+      "result": "PASS"
+    },
+    {
+      "class": "io.github.misakapiano.ccbstudio.assets.AssetBackupTest",
+      "name": "D07_interruptedBackupIsNotACompleteBackupAndSourceStaysUsable",
+      "seconds": "0.317",
+      "result": "PASS"
+    },
+    {
+      "class": "io.github.misakapiano.ccbstudio.assets.AssetBackupTest",
+      "name": "D07_badBackupIsRejectedBeforeDestinationAndCannotOverwritePopulatedRoot",
+      "seconds": "1.232",
+      "result": "PASS"
+    },
+    {
+      "class": "io.github.misakapiano.ccbstudio.assets.AssetBackupTest",
+      "name": "D07_restorePartialCopyRemainsRecoverableAndChangedTargetIsNotOverwritten",
+      "seconds": "1.267",
+      "result": "PASS"
+    },
+    {
+      "class": "io.github.misakapiano.ccbstudio.assets.AssetStoreTest",
+      "name": "D05_actualWindowsJunctionIsRefusedWithoutWritingThroughIt",
+      "seconds": "0.251",
+      "result": "PASS"
+    },
+    {
+      "class": "io.github.misakapiano.ccbstudio.assets.AssetStoreTest",
+      "name": "D05_foreignRootsTraversalAndRedirectedPathsAreRefused",
+      "seconds": "0.33",
+      "result": "PASS"
+    },
+    {
+      "class": "io.github.misakapiano.ccbstudio.assets.AssetStoreTest",
+      "name": "D03_indexWriteFailureReturnsCommittedReceiptAndRecovers",
+      "seconds": "0.412",
+      "result": "PASS"
+    },
+    {
+      "class": "io.github.misakapiano.ccbstudio.assets.AssetStoreTest",
+      "name": "D03_actualProcessTerminationAtEveryCommitBoundary",
+      "seconds": "4.437",
+      "result": "PASS"
+    },
+    {
+      "class": "io.github.misakapiano.ccbstudio.assets.AssetStoreTest",
+      "name": "D04_noncanonicalRecordNameCannotMasqueradeAsAnotherRecord",
+      "seconds": "0.274",
+      "result": "PASS"
+    },
+    {
+      "class": "io.github.misakapiano.ccbstudio.assets.AssetStoreTest",
+      "name": "D06_scaleOneHundredAndThousandAndStreamingAreBounded",
+      "seconds": "344.549",
+      "result": "PASS"
+    },
+    {
+      "class": "io.github.misakapiano.ccbstudio.assets.AssetStoreTest",
+      "name": "D02_replayDedupNameCollisionAndConflictingId",
+      "seconds": "0.719",
+      "result": "PASS"
+    },
+    {
+      "class": "io.github.misakapiano.ccbstudio.assets.AssetStoreTest",
+      "name": "D04_missingReferencedOriginalAndMalformedIntentAreCorruptNotEmptyDefaults",
+      "seconds": "0.446",
+      "result": "PASS"
+    },
+    {
+      "class": "io.github.misakapiano.ccbstudio.assets.AssetStoreTest",
+      "name": "D04_truncatedInputAndInjectedDiskFullRetainPendingBytes",
+      "seconds": "0.234",
+      "result": "PASS"
+    },
+    {
+      "class": "io.github.misakapiano.ccbstudio.assets.AssetStoreTest",
+      "name": "D05_drainTimeoutRetainsLockAndRefusesNewWrites",
+      "seconds": "0.704",
+      "result": "PASS"
+    },
+    {
+      "class": "io.github.misakapiano.ccbstudio.assets.AssetStoreTest",
+      "name": "D01_independentJvmReadsExactSyntheticPng",
+      "seconds": "0.912",
+      "result": "PASS"
+    },
+    {
+      "class": "io.github.misakapiano.ccbstudio.assets.AssetStoreTest",
+      "name": "D04_missingCorruptReadErrorAndUnknownVersionAreDistinct",
+      "seconds": "0.602",
+      "result": "PASS"
+    },
+    {
+      "class": "io.github.misakapiano.ccbstudio.assets.AssetStoreTest",
+      "name": "D05_otherProcessCannotAcquireThenCanAcquireAfterExit",
+      "seconds": "0.362",
+      "result": "PASS"
+    },
+    {
+      "class": "io.github.misakapiano.ccbstudio.assets.AssetStoreTest",
+      "name": "D01_rawBytesOpaqueDocumentsAndDerivedAssetsSurviveRestart",
+      "seconds": "1.07",
+      "result": "PASS"
+    },
+    {
+      "class": "io.github.misakapiano.ccbstudio.assets.AssetStoreTest",
+      "name": "D04_corruptIndexRebuildPreservesEvidenceAndUniqueOriginal",
+      "seconds": "0.86",
+      "result": "PASS"
+    },
+    {
+      "class": "io.github.misakapiano.ccbstudio.assets.AssetStoreTest",
+      "name": "D02_concurrentSubmissionsPreserveEachAssociation",
+      "seconds": "1.237",
+      "result": "PASS"
+    }
+  ],
+  "tests": 21,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourcePatch": {
+    "path": "docs/audits/evidence/A1_001/source.patch",
+    "sha256": "58480059df563b783620576fd817f5136a82157dc332e5176970b81a6b8922e2",
+    "reverseApplyCheck": "PASS; read-only check against current working tree, no patch applied",
+    "scope": "Tracked changes and all new implementation/build/design/test-helper files including binary wrapper; execution evidence is listed separately below"
+  },
+  "files": [
+    {
+      "path": "build.gradle.kts",
+      "state": "NEW",
+      "sizeBytes": 211,
+      "sha256": "882eb7942bcd761ab4205870497b6015918ccb13a510e7f30b7b2a2d23937bfa"
+    },
+    {
+      "path": "docs/00_INDEX.md",
+      "state": "MODIFIED",
+      "sizeBytes": 2867,
+      "sha256": "93837ede77420ba7c3b06e8baf80b917fe5071b78a67bd2b788855573a875826"
+    },
+    {
+      "path": "docs/CURRENT_STATE.md",
+      "state": "MODIFIED",
+      "sizeBytes": 2994,
+      "sha256": "e7edcd38dd36444f888c93e7957ea9ef6b015a27c632d3e4d6b567a1dc7e8b15"
+    },
+    {
+      "path": "docs/DECISIONS.md",
+      "state": "MODIFIED",
+      "sizeBytes": 3240,
+      "sha256": "b75cc5e23c0e01a4bcac3075d0fb22c007930bf06eec6090c06a125453e313f5"
+    },
+    {
+      "path": "docs/TASK_REGISTRY.md",
+      "state": "MODIFIED",
+      "sizeBytes": 3619,
+      "sha256": "af855d307b12564331e9c342ab10ce293eda0eea4dcedd39d42acf44b4d52142"
+    },
+    {
+      "path": "docs/audits/A1_001_EXECUTION.md",
+      "state": "NEW",
+      "sizeBytes": 11521,
+      "sha256": "cad718cf3d05d32b7ec0dce26dd9c8a17a2bda76c2c8823030419ff40a31cb82"
+    },
+    {
+      "path": "docs/audits/A1_001_UPDATER_DESIGN.md",
+      "state": "NEW",
+      "sizeBytes": 3802,
+      "sha256": "e353884a17ade5bc78f24c05ba11de83c760e898b36b6d0c25bee58e8f33ceb0"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/20261020T162815244Z/TEST-io.github.misakapiano.ccbstudio.assets.AssetBackupTest.xml",
+      "state": "NEW",
+      "sizeBytes": 1200,
+      "sha256": "75159d5b0040cbf5651eb632e325a75f279dd449f2f3681d1f437c084a2c8039"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/20261020T162815244Z/TEST-io.github.misakapiano.ccbstudio.assets.AssetStoreTest.xml",
+      "state": "NEW",
+      "sizeBytes": 2974,
+      "sha256": "629030b462b5c08be8d627a1d04aec09f482c798b5341a580f42b5673e6f9106"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/20261020T162815244Z/gradle.log",
+      "state": "NEW",
+      "sizeBytes": 5968,
+      "sha256": "822d6ac49324025d26572fe6f7f2af05abd9540717f1783bc3d49340a30f4f52"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/20261020T162815244Z/summary.json",
+      "state": "NEW",
+      "sizeBytes": 3154,
+      "sha256": "80dd340ed3101db6ef86f6be626c901086f51d0ec72613a2e0c01665a77d9789"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/20261020T163611037Z/TEST-io.github.misakapiano.ccbstudio.assets.AssetBackupTest.xml",
+      "state": "NEW",
+      "sizeBytes": 1199,
+      "sha256": "3b676906625112739ae1132c03991be39b137bfca57c2fa02a6741433eff47de"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/20261020T163611037Z/TEST-io.github.misakapiano.ccbstudio.assets.AssetStoreTest.xml",
+      "state": "NEW",
+      "sizeBytes": 3130,
+      "sha256": "cf9c347ce0b7243fffb46a4b5211b4a8b8b3ad4b173ca40bb8952d5ea6b037b6"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/20261020T163611037Z/gradle.log",
+      "state": "NEW",
+      "sizeBytes": 6138,
+      "sha256": "8ec8130704cc3c36cb6fa3912c1bc54db14e700ce9994a42ca1e8382c3af2343"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/20261020T163611037Z/summary.json",
+      "state": "NEW",
+      "sizeBytes": 3154,
+      "sha256": "f98880da8e8f13d7aa6c8ce034f342909968befa171ef12011b0172d63f66fe9"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/execution-history.json",
+      "state": "NEW",
+      "sizeBytes": 1015,
+      "sha256": "c366733a0cfd7804199a2815b3edc9eb6285768a0dede42f81b9f27a02e67fcb"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/initial-run/01-wrapper.log",
+      "state": "NEW",
+      "sizeBytes": 464,
+      "sha256": "b42d2e98862f8934bc0f349f475802aa60a8151327a487091e70e7ff6bc1b419"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/initial-run/02-wrapper-isolated.log",
+      "state": "NEW",
+      "sizeBytes": 1224,
+      "sha256": "7d857de5d36d31afca4ab1da4e5ef30446adab5b926a7c9c7da498883cc8e796"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/initial-run/03-tests.log",
+      "state": "NEW",
+      "sizeBytes": 1057,
+      "sha256": "b1715405e1089d89570106fd14b8129d969ef4b9ae85d73bc634e5f30b198314"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/initial-run/04-tests-offline.log",
+      "state": "NEW",
+      "sizeBytes": 2859,
+      "sha256": "a8485d150d21e00af0fb5fe9ef4f495d4551b7abef50e2e1b69b425565d9db43"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/initial-run/TEST-io.github.misakapiano.ccbstudio.assets.AssetBackupTest.xml",
+      "state": "NEW",
+      "sizeBytes": 1200,
+      "sha256": "19f7d54b0413fdd13a5e7993d13ad57b8131e9f5e9377bcfc4a11f40be26e76e"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/initial-run/TEST-io.github.misakapiano.ccbstudio.assets.AssetStoreTest.xml",
+      "state": "NEW",
+      "sizeBytes": 2639,
+      "sha256": "9717957d8e03083f2c20bb295463c282a1740cc6efd02c4fda5a1478d137c447"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/initial-run/dependency-provenance.json",
+      "state": "NEW",
+      "sizeBytes": 713,
+      "sha256": "ed0107bf5700763cbb1e401d9fa8fe1e41032510666b981121f75ff48a6d2564"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/java-version.log",
+      "state": "NEW",
+      "sizeBytes": 196,
+      "sha256": "2c05c59b13a701146c37d79936303eb8080cd353e096756dfab1cd833a306423"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/javac-version.log",
+      "state": "NEW",
+      "sizeBytes": 17,
+      "sha256": "8dc678006c02cf91275c594203ab24dd0fef9b315748b264a078a7644823a303"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/protected-files.json",
+      "state": "NEW",
+      "sizeBytes": 1649,
+      "sha256": "9a6137822f8b7f0839f3382929b35422aa6ee21c8040192b22e0ef95f0897a56"
+    },
+    {
+      "path": "docs/audits/evidence/A1_001/source.patch",
+      "state": "NEW",
+      "sizeBytes": 183165,
+      "sha256": "58480059df563b783620576fd817f5136a82157dc332e5176970b81a6b8922e2"
+    },
+    {
+      "path": "gradle.properties",
+      "state": "NEW",
+      "sizeBytes": 233,
+      "sha256": "e6ef41021df9a9bf16eb2f7ef5462d7ba14e8c85bd4834643832e03fe4f21410"
+    },
+    {
+      "path": "gradle/verification-metadata.xml",
+      "state": "NEW",
+      "sizeBytes": 1099,
+      "sha256": "6bfbfcd71608176a71bc1ec75e85d65f1730d4d6f3390da8bcd4eef8f3a119a1"
+    },
+    {
+      "path": "gradle/wrapper/gradle-wrapper.jar",
+      "state": "NEW",
+      "sizeBytes": 45457,
+      "sha256": "76805e32c009c0cf0dd5d206bddc9fb22ea42e84db904b764f3047de095493f3"
+    },
+    {
+      "path": "gradle/wrapper/gradle-wrapper.properties",
+      "state": "NEW",
+      "sizeBytes": 339,
+      "sha256": "42bc80546f2979857efc20b23ede63b1c5a20478aef5a5c7b89ca66fb46fc786"
+    },
+    {
+      "path": "gradlew",
+      "state": "NEW",
+      "sizeBytes": 8618,
+      "sha256": "fb68debc1b1acf8ec55dc0d5e5495e1dedd0bd6b61f304bee61613eeb2bd9b92"
+    },
+    {
+      "path": "gradlew.bat",
+      "state": "NEW",
+      "sizeBytes": 2896,
+      "sha256": "fedad02c18e266ec094995a5751b7fe1eb6e74f66bf75db64fae2e50eb22c234"
+    },
+    {
+      "path": "modules/asset-library/README.md",
+      "state": "NEW",
+      "sizeBytes": 4885,
+      "sha256": "31464167d20bf94cb8bdc9965b356bafd40efcf132e54078ae852d14c4ee8f37"
+    },
+    {
+      "path": "modules/asset-library/build.gradle.kts",
+      "state": "NEW",
+      "sizeBytes": 1044,
+      "sha256": "7c8b031aedfc544668ec407844c82e816363818b484669823073eb87ca848c13"
+    },
+    {
+      "path": "modules/asset-library/gradle.lockfile",
+      "state": "NEW",
+      "sizeBytes": 371,
+      "sha256": "58954f64158eca19c941a1d226e9e6e7953f19ebf1044cef89fe2dcdbcf9e639"
+    },
+    {
+      "path": "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetBackup.java",
+      "state": "NEW",
+      "sizeBytes": 9761,
+      "sha256": "6f69959547f1924932e5d88960b81675ed90939f8d8c9a0cb1f12cfc7a771e53"
+    },
+    {
+      "path": "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetStore.java",
+      "state": "NEW",
+      "sizeBytes": 21079,
+      "sha256": "42a22b7815ce248cf8bd31cf06eef55d76f324092aab2d3bb5860c3edcd27be6"
+    },
+    {
+      "path": "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/ReadResult.java",
+      "state": "NEW",
+      "sizeBytes": 697,
+      "sha256": "c6d3488f55bc939c0933ccfdfed041efd5eadd0b612a86f444d71dbaa87b2eab"
+    },
+    {
+      "path": "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/StoreException.java",
+      "state": "NEW",
+      "sizeBytes": 300,
+      "sha256": "d45143aacdb1b2af549c546167be9f6b11c745ad37c7a2abe8c5b79c751006a1"
+    },
+    {
+      "path": "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/StoreIO.java",
+      "state": "NEW",
+      "sizeBytes": 8949,
+      "sha256": "5a604e4d3dd0ad45d2b7083a88bc8e0f8636a8aef196beaeac972e9e2c6e5361"
+    },
+    {
+      "path": "modules/asset-library/src/test/java/io/github/misakapiano/ccbstudio/assets/AssetBackupTest.java",
+      "state": "NEW",
+      "sizeBytes": 7501,
+      "sha256": "53d0ee16d8017dfa57bc7e39331a3b27d99d6d41deae4ae64afcd1ae5f13c59d"
+    },
+    {
+      "path": "modules/asset-library/src/test/java/io/github/misakapiano/ccbstudio/assets/AssetStoreTest.java",
+      "state": "NEW",
+      "sizeBytes": 19583,
+      "sha256": "b735cc16d7fdec8e44b5489a9229b977da69caef146c07053ad8a8b8b18916fa"
+    },
+    {
+      "path": "modules/asset-library/src/test/java/io/github/misakapiano/ccbstudio/assets/StoreProcess.java",
+      "state": "NEW",
+      "sizeBytes": 2548,
+      "sha256": "e6cc83ca0a07023069d8a1e85f15fef299a90ffd44183236b31bffc47e56ad7c"
+    },
+    {
+      "path": "settings.gradle.kts",
+      "state": "NEW",
+      "sizeBytes": 133,
+      "sha256": "661c82086a52de0755ffca22cd6075663b18e3bbeb9d3ef1e561ba2c917f9914"
+    },
+    {
+      "path": "tasks/A1_001_IMPLEMENTATION_CANDIDATE.md",
+      "state": "MODIFIED",
+      "sizeBytes": 6976,
+      "sha256": "e86784315298fa425b9a43d0f1276f1b581bebb38766d392329664d364b99469"
+    },
+    {
+      "path": "tools/Test-AssetDurability.ps1",
+      "state": "NEW",
+      "sizeBytes": 5038,
+      "sha256": "f82fe050f7f32a503ad42798099149012cb25f57101fd4ab7c68876bf8cd1792"
+    }
+  ],
+  "protectedFiles": [
+    {
+      "path": "AGENTS.md",
+      "unchangedGitContent": true,
+      "currentByteSha256": "5d7c19a719fd962181765ee9008351ee262f2248b87777fada56ef12e8bc014a"
+    },
+    {
+      "path": "CCB_STUDIO_SUITE_INIT_20261020.md",
+      "unchangedGitContent": true,
+      "currentByteSha256": "baded0b363a237c8bf0eb350cc2935863d270e93005bfa9f176db666b3f4d85e"
+    },
+    {
+      "path": "docs/SOURCE_LOCK.json",
+      "unchangedGitContent": true,
+      "currentByteSha256": "37876ec4e9611ac02f4c6fc6c087f91f2ba3b5aa2fa51ccc19d979fe34d04f90"
+    },
+    {
+      "path": "docs/audits/A0_001_REUSE_AUDIT.md",
+      "unchangedGitContent": true,
+      "currentByteSha256": "a3de7d46f4f4f1fab7a431c288ce31b35eda496b4c2e2f766af922f5ab6f3526"
+    },
+    {
+      "path": "docs/audits/A0_001_DEPENDENCY_AND_GAPS.md",
+      "unchangedGitContent": true,
+      "currentByteSha256": "e7e1308fd68dc55d181d3f245751b2425f7e7abcddd34eb6229e9327c517208f"
+    },
+    {
+      "path": "docs/audits/A0_001_SOURCE_EVIDENCE.json",
+      "unchangedGitContent": true,
+      "currentByteSha256": "dcb8389bf86415336167ef561f375cd46d0d655f12ad99f073d10652f0f3c11a"
+    },
+    {
+      "path": "docs/10_ACCEPTANCE_MATRIX.md",
+      "unchangedGitContent": true,
+      "currentByteSha256": "4d8c3e1416a339c990bb906938cfd9a0101a360150c2685053692022584453c8"
+    },
+    {
+      "path": "tools/Verify-Package.ps1",
+      "unchangedGitContent": true,
+      "currentByteSha256": "fcccbe5a5cede898401259b89f7d80323d46e231f96fd9660009aaf165e485ed"
+    },
+    {
+      "path": "tools/verify_package.py",
+      "unchangedGitContent": true,
+      "currentByteSha256": "ce91de8bc5859124ef3b93bee1d5d931e0d966e95493822f17f36f648acd84b4"
+    }
+  ],
+  "referenceAssets": "three byte hashes unchanged",
+  "validation": {
+    "relativeFileLinks": 54,
+    "json": "PASS",
+    "boundedSecretPatternScan": "PASS; changed files only, not a full-disk certification",
+    "gitDiffCheck": "PASS",
+    "newFileWhitespaceCheck": "PASS; execution logs not rewritten",
+    "lineEndingNotices": [
+      "warning: in the working copy of 'build.gradle.kts', LF will be replaced by CRLF the next time Git touches it",
+      "warning: in the working copy of 'gradle.properties', LF will be replaced by CRLF the next time Git touches it",
+      "warning: in the working copy of 'gradle/wrapper/gradle-wrapper.properties', LF will be replaced by CRLF the next time Git touches it",
+      "warning: in the working copy of 'gradlew', LF will be replaced by CRLF the next time Git touches it",
+      "warning: in the working copy of 'modules/asset-library/build.gradle.kts', LF will be replaced by CRLF the next time Git touches it",
+      "warning: in the working copy of 'modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetBackup.java', LF will be replaced by CRLF the next time Git touches it",
+      "warning: in the working copy of 'modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetStore.java', LF will be replaced by CRLF the next time Git touches it",
+      "warning: in the working copy of 'modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/ReadResult.java', LF will be replaced by CRLF the next time Git touches it",
+      "warning: in the working copy of 'modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/StoreException.java', LF will be replaced by CRLF the next time Git touches it",
+      "warning: in the working copy of 'modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/StoreIO.java', LF will be replaced by CRLF the next time Git touches it",
+      "warning: in the working copy of 'modules/asset-library/src/test/java/io/github/misakapiano/ccbstudio/assets/AssetBackupTest.java', LF will be replaced by CRLF the next time Git touches it",
+      "warning: in the working copy of 'modules/asset-library/src/test/java/io/github/misakapiano/ccbstudio/assets/AssetStoreTest.java', LF will be replaced by CRLF the next time Git touches it",
+      "warning: in the working copy of 'modules/asset-library/src/test/java/io/github/misakapiano/ccbstudio/assets/StoreProcess.java', LF will be replaced by CRLF the next time Git touches it",
+      "warning: in the working copy of 'settings.gradle.kts', LF will be replaced by CRLF the next time Git touches it",
+      "warning: in the working copy of 'tools/Test-AssetDurability.ps1', LF will be replaced by CRLF the next time Git touches it"
+    ],
+    "logEncodings": {
+      "docs/audits/evidence/A1_001/20261020T162815244Z/gradle.log": "UTF-16 BOM preserved",
+      "docs/audits/evidence/A1_001/20261020T163611037Z/gradle.log": "UTF-16 BOM preserved"
+    },
+    "note": "An initial UTF8-only scan stopped on UTF16 PowerShell logs; BOM-aware scan succeeded without altering the raw evidence"
+  },
+  "notTested": [
+    "real power loss",
+    "real disk exhaustion/OS ACL alteration",
+    "Android/Server integration",
+    "real user data",
+    "real provider API",
+    "application installer A-to-B update",
+    "publisher/signing trust",
+    "adversarial hard links/TOCTOU",
+    "peak process memory"
+  ]
+}

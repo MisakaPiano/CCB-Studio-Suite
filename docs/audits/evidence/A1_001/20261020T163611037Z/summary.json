@@ -1,0 +1,39 @@
+﻿{
+    "status":  "PASS",
+    "gradleExitCode":  0,
+    "elapsedSeconds":  372.0343805,
+    "tests":  21,
+    "failures":  0,
+    "errors":  0,
+    "skipped":  0,
+    "gradleCommand":  "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "arguments":  [
+                      "-g",
+                      "H:\\CCB-Studio-Suite\\.local\\a1-001\\gradle-home",
+                      "--offline",
+                      "--no-daemon",
+                      "--max-workers=1",
+                      "--console=plain",
+                      "--dependency-verification=strict",
+                      "-PassetOfflineTestRepository=H:/CCB-Studio-Suite/.local/a1-001/test-maven",
+                      ":asset-library:test",
+                      "--rerun-tasks"
+                  ],
+    "dependencyNetworkDownloadBytes":  0,
+    "dependencySource":  "Explicit local copy of two checksum-verified cached test JARs; production has no external dependency",
+    "sourceSha256":  {
+                         "H:\\CCB-Studio-Suite\\modules\\asset-library\\src\\test\\java\\io\\github\\misakapiano\\ccbstudio\\assets\\AssetBackupTest.java":  "53D0EE16D8017DFA57BC7E39331A3B27D99D6D41DEAE4AE64AFCD1AE5F13C59D",
+                         "H:\\CCB-Studio-Suite\\modules\\asset-library\\src\\main\\java\\io\\github\\misakapiano\\ccbstudio\\assets\\StoreIO.java":  "5A604E4D3DD0AD45D2B7083A88BC8E0F8636A8AEF196BEAEAC972E9E2C6E5361",
+                         "H:\\CCB-Studio-Suite\\modules\\asset-library\\src\\main\\java\\io\\github\\misakapiano\\ccbstudio\\assets\\ReadResult.java":  "C6D3488F55BC939C0933CCFDFED041EFD5EADD0B612A86F444D71DBAA87B2EAB",
+                         "H:\\CCB-Studio-Suite\\modules\\asset-library\\src\\main\\java\\io\\github\\misakapiano\\ccbstudio\\assets\\StoreException.java":  "D45143AACDB1B2AF549C546167BE9F6B11C745AD37C7A2ABE8C5B79C751006A1",
+                         "H:\\CCB-Studio-Suite\\modules\\asset-library\\src\\test\\java\\io\\github\\misakapiano\\ccbstudio\\assets\\StoreProcess.java":  "E6CC83CA0A07023069D8A1E85F15FEF299A90FFD44183236B31BFFC47E56AD7C",
+                         "H:\\CCB-Studio-Suite\\modules\\asset-library\\src\\test\\java\\io\\github\\misakapiano\\ccbstudio\\assets\\AssetStoreTest.java":  "B735CC16D7FDEC8E44B5489A9229B977DA69CAEF146C07053AD8A8B8B18916FA",
+                         "H:\\CCB-Studio-Suite\\modules\\asset-library\\src\\main\\java\\io\\github\\misakapiano\\ccbstudio\\assets\\AssetBackup.java":  "6F69959547F1924932E5D88960B81675ED90939F8D8C9A0CB1F12CFC7A771E53",
+                         "H:\\CCB-Studio-Suite\\modules\\asset-library\\src\\main\\java\\io\\github\\misakapiano\\ccbstudio\\assets\\AssetStore.java":  "42A22B7815CE248CF8BD31CF06EEF55D76F324092AAB2D3BB5860C3EDCD27BE6"
+                     },
+    "baseCommit":  "6d3d2b22651f9744807925f74c6941f681bbef02",
+    "branch":  "feature/a1-001-asset-durability",
+    "peakMemory":  "NOT MEASURED",
+    "productAcceptance":  "NOT TESTED",
+    "evidence":  "H:\\CCB-Studio-Suite\\docs\\audits\\evidence\\A1_001\\20261020T163611037Z"
+}

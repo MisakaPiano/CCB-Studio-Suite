@@ -5,7 +5,7 @@
 1. [当前状态](CURRENT_STATE.md)
 2. [任务登记](TASK_REGISTRY.md)
 3. [来源锁](SOURCE_LOCK.json)
-4. 本任务合同；当前 [A0-001](../tasks/A0_001_BOOTSTRAP_AND_AUDIT.md)
+4. 本任务合同；当前 [A1-001](../tasks/A1_001_IMPLEMENTATION_CANDIDATE.md)
 
 ## 产品与工程合同
 
@@ -32,8 +32,12 @@
 
 源码未实施前不要因这些文件存在宣称功能PASS。
 
-## A0-001 实际交付（2026-10-21，待 Project review）
+## A0-001 历史交付（A0-002 已 PASS_WITH_SCOPE）
 
-[精确源码审计](audits/A0_001_REUSE_AUDIT.md) · [依赖、差距与变更回执](audits/A0_001_DEPENDENCY_AND_GAPS.md) · [来源及验证证据](audits/A0_001_SOURCE_EVIDENCE.json) · [A1-001实施候选（未授权）](../tasks/A1_001_IMPLEMENTATION_CANDIDATE.md)。没有产品实现或测试验收。
+[精确源码审计](audits/A0_001_REUSE_AUDIT.md) · [依赖、差距与变更回执](audits/A0_001_DEPENDENCY_AND_GAPS.md) · [来源及验证证据](audits/A0_001_SOURCE_EVIDENCE.json) · [A1-001任务（本轮限定授权）](../tasks/A1_001_IMPLEMENTATION_CANDIDATE.md)。A0没有产品实现或测试验收。
 
 [Project审阅交接入口](../handoff/PROJECT_A0_REVIEW.md)：用户在A0交付后追加授权上传Git；原报告中的无commit/push是审计结束时的历史事实，当前交付使用Git实际commit定位。
+
+## A1-001（2026-10-21，实施/合成验证完成，待审查）
+
+用户提供A0-002结论PASS_WITH_SCOPE，允许从6d3d2b2在独立功能分支执行数据切片；实施时授权不含Git提交/推送；用户随后要求远程交付，本次追加Git交付入口见[Project A1审阅交接](../handoff/PROJECT_A1_REVIEW.md)。见[实际实施/21项测试回执](audits/A1_001_EXECUTION.md)、[未提交补丁](audits/evidence/A1_001/source.patch)、[文件状态与SHA清单](audits/evidence/A1_001/WORKING_TREE.json)、[模块合同与运行方式](../modules/asset-library/README.md)、[更新器后续设计](audits/A1_001_UPDATER_DESIGN.md)。A0报告和来源JSON保留原始快照，产品验收矩阵不提前改PASS。

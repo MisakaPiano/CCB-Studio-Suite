@@ -1,0 +1,31 @@
+{
+  "task": "A1-001",
+  "baseCommit": "6d3d2b22651f9744807925f74c6941f681bbef02",
+  "fileSystem": "NTFS",
+  "initialFailures": [
+    "01: Gradle default native-platform initialization failed",
+    "02: Wrapper succeeded; first read-only cache path layout disabled",
+    "03: offline JUnit resolution failed before tests"
+  ],
+  "initialRun": {
+    "tests": 18,
+    "skipped": 0,
+    "failures": 0,
+    "sourceIdentity": "UNKNOWN; exploratory compiled snapshot, not final code",
+    "errors": 0
+  },
+  "intermediateRun": {
+    "tests": 20,
+    "status": "PASS",
+    "summary": "20261020T162815244Z/summary.json"
+  },
+  "finalRun": {
+    "tests": 21,
+    "status": "PASS",
+    "summary": "20261020T163611037Z/summary.json"
+  },
+  "ownedProcessLookup": "CIM denied; zero workers stopped; exploratory run finished naturally",
+  "dependencyDownloadBytes": 0,
+  "peakMemory": "NOT MEASURED",
+  "scope": "Synthetic JVM tests only; no Desktop/Android/emulator/installer/real-provider work"
+}

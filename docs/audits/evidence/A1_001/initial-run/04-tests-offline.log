@@ -1,0 +1,66 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :asset-library:compileJava
+> Task :asset-library:processResources NO-SOURCE
+> Task :asset-library:classes
+> Task :asset-library:compileTestJava
+> Task :asset-library:processTestResources NO-SOURCE
+> Task :asset-library:testClasses
+
+> Task :asset-library:test
+
+AssetBackupTest > D07_snapshotRestoresOriginalsDocumentsAndPendingInputButExcludesSecrets PASSED
+
+AssetBackupTest > D07_interruptedRestoreBlocksNormalOpenAndResumesWithoutReplacingContent PASSED
+
+AssetBackupTest > D07_interruptedBackupIsNotACompleteBackupAndSourceStaysUsable PASSED
+
+AssetBackupTest > D07_badBackupIsRejectedBeforeDestinationAndCannotOverwritePopulatedRoot PASSED
+
+AssetBackupTest > D07_restorePartialCopyRemainsRecoverableAndChangedTargetIsNotOverwritten PASSED
+
+AssetStoreTest > D05_foreignRootsTraversalAndRedirectedPathsAreRefused PASSED
+
+AssetStoreTest > D03_indexWriteFailureReturnsCommittedReceiptAndRecovers PASSED
+
+AssetStoreTest > D03_actualProcessTerminationAtEveryCommitBoundary STANDARD_OUT
+    PROCESS_CRASH INTENT verified
+    PROCESS_CRASH BYTES verified
+    PROCESS_CRASH SEALED verified
+    PROCESS_CRASH ASSET verified
+    PROCESS_CRASH RECORD verified
+    PROCESS_CRASH INDEX verified
+    PROCESS_CRASH COMPLETE verified
+
+AssetStoreTest > D03_actualProcessTerminationAtEveryCommitBoundary PASSED
+
+AssetStoreTest > D06_scaleOneHundredAndThousandAndStreamingAreBounded STANDARD_OUT
+    SCALE 1 verified
+    SCALE 100 verified
+    SCALE 1000 verified
+    SCALE_AND_STREAM elapsedMs=427915
+
+AssetStoreTest > D06_scaleOneHundredAndThousandAndStreamingAreBounded PASSED
+
+AssetStoreTest > D02_replayDedupNameCollisionAndConflictingId PASSED
+
+AssetStoreTest > D04_truncatedInputAndInjectedDiskFullRetainPendingBytes PASSED
+
+AssetStoreTest > D05_drainTimeoutRetainsLockAndRefusesNewWrites PASSED
+
+AssetStoreTest > D01_independentJvmReadsExactSyntheticPng PASSED
+
+AssetStoreTest > D04_missingCorruptReadErrorAndUnknownVersionAreDistinct PASSED
+
+AssetStoreTest > D05_otherProcessCannotAcquireThenCanAcquireAfterExit PASSED
+
+AssetStoreTest > D01_rawBytesOpaqueDocumentsAndDerivedAssetsSurviveRestart PASSED
+
+AssetStoreTest > D04_corruptIndexRebuildPreservesEvidenceAndUniqueOriginal PASSED
+
+AssetStoreTest > D02_concurrentSubmissionsPreserveEachAssociation PASSED
+Persisted dependency lock state for project ':asset-library'
+
+BUILD SUCCESSFUL in 7m 40s
+3 actionable tasks: 3 executed
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.1.0/userguide/configuration_cache_enabling.html
