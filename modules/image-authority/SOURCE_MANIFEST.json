@@ -76,7 +76,10 @@
         "src/main/kotlin/com/example/chatbar/data/local/entity/PresetModelCatalog.kt",
         "src/main/kotlin/com/example/chatbar/data/repository/CredentialPersistencePolicy.kt",
         "src/main/kotlin/com/example/chatbar/data/repository/ModelRepository.kt",
+        "src/main/kotlin/com/example/chatbar/domain/chat/ImageDescriptionRequestPolicy.kt",
         "src/main/kotlin/com/example/chatbar/domain/chat/ImageUnderstandingService.kt",
+        "src/main/kotlin/com/example/chatbar/domain/chat/OpenAiChatRequestSerializer.kt",
+        "src/main/kotlin/com/example/chatbar/domain/chat/ThinkingRequestPolicy.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiPromptDesigner.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiTagResearchService.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiTextTransport.kt",
@@ -221,10 +224,30 @@
       "size": 1805,
       "sha256": "eb4b391674ea17fde49f253b4746aa733881819e0f350a39aeb012c179ad843f",
       "reasons": [
+        "src/main/kotlin/com/example/chatbar/domain/chat/CleartextHttpChatTemplatePolicy.kt",
+        "src/main/kotlin/com/example/chatbar/domain/chat/OpenAiChatRequestSerializer.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiPromptDesigner.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiTagResearchService.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiTextTransport.kt",
         "src/test/kotlin/com/example/chatbar/domain/image/NovelAiDesignerTransportTest.kt"
+      ]
+    },
+    {
+      "source": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/chat/CleartextHttpChatTemplatePolicy.kt",
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/CleartextHttpChatTemplatePolicy.kt",
+      "size": 2512,
+      "sha256": "d636ce1009fbf4a5b3e444f2d0ad0c0ee90b05b6b26faa4b896fa240d8f65cc5",
+      "reasons": [
+        "src/main/kotlin/com/example/chatbar/domain/chat/OpenAiChatRequestSerializer.kt"
+      ]
+    },
+    {
+      "source": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/chat/ImageDescriptionRequestPolicy.kt",
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/ImageDescriptionRequestPolicy.kt",
+      "size": 1111,
+      "sha256": "8869e8f800d7ac5b3468bd59b4152a221731b23c8901db36e6a27597a80c3059",
+      "reasons": [
+        "src/main/kotlin/com/example/chatbar/domain/chat/OpenAiChatRequestSerializer.kt"
       ]
     },
     {
@@ -242,7 +265,26 @@
       "size": 734,
       "sha256": "5eaf1d84aeafb567458fd86285963653cadbc3f3fb4197c690810c4be031c356",
       "reasons": [
+        "src/main/kotlin/com/example/chatbar/domain/chat/OpenAiCompletionResponsePolicy.kt",
         "src/main/kotlin/com/example/chatbar/domain/prompt/AiTaskFailurePolicy.kt"
+      ]
+    },
+    {
+      "source": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/chat/OpenAiChatRequestSerializer.kt",
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/OpenAiChatRequestSerializer.kt",
+      "size": 5412,
+      "sha256": "0a4c8ef320c7c9cb32df7b306d6db6de6802e0e18908808cd7de097c54974298",
+      "reasons": [
+        "approved image authority consumer"
+      ]
+    },
+    {
+      "source": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/chat/OpenAiCompletionResponsePolicy.kt",
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/OpenAiCompletionResponsePolicy.kt",
+      "size": 2532,
+      "sha256": "75a8333599873d890b9692a378168893f030f0e71571a20c5105191bd034ed30",
+      "reasons": [
+        "approved image authority consumer"
       ]
     },
     {
@@ -272,6 +314,16 @@
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiPromptDesigner.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiTextTransport.kt",
         "src/test/kotlin/com/example/chatbar/domain/image/NovelAiDesignerTransportTest.kt"
+      ]
+    },
+    {
+      "source": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/chat/ThinkingRequestPolicy.kt",
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/ThinkingRequestPolicy.kt",
+      "size": 1094,
+      "sha256": "5a7ff0131c76607342a77fd9a38524998d1a371075f49a1e0f014ee552be2147",
+      "reasons": [
+        "src/main/kotlin/com/example/chatbar/domain/chat/ImageDescriptionRequestPolicy.kt",
+        "src/main/kotlin/com/example/chatbar/domain/chat/OpenAiChatRequestSerializer.kt"
       ]
     },
     {
@@ -738,6 +790,7 @@
       "sha256": "8b41e3aaf07edb0c0db9249d89aacac3994cb3aafd3b6260ff2a0e8e29b849ec",
       "reasons": [
         "src/main/kotlin/com/example/chatbar/domain/chat/ImageUnderstandingService.kt",
+        "src/main/kotlin/com/example/chatbar/domain/chat/OpenAiCompletionResponsePolicy.kt",
         "src/main/kotlin/com/example/chatbar/domain/chat/StreamEvent.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiPromptDesigner.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiTagResearchService.kt"

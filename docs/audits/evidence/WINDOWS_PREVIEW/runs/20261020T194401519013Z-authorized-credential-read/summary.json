@@ -1,0 +1,26 @@
+{
+  "phase": "authorized-credential-read",
+  "startedUtc": "2026-10-20T19:44:01.728458+00:00",
+  "seconds": 40.946,
+  "exitCode": 0,
+  "tests": 0,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "NOT TESTED (build only or failed before execution)",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-core:liveProbe"
+  ],
+  "baseCommit": "7d6bc80b61199e3ee9647127fea9b1e634ebeb9c",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

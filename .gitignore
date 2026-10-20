@@ -29,3 +29,7 @@ Thumbs.db
 # Immutable delivery checksums are not a production source manifest.
 /BUNDLE_MANIFEST.json
 /SHA256SUMS.txt
+
+# OS-bound secrets never belong to source or evidence.
+*.dpapi
+*.ccbsecret

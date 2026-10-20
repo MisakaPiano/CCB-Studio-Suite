@@ -1,0 +1,32 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :asset-library:compileJava UP-TO-DATE
+> Task :asset-library:processResources NO-SOURCE
+> Task :asset-library:classes UP-TO-DATE
+> Task :asset-library:jar UP-TO-DATE
+> Task :image-authority:checkKotlinGradlePluginConfigurationErrors SKIPPED
+
+> Task :image-authority:compileKotlin
+w: file:///H:/CCB-Studio-Suite/modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/ModelRequestException.kt:12:10 Condition is always 'true'.
+
+> Task :image-authority:compileJava NO-SOURCE
+> Task :image-authority:processResources NO-SOURCE
+> Task :image-authority:classes UP-TO-DATE
+> Task :image-authority:jar UP-TO-DATE
+> Task :studio-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-core:compileKotlin
+> Task :studio-core:compileJava NO-SOURCE
+> Task :studio-core:processResources NO-SOURCE
+> Task :studio-core:classes UP-TO-DATE
+> Task :studio-core:jar UP-TO-DATE
+> Task :studio-core:compileTestKotlin
+> Task :studio-core:compileTestJava NO-SOURCE
+> Task :studio-core:processTestResources NO-SOURCE
+> Task :studio-core:testClasses UP-TO-DATE
+
+> Task :studio-core:liveProbe
+{"service":"NAI","sourceAuthority":"5ef95428421f7c693b010ac88f51d470804ab07a","input":"Synthetic ceramic cup on desk","assetId":"0b2eae22-32c5-42a0-a407-e3c3850756d1","imageBytes":232709,"imageSha256":"4d3674e9e8f5d30820defc393228a3a0baa83222e6849c0f5a7526de478f3225","requestSha256":"3a543ca88e62b1eea3ad4f6021680f68b8092b9d1dc6b8173ff23ba6a988bcd5","intermediates":27,"status":"PASS","requestDispatched":true,"httpStatus":200}
+
+BUILD SUCCESSFUL in 55s
+8 actionable tasks: 4 executed, 4 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.1.0/userguide/configuration_cache_enabling.html

@@ -7,7 +7,8 @@ PREFIX = 'app/sharedCore/src/main/kotlin/'
 SEEDS = ['domain/prompt/NovelAiPromptAuthority.kt', 'domain/image/NovelAiPromptDesigner.kt',
          'domain/image/NovelAiImageService.kt', 'domain/image/NovelAiStudioModels.kt',
          'domain/image/NovelAiPngMetadataReader.kt', 'domain/image/NovelAiStudioImageImport.kt',
-         'domain/image/PrivacyPngEncoder.kt', 'domain/image/ImageMetadataStripper.kt']
+         'domain/image/PrivacyPngEncoder.kt', 'domain/image/ImageMetadataStripper.kt',
+         'domain/chat/OpenAiChatRequestSerializer.kt', 'domain/chat/OpenAiCompletionResponsePolicy.kt']
 TESTS = ['NovelAiDesignerTransportTest', 'NovelAiImageModelResolutionTest',
          'NovelAiImageGuidanceTest', 'NovelAiStudioRequestTest', 'NovelAiImageRetryTest',
          'NovelAiPngMetadataReaderTest', 'NovelAiV5TextPromptPolicyTest',

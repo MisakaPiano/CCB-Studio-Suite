@@ -1,0 +1,92 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LiveRequestBudgetTest",
+    "name": "truncatedReservationBlocksInsteadOfFreeingBudget",
+    "seconds": "0.183",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LiveRequestBudgetTest",
+    "name": "allServicesSharePersistentRollingLimitAndFiveMinuteSpacing",
+    "seconds": "0.603",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "dpapiSyntheticSecretRoundTripNotInDocuments",
+    "seconds": "0.483",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "completeChainRejectsDeletedRevisionAndUnknownEntry",
+    "seconds": "0.195",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "originalProjectUndoRedoAndRestart",
+    "seconds": "0.585",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "missingFontPreventsFalseCompleteExportAndUnknownLayerRefused",
+    "seconds": "0.057",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "batchOrderUndoAndExportCategoriesAreNonDestructive",
+    "seconds": "4.043",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "generationDesignRevisionFrozenIdentityAndUncertainRestart",
+    "seconds": "1.631",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "completeRecipeComparisonIncludesNestedCharactersSeedAndIdentity",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "stagedUnknownCorruptAndFutureDocumentsNeverDefault",
+    "seconds": "0.226",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioRestoreTest",
+    "name": "completeSnapshotRestoresOriginalProjectUndoAndSecretReferenceOnly",
+    "seconds": "1.419",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioRestoreTest",
+    "name": "interruptedRestoreRetainsStagingAndCanRetryIntoFreshRoot",
+    "seconds": "0.779",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioRestoreTest",
+    "name": "corruptIncompleteAndUnknownSnapshotsNeverPublishOrOverwrite",
+    "seconds": "0.704",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.WorkspaceProcessTest",
+    "name": "abruptStagedAndCommittedDocumentCrashesPreserveOriginals",
+    "seconds": "1.476",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.WorkspaceProcessTest",
+    "name": "anotherProcessCannotOwnOpenWorkspaceThenCanAfterClose",
+    "seconds": "0.507",
+    "status": "PASS"
+  }
+]

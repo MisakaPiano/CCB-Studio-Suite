@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.StudioRestoreTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-20T20:13:15.171Z" hostname="DD1" time="4.544">
+  <properties/>
+  <testcase name="completeSnapshotRestoresOriginalProjectUndoAndSecretReferenceOnly" classname="io.github.misakapiano.ccbstudio.core.StudioRestoreTest" time="2.553"/>
+  <testcase name="interruptedRestoreRetainsStagingAndCanRetryIntoFreshRoot" classname="io.github.misakapiano.ccbstudio.core.StudioRestoreTest" time="1.105"/>
+  <testcase name="corruptIncompleteAndUnknownSnapshotsNeverPublishOrOverwrite" classname="io.github.misakapiano.ccbstudio.core.StudioRestoreTest" time="0.886"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -63,7 +63,8 @@ class StudioWorkspace private constructor(val root:Path,private val owner:FileCh
                 val rendered=EditorRenderer.render(original,page.layers)
                 try {EditorRenderer.encode(rendered,mode=="PRIVACY",documentJson.encodeToString(page)+"\n"+record.request().recipe().decodeToString())} finally {rendered.image.flush()}
             }
-            val name="%03d-%s.%s".format(i+1,page.assetId,if(mode=="ORIGINAL")"original" else "png")
+            val extension=if(mode=="ORIGINAL" && original[0].toInt() and 255==255)"jpg" else "png"
+            val name="%03d-%s.%s".format(i+1,page.assetId,extension)
             val pending=dir.resolve(".$name.pending");writeNewForced(pending,output)
             Files.move(pending,dir.resolve(name),StandardCopyOption.ATOMIC_MOVE)
             if(mode!="ORIGINAL") assets.put(AssetStore.Request(UUID.randomUUID(),name,AssetStore.Kind.DERIVED,UUID.fromString(page.assetId),if(mode=="PRIVACY")byteArrayOf() else record.request().recipe(),byteArrayOf()),ByteArrayInputStream(output))

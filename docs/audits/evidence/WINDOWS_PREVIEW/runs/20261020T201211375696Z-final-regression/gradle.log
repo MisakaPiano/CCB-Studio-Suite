@@ -1,0 +1,229 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :image-authority:checkKotlinGradlePluginConfigurationErrors SKIPPED
+
+> Task :image-authority:compileKotlin
+w: file:///H:/CCB-Studio-Suite/modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/ModelRequestException.kt:12:10 Condition is always 'true'.
+
+> Task :image-authority:compileJava NO-SOURCE
+> Task :image-authority:processResources NO-SOURCE
+> Task :image-authority:classes UP-TO-DATE
+> Task :image-authority:jar
+> Task :image-authority:compileTestKotlin
+> Task :image-authority:compileTestJava NO-SOURCE
+> Task :image-authority:processTestResources
+> Task :image-authority:testClasses
+
+> Task :image-authority:test
+
+NovelAiCharacterEnabledTest > both models omit folded positive negative text expansion and coordinates PASSED
+
+NovelAiCharacterEnabledTest > automatic centers use active order and clipboard preserves folded roles beyond capacity PASSED
+
+NovelAiCharacterEnabledTest > all folded roles yield base only request and disable coordinates PASSED
+
+NovelAiCharacterEnabledTest > old roles default active and folded content survives draft and history reload PASSED
+
+NovelAiCharacterPositionTest > old drafts remain automatic and new positions survive history and reordering PASSED
+
+NovelAiCharacterPositionTest > coordinates clamp and v45 uses grid centers while v5 retains free positions PASSED
+
+NovelAiCharacterPositionTest > manual requests enable every coordinate flag and share positive negative centers PASSED
+
+NovelAiCharacterPositionTest > automatic and empty requests never enable positioning PASSED
+
+NovelAiCharacterPositionTest > png import restores positions and respects unchecked selections PASSED
+
+NovelAiDesignerTransportTest > first design preserves planner scene and V5 natural prose through repair PASSED
+
+NovelAiImageGuidanceTest > normalized vibe strengths preserve order and cap total PASSED
+
+NovelAiImageGuidanceTest > focused inpaint requires focus region but allows empty mask PASSED
+
+NovelAiImageGuidanceTest > precise reference selects nearest supported large canvas PASSED
+
+NovelAiImageGuidanceTest > vibe validation follows official sixteen image limit PASSED
+
+NovelAiImageGuidanceTest > v5 pauses references without deleting v45 configuration PASSED
+
+NovelAiImageGuidanceTest > shared guidance loads base precise and vibe sources independently PASSED
+
+NovelAiImageGuidanceTest > history recipe marks unowned base source as missing PASSED
+
+NovelAiImageModelResolutionTest > global default is final fallback PASSED
+
+NovelAiImageModelResolutionTest > character default wins when explicit override is absent PASSED
+
+NovelAiImageModelResolutionTest > explicit override wins over character and global defaults PASSED
+
+NovelAiImageRetryTest > server error frame finishes without reading until peer closes stream PASSED
+
+NovelAiImageRetryTest > successive complete batches finish without transport EOF so callers can save history PASSED
+
+NovelAiImageRetryTest > automatic retry wait can be cancelled before sending another request PASSED
+
+NovelAiImageRetryTest > ten rate limit retries allow success on eleventh request PASSED
+
+NovelAiImageRetryTest > third 429 emits one final failure PASSED
+
+NovelAiImageRetryTest > later generation batches keep retrying rate limits and report replacement requests PASSED
+
+NovelAiImageRetryTest > automatic mode continues beyond three rate limits without counting failures as images PASSED
+
+NovelAiImageRetryTest > ten rate limit retries stop after eleventh 429 PASSED
+
+NovelAiImageRetryTest > automatic mode does not retry non rate limit errors PASSED
+
+NovelAiImageRetryTest > extra final frames in received chunk still fail the batch PASSED
+
+NovelAiImageRetryTest > stream retry control frame is ignored until final image PASSED
+
+NovelAiImageRetryTest > 429 retries until third attempt succeeds PASSED
+
+NovelAiPngMetadataReaderTest > parses image guidance and encoded vibe metadata PASSED
+
+NovelAiPngMetadataReaderTest > parses NovelAI v4 comment metadata PASSED
+
+NovelAiPngMetadataReaderTest > rejects generic JSON comment without NovelAI structure PASSED
+
+NovelAiPromptPostProcessorTest > converts only complete Stable Diffusion weight atoms PASSED
+
+NovelAiPromptPostProcessorTest > ambiguous rule warns without guessing PASSED
+
+NovelAiPromptPostProcessorTest > rewrites full tag atoms ignoring case spaces and underscores PASSED
+
+NovelAiPromptPostProcessorTest > canonicalizer runs before syntax normalizer then style is prepended PASSED
+
+NovelAiPromptPostProcessorTest > preserves NAI wrappers and expands one tag to multiple tags PASSED
+
+NovelAiStudioCustomSizeTest > validatesRoundedPixelBudgetAndPartialDimensions PASSED
+
+NovelAiStudioCustomSizeTest > oldSettingsDecodeAndCustomSettingsSurviveHistoryRoundTrip PASSED
+
+NovelAiStudioCustomSizeTest > customDimensionsRoundWithoutChangingTheEditableDraft PASSED
+
+NovelAiStudioCustomSizeTest > pngSettingsImportRestoresCustomSizeAndPresetImportClearsIt PASSED
+
+NovelAiStudioRequestTest > precise arrays use fixed fidelity wire adapter PASSED
+
+NovelAiStudioRequestTest > v5 request serializes explicit settings and ordered character negatives PASSED
+
+NovelAiStudioRequestTest > image to image writes action source strength and noise PASSED
+
+NovelAiStudioRequestTest > v5 inpaint selects inpainting model and mask contract PASSED
+
+NovelAiStudioRequestTest > v5 request appends quoted text block from base and character prompts PASSED
+
+NovelAiStudioRequestTest > vibe arrays write cached encoding information and strength PASSED
+
+NovelAiStudioRequestTest > request normalizes Chinese commas in every outbound prompt field PASSED
+
+NovelAiStudioRequestTest > explicit text block disables v5 quoted text automation PASSED
+
+NovelAiStudioRequestTest > v45 request leaves quoted text untouched PASSED
+
+NovelAiStudioRequestTest > focused inpaint strength uses official nested img2img color correction PASSED
+
+NovelAiV5TextPromptPolicyTest > onlyPositiveV5RequestCopyChanges PASSED
+
+NovelAiV5TextPromptPolicyTest > onlyFirstBaseChunkIsExpandedAndRandomizerPipesArePreserved PASSED
+
+NovelAiV5TextPromptPolicyTest > singleQuotesPreserveContractionsAndPossessives PASSED
+
+NovelAiV5TextPromptPolicyTest > repeatedTextIsRetainedAndExpansionIsIdempotent PASSED
+
+NovelAiV5TextPromptPolicyTest > cjkThresholdUsesAllFieldsAndIsStrictlyGreaterThanThirtyPercent PASSED
+
+NovelAiV5TextPromptPolicyTest > explicitTextDetectionMatchesOfficialBoundaries PASSED
+
+NovelAiV5TextPromptPolicyTest > unmatchedEmptyAndUnsupportedQuotesDoNotProduceText PASSED
+
+NovelAiV5TextPromptPolicyTest > cjkReversesWithinEachFieldButPreservesCharacterOrder PASSED
+
+PrivacyPngEncoderTest > chunkedOutputRoundTripsAndRejectsInvalidDimensions PASSED
+
+PrivacyPngEncoderTest > preservesDimensionsAndOnlyMinimalOrientationWhileSourceStaysUnchanged PASSED
+
+PrivacyPngEncoderTest > removesFullAlphaAndRgbStealthPayloadsEvenWithDamagedHeaders PASSED
+
+PrivacyPngEncoderTest > erasesLsbRegardlessOfValueAndKeepsTransparencyEndpoints PASSED
+
+StealthAlphaMetadataTest > absent header and tiny images are not metadata PASSED
+
+StealthAlphaMetadataTest > invalid lengths truncated gzip and decompression bomb fail bounded PASSED
+
+StealthAlphaMetadataTest > compressed and plain alpha payload use column order and UTF8 PASSED
+
+> Task :asset-library:compileJava
+> Task :studio-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-core:compileKotlin
+> Task :studio-core:compileJava NO-SOURCE
+> Task :studio-core:processResources NO-SOURCE
+> Task :studio-core:classes UP-TO-DATE
+> Task :studio-core:jar
+> Task :asset-library:processResources NO-SOURCE
+> Task :asset-library:classes
+> Task :asset-library:jar
+> Task :studio-core:compileTestKotlin
+> Task :studio-core:compileTestJava NO-SOURCE
+> Task :studio-core:processTestResources NO-SOURCE
+> Task :studio-core:testClasses UP-TO-DATE
+
+> Task :studio-core:test
+
+LiveRequestBudgetTest > truncatedReservationBlocksInsteadOfFreeingBudget PASSED
+
+LiveRequestBudgetTest > allServicesSharePersistentRollingLimitAndFiveMinuteSpacing PASSED
+
+StudioCoreTest > dpapiSyntheticSecretRoundTripNotInDocuments PASSED
+
+StudioCoreTest > completeChainRejectsDeletedRevisionAndUnknownEntry PASSED
+
+StudioCoreTest > originalProjectUndoRedoAndRestart PASSED
+
+StudioCoreTest > missingFontPreventsFalseCompleteExportAndUnknownLayerRefused PASSED
+
+StudioCoreTest > batchOrderUndoAndExportCategoriesAreNonDestructive PASSED
+
+StudioCoreTest > generationDesignRevisionFrozenIdentityAndUncertainRestart PASSED
+
+StudioCoreTest > completeRecipeComparisonIncludesNestedCharactersSeedAndIdentity PASSED
+
+StudioCoreTest > stagedUnknownCorruptAndFutureDocumentsNeverDefault PASSED
+
+StudioRestoreTest > completeSnapshotRestoresOriginalProjectUndoAndSecretReferenceOnly PASSED
+
+StudioRestoreTest > interruptedRestoreRetainsStagingAndCanRetryIntoFreshRoot PASSED
+
+StudioRestoreTest > corruptIncompleteAndUnknownSnapshotsNeverPublishOrOverwrite PASSED
+
+WorkspaceProcessTest > abruptStagedAndCommittedDocumentCrashesPreserveOriginals PASSED
+
+WorkspaceProcessTest > anotherProcessCannotOwnOpenWorkspaceThenCanAfterClose PASSED
+
+> Task :downloadWix SKIPPED
+> Task :unzipWix
+> Task :studio-desktop:checkRuntime
+> Task :studio-desktop:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-desktop:convertXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:copyNonXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:prepareComposeResourcesTaskForMain NO-SOURCE
+> Task :studio-desktop:generateResourceAccessorsForMain SKIPPED
+> Task :studio-desktop:generateActualResourceCollectorsForMain SKIPPED
+> Task :studio-desktop:generateComposeResClass SKIPPED
+> Task :studio-desktop:compileKotlin
+> Task :studio-desktop:compileJava NO-SOURCE
+> Task :studio-desktop:assembleMainResources
+> Task :studio-desktop:processResources
+> Task :studio-desktop:classes
+> Task :studio-desktop:createRuntimeImage
+> Task :studio-desktop:jar
+> Task :studio-desktop:prepareAppResources NO-SOURCE
+> Task :studio-desktop:unpackDefaultComposeDesktopJvmApplicationResources
+
+> Task :studio-desktop:createDistributable
+The distribution is written to H:\CCB-Studio-Suite\modules\studio-desktop\build\compose\binaries\main\app
+
+BUILD SUCCESSFUL in 1m 25s
+20 actionable tasks: 20 executed
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.1.0/userguide/configuration_cache_enabling.html

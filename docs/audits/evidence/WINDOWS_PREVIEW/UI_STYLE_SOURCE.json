@@ -1,0 +1,21 @@
+{
+  "commit": "ab3d06abcaca2df8b21c734841d7c4e744099f51",
+  "purpose": "Latest committed Desktop visual style requested directly by user; read only; does not change fixed Prompt/request authority SHA",
+  "files": [
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopTheme.kt",
+      "sha256": "f5f034e452f6045d29ed1776f1d80e88f20d1cb782504ba1689a46dc25ca6845",
+      "bytes": 3887
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopPrimaryShell.kt",
+      "sha256": "04571ccaeb7d1d3c70ccd2f5a524121cf886a8a82f9211ca0792da24b1cfbc26",
+      "bytes": 8727
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopImageToolWindow.kt",
+      "sha256": "433332ba47c605a48ce325887f8cf072cd0e580e91e9170b724273de0663b367",
+      "bytes": 1613
+    }
+  ]
+}

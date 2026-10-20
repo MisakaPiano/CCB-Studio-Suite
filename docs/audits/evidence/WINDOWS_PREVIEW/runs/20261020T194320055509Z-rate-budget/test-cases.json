@@ -1,0 +1,62 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LiveRequestBudgetTest",
+    "name": "truncatedReservationBlocksInsteadOfFreeingBudget",
+    "seconds": "0.144",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LiveRequestBudgetTest",
+    "name": "allServicesSharePersistentRollingLimitAndFiveMinuteSpacing",
+    "seconds": "0.895",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "dpapiSyntheticSecretRoundTripNotInDocuments",
+    "seconds": "0.582",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "completeChainRejectsDeletedRevisionAndUnknownEntry",
+    "seconds": "0.148",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "originalProjectUndoRedoAndRestart",
+    "seconds": "0.508",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "missingFontPreventsFalseCompleteExportAndUnknownLayerRefused",
+    "seconds": "0.061",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "batchOrderUndoAndExportCategoriesAreNonDestructive",
+    "seconds": "3.967",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "generationDesignRevisionFrozenIdentityAndUncertainRestart",
+    "seconds": "1.778",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "completeRecipeComparisonIncludesNestedCharactersSeedAndIdentity",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "stagedUnknownCorruptAndFutureDocumentsNeverDefault",
+    "seconds": "0.241",
+    "status": "PASS"
+  }
+]

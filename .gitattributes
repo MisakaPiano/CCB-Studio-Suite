@@ -6,3 +6,5 @@
 
 # Preserve exact raw A1 evidence bytes, including UTF-16 logs and checksummed snapshots.
 /docs/audits/evidence/A1_001/** -text
+/modules/image-authority/src/** text eol=lf
+/docs/audits/evidence/WINDOWS_PREVIEW/runs/** -text

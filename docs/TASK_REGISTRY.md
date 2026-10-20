@@ -9,8 +9,8 @@
 | A1-001 | 独立数据根与原始资产提交/恢复 | PASS_WITH_SCOPE (用户提供 Project 审查结论，固定3c17b4c9) | [实际回执](audits/A1_001_EXECUTION.md)；实施基准6d3d2b2；用户随后追加要求远程交付，见[Project审阅入口](../handoff/PROJECT_A1_REVIEW.md)，不合并main，不启动下一任务 |
 | A1-001-R1 | 资产目录完整性与维护排水补强 | PASS_WITH_SCOPE (Issue #2 comment6297274746已实读) / HISTORICAL AUTOMATION 27 PASS | [实际回执](audits/A1_001_R1_EXECUTION.md)；3c17b4c9起点，feature/a1-001-r1-safety；本轮明确允许功能分支Git和指定Drive交付，不merge/release/后续实施 |
 | WINDOWS-RC-CP1 | 继承R1、维护与更新信任基础 | AUTOMATED FOUNDATION GREEN / PUSHED+VERIFIED | 4 targeted / 31 full JVM / 8 trust-lab tests实际PASS；[执行回执](rc/CP1_EXECUTION.md)；非产品/安装验收 |
-| WINDOWS-RC-CP2 | 独立Compose Studio/单一权威生成核心 | STOP_DEPENDENCY / RC BLOCKED | [精确依赖证据和目标合同](rc/DEPENDENCY_ESCALATION.md)；不复制/重写上游，不写Desktop |
-| WINDOWS-RC-CP3-4 | 编辑/完整更新/Windows RC | NOT TESTED / NO RC | 关键CP2产品基础未通过；不跳过门槛、不把信任lab称应用更新 |
+| WINDOWS-RC-CP2 | 独立Compose Studio/单一权威生成核心 | IN PROGRESS / Issue #3 已解除旧来源 STOP | 固定 SHA 字节一致闭包、Compose 编译和核心回归已执行；不改 Desktop |
+| WINDOWS-RC-CP3-4 | 编辑/完整更新/Windows RC | CP3 IN PROGRESS / CP4 NOT TESTED / NO RC | 非破坏编辑与导出已接入；先完成 Preview Gate，保留完整 CP4 更新门槛 |
 | A1-002 | 历史独立更新任务 | NOT RUN AS STANDALONE | 当前更新基础/未来产品门槛改由Issue #2的CP1/CP4管理；不追改旧回执 |
 | X-000 | 向Desktop登记关系 | PROPOSED | 使用交接说明，目标项目自行登记 |
 
@@ -43,3 +43,5 @@ WINDOWS-RC-CP1实际交付：9d3035b98adea32908d4d3e04267127d0d9c25f4已推送�
 ## Windows Preview resume / Issue #3
 
 Latest Project correction rescinds generalized source-rights / missing-SDK STOP. Same owner resumed from 86760bc0; historical RC BLOCKED evidence remains. Current work is IN PROGRESS toward Preview Gate, with actual 69 authority + 8 Studio core synthetic tests PASS. See [Preview progress](rc/PREVIEW_PROGRESS.md) and [Issue #3](https://github.com/MisakaPiano/CCB-Studio-Suite/issues/3). Real API use is additionally authorized at <=12 attempts/rolling hour and >=300s interval; no real calls at this checkpoint. Not RC/Preview acceptance.
+
+当前增量见 [P2执行记录](rc/PREVIEW_P2_EXECUTION.md)：最新核心15项通过，已授权真实API两次；Preview Gate仍 IN PROGRESS。

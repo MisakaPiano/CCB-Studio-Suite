@@ -69,7 +69,7 @@ class StudioCoreTest {
             val privacy=w.export(pid,ids,"PRIVACY");val normal=w.export(pid,ids,"NORMAL");val raw=w.export(pid,ids,"ORIGINAL")
             assertTrue(Files.exists(privacy.resolve("COMPLETE.txt")));assertTrue(Files.exists(normal.resolve("COMPLETE.txt")))
             for(id in ids)assertContentEquals(bytes,w.bytes(id))
-            Files.list(raw).use {it.filter {p->p.toString().endsWith(".original")}.forEach {p->assertContentEquals(bytes,Files.readAllBytes(p))}}
+            Files.list(raw).use {it.filter {p->p.toString().endsWith(".png")}.forEach {p->assertContentEquals(bytes,Files.readAllBytes(p))}}
             val p=Files.list(privacy).use {it.filter {p->p.toString().endsWith(".png")}.findFirst().get()}
             val n=Files.list(normal).use {it.filter {p->p.toString().endsWith(".png")}.findFirst().get()}
             assertFalse(Files.readAllBytes(p).decodeToString().contains("CCBStudioRecipe"));assertTrue(Files.readAllBytes(n).decodeToString().contains("CCBStudioRecipe"))

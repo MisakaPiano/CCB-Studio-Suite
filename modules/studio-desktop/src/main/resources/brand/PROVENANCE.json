@@ -1,0 +1,19 @@
+{
+  "sourceRepository": "MisakaPiano/ChatChatBar-Desktop",
+  "sourceCommit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+  "sourcePath": "app/desktopApp/src/main/resources/brand/ccb.png",
+  "sourceSha256": "7aa9ee4daed5e84e202515ba2fd45be31b3f9128427078c73e8af21b53df103f",
+  "authorization": "Direct user request: every Suite window uses CCB logo recolored blue instead of green. No Desktop asset modified.",
+  "editMethod": "Built-in imagegen color variant, transparent PNG; standard ICO encoding at 16,24,32,48,64,128,256 pixels. Not claimed pixel-identical recoloring.",
+  "prompt": "Replace green/mint/turquoise regions and CCB letters with blue shades, preserving elephant silhouette, white speech bubble, letters CCB, eyes, white areas and transparent background. No redesign or extra elements.",
+  "outputs": {
+    "ccb-blue.ico": {
+      "bytes": 101220,
+      "sha256": "472c0a1aeafdb2f83ba0aad6f28e09fe21725aa78ce4e043ca0e8497bf553ee4"
+    },
+    "ccb-blue.png": {
+      "bytes": 1329421,
+      "sha256": "24aaebf9efb0ff7faa91da0d0edc1460c5e4ce126364d301a2bdc725032467c7"
+    }
+  }
+}

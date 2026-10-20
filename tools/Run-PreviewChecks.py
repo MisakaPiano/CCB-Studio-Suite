@@ -6,7 +6,7 @@ root=Path(__file__).resolve().parents[1];local=root/'.local/windows-preview'
 stamp=datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
 out=local/'evidence'/(stamp+'-'+a.phase);out.mkdir(parents=True)
 def hashes():
- files=[f for d in ['modules','tools'] for f in (root/d).rglob('*') if f.is_file() and f.suffix in ['.kt','.java','.kts','.py','.ps1'] and not any(x in f.parts for x in ['build','__pycache__'])]
+ files=[f for d in ['modules','tools'] for f in (root/d).rglob('*') if f.is_file() and f.suffix in ['.kt','.java','.kts','.py','.ps1','.png','.ico'] and not any(x in f.parts for x in ['build','__pycache__'])]
  files += [root/f for f in ['settings.gradle.kts','build.gradle.kts','gradle.properties']]
  return {f.relative_to(root).as_posix():hashlib.sha256(f.read_bytes()).hexdigest() for f in sorted(files)}
 before=hashes();(out/'source-before.json').write_text(json.dumps(before,indent=2))
@@ -34,7 +34,7 @@ for f in (root/'modules').glob('*/build/test-results/test/TEST-*.xml'):
   status='FAILED' if c.find('failure') is not None or c.find('error') is not None else 'SKIPPED' if c.find('skipped') is not None else 'PASS'
   cases.append(dict(suite=suite.get('name'),name=c.get('name'),seconds=c.get('time'),status=status))
 stable=before==hashes()
-summary=dict(phase=a.phase,startedUtc=datetime.datetime.fromtimestamp(start,datetime.timezone.utc).isoformat(),seconds=round(time.time()-start,3),exitCode=result.returncode,tests=total,failures=failed,errors=errors,skipped=skipped,sourceStable=stable,status='PASS' if result.returncode==0 and stable and not failed and not errors else 'FAILED',testEvidence='EXECUTED' if total else 'NOT TESTED (build only or failed before execution)',arguments=args,baseCommit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip(),realProvider='NOT TESTED',humanAcceptance='NOT TESTED')
+summary=dict(phase=a.phase,startedUtc=datetime.datetime.fromtimestamp(start,datetime.timezone.utc).isoformat(),seconds=round(time.time()-start,3),exitCode=result.returncode,tests=total,failures=failed,errors=errors,skipped=skipped,sourceStable=stable,status=('PASS' if total else 'COMMAND_SUCCESS') if result.returncode==0 and stable and not failed and not errors else 'FAILED',testEvidence='EXECUTED' if total else 'NOT TESTED (build only or failed before execution)',arguments=args,baseCommit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip(),realProvider='NOT TESTED',humanAcceptance='NOT TESTED')
 (out/'summary.json').write_text(json.dumps(summary,indent=2)+'\n');(out/'test-cases.json').write_text(json.dumps(cases,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 print('EVIDENCE='+str(out));print(json.dumps(summary,indent=2));print((out/'gradle.log').read_text(errors='replace')[-10000:])
-raise SystemExit(0 if summary['status']=='PASS' else 1)
+raise SystemExit(0 if summary['status'] in ['PASS','COMMAND_SUCCESS'] else 1)

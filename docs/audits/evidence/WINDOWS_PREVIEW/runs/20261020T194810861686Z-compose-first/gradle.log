@@ -1,0 +1,53 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+The Kotlin Gradle plugin was loaded multiple times in different subprojects, which is not supported and may break the build. 
+This might happen in subprojects that apply the Kotlin plugins with the Gradle 'plugins { ... }' DSL if they specify explicit versions, even if the versions are equal.
+Please add the Kotlin plugin to the common parent project or the root project, then remove the versions in the subprojects.
+If the parent project does not need the plugin, add 'apply false' to the plugin line.
+See: https://docs.gradle.org/current/userguide/plugins.html#sec:subprojects_plugins_dsl
+The Kotlin plugin was loaded in the following projects: ':image-authority', ':studio-desktop'
+> Task :asset-library:compileJava UP-TO-DATE
+> Task :image-authority:checkKotlinGradlePluginConfigurationErrors SKIPPED
+
+> Task :image-authority:compileKotlin
+w: file:///H:/CCB-Studio-Suite/modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/ModelRequestException.kt:12:10 Condition is always 'true'.
+
+> Task :image-authority:compileJava NO-SOURCE
+> Task :studio-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-core:compileKotlin
+> Task :studio-core:compileJava NO-SOURCE
+> Task :studio-core:processResources NO-SOURCE
+> Task :studio-core:classes UP-TO-DATE
+> Task :studio-core:jar UP-TO-DATE
+> Task :studio-desktop:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-desktop:convertXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:copyNonXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:prepareComposeResourcesTaskForMain NO-SOURCE
+> Task :studio-desktop:generateResourceAccessorsForMain SKIPPED
+> Task :studio-desktop:generateActualResourceCollectorsForMain SKIPPED
+> Task :studio-desktop:generateComposeResClass SKIPPED
+> Task :studio-desktop:compileKotlin
+> Task :studio-desktop:compileJava NO-SOURCE
+> Task :studio-desktop:assembleMainResources
+> Task :studio-desktop:processResources
+> Task :studio-desktop:classes
+w: Detected multiple Kotlin daemon sessions at 
+The Daemon will expire after the build after running out of JVM Metaspace.
+The project memory settings are likely not configured or are configured to an insufficient value.
+The daemon will restart for the next build, which may increase subsequent build times.
+These settings can be adjusted by setting 'org.gradle.jvmargs' in 'gradle.properties'.
+The currently configured max heap space is '512 MiB' and the configured max metaspace is '384 MiB'.
+For more information on how to set these values, please refer to https://docs.gradle.org/9.1.0/userguide/build_environment.html#sec:configuring_jvm_memory in the Gradle documentation.
+To disable this warning, set 'org.gradle.daemon.performance.disable-logging=true'.
+Persisted dependency lock state for project ':asset-library'
+Persisted dependency lock state for buildscript of project ':image-authority'
+Persisted dependency lock state for project ':image-authority'
+Persisted dependency lock state for buildscript of project ':studio-core'
+Persisted dependency lock state for project ':studio-core'
+Persisted dependency lock state for buildscript of project ':studio-desktop'
+Persisted dependency lock state for project ':studio-desktop'
+
+BUILD SUCCESSFUL in 1m 48s
+7 actionable tasks: 5 executed, 2 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.1.0/userguide/configuration_cache_enabling.html

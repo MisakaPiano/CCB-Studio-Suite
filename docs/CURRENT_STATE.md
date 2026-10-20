@@ -1,4 +1,14 @@
-# CURRENT STATE — Windows RC 连续任务 / RC BLOCKED（CP2依赖）
+# CURRENT STATE — Windows Preview / IN PROGRESS
+
+2026-10-21 JST。当前任务为 [Issue #3](https://github.com/MisakaPiano/CCB-Studio-Suite/issues/3)，继续遵守 #2；Project 正式纠偏已解除此前泛化来源/缺 SDK STOP。旧失败和 RC BLOCKED 回执保留为历史，不是本轮停止条件。
+
+- 唯一工作区 H:\CCB-Studio-Suite；分支 feature/windows-rc-continuous。从已验证 86760bc0 继续；P1 实现 7d6bc80b61199e3ee9647127fea9b1e634ebeb9c 已推送/核验。
+- P2 正在接入独立 Compose 窗口、编辑/导出、备份恢复；实际 15 项最新 core 测试通过，原件/工程及进程崩溃测试见 [执行记录](rc/PREVIEW_P2_EXECUTION.md)。包和 UI smoke 尚待本轮实际执行。
+- 真实 API 已获用户追加限量授权；实际 SiliconFlow 和 NovelAI 各1次 HTTP200，合计2次，间隔546767ms；凭据未进入项目/交付物。完整真实 Designer/多供应商验收尚未进行，UI 当前为明确标识的合成模式。
+- 不读取真实图库、不改 Desktop/upstream、不合并 main、不发行。CP4 完整安装更新/迁移未完成，不能称 RC。
+- 下一步：完成可启动包与 UI/重启自检，再提交集中 Preview Gate 回执。下列旧章节仅保留历史沿革。
+
+# 历史状态快照 — CP1 结束时 RC BLOCKED（已被 Issue #3 纠偏）
 
 更新日期：2026-10-21 JST；初始包版本 INIT-1.0（母本与原交付清单保留）。
 

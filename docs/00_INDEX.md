@@ -59,3 +59,5 @@ Windows连续任务实际远程交付：[RC BLOCKED/CP1固定审阅入口](rc/PR
 ## Windows Preview resume / Issue #3
 
 Latest Project correction rescinds generalized source-rights / missing-SDK STOP. Same owner resumed from 86760bc0; historical RC BLOCKED evidence remains. Current work is IN PROGRESS toward Preview Gate, with actual 69 authority + 8 Studio core synthetic tests PASS. See [Preview progress](rc/PREVIEW_PROGRESS.md) and [Issue #3](https://github.com/MisakaPiano/CCB-Studio-Suite/issues/3). Real API use is additionally authorized at <=12 attempts/rolling hour and >=300s interval; no real calls at this checkpoint. Not RC/Preview acceptance.
+
+当前执行入口：[Preview任务](../tasks/WINDOWS_PREVIEW_GATE.md)、[P2进度](rc/PREVIEW_P2_EXECUTION.md)、[集中待验项](rc/PREVIEW_REVIEW_ITEMS.md)。历史 CP1 STOP 已纠偏；请以 CURRENT STATE 页首和后续 Preview Gate 回执为准。

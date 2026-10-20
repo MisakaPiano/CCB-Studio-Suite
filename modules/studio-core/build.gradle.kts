@@ -1,6 +1,6 @@
 plugins {
-    kotlin("jvm") version "2.3.20"
-    kotlin("plugin.serialization") version "2.3.20"
+    kotlin("jvm")
+    kotlin("plugin.serialization")
 }
 kotlin { jvmToolchain(17) }
 dependencies {
@@ -17,4 +17,13 @@ tasks.test {
     jvmArgs("-XX:ActiveProcessorCount=2")
     systemProperty("preview.test.root", rootProject.file(".local/windows-preview/tests").absolutePath)
     testLogging { events("passed", "failed", "skipped") }
+}
+tasks.register<JavaExec>("liveProbe") {
+    group = "verification"
+    dependsOn("testClasses")
+    classpath = sourceSets.test.get().runtimeClasspath
+    mainClass.set("io.github.misakapiano.ccbstudio.core.LiveProbe")
+    maxHeapSize = "256m"
+    jvmArgs("-XX:ActiveProcessorCount=2")
+    args(providers.gradleProperty("liveService").getOrElse("CREDENTIAL_CHECK"), rootProject.file(".local/windows-preview/live-validation").absolutePath)
 }
