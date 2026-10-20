@@ -7,7 +7,7 @@
 | A0-002 | Project审查A0真实结果 | PASS_WITH_SCOPE | 用户本轮明确提供的Project结论，审查SHA6d3d2b22651f9744807925f74c6941f681bbef02；未独立读取外部Project会话 |
 | BOOTSTRAP-GIT-001 | 用户追加授权的A0文档Git交付 | DELIVERY SNAPSHOT / 远程回执另报 | 仅Suite显式路径提交与正常push；交付SHA见Git；不执行A1/软件发布 |
 | A1-001 | 独立数据根与原始资产提交/恢复 | PASS_WITH_SCOPE (用户提供 Project 审查结论，固定3c17b4c9) | [实际回执](audits/A1_001_EXECUTION.md)；实施基准6d3d2b2；用户随后追加要求远程交付，见[Project审阅入口](../handoff/PROJECT_A1_REVIEW.md)，不合并main，不启动下一任务 |
-| A1-001-R1 | 资产目录完整性与维护排水补强 | IMPLEMENTED / TARGETED 6 PASS / MODULE 27 PASS / DELIVERY IN PROGRESS | [实际回执](audits/A1_001_R1_EXECUTION.md)；3c17b4c9起点，feature/a1-001-r1-safety；本轮明确允许功能分支Git和指定Drive交付，不merge/release/后续实施 |
+| A1-001-R1 | 资产目录完整性与维护排水补强 | IMPLEMENTED / TARGETED 6 PASS / MODULE 27 PASS / DELIVERED / AWAITING PROJECT REVIEW | [实际回执](audits/A1_001_R1_EXECUTION.md)；3c17b4c9起点，feature/a1-001-r1-safety；本轮明确允许功能分支Git和指定Drive交付，不merge/release/后续实施 |
 | A1-002 | 安全更新垂直原型 | NOT AUTHORIZED | A1-001仅产出后续设计；无签名/安装/真实A→B执行 |
 | X-000 | 向Desktop登记关系 | PROPOSED | 使用交接说明，目标项目自行登记 |
 
@@ -33,4 +33,4 @@ A0主执行者：本次Codex本地会话，工作区H:\CCB-Studio-Suite，2026-1
 
 ## A1-001-R1 实际回执（2026-10-21 JST）
 
-用户提供原A1固定提交3c17b4c9038d821efef726b1dc84c90c87855c39已获Project PASS_WITH_SCOPE，限定两项安全补强。开始与远程一致且工作树干净，建立R1独立分支。目录全部子项严格枚举/保留异常；备份在已登记操作内完成目录检查，关闭排水不放松新操作门禁。修复前回归5失败/6项，修复后针对性6 PASS；完整模块本轮实际27 PASS，0失败/错误/跳过，9份Java源码hash稳定。首轮测试辅助/PS5回执问题及失败证据保留，不把旧21 PASS沿用。GitHub/Drive交付进行中，实际回执随后登记。完成后只等待Project审查，不进入A1-002/A2。
+用户提供原A1固定提交3c17b4c9038d821efef726b1dc84c90c87855c39已获Project PASS_WITH_SCOPE，限定两项安全补强。开始与远程一致且工作树干净，建立R1独立分支。目录全部子项严格枚举/保留异常；备份在已登记操作内完成目录检查，关闭排水不放松新操作门禁。修复前回归5失败/6项，修复后针对性6 PASS；完整模块本轮实际27 PASS，0失败/错误/跳过，9份Java源码hash稳定。首轮测试辅助/PS5回执问题及失败证据保留，不把旧21 PASS沿用。实现提交a9ac47120c6cbea98a7a04140de1071568b9a985已推送并在远程核验；Drive原始ZIP已上传，父目录/大小及原字节SHA-256回读一致，[双通道实际回执](audits/evidence/A1_001_R1/DELIVERY.json)保留文件ID/链接/大小/hash。后续提交只补回执，无源码/测试改动。完成后只等待Project审查，不进入A1-002/A2。

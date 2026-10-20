@@ -1,0 +1,48 @@
+{
+  "task": "A1-001-R1",
+  "recordedUtc": "2026-10-20T17:32:33.976527+00:00",
+  "reviewBase": "3c17b4c9038d821efef726b1dc84c90c87855c39",
+  "implementationCommit": "a9ac47120c6cbea98a7a04140de1071568b9a985",
+  "deliveryReceiptCommit": "Use the commit containing this file; later receipt commit changes documentation only",
+  "branch": "feature/a1-001-r1-safety",
+  "github": {
+    "repository": "MisakaPiano/CCB-Studio-Suite",
+    "implementationCommitUrl": "https://github.com/MisakaPiano/CCB-Studio-Suite/commit/a9ac47120c6cbea98a7a04140de1071568b9a985",
+    "pushStatus": "SUCCESS",
+    "connectorReadbackStatus": "VERIFIED_BRANCH_AT_IMPLEMENTATION_COMMIT",
+    "remoteImplementationShaObserved": "a9ac47120c6cbea98a7a04140de1071568b9a985",
+    "mainShaObserved": "6d3d2b22651f9744807925f74c6941f681bbef02",
+    "priorFeatureShaObserved": "3c17b4c9038d821efef726b1dc84c90c87855c39",
+    "mergeReleaseVisibilityOrPermissionsChanges": "NONE"
+  },
+  "drive": {
+    "status": "UPLOADED_METADATA_AND_RAW_BYTES_VERIFIED",
+    "folderId": "1DcysN49RtUDnY9jx4wZ4z41F_j4ttUT2",
+    "fileId": "1kP5IBA419AY0WKNgdN4eUKaiyGh3fabw",
+    "fileUrl": "https://drive.google.com/file/d/1kP5IBA419AY0WKNgdN4eUKaiyGh3fabw/view?usp=drivesdk",
+    "fileName": "A1-001-R1_a9ac47120c6c_raw-evidence.zip",
+    "mimeType": "application/zip",
+    "sizeBytes": 75529,
+    "sha256": "707765adf83eb4a0fe94df9e48325b50872b8bbc3a789351a4a37bc52bee9812",
+    "rawFileCount": 40,
+    "verification": "Upload result and metadata confirm target parent/name/size; raw connector download SHA-256 and ZIP validation match local archive",
+    "archiveManifestImplementationCommit": "a9ac47120c6cbea98a7a04140de1071568b9a985",
+    "localArchivePath": "H:\\CCB-Studio-Suite\\.local\\a1-001-r1\\delivery\\A1-001-R1_a9ac47120c6c_raw-evidence.zip",
+    "sharingOrAccountChanges": "NONE"
+  },
+  "validation": {
+    "targetedTests": 6,
+    "targetedFailures": 0,
+    "moduleSuites": 3,
+    "moduleTests": 27,
+    "moduleFailures": 0,
+    "moduleErrors": 0,
+    "moduleSkipped": 0,
+    "moduleElapsedSeconds": 403.5166846,
+    "javaSourceHashesMatchedToCommittedGitBlobs": 9,
+    "protectedBaselineFilesUnchanged": 70,
+    "sensitivePatternScan": "PASS (bounded patterns plus explicit file scope review, not universal DLP)",
+    "productAcceptance": "NOT TESTED"
+  },
+  "handoff": "Stop for Project review. No A1-002/A2, merge, release, real API, user library, signing or installer work."
+}
