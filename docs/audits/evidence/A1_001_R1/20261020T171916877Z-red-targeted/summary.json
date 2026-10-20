@@ -1,0 +1,22 @@
+{
+  "task": "A1-001-R1",
+  "phase": "red-targeted-initial-harness-failure",
+  "status": "FAILED",
+  "tests": 6,
+  "failures": 5,
+  "errors": 0,
+  "skipped": 0,
+  "sourceSha256After": {
+    "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetBackup.java": "618ec123649b6c332a54542f00866324d145bef5f23bbb705047b7ae2d99d4fc",
+    "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetStore.java": "042fcfbf1dd02e88a6673ee5388f7f32a5f223cdac6a3dadc12a2e048787ba41",
+    "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/ReadResult.java": "c6d3488f55bc939c0933ccfdfed041efd5eadd0b612a86f444d71dbaa87b2eab",
+    "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/StoreException.java": "d45143aacdb1b2af549c546167be9f6b11c745ad37c7a2abe8c5b79c751006a1",
+    "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/StoreIO.java": "5a604e4d3dd0ad45d2b7083a88bc8e0f8636a8aef196beaeac972e9e2c6e5361",
+    "modules/asset-library/src/test/java/io/github/misakapiano/ccbstudio/assets/AssetBackupTest.java": "53d0ee16d8017dfa57bc7e39331a3b27d99d6d41deae4ae64afcd1ae5f13c59d",
+    "modules/asset-library/src/test/java/io/github/misakapiano/ccbstudio/assets/AssetSafetyTest.java": "b1ea952b65dd6b456bc6261965030a6e7b07539fc738a8b8fe4fa9aa30559370",
+    "modules/asset-library/src/test/java/io/github/misakapiano/ccbstudio/assets/AssetStoreTest.java": "b735cc16d7fdec8e44b5489a9229b977da69caef146c07053ad8a8b8b18916fa",
+    "modules/asset-library/src/test/java/io/github/misakapiano/ccbstudio/assets/StoreProcess.java": "e6cc83ca0a07023069d8a1e85f15fef299a90ffd44183236b31bffc47e56ad7c"
+  },
+  "sourceSha256Before": "NOT RECORDED: PS5 native-stderr exception prevented summary persistence",
+  "note": "2 race assertions reproduced; 3 directory cases failed in test snapshot helper reading Windows owner lock, so these do not establish directory regression. Raw run retained. Runner/test helper corrected before repeat."
+}

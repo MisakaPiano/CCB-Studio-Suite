@@ -14,7 +14,7 @@ public final class AssetStore implements AutoCloseable {
     public enum Kind { ORIGINAL, DERIVED }
     public enum Io { READ, WRITE, MOVE }
     public enum Point { INTENT, BYTES, SEALED, ASSET, RECORD, INDEX, COMPLETE,
-        BACKUP_FILE, BACKUP_MANIFEST, RESTORE_FILE, RESTORE_COMPLETE }
+        BACKUP_REGISTERED, BACKUP_FILE, BACKUP_MANIFEST, RESTORE_FILE, RESTORE_COMPLETE }
     public interface Faults {
         default void before(Io operation, Path path) throws IOException {}
         default void after(Point point, Path path) throws IOException {}
@@ -110,6 +110,8 @@ public final class AssetStore implements AutoCloseable {
     <T> T operation(Callable<T> body) throws IOException {
         synchronized (gate) {
             if (draining || closed) throw new StoreException("CLOSING", "Store is draining or closed");
+            // Registration covers both queued and running IO until the outer body settles.
+            // Already admitted work uses internal helpers, not a new public admission during drain.
             active++;
         }
         try {
@@ -226,17 +228,32 @@ public final class AssetStore implements AutoCloseable {
     }
     public ReadResult<Asset> readIndex(UUID id) throws IOException { return operation(() -> indexInternal(id)); }
     public List<Asset> catalog() throws IOException { return operation(this::catalogInternal); }
-    private List<Asset> catalogInternal() throws IOException {
+    // Only inside an admitted operation; backup must retain its original lifetime registration.
+    List<Asset> catalogInternal() throws IOException {
+        if (!Thread.holdsLock(serial)) throw new IllegalStateException("Catalog requires an admitted serialized operation");
         List<Asset> result = new ArrayList<>();
-        for (Path record : StoreIO.entries(root.resolve("records"), "*.rec")) {
-            UUID id;
-            try { id = UUID.fromString(record.getFileName().toString().replace(".rec", "")); }
-            catch (IllegalArgumentException invalid) { throw new StoreException("CORRUPT", "Unknown record filename retained"); }
-            if (!record.getFileName().toString().equals(id + ".rec"))
-                throw new StoreException("CORRUPT", "Noncanonical record filename retained");
+        for (Path record : StoreIO.entries(root.resolve("records"), "*")) {
+            String name = record.getFileName().toString();
+            if (name.startsWith(".pending-")) {
+                canonicalRecordId(name.substring(".pending-".length()));
+                // This is the writer's staging-name format, not proof of ownership or a commit.
+                // Truncated, unreadable and future envelopes keep their distinct failure states.
+                decodeAssetFile(record, "asset").require();
+                throw new StoreException("RECOVERY_REQUIRED", "Pending record publication retained: " + name
+                        + "; explicit inspection required before claiming a complete catalog");
+            }
+            if (!name.endsWith(".rec")) throw new StoreException("CORRUPT", "Unknown record entry retained: " + name);
+            UUID id = canonicalRecordId(name.substring(0, name.length() - ".rec".length()));
             result.add(readInternal(id).require());
         }
         return List.copyOf(result);
+    }
+    private static UUID canonicalRecordId(String name) throws StoreException {
+        try {
+            UUID id = UUID.fromString(name);
+            if (name.equals(id.toString())) return id;
+        } catch (IllegalArgumentException invalid) { /* Retain unknown or noncanonical entries. */ }
+        throw new StoreException("CORRUPT", "Unknown or noncanonical record filename retained: " + name);
     }
     public int rebuildIndex() throws IOException {
         return operation(() -> {

@@ -1,15 +1,15 @@
-# CURRENT STATE — A1-001 已实施，等待 Project review
+# CURRENT STATE — A1-001-R1 验证完成，正在交付
 
 更新日期：2026-10-21 JST；初始包版本 INIT-1.0（母本与原交付清单保留）。
 
 | 项目 | 当前事实 |
 |---|---|
 | 项目 | CCB Studio Suite |
-| 阶段 | 用户提供A0-002 PASS_WITH_SCOPE；A1-001已实施且最终合成自动化21 PASS，已停止等待Project审查，不自动A1-002/A2 |
+| 阶段 | 用户提供 A1-001@3c17b4c9 的 Project 结论 PASS_WITH_SCOPE；R1-01/R1-02 已修复，新针对性 6 PASS、完整模块 27 PASS，正在本轮获准的 GitHub/Drive 交付；不自动 A1-002/A2 |
 | 立项文件 | 已整理成分文件包与合并母本 |
 | 生产源码 | 单个JDK17 asset-library切片：原始流/不可变关系/事务恢复/索引/最小备份恢复；非完整应用 |
-| Windows本地工作区 | H:\CCB-Studio-Suite；feature/a1-001-asset-durability；实施起点6d3d2b22651f9744807925f74c6941f681bbef02，开始时index/worktree/untracked干净；本次Git交付以包含本文件的功能分支commit为准 |
-| GitHub远程仓库 | https://github.com/MisakaPiano/CCB-Studio-Suite.git；A0已推送并核验6d3d2b2；用户随后要求可同步给Project review，追加授权本次功能分支Git交付；远程SHA以最终核验回执为准 |
+| Windows本地工作区 | H:\CCB-Studio-Suite；feature/a1-001-r1-safety；R1 起点3c17b4c9038d821efef726b1dc84c90c87855c39，开始时index/worktree/untracked干净；实现身份见本次提交和源码hash |
+| GitHub远程仓库 | https://github.com/MisakaPiano/CCB-Studio-Suite.git；main仍6d3d2b2；A1原分支远程3c17b4c9已核验；本轮明确允许R1功能分支提交/推送及指定Drive附件上传；实际结果另记 |
 | 产品验收/发布 | 无 |
 | 真实用户数据 | 未授权读取/迁移 |
 | 真实付费API | 未授权 |
@@ -17,7 +17,9 @@
 
 ## 下一项
 
-Project审查[A1-001实际执行回执](audits/A1_001_EXECUTION.md)、[未提交补丁](audits/evidence/A1_001/source.patch)、[精确文件与验证清单](audits/evidence/A1_001/WORKING_TREE.json)，决定下一轮授权。最终2 suites / 21 tests / 0 failures / 0 errors / 0 skipped，372.034s；是模块合成验证，不是产品验收。A0-002=`PASS_WITH_SCOPE`来自本轮用户明确提供，未独立读取外部Project会话。[更新器后续设计](audits/A1_001_UPDATER_DESIGN.md)不授权安装/签名或A1-002。用户随后追加要求远程交付；见[Project A1审阅入口](../handoff/PROJECT_A1_REVIEW.md)。实施报告、WORKING_TREE和source.patch保留上传前快照，最终交付以Git commit内文件为准。
+完成本轮获准的 GitHub/Drive 交付后，仅 Project review：[R1审阅入口](audits/A1_001_R1_PROJECT_REVIEW.md)、[实际执行与缺口](audits/A1_001_R1_EXECUTION.md)、[最终逐项测试](audits/evidence/A1_001_R1/FINAL_TEST_CASES.json)。新代码重新实际执行3 suites / 27 tests / 0 failures/errors/skipped，403.517s；针对性6项先在旧逻辑确认5失败，再在修复后6 PASS。旧A1的21 PASS只是历史快照，没有代签新版。
+
+A1-001 的 Project `PASS_WITH_SCOPE` 由用户明确提供，未独立读取外部Project会话；本轮R1尚待新审查。备份已登记后允许在原登记内完成目录校验；未知/暂存权威内容保留且阻止完整目录/重建，不自动清理。Windows/Android/Server真实安全更新仍未实施/未验收。
 
 ## 已知边界
 

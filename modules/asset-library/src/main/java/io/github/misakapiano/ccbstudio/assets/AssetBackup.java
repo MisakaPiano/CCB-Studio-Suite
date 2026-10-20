@@ -13,12 +13,13 @@ public final class AssetBackup {
 
     public static Report create(AssetStore store, Path supplied) throws IOException {
         return store.operation(() -> {
+            store.io.faults.after(AssetStore.Point.BACKUP_REGISTERED, store.root);
             Path destination = supplied.toAbsolutePath().normalize();
             disjoint(store.root, destination);
             AssetStore.rejectForeignRoot(destination);
             StoreIO.directory(destination);
             if (!StoreIO.entries(destination, "*").isEmpty()) throw new StoreException("CONFLICT", "Backup target must be empty");
-            int assets = store.catalog().size(); // The root gate is reentrant at the Java monitor; no additional owner.
+            int assets = store.catalogInternal().size(); // Already admitted: finish under this registration even during drain.
             List<Path> sourceFiles = new ArrayList<>();
             sourceFiles.add(store.root.resolve("suite-root.rec"));
             for (String directory : List.of("objects", "records", "transactions")) {
@@ -64,7 +65,7 @@ public final class AssetBackup {
             return destination.operation(() -> {
                 Path intent = root.resolve("restore-intent.rec");
                 if (!StoreIO.regular(intent)) {
-                    if (!destination.catalog().isEmpty()
+                    if (!destination.catalogInternal().isEmpty()
                             || !StoreIO.entries(root.resolve("transactions"), "*").isEmpty()
                             || !StoreIO.entries(root.resolve("objects"), "*").isEmpty())
                         throw new StoreException("CONFLICT", "Restore requires a new empty Suite root");
@@ -86,7 +87,7 @@ public final class AssetBackup {
                     }
                     io.faults.after(AssetStore.Point.RESTORE_FILE, target);
                 }
-                int count = destination.catalog().size();
+                int count = destination.catalogInternal().size();
                 // Preserve pending transactions too; they remain explicit recovery work after reopening.
                 io.immutable(root.resolve("restore-done.rec"), "restore-done", identity);
                 io.faults.after(AssetStore.Point.RESTORE_COMPLETE, root);

@@ -1,0 +1,36 @@
+
+
+Here are the highlights of this release:
+ - Full Java 25 support
+ - Native task graph visualization
+ - Enhanced console output
+
+For more details see https://docs.gradle.org/9.1.0/release-notes.html
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+> Task :asset-library:compileJava
+> Task :asset-library:processResources NO-SOURCE
+> Task :asset-library:classes
+> Task :asset-library:compileTestJava
+> Task :asset-library:processTestResources NO-SOURCE
+> Task :asset-library:testClasses
+
+> Task :asset-library:test
+
+AssetSafetyTest > R1_01_normalEmptyAndCommittedCatalogsStillRebuild PASSED
+
+AssetSafetyTest > R1_02_interruptedRegisteredBackupNeverReportsSuccessAndRetainsLockUntilSettled FAILED
+    java.lang.AssertionError at AssetSafetyTest.java:155
+
+AssetSafetyTest > R1_02_registeredBackupCompletesDuringDrainWithVerifiedMarker FAILED
+    java.lang.AssertionError at AssetSafetyTest.java:155
+
+AssetSafetyTest > R1_01_unknownNamesAndDirectoriesCannotBecomeACompleteCatalog FAILED
+    java.io.IOException at AssetSafetyTest.java:29
+
+AssetSafetyTest > R1_01_damagedUnsupportedAndUnreadableEntriesRetainTheirClassification FAILED
+    java.io.IOException at AssetSafetyTest.java:29
+
+AssetSafetyTest > R1_01_actualInterruptedRecordPublicationRemainsVisibleAfterRecoveryAndRestart FAILED
+    java.io.IOException at AssetSafetyTest.java:29

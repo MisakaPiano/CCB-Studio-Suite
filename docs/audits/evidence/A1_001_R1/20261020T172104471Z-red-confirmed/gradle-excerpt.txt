@@ -1,0 +1,50 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+> Task :asset-library:compileJava
+> Task :asset-library:processResources NO-SOURCE
+> Task :asset-library:classes
+> Task :asset-library:compileTestJava
+> Task :asset-library:processTestResources NO-SOURCE
+> Task :asset-library:testClasses
+
+> Task :asset-library:test
+
+AssetSafetyTest > R1_01_normalEmptyAndCommittedCatalogsStillRebuild PASSED
+
+AssetSafetyTest > R1_02_interruptedRegisteredBackupNeverReportsSuccessAndRetainsLockUntilSettled FAILED
+    java.lang.AssertionError at AssetSafetyTest.java:156
+
+AssetSafetyTest > R1_02_registeredBackupCompletesDuringDrainWithVerifiedMarker FAILED
+    java.lang.AssertionError at AssetSafetyTest.java:156
+
+AssetSafetyTest > R1_01_unknownNamesAndDirectoriesCannotBecomeACompleteCatalog FAILED
+    java.lang.AssertionError at AssetSafetyTest.java:21
+
+AssetSafetyTest > R1_01_damagedUnsupportedAndUnreadableEntriesRetainTheirClassification FAILED
+    java.lang.AssertionError at AssetSafetyTest.java:21
+
+AssetSafetyTest > R1_01_actualInterruptedRecordPublicationRemainsVisibleAfterRecoveryAndRestart FAILED
+    java.lang.AssertionError at AssetSafetyTest.java:21
+gradle.bat :
+At H:\CCB-Studio-Suite\tools\Test-AssetSafety.ps1:48 char:9
++         & $GradleCommand @gradleArgs *> (Join-Path $evidence 'gradle. ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+6 tests completed, 5 failed
+
+> Task :asset-library:test FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':asset-library:test'.
+> There were failing tests. See the report at: file:///H:/CCB-Studio-Suite/modules/asset-library/build/reports/tests/te
+st/index.html
+
+* Try:
+> Run with --scan to generate a Build Scan (Powered by Develocity).
+
+BUILD FAILED in 31s
+3 actionable tasks: 3 executed

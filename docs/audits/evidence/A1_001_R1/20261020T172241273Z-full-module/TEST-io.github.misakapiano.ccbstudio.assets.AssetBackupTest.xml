@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.assets.AssetBackupTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-20T17:22:50.931Z" hostname="DD1" time="6.382">
+  <properties/>
+  <testcase name="D07_snapshotRestoresOriginalsDocumentsAndPendingInputButExcludesSecrets" classname="io.github.misakapiano.ccbstudio.assets.AssetBackupTest" time="1.843"/>
+  <testcase name="D07_interruptedRestoreBlocksNormalOpenAndResumesWithoutReplacingContent" classname="io.github.misakapiano.ccbstudio.assets.AssetBackupTest" time="1.336"/>
+  <testcase name="D07_interruptedBackupIsNotACompleteBackupAndSourceStaysUsable" classname="io.github.misakapiano.ccbstudio.assets.AssetBackupTest" time="0.431"/>
+  <testcase name="D07_badBackupIsRejectedBeforeDestinationAndCannotOverwritePopulatedRoot" classname="io.github.misakapiano.ccbstudio.assets.AssetBackupTest" time="1.236"/>
+  <testcase name="D07_restorePartialCopyRemainsRecoverableAndChangedTargetIsNotOverwritten" classname="io.github.misakapiano.ccbstudio.assets.AssetBackupTest" time="1.535"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

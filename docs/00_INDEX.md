@@ -5,7 +5,7 @@
 1. [当前状态](CURRENT_STATE.md)
 2. [任务登记](TASK_REGISTRY.md)
 3. [来源锁](SOURCE_LOCK.json)
-4. 本任务合同；当前 [A1-001](../tasks/A1_001_IMPLEMENTATION_CANDIDATE.md)
+4. 本任务合同；当前为用户限定的 [A1-001-R1 实施范围与回执](audits/A1_001_R1_EXECUTION.md)，原 [A1-001 合同](../tasks/A1_001_IMPLEMENTATION_CANDIDATE.md)保留历史
 
 ## 产品与工程合同
 
@@ -41,3 +41,7 @@
 ## A1-001（2026-10-21，实施/合成验证完成，待审查）
 
 用户提供A0-002结论PASS_WITH_SCOPE，允许从6d3d2b2在独立功能分支执行数据切片；实施时授权不含Git提交/推送；用户随后要求远程交付，本次追加Git交付入口见[Project A1审阅交接](../handoff/PROJECT_A1_REVIEW.md)。见[实际实施/21项测试回执](audits/A1_001_EXECUTION.md)、[未提交补丁](audits/evidence/A1_001/source.patch)、[文件状态与SHA清单](audits/evidence/A1_001/WORKING_TREE.json)、[模块合同与运行方式](../modules/asset-library/README.md)、[更新器后续设计](audits/A1_001_UPDATER_DESIGN.md)。A0报告和来源JSON保留原始快照，产品验收矩阵不提前改PASS。
+
+## A1-001-R1（2026-10-21，针对性安全补强）
+
+原A1@3c17b4c9审查PASS_WITH_SCOPE由用户提供；本轮只修复目录完整性和备份/关闭排水竞争。见[R1 Project审阅入口](audits/A1_001_R1_PROJECT_REVIEW.md)、[真实实施/失败沿革/恢复语义](audits/A1_001_R1_EXECUTION.md)、[本轮27项实际结果](audits/evidence/A1_001_R1/FINAL_TEST_CASES.json)、[源码身份](audits/evidence/A1_001_R1/SOURCE_IDENTITY.json)。GitHub/Drive交付以实际回执为准；不改旧证据或产品验收矩阵，不自动继续更新器/其他阶段。

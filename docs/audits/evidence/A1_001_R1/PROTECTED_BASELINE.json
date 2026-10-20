@@ -1,0 +1,352 @@
+[
+  {
+    "path": ".gitattributes",
+    "sha256": "2871fbd32f2820f043b4eaf46b54c7ec883eb54d107fc7f5d6809939674535fa",
+    "gitBlob": "0ed8aaba8f13523d7fd5f3d2ec8f2d694cebc24a"
+  },
+  {
+    "path": ".gitignore",
+    "sha256": "bc3845299c53d45d6ba7832a76c8191fd9bd7b78427eba408bdc2e318a9a970e",
+    "gitBlob": "b1996ac6f67b2e9f1fbca8ec4c2099bc82048e93"
+  },
+  {
+    "path": "AGENTS.md",
+    "sha256": "5d7c19a719fd962181765ee9008351ee262f2248b87777fada56ef12e8bc014a",
+    "gitBlob": "135f5a328fc9eb0ada56652943c06df6db9a8eb9"
+  },
+  {
+    "path": "CCB_STUDIO_SUITE_INIT_20261020.md",
+    "sha256": "baded0b363a237c8bf0eb350cc2935863d270e93005bfa9f176db666b3f4d85e",
+    "gitBlob": "6207fd7e0a8b8747ffaf9577caccd3e47aa97436"
+  },
+  {
+    "path": "PACKAGING_NOTES.md",
+    "sha256": "e5be05547ac6036730e2d366821eb21b68249be7b336db9293e83479f6aa27e6",
+    "gitBlob": "2b9bf180be4906226f6496cb5f3e38436fc6d20e"
+  },
+  {
+    "path": "README.md",
+    "sha256": "308f73d5930faca156cd61bfb66d52d1293c26b258f3a4c092b9a624bc409a7b",
+    "gitBlob": "2f99d38c2c18ca35815a22469fb38b427999ef28"
+  },
+  {
+    "path": "SETUP_THREE_WORKSPACES_CN.md",
+    "sha256": "c7a775ea38a33786a9e7c8101364152474d23c8a4f3402015a854ce9bd24224b",
+    "gitBlob": "15c70f0d56e767139e2f9648c3cade07103a0921"
+  },
+  {
+    "path": "START_HERE_CN.md",
+    "sha256": "3bc5f7036daf48f97c764f1f0973c93f972f97b15ad7108805967706ed4cf48b",
+    "gitBlob": "f37acdb4cee9a62ae6d5189b8e1fb7c6d83e1869"
+  },
+  {
+    "path": "build.gradle.kts",
+    "sha256": "882eb7942bcd761ab4205870497b6015918ccb13a510e7f30b7b2a2d23937bfa",
+    "gitBlob": "191a5989705b2d8264dc415a0cfed95ab04105c5"
+  },
+  {
+    "path": "docs/01_PROJECT_CHARTER.md",
+    "sha256": "483803da931428647fbe8aa815d0569023ffc37c76034015bdaaee393b798a0b",
+    "gitBlob": "8b3086a4c89e919b1f8db34142e5abb517c080a3"
+  },
+  {
+    "path": "docs/02_PRODUCT_REQUIREMENTS.md",
+    "sha256": "46a5c5012bc1a82a55cc4731089238a033e8b55580d74b3d0d270e56b511f7e1",
+    "gitBlob": "c4aefdbcf7f52f7d0c346b3a9784598cac6330d7"
+  },
+  {
+    "path": "docs/03_ARCHITECTURE_AND_REUSE.md",
+    "sha256": "20e7805f6c629840fed333d66581711065af2f821dde2801abd95e423a3a60f5",
+    "gitBlob": "5463321e2a29741d1c5878a2d8791d134ef54b77"
+  },
+  {
+    "path": "docs/04_DATA_SAFETY.md",
+    "sha256": "68230a0f455fc621c193519fd128b42d264010e45d07fd4e9baa9ed513d992a7",
+    "gitBlob": "303c0aabb5b35cdd10253461b8d97836604defd3"
+  },
+  {
+    "path": "docs/05_UPDATE_AND_RELEASE.md",
+    "sha256": "decbb712d3b1a418fce7f7293b559c951736e045887550f61323062f138d3cf0",
+    "gitBlob": "e163e141d590245b7d688ca1322cfc2eeba7959b"
+  },
+  {
+    "path": "docs/06_SERVER_SECURITY.md",
+    "sha256": "4c6e04c0b875a075cd40262fc2a28c922ae8f2cc6a6fc6891982c9a135aa1781",
+    "gitBlob": "14bd31a8ced11da4f5f15028f14f4b7cdd66f1de"
+  },
+  {
+    "path": "docs/07_SOURCE_MAP.md",
+    "sha256": "e752ab3eca558f03cf956861fb0bf124fd4779142d6892944308d02ba5846b5d",
+    "gitBlob": "995e753b11dc2f3a700e51510b05311969a89da6"
+  },
+  {
+    "path": "docs/08_GIT_AND_COLLABORATION.md",
+    "sha256": "be20369f945ec5d5a8893af49c9a89c26bc868633007874a047ffc7ffe9499f3",
+    "gitBlob": "5ac3b90e0c76b108056515ea99714f27845e27a5"
+  },
+  {
+    "path": "docs/09_ROADMAP.md",
+    "sha256": "9389d79fdb306d38485ad901b2729fddd4db9b45261fd17b0b26dd0382b9965e",
+    "gitBlob": "a1650b9433d7b4a77fb6ab8cc42501ee41ba05d4"
+  },
+  {
+    "path": "docs/10_ACCEPTANCE_MATRIX.md",
+    "sha256": "4d8c3e1416a339c990bb906938cfd9a0101a360150c2685053692022584453c8",
+    "gitBlob": "1fd1d8f0890b887959bd2a63a13ed1e2f428cc31"
+  },
+  {
+    "path": "docs/CROSS_PROJECT_REGISTRY.md",
+    "sha256": "8a87d4fcac15513c9962c1b278454dbf48c24110a0cf4b00a7a5a87da5786def",
+    "gitBlob": "7cd38ca7fbc7ac25bdadc27901aec5639ca08220"
+  },
+  {
+    "path": "docs/DECISIONS.md",
+    "sha256": "b75cc5e23c0e01a4bcac3075d0fb22c007930bf06eec6090c06a125453e313f5",
+    "gitBlob": "6fc2ede6f481d6473075dcb2d4fae00b9fe20b3b"
+  },
+  {
+    "path": "docs/SOURCE_LOCK.json",
+    "sha256": "37876ec4e9611ac02f4c6fc6c087f91f2ba3b5aa2fa51ccc19d979fe34d04f90",
+    "gitBlob": "ba31ff7a9c810623ce43e4d48f7f02299471ca15"
+  },
+  {
+    "path": "docs/audits/A0_001_DEPENDENCY_AND_GAPS.md",
+    "sha256": "e7e1308fd68dc55d181d3f245751b2425f7e7abcddd34eb6229e9327c517208f",
+    "gitBlob": "603eb355b8cf7bf8081ede8c53eaccd162e8c9d9"
+  },
+  {
+    "path": "docs/audits/A0_001_REUSE_AUDIT.md",
+    "sha256": "a3de7d46f4f4f1fab7a431c288ce31b35eda496b4c2e2f766af922f5ab6f3526",
+    "gitBlob": "6190832d2707c4e83a986e7252557fd71fa12ced"
+  },
+  {
+    "path": "docs/audits/A0_001_SOURCE_EVIDENCE.json",
+    "sha256": "dcb8389bf86415336167ef561f375cd46d0d655f12ad99f073d10652f0f3c11a",
+    "gitBlob": "4fe4d5c2076bd0c309740da8371e763bdbecd48d"
+  },
+  {
+    "path": "docs/audits/A1_001_EXECUTION.md",
+    "sha256": "cad718cf3d05d32b7ec0dce26dd9c8a17a2bda76c2c8823030419ff40a31cb82",
+    "gitBlob": "4a5a1b285d21dc311c48a8624c094d32aff28198"
+  },
+  {
+    "path": "docs/audits/A1_001_UPDATER_DESIGN.md",
+    "sha256": "e353884a17ade5bc78f24c05ba11de83c760e898b36b6d0c25bee58e8f33ceb0",
+    "gitBlob": "21ff45aae572f172c5bad5b3af15d1c97f0c83b5"
+  },
+  {
+    "path": "docs/audits/evidence/A1_001/20261020T162815244Z/TEST-io.github.misakapiano.ccbstudio.assets.AssetBackupTest.xml",
+    "sha256": "75159d5b0040cbf5651eb632e325a75f279dd449f2f3681d1f437c084a2c8039",
+    "gitBlob": "e62b4220a565b8858ac6e683c3bc395af0b0c77e"
+  },
+  {
+    "path": "docs/audits/evidence/A1_001/20261020T162815244Z/TEST-io.github.misakapiano.ccbstudio.assets.AssetStoreTest.xml",
+    "sha256": "629030b462b5c08be8d627a1d04aec09f482c798b5341a580f42b5673e6f9106",
+    "gitBlob": "f18c4767bd562568e313222102b5986977d9fcb7"
+  },
+  {
+    "path": "docs/audits/evidence/A1_001/20261020T162815244Z/gradle.log",
+    "sha256": "822d6ac49324025d26572fe6f7f2af05abd9540717f1783bc3d49340a30f4f52",
+    "gitBlob": "95bf26546306438c11b6734d210b7d8493249978"
+  },
+  {
+    "path": "docs/audits/evidence/A1_001/20261020T162815244Z/summary.json",
+    "sha256": "80dd340ed3101db6ef86f6be626c901086f51d0ec72613a2e0c01665a77d9789",
+    "gitBlob": "23779fd8117d5b80eb508b0b06158426fa33e30d"
+  },
+  {
+    "path": "docs/audits/evidence/A1_001/20261020T163611037Z/TEST-io.github.misakapiano.ccbstudio.assets.AssetBackupTest.xml",
+    "sha256": "3b676906625112739ae1132c03991be39b137bfca57c2fa02a6741433eff47de",
+    "gitBlob": "bd4fda23f4c70853350cdfa77fe769f4d826b6a5"
+  },
+  {
+    "path": "docs/audits/evidence/A1_001/20261020T163611037Z/TEST-io.github.misakapiano.ccbstudio.assets.AssetStoreTest.xml",
+    "sha256": "cf9c347ce0b7243fffb46a4b5211b4a8b8b3ad4b173ca40bb8952d5ea6b037b6",
+    "gitBlob": "93969056ffbc0fba273af776db62a0afaba2e4ff"
+  },
+  {
+    "path": "docs/audits/evidence/A1_001/20261020T163611037Z/gradle.log",
+    "sha256": "8ec8130704cc3c36cb6fa3912c1bc54db14e700ce9994a42ca1e8382c3af2343",
+    "gitBlob": "78ca8f381a443e6e59cbeff1b6195a198d2ecd19"
+  },
+  {
+    "path": "docs/audits/evidence/A1_001/20261020T163611037Z/summary.json",
+    "sha256": "f98880da8e8f13d7aa6c8ce034f342909968befa171ef12011b0172d63f66fe9",
+    "gitBlob": "59d9c4fbbe9328e40c6f56668e2f3f3133bbcded"
+  },
+  {
+    "path": "docs/audits/evidence/A1_001/WORKING_TREE.json",
+    "sha256": "77ddb60406d80e906dfddf7a79cb36d8b6b73111b7b540e3f6ed36965eae8119",
+    "gitBlob": "c7406d8b67978646c2153c8cb70ba59996253489"
+  },
+  {
+    "path": "docs/audits/evidence/A1_001/execution-history.json",
+    "sha256": "c366733a0cfd7804199a2815b3edc9eb6285768a0dede42f81b9f27a02e67fcb",
+    "gitBlob": "562b7df68e5bbee31b5e40169916ad77e1c914b4"
+  },
+  {
+    "path": "docs/audits/evidence/A1_001/initial-run/01-wrapper.log",
+    "sha256": "b42d2e98862f8934bc0f349f475802aa60a8151327a487091e70e7ff6bc1b419",
+    "gitBlob": "7c82e617db13f7adb64e214ce0783f463a4a55c2"
+  },
+  {
+    "path": "docs/audits/evidence/A1_001/initial-run/02-wrapper-isolated.log",
+    "sha256": "7d857de5d36d31afca4ab1da4e5ef30446adab5b926a7c9c7da498883cc8e796",
+    "gitBlob": "7368050295faf0ad87f025ba9b539eeca135bf57"
+  },
+  {
+    "path": "docs/audits/evidence/A1_001/initial-run/03-tests.log",
+    "sha256": "b1715405e1089d89570106fd14b8129d969ef4b9ae85d73bc634e5f30b198314",
+    "gitBlob": "686c5d51d7bbc9c16c050fa48aedb5452673ebfc"
+  },
+  {
+    "path": "docs/audits/evidence/A1_001/initial-run/04-tests-offline.log",
+    "sha256": "a8485d150d21e00af0fb5fe9ef4f495d4551b7abef50e2e1b69b425565d9db43",
+    "gitBlob": "553e8e73c97d57543eef479b54046f6eb78b048a"
+  },
+  {
+    "path": "docs/audits/evidence/A1_001/initial-run/TEST-io.github.misakapiano.ccbstudio.assets.AssetBackupTest.xml",
+    "sha256": "19f7d54b0413fdd13a5e7993d13ad57b8131e9f5e9377bcfc4a11f40be26e76e",
+    "gitBlob": "aa76a1b3cf48d71b39c66e5708e120906bdd800d"
+  },
+  {
+    "path": "docs/audits/evidence/A1_001/initial-run/TEST-io.github.misakapiano.ccbstudio.assets.AssetStoreTest.xml",
+    "sha256": "9717957d8e03083f2c20bb295463c282a1740cc6efd02c4fda5a1478d137c447",
+    "gitBlob": "604163fc3c9ee2ab609ac7815e58266cd9f684d9"
+  },
+  {
+    "path": "docs/audits/evidence/A1_001/initial-run/dependency-provenance.json",
+    "sha256": "ed0107bf5700763cbb1e401d9fa8fe1e41032510666b981121f75ff48a6d2564",
+    "gitBlob": "b3aa82707dfab88b286b9de7384c963b19550ff5"
+  },
+  {
+    "path": "docs/audits/evidence/A1_001/java-version.log",
+    "sha256": "2c05c59b13a701146c37d79936303eb8080cd353e096756dfab1cd833a306423",
+    "gitBlob": "0d5ac471e4c1ae60c271279ff8221c0a746d6b79"
+  },
+  {
+    "path": "docs/audits/evidence/A1_001/javac-version.log",
+    "sha256": "8dc678006c02cf91275c594203ab24dd0fef9b315748b264a078a7644823a303",
+    "gitBlob": "3a97d7e2f938e56462a01cfd54514a9b1f8d3ed0"
+  },
+  {
+    "path": "docs/audits/evidence/A1_001/protected-files.json",
+    "sha256": "9a6137822f8b7f0839f3382929b35422aa6ee21c8040192b22e0ef95f0897a56",
+    "gitBlob": "286df509bbec5fd00ca6c434d193517d0c8aac2c"
+  },
+  {
+    "path": "docs/audits/evidence/A1_001/source.patch",
+    "sha256": "58480059df563b783620576fd817f5136a82157dc332e5176970b81a6b8922e2",
+    "gitBlob": "5cd7e0dcabd0b661ba4e1db9c3b64823c832dca7"
+  },
+  {
+    "path": "gradle.properties",
+    "sha256": "e6ef41021df9a9bf16eb2f7ef5462d7ba14e8c85bd4834643832e03fe4f21410",
+    "gitBlob": "a7de5ef855a3d05b17f78b022936e18ca50e4065"
+  },
+  {
+    "path": "gradle/verification-metadata.xml",
+    "sha256": "6bfbfcd71608176a71bc1ec75e85d65f1730d4d6f3390da8bcd4eef8f3a119a1",
+    "gitBlob": "588041f73f29f88a271ee09fae1c6218a2a45a24"
+  },
+  {
+    "path": "gradle/wrapper/gradle-wrapper.jar",
+    "sha256": "76805e32c009c0cf0dd5d206bddc9fb22ea42e84db904b764f3047de095493f3",
+    "gitBlob": "8bdaf60c75ab801e22807dde59e12a8735a34077"
+  },
+  {
+    "path": "gradle/wrapper/gradle-wrapper.properties",
+    "sha256": "42bc80546f2979857efc20b23ede63b1c5a20478aef5a5c7b89ca66fb46fc786",
+    "gitBlob": "26dec6cde0c61e9aaba1065086a52f339b440a09"
+  },
+  {
+    "path": "gradlew",
+    "sha256": "fb68debc1b1acf8ec55dc0d5e5495e1dedd0bd6b61f304bee61613eeb2bd9b92",
+    "gitBlob": "adff685a0348c64b2b64f0b302f1f82b28eeaaea"
+  },
+  {
+    "path": "gradlew.bat",
+    "sha256": "fedad02c18e266ec094995a5751b7fe1eb6e74f66bf75db64fae2e50eb22c234",
+    "gitBlob": "c4bdd3ab8e3ccd2ac3a2bc0db0f856f16b79ef39"
+  },
+  {
+    "path": "handoff/CODEX_START_MESSAGE.md",
+    "sha256": "be80b4b1793ee01e5e6364ac1eb9143ddce8f594c6bf9a910d01f5c520cf6eac",
+    "gitBlob": "d4ad0cdedb3d59fadcc261838c3fee1e1feb32c0"
+  },
+  {
+    "path": "handoff/DESKTOP_COLLABORATION_NOTE.md",
+    "sha256": "743ca191b04051d1ea5c7284ddfa82be529bdee067795037408bdc745891050f",
+    "gitBlob": "590bb9680d37b821363dceaff36ca6d37a628456"
+  },
+  {
+    "path": "handoff/GITHUB_INITIAL_PUBLISH_AFTER_A0.md",
+    "sha256": "85a754c90ba6b4801c4214f2cc009e74933c22a2823d1f468a3dd1642792d91e",
+    "gitBlob": "50d5d4bbbf2f9cf16cfe36dac5d7008d27151777"
+  },
+  {
+    "path": "handoff/NEW_PROJECT_OPENING.md",
+    "sha256": "8cbfa20e2644190bd1820310eeb9c269427865dea1353f89108e5c1b7ac79197",
+    "gitBlob": "ddd971ae538691c933c1b7df2290c1c1dba6fdaf"
+  },
+  {
+    "path": "handoff/PROJECT_A0_REVIEW.md",
+    "sha256": "8e12e648f8762fba6725e413b981f291fd8c422d9460f8f2d936de06c7f0e87e",
+    "gitBlob": "513fbcbf535a2707fd3c0a6bb329f0adaeceffbe"
+  },
+  {
+    "path": "handoff/PROJECT_A1_REVIEW.md",
+    "sha256": "b3e6864d4fb3e92b974305b4c2f2033a9823a7273c7641ebc24fa26f7dd08b18",
+    "gitBlob": "70a9492a7b6a4d097e7b67811f1f59612446d471"
+  },
+  {
+    "path": "instructions/PROJECT_INSTRUCTIONS.md",
+    "sha256": "a682b27e70a5fe545f5466c88baee27bf8925c983ee4ac346025f7ab8292bdf9",
+    "gitBlob": "9582e1f24ee55a19dcc3dab13ff4de74c9548ce8"
+  },
+  {
+    "path": "references/PUBLIC_SOURCE_LINKS.md",
+    "sha256": "c25da625929bcb300eb85ad773b5377639fb5fdbb6ec9e42667cc024cfb1294c",
+    "gitBlob": "467734fd01efefee4d8404c5efff8836488d9683"
+  },
+  {
+    "path": "references/README.md",
+    "sha256": "0b0d38b55ee0c517d40f54a9ac3040cd807f1ca9e5f50156e0b698749a5ed59f",
+    "gitBlob": "be98bcc5e12421779563afe87ddb1a2bcff80a0a"
+  },
+  {
+    "path": "references/REFERENCE_ASSET_MANIFEST.json",
+    "sha256": "40a804e4ca775133895525ac9133daa08530b69ddd6f448b6f1f86ac01391604",
+    "gitBlob": "40c4382a4df577d08d293867e182e1025abebc81"
+  },
+  {
+    "path": "settings.gradle.kts",
+    "sha256": "661c82086a52de0755ffca22cd6075663b18e3bbeb9d3ef1e561ba2c917f9914",
+    "gitBlob": "ef837be0291028cd0ec6405fe993d8adffc58213"
+  },
+  {
+    "path": "tasks/A0_001_BOOTSTRAP_AND_AUDIT.md",
+    "sha256": "a6083886b8d1488e21f37017a23b42c2df53f72dcf4d9cce649002e91a50c4b2",
+    "gitBlob": "23fb69cea1b7ae81c9d09aa5e686bed9098d70ac"
+  },
+  {
+    "path": "tasks/A1_001_IMPLEMENTATION_CANDIDATE.md",
+    "sha256": "63252e8f038f4e49dd91634eced25c344968a08cabc75ec5d497205b92a26e90",
+    "gitBlob": "21aeabc14001bd3ffbcbbf6f5ce9e1f6e86eb3d2"
+  },
+  {
+    "path": "tools/Test-AssetDurability.ps1",
+    "sha256": "f82fe050f7f32a503ad42798099149012cb25f57101fd4ab7c68876bf8cd1792",
+    "gitBlob": "b751836ef8d48fab0991738746a38bbea54970ae"
+  },
+  {
+    "path": "tools/Verify-Package.ps1",
+    "sha256": "fcccbe5a5cede898401259b89f7d80323d46e231f96fd9660009aaf165e485ed",
+    "gitBlob": "7060d2aeb0f9a0b3ccda03fae675ce5ff2849cf0"
+  },
+  {
+    "path": "tools/verify_package.py",
+    "sha256": "ce91de8bc5859124ef3b93bee1d5d931e0d966e95493822f17f36f648acd84b4",
+    "gitBlob": "d82570e3e214024ea382aa5cd4bf3280d761e041"
+  }
+]
