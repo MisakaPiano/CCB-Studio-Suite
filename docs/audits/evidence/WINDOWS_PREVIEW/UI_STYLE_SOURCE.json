@@ -16,6 +16,18 @@
       "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopImageToolWindow.kt",
       "sha256": "433332ba47c605a48ce325887f8cf072cd0e580e91e9170b724273de0663b367",
       "bytes": 1613
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopTitleBar.kt",
+      "sha256": "e9b7d8152cd835b4a8a9b797ffa96b082a708a58fb8f6f0f228bcb6d6fca2cf7",
+      "bytes": 9804
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiStudioPanel.kt",
+      "sha256": "c2f2379ac2dc54312ef3c026e01f2e589658127974ce0847a5f5a1ce8ec4c82f",
+      "bytes": 37071
     }
-  ]
+  ],
+  "nativeBridgeProvenance": "modules/studio-desktop/WINDOW_CHROME_SOURCE.json",
+  "authorityUnchanged": "5ef95428421f7c693b010ac88f51d470804ab07a"
 }

@@ -1,0 +1,12 @@
+{
+  "purpose": "Internal Preview dependency notices; original JAR notices and JDK runtime/legal are also retained in the app image",
+  "skikoVersion": "0.9.37.4",
+  "files": [
+    {"path": "skiko-LICENSE.txt", "source": "https://raw.githubusercontent.com/JetBrains/skiko/v0.9.37.4/LICENSE"},
+    {"path": "skiko-NOTICE.txt", "source": "https://raw.githubusercontent.com/JetBrains/skiko/v0.9.37.4/NOTICE"},
+    {"path": "skia-LICENSE.txt", "source": "https://raw.githubusercontent.com/JetBrains/skia/80d088a/LICENSE"}
+  ],
+  "skiaSelectionEvidence": "https://raw.githubusercontent.com/JetBrains/skiko/v0.9.37.4/skiko/gradle.properties: dependencies.skia=m138-80d088a-1",
+  "licenseInventory": "Package SBOM retains resolved Maven license declarations and POMs. This is not a completed public-release legal audit of every native transitive component.",
+  "sourceAuthority": "CCB image core and Desktop chrome rely on USER-DIRECT grant recorded in Project Issue #1/#2; no broader third-party rights are inferred."
+}

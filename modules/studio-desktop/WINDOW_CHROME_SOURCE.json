@@ -1,0 +1,20 @@
+{
+  "commit": "ab3d06abcaca2df8b21c734841d7c4e744099f51",
+  "repository": "MisakaPiano/ChatChatBar-Desktop",
+  "byteMode": "unmodified",
+  "reason": "User-requested latest Desktop window style; window-owned native resize/Snap/system-menu bridge only; no Desktop domain/app import",
+  "files": [
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopWindowChrome.kt",
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopWindowChrome.kt",
+      "bytes": 6395,
+      "sha256": "1392d5c70cdb72f88eb990f0897f2b99c2a4c3fd0434aef524aa120c8e832140"
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/WindowsWindowChrome.kt",
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/WindowsWindowChrome.kt",
+      "bytes": 15642,
+      "sha256": "4d14c2b7559d00940ef1f26c9b6a8c56f9c531010c46aff6da54b5b2bc56d3ea"
+    }
+  ]
+}

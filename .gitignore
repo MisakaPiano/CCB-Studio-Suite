@@ -18,6 +18,8 @@ local.properties
 *.key
 UserData/
 data/
+!modules/image-authority/src/main/kotlin/com/example/chatbar/data/
+!modules/image-authority/src/main/kotlin/com/example/chatbar/data/**
 backups/
 logs/
 artifacts/

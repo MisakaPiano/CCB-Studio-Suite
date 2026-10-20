@@ -6,6 +6,9 @@ plugins {
 kotlin { jvmToolchain(17) }
 dependencies {
     implementation(project(":studio-core"))
+    implementation("net.java.dev.jna:jna:5.18.1")
+    implementation("net.java.dev.jna:jna-platform:5.18.1")
+    testImplementation(kotlin("test-junit"))
     implementation(project(":asset-library"))
     implementation(project(":image-authority"))
     implementation(compose.desktop.currentOs)
@@ -27,3 +30,5 @@ compose.desktop {
         }
     }
 }
+
+tasks.test { useJUnit(); maxParallelForks=1; maxHeapSize="192m"; jvmArgs("-XX:ActiveProcessorCount=2"); testLogging { events("passed","failed","skipped") } }

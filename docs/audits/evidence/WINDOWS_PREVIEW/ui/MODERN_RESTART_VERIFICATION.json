@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "firstExitCode": 0,
+  "restartExitCode": 0,
+  "normalClose": "DesktopWindowCommand.CLOSE to Studio drain callback; no forced kill",
+  "sourceBase": "57c909bbadfe134530922ffa19d693d553325139",
+  "stateSha256": "67a56983e77178f4a656cca2fd069b3529de58e4adcf8626aead13b92d6b7a84",
+  "originalsEqual": true,
+  "originalCount": 3,
+  "firstDraws": 121,
+  "restartDraws": 2,
+  "nativeWindowCommands": "PASS: maximize/restore/minimize/restore",
+  "screenControl": "ENVIRONMENT_UNAVAILABLE",
+  "humanAcceptance": "NOT TESTED"
+}
