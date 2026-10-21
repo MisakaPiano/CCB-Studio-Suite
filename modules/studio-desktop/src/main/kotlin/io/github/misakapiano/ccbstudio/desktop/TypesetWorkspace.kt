@@ -9,6 +9,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.geometry.*
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.*
@@ -103,7 +104,7 @@ private data class EditorRaster(val bitmap:ImageBitmap,val width:Int,val height:
     }
     Column(Modifier.fillMaxSize()) {
         StudioActions {StatusText("${picture.width} × ${picture.height} · ${e.page?.name.orEmpty()}");if(picture.page!=page || picture.mode!=mode)StatusText("排版中…");if(mode=="editor")StudioAction("添加文字",!c.busy){e.addText(picture.width,picture.height)}}
-        Canvas(Modifier.weight(1f).fillMaxWidth().semantics{contentDescription="排版编辑画布";stateDescription=if(picture.page==page && picture.mode==mode)"已更新"else"排版中"}.onSizeChanged{frame=it}
+        Canvas(Modifier.weight(1f).fillMaxWidth().clipToBounds().semantics{contentDescription="排版编辑画布";stateDescription=if(picture.page==page && picture.mode==mode)"已更新"else"排版中"}.onSizeChanged{frame=it}
             .pointerInput(page?.id,mode,e.tool,scale,offset,page?.texts,page?.masks,c.busy){detectTapGestures{if(!c.busy && mode=="editor" && e.tool=="select")e.objectId=hit(toImage(it))}}
             .pointerInput(page,mode,e.tool,scale,c.busy){detectDragGestures(
                 onDragStart={pos->if(!c.busy){origin=toImage(pos);resize=false
@@ -173,8 +174,27 @@ private data class EditorRaster(val bitmap:ImageBitmap,val width:Int,val height:
         StudioAction(if(t.visible)"隐藏对象"else"显示对象"){e.textChange{it.copy(visible=!it.visible)}}
         StudioAction("移除对象"){e.removeObject()}
     }
+    if(e.mask!=null || e.tool in setOf("rect","brush","lasso")) {
+        val m=e.mask?:e.maskDefault
+        Text(if(e.mask!=null)"所选打码属性"else"新打码参数")
+        fun update(transform:(TypesetMask)->TypesetMask){
+            e.maskDefault=transform(e.maskDefault)
+            if(e.mask!=null)e.pageChange{p->p.copy(masks=p.masks.map{if(it.id==e.objectId)transform(it)else it})}
+            e.pageChange{it.copy(toolDefaults=e.maskDefault)}
+        }
+        if(m.effect in setOf("solid","hatch"))Text("旧中间版效果已保留，请明确选择下列效果完成转换。")
+        CompactChoice("打码效果",listOf("black","white","mosaic","blur"),m.effect,{when(it){"black"->"黑条 / 黑色";"white"->"白条 / 白色";"mosaic"->"马赛克";else->"模糊"}}){v->update{it.copy(effect=v)}}
+        NumberField("效果强度",m.strength.toDouble(),1.0..256.0){v->update{it.copy(strength=v.toInt())}}
+        if(m.shape=="brush" || e.tool=="brush") {
+            NumberField("画笔宽度",m.size,1.0..2000.0){v->update{it.copy(size=v)}}
+            NumberField("条纹密度",m.density,1.0..1000.0){v->update{it.copy(density=v)}}
+            NumberField("条纹厚度",m.stripeThickness,1.0..1000.0){v->update{it.copy(stripeThickness=v)}}
+            NumberField("笔点密度",m.pointDensity,1.0..1000.0){v->update{it.copy(pointDensity=v)}}
+        }
+        if(e.mask!=null){StudioAction(if(m.visible)"隐藏打码"else"显示打码"){e.pageChange{p->p.copy(masks=p.masks.map{if(it.id==m.id)it.copy(visible=!it.visible)else it})}};StudioAction("移除打码"){e.removeObject()}}
+    }
     if(e.text==null)Text("在画布中点击文字或从对象列表选择。新增文字后输入，样式与方向即时更新。")
-    StudioDisclosure("批次样式") {Text("应用到所选页面的对应对象；保留各页文字和位置。可整体撤销。")
+    StudioDisclosure("批次样式") {Text("当前文字样式应用到所有所选页面的文字；上一页样式按对象顺序匹配，多出的文字沿用上一页最后一项。保留文字和位置，可整体撤销。")
         StudioAction("当前样式应用到所选页",e.selectedPages.isNotEmpty()){e.applyStyleToSelection()};StudioAction("各自上一页样式",e.selectedPages.isNotEmpty()){e.applyStyleToSelection(true)}}
 }
 

@@ -31,7 +31,7 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
         try{next.validate()}catch(e:Exception){c.problem="编辑值无效，原内容保留：${e.message}";return}
         if(next==old)return
         document=next;dirty=true;pending?.cancel()
-        pending=c.scope.launch{delay(400);try{flush()}catch(e:Exception){c.problem="工程未能保存，当前编辑仍保留；请重试保存或导出工程"}}
+        pending=c.scope.launch{delay(400);try{flush()}catch(e:CancellationException){throw e}catch(e:Exception){c.problem="工程未能保存，当前编辑仍保留；请重试保存或导出工程"}}
     }
     fun pageChange(transform:(TypesetPage)->TypesetPage)=change{d->d.copy(pages=d.pages.map{if(it.id==pageId)transform(it)else it})}
     fun textChange(transform:(TypesetText)->TypesetText)=pageChange{p->p.copy(texts=p.texts.map{if(it.id==objectId)transform(it)else it})}
@@ -66,7 +66,7 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
         selectedPages=when{range && previous!=null->{val a=pages.indexOfFirst{it.id==previous};val b=pages.indexOfFirst{it.id==id};selectedPages+pages.subList(minOf(a,b),maxOf(a,b)+1).map{it.id}}
             extend->if(id in selectedPages)selectedPages-id else selectedPages+id
             else->setOf(id)}
-        pageId=id;objectId=null
+        pageId=id;objectId=null;page?.toolDefaults?.let{maskDefault=it}
     }
     fun addText(width:Int,height:Int) {
         val template=text?:document?.presets?.firstOrNull()?.text
@@ -81,12 +81,15 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
         d.copy(pages=list)
     }
     fun removePages() {change{it.copy(pages=it.pages.filterNot{it.id in selectedPages})};pageId=document?.pages?.firstOrNull()?.id;selectedPages=emptySet();objectId=null}
-    fun applyStyleToSelection(previous:Boolean=false)=change{d->
-        val source=page?:return@change d
-        d.copy(pages=d.pages.mapIndexed{i,p->if(p.id !in selectedPages || (previous && i==0))p else {
-            val from=if(previous)d.pages[i-1]else source
-            p.copy(texts=p.texts.mapIndexed{index,t->from.texts.getOrNull(index)?.let{s->s.copy(id=t.id,text=t.text,x=t.x,y=t.y)}?:t},
-                masks=p.masks.mapIndexed{index,m->from.masks.getOrNull(index)?.let{s->m.copy(effect=s.effect,size=s.size,strength=s.strength,color=s.color,opacity=s.opacity)}?:m})
-        }})
+    fun applyStyleToSelection(previous:Boolean=false)=c.run("应用批次样式") {
+        drain();val p=project?:return@run;val snapshot=document?:return@run
+        val selected=selectedPages.toSet();val textStyle=text?:snapshot.presets.firstOrNull()?.text
+        val widths=mutableMapOf<String,Int>()
+        val updated=TypesetBatch.apply(snapshot,selected,previous,textStyle,mask?:maskDefault){page->
+            widths.getOrPut(page.assetId){val image=EditorRenderer.decode(c.workspace.bytes(page.assetId));try{image.width}finally{image.flush()}}
+        }
+        if(updated!=snapshot){val next=repository.update(p.id,p.revision){updated}
+            withContext(ui){project=next;document=updated;dirty=false;page?.toolDefaults?.let{maskDefault=it}}
+        }
     }
 }

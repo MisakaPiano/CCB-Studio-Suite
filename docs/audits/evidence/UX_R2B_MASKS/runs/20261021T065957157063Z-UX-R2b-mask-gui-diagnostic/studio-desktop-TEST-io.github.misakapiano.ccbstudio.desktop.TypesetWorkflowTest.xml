@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2026-10-21T07:00:13.183Z" hostname="DD1" time="5.558">
+  <properties/>
+  <testcase name="pointerDrawnMasksChangeEffectSaveUndoAndReopen" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="5.558">
+    <failure message="java.lang.IllegalStateException: Missing action: 马赛克; available=[创作, AI 设计, 图库, 编辑, 账户, —, □, ×, 编辑工程 · 打码回归 ▾, 新建编辑工程, 保存工程, 撤销编辑, 重做编辑, 编辑待保存, 工作模式, 图片编辑, 小人书, 工具, 选择 / 移动, 矩形, 画笔, 圈选, 平移, −, 适应, ＋, 1 · mask-fixture.png, 0 文字 · 3 打码, 全选页, 全不选页, 反选页, 上移页, 下移页, 移除所选页, 1 页已选 / 1 页, 600 × 400 · mask-fixture.png, 添加文字, 对象与属性, 打码 1, 打码 2, 打码 3, 所选打码属性, 打码效果 · 马赛克 ▾, 效果强度, 隐藏打码, 移除打码, 在画布中点击文字或从对象列表选择。新增文字后输入，样式与方向即时更新。, ▸ 批次样式, 建立编辑工程 · 已完成, 已保存]" type="java.lang.IllegalStateException">java.lang.IllegalStateException: Missing action: 马赛克; available=[创作, AI 设计, 图库, 编辑, 账户, —, □, ×, 编辑工程 · 打码回归 ▾, 新建编辑工程, 保存工程, 撤销编辑, 重做编辑, 编辑待保存, 工作模式, 图片编辑, 小人书, 工具, 选择 / 移动, 矩形, 画笔, 圈选, 平移, −, 适应, ＋, 1 · mask-fixture.png, 0 文字 · 3 打码, 全选页, 全不选页, 反选页, 上移页, 下移页, 移除所选页, 1 页已选 / 1 页, 600 × 400 · mask-fixture.png, 添加文字, 对象与属性, 打码 1, 打码 2, 打码 3, 所选打码属性, 打码效果 · 马赛克 ▾, 效果强度, 隐藏打码, 移除打码, 在画布中点击文字或从对象列表选择。新增文字后输入，样式与方向即时更新。, ▸ 批次样式, 建立编辑工程 · 已完成, 已保存]
+	at io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest.click(TypesetWorkflowTest.kt:28)
+	at io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest.access$click(TypesetWorkflowTest.kt:19)
+	at io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest$pointerDrawnMasksChangeEffectSaveUndoAndReopen$1.invokeSuspend(TypesetWorkflowTest.kt:73)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

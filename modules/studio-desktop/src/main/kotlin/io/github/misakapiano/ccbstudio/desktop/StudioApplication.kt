@@ -204,7 +204,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
         return recipe to recipe.settings.seed+index
     }
     init {if(current==null)current=assets.lastOrNull()?.request()?.id()?.toString()}
-    private fun changed(){saved=false;pending?.cancel();pending=scope.launch {delay(350);try{flush()}catch(e:Exception){problem="草稿未能保存，保留当前输入；请先处理数据错误"}}}
+    private fun changed(){saved=false;pending?.cancel();pending=scope.launch {delay(350);try{flush()}catch(e:CancellationException){throw e}catch(e:Exception){problem="草稿未能保存，保留当前输入；请先处理数据错误"}}}
     fun edit(change:(NovelAiStudioDraft)->NovelAiStudioDraft){draft=workspace.state.creation!!.resolvedDraft(change(draft));changed()}
     fun selectImageCard(card:ImageCardSource)=run("应用角色卡图像字段") {
         session.update{old->

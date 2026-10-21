@@ -1,0 +1,31 @@
+{
+  "phase": "UX-R2b-source-mask-comparison",
+  "startedUtc": "2026-10-21T06:56:20.577890+00:00",
+  "seconds": 39.907,
+  "exitCode": 1,
+  "tests": 5,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "FAILED",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-core:test",
+    "--tests",
+    "*TypesetMaskTest",
+    "--tests",
+    "*TypesetBatchTest",
+    ":studio-desktop:compileKotlin"
+  ],
+  "baseCommit": "4a8964de67f2140508ce8e7303b7b513dac0202c",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

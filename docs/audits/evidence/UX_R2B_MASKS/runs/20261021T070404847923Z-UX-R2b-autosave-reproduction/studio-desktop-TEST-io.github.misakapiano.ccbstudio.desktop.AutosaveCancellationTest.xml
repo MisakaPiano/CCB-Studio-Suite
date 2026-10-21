@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.AutosaveCancellationTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2026-10-21T07:04:19.608Z" hostname="DD1" time="0.964">
+  <properties/>
+  <testcase name="cancellingDebouncedSaveDuringCommitDoesNotReportDataFailure" classname="io.github.misakapiano.ccbstudio.desktop.AutosaveCancellationTest" time="0.964">
+    <failure message="java.lang.AssertionError: actual value is not null expected null, but was:&lt;草稿未能保存，保留当前输入；请先处理数据错误&gt;" type="java.lang.AssertionError">java.lang.AssertionError: actual value is not null expected null, but was:&lt;草稿未能保存，保留当前输入；请先处理数据错误&gt;
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotNull(Assert.java:756)
+	at org.junit.Assert.assertNull(Assert.java:738)
+	at kotlin.test.junit.JUnitAsserter.assertNull(JUnitSupport.kt:52)
+	at kotlin.test.AssertionsKt__AssertionsKt.assertNull(Assertions.kt:161)
+	at kotlin.test.AssertionsKt.assertNull(Unknown Source)
+	at kotlin.test.AssertionsKt__AssertionsKt.assertNull$default(Assertions.kt:160)
+	at kotlin.test.AssertionsKt.assertNull$default(Unknown Source)
+	at io.github.misakapiano.ccbstudio.desktop.AutosaveCancellationTest$cancellingDebouncedSaveDuringCommitDoesNotReportDataFailure$1.invokeSuspend(AutosaveCancellationTest.kt:27)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:47)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

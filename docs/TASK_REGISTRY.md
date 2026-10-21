@@ -1,3 +1,7 @@
+## UX-R2批次与打码进度（2026-10-21）
+
+[来源比较与执行记录](audits/UX_R2B_MASKS.md)：12组源图对照、真实Compose指针/保存/重开已测；修复防抖保存取消误报。最新desktop完整42 PASS，core46实际PASS来自前次运行且源码未变。失败保留，PRODUCT_HOLD，继续完整R2–R4。
+
 ## UX-R2a 原生排版工程进度（2026-10-21）
 
 [实际执行证据](audits/UX_R2A_EDITOR.md)：core+desktop完整80项PASS，后续字体格式定向4项PASS；10次构建/测试尝试及失败保留。来源样本对照、工程保存/重开、字体与备份恢复已测；完整编辑/批量/整册导出继续实施，原生视觉和真人验收NOT TESTED，PRODUCT_HOLD。

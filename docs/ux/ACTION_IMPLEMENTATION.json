@@ -459,11 +459,29 @@
     {
       "id": "T01",
       "owner": "UX-R2a",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "TypesetWorkspace.kt",
+        "TypesetEditorController.kt",
+        "TypesetDocument.kt",
+        "TypesetRepository.kt",
+        "TypesetLayout.kt",
+        "TypesetRenderer.kt",
+        "TypesetFonts.kt",
+        "WindowsFontDecoder.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart",
+        "TypesetReferenceTest",
+        "TypesetRepositoryTest",
+        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)"
+      ],
+      "persistenceEvidence": [
+        "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / SOURCE_GEOMETRY_AND_COMPOSE_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "T02",
@@ -486,83 +504,235 @@
     {
       "id": "T04",
       "owner": "UX-R2a",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "TypesetWorkspace.kt",
+        "TypesetEditorController.kt",
+        "TypesetDocument.kt",
+        "TypesetRepository.kt",
+        "TypesetLayout.kt",
+        "TypesetRenderer.kt",
+        "TypesetFonts.kt",
+        "WindowsFontDecoder.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart",
+        "TypesetReferenceTest",
+        "TypesetRepositoryTest",
+        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)"
+      ],
+      "persistenceEvidence": [
+        "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / SOURCE_GEOMETRY_AND_COMPOSE_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "T05",
       "owner": "UX-R2a",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "TypesetWorkspace.kt",
+        "TypesetEditorController.kt",
+        "TypesetDocument.kt",
+        "TypesetRepository.kt",
+        "TypesetLayout.kt",
+        "TypesetRenderer.kt",
+        "TypesetFonts.kt",
+        "WindowsFontDecoder.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart",
+        "TypesetReferenceTest",
+        "TypesetRepositoryTest",
+        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)"
+      ],
+      "persistenceEvidence": [
+        "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / SOURCE_GEOMETRY_AND_COMPOSE_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "T06",
       "owner": "UX-R2a",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "TypesetWorkspace.kt",
+        "TypesetEditorController.kt",
+        "TypesetDocument.kt",
+        "TypesetRepository.kt",
+        "TypesetLayout.kt",
+        "TypesetRenderer.kt",
+        "TypesetFonts.kt",
+        "WindowsFontDecoder.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart",
+        "TypesetReferenceTest",
+        "TypesetRepositoryTest",
+        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)"
+      ],
+      "persistenceEvidence": [
+        "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / SOURCE_GEOMETRY_AND_COMPOSE_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "T07",
       "owner": "UX-R2a",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "TypesetWorkspace.kt",
+        "TypesetEditorController.kt",
+        "TypesetDocument.kt",
+        "TypesetRepository.kt",
+        "TypesetLayout.kt",
+        "TypesetRenderer.kt",
+        "TypesetFonts.kt",
+        "WindowsFontDecoder.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart",
+        "TypesetReferenceTest",
+        "TypesetRepositoryTest",
+        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)"
+      ],
+      "persistenceEvidence": [
+        "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / SOURCE_GEOMETRY_AND_COMPOSE_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "T08",
       "owner": "UX-R2a",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "TypesetWorkspace.kt",
+        "TypesetEditorController.kt",
+        "TypesetDocument.kt",
+        "TypesetRepository.kt",
+        "TypesetLayout.kt",
+        "TypesetRenderer.kt",
+        "TypesetFonts.kt",
+        "WindowsFontDecoder.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart",
+        "TypesetReferenceTest",
+        "TypesetRepositoryTest",
+        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)"
+      ],
+      "persistenceEvidence": [
+        "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / SOURCE_GEOMETRY_AND_COMPOSE_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "T09",
       "owner": "UX-R2a",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "TypesetWorkspace.kt",
+        "TypesetEditorController.kt",
+        "TypesetDocument.kt",
+        "TypesetRepository.kt",
+        "TypesetLayout.kt",
+        "TypesetRenderer.kt",
+        "TypesetFonts.kt",
+        "WindowsFontDecoder.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart",
+        "TypesetReferenceTest",
+        "TypesetRepositoryTest",
+        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)"
+      ],
+      "persistenceEvidence": [
+        "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / SOURCE_GEOMETRY_AND_COMPOSE_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "T10",
       "owner": "UX-R2a",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "TypesetWorkspace.kt",
+        "TypesetEditorController.kt",
+        "TypesetDocument.kt",
+        "TypesetRepository.kt",
+        "TypesetLayout.kt",
+        "TypesetRenderer.kt",
+        "TypesetFonts.kt",
+        "WindowsFontDecoder.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart",
+        "TypesetReferenceTest",
+        "TypesetRepositoryTest",
+        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)"
+      ],
+      "persistenceEvidence": [
+        "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / SOURCE_GEOMETRY_AND_COMPOSE_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "T11",
       "owner": "UX-R2b",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "TypesetMaskRenderer.kt",
+        "TypesetBatch.kt",
+        "TypesetWorkspace.kt",
+        "TypesetEditorController.kt"
+      ],
+      "tests": [
+        "TypesetMaskTest: 12 frozen source cases and original-only overlap",
+        "TypesetBatchTest: snapshot, fallback, geometry, durable defaults",
+        "TypesetWorkflowTest.pointerDrawnMasksChangeEffectSaveUndoAndReopen"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2B_MASKS/compose-scenes (actual Compose pointer input; offscreen)"
+      ],
+      "persistenceEvidence": [
+        "TypesetWorkflowTest: drawn rect/brush/lasso, effect edit, save/delete/undo/reopen; TypesetBatchTest: per-page defaults reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / SOURCE_AND_POINTER_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "T12",
       "owner": "UX-R2b",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "TypesetMaskRenderer.kt",
+        "TypesetBatch.kt",
+        "TypesetWorkspace.kt",
+        "TypesetEditorController.kt"
+      ],
+      "tests": [
+        "TypesetMaskTest: 12 frozen source cases and original-only overlap",
+        "TypesetBatchTest: snapshot, fallback, geometry, durable defaults",
+        "TypesetWorkflowTest.pointerDrawnMasksChangeEffectSaveUndoAndReopen"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2B_MASKS/compose-scenes (actual Compose pointer input; offscreen)"
+      ],
+      "persistenceEvidence": [
+        "TypesetWorkflowTest: drawn rect/brush/lasso, effect edit, save/delete/undo/reopen; TypesetBatchTest: per-page defaults reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / SOURCE_AND_POINTER_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "T13",
@@ -576,20 +746,51 @@
     {
       "id": "T14",
       "owner": "UX-R2b",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "TypesetMaskRenderer.kt",
+        "TypesetBatch.kt",
+        "TypesetWorkspace.kt",
+        "TypesetEditorController.kt"
+      ],
+      "tests": [
+        "TypesetMaskTest: 12 frozen source cases and original-only overlap",
+        "TypesetBatchTest: snapshot, fallback, geometry, durable defaults",
+        "TypesetWorkflowTest.pointerDrawnMasksChangeEffectSaveUndoAndReopen"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2B_MASKS/compose-scenes (actual Compose pointer input; offscreen)"
+      ],
+      "persistenceEvidence": [
+        "TypesetWorkflowTest: drawn rect/brush/lasso, effect edit, save/delete/undo/reopen; TypesetBatchTest: per-page defaults reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / SOURCE_AND_POINTER_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "T15",
       "owner": "UX-R2a",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "TypesetWorkspace.kt",
+        "TypesetEditorController.kt",
+        "TypesetDocument.kt",
+        "TypesetRepository.kt",
+        "TypesetLayout.kt",
+        "TypesetRenderer.kt",
+        "TypesetFonts.kt",
+        "WindowsFontDecoder.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart",
+        "TypesetReferenceTest",
+        "TypesetRepositoryTest",
+        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)"
+      ],
+      "persistenceEvidence": [
+        "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / SOURCE_GEOMETRY_AND_COMPOSE_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "T16",
@@ -702,11 +903,29 @@
     {
       "id": "Q08",
       "owner": "UX-R2b",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "TypesetWorkspace.kt",
+        "TypesetEditorController.kt",
+        "TypesetDocument.kt",
+        "TypesetRepository.kt",
+        "TypesetLayout.kt",
+        "TypesetRenderer.kt",
+        "TypesetFonts.kt",
+        "WindowsFontDecoder.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart",
+        "TypesetReferenceTest",
+        "TypesetRepositoryTest",
+        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)"
+      ],
+      "persistenceEvidence": [
+        "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / SOURCE_GEOMETRY_AND_COMPOSE_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "Q09",
@@ -816,11 +1035,29 @@
     {
       "id": "F10",
       "owner": "UX-R2c",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "TypesetWorkspace.kt",
+        "TypesetEditorController.kt",
+        "TypesetDocument.kt",
+        "TypesetRepository.kt",
+        "TypesetLayout.kt",
+        "TypesetRenderer.kt",
+        "TypesetFonts.kt",
+        "WindowsFontDecoder.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart",
+        "TypesetReferenceTest",
+        "TypesetRepositoryTest",
+        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)"
+      ],
+      "persistenceEvidence": [
+        "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / SOURCE_GEOMETRY_AND_COMPOSE_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "C01",

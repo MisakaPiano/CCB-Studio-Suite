@@ -20,10 +20,11 @@ import java.util.UUID
 )
 @Serializable data class TypesetPoint(val x:Double,val y:Double)
 @Serializable data class TypesetMask(
-    val id:String=newId(), val shape:String="rect", val effect:String="solid",
+    val id:String=newId(), val shape:String="rect", val effect:String="mosaic",
     val x:Double=0.0,val y:Double=0.0,val width:Double=100.0,val height:Double=100.0,
     val points:List<TypesetPoint> = emptyList(), val size:Double=60.0,val strength:Int=16,
     val color:String="#000000",val opacity:Double=1.0,val visible:Boolean=true,
+    val density:Double=6.0,val stripeThickness:Double=6.0,val pointDensity:Double=8.0,
 )
 @Serializable data class StoryStyle(
     val pageWidth:Int=1200,val pagePadding:Int=48,val gap:Int=28,val textPadding:Int=30,
@@ -36,6 +37,7 @@ import java.util.UUID
     val id:String=newId(),val assetId:String,val name:String,
     val texts:List<TypesetText> = emptyList(),val masks:List<TypesetMask> = emptyList(),
     val caption:String="",val story:StoryStyle=StoryStyle(),
+    val toolDefaults:TypesetMask?=null,
 )
 @Serializable data class TypesetPreset(val id:String=newId(),val name:String,val text:TypesetText)
 @Serializable data class TypesetDocument(
@@ -59,9 +61,10 @@ import java.util.UUID
             UUID.fromString(p.id);UUID.fromString(p.assetId);require(p.name.length<=512 && p.caption.length<=100000)
             require(p.texts.size<=500 && p.masks.size<=500 && (p.texts.map{it.id}+p.masks.map{it.id}).distinct().size==p.texts.size+p.masks.size)
             p.texts.forEach(::text)
-            p.masks.forEach{m->UUID.fromString(m.id);finite(m.x,m.y,m.width,m.height,m.size,m.opacity)
-                require(m.shape in setOf("rect","brush","lasso") && m.effect in setOf("solid","mosaic","blur","hatch"))
+            (p.masks+listOfNotNull(p.toolDefaults)).forEach{m->UUID.fromString(m.id);finite(m.x,m.y,m.width,m.height,m.size,m.opacity)
+                require(m.shape in setOf("rect","brush","lasso") && m.effect in setOf("black","white","solid","mosaic","blur","hatch"))
                 require(m.width>0 && m.height>0 && m.size in 1.0..2000.0 && m.strength in 1..256 && m.opacity in 0.0..1.0)
+                require(listOf(m.density,m.stripeThickness,m.pointDensity).all{it.isFinite() && it in 1.0..1000.0})
                 require(m.points.size<=10000 && (m.shape!="lasso" || m.points.size>=3) && (m.shape!="brush" || m.points.isNotEmpty()))
                 m.points.forEach{finite(it.x,it.y)};validateColor(m.color)
             }
