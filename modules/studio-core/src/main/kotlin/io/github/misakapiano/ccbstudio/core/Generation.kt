@@ -38,7 +38,7 @@ class SyntheticDesignerTransport(private val instruction:String,private val revi
 
 class GenerationEngine(private val workspace:StudioWorkspace) {
     suspend fun design(instruction:String,account:AccountProfile,previous:NovelAiPromptPlan?=null,onText:(String)->Unit={}):NovelAiPromptPlan {
-        account.validate();require(account.service=="LLM")
+        account.validate();require(account.service=="LLM" && account.provider=="SYNTHETIC")
         val transport=SyntheticDesignerTransport(instruction,previous!=null)
         val lookup=object:NovelAiTagSearchClient { override suspend fun search(query:String)=NovelAiTagSearchOutcome(query,listOf(NovelAiTagCandidate("cup","杯子",20,NovelAiTagCategory.GENERAL))) }
         val designer=NovelAiPromptDesigner(transport,NovelAiTagResearchService(LlmNovelAiTagSearchPlanner(transport),lookup))
@@ -50,7 +50,7 @@ class GenerationEngine(private val workspace:StudioWorkspace) {
     }
     suspend fun generate(plan:NovelAiPromptPlan,settings:NovelAiGenerationSettings,account:AccountProfile,
         scenario:String="SUCCESS",onIntermediate:(ByteArray)->Unit={}):JobRecord {
-        account.validate();require(account.service=="NAI");require(scenario in setOf("SUCCESS","HTTP_429","DISCONNECT"))
+        account.validate();require(account.service=="NAI" && account.provider=="SYNTHETIC");require(scenario in setOf("SUCCESS","HTTP_429","DISCONNECT"))
         val image=EditorRenderer.synthetic(settings.imageSize().width,settings.imageSize().height)
         var requestBody=""
         val client=OkHttpClient.Builder().retryOnConnectionFailure(false).followRedirects(false).followSslRedirects(false).addInterceptor { chain ->

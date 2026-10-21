@@ -1,3 +1,7 @@
+## UX-R1a运行时基础进度（2026-10-21）
+
+[执行记录](audits/UX_R1A_EXECUTION.md)：新执行资产库31+core25共56 PASS，保留此前1次失败。GUI垂直路径尚在接入，PRODUCT HOLD不变，继续连续开发，不进入RC验收。
+
 # CURRENT — UX RECOVERY CONTINUOUS / PRODUCT HOLD
 
 UX-R0正式PASS_WITH_SCOPE / CONTINUOUS_IMPLEMENTATION_ELIGIBLE，回执6307947815和用户续跑授权已读取。基准e853678，远程一致、工作树干净、唯一Suite owner。先补正Q09/TypeSet源样本合同，随后R1a→R4连续实施；完整更新和真人验收仍未通过。当前真实API调用0。

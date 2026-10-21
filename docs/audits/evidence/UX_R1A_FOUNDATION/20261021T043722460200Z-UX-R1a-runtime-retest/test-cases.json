@@ -1,0 +1,62 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "waitingCancellationRetainsLockAndDoesNotSend",
+    "seconds": "0.636",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "normalTransportUsesAuthorityEnvelopeAndCannotAcceptPartialStream",
+    "seconds": "0.146",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "httpErrorsNeverPersistProviderBodyOrRetry",
+    "seconds": "0.063",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "interruptedDesignIsNotReplayedOnOpen",
+    "seconds": "0.171",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "partialGenerationRetainsOriginalAndFullReceiptOnFailure",
+    "seconds": "0.603",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "designCandidateRequiresApplyBranchesAndSurvivesRestart",
+    "seconds": "0.463",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest",
+    "name": "failedMigrationDoesNotPublishOrOverwriteTarget",
+    "seconds": "0.547",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest",
+    "name": "endpointsCannotContainCredentialsOrInsecureSchemes",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest",
+    "name": "realProfilesRequireExplicitV2RootAndPersistDraft",
+    "seconds": "0.304",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest",
+    "name": "copyMigrationPreservesLegacyAndRestoresV2Backup",
+    "seconds": "2.12",
+    "status": "PASS"
+  }
+]

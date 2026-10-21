@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.assets.AssetStoreTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2026-10-21T04:38:27.057Z" hostname="DD1" time="391.169">
+  <properties/>
+  <testcase name="D05_actualWindowsJunctionIsRefusedWithoutWritingThroughIt" classname="io.github.misakapiano.ccbstudio.assets.AssetStoreTest" time="0.03"/>
+  <testcase name="D05_foreignRootsTraversalAndRedirectedPathsAreRefused" classname="io.github.misakapiano.ccbstudio.assets.AssetStoreTest" time="0.297"/>
+  <testcase name="D03_indexWriteFailureReturnsCommittedReceiptAndRecovers" classname="io.github.misakapiano.ccbstudio.assets.AssetStoreTest" time="0.384"/>
+  <testcase name="D03_actualProcessTerminationAtEveryCommitBoundary" classname="io.github.misakapiano.ccbstudio.assets.AssetStoreTest" time="5.161"/>
+  <testcase name="D04_noncanonicalRecordNameCannotMasqueradeAsAnotherRecord" classname="io.github.misakapiano.ccbstudio.assets.AssetStoreTest" time="0.845"/>
+  <testcase name="D06_scaleOneHundredAndThousandAndStreamingAreBounded" classname="io.github.misakapiano.ccbstudio.assets.AssetStoreTest" time="379.301"/>
+  <testcase name="D02_replayDedupNameCollisionAndConflictingId" classname="io.github.misakapiano.ccbstudio.assets.AssetStoreTest" time="0.842"/>
+  <testcase name="D04_missingReferencedOriginalAndMalformedIntentAreCorruptNotEmptyDefaults" classname="io.github.misakapiano.ccbstudio.assets.AssetStoreTest" time="0.63"/>
+  <testcase name="D04_truncatedInputAndInjectedDiskFullRetainPendingBytes" classname="io.github.misakapiano.ccbstudio.assets.AssetStoreTest" time="0.26"/>
+  <testcase name="D05_drainTimeoutRetainsLockAndRefusesNewWrites" classname="io.github.misakapiano.ccbstudio.assets.AssetStoreTest" time="0.303"/>
+  <testcase name="D01_independentJvmReadsExactSyntheticPng" classname="io.github.misakapiano.ccbstudio.assets.AssetStoreTest" time="0.758"/>
+  <testcase name="D04_missingCorruptReadErrorAndUnknownVersionAreDistinct" classname="io.github.misakapiano.ccbstudio.assets.AssetStoreTest" time="0.321"/>
+  <testcase name="D05_otherProcessCannotAcquireThenCanAcquireAfterExit" classname="io.github.misakapiano.ccbstudio.assets.AssetStoreTest" time="0.336"/>
+  <testcase name="D01_rawBytesOpaqueDocumentsAndDerivedAssetsSurviveRestart" classname="io.github.misakapiano.ccbstudio.assets.AssetStoreTest" time="0.577"/>
+  <testcase name="D04_corruptIndexRebuildPreservesEvidenceAndUniqueOriginal" classname="io.github.misakapiano.ccbstudio.assets.AssetStoreTest" time="0.597"/>
+  <testcase name="D02_concurrentSubmissionsPreserveEachAssociation" classname="io.github.misakapiano.ccbstudio.assets.AssetStoreTest" time="0.526"/>
+  <system-out><![CDATA[PROCESS_CRASH INTENT verified
+PROCESS_CRASH BYTES verified
+PROCESS_CRASH SEALED verified
+PROCESS_CRASH ASSET verified
+PROCESS_CRASH RECORD verified
+PROCESS_CRASH INDEX verified
+PROCESS_CRASH COMPLETE verified
+SCALE 1 verified
+SCALE 100 verified
+SCALE 1000 verified
+SCALE_AND_STREAM elapsedMs=379298
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

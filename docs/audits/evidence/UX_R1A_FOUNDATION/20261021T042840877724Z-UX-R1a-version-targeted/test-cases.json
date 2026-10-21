@@ -1,0 +1,26 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest",
+    "name": "failedMigrationDoesNotPublishOrOverwriteTarget",
+    "seconds": "0.805",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest",
+    "name": "endpointsCannotContainCredentialsOrInsecureSchemes",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest",
+    "name": "realProfilesRequireExplicitV2RootAndPersistDraft",
+    "seconds": "0.856",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest",
+    "name": "copyMigrationPreservesLegacyAndRestoresV2Backup",
+    "seconds": "2.822",
+    "status": "PASS"
+  }
+]

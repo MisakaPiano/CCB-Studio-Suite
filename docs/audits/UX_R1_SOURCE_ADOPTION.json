@@ -1,0 +1,25 @@
+{
+  "checkpoint": "UX-R1a",
+  "sourceRepository": "MisakaPiano/ChatChatBar-Desktop",
+  "sourceCommit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+  "files": [
+    {
+      "source": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/prompt/AuxiliaryMessageAssembler.kt",
+      "target": "modules/studio-core/src/main/kotlin/com/example/chatbar/domain/prompt/AuxiliaryMessageAssembler.kt",
+      "sha256": "2dc99b7f9fcd851927d140f603d248cd59c6434a9ee27a9c4a3ad76c55d7700e",
+      "adaptation": "none; exact bytes; consumer StudioTextTransport assembles authoritative auxiliary envelope"
+    },
+    {
+      "source": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/NovelAiDesignTurnRunner.kt",
+      "target": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/CreationSession.kt",
+      "sourceSha256": "2b716d05c1ca1ddc4bab0e315da1d471bd01b29dea900cfab99ae0ea57cc5047",
+      "adaptation": "Suite journal replaces Desktop repository; same design/revise baseline and research dispatch; cancellation/restart persistence; explicit candidate application"
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiTextTransport.kt",
+      "target": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioTextTransport.kt",
+      "sourceSha256": "c45f973e4703ff69edf4acd3c855cb8439ac0f2e1acf263c2bdf7f6cf7eed88b",
+      "adaptation": "Same auxiliary envelope/refusal/completion policies; Suite DPAPI, durable per-attempt budget, bounded HTTP/SSE and sanitized errors; no automatic retry; no provider body logging"
+    }
+  ]
+}

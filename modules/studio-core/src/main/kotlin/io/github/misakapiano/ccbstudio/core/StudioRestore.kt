@@ -50,7 +50,7 @@ object StudioRestore {
             ids.distinct().forEach {store.read(UUID.fromString(it)).require()}
         }
         // Secret refs deliberately remain unresolved; no credentials are copied by ordinary backup.
-        writeNewForced(staging.resolve("preview-root.txt"),"CCBStudioSuite/WindowsPreview/SYNTHETIC_ONLY/v1".toByteArray())
+        writeNewForced(staging.resolve("preview-root.txt"),if(state.version==2) StudioWorkspace.STUDIO_MARKER else "CCBStudioSuite/WindowsPreview/SYNTHETIC_ONLY/v1".toByteArray())
         fault("RESTORE_VALIDATED")
         if(Files.exists(destination,NOFOLLOW_LINKS))throw DataProblem("CONFLICT","Restore destination appeared; retained")
         Files.move(staging,destination) // No REPLACE_EXISTING: never overwrite a concurrently created target.

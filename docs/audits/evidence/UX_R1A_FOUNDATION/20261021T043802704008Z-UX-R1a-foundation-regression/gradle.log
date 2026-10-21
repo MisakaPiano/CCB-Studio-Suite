@@ -1,0 +1,171 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :asset-library:compileJava UP-TO-DATE
+> Task :asset-library:processResources NO-SOURCE
+> Task :asset-library:classes UP-TO-DATE
+> Task :asset-library:jar UP-TO-DATE
+> Task :asset-library:compileTestJava UP-TO-DATE
+> Task :asset-library:processTestResources NO-SOURCE
+> Task :asset-library:testClasses UP-TO-DATE
+
+> Task :asset-library:test
+
+AssetBackupTest > D07_snapshotRestoresOriginalsDocumentsAndPendingInputButExcludesSecrets PASSED
+
+AssetBackupTest > D07_interruptedRestoreBlocksNormalOpenAndResumesWithoutReplacingContent PASSED
+
+AssetBackupTest > D07_interruptedBackupIsNotACompleteBackupAndSourceStaysUsable PASSED
+
+AssetBackupTest > D07_badBackupIsRejectedBeforeDestinationAndCannotOverwritePopulatedRoot PASSED
+
+AssetBackupTest > D07_restorePartialCopyRemainsRecoverableAndChangedTargetIsNotOverwritten PASSED
+
+AssetMaintenanceTest > CP1_reconciliationSurvivesRealChildTerminationAtEveryBoundary STANDARD_OUT
+    RECONCILIATION_CRASH MAINTENANCE_INTENT verified
+    RECONCILIATION_CRASH MAINTENANCE_MOVED verified
+    RECONCILIATION_CRASH MAINTENANCE_COMPLETE verified
+
+AssetMaintenanceTest > CP1_reconciliationSurvivesRealChildTerminationAtEveryBoundary PASSED
+
+AssetMaintenanceTest > CP1_futureOrAlteredMaintenanceIntentIsNeverReplacedByDefaults PASSED
+
+AssetMaintenanceTest > CP1_pendingInspectionRecoveryAndReconciliationPreserveEveryByteAndBackup PASSED
+
+AssetMaintenanceTest > CP1_unknownCorruptFutureAndStaleCandidatesCannotBeDiscarded PASSED
+
+AssetSafetyTest > R1_01_normalEmptyAndCommittedCatalogsStillRebuild PASSED
+
+AssetSafetyTest > R1_02_interruptedRegisteredBackupNeverReportsSuccessAndRetainsLockUntilSettled PASSED
+
+AssetSafetyTest > R1_02_registeredBackupCompletesDuringDrainWithVerifiedMarker PASSED
+
+AssetSafetyTest > R1_01_unknownNamesAndDirectoriesCannotBecomeACompleteCatalog PASSED
+
+AssetSafetyTest > R1_01_damagedUnsupportedAndUnreadableEntriesRetainTheirClassification PASSED
+
+AssetSafetyTest > R1_01_actualInterruptedRecordPublicationRemainsVisibleAfterRecoveryAndRestart PASSED
+
+AssetStoreTest > D05_actualWindowsJunctionIsRefusedWithoutWritingThroughIt PASSED
+
+AssetStoreTest > D05_foreignRootsTraversalAndRedirectedPathsAreRefused PASSED
+
+AssetStoreTest > D03_indexWriteFailureReturnsCommittedReceiptAndRecovers PASSED
+
+AssetStoreTest > D03_actualProcessTerminationAtEveryCommitBoundary STANDARD_OUT
+    PROCESS_CRASH INTENT verified
+    PROCESS_CRASH BYTES verified
+    PROCESS_CRASH SEALED verified
+    PROCESS_CRASH ASSET verified
+    PROCESS_CRASH RECORD verified
+    PROCESS_CRASH INDEX verified
+    PROCESS_CRASH COMPLETE verified
+
+AssetStoreTest > D03_actualProcessTerminationAtEveryCommitBoundary PASSED
+
+AssetStoreTest > D04_noncanonicalRecordNameCannotMasqueradeAsAnotherRecord PASSED
+
+AssetStoreTest > D06_scaleOneHundredAndThousandAndStreamingAreBounded STANDARD_OUT
+    SCALE 1 verified
+    SCALE 100 verified
+    SCALE 1000 verified
+    SCALE_AND_STREAM elapsedMs=379298
+
+AssetStoreTest > D06_scaleOneHundredAndThousandAndStreamingAreBounded PASSED
+
+AssetStoreTest > D02_replayDedupNameCollisionAndConflictingId PASSED
+
+AssetStoreTest > D04_missingReferencedOriginalAndMalformedIntentAreCorruptNotEmptyDefaults PASSED
+
+AssetStoreTest > D04_truncatedInputAndInjectedDiskFullRetainPendingBytes PASSED
+
+AssetStoreTest > D05_drainTimeoutRetainsLockAndRefusesNewWrites PASSED
+
+AssetStoreTest > D01_independentJvmReadsExactSyntheticPng PASSED
+
+AssetStoreTest > D04_missingCorruptReadErrorAndUnknownVersionAreDistinct PASSED
+
+AssetStoreTest > D05_otherProcessCannotAcquireThenCanAcquireAfterExit PASSED
+
+AssetStoreTest > D01_rawBytesOpaqueDocumentsAndDerivedAssetsSurviveRestart PASSED
+
+AssetStoreTest > D04_corruptIndexRebuildPreservesEvidenceAndUniqueOriginal PASSED
+
+AssetStoreTest > D02_concurrentSubmissionsPreserveEachAssociation PASSED
+
+> Task :image-authority:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :image-authority:compileKotlin UP-TO-DATE
+> Task :image-authority:compileJava NO-SOURCE
+> Task :image-authority:processResources NO-SOURCE
+> Task :image-authority:classes UP-TO-DATE
+> Task :image-authority:jar UP-TO-DATE
+> Task :image-authority:compileTestKotlin UP-TO-DATE
+> Task :image-authority:compileTestJava NO-SOURCE
+> Task :image-authority:processTestResources UP-TO-DATE
+> Task :image-authority:testClasses UP-TO-DATE
+> Task :image-authority:test UP-TO-DATE
+> Task :studio-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-core:compileKotlin UP-TO-DATE
+> Task :studio-core:compileJava NO-SOURCE
+> Task :studio-core:processResources NO-SOURCE
+> Task :studio-core:classes UP-TO-DATE
+> Task :studio-core:jar UP-TO-DATE
+> Task :studio-core:compileTestKotlin UP-TO-DATE
+> Task :studio-core:compileTestJava NO-SOURCE
+> Task :studio-core:processTestResources NO-SOURCE
+> Task :studio-core:testClasses UP-TO-DATE
+
+> Task :studio-core:test
+
+CreationRuntimeTest > waitingCancellationRetainsLockAndDoesNotSend PASSED
+
+CreationRuntimeTest > normalTransportUsesAuthorityEnvelopeAndCannotAcceptPartialStream PASSED
+
+CreationRuntimeTest > httpErrorsNeverPersistProviderBodyOrRetry PASSED
+
+CreationRuntimeTest > interruptedDesignIsNotReplayedOnOpen PASSED
+
+CreationRuntimeTest > partialGenerationRetainsOriginalAndFullReceiptOnFailure PASSED
+
+CreationRuntimeTest > designCandidateRequiresApplyBranchesAndSurvivesRestart PASSED
+
+LiveRequestBudgetTest > truncatedReservationBlocksInsteadOfFreeingBudget PASSED
+
+LiveRequestBudgetTest > allServicesSharePersistentRollingLimitAndFiveMinuteSpacing PASSED
+
+StudioCoreTest > dpapiSyntheticSecretRoundTripNotInDocuments PASSED
+
+StudioCoreTest > completeChainRejectsDeletedRevisionAndUnknownEntry PASSED
+
+StudioCoreTest > originalProjectUndoRedoAndRestart PASSED
+
+StudioCoreTest > missingFontPreventsFalseCompleteExportAndUnknownLayerRefused PASSED
+
+StudioCoreTest > batchOrderUndoAndExportCategoriesAreNonDestructive PASSED
+
+StudioCoreTest > generationDesignRevisionFrozenIdentityAndUncertainRestart PASSED
+
+StudioCoreTest > completeRecipeComparisonIncludesNestedCharactersSeedAndIdentity PASSED
+
+StudioCoreTest > stagedUnknownCorruptAndFutureDocumentsNeverDefault PASSED
+
+StudioRestoreTest > completeSnapshotRestoresOriginalProjectUndoAndSecretReferenceOnly PASSED
+
+StudioRestoreTest > interruptedRestoreRetainsStagingAndCanRetryIntoFreshRoot PASSED
+
+StudioRestoreTest > corruptIncompleteAndUnknownSnapshotsNeverPublishOrOverwrite PASSED
+
+StudioVersionTwoTest > failedMigrationDoesNotPublishOrOverwriteTarget PASSED
+
+StudioVersionTwoTest > endpointsCannotContainCredentialsOrInsecureSchemes PASSED
+
+StudioVersionTwoTest > realProfilesRequireExplicitV2RootAndPersistDraft PASSED
+
+StudioVersionTwoTest > copyMigrationPreservesLegacyAndRestoresV2Backup PASSED
+
+WorkspaceProcessTest > abruptStagedAndCommittedDocumentCrashesPreserveOriginals PASSED
+
+WorkspaceProcessTest > anotherProcessCannotOwnOpenWorkspaceThenCanAfterClose PASSED
+
+BUILD SUCCESSFUL in 7m 15s
+13 actionable tasks: 2 executed, 11 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.1.0/userguide/configuration_cache_enabling.html

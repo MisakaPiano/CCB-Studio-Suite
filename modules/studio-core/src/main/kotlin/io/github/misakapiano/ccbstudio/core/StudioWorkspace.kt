@@ -13,14 +13,21 @@ import java.util.UUID
 
 /** One admitted serial workspace owns assets, document history and credential references. */
 class StudioWorkspace private constructor(val root:Path,private val owner:FileChannel,private val lock:FileLock,
-    val assets:AssetStore,private val journal:StateJournal):AutoCloseable {
+    val assets:AssetStore,private val journal:StateJournal,val studioMode:Boolean=false):AutoCloseable {
     private var closed=false
     private var poisoned=false
+    private var activeTasks=0
+    @Synchronized fun beginTask():AutoCloseable {
+        checkOpen();check(activeTasks==0) { "Another creation task is active" };activeTasks++
+        var released=false
+        return AutoCloseable { synchronized(this) {if(!released){released=true;activeTasks--}} }
+    }
     val state:StudioState @Synchronized get() {checkOpen();return journal.state}
     @Synchronized fun <T> operation(body:()->T):T {checkOpen();return body()}
     private fun checkOpen() {check(!closed && !poisoned) { "Workspace closed or requires recovery; reopen after inspection" }}
     @Synchronized fun save(next:StudioState) {
         checkOpen()
+        require(next.version == if(studioMode) 2 else 1) { "Workspace/document version mismatch; migration required" }
         try {journal.commit(next)} catch(e:Exception) {poisoned=true;throw e}
     }
     @Synchronized fun importImage(name:String,bytes:ByteArray,recipe:String=""):String = operation {
@@ -85,30 +92,49 @@ class StudioWorkspace private constructor(val root:Path,private val owner:FileCh
     }
     @Synchronized override fun close() {
         if(closed)return
+        if(activeTasks>0) throw DataProblem("DRAIN_REQUIRED","Cancel and join active creation tasks before closing; ownership retained")
         if(!assets.close(Duration.ofSeconds(30))) throw DataProblem("DRAIN_TIMEOUT","Ownership retained")
         lock.release();owner.close();closed=true
     }
     companion object {
         private val MARKER="CCBStudioSuite/WindowsPreview/SYNTHETIC_ONLY/v1".toByteArray()
-        fun open(supplied:Path,fault:(String)->Unit={}):StudioWorkspace {
+        internal val STUDIO_MARKER="CCBStudioSuite/WindowsStudio/v2".toByteArray()
+        fun open(supplied:Path,fault:(String)->Unit={}):StudioWorkspace = openRoot(supplied,false,fault)
+        fun openStudio(supplied:Path,fault:(String)->Unit={}):StudioWorkspace = openRoot(supplied,true,fault)
+        private fun openRoot(supplied:Path,studio:Boolean,fault:(String)->Unit):StudioWorkspace {
             val root=supplied.toAbsolutePath().normalize();safePath(root)
             require(root.none {it.toString().lowercase() in setOf("chatchatbar-desktop","chatchatbardesktop","chatbar","chatchatbar")})
             Files.createDirectories(root)
             val marker=root.resolve("preview-root.txt")
             if(!Files.exists(marker,NOFOLLOW_LINKS) && Files.list(root).use {it.anyMatch {p->p.fileName.toString()!=".owner.lock"}}) throw DataProblem("FOREIGN_ROOT","Unrecognized nonempty root retained")
             val c=FileChannel.open(root.resolve(".owner.lock"),StandardOpenOption.CREATE,StandardOpenOption.WRITE,NOFOLLOW_LINKS)
-            val lock=try {c.tryLock() ?: throw DataProblem("IN_USE","Preview root already owned")} catch(e:Exception) {c.close();throw e}
+            val lock=try {c.tryLock() ?: throw DataProblem("IN_USE","Preview root already owned")}
+                catch(e:java.nio.channels.OverlappingFileLockException) {c.close();throw DataProblem("IN_USE","Studio root already owned")}
+                catch(e:Exception) {c.close();throw e}
             var assets:AssetStore?=null
             try {
-                if(!Files.exists(marker,NOFOLLOW_LINKS)) writeNewForced(marker,MARKER)
-                if(!readBounded(marker,1024).contentEquals(MARKER)) throw DataProblem("UNSUPPORTED_VERSION","Unknown Preview root identity retained")
+                val expected=if(studio) STUDIO_MARKER else MARKER
+                if(!Files.exists(marker,NOFOLLOW_LINKS)) writeNewForced(marker,expected)
+                if(!readBounded(marker,1024).contentEquals(expected)) throw DataProblem("UNSUPPORTED_VERSION","Root version requires explicit copy migration; retained")
                 val allowed=setOf(".owner.lock","preview-root.txt","assets","documents","secrets","exports","backups")
                 Files.list(root).use {it.forEach {p->safePath(p);if(p.fileName.toString() !in allowed)throw DataProblem("RECOVERY_REQUIRED","Unknown root entry retained")}}
                 val journal=StateJournal(root.resolve("documents"),fault)
+                if(studio && journal.state.version == 1) {
+                    // Only a new empty v2 root may initialize. Never reinterpret a legacy document chain.
+                    if(Files.list(root.resolve("documents")).use {it.findAny().isPresent}) throw DataProblem("UNSUPPORTED_VERSION","Legacy documents require copy migration")
+                    journal.commit(StudioState(version=2,creation=CreationState()))
+                }
+                if(journal.state.version != if(studio) 2 else 1) throw DataProblem("UNSUPPORTED_VERSION","Root/document versions differ; retained")
                 assets=AssetStore.open(root.resolve("assets"))
-                val workspace=StudioWorkspace(root,c,lock,assets,journal)
+                val workspace=StudioWorkspace(root,c,lock,assets,journal,studio)
                 // A dispatched job after process death is uncertain, never automatically resent.
                 if(journal.state.jobs.any {it.state in setOf("QUEUED","RUNNING")}) workspace.save(journal.state.copy(jobs=journal.state.jobs.map {if(it.state in setOf("QUEUED","RUNNING"))it.copy(state="UNCERTAIN",detail="Interrupted; no automatic retry")else it}))
+                val creation=journal.state.creation
+                if(creation!=null && creation.conversations.any {c->c.turns.any {it.status==com.example.chatbar.domain.image.NovelAiDesignTurnStatus.PENDING}}) {
+                    workspace.save(journal.state.copy(creation=creation.copy(conversations=creation.conversations.map {c->c.copy(turns=c.turns.map {t->
+                        if(t.status==com.example.chatbar.domain.image.NovelAiDesignTurnStatus.PENDING) t.copy(status=com.example.chatbar.domain.image.NovelAiDesignTurnStatus.FAILED,error="进程中断，结果未知；未自动重发") else t
+                    })})))
+                }
                 return workspace
             } catch(e:Exception) {assets?.close();lock.release();c.close();throw e}
         }

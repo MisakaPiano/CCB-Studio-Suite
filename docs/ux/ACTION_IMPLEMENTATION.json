@@ -23,29 +23,50 @@
     {
       "id": "P03",
       "owner": "UX-R1a",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/CreationSession.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioTextTransport.kt"
+      ],
+      "tests": [
+        "CreationRuntimeTest.designCandidateRequiresApplyBranchesAndSurvivesRestart"
+      ],
       "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "persistenceEvidence": [
+        "UX-R1a-runtime-retest: EXECUTED; source identity in run summary/source-before"
+      ],
+      "status": "CORE_PARTIAL / GUI_NOT_TESTED / NOT_PRODUCT_PASS"
     },
     {
       "id": "P04",
       "owner": "UX-R1a",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/CreationSession.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioTextTransport.kt"
+      ],
+      "tests": [
+        "CreationRuntimeTest.designCandidateRequiresApplyBranchesAndSurvivesRestart"
+      ],
       "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "persistenceEvidence": [
+        "UX-R1a-runtime-retest: EXECUTED; source identity in run summary/source-before"
+      ],
+      "status": "CORE_PARTIAL / GUI_NOT_TESTED / NOT_PRODUCT_PASS"
     },
     {
       "id": "P05",
       "owner": "UX-R1a",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/CreationSession.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioTextTransport.kt"
+      ],
+      "tests": [
+        "CreationRuntimeTest.designCandidateRequiresApplyBranchesAndSurvivesRestart"
+      ],
       "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "persistenceEvidence": [
+        "UX-R1a-runtime-retest: EXECUTED; source identity in run summary/source-before"
+      ],
+      "status": "CORE_PARTIAL / GUI_NOT_TESTED / NOT_PRODUCT_PASS"
     },
     {
       "id": "P06",
@@ -113,11 +134,18 @@
     {
       "id": "P13",
       "owner": "UX-R1a",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/CreationSession.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioTextTransport.kt"
+      ],
+      "tests": [
+        "CreationRuntimeTest.partialGenerationRetainsOriginalAndFullReceiptOnFailure"
+      ],
       "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "persistenceEvidence": [
+        "UX-R1a-runtime-retest: EXECUTED; source identity in run summary/source-before"
+      ],
+      "status": "CORE_PARTIAL / GUI_NOT_TESTED / NOT_PRODUCT_PASS"
     },
     {
       "id": "P14",

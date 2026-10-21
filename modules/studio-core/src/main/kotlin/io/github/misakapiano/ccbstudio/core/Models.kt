@@ -4,6 +4,8 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import java.security.MessageDigest
 import java.util.UUID
+import com.example.chatbar.domain.image.NovelAiStudioDraft
+import com.example.chatbar.domain.image.NovelAiDesignConversation
 
 val documentJson = Json { encodeDefaults = true; ignoreUnknownKeys = false }
 fun newId(): String = UUID.randomUUID().toString()
@@ -18,7 +20,13 @@ fun sha256(bytes: ByteArray): String = MessageDigest.getInstance("SHA-256").dige
         UUID.fromString(id)
         require(alias.isNotBlank() && alias.length <= 100)
         require(service in setOf("LLM", "NAI"))
-        require(provider == "SYNTHETIC" && endpoint == "https://synthetic.invalid") { "Preview permits only the synthetic provider" }
+        if(provider == "SYNTHETIC") require(endpoint == "https://synthetic.invalid")
+        else {
+            require(provider == if(service == "NAI") "NOVELAI" else "OPENAI_COMPATIBLE")
+            val uri = java.net.URI(endpoint)
+            require(uri.scheme == "https" && !uri.host.isNullOrBlank() && uri.userInfo == null && uri.query == null && uri.fragment == null) { "Use an HTTPS endpoint without credentials, query or fragment" }
+            if(service == "NAI") require(endpoint.trimEnd('/') == "https://image.novelai.net") { "NovelAI uses its authoritative image endpoint" }
+        }
         require(model.isNotBlank() && model.length <= 160)
         secretRef?.let { UUID.fromString(it) }
     }
@@ -62,11 +70,14 @@ fun sha256(bytes: ByteArray): String = MessageDigest.getInstance("SHA-256").dige
     val projects: List<EditProject> = emptyList(),
     val designs: List<DesignRecord> = emptyList(),
     val jobs: List<JobRecord> = emptyList(),
+    val creation: CreationState? = null,
 ) {
     fun validate() {
-        if(version != 1) throw DataProblem("UNSUPPORTED_VERSION", "Studio document version $version retained")
+        if(version !in 1..2) throw DataProblem("UNSUPPORTED_VERSION", "Studio document version $version retained")
+        if(version == 1) require(accounts.all {it.provider == "SYNTHETIC"} && creation == null) { "Legacy Preview is synthetic-only" }
         require(accounts.size <= 100 && accounts.map { it.id }.distinct().size == accounts.size)
         accounts.forEach { it.validate() }
+        creation?.validate()
         require(projects.map { it.id }.distinct().size == projects.size)
         projects.forEach { p ->
             UUID.fromString(p.id); require(p.name.length in 1..100)
@@ -75,6 +86,30 @@ fun sha256(bytes: ByteArray): String = MessageDigest.getInstance("SHA-256").dige
                 s.pages.forEach { page -> UUID.fromString(page.assetId); require(page.layers.size <= 500); page.layers.forEach { it.validate() } }
             }
         }
+    }
+}
+
+/** Versioned application state; authoritative draft and conversation models stay unchanged. */
+@Serializable data class CreationState(
+    val draft: NovelAiStudioDraft = NovelAiStudioDraft(),
+    val undo: List<NovelAiStudioDraft> = emptyList(),
+    val redo: List<NovelAiStudioDraft> = emptyList(),
+    val conversations: List<NovelAiDesignConversation> = emptyList(),
+    val currentConversationId: String? = null,
+    val composer: String = "",
+    val attachCurrentPrompt: Boolean = false,
+    val llmAccountId: String? = null,
+    val naiAccountId: String? = null,
+) {
+    fun change(next: NovelAiStudioDraft) = copy(draft=next, undo=(undo+draft).takeLast(30), redo=emptyList())
+    fun undoDraft() = if(undo.isEmpty()) this else copy(draft=undo.last(),undo=undo.dropLast(1),redo=(redo+draft).takeLast(30))
+    fun redoDraft() = if(redo.isEmpty()) this else copy(draft=redo.last(),redo=redo.dropLast(1),undo=(undo+draft).takeLast(30))
+    fun validate() {
+        require(composer.length <= 100000 && undo.size <= 30 && redo.size <= 30)
+        require(conversations.map {it.id}.distinct().size == conversations.size)
+        conversations.forEach {c -> UUID.fromString(c.id); require(c.turns.map {it.id}.distinct().size == c.turns.size); c.turns.forEach {UUID.fromString(it.id)} }
+        require(currentConversationId == null || conversations.any {it.id == currentConversationId})
+        listOfNotNull(llmAccountId,naiAccountId).forEach {UUID.fromString(it)}
     }
 }
 class DataProblem(val status: String, message: String, cause: Throwable?=null): java.io.IOException(message,cause)
