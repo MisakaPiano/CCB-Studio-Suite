@@ -1,0 +1,337 @@
+{
+  "status": "CAPTURED_NOT_HUMAN_REVIEWED",
+  "cases": [
+    {
+      "id": "TS-V01",
+      "status": "SOURCE_OUTPUT_CAPTURED_WITH_DISCLOSED_BOOTSTRAP_PATCH"
+    },
+    {
+      "id": "TS-V02",
+      "status": "SOURCE_OUTPUT_CAPTURED_WITH_DISCLOSED_BOOTSTRAP_PATCH"
+    },
+    {
+      "id": "TS-R01",
+      "status": "SOURCE_OUTPUT_CAPTURED_WITH_DISCLOSED_BOOTSTRAP_PATCH"
+    },
+    {
+      "id": "TS-R01-vertical",
+      "status": "SOURCE_OUTPUT_CAPTURED_WITH_DISCLOSED_BOOTSTRAP_PATCH"
+    },
+    {
+      "id": "TS-H01-96",
+      "status": "SOURCE_OUTPUT_CAPTURED_WITH_DISCLOSED_BOOTSTRAP_PATCH"
+    },
+    {
+      "id": "TS-H01-192",
+      "status": "SOURCE_OUTPUT_CAPTURED_WITH_DISCLOSED_BOOTSTRAP_PATCH"
+    },
+    {
+      "id": "TS-H01-384",
+      "status": "SOURCE_OUTPUT_CAPTURED_WITH_DISCLOSED_BOOTSTRAP_PATCH"
+    },
+    {
+      "id": "TS-S01-1",
+      "status": "SOURCE_OUTPUT_CAPTURED_WITH_DISCLOSED_BOOTSTRAP_PATCH"
+    },
+    {
+      "id": "TS-S01-2",
+      "status": "SOURCE_OUTPUT_CAPTURED_WITH_DISCLOSED_BOOTSTRAP_PATCH"
+    },
+    {
+      "id": "TS-S01-3",
+      "status": "SOURCE_OUTPUT_CAPTURED_WITH_DISCLOSED_BOOTSTRAP_PATCH"
+    },
+    {
+      "id": "TS-S01-1-no-number",
+      "status": "SOURCE_OUTPUT_CAPTURED_WITH_DISCLOSED_BOOTSTRAP_PATCH"
+    },
+    {
+      "id": "TS-S01-2-no-number",
+      "status": "SOURCE_OUTPUT_CAPTURED_WITH_DISCLOSED_BOOTSTRAP_PATCH"
+    },
+    {
+      "id": "TS-S01-3-no-number",
+      "status": "SOURCE_OUTPUT_CAPTURED_WITH_DISCLOSED_BOOTSTRAP_PATCH"
+    },
+    {
+      "id": "TS-P01-source.pdf",
+      "status": "SOURCE_EXPORT_CAPTURED_WITH_LOCAL_PINNED_DEPENDENCIES"
+    },
+    {
+      "id": "TS-P01-source.zip",
+      "status": "SOURCE_EXPORT_CAPTURED_WITH_LOCAL_PINNED_DEPENDENCIES"
+    },
+    {
+      "id": "TS-S02",
+      "status": "SOURCE_STYLE_APPLICATION_OBSERVED"
+    }
+  ],
+  "errors": [],
+  "blocked": [
+    "https://fonts.googleapis.com/css2?family=Long+Cang&family=Ma+Shan+Zheng&family=Noto+Sans+JP:wght@400;700;900&family=Noto+Sans+SC:wght@400;700;900&family=Noto+Serif+JP:wght@400;700;900&family=Noto+Serif+SC:wght@400;700;900&family=ZCOOL+KuaiLe&family=ZCOOL+QingKe+HuangYou&display=swap"
+  ],
+  "humanReview": "NOT TESTED",
+  "sourceSha256": "892ea08f0070bdfd264b8895d38f6239f32f436b68a74ab42a2ef3336e28bb63",
+  "instrumentedSha256": "4b16dd99825d60c93b0edbf7ba60f8ac5245e22aec14fae0a660d898088a73c8",
+  "instrumentation": [
+    "Move DEFAULT_PREFS after STORYBOOK_PRESETS (original startup throws TDZ ReferenceError)",
+    "Resolve only pinned jsPDF/JSZip dependencies from local UMD globals",
+    "Expose original functions/state for repeatable synthetic fixtures; layout/draw/export algorithms unchanged"
+  ],
+  "fonts": [
+    {
+      "name": "msyh.ttc",
+      "bytes": 19704352,
+      "sha256": "d79c55e68b1131eea0cc1c47be4f572d964f28c682e143db2ad09c1e4cb07a3f",
+      "redistribution": "NOT COPIED; installed Windows font used locally"
+    },
+    {
+      "name": "msyhbd.ttc",
+      "bytes": 16883552,
+      "sha256": "4508821b3dffe01f0ef5e5326a3e60df705a44633858811f67b6982dce3f6ee6",
+      "redistribution": "NOT COPIED; installed Windows font used locally"
+    },
+    {
+      "name": "simsun.ttc",
+      "bytes": 18070492,
+      "sha256": "120a51d2b14eb588700a21e15fc301f0ea55d7c1a4e1f3ae61db83b7c8d42cd6",
+      "redistribution": "NOT COPIED; installed Windows font used locally"
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "jspdf-2.5.2.umd.min.js",
+      "bytes": 365730,
+      "sha256": "85ba2cc3ff858a20fa49fe6e457bec863ea40b55a9f3725e58a940e62f6f61a4"
+    },
+    {
+      "name": "jszip-3.10.1.min.js",
+      "bytes": 97630,
+      "sha256": "acc7e41455a80765b5fd9c7ee1b8078a6d160bbbca455aeae854de65c947d59e"
+    }
+  ],
+  "browser": "131.0.2903.112",
+  "viewport": {
+    "width": 1400,
+    "height": 950,
+    "deviceScaleFactor": 1
+  },
+  "fontLoad": [
+    {
+      "family": "CCBRef",
+      "loaded": true
+    },
+    {
+      "family": "CCBRefSerif",
+      "loaded": true
+    }
+  ],
+  "fixtureSha256": "df921782cf19798c954ba4ebd7d921d596a49614186bf300fc7c032fad0aa48e",
+  "files": [
+    {
+      "name": "synthetic-reference.png",
+      "bytes": 101290,
+      "sha256": "df921782cf19798c954ba4ebd7d921d596a49614186bf300fc7c032fad0aa48e"
+    },
+    {
+      "name": "TS-H01-192-source-ui.png",
+      "bytes": 218220,
+      "sha256": "6d6c6a672daef7b223e257b293bb5fab61544d5fe54bdf90acb3ed584dfc7f1f"
+    },
+    {
+      "name": "TS-H01-192.json",
+      "bytes": 14402,
+      "sha256": "39ebede1dcd007ad5fb9a28c08c8524325073ea9a6887c90b85cb0ff14b662a5"
+    },
+    {
+      "name": "TS-H01-192.png",
+      "bytes": 113942,
+      "sha256": "b43b3631f50ea32c7be52c8470bd988d38d2550986fd8f0cfe85b2bce8fde98f"
+    },
+    {
+      "name": "TS-H01-384-source-ui.png",
+      "bytes": 217635,
+      "sha256": "fb756ed62ed0fe1e14801b3b705b4b5b74647f41cefa4e90a39bcc0b3c73cebc"
+    },
+    {
+      "name": "TS-H01-384.json",
+      "bytes": 14259,
+      "sha256": "4f0a0840776ae2cfdb51d342927b01e9578ed8c6baaab36b57fd69618e0473f9"
+    },
+    {
+      "name": "TS-H01-384.png",
+      "bytes": 113428,
+      "sha256": "d0ea3edab2bd3d7fdb1a34df511a16b73798e9216fa3080217aeaa36ddf4a1e4"
+    },
+    {
+      "name": "TS-H01-96-source-ui.png",
+      "bytes": 217233,
+      "sha256": "c5b0312ff0c6a3df9b321a17208564aa7826c3727ec7cd3f8df415b67e21f89e"
+    },
+    {
+      "name": "TS-H01-96.json",
+      "bytes": 14664,
+      "sha256": "9b24144f52a2458de12a6a1b894769d3ea1c69146c43851c553bada598673b98"
+    },
+    {
+      "name": "TS-H01-96.png",
+      "bytes": 114454,
+      "sha256": "069267e356265d80290fd561e8c063be3dad75571666a7243b39dd7afb40f42b"
+    },
+    {
+      "name": "TS-P01-source.pdf",
+      "bytes": 384589,
+      "sha256": "dcf0e95ae05c1007b18cc7e081a961d4e6bfed654c938a0b82bc2b7a2e9843e6"
+    },
+    {
+      "name": "TS-P01-source.zip",
+      "bytes": 854436,
+      "sha256": "3f73cc6a5e8f0b87ccf79f14396a813de6daba17be67c041f3bf9244b3a50c9a"
+    },
+    {
+      "name": "TS-R01-source-ui.png",
+      "bytes": 225497,
+      "sha256": "0b17cec1517c8a17a055a87708cb2660cdfad9d8dbd6b1d67635e78736022232"
+    },
+    {
+      "name": "TS-R01-vertical-source-ui.png",
+      "bytes": 218267,
+      "sha256": "0da5d0c6eb06cad78f115a41a57a8c037c521a8017094a31800d3367856569a3"
+    },
+    {
+      "name": "TS-R01-vertical.json",
+      "bytes": 13221,
+      "sha256": "953a8b62b5918a637f68121fedd221cf48c9dd1d2d6ae8a62e951bf371128636"
+    },
+    {
+      "name": "TS-R01-vertical.png",
+      "bytes": 115598,
+      "sha256": "51b5363b5c81c7cfc044531c0d7fc2c415552ea322cc81a4c75fa3b7c4dc1172"
+    },
+    {
+      "name": "TS-R01.json",
+      "bytes": 15145,
+      "sha256": "b98c0082c8ae952c5ec9a20f62e5c6cbdd268e5359f2abb56b17fb8685ac0ecf"
+    },
+    {
+      "name": "TS-R01.png",
+      "bytes": 123520,
+      "sha256": "87e7f4bf927bc919a538d9490598c863bfc5cb792df56acdf1c3e8136196f539"
+    },
+    {
+      "name": "TS-S01-1-no-number.json",
+      "bytes": 791,
+      "sha256": "90c74416146992464f875c03e114e5e9b815872d2809e189f000abdcc74eb338"
+    },
+    {
+      "name": "TS-S01-1-no-number.png",
+      "bytes": 218990,
+      "sha256": "e0c58d31e92ef2c499a2c17b7a3a47745c6f64e563577382203179a389616111"
+    },
+    {
+      "name": "TS-S01-1.json",
+      "bytes": 782,
+      "sha256": "6c779c2ce1ed7d70eedcea44b3f9cf8694359409bff8a3255e1db35ca7c3af14"
+    },
+    {
+      "name": "TS-S01-1.png",
+      "bytes": 220515,
+      "sha256": "24f5188c7febb20fefea629a581cc78e13c0adcc149171609f21de57da9ed3e7"
+    },
+    {
+      "name": "TS-S01-2-no-number.json",
+      "bytes": 839,
+      "sha256": "7a31cf6551993a012d3dad5b25b3323f98dffd232fc98d8b4cfff5e019fadf1f"
+    },
+    {
+      "name": "TS-S01-2-no-number.png",
+      "bytes": 225439,
+      "sha256": "c608ab1d406ad2ab809286727d008aeeeb36c2765b587cc97674f62d1eab6df2"
+    },
+    {
+      "name": "TS-S01-2.json",
+      "bytes": 830,
+      "sha256": "7de0b429f796274528485118fc3d361de0fa9f3e24b9d00be0817e224a4a39d0"
+    },
+    {
+      "name": "TS-S01-2.png",
+      "bytes": 227245,
+      "sha256": "f9aee4bdcd101f4254b8873a017b2121cd031b22ca7b5c085a812fe5a792844b"
+    },
+    {
+      "name": "TS-S01-3-no-number.json",
+      "bytes": 2751,
+      "sha256": "c0a7248f6650543b300b1f1b947853f9f270d05c6cb9a60f30d158f652c3c806"
+    },
+    {
+      "name": "TS-S01-3-no-number.png",
+      "bytes": 403670,
+      "sha256": "18d835eb092eab6ddd66f3862b05fa1e8837402b51097477fd7795e0cec1dab7"
+    },
+    {
+      "name": "TS-S01-3.json",
+      "bytes": 2742,
+      "sha256": "bb51de2a89e86e6b5a5b46fef0625d31bc590c776d2e482ee2a34e7ca32093fd"
+    },
+    {
+      "name": "TS-S01-3.png",
+      "bytes": 405734,
+      "sha256": "ace41c782519a81b452a3aa666867a79bd7e9021953ab838e18bc395b0f2d42f"
+    },
+    {
+      "name": "TS-S01-source-ui.png",
+      "bytes": 169834,
+      "sha256": "84722b18b350b8c1db816fbb36b62a759cf805aeafca0e1957d197e8b22f5b50"
+    },
+    {
+      "name": "TS-S02-clean.png",
+      "bytes": 227691,
+      "sha256": "7c73377fa0dad3d79d28028ae56b9b933da884272ee0eaa51f41a54c85c89737"
+    },
+    {
+      "name": "TS-S02-traditional.png",
+      "bytes": 227382,
+      "sha256": "8f5d22abc7ce0defe1e52148f717b2c0c2f272b8be684914cd15e14c68c1654d"
+    },
+    {
+      "name": "TS-S02-vintage.png",
+      "bytes": 227145,
+      "sha256": "da7ee346e133e7478bf99e337852b2b65d55776b0aa8ec75c2d0c6705a876145"
+    },
+    {
+      "name": "TS-S02.json",
+      "bytes": 3775,
+      "sha256": "d305cce8789340611619c0cccc80ec696d9b1a0cbcc81811eb71016788761ff3"
+    },
+    {
+      "name": "TS-V01-source-ui.png",
+      "bytes": 219443,
+      "sha256": "c21606c6ff3ed85937d9615dfeaf1f5446eae5d969ff14f9af548d15c540d5ff"
+    },
+    {
+      "name": "TS-V01.json",
+      "bytes": 25178,
+      "sha256": "f5e9ed66f711f95c197e0d1063c73c2f89ab526a4c4a7bc4b8fd1a83744ef7d8"
+    },
+    {
+      "name": "TS-V01.png",
+      "bytes": 117041,
+      "sha256": "0133c3ebc0509023be843dddbc5718b1795678a1a91c3113e025df9002a1495c"
+    },
+    {
+      "name": "TS-V02-source-ui.png",
+      "bytes": 218098,
+      "sha256": "16752bc3595c10087b8af8e75bb8ee9cc39c71ab711a90129edb78c8a98c7348"
+    },
+    {
+      "name": "TS-V02.json",
+      "bytes": 26487,
+      "sha256": "7b593412c6cea5a5ba0483b9f615124bed509766631229c9c03c12c15bcede2e"
+    },
+    {
+      "name": "TS-V02.png",
+      "bytes": 114956,
+      "sha256": "789fed136246e608256a61c7ee2df4c3bebd369dab8f92e56ae10d3bbd5219b8"
+    }
+  ]
+}

@@ -1,0 +1,949 @@
+{
+  "input": {
+    "x": 300,
+    "y": 35,
+    "text": "「你好，世界！」（测试）……123ABC",
+    "width": 240,
+    "fontFamily": "CCBRef",
+    "fontSize": 32,
+    "fontWeight": 400,
+    "fontStyle": "normal",
+    "underline": false,
+    "strike": false,
+    "letterSpacing": 0,
+    "textOpacity": 1,
+    "fill": "#ffffff",
+    "stroke": "#000000",
+    "strokeWidth": 0,
+    "bgColor": "#000000",
+    "bgOpacity": 0,
+    "boxBorderColor": "#ffffff",
+    "boxBorderWidth": 0,
+    "boxBorderOpacity": 1,
+    "align": "center",
+    "writingMode": "vertical",
+    "verticalPuncOpt": true,
+    "verticalPuncTightness": "standard",
+    "lineHeight": 1.2
+  },
+  "metrics": {
+    "font": "normal 400 32px CCBRef",
+    "vertical": true,
+    "cols": [
+      [
+        {
+          "ch": "「",
+          "displayCh": "﹁",
+          "forcedVertical": true,
+          "rotate": false,
+          "verticalAlnum": false,
+          "advance": 38.4,
+          "dx": 0,
+          "dy": 0,
+          "cls": "open",
+          "style": {
+            "fontFamily": "CCBRef",
+            "fontSize": 32,
+            "fontWeight": 400,
+            "fontStyle": "normal",
+            "underline": false,
+            "strike": false,
+            "fill": "#ffffff",
+            "stroke": "#000000",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "ch": "你",
+          "displayCh": "你",
+          "forcedVertical": false,
+          "rotate": false,
+          "verticalAlnum": false,
+          "advance": 32,
+          "dx": 0,
+          "dy": 0,
+          "cls": "normal",
+          "style": {
+            "fontFamily": "CCBRef",
+            "fontSize": 32,
+            "fontWeight": 400,
+            "fontStyle": "normal",
+            "underline": false,
+            "strike": false,
+            "fill": "#ffffff",
+            "stroke": "#000000",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "ch": "好",
+          "displayCh": "好",
+          "forcedVertical": false,
+          "rotate": false,
+          "verticalAlnum": false,
+          "advance": 38.4,
+          "dx": 0,
+          "dy": 0,
+          "cls": "normal",
+          "style": {
+            "fontFamily": "CCBRef",
+            "fontSize": 32,
+            "fontWeight": 400,
+            "fontStyle": "normal",
+            "underline": false,
+            "strike": false,
+            "fill": "#ffffff",
+            "stroke": "#000000",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "ch": "，",
+          "displayCh": "︐",
+          "forcedVertical": true,
+          "rotate": false,
+          "verticalAlnum": false,
+          "advance": 33.92,
+          "dx": 0,
+          "dy": 0,
+          "cls": "small",
+          "style": {
+            "fontFamily": "CCBRef",
+            "fontSize": 32,
+            "fontWeight": 400,
+            "fontStyle": "normal",
+            "underline": false,
+            "strike": false,
+            "fill": "#ffffff",
+            "stroke": "#000000",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "ch": "世",
+          "displayCh": "世",
+          "forcedVertical": false,
+          "rotate": false,
+          "verticalAlnum": false,
+          "advance": 34.56,
+          "dx": 0,
+          "dy": 0,
+          "cls": "normal",
+          "style": {
+            "fontFamily": "CCBRef",
+            "fontSize": 32,
+            "fontWeight": 400,
+            "fontStyle": "normal",
+            "underline": false,
+            "strike": false,
+            "fill": "#ffffff",
+            "stroke": "#000000",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "ch": "界",
+          "displayCh": "界",
+          "forcedVertical": false,
+          "rotate": false,
+          "verticalAlnum": false,
+          "advance": 38.4,
+          "dx": 0,
+          "dy": 0,
+          "cls": "normal",
+          "style": {
+            "fontFamily": "CCBRef",
+            "fontSize": 32,
+            "fontWeight": 400,
+            "fontStyle": "normal",
+            "underline": false,
+            "strike": false,
+            "fill": "#ffffff",
+            "stroke": "#000000",
+            "strokeWidth": 0
+          }
+        }
+      ],
+      [
+        {
+          "ch": "！",
+          "displayCh": "︕",
+          "forcedVertical": true,
+          "rotate": false,
+          "verticalAlnum": false,
+          "advance": 38.4,
+          "dx": 0,
+          "dy": 0,
+          "cls": "emph",
+          "style": {
+            "fontFamily": "CCBRef",
+            "fontSize": 32,
+            "fontWeight": 400,
+            "fontStyle": "normal",
+            "underline": false,
+            "strike": false,
+            "fill": "#ffffff",
+            "stroke": "#000000",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "ch": "」",
+          "displayCh": "﹂",
+          "forcedVertical": true,
+          "rotate": false,
+          "verticalAlnum": false,
+          "advance": 30.4,
+          "dx": 0,
+          "dy": 0,
+          "cls": "close",
+          "style": {
+            "fontFamily": "CCBRef",
+            "fontSize": 32,
+            "fontWeight": 400,
+            "fontStyle": "normal",
+            "underline": false,
+            "strike": false,
+            "fill": "#ffffff",
+            "stroke": "#000000",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "ch": "（",
+          "displayCh": "︵",
+          "forcedVertical": true,
+          "rotate": false,
+          "verticalAlnum": false,
+          "advance": 33.92,
+          "dx": 0,
+          "dy": 0,
+          "cls": "open",
+          "style": {
+            "fontFamily": "CCBRef",
+            "fontSize": 32,
+            "fontWeight": 400,
+            "fontStyle": "normal",
+            "underline": false,
+            "strike": false,
+            "fill": "#ffffff",
+            "stroke": "#000000",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "ch": "测",
+          "displayCh": "测",
+          "forcedVertical": false,
+          "rotate": false,
+          "verticalAlnum": false,
+          "advance": 32,
+          "dx": 0,
+          "dy": 0,
+          "cls": "normal",
+          "style": {
+            "fontFamily": "CCBRef",
+            "fontSize": 32,
+            "fontWeight": 400,
+            "fontStyle": "normal",
+            "underline": false,
+            "strike": false,
+            "fill": "#ffffff",
+            "stroke": "#000000",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "ch": "试",
+          "displayCh": "试",
+          "forcedVertical": false,
+          "rotate": false,
+          "verticalAlnum": false,
+          "advance": 38.4,
+          "dx": 0,
+          "dy": 0,
+          "cls": "normal",
+          "style": {
+            "fontFamily": "CCBRef",
+            "fontSize": 32,
+            "fontWeight": 400,
+            "fontStyle": "normal",
+            "underline": false,
+            "strike": false,
+            "fill": "#ffffff",
+            "stroke": "#000000",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "ch": "）",
+          "displayCh": "︶",
+          "forcedVertical": true,
+          "rotate": false,
+          "verticalAlnum": false,
+          "advance": 32,
+          "dx": 0,
+          "dy": 0,
+          "cls": "close",
+          "style": {
+            "fontFamily": "CCBRef",
+            "fontSize": 32,
+            "fontWeight": 400,
+            "fontStyle": "normal",
+            "underline": false,
+            "strike": false,
+            "fill": "#ffffff",
+            "stroke": "#000000",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "ch": "…",
+          "displayCh": "︙",
+          "forcedVertical": true,
+          "rotate": false,
+          "verticalAlnum": false,
+          "advance": 31.04,
+          "dx": 0,
+          "dy": 0,
+          "cls": "middle",
+          "style": {
+            "fontFamily": "CCBRef",
+            "fontSize": 32,
+            "fontWeight": 400,
+            "fontStyle": "normal",
+            "underline": false,
+            "strike": false,
+            "fill": "#ffffff",
+            "stroke": "#000000",
+            "strokeWidth": 0
+          }
+        }
+      ],
+      [
+        {
+          "ch": "…",
+          "displayCh": "︙",
+          "forcedVertical": true,
+          "rotate": false,
+          "verticalAlnum": false,
+          "advance": 38.4,
+          "dx": 0,
+          "dy": 0,
+          "cls": "middle",
+          "style": {
+            "fontFamily": "CCBRef",
+            "fontSize": 32,
+            "fontWeight": 400,
+            "fontStyle": "normal",
+            "underline": false,
+            "strike": false,
+            "fill": "#ffffff",
+            "stroke": "#000000",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "ch": "1",
+          "displayCh": "１",
+          "forcedVertical": true,
+          "rotate": false,
+          "verticalAlnum": true,
+          "advance": 33.28,
+          "dx": 0,
+          "dy": 0,
+          "cls": "normal",
+          "style": {
+            "fontFamily": "CCBRef",
+            "fontSize": 32,
+            "fontWeight": 400,
+            "fontStyle": "normal",
+            "underline": false,
+            "strike": false,
+            "fill": "#ffffff",
+            "stroke": "#000000",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "ch": "2",
+          "displayCh": "２",
+          "forcedVertical": true,
+          "rotate": false,
+          "verticalAlnum": true,
+          "advance": 38.4,
+          "dx": 0,
+          "dy": 0,
+          "cls": "normal",
+          "style": {
+            "fontFamily": "CCBRef",
+            "fontSize": 32,
+            "fontWeight": 400,
+            "fontStyle": "normal",
+            "underline": false,
+            "strike": false,
+            "fill": "#ffffff",
+            "stroke": "#000000",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "ch": "3",
+          "displayCh": "３",
+          "forcedVertical": true,
+          "rotate": false,
+          "verticalAlnum": true,
+          "advance": 38.4,
+          "dx": 0,
+          "dy": 0,
+          "cls": "normal",
+          "style": {
+            "fontFamily": "CCBRef",
+            "fontSize": 32,
+            "fontWeight": 400,
+            "fontStyle": "normal",
+            "underline": false,
+            "strike": false,
+            "fill": "#ffffff",
+            "stroke": "#000000",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "ch": "A",
+          "displayCh": "Ａ",
+          "forcedVertical": true,
+          "rotate": false,
+          "verticalAlnum": true,
+          "advance": 38.4,
+          "dx": 0,
+          "dy": 0,
+          "cls": "normal",
+          "style": {
+            "fontFamily": "CCBRef",
+            "fontSize": 32,
+            "fontWeight": 400,
+            "fontStyle": "normal",
+            "underline": false,
+            "strike": false,
+            "fill": "#ffffff",
+            "stroke": "#000000",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "ch": "B",
+          "displayCh": "Ｂ",
+          "forcedVertical": true,
+          "rotate": false,
+          "verticalAlnum": true,
+          "advance": 38.4,
+          "dx": 0,
+          "dy": 0,
+          "cls": "normal",
+          "style": {
+            "fontFamily": "CCBRef",
+            "fontSize": 32,
+            "fontWeight": 400,
+            "fontStyle": "normal",
+            "underline": false,
+            "strike": false,
+            "fill": "#ffffff",
+            "stroke": "#000000",
+            "strokeWidth": 0
+          }
+        }
+      ],
+      [
+        {
+          "ch": "C",
+          "displayCh": "Ｃ",
+          "forcedVertical": true,
+          "rotate": false,
+          "verticalAlnum": true,
+          "advance": 38.4,
+          "dx": 0,
+          "dy": 0,
+          "cls": "normal",
+          "style": {
+            "fontFamily": "CCBRef",
+            "fontSize": 32,
+            "fontWeight": 400,
+            "fontStyle": "normal",
+            "underline": false,
+            "strike": false,
+            "fill": "#ffffff",
+            "stroke": "#000000",
+            "strokeWidth": 0
+          }
+        }
+      ]
+    ],
+    "step": 38.4,
+    "width": 153.6,
+    "height": 240
+  },
+  "rect": {
+    "left": 223.2,
+    "top": 35,
+    "width": 153.6,
+    "height": 240,
+    "m": {
+      "font": "normal 400 32px CCBRef",
+      "vertical": true,
+      "cols": [
+        [
+          {
+            "ch": "「",
+            "displayCh": "﹁",
+            "forcedVertical": true,
+            "rotate": false,
+            "verticalAlnum": false,
+            "advance": 38.4,
+            "dx": 0,
+            "dy": 0,
+            "cls": "open",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 32,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          },
+          {
+            "ch": "你",
+            "displayCh": "你",
+            "forcedVertical": false,
+            "rotate": false,
+            "verticalAlnum": false,
+            "advance": 32,
+            "dx": 0,
+            "dy": 0,
+            "cls": "normal",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 32,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          },
+          {
+            "ch": "好",
+            "displayCh": "好",
+            "forcedVertical": false,
+            "rotate": false,
+            "verticalAlnum": false,
+            "advance": 38.4,
+            "dx": 0,
+            "dy": 0,
+            "cls": "normal",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 32,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          },
+          {
+            "ch": "，",
+            "displayCh": "︐",
+            "forcedVertical": true,
+            "rotate": false,
+            "verticalAlnum": false,
+            "advance": 33.92,
+            "dx": 0,
+            "dy": 0,
+            "cls": "small",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 32,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          },
+          {
+            "ch": "世",
+            "displayCh": "世",
+            "forcedVertical": false,
+            "rotate": false,
+            "verticalAlnum": false,
+            "advance": 34.56,
+            "dx": 0,
+            "dy": 0,
+            "cls": "normal",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 32,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          },
+          {
+            "ch": "界",
+            "displayCh": "界",
+            "forcedVertical": false,
+            "rotate": false,
+            "verticalAlnum": false,
+            "advance": 38.4,
+            "dx": 0,
+            "dy": 0,
+            "cls": "normal",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 32,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          }
+        ],
+        [
+          {
+            "ch": "！",
+            "displayCh": "︕",
+            "forcedVertical": true,
+            "rotate": false,
+            "verticalAlnum": false,
+            "advance": 38.4,
+            "dx": 0,
+            "dy": 0,
+            "cls": "emph",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 32,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          },
+          {
+            "ch": "」",
+            "displayCh": "﹂",
+            "forcedVertical": true,
+            "rotate": false,
+            "verticalAlnum": false,
+            "advance": 30.4,
+            "dx": 0,
+            "dy": 0,
+            "cls": "close",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 32,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          },
+          {
+            "ch": "（",
+            "displayCh": "︵",
+            "forcedVertical": true,
+            "rotate": false,
+            "verticalAlnum": false,
+            "advance": 33.92,
+            "dx": 0,
+            "dy": 0,
+            "cls": "open",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 32,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          },
+          {
+            "ch": "测",
+            "displayCh": "测",
+            "forcedVertical": false,
+            "rotate": false,
+            "verticalAlnum": false,
+            "advance": 32,
+            "dx": 0,
+            "dy": 0,
+            "cls": "normal",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 32,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          },
+          {
+            "ch": "试",
+            "displayCh": "试",
+            "forcedVertical": false,
+            "rotate": false,
+            "verticalAlnum": false,
+            "advance": 38.4,
+            "dx": 0,
+            "dy": 0,
+            "cls": "normal",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 32,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          },
+          {
+            "ch": "）",
+            "displayCh": "︶",
+            "forcedVertical": true,
+            "rotate": false,
+            "verticalAlnum": false,
+            "advance": 32,
+            "dx": 0,
+            "dy": 0,
+            "cls": "close",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 32,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          },
+          {
+            "ch": "…",
+            "displayCh": "︙",
+            "forcedVertical": true,
+            "rotate": false,
+            "verticalAlnum": false,
+            "advance": 31.04,
+            "dx": 0,
+            "dy": 0,
+            "cls": "middle",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 32,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          }
+        ],
+        [
+          {
+            "ch": "…",
+            "displayCh": "︙",
+            "forcedVertical": true,
+            "rotate": false,
+            "verticalAlnum": false,
+            "advance": 38.4,
+            "dx": 0,
+            "dy": 0,
+            "cls": "middle",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 32,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          },
+          {
+            "ch": "1",
+            "displayCh": "１",
+            "forcedVertical": true,
+            "rotate": false,
+            "verticalAlnum": true,
+            "advance": 33.28,
+            "dx": 0,
+            "dy": 0,
+            "cls": "normal",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 32,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          },
+          {
+            "ch": "2",
+            "displayCh": "２",
+            "forcedVertical": true,
+            "rotate": false,
+            "verticalAlnum": true,
+            "advance": 38.4,
+            "dx": 0,
+            "dy": 0,
+            "cls": "normal",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 32,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          },
+          {
+            "ch": "3",
+            "displayCh": "３",
+            "forcedVertical": true,
+            "rotate": false,
+            "verticalAlnum": true,
+            "advance": 38.4,
+            "dx": 0,
+            "dy": 0,
+            "cls": "normal",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 32,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          },
+          {
+            "ch": "A",
+            "displayCh": "Ａ",
+            "forcedVertical": true,
+            "rotate": false,
+            "verticalAlnum": true,
+            "advance": 38.4,
+            "dx": 0,
+            "dy": 0,
+            "cls": "normal",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 32,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          },
+          {
+            "ch": "B",
+            "displayCh": "Ｂ",
+            "forcedVertical": true,
+            "rotate": false,
+            "verticalAlnum": true,
+            "advance": 38.4,
+            "dx": 0,
+            "dy": 0,
+            "cls": "normal",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 32,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          }
+        ],
+        [
+          {
+            "ch": "C",
+            "displayCh": "Ｃ",
+            "forcedVertical": true,
+            "rotate": false,
+            "verticalAlnum": true,
+            "advance": 38.4,
+            "dx": 0,
+            "dy": 0,
+            "cls": "normal",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 32,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          }
+        ]
+      ],
+      "step": 38.4,
+      "width": 153.6,
+      "height": 240
+    }
+  }
+}

@@ -1,0 +1,179 @@
+[
+  {
+    "key": "traditional",
+    "captionsRetained": true,
+    "selected": [
+      "traditional",
+      "traditional",
+      "traditional"
+    ]
+  },
+  {
+    "key": "traditional",
+    "captionsRetained": true,
+    "all": [
+      "traditional",
+      "traditional",
+      "traditional"
+    ]
+  },
+  {
+    "key": "traditional",
+    "captionsRetained": true,
+    "fontOverrideForReproducibleVisual": "CCBRefSerif",
+    "metrics": {
+      "cfg": {
+        "caption": "窗边的一束光。",
+        "preset": "traditional",
+        "pageWidth": 1200,
+        "pagePadding": 48,
+        "gap": 28,
+        "textPadding": 30,
+        "textMinHeight": 170,
+        "fontFamily": "CCBRefSerif",
+        "fontSize": 36,
+        "lineHeight": 1.55,
+        "textAlign": "left",
+        "pageBg": "#fffdf7",
+        "textColor": "#17120d",
+        "borderColor": "#2c241d",
+        "pageBorder": true,
+        "imageBorder": true,
+        "firstIndent": true,
+        "showPageNumber": true
+      },
+      "w": 1200,
+      "h": 1080,
+      "pad": 48,
+      "contentW": 1104,
+      "imageH": 736,
+      "textW": 1044,
+      "lines": [
+        "　　窗边的一束光。"
+      ],
+      "linePx": 55.800000000000004,
+      "bodyH": 170,
+      "pageNumH": 35,
+      "pageNumGap": 15,
+      "index": 1
+    }
+  },
+  {
+    "key": "clean",
+    "captionsRetained": true,
+    "selected": [
+      "clean",
+      "clean",
+      "traditional"
+    ]
+  },
+  {
+    "key": "clean",
+    "captionsRetained": true,
+    "all": [
+      "clean",
+      "clean",
+      "clean"
+    ]
+  },
+  {
+    "key": "clean",
+    "captionsRetained": true,
+    "fontOverrideForReproducibleVisual": "CCBRef",
+    "metrics": {
+      "cfg": {
+        "caption": "窗边的一束光。",
+        "preset": "clean",
+        "pageWidth": 1200,
+        "pagePadding": 56,
+        "gap": 34,
+        "textPadding": 26,
+        "textMinHeight": 150,
+        "fontFamily": "CCBRef",
+        "fontSize": 34,
+        "lineHeight": 1.55,
+        "textAlign": "left",
+        "pageBg": "#ffffff",
+        "textColor": "#16191d",
+        "borderColor": "#d8dde3",
+        "pageBorder": false,
+        "imageBorder": false,
+        "firstIndent": true,
+        "showPageNumber": true
+      },
+      "w": 1200,
+      "h": 1068,
+      "pad": 56,
+      "contentW": 1088,
+      "imageH": 725,
+      "textW": 1036,
+      "lines": [
+        "　　窗边的一束光。"
+      ],
+      "linePx": 52.7,
+      "bodyH": 150,
+      "pageNumH": 33,
+      "pageNumGap": 14,
+      "index": 1
+    }
+  },
+  {
+    "key": "vintage",
+    "captionsRetained": true,
+    "selected": [
+      "vintage",
+      "vintage",
+      "clean"
+    ]
+  },
+  {
+    "key": "vintage",
+    "captionsRetained": true,
+    "all": [
+      "vintage",
+      "vintage",
+      "vintage"
+    ]
+  },
+  {
+    "key": "vintage",
+    "captionsRetained": true,
+    "fontOverrideForReproducibleVisual": "CCBRefSerif",
+    "metrics": {
+      "cfg": {
+        "caption": "窗边的一束光。",
+        "preset": "vintage",
+        "pageWidth": 1200,
+        "pagePadding": 52,
+        "gap": 26,
+        "textPadding": 30,
+        "textMinHeight": 180,
+        "fontFamily": "CCBRefSerif",
+        "fontSize": 36,
+        "lineHeight": 1.6,
+        "textAlign": "left",
+        "pageBg": "#efe2c4",
+        "textColor": "#241b12",
+        "borderColor": "#5a4630",
+        "pageBorder": true,
+        "imageBorder": true,
+        "firstIndent": true,
+        "showPageNumber": true
+      },
+      "w": 1200,
+      "h": 1091,
+      "pad": 52,
+      "contentW": 1096,
+      "imageH": 731,
+      "textW": 1036,
+      "lines": [
+        "　　窗边的一束光。"
+      ],
+      "linePx": 57.6,
+      "bodyH": 180,
+      "pageNumH": 35,
+      "pageNumGap": 15,
+      "index": 1
+    }
+  }
+]

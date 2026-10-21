@@ -1,0 +1,549 @@
+{
+  "input": {
+    "x": 300,
+    "y": 35,
+    "text": "第一行自动换行测试AB12\n第二段",
+    "width": 96,
+    "fontFamily": "CCBRef",
+    "fontSize": 24,
+    "fontWeight": 400,
+    "fontStyle": "normal",
+    "underline": false,
+    "strike": false,
+    "letterSpacing": 2,
+    "textOpacity": 1,
+    "fill": "#ffffff",
+    "stroke": "#000000",
+    "strokeWidth": 0,
+    "bgColor": "#000000",
+    "bgOpacity": 0,
+    "boxBorderColor": "#ffffff",
+    "boxBorderWidth": 0,
+    "boxBorderOpacity": 1,
+    "align": "center",
+    "writingMode": "horizontal",
+    "verticalPuncOpt": true,
+    "verticalPuncTightness": "standard",
+    "lineHeight": 1.2
+  },
+  "metrics": {
+    "font": "normal 400 24px CCBRef",
+    "vertical": false,
+    "lines": [
+      {
+        "tokens": [
+          {
+            "ch": "第",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 24,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          },
+          {
+            "ch": "一",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 24,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          },
+          {
+            "ch": "行",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 24,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          }
+        ],
+        "width": 76
+      },
+      {
+        "tokens": [
+          {
+            "ch": "自",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 24,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          },
+          {
+            "ch": "动",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 24,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          },
+          {
+            "ch": "换",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 24,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          }
+        ],
+        "width": 76
+      },
+      {
+        "tokens": [
+          {
+            "ch": "行",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 24,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          },
+          {
+            "ch": "测",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 24,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          },
+          {
+            "ch": "试",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 24,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          },
+          {
+            "ch": "A",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 24,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          }
+        ],
+        "width": 94.88671875
+      },
+      {
+        "tokens": [
+          {
+            "ch": "B",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 24,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          },
+          {
+            "ch": "1",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 24,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          },
+          {
+            "ch": "2",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 24,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          }
+        ],
+        "width": 47.20703125
+      },
+      {
+        "tokens": [
+          {
+            "ch": "第",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 24,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          },
+          {
+            "ch": "二",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 24,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          },
+          {
+            "ch": "段",
+            "style": {
+              "fontFamily": "CCBRef",
+              "fontSize": 24,
+              "fontWeight": 400,
+              "fontStyle": "normal",
+              "underline": false,
+              "strike": false,
+              "fill": "#ffffff",
+              "stroke": "#000000",
+              "strokeWidth": 0
+            }
+          }
+        ],
+        "width": 76
+      }
+    ],
+    "width": 96,
+    "height": 144
+  },
+  "rect": {
+    "left": 252,
+    "top": 35,
+    "width": 96,
+    "height": 144,
+    "m": {
+      "font": "normal 400 24px CCBRef",
+      "vertical": false,
+      "lines": [
+        {
+          "tokens": [
+            {
+              "ch": "第",
+              "style": {
+                "fontFamily": "CCBRef",
+                "fontSize": 24,
+                "fontWeight": 400,
+                "fontStyle": "normal",
+                "underline": false,
+                "strike": false,
+                "fill": "#ffffff",
+                "stroke": "#000000",
+                "strokeWidth": 0
+              }
+            },
+            {
+              "ch": "一",
+              "style": {
+                "fontFamily": "CCBRef",
+                "fontSize": 24,
+                "fontWeight": 400,
+                "fontStyle": "normal",
+                "underline": false,
+                "strike": false,
+                "fill": "#ffffff",
+                "stroke": "#000000",
+                "strokeWidth": 0
+              }
+            },
+            {
+              "ch": "行",
+              "style": {
+                "fontFamily": "CCBRef",
+                "fontSize": 24,
+                "fontWeight": 400,
+                "fontStyle": "normal",
+                "underline": false,
+                "strike": false,
+                "fill": "#ffffff",
+                "stroke": "#000000",
+                "strokeWidth": 0
+              }
+            }
+          ],
+          "width": 76
+        },
+        {
+          "tokens": [
+            {
+              "ch": "自",
+              "style": {
+                "fontFamily": "CCBRef",
+                "fontSize": 24,
+                "fontWeight": 400,
+                "fontStyle": "normal",
+                "underline": false,
+                "strike": false,
+                "fill": "#ffffff",
+                "stroke": "#000000",
+                "strokeWidth": 0
+              }
+            },
+            {
+              "ch": "动",
+              "style": {
+                "fontFamily": "CCBRef",
+                "fontSize": 24,
+                "fontWeight": 400,
+                "fontStyle": "normal",
+                "underline": false,
+                "strike": false,
+                "fill": "#ffffff",
+                "stroke": "#000000",
+                "strokeWidth": 0
+              }
+            },
+            {
+              "ch": "换",
+              "style": {
+                "fontFamily": "CCBRef",
+                "fontSize": 24,
+                "fontWeight": 400,
+                "fontStyle": "normal",
+                "underline": false,
+                "strike": false,
+                "fill": "#ffffff",
+                "stroke": "#000000",
+                "strokeWidth": 0
+              }
+            }
+          ],
+          "width": 76
+        },
+        {
+          "tokens": [
+            {
+              "ch": "行",
+              "style": {
+                "fontFamily": "CCBRef",
+                "fontSize": 24,
+                "fontWeight": 400,
+                "fontStyle": "normal",
+                "underline": false,
+                "strike": false,
+                "fill": "#ffffff",
+                "stroke": "#000000",
+                "strokeWidth": 0
+              }
+            },
+            {
+              "ch": "测",
+              "style": {
+                "fontFamily": "CCBRef",
+                "fontSize": 24,
+                "fontWeight": 400,
+                "fontStyle": "normal",
+                "underline": false,
+                "strike": false,
+                "fill": "#ffffff",
+                "stroke": "#000000",
+                "strokeWidth": 0
+              }
+            },
+            {
+              "ch": "试",
+              "style": {
+                "fontFamily": "CCBRef",
+                "fontSize": 24,
+                "fontWeight": 400,
+                "fontStyle": "normal",
+                "underline": false,
+                "strike": false,
+                "fill": "#ffffff",
+                "stroke": "#000000",
+                "strokeWidth": 0
+              }
+            },
+            {
+              "ch": "A",
+              "style": {
+                "fontFamily": "CCBRef",
+                "fontSize": 24,
+                "fontWeight": 400,
+                "fontStyle": "normal",
+                "underline": false,
+                "strike": false,
+                "fill": "#ffffff",
+                "stroke": "#000000",
+                "strokeWidth": 0
+              }
+            }
+          ],
+          "width": 94.88671875
+        },
+        {
+          "tokens": [
+            {
+              "ch": "B",
+              "style": {
+                "fontFamily": "CCBRef",
+                "fontSize": 24,
+                "fontWeight": 400,
+                "fontStyle": "normal",
+                "underline": false,
+                "strike": false,
+                "fill": "#ffffff",
+                "stroke": "#000000",
+                "strokeWidth": 0
+              }
+            },
+            {
+              "ch": "1",
+              "style": {
+                "fontFamily": "CCBRef",
+                "fontSize": 24,
+                "fontWeight": 400,
+                "fontStyle": "normal",
+                "underline": false,
+                "strike": false,
+                "fill": "#ffffff",
+                "stroke": "#000000",
+                "strokeWidth": 0
+              }
+            },
+            {
+              "ch": "2",
+              "style": {
+                "fontFamily": "CCBRef",
+                "fontSize": 24,
+                "fontWeight": 400,
+                "fontStyle": "normal",
+                "underline": false,
+                "strike": false,
+                "fill": "#ffffff",
+                "stroke": "#000000",
+                "strokeWidth": 0
+              }
+            }
+          ],
+          "width": 47.20703125
+        },
+        {
+          "tokens": [
+            {
+              "ch": "第",
+              "style": {
+                "fontFamily": "CCBRef",
+                "fontSize": 24,
+                "fontWeight": 400,
+                "fontStyle": "normal",
+                "underline": false,
+                "strike": false,
+                "fill": "#ffffff",
+                "stroke": "#000000",
+                "strokeWidth": 0
+              }
+            },
+            {
+              "ch": "二",
+              "style": {
+                "fontFamily": "CCBRef",
+                "fontSize": 24,
+                "fontWeight": 400,
+                "fontStyle": "normal",
+                "underline": false,
+                "strike": false,
+                "fill": "#ffffff",
+                "stroke": "#000000",
+                "strokeWidth": 0
+              }
+            },
+            {
+              "ch": "段",
+              "style": {
+                "fontFamily": "CCBRef",
+                "fontSize": 24,
+                "fontWeight": 400,
+                "fontStyle": "normal",
+                "underline": false,
+                "strike": false,
+                "fill": "#ffffff",
+                "stroke": "#000000",
+                "strokeWidth": 0
+              }
+            }
+          ],
+          "width": 76
+        }
+      ],
+      "width": 96,
+      "height": 144
+    }
+  }
+}

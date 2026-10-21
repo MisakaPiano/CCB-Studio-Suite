@@ -1,3 +1,7 @@
+## TypeSet来源样本冻结（2026-10-21）
+
+[来源回执](audits/TYPESET_SOURCE_REFERENCE.md)：16项源排版/导出输出已取得，独立PDF/ZIP检查PASS；原件启动TDZ失败保留，只修改测试副本初始化顺序与依赖加载。Studio原生对照及真人审阅NOT TESTED，继续R2–R4，PRODUCT_HOLD。
+
 ## UX-R1b创作与回用进度（2026-10-21）
 
 [执行证据](audits/UX_R1B_CREATION.md)：desktop完整39项新PASS及分发构建成功；前次authority99/core30实际PASS、整体FAILED保留。反推/后处理/元数据/角色卡/来源查看器已接入；原生视觉及提供者效果NOT TESTED，PRODUCT_HOLD。继续TypeSet源样本与R2–R4。

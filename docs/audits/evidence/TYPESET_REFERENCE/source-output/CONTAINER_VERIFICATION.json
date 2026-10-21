@@ -1,0 +1,63 @@
+{
+  "status": "PASS",
+  "scope": "Independent PDF dimensions/page count and ZIP CRC/order/PNG bytes; not visual acceptance",
+  "parsers": [
+    "pdf-lib",
+    "jszip"
+  ],
+  "pages": [
+    {
+      "page": 1,
+      "pdfPoints": {
+        "width": 900,
+        "height": 810
+      },
+      "sourcePixels": {
+        "width": 1200,
+        "height": 1080
+      },
+      "lines": 1
+    },
+    {
+      "page": 2,
+      "pdfPoints": {
+        "width": 900,
+        "height": 810
+      },
+      "sourcePixels": {
+        "width": 1200,
+        "height": 1080
+      },
+      "lines": 1
+    },
+    {
+      "page": 3,
+      "pdfPoints": {
+        "width": 900,
+        "height": 1272
+      },
+      "sourcePixels": {
+        "width": 1200,
+        "height": 1696
+      },
+      "lines": 13
+    }
+  ],
+  "zippedPages": [
+    {
+      "name": "01_小人书页/001_page-1_小人书.png",
+      "bytes": 220515,
+      "sha256": "24f5188c7febb20fefea629a581cc78e13c0adcc149171609f21de57da9ed3e7"
+    },
+    {
+      "name": "01_小人书页/002_page-2_小人书.png",
+      "bytes": 227245,
+      "sha256": "f9aee4bdcd101f4254b8873a017b2121cd031b22ca7b5c085a812fe5a792844b"
+    },
+    {
+      "name": "01_小人书页/003_page-3_小人书.png",
+      "bytes": 405734,
+      "sha256": "ace41c782519a81b452a3aa666867a79bd7e9021953ab838e18bc395b0f2d42f"
+    }
+  ]
+}

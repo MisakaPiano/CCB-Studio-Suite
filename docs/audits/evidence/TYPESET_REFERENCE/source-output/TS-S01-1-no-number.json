@@ -1,0 +1,39 @@
+{
+  "id": "TS-S01-1-no-number",
+  "metrics": {
+    "cfg": {
+      "caption": "",
+      "preset": "traditional",
+      "pageWidth": 1200,
+      "pagePadding": 48,
+      "gap": 28,
+      "textPadding": 30,
+      "textMinHeight": 170,
+      "fontFamily": "CCBRef",
+      "fontSize": 36,
+      "lineHeight": 1.55,
+      "textAlign": "left",
+      "pageBg": "#fffdf7",
+      "textColor": "#17120d",
+      "borderColor": "#2c241d",
+      "pageBorder": true,
+      "imageBorder": true,
+      "firstIndent": true,
+      "showPageNumber": false
+    },
+    "w": 1200,
+    "h": 1030,
+    "pad": 48,
+    "contentW": 1104,
+    "imageH": 736,
+    "textW": 1044,
+    "lines": [
+      ""
+    ],
+    "linePx": 55.800000000000004,
+    "bodyH": 170,
+    "pageNumH": 0,
+    "pageNumGap": 0,
+    "index": 0
+  }
+}

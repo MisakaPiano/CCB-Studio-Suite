@@ -1,3 +1,5 @@
+[TypeSet来源样本冻结](audits/TYPESET_SOURCE_REFERENCE.md)：16项输出及独立PDF/ZIP核验，原件启动失败与测试副本差异明示；继续R2原生实现，非产品PASS。
+
 [UX-R1b创作/回用检查点](audits/UX_R1B_CREATION.md)：39 desktop实际PASS；保留17次构建/测试运行。继续完整UX恢复，非RC。
 
 # 当前执行：UX恢复连续实施
