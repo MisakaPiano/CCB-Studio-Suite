@@ -456,20 +456,36 @@
     {
       "id": "I06",
       "owner": "UX-R2b",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "GalleryAnimation.kt / TypesetEditorController.kt / TypesetWorkspace.kt"
+      ],
+      "tests": [
+        "GalleryAnimationTest: GUI preview/restore/batch file-copy/reopen, GIF frame timing and loop, failed publication, static editing consent"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R3_APNG/disguise-preview.png (Compose offscreen; isolated clipboard)"
+      ],
+      "persistenceEvidence": [
+        "Original bytes unchanged; derived copies and source parent retained after restart; completed export file hashes verified"
+      ],
+      "status": "ENGINEERING_PARTIAL / APNG_GUI_AND_FILE_DECK_PASS / NATIVE_RECEIVING_APP_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "I07",
       "owner": "UX-R2b",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "GalleryAnimation.kt / TypesetEditorController.kt / TypesetWorkspace.kt"
+      ],
+      "tests": [
+        "GalleryAnimationTest: GUI preview/restore/batch file-copy/reopen, GIF frame timing and loop, failed publication, static editing consent"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R3_APNG/disguise-preview.png (Compose offscreen; isolated clipboard)"
+      ],
+      "persistenceEvidence": [
+        "Original bytes unchanged; derived copies and source parent retained after restart; completed export file hashes verified"
+      ],
+      "status": "ENGINEERING_PARTIAL / APNG_GUI_AND_FILE_DECK_PASS / NATIVE_RECEIVING_APP_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "I08",

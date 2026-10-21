@@ -8,6 +8,7 @@ import kotlinx.coroutines.sync.withLock
 import kotlin.coroutines.ContinuationInterceptor
 
 /** UI draft is separate from the committed immutable snapshot. A failed save keeps the draft visible. */
+internal data class StaticEditingChoice(val name:String?,val ids:List<String>,val projectId:String?=null,val revision:Long?=null)
 internal class TypesetEditorController(private val c:WorkbenchController) {
     private val ui=c.scope.coroutineContext[ContinuationInterceptor] as CoroutineDispatcher
     private val repository=TypesetRepository(c.workspace)
@@ -21,6 +22,14 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
     var objectId by mutableStateOf<String?>(null)
     var tool by mutableStateOf("select")
     var zoom by mutableStateOf(1f)
+    var staticChoice by mutableStateOf<StaticEditingChoice?>(null);private set
+    fun cancelStaticChoice(){staticChoice=null}
+    fun confirmStaticChoice(){
+        val choice=staticChoice?:return;staticChoice=null
+        if(choice.name!=null)create(choice.name,choice.ids,true)
+        else if(project?.id==choice.projectId && project?.revision==choice.revision && !dirty)appendSelected(true,choice.ids)
+        else c.problem="工程已改变，请重新选择追加图片"
+    }
     var exportDirectory by mutableStateOf<java.nio.file.Path?>(null);private set
     var exportProblem by mutableStateOf<String?>(null);private set
     internal var copyExportFiles:(List<java.nio.file.Path>)->Unit=ExportClipboard::copy
@@ -112,8 +121,10 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
         project=next;dirty=document!=snapshot
     }}
     suspend fun drain(){pending?.cancelAndJoin();flush()}
-    fun create(name:String,ids:List<String>)=c.run("建立编辑工程") {
-        drain();val p=repository.create(name,ids);val d=repository.load(p)
+    fun create(name:String,ids:List<String>,staticConfirmed:Boolean=false)=c.run("建立编辑工程") {
+        drain()
+        if(!staticConfirmed && ids.any{needsStaticEditingConsent(c,it)}){withContext(ui){staticChoice=StaticEditingChoice(name,ids);c.view="编辑";c.operationNotice="等待确认静态编辑；尚未建立工程"};return@run}
+        val p=repository.create(name,ids);val d=repository.load(p)
         withContext(ui){project=p;document=d;dirty=false;pageId=d.pages.firstOrNull()?.id;selectedPages=setOfNotNull(pageId);objectId=null;maskDefault=page?.toolDefaults?:c.workspace.state.typesetPreferences.resolveMask(c.workspace.state.typesetPreferences.preferredMaskSlot).apply(TypesetMask());c.view="编辑"}
     }
     fun open(id:String)=c.run("打开编辑工程") {
@@ -198,9 +209,10 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
         d.copy(pages=list)
     }
     fun movePagesTo(anchor:String?,after:Boolean)=change{TypesetQueue.move(it,selectedPages,anchor,after)}
-    fun appendSelected()=c.run("追加图库图片") {
+    fun appendSelected(staticConfirmed:Boolean=false,confirmedIds:List<String>?=null)=c.run("追加图库图片") {
         drain();val p=project?:return@run
-        val ids=c.assets.filter{it.request().id().toString() in c.selection}.map{it.request().id().toString()}
+        val ids=confirmedIds?:c.assets.filter{it.request().id().toString() in c.selection}.map{it.request().id().toString()}
+        if(!staticConfirmed && ids.any{needsStaticEditingConsent(c,it)}){withContext(ui){staticChoice=StaticEditingChoice(null,ids,p.id,p.revision);c.operationNotice="等待确认静态编辑；尚未追加图片"};return@run}
         val added=ids.map{id->val asset=c.workspace.assets.read(java.util.UUID.fromString(id)).require();TypesetPage(assetId=id,name=asset.request().name(),coordinates=TypesetImage.DISPLAY,story=c.workspace.state.typesetPreferences.storyDefault?:StoryStyle(),toolDefaults=c.workspace.state.typesetPreferences.batchToolDefault?.apply(TypesetMask()))}
         val next=repository.update(p.id,p.revision){it.copy(pages=it.pages+added)};val d=repository.load(next)
         withContext(ui){project=next;document=d;dirty=false;pageId=added.firstOrNull()?.id?:pageId;selectedPages=added.map{it.id}.toSet();objectId=null}

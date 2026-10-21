@@ -25,6 +25,7 @@ internal class GalleryViewState {
 }
 @Composable internal fun GalleryWorkspace(c:WorkbenchController) {
     val g=c.gallery
+    if(c.animation.ids!=null){GalleryAnimationWorkspace(c);return}
     g.metadata?.let{id->MetadataWorkspace(c,id){g.metadata=null};return}
     g.compare?.let{ids->ComparisonWorkspace(c,ids){g.compare=null};return}
     val jobs=c.state.jobs.flatMap{job->(job.results+job.composedResults).map{it to job}}.toMap()
@@ -79,6 +80,7 @@ internal class GalleryViewState {
             StatusText("${c.selection.size} 项已选 · ${c.selection.count{id->visible.none{it.request().id().toString()==id}}} 项在筛选外")
             StudioAction("比较 2 张",c.selection.size==2){g.compare=c.assets.filter{it.request().id().toString() in c.selection}.map{it.request().id().toString()}}
             StudioAction("参数与来源",c.current!=null){g.metadata=c.current}
+            StudioAction("APNG伪装 / 还原",c.selection.isNotEmpty()&&!c.busy){c.animation.open(c.assets.filter{it.request().id().toString() in c.selection}.map{it.request().id().toString()})}
             StudioAction("所选图片建立编辑工程",c.selection.isNotEmpty() && !c.busy){c.view="编辑"}
         }
     }

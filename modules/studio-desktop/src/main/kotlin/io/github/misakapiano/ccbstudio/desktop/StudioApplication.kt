@@ -29,6 +29,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     val http:okhttp3.OkHttpClient=studioHttpClient(),admissionOverride:RequestAdmission?=null) {
     val session=CreationSession(workspace)
     val gallery = GalleryViewState()
+    val animation=GalleryAnimationController(this,budgetRoot.parent.resolve("apng-exports"))
     val editor by lazy {TypesetEditorController(this)}
     val vault=SecretVault(workspace.root.resolve("secrets"))
     var state by mutableStateOf(workspace.state);private set
@@ -41,6 +42,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     var section by mutableStateOf("Prompt")
     var message by mutableStateOf("草稿已读取")
     var problem by mutableStateOf<String?>(null)
+    internal var operationNotice:String?=null
     var busy by mutableStateOf(false);private set
     var saved by mutableStateOf(true);private set
     var stream by mutableStateOf("");var reasoning by mutableStateOf("")
@@ -246,9 +248,9 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     }
     fun run(label:String,body:suspend ()->Unit) {
         if(busy)return
-        busy=true;message=label;problem=null
+        busy=true;message=label;problem=null;operationNotice=null
         active=scope.launch {
-            try {pending?.cancelAndJoin();flush();withContext(Dispatchers.IO){body()};message=if(problem==null)"$label · 已完成" else "$label · 有未完成项，请查看回执"}
+            try {pending?.cancelAndJoin();flush();withContext(Dispatchers.IO){body()};message=operationNotice?:if(problem==null)"$label · 已完成" else "$label · 有未完成项，请查看回执"}
             catch(e:CancellationException){message="已停止；已提交结果保留";throw e}
             catch(e:Exception){problem="${if(e is DataProblem)e.status else e.javaClass.simpleName}：操作未完成，未自动重发。已有资料保留。";message="操作未完成"}
             finally {try{state=workspace.state;assets=visibleAssets()}catch(e:Exception){problem="工作区需要恢复，已保留现有文件；请停止写入并检查"};busy=false}
