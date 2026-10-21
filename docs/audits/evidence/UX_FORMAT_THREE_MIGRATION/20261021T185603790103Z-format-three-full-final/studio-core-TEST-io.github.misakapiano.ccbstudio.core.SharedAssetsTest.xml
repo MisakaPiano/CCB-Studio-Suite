@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.SharedAssetsTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-21T18:58:14.683Z" hostname="DD1" time="10.669">
+  <properties/>
+  <testcase name="interruptedAssetRetentionNeverPublishesBatchOrDeletesOriginal" classname="io.github.misakapiano.ccbstudio.core.SharedAssetsTest" time="3.09"/>
+  <testcase name="exportReturnsToSharedLibraryWithExactBytesAndReopenProvenance" classname="io.github.misakapiano.ccbstudio.core.SharedAssetsTest" time="7.579"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

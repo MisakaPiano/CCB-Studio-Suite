@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.StudioDataLaunchTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-21T19:02:03.053Z" hostname="DD1" time="0.809">
+  <properties/>
+  <testcase name="installedIdentityAndApprovedDestinationBindMigration" classname="io.github.misakapiano.ccbstudio.desktop.StudioDataLaunchTest" time="0.348"/>
+  <testcase name="cancelledManualMigrationDoesNotPublishOrModifySource" classname="io.github.misakapiano.ccbstudio.desktop.StudioDataLaunchTest" time="0.461"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

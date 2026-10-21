@@ -1,0 +1,471 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :studio-core:cleanTest
+> Task :asset-library:compileJava UP-TO-DATE
+> Task :image-authority:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :image-authority:compileKotlin UP-TO-DATE
+> Task :image-authority:compileJava NO-SOURCE
+> Task :studio-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-core:compileKotlin UP-TO-DATE
+> Task :studio-core:compileJava NO-SOURCE
+> Task :studio-core:processResources UP-TO-DATE
+> Task :studio-core:classes UP-TO-DATE
+> Task :studio-core:jar UP-TO-DATE
+> Task :asset-library:processResources NO-SOURCE
+> Task :asset-library:classes UP-TO-DATE
+> Task :asset-library:jar UP-TO-DATE
+> Task :image-authority:processResources NO-SOURCE
+> Task :image-authority:classes UP-TO-DATE
+> Task :image-authority:jar UP-TO-DATE
+> Task :studio-core:compileTestKotlin UP-TO-DATE
+> Task :studio-core:compileTestJava NO-SOURCE
+> Task :studio-core:processTestResources UP-TO-DATE
+> Task :studio-core:testClasses UP-TO-DATE
+
+> Task :studio-core:test
+
+NovelAiHistoryFoldingTest > comparisonIgnoresWeightsAndPunctuationButRetainsContentNumbers PASSED
+
+NovelAiHistoryFoldingTest > calendarGroupingUsesLocalDateAcrossYearBoundary PASSED
+
+NovelAiHistoryFoldingTest > fullIgnoresIdentitySettingsAndWhitespace PASSED
+
+NovelAiHistoryFoldingTest > differenceMustBeStrictlyBelowFifteenPercent PASSED
+
+NovelAiHistoryFoldingTest > rolesRemainOrderedAndFieldsCannotCollide PASSED
+
+NovelAiHistoryFoldingTest > modesCompareOnlyTheirOwnedFields PASSED
+
+AssetArchiveTest > interruptedSnapshotIsNotPublishedAndRetryRestores PASSED
+
+AssetArchiveTest > unchangedCollectionDoesNotResurrectArchivedAsset PASSED
+
+AssetArchiveTest > futureAndCorruptArchiveBlocksChangesButPreservesOriginals PASSED
+
+AssetArchiveTest > imagePromptAndBookRestoreWithReferencesLabelsAndOriginalBytes PASSED
+
+AssetArchiveTest > futureSnapshotIsRecognizedBeforeDecodingFields PASSED
+
+BackupLargeAssetTest > largeArchiveBackupRestoresExactBytesWithoutImageSizeLimit PASSED
+
+BackupLargeAssetTest > streamingChecksEnforceExactBoundaryAndKeepFileOnFailure PASSED
+
+CreationRuntimeTest > waitingCancellationRetainsLockAndDoesNotSend PASSED
+
+CreationRuntimeTest > normalTransportUsesAuthorityEnvelopeAndCannotAcceptPartialStream PASSED
+
+CreationRuntimeTest > httpErrorsNeverPersistProviderBodyOrRetry PASSED
+
+CreationRuntimeTest > largeGuidanceReceiptKeepsExactWireAndSurvivesBackup PASSED
+
+CreationRuntimeTest > composedResultIsDerivedAndRawResponseSurvivesRestart PASSED
+
+CreationRuntimeTest > documentLimitPreflightDoesNotPoisonReadableWorkspace PASSED
+
+CreationRuntimeTest > requestPayloadChunksRestoreAndDetectAlteredDescriptors PASSED
+
+CreationRuntimeTest > interruptedDesignIsNotReplayedOnOpen PASSED
+
+CreationRuntimeTest > partialGenerationRetainsOriginalAndFullReceiptOnFailure PASSED
+
+CreationRuntimeTest > compositingFailurePreservesUniqueRawFinal PASSED
+
+CreationRuntimeTest > designCandidateRequiresApplyBranchesAndSurvivesRestart PASSED
+
+DesignProvenanceTest > exactGenerationLinkSurvivesLaterDesignBackupAndDetectsReceiptMismatch PASSED
+
+DesignProvenanceTest > interruptionAfterDraftCommitCannotPromoteOrphanApplicationToVerifiedOrigin PASSED
+
+DesignProvenanceTest > explicitApplicationUndoRedoAndUnknownWritesNeverInferFromEqualPrompt PASSED
+
+GalleryHistoryTest > verifiedHistoryFoldsUnknownAndCorruptReceiptsStayIndependentAndOriginalsRemain PASSED
+
+GalleryHistoryTest > perDepthPreferencesSurviveBackupRestoreAndDateGrammarRejectsInvalidCalendar PASSED
+
+ImageFormatsTest > animatedInputsUseFirstOrDefaultRasterAndRetainAllEncodedFrames PASSED
+
+ImageFormatsTest > unrecognizedOrCorruptCodecsDoNotCreateAssets PASSED
+
+ImageFormatsTest > webpBmpGifImportExportAndSourceExchangeRetainOriginalBytes PASSED
+
+ImageFormatsTest > gifLogicalCanvasAndFrameOffsetArePreservedAndOversizeRefused PASSED
+
+ImageOriginsTest > invalidNearestReceiptCannotFallBackToAnOlderValidAncestor PASSED
+
+ImageOriginsTest > editedAndComposedImagesKeepExactSourceAndSeedAfterRestore PASSED
+
+LibraryCollectionTest > restoringAtIdenticalPathStillRequiresLocalCollectionReauthorization PASSED
+
+LibraryCollectionTest > discoveringNewSubtreeKeepsOtherRegisteredRootLiveDuringConcurrentWrite PASSED
+
+LibraryCollectionTest > watchCreatesVersionsAndRestoreRequiresExplicitReconnection PASSED
+
+LibraryCollectionTest > intakeCopyIsIdempotentPreservesOriginalAndNeverReplacesModifiedDestination PASSED
+
+LibraryRepositoryTest > damagedOrFutureManagementRecordsDoNotResetMetadataOrHideOriginals PASSED
+
+LibraryRepositoryTest > directoriesVersionAndMissingSourcesKeepAssetsLabelsPromptsAndBackup PASSED
+
+LibraryRepositoryTest > promptEditsPreserveEarlierVersionAndRejectDataRootAsIngress PASSED
+
+LibraryRepositoryTest > referencesExcludeWhitespaceAlignRolesWithoutMutatingOriginalAndRestore PASSED
+
+LiveRequestBudgetTest > truncatedReservationBlocksInsteadOfFreeingBudget PASSED
+
+LiveRequestBudgetTest > allServicesSharePersistentRollingLimitAndFiveMinuteSpacing PASSED
+
+PngFieldInspectionTest > malformedUnknownCompressionMissingAndDecompressionLimitAreDistinct PASSED
+
+PngFieldInspectionTest > alphaAndTextConflictsArePresentedWithoutChoosingPrecedence PASSED
+
+PngFieldInspectionTest > textCompressedInternationalAndDuplicateUnknownFieldsRemainSeparate PASSED
+
+RecipeComparisonTest > missingNullEmptyUnknownAndStructuredPathsAreDistinct PASSED
+
+RecipeComparisonTest > exactRowsIncludeEqualValuesAndArrayOrder PASSED
+
+RecipeComparisonTest > limitsPreserveRawAndDoNotTreatValidComplexDataAsCorruption PASSED
+
+RecipeDraftSelectionTest > individualSettingsUseActualImageSeedAndRetainUnselectedModelSettings PASSED
+
+RecipeDraftSelectionTest > missingHistoryGuidanceBlocksGuidanceOnlyAndKeepsPromptReuseAvailable PASSED
+
+RecipeDraftSelectionTest > selectingOnePromptDoesNotReplaceOtherDraftContentOrSettings PASSED
+
+RecipeDraftSelectionTest > historicalReceiptSurvivesUndoRedoAndSerializationWithoutClaimingCurrentState PASSED
+
+SharedAssetsTest > interruptedAssetRetentionNeverPublishesBatchOrDeletesOriginal PASSED
+
+SharedAssetsTest > exportReturnsToSharedLibraryWithExactBytesAndReopenProvenance PASSED
+
+StudioCoreTest > dpapiSyntheticSecretRoundTripNotInDocuments PASSED
+
+StudioCoreTest > completeChainRejectsDeletedRevisionAndUnknownEntry PASSED
+
+StudioCoreTest > originalProjectUndoRedoAndRestart PASSED
+
+StudioCoreTest > missingFontPreventsFalseCompleteExportAndUnknownLayerRefused PASSED
+
+StudioCoreTest > batchOrderUndoAndExportCategoriesAreNonDestructive PASSED
+
+StudioCoreTest > generationDesignRevisionFrozenIdentityAndUncertainRestart PASSED
+
+StudioCoreTest > completeRecipeComparisonIncludesNestedCharactersSeedAndIdentity PASSED
+
+StudioCoreTest > stagedUnknownCorruptAndFutureDocumentsNeverDefault PASSED
+
+StudioFormatMigrationTest > crashRecoveryOccursOnlyWhenPublishedCopyIsOpened PASSED
+
+StudioFormatMigrationTest > publishedCopyIsNotOverwrittenOnRetry PASSED
+
+StudioFormatMigrationTest > restoredVersionTwoBackupCanMigrateWithoutOpeningInOldApplication PASSED
+
+StudioFormatMigrationTest > bothOwnershipLocksExcludeMigration PASSED
+
+StudioFormatMigrationTest > copyPreservesOriginalBytesHistoryAndEncryptedBlobsAndCanBackupRestore PASSED
+
+StudioFormatMigrationTest > unknownAuthoritativeContentAndDirectoriesAreNeverIgnored PASSED
+
+StudioFormatMigrationTest > allPrePublicationFaultsRetainSourceAndRetryToFreshTarget PASSED
+
+StudioRestoreTest > completeSnapshotRestoresOriginalProjectUndoAndSecretReferenceOnly PASSED
+
+StudioRestoreTest > interruptedRestoreRetainsStagingAndCanRetryIntoFreshRoot PASSED
+
+StudioRestoreTest > corruptIncompleteAndUnknownSnapshotsNeverPublishOrOverwrite PASSED
+
+StudioVersionTwoTest > failedMigrationDoesNotPublishOrOverwriteTarget PASSED
+
+StudioVersionTwoTest > endpointsCannotContainCredentialsOrInsecureSchemes PASSED
+
+StudioVersionTwoTest > realProfilesRequireExplicitV2RootAndPersistDraft PASSED
+
+StudioVersionTwoTest > copyMigrationPreservesLegacyAndRestoresV2Backup PASSED
+
+TypesetBatchTest > missingPreviousTextDoesNotEraseTargetAndMaskDefaultsSurviveReopen PASSED
+
+TypesetBatchTest > previousUsesFrozenSnapshotAndLastStyleForExtraObjects PASSED
+
+TypesetBatchTest > currentStyleAppliesToAllTextsAndKeepsGeometryVisibilityAndUnselectedPage PASSED
+
+TypesetColorTest > invalidColorsCannotSilentlyRenderAsThePreviousStyle PASSED
+
+TypesetColorTest > namedAndFunctionalRichColorsMatchIndependentSourceCanvasSamples PASSED
+
+TypesetExportTest > longBookPagesKeepPhysicalSizeWithoutLegacyPdfClipping PASSED
+
+TypesetExportTest > storyPresetsVariablePagesAndIndependentInspectionArtifact PASSED
+
+TypesetExportTest > missingFontBlocksRenderingButOriginalDeliveryRemainsAvailable PASSED
+
+TypesetExportTest > fourVariantsOriginalBytesJpegAndFailurePublication PASSED
+
+TypesetImageTest > allEightOrientationsBothEndianOrdersMatchPixelCoordinates PASSED
+
+TypesetImageTest > oldSerializedPagesKeepRawCoordinatesAndNewPagesSurviveReopen PASSED
+
+TypesetImageTest > unknownCoordinatesAndMalformedExifFailWithoutChangingLegacyInterpretation PASSED
+
+TypesetMaskTest > laterMosaicReadsOriginalAndNeverEarlierMaskPixels PASSED
+
+TypesetMaskTest > allShapesAndEffectsComparedWithOriginalTypeSetOutputs PASSED
+
+TypesetMetadataExportTest > damagedMetadataIsNotReportedPreserved PASSED
+
+TypesetMetadataExportTest > everySelectedCategoryIncludesUneditedPagesAndRecipeZipPathsVerify PASSED
+
+TypesetMetadataExportTest > preserveTextChunksAlphaAndPrivacyUseIndependentAuthorityDecoder PASSED
+
+TypesetMetadataExportTest > recipeAppliesOnlyToMatchingOriginalAndIsUndoable PASSED
+
+TypesetObjectsTest > batchStyleDoesNotChangeTargetLockState PASSED
+
+TypesetObjectsTest > layerOrderControlsRenderingCopyIsIndependentAndDeleteKeepsValidOrder PASSED
+
+TypesetPreferencesTest > newTextRespectsRememberedStyleAndSourceImageLimits PASSED
+
+TypesetPreferencesTest > presetsSaveOnlyStyleAndSourceMaskSlotsHaveExactParameters PASSED
+
+TypesetPreferencesTest > globalPreferencesSurviveWorkspaceBackupAndRestore PASSED
+
+TypesetPreferencesTest > sourceDefaultsAreConsumedByNewProjectsWithoutChangingExistingPages PASSED
+
+TypesetQueueTest > displayedNumberBeforeAfterUsesSourceRoundingAndRetainsBatchOrder PASSED
+
+TypesetQueueTest > multiSelectionKeepsRelativeOrderAndAnchorSemantics PASSED
+
+TypesetReferenceTest > sourceVerticalGlyphsColumnsAndAdvances PASSED
+
+TypesetReferenceTest > sourceHorizontalWrappingAndRichStyles PASSED
+
+TypesetReferenceTest > measuredCanvasTopBaselineUsesTypoMetrics PASSED
+
+TypesetReferenceTest > sourceStoryGeometryAndBlankParagraphs PASSED
+
+TypesetRepositoryTest > projectCopyRenameAndRemovalKeepIndependentHistoryAndOriginal PASSED
+
+TypesetRepositoryTest > thousandPagesHistoryRestartAndBackupPreserveOriginal PASSED
+
+TypesetRepositoryTest > badSnapshotHashCannotReplaceCurrentOrDeleteOriginal PASSED
+
+TypesetRepositoryTest > stagedDocumentFailureRetainsOriginalAndRefusesUnsafeReopen PASSED
+
+TypesetSourceExchangeTest > editedExportRoundTripsStudioExtensionsAndRetainsUnknownSourceFields PASSED
+
+TypesetSourceExchangeTest > legacyPresetMigrationMergeReplaceAndUnknownFieldsRoundTrip PASSED
+
+TypesetSourceExchangeTest > actualSourcePresetExportMatchesStyleAndDefaults PASSED
+
+TypesetSourceExchangeTest > actualSourceExportImportsAllObjectsAndKeepsRawAcrossBackup PASSED
+
+TypesetSourceExchangeTest > exchangeFileFailureAndConcurrentDestinationNeverOverwrite PASSED
+
+TypesetSourceExchangeTest > unknownVersionRemoteDataAndCorruptionRefusedBeforeMutation PASSED
+
+WindowsFontDecoderTest > nativeWoff2AndWoffDecodeToUsableFonts PASSED
+
+WindowsFontDecoderTest > installedOtfAndDecodedTtfImportRetainExactBytes PASSED
+
+WindowsFontDecoderTest > rejectsMalformedContainersAndOversizedHeaders PASSED
+
+WindowsFontDecoderTest > importedFontIsDurableAndBackupRestorableWithoutSystemInstallation PASSED
+
+WorkspaceProcessTest > abruptStagedAndCommittedDocumentCrashesPreserveOriginals PASSED
+
+WorkspaceProcessTest > anotherProcessCannotOwnOpenWorkspaceThenCanAfterClose PASSED
+
+> Task :studio-desktop:cleanTest
+> Task :studio-desktop:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-desktop:convertXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:copyNonXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:prepareComposeResourcesTaskForMain NO-SOURCE
+> Task :studio-desktop:generateResourceAccessorsForMain SKIPPED
+> Task :studio-desktop:generateActualResourceCollectorsForMain SKIPPED
+> Task :studio-desktop:generateComposeResClass SKIPPED
+> Task :studio-desktop:compileKotlin UP-TO-DATE
+> Task :studio-desktop:compileJava NO-SOURCE
+> Task :studio-desktop:assembleMainResources UP-TO-DATE
+> Task :studio-desktop:processResources UP-TO-DATE
+> Task :studio-desktop:classes UP-TO-DATE
+> Task :studio-desktop:jar UP-TO-DATE
+> Task :studio-desktop:convertXmlValueResourcesForTest NO-SOURCE
+> Task :studio-desktop:copyNonXmlValueResourcesForTest NO-SOURCE
+> Task :studio-desktop:prepareComposeResourcesTaskForTest NO-SOURCE
+> Task :studio-desktop:generateResourceAccessorsForTest SKIPPED
+> Task :studio-desktop:compileTestKotlin UP-TO-DATE
+> Task :studio-desktop:compileTestJava NO-SOURCE
+> Task :studio-desktop:assembleTestResources UP-TO-DATE
+> Task :studio-desktop:processTestResources UP-TO-DATE
+> Task :studio-desktop:testClasses UP-TO-DATE
+
+> Task :studio-desktop:test
+
+DesktopStudioPresentationTest > annotation follows glyph lines and rejects stale ranges without changing raw prompt PASSED
+
+DesktopStudioPresentationTest > chips are direct keyboard choices and preserve unrelated serialized draft fields PASSED
+
+DesktopStudioPresentationTest > small enum menu supports arrows enter escape and nullable follow default PASSED
+
+DesktopStudioPresentationTest > precise readout retains imported values and only large choices use search dialog PASSED
+
+DesktopStudioPresentationTest > inline and fullscreen text editor share annotations and leave request body unchanged PASSED
+
+DesktopStudioPresentationTest > random seed switch conditionally adds fixed editor and preserves stored seed PASSED
+
+DesktopStudioPresentationTest > field displays local translation and accepts anchored suggestion with Enter PASSED
+
+DesktopStudioPresentationTest > suggestion keyboard acceptance protects selection IME and empty results PASSED
+
+DesktopStudioPresentationTest > sliders and keyboard keep exact discrete values PASSED
+
+DesktopStudioPresentationTest > Wallpaper excludes square without modifying shared size or sampler capability PASSED
+
+DesktopStudioPresentationTest > anchored popup flips above near bottom and stays in viewport PASSED
+
+DesktopStudioPresentationTest > custom size applies valid dimensions resets preset or cancels without publication PASSED
+
+DesktopStudioPresentationTest > advanced disclosure starts collapsed and does not alter draft PASSED
+
+DesktopStudioWorkspaceTest > tool navigation stays on one row with diagnostics at the right edge PASSED
+
+DesktopStudioWorkspaceTest > real divider drag snaps restores and clamps while editor composition survives mode and resize PASSED
+
+SourceZoomSurfaceTest > studio inline double click opens once while default zoom surface retains double zoom PASSED
+
+SuiteChromeTest > negativeMonitorCoordinatesAreSignExtended PASSED
+
+SuiteChromeTest > resizeEdgesBelongToWindowsAndStopWhenMaximized PASSED
+
+SuiteChromeTest > maximizedButtonRestoresAndNativeCloseUsesDrainCallback PASSED
+
+SuiteChromeTest > measuredControlsNeverBecomeDragRegions PASSED
+
+SuiteChromeTest > captionsKeepTheirCommandsAtScaledClientSize PASSED
+
+SuiteChromeTest > unmeasuredLayoutCannotInventCaptionTargets PASSED
+
+AssetArchiveWorkflowTest > confirmCancelRestoreAndAliasTagChoicesPreserveExistingProject PASSED
+
+AssetArchiveWorkflowTest > archiveMetadataFailureShowsOriginalsAndDisablesMutation PASSED
+
+AutosaveCancellationTest > cancellingDebouncedSaveDuringCommitDoesNotReportDataFailure PASSED
+
+GalleryAlbumWorkflowTest > sourceAlbumsNavigateSelectFilterAndPersistDepthPreferencesWithoutChangingRecipes PASSED
+
+GalleryAnimationTest > animatedGifRetainsTwoFrameColorsTimingAndLoopAfterDisguiseRestore PASSED
+
+GalleryAnimationTest > actualWorkspacePreviewRestoreBatchCopyAndReopenPreserveOriginals PASSED
+
+GalleryAnimationTest > failedBatchKeepsUnpublishedEvidenceAndNeverOverwritesPriorOutput PASSED
+
+GalleryIngressTest > filesWinOverRasterAndTextPasteRemainsText PASSED
+
+GalleryIngressTest > guiPasteBatchReportsFailuresRetainsExactOriginalAndRasterProvenanceAfterRestart PASSED
+
+GalleryWorkflowTest > gridFilterTwoImageComparisonCopyAndMetadataReuseKeepOriginals PASSED
+
+GuidanceSafetyTest > q09CanvasRotateUndoMaskResetApplyAndReopen PASSED
+
+GuidanceSafetyTest > vibeMissUsesBudgetOnceAndCachedEncodingMakesNoRequest PASSED
+
+GuidanceSafetyTest > focusedPreparationUsesAuthorityPixelsAndKeepsRawFinalSeparate PASSED
+
+ImageCardWorkflowTest > packageAndPngProduceOnlyImageProjection PASSED
+
+ImageCardWorkflowTest > cardDefaultGlobalOverrideClearAndRestart PASSED
+
+LibraryCollectionWorkflowTest > queuedRemovedRegistrationIsIgnoredAndUncertainMetadataStopsAutomaticRetries PASSED
+
+LibraryCollectionWorkflowTest > workbenchAutomaticallyCollectsImagesAndPromptVersionsAndDrainsForMaintenance PASSED
+
+LibraryCollectionWorkflowTest > unreadableLocalRegistrationStopsMonitoringWithoutHidingAssetLabels PASSED
+
+MetadataWorkflowTest > embeddedImageRetainedAndUsedWithoutMutatingOriginal PASSED
+
+MetadataWorkflowTest > missingMalformedUnsupportedAndReadFailureAreDistinct PASSED
+
+MetadataWorkflowTest > historyReuseChecksIdentityAndRetainsOriginal PASSED
+
+MetadataWorkflowTest > actualMetadataUiPreviewApplyUndoAndRestart PASSED
+
+PostProcessWorkflowTest > unexpectedDimensionsRetainReceivedOriginalAndReportFailure PASSED
+
+PostProcessWorkflowTest > upscalePersistsExactRequestAndResult PASSED
+
+PostProcessWorkflowTest > enhanceUsesAuthorityRequestWithoutChangingSource PASSED
+
+PromptReferenceWorkflowTest > imagePreviewBoardRealRoleDragExtractionAndRestartKeepSourceIdentity PASSED
+
+PromptReferenceWorkflowTest > missingOrUnverifiableImagePromptCannotBecomeFalseCompleteReference PASSED
+
+PromptReferenceWorkflowTest > editedImageUsesVerifiedSourcePromptWithoutClaimingAnUneditedResult PASSED
+
+PromptReferenceWorkflowTest > narrowBoardScrollsSourcesAndEmptyPromptFieldsDoNotConsumeRows PASSED
+
+ReverseWorkflowTest > missingVisionFailsBeforeAnyPaidAttempt PASSED
+
+ReverseWorkflowTest > linkedVisionUsesAuthorityDescriptionAndNeverLeaksKeyToSnapshot PASSED
+
+ReverseWorkflowTest > directVisionRequiresApplyAndSurvivesRestart PASSED
+
+StudioDataLaunchTest > installedIdentityAndApprovedDestinationBindMigration PASSED
+
+StudioDataLaunchTest > cancelledManualMigrationDoesNotPublishOrModifySource PASSED
+
+StudioMaintenanceTest > maintenanceRejectsNewEditsAndKeepsRootOwnedUntilWriterDrains PASSED
+
+StudioMaintenanceTest > migrationDestinationIsSeparateAndCannotReuseExistingWork PASSED
+
+StudioMaintenanceTest > snapshotPreservesOriginalAssociationsAndDpapiCredentialWithoutPlaintext PASSED
+
+StudioUpdateTest > cancellationDrainsOwnedOperationAndRejectsNewWork PASSED
+
+StudioUpdateTest > actualUpdateScreenRequiresDownloadConfirmationAndDoesNotClaimInstall PASSED
+
+StudioUpdateTest > unconfiguredRuntimeFailsWithoutLaunchingProcess PASSED
+
+TypesetQueueWorkflowTest > dividerResizeCommitsOnceAndContextMoveTargetsClickedPage PASSED
+
+TypesetQueueWorkflowTest > popupPositionFlipsAndClampsEvenInSmallWindow PASSED
+
+TypesetQueueWorkflowTest > displayedNumberMoveRejectsInvalidAndStaleTargetsPreservesSelectionAndRestart PASSED
+
+TypesetQueueWorkflowTest > longQueueDragAutoScrollsKeepsBlockAndHoverUsesEditedPageWithoutSelecting PASSED
+
+TypesetWorkflowTest > namedProjectLiveVerticalEditingHistoryAndRestart PASSED
+
+TypesetWorkflowTest > functionalAndInlineColorsPreviewExportAndReopenWithoutSilentFallback PASSED
+
+TypesetWorkflowTest > pointerDrawnMasksChangeEffectSaveUndoAndReopen PASSED
+
+TypesetWorkflowTest > webpPreviewExportAndOriginalReopen PASSED
+
+TypesetWorkflowTest > continuousMaskDefaultsRespectPerPageSettings PASSED
+
+TypesetWorkflowTest > fourCategoryPreviewCopiesCompleteFileDeckWithoutSystemClipboard PASSED
+
+TypesetWorkflowTest > durableDefaultFontLoadsOnFirstTextPreviewWithColdCache PASSED
+
+TypesetWorkflowTest > fullPreviewKeyboardAndExportDeckKeepEditorStateAndFitNarrowWindow PASSED
+
+TypesetWorkflowTest > maximumQueueWidthCannotStarveCanvasAndSurvivesReopen PASSED
+
+TypesetWorkflowTest > storyCaptionPresetPreviewExportAndRestart PASSED
+
+TypesetWorkflowTest > sourceExchangePreviewConfirmExportAndReopen PASSED
+
+TypesetWorkflowTest > queueControlSelectionDragOrderNumberingAndRestart PASSED
+
+WorkbenchWorkflowTest > creationFooterAndImageSummaryAdaptWithoutLosingDraftOrSelection PASSED
+
+WorkbenchWorkflowTest > editedAssetIsSelectableAcrossGuidanceAndEditorAndSurvivesRestart PASSED
+
+WorkbenchWorkflowTest > measuredSuiteNavigationSurvivesResizeAndUnsentInput PASSED
+
+WorkbenchWorkflowTest > continuedEditingRetainsExistingAssetsAndCredentials PASSED
+
+WorkbenchWorkflowTest > accountsDesignApplyGenerateGalleryAndRestart PASSED
+
+BUILD SUCCESSFUL in 7m 39s
+20 actionable tasks: 4 executed, 16 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.1.0/userguide/configuration_cache_enabling.html

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.TypesetExportTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-21T18:49:52.083Z" hostname="DD1" time="13.592">
+  <properties/>
+  <testcase name="longBookPagesKeepPhysicalSizeWithoutLegacyPdfClipping" classname="io.github.misakapiano.ccbstudio.core.TypesetExportTest" time="3.492"/>
+  <testcase name="storyPresetsVariablePagesAndIndependentInspectionArtifact" classname="io.github.misakapiano.ccbstudio.core.TypesetExportTest" time="3.368"/>
+  <testcase name="missingFontBlocksRenderingButOriginalDeliveryRemainsAvailable" classname="io.github.misakapiano.ccbstudio.core.TypesetExportTest" time="1.844"/>
+  <testcase name="fourVariantsOriginalBytesJpegAndFailurePublication" classname="io.github.misakapiano.ccbstudio.core.TypesetExportTest" time="4.887"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

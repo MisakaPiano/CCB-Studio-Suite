@@ -16,7 +16,7 @@ class StudioVersionTwoTest {
             w.save(w.state.copy(accounts=listOf(account()),creation=c.change(c.draft.copy(basePrompt="synthetic input",stylePrompt="ink")) ))
         }
         StudioWorkspace.openStudio(r).use {w ->
-            assertEquals(2,w.state.version);assertEquals("ink",w.state.creation!!.draft.stylePrompt)
+            assertEquals(StudioWorkspace.DATA_VERSION,w.state.version);assertEquals("ink",w.state.creation!!.draft.stylePrompt)
             assertEquals("",w.state.creation!!.undoDraft().draft.basePrompt)
             assertEquals("OPENAI_COMPATIBLE",w.state.accounts.single().provider)
         }
@@ -35,7 +35,7 @@ class StudioVersionTwoTest {
         StudioWorkspace.open(source).use {assertContentEquals(bytes,it.bytes(id));assertEquals(1,it.state.version)}
         val v2Backup=StudioWorkspace.openStudio(dest).use {assertContentEquals(bytes,it.bytes(id));assertEquals("old",it.state.projects.single().name);it.backup()}
         val restored=root();StudioRestore.restore(v2Backup,restored)
-        StudioWorkspace.openStudio(restored).use {assertContentEquals(bytes,it.bytes(id));assertEquals(2,it.state.version)}
+        StudioWorkspace.openStudio(restored).use {assertContentEquals(bytes,it.bytes(id));assertEquals(StudioWorkspace.DATA_VERSION,it.state.version)}
     }
     @Test fun failedMigrationDoesNotPublishOrOverwriteTarget() {
         val backup=StudioWorkspace.open(root()).use {it.backup()}

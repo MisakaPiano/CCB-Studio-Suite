@@ -1,0 +1,18 @@
+{
+  "task": "UX_RECOVERY_CONTINUOUS",
+  "sourceA": "251dc34950990b0878e1910d16ed289e9400db8d",
+  "before": {
+    "status": "FAILED",
+    "exitCode": 1,
+    "reason": "Restored format-2 root has no .owner.lock",
+    "log": "backup-migration-before.log"
+  },
+  "after": {
+    "status": "PASS",
+    "exitCode": 0,
+    "result": "Actual A backup restored and migrated to new format-3 directory",
+    "log": "backup-migration-after.log"
+  },
+  "actualInstalledUpdate": "NOT TESTED",
+  "fixtures": "SYNTHETIC_ONLY"
+}

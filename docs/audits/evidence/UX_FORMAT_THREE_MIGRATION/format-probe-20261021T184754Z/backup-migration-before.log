@@ -1,0 +1,9 @@
+Exception in thread "main" java.nio.file.NoSuchFileException: H:\CCB-Studio-Suite\.local\windows-rc\ab-data-3-restore-before\.owner.lock
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.newFileChannel(WindowsFileSystemProvider.java:121)
+	at java.base/java.nio.channels.FileChannel.open(FileChannel.java:298)
+	at java.base/java.nio.channels.FileChannel.open(FileChannel.java:357)
+	at io.github.misakapiano.ccbstudio.core.StudioFormatMigration.copyVersionTwo(StudioFormatMigration.kt:23)
+	at BackupMigrationProbe.main(BackupMigrationProbe.java:13)

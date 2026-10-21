@@ -1,0 +1,80 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.BackupLargeAssetTest",
+    "name": "largeArchiveBackupRestoresExactBytesWithoutImageSizeLimit",
+    "seconds": "4.084",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.BackupLargeAssetTest",
+    "name": "streamingChecksEnforceExactBoundaryAndKeepFileOnFailure",
+    "seconds": "0.005",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest",
+    "name": "crashRecoveryOccursOnlyWhenPublishedCopyIsOpened",
+    "seconds": "1.116",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest",
+    "name": "publishedCopyIsNotOverwrittenOnRetry",
+    "seconds": "1.223",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest",
+    "name": "restoredVersionTwoBackupCanMigrateWithoutOpeningInOldApplication",
+    "seconds": "2.071",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest",
+    "name": "bothOwnershipLocksExcludeMigration",
+    "seconds": "0.332",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest",
+    "name": "copyPreservesOriginalBytesHistoryAndEncryptedBlobsAndCanBackupRestore",
+    "seconds": "2.242",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest",
+    "name": "unknownAuthoritativeContentAndDirectoriesAreNeverIgnored",
+    "seconds": "2.736",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest",
+    "name": "allPrePublicationFaultsRetainSourceAndRetryToFreshTarget",
+    "seconds": "5.21",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest",
+    "name": "failedMigrationDoesNotPublishOrOverwriteTarget",
+    "seconds": "0.731",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest",
+    "name": "endpointsCannotContainCredentialsOrInsecureSchemes",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest",
+    "name": "realProfilesRequireExplicitV2RootAndPersistDraft",
+    "seconds": "0.213",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest",
+    "name": "copyMigrationPreservesLegacyAndRestoresV2Backup",
+    "seconds": "1.985",
+    "status": "PASS"
+  }
+]

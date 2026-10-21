@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.ImageOriginsTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-21T18:57:11.795Z" hostname="DD1" time="4.038">
+  <properties/>
+  <testcase name="invalidNearestReceiptCannotFallBackToAnOlderValidAncestor" classname="io.github.misakapiano.ccbstudio.core.ImageOriginsTest" time="0.977"/>
+  <testcase name="editedAndComposedImagesKeepExactSourceAndSeedAfterRestore" classname="io.github.misakapiano.ccbstudio.core.ImageOriginsTest" time="3.06"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

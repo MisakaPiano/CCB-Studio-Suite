@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-21T18:49:34.394Z" hostname="DD1" time="11.007">
+  <properties/>
+  <testcase name="crashRecoveryOccursOnlyWhenPublishedCopyIsOpened" classname="io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest" time="0.721"/>
+  <testcase name="publishedCopyIsNotOverwrittenOnRetry" classname="io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest" time="0.694"/>
+  <testcase name="bothOwnershipLocksExcludeMigration" classname="io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest" time="0.411"/>
+  <testcase name="copyPreservesOriginalBytesHistoryAndEncryptedBlobsAndCanBackupRestore" classname="io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest" time="1.625"/>
+  <testcase name="unknownAuthoritativeContentAndDirectoriesAreNeverIgnored" classname="io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest" time="2.29"/>
+  <testcase name="allPrePublicationFaultsRetainSourceAndRetryToFreshTarget" classname="io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest" time="5.266"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

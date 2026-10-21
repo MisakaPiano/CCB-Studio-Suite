@@ -28,7 +28,7 @@ class StudioWorkspace private constructor(val root:Path,private val owner:FileCh
     private fun checkOpen() {check(!closed && !poisoned) { "Workspace closed or requires recovery; reopen after inspection" }}
     @Synchronized fun save(next:StudioState) {
         checkOpen()
-        require(next.version == if(studioMode) 2 else 1) { "Workspace/document version mismatch; migration required" }
+        require(next.version == if(studioMode) DATA_VERSION else 1) { "Workspace/document version mismatch; migration required" }
         journal.requireCapacity(next)
         try {journal.commit(next)} catch(e:Exception) {poisoned=true;throw e}
     }
@@ -114,10 +114,12 @@ class StudioWorkspace private constructor(val root:Path,private val owner:FileCh
     }
     companion object {
         private val MARKER="CCBStudioSuite/WindowsPreview/SYNTHETIC_ONLY/v1".toByteArray()
-        internal val STUDIO_MARKER="CCBStudioSuite/WindowsStudio/v2".toByteArray()
+        const val DATA_VERSION=3
+        internal val STUDIO_MARKER="CCBStudioSuite/WindowsStudio/v3".toByteArray()
         fun open(supplied:Path,fault:(String)->Unit={}):StudioWorkspace = openRoot(supplied,false,fault)
         fun openStudio(supplied:Path,fault:(String)->Unit={}):StudioWorkspace = openRoot(supplied,true,fault)
-        private fun openRoot(supplied:Path,studio:Boolean,fault:(String)->Unit):StudioWorkspace {
+        internal fun openMigrationCandidate(supplied:Path):StudioWorkspace = openRoot(supplied,true,{},false)
+        private fun openRoot(supplied:Path,studio:Boolean,fault:(String)->Unit,recoverInterrupted:Boolean=true):StudioWorkspace {
             val root=supplied.toAbsolutePath().normalize();safePath(root)
             require(root.none {it.toString().lowercase() in setOf("chatchatbar-desktop","chatchatbardesktop","chatbar","chatchatbar")})
             Files.createDirectories(root)
@@ -136,17 +138,17 @@ class StudioWorkspace private constructor(val root:Path,private val owner:FileCh
                 Files.list(root).use {it.forEach {p->safePath(p);if(p.fileName.toString() !in allowed)throw DataProblem("RECOVERY_REQUIRED","Unknown root entry retained")}}
                 val journal=StateJournal(root.resolve("documents"),fault)
                 if(studio && journal.state.version == 1) {
-                    // Only a new empty v2 root may initialize. Never reinterpret a legacy document chain.
+                    // Only a new empty current root may initialize. Older roots need explicit copy migration.
                     if(Files.list(root.resolve("documents")).use {it.findAny().isPresent}) throw DataProblem("UNSUPPORTED_VERSION","Legacy documents require copy migration")
-                    journal.commit(StudioState(version=2,creation=CreationState()))
+                    journal.commit(StudioState(version=DATA_VERSION,creation=CreationState()))
                 }
-                if(journal.state.version != if(studio) 2 else 1) throw DataProblem("UNSUPPORTED_VERSION","Root/document versions differ; retained")
+                if(journal.state.version != if(studio) DATA_VERSION else 1) throw DataProblem("UNSUPPORTED_VERSION","Root/document versions differ; retained")
                 assets=AssetStore.open(root.resolve("assets"))
                 val workspace=StudioWorkspace(root,c,lock,assets,journal,studio)
                 // A dispatched job after process death is uncertain, never automatically resent.
-                if(journal.state.jobs.any {it.state in setOf("QUEUED","RUNNING")}) workspace.save(journal.state.copy(jobs=journal.state.jobs.map {if(it.state in setOf("QUEUED","RUNNING"))it.copy(state="UNCERTAIN",detail="Interrupted; no automatic retry")else it}))
+                if(recoverInterrupted && journal.state.jobs.any {it.state in setOf("QUEUED","RUNNING")}) workspace.save(journal.state.copy(jobs=journal.state.jobs.map {if(it.state in setOf("QUEUED","RUNNING"))it.copy(state="UNCERTAIN",detail="Interrupted; no automatic retry")else it}))
                 val creation=journal.state.creation
-                if(creation!=null && creation.conversations.any {c->c.turns.any {it.status==com.example.chatbar.domain.image.NovelAiDesignTurnStatus.PENDING}}) {
+                if(recoverInterrupted && creation!=null && creation.conversations.any {c->c.turns.any {it.status==com.example.chatbar.domain.image.NovelAiDesignTurnStatus.PENDING}}) {
                     workspace.save(journal.state.copy(creation=creation.copy(conversations=creation.conversations.map {c->c.copy(turns=c.turns.map {t->
                         if(t.status==com.example.chatbar.domain.image.NovelAiDesignTurnStatus.PENDING) t.copy(status=com.example.chatbar.domain.image.NovelAiDesignTurnStatus.FAILED,error="进程中断，结果未知；未自动重发") else t
                     })})))

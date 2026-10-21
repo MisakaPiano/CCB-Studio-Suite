@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "sourceA": "251dc34950990b0878e1910d16ed289e9400db8d",
+  "sourceUnchanged": true,
+  "oldReaderRefuses": true,
+  "newRootUnchangedByOldReader": true,
+  "syntheticDpapiHashMatches": true,
+  "runs": [
+    {
+      "name": "compile",
+      "exitCode": 0
+    },
+    {
+      "name": "migrate",
+      "exitCode": 0
+    }
+  ],
+  "actualInstalledUpdate": "NOT TESTED"
+}

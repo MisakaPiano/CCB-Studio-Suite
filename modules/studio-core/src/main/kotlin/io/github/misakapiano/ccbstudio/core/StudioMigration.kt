@@ -16,8 +16,8 @@ object StudioMigration {
         require(journal.state.version==1) { "This migration only accepts Preview v1" }
         fault("MIGRATION_COPIED")
         // Legacy fixture accounts remain explicitly synthetic. No secret is copied or converted.
-        journal.commit(journal.state.copy(version=2,creation=CreationState()))
-        val marker=staging.resolve(".marker-v2")
+        journal.commit(journal.state.copy(version=StudioWorkspace.DATA_VERSION,creation=CreationState()))
+        val marker=staging.resolve(".marker-current")
         writeNewForced(marker,StudioWorkspace.STUDIO_MARKER)
         Files.move(marker,staging.resolve("preview-root.txt"),StandardCopyOption.ATOMIC_MOVE,StandardCopyOption.REPLACE_EXISTING)
         StudioWorkspace.openStudio(staging).use {it.catalog()}

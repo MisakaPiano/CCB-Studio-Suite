@@ -1,0 +1,74 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest",
+    "name": "crashRecoveryOccursOnlyWhenPublishedCopyIsOpened",
+    "seconds": "1.312",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest",
+    "name": "publishedCopyIsNotOverwrittenOnRetry",
+    "seconds": "0.712",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest",
+    "name": "bothOwnershipLocksExcludeMigration",
+    "seconds": "0.441",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest",
+    "name": "copyPreservesOriginalBytesHistoryAndEncryptedBlobsAndCanBackupRestore",
+    "seconds": "1.641",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest",
+    "name": "unknownAuthoritativeContentAndDirectoriesAreNeverIgnored",
+    "seconds": "1.937",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest",
+    "name": "allPrePublicationFaultsRetainSourceAndRetryToFreshTarget",
+    "seconds": "4.468",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest",
+    "name": "failedMigrationDoesNotPublishOrOverwriteTarget",
+    "seconds": "0.437",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest",
+    "name": "endpointsCannotContainCredentialsOrInsecureSchemes",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest",
+    "name": "realProfilesRequireExplicitV2RootAndPersistDraft",
+    "seconds": "0.279",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest",
+    "name": "copyMigrationPreservesLegacyAndRestoresV2Backup",
+    "seconds": "2.121",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioDataLaunchTest",
+    "name": "installedIdentityAndApprovedDestinationBindMigration",
+    "seconds": "0.48",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioDataLaunchTest",
+    "name": "cancelledManualMigrationDoesNotPublishOrModifySource",
+    "seconds": "0.267",
+    "status": "PASS"
+  }
+]

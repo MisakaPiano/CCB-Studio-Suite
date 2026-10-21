@@ -81,7 +81,7 @@ fun sha256(bytes: ByteArray): String = MessageDigest.getInstance("SHA-256").dige
     val typesetPreferences:TypesetPreferences=TypesetPreferences(),
 ) {
     fun validate() {
-        if(version !in 1..2) throw DataProblem("UNSUPPORTED_VERSION", "Studio document version $version retained")
+        if(version !in 1..3) throw DataProblem("UNSUPPORTED_VERSION", "Studio document version $version retained")
         if(version == 1) require(accounts.all {it.provider == "SYNTHETIC"} && creation == null) { "Legacy Preview is synthetic-only" }
         require(accounts.size <= 100 && accounts.map { it.id }.distinct().size == accounts.size)
         accounts.forEach { it.validate() }

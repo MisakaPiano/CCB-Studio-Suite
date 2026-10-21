@@ -31,7 +31,7 @@ def build(app,runtime,bootstrap,destination,version,metadata_url,targets_url,bui
     payload=destination/'payload';shutil.copytree(app,payload)
     shutil.copytree(runtime,payload/'updater',ignore=shutil.ignore_patterns('__pycache__'))
     shutil.copy2(bootstrap,payload/'update-root.json')
-    config=dict(format=1,product='ccb-studio-suite',platform='windows-x86_64',channel='internal',version=version,displayVersion=f'0.2.{version}-internal',reader=2,sourceSha=sha,metadataUrl=metadata_url,targetsUrl=targets_url,rootSha256=digest(bootstrap),internalTest=True)
+    config=dict(format=1,product='ccb-studio-suite',platform='windows-x86_64',channel='internal',version=version,displayVersion=f'0.2.{version}-internal',reader=3,sourceSha=sha,metadataUrl=metadata_url,targetsUrl=targets_url,rootSha256=digest(bootstrap),internalTest=True)
     (payload/'update-config.json').write_text(json.dumps(config,indent=2)+'\n',encoding='utf-8')
     manifest=dict(format=1,product=config['product'],platform=config['platform'],channel=config['channel'],version=version,sourceSha=sha,files=[])
     for p in sorted(payload.rglob('*')):

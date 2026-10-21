@@ -363,10 +363,13 @@ internal fun launchStudio(args:Array<String>) {
     fun option(name:String)=args.indexOf(name).takeIf{it>=0}?.let{args.getOrNull(it+1)}
     StudioBrand.configureDefaultWindows()
     val home=Paths.get(System.getenv("LOCALAPPDATA"),"CCBStudioSuite")
-    val root=option("--studio-root")?.let(Paths::get)?:home.resolve("workspace-v2")
+    val root=option("--studio-root")?.let(Paths::get)?:home.resolve("workspace-v3").let{current->if(!Files.exists(current)&&Files.exists(home.resolve("workspace-v2")))home.resolve("workspace-v2")else current}
     val runtime=option("--runtime-root")?.let(Paths::get)?:home.resolve("runtime")
-    val workspace=try{StudioWorkspace.openStudio(root)}catch(e:Exception){javax.swing.JOptionPane.showMessageDialog(null,"工作区无法安全打开；现有文件保留。\n${if(e is DataProblem)e.status else e.javaClass.simpleName}","CCB Studio Suite",javax.swing.JOptionPane.ERROR_MESSAGE);return}
     val updatePlan=option("--update-handoff")?.let(Paths::get)
+    val workspace=try{openStudioForLaunch(root,runtime,updatePlan,{source,target->javax.swing.JOptionPane.showConfirmDialog(null,"此工作区需要升级资料格式。将在新目录建立副本，原目录和原件保留。\n来源：$source\n副本：$target\n继续？","升级资料副本",javax.swing.JOptionPane.OK_CANCEL_OPTION)==javax.swing.JOptionPane.OK_OPTION})}catch(e:Exception){
+        if(updatePlan!=null&&updatePlan.toAbsolutePath().normalize().startsWith(runtime.toAbsolutePath().normalize().resolve("updates/handoffs")))runCatching{writeUpdateJson(updatePlan.parent.resolve("B_FAILED.json"),buildJsonObject{put("status","FAILED");put("reason",if(e is DataProblem)e.status else e.javaClass.simpleName)})}
+        javax.swing.JOptionPane.showMessageDialog(null,"工作区无法安全打开；现有文件保留。\n${if(e is DataProblem)e.status else e.javaClass.simpleName}","CCB Studio Suite",javax.swing.JOptionPane.ERROR_MESSAGE);return
+    }
     val updateVerified=try{updatePlan?.let{verifyUpdatedWorkspace(workspace,it)}}catch(e:Exception){
         if(updatePlan!=null && updatePlan.toAbsolutePath().normalize().startsWith(runtime.toAbsolutePath().normalize().resolve("updates/handoffs")))runCatching{writeUpdateJson(updatePlan.parent.resolve("B_FAILED.json"),buildJsonObject{put("status","FAILED");put("reason",if(e is DataProblem)e.status else e.javaClass.simpleName)})}
         workspace.close();javax.swing.JOptionPane.showMessageDialog(null,"更新后的程序或资料验证未通过；已有程序和资料保留。","CCB Studio Suite",javax.swing.JOptionPane.ERROR_MESSAGE);return

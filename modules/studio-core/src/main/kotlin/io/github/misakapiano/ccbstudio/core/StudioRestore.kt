@@ -55,7 +55,14 @@ object StudioRestore {
             ids.distinct().forEach {store.read(UUID.fromString(it)).require()}
         }
         // Secret refs deliberately remain unresolved; no credentials are copied by ordinary backup.
-        writeNewForced(staging.resolve("preview-root.txt"),if(state.version==2) StudioWorkspace.STUDIO_MARKER else "CCBStudioSuite/WindowsPreview/SYNTHETIC_ONLY/v1".toByteArray())
+        writeNewForced(staging.resolve("preview-root.txt"),when(state.version){
+            StudioWorkspace.DATA_VERSION->StudioWorkspace.STUDIO_MARKER
+            2->"CCBStudioSuite/WindowsStudio/v2".toByteArray() // Restored v2 is still v2; explicit copy migration remains required.
+            else->"CCBStudioSuite/WindowsPreview/SYNTHETIC_ONLY/v1".toByteArray()
+        })
+        // A restored older workspace must be lockable by explicit copy migration
+        // without first opening it in an incompatible current reader.
+        writeNewForced(staging.resolve(".owner.lock"),byteArrayOf())
         fault("RESTORE_VALIDATED")
         if(Files.exists(destination,NOFOLLOW_LINKS))throw DataProblem("CONFLICT","Restore destination appeared; retained")
         Files.move(staging,destination) // No REPLACE_EXISTING: never overwrite a concurrently created target.
