@@ -1,0 +1,48 @@
+{
+  "installer": {
+    "task": "UX-R4",
+    "status": "BUILT",
+    "sourceSha": "08733d5dcc97f47bc1bf813475c505a58391a4c7",
+    "version": 7,
+    "compiler": "NSIS3.13",
+    "exitCode": 0,
+    "files": 546,
+    "installed": "NOT TESTED",
+    "bytes": 167303853,
+    "sha256": "a5064c48a986b397364c432c9f380664dfb2f4e35427c00365e93383be7e7908"
+  },
+  "destination": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-applications-5\\7-08733d5dcc97",
+  "results": [
+    {
+      "test": "LONG_PATH_REFUSE_BEFORE_WRITES",
+      "exitCode": 19,
+      "expected": 19,
+      "seconds": 0.8389687000017148,
+      "status": "PASS"
+    },
+    {
+      "test": "FRESH_INSTALL",
+      "exitCode": 0,
+      "expected": 0,
+      "seconds": 2.09937219999847,
+      "status": "PASS",
+      "verification": {
+        "files": 546,
+        "bytes": 251069437,
+        "manifestSha256": "dac8092f5f15185fd683341ae1497515ecea7a1fd919d5b9afdd609bcfc0b3f8"
+      }
+    },
+    {
+      "test": "OCCUPIED_REFUSE",
+      "exitCode": 17,
+      "expected": 17,
+      "seconds": 0.3847261000009894,
+      "status": "PASS",
+      "verification": {
+        "files": 546,
+        "bytes": 251069437,
+        "manifestSha256": "dac8092f5f15185fd683341ae1497515ecea7a1fd919d5b9afdd609bcfc0b3f8"
+      }
+    }
+  ]
+}

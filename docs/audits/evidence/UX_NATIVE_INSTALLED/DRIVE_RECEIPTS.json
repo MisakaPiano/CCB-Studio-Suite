@@ -1,0 +1,203 @@
+{
+  "task": "UX_RECOVERY_CONTINUOUS",
+  "sourceSha": "08733d5dcc97f47bc1bf813475c505a58391a4c7",
+  "fullInstallerAttempt": {
+    "content": [
+      {
+        "type": "text",
+        "text": "HTTP error prior to action invocation. HTTPException: 413: File too large to download: 167303853 bytes exceeds the 104857600-byte limit."
+      }
+    ],
+    "structuredContent": {
+      "error": "HTTP error prior to action invocation. HTTPException: 413: File too large to download: 167303853 bytes exceeds the 104857600-byte limit.",
+      "error_code": "INVALID_ARGUMENT"
+    },
+    "isError": true
+  },
+  "parts": [
+    {
+      "content": [
+        {
+          "type": "text",
+          "text": "Action completed."
+        }
+      ],
+      "structuredContent": {
+        "accepted_input": "file_uri",
+        "success": true,
+        "id": "1qVH1-GvSjcBc_pj1gqgPQK1EbqPSAQQv",
+        "title": "CCB-Studio-Suite-0.2.7-internal-08733d5.exe.part01",
+        "file_name": "CCB-Studio-Suite-0.2.7-internal-08733d5.exe.part01",
+        "mime_type": "application/x-dosexec",
+        "url": "https://drive.google.com/file/d/1qVH1-GvSjcBc_pj1gqgPQK1EbqPSAQQv/view?usp=drivesdk",
+        "parent_id": "1DcysN49RtUDnY9jx4wZ4z41F_j4ttUT2",
+        "structuredContent": {
+          "accepted_input": "file_uri",
+          "success": true,
+          "id": "1qVH1-GvSjcBc_pj1gqgPQK1EbqPSAQQv",
+          "title": "CCB-Studio-Suite-0.2.7-internal-08733d5.exe.part01",
+          "file_name": "CCB-Studio-Suite-0.2.7-internal-08733d5.exe.part01",
+          "mime_type": "application/x-dosexec",
+          "url": "https://drive.google.com/file/d/1qVH1-GvSjcBc_pj1gqgPQK1EbqPSAQQv/view?usp=drivesdk",
+          "parent_id": "1DcysN49RtUDnY9jx4wZ4z41F_j4ttUT2"
+        }
+      },
+      "isError": false
+    },
+    {
+      "content": [
+        {
+          "type": "text",
+          "text": "Action completed."
+        }
+      ],
+      "structuredContent": {
+        "accepted_input": "file_uri",
+        "success": true,
+        "id": "12OFZci2CZS1CEKT8yqnMef4ftoqNZNZD",
+        "title": "CCB-Studio-Suite-0.2.7-internal-08733d5.exe.part02",
+        "file_name": "CCB-Studio-Suite-0.2.7-internal-08733d5.exe.part02",
+        "mime_type": "application/octet-stream",
+        "url": "https://drive.google.com/file/d/12OFZci2CZS1CEKT8yqnMef4ftoqNZNZD/view?usp=drivesdk",
+        "parent_id": "1DcysN49RtUDnY9jx4wZ4z41F_j4ttUT2",
+        "structuredContent": {
+          "accepted_input": "file_uri",
+          "success": true,
+          "id": "12OFZci2CZS1CEKT8yqnMef4ftoqNZNZD",
+          "title": "CCB-Studio-Suite-0.2.7-internal-08733d5.exe.part02",
+          "file_name": "CCB-Studio-Suite-0.2.7-internal-08733d5.exe.part02",
+          "mime_type": "application/octet-stream",
+          "url": "https://drive.google.com/file/d/12OFZci2CZS1CEKT8yqnMef4ftoqNZNZD/view?usp=drivesdk",
+          "parent_id": "1DcysN49RtUDnY9jx4wZ4z41F_j4ttUT2"
+        }
+      },
+      "isError": false
+    }
+  ],
+  "assembly": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "accepted_input": "file_uri",
+      "success": true,
+      "id": "1nQpHo9TuzISV8-GlpKLMUZgiunuov9_8",
+      "title": "CCB-Studio-Suite-0.2.7-08733d5-assembly.zip",
+      "file_name": "CCB-Studio-Suite-0.2.7-08733d5-assembly.zip",
+      "mime_type": "application/zip",
+      "url": "https://drive.google.com/file/d/1nQpHo9TuzISV8-GlpKLMUZgiunuov9_8/view?usp=drivesdk",
+      "parent_id": "1DcysN49RtUDnY9jx4wZ4z41F_j4ttUT2",
+      "structuredContent": {
+        "accepted_input": "file_uri",
+        "success": true,
+        "id": "1nQpHo9TuzISV8-GlpKLMUZgiunuov9_8",
+        "title": "CCB-Studio-Suite-0.2.7-08733d5-assembly.zip",
+        "file_name": "CCB-Studio-Suite-0.2.7-08733d5-assembly.zip",
+        "mime_type": "application/zip",
+        "url": "https://drive.google.com/file/d/1nQpHo9TuzISV8-GlpKLMUZgiunuov9_8/view?usp=drivesdk",
+        "parent_id": "1DcysN49RtUDnY9jx4wZ4z41F_j4ttUT2"
+      }
+    },
+    "isError": false
+  },
+  "readbacks": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Action completed."
+          }
+        ],
+        "structuredContent": {
+          "id": "1qVH1-GvSjcBc_pj1gqgPQK1EbqPSAQQv",
+          "title": "CCB-Studio-Suite-0.2.7-internal-08733d5.exe.part01",
+          "mime_type": null,
+          "size": "83886080",
+          "url": "https://drive.google.com/file/d/1qVH1-GvSjcBc_pj1gqgPQK1EbqPSAQQv/view?usp=drivesdk",
+          "display_url": "https://drive.google.com/file/d/1qVH1-GvSjcBc_pj1gqgPQK1EbqPSAQQv/view?usp=drivesdk",
+          "file_or_folder": null,
+          "created_time": null,
+          "modified_time": null,
+          "parent_ids": [
+            "1DcysN49RtUDnY9jx4wZ4z41F_j4ttUT2"
+          ],
+          "drive_id": null,
+          "current_user_can_share": null,
+          "has_augmented_permissions": null,
+          "shared": null,
+          "permissions": null,
+          "source_visibility_status": "access_not_verified"
+        },
+        "isError": false
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Action completed."
+          }
+        ],
+        "structuredContent": {
+          "id": "12OFZci2CZS1CEKT8yqnMef4ftoqNZNZD",
+          "title": "CCB-Studio-Suite-0.2.7-internal-08733d5.exe.part02",
+          "mime_type": null,
+          "size": "83417773",
+          "url": "https://drive.google.com/file/d/12OFZci2CZS1CEKT8yqnMef4ftoqNZNZD/view?usp=drivesdk",
+          "display_url": "https://drive.google.com/file/d/12OFZci2CZS1CEKT8yqnMef4ftoqNZNZD/view?usp=drivesdk",
+          "file_or_folder": null,
+          "created_time": null,
+          "modified_time": null,
+          "parent_ids": [
+            "1DcysN49RtUDnY9jx4wZ4z41F_j4ttUT2"
+          ],
+          "drive_id": null,
+          "current_user_can_share": null,
+          "has_augmented_permissions": null,
+          "shared": null,
+          "permissions": null,
+          "source_visibility_status": "access_not_verified"
+        },
+        "isError": false
+      }
+    }
+  ],
+  "assemblyReadback": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "id": "1nQpHo9TuzISV8-GlpKLMUZgiunuov9_8",
+      "title": "CCB-Studio-Suite-0.2.7-08733d5-assembly.zip",
+      "mime_type": null,
+      "size": "1996",
+      "url": "https://drive.google.com/file/d/1nQpHo9TuzISV8-GlpKLMUZgiunuov9_8/view?usp=drivesdk",
+      "display_url": "https://drive.google.com/file/d/1nQpHo9TuzISV8-GlpKLMUZgiunuov9_8/view?usp=drivesdk",
+      "file_or_folder": null,
+      "created_time": null,
+      "modified_time": null,
+      "parent_ids": [
+        "1DcysN49RtUDnY9jx4wZ4z41F_j4ttUT2"
+      ],
+      "drive_id": null,
+      "current_user_can_share": null,
+      "has_augmented_permissions": null,
+      "shared": null,
+      "permissions": null,
+      "source_visibility_status": "access_not_verified"
+    },
+    "isError": false
+  },
+  "remoteHashes": "NOT RETURNED by connector; local SHA-256 and exact reconstructed full hash recorded in MANIFEST.json",
+  "permissions": "No permission or account changes"
+}

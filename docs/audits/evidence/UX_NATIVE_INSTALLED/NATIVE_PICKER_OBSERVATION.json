@@ -1,0 +1,19 @@
+{
+  "sourceSha": "08733d5dcc97f47bc1bf813475c505a58391a4c7",
+  "installedVersion": 7,
+  "pid": 20352,
+  "windowId": 857632,
+  "userScreenshot": {
+    "localOnly": true,
+    "sha256": "be6440285248f4d208324b6079e1a567a99b2f8e27fff6fb906db9aff7474998",
+    "bytes": 189799,
+    "upload": "EXCLUDED: personal directory names visible"
+  },
+  "observed": "Actual installed Windows Common Item open dialog displayed from creation image import: address breadcrumb, search, navigation, filename filter and Open/Cancel",
+  "actualDialogDisplay": "OBSERVED",
+  "manualFileSelection": "NOT TESTED",
+  "manualCancelAndFocus": "NOT TESTED",
+  "manualRestoreSecondWindow": "NOT TESTED",
+  "computerCapture": "FAILED: new version window capture timeout; user screenshot is evidence",
+  "productAcceptance": "NOT SIGNED"
+}

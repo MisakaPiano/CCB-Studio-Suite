@@ -1,0 +1,22 @@
+{
+  "task": "UX_RECOVERY_CONTINUOUS / native Windows picker",
+  "sourceSha": "08733d5dcc97f47bc1bf813475c505a58391a4c7",
+  "branch": "feature/windows-rc-continuous",
+  "productGate": "PRODUCT_HOLD / NOT RC",
+  "outputName": "CCB-Studio-Suite-0.2.7-internal-08733d5.exe",
+  "bytes": 167303853,
+  "sha256": "a5064c48a986b397364c432c9f380664dfb2f4e35427c00365e93383be7e7908",
+  "parts": [
+    {
+      "name": "CCB-Studio-Suite-0.2.7-internal-08733d5.exe.part01",
+      "bytes": 83886080,
+      "sha256": "52807cdc5588c1cc808f938e7472bbff3d602c8ccebc829ceccce1382da9ea63"
+    },
+    {
+      "name": "CCB-Studio-Suite-0.2.7-internal-08733d5.exe.part02",
+      "bytes": 83417773,
+      "sha256": "a09d69ee7d5382897f3e2d19fc7d75ac9b6f07ac82814d2acb955e09343b9e9a"
+    }
+  ],
+  "transport": "Google Drive connector maximum 100 MiB; reassemble exact bytes, never execute automatically"
+}

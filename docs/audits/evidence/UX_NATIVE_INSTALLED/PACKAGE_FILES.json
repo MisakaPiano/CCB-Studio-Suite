@@ -1,0 +1,52 @@
+[
+  {
+    "path": "DRIVE_RECEIPTS.json",
+    "bytes": 7327,
+    "sha256": "a399cdbf998df8b6213a7a1022ee42698ca64918fd6855739ea8594c60fb8c3a"
+  },
+  {
+    "path": "EVIDENCE_DRIVE_RECEIPT.json",
+    "bytes": 2157,
+    "sha256": "f26923c3d4a3bb111b50c37f7aed1c627dc282cdee168e3d9bf935c9c1b5356c"
+  },
+  {
+    "path": "LOCAL_FILES.json",
+    "bytes": 982,
+    "sha256": "55b276bf7181db847070444f8f695cab5b9a897ea752c49e2dc982894efb1895"
+  },
+  {
+    "path": "MANIFEST.json",
+    "bytes": 901,
+    "sha256": "c20cac47ff9daf8142a8a59bd5c2bedeae1d6931e183bea2e901c7c84ff2a538"
+  },
+  {
+    "path": "NATIVE_PICKER_OBSERVATION.json",
+    "bytes": 826,
+    "sha256": "8ede7dda89c9f18b63046a5cdb71163e192170f86fa1f63820fc7235bb2ec1d1"
+  },
+  {
+    "path": "receipt.json",
+    "bytes": 1323,
+    "sha256": "c11dc7ae46bffc731019fcc461461b105746eb5bd09a889e7e35accef60d31c3"
+  },
+  {
+    "path": "SOURCE_DELIVERY_IDENTITY.json",
+    "bytes": 146546,
+    "sha256": "ad6d16af368f4f3bab3913af41322badba60e204912fb41de763de2e49629847"
+  },
+  {
+    "path": "SYNTHETIC_FIXTURE_IDENTITY.json",
+    "bytes": 13981,
+    "sha256": "1b1cab6609d569fb56d5e39bf19c7b512577498ef0b976e60b14380bdb0e94f9"
+  },
+  {
+    "path": "version-7/BUILD_RECEIPT.json",
+    "bytes": 320,
+    "sha256": "2ae52a6b5150872524ac16ef17c07b93afbd64f5665cb19f764719ca95a6fe84"
+  },
+  {
+    "path": "version-8/BUILD_RECEIPT.json",
+    "bytes": 320,
+    "sha256": "b3dc1fbac58248ec05ee8eac30490b6b621d0fc5974455a713ee72cbb5873c8b"
+  }
+]

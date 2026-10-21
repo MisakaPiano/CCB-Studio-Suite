@@ -1,0 +1,62 @@
+{
+  "upload": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "accepted_input": "file_uri",
+      "success": true,
+      "id": "1tqD1lZ56-orPvXiv-4EOb9rVX8uVVawi",
+      "title": "CCB-Studio-Suite-08733d5-native-package-evidence.zip",
+      "file_name": "CCB-Studio-Suite-08733d5-native-package-evidence.zip",
+      "mime_type": "application/zip",
+      "url": "https://drive.google.com/file/d/1tqD1lZ56-orPvXiv-4EOb9rVX8uVVawi/view?usp=drivesdk",
+      "parent_id": "1DcysN49RtUDnY9jx4wZ4z41F_j4ttUT2",
+      "structuredContent": {
+        "accepted_input": "file_uri",
+        "success": true,
+        "id": "1tqD1lZ56-orPvXiv-4EOb9rVX8uVVawi",
+        "title": "CCB-Studio-Suite-08733d5-native-package-evidence.zip",
+        "file_name": "CCB-Studio-Suite-08733d5-native-package-evidence.zip",
+        "mime_type": "application/zip",
+        "url": "https://drive.google.com/file/d/1tqD1lZ56-orPvXiv-4EOb9rVX8uVVawi/view?usp=drivesdk",
+        "parent_id": "1DcysN49RtUDnY9jx4wZ4z41F_j4ttUT2"
+      }
+    },
+    "isError": false
+  },
+  "readback": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "id": "1tqD1lZ56-orPvXiv-4EOb9rVX8uVVawi",
+      "title": "CCB-Studio-Suite-08733d5-native-package-evidence.zip",
+      "mime_type": null,
+      "size": "139471",
+      "url": "https://drive.google.com/file/d/1tqD1lZ56-orPvXiv-4EOb9rVX8uVVawi/view?usp=drivesdk",
+      "display_url": "https://drive.google.com/file/d/1tqD1lZ56-orPvXiv-4EOb9rVX8uVVawi/view?usp=drivesdk",
+      "file_or_folder": null,
+      "created_time": null,
+      "modified_time": null,
+      "parent_ids": [
+        "1DcysN49RtUDnY9jx4wZ4z41F_j4ttUT2"
+      ],
+      "drive_id": null,
+      "current_user_can_share": null,
+      "has_augmented_permissions": null,
+      "shared": null,
+      "permissions": null,
+      "source_visibility_status": "access_not_verified"
+    },
+    "isError": false
+  },
+  "localBytes": 139471,
+  "localSha256": "37dd466aaa36e5f098356bf8925a727f89c85f9cbac6f05019e8222153d22ef7"
+}
