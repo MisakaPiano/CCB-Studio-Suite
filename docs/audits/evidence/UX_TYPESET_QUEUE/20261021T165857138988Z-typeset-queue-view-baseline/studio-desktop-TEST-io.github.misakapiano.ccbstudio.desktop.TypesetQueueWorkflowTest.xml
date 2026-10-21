@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.TypesetQueueWorkflowTest" tests="4" skipped="0" failures="1" errors="0" timestamp="2026-10-21T16:59:14.256Z" hostname="DD1" time="22.262">
+  <properties/>
+  <testcase name="dividerResizeCommitsOnceAndContextMoveTargetsClickedPage" classname="io.github.misakapiano.ccbstudio.desktop.TypesetQueueWorkflowTest" time="7.04"/>
+  <testcase name="popupPositionFlipsAndClampsEvenInSmallWindow" classname="io.github.misakapiano.ccbstudio.desktop.TypesetQueueWorkflowTest" time="0.0"/>
+  <testcase name="displayedNumberMoveRejectsInvalidAndStaleTargetsPreservesSelectionAndRestart" classname="io.github.misakapiano.ccbstudio.desktop.TypesetQueueWorkflowTest" time="5.545"/>
+  <testcase name="longQueueDragAutoScrollsKeepsBlockAndHoverUsesEditedPageWithoutSelecting" classname="io.github.misakapiano.ccbstudio.desktop.TypesetQueueWorkflowTest" time="9.677">
+    <failure message="java.lang.AssertionError: expected:&lt;[88a54da0-ed0e-4bf4-aaed-ec30d1557b27, 7f302769-4fda-43e4-a0a8-097d2a3618c7, 5f15bbb9-b7ee-4bdd-8d8c-d2a3f9411a5c, a0e3f9d9-afcf-40a6-962c-7024e7906d16, 35ab4c87-28f2-4f54-afab-1d2be57338de, a85668ed-73e3-4f8b-9c52-a8f1f6571eaf, e771d6ca-632e-4457-92f4-4ca422ea4198, 6e1f080c-30e3-4539-8628-c35c2f187f78, 378c1674-b079-4658-82b8-eff5f8c6c69f, f2c36cb2-410e-4994-88b7-a653db88f2c6, 607a2c1b-1749-4910-beca-037e622b0b5e, fc9cd32b-33dc-4bc4-81b7-a72d93c5c767, bf004817-4e25-400d-afeb-6f6a37bbc232, a9f964d3-b423-4a38-9797-bccb134cd9f0, 9e9d9f67-3c52-412a-8552-f277a7dabffe, 026d6269-5bb2-42e1-9984-6e38f9d66337, ebc32848-d312-4049-bc29-6596ff0ffeef, 356ec4b2-7286-4d6b-ba7a-3d1bca562a81, 9d423399-76af-4620-bd4a-68ccf6a5ffd8, 44132522-c9ac-424d-9739-7f30fe6cad18, 4a05c58d-c644-4796-8b38-b2717da97fed, e508fd49-d223-4ab4-ad83-b21309fcae08, a0aebe4b-1c22-4b08-95a0-cd5d62b9c924, 42cebd97-46c6-44bb-bb95-5fe6076ee93a, c3a7a251-fdf1-4235-9305-b3eb019bd2a1, d035ebb7-584d-48ed-8ac8-9f191901d703, 0e75a469-ea71-4d58-be0d-56c5cc3e2688, 907966e7-d270-4adb-9c1d-cbefd9cfdcb2]&gt; but was:&lt;[88a54da0-ed0e-4bf4-aaed-ec30d1557b27, 7f302769-4fda-43e4-a0a8-097d2a3618c7, 5f15bbb9-b7ee-4bdd-8d8c-d2a3f9411a5c, a0e3f9d9-afcf-40a6-962c-7024e7906d16, 35ab4c87-28f2-4f54-afab-1d2be57338de, a85668ed-73e3-4f8b-9c52-a8f1f6571eaf, e771d6ca-632e-4457-92f4-4ca422ea4198, 6e1f080c-30e3-4539-8628-c35c2f187f78, 378c1674-b079-4658-82b8-eff5f8c6c69f, f2c36cb2-410e-4994-88b7-a653db88f2c6, 607a2c1b-1749-4910-beca-037e622b0b5e, fc9cd32b-33dc-4bc4-81b7-a72d93c5c767, bf004817-4e25-400d-afeb-6f6a37bbc232, a9f964d3-b423-4a38-9797-bccb134cd9f0, 9e9d9f67-3c52-412a-8552-f277a7dabffe, 026d6269-5bb2-42e1-9984-6e38f9d66337, ebc32848-d312-4049-bc29-6596ff0ffeef, 356ec4b2-7286-4d6b-ba7a-3d1bca562a81, 9d423399-76af-4620-bd4a-68ccf6a5ffd8, 44132522-c9ac-424d-9739-7f30fe6cad18, 4a05c58d-c644-4796-8b38-b2717da97fed, e508fd49-d223-4ab4-ad83-b21309fcae08, a0aebe4b-1c22-4b08-95a0-cd5d62b9c924, 42cebd97-46c6-44bb-bb95-5fe6076ee93a, c3a7a251-fdf1-4235-9305-b3eb019bd2a1, 0e75a469-ea71-4d58-be0d-56c5cc3e2688, 907966e7-d270-4adb-9c1d-cbefd9cfdcb2, d035ebb7-584d-48ed-8ac8-9f191901d703]&gt;" type="java.lang.AssertionError">java.lang.AssertionError: expected:&lt;[88a54da0-ed0e-4bf4-aaed-ec30d1557b27, 7f302769-4fda-43e4-a0a8-097d2a3618c7, 5f15bbb9-b7ee-4bdd-8d8c-d2a3f9411a5c, a0e3f9d9-afcf-40a6-962c-7024e7906d16, 35ab4c87-28f2-4f54-afab-1d2be57338de, a85668ed-73e3-4f8b-9c52-a8f1f6571eaf, e771d6ca-632e-4457-92f4-4ca422ea4198, 6e1f080c-30e3-4539-8628-c35c2f187f78, 378c1674-b079-4658-82b8-eff5f8c6c69f, f2c36cb2-410e-4994-88b7-a653db88f2c6, 607a2c1b-1749-4910-beca-037e622b0b5e, fc9cd32b-33dc-4bc4-81b7-a72d93c5c767, bf004817-4e25-400d-afeb-6f6a37bbc232, a9f964d3-b423-4a38-9797-bccb134cd9f0, 9e9d9f67-3c52-412a-8552-f277a7dabffe, 026d6269-5bb2-42e1-9984-6e38f9d66337, ebc32848-d312-4049-bc29-6596ff0ffeef, 356ec4b2-7286-4d6b-ba7a-3d1bca562a81, 9d423399-76af-4620-bd4a-68ccf6a5ffd8, 44132522-c9ac-424d-9739-7f30fe6cad18, 4a05c58d-c644-4796-8b38-b2717da97fed, e508fd49-d223-4ab4-ad83-b21309fcae08, a0aebe4b-1c22-4b08-95a0-cd5d62b9c924, 42cebd97-46c6-44bb-bb95-5fe6076ee93a, c3a7a251-fdf1-4235-9305-b3eb019bd2a1, d035ebb7-584d-48ed-8ac8-9f191901d703, 0e75a469-ea71-4d58-be0d-56c5cc3e2688, 907966e7-d270-4adb-9c1d-cbefd9cfdcb2]&gt; but was:&lt;[88a54da0-ed0e-4bf4-aaed-ec30d1557b27, 7f302769-4fda-43e4-a0a8-097d2a3618c7, 5f15bbb9-b7ee-4bdd-8d8c-d2a3f9411a5c, a0e3f9d9-afcf-40a6-962c-7024e7906d16, 35ab4c87-28f2-4f54-afab-1d2be57338de, a85668ed-73e3-4f8b-9c52-a8f1f6571eaf, e771d6ca-632e-4457-92f4-4ca422ea4198, 6e1f080c-30e3-4539-8628-c35c2f187f78, 378c1674-b079-4658-82b8-eff5f8c6c69f, f2c36cb2-410e-4994-88b7-a653db88f2c6, 607a2c1b-1749-4910-beca-037e622b0b5e, fc9cd32b-33dc-4bc4-81b7-a72d93c5c767, bf004817-4e25-400d-afeb-6f6a37bbc232, a9f964d3-b423-4a38-9797-bccb134cd9f0, 9e9d9f67-3c52-412a-8552-f277a7dabffe, 026d6269-5bb2-42e1-9984-6e38f9d66337, ebc32848-d312-4049-bc29-6596ff0ffeef, 356ec4b2-7286-4d6b-ba7a-3d1bca562a81, 9d423399-76af-4620-bd4a-68ccf6a5ffd8, 44132522-c9ac-424d-9739-7f30fe6cad18, 4a05c58d-c644-4796-8b38-b2717da97fed, e508fd49-d223-4ab4-ad83-b21309fcae08, a0aebe4b-1c22-4b08-95a0-cd5d62b9c924, 42cebd97-46c6-44bb-bb95-5fe6076ee93a, c3a7a251-fdf1-4235-9305-b3eb019bd2a1, 0e75a469-ea71-4d58-be0d-56c5cc3e2688, 907966e7-d270-4adb-9c1d-cbefd9cfdcb2, d035ebb7-584d-48ed-8ac8-9f191901d703]&gt;
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at kotlin.test.junit.JUnitAsserter.assertEquals(JUnitSupport.kt:32)
+	at kotlin.test.AssertionsKt__AssertionsKt.assertEquals(Assertions.kt:63)
+	at kotlin.test.AssertionsKt.assertEquals(Unknown Source)
+	at kotlin.test.AssertionsKt__AssertionsKt.assertEquals$default(Assertions.kt:62)
+	at kotlin.test.AssertionsKt.assertEquals$default(Unknown Source)
+	at io.github.misakapiano.ccbstudio.desktop.TypesetQueueWorkflowTest$longQueueDragAutoScrollsKeepsBlockAndHoverUsesEditedPageWithoutSelecting$1.invokeSuspend(TypesetQueueWorkflowTest.kt:69)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

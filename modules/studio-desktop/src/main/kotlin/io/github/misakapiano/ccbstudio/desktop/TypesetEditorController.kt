@@ -209,6 +209,7 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
         d.copy(pages=list)
     }
     fun movePagesTo(anchor:String?,after:Boolean)=change{TypesetQueue.move(it,selectedPages,anchor,after)}
+    fun movePagesByNumber(number:Double,after:Boolean,ids:Set<String> = selectedPages)=change{TypesetQueue.moveByNumber(it,ids,number,after)}
     fun appendSelected(staticConfirmed:Boolean=false,confirmedIds:List<String>?=null)=c.run("追加图库图片") {
         drain();val p=project?:return@run
         val ids=confirmedIds?:c.assets.filter{it.request().id().toString() in c.selection}.map{it.request().id().toString()}

@@ -1,0 +1,23 @@
+{
+  "reference": ".reference-assets/typeset-forge-1.1/TypesetForge_1.1.html",
+  "size": 200005,
+  "sha256": "892ea08f0070bdfd264b8895d38f6239f32f436b68a74ab42a2ef3336e28bb63",
+  "readOnly": true,
+  "publicRedistribution": false,
+  "functions": [
+    "renderImageList",
+    "moveSelectedEntriesBefore",
+    "moveEntryByPrompt",
+    "reorderEntry",
+    "showHoverPreview",
+    "moveHoverPreview",
+    "initSidebarResizer"
+  ],
+  "adaptation": [
+    "displayed number + Math.round, before/after, stable selected order",
+    "list-owned pointer capture and explicit edge auto-scroll in Compose",
+    "processed thumbnail/hover using existing shared renderer",
+    "sidebar drag resize, commit on release, preserve canvas space"
+  ],
+  "nativeWindowsAcceptance": "NOT TESTED"
+}

@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.*
 import androidx.compose.ui.input.key.*
 import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.*
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
@@ -69,12 +70,15 @@ import kotlin.math.*
                 StudioAction("−"){e.zoom=(e.zoom/1.25f).coerceAtLeast(.25f)};StudioAction("适应"){e.zoom=1f};StudioAction("＋"){e.zoom=(e.zoom*1.25f).coerceAtMost(8f)}
             }
             BoxWithConstraints(Modifier.weight(1f).fillMaxWidth()) {
+                val density=LocalDensity.current
+                val availableWidth=maxWidth.value
+                var queueDragWidth by remember(e.project?.id){mutableStateOf<Float?>(null)}
                 // Keep a useful canvas even when a source preset requests a wide queue.
                 val compact=maxWidth<maxOf(1000.dp,(e.document!!.queueWidth+300+400).dp)
                 Column {
                     if(compact)StudioChips("",listOf("队列","画布","属性"),tab,{it}){tab=it}
                     Row(Modifier.weight(1f).fillMaxWidth()) {
-                        if(!compact || tab=="队列")Column(if(compact)Modifier.fillMaxSize()else Modifier.width(e.document!!.queueWidth.dp).fillMaxHeight()) {
+                        if(!compact || tab=="队列")Column(if(compact)Modifier.fillMaxSize()else Modifier.width((queueDragWidth?:e.document!!.queueWidth.toFloat()).dp).fillMaxHeight()) {
                             TypesetQueue(c,e,Modifier.weight(1f))
                             StudioDisclosure("队列设置") {
                                 NumberField("开始编号",e.document!!.startNumber.toDouble(),0.0..1000000.0){v->e.change{it.copy(startNumber=v.toInt())}}
@@ -88,6 +92,14 @@ import kotlin.math.*
                             StudioActions{StudioAction("置顶页"){e.movePagesTo(null,false)};StudioAction("置底页"){e.movePagesTo(null,true)};StudioAction("追加图库所选",c.selection.isNotEmpty() && !c.busy){e.appendSelected()}}
                             StatusText("${e.selectedPages.size} 页已选 / ${e.document!!.pages.size} 页")
                         }
+                        if(!compact)Box(Modifier.width(6.dp).fillMaxHeight().background(if(queueDragWidth!=null)Gold else Panel)
+                            .semantics{contentDescription="调整队列栏宽度"}
+                            .pointerInput(e.project?.id,c.busy,c.maintenance,availableWidth){detectDragGestures(
+                                onDragStart={if(!c.busy&&!c.maintenance)queueDragWidth=e.document!!.queueWidth.toFloat()},
+                                onDragCancel={queueDragWidth=null},
+                                onDragEnd={queueDragWidth?.let{width->e.change{it.copy(queueWidth=width.roundToInt())}};queueDragWidth=null},
+                                onDrag={change,amount->queueDragWidth?.let{width->change.consume();queueDragWidth=(width+amount.x/density.density).coerceIn(220f,minOf(720f,availableWidth-706f))}}
+                            )})
                         if(!compact || tab=="画布")Box(Modifier.weight(1f).fillMaxHeight().background(Ink)){TypesetCanvas(c,e)}
                         if(!compact || tab=="属性")Column((if(compact)Modifier.fillMaxSize()else Modifier.width(300.dp).fillMaxHeight()).background(Panel).padding(12.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(8.dp)) {
                             if(e.document!!.mode=="storybook")StoryProperties(c,e)else TypesetProperties(c,e)
@@ -118,24 +130,6 @@ import kotlin.math.*
         confirmButton={TextButton(enabled=!c.busy,onClick=e::confirmStaticChoice){Text("同意仅编辑静态图")}},
         dismissButton={TextButton(onClick=e::cancelStaticChoice){Text("取消，保留动画")}})}
     if(deletePages)AlertDialog(onDismissRequest={deletePages=false},title={Text("从工程移除 ${e.selectedPages.size} 页？")},text={Text("图库原件保留，可撤销恢复页面与编辑内容。")},confirmButton={TextButton(onClick={e.removePages();deletePages=false}){Text("移除页面")}},dismissButton={TextButton(onClick={deletePages=false}){Text("取消")}})
-}
-
-@Composable private fun TypesetQueue(c:WorkbenchController,e:TypesetEditorController,modifier:Modifier) {
-    val list=rememberLazyListState();var insertion by remember{mutableStateOf<String?>(null)}
-    LazyColumn(modifier,state=list){itemsIndexed(e.document!!.pages,key={_,p->p.id}){index,page->
-        var dragY by remember(page.id){mutableStateOf(0f)}
-        Row(Modifier.fillMaxWidth().background(if(page.id==e.pageId)Color(0xff253c55)else Color.Transparent).padding(6.dp),verticalAlignment=Alignment.CenterVertically) {
-            Checkbox(page.id in e.selectedPages,{e.selectPage(page.id,extend=true)})
-            Row(Modifier.weight(1f).semantics{contentDescription="队列页 ${index+1}";onClick{e.selectPage(page.id);true}}
-                .onPointerEvent(PointerEventType.Press){event->if(event.button==PointerButton.Primary && !c.busy)if(page.id in e.selectedPages && !event.keyboardModifiers.isCtrlPressed && !event.keyboardModifiers.isShiftPressed){e.pageId=page.id;e.objectId=null}else e.selectPage(page.id,event.keyboardModifiers.isCtrlPressed,event.keyboardModifiers.isShiftPressed)}
-                .pointerInput(page.id,c.busy){detectDragGestures(onDragStart={pos->dragY=(list.layoutInfo.visibleItemsInfo.firstOrNull{it.key==page.id}?.offset?:0)+pos.y},
-                    onDragCancel={insertion=null},onDragEnd={if(!c.busy)e.movePagesTo(insertion,insertion==null);insertion=null},
-                    onDrag={change,amount->if(!c.busy){change.consume();dragY+=amount.y;insertion=(list.layoutInfo.visibleItemsInfo.firstOrNull{dragY<it.offset+it.size/2}?.key as? String)?:e.document!!.pages.getOrNull((list.layoutInfo.visibleItemsInfo.lastOrNull()?.index?:-1)+1)?.id}})},verticalAlignment=Alignment.CenterVertically){
-                DesktopOwnedImage("asset:${page.assetId}",c::readAsset,Modifier.size(e.document!!.thumbnailSize.dp))
-                Column {if(insertion==page.id)Text("── 插入此页之前 ──",color=Gold);Text("${io.github.misakapiano.ccbstudio.core.TypesetQueue.number(e.document!!,index)} · ${page.name}",maxLines=2);StatusText("${page.texts.size} 文字 · ${page.masks.size} 打码")}
-            }
-        }
-    }}
 }
 
 private data class EditorRaster(val bitmap:ImageBitmap,val width:Int,val height:Int,val page:TypesetPage,val mode:String?)

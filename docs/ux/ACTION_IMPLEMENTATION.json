@@ -555,19 +555,24 @@
         "TypesetQueue.kt",
         "TypesetRepository.kt",
         "TypesetEditorController.kt",
-        "TypesetWorkspace.kt"
+        "TypesetWorkspace.kt",
+        "TypesetQueueWorkspace.kt"
       ],
       "tests": [
         "TypesetObjectsTest",
         "TypesetQueueTest",
         "TypesetRepositoryTest.projectCopyRenameAndRemovalKeepIndependentHistoryAndOriginal",
         "TypesetWorkflowTest.queueControlSelectionDragOrderNumberingAndRestart",
-        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart (includes lock/unlock pointer, clone/delete/reopen)"
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart (includes lock/unlock pointer, clone/delete/reopen)",
+        "TypesetQueueWorkflowTest (displayed serial, stale target, hover, edge auto-scroll, context single-page and divider resize)"
       ],
       "guiEvidence": [
-        "docs/audits/evidence/UX_R2A_OBJECTS_QUEUE/compose-scenes (actual Compose pointer; offscreen)"
+        "docs/audits/evidence/UX_R2A_OBJECTS_QUEUE/compose-scenes (actual Compose pointer; offscreen)",
+        "docs/audits/evidence/UX_TYPESET_QUEUE/compose-scenes (actual Compose pointer; offscreen; synthetic assets)"
       ],
-      "persistenceEvidence": [],
+      "persistenceEvidence": [
+        "TypesetQueueWorkflowTest: page order/width/selection persist and originals stay byte-identical; undo restores queue"
+      ],
       "status": "ENGINEERING_PARTIAL / COMPOSE_POINTER_AND_RESTART_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {

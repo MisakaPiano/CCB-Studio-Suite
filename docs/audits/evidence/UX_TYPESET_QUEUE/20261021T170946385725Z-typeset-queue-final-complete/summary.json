@@ -1,0 +1,29 @@
+{
+  "phase": "typeset-queue-final-complete",
+  "startedUtc": "2026-10-21T17:09:46.949800+00:00",
+  "seconds": 301.98,
+  "exitCode": 0,
+  "tests": 180,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-core:cleanTest",
+    ":studio-core:test",
+    ":studio-desktop:cleanTest",
+    ":studio-desktop:test"
+  ],
+  "baseCommit": "4a6dd1ef5e4dd7080abd5dde7c03ba6dfb55d920",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

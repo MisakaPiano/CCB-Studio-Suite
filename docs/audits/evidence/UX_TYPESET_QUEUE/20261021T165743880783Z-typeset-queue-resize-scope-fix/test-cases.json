@@ -1,0 +1,38 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetQueueWorkflowTest",
+    "name": "dividerResizeCommitsOnceAndContextMoveTargetsClickedPage",
+    "seconds": "5.525",
+    "status": "FAILED"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetQueueWorkflowTest",
+    "name": "popupPositionFlipsAndClampsEvenInSmallWindow",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetQueueWorkflowTest",
+    "name": "displayedNumberMoveRejectsInvalidAndStaleTargetsPreservesSelectionAndRestart",
+    "seconds": "5.942",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetQueueWorkflowTest",
+    "name": "longQueueDragAutoScrollsKeepsBlockAndHoverUsesEditedPageWithoutSelecting",
+    "seconds": "11.161",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "maximumQueueWidthCannotStarveCanvasAndSurvivesReopen",
+    "seconds": "1.985",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "queueControlSelectionDragOrderNumberingAndRestart",
+    "seconds": "6.253",
+    "status": "PASS"
+  }
+]

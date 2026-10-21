@@ -1,0 +1,122 @@
+[
+  {
+    "phase": "typeset-queue-source-targeted",
+    "status": "FAILED",
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 24.297,
+    "sourceStable": true
+  },
+  {
+    "phase": "typeset-queue-import-fix",
+    "status": "FAILED",
+    "tests": 0,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 30.542,
+    "sourceStable": true
+  },
+  {
+    "phase": "typeset-queue-test-compile-fix",
+    "status": "FAILED",
+    "tests": 4,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 40.82,
+    "sourceStable": true
+  },
+  {
+    "phase": "typeset-queue-visible-target",
+    "status": "PASS",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 44.724,
+    "sourceStable": true
+  },
+  {
+    "phase": "typeset-queue-resize-context",
+    "status": "FAILED",
+    "tests": 0,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 15.189,
+    "sourceStable": true
+  },
+  {
+    "phase": "typeset-queue-resize-scope-fix",
+    "status": "FAILED",
+    "tests": 6,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 55.073,
+    "sourceStable": true
+  },
+  {
+    "phase": "typeset-queue-view-baseline",
+    "status": "FAILED",
+    "tests": 6,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 48.148,
+    "sourceStable": true
+  },
+  {
+    "phase": "typeset-queue-scroll-range",
+    "status": "FAILED",
+    "tests": 6,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 63.169,
+    "sourceStable": true
+  },
+  {
+    "phase": "typeset-queue-scroll-diagnostics",
+    "status": "PASS",
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 30.342,
+    "sourceStable": true
+  },
+  {
+    "phase": "typeset-queue-complete-modules",
+    "status": "FAILED",
+    "tests": 180,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 308.982,
+    "sourceStable": true
+  },
+  {
+    "phase": "typeset-queue-ui-dispatcher",
+    "status": "PASS",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 53.133,
+    "sourceStable": true
+  },
+  {
+    "phase": "typeset-queue-final-complete",
+    "status": "PASS",
+    "tests": 180,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 301.98,
+    "sourceStable": true
+  }
+]

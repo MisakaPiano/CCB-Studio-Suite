@@ -1,0 +1,14 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetQueueTest",
+    "name": "displayedNumberBeforeAfterUsesSourceRoundingAndRetainsBatchOrder",
+    "seconds": "0.053",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetQueueTest",
+    "name": "multiSelectionKeepsRelativeOrderAndAnchorSemantics",
+    "seconds": "0.01",
+    "status": "PASS"
+  }
+]

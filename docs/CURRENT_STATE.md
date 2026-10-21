@@ -1,3 +1,7 @@
+## TypeSet 队列操作进度（2026-10-22）
+
+[实际记录](audits/UX_TYPESET_QUEUE.md)：按序号/右键移动、长队列边缘滚动、编辑后缩略预览与侧栏拖动已接入；最终完整180项实际PASS，全部失败保留。继续设计请求关联和剩余工程门槛，PRODUCT_HOLD / NOT RC。
+
 ## Desktop 相册与参照结构进度（2026-10-22）
 
 [实际记录](audits/UX_HISTORY_REFERENCE.md)：固定Desktop源码的分组/筛选/选择策略已接入统一资产；Prompt与参数切换、角色对齐和摘取保留。13项定向、完整175项实际PASS；继续TypeSet和更新门槛，PRODUCT_HOLD / NOT RC。

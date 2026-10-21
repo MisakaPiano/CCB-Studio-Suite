@@ -1,0 +1,26 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetQueueWorkflowTest",
+    "name": "popupPositionFlipsAndClampsEvenInSmallWindow",
+    "seconds": "0.029",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetQueueWorkflowTest",
+    "name": "displayedNumberMoveRejectsInvalidAndStaleTargetsPreservesSelectionAndRestart",
+    "seconds": "7.225",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetQueueWorkflowTest",
+    "name": "longQueueDragAutoScrollsKeepsBlockAndHoverUsesEditedPageWithoutSelecting",
+    "seconds": "10.246",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "queueControlSelectionDragOrderNumberingAndRestart",
+    "seconds": "5.848",
+    "status": "PASS"
+  }
+]

@@ -32,7 +32,7 @@ class TypesetWorkflowTest {
         val w=StudioWorkspace.openStudio(r);val scope=CoroutineScope(SupervisorJob()+awt)
         val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
         c.editor.create("font restored",listOf(imageId));c.idle()
-        val scene=ImageComposeScene(1320,950){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        val scene=ImageComposeScene(1320,950,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
         try {
             scene.frames();scene.rendered();scene.click("添加文字");scene.rendered()
             assertEquals(alias,c.editor.text!!.style.fontFamily);assertNotNull(TypesetFonts.font(alias));c.editor.drain()
@@ -52,7 +52,7 @@ class TypesetWorkflowTest {
         val r=root();val w=StudioWorkspace.openStudio(r);val id=w.importImage("wide-queue.png",EditorRenderer.synthetic(180,120));val scope=CoroutineScope(SupervisorJob()+awt)
         val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
         c.editor.create("wide queue",listOf(id));c.idle();c.editor.change{it.copy(queueWidth=720)};c.editor.drain()
-        val scene=ImageComposeScene(1100,900){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        val scene=ImageComposeScene(1100,900,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
         try {
             scene.frames();scene.rendered()
             val canvas=scene.nodes().first{it.matches("排版编辑画布")}.boundsInRoot
@@ -69,7 +69,7 @@ class TypesetWorkflowTest {
         val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
         c.editor.create("preview",listOf(id,id,id));c.idle();val project=c.editor.project;val selected=c.editor.selectedPages;val current=c.editor.pageId
         val trace=java.util.concurrent.ConcurrentLinkedQueue<String>();c.editor.previewTrace={trace.add(it)}
-        val scene=ImageComposeScene(1320,950){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        val scene=ImageComposeScene(1320,950,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
         suspend fun key(key:Key){scene.sendKeyEvent(KeyEvent(key,KeyEventType.KeyDown));scene.sendKeyEvent(KeyEvent(key,KeyEventType.KeyUp));scene.frames()}
         var wideClosed=false
         try {
@@ -88,7 +88,7 @@ class TypesetWorkflowTest {
             scene.click("返回编辑");assertEquals(current,c.editor.pageId);assertEquals(project,c.editor.project)
             // This checks two real viewport sizes, not concurrent offscreen window scheduling.
             scene.close();wideClosed=true
-            val narrow=ImageComposeScene(700,800){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+            val narrow=ImageComposeScene(700,800,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
             try{narrow.frames();narrow.click("预览与导出");withTimeout(30000){while(narrow.nodes().none{it.matches("导出页面预览")}){
                 val errors=narrow.nodes().flatMap{it.config.getOrNull(SemanticsProperties.Text).orEmpty()}.map{it.text}.filter{it.startsWith("预览失败")}
                 if(errors.isNotEmpty()){narrow.shot("narrow-preview-failure");fail(errors.joinToString("\n"))}
@@ -121,7 +121,7 @@ class TypesetWorkflowTest {
         val id=w.importImage("webp-source.webp",bytes);val scope=CoroutineScope(SupervisorJob()+awt)
         val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
         c.editor.create("WebP编辑",listOf(id));c.idle();c.editor.chooseExportDirectory={Files.createDirectories(root())}
-        val scene=ImageComposeScene(1320,950){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        val scene=ImageComposeScene(1320,950,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
         try {
             scene.frames();scene.rendered();scene.click("添加文字");scene.field("文字内容","格式验证");c.editor.drain()
             scene.click("预览与导出");withTimeout(30000){while(scene.nodes().none{it.matches("导出页面预览")}){delay(80);scene.frames()}}
@@ -137,7 +137,7 @@ class TypesetWorkflowTest {
         c.editor.create("批量输出",listOf(id,id));c.idle();val clipboard=java.awt.datatransfer.Clipboard("synthetic isolated clipboard")
         c.editor.pageChange{it.copy(texts=listOf(TypesetText(text="可恢复",x=90.0,width=100.0)))};c.editor.drain()
         c.editor.copyExportFiles={paths->clipboard.setContents(ExportClipboard.contents(paths),null)}
-        val scene=ImageComposeScene(1320,950){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        val scene=ImageComposeScene(1320,950,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
         try {
             scene.frames();scene.click("预览与导出");withTimeout(30000){while(scene.nodes().none{it.matches("导出页面预览")}){delay(80);scene.frames()}}
             scene.click("导出 · 原始文件（字节保全）");scene.click("导出 · 仅打码");scene.click("导出 · 仅文字");scene.click("附带可编辑 Recipe 文件");scene.click("同时打包 ZIP")
@@ -160,7 +160,7 @@ class TypesetWorkflowTest {
         c.editor.chooseExchangeFile={save->if(save)output else input}
         val presetInput=Path.of("../studio-core/src/test/resources/typeset/source-presets.json");val presetOutput=output.resolveSibling("presets.json")
         c.editor.choosePresetFile={save->if(save)presetOutput else presetInput}
-        val scene=ImageComposeScene(1320,950){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        val scene=ImageComposeScene(1320,950,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
         try {
             scene.frames();scene.click("导入 TypeSet 工程");c.idle();scene.frames();assertTrue(w.state.typesetProjects.isEmpty());scene.click("取消导入");assertNull(c.editor.exchangeInspection)
             scene.click("导入 TypeSet 工程");c.idle();scene.frames();scene.shot("source-exchange-confirm");scene.click("建立独立导入工程");c.idle();scene.frames()
@@ -178,7 +178,7 @@ class TypesetWorkflowTest {
         val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
         val destination=Files.createDirectories(root());var chooserCalls=0;c.editor.chooseExportDirectory={chooserCalls++;destination}
         c.editor.create("小人书回归",listOf(id,id));c.idle()
-        val scene=ImageComposeScene(1320,950){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        val scene=ImageComposeScene(1320,950,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
         try {
             scene.frames();scene.click("小人书");scene.field("本页旁白","第一页，保留旁白。");scene.click("清爽画册")
             assertEquals("第一页，保留旁白。",c.editor.page!!.caption);assertEquals(TypesetBook.presets.getValue("clean"),c.editor.page!!.story)
@@ -193,7 +193,7 @@ class TypesetWorkflowTest {
     }
     private val awt=object:CoroutineDispatcher(){override fun dispatch(context:CoroutineContext,block:Runnable)=SwingUtilities.invokeLater(block)}
     private fun root()=Path.of(System.getProperty("preview.test.root")).resolve(newId())
-    private suspend fun ImageComposeScene.frames(){repeat(8){androidx.compose.runtime.snapshots.Snapshot.sendApplyNotifications();render().close();yield()};delay(80);androidx.compose.runtime.snapshots.Snapshot.sendApplyNotifications();render().close()}
+    private suspend fun ImageComposeScene.frames(){repeat(8){androidx.compose.runtime.snapshots.Snapshot.sendApplyNotifications();render(System.nanoTime()).close();yield()};delay(80);androidx.compose.runtime.snapshots.Snapshot.sendApplyNotifications();render(System.nanoTime()).close()}
     private fun ImageComposeScene.nodes():List<SemanticsNode>{
         fun walk(n:SemanticsNode):List<SemanticsNode> = listOf(n)+n.children.flatMap(::walk)
         return semanticsOwners.flatMap{walk(it.rootSemanticsNode)}
@@ -203,13 +203,13 @@ class TypesetWorkflowTest {
     private suspend fun ImageComposeScene.field(s:String,value:String){val n=nodes().first{it.config.getOrNull(SemanticsActions.SetText)!=null && (it.matches(s)||it.children.any{it.matches(s)})};assertTrue(n.config[SemanticsActions.SetText].action!!.invoke(AnnotatedString(value)));frames()}
     private suspend fun WorkbenchController.idle(){withTimeout(30000){active?.join()};assertNull(problem,problem)}
     private suspend fun ImageComposeScene.rendered(){withTimeout(30000){while(nodes().none{it.matches("排版编辑画布") && it.config.getOrNull(SemanticsProperties.StateDescription)=="已更新"}){delay(40);frames()}}}
-    private fun ImageComposeScene.shot(name:String){val p=Path.of("build/ux-r2a-workbench/$name.png");Files.createDirectories(p.parent);render().use{im->im.encodeToData()!!.use{Files.write(p,it.bytes)}}}
+    private fun ImageComposeScene.shot(name:String){val p=Path.of("build/ux-r2a-workbench/$name.png");Files.createDirectories(p.parent);render(System.nanoTime()).use{im->im.encodeToData()!!.use{Files.write(p,it.bytes)}}}
 
     @Test fun namedProjectLiveVerticalEditingHistoryAndRestart()=runBlocking(awt) {
         val r=root();val w=StudioWorkspace.openStudio(r);val bytes=EditorRenderer.synthetic(600,400);val id=w.importImage("fixture.png",bytes)
         val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
         c.selection=setOf(id);c.view="编辑"
-        val scene=ImageComposeScene(1320,900){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        val scene=ImageComposeScene(1320,900,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
         try {
             scene.frames();scene.click("新建编辑工程");scene.field("工程名称","排版回归册");scene.click("建立工程");c.idle();scene.frames()
             assertEquals("排版回归册",c.editor.project!!.name)
@@ -256,7 +256,7 @@ class TypesetWorkflowTest {
         val r=root();val w=StudioWorkspace.openStudio(r);val bytes=EditorRenderer.synthetic(600,400);val id=w.importImage("mask-fixture.png",bytes)
         val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
         c.selection=setOf(id);c.view="编辑"
-        val scene=ImageComposeScene(1320,900){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        val scene=ImageComposeScene(1320,900,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
         try {
             scene.frames();scene.click("新建编辑工程");scene.field("工程名称","打码回归");scene.click("建立工程");c.idle();scene.frames();scene.rendered()
             for(tool in listOf("矩形","画笔","圈选")) {
@@ -291,7 +291,7 @@ class TypesetWorkflowTest {
         val ids=(1..4).map{w.importImage("page-$it.png",bytes)};var expectedOrder=emptyList<String>()
         val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
         c.selection=ids.toSet();c.view="编辑"
-        val scene=ImageComposeScene(1320,1000){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        val scene=ImageComposeScene(1320,1000,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
         try {
             scene.frames();scene.click("新建编辑工程");scene.field("工程名称","队列回归");scene.click("建立工程");c.idle();scene.frames()
             val orderedIds=c.editor.document!!.pages.map{it.assetId};assertEquals(ids.toSet(),orderedIds.toSet())
