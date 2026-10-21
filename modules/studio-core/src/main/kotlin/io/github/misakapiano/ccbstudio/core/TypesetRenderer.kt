@@ -66,11 +66,12 @@ object TypesetRenderer {
                 g.drawImage(edited,s.pagePadding,s.pagePadding,m.imageWidth,m.imageHeight,null)
                 if(s.imageBorder){g.color=color(s.borderColor);g.stroke=BasicStroke(max(1,m.width/1000).toFloat());g.drawRect(s.pagePadding,s.pagePadding,m.imageWidth,m.imageHeight)}
                 val top=s.pagePadding+m.imageHeight+s.gap;val style=TypesetStyle(fontFamily=s.fontFamily,fontSize=s.fontSize,fill=s.textColor)
-                g.font=TypesetLayout.font(style);g.color=color(s.textColor)
-                val ascent=TypesetFonts.baseline(s.fontFamily,g.font)
+                g.color=color(s.textColor)
                 m.lines.forEachIndexed{i,line->val width=TypesetLayout.measure(line,style);val x=when(s.textAlign){"center"->m.width/2.0-width/2;"right"->s.pagePadding+m.imageWidth-s.textPadding-width;else->(s.pagePadding+s.textPadding).toDouble()}
+                    g.font=TypesetLayout.font(style,line)
+                    val ascent=TypesetFonts.baseline(s.fontFamily,g.font)
                     g.drawString(line,x.toFloat(),(top+s.textPadding+i*s.fontSize*s.lineHeight+ascent).toFloat())}
-                if(s.showPageNumber){g.font=TypesetLayout.font(style.copy(fontSize=floor(s.fontSize*.72+.5)));val text=number.toString();val width=g.font.getStringBounds(text,g.fontRenderContext).width;val asc=TypesetFonts.baseline(s.fontFamily,g.font)
+                if(s.showPageNumber){val text=number.toString();g.font=TypesetLayout.font(style.copy(fontSize=floor(s.fontSize*.72+.5)),text);val width=g.font.getStringBounds(text,g.fontRenderContext).width;val asc=TypesetFonts.baseline(s.fontFamily,g.font)
                     g.drawString(text,(m.width/2.0-width/2).toFloat(),(top+m.bodyHeight+m.numberGap+asc).toFloat())}
             }catch(e:Exception){out.flush();throw e}finally{g.dispose()};return out
         }finally{edited.flush()}

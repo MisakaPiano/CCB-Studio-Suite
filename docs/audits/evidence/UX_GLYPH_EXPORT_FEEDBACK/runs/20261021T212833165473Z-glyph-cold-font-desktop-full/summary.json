@@ -1,0 +1,27 @@
+{
+  "phase": "glyph-cold-font-desktop-full",
+  "startedUtc": "2026-10-21T21:28:33.663113+00:00",
+  "seconds": 260.947,
+  "exitCode": 0,
+  "tests": 95,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:cleanTest",
+    ":studio-desktop:test"
+  ],
+  "baseCommit": "888ff75540545da873f8c6b41257d29eb3287864",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

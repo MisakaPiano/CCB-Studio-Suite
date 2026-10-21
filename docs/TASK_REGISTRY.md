@@ -1,3 +1,7 @@
+## 字体回退与导出反馈（2026-10-22）
+
+[实际记录](audits/UX_GLYPH_EXPORT_FEEDBACK.md)：修复小人书测量/绘制字体不一致、导出进度重绘阻塞及冷字体载入；停止/明确重试/复制失败文件保留已验证。core 129 项与最终 desktop 95 项分别实际 PASS，三轮失败保留。继续固定包与原生验证，PRODUCT_HOLD / NOT RC。
+
 ## Recipe 往返与小人书批次验证（2026-10-22）
 
 [实际记录](audits/UX_FLOW_COMPLETION.md)：修复合法大 Recipe 导出后无法导入、勾选队列页切走当前样式来源；批次撤销/重开及四模块完整 351 项实际 PASS。18 项动作映射补齐，原生验证与产品验收仍单列，PRODUCT_HOLD / NOT RC。

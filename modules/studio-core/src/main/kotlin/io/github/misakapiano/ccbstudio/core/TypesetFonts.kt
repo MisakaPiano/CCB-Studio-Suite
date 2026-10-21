@@ -20,7 +20,7 @@ object TypesetFonts {
     private data class Loaded(val font:Font,val ratio:Double?)
     private val loaded=ConcurrentHashMap<String,Loaded>()
     fun font(alias:String):Font?=if(alias.startsWith("ccb-font:"))loaded[alias]?.font?:throw DataProblem("FONT_MISSING","Imported font is unavailable; retain the document and reimport its resource")else null
-    fun baseline(alias:String,font:Font)=NativeFontMetrics.topBaseline(font,loaded[alias]?.ratio)
+    fun baseline(alias:String,font:Font)=NativeFontMetrics.topBaseline(font,loaded[alias]?.takeIf{it.font.deriveFont(font.style,font.size2D)==font}?.ratio)
     fun import(workspace:StudioWorkspace,name:String,bytes:ByteArray):TypesetFontResource=workspace.operation {
         require(workspace.state.typesetFonts.size<64){"64 imported fonts already retained; use another workspace for additional fonts"}
         val decoded=WindowsFontDecoder.decode(bytes);val font=Font.createFont(Font.TRUETYPE_FONT,ByteArrayInputStream(decoded));require(font.numGlyphs>0)

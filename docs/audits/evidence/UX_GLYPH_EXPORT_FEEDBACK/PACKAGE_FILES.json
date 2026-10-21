@@ -1,0 +1,617 @@
+[
+  {
+    "path": "compose-scenes/export-cancelled.png",
+    "bytes": 182757,
+    "sha256": "476def254ccd36ac0044ec64325cb3c6dac3718650f1143067fba26fef62ba06"
+  },
+  {
+    "path": "compose-scenes/export-copy-failed.png",
+    "bytes": 147227,
+    "sha256": "f9a2aaffca7df5b47bb3e160d428ed024bedacb6056c880e8a761199724f9fa4"
+  },
+  {
+    "path": "compose-scenes/export-one-of-three.png",
+    "bytes": 177851,
+    "sha256": "857faa4c23584106688cd781823c739392f9b1318391d007114138e14198c516"
+  },
+  {
+    "path": "compose-scenes/export-verified.png",
+    "bytes": 189029,
+    "sha256": "0d640924a093cd1c3f98449eac2f56d339f8f76253d6d403269925d34ac84fd6"
+  },
+  {
+    "path": "compose-scenes/story-custom-batch.png",
+    "bytes": 196091,
+    "sha256": "bd4e68050cb9ad7cac1a4619386703c436328c36c3636f3568498325d66e9531"
+  },
+  {
+    "path": "glyph-render/actual.png",
+    "bytes": 32195,
+    "sha256": "1e0f5dcc126c9bc09755d34013a3d73233590cd251ee01906d33a1c3523a00ac"
+  },
+  {
+    "path": "glyph-render/expected.png",
+    "bytes": 32195,
+    "sha256": "1e0f5dcc126c9bc09755d34013a3d73233590cd251ee01906d33a1c3523a00ac"
+  },
+  {
+    "path": "runs/20261021T211446896583Z-story-glyph-reproduction/captures/actual.png",
+    "bytes": 29663,
+    "sha256": "e5511b0602ada295e508c814981fc26721e3f1635f1f72a297d28565df8684b1"
+  },
+  {
+    "path": "runs/20261021T211446896583Z-story-glyph-reproduction/captures/expected.png",
+    "bytes": 32195,
+    "sha256": "1e0f5dcc126c9bc09755d34013a3d73233590cd251ee01906d33a1c3523a00ac"
+  },
+  {
+    "path": "runs/20261021T211446896583Z-story-glyph-reproduction/gradle.log",
+    "bytes": 1880,
+    "sha256": "8c509fcc0407255958f2922f348dedee3c7e4aba2f6c264c2cc2b4cff0e30d5c"
+  },
+  {
+    "path": "runs/20261021T211446896583Z-story-glyph-reproduction/source-before.json",
+    "bytes": 57871,
+    "sha256": "0df22d16019f5dbd0b2108729b05a1dc55c105f29927e92d4aa9de71bf9cbe6b"
+  },
+  {
+    "path": "runs/20261021T211446896583Z-story-glyph-reproduction/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetReferenceTest.xml",
+    "bytes": 5589,
+    "sha256": "845a0f4e4e0341dfe835bd59c5ce90ca9f94ec0805f0399c8953793296284da5"
+  },
+  {
+    "path": "runs/20261021T211446896583Z-story-glyph-reproduction/summary.json",
+    "bytes": 872,
+    "sha256": "7817ccfd136983689a8aca7cf86b66db86a53ea3fc2f97c8e973602a19b53e7f"
+  },
+  {
+    "path": "runs/20261021T211446896583Z-story-glyph-reproduction/test-cases.json",
+    "bytes": 215,
+    "sha256": "c0fc80a5fb4e561327084455ac3eda9fbf401f0f80088efe9f55b262ef8c5307"
+  },
+  {
+    "path": "runs/20261021T211646515923Z-glyph-export-feedback-targeted/gradle.log",
+    "bytes": 4304,
+    "sha256": "12dc47d2b990a9d3ccb3ee5fc3a9d38dd29e122c8847e52df8d08cda27bdff04"
+  },
+  {
+    "path": "runs/20261021T211646515923Z-glyph-export-feedback-targeted/source-before.json",
+    "bytes": 57871,
+    "sha256": "3f74b1122d85dbdab02e2447c80616b045f85117bed958022a07892e661a679a"
+  },
+  {
+    "path": "runs/20261021T211646515923Z-glyph-export-feedback-targeted/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetExportTest.xml",
+    "bytes": 971,
+    "sha256": "9d1d77fb4ce3862a54e78b39ac4d4cef82e8dbbe5f858e90f0762591bd415953"
+  },
+  {
+    "path": "runs/20261021T211646515923Z-glyph-export-feedback-targeted/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetReferenceTest.xml",
+    "bytes": 1082,
+    "sha256": "739b61953d75b4b9542b66f30f613c28242e0fb0c1d958b847d47a5c37a7e2e4"
+  },
+  {
+    "path": "runs/20261021T211646515923Z-glyph-export-feedback-targeted/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest.xml",
+    "bytes": 3149,
+    "sha256": "b84cf57f3df27781c2ddfc119df282f0c7b6d024fa0a4c4145c0332870879820"
+  },
+  {
+    "path": "runs/20261021T211646515923Z-glyph-export-feedback-targeted/summary.json",
+    "bytes": 1233,
+    "sha256": "922aab043551609c94e5a48d8cec4144a683157ef46fe28cf05f487874e70d12"
+  },
+  {
+    "path": "runs/20261021T211646515923Z-glyph-export-feedback-targeted/test-cases.json",
+    "bytes": 2436,
+    "sha256": "247a3a3907469708216dac0fd711cf1293dbd233e62de3ad2abf810535591c52"
+  },
+  {
+    "path": "runs/20261021T211911825007Z-glyph-export-responsive-fixed/gradle.log",
+    "bytes": 2850,
+    "sha256": "c95aa3dc4bae58a327c03190190efb5fd2cd2d4627a71e7e1eccdd7434db6331"
+  },
+  {
+    "path": "runs/20261021T211911825007Z-glyph-export-responsive-fixed/source-before.json",
+    "bytes": 57871,
+    "sha256": "b4431797ecd08eeea1e66ccf4408fd5cdf1e03290a7cb4515569c8b015d9d262"
+  },
+  {
+    "path": "runs/20261021T211911825007Z-glyph-export-responsive-fixed/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest.xml",
+    "bytes": 873,
+    "sha256": "db305890acf427ea69916f38c18e6f03b970f000905df6be6d22c107a90dbb25"
+  },
+  {
+    "path": "runs/20261021T211911825007Z-glyph-export-responsive-fixed/summary.json",
+    "bytes": 1113,
+    "sha256": "09592266e9e2523e0336fb615a1b6636b891bdfc7346f41a4ab2bade28bfeef5"
+  },
+  {
+    "path": "runs/20261021T211911825007Z-glyph-export-responsive-fixed/test-cases.json",
+    "bytes": 665,
+    "sha256": "728a5aa161a9fc40540b219421f4cc397b249f607073935dbdb1027a6dd089e1"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/gradle.log",
+    "bytes": 23776,
+    "sha256": "292098d9334b74ca17c0acdd6b81fa75ff6ca5e10ffba1d2a081c93d980f76c2"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/source-before.json",
+    "bytes": 57871,
+    "sha256": "cdee69db2c4a3c89494c3e36efd2db2fd97e1dfba822e6f5517033e4b0350e8d"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-com.example.chatbar.domain.image.NovelAiHistoryFoldingTest.xml",
+    "bytes": 1246,
+    "sha256": "4bc1f71609097b6f14c58f14bba400a724940da1c85da67c40ec361433ddf102"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.AssetArchiveTest.xml",
+    "bytes": 1108,
+    "sha256": "924177485e09834787e8b428ea2385d5d33516ab4b74feaca0f432daa4858949"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.BackupLargeAssetTest.xml",
+    "bytes": 666,
+    "sha256": "bf1bd35f63edd6ae505c67ff1920c9ca95e0bdeee81feefcb40b3f85c7486343"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.CreationRuntimeTest.xml",
+    "bytes": 2040,
+    "sha256": "890c04cfc2f4396a224f1edc7b1eeed12817af41161d863ab6d8c99def0eac80"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.DesignProvenanceTest.xml",
+    "bytes": 871,
+    "sha256": "5341b294e6debc992e780fb67328072da971aad4d6ca7673683dd065745a626f"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.GalleryHistoryTest.xml",
+    "bytes": 701,
+    "sha256": "10fc5c4b9d77c1ca3cf36dec1ee565f52462043ddc6fcbe119d61a0664f4f917"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.ImageFormatsTest.xml",
+    "bytes": 970,
+    "sha256": "a2454c4cce0f11afeb040cbb6e9a7c9f2b41468783a3f74350881719322331de"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.ImageOriginsTest.xml",
+    "bytes": 656,
+    "sha256": "86947107b340d70ea2b7e55811e7b0451c1003bed1415138621878a3067f1d95"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.LibraryCollectionTest.xml",
+    "bytes": 1041,
+    "sha256": "83318b314f8e5d184c01a041296355755b3f1b897febb8a2a84e6d9ff5cf11fa"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.LibraryRepositoryTest.xml",
+    "bytes": 1033,
+    "sha256": "aed73f06b221d40affa3a2453f869011b97e5ecb1688e274ad5d291c4f8004ab"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.LiveRequestBudgetTest.xml",
+    "bytes": 662,
+    "sha256": "8cd51904177a4cf33f260c241ce1bde4863daacc32d6f072e40ec7b7c7fcaca1"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.PngFieldInspectionTest.xml",
+    "bytes": 858,
+    "sha256": "d88956ef527843d5c15d81d6bd0d8f82de8c346551a6738226a73591dc01b0b8"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.RecipeComparisonTest.xml",
+    "bytes": 808,
+    "sha256": "337a514370246bcafd0851679f4e746518e99470c7befa37e8132bbdb1fd48e9"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.RecipeDraftSelectionTest.xml",
+    "bytes": 1053,
+    "sha256": "646215675fbf88b0bc2b77910ff100a8bb0ad3fe9b22f018c9643a6b35fcca32"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.SharedAssetsTest.xml",
+    "bytes": 664,
+    "sha256": "798c0a9c2bcfb5171fcbbb122db851a50915eb0952e54d0b2dbf17a5d1922c70"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.StudioCoreTest.xml",
+    "bytes": 1541,
+    "sha256": "57688d5175b1aa9d5ecd9a87ddd6347558e582054ce224bacd4df94899cdb454"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest.xml",
+    "bytes": 1673,
+    "sha256": "3790827d07941b02d13f00246ec9bb0276cd25f460b3278df5f14e4e8560bb8a"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.StudioRestoreTest.xml",
+    "bytes": 827,
+    "sha256": "57cdc207f252285e6583fa1145752bf55c92c2deb4eaeb7466de9d4c9c2f8dc6"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest.xml",
+    "bytes": 1123,
+    "sha256": "c8ac12cee282fcaa890ac3a18c3dde2020adf5c64318a13dc8eb1e706cfea7d9"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetBatchTest.xml",
+    "bytes": 832,
+    "sha256": "faaa1a77da36f4ff8a51f646a0ebab140e052aacb85329409b21a1cf95a8418d"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetColorTest.xml",
+    "bytes": 656,
+    "sha256": "dfa0befd6cf5b615a67a4c3a4fc0b32d4b26198a4bec06453ca362bb5c27eea1"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetExportTest.xml",
+    "bytes": 973,
+    "sha256": "8d2f279c3968269e8b732b5c760667cb1fbcddbc0084d4df7a5fe62db85e5dab"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetImageTest.xml",
+    "bytes": 834,
+    "sha256": "e1278651972a27331b85871c8f02dc1e53bcb26e76dbc4fa7e4c7c24010f283f"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetMaskTest.xml",
+    "bytes": 641,
+    "sha256": "a2b3fd7c0d5f2e2d6f631df64859cc0d12123b36f5d180f5816b3ffdeabffbf5"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetMetadataExportTest.xml",
+    "bytes": 1177,
+    "sha256": "27fe6fbea81721827ec0aa9c8b713f2e4bd8935aa1c4997378972ff861619ed9"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetObjectsTest.xml",
+    "bytes": 654,
+    "sha256": "c80cd4a02644d29c8715c1a7d05efe1d3abc0ea37f012311c6415a83cd1bc058"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetPreferencesTest.xml",
+    "bytes": 994,
+    "sha256": "b3b99f08b54a77f15d1ad2800ea9ceac9088b44cdb73497e8d31cc9bd8123b57"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetQueueTest.xml",
+    "bytes": 654,
+    "sha256": "160e586b2f5d34326d41be52d67e017ebf9efa2ace733d9d729e682352ee3125"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetReferenceTest.xml",
+    "bytes": 1082,
+    "sha256": "6939c177452a8668a9d1c66960634cc335463d2a50117b85d345135554765274"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetRepositoryTest.xml",
+    "bytes": 993,
+    "sha256": "747983d2636e20b6e29bce9bb3959c1c90f9a2c12209c56cb7a3792f26349064"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetSourceExchangeTest.xml",
+    "bytes": 1355,
+    "sha256": "c0c0910e59aa8321f6e6ff8b81c302cafa83a734066a9b0e915b7cda835cb1f1"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.WindowsFontDecoderTest.xml",
+    "bytes": 970,
+    "sha256": "2543761c3edad43ac380864e3631ba1ad416b3bc4e913fa7d683b96806a67fbc"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-core-TEST-io.github.misakapiano.ccbstudio.core.WorkspaceProcessTest.xml",
+    "bytes": 663,
+    "sha256": "1bb3b1e74068c42a1b70b633d45cc54cd3a2956d1edd793aabde59444dc37137"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-desktop-TEST-com.example.chatbar.desktop.DesktopStudioPresentationTest.xml",
+    "bytes": 2664,
+    "sha256": "77dacfc81aebe421577f55c5bedf6e177c0824fe7cd8a4e82fe8190dd20938c1"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-desktop-TEST-com.example.chatbar.desktop.DesktopStudioWorkspaceTest.xml",
+    "bytes": 705,
+    "sha256": "ff302ccc0a93ce124e004eeec3eabbe8274ef2b28efd51d3f96adf11ee9bd242"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-desktop-TEST-com.example.chatbar.desktop.SourceZoomSurfaceTest.xml",
+    "bytes": 516,
+    "sha256": "3033d3a41c12941722df96ecc7f220c4e3ee4dcbc5ec5d5080e21d0fcaf01a0e"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-desktop-TEST-com.example.chatbar.desktop.SuiteChromeTest.xml",
+    "bytes": 1138,
+    "sha256": "f7727fdae7b6702b08fd7c21fad20d1eb6ccd5960286323efadb2379096af767"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.AssetArchiveWorkflowTest.xml",
+    "bytes": 691,
+    "sha256": "f32e958704b7a6891a0245587aee88dc0c51fd7a2e8dc98e8a2af840ae7f4daf"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.AutosaveCancellationTest.xml",
+    "bytes": 521,
+    "sha256": "a3035ebd5b0447781a9b88bd9d983fca77afc490da9daf6300dfbe9c2559d291"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GalleryAlbumWorkflowTest.xml",
+    "bytes": 542,
+    "sha256": "b4b50bca6909864510eb0ecc565ff1deb943f8d6335181cb271804eeb1484eff"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest.xml",
+    "bytes": 865,
+    "sha256": "5397c6eef3f33e559a70140a353b1c69bbf454129484ce9e53bc0ca430118b04"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GalleryIngressTest.xml",
+    "bytes": 677,
+    "sha256": "de92d23a137bb9f11d522101a8a4a9ae9d87f1da62f5a30b7aced9e7217b4e08"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GalleryWorkflowTest.xml",
+    "bytes": 513,
+    "sha256": "d0e952aef3d0b2be2fc51d981e00f652a6c42bc54c39383cce1faa6325fa6726"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GuidanceSafetyTest.xml",
+    "bytes": 821,
+    "sha256": "c209f2c4540c460926b232c6a9f86ef51dd2d62522ded945ef03b619fdd6de58"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.ImageCardWorkflowTest.xml",
+    "bytes": 645,
+    "sha256": "8d6659a42a646513dfaa8f85efbb113968fef5eabfd776d64ffc616b3356c1bd"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest.xml",
+    "bytes": 918,
+    "sha256": "663d33ef9a187940d2904d06a95220fc65e31d5c7aeea98d15bd7e96dd2f4fd7"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest.xml",
+    "bytes": 927,
+    "sha256": "8b37a73863913c175461b143137b79e000e333fc00a4c0045697e4cde7d574c4"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.MetadataWorkflowTest.xml",
+    "bytes": 969,
+    "sha256": "0c304b2798fa4a905676f1c66e5b8e49e22f7f83636d8c936fff6e5de7478fb6"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.PostProcessWorkflowTest.xml",
+    "bytes": 826,
+    "sha256": "a28c9a66294b70ef77c9e23470bd43eddd639ccdad470bc1277f8dbb53bc6b8d"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.PromptReferenceWorkflowTest.xml",
+    "bytes": 1077,
+    "sha256": "f6bc9906b2fa89756303f99cd3d7760599ad15bd0c7f5eef2ea826141e2863cf"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.ReverseWorkflowTest.xml",
+    "bytes": 811,
+    "sha256": "c4175f6e7c14d04dfc0d8b3590b07ed7e1452f8dacbb30b0cf9fbd791e605fb4"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioDataLaunchTest.xml",
+    "bytes": 856,
+    "sha256": "14c22bc05f3b03a72b45861667e4eed84f05803618348480f66bcc0c5690dc11"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioMaintenanceTest.xml",
+    "bytes": 863,
+    "sha256": "db380f8f02eef10200f2b2e756794d3107b088275e2e81acd2777abe9700574a"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioTitleControlsTest.xml",
+    "bytes": 675,
+    "sha256": "de4bccbd5fc1fe281fa83ed9f34f3c9d08f6e2c567c149ada4a6fbef30479679"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest.xml",
+    "bytes": 1155,
+    "sha256": "247c7b59cb132326188ac150f179e6ce73196acd0009764e4baffa7867896ff5"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.TypesetQueueWorkflowTest.xml",
+    "bytes": 1048,
+    "sha256": "6b0245a6964f6b63a072185c962490dfffe8ceb238ae2c5bd6b8f3ecaad7bdf6"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest.xml",
+    "bytes": 4808,
+    "sha256": "0450ceef4f543df3d197fc83258bfe46bb8674fce77cd59dd1ea885254b1b5c3"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest.xml",
+    "bytes": 1359,
+    "sha256": "9878e4c12eea24d19cced667da7fa983d636cc430c24db9c3653916856aefaff"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/summary.json",
+    "bytes": 866,
+    "sha256": "851c3dc86dee04d337878ec56107782e23201b266e4bffa49c4090a920621f77"
+  },
+  {
+    "path": "runs/20261021T212008789293Z-glyph-export-feedback-full/test-cases.json",
+    "bytes": 46539,
+    "sha256": "9cd69e7217d1bb9059fd8b818b9d384e49a2cc6472b6021b3689e33b9fbff871"
+  },
+  {
+    "path": "runs/20261021T212802068985Z-glyph-cold-font-fixed/gradle.log",
+    "bytes": 2741,
+    "sha256": "f65e3a4d6d6b29241d88cdbaa557703b3c3f953265e803d11ac8b7e31cb1c105"
+  },
+  {
+    "path": "runs/20261021T212802068985Z-glyph-cold-font-fixed/source-before.json",
+    "bytes": 57871,
+    "sha256": "3f9227fbdf610c4f2d2f8e651ad1d3da2a998c8eab22358add5410b63577f8a1"
+  },
+  {
+    "path": "runs/20261021T212802068985Z-glyph-cold-font-fixed/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest.xml",
+    "bytes": 676,
+    "sha256": "39ad79d8113afa80cf9de4f816c0020fb12dba0bea047b81d07c5099c29b8e0f"
+  },
+  {
+    "path": "runs/20261021T212802068985Z-glyph-cold-font-fixed/summary.json",
+    "bytes": 973,
+    "sha256": "54dda68ed2d0ed0bc087e8dcbee320bbbbe64723c41d318128ff8391fd2e0a4b"
+  },
+  {
+    "path": "runs/20261021T212802068985Z-glyph-cold-font-fixed/test-cases.json",
+    "bytes": 425,
+    "sha256": "fac9611ce28acfa5b75dabfef9c9eba7ae3e3f089bb2d0e9fb73bc4a93b942b8"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/gradle.log",
+    "bytes": 11698,
+    "sha256": "abc6e3a4d53bc0262a0682d0526392912569a4c65b28fb88908d3dc99b6fa4ae"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/source-before.json",
+    "bytes": 57871,
+    "sha256": "3f9227fbdf610c4f2d2f8e651ad1d3da2a998c8eab22358add5410b63577f8a1"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/studio-desktop-TEST-com.example.chatbar.desktop.DesktopStudioPresentationTest.xml",
+    "bytes": 2664,
+    "sha256": "59b7bdcf01b235ec67032fea2adc371a11b7df41b557edc7f3e33daba65e5635"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/studio-desktop-TEST-com.example.chatbar.desktop.DesktopStudioWorkspaceTest.xml",
+    "bytes": 705,
+    "sha256": "64bf79044d0a3338c3a4b4ee5871bd3acc0b9d64d9f5bdf2d5543884873f8561"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/studio-desktop-TEST-com.example.chatbar.desktop.SourceZoomSurfaceTest.xml",
+    "bytes": 514,
+    "sha256": "6a7640aaec32fb47f26de7b5ec20e72b9af21fc11744465d4cfad8c3c1666823"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/studio-desktop-TEST-com.example.chatbar.desktop.SuiteChromeTest.xml",
+    "bytes": 1136,
+    "sha256": "c69246227fabde582ed7a2d8d849c59ee3971bac0286da6ed810f5c4e38b7ca0"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.AssetArchiveWorkflowTest.xml",
+    "bytes": 691,
+    "sha256": "b13c0e98085303a7665f0c1006abea129d3f35a20fce32bde7279029ae6eb7ed"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.AutosaveCancellationTest.xml",
+    "bytes": 521,
+    "sha256": "8cdab1ea5803fd827dd05774d15412ad05c69c50b7fe24bb9e308729f0bbb9db"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GalleryAlbumWorkflowTest.xml",
+    "bytes": 540,
+    "sha256": "8116747d133331c959beb574170a6e2eaa92587efb75a693e4403549a34fd152"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest.xml",
+    "bytes": 865,
+    "sha256": "bd5779a393b35a12c68b1ab732913babfc57a299b16b1d7f0ccad40636dba70d"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GalleryIngressTest.xml",
+    "bytes": 677,
+    "sha256": "bc0ba2537bf94a0db1c52ccdb655ca6763fe47a7107a52d1e80aa6ffd58c8a6c"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GalleryWorkflowTest.xml",
+    "bytes": 511,
+    "sha256": "6e953196fca8c12e446278dbb863b0755e86819ab8e3f64363036ce5ae6e636e"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GuidanceSafetyTest.xml",
+    "bytes": 819,
+    "sha256": "f0c2e4ab940bcaa84e0eb3c460c24779c6bea68041eed8432dd985ec7301797a"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.ImageCardWorkflowTest.xml",
+    "bytes": 645,
+    "sha256": "333165bdd445abd21b89fdf4ebbc270b8284700620d71b488b3309b3600ea8ae"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest.xml",
+    "bytes": 917,
+    "sha256": "8f4dc706eded725b018864ad098a1d548e898312c4924fc7f9482b53e731cf2e"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest.xml",
+    "bytes": 927,
+    "sha256": "fc2fcd5c0c074904879decff10c90f31a378f6a55f733e95abfe7d79a1db6ed6"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.MetadataWorkflowTest.xml",
+    "bytes": 968,
+    "sha256": "020d6365602a0c61cc95dc2aac385d1793bf55202a029ffe20b769168971e802"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.PostProcessWorkflowTest.xml",
+    "bytes": 824,
+    "sha256": "fbc2970f8e3df603168caead4cc4528ef4160309fb29173da17cbd5551f6af2c"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.PromptReferenceWorkflowTest.xml",
+    "bytes": 1078,
+    "sha256": "886ac3eba324543934f488d1b7473a445531e8d9b47bd6f474e69ca0b6caa6a7"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.ReverseWorkflowTest.xml",
+    "bytes": 810,
+    "sha256": "f2494ef80ea6a4c136282f458800371003088f50cf97a2af255cb8e16344b2be"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioDataLaunchTest.xml",
+    "bytes": 856,
+    "sha256": "7a226d48ba42786b36151fccd6abaa1b9980553102f4ddc53c1d235442bc8b3c"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioMaintenanceTest.xml",
+    "bytes": 862,
+    "sha256": "3f2112d592c6471b78f7eb4e4d9e8fce0c965ae32e9d49deb5b4b9024f5849ae"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioTitleControlsTest.xml",
+    "bytes": 677,
+    "sha256": "8e965dba43e2152fc98baea1dbe563e9fd7ba14311727e7f9afc40e5d6028366"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest.xml",
+    "bytes": 1155,
+    "sha256": "bcf4c1b01e5847528f9eeefd5261d425f7496e7d9b13ac91d9952d5cb3dbe1be"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.TypesetQueueWorkflowTest.xml",
+    "bytes": 1049,
+    "sha256": "098f12fff9070d44e9b38c12b361bfb0f236dbbd46fcdec299106a3dfeab4683"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest.xml",
+    "bytes": 2774,
+    "sha256": "6ea4d8dc70da58f05eb9c4854ba4b8ae80cf3bca5dce02b358f6ef37f3f46a3f"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest.xml",
+    "bytes": 1358,
+    "sha256": "dde7b778cb024b5afe895dbabe271182810727dbdcc4a9f5bf528af6b96801d3"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/summary.json",
+    "bytes": 808,
+    "sha256": "035a781255147951dfb39d687c00541633fb37f65ddda8a586c6c08b98749d4d"
+  },
+  {
+    "path": "runs/20261021T212833165473Z-glyph-cold-font-desktop-full/test-cases.json",
+    "bytes": 20102,
+    "sha256": "9de4d866e215b9cfa1373b6cac5d5a413619fc4a908c9795106a18c38944a024"
+  },
+  {
+    "path": "SOURCE_DELIVERY_IDENTITY.json",
+    "bytes": 144067,
+    "sha256": "b1891b03144525c3fa714b0caa368328d20560748c19a1844d6f1bf589f89b59"
+  }
+]

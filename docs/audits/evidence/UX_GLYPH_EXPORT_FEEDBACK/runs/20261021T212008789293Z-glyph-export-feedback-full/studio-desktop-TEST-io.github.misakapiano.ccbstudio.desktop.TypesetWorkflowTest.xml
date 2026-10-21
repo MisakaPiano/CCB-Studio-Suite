@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" tests="15" skipped="0" failures="1" errors="0" timestamp="2026-10-21T21:25:58.959Z" hostname="DD1" time="63.928">
+  <properties/>
+  <testcase name="namedProjectLiveVerticalEditingHistoryAndRestart" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="8.839"/>
+  <testcase name="functionalAndInlineColorsPreviewExportAndReopenWithoutSilentFallback" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="2.913"/>
+  <testcase name="pointerDrawnMasksChangeEffectSaveUndoAndReopen" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="6.515"/>
+  <testcase name="unreadablePreviewExplainsFontFailureAndOriginalRemainsViewable" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="0.408"/>
+  <testcase name="storyCustomControlsSelectedAndAllStylesPreserveCaptionsAndUndoAsOneBatch" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="8.794"/>
+  <testcase name="webpPreviewExportAndOriginalReopen" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="2.832"/>
+  <testcase name="continuousMaskDefaultsRespectPerPageSettings" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="1.122"/>
+  <testcase name="fourCategoryPreviewCopiesCompleteFileDeckWithoutSystemClipboard" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="6.176"/>
+  <testcase name="durableDefaultFontLoadsOnFirstTextPreviewWithColdCache" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="2.102">
+    <failure message="io.github.misakapiano.ccbstudio.core.DataProblem: Imported font is unavailable; retain the document and reimport its resource" type="io.github.misakapiano.ccbstudio.core.DataProblem">io.github.misakapiano.ccbstudio.core.DataProblem: Imported font is unavailable; retain the document and reimport its resource
+	at app//io.github.misakapiano.ccbstudio.core.TypesetFonts.font(TypesetFonts.kt:22)
+	at app//io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest$durableDefaultFontLoadsOnFirstTextPreviewWithColdCache$1.invokeSuspend(TypesetWorkflowTest.kt:138)
+	at app//kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at app//kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at java.desktop@17.0.20.1/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop@17.0.20.1/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop@17.0.20.1/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop@17.0.20.1/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base@17.0.20.1/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base@17.0.20.1/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.desktop@17.0.20.1/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+</failure>
+  </testcase>
+  <testcase name="fullPreviewKeyboardAndExportDeckKeepEditorStateAndFitNarrowWindow" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="3.191"/>
+  <testcase name="maximumQueueWidthCannotStarveCanvasAndSurvivesReopen" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="1.885"/>
+  <testcase name="exportShowsRealPageProgressStopsWithoutPublishingAndRetriesExplicitly" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="5.026"/>
+  <testcase name="storyCaptionPresetPreviewExportAndRestart" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="4.796"/>
+  <testcase name="sourceExchangePreviewConfirmExportAndReopen" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="3.143"/>
+  <testcase name="queueControlSelectionDragOrderNumberingAndRestart" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="6.184"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

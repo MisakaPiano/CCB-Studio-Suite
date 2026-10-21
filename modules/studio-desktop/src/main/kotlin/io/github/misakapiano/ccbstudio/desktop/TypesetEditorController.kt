@@ -32,6 +32,8 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
     }
     var exportDirectory by mutableStateOf<java.nio.file.Path?>(null);private set
     var exportProblem by mutableStateOf<String?>(null);private set
+    var exportProgress by mutableStateOf<TypesetExportProgress?>(null);private set
+    internal var exportTrace:(TypesetExportProgress)->Unit={}
     internal var copyExportFiles:(List<java.nio.file.Path>)->Unit=ExportClipboard::copy
     internal var previewTrace:(String)->Unit={}
     var exchangeInspection by mutableStateOf<TypesetSourceExchange.Inspection?>(null);private set
@@ -91,12 +93,26 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
     fun export(request:TypesetExportRequest,clipboard:Boolean=false)=c.run(if(clipboard)"复制批量输出文件"else"导出编辑工程") {
         drain();val p=project?:return@run;val d=document?:return@run
         val parent=if(clipboard)java.nio.file.Files.createDirectories(c.workspace.root.resolve("exports/clipboard"))else withContext(ui){chooseExportDirectory()}?:return@run
-        withContext(ui){exportProblem=null;exportDirectory=null}
+        withContext(ui){exportProblem=null;exportDirectory=null;exportProgress=TypesetExportProgress("PREPARING",0,request.pageIds.size*request.variants.size)}
         if(d.mode!="storybook")preferences{it.copy(exportFormat=request.format,preserveSourceMetadata=request.metadata=="preserve",exportVariants=request.variants,exportZip=request.zip,exportRecipe=request.includeRecipe)}
-        try{val output=TypesetExport.create(c.workspace,p,d,parent,request);val receipt=TypesetExport.verify(output)
-            withContext(ui){exportDirectory=output}
-            if(clipboard)copyExportFiles(receipt.files.map{output.resolve(it.name)})}
-        catch(ex:Exception){withContext(ui){exportProblem=ex.message?:"导出未完成，已有文件保留"};throw ex}
+        val context=currentCoroutineContext()
+        try{val output=TypesetExport.create(c.workspace,p,d,parent,request,progress={value->
+                context.ensureActive();exportProgress=value;exportTrace(value);context.ensureActive()
+            })
+            exportProgress=exportProgress?.copy(stage="VERIFYING",currentFile=null)
+            val receipt=TypesetExport.verify(output)
+            withContext(NonCancellable+ui){exportDirectory=output;exportProgress=exportProgress?.copy(stage="COMPLETE")}
+            if(clipboard){context.ensureActive();copyExportFiles(receipt.files.map{output.resolve(it.name)})}}
+        catch(ex:Exception){
+            val cancelled=(ex as? CancellationException)?:ex.cause as? CancellationException
+            withContext(NonCancellable+ui){
+                if(exportDirectory==null){
+                    exportProgress=exportProgress?.copy(stage=if(cancelled!=null)"CANCELLED"else"FAILED")
+                    exportProblem=if(cancelled!=null)"导出已停止；未完成目录和已生成文件保留，未发布完成批次。可明确重新导出。"else ex.message?:"导出未完成，已有文件保留"
+                }else exportProblem=if(clipboard)"输出文件已完成并校验，但复制未完成；文件仍在显示的目录。"else"输出文件已完成并校验，后续操作已停止。"
+            }
+            if(cancelled!=null)throw cancelled else throw ex
+        }
     }
     fun nextCaption() {val d=document?:return;val next=pageId?.let{TypesetBook.next(d,it)}?:return;selectPage(next)}
     var maskDefault by mutableStateOf(c.workspace.state.typesetPreferences.resolveMask(c.workspace.state.typesetPreferences.preferredMaskSlot).apply(TypesetMask()))

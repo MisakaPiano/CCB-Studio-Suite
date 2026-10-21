@@ -39,7 +39,7 @@ import kotlin.math.*
     if(fullPreview)TypesetFullPreview(c){fullPreview=false}
     Column(Modifier.fillMaxSize()) {
         StudioActions {
-            CompactChoice("编辑工程",c.workspace.state.typesetProjects,e.project,{it.name}){e.open(it.id)}
+            CompactChoice("编辑工程",c.state.typesetProjects.map{if(it.id==e.project?.id)e.project!!else it},e.project,{it.name}){e.open(it.id)}
             StudioAction("新建编辑工程",!c.busy){creating=true}
             StudioAction("从资产库新建",!c.busy){picking=true}
             if(e.project!=null)StudioAction("从资产库追加",!c.busy){appendPicking=true}
@@ -54,7 +54,31 @@ import kotlin.math.*
             StatusText(if(e.dirty)"编辑待保存"else"编辑已保存")
         }
         if(e.document!=null)Text("静态排版：GIF / 动态WebP编辑首帧，APNG编辑默认静态图，动画原件始终保留。",modifier=Modifier.padding(horizontal=12.dp))
-        e.exportDirectory?.let{Text("导出已完成并校验：$it",modifier=Modifier.padding(horizontal=12.dp))}
+        e.exportProgress?.let{progress->
+            Column(Modifier.fillMaxWidth().padding(horizontal=12.dp,vertical=6.dp)) {
+                val label=when(progress.stage){
+                    "GENERATING"->"正在生成页面 · ${progress.completed} / ${progress.total}"
+                    "PACKAGING"->"页面已生成，正在完成 PDF / ZIP 打包"
+                    "RETAINING"->"正在将导出结果保存为可复用资产"
+                    "PUBLISHING"->"正在保存整批完成记录"
+                    "VERIFYING"->"正在校验全部输出文件"
+                    "COMPLETE"->"导出完成并已校验 · ${progress.completed} / ${progress.total}"
+                    "CANCELLED"->"导出已停止 · ${progress.completed} / ${progress.total}，尚未完成整批"
+                    "FAILED"->"导出未完成 · 已生成 ${progress.completed} / ${progress.total}"
+                    else->"正在准备导出"
+                }
+                Text(label,style=if(progress.stage=="COMPLETE")MaterialTheme.typography.h6 else MaterialTheme.typography.body1)
+                if(progress.stage=="GENERATING")LinearProgressIndicator(progress.completed.toFloat()/progress.total.coerceAtLeast(1),Modifier.fillMaxWidth())
+                else if(progress.stage !in setOf("COMPLETE","CANCELLED","FAILED"))LinearProgressIndicator(Modifier.fillMaxWidth())
+            }
+        }
+        e.exportDirectory?.let{path->
+            androidx.compose.foundation.text.selection.SelectionContainer{Text("导出已完成并校验：$path",modifier=Modifier.padding(horizontal=12.dp))}
+            StudioActions {
+                StudioAction("打开导出文件夹"){runCatching{java.awt.Desktop.getDesktop().open(path.toFile())}.onFailure{c.problem="文件夹未能打开；已完成的输出仍保留在显示路径。"}}
+                StudioAction("复制导出路径"){runCatching{desktopCopyText(path.toString())}.onFailure{c.problem="剪贴板暂时不可用；可从显示路径手动复制，输出文件保留。"}}
+            }
+        }
         e.exportProblem?.let{Text(it,color=MaterialTheme.colors.error,modifier=Modifier.padding(horizontal=12.dp))}
         e.exchangeMessage?.let{Text(it,modifier=Modifier.padding(horizontal=12.dp))}
         if(e.project!=null)StudioDisclosure("工程交换文件") {
@@ -63,7 +87,7 @@ import kotlin.math.*
         }
         if(e.document==null) {
             Box(Modifier.fillMaxSize(),contentAlignment=Alignment.Center){Column(horizontalAlignment=Alignment.CenterHorizontally){Text("把图片编成可再次编辑的工程");Text("从图库选择图片，命名后建立队列；原件保持完整。")
-                StudioAction("前往图库选择图片"){c.view="图库"};if(c.workspace.state.typesetProjects.isNotEmpty())StudioAction("继续最近工程"){e.open(c.workspace.state.typesetProjects.last().id)}}}
+                StudioAction("前往图库选择图片"){c.view="图库"};if(c.state.typesetProjects.isNotEmpty())StudioAction("继续最近工程"){e.open(c.state.typesetProjects.last().id)}}}
         }else {
             StudioActions {StudioChips("工作模式",listOf("editor","storybook"),e.document!!.mode,{if(it=="editor")"图片编辑"else"小人书"}){mode->e.change{it.copy(mode=mode)}}
                 StudioChips("工具",listOf("select","rect","brush","lasso","pan"),e.tool,{when(it){"select"->"选择 / 移动";"rect"->"矩形";"brush"->"画笔";"lasso"->"圈选";else->"平移"}}){e.tool=it}

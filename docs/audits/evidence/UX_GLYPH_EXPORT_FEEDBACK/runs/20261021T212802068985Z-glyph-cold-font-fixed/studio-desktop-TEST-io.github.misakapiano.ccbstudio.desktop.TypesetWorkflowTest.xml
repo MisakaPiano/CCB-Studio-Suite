@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-21T21:28:16.872Z" hostname="DD1" time="6.457">
+  <properties/>
+  <testcase name="unreadablePreviewExplainsFontFailureAndOriginalRemainsViewable" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="2.013"/>
+  <testcase name="durableDefaultFontLoadsOnFirstTextPreviewWithColdCache" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="4.444"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

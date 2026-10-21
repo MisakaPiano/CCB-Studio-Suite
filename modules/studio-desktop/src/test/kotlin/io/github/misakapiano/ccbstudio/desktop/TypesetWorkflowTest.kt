@@ -18,6 +18,47 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.test.*
 
 class TypesetWorkflowTest {
+    @Test fun exportShowsRealPageProgressStopsWithoutPublishingAndRetriesExplicitly()=runBlocking(awt) {
+        val w=StudioWorkspace.openStudio(root());val original=EditorRenderer.synthetic(96,64);val id=w.importImage("progress.png",original)
+        val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
+        c.editor.create("导出进度",listOf(id,id,id));c.idle()
+        val parent=Files.createDirectories(root());c.editor.chooseExportDirectory={parent}
+        val gate=java.util.concurrent.CountDownLatch(1)
+        c.editor.exportTrace={p->if(p.stage=="GENERATING"&&p.completed==1)check(gate.await(20,java.util.concurrent.TimeUnit.SECONDS))}
+        val scene=ImageComposeScene(1400,1000,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        suspend fun begin(){scene.frames();scene.click("预览与导出");withTimeout(30000){while(scene.nodes().none{it.matches("导出页面预览")}){delay(40);scene.frames()}};scene.click("选择位置并导出")}
+        try {
+            begin();withTimeout(20000){while(c.editor.exportProgress?.completed!=1)delay(20)};scene.frames()
+            assertTrue(scene.nodes().any{it.matches("正在生成页面 · 1 / 3")});assertTrue(scene.nodes().any{it.matches("编辑工程 · 导出进度 ▾")});scene.shot("export-one-of-three")
+            assertNull(c.editor.exportDirectory);scene.click("停止");gate.countDown();c.active?.join();scene.frames()
+            assertEquals("CANCELLED",c.editor.exportProgress?.stage);assertNull(c.editor.exportDirectory);assertNull(c.problem)
+            val incomplete=Files.list(parent).use{it.filter{p->p.fileName.toString().endsWith(".incomplete")}.toList()}.single()
+            assertFalse(Files.exists(incomplete.resolve("COMPLETE.json")));assertFails{TypesetExport.verify(incomplete)}
+            assertContentEquals(original,w.bytes(id));scene.shot("export-cancelled")
+            c.editor.exportTrace={};begin();c.idle();scene.frames()
+            val output=c.editor.exportDirectory!!;val receipt=TypesetExport.verify(output)
+            assertEquals(3,receipt.files.count{it.name.endsWith(".png")});assertEquals("COMPLETE",c.editor.exportProgress?.stage)
+            assertTrue(scene.nodes().any{it.matches("导出完成并已校验 · 3 / 3")});assertTrue(Files.exists(incomplete));scene.shot("export-verified")
+            assertContentEquals(original,w.bytes(id))
+            c.editor.copyExportFiles={error("synthetic clipboard unavailable")}
+            scene.click("预览与导出");withTimeout(30000){while(scene.nodes().none{it.matches("导出页面预览")}){delay(40);scene.frames()}}
+            scene.click("复制所选输出文件");c.active?.join();scene.frames()
+            assertNotNull(c.problem);assertContains(c.editor.exportProblem!!,"复制未完成")
+            TypesetExport.verify(c.editor.exportDirectory!!);assertEquals("COMPLETE",c.editor.exportProgress?.stage)
+            scene.shot("export-copy-failed")
+        }finally{gate.countDown();scene.close();c.close();scope.cancel();w.close()}
+    }
+    @Test fun unreadablePreviewExplainsFontFailureAndOriginalRemainsViewable() {
+        StudioWorkspace.openStudio(root()).use{w->
+            val original=EditorRenderer.synthetic(48,32);val id=w.importImage("font.png",original)
+            val missing=TypesetPage(assetId=id,name="font",texts=listOf(TypesetText(text="中文",style=TypesetStyle(fontFamily="CCB-NO-SUCH-FONT-928174"))))
+            assertEquals("FONT_MISSING",assertFailsWith<DataProblem>{typesetPreviewRaster(w,missing,false,1)}.status)
+            typesetPreviewRaster(w,missing,false,1,"original").flush()
+            val glyph=missing.copy(texts=emptyList(),caption=String(Character.toChars(0x10ffff)))
+            assertEquals("GLYPH_MISSING",assertFailsWith<DataProblem>{typesetPreviewRaster(w,glyph,true,1)}.status)
+            typesetPreviewRaster(w,glyph.copy(caption="中文已恢复。"),true,1).flush();assertContentEquals(original,w.bytes(id))
+        }
+    }
     @Test fun storyCustomControlsSelectedAndAllStylesPreserveCaptionsAndUndoAsOneBatch()=runBlocking(awt) {
         val path=root();val w=StudioWorkspace.openStudio(path);val original=EditorRenderer.synthetic(180,120);val id=w.importImage("story.png",original)
         val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})

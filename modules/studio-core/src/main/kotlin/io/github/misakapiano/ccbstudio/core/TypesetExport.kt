@@ -15,11 +15,13 @@ import javax.imageio.ImageIO
 @Serializable data class TypesetExportReceipt(val version:Int=3,val projectId:String,val revision:Long,val mode:String,val variant:String,val format:String,
     val pageIds:List<String>,val files:List<TypesetExportFile>,val variants:List<String> = listOf(variant),val metadataStatuses:Map<String,String> = emptyMap(),val assetIds:Map<String,String> = emptyMap())
 data class TypesetExportRequest(val pageIds:List<String>,val variant:String="all",val format:String="png",val zip:Boolean=false,val pdf:Boolean=false, val variants:List<String> = listOf(variant),val metadata:String="preserve",val includeRecipe:Boolean=false)
+data class TypesetExportProgress(val stage:String,val completed:Int,val total:Int,val currentFile:String?=null)
 
 /** A fresh output directory is published only after every file and completion receipt is durable.
  * Failed staging directories remain identifiable and never replace a user's previous export. */
 object TypesetExport {
     fun create(workspace:StudioWorkspace,project:TypesetProject,document:TypesetDocument,parent:Path,request:TypesetExportRequest,
+        progress:(TypesetExportProgress)->Unit={},
         hook:(String)->Unit={}):Path=workspace.operation {
         document.validate();require(Files.isDirectory(parent,LinkOption.NOFOLLOW_LINKS)){"Select an existing destination directory"}
         require(request.variants.isNotEmpty() && request.variants.distinct().size==request.variants.size && request.variants.all{it in setOf("all","text","mask","original")} && request.format in setOf("png","jpeg","webp","source"))
@@ -33,6 +35,8 @@ object TypesetExport {
         val stem="Studio-export-${newId()}";val staging=parent.resolve(".$stem.incomplete");val target=parent.resolve(stem)
         Files.createDirectory(staging)
         val outputs=mutableListOf<Path>();val statuses=linkedMapOf<String,String>();val origins=linkedMapOf<Path,AssetProvenance>()
+        val total=pages.size*request.variants.size;var completed=0
+        fun report(stage:String,file:String?=null)=progress(TypesetExportProgress(stage,completed,total,file))
         val assetIds=linkedMapOf<String,String>()
         try {
             val pdf=if(request.pdf)RasterBookPdf(staging.resolve("book.pdf"),pages.size)else null
@@ -40,6 +44,7 @@ object TypesetExport {
                 for(variant in request.variants) {
                     val directory=if(request.variants.size==1)staging else Files.createDirectory(staging.resolve(variant))
                     pages.forEach{page->
+                        report("GENERATING")
                         hook("BEFORE_PAGE")
                         val original=workspace.bytes(page.assetId);val index=document.pages.indexOfFirst{it.id==page.id}
                         val number=TypesetQueue.number(document,index)
@@ -73,9 +78,10 @@ object TypesetExport {
                             val bytes=TypesetEditRecipes.encode(TypesetEditRecipe(variant=variant,originalSha256=asset.sha256(),page=page,sourceRecipeBase64=java.util.Base64.getEncoder().encodeToString(asset.request().recipe())))
                             Files.write(recipe,bytes,StandardOpenOption.CREATE_NEW);force(recipe);outputs.add(recipe)}
                         hook("PAGE_WRITTEN")
+                        completed++;report("GENERATING",staging.relativize(file).toString())
                     }
                 }
-                pdf?.finish()
+                report("PACKAGING");pdf?.finish()
             }finally{pdf?.close()}
             if(request.pdf){force(staging.resolve("book.pdf"));outputs.add(staging.resolve("book.pdf"))}
             if(request.zip){val zip=staging.resolve("pages.zip");ZipOutputStream(Files.newOutputStream(zip,StandardOpenOption.CREATE_NEW)).use{out->
@@ -85,8 +91,10 @@ object TypesetExport {
             outputs.filter{it.fileName.toString() in setOf("book.pdf","pages.zip")}.forEach { file ->
                 origins[file]=AssetProvenance(role="edited-collection",sourceIds=pages.map{it.assetId}.distinct(),projectId=project.id,projectRevision=project.revision,snapshot=project.current,variant=request.variants.joinToString(","),mediaType=if(file.fileName.toString().endsWith("pdf"))"application/pdf"else"application/zip")
             }
-            origins.forEach{(file,origin)->val expected=identity(file,staging);assetIds[expected.name]=SharedAssets.retain(workspace,file,expected,origin);hook("ASSET_RETAINED")}
+            report("RETAINING")
+            origins.forEach{(file,origin)->report("RETAINING",staging.relativize(file).toString());val expected=identity(file,staging);assetIds[expected.name]=SharedAssets.retain(workspace,file,expected,origin);hook("ASSET_RETAINED")}
             val receipt=TypesetExportReceipt(assetIds=assetIds,projectId=project.id,revision=project.revision,mode=document.mode,variant=if(request.variants.size==1)request.variants.single()else"multiple",format=request.format,pageIds=pages.map{it.id},files=outputs.map{identity(it,staging)},variants=request.variants,metadataStatuses=statuses)
+            report("PUBLISHING")
             val marker=staging.resolve("COMPLETE.json");Files.writeString(marker,documentJson.encodeToString(receipt),StandardOpenOption.CREATE_NEW);force(marker)
             hook("BEFORE_PUBLISH")
             Files.move(staging,target,StandardCopyOption.ATOMIC_MOVE)

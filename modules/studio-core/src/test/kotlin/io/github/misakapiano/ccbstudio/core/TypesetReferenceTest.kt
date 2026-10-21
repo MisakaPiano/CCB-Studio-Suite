@@ -7,6 +7,21 @@ import javax.imageio.ImageIO
 import kotlin.test.*
 
 class TypesetReferenceTest {
+    @Test fun storyDrawsTheSameFallbackFontUsedToMeasureMixedChineseText() {
+        val latin="Arial";val fallback="SimSun";val caption="中文ABC，混排旁白。"
+        assertTrue(java.awt.Font(latin,0,28).canDisplayUpTo(caption)>=0)
+        assertEquals(-1,java.awt.Font(fallback,0,28).canDisplayUpTo(caption))
+        val source=EditorRenderer.synthetic(48,32)
+        val page=TypesetPage(assetId=newId(),name="fallback",caption=caption,story=StoryStyle(pageWidth=320,pagePadding=16,textPadding=12,fontFamily=latin,fontSize=28.0,firstIndent=false,showPageNumber=false,pageBorder=false,imageBorder=false))
+        val actual=TypesetRenderer.story(source,page,1)
+        val expected=TypesetRenderer.story(source,page.copy(story=page.story.copy(fontFamily=fallback)),1)
+        try {
+            val out=java.nio.file.Path.of("build/typeset-glyph-fallback");java.nio.file.Files.createDirectories(out)
+            javax.imageio.ImageIO.write(actual,"png",out.resolve("actual.png").toFile());javax.imageio.ImageIO.write(expected,"png",out.resolve("expected.png").toFile())
+            assertEquals(expected.width,actual.width);assertEquals(expected.height,actual.height)
+            assertEquals(sha256(java.nio.file.Files.readAllBytes(out.resolve("expected.png"))),sha256(java.nio.file.Files.readAllBytes(out.resolve("actual.png"))),"Drawn caption must use the same font as wrapping and alignment, not missing-glyph boxes")
+        }finally{actual.flush();expected.flush()}
+    }
     private val repo=Path.of(System.getProperty("preview.test.root")).toAbsolutePath().parents().first{Files.exists(it.resolve("docs/audits/evidence/TYPESET_REFERENCE"))}
     private val reference=repo.resolve("docs/audits/evidence/TYPESET_REFERENCE/source-output")
     private val output=Path.of(System.getProperty("preview.test.root")).resolve("typeset-layout-${newId()}").also{Files.createDirectories(it)}
