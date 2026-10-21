@@ -1,0 +1,47 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :asset-library:compileJava UP-TO-DATE
+> Task :image-authority:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :image-authority:compileKotlin
+w: file:///H:/CCB-Studio-Suite/modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/ModelRequestException.kt:12:10 Condition is always 'true'.
+
+> Task :image-authority:compileJava NO-SOURCE
+> Task :studio-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-core:compileKotlin
+> Task :studio-core:compileJava NO-SOURCE
+> Task :studio-core:processResources
+> Task :studio-core:classes
+> Task :studio-core:jar
+> Task :studio-desktop:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-desktop:convertXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:copyNonXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:prepareComposeResourcesTaskForMain NO-SOURCE
+> Task :studio-desktop:generateResourceAccessorsForMain SKIPPED
+> Task :studio-desktop:generateActualResourceCollectorsForMain SKIPPED
+> Task :studio-desktop:generateComposeResClass SKIPPED
+> Task :studio-desktop:compileKotlin FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':studio-desktop:compileKotlin'.
+> Could not resolve all files for configuration ':studio-desktop:compileClasspath'.
+   > Could not resolve org.xerial:sqlite-jdbc:3.53.4.0.
+     Required by:
+         project ':studio-desktop'
+      > Could not resolve org.xerial:sqlite-jdbc:3.53.4.0.
+         > Could not parse POM H:\CCB-Studio-Suite\.local\windows-preview\maven\org\xerial\sqlite-jdbc\3.53.4.0\sqlite-jdbc-3.53.4.0.pom
+            > Could not resolve org.junit:junit-bom:5.12.2.
+               > No cached version of org.junit:junit-bom:5.12.2 available for offline mode.
+               > No cached version of org.junit:junit-bom:5.12.2 available for offline mode.
+      > No cached version of org.xerial:sqlite-jdbc:3.53.4.0 available for offline mode.
+      > No cached version of org.xerial:sqlite-jdbc:3.53.4.0 available for offline mode.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to generate a Build Scan (Powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 1m 46s
+6 actionable tasks: 5 executed, 1 up-to-date

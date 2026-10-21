@@ -1,0 +1,90 @@
+@file:OptIn(androidx.compose.ui.ExperimentalComposeUiApi::class, androidx.compose.ui.InternalComposeUiApi::class)
+package io.github.misakapiano.ccbstudio.desktop
+
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.darkColors
+import androidx.compose.ui.ImageComposeScene
+import androidx.compose.ui.semantics.*
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.unit.Constraints
+import com.example.chatbar.desktop.*
+import com.example.chatbar.domain.image.*
+import com.sun.net.httpserver.HttpServer
+import io.github.misakapiano.ccbstudio.core.*
+import java.net.InetSocketAddress
+import java.nio.ByteBuffer
+import java.nio.file.*
+import java.util.concurrent.CopyOnWriteArrayList
+import javax.swing.SwingUtilities
+import kotlin.coroutines.CoroutineContext
+import kotlin.test.*
+import kotlinx.coroutines.*
+import kotlinx.serialization.json.*
+import org.msgpack.core.MessagePack
+
+/** Actual Suite controller and Compose tree. Loopback replaces only the HTTP destination. */
+class WorkbenchWorkflowTest {
+    private val awt=object:CoroutineDispatcher(){override fun dispatch(context:CoroutineContext,block:Runnable)=SwingUtilities.invokeLater(block)}
+    private fun root()=Paths.get(System.getProperty("preview.test.root")).resolve(newId())
+    private suspend fun ImageComposeScene.frames(){repeat(6){render().close();yield()};delay(60);render().close()}
+    private fun ImageComposeScene.nodes():List<SemanticsNode>{
+        fun walk(n:SemanticsNode):List<SemanticsNode> = listOf(n)+n.children.flatMap(::walk)
+        return semanticsOwners.flatMap{walk(it.rootSemanticsNode)}
+    }
+    private fun SemanticsNode.matches(text:String)=config.getOrNull(SemanticsProperties.Text)?.any{it.text==text}==true || config.getOrNull(SemanticsProperties.ContentDescription)?.contains(text)==true
+    private suspend fun ImageComposeScene.click(text:String){val n=nodes().first{it.matches(text)&&it.config.getOrNull(SemanticsActions.OnClick)!=null};assertTrue(n.config[SemanticsActions.OnClick].action!!.invoke());frames()}
+    private suspend fun ImageComposeScene.field(label:String,text:String){val n=nodes().first{it.config.getOrNull(SemanticsActions.SetText)!=null && (it.matches(label)||it.children.any{child->child.matches(label)})};assertTrue(n.config[SemanticsActions.SetText].action!!.invoke(AnnotatedString(text)));frames()}
+    private suspend fun WorkbenchController.idle(){withTimeout(30000){active?.join()};assertNull(problem,problem)}
+    private fun ImageComposeScene.shot(name:String){val out=Path.of("build/ux-r1a-workbench/$name.png");Files.createDirectories(out.parent);render().use{im->im.encodeToData()!!.use{Files.write(out,it.bytes)}}}
+    private fun sse(text:String):ByteArray {
+        val json=buildJsonObject {
+            put("choices",buildJsonArray {
+                add(buildJsonObject {
+                    put("delta",buildJsonObject {put("content",text)})
+                    put("finish_reason","stop")
+                })
+            })
+        }
+        return ("data: $json\n\ndata: [DONE]\n\n").toByteArray()
+    }
+    private fun frame(png:ByteArray):ByteArray{val p=MessagePack.newDefaultBufferPacker();p.packMapHeader(2);p.packString("event_type");p.packString("final");p.packString("image");p.packBinaryHeader(png.size);p.writePayload(png);p.close();val b=p.toByteArray();return ByteBuffer.allocate(4+b.size).putInt(b.size).put(b).array()}
+
+    @Test fun accountsDesignApplyGenerateGalleryAndRestart()=runBlocking(awt){
+        val r=root();val png=EditorRenderer.synthetic(96,96);val requests=CopyOnWriteArrayList<String>();var designRequests=0
+        val server=HttpServer.create(InetSocketAddress("127.0.0.1",0),0)
+        server.createContext("/"){e->val body=e.requestBody.readBytes().decodeToString();requests+=body
+            val bytes=if(body.contains("\"messages\""))sse(if(++designRequests==1)"{\"sceneDescription\":\"Quiet room\",\"queries\":[]}" else "{\"baseCaption\":\"quiet room, window\",\"characters\":[]}")else frame(png)
+            e.sendResponseHeaders(200,bytes.size.toLong());e.responseBody.use{it.write(bytes)}};server.start()
+        val client=studioHttpClient().newBuilder().addInterceptor{chain->chain.proceed(chain.request().newBuilder().url("http://127.0.0.1:${server.address.port}/").removeHeader("Authorization").build())}.build()
+        val scope=CoroutineScope(SupervisorJob()+awt);val w=StudioWorkspace.openStudio(r)
+        val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),client,RequestAdmission{})
+        val scene=ImageComposeScene(1240,880){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        var asset=""
+        try{
+            scene.frames();scene.click("账户")
+            scene.field("档案名称","Local LLM");scene.field("HTTPS API 地址","https://fixture.invalid/v1");scene.field("模型 ID","fixture");scene.field("API 凭据","LOCAL_TEST_ONLY")
+            scene.click("安全保存并选用");c.idle();scene.frames();assertEquals(1,w.state.accounts.size)
+            scene.click("新建档案");scene.click("NAI");scene.field("档案名称","Local NAI");scene.field("API 凭据","LOCAL_TEST_ONLY")
+            scene.click("安全保存并选用");c.idle();scene.frames();assertEquals(2,w.state.accounts.size)
+            scene.click("AI 设计");scene.field("画面需求 / 继续修改","Quiet room");scene.click("发送");c.idle();scene.frames()
+            assertEquals("",c.composer);assertEquals("",c.draft.basePrompt);assertEquals(NovelAiDesignTurnStatus.COMPLETED,w.state.creation!!.conversations.single().turns.single().status)
+            scene.shot("design-candidate");scene.click("应用候选到创作");assertEquals("",c.draft.basePrompt);scene.shot("apply-difference");scene.click("保留当前草稿");assertEquals("",c.draft.basePrompt)
+            scene.click("应用候选到创作");scene.click("确认应用");c.idle();scene.frames();assertEquals("quiet room, window",c.draft.basePrompt)
+            scene.click("生成图片");c.idle();scene.frames();assertEquals(1,c.assets.size);asset=c.current!!;assertContentEquals(png,w.bytes(asset));scene.shot("generated-original")
+            scene.click("图库");scene.click("全选");assertEquals(setOf(asset),c.selection);scene.click("反选");assertTrue(c.selection.isEmpty());scene.click("全选");scene.click("全不选");assertTrue(c.selection.isEmpty())
+            assertEquals(3,requests.size);assertFalse(w.state.jobs.single().recipe.contains("LOCAL_TEST_ONLY"));assertEquals("COMPLETED",w.state.jobs.single().state)
+        }finally{scene.close();c.close();scope.cancel();server.stop(0)}
+        StudioWorkspace.openStudio(r).use{again->assertEquals("quiet room, window",again.state.creation!!.draft.basePrompt);assertEquals(2,again.state.accounts.size);assertContentEquals(png,again.bytes(asset));assertEquals(asset,again.state.jobs.single().results.single())}
+    }
+
+    @Test fun measuredSuiteNavigationSurvivesResizeAndUnsentInput()=runBlocking(awt){
+        val scope=CoroutineScope(SupervisorJob()+awt);val w=StudioWorkspace.openStudio(root());val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
+        val scene=ImageComposeScene(1240,880){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        try{
+            scene.frames();scene.click("AI 设计");scene.field("画面需求 / 继续修改","尚未发送的中文草稿")
+            for(width in listOf(640,900,1240)){scene.constraints=Constraints.fixed(width,880);scene.frames();assertTrue(scene.nodes().any{it.config.getOrNull(SemanticsProperties.EditableText)?.text=="尚未发送的中文草稿"});scene.shot("design-width-$width")}
+            scene.click("返回创作");scene.frames();scene.click("预览 · 展开预览 ▾");scene.click("预览专注");scene.click("返回编辑");scene.click("AI 设计");assertEquals("尚未发送的中文草稿",c.composer)
+            c.flush();assertEquals("尚未发送的中文草稿",w.state.creation!!.composer)
+        }finally{scene.close();c.close();scope.cancel()}
+    }
+}

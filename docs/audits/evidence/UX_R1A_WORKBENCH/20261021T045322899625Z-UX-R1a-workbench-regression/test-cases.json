@@ -1,0 +1,746 @@
+[
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiCharacterEnabledTest",
+    "name": "both models omit folded positive negative text expansion and coordinates",
+    "seconds": "0.218",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiCharacterEnabledTest",
+    "name": "automatic centers use active order and clipboard preserves folded roles beyond capacity",
+    "seconds": "0.023",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiCharacterEnabledTest",
+    "name": "all folded roles yield base only request and disable coordinates",
+    "seconds": "0.005",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiCharacterEnabledTest",
+    "name": "old roles default active and folded content survives draft and history reload",
+    "seconds": "0.016",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiCharacterPositionTest",
+    "name": "old drafts remain automatic and new positions survive history and reordering",
+    "seconds": "0.004",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiCharacterPositionTest",
+    "name": "coordinates clamp and v45 uses grid centers while v5 retains free positions",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiCharacterPositionTest",
+    "name": "manual requests enable every coordinate flag and share positive negative centers",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiCharacterPositionTest",
+    "name": "automatic and empty requests never enable positioning",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiCharacterPositionTest",
+    "name": "png import restores positions and respects unchecked selections",
+    "seconds": "0.007",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiDesignerTransportTest",
+    "name": "first design preserves planner scene and V5 natural prose through repair",
+    "seconds": "0.221",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageGuidanceTest",
+    "name": "normalized vibe strengths preserve order and cap total",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageGuidanceTest",
+    "name": "focused inpaint requires focus region but allows empty mask",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageGuidanceTest",
+    "name": "precise reference selects nearest supported large canvas",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageGuidanceTest",
+    "name": "vibe validation follows official sixteen image limit",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageGuidanceTest",
+    "name": "v5 pauses references without deleting v45 configuration",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageGuidanceTest",
+    "name": "shared guidance loads base precise and vibe sources independently",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageGuidanceTest",
+    "name": "history recipe marks unowned base source as missing",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageModelResolutionTest",
+    "name": "global default is final fallback",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageModelResolutionTest",
+    "name": "character default wins when explicit override is absent",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageModelResolutionTest",
+    "name": "explicit override wins over character and global defaults",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageRetryTest",
+    "name": "server error frame finishes without reading until peer closes stream",
+    "seconds": "0.065",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageRetryTest",
+    "name": "successive complete batches finish without transport EOF so callers can save history",
+    "seconds": "0.009",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageRetryTest",
+    "name": "automatic retry wait can be cancelled before sending another request",
+    "seconds": "0.01",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageRetryTest",
+    "name": "ten rate limit retries allow success on eleventh request",
+    "seconds": "0.009",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageRetryTest",
+    "name": "third 429 emits one final failure",
+    "seconds": "0.011",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageRetryTest",
+    "name": "later generation batches keep retrying rate limits and report replacement requests",
+    "seconds": "4.044",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageRetryTest",
+    "name": "automatic mode continues beyond three rate limits without counting failures as images",
+    "seconds": "4.049",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageRetryTest",
+    "name": "ten rate limit retries stop after eleventh 429",
+    "seconds": "0.006",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageRetryTest",
+    "name": "automatic mode does not retry non rate limit errors",
+    "seconds": "0.006",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageRetryTest",
+    "name": "extra final frames in received chunk still fail the batch",
+    "seconds": "0.007",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageRetryTest",
+    "name": "stream retry control frame is ignored until final image",
+    "seconds": "0.005",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiImageRetryTest",
+    "name": "429 retries until third attempt succeeds",
+    "seconds": "0.006",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiPngMetadataReaderTest",
+    "name": "parses image guidance and encoded vibe metadata",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiPngMetadataReaderTest",
+    "name": "parses NovelAI v4 comment metadata",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiPngMetadataReaderTest",
+    "name": "rejects generic JSON comment without NovelAI structure",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiPromptPostProcessorTest",
+    "name": "converts only complete Stable Diffusion weight atoms",
+    "seconds": "0.006",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiPromptPostProcessorTest",
+    "name": "ambiguous rule warns without guessing",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiPromptPostProcessorTest",
+    "name": "rewrites full tag atoms ignoring case spaces and underscores",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiPromptPostProcessorTest",
+    "name": "canonicalizer runs before syntax normalizer then style is prepended",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiPromptPostProcessorTest",
+    "name": "preserves NAI wrappers and expands one tag to multiple tags",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiStudioCustomSizeTest",
+    "name": "validatesRoundedPixelBudgetAndPartialDimensions",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiStudioCustomSizeTest",
+    "name": "oldSettingsDecodeAndCustomSettingsSurviveHistoryRoundTrip",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiStudioCustomSizeTest",
+    "name": "customDimensionsRoundWithoutChangingTheEditableDraft",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiStudioCustomSizeTest",
+    "name": "pngSettingsImportRestoresCustomSizeAndPresetImportClearsIt",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiStudioRequestTest",
+    "name": "precise arrays use fixed fidelity wire adapter",
+    "seconds": "0.005",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiStudioRequestTest",
+    "name": "v5 request serializes explicit settings and ordered character negatives",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiStudioRequestTest",
+    "name": "image to image writes action source strength and noise",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiStudioRequestTest",
+    "name": "v5 inpaint selects inpainting model and mask contract",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiStudioRequestTest",
+    "name": "v5 request appends quoted text block from base and character prompts",
+    "seconds": "0.003",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiStudioRequestTest",
+    "name": "vibe arrays write cached encoding information and strength",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiStudioRequestTest",
+    "name": "request normalizes Chinese commas in every outbound prompt field",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiStudioRequestTest",
+    "name": "explicit text block disables v5 quoted text automation",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiStudioRequestTest",
+    "name": "v45 request leaves quoted text untouched",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiStudioRequestTest",
+    "name": "focused inpaint strength uses official nested img2img color correction",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagCompletionTest",
+    "name": "insert at cursor keeps unfinished suffix as following tag",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagCompletionTest",
+    "name": "insert preserves weights brackets and following tags",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagCompletionTest",
+    "name": "fragment starts after chinese comma and newline",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagResearchServiceTest",
+    "name": "reused vision description is not marked as a newly planned scene",
+    "seconds": "0.003",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagResearchServiceTest",
+    "name": "user cancellation stops active planner without fallback work",
+    "seconds": "0.004",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagResearchServiceTest",
+    "name": "batch keeps eight candidates per query and twenty four globally",
+    "seconds": "0.006",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagResearchServiceTest",
+    "name": "revision with no new tag queries still recalls codex using only user modification",
+    "seconds": "0.01",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagResearchServiceTest",
+    "name": "batch search preserves partial successes when another query fails",
+    "seconds": "0.006",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagResearchServiceTest",
+    "name": "research calls planner once and searches all queries concurrently",
+    "seconds": "0.005",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagResearchServiceTest",
+    "name": "revision evidence insertion keeps final modification request as last user message",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagResearchServiceTest",
+    "name": "moment debug exchanges include batch planning and Danbooru catalog results",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagResearchServiceTest",
+    "name": "same planner queries drive local codex retrieval with diversity key",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagResearchServiceTest",
+    "name": "prompt progress accumulates batch search design and repair in order",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagResearchServiceTest",
+    "name": "empty query plan skips Danbooru catalog but still recalls codex from scene draft",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagResearchServiceTest",
+    "name": "one timed out query does not cancel other concurrent searches",
+    "seconds": "0.003",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagResearchServiceTest",
+    "name": "planner request contains reference image in one user message",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagResearchServiceTest",
+    "name": "planner parses scene draft and deduplicated queries capped at six",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagResearchServiceTest",
+    "name": "revision query planner accepts empty query JSON without scene description",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagResearchServiceTest",
+    "name": "planner accepts concise nonblank scene draft",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagResearchServiceTest",
+    "name": "planner may run beyond old twenty second timeout",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagResearchServiceTest",
+    "name": "planner streaming progress keeps reasoning and output visible",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagResearchServiceTest",
+    "name": "user cancellation cancels every active batch request",
+    "seconds": "0.003",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagResearchServiceTest",
+    "name": "Danbooru query normalizes English spaces to underscores and Chinese spaces away",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagResearchServiceTest",
+    "name": "planner removes queries already covered by character prompts",
+    "seconds": "0.005",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagResearchServiceTest",
+    "name": "planner infers finish or search from scene draft and queries",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagSuggestionServiceTest",
+    "name": "cacheSeparatesVersionsAndStoresEmptyResults",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagSuggestionServiceTest",
+    "name": "reordersNewMatchesAndReplacesDictionaryDuplicates",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagSuggestionServiceTest",
+    "name": "decodesPreorderedRanksWithoutMaterializingFullPostingList",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagSuggestionServiceTest",
+    "name": "emptyAndFailedSourcesFinishWithoutHidingSuccessfulMatches",
+    "seconds": "0.005",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiTagSuggestionServiceTest",
+    "name": "publishesEachSourceWhileBothSourcesAreStillSearching",
+    "seconds": "0.027",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiV5TextPromptPolicyTest",
+    "name": "onlyPositiveV5RequestCopyChanges",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiV5TextPromptPolicyTest",
+    "name": "onlyFirstBaseChunkIsExpandedAndRandomizerPipesArePreserved",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiV5TextPromptPolicyTest",
+    "name": "singleQuotesPreserveContractionsAndPossessives",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiV5TextPromptPolicyTest",
+    "name": "repeatedTextIsRetainedAndExpansionIsIdempotent",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiV5TextPromptPolicyTest",
+    "name": "cjkThresholdUsesAllFieldsAndIsStrictlyGreaterThanThirtyPercent",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiV5TextPromptPolicyTest",
+    "name": "explicitTextDetectionMatchesOfficialBoundaries",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiV5TextPromptPolicyTest",
+    "name": "unmatchedEmptyAndUnsupportedQuotesDoNotProduceText",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiV5TextPromptPolicyTest",
+    "name": "cjkReversesWithinEachFieldButPreservesCharacterOrder",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.PrivacyPngEncoderTest",
+    "name": "chunkedOutputRoundTripsAndRejectsInvalidDimensions",
+    "seconds": "0.084",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.PrivacyPngEncoderTest",
+    "name": "preservesDimensionsAndOnlyMinimalOrientationWhileSourceStaysUnchanged",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.PrivacyPngEncoderTest",
+    "name": "removesFullAlphaAndRgbStealthPayloadsEvenWithDamagedHeaders",
+    "seconds": "0.027",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.PrivacyPngEncoderTest",
+    "name": "erasesLsbRegardlessOfValueAndKeepsTransparencyEndpoints",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.StealthAlphaMetadataTest",
+    "name": "absent header and tiny images are not metadata",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.StealthAlphaMetadataTest",
+    "name": "invalid lengths truncated gzip and decompression bomb fail bounded",
+    "seconds": "0.084",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.StealthAlphaMetadataTest",
+    "name": "compressed and plain alpha payload use column order and UTF8",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "waitingCancellationRetainsLockAndDoesNotSend",
+    "seconds": "0.887",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "normalTransportUsesAuthorityEnvelopeAndCannotAcceptPartialStream",
+    "seconds": "0.24",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "httpErrorsNeverPersistProviderBodyOrRetry",
+    "seconds": "0.046",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "interruptedDesignIsNotReplayedOnOpen",
+    "seconds": "0.187",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "partialGenerationRetainsOriginalAndFullReceiptOnFailure",
+    "seconds": "0.668",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "designCandidateRequiresApplyBranchesAndSurvivesRestart",
+    "seconds": "0.451",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LiveRequestBudgetTest",
+    "name": "truncatedReservationBlocksInsteadOfFreeingBudget",
+    "seconds": "0.043",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LiveRequestBudgetTest",
+    "name": "allServicesSharePersistentRollingLimitAndFiveMinuteSpacing",
+    "seconds": "1.191",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "dpapiSyntheticSecretRoundTripNotInDocuments",
+    "seconds": "1.324",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "completeChainRejectsDeletedRevisionAndUnknownEntry",
+    "seconds": "0.712",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "originalProjectUndoRedoAndRestart",
+    "seconds": "1.293",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "missingFontPreventsFalseCompleteExportAndUnknownLayerRefused",
+    "seconds": "0.143",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "batchOrderUndoAndExportCategoriesAreNonDestructive",
+    "seconds": "6.3",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "generationDesignRevisionFrozenIdentityAndUncertainRestart",
+    "seconds": "1.287",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "completeRecipeComparisonIncludesNestedCharactersSeedAndIdentity",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "stagedUnknownCorruptAndFutureDocumentsNeverDefault",
+    "seconds": "0.256",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioRestoreTest",
+    "name": "completeSnapshotRestoresOriginalProjectUndoAndSecretReferenceOnly",
+    "seconds": "1.636",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioRestoreTest",
+    "name": "interruptedRestoreRetainsStagingAndCanRetryIntoFreshRoot",
+    "seconds": "0.672",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioRestoreTest",
+    "name": "corruptIncompleteAndUnknownSnapshotsNeverPublishOrOverwrite",
+    "seconds": "0.643",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest",
+    "name": "failedMigrationDoesNotPublishOrOverwriteTarget",
+    "seconds": "0.599",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest",
+    "name": "endpointsCannotContainCredentialsOrInsecureSchemes",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest",
+    "name": "realProfilesRequireExplicitV2RootAndPersistDraft",
+    "seconds": "0.35",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest",
+    "name": "copyMigrationPreservesLegacyAndRestoresV2Backup",
+    "seconds": "4.225",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.WorkspaceProcessTest",
+    "name": "abruptStagedAndCommittedDocumentCrashesPreserveOriginals",
+    "seconds": "2.243",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.WorkspaceProcessTest",
+    "name": "anotherProcessCannotOwnOpenWorkspaceThenCanAfterClose",
+    "seconds": "0.614",
+    "status": "PASS"
+  }
+]

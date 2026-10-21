@@ -5,104 +5,167 @@
     {
       "id": "P01",
       "owner": "UX-R1a",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt"
+      ],
+      "tests": [
+        "WorkbenchWorkflowTest.accountsDesignApplyGenerateGalleryAndRestart",
+        "WorkbenchWorkflowTest.measuredSuiteNavigationSurvivesResizeAndUnsentInput"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R1A_WORKBENCH/compose-scenes (actual Compose tree; offscreen; loopback)",
+        "docs/audits/evidence/UX_R1A_WORKBENCH/NATIVE_UI.json (capture unavailable)"
+      ],
+      "persistenceEvidence": [
+        "WorkbenchWorkflowTest: same workspace close/reopen; accounts, candidate draft, completed job and exact original bytes"
+      ],
+      "status": "ENGINEERING_PARTIAL / LOOPBACK_GUI_PASS / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "P02",
       "owner": "UX-R1a",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "StudioApplication.kt",
+        "DesktopStudioControls.kt",
+        "DesktopStudioPromptField.kt",
+        "DesktopStudioCharacters.kt"
+      ],
+      "tests": [
+        "DesktopStudioPresentationTest: 13 source component regressions; exact field coverage in JUnit XML"
+      ],
       "guiEvidence": [],
       "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "status": "SOURCE_COMPONENT_ADOPTED / FULL_WORKFLOW_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "P03",
       "owner": "UX-R1a",
       "implementation": [
         "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/CreationSession.kt",
-        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioTextTransport.kt"
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioTextTransport.kt",
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt"
       ],
       "tests": [
-        "CreationRuntimeTest.designCandidateRequiresApplyBranchesAndSurvivesRestart"
+        "CreationRuntimeTest.designCandidateRequiresApplyBranchesAndSurvivesRestart",
+        "WorkbenchWorkflowTest.accountsDesignApplyGenerateGalleryAndRestart",
+        "WorkbenchWorkflowTest.measuredSuiteNavigationSurvivesResizeAndUnsentInput"
       ],
-      "guiEvidence": [],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R1A_WORKBENCH/compose-scenes (actual Compose tree; offscreen; loopback)",
+        "docs/audits/evidence/UX_R1A_WORKBENCH/NATIVE_UI.json (capture unavailable)"
+      ],
       "persistenceEvidence": [
-        "UX-R1a-runtime-retest: EXECUTED; source identity in run summary/source-before"
+        "WorkbenchWorkflowTest: same workspace close/reopen; accounts, candidate draft, completed job and exact original bytes"
       ],
-      "status": "CORE_PARTIAL / GUI_NOT_TESTED / NOT_PRODUCT_PASS"
+      "status": "ENGINEERING_PARTIAL / LOOPBACK_GUI_PASS / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "P04",
       "owner": "UX-R1a",
       "implementation": [
         "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/CreationSession.kt",
-        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioTextTransport.kt"
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioTextTransport.kt",
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt"
       ],
       "tests": [
-        "CreationRuntimeTest.designCandidateRequiresApplyBranchesAndSurvivesRestart"
+        "CreationRuntimeTest.designCandidateRequiresApplyBranchesAndSurvivesRestart",
+        "WorkbenchWorkflowTest.accountsDesignApplyGenerateGalleryAndRestart",
+        "WorkbenchWorkflowTest.measuredSuiteNavigationSurvivesResizeAndUnsentInput"
       ],
-      "guiEvidence": [],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R1A_WORKBENCH/compose-scenes (actual Compose tree; offscreen; loopback)",
+        "docs/audits/evidence/UX_R1A_WORKBENCH/NATIVE_UI.json (capture unavailable)"
+      ],
       "persistenceEvidence": [
-        "UX-R1a-runtime-retest: EXECUTED; source identity in run summary/source-before"
+        "WorkbenchWorkflowTest: same workspace close/reopen; accounts, candidate draft, completed job and exact original bytes"
       ],
-      "status": "CORE_PARTIAL / GUI_NOT_TESTED / NOT_PRODUCT_PASS"
+      "status": "ENGINEERING_PARTIAL / LOOPBACK_GUI_PASS / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "P05",
       "owner": "UX-R1a",
       "implementation": [
         "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/CreationSession.kt",
-        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioTextTransport.kt"
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioTextTransport.kt",
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt"
       ],
       "tests": [
-        "CreationRuntimeTest.designCandidateRequiresApplyBranchesAndSurvivesRestart"
+        "CreationRuntimeTest.designCandidateRequiresApplyBranchesAndSurvivesRestart",
+        "WorkbenchWorkflowTest.accountsDesignApplyGenerateGalleryAndRestart",
+        "WorkbenchWorkflowTest.measuredSuiteNavigationSurvivesResizeAndUnsentInput"
       ],
-      "guiEvidence": [],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R1A_WORKBENCH/compose-scenes (actual Compose tree; offscreen; loopback)",
+        "docs/audits/evidence/UX_R1A_WORKBENCH/NATIVE_UI.json (capture unavailable)"
+      ],
       "persistenceEvidence": [
-        "UX-R1a-runtime-retest: EXECUTED; source identity in run summary/source-before"
+        "WorkbenchWorkflowTest: same workspace close/reopen; accounts, candidate draft, completed job and exact original bytes"
       ],
-      "status": "CORE_PARTIAL / GUI_NOT_TESTED / NOT_PRODUCT_PASS"
+      "status": "ENGINEERING_PARTIAL / LOOPBACK_GUI_PASS / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "P06",
       "owner": "UX-R1b",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "StudioApplication.kt",
+        "DesktopStudioControls.kt",
+        "DesktopStudioPromptField.kt",
+        "DesktopStudioCharacters.kt"
+      ],
+      "tests": [
+        "DesktopStudioPresentationTest: 13 source component regressions; exact field coverage in JUnit XML"
+      ],
       "guiEvidence": [],
       "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "status": "SOURCE_COMPONENT_ADOPTED / FULL_WORKFLOW_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "P07",
       "owner": "UX-R1a",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "StudioApplication.kt",
+        "DesktopStudioControls.kt",
+        "DesktopStudioPromptField.kt",
+        "DesktopStudioCharacters.kt"
+      ],
+      "tests": [
+        "DesktopStudioPresentationTest: 13 source component regressions; exact field coverage in JUnit XML"
+      ],
       "guiEvidence": [],
       "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "status": "SOURCE_COMPONENT_ADOPTED / FULL_WORKFLOW_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "P08",
       "owner": "UX-R1b",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "StudioApplication.kt",
+        "DesktopStudioControls.kt",
+        "DesktopStudioPromptField.kt",
+        "DesktopStudioCharacters.kt"
+      ],
+      "tests": [
+        "DesktopStudioPresentationTest: 13 source component regressions; exact field coverage in JUnit XML"
+      ],
       "guiEvidence": [],
       "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "status": "SOURCE_COMPONENT_ADOPTED / FULL_WORKFLOW_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "P09",
       "owner": "UX-R1a",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "StudioApplication.kt",
+        "DesktopStudioControls.kt",
+        "DesktopStudioPromptField.kt",
+        "DesktopStudioCharacters.kt"
+      ],
+      "tests": [
+        "DesktopStudioPresentationTest: 13 source component regressions; exact field coverage in JUnit XML"
+      ],
       "guiEvidence": [],
       "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "status": "SOURCE_COMPONENT_ADOPTED / FULL_WORKFLOW_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "P10",
@@ -136,25 +199,41 @@
       "owner": "UX-R1a",
       "implementation": [
         "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/CreationSession.kt",
-        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioTextTransport.kt"
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioTextTransport.kt",
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt"
       ],
       "tests": [
-        "CreationRuntimeTest.partialGenerationRetainsOriginalAndFullReceiptOnFailure"
+        "CreationRuntimeTest.partialGenerationRetainsOriginalAndFullReceiptOnFailure",
+        "WorkbenchWorkflowTest.accountsDesignApplyGenerateGalleryAndRestart",
+        "WorkbenchWorkflowTest.measuredSuiteNavigationSurvivesResizeAndUnsentInput"
       ],
-      "guiEvidence": [],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R1A_WORKBENCH/compose-scenes (actual Compose tree; offscreen; loopback)",
+        "docs/audits/evidence/UX_R1A_WORKBENCH/NATIVE_UI.json (capture unavailable)"
+      ],
       "persistenceEvidence": [
-        "UX-R1a-runtime-retest: EXECUTED; source identity in run summary/source-before"
+        "WorkbenchWorkflowTest: same workspace close/reopen; accounts, candidate draft, completed job and exact original bytes"
       ],
-      "status": "CORE_PARTIAL / GUI_NOT_TESTED / NOT_PRODUCT_PASS"
+      "status": "ENGINEERING_PARTIAL / LOOPBACK_GUI_PASS / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "P14",
       "owner": "UX-R1a",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt"
+      ],
+      "tests": [
+        "WorkbenchWorkflowTest.accountsDesignApplyGenerateGalleryAndRestart",
+        "WorkbenchWorkflowTest.measuredSuiteNavigationSurvivesResizeAndUnsentInput"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R1A_WORKBENCH/compose-scenes (actual Compose tree; offscreen; loopback)",
+        "docs/audits/evidence/UX_R1A_WORKBENCH/NATIVE_UI.json (capture unavailable)"
+      ],
+      "persistenceEvidence": [
+        "WorkbenchWorkflowTest: same workspace close/reopen; accounts, candidate draft, completed job and exact original bytes"
+      ],
+      "status": "ENGINEERING_PARTIAL / LOOPBACK_GUI_PASS / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "P15",
@@ -645,11 +724,21 @@
     {
       "id": "C01",
       "owner": "UX-R4",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt"
+      ],
+      "tests": [
+        "WorkbenchWorkflowTest.accountsDesignApplyGenerateGalleryAndRestart",
+        "WorkbenchWorkflowTest.measuredSuiteNavigationSurvivesResizeAndUnsentInput"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R1A_WORKBENCH/compose-scenes (actual Compose tree; offscreen; loopback)",
+        "docs/audits/evidence/UX_R1A_WORKBENCH/NATIVE_UI.json (capture unavailable)"
+      ],
+      "persistenceEvidence": [
+        "WorkbenchWorkflowTest: same workspace close/reopen; accounts, candidate draft, completed job and exact original bytes"
+      ],
+      "status": "ENGINEERING_PARTIAL / LOOPBACK_GUI_PASS / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "C02",

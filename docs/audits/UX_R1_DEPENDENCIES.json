@@ -1,0 +1,37 @@
+[
+  {
+    "artifact": "org.xerial:sqlite-jdbc:3.53.4.0",
+    "file": "sqlite-jdbc-3.53.4.0.jar",
+    "bytes": 12002370,
+    "sha256": "bcb1f51e36f940867e83342f9efbf5968ac44a6bef4d397bb4af7b17b45cd2fb",
+    "source": "Existing local Gradle artifact cache; copied read-only into Suite local Maven; no download"
+  },
+  {
+    "artifact": "org.xerial:sqlite-jdbc:3.53.4.0",
+    "file": "sqlite-jdbc-3.53.4.0.pom",
+    "bytes": 28419,
+    "sha256": "ff588556ba06aa68a568062f2cb9d243dde1f631eafd2010cfef23cab06a7ab9",
+    "source": "Existing local Gradle artifact cache; copied read-only into Suite local Maven; no download"
+  },
+  {
+    "artifact": "com.composables:icons-lucide-cmp-jvm:2.2.1",
+    "file": "icons-lucide-cmp-jvm-2.2.1.jar",
+    "bytes": 5758205,
+    "sha256": "4bf2c5219e2e0031d21f4b6fa72183e805c62cf28ae9e3f5b8c51992c33dda35",
+    "source": "Existing local Gradle artifact cache; copied read-only into Suite local Maven; no download"
+  },
+  {
+    "artifact": "com.composables:icons-lucide-cmp-jvm:2.2.1",
+    "file": "icons-lucide-cmp-jvm-2.2.1.pom",
+    "bytes": 2153,
+    "sha256": "388cccb683c94c020b928f6310d12d2c4bb472ad15132fc430247b976cc8c34c",
+    "source": "Existing local Gradle artifact cache; copied read-only into Suite local Maven; no download"
+  },
+  {
+    "artifact": "org.junit:junit-bom:5.12.2",
+    "file": "junit-bom-5.12.2.pom",
+    "bytes": 5649,
+    "sha256": "cef80fec86454f6806bfb0df24669b5c6f32e2cb728539ea859f47dfdc9bbc17",
+    "source": "Existing local Gradle artifact cache; read-only copy to Suite local Maven; POM imported by sqlite; no download"
+  }
+]

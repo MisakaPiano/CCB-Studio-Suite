@@ -1,0 +1,77 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :asset-library:compileJava UP-TO-DATE
+> Task :image-authority:checkKotlinGradlePluginConfigurationErrors SKIPPED
+
+> Task :image-authority:compileKotlin
+w: file:///H:/CCB-Studio-Suite/modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/ModelRequestException.kt:12:10 Condition is always 'true'.
+
+> Task :image-authority:compileJava NO-SOURCE
+> Task :studio-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-core:compileKotlin
+> Task :studio-core:compileJava NO-SOURCE
+> Task :studio-core:processResources UP-TO-DATE
+> Task :studio-core:classes UP-TO-DATE
+> Task :studio-core:jar UP-TO-DATE
+> Task :studio-desktop:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-desktop:convertXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:copyNonXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:prepareComposeResourcesTaskForMain NO-SOURCE
+> Task :studio-desktop:generateResourceAccessorsForMain SKIPPED
+> Task :studio-desktop:generateActualResourceCollectorsForMain SKIPPED
+> Task :studio-desktop:generateComposeResClass SKIPPED
+
+> Task :studio-desktop:compileKotlin
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioPromptField.kt:158:74 Unnecessary safe call on a non-null receiver of type 'NovelAiActiveTagFragment'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioPromptField.kt:166:135 Unnecessary safe call on a non-null receiver of type 'NovelAiActiveTagFragment'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioPromptField.kt:177:97 Unnecessary safe call on a non-null receiver of type 'NovelAiActiveTagFragment'.
+
+> Task :studio-desktop:compileJava NO-SOURCE
+> Task :studio-desktop:assembleMainResources UP-TO-DATE
+> Task :studio-desktop:processResources UP-TO-DATE
+> Task :studio-desktop:classes UP-TO-DATE
+> Task :studio-desktop:jar
+> Task :asset-library:processResources NO-SOURCE
+> Task :asset-library:classes UP-TO-DATE
+> Task :asset-library:jar UP-TO-DATE
+> Task :image-authority:processResources NO-SOURCE
+> Task :image-authority:classes UP-TO-DATE
+> Task :image-authority:jar UP-TO-DATE
+> Task :studio-desktop:convertXmlValueResourcesForTest NO-SOURCE
+> Task :studio-desktop:copyNonXmlValueResourcesForTest NO-SOURCE
+> Task :studio-desktop:prepareComposeResourcesTaskForTest NO-SOURCE
+> Task :studio-desktop:generateResourceAccessorsForTest SKIPPED
+
+> Task :studio-desktop:compileTestKotlin FAILED
+e: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/com/example/chatbar/desktop/DesktopStudioWorkspaceTest.kt:77:17 Unresolved reference 'FinalProductDesignFixture'.
+e: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/com/example/chatbar/desktop/DesktopStudioWorkspaceTest.kt:82:64 Cannot infer type for type parameter 'T'. Specify it explicitly.
+e: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/com/example/chatbar/desktop/DesktopStudioWorkspaceTest.kt:85:60 Argument type mismatch: actual type is 'DesktopWindowChrome', but '(LayoutCoordinates?) -> Unit' was expected.
+e: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/com/example/chatbar/desktop/DesktopStudioWorkspaceTest.kt:87:79 Unresolved reference 'root'.
+e: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/com/example/chatbar/desktop/DesktopStudioWorkspaceTest.kt:88:25 Unresolved reference 'DesktopNovelAiStudioPanel'.
+e: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/com/example/chatbar/desktop/DesktopStudioWorkspaceTest.kt:90:44 Unresolved reference 'DesktopTitleBar'.
+e: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/com/example/chatbar/desktop/DesktopStudioWorkspaceTest.kt:90:60 Unresolved reference 'DesktopShellSize'.
+e: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/com/example/chatbar/desktop/DesktopStudioWorkspaceTest.kt:90:86 Unresolved reference 'DesktopPrimaryRoute'.
+e: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/com/example/chatbar/desktop/DesktopStudioWorkspaceTest.kt:91:42 Unresolved reference 'DesktopTitleBar'.
+e: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/com/example/chatbar/desktop/DesktopStudioWorkspaceTest.kt:91:58 Unresolved reference 'DesktopShellSize'.
+e: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/com/example/chatbar/desktop/DesktopStudioWorkspaceTest.kt:91:84 Unresolved reference 'DesktopPrimaryRoute'.
+e: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/com/example/chatbar/desktop/DesktopStudioWorkspaceTest.kt:92:45 Unresolved reference 'DesktopPromptInspectorPanel'.
+e: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/com/example/chatbar/desktop/DesktopStudioWorkspaceTest.kt:171:21 Cannot infer type for type parameter 'T'. Specify it explicitly.
+e: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/com/example/chatbar/desktop/DesktopStudioWorkspaceTest.kt:171:57 Cannot infer type for type parameter 'T'. Specify it explicitly.
+e: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/com/example/chatbar/desktop/DesktopStudioWorkspaceTest.kt:171:103 Cannot infer type for type parameter 'T'. Specify it explicitly.
+e: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/com/example/chatbar/desktop/DesktopStudioWorkspaceTest.kt:171:135 Cannot infer type for type parameter 'T'. Specify it explicitly.
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':studio-desktop:compileTestKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.btapi.BuildToolsApiCompilationWork
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to generate a Build Scan (Powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 53s
+12 actionable tasks: 5 executed, 7 up-to-date

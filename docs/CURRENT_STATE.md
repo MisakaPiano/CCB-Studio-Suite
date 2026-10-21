@@ -1,3 +1,7 @@
+## UX-R1a工作台接入（2026-10-21）
+
+[新工作台证据](audits/UX_R1A_WORKBENCH.md)：实际Compose端到端2项与完整desktop23项已执行PASS；authority99/core25在锁失败运行中实际PASS但总构建FAILED保留。原生窗口捕获超时，视觉/鼠标NOT TESTED。继续R1b完整功能，产品HOLD，未到RC。
+
 ## UX-R1a运行时基础进度（2026-10-21）
 
 [执行记录](audits/UX_R1A_EXECUTION.md)：新执行资产库31+core25共56 PASS，保留此前1次失败。GUI垂直路径尚在接入，PRODUCT HOLD不变，继续连续开发，不进入RC验收。

@@ -1,0 +1,308 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :asset-library:compileJava UP-TO-DATE
+> Task :image-authority:checkKotlinGradlePluginConfigurationErrors SKIPPED
+
+> Task :image-authority:compileKotlin
+w: file:///H:/CCB-Studio-Suite/modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/ModelRequestException.kt:12:10 Condition is always 'true'.
+
+> Task :image-authority:compileJava NO-SOURCE
+> Task :studio-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-core:compileKotlin
+> Task :studio-core:compileJava NO-SOURCE
+> Task :studio-core:processResources UP-TO-DATE
+> Task :studio-core:classes UP-TO-DATE
+> Task :studio-core:jar
+> Task :asset-library:processResources NO-SOURCE
+> Task :asset-library:classes UP-TO-DATE
+> Task :asset-library:jar UP-TO-DATE
+> Task :image-authority:processResources NO-SOURCE
+> Task :image-authority:classes UP-TO-DATE
+> Task :image-authority:jar
+> Task :studio-core:compileTestKotlin
+> Task :studio-core:compileTestJava NO-SOURCE
+> Task :studio-core:processTestResources NO-SOURCE
+> Task :studio-core:testClasses UP-TO-DATE
+
+> Task :studio-core:test
+
+CreationRuntimeTest > waitingCancellationRetainsLockAndDoesNotSend PASSED
+
+CreationRuntimeTest > normalTransportUsesAuthorityEnvelopeAndCannotAcceptPartialStream PASSED
+
+CreationRuntimeTest > httpErrorsNeverPersistProviderBodyOrRetry PASSED
+
+CreationRuntimeTest > interruptedDesignIsNotReplayedOnOpen PASSED
+
+CreationRuntimeTest > partialGenerationRetainsOriginalAndFullReceiptOnFailure PASSED
+
+CreationRuntimeTest > designCandidateRequiresApplyBranchesAndSurvivesRestart PASSED
+
+LiveRequestBudgetTest > truncatedReservationBlocksInsteadOfFreeingBudget PASSED
+
+LiveRequestBudgetTest > allServicesSharePersistentRollingLimitAndFiveMinuteSpacing PASSED
+
+StudioCoreTest > dpapiSyntheticSecretRoundTripNotInDocuments PASSED
+
+StudioCoreTest > completeChainRejectsDeletedRevisionAndUnknownEntry PASSED
+
+StudioCoreTest > originalProjectUndoRedoAndRestart PASSED
+
+StudioCoreTest > missingFontPreventsFalseCompleteExportAndUnknownLayerRefused PASSED
+
+StudioCoreTest > batchOrderUndoAndExportCategoriesAreNonDestructive PASSED
+
+StudioCoreTest > generationDesignRevisionFrozenIdentityAndUncertainRestart PASSED
+
+StudioCoreTest > completeRecipeComparisonIncludesNestedCharactersSeedAndIdentity PASSED
+
+StudioCoreTest > stagedUnknownCorruptAndFutureDocumentsNeverDefault PASSED
+
+StudioRestoreTest > completeSnapshotRestoresOriginalProjectUndoAndSecretReferenceOnly PASSED
+
+StudioRestoreTest > interruptedRestoreRetainsStagingAndCanRetryIntoFreshRoot PASSED
+
+StudioRestoreTest > corruptIncompleteAndUnknownSnapshotsNeverPublishOrOverwrite PASSED
+
+StudioVersionTwoTest > failedMigrationDoesNotPublishOrOverwriteTarget PASSED
+
+StudioVersionTwoTest > endpointsCannotContainCredentialsOrInsecureSchemes PASSED
+
+StudioVersionTwoTest > realProfilesRequireExplicitV2RootAndPersistDraft PASSED
+
+StudioVersionTwoTest > copyMigrationPreservesLegacyAndRestoresV2Backup PASSED
+
+WorkspaceProcessTest > abruptStagedAndCommittedDocumentCrashesPreserveOriginals PASSED
+
+WorkspaceProcessTest > anotherProcessCannotOwnOpenWorkspaceThenCanAfterClose PASSED
+
+> Task :image-authority:compileTestKotlin
+> Task :image-authority:compileTestJava NO-SOURCE
+> Task :image-authority:processTestResources UP-TO-DATE
+> Task :image-authority:testClasses UP-TO-DATE
+
+> Task :image-authority:test
+
+NovelAiCharacterEnabledTest > both models omit folded positive negative text expansion and coordinates PASSED
+
+NovelAiCharacterEnabledTest > automatic centers use active order and clipboard preserves folded roles beyond capacity PASSED
+
+NovelAiCharacterEnabledTest > all folded roles yield base only request and disable coordinates PASSED
+
+NovelAiCharacterEnabledTest > old roles default active and folded content survives draft and history reload PASSED
+
+NovelAiCharacterPositionTest > old drafts remain automatic and new positions survive history and reordering PASSED
+
+NovelAiCharacterPositionTest > coordinates clamp and v45 uses grid centers while v5 retains free positions PASSED
+
+NovelAiCharacterPositionTest > manual requests enable every coordinate flag and share positive negative centers PASSED
+
+NovelAiCharacterPositionTest > automatic and empty requests never enable positioning PASSED
+
+NovelAiCharacterPositionTest > png import restores positions and respects unchecked selections PASSED
+
+NovelAiDesignerTransportTest > first design preserves planner scene and V5 natural prose through repair PASSED
+
+NovelAiImageGuidanceTest > normalized vibe strengths preserve order and cap total PASSED
+
+NovelAiImageGuidanceTest > focused inpaint requires focus region but allows empty mask PASSED
+
+NovelAiImageGuidanceTest > precise reference selects nearest supported large canvas PASSED
+
+NovelAiImageGuidanceTest > vibe validation follows official sixteen image limit PASSED
+
+NovelAiImageGuidanceTest > v5 pauses references without deleting v45 configuration PASSED
+
+NovelAiImageGuidanceTest > shared guidance loads base precise and vibe sources independently PASSED
+
+NovelAiImageGuidanceTest > history recipe marks unowned base source as missing PASSED
+
+NovelAiImageModelResolutionTest > global default is final fallback PASSED
+
+NovelAiImageModelResolutionTest > character default wins when explicit override is absent PASSED
+
+NovelAiImageModelResolutionTest > explicit override wins over character and global defaults PASSED
+
+NovelAiImageRetryTest > server error frame finishes without reading until peer closes stream PASSED
+
+NovelAiImageRetryTest > successive complete batches finish without transport EOF so callers can save history PASSED
+
+NovelAiImageRetryTest > automatic retry wait can be cancelled before sending another request PASSED
+
+NovelAiImageRetryTest > ten rate limit retries allow success on eleventh request PASSED
+
+NovelAiImageRetryTest > third 429 emits one final failure PASSED
+
+NovelAiImageRetryTest > later generation batches keep retrying rate limits and report replacement requests PASSED
+
+NovelAiImageRetryTest > automatic mode continues beyond three rate limits without counting failures as images PASSED
+
+NovelAiImageRetryTest > ten rate limit retries stop after eleventh 429 PASSED
+
+NovelAiImageRetryTest > automatic mode does not retry non rate limit errors PASSED
+
+NovelAiImageRetryTest > extra final frames in received chunk still fail the batch PASSED
+
+NovelAiImageRetryTest > stream retry control frame is ignored until final image PASSED
+
+NovelAiImageRetryTest > 429 retries until third attempt succeeds PASSED
+
+NovelAiPngMetadataReaderTest > parses image guidance and encoded vibe metadata PASSED
+
+NovelAiPngMetadataReaderTest > parses NovelAI v4 comment metadata PASSED
+
+NovelAiPngMetadataReaderTest > rejects generic JSON comment without NovelAI structure PASSED
+
+NovelAiPromptPostProcessorTest > converts only complete Stable Diffusion weight atoms PASSED
+
+NovelAiPromptPostProcessorTest > ambiguous rule warns without guessing PASSED
+
+NovelAiPromptPostProcessorTest > rewrites full tag atoms ignoring case spaces and underscores PASSED
+
+NovelAiPromptPostProcessorTest > canonicalizer runs before syntax normalizer then style is prepended PASSED
+
+NovelAiPromptPostProcessorTest > preserves NAI wrappers and expands one tag to multiple tags PASSED
+
+NovelAiStudioCustomSizeTest > validatesRoundedPixelBudgetAndPartialDimensions PASSED
+
+NovelAiStudioCustomSizeTest > oldSettingsDecodeAndCustomSettingsSurviveHistoryRoundTrip PASSED
+
+NovelAiStudioCustomSizeTest > customDimensionsRoundWithoutChangingTheEditableDraft PASSED
+
+NovelAiStudioCustomSizeTest > pngSettingsImportRestoresCustomSizeAndPresetImportClearsIt PASSED
+
+NovelAiStudioRequestTest > precise arrays use fixed fidelity wire adapter PASSED
+
+NovelAiStudioRequestTest > v5 request serializes explicit settings and ordered character negatives PASSED
+
+NovelAiStudioRequestTest > image to image writes action source strength and noise PASSED
+
+NovelAiStudioRequestTest > v5 inpaint selects inpainting model and mask contract PASSED
+
+NovelAiStudioRequestTest > v5 request appends quoted text block from base and character prompts PASSED
+
+NovelAiStudioRequestTest > vibe arrays write cached encoding information and strength PASSED
+
+NovelAiStudioRequestTest > request normalizes Chinese commas in every outbound prompt field PASSED
+
+NovelAiStudioRequestTest > explicit text block disables v5 quoted text automation PASSED
+
+NovelAiStudioRequestTest > v45 request leaves quoted text untouched PASSED
+
+NovelAiStudioRequestTest > focused inpaint strength uses official nested img2img color correction PASSED
+
+NovelAiTagCompletionTest > insert at cursor keeps unfinished suffix as following tag PASSED
+
+NovelAiTagCompletionTest > insert preserves weights brackets and following tags PASSED
+
+NovelAiTagCompletionTest > fragment starts after chinese comma and newline PASSED
+
+NovelAiTagResearchServiceTest > reused vision description is not marked as a newly planned scene PASSED
+
+NovelAiTagResearchServiceTest > user cancellation stops active planner without fallback work PASSED
+
+NovelAiTagResearchServiceTest > batch keeps eight candidates per query and twenty four globally PASSED
+
+NovelAiTagResearchServiceTest > revision with no new tag queries still recalls codex using only user modification PASSED
+
+NovelAiTagResearchServiceTest > batch search preserves partial successes when another query fails PASSED
+
+NovelAiTagResearchServiceTest > research calls planner once and searches all queries concurrently PASSED
+
+NovelAiTagResearchServiceTest > revision evidence insertion keeps final modification request as last user message PASSED
+
+NovelAiTagResearchServiceTest > moment debug exchanges include batch planning and Danbooru catalog results PASSED
+
+NovelAiTagResearchServiceTest > same planner queries drive local codex retrieval with diversity key PASSED
+
+NovelAiTagResearchServiceTest > prompt progress accumulates batch search design and repair in order PASSED
+
+NovelAiTagResearchServiceTest > empty query plan skips Danbooru catalog but still recalls codex from scene draft PASSED
+
+NovelAiTagResearchServiceTest > one timed out query does not cancel other concurrent searches PASSED
+
+NovelAiTagResearchServiceTest > planner request contains reference image in one user message PASSED
+
+NovelAiTagResearchServiceTest > planner parses scene draft and deduplicated queries capped at six PASSED
+
+NovelAiTagResearchServiceTest > revision query planner accepts empty query JSON without scene description PASSED
+
+NovelAiTagResearchServiceTest > planner accepts concise nonblank scene draft PASSED
+
+NovelAiTagResearchServiceTest > planner may run beyond old twenty second timeout PASSED
+
+NovelAiTagResearchServiceTest > planner streaming progress keeps reasoning and output visible PASSED
+
+NovelAiTagResearchServiceTest > user cancellation cancels every active batch request PASSED
+
+NovelAiTagResearchServiceTest > Danbooru query normalizes English spaces to underscores and Chinese spaces away PASSED
+
+NovelAiTagResearchServiceTest > planner removes queries already covered by character prompts PASSED
+
+NovelAiTagResearchServiceTest > planner infers finish or search from scene draft and queries PASSED
+
+NovelAiTagSuggestionServiceTest > cacheSeparatesVersionsAndStoresEmptyResults PASSED
+
+NovelAiTagSuggestionServiceTest > reordersNewMatchesAndReplacesDictionaryDuplicates PASSED
+
+NovelAiTagSuggestionServiceTest > decodesPreorderedRanksWithoutMaterializingFullPostingList PASSED
+
+NovelAiTagSuggestionServiceTest > emptyAndFailedSourcesFinishWithoutHidingSuccessfulMatches PASSED
+
+NovelAiTagSuggestionServiceTest > publishesEachSourceWhileBothSourcesAreStillSearching PASSED
+
+NovelAiV5TextPromptPolicyTest > onlyPositiveV5RequestCopyChanges PASSED
+
+NovelAiV5TextPromptPolicyTest > onlyFirstBaseChunkIsExpandedAndRandomizerPipesArePreserved PASSED
+
+NovelAiV5TextPromptPolicyTest > singleQuotesPreserveContractionsAndPossessives PASSED
+
+NovelAiV5TextPromptPolicyTest > repeatedTextIsRetainedAndExpansionIsIdempotent PASSED
+
+NovelAiV5TextPromptPolicyTest > cjkThresholdUsesAllFieldsAndIsStrictlyGreaterThanThirtyPercent PASSED
+
+NovelAiV5TextPromptPolicyTest > explicitTextDetectionMatchesOfficialBoundaries PASSED
+
+NovelAiV5TextPromptPolicyTest > unmatchedEmptyAndUnsupportedQuotesDoNotProduceText PASSED
+
+NovelAiV5TextPromptPolicyTest > cjkReversesWithinEachFieldButPreservesCharacterOrder PASSED
+
+PrivacyPngEncoderTest > chunkedOutputRoundTripsAndRejectsInvalidDimensions PASSED
+
+PrivacyPngEncoderTest > preservesDimensionsAndOnlyMinimalOrientationWhileSourceStaysUnchanged PASSED
+
+PrivacyPngEncoderTest > removesFullAlphaAndRgbStealthPayloadsEvenWithDamagedHeaders PASSED
+
+PrivacyPngEncoderTest > erasesLsbRegardlessOfValueAndKeepsTransparencyEndpoints PASSED
+
+StealthAlphaMetadataTest > absent header and tiny images are not metadata PASSED
+
+StealthAlphaMetadataTest > invalid lengths truncated gzip and decompression bomb fail bounded PASSED
+
+StealthAlphaMetadataTest > compressed and plain alpha payload use column order and UTF8 PASSED
+
+> Task :studio-desktop:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-desktop:convertXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:copyNonXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:prepareComposeResourcesTaskForMain NO-SOURCE
+> Task :studio-desktop:generateResourceAccessorsForMain SKIPPED
+> Task :studio-desktop:generateActualResourceCollectorsForMain SKIPPED
+> Task :studio-desktop:generateComposeResClass SKIPPED
+> Task :studio-desktop:compileKotlin FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':studio-desktop:compileKotlin'.
+> Could not resolve all files for configuration ':studio-desktop:compileClasspath'.
+   > Resolved 'org.xerial:sqlite-jdbc:3.53.4.0' which is not part of the dependency lock state
+   > Resolved 'com.composables:icons-lucide-cmp-jvm:2.2.1' which is not part of the dependency lock state
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to generate a Build Scan (Powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 1m 24s
+13 actionable tasks: 9 executed, 4 up-to-date

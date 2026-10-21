@@ -1,0 +1,15 @@
+{
+  "checkpoint": "UX-R1a workbench",
+  "sourceBase": "b4a20a770d185f4eacbaec1eff634f4e7b1f770d",
+  "sourceManifest": "20261021T050427888503Z-UX-R1a-workbench-strict-retest/source-before.json",
+  "packageManifest": "PACKAGED_FILES.json",
+  "window": "CCB Studio Suite · 工作台",
+  "isolatedRoot": ".local/ux-r1/native-workspace-visible",
+  "sandboxAttempts": "2 instances unavailable to screen control; terminated only after exact path/parent/root verification; no user interaction/data",
+  "visibleLaunch": "Window found by sky.list_windows after unsandboxed launch",
+  "screenshot": "NOT TESTED: FrameArrived timeout then window capture timeout",
+  "accessibility": "Only window/pane; no actionable controls returned",
+  "close": "Alt+F4 sent to exact returned test window; list_windows confirmed absent",
+  "visualAcceptance": "NOT TESTED",
+  "realProviderCalls": 0
+}

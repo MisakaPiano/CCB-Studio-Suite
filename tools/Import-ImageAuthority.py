@@ -8,13 +8,18 @@ SEEDS = ['domain/prompt/NovelAiPromptAuthority.kt', 'domain/image/NovelAiPromptD
          'domain/image/NovelAiImageService.kt', 'domain/image/NovelAiStudioModels.kt',
          'domain/image/NovelAiPngMetadataReader.kt', 'domain/image/NovelAiStudioImageImport.kt',
          'domain/image/PrivacyPngEncoder.kt', 'domain/image/ImageMetadataStripper.kt',
-         'domain/chat/OpenAiChatRequestSerializer.kt', 'domain/chat/OpenAiCompletionResponsePolicy.kt']
+         'domain/chat/OpenAiChatRequestSerializer.kt', 'domain/chat/OpenAiCompletionResponsePolicy.kt',
+         'domain/image/NovelAiTagLookup.kt', 'domain/image/NovelAiCatalogQueries.kt',
+         'domain/image/NovelAiTagSuggestionService.kt', 'domain/image/NovelAiPromptWordDictionary.kt',
+         'domain/image/NovelAiPromptTranslation.kt', 'domain/image/NovelAiPromptTokenCounter.kt',
+         'domain/image/RankedTagCompletion.kt']
 TESTS = ['NovelAiDesignerTransportTest', 'NovelAiImageModelResolutionTest',
          'NovelAiImageGuidanceTest', 'NovelAiStudioRequestTest', 'NovelAiImageRetryTest',
          'NovelAiPngMetadataReaderTest', 'NovelAiV5TextPromptPolicyTest',
          'NovelAiCharacterPositionTest', 'NovelAiCharacterEnabledTest',
          'NovelAiStudioCustomSizeTest', 'NovelAiPromptPostProcessorTest',
-         'PrivacyPngEncoderTest', 'StealthAlphaMetadataTest']
+         'PrivacyPngEncoderTest', 'StealthAlphaMetadataTest', 'NovelAiTagCompletionTest',
+         'NovelAiTagSuggestionServiceTest', 'NovelAiTagResearchServiceTest']
 
 def main():
     parser = argparse.ArgumentParser()

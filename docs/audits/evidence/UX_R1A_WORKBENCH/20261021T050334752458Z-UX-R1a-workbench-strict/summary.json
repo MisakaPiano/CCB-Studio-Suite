@@ -1,0 +1,27 @@
+{
+  "phase": "UX-R1a-workbench-strict",
+  "startedUtc": "2026-10-21T05:03:34.977832+00:00",
+  "seconds": 44.278,
+  "exitCode": 1,
+  "tests": 0,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "FAILED",
+  "testEvidence": "NOT TESTED (build only or failed before execution)",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-core:test",
+    ":studio-desktop:test"
+  ],
+  "baseCommit": "b4a20a770d185f4eacbaec1eff634f4e7b1f770d",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

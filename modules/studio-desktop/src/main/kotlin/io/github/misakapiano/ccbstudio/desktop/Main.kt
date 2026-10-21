@@ -39,6 +39,7 @@ internal val Gold=Color(0xff7db5ff)
 internal val Quiet=Color(0xffaab6c5)
 
 fun main(args:Array<String>) {
+    if("--synthetic-root" !in args) {launchStudio(args);return}
     fun option(name:String)=args.indexOf(name).takeIf {it>=0}?.let {args.getOrNull(it+1)}
     StudioBrand.configureDefaultWindows()
     val root=option("--synthetic-root")?.let {Paths.get(it)} ?: Paths.get(System.getenv("LOCALAPPDATA"),"CCBStudioSuitePreview","synthetic-v1")

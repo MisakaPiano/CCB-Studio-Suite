@@ -36,7 +36,7 @@ class CreationSession(private val workspace: StudioWorkspace) {
         }; return id
     }
     suspend fun design(account: AccountProfile, designer: NovelAiPromptDesigner,
-        onContent: (String)->Unit={}, onReasoning: (String)->Unit={}): NovelAiDesignReply {
+        onContent: (String)->Unit={}, onReasoning: (String)->Unit={}, onSubmitted:()->Unit={}): NovelAiDesignReply {
         account.validate(); require(account.service == "LLM" && account.provider != "SYNTHETIC")
         workspace.beginTask().use {
             lateinit var conversation: NovelAiDesignConversation; lateinit var turn: NovelAiDesignTurn
@@ -44,16 +44,20 @@ class CreationSession(private val workspace: StudioWorkspace) {
                 require(state.composer.isNotBlank()) { "请输入设计要求" }
                 val existing = state.conversations.firstOrNull {it.id == state.currentConversationId} ?: NovelAiDesignConversation()
                 require(!existing.hasBlockingTurn) { "上一轮未完成，请保留记录并新建或编辑分支" }
-                turn = NovelAiDesignTurn(userText=state.composer,designModelId=account.id,targetImageModel=state.draft.selectedModel,
+                val target=if(state.draft.aiDesignNaturalLanguageMode) NovelAiImageModel.V5_FULL else state.draft.selectedModel
+                if(state.attachCurrentPrompt) require(state.draft.basePrompt.isNotBlank() && state.draft.activeCharacters.all {it.prompt.isNotBlank()} && state.draft.activeCharacters.size<=target.maxCharacters)
+                turn = NovelAiDesignTurn(userText=state.composer,designModelId=account.id,targetImageModel=target,
                     naturalLanguageMode=state.draft.aiDesignNaturalLanguageMode,
                     attachedStudioPrompt=if(state.attachCurrentPrompt) NovelAiPositivePromptSnapshot(state.draft.basePrompt,
                         state.draft.activeCharacters.map {it.prompt}) else null)
                 conversation = existing.copy(title=if(existing.turns.isEmpty()) NovelAiDesignConversation.titleFrom(turn.userText) else existing.title,
+                    designContext=if(existing.turns.isEmpty()) NovelAiDesignContextSnapshot(characterImagePrompts=state.draft.importedCharacterPromptSources,finalPromptRequirement=state.draft.extraRequirement) else existing.designContext,
                     turns=existing.turns+turn,updatedAt=System.currentTimeMillis())
                 state.copy(conversations=state.conversations.filterNot {it.id==conversation.id}+conversation,
-                    currentConversationId=conversation.id,composer="",llmAccountId=account.id)
+                    currentConversationId=conversation.id,composer="",attachCurrentPrompt=false,llmAccountId=account.id)
             }
             try {
+                onSubmitted()
                 // Mirrors pinned NovelAiDesignTurnRunner's orchestration; repository is the Suite journal.
                 val index=conversation.turns.lastIndex; val baseline=conversation.revisionBaselineFor(index)
                 val context=conversation.designContext

@@ -1,0 +1,28 @@
+{
+  "phase": "UX-R1a-workbench-regression",
+  "startedUtc": "2026-10-21T04:53:23.130091+00:00",
+  "seconds": 84.712,
+  "exitCode": 1,
+  "tests": 124,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "FAILED",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-core:test",
+    ":image-authority:test",
+    ":studio-desktop:test"
+  ],
+  "baseCommit": "b4a20a770d185f4eacbaec1eff634f4e7b1f770d",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

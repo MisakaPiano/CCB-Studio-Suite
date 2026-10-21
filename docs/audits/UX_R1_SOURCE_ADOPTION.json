@@ -7,19 +7,183 @@
       "source": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/prompt/AuxiliaryMessageAssembler.kt",
       "target": "modules/studio-core/src/main/kotlin/com/example/chatbar/domain/prompt/AuxiliaryMessageAssembler.kt",
       "sha256": "2dc99b7f9fcd851927d140f603d248cd59c6434a9ee27a9c4a3ad76c55d7700e",
-      "adaptation": "none; exact bytes; consumer StudioTextTransport assembles authoritative auxiliary envelope"
+      "adaptation": "none; exact bytes; consumer StudioTextTransport assembles authoritative auxiliary envelope",
+      "sourceSha256": "2dc99b7f9fcd851927d140f603d248cd59c6434a9ee27a9c4a3ad76c55d7700e"
     },
     {
       "source": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/NovelAiDesignTurnRunner.kt",
       "target": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/CreationSession.kt",
       "sourceSha256": "2b716d05c1ca1ddc4bab0e315da1d471bd01b29dea900cfab99ae0ea57cc5047",
-      "adaptation": "Suite journal replaces Desktop repository; same design/revise baseline and research dispatch; cancellation/restart persistence; explicit candidate application"
+      "adaptation": "Suite journal replaces Desktop repository; same design/revise baseline and research dispatch; cancellation/restart persistence; explicit candidate application",
+      "sha256": "e6e2cdb53950522d19e61ed72cf5667b2720d3daf0d3744019f81aa1edc91c69"
     },
     {
       "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiTextTransport.kt",
       "target": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioTextTransport.kt",
       "sourceSha256": "c45f973e4703ff69edf4acd3c855cb8439ac0f2e1acf263c2bdf7f6cf7eed88b",
-      "adaptation": "Same auxiliary envelope/refusal/completion policies; Suite DPAPI, durable per-attempt budget, bounded HTTP/SSE and sanitized errors; no automatic retry; no provider body logging"
+      "adaptation": "Same auxiliary envelope/refusal/completion policies; Suite DPAPI, durable per-attempt budget, bounded HTTP/SSE and sanitized errors; no automatic retry; no provider body logging",
+      "sha256": "901152d21dbf65e2e861d00b2b7e0a8ea38af9f4d8d9dc99df3f43ee54a89a82"
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioControls.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioControls.kt",
+      "sourceSha256": "9d54e8e6936115cf706986932abe48bd1f68df63ff173e80205b91918dc4290a",
+      "sha256": "9d54e8e6936115cf706986932abe48bd1f68df63ff173e80205b91918dc4290a",
+      "adaptation": "Unmodified source component; Suite adapters supply platform/state dependencies"
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioWorkspace.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioWorkspace.kt",
+      "sourceSha256": "efe53dfc0a90883ea1cd92ef9816c02b290d6aebaf959764946b676676e9e9d9",
+      "sha256": "efe53dfc0a90883ea1cd92ef9816c02b290d6aebaf959764946b676676e9e9d9",
+      "adaptation": "Unmodified source component; Suite adapters supply platform/state dependencies"
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioPromptField.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioPromptField.kt",
+      "sourceSha256": "1f043b33308c50f2c39a640c67cc2c5883968775c0581b34f30377630ba53884",
+      "sha256": "1f043b33308c50f2c39a640c67cc2c5883968775c0581b34f30377630ba53884",
+      "adaptation": "Unmodified source component; Suite adapters supply platform/state dependencies"
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioCharacters.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioCharacters.kt",
+      "sourceSha256": "8bcc35845cb0e450cde252d801cefd895089fd0de5a31ee3b21a371036ce0b4d",
+      "sha256": "8bcc35845cb0e450cde252d801cefd895089fd0de5a31ee3b21a371036ce0b4d",
+      "adaptation": "Unmodified source component; Suite adapters supply platform/state dependencies"
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopDesignPresentation.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopDesignPresentation.kt",
+      "sourceSha256": "edae85c09cd83338a9a745dca6bd1757418b05080d65fb113c4586a9fd511473",
+      "sha256": "edae85c09cd83338a9a745dca6bd1757418b05080d65fb113c4586a9fd511473",
+      "adaptation": "Unmodified source component; Suite adapters supply platform/state dependencies"
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopInputFocus.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopInputFocus.kt",
+      "sourceSha256": "ba9d5f74f46d663aa08f692829e4310fb6943bb8f122091855198f52deda65d6",
+      "sha256": "ba9d5f74f46d663aa08f692829e4310fb6943bb8f122091855198f52deda65d6",
+      "adaptation": "Unmodified source component; Suite adapters supply platform/state dependencies"
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopAppIcons.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopAppIcons.kt",
+      "sourceSha256": "1b71b78c6ce567c439b9e7447322c6cf89d43ac3eaa191fea88234bbd907d113",
+      "sha256": "1b71b78c6ce567c439b9e7447322c6cf89d43ac3eaa191fea88234bbd907d113",
+      "adaptation": "Unmodified source component; Suite adapters supply platform/state dependencies"
+    },
+    {
+      "source": "app/app/src/main/assets/danbooru/catalog.json",
+      "target": "modules/studio-core/src/main/resources/danbooru/catalog.json",
+      "sourceSha256": "5676e502a20e93e3fbc81b6b89d59647cb857f2851438d7e296e574ebb4f1e60",
+      "sha256": "5676e502a20e93e3fbc81b6b89d59647cb857f2851438d7e296e574ebb4f1e60",
+      "adaptation": "Pinned bundled catalog for actual Designer/Tag/translation consumers; preserve upstream notices; USER-DIRECT source authority"
+    },
+    {
+      "source": "app/app/src/main/assets/danbooru/tag.sqlite.bundle",
+      "target": "modules/studio-core/src/main/resources/danbooru/tag.sqlite.bundle",
+      "sourceSha256": "2399aebb4ce8400774b2d39f93fffd85c29720b00890b0e8b643590ffb7fec12",
+      "sha256": "2399aebb4ce8400774b2d39f93fffd85c29720b00890b0e8b643590ffb7fec12",
+      "adaptation": "Pinned bundled catalog for actual Designer/Tag/translation consumers; preserve upstream notices; USER-DIRECT source authority"
+    },
+    {
+      "source": "app/app/src/main/assets/licenses/danbooru_tag_catalog.txt",
+      "target": "modules/studio-core/src/main/resources/licenses/danbooru_tag_catalog.txt",
+      "sourceSha256": "2617c1c85042f06f4a48eedab9401fa35638ffe5e2b2ceeeaa8004b42b3cfcb2",
+      "sha256": "2617c1c85042f06f4a48eedab9401fa35638ffe5e2b2ceeeaa8004b42b3cfcb2",
+      "adaptation": "Pinned bundled catalog for actual Designer/Tag/translation consumers; preserve upstream notices; USER-DIRECT source authority"
+    },
+    {
+      "source": "app/app/src/main/assets/presets/novelai/nai-codex-v1.json",
+      "target": "modules/studio-core/src/main/resources/presets/novelai/nai-codex-v1.json",
+      "sourceSha256": "5fd6fa227dac392530fdda689ec8648633f75790edea1889603edfa3b6209b9a",
+      "sha256": "5fd6fa227dac392530fdda689ec8648633f75790edea1889603edfa3b6209b9a",
+      "adaptation": "Pinned bundled catalog for actual Designer/Tag/translation consumers; preserve upstream notices; USER-DIRECT source authority"
+    },
+    {
+      "source": "app/app/src/main/assets/prompt_dictionary/ecdict.sqlite.binz",
+      "target": "modules/studio-core/src/main/resources/prompt_dictionary/ecdict.sqlite.binz",
+      "sourceSha256": "3388e2e5b083c870f4dae9f2f03b4464289e0111b331ae39b8d0b4b68ffe2a90",
+      "sha256": "3388e2e5b083c870f4dae9f2f03b4464289e0111b331ae39b8d0b4b68ffe2a90",
+      "adaptation": "Pinned bundled catalog for actual Designer/Tag/translation consumers; preserve upstream notices; USER-DIRECT source authority"
+    },
+    {
+      "source": "app/app/src/main/assets/prompt_dictionary/metadata.json",
+      "target": "modules/studio-core/src/main/resources/prompt_dictionary/metadata.json",
+      "sourceSha256": "84d300b1180040d263fc4386f66df413159780d120097e85f5a497da0d7c2330",
+      "sha256": "84d300b1180040d263fc4386f66df413159780d120097e85f5a497da0d7c2330",
+      "adaptation": "Pinned bundled catalog for actual Designer/Tag/translation consumers; preserve upstream notices; USER-DIRECT source authority"
+    },
+    {
+      "source": "app/app/src/main/assets/licenses/prompt_translation_dictionary_LICENSE.txt",
+      "target": "modules/studio-core/src/main/resources/licenses/prompt_translation_dictionary_LICENSE.txt",
+      "sourceSha256": "8cda17ab679670e8102ab05b8d0daf8f8d48b0bc9efc84e8f84d3fcc9d4cdd80",
+      "sha256": "8cda17ab679670e8102ab05b8d0daf8f8d48b0bc9efc84e8f84d3fcc9d4cdd80",
+      "adaptation": "Pinned bundled catalog for actual Designer/Tag/translation consumers; preserve upstream notices; USER-DIRECT source authority"
+    },
+    {
+      "source": "app/app/src/main/assets/tag_completion/danbooru.json",
+      "target": "modules/studio-core/src/main/resources/tag_completion/danbooru.json",
+      "sourceSha256": "bb8ec045091b8207718877e6266ead10216de57830efa4c8917d031ea50913a3",
+      "sha256": "bb8ec045091b8207718877e6266ead10216de57830efa4c8917d031ea50913a3",
+      "adaptation": "Pinned bundled catalog for actual Designer/Tag/translation consumers; preserve upstream notices; USER-DIRECT source authority"
+    },
+    {
+      "source": "app/app/src/main/assets/tag_completion/danbooru.sqlite.binz",
+      "target": "modules/studio-core/src/main/resources/tag_completion/danbooru.sqlite.binz",
+      "sourceSha256": "28f600c62023b32a7aa2bd9195a4c9d2f0551736c277a2db19a65b4479f0c955",
+      "sha256": "28f600c62023b32a7aa2bd9195a4c9d2f0551736c277a2db19a65b4479f0c955",
+      "adaptation": "Pinned bundled catalog for actual Designer/Tag/translation consumers; preserve upstream notices; USER-DIRECT source authority"
+    },
+    {
+      "source": "app/app/src/main/assets/tag_completion/dictionary.json",
+      "target": "modules/studio-core/src/main/resources/tag_completion/dictionary.json",
+      "sourceSha256": "f45c7c547fc713120acdc0c350b9c9f92965ac389d43172f802cf13288420958",
+      "sha256": "f45c7c547fc713120acdc0c350b9c9f92965ac389d43172f802cf13288420958",
+      "adaptation": "Pinned bundled catalog for actual Designer/Tag/translation consumers; preserve upstream notices; USER-DIRECT source authority"
+    },
+    {
+      "source": "app/app/src/main/assets/tag_completion/dictionary.sqlite.binz",
+      "target": "modules/studio-core/src/main/resources/tag_completion/dictionary.sqlite.binz",
+      "sourceSha256": "1ef38c8fc640b62f1e1b6263c80cd01ce937eb755748f7925ce5f017218ba215",
+      "sha256": "1ef38c8fc640b62f1e1b6263c80cd01ce937eb755748f7925ce5f017218ba215",
+      "adaptation": "Pinned bundled catalog for actual Designer/Tag/translation consumers; preserve upstream notices; USER-DIRECT source authority"
+    },
+    {
+      "source": "app/app/src/main/assets/tokenizers/nai_qwen35_v2.binz",
+      "target": "modules/studio-core/src/main/resources/tokenizers/nai_qwen35_v2.binz",
+      "sourceSha256": "13faa3bd859af6b053728ef79a8f723f6fbc7b5a7956b68fb8f245db9bd37902",
+      "sha256": "13faa3bd859af6b053728ef79a8f723f6fbc7b5a7956b68fb8f245db9bd37902",
+      "adaptation": "Pinned bundled catalog for actual Designer/Tag/translation consumers; preserve upstream notices; USER-DIRECT source authority"
+    },
+    {
+      "source": "app/app/src/main/assets/tokenizers/nai_t5_v2.binz",
+      "target": "modules/studio-core/src/main/resources/tokenizers/nai_t5_v2.binz",
+      "sourceSha256": "2d3b41f16434fca97b55757b6a94f2599f5ddb8bad217cfc7d2119e2d50134dc",
+      "sha256": "2d3b41f16434fca97b55757b6a94f2599f5ddb8bad217cfc7d2119e2d50134dc",
+      "adaptation": "Pinned bundled catalog for actual Designer/Tag/translation consumers; preserve upstream notices; USER-DIRECT source authority"
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiCatalog.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiCatalog.kt",
+      "sourceSha256": "cf97edbba6e5fc5f77d2e20a33f3b2e833a1b56cba18624e01037cee3a5c0cb2",
+      "adaptation": "Pinned bundled catalog only. Unknown externally activated catalog fails closed; Desktop dynamic catalog-update dependency omitted. SQL/ranking and bundled checks remain source behavior.",
+      "sha256": "937e5e1971778d91b89bbc9638bede9dcd47f9fa9ff57c2886ee6728b1c86261"
+    },
+    {
+      "source": "app/desktopApp/src/test/kotlin/com/example/chatbar/desktop/DesktopStudioWorkspaceTest.kt",
+      "target": "modules/studio-desktop/src/test/kotlin/com/example/chatbar/desktop/DesktopStudioWorkspaceTest.kt",
+      "sha256": "afecd5c240d9472e53d520125bfd5620051c1382a2cbd3d4da593173e734b150",
+      "adaptation": "Retain two source component geometry/drag/data-survival tests. Desktop-specific full-application fixture replaced by WorkbenchWorkflowTest against actual Suite shell/controller; do not import Desktop application container.",
+      "sourceSha256": "04b100d5e39eca3b6c1af371ecd576e031d8536538c876b2c54a8cac9b146d5d"
+    },
+    {
+      "source": "app/desktopApp/src/test/kotlin/com/example/chatbar/desktop/DesktopStudioPresentationTest.kt",
+      "target": "modules/studio-desktop/src/test/kotlin/com/example/chatbar/desktop/DesktopStudioPresentationTest.kt",
+      "sha256": "58abb8aa654fcc4d48a560b521f2e11a811b2be6d81261e8e203685388f94cb6",
+      "adaptation": "13 Studio-specific Compose scene/input regressions retained; excluded final chat attachment toolbar case because Suite does not adopt Desktop chat.",
+      "sourceSha256": "35b60b290aef7bad2dca3b7e6960dcef5befaa99585bd37feafcacb8a74b03d9"
     }
   ]
 }
