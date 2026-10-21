@@ -1,0 +1,127 @@
+[
+  {
+    "path": "ACTUAL_RESULT.json",
+    "bytes": 1019,
+    "sha256": "3f78ca5f7e491fd1d51e70bf7526131ba370cb9b9c9afe892cc6fb294b219226"
+  },
+  {
+    "path": "B_VERIFIED.json",
+    "bytes": 4754,
+    "sha256": "b76daa6c7e85f79d47bcf80647819faa19d8001b3b1b4380a3d98a70fdf1031e"
+  },
+  {
+    "path": "build-runs/20261021T222832566627Z-fixed-nine-package/gradle.log",
+    "bytes": 2474,
+    "sha256": "65b34501129bcc0c2142cbef23825901c792a938e87283ab672ac69e61b65f3d"
+  },
+  {
+    "path": "build-runs/20261021T222832566627Z-fixed-nine-package/source-before.json",
+    "bytes": 59065,
+    "sha256": "a6541d816a796574c99b89c800d2aeedb15d0c411cdf6075dcf35831af1f5160"
+  },
+  {
+    "path": "build-runs/20261021T222832566627Z-fixed-nine-package/summary.json",
+    "bytes": 867,
+    "sha256": "b0ff99d371a7a789cd2454214436f4c978cba761ed22736fcdb35d3e2a800710"
+  },
+  {
+    "path": "build-runs/20261021T222832566627Z-fixed-nine-package/test-cases.json",
+    "bytes": 4,
+    "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+  },
+  {
+    "path": "build-runs/20261021T222946859227Z-fixed-ten-package/gradle.log",
+    "bytes": 2474,
+    "sha256": "fb208959c44b073091bcb34306b8266bd6772104803faea3d6a7f6d7e90781f3"
+  },
+  {
+    "path": "build-runs/20261021T222946859227Z-fixed-ten-package/source-before.json",
+    "bytes": 59065,
+    "sha256": "a6541d816a796574c99b89c800d2aeedb15d0c411cdf6075dcf35831af1f5160"
+  },
+  {
+    "path": "build-runs/20261021T222946859227Z-fixed-ten-package/summary.json",
+    "bytes": 867,
+    "sha256": "56d31de3ae7282bd1346e5444a6529310dbfe3bd5088971b5c01cfe81204b4c4"
+  },
+  {
+    "path": "build-runs/20261021T222946859227Z-fixed-ten-package/test-cases.json",
+    "bytes": 4,
+    "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+  },
+  {
+    "path": "BUILD_10.json",
+    "bytes": 321,
+    "sha256": "7e2baa011081396783a6af28c6ef3114d9a3e344ec7afb6f9dcdab108164badb"
+  },
+  {
+    "path": "BUILD_9.json",
+    "bytes": 320,
+    "sha256": "656440d0f3fdea61b9a6db22bdc15954f4693d30a9430f5440aae2436e6a74cb"
+  },
+  {
+    "path": "events.jsonl",
+    "bytes": 1444,
+    "sha256": "1e7b11b47d6189611c2ec128e1bbf6ce5e0c6417a5a3ae72346840a3ececb81a"
+  },
+  {
+    "path": "INSTALL_JOURNAL.json",
+    "bytes": 660,
+    "sha256": "821490641557b10291c8561949b864480a1d79446bd3ac1efb3ce580eb2b21b1"
+  },
+  {
+    "path": "INSTALL_MANIFEST_10.json",
+    "bytes": 100959,
+    "sha256": "3b98ff2e745e11092b5b8b507aa531e8d5611e525f25b715269cc97b0dc3e4c8"
+  },
+  {
+    "path": "plan.json",
+    "bytes": 5557,
+    "sha256": "f53aa5e346b0a5bf79aed6cdeee15c461c9869cad6d2a3780448cd128622ca6a"
+  },
+  {
+    "path": "receipt.json",
+    "bytes": 1325,
+    "sha256": "e81afa9c8aef9a67bddc57bc2c0fa334f25690b1177c48c32d6e8e6d0887babb"
+  },
+  {
+    "path": "RESTORED_FIXTURE.json",
+    "bytes": 386,
+    "sha256": "527e0012fa6e67e39aaf2e93910c8b1fdd8b88ba6677bae13ebcaab14c62654d"
+  },
+  {
+    "path": "result.json",
+    "bytes": 708,
+    "sha256": "0b4d3a2c26f5cb3b4ab7570e203c4923dab350667ba11ee3393a526be62bb316"
+  },
+  {
+    "path": "SOURCE_DELIVERY_IDENTITY.json",
+    "bytes": 146969,
+    "sha256": "e5aab0cbb8b5c6a6ed2c6a514fbb44f187261fd7c9ea48fe0bcb37217bff93c0"
+  },
+  {
+    "path": "UPDATE_CONFIG_10.json",
+    "bytes": 464,
+    "sha256": "5038e4942ab2c8b252e7f632dd0eb6780a167b53ed5801c1bb50834a7f57fbb3"
+  },
+  {
+    "path": "user-candidate-ten.png",
+    "bytes": 79988,
+    "sha256": "fd0db73558ba93e585177996ebb4a3a54739f071e8f2ee436472e11a6159e04a"
+  },
+  {
+    "path": "user-maintenance.png",
+    "bytes": 88134,
+    "sha256": "22b423f7e19a59fe7bbae0356e6549e1455e5a9ec086f33fcc7f3e02bba50f11"
+  },
+  {
+    "path": "user-startup-nine.png",
+    "bytes": 198690,
+    "sha256": "5dd10031cf610bf8c4e9fda6dcf101c9fd3a87ef0dd6952ad281a90887aa230b"
+  },
+  {
+    "path": "user-verifying.png",
+    "bytes": 62457,
+    "sha256": "f5cba13c616f4b6372c7d273e76b31af69dc69dcb4c003144d0497f7b5b043f8"
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "implementationBase": "fc1d2b5cd2e77b1a07cbf2de495d5e2045b41f15",
+  "change": "Tests and evidence only; fixed installers 9/10 remain unchanged",
+  "runs": [
+    {
+      "phase": "role-workflow",
+      "tests": 1,
+      "seconds": 46.884,
+      "status": "PASS"
+    },
+    {
+      "phase": "role-workflow-desktop-full",
+      "tests": 112,
+      "seconds": 280.194,
+      "status": "PASS"
+    }
+  ],
+  "realApiCalls": 0,
+  "nativeVisual": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED",
+  "overall": "PRODUCT_HOLD / NOT RC"
+}

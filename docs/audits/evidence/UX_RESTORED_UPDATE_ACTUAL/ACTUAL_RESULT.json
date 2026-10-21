@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "sourceSha": "fc1d2b5cd2e77b1a07cbf2de495d5e2045b41f15",
+  "handoff": "9318ad69-b317-43aa-8ae1-860fcdc31233",
+  "installedVersion": 10,
+  "dataRoot": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-data-6-restored",
+  "assets": 10,
+  "credentialsMissingBeforeAndAfter": 1,
+  "secretFilesAfter": 0,
+  "snapshotEqual": true,
+  "installedFilesVerified": 546,
+  "installedBytesVerified": 251072682,
+  "installManifestSha256": "3b98ff2e745e11092b5b8b507aa531e8d5611e525f25b715269cc97b0dc3e4c8",
+  "userObservation": "User explicitly confirmed restart into the new version; supplied verification and maintenance screenshots. No post-restart screenshot claimed.",
+  "fixture": "OFFLINE_SYNTHETIC_FIXTURE_COPY_NOT_PRODUCT_RESTORE_TEST; actual product restore separately recorded in UX_NATIVE_RESTORE",
+  "nativeCapture": "Unavailable; subsequent control stopped after physical Escape. No screenshot automation PASS claimed.",
+  "realApiCalls": 0,
+  "overall": "PRODUCT_HOLD / NOT RC"
+}

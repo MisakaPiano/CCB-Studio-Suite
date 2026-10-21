@@ -32,8 +32,8 @@ class WorkbenchWorkflowTest {
         return semanticsOwners.flatMap{walk(it.rootSemanticsNode)}
     }
     private fun SemanticsNode.matches(text:String)=config.getOrNull(SemanticsProperties.Text)?.any{it.text==text}==true || config.getOrNull(SemanticsProperties.ContentDescription)?.contains(text)==true
-    private suspend fun ImageComposeScene.click(text:String){val n=nodes().first{it.matches(text)&&it.config.getOrNull(SemanticsActions.OnClick)!=null};assertTrue(n.config[SemanticsActions.OnClick].action!!.invoke());frames()}
-    private suspend fun ImageComposeScene.field(label:String,text:String){val n=nodes().first{it.config.getOrNull(SemanticsActions.SetText)!=null && (it.matches(label)||it.children.any{child->child.matches(label)})};assertTrue(n.config[SemanticsActions.SetText].action!!.invoke(AnnotatedString(text)));frames()}
+    private suspend fun ImageComposeScene.click(text:String,index:Int=0){val n=nodes().filter{it.matches(text)&&it.config.getOrNull(SemanticsActions.OnClick)!=null}[index];assertTrue(n.config[SemanticsActions.OnClick].action!!.invoke());frames()}
+    private suspend fun ImageComposeScene.field(label:String,text:String,index:Int=0){val n=nodes().filter{it.config.getOrNull(SemanticsActions.SetText)!=null && (it.matches(label)||it.children.any{child->child.matches(label)})}[index];assertTrue(n.config[SemanticsActions.SetText].action!!.invoke(AnnotatedString(text)));frames()}
     private suspend fun WorkbenchController.idle(){withTimeout(30000){active?.join()};assertNull(problem,problem)}
     private fun ImageComposeScene.shot(name:String){val out=Path.of("build/ux-r1a-workbench/$name.png");Files.createDirectories(out.parent);render(System.nanoTime()).use{im->im.encodeToData()!!.use{Files.write(out,it.bytes)}}}
     private fun sse(text:String):ByteArray {
@@ -100,6 +100,57 @@ class WorkbenchWorkflowTest {
             val receipt=Path.of("build/ux-r4-update-fixture/${newId()}.json")
             Files.createDirectories(receipt.parent)
             writeUpdateJson(receipt,buildJsonObject{put("dataRoot",r.toAbsolutePath().toString());put("fixture","LOOPBACK_GUI_WITH_SEEDED_TYPESET_DOCUMENT");put("snapshot",updateSnapshot(again))})
+        }
+    }
+
+    @Test fun roleEditingReorderDisableAndDeleteReachRequestAndSurviveReopen()=runBlocking(awt){
+        val r=root();val png=EditorRenderer.synthetic(48,48);val requests=CopyOnWriteArrayList<String>()
+        val server=HttpServer.create(InetSocketAddress("127.0.0.1",0),0)
+        server.createContext("/"){e->requests+=e.requestBody.readBytes().decodeToString();val bytes=frame(png)
+            e.sendResponseHeaders(200,bytes.size.toLong());e.responseBody.use{it.write(bytes)}};server.start()
+        val client=studioHttpClient().newBuilder().addInterceptor{chain->chain.proceed(chain.request().newBuilder().url("http://127.0.0.1:${server.address.port}/").removeHeader("Authorization").build())}.build()
+        val scope=CoroutineScope(SupervisorJob()+awt);val w=StudioWorkspace.openStudio(r)
+        val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),client,RequestAdmission{})
+        val scene=ImageComposeScene(1240,880,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        var expected=emptyList<NovelAiCharacterPromptDraft>()
+        fun captions(body:String,key:String)=Json.parseToJsonElement(body).jsonObject.getValue("parameters").jsonObject
+            .getValue(key).jsonObject.getValue("caption").jsonObject.getValue("char_captions").jsonArray
+            .map{it.jsonObject.getValue("char_caption").jsonPrimitive.content}
+        try {
+            c.saveAccount(null,"Roles fixture","NAI","https://image.novelai.net",NovelAiImageModel.V4_5_FULL.apiId,"LOCAL_TEST_ONLY");c.idle()
+            scene.frames();scene.field("基础 Prompt","two people in a room")
+            scene.click("添加角色");scene.field("角色正向","first person, red coat");scene.field("角色负面","first unwanted")
+            val first=c.draft.characters.single().id
+            scene.click("添加角色");scene.field("角色正向","second person, blue coat",1);scene.field("角色负面","second unwanted",1)
+            val second=c.draft.characters.last().id
+            scene.click("↑",1);assertEquals(listOf(second,first),c.draft.characters.map{it.id})
+            scene.click("⌃",0);scene.click("⌄");assertEquals("second person, blue coat",c.draft.characters.first().prompt)
+            scene.click("✓",0);assertFalse(c.draft.characters.first().enabled)
+            scene.click("添加角色");val removed=c.draft.characters.last().id;scene.click("删除",2)
+            assertFalse(c.draft.characters.any{it.id==removed});assertEquals(2,c.draft.characters.size)
+            scene.click("生成图片");c.idle();scene.frames()
+            assertEquals(listOf("first person, red coat"),captions(requests.single(),"v4_prompt"))
+            assertEquals(listOf("first unwanted"),captions(requests.single(),"v4_negative_prompt"))
+            assertFalse(requests.single().contains("second person"));assertFalse(requests.single().contains("second unwanted"))
+            scene.shot("role-disabled-request")
+            scene.click("×");scene.click("生成图片");c.idle();scene.frames()
+            assertEquals(listOf("second person, blue coat","first person, red coat"),captions(requests.last(),"v4_prompt"))
+            assertEquals(listOf("second unwanted","first unwanted"),captions(requests.last(),"v4_negative_prompt"))
+            scene.click("✓",0);expected=c.draft.characters.toList();c.flush();scene.shot("role-reordered-persisted")
+            assertEquals(2,requests.size);assertEquals(2,w.state.jobs.size)
+            c.assets.forEach{assertContentEquals(png,w.bytes(it.request().id().toString()))}
+        } finally {scene.close();c.close();scope.cancel();server.stop(0)}
+        StudioWorkspace.openStudio(r).use{again->
+            assertEquals(expected,again.state.creation!!.draft.characters)
+            assertEquals(listOf("COMPLETED","COMPLETED"),again.state.jobs.map{it.state})
+            val reopenedScope=CoroutineScope(SupervisorJob()+awt)
+            val reopened=WorkbenchController(again,reopenedScope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{error("Reopen must not submit a request")})
+            val reopenedScene=ImageComposeScene(1240,880,coroutineContext=awt){MaterialTheme{Workbench(reopened,DesktopWindowChrome{},false)}}
+            try {reopenedScene.frames();assertEquals(expected,reopened.draft.characters);assertNull(reopened.active)
+                assertTrue(reopenedScene.nodes().any{it.matches("角色 1 · 已停用")})
+                assertTrue(reopenedScene.nodes().any{it.matches("角色 2 · 已启用")})
+                reopenedScene.shot("role-state-reopened")
+            } finally {reopenedScene.close();reopened.close();reopenedScope.cancel()}
         }
     }
 

@@ -1,0 +1,18 @@
+{
+  "status": "INSTALLED_NOT_STARTED",
+  "target": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-applications-6\\10-fc1d2b5cd2e7",
+  "stage": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-applications-6\\10-fc1d2b5cd2e7.c8d7f0525a574c37b58beda90422dd7a.installing",
+  "expected": {
+    "product": "ccb-studio-suite",
+    "platform": "windows-x86_64",
+    "channel": "internal",
+    "version": 10,
+    "sourceSha": "fc1d2b5cd2e77b1a07cbf2de495d5e2045b41f15"
+  },
+  "dataModified": false,
+  "verification": {
+    "files": 546,
+    "bytes": 251072682,
+    "manifestSha256": "3b98ff2e745e11092b5b8b507aa531e8d5611e525f25b715269cc97b0dc3e4c8"
+  }
+}

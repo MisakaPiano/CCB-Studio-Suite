@@ -144,11 +144,16 @@
         "DesktopStudioCharacters.kt"
       ],
       "tests": [
-        "DesktopStudioPresentationTest: 13 source component regressions; exact field coverage in JUnit XML"
+        "DesktopStudioPresentationTest: 13 source component regressions; exact field coverage in JUnit XML",
+        "WorkbenchWorkflowTest.roleEditingReorderDisableAndDeleteReachRequestAndSurviveReopen"
       ],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "SOURCE_COMPONENT_ADOPTED / FULL_WORKFLOW_NOT_TESTED / PRODUCT_HOLD"
+      "guiEvidence": [
+        "docs/audits/UX_ROLE_WORKFLOW.md (actual Workbench Compose semantics; offscreen; loopback HTTP only)"
+      ],
+      "persistenceEvidence": [
+        "Role IDs/order/enabled/positive/negative values equal after controller close and workspace reopen; reopened Workbench state asserted; no automatic request"
+      ],
+      "status": "ENGINEERING_PARTIAL / LOOPBACK_GUI_REQUEST_AND_REOPEN_PASS / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "P08",
@@ -448,14 +453,17 @@
       ],
       "tests": [
         "MetadataWorkflowTest.missingMalformedUnsupportedAndReadFailureAreDistinct",
-        "PngFieldInspectionTest / MetadataWorkflowTest / GalleryWorkflowTest"
+        "PngFieldInspectionTest / MetadataWorkflowTest / GalleryWorkflowTest",
+        "MetadataWorkflowTest.actualMetadataUiPreviewApplyUndoAndRestart; typed Recipe selection belongs to I04"
       ],
       "guiEvidence": [
         "docs/audits/UX_R1B_CREATION.md (exact scope; no native visual claim)",
         "docs/audits/evidence/UX_R3_PNG_FIELDS (Compose offscreen)"
       ],
-      "persistenceEvidence": [],
-      "status": "ENGINEERING_PARTIAL / PNG_FIELDS_GUI_PASS / PER_FIELD_RECIPE_APPLY_PENDING / PRODUCT_HOLD"
+      "persistenceEvidence": [
+        "MetadataWorkflowTest: confirmed selection, undo/redo, same-root reopen and exact original bytes; UX_R3_RECIPE_SELECTION documents typed history-field application under I04"
+      ],
+      "status": "ENGINEERING_PARTIAL / PNG_FIELDS_GUI_AND_REOPEN_PASS / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "I04",
@@ -584,8 +592,10 @@
       "guiEvidence": [
         "docs/audits/UX_ASSET_ARCHIVE.md"
       ],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN",
+      "persistenceEvidence": [
+        "UX_ASSET_ARCHIVE: original/project/reference preservation, restore, backup/reopen and publication interruption assertions; no permanent deletion"
+      ],
+      "status": "ENGINEERING_PARTIAL / ARCHIVE_GUI_AND_PERSISTENCE_PASS / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD",
       "latestScopeEvidence": "Reversible visibility archive preserves references and exact bytes; no permanent deletion or disk reclamation; human acceptance pending"
     },
     {
