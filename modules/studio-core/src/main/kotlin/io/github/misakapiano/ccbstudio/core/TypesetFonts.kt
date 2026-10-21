@@ -41,6 +41,21 @@ object TypesetFonts {
         }
     }
     fun documentFonts(document:TypesetDocument):List<String> = document.pages.flatMap{p->listOf(p.story.fontFamily)+p.texts.flatMap{t->listOf(t.style.fontFamily)+TypesetLayout.tokens(t.text,t.style).map{it.style.fontFamily}}}+document.presets.map{it.text.style.fontFamily}
+    fun verifyRenderable(workspace:StudioWorkspace,document:TypesetDocument,variant:String="all") {
+        val styles=mutableListOf<Pair<TypesetStyle,String>>()
+        document.pages.forEach{p->
+            if(document.mode=="storybook" || variant in setOf("all","text"))p.texts.filter{it.visible}.forEach{t->TypesetLayout.tokens(t.text,t.style).forEach{styles+=it.style to it.display}}
+            if(document.mode=="storybook")styles+=TypesetStyle(fontFamily=p.story.fontFamily,fontSize=p.story.fontSize) to (p.caption+"0123456789")
+        }
+        activate(workspace,styles.map{it.first.fontFamily})
+        val environment=java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment()
+        val available=(environment.availableFontFamilyNames.toList()+environment.getAvailableFontFamilyNames(java.util.Locale.ENGLISH)).map{it.lowercase(java.util.Locale.ROOT)}.toSet()+setOf("dialog","dialoginput","serif","sansserif","monospaced")
+        val missing=styles.map{it.first.fontFamily}.distinct().filter{family->
+            !family.startsWith("ccb-font:") && when(family){"CCBRef"->"microsoft yahei";"CCBRefSerif"->"simsun";else->family.split(',').first().trim().trim('"','\'').lowercase()} !in available}
+        if(missing.isNotEmpty())throw DataProblem("FONT_MISSING","请选择或导入可用字体：${missing.joinToString("、")}")
+        if(styles.distinct().any{(style,value)->value.codePoints().toArray().any{cp->!Character.isWhitespace(cp) && TypesetLayout.font(style,String(Character.toChars(cp))).canDisplay(cp).not()}})
+            throw DataProblem("GLYPH_MISSING","存在当前字体及回退字体无法显示的字符；请更换字体后重新预览")
+    }
     internal fun forget(names:Collection<String>){names.forEach(loaded::remove)}
     private fun ratio(bytes:ByteArray):Double?=runCatching {
         val b=ByteBuffer.wrap(bytes).order(ByteOrder.BIG_ENDIAN);val n=b.getShort(4).toInt() and 65535;require(n in 1..512)

@@ -14,6 +14,7 @@ import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.*
+import androidx.compose.ui.input.key.*
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.semantics.*
 import androidx.compose.ui.text.TextRange
@@ -29,6 +30,7 @@ import kotlin.math.*
     val e=c.editor;var newName by remember{mutableStateOf("")};var creating by remember{mutableStateOf(false)}
     var projectAction by remember{mutableStateOf<String?>(null)};var projectName by remember{mutableStateOf("")};
     var deletePages by remember{mutableStateOf(false)};var tab by remember{mutableStateOf("画布")}
+    var exporting by remember{mutableStateOf(false)}
     Column(Modifier.fillMaxSize()) {
         StudioActions {
             CompactChoice("编辑工程",c.workspace.state.typesetProjects,e.project,{it.name}){e.open(it.id)}
@@ -37,8 +39,11 @@ import kotlin.math.*
             StudioAction("保存工程",e.dirty && !c.busy){c.run("保存工程"){e.drain()}}
             StudioAction("撤销编辑",!c.busy && (e.dirty || e.project?.undo?.isNotEmpty()==true)){e.history()}
             StudioAction("重做编辑",!c.busy && e.project?.redo?.isNotEmpty()==true){e.history(true)}
+            StudioAction("预览与导出",!c.busy && e.document?.pages?.isNotEmpty()==true){exporting=true}
             StatusText(if(e.dirty)"编辑待保存"else"编辑已保存")
         }
+        e.exportDirectory?.let{Text("导出已完成并校验：$it",modifier=Modifier.padding(horizontal=12.dp))}
+        e.exportProblem?.let{Text(it,color=MaterialTheme.colors.error,modifier=Modifier.padding(horizontal=12.dp))}
         if(e.document==null) {
             Box(Modifier.fillMaxSize(),contentAlignment=Alignment.Center){Column(horizontalAlignment=Alignment.CenterHorizontally){Text("把图片编成可再次编辑的工程");Text("从图库选择图片，命名后建立队列；原件保持完整。")
                 StudioAction("前往图库选择图片"){c.view="图库"};if(c.workspace.state.typesetProjects.isNotEmpty())StudioAction("继续最近工程"){e.open(c.workspace.state.typesetProjects.last().id)}}}
@@ -74,6 +79,7 @@ import kotlin.math.*
             }
         }
     }
+    if(exporting)TypesetExportDialog(c,e){exporting=false}
     if(projectAction!=null)AlertDialog(onDismissRequest={projectAction=null},title={Text(when(projectAction){"rename"->"重命名工程";"copy"->"另存为独立工程";else->"删除工程记录？"})},text={Column{
         if(projectAction=="remove")Text("只移除此工程记录；图库原件与已保存资产保留。删除后不能通过工程撤销恢复，请先备份或另存。")
         else {OutlinedTextField(projectName,{projectName=it.take(100)},label={Text("新工程名称")});if(projectAction=="copy")Text("保留当前页面与图层，新工程有独立历史；后续修改互不影响。")}
@@ -248,7 +254,9 @@ private data class EditorRaster(val bitmap:ImageBitmap,val width:Int,val height:
 @Composable private fun StoryProperties(c:WorkbenchController,e:TypesetEditorController) {
     val p=e.page?:return;val s=p.story
     Text("小人书 · 第 ${e.document!!.pages.indexOf(p)+e.document!!.startNumber} 页")
-    OutlinedTextField(p.caption,{v->e.pageChange{it.copy(caption=v)}},label={Text("本页旁白")},modifier=Modifier.fillMaxWidth().heightIn(min=160.dp))
+    StudioActions {TypesetBook.presets.forEach{(key,preset)->StudioAction(when(key){"traditional"->"传统小人书";"clean"->"清爽画册";else->"复古纸张"}){e.pageChange{it.copy(story=preset)}}}}
+    OutlinedTextField(p.caption,{v->e.pageChange{it.copy(caption=v)}},label={Text("本页旁白")},modifier=Modifier.fillMaxWidth().heightIn(min=160.dp).onPreviewKeyEvent{if(it.type==KeyEventType.KeyDown && it.key==Key.Enter && it.isCtrlPressed){e.nextCaption();true}else false})
+    StudioAction("下一页旁白 · Ctrl+Enter",TypesetBook.next(e.document!!,p.id)!=null){e.nextCaption()}
     fun style(change:(StoryStyle)->StoryStyle)=e.pageChange{it.copy(story=change(it.story))}
     NumberField("页面宽度",s.pageWidth.toDouble(),200.0..8000.0){v->style{it.copy(pageWidth=v.toInt())}}
     NumberField("页边距",s.pagePadding.toDouble(),0.0..2000.0){v->style{it.copy(pagePadding=v.toInt())}}

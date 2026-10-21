@@ -1,3 +1,7 @@
+## UX-R2c 小人书与文件导出进度（2026-10-21）
+
+[执行记录](audits/UX_R2C_BOOK_EXPORT.md)：完整100项实际PASS，随后JPEG质量定向3项PASS；整册PNG/ZIP/PDF、目录选择接线、故障保全和重开已测。继续源交换/完整导出/图库/更新，PRODUCT_HOLD。
+
 ## UX-R2预设与默认进度（2026-10-21）
 
 [执行记录](audits/UX_R2A_PRESETS.md)：跨工程文字预设、四槽打码/启动默认、源新建文字限制已接入；完整core53+desktop43共96实际PASS。保留全部历史失败，PRODUCT_HOLD；继续源文件交换、完整导出、图库与安全更新。

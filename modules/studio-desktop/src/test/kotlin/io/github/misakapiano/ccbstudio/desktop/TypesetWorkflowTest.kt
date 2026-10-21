@@ -17,6 +17,24 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.test.*
 
 class TypesetWorkflowTest {
+    @Test fun storyCaptionPresetPreviewExportAndRestart()=runBlocking(awt) {
+        val r=root();val w=StudioWorkspace.openStudio(r);val original=EditorRenderer.synthetic(180,120);val id=w.importImage("book.png",original)
+        val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
+        val destination=Files.createDirectories(root());var chooserCalls=0;c.editor.chooseExportDirectory={chooserCalls++;destination}
+        c.editor.create("小人书回归",listOf(id,id));c.idle()
+        val scene=ImageComposeScene(1320,950){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        try {
+            scene.frames();scene.click("小人书");scene.field("本页旁白","第一页，保留旁白。");scene.click("清爽画册")
+            assertEquals("第一页，保留旁白。",c.editor.page!!.caption);assertEquals(TypesetBook.presets.getValue("clean"),c.editor.page!!.story)
+            scene.click("下一页旁白 · Ctrl+Enter");scene.field("本页旁白","第二页。".repeat(100));scene.click("复古纸张");c.editor.drain()
+            scene.click("预览与导出");withTimeout(30000){while(scene.nodes().none{it.matches("导出页面预览")}){delay(80);scene.frames()}}
+            scene.shot("book-export-preview");scene.click("选择位置并导出");c.idle();scene.frames()
+            assertEquals(1,chooserCalls);val output=c.editor.exportDirectory!!;val receipt=TypesetExport.verify(output)
+            assertEquals(4,receipt.files.size);assertTrue(Files.exists(output.resolve("book.pdf")));assertTrue(Files.exists(output.resolve("pages.zip")))
+            assertContentEquals(original,w.bytes(id));c.editor.drain()
+        }finally{scene.close();c.close();scope.cancel();w.close()}
+        StudioWorkspace.openStudio(r).use{next->val d=TypesetRepository(next).load(next.state.typesetProjects.single());assertEquals("storybook",d.mode);assertEquals("第一页，保留旁白。",d.pages.first().caption);assertEquals(TypesetBook.presets.getValue("vintage"),d.pages.last().story)}
+    }
     private val awt=object:CoroutineDispatcher(){override fun dispatch(context:CoroutineContext,block:Runnable)=SwingUtilities.invokeLater(block)}
     private fun root()=Path.of(System.getProperty("preview.test.root")).resolve(newId())
     private suspend fun ImageComposeScene.frames(){repeat(8){render().close();yield()};delay(80);render().close()}

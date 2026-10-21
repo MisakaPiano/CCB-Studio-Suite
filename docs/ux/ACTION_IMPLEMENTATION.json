@@ -881,11 +881,23 @@
     {
       "id": "T17",
       "owner": "UX-R2b",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "TypesetExport.kt",
+        "TypesetExportDialog.kt",
+        "TypesetBook.kt"
+      ],
+      "tests": [
+        "TypesetExportTest",
+        "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2C_BOOK_EXPORT/book-export-preview.png"
+      ],
+      "persistenceEvidence": [
+        "docs/audits/UX_R2C_BOOK_EXPORT.md"
+      ],
+      "status": "PARTIAL",
+      "remaining": "Multi-category export, source exchange, WebP, metadata/privacy, native visual and full product gates continue"
     },
     {
       "id": "T18",
@@ -899,20 +911,44 @@
     {
       "id": "T19",
       "owner": "UX-R2b",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "TypesetExport.kt",
+        "TypesetExportDialog.kt",
+        "TypesetBook.kt"
+      ],
+      "tests": [
+        "TypesetExportTest",
+        "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2C_BOOK_EXPORT/book-export-preview.png"
+      ],
+      "persistenceEvidence": [
+        "docs/audits/UX_R2C_BOOK_EXPORT.md"
+      ],
+      "status": "PARTIAL",
+      "remaining": "Multi-category export, source exchange, WebP, metadata/privacy, native visual and full product gates continue"
     },
     {
       "id": "T20",
       "owner": "UX-R2c",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "TypesetExport.kt",
+        "TypesetExportDialog.kt",
+        "TypesetBook.kt"
+      ],
+      "tests": [
+        "TypesetExportTest",
+        "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2C_BOOK_EXPORT/book-export-preview.png"
+      ],
+      "persistenceEvidence": [
+        "docs/audits/UX_R2C_BOOK_EXPORT.md"
+      ],
+      "status": "PARTIAL",
+      "remaining": "Multi-category export, source exchange, WebP, metadata/privacy, native visual and full product gates continue"
     },
     {
       "id": "Q01",

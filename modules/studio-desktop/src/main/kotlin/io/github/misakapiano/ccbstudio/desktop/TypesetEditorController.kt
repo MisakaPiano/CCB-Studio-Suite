@@ -21,6 +21,21 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
     var objectId by mutableStateOf<String?>(null)
     var tool by mutableStateOf("select")
     var zoom by mutableStateOf(1f)
+    var exportDirectory by mutableStateOf<java.nio.file.Path?>(null);private set
+    var exportProblem by mutableStateOf<String?>(null);private set
+    internal var chooseExportDirectory:()->java.nio.file.Path? = {
+        val chooser=javax.swing.JFileChooser();chooser.dialogTitle="选择导出位置（将新建独立输出文件夹）";chooser.fileSelectionMode=javax.swing.JFileChooser.DIRECTORIES_ONLY
+        if(chooser.showSaveDialog(null)==javax.swing.JFileChooser.APPROVE_OPTION)chooser.selectedFile.toPath() else null
+    }
+    fun export(request:TypesetExportRequest)=c.run("导出编辑工程") {
+        drain();val p=project?:return@run;val d=document?:return@run
+        val parent=withContext(ui){chooseExportDirectory()}?:return@run
+        withContext(ui){exportProblem=null;exportDirectory=null}
+        try{val output=TypesetExport.create(c.workspace,p,d,parent,request);TypesetExport.verify(output)
+            withContext(ui){exportDirectory=output}}
+        catch(ex:Exception){withContext(ui){exportProblem=ex.message?:"导出未完成，已有文件保留"};throw ex}
+    }
+    fun nextCaption() {val d=document?:return;val next=pageId?.let{TypesetBook.next(d,it)}?:return;selectPage(next)}
     var maskDefault by mutableStateOf(c.workspace.state.typesetPreferences.resolveMask(c.workspace.state.typesetPreferences.preferredMaskSlot).apply(TypesetMask()))
     val page get()=document?.pages?.firstOrNull{it.id==pageId}
     val text get()=page?.texts?.firstOrNull{it.id==objectId}
