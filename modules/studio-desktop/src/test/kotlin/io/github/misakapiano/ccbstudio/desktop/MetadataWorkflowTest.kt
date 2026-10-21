@@ -43,12 +43,25 @@ class MetadataWorkflowTest {
     @Test fun actualMetadataUiPreviewApplyUndoAndRestart()=runBlocking(awt) {
         val r=root();val scope=CoroutineScope(SupervisorJob()+awt);val w=StudioWorkspace.openStudio(r)
         val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{error("No HTTP")})
-        val bytes=png(comment());val id=w.importImage("metadata.png",bytes)
+        val bytes=png(comment(buildJsonObject{put("unknown_future",buildJsonObject{put("value","preserved")})}));val id=w.importImage("metadata.png",bytes)
+        var copied="";c.gallery.copyText={copied=it}
         c.edit{it.copy(basePrompt="old input")};c.flush()
         val scene=ImageComposeScene(1100,1800){MaterialTheme(colors=darkColors()){MetadataWorkspace(c,id){}}}
         try {
             withTimeout(10000){while(scene.nodes().none{it.config.getOrNull(SemanticsProperties.Text)?.any{t->t.text=="确认导入所选字段"}==true})scene.frames()}
             assertEquals("old input",c.draft.basePrompt)
+            scene.click("Seed")
+            scene.click("查看完整 PNG 字段")
+            withTimeout(10000){while(scene.nodes().none{it.config.getOrNull(SemanticsProperties.Text)?.any{t->t.text=="完整 PNG 字段 · READABLE"}==true})scene.frames()}
+            scene.click("复制完整 PNG 字段");assertEquals("preserved",Json.parseToJsonElement(copied).jsonObject.getValue("textChunks").jsonArray[0].jsonObject.getValue("parsedJson").jsonObject.getValue("unknown_future").jsonObject.getValue("value").jsonPrimitive.content)
+            val query=scene.nodes().first{it.config.getOrNull(SemanticsProperties.ContentDescription)?.contains("查找 PNG 字段")==true && it.config.getOrNull(SemanticsActions.SetText)!=null}
+            query.config[SemanticsActions.SetText].action!!.invoke(androidx.compose.ui.text.AnnotatedString("unknown_future/value"));scene.frames()
+            scene.click("复制 PNG 字段 /textChunks/0/parsedJson/unknown_future/value");assertEquals("\"preserved\"",copied)
+            val fieldShot=Path.of("build/ux-r3-png/unknown-field.png");Files.createDirectories(fieldShot.parent);scene.render().use{it.encodeToData()!!.use{data->Files.write(fieldShot,data.bytes)}}
+            assertEquals("old input",c.draft.basePrompt);assertContentEquals(bytes,w.bytes(id));scene.click("返回参数选择")
+            withTimeout(10000){while(scene.nodes().none{it.config.getOrNull(SemanticsProperties.Text)?.any{t->t.text=="确认导入所选字段"}==true})scene.frames()}
+            val seed=scene.nodes().first{it.config.getOrNull(SemanticsProperties.Text)?.any{t->t.text=="Seed"}==true && it.config.getOrNull(SemanticsProperties.ToggleableState)!=null}
+            assertEquals(androidx.compose.ui.state.ToggleableState.Off,seed.config[SemanticsProperties.ToggleableState]);scene.click("Seed")
             val shot=Path.of("build/ux-r1b-metadata/selection-before-apply.png");Files.createDirectories(shot.parent);scene.render().use{image->image.encodeToData()!!.use{Files.write(shot,it.bytes)}}
             scene.click("确认导入所选字段");c.active!!.join();assertNull(c.problem);assertEquals("imported room",c.draft.basePrompt);assertEquals(123L,c.draft.activeSettings.seed)
             c.undo();c.active!!.join();assertEquals("old input",c.draft.basePrompt)

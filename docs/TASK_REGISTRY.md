@@ -1,3 +1,7 @@
+## UX-R3 PNG字段进度（2026-10-21）
+
+[实际记录](audits/UX_R3_PNG_FIELDS.md)：完整132项实际PASS；最终页面可读性修正后4项定向PASS。PNG未知字段单图查看/两图比较、复制及勾选保留已验证，历史失败保留；继续完整R3/R4，PRODUCT_HOLD。
+
 ## UX-R2 预览可靠性进度（2026-10-21）
 
 [实际记录](audits/UX_R2_PREVIEW_RELIABILITY.md)：完整工作台路径连续两次52项实际PASS；字体冷缓存和最大队列空间已测，独立挂载弹窗的历史超时及根因UNKNOWN保留。继续R3与安全更新，PRODUCT_HOLD。

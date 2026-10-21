@@ -1,0 +1,20 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.PngFieldInspectionTest",
+    "name": "malformedUnknownCompressionMissingAndDecompressionLimitAreDistinct",
+    "seconds": "0.149",
+    "status": "FAILED"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.PngFieldInspectionTest",
+    "name": "alphaAndTextConflictsArePresentedWithoutChoosingPrecedence",
+    "seconds": "0.058",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.PngFieldInspectionTest",
+    "name": "textCompressedInternationalAndDuplicateUnknownFieldsRemainSeparate",
+    "seconds": "0.013",
+    "status": "PASS"
+  }
+]

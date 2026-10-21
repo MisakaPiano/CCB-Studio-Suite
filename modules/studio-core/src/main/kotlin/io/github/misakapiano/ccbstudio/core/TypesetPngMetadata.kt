@@ -21,9 +21,14 @@ object TypesetPngMetadata {
         }
         require(ended){"PNG missing IEND"};return true
     }
+    fun textChunks(original:ByteArray):List<ByteArray> {
+        if(ImageFormats.format(original)!="png")return emptyList()
+        val text=mutableListOf<ByteArray>();var totalBytes=0L;walk(original){type,start,size->if(type in setOf("tEXt","zTXt","iTXt")){totalBytes+=size;require(totalBytes<=8*1024*1024){"PNG source metadata exceeds 8 MiB"};text+=original.copyOfRange(start,start+size)}}
+        return text
+    }
     fun extract(original:ByteArray):Source {
         if(ImageFormats.format(original)!="png")return Source(emptyList(),null,0)
-        val text=mutableListOf<ByteArray>();var totalBytes=0L;walk(original){type,start,size->if(type in setOf("tEXt","zTXt","iTXt")){totalBytes+=size;require(totalBytes<=8*1024*1024){"PNG source metadata exceeds 8 MiB"};text+=original.copyOfRange(start,start+size)}}
+        val text=textChunks(original)
         val image=EditorRenderer.decode(original)
         try {
             fun byte(index:Int):Byte {var value=0;repeat(8){val bit=index*8+it;value=(value shl 1) or ((image.getRGB(bit/image.height,bit%image.height) ushr 24) and 1)};return value.toByte()}

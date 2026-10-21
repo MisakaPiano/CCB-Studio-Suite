@@ -391,16 +391,19 @@
       "owner": "UX-R3",
       "implementation": [
         "StudioApplication.kt",
-        "MetadataWorkspace.kt"
+        "MetadataWorkspace.kt",
+        "PngFieldInspection.kt / PngFieldWorkspace.kt"
       ],
       "tests": [
-        "MetadataWorkflowTest.missingMalformedUnsupportedAndReadFailureAreDistinct"
+        "MetadataWorkflowTest.missingMalformedUnsupportedAndReadFailureAreDistinct",
+        "PngFieldInspectionTest / MetadataWorkflowTest / GalleryWorkflowTest"
       ],
       "guiEvidence": [
-        "docs/audits/UX_R1B_CREATION.md (exact scope; no native visual claim)"
+        "docs/audits/UX_R1B_CREATION.md (exact scope; no native visual claim)",
+        "docs/audits/evidence/UX_R3_PNG_FIELDS (Compose offscreen)"
       ],
       "persistenceEvidence": [],
-      "status": "ENGINEERING_PARTIAL / CONTROLLER_OR_COMPOSE_TESTED / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
+      "status": "ENGINEERING_PARTIAL / PNG_FIELDS_GUI_PASS / PER_FIELD_RECIPE_APPLY_PENDING / PRODUCT_HOLD"
     },
     {
       "id": "I04",
@@ -409,19 +412,22 @@
         "RecipeComparison.kt",
         "GalleryWorkspace.kt",
         "ComparisonWorkspace.kt",
-        "MetadataWorkspace.kt"
+        "MetadataWorkspace.kt",
+        "PngFieldInspection.kt / PngFieldWorkspace.kt"
       ],
       "tests": [
         "RecipeComparisonTest: missing/null/empty/ordered arrays/JSON Pointer/limits",
-        "GalleryWorkflowTest.gridFilterTwoImageComparisonCopyAndMetadataReuseKeepOriginals"
+        "GalleryWorkflowTest.gridFilterTwoImageComparisonCopyAndMetadataReuseKeepOriginals",
+        "PngFieldInspectionTest / MetadataWorkflowTest / GalleryWorkflowTest"
       ],
       "guiEvidence": [
-        "docs/audits/evidence/UX_R3_GALLERY/compare-fields.png (actual Compose offscreen; no native visual claim)"
+        "docs/audits/evidence/UX_R3_GALLERY/compare-fields.png (actual Compose offscreen; no native visual claim)",
+        "docs/audits/evidence/UX_R3_PNG_FIELDS (Compose offscreen)"
       ],
       "persistenceEvidence": [
         "GalleryWorkflowTest: confirmed history reuse, workspace close/reopen, original bytes and Recipe unchanged"
       ],
-      "status": "ENGINEERING_PARTIAL / IMPORTED_PNG_FIELDS_AND_PER_FIELD_APPLY_PENDING / PRODUCT_HOLD"
+      "status": "ENGINEERING_PARTIAL / PNG_FIELDS_GUI_PASS / PER_FIELD_RECIPE_APPLY_PENDING / PRODUCT_HOLD"
     },
     {
       "id": "I05",

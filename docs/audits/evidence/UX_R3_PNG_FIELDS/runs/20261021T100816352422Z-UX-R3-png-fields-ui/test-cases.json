@@ -1,0 +1,32 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryWorkflowTest",
+    "name": "gridFilterTwoImageComparisonCopyAndMetadataReuseKeepOriginals",
+    "seconds": "5.536",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.MetadataWorkflowTest",
+    "name": "embeddedImageRetainedAndUsedWithoutMutatingOriginal",
+    "seconds": "0.878",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.MetadataWorkflowTest",
+    "name": "missingMalformedUnsupportedAndReadFailureAreDistinct",
+    "seconds": "0.032",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.MetadataWorkflowTest",
+    "name": "historyReuseChecksIdentityAndRetainsOriginal",
+    "seconds": "0.689",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.MetadataWorkflowTest",
+    "name": "actualMetadataUiPreviewApplyUndoAndRestart",
+    "seconds": "1.2",
+    "status": "PASS"
+  }
+]

@@ -39,7 +39,10 @@ class GalleryWorkflowTest {
             val receipt=documentJson.encodeToString(GenerationReceipt(recipe=draft.toRecipe(),account=account,request=Json.parseToJsonElement(wire),wireSha256=sha256(wire.toByteArray())))
             val id=w.importImage("$prompt.png",bytes,receipt);ids+=id;originals[id]=receipt;jobs+=JobRecord(account=account,recipe=receipt,state="COMPLETED",results=listOf(id))
         }
-        val noRecipe=w.importImage("imported.png",bytes);w.save(w.state.copy(jobs=jobs))
+        val text="Comment\u0000{\"future\":\"kept\"}".toByteArray();val type="tEXt".toByteArray();val crc=java.util.zip.CRC32().apply{update(type);update(text)}
+        val chunk=java.nio.ByteBuffer.allocate(text.size+12).putInt(text.size).put(type).put(text).putInt(crc.value.toInt()).array()
+        val imported=TypesetPngMetadata.injectChunks(bytes,TypesetPngMetadata.Source(listOf(chunk),null,0))
+        val noRecipe=w.importImage("imported.png",imported);w.save(w.state.copy(jobs=jobs))
         val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{error("No HTTP")});c.view="图库"
         var copied="";c.gallery.copyText={copied=it}
         val scene=ImageComposeScene(1320,1000){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
@@ -57,6 +60,8 @@ class GalleryWorkflowTest {
             withTimeout(10000){while(scene.nodes().none{it.matches("完整复现")})scene.frames()};scene.click("完整复现");scene.click("确认复用");c.active!!.join();assertNull(c.problem)
             assertEquals(Json.parseToJsonElement(originals.getValue(left)).jsonObject.getValue("recipe").jsonObject.getValue("basePrompt").jsonPrimitive.content,c.draft.basePrompt)
             c.view="图库";c.gallery.metadata=null;c.gallery.compare=listOf(ids.first(),noRecipe);scene.frames();withTimeout(10000){while(scene.nodes().none{it.config.getOrNull(SemanticsProperties.Text)?.any{t->t.text.startsWith("Studio Recipe MISSING")}==true})scene.frames()}
+            scene.field("搜索完整字段或值","/pngMetadata/textChunks/0/parsedJson/future")
+            scene.click("复制 B 字段 /pngMetadata/textChunks/0/parsedJson/future");assertEquals("\"kept\"",copied);assertContentEquals(imported,w.bytes(noRecipe));scene.shot("png-metadata-comparison")
             scene.click("返回图库");assertEquals("room",c.gallery.query);ids.forEach{assertContentEquals(bytes,w.bytes(it));assertEquals(originals[it],w.assets.read(java.util.UUID.fromString(it)).require().request().recipe().decodeToString())}
         }finally{scene.close();c.close();scope.cancel();w.close()}
         StudioWorkspace.openStudio(r).use{assertTrue(it.state.creation!!.draft.basePrompt.endsWith("room"));ids.forEach{id->assertContentEquals(bytes,it.bytes(id))}}

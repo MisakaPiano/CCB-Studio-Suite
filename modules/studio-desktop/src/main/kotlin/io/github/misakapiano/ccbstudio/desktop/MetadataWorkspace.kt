@@ -60,13 +60,16 @@ internal fun inspectMetadata(path:Path):MetadataInspection = try {
 } catch(e:Exception) {MetadataInspection("READ_ERROR",explanation="参数读取失败；原件保留，未替换为空参数")}
 
 @Composable internal fun MetadataWorkspace(c:WorkbenchController,id:String,onClose:()->Unit) {
-    Surface(color=Ink,contentColor=DesktopBootstrapColors.foreground) {
+    var fields by remember(id){mutableStateOf(false)}
     var selection by remember(id){mutableStateOf(NovelAiStudioMetadataSelection())}
     var pendingMode by remember(id){mutableStateOf<NovelAiHistoryApplyMode?>(null)}
+    if(fields){PngFieldWorkspace(c,id){fields=false};return}
+    Surface(color=Ink,contentColor=DesktopBootstrapColors.foreground) {
     val inspection by produceState<MetadataInspection?>(null,id){value=withContext(Dispatchers.IO){c.metadataFile(id,::inspectMetadata)}}
     val history by produceState<Result<Pair<NovelAiGenerationRecipe,Long>?>?>(null,id){value=withContext(Dispatchers.IO){runCatching{c.historyRecipe(id)}}}
     Column(Modifier.fillMaxSize().background(Ink).padding(16.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(10.dp)) {
         Text("元数据与历史复用")
+        StudioAction("查看完整 PNG 字段"){fields=true}
         StatusText("原件 ${id.take(8)} · 参数导入不会重编码原图")
         inspection?.let{read->
             StatusText("${read.status} · ${read.explanation}")

@@ -1,0 +1,31 @@
+{
+  "phase": "UX-R3-png-fields-isolation",
+  "startedUtc": "2026-10-21T10:07:22.594372+00:00",
+  "seconds": 22.912,
+  "exitCode": 0,
+  "tests": 3,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-core:test",
+    "--tests",
+    "*PngFieldInspectionTest",
+    "--tests",
+    "*TypesetExportMetadataTest",
+    ":studio-desktop:compileKotlin"
+  ],
+  "baseCommit": "5a0037ae16f49b187cf60c6426dd4a1f1c79526f",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

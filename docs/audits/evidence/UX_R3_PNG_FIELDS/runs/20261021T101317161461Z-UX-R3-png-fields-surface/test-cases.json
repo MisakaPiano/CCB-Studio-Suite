@@ -1,0 +1,26 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.MetadataWorkflowTest",
+    "name": "embeddedImageRetainedAndUsedWithoutMutatingOriginal",
+    "seconds": "1.263",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.MetadataWorkflowTest",
+    "name": "missingMalformedUnsupportedAndReadFailureAreDistinct",
+    "seconds": "0.087",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.MetadataWorkflowTest",
+    "name": "historyReuseChecksIdentityAndRetainsOriginal",
+    "seconds": "0.7",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.MetadataWorkflowTest",
+    "name": "actualMetadataUiPreviewApplyUndoAndRestart",
+    "seconds": "2.781",
+    "status": "PASS"
+  }
+]

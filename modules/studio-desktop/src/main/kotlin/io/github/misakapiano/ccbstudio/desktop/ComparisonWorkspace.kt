@@ -23,7 +23,9 @@ import kotlinx.coroutines.*
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.*
 
-private data class ComparisonSource(val id:String,val sha:String,val name:String,val inspection:RecipeInspection)
+private data class ComparisonSource(val id:String,val sha:String,val name:String,val inspection:RecipeInspection,val png:RecipeInspection) {
+    fun fields()=inspection.copy(fields=inspection.fields+png.fields.mapKeys{"/pngMetadata"+it.key}+mapOf("/pngMetadataStatus" to RecipeField("status",png.status)))
+}
 private fun comparisonSource(c:WorkbenchController,id:String):ComparisonSource {
     val a=c.workspace.assets.read(java.util.UUID.fromString(id)).require()
     val raw=a.request().recipe().decodeToString(throwOnInvalidSequence=true).takeIf{it.isNotBlank()}
@@ -34,7 +36,7 @@ private fun comparisonSource(c:WorkbenchController,id:String):ComparisonSource {
             RecipeComparison.inspect(JsonObject(tree+("expandedRequest" to receipt.expandedRequest(c.workspace))).toString())
         }else inspection
     }.getOrElse{RecipeInspection("READ_ERROR",inspection.fields,raw)}else inspection
-    return ComparisonSource(id,a.sha256(),a.request().name(),complete)
+    return ComparisonSource(id,a.sha256(),a.request().name(),complete,PngFieldInspection.inspect(c.workspace.bytes(id)))
 }
 @Composable internal fun ComparisonWorkspace(c:WorkbenchController,ids:List<String>,dismiss:()->Unit) {
     require(ids.size==2 && ids.distinct().size==2)
@@ -43,7 +45,7 @@ private fun comparisonSource(c:WorkbenchController,id:String):ComparisonSource {
     var metadata by remember(ids){mutableStateOf<String?>(null)};var expanded by remember(ids){mutableStateOf<RecipeDifference?>(null)}
     metadata?.let{id->MetadataWorkspace(c,id){metadata=null};return}
     val source by produceState<Result<List<ComparisonSource>>?>(null,ids){value=withContext(Dispatchers.IO){runCatching{ids.map{comparisonSource(c,it)}}}}
-    val pair=source?.getOrNull();val rows=pair?.let{RecipeComparison.rows(it[0].inspection,it[1].inspection)}.orEmpty().filter{(!differences || it.different) && (it.path.contains(query,true) || it.a?.value?.contains(query,true)==true || it.b?.value?.contains(query,true)==true)}
+    val pair=source?.getOrNull();val rows=pair?.let{RecipeComparison.rows(it[0].fields(),it[1].fields())}.orEmpty().filter{(!differences || it.different) && (it.path.contains(query,true) || it.a?.value?.contains(query,true)==true || it.b?.value?.contains(query,true)==true)}
     Column(Modifier.fillMaxSize().padding(12.dp),verticalArrangement=Arrangement.spacedBy(8.dp)){
         StudioActions{StudioAction("返回图库",!c.busy,onClick=dismiss);StudioSwitch("锁定两图缩放",locked){locked=!locked;if(locked)right=left};StudioAction("适应两图"){left=DesktopViewerTransform();right=left};StudioSwitch("仅显示差异",differences){differences=!differences}}
         if(source?.isFailure==true)Text("来源读取失败；没有把失败当成空Recipe。原件仍保留。",color=MaterialTheme.colors.error)
@@ -51,6 +53,7 @@ private fun comparisonSource(c:WorkbenchController,id:String):ComparisonSource {
             ids.forEachIndexed{i,id->Column(Modifier.weight(1f).fillMaxHeight()){
                 val item=pair?.get(i);Text("${if(i==0)"A"else"B"} · ${item?.name?:id} · ${((if(i==0)left.zoom else right.zoom)*100).toInt()}%",maxLines=2)
                 Text("Studio Recipe ${item?.inspection?.status?:"READING"} · ${item?.sha.orEmpty()}",style=MaterialTheme.typography.caption,maxLines=2)
+                Text("PNG 字段 ${item?.png?.status?:"READING"}",style=MaterialTheme.typography.caption)
                 ComparisonImage(c,id,if(i==0)left else right,{next->if(locked){left=next;right=next}else if(i==0)left=next else right=next},Modifier.fillMaxWidth().weight(1f))
                 StudioActions{StudioAction("${if(i==0)"A"else"B"} 参数选择与应用",!c.busy){metadata=id};StudioAction("复制 ${if(i==0)"A"else"B"} 完整 Recipe",item?.inspection?.raw!=null){c.gallery.copyText(item!!.inspection.raw!!)}}
             }}
