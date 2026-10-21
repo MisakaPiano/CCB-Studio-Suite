@@ -1,0 +1,35 @@
+{
+  "aSource": "251dc34950990b0878e1910d16ed289e9400db8d",
+  "bSource": "0ae42d9b5e6dec3fd796b28a8f92fca507cccbdc",
+  "helperSource": "de2a6d33b959c2c1a7001ad3a7d30b10be5c1ba3",
+  "drainReceiptSourceShaNote": "Raw drain-timeout sourceSha names B target; actual running A and helper identities are separately recorded here.",
+  "guiConfirmation": "NOT TESTED in harness probes; old actual user-triggered A to B is separate UX_UPDATE_FEEDBACK evidence",
+  "rawSecretsUploaded": false,
+  "drive": "NOT UPLOADED; small safe evidence delivered in Git",
+  "helpers": [
+    {
+      "path": "check-installer-refusal.py",
+      "sha256": "a2ed141bd3553e949532e1bd3d027f2c61e6ffcfe79f45653cf3e05d3cb2255b"
+    },
+    {
+      "path": "probe-installed-start-failure.py",
+      "sha256": "75cb246307f0cb9077eae0f2b958925a182cd46983c0f64b12bdb653b67a7c6a"
+    },
+    {
+      "path": "probe-actual-drain-timeout.py",
+      "sha256": "ba2610dafa1fc1e5b449e436644b9c47ab4169e373804883945d39b13461b6b3"
+    },
+    {
+      "path": "probe-installed-b-failure-long-path-attempt.py",
+      "sha256": "d1784c8ce21b6fc9c9426feccdc016042d40d210465afd6d6110a43ca93b8600"
+    },
+    {
+      "path": "probe-installed-b-failure.py",
+      "sha256": "487d8cc5b0b914d61d0428283699c2cbe978daacfdf21ba94768eb162f8cfdb8"
+    },
+    {
+      "path": "test-installer-paths.py",
+      "sha256": "3d8951a52a23f33cffbcda58303670ff264dd57d47c7252b25138a16dab662ab"
+    }
+  ]
+}

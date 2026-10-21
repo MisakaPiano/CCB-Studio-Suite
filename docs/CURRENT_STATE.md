@@ -1,3 +1,7 @@
+## 启动与真实安装故障验证（2026-10-22）
+
+[实际记录](audits/UX_STARTUP_SAFETY.md)：未知格式无新增文件、迁移五边界进程中断、实际排水超时与 B 启动失败保全；长路径故障已保留并补写入前门禁。218 项核心/桌面回归及最新 92 项桌面回归实际 PASS。继续新安装包与剩余门槛，PRODUCT_HOLD / NOT RC。
+
 ## 连续生成及更新进程验证（2026-10-22）
 
 [实际记录](audits/UX_CONTINUOUS_PROCESS.md)：连续批次/停止/部分结果/重开不重发定向 PASS，桌面完整 91 项 PASS；真实 CLI/HTTP 更新故障 8 项 PASS，历史失败保留。继续安装/迁移故障与固定包验证，PRODUCT_HOLD / NOT RC。

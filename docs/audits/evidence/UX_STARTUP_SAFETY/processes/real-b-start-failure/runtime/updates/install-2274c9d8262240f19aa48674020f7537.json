@@ -1,0 +1,18 @@
+{
+  "status": "INSTALLED_NOT_STARTED",
+  "target": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\bf-7c206a61\\applications\\4-0ae42d9b5e6d",
+  "stage": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\bf-7c206a61\\applications\\4-0ae42d9b5e6d.d55f13884e844109af48ba6892bdf708.installing",
+  "expected": {
+    "product": "ccb-studio-suite",
+    "platform": "windows-x86_64",
+    "channel": "internal",
+    "version": 4,
+    "sourceSha": "0ae42d9b5e6dec3fd796b28a8f92fca507cccbdc"
+  },
+  "dataModified": false,
+  "verification": {
+    "files": 546,
+    "bytes": 250952522,
+    "manifestSha256": "13f3fff626ea89826fe656e6fbfe9edf822a0db543fb67d812e9ab9fc94a5314"
+  }
+}

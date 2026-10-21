@@ -49,6 +49,37 @@ class StudioFormatMigrationTest {
         assertFails{StudioFormatMigration.copyVersionTwo(source,target){if(it=="MIGRATION_PUBLISHED")error("after publish")}}
         val before=inventory(target);assertFails{StudioFormatMigration.copyVersionTwo(source,target)};assertEquals(before,inventory(target))
     }
+    @Test fun abruptProcessExitAtEveryMigrationCommitBoundaryRetainsSourcesAndPublishedWork() {
+        val report=mutableListOf<String>()
+        for(point in listOf("SOURCE_LOCKED","MIGRATION_COPIED","MIGRATION_COMMITTED","MIGRATION_VALIDATED","MIGRATION_PUBLISHED")) {
+            val source=root();val id=fixture(source,true);val target=root();val before=inventory(source)
+            val javaExecutable=Path.of(System.getProperty("java.home"),"bin/java.exe")
+            val child=ProcessBuilder(javaExecutable.toString(),"-Xmx128m","-XX:ActiveProcessorCount=2","-cp",System.getProperty("java.class.path"),
+                MigrationProcessProbe::class.java.name,source.toString(),target.toString(),point).redirectErrorStream(true).start()
+            try {
+                assertTrue(child.waitFor(30,java.util.concurrent.TimeUnit.SECONDS),"Migration child timeout at $point")
+                assertEquals(73,child.exitValue(),child.inputStream.readBytes().decodeToString())
+            } finally {if(child.isAlive){child.destroyForcibly();child.waitFor()}}
+            assertEquals(before,inventory(source),"Source changed at $point")
+            // A fresh process death releases its actual OS locks; no library close/finally ran.
+            if(point=="MIGRATION_PUBLISHED") {
+                val published=inventory(target)
+                assertFails{StudioFormatMigration.copyVersionTwo(source,target)}
+                assertEquals(published,inventory(target),"Published copy overwritten after crash")
+            } else {
+                assertFalse(Files.exists(target),"Unverified copy published at $point")
+                StudioFormatMigration.copyVersionTwo(source,target)
+            }
+            StudioWorkspace.openStudio(target).use{w->
+                assertContentEquals(pixels,w.bytes(id));assertEquals("UNCERTAIN",w.state.jobs.single().state)
+                assertEquals(3,w.state.version)
+            }
+            assertEquals(before,inventory(source))
+            report+="$point: childExit=73; sourceUnchanged=true; targetVerified=true; interruptedRequest=UNCERTAIN; replay=none"
+        }
+        val evidence=Path.of("build/migration-process");Files.createDirectories(evidence)
+        Files.write(evidence.resolve("commit-boundaries.txt"),report)
+    }
     @Test fun bothOwnershipLocksExcludeMigration() {
         val source=root();fixture(source);val before=inventory(source)
         for(name in listOf(".owner.lock","assets/.owner.lock"))FileChannel.open(source.resolve(name),StandardOpenOption.WRITE).use{c->c.lock().use{
@@ -84,5 +115,14 @@ class StudioFormatMigrationTest {
         assertEquals("UNSUPPORTED_VERSION",assertFailsWith<DataProblem>{StudioWorkspace.openStudio(restored)}.status)
         val before=inventory(restored);val target=root();StudioFormatMigration.copyVersionTwo(restored,target)
         assertEquals(before,inventory(restored));StudioWorkspace.openStudio(target).use{assertContentEquals(pixels,it.bytes(id))}
+    }
+}
+
+object MigrationProcessProbe {
+    @JvmStatic fun main(args:Array<String>) {
+        StudioFormatMigration.copyVersionTwo(Path.of(args[0]),Path.of(args[1])) {
+            if(it==args[2])Runtime.getRuntime().halt(73)
+        }
+        error("Requested migration fault point was not reached")
     }
 }

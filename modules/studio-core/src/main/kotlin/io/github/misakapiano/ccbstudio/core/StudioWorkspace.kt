@@ -125,13 +125,17 @@ class StudioWorkspace private constructor(val root:Path,private val owner:FileCh
             Files.createDirectories(root)
             val marker=root.resolve("preview-root.txt")
             if(!Files.exists(marker,NOFOLLOW_LINKS) && Files.list(root).use {it.anyMatch {p->p.fileName.toString()!=".owner.lock"}}) throw DataProblem("FOREIGN_ROOT","Unrecognized nonempty root retained")
+            val expected=if(studio) STUDIO_MARKER else MARKER
+            // Unknown formats are read-only even when their owner marker is absent.
+            // Repeat under the lock below so this early check does not authorize writes.
+            if(Files.exists(marker,NOFOLLOW_LINKS) && !readBounded(marker,1024).contentEquals(expected))
+                throw DataProblem("UNSUPPORTED_VERSION","Root version requires explicit copy migration; retained")
             val c=FileChannel.open(root.resolve(".owner.lock"),StandardOpenOption.CREATE,StandardOpenOption.WRITE,NOFOLLOW_LINKS)
             val lock=try {c.tryLock() ?: throw DataProblem("IN_USE","Preview root already owned")}
                 catch(e:java.nio.channels.OverlappingFileLockException) {c.close();throw DataProblem("IN_USE","Studio root already owned")}
                 catch(e:Exception) {c.close();throw e}
             var assets:AssetStore?=null
             try {
-                val expected=if(studio) STUDIO_MARKER else MARKER
                 if(!Files.exists(marker,NOFOLLOW_LINKS)) writeNewForced(marker,expected)
                 if(!readBounded(marker,1024).contentEquals(expected)) throw DataProblem("UNSUPPORTED_VERSION","Root version requires explicit copy migration; retained")
                 val allowed=setOf(".owner.lock","preview-root.txt","assets","documents","secrets","exports","backups")

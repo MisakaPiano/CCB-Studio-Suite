@@ -6,6 +6,17 @@ import kotlin.test.*
 class StudioVersionTwoTest {
     private fun root()=Paths.get(System.getProperty("preview.test.root")).resolve(newId())
     private fun account()=AccountProfile(alias="Test LLM",service="LLM",provider="OPENAI_COMPATIBLE",endpoint="https://example.invalid/v1",model="test-model")
+    @Test fun unknownRootWithoutOwnerMarkerIsRejectedWithoutCreatingAnyFile() {
+        for(studio in listOf(false,true)) {
+            val r=root();Files.createDirectories(r)
+            Files.writeString(r.resolve("preview-root.txt"),"CCBStudioSuite/WindowsStudio/v99")
+            Files.writeString(r.resolve("unique-original.bin"),"Synthetic original retained")
+            fun inventory()=Files.walk(r).use{paths->paths.filter{Files.isRegularFile(it)}.toList().associate{r.relativize(it).toString() to fingerprintFile(it)}}
+            val before=inventory()
+            assertEquals("UNSUPPORTED_VERSION",assertFailsWith<DataProblem>{if(studio)StudioWorkspace.openStudio(r)else StudioWorkspace.open(r)}.status)
+            assertEquals(before,inventory());assertFalse(Files.exists(r.resolve(".owner.lock")))
+        }
+    }
     @Test fun realProfilesRequireExplicitV2RootAndPersistDraft() {
         val old=root()
         StudioWorkspace.open(old).use {w -> assertFails {w.save(w.state.copy(accounts=listOf(account())))} }

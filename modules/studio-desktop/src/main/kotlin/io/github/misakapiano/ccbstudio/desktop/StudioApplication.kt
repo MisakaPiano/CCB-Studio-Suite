@@ -370,7 +370,7 @@ internal fun launchStudio(args:Array<String>) {
     val updatePlan=option("--update-handoff")?.let(Paths::get)
     val workspace=try{openStudioForLaunch(root,runtime,updatePlan,{source,target->javax.swing.JOptionPane.showConfirmDialog(null,"此工作区需要升级资料格式。将在新目录建立副本，原目录和原件保留。\n来源：$source\n副本：$target\n继续？","升级资料副本",javax.swing.JOptionPane.OK_CANCEL_OPTION)==javax.swing.JOptionPane.OK_OPTION})}catch(e:Exception){
         if(updatePlan!=null&&updatePlan.toAbsolutePath().normalize().startsWith(runtime.toAbsolutePath().normalize().resolve("updates/handoffs")))runCatching{writeUpdateJson(updatePlan.parent.resolve("B_FAILED.json"),buildJsonObject{put("status","FAILED");put("reason",if(e is DataProblem)e.status else e.javaClass.simpleName)})}
-        javax.swing.JOptionPane.showMessageDialog(null,"工作区无法安全打开；现有文件保留。\n${if(e is DataProblem)e.status else e.javaClass.simpleName}","CCB Studio Suite",javax.swing.JOptionPane.ERROR_MESSAGE);return
+        javax.swing.JOptionPane.showMessageDialog(null,studioStartupFailureText(e),"CCB Studio Suite",javax.swing.JOptionPane.ERROR_MESSAGE);return
     }
     val updateVerified=try{updatePlan?.let{verifyUpdatedWorkspace(workspace,it)}}catch(e:Exception){
         if(updatePlan!=null && updatePlan.toAbsolutePath().normalize().startsWith(runtime.toAbsolutePath().normalize().resolve("updates/handoffs")))runCatching{writeUpdateJson(updatePlan.parent.resolve("B_FAILED.json"),buildJsonObject{put("status","FAILED");put("reason",if(e is DataProblem)e.status else e.javaClass.simpleName)})}

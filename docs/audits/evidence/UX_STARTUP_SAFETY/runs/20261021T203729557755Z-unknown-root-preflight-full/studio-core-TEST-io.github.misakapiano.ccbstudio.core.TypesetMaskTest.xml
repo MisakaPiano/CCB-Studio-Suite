@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.TypesetMaskTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-21T20:40:28.266Z" hostname="DD1" time="0.161">
+  <properties/>
+  <testcase name="laterMosaicReadsOriginalAndNeverEarlierMaskPixels" classname="io.github.misakapiano.ccbstudio.core.TypesetMaskTest" time="0.013"/>
+  <testcase name="allShapesAndEffectsComparedWithOriginalTypeSetOutputs" classname="io.github.misakapiano.ccbstudio.core.TypesetMaskTest" time="0.148"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

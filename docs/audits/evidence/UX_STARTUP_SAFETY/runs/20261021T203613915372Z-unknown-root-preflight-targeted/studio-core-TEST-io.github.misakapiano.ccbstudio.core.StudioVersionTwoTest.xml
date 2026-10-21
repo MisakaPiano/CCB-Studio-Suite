@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-21T20:36:54.056Z" hostname="DD1" time="4.551">
+  <properties/>
+  <testcase name="failedMigrationDoesNotPublishOrOverwriteTarget" classname="io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest" time="0.741"/>
+  <testcase name="unknownRootWithoutOwnerMarkerIsRejectedWithoutCreatingAnyFile" classname="io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest" time="0.005"/>
+  <testcase name="endpointsCannotContainCredentialsOrInsecureSchemes" classname="io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest" time="0.001"/>
+  <testcase name="realProfilesRequireExplicitV2RootAndPersistDraft" classname="io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest" time="0.318"/>
+  <testcase name="copyMigrationPreservesLegacyAndRestoresV2Backup" classname="io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest" time="3.486"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

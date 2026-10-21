@@ -1,0 +1,39 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :asset-library:compileJava UP-TO-DATE
+> Task :image-authority:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :image-authority:compileKotlin UP-TO-DATE
+> Task :image-authority:compileJava NO-SOURCE
+> Task :studio-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-core:compileKotlin UP-TO-DATE
+> Task :studio-core:compileJava NO-SOURCE
+> Task :studio-core:processResources UP-TO-DATE
+> Task :studio-core:classes UP-TO-DATE
+> Task :studio-core:jar UP-TO-DATE
+> Task :asset-library:processResources NO-SOURCE
+> Task :asset-library:classes UP-TO-DATE
+> Task :asset-library:jar UP-TO-DATE
+> Task :image-authority:processResources NO-SOURCE
+> Task :image-authority:classes UP-TO-DATE
+> Task :image-authority:jar UP-TO-DATE
+
+> Task :studio-core:compileTestKotlin
+e: file:///H:/CCB-Studio-Suite/modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/StudioFormatMigrationTest.kt:60:50 Unresolved reference 'util'.
+
+> Task :studio-core:compileTestKotlin FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':studio-core:compileTestKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.btapi.BuildToolsApiCompilationWork
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to generate a Build Scan (Powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 13s
+8 actionable tasks: 1 executed, 7 up-to-date

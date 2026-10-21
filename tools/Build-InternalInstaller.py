@@ -13,6 +13,20 @@ def quote(s):
     if any(c in s for c in '$"\r\n'):raise ValueError('Unsupported NSIS path')
     return '"'+s.replace('/','\\')+'"'
 
+def path_preflight(payload):
+    # NSIS/Win32 extraction uses legacy path limits. Count UTF-16 code units,
+    # matching Unicode NSIS StrLen; include our generated completion/uninstaller.
+    units=lambda s:len(s.encode('utf-16-le'))//2
+    files=[p.relative_to(payload).as_posix() for p in payload.rglob('*') if p.is_file()]
+    files+=['INSTALL_COMPLETE','Uninstall.exe']
+    directories=[p.relative_to(payload).as_posix() for p in payload.rglob('*') if p.is_dir()]
+    longest_file=max(map(units,files))
+    longest_directory=max([0]+list(map(units,directories)))
+    return ['StrLen $0 "$INSTDIR"',f'IntOp $1 $0 + {longest_file+1}',
+            'IntCmp $1 259 path_files_ok path_files_ok path_too_long','path_files_ok:',
+            f'IntOp $1 $0 + {longest_directory+1}',
+            'IntCmp $1 247 path_lengths_ok path_lengths_ok path_too_long','path_lengths_ok:']
+
 def build(app,runtime,bootstrap,destination,version,metadata_url,targets_url,build_evidence):
     destination=destination.resolve()
     if not destination.is_relative_to(ROOT/'.local') or destination.exists():raise ValueError('New Suite-local destination required')
@@ -53,8 +67,9 @@ def build(app,runtime,bootstrap,destination,version,metadata_url,targets_url,bui
             f'VIAddVersionKey "FileVersion" "0.2.{version}.0"',
             'Name "CCB Studio Suite Internal"','OutFile '+quote(destination/'studio-installer.exe'),
             f'InstallDir "$LOCALAPPDATA\\CCBStudioSuite\\applications\\{version}-{sha[:12]}"',
-            'Page directory','Page instfiles','Section "Install"',
-            'IfFileExists "$INSTDIR" occupied','IfFileExists "$INSTDIR\\*.*" occupied']
+            'Page directory','Page instfiles','Section "Install"']
+    script+=path_preflight(payload)
+    script+=['IfFileExists "$INSTDIR" occupied','IfFileExists "$INSTDIR\\*.*" occupied']
     previous=None
     for p in sorted(payload.rglob('*')):
         if not p.is_file():continue
@@ -66,7 +81,9 @@ def build(app,runtime,bootstrap,destination,version,metadata_url,targets_url,bui
         script+=['ClearErrors','File '+quote(p),'IfErrors failed']
     script+=['SetOutPath "$INSTDIR"','WriteUninstaller "$INSTDIR\\Uninstall.exe"','IfErrors failed',
              'FileOpen $0 "$INSTDIR\\INSTALL_COMPLETE" w','IfErrors failed',f'FileWrite $0 "{version}:{sha}"','FileClose $0','SetErrorLevel 0','Goto done',
-             'occupied:','SetErrorLevel 17','Quit','failed:','SetErrorLevel 18','Quit','done:','SectionEnd',
+             'occupied:','SetErrorLevel 17','Quit','failed:','SetErrorLevel 18','Quit',
+             'path_too_long:','IfSilent +2','MessageBox MB_OK|MB_ICONSTOP "Installation path is too long. Choose a shorter folder. No files were installed."',
+             'SetErrorLevel 19','Quit','done:','SectionEnd',
              'UninstPage uninstConfirm','UninstPage instfiles','Section "Uninstall"']
     # Remove only shipped program files; never recursively delete a directory or user data.
     for p in sorted(payload.rglob('*')):

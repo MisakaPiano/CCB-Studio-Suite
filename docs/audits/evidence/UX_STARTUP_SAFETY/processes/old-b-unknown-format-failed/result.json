@@ -1,0 +1,26 @@
+{
+  "test": "ACTUAL_INSTALLED_B_UNSUPPORTED_ROOT_START_FAILURE",
+  "pid": 21700,
+  "app": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-applications-3\\4-0ae42d9b5e6d",
+  "dataRoot": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\evidence\\installed-start-failure-c7cc6c8bf5ec4eb69465cd7c465df290\\future-data",
+  "sourceSha": "0ae42d9b5e6dec3fd796b28a8f92fca507cccbdc",
+  "manifestFiles": 546,
+  "before": {
+    "preview-root.txt": "4126d82d3fcf10a935d97c858867b8195d111e88ddbff36c9d7f86ef15a5c3c4",
+    "unique-original.bin": "858e21196533377476b8398489a82d5cab18cc955c97cdf5e17493fbaeb98ea1"
+  },
+  "status": "FAILED",
+  "seconds": 1.1111625000012282,
+  "after": {
+    ".owner.lock": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "preview-root.txt": "4126d82d3fcf10a935d97c858867b8195d111e88ddbff36c9d7f86ef15a5c3c4",
+    "unique-original.bin": "858e21196533377476b8398489a82d5cab18cc955c97cdf5e17493fbaeb98ea1"
+  },
+  "failure": {
+    "status": "FAILED",
+    "reason": "UNSUPPORTED_VERSION"
+  },
+  "exitCode": null,
+  "applicationUpdate": "NOT TESTED; installed B entry-point only",
+  "window": "Failure dialog may remain; no forced termination"
+}

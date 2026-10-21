@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-10-21T20:38:00.528Z" hostname="DD1" time="12.874">
+  <properties/>
+  <testcase name="waitingCancellationRetainsLockAndDoesNotSend" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.601"/>
+  <testcase name="normalTransportUsesAuthorityEnvelopeAndCannotAcceptPartialStream" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.152"/>
+  <testcase name="httpErrorsNeverPersistProviderBodyOrRetry" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.047"/>
+  <testcase name="largeGuidanceReceiptKeepsExactWireAndSurvivesBackup" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="3.94"/>
+  <testcase name="composedResultIsDerivedAndRawResponseSurvivesRestart" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.677"/>
+  <testcase name="documentLimitPreflightDoesNotPoisonReadableWorkspace" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.223"/>
+  <testcase name="requestPayloadChunksRestoreAndDetectAlteredDescriptors" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="2.998"/>
+  <testcase name="interruptedDesignIsNotReplayedOnOpen" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.202"/>
+  <testcase name="partialGenerationRetainsOriginalAndFullReceiptOnFailure" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.57"/>
+  <testcase name="compositingFailurePreservesUniqueRawFinal" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.679"/>
+  <testcase name="designCandidateRequiresApplyBranchesAndSurvivesRestart" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="2.784"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

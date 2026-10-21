@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2026-10-21T20:52:24.986Z" hostname="DD1" time="51.822">
+  <properties/>
+  <testcase name="namedProjectLiveVerticalEditingHistoryAndRestart" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="8.937"/>
+  <testcase name="functionalAndInlineColorsPreviewExportAndReopenWithoutSilentFallback" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="3.058"/>
+  <testcase name="pointerDrawnMasksChangeEffectSaveUndoAndReopen" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="6.716"/>
+  <testcase name="webpPreviewExportAndOriginalReopen" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="3.147"/>
+  <testcase name="continuousMaskDefaultsRespectPerPageSettings" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="1.122"/>
+  <testcase name="fourCategoryPreviewCopiesCompleteFileDeckWithoutSystemClipboard" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="7.068"/>
+  <testcase name="durableDefaultFontLoadsOnFirstTextPreviewWithColdCache" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="2.976"/>
+  <testcase name="fullPreviewKeyboardAndExportDeckKeepEditorStateAndFitNarrowWindow" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="3.306"/>
+  <testcase name="maximumQueueWidthCannotStarveCanvasAndSurvivesReopen" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="1.839"/>
+  <testcase name="storyCaptionPresetPreviewExportAndRestart" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="4.543"/>
+  <testcase name="sourceExchangePreviewConfirmExportAndReopen" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="3.068"/>
+  <testcase name="queueControlSelectionDragOrderNumberingAndRestart" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="6.042"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

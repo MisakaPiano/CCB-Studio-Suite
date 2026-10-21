@@ -14,6 +14,19 @@ class StudioDataLaunchTest {
         AssetStore.open(p.resolve("assets")).close()
         StateJournal(p.resolve("documents")).commit(StudioState(version=2,creation=CreationState()))
     }
+    @Test fun futureFormatRefusalPreservesEveryEntryAndExplainsRecoveryWithoutExceptionDetails() {
+        val source=Files.createDirectories(root())
+        Files.writeString(source.resolve("preview-root.txt"),"CCBStudioSuite/WindowsStudio/v99")
+        Files.write(source.resolve("unique.bin"),byteArrayOf(1,2,3))
+        fun inventory()=Files.walk(source).use{paths->paths.filter{Files.isRegularFile(it)}.toList().associate{source.relativize(it).toString() to sha256(Files.readAllBytes(it))}}
+        val before=inventory()
+        val error=assertFailsWith<DataProblem>{openStudioForLaunch(source,root(),null,{_,_->error("must not migrate")})}
+        assertEquals("UNSUPPORTED_VERSION",error.status);assertEquals(before,inventory());assertFalse(Files.exists(source.resolve(".owner.lock")))
+        assertContains(studioStartupFailureText(error),"资料格式不受当前版本支持")
+        val unknown=studioStartupFailureText(IllegalArgumentException("private-path-or-request"))
+        assertFalse(unknown.contains("private-path-or-request"));assertFalse(unknown.contains("IllegalArgumentException"))
+        assertContains(unknown,"STARTUP_VALIDATION_FAILED")
+    }
     @Test fun cancelledManualMigrationDoesNotPublishOrModifySource() {
         val source=root();fixture(source)
         assertEquals("MIGRATION_CANCELLED",assertFailsWith<DataProblem>{openStudioForLaunch(source,root(),null,{_,_->false})}.status)
@@ -33,7 +46,12 @@ class StudioDataLaunchTest {
         }.toString())}
         write(root());assertFails{openStudioForLaunch(source,runtime,plan,{_,_->error("not manual")},installed)};assertFalse(Files.exists(target))
         write(target,9);assertFails{openStudioForLaunch(source,runtime,plan,{_,_->error("not manual")},installed)};assertFalse(Files.exists(target))
-        write(target);openStudioForLaunch(source,runtime,plan,{_,_->error("not manual")},installed).use{assertEquals(target,it.root);assertEquals(3,it.state.version)}
+        write(target)
+        Files.writeString(source.resolve("preview-root.txt"),"CCBStudioSuite/WindowsStudio/v3")
+        val mismatch=assertFailsWith<DataProblem>{openStudioForLaunch(source,runtime,plan,{_,_->error("not manual")},installed)}
+        assertEquals("UPDATE_DATA_VERSION_MISMATCH",mismatch.status);assertContains(studioStartupFailureText(mismatch),"本次更新确认的格式不一致");assertFalse(Files.exists(target))
+        Files.writeString(source.resolve("preview-root.txt"),"CCBStudioSuite/WindowsStudio/v2")
+        openStudioForLaunch(source,runtime,plan,{_,_->error("not manual")},installed).use{assertEquals(target,it.root);assertEquals(3,it.state.version)}
         assertEquals(2,StateJournal(source.resolve("documents")).state.version)
     }
 }

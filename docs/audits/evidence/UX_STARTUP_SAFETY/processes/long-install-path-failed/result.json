@@ -1,0 +1,15 @@
+{
+  "status": "FAILED",
+  "kind": "ACTUAL_NSIS_INSTALL_AND_B_START_FAILURE",
+  "aSourceSha": "251dc34950990b0878e1910d16ed289e9400db8d",
+  "bSourceSha": "0ae42d9b5e6dec3fd796b28a8f92fca507cccbdc",
+  "installerSha256": "eda9b2d3a7ffaa7691f10d506148005862f33c931cb38855455cb370e3b155e9",
+  "guiConfirmation": "NOT TESTED; harness supplies approved plan",
+  "parentClose": "HARNESS CRASH INJECTION; not normal application drain",
+  "fault": {
+    "file": "preview-root.txt",
+    "beforeSha256": "03fd07e045519728ea7b1bda8d40433d9e2b9ffaf89037a21ac2ebfa5c3a361f",
+    "afterSha256": "4126d82d3fcf10a935d97c858867b8195d111e88ddbff36c9d7f86ef15a5c3c4",
+    "injectedBy": "test harness before A process exit"
+  }
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-10-21T20:36:34.390Z" hostname="DD1" time="19.663">
+  <properties/>
+  <testcase name="crashRecoveryOccursOnlyWhenPublishedCopyIsOpened" classname="io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest" time="1.092"/>
+  <testcase name="publishedCopyIsNotOverwrittenOnRetry" classname="io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest" time="0.963"/>
+  <testcase name="abruptProcessExitAtEveryMigrationCommitBoundaryRetainsSourcesAndPublishedWork" classname="io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest" time="7.378"/>
+  <testcase name="restoredVersionTwoBackupCanMigrateWithoutOpeningInOldApplication" classname="io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest" time="1.801"/>
+  <testcase name="bothOwnershipLocksExcludeMigration" classname="io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest" time="0.529"/>
+  <testcase name="copyPreservesOriginalBytesHistoryAndEncryptedBlobsAndCanBackupRestore" classname="io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest" time="1.551"/>
+  <testcase name="unknownAuthoritativeContentAndDirectoriesAreNeverIgnored" classname="io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest" time="1.911"/>
+  <testcase name="allPrePublicationFaultsRetainSourceAndRetryToFreshTarget" classname="io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest" time="4.438"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

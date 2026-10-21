@@ -1,0 +1,28 @@
+{
+  "phase": "migration-process-targeted",
+  "startedUtc": "2026-10-21T20:30:28.502528+00:00",
+  "seconds": 14.059,
+  "exitCode": 1,
+  "tests": 0,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "FAILED",
+  "testEvidence": "NOT TESTED (build only or failed before execution)",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-core:test",
+    "--tests",
+    "*StudioFormatMigrationTest.abruptProcess*"
+  ],
+  "baseCommit": "de2a6d33b959c2c1a7001ad3a7d30b10be5c1ba3",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

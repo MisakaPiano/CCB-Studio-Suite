@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-21T20:51:13.799Z" hostname="DD1" time="13.158">
+  <properties/>
+  <testcase name="queuedRemovedRegistrationIsIgnoredAndUncertainMetadataStopsAutomaticRetries" classname="io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest" time="1.429"/>
+  <testcase name="workbenchAutomaticallyCollectsImagesAndPromptVersionsAndDrainsForMaintenance" classname="io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest" time="10.452"/>
+  <testcase name="unreadableLocalRegistrationStopsMonitoringWithoutHidingAssetLabels" classname="io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest" time="1.277"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

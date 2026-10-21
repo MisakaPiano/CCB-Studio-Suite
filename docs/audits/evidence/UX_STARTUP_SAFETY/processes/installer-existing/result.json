@@ -1,0 +1,16 @@
+{
+  "test": "ACTUAL_NSIS_EXISTING_DESTINATION_REFUSAL",
+  "status": "PASS",
+  "exitCode": 17,
+  "seconds": 0.3974076000013156,
+  "installerSha256": "eda9b2d3a7ffaa7691f10d506148005862f33c931cb38855455cb370e3b155e9",
+  "sourceSha": "0ae42d9b5e6dec3fd796b28a8f92fca507cccbdc",
+  "before": {
+    "unique-original.bin": "f6a626973a456e4726faf1a89ea17b36901f7a0f684288fefcd04737d8fe01f5"
+  },
+  "after": {
+    "unique-original.bin": "f6a626973a456e4726faf1a89ea17b36901f7a0f684288fefcd04737d8fe01f5"
+  },
+  "applicationUpdate": "NOT TESTED",
+  "partialWriteFailure": "NOT TESTED"
+}

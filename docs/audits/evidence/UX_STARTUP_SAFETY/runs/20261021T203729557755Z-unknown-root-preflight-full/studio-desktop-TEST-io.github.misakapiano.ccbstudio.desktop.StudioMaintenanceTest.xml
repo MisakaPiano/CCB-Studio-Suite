@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.StudioMaintenanceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-21T20:43:02.183Z" hostname="DD1" time="1.2">
+  <properties/>
+  <testcase name="maintenanceRejectsNewEditsAndKeepsRootOwnedUntilWriterDrains" classname="io.github.misakapiano.ccbstudio.desktop.StudioMaintenanceTest" time="0.346"/>
+  <testcase name="migrationDestinationIsSeparateAndCannotReuseExistingWork" classname="io.github.misakapiano.ccbstudio.desktop.StudioMaintenanceTest" time="0.002"/>
+  <testcase name="snapshotPreservesOriginalAssociationsAndDpapiCredentialWithoutPlaintext" classname="io.github.misakapiano.ccbstudio.desktop.StudioMaintenanceTest" time="0.852"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

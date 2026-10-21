@@ -1,0 +1,20 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioDataLaunchTest",
+    "name": "futureFormatRefusalPreservesEveryEntryAndExplainsRecoveryWithoutExceptionDetails",
+    "seconds": "0.083",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioDataLaunchTest",
+    "name": "installedIdentityAndApprovedDestinationBindMigration",
+    "seconds": "0.467",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioDataLaunchTest",
+    "name": "cancelledManualMigrationDoesNotPublishOrModifySource",
+    "seconds": "0.48",
+    "status": "PASS"
+  }
+]

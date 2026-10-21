@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.LibraryRepositoryTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-21T20:34:02.435Z" hostname="DD1" time="28.139">
+  <properties/>
+  <testcase name="damagedOrFutureManagementRecordsDoNotResetMetadataOrHideOriginals" classname="io.github.misakapiano.ccbstudio.core.LibraryRepositoryTest" time="2.166"/>
+  <testcase name="directoriesVersionAndMissingSourcesKeepAssetsLabelsPromptsAndBackup" classname="io.github.misakapiano.ccbstudio.core.LibraryRepositoryTest" time="17.728"/>
+  <testcase name="promptEditsPreserveEarlierVersionAndRejectDataRootAsIngress" classname="io.github.misakapiano.ccbstudio.core.LibraryRepositoryTest" time="2.123"/>
+  <testcase name="referencesExcludeWhitespaceAlignRolesWithoutMutatingOriginalAndRestore" classname="io.github.misakapiano.ccbstudio.core.LibraryRepositoryTest" time="6.122"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

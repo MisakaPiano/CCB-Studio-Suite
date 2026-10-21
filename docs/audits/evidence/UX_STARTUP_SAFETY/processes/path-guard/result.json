@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "case": "boundary",
+      "status": "PASS",
+      "exitCode": 0,
+      "destinationUtf16Units": 174
+    },
+    {
+      "case": "too-long",
+      "status": "PASS",
+      "exitCode": 19,
+      "destinationUtf16Units": 175
+    },
+    {
+      "case": "unicode-too-long",
+      "status": "PASS",
+      "exitCode": 19,
+      "destinationUtf16Units": 175
+    },
+    {
+      "case": "occupied",
+      "status": "PASS",
+      "exitCode": 17,
+      "destinationUtf16Units": 58
+    }
+  ],
+  "sourceSha256": "94d1ea7236b29a6c70308686a4baec7e195b80f03adbe33fe2a35493bd662a42",
+  "scope": "ACTUAL_NSIS_SYNTHETIC_EXTRACTION; not full application installer",
+  "compiler": "NSIS 3.13",
+  "evidence": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\evidence\\installer-path-guard-ad610656f86049dca8b7f0d992fbf915"
+}

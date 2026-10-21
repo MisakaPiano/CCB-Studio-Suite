@@ -1,0 +1,14 @@
+{
+  "status": "FAILED_RETAINED",
+  "target": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\evidence\\actual-installed-b-failure-341cd8cacb1442a2881c1e0b5c7dfeb2\\applications\\4-0ae42d9b5e6d",
+  "stage": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\evidence\\actual-installed-b-failure-341cd8cacb1442a2881c1e0b5c7dfeb2\\applications\\4-0ae42d9b5e6d.0e1bd715ad8a43978c71d6b32a080270.installing",
+  "expected": {
+    "product": "ccb-studio-suite",
+    "platform": "windows-x86_64",
+    "channel": "internal",
+    "version": 4,
+    "sourceSha": "0ae42d9b5e6dec3fd796b28a8f92fca507cccbdc"
+  },
+  "dataModified": false,
+  "reason": "UpdateRejected"
+}
