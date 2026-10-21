@@ -1,0 +1,38 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetPreferencesTest",
+    "name": "newTextRespectsRememberedStyleAndSourceImageLimits",
+    "seconds": "0.046",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetPreferencesTest",
+    "name": "presetsSaveOnlyStyleAndSourceMaskSlotsHaveExactParameters",
+    "seconds": "0.019",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetPreferencesTest",
+    "name": "globalPreferencesSurviveWorkspaceBackupAndRestore",
+    "seconds": "0.691",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "namedProjectLiveVerticalEditingHistoryAndRestart",
+    "seconds": "11.748",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "pointerDrawnMasksChangeEffectSaveUndoAndReopen",
+    "seconds": "6.951",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "queueControlSelectionDragOrderNumberingAndRestart",
+    "seconds": "5.905",
+    "status": "PASS"
+  }
+]

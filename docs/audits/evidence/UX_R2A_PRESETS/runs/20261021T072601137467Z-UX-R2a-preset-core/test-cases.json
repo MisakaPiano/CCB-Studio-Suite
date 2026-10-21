@@ -1,0 +1,14 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetPreferencesTest",
+    "name": "presetsSaveOnlyStyleAndSourceMaskSlotsHaveExactParameters",
+    "seconds": "0.062",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetPreferencesTest",
+    "name": "globalPreferencesSurviveWorkspaceBackupAndRestore",
+    "seconds": "1.067",
+    "status": "PASS"
+  }
+]

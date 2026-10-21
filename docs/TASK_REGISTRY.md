@@ -1,3 +1,7 @@
+## UX-R2预设与默认进度（2026-10-21）
+
+[执行记录](audits/UX_R2A_PRESETS.md)：跨工程文字预设、四槽打码/启动默认、源新建文字限制已接入；完整core53+desktop43共96实际PASS。保留全部历史失败，PRODUCT_HOLD；继续源文件交换、完整导出、图库与安全更新。
+
 ## UX-R2对象与队列进度（2026-10-21）
 
 [执行与界面证据](audits/UX_R2A_OBJECTS_QUEUE.md)：core50+desktop43共93项实际PASS；对象锁定/层序、工程另存/删除、Ctrl/Shift多选拖序及重开已测。七次运行含失败保留；PRODUCT_HOLD，继续预设/交换/完整导出与R3–R4。

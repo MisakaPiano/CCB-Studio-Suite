@@ -21,7 +21,7 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
     var objectId by mutableStateOf<String?>(null)
     var tool by mutableStateOf("select")
     var zoom by mutableStateOf(1f)
-    var maskDefault by mutableStateOf(TypesetMask())
+    var maskDefault by mutableStateOf(c.workspace.state.typesetPreferences.resolveMask(c.workspace.state.typesetPreferences.preferredMaskSlot).apply(TypesetMask()))
     val page get()=document?.pages?.firstOrNull{it.id==pageId}
     val text get()=page?.texts?.firstOrNull{it.id==objectId}
     val mask get()=page?.masks?.firstOrNull{it.id==objectId}
@@ -45,12 +45,12 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
     suspend fun drain(){pending?.cancelAndJoin();flush()}
     fun create(name:String,ids:List<String>)=c.run("建立编辑工程") {
         drain();val p=repository.create(name,ids);val d=repository.load(p)
-        withContext(ui){project=p;document=d;dirty=false;pageId=d.pages.firstOrNull()?.id;selectedPages=setOfNotNull(pageId);objectId=null;maskDefault=page?.toolDefaults?:TypesetMask();c.view="编辑"}
+        withContext(ui){project=p;document=d;dirty=false;pageId=d.pages.firstOrNull()?.id;selectedPages=setOfNotNull(pageId);objectId=null;maskDefault=page?.toolDefaults?:c.workspace.state.typesetPreferences.resolveMask(c.workspace.state.typesetPreferences.preferredMaskSlot).apply(TypesetMask());c.view="编辑"}
     }
     fun open(id:String)=c.run("打开编辑工程") {
         drain();val p=c.workspace.state.typesetProjects.first{it.id==id};val d=repository.load(p)
         val fontProblem=runCatching{TypesetFonts.activate(c.workspace,TypesetFonts.documentFonts(d))}.exceptionOrNull()
-        withContext(ui){project=p;document=d;dirty=false;pageId=p.currentPageId?.takeIf{id->d.pages.any{it.id==id}}?:d.pages.firstOrNull()?.id;selectedPages=p.selectedPageIds.filter{id->d.pages.any{it.id==id}}.toSet();objectId=null;maskDefault=page?.toolDefaults?:TypesetMask();c.view="编辑"}
+        withContext(ui){project=p;document=d;dirty=false;pageId=p.currentPageId?.takeIf{id->d.pages.any{it.id==id}}?:d.pages.firstOrNull()?.id;selectedPages=p.selectedPageIds.filter{id->d.pages.any{it.id==id}}.toSet();objectId=null;maskDefault=page?.toolDefaults?:c.workspace.state.typesetPreferences.resolveMask(c.workspace.state.typesetPreferences.preferredMaskSlot).apply(TypesetMask());c.view="编辑"}
         if(fontProblem!=null)c.problem="字体资源不可用，工程已保留并打开。请重新导入字体或选择可用字体；导出前必须解决。"
     }
     fun manageProject(action:String,name:String="")=c.run("编辑工程管理") {
@@ -60,6 +60,39 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
             "copy"->{val next=repository.copy(p.id,p.revision,name);withContext(ui){project=next;dirty=false}}
             "remove"->{repository.remove(p.id,p.revision);withContext(ui){project=null;document=null;pageId=null;selectedPages=emptySet();objectId=null;dirty=false}}
             else->error("Unknown project operation")
+        }
+    }
+    private fun preferences(change:(TypesetPreferences)->TypesetPreferences)=c.workspace.operation {
+        val next=change(c.workspace.state.typesetPreferences);next.validate();c.workspace.save(c.workspace.state.copy(typesetPreferences=next))
+    }
+    fun rememberTextDefault()=c.run("保存新建文字默认") {drain();val selected=text?:return@run;preferences{it.copy(textDefault=TypesetPreferences.styleOnly(selected))}}
+    fun rememberMaskDefault()=c.run("保存自定义打码参数") {drain();val settings=MaskToolSettings.from(mask?:maskDefault);preferences{it.copy(currentMask=settings)}}
+    fun saveTextPreset(name:String,replace:String?=null)=c.run("保存文字预设") {
+        drain();val style=text?:return@run;preferences{it.saveText(name,style,replace)}
+    }
+    fun deleteTextPreset(id:String)=c.run("删除文字预设") {drain();preferences{it.removeText(id)}}
+    fun applyTextPreset(id:String)=c.run("应用文字预设") {
+        drain();val p=project?:return@run;val selected=objectId?:return@run
+        val preset=c.workspace.state.typesetPreferences.textPresets.single{it.id==id}
+        TypesetFonts.activate(c.workspace,listOf(preset.text.style.fontFamily))
+        val next=repository.update(p.id,p.revision){d->d.copy(pages=d.pages.map{page->if(page.id==pageId)page.copy(texts=page.texts.map{if(it.id==selected)TypesetPreferences.applyText(preset.text,it)else it})else page})}
+        val d=repository.load(next);withContext(ui){project=next;document=d;dirty=false}
+        preferences{it.copy(selectedTextPresetId=id,textDefault=preset.text)}
+    }
+    fun maskPreset(action:String,slot:String)=c.run("打码预设") {
+        drain();val current=MaskToolSettings.from(mask?:maskDefault)
+        when(action){
+            "overwrite"->preferences{it.copy(maskOverrides=it.maskOverrides+(slot to current))}
+            "reset"->preferences{it.copy(maskOverrides=it.maskOverrides-slot)}
+            "prefer"->preferences{it.copy(preferredMaskSlot=slot)}
+            "apply"->{
+                val settings=c.workspace.state.typesetPreferences.copy(currentMask=current).resolveMask(slot)
+                val p=project
+                if(p!=null){val next=repository.update(p.id,p.revision){d->d.copy(pages=d.pages.map{page->if(page.id==pageId)page.copy(toolDefaults=settings.apply(TypesetMask()),masks=page.masks.map{if(it.id==objectId)settings.apply(it)else it})else page})}
+                    val d=repository.load(next);withContext(ui){project=next;document=d;dirty=false}}
+                withContext(ui){maskDefault=settings.apply(maskDefault)};preferences{it.copy(currentMask=settings)}
+            }
+            else->error("Unknown preset operation")
         }
     }
     fun importFont()=c.run("导入本地字体") {
@@ -79,9 +112,8 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
         pageId=id;objectId=null;page?.toolDefaults?.let{maskDefault=it}
     }
     fun addText(width:Int,height:Int) {
-        val template=text?:document?.presets?.firstOrNull()?.text
-        val next=(template?:TypesetText(style=TypesetStyle(fontSize=maxOf(24.0,width*.045),strokeWidth=maxOf(1.0,width*.045*.06))))
-            .copy(id=newId(),text="",x=width*.5,y=height*.15,width=minOf(width*.75,900.0))
+        val template=text?:c.workspace.state.typesetPreferences.textDefault?:document?.presets?.firstOrNull()?.text
+        val next=TypesetPreferences.newText(width,height,template)
         pageChange{it.copy(texts=it.texts+next)};objectId=next.id;tool="select"
     }
     fun removeObject()=pageChange{TypesetObjects.remove(it,objectId?:return@pageChange it)}.also{objectId=null}

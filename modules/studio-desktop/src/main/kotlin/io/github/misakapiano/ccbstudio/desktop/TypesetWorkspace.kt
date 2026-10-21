@@ -165,6 +165,7 @@ private data class EditorRaster(val bitmap:ImageBitmap,val width:Int,val height:
 @Composable private fun TypesetProperties(c:WorkbenchController,e:TypesetEditorController) {
     val page=e.page?:return
     Text("对象与属性")
+    TypesetPresets(c,e)
     StudioActions {TypesetObjects.order(page).asReversed().forEach{id->
         val t=page.texts.firstOrNull{it.id==id};val m=page.masks.firstOrNull{it.id==id}
         val label=if(t!=null)"文字 ${page.texts.indexOf(t)+1}"else"打码 ${page.masks.indexOf(m)+1}"

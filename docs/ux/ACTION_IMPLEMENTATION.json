@@ -861,11 +861,22 @@
     {
       "id": "T16",
       "owner": "UX-R2b",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "TypesetPreferences.kt",
+        "TypesetPresets.kt",
+        "TypesetEditorController.kt"
+      ],
+      "tests": [
+        "TypesetPreferencesTest: exact source slots, style projection, image limits, backup restore",
+        "TypesetWorkflowTest: actual preset save/apply/override/reset/preferred slot GUI and reopen"
+      ],
+      "guiEvidence": [
+        "UX_R2A_PRESETS runs: actual Compose semantics; no native visual acceptance"
+      ],
+      "persistenceEvidence": [
+        "TypesetPreferencesTest.globalPreferencesSurviveWorkspaceBackupAndRestore"
+      ],
+      "status": "ENGINEERING_PARTIAL / PRESETS_TESTED / SOURCE_FILE_EXCHANGE_PENDING / PRODUCT_HOLD"
     },
     {
       "id": "T17",
@@ -970,20 +981,42 @@
     {
       "id": "Q05",
       "owner": "UX-R2b",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "TypesetPreferences.kt",
+        "TypesetPresets.kt",
+        "TypesetEditorController.kt"
+      ],
+      "tests": [
+        "TypesetPreferencesTest: exact source slots, style projection, image limits, backup restore",
+        "TypesetWorkflowTest: actual preset save/apply/override/reset/preferred slot GUI and reopen"
+      ],
+      "guiEvidence": [
+        "UX_R2A_PRESETS runs: actual Compose semantics; no native visual acceptance"
+      ],
+      "persistenceEvidence": [
+        "TypesetPreferencesTest.globalPreferencesSurviveWorkspaceBackupAndRestore"
+      ],
+      "status": "ENGINEERING_PARTIAL / PRESETS_TESTED / SOURCE_FILE_EXCHANGE_PENDING / PRODUCT_HOLD"
     },
     {
       "id": "Q06",
       "owner": "UX-R2b",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "TypesetPreferences.kt",
+        "TypesetPresets.kt",
+        "TypesetEditorController.kt"
+      ],
+      "tests": [
+        "TypesetPreferencesTest: exact source slots, style projection, image limits, backup restore",
+        "TypesetWorkflowTest: actual preset save/apply/override/reset/preferred slot GUI and reopen"
+      ],
+      "guiEvidence": [
+        "UX_R2A_PRESETS runs: actual Compose semantics; no native visual acceptance"
+      ],
+      "persistenceEvidence": [
+        "TypesetPreferencesTest.globalPreferencesSurviveWorkspaceBackupAndRestore"
+      ],
+      "status": "ENGINEERING_PARTIAL / PRESETS_TESTED / SOURCE_FILE_EXCHANGE_PENDING / PRODUCT_HOLD"
     },
     {
       "id": "Q07",

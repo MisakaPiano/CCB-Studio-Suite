@@ -44,6 +44,12 @@ class TypesetWorkflowTest {
             scene.field("竖排框高度","240")
             assertTrue(c.editor.text!!.vertical)
             scene.rendered();scene.shot("vertical-live");c.editor.drain();assertFalse(c.editor.dirty)
+            val styleBeforePreset=c.editor.text!!
+            scene.click("▸ 预设与默认");scene.field("预设名称","竖排字幕");scene.click("保存新文字预设");c.idle();scene.frames()
+            assertEquals("",w.state.typesetPreferences.textPresets.single().text.text)
+            scene.field("字号","18");c.editor.drain();scene.click("应用文字预设");c.idle();scene.frames()
+            assertEquals(styleBeforePreset.style,c.editor.text!!.style);assertEquals(styleBeforePreset.text,c.editor.text!!.text);assertEquals(styleBeforePreset.x,c.editor.text!!.x)
+            scene.click("▾ 预设与默认")
             val beforeMove=c.editor.text!!
             scene.click("锁定对象");scene.frames()
             suspend fun dragText(){
@@ -91,12 +97,19 @@ class TypesetWorkflowTest {
             assertEquals(listOf("rect","brush","lasso"),c.editor.page!!.masks.map{it.shape})
             scene.click("打码效果 · 马赛克 ▾");scene.click("黑条 / 黑色");scene.frames();scene.rendered()
             assertEquals("black",c.editor.mask!!.effect)
+            scene.click("▸ 预设与默认");scene.click("覆盖打码预设");scene.click("确认预设变更");c.idle();scene.frames()
+            assertEquals("black",w.state.typesetPreferences.maskOverrides["light_mosaic"]!!.effect)
+            scene.click("恢复内置打码预设");scene.click("确认预设变更");c.idle();scene.frames()
+            assertTrue(w.state.typesetPreferences.maskOverrides.isEmpty());assertEquals("black",c.editor.mask!!.effect)
+            scene.click("启动默认 · 已保存自定义参数 ▾");scene.click("重马赛克");c.idle();scene.frames()
+            assertEquals("heavy_mosaic",w.state.typesetPreferences.preferredMaskSlot);scene.click("▾ 预设与默认")
+
             scene.shot("mask-workflow");c.editor.drain();val before=c.editor.page!!.masks
             scene.click("移除打码");c.editor.drain();assertEquals(2,c.editor.page!!.masks.size)
             scene.click("撤销编辑");c.idle();scene.frames();assertEquals(before,c.editor.page!!.masks)
             assertContentEquals(bytes,w.bytes(id))
         }finally{scene.close();c.close();scope.cancel()}
-        StudioWorkspace.openStudio(r).use{again->val masks=TypesetRepository(again).load(again.state.typesetProjects.single()).pages.single().masks;assertEquals(3,masks.size);assertEquals("black",masks.last().effect);assertContentEquals(bytes,again.bytes(id))}
+        StudioWorkspace.openStudio(r).use{again->val masks=TypesetRepository(again).load(again.state.typesetProjects.single()).pages.single().masks;assertEquals(3,masks.size);assertEquals("black",masks.last().effect);assertEquals("heavy_mosaic",again.state.typesetPreferences.preferredMaskSlot);assertContentEquals(bytes,again.bytes(id))}
     }
 
     @Test fun queueControlSelectionDragOrderNumberingAndRestart()=runBlocking(awt) {

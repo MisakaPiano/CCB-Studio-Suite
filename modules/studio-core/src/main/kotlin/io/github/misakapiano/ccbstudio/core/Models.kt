@@ -78,6 +78,7 @@ fun sha256(bytes: ByteArray): String = MessageDigest.getInstance("SHA-256").dige
     val savedCopies: List<String> = emptyList(),
     val typesetProjects:List<TypesetProject> = emptyList(),
     val typesetFonts:List<TypesetFontResource> = emptyList(),
+    val typesetPreferences:TypesetPreferences=TypesetPreferences(),
 ) {
     fun validate() {
         if(version !in 1..2) throw DataProblem("UNSUPPORTED_VERSION", "Studio document version $version retained")
@@ -90,6 +91,7 @@ fun sha256(bytes: ByteArray): String = MessageDigest.getInstance("SHA-256").dige
         typesetProjects.forEach{it.validate()}
         require(typesetFonts.size<=64 && typesetFonts.map{it.id}.distinct().size==typesetFonts.size)
         typesetFonts.forEach{it.validate()}
+        typesetPreferences.validate()
         require(projects.map { it.id }.distinct().size == projects.size)
         projects.forEach { p ->
             UUID.fromString(p.id); require(p.name.length in 1..100)
