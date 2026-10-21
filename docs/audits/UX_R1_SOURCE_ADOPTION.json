@@ -15,7 +15,7 @@
       "target": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/CreationSession.kt",
       "sourceSha256": "2b716d05c1ca1ddc4bab0e315da1d471bd01b29dea900cfab99ae0ea57cc5047",
       "adaptation": "Suite journal replaces Desktop repository; same design/revise baseline and research dispatch; cancellation/restart persistence; explicit candidate application",
-      "sha256": "e6e2cdb53950522d19e61ed72cf5667b2720d3daf0d3744019f81aa1edc91c69"
+      "sha256": "a32460e7a606cb55319cc449e6d0ba27074f511b2bec7f60ccf57e5ff1ed4037"
     },
     {
       "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiTextTransport.kt",
@@ -184,6 +184,69 @@
       "sha256": "58abb8aa654fcc4d48a560b521f2e11a811b2be6d81261e8e203685388f94cb6",
       "adaptation": "13 Studio-specific Compose scene/input regressions retained; excluded final chat attachment toolbar case because Suite does not adopt Desktop chat.",
       "sourceSha256": "35b60b290aef7bad2dca3b7e6960dcef5befaa99585bd37feafcacb8a74b03d9"
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopImageEditing.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopImageEditing.kt",
+      "sourceSha256": "13fe35a032428bb0d2e344958c3ef9c47ab2deb9c0225cf119a2fddd58e9e4b7",
+      "sha256": "13fe35a032428bb0d2e344958c3ef9c47ab2deb9c0225cf119a2fddd58e9e4b7",
+      "adaptation": "Exact component/algorithm bytes; Suite platform adapters and immutable asset IDs isolate IO; R1b consumer"
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopImageTools.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopImageTools.kt",
+      "sourceSha256": "6e4c599f5a678dc30686254841b7b9d0f6933bb929cb4f009fec3b36ceb62d63",
+      "sha256": "6e4c599f5a678dc30686254841b7b9d0f6933bb929cb4f009fec3b36ceb62d63",
+      "adaptation": "Exact component/algorithm bytes; Suite platform adapters and immutable asset IDs isolate IO; R1b consumer"
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopImageToolsDialog.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopImageToolsDialog.kt",
+      "sourceSha256": "ac2e3fea38b3a5dbd96524208bb337333657573e05bdd3e94739d2699328d760",
+      "sha256": "ecb6a742fe71771e091de188cf07f9bb943a25821f4260fa517b8d303d1328c4",
+      "adaptation": "Source tool UI and canvas retained. Added embeddable container for actual Compose regression; completion callbacks await durable Suite storage; rotation clears mask and transforms focus rectangle with source pixels, undo preserves both."
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopImageMetadata.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopImageMetadata.kt",
+      "sourceSha256": "a019e314d55bc13d2a5e2faded3333fd1855c090a3a60da0c47a1a28ee570ccf",
+      "sha256": "a019e314d55bc13d2a5e2faded3333fd1855c090a3a60da0c47a1a28ee570ccf",
+      "adaptation": "Exact component/algorithm bytes; Suite platform adapters and immutable asset IDs isolate IO; R1b consumer"
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopImageWorkspace.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopImageWorkspace.kt",
+      "sourceSha256": "0eed2df097f2514da8c41fc2f8b26b985efe5344c2071d9011aa2375185e3bc8",
+      "sha256": "0eed2df097f2514da8c41fc2f8b26b985efe5344c2071d9011aa2375185e3bc8",
+      "adaptation": "Exact component/algorithm bytes; Suite platform adapters and immutable asset IDs isolate IO; R1b consumer"
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopImagePresentation.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopImagePresentation.kt",
+      "sourceSha256": "79167f511dab8e6af1695618e272f002faf7ee0fff7bffcf1db28cb7ae3fb7c1",
+      "sha256": "79167f511dab8e6af1695618e272f002faf7ee0fff7bffcf1db28cb7ae3fb7c1",
+      "adaptation": "Exact component/algorithm bytes; Suite platform adapters and immutable asset IDs isolate IO; R1b consumer"
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiGuidance.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiGuidance.kt",
+      "sourceSha256": "3d80a7d1760217fc4d56bfd0f5ecf3add1a6d24a5da0f8e83aaf1206fb73c09b",
+      "sha256": "d0d482ce65e70dd043fba1c8f11d65092db2c6955eb8919e2d18d1e2a44264b1",
+      "adaptation": "Suite immutable asset-ID reader and hash check, DPAPI token callback, cancellable per-attempt budget for Vibe misses; preserve official raster/focus/blend/reference algorithms"
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiStudioPanel.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GuidanceWorkspace.kt",
+      "sourceSha256": "c2f2379ac2dc54312ef3c026e01f2e589658127974ce0847a5f5a1ce8ec4c82f",
+      "sha256": "20eced3f1f7775f12fae2684a6f0f3ba594a1ea5fc8fdf5986857386aaa32f2a",
+      "adaptation": "Extracted guidance control flow; Suite IDs and persisted derivatives replace Desktop resource paths. Model capability gates shown; no official request changes."
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiStudioController.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt",
+      "sourceSha256": "4511f9329082b6877d25ce6a7f77b0302f6d5a391215ead22dd4b620c7b07de2",
+      "sha256": "96244b6adb35d594d0a2598e26449974f2c5b9453b66a66ee29663b8ded08773",
+      "adaptation": "Suite lifecycle/DPAPI/journal adapters; normalize imported guidance into a derived PNG as source controller does; source original retained; budget per cache miss and generation attempt."
     }
   ]
 }

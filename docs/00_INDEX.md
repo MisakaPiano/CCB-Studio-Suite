@@ -4,6 +4,8 @@
 
 [UX-R1a工作台工程检查点](audits/UX_R1A_WORKBENCH.md)：真实应用接线/本地HTTP流程，23项desktop新测试PASS；原生截图超时单独记NOT TESTED，继续R1b。
 
+[UX-R1b引导/Q09中间检查点](audits/UX_R1B_GUIDANCE.md)：155项新执行PASS，R1b仍在实施；未达到产品验收。
+
 # 当前审阅入口：UX-R0 产品恢复合同
 
 **PRODUCT HOLD / NOT ACCEPTED。** Issue #4最新完整继承要求下，已交付[整体Project审阅入口](ux/UX_R0_PROJECT_REVIEW.md)、[来源差距矩阵](ux/UX_R0_PARITY_MATRIX.md)、[逐动作继承合同](ux/UX_R0_ACTION_TRACE.md)、[GUI工作流/宽窄结构](ux/UX_R0_WORKFLOW_AND_LAYOUT.md)、[完整实施方案](ux/UX_RECOVERY_IMPLEMENTATION_PLAN.md)。[当前任务](../tasks/UX_R0_PRODUCT_RECOVERY_AUDIT.md)与[最新Issue范围](../tasks/UX_R0_ISSUE4_FULL_ADOPTION_ADDENDUM.md)。本轮仅文档，Project批准后再实现；下面均保留历史。

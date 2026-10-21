@@ -63,7 +63,8 @@ fun sha256(bytes: ByteArray): String = MessageDigest.getInstance("SHA-256").dige
 @Serializable data class DesignRecord(val id: String = newId(), val instruction: String, val previousPlan: String?, val resultPlan: String,
     val account: AccountProfile, val exchanges: List<String>, val createdAt: Long = System.currentTimeMillis())
 @Serializable data class JobRecord(val id: String = newId(), val account: AccountProfile, val recipe: String,
-    val state: String, val results: List<String> = emptyList(), val detail: String = "", val createdAt: Long = System.currentTimeMillis())
+    val state: String, val results: List<String> = emptyList(), val detail: String = "", val createdAt: Long = System.currentTimeMillis(),
+    val composedResults: List<String> = emptyList())
 @Serializable data class StudioState(
     val version: Int = 1,
     val accounts: List<AccountProfile> = emptyList(),
@@ -71,6 +72,7 @@ fun sha256(bytes: ByteArray): String = MessageDigest.getInstance("SHA-256").dige
     val designs: List<DesignRecord> = emptyList(),
     val jobs: List<JobRecord> = emptyList(),
     val creation: CreationState? = null,
+    val savedCopies: List<String> = emptyList(),
 ) {
     fun validate() {
         if(version !in 1..2) throw DataProblem("UNSUPPORTED_VERSION", "Studio document version $version retained")
@@ -78,6 +80,7 @@ fun sha256(bytes: ByteArray): String = MessageDigest.getInstance("SHA-256").dige
         require(accounts.size <= 100 && accounts.map { it.id }.distinct().size == accounts.size)
         accounts.forEach { it.validate() }
         creation?.validate()
+        savedCopies.forEach {UUID.fromString(it)}
         require(projects.map { it.id }.distinct().size == projects.size)
         projects.forEach { p ->
             UUID.fromString(p.id); require(p.name.length in 1..100)

@@ -23,6 +23,7 @@ internal object DesktopBootstrapColors {
     val primary=Color(0xff7db5ff);val primaryForeground=Color(0xff0d1117);val muted=Color(0xff222a35)
     val mutedForeground=Color(0xffaab6c5);val border=Color(0xff303946);val input=Color(0xff111820)
     val accent=Color(0xff263c57);val warning=Color(0xffffc16d)
+    val destructive=Color(0xffff7b7b)
 }
 @Composable internal fun StatusText(text:String,color:Color=DesktopBootstrapColors.mutedForeground) {BasicText(text,style=TextStyle(color=color,fontSize=14.sp))}
 @OptIn(ExperimentalLayoutApi::class)

@@ -1,0 +1,26 @@
+{
+  "phase": "UX-R1b-guidance-compile",
+  "startedUtc": "2026-10-21T05:16:29.102889+00:00",
+  "seconds": 37.284,
+  "exitCode": 0,
+  "tests": 0,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "COMMAND_SUCCESS",
+  "testEvidence": "NOT TESTED (build only or failed before execution)",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:compileKotlin"
+  ],
+  "baseCommit": "8691443b77903ffc96b6abfb155effa6b49abc31",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

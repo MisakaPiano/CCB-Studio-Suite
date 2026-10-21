@@ -1,3 +1,7 @@
+## UX-R1b图像引导与Q09进度（2026-10-21）
+
+[执行与保全证据](audits/UX_R1B_GUIDANCE.md)：155项新执行PASS；Q09来源Canvas与保存重开、聚焦原始响应/合成副本分离、大请求引用及备份恢复已测。R1b其他功能继续实施，原生视觉NOT TESTED，PRODUCT_HOLD。
+
 ## UX-R1a工作台接入（2026-10-21）
 
 [新工作台证据](audits/UX_R1A_WORKBENCH.md)：实际Compose端到端2项与完整desktop23项已执行PASS；authority99/core25在锁失败运行中实际PASS但总构建FAILED保留。原生窗口捕获超时，视觉/鼠标NOT TESTED。继续R1b完整功能，产品HOLD，未到RC。

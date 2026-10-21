@@ -87,21 +87,31 @@ class CreationSession(private val workspace: StudioWorkspace) {
     }
 }
 
-@Serializable data class GenerationReceipt(val version:Int=2,val authoritySha:String=AUTHORITY_SHA,
-    val recipe:NovelAiGenerationRecipe,val account:AccountProfile,val request:JsonElement)
+@Serializable data class GenerationReceipt(val version:Int=3,val authoritySha:String=AUTHORITY_SHA,
+    val recipe:NovelAiGenerationRecipe,val account:AccountProfile,val request:JsonElement,
+    val wireSha256:String="",val vibePayloads:Map<String,JsonElement> = emptyMap())
 
 class StudioGenerator(private val workspace:StudioWorkspace,private val vault:SecretVault,
     private val admission:RequestAdmission,private val client:OkHttpClient=studioHttpClient()) {
     suspend fun generate(account:AccountProfile,draft:NovelAiStudioDraft,
         guidance:NovelAiPreparedImageGuidance=NovelAiPreparedImageGuidance.NONE,
+        requestSize:NovelAiImageSize=draft.activeSettings.imageSize(),
+        compose:((ByteArray)->ByteArray)?=null,
         onIntermediate:(ByteArray)->Unit={},onResult:(String)->Unit={}):JobRecord {
         require(workspace.studioMode);account.validate();require(account.service=="NAI" && account.provider=="NOVELAI")
+        require(guidance.action==draft.imageGuidance.action) {"Guidance must be prepared before generation"}
+        require(draft.imageGuidance.effectiveReferenceMode(draft.selectedModel)==NovelAiReferenceMode.NONE || guidance!=NovelAiPreparedImageGuidance.NONE)
         val initial=draft.activeSettings;require(initial.validationError(draft.activeCharacters.size)==null)
         val settings=if(initial.seedMode==NovelAiSeedMode.RANDOM) initial.copy(seed=kotlin.random.Random.nextLong(initial.maxAllowedBaseSeed+1)) else initial
         val plan=draft.toPromptPlan(); val service=NovelAiImageService(client,safeErrorsOnly=true)
-        val wire=service.buildRequestBody(plan,settings.imageSize(),settings,guidance)
-        val recipe=documentJson.encodeToString(GenerationReceipt(recipe=draft.toRecipe(settings),account=account,request=Json.parseToJsonElement(wire)))
+        val wire=service.buildRequestBody(plan,requestSize,settings,guidance)
         workspace.beginTask().use {
+            val retained=RequestEvidence(workspace,draft.imageGuidance.baseImage?.id ?: draft.imageGuidance.preciseReference.asset?.id ?: draft.imageGuidance.vibes.firstOrNull()?.asset?.id)
+            val savedRequest=retained.retainRequest(Json.parseToJsonElement(wire))
+            val savedVibes=draft.imageGuidance.vibes.filter{it.encodedVibe!=null}.associate{it.id to retained.retainText(it.encodedVibe!!)}
+            val snapshot=draft.toRecipe(settings).let{it.copy(imageGuidance=it.imageGuidance.copy(vibes=it.imageGuidance.vibes.map{v->v.copy(encodedVibe=null)}))}
+            val recipe=documentJson.encodeToString(GenerationReceipt(recipe=snapshot,account=account,request=savedRequest,wireSha256=sha256(wire.toByteArray()),vibePayloads=savedVibes))
+            require(recipe.toByteArray().size<=1024*1024){"Receipt exceeds descriptor budget; request not sent"}
             var job=JobRecord(account=account,recipe=recipe,state="QUEUED")
             workspace.operation {workspace.save(workspace.state.copy(jobs=workspace.state.jobs+job))}
             fun save()=workspace.operation {workspace.save(workspace.state.copy(jobs=workspace.state.jobs.map {if(it.id==job.id)job else it}))}
@@ -109,13 +119,18 @@ class StudioGenerator(private val workspace:StudioWorkspace,private val vault:Se
                 val token=withContext(Dispatchers.IO){vault.use(requireNotNull(account.secretRef)){it.decodeToString()}}
                 admission.await("NAI")
                 currentCoroutineContext().ensureActive();job=job.copy(state="RUNNING");save()
-                service.generate(token,plan,settings.imageSize(),settings,guidance,maxRateLimitRetries=0).collect { event ->
+                service.generate(token,plan,requestSize,settings,guidance,maxRateLimitRetries=0).collect { event ->
                     when(event) {
                         is NovelAiImageEvent.Intermediate -> onIntermediate(event.image)
                         is NovelAiImageEvent.Error -> throw DataProblem("PROVIDER", "生成未完成；已收到的原件保留，不自动重发")
                         is NovelAiImageEvent.Final -> {
                             val id=workspace.importImage("NovelAI-${job.id}-${job.results.size+1}.png",event.image,recipe)
-                            job=job.copy(results=job.results+id);save();onResult(id)
+                            job=job.copy(results=job.results+id);save()
+                            val visible=if(compose==null)id else {
+                                val composed=compose(event.image)
+                                if(composed.contentEquals(event.image))id else workspace.importDerived("Inpaint-${job.id}-${job.results.size}.png",composed,id,recipe).also {derived->job=job.copy(composedResults=job.composedResults+derived);save()}
+                            }
+                            onResult(visible)
                         }
                     }
                 }

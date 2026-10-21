@@ -12,7 +12,11 @@ SEEDS = ['domain/prompt/NovelAiPromptAuthority.kt', 'domain/image/NovelAiPromptD
          'domain/image/NovelAiTagLookup.kt', 'domain/image/NovelAiCatalogQueries.kt',
          'domain/image/NovelAiTagSuggestionService.kt', 'domain/image/NovelAiPromptWordDictionary.kt',
          'domain/image/NovelAiPromptTranslation.kt', 'domain/image/NovelAiPromptTokenCounter.kt',
-         'domain/image/RankedTagCompletion.kt']
+         'domain/image/RankedTagCompletion.kt', 'domain/image/NovelAiVibeEncodingCore.kt',
+         'domain/image/NovelAiFocusedInpaintPlanner.kt', 'domain/image/NovelAiUpscaleService.kt',
+         'domain/image/ImageCanvasHistory.kt', 'domain/image/NovelAiFocusedMaskPixels.kt',
+         'domain/image/NovelAiPixelResampler.kt', 'domain/image/ImageCropMath.kt',
+         'domain/image/NovelAiInpaintPixelPolicy.kt']
 TESTS = ['NovelAiDesignerTransportTest', 'NovelAiImageModelResolutionTest',
          'NovelAiImageGuidanceTest', 'NovelAiStudioRequestTest', 'NovelAiImageRetryTest',
          'NovelAiPngMetadataReaderTest', 'NovelAiV5TextPromptPolicyTest',

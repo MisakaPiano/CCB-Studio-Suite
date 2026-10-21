@@ -43,12 +43,63 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     var intermediate by mutableStateOf<ByteArray?>(null);private set
     var usage by mutableStateOf<NovelAiAccountUsage?>(null);private set
     var usageAt by mutableStateOf<Long?>(null);private set
-    var current by mutableStateOf(state.jobs.lastOrNull()?.results?.lastOrNull())
+    var current by mutableStateOf(state.jobs.lastOrNull()?.let{it.composedResults.lastOrNull()?:it.results.lastOrNull()})
     var selection by mutableStateOf(setOf<String>())
-    var assets by mutableStateOf(workspace.catalog().filter{it.request().kind()==AssetStore.Kind.ORIGINAL});private set
+    var assets by mutableStateOf(visibleAssets());private set
+    val picker=DesktopFilePicker()
     var active:Job?=null;private set
     private var pending:Job?=null
     private val admission=admissionOverride?:BudgetAdmission(LiveRequestBudget(budgetRoot)){wait -> if(wait>0)message="请求预算等待 ${(wait+999)/1000} 秒 · 可停止"}
+    private val guidanceRoot=budgetRoot.parent.resolve("guidance")
+    private fun guidanceFor(account:AccountProfile?)=DesktopNovelAiGuidance(guidanceRoot,::readAsset,{
+        vault.use(requireNotNull(account?.secretRef)){it.decodeToString()}
+    },admission,http)
+    fun visibleAssets():List<AssetStore.Asset> {
+        val s=workspace.state;val copies=(s.savedCopies+s.jobs.flatMap{it.composedResults}).toSet()
+        return workspace.catalog().filter{!it.request().project().contentEquals("CCB_REQUEST_PAYLOAD_V1".toByteArray()) && (it.request().kind()==AssetStore.Kind.ORIGINAL || it.request().id().toString() in copies)}
+    }
+    fun readAsset(path:String):ByteArray {require(path.startsWith("asset:"));return workspace.bytes(path.removePrefix("asset:"))}
+    fun assetRef(id:String):NovelAiStudioAssetRef {
+        val bytes=workspace.bytes(id);val image=DesktopImageEditing.decode(bytes)
+        return try{NovelAiStudioAssetRef(id=id,path="asset:$id",sha256=sha256(bytes),width=image.width,height=image.height)}finally{image.flush()}
+    }
+    fun useImage(id:String,target:NovelAiImageUseTarget)=run("应用图像引导") {
+        val bytes=workspace.bytes(id);DesktopImageEditing.requireStatic(bytes)
+        val raster=DesktopImageEditing.decode(bytes)
+        val normalized=try{DesktopImageEditing.png(raster)}finally{raster.flush()}
+        val normalizedId=if(normalized.contentEquals(bytes))id else workspace.importDerived("Guidance-source.png",normalized,id)
+        val ref=assetRef(normalizedId)
+        session.editDraft {d->d.copy(imageGuidance=when(target){
+            NovelAiImageUseTarget.IMAGE_TO_IMAGE->d.imageGuidance.copy(action=NovelAiGenerationAction.IMAGE_TO_IMAGE,baseImage=ref,maskImage=null,focusedInpaintRegion=null)
+            NovelAiImageUseTarget.INPAINT->d.imageGuidance.copy(action=NovelAiGenerationAction.INPAINT,baseImage=ref,maskImage=null,focusedInpaintRegion=NovelAiFocusedInpaintRegion(0f,0f,1f,1f))
+            NovelAiImageUseTarget.PRECISE_REFERENCE->d.imageGuidance.copy(referenceMode=NovelAiReferenceMode.PRECISE,preciseReference=d.imageGuidance.preciseReference.copy(asset=ref))
+            NovelAiImageUseTarget.VIBE_REFERENCE->{require(d.imageGuidance.vibes.size<NovelAiImageGuidanceDraft.MAX_VIBES);d.imageGuidance.copy(referenceMode=NovelAiReferenceMode.VIBE,vibes=d.imageGuidance.vibes+NovelAiVibeReferenceDraft(asset=ref))}
+        })}
+        draft=workspace.state.creation!!.draft;section="图像引导";view="创作"
+    }
+    suspend fun applyGuidanceTools(parent:String,bytes:ByteArray,mask:ByteArray?,region:NovelAiFocusedInpaintRegion):Boolean {
+        if(busy)return false
+        busy=true
+        try {pending?.cancelAndJoin();flush()
+        workspace.beginTask().use {withContext(Dispatchers.IO){
+            val base=if(bytes.contentEquals(workspace.bytes(parent)))parent else workspace.importDerived("Guidance-edit.png",bytes,parent)
+            val baseRef=assetRef(base)
+            val maskRef=mask?.let{assetRef(workspace.importDerived("Guidance-mask.png",it,base))}
+            val next=draft.imageGuidance.copy(baseImage=baseRef,maskImage=maskRef,focusedInpaintRegion=region)
+            next.validationError(draft.selectedModel)?.let{throw DataProblem("GUIDANCE",it)}
+            session.editDraft{it.copy(imageGuidance=next)}
+        }};draft=workspace.state.creation!!.draft;state=workspace.state;return true
+        }finally{busy=false}
+    }
+    suspend fun saveToolCopy(parent:String,bytes:ByteArray) {
+        check(!busy);busy=true
+        try {workspace.beginTask().use {withContext(Dispatchers.IO){
+            val id=workspace.importDerived("Edited-copy.png",bytes,parent)
+            workspace.operation{workspace.save(workspace.state.copy(savedCopies=workspace.state.savedCopies+id))};current=id
+        }};state=workspace.state;assets=visibleAssets();message="已保存工具副本；原件保留"
+        }finally{busy=false}
+    }
+    fun vibeMisses()=guidanceFor(null).vibeCacheMisses(draft)
     init {if(current==null)current=assets.lastOrNull()?.request()?.id()?.toString()}
     private fun changed(){saved=false;pending?.cancel();pending=scope.launch {delay(350);try{flush()}catch(e:Exception){problem="草稿未能保存，保留当前输入；请先处理数据错误"}}}
     fun edit(change:(NovelAiStudioDraft)->NovelAiStudioDraft){draft=change(draft);changed()}
@@ -67,7 +118,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
             try {pending?.cancelAndJoin();flush();withContext(Dispatchers.IO){body()};message="$label · 已完成"}
             catch(e:CancellationException){message="已停止；已提交结果保留";throw e}
             catch(e:Exception){problem="${if(e is DataProblem)e.status else e.javaClass.simpleName}：操作未完成，未自动重发。已有资料保留。";message="操作未完成"}
-            finally {try{state=workspace.state;assets=workspace.catalog().filter{it.request().kind()==AssetStore.Kind.ORIGINAL}}catch(e:Exception){problem="工作区需要恢复，已保留现有文件；请停止写入并检查"};busy=false}
+            finally {try{state=workspace.state;assets=visibleAssets()}catch(e:Exception){problem="工作区需要恢复，已保留现有文件；请停止写入并检查"};busy=false}
         }
     }
     fun design()=run("AI 设计") {
@@ -93,15 +144,17 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     fun generate()=run("NovelAI 生成") {
         val account=state.accounts.single{it.id==naiId && it.service=="NAI"}.copy(model=draft.selectedModel.apiId)
         require(draft.basePrompt.isNotBlank())
-        require(draft.imageGuidance.action==NovelAiGenerationAction.TEXT_TO_IMAGE && draft.imageGuidance.referenceMode==NovelAiReferenceMode.NONE) {"引导必须经过准备器"}
-        val launch=draft;val total=if(launch.continuousModeEnabled)launch.continuousTargetCount else launch.activeSettings.count
+        val requested=draft
+        val prepared=workspace.beginTask().use{guidanceFor(account).prepare(requested)}
+        val launch=requested.copy(imageGuidance=prepared.retainedGuidance)
+        val total=if(launch.continuousModeEnabled)launch.continuousTargetCount else launch.activeSettings.count
         intermediate=null
         var completed=0
         while(completed<total) {
             currentCoroutineContext().ensureActive()
             val batch=launch.withActiveSettings(launch.activeSettings.copy(count=minOf(launch.activeSettings.count,total-completed)))
-            val result=StudioGenerator(workspace,vault,admission,http).generate(account,batch,onIntermediate={intermediate=it},onResult={id->
-                intermediate=null;current=id;assets=workspace.catalog().filter{it.request().kind()==AssetStore.Kind.ORIGINAL};message="已保存 ${++completed}/$total 张"
+            val result=StudioGenerator(workspace,vault,admission,http).generate(account,batch,prepared.guidance,prepared.requestSize,if(launch.imageGuidance.action==NovelAiGenerationAction.INPAINT)prepared.compose else null,onIntermediate={intermediate=it},onResult={id->
+                intermediate=null;current=id;assets=visibleAssets();message="已保存 ${++completed}/$total 张"
             })
             check(result.state=="COMPLETED")
         }
@@ -189,11 +242,12 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
     var translated by remember{mutableStateOf(false)}
     DesktopStudioWorkspace(compact={expand -> StudioAction("展开图片预览",onClick=expand)},editor={
         StudioActions{StudioAction("AI 设计"){c.view="AI 设计"};StudioAction("导入图片",!c.busy){c.importImages()};StudioAction("历史图库"){c.view="图库"}}
-        Spacer(Modifier.height(12.dp));StudioChips("",listOf("Prompt","角色","参数"),c.section,{it}){c.section=it}
+        Spacer(Modifier.height(12.dp));StudioChips("",listOf("Prompt","角色","参数","图像引导"),c.section,{it}){c.section=it}
         Spacer(Modifier.height(12.dp))
         when(c.section) {
             "角色"->DesktopStudioCharacters(c.draft,c.infrastructure,translated,c::edit)
             "参数"->StudioGenerationSettings(c.draft,c::edit)
+            "图像引导"->GuidanceWorkspace(c)
             else->{
                 StudioSwitch("中文注释",translated){translated=!translated}
                 StudioPromptField("画风",c.draft.stylePrompt,c.infrastructure,translated){v->c.edit{it.copy(stylePrompt=v)}}
@@ -205,7 +259,7 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
         }
     },footer={Column {
         AccountChoice(c,"NAI")
-        val cost=runCatching{NovelAiImageCostEstimator.estimate(c.draft.activeSettings,c.usage,c.draft.imageGuidance)}.getOrNull()
+        val cost=runCatching{NovelAiImageCostEstimator.estimate(c.draft.activeSettings,c.usage,c.draft.imageGuidance,c.vibeMisses())}.getOrNull()
         StatusText(cost?.let{"预计 ${it.anlas} Anlas · ${it.kind}"}?:"参数无效，暂无法估算")
         StudioActions{StatusText(c.usage?.let{"额度 ${it.anlas} Anlas · 刷新于 ${java.time.Instant.ofEpochMilli(c.usageAt!!)}"}?:"账户额度未知，未自动请求")
             StudioAction("刷新额度",!c.busy && c.naiId!=null){c.refreshUsage()}}
@@ -224,14 +278,21 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
     Box(modifier,contentAlignment=Alignment.Center){bitmap?.let{Image(it,"原始图片预览",Modifier.fillMaxSize(),contentScale=ContentScale.Fit)}?:Text("生成或导入图片后在这里查看",color=Quiet)}
 }
 @Composable private fun ResultPreview(c:WorkbenchController,rail:Boolean) {
+    var toolImage by remember{mutableStateOf<Pair<String,ByteArray>?>(null)}
+    val scope=rememberCoroutineScope()
     val interim by produceState<ImageBitmap?>(null,c.intermediate){value=withContext(Dispatchers.IO){c.intermediate?.let{bytes->runCatching{val decoded=EditorRenderer.decode(bytes);try{decoded.toComposeImageBitmap()}finally{decoded.flush()}}.getOrNull()}}}
     Column(Modifier.fillMaxSize()) {
+        if(!rail)c.current?.let{id->StudioActions{
+            StudioAction("图像工具",!c.busy){scope.launch{toolImage=id to withContext(Dispatchers.IO){c.workspace.bytes(id)}}}
+            StudioAction("用于图像引导",!c.busy){c.section="图像引导"}
+        }}
         if(!rail) {if(interim!=null && c.busy) {StatusText("生成中预览 · 尚未保存为原件");Image(interim!!,"生成中预览",Modifier.weight(1f).fillMaxWidth(),contentScale=ContentScale.Fit)}else AssetImage(c,c.current,Modifier.weight(1f).fillMaxWidth())}
         val modifier=if(rail)Modifier.fillMaxSize() else Modifier.fillMaxWidth().height(92.dp)
         if(rail)LazyColumn(modifier){items(c.assets.asReversed(),key={it.request().id().toString()}){a->val id=a.request().id().toString();AssetImage(c,id,Modifier.size(80.dp).clickable{c.current=id})}}
         else LazyRow(modifier){items(c.assets.asReversed(),key={it.request().id().toString()}){a->val id=a.request().id().toString();AssetImage(c,id,Modifier.padding(4.dp).size(84.dp).border(if(c.current==id)2.dp else 0.dp,Gold).clickable{c.current=id})}}
         StatusText("${c.assets.size} 份原件 · 原始字节保全")
     }
+    toolImage?.let{(id,bytes)->DesktopImageToolsDialog(bytes,c.picker,{toolImage=null},onProcessedImage={c.saveToolCopy(id,it)})}
 }
 
 @Composable private fun DesignWorkspace(c:WorkbenchController) {

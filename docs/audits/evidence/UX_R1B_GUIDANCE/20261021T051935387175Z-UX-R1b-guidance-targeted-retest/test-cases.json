@@ -1,0 +1,62 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "waitingCancellationRetainsLockAndDoesNotSend",
+    "seconds": "0.83",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "normalTransportUsesAuthorityEnvelopeAndCannotAcceptPartialStream",
+    "seconds": "0.222",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "httpErrorsNeverPersistProviderBodyOrRetry",
+    "seconds": "0.047",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "composedResultIsDerivedAndRawResponseSurvivesRestart",
+    "seconds": "0.916",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "interruptedDesignIsNotReplayedOnOpen",
+    "seconds": "0.175",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "partialGenerationRetainsOriginalAndFullReceiptOnFailure",
+    "seconds": "0.435",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "compositingFailurePreservesUniqueRawFinal",
+    "seconds": "0.625",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "designCandidateRequiresApplyBranchesAndSurvivesRestart",
+    "seconds": "0.875",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GuidanceSafetyTest",
+    "name": "q09CanvasRotateUndoMaskResetApplyAndReopen",
+    "seconds": "12.9",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GuidanceSafetyTest",
+    "name": "focusedPreparationUsesAuthorityPixelsAndKeepsRawFinalSeparate",
+    "seconds": "0.747",
+    "status": "PASS"
+  }
+]

@@ -189,7 +189,8 @@
       "sha256": "23ccc973c67bf474141682c321129bcd5c046cddfb31c04ba0b2b838d19d2876",
       "reasons": [
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiAccountService.kt",
-        "src/main/kotlin/com/example/chatbar/domain/image/NovelAiImageService.kt"
+        "src/main/kotlin/com/example/chatbar/domain/image/NovelAiImageService.kt",
+        "src/main/kotlin/com/example/chatbar/domain/image/NovelAiUpscaleService.kt"
       ]
     },
     {
@@ -335,6 +336,7 @@
       "sha256": "534e75d95dc27b9fe163eabd1ebadf1fc2fd6eac6490beaf0ccb0f216ea1006f",
       "reasons": [
         "src/main/kotlin/com/example/chatbar/domain/image/ImageMetadataStripper.kt",
+        "src/main/kotlin/com/example/chatbar/domain/image/NovelAiInpaintPixelPolicy.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiPngMetadataReader.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiPromptTokenCounter.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/PrivacyPngEncoder.kt",
@@ -351,6 +353,24 @@
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiTagResearchService.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/RankedTagCompletion.kt",
         "src/test/kotlin/com/example/chatbar/domain/image/NovelAiTagResearchServiceTest.kt"
+      ]
+    },
+    {
+      "source": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/ImageCanvasHistory.kt",
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/ImageCanvasHistory.kt",
+      "size": 407,
+      "sha256": "19afd9cc63b6d1b3a4128004295ef509aa10585f2cc180bf54f111705a839254",
+      "reasons": [
+        "approved image authority consumer"
+      ]
+    },
+    {
+      "source": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/ImageCropMath.kt",
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/ImageCropMath.kt",
+      "size": 3366,
+      "sha256": "7e35440173ece17c473fdedd0e47f1f6380073664a62ac7d9a066ed2749aca28",
+      "reasons": [
+        "approved image authority consumer"
       ]
     },
     {
@@ -457,7 +477,18 @@
       "size": 4471,
       "sha256": "28de2228442fc30d5242216c307f513d2cba9d03cf6b96a47d3c59f04a3ac6b6",
       "reasons": [
+        "approved image authority consumer",
+        "src/main/kotlin/com/example/chatbar/domain/image/NovelAiFocusedMaskPixels.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiImageGuidance.kt"
+      ]
+    },
+    {
+      "source": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/NovelAiFocusedMaskPixels.kt",
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiFocusedMaskPixels.kt",
+      "size": 6086,
+      "sha256": "b81383c1dfd0a6961d0c143bcc10a8d0ad3943ab862f295159a37a6c86a63b61",
+      "reasons": [
+        "approved image authority consumer"
       ]
     },
     {
@@ -472,6 +503,7 @@
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiPngMetadataReader.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiStudioImageImport.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiStudioModels.kt",
+        "src/main/kotlin/com/example/chatbar/domain/image/NovelAiVibeEncodingCore.kt",
         "src/test/kotlin/com/example/chatbar/domain/image/NovelAiImageGuidanceTest.kt",
         "src/test/kotlin/com/example/chatbar/domain/image/NovelAiPngMetadataReaderTest.kt",
         "src/test/kotlin/com/example/chatbar/domain/image/NovelAiStudioRequestTest.kt"
@@ -498,6 +530,7 @@
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiStudioImageImport.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiStudioModels.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiV5TextPromptPolicy.kt",
+        "src/main/kotlin/com/example/chatbar/domain/image/NovelAiVibeEncodingCore.kt",
         "src/main/kotlin/com/example/chatbar/domain/prompt/NovelAiPromptAuthority.kt",
         "src/test/kotlin/com/example/chatbar/domain/image/NovelAiCharacterEnabledTest.kt",
         "src/test/kotlin/com/example/chatbar/domain/image/NovelAiCharacterPositionTest.kt",
@@ -544,6 +577,7 @@
       "sha256": "0f5f6a64a3fce6395cda32b33e44b8c1b957d8c02fc998f5235bb5d4970cc02c",
       "reasons": [
         "approved image authority consumer",
+        "src/main/kotlin/com/example/chatbar/domain/image/NovelAiUpscaleService.kt",
         "src/test/kotlin/com/example/chatbar/domain/image/NovelAiCharacterEnabledTest.kt",
         "src/test/kotlin/com/example/chatbar/domain/image/NovelAiCharacterPositionTest.kt",
         "src/test/kotlin/com/example/chatbar/domain/image/NovelAiImageRetryTest.kt",
@@ -573,6 +607,24 @@
       ]
     },
     {
+      "source": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/NovelAiInpaintPixelPolicy.kt",
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiInpaintPixelPolicy.kt",
+      "size": 3835,
+      "sha256": "e3f0003196b493d5cd6209e75479df81027e7093d61226ad43b6b393226b046d",
+      "reasons": [
+        "approved image authority consumer"
+      ]
+    },
+    {
+      "source": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/NovelAiPixelResampler.kt",
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiPixelResampler.kt",
+      "size": 4371,
+      "sha256": "2342482d87ba898c39933e9578f04aa4c67df23ed50369414550a081d75cb492",
+      "reasons": [
+        "approved image authority consumer"
+      ]
+    },
+    {
       "source": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/NovelAiPngMetadataReader.kt",
       "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiPngMetadataReader.kt",
       "size": 22988,
@@ -595,6 +647,8 @@
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiStudioPromptClipboard.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiTagLookup.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiTagResearchService.kt",
+        "src/main/kotlin/com/example/chatbar/domain/image/NovelAiUpscaleService.kt",
+        "src/main/kotlin/com/example/chatbar/domain/image/NovelAiVibeEncodingCore.kt",
         "src/test/kotlin/com/example/chatbar/domain/image/NovelAiCharacterEnabledTest.kt",
         "src/test/kotlin/com/example/chatbar/domain/image/NovelAiCharacterPositionTest.kt",
         "src/test/kotlin/com/example/chatbar/domain/image/NovelAiDesignerTransportTest.kt",
@@ -831,6 +885,15 @@
       ]
     },
     {
+      "source": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/NovelAiUpscaleService.kt",
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiUpscaleService.kt",
+      "size": 5420,
+      "sha256": "e8d72b75e38346f8975351170679895008434ffd0783928db4f2cf9592648645",
+      "reasons": [
+        "approved image authority consumer"
+      ]
+    },
+    {
       "source": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/NovelAiV5TextPromptPolicy.kt",
       "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiV5TextPromptPolicy.kt",
       "size": 4174,
@@ -839,6 +902,15 @@
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiImageService.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiPromptTokenCounter.kt",
         "src/test/kotlin/com/example/chatbar/domain/image/NovelAiV5TextPromptPolicyTest.kt"
+      ]
+    },
+    {
+      "source": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/NovelAiVibeEncodingCore.kt",
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiVibeEncodingCore.kt",
+      "size": 5421,
+      "sha256": "77e7efb004691ef673c27ae1106e2a6e54b13b1d596af5eba71b7bda3f14b95c",
+      "reasons": [
+        "approved image authority consumer"
       ]
     },
     {
@@ -882,9 +954,12 @@
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiAccountService.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiCatalogValidation.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiImageService.kt",
+        "src/main/kotlin/com/example/chatbar/domain/image/NovelAiInpaintPixelPolicy.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiPngMetadataReader.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiPromptTokenCounter.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiPromptWordDictionary.kt",
+        "src/main/kotlin/com/example/chatbar/domain/image/NovelAiUpscaleService.kt",
+        "src/main/kotlin/com/example/chatbar/domain/image/NovelAiVibeEncodingCore.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/PrivacyPngEncoder.kt",
         "src/test/kotlin/com/example/chatbar/domain/image/NovelAiImageRetryTest.kt",
         "src/test/kotlin/com/example/chatbar/domain/image/NovelAiTagResearchServiceTest.kt",

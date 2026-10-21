@@ -179,20 +179,36 @@
     {
       "id": "P11",
       "owner": "UX-R1b",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "GuidanceWorkspace.kt",
+        "DesktopNovelAiGuidance.kt",
+        "RequestEvidence.kt"
+      ],
+      "tests": [
+        "GuidanceSafetyTest",
+        "CreationRuntimeTest.largeGuidanceReceiptKeepsExactWireAndSurvivesBackup",
+        "CreationRuntimeTest.requestPayloadChunksRestoreAndDetectAlteredDescriptors"
+      ],
       "guiEvidence": [],
       "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "status": "ENGINEERING_PARTIAL / LOOPBACK_AND_RASTER_PASS / FULL_PRODUCT_NOT_TESTED"
     },
     {
       "id": "P12",
       "owner": "UX-R1b",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "GuidanceWorkspace.kt",
+        "DesktopNovelAiGuidance.kt",
+        "RequestEvidence.kt"
+      ],
+      "tests": [
+        "GuidanceSafetyTest",
+        "CreationRuntimeTest.largeGuidanceReceiptKeepsExactWireAndSurvivesBackup",
+        "CreationRuntimeTest.requestPayloadChunksRestoreAndDetectAlteredDescriptors"
+      ],
       "guiEvidence": [],
       "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "status": "ENGINEERING_PARTIAL / LOOPBACK_AND_RASTER_PASS / FULL_PRODUCT_NOT_TESTED"
     },
     {
       "id": "P13",
@@ -625,11 +641,22 @@
     {
       "id": "Q09",
       "owner": "UX-R1b",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "DesktopImageToolsDialog.kt (source adapted)",
+        "DesktopImageTools.kt (exact source)",
+        "WorkbenchController.applyGuidanceTools/saveToolCopy",
+        "StudioWorkspace.importDerived"
+      ],
+      "tests": [
+        "GuidanceSafetyTest.q09CanvasRotateUndoMaskResetApplyAndReopen"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R1B_GUIDANCE/mask-and-focus.png (actual Compose content, offscreen)"
+      ],
+      "persistenceEvidence": [
+        "Q09 test same workspace reopen verifies original hash, mask asset, visible copy"
+      ],
+      "status": "ENGINEERING_REGRESSION_PASS / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "F01",

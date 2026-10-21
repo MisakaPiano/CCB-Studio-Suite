@@ -1,0 +1,62 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "waitingCancellationRetainsLockAndDoesNotSend",
+    "seconds": "0.733",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "normalTransportUsesAuthorityEnvelopeAndCannotAcceptPartialStream",
+    "seconds": "0.166",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "httpErrorsNeverPersistProviderBodyOrRetry",
+    "seconds": "0.046",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "largeGuidanceReceiptKeepsExactWireAndSurvivesBackup",
+    "seconds": "4.003",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "composedResultIsDerivedAndRawResponseSurvivesRestart",
+    "seconds": "0.753",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "documentLimitPreflightDoesNotPoisonReadableWorkspace",
+    "seconds": "0.423",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "interruptedDesignIsNotReplayedOnOpen",
+    "seconds": "0.228",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "partialGenerationRetainsOriginalAndFullReceiptOnFailure",
+    "seconds": "0.429",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "compositingFailurePreservesUniqueRawFinal",
+    "seconds": "0.61",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "designCandidateRequiresApplyBranchesAndSurvivesRestart",
+    "seconds": "0.387",
+    "status": "PASS"
+  }
+]

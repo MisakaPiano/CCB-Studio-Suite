@@ -1,0 +1,26 @@
+{
+  "phase": "UX-R1b-image-components-compile",
+  "startedUtc": "2026-10-21T05:13:47.448758+00:00",
+  "seconds": 50.096,
+  "exitCode": 1,
+  "tests": 0,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "FAILED",
+  "testEvidence": "NOT TESTED (build only or failed before execution)",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:compileKotlin"
+  ],
+  "baseCommit": "8691443b77903ffc96b6abfb155effa6b49abc31",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

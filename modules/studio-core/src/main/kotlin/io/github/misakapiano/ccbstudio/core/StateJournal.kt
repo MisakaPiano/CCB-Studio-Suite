@@ -34,11 +34,16 @@ class StateJournal(private val directory: Path, private val fault:(String)->Unit
             sequence=e.sequence; previous=sha256(bytes);state=next
         }
     }
-    fun commit(next:StudioState) {
+    private fun encode(next:StudioState):ByteArray {
         next.validate()
         val body=documentJson.encodeToString(next)
         val bytes=documentJson.encodeToString(Envelope(sequence=sequence+1,previous=previous,body=body,sha256=sha256(body.toByteArray()))).toByteArray()
-        require(bytes.size<=4*1024*1024) { "Document budget reached; prior revisions retained" }
+        if(bytes.size>4*1024*1024)throw DataProblem("DOCUMENT_LIMIT","Document budget reached; prior revisions retained")
+        return bytes
+    }
+    fun requireCapacity(next:StudioState) {encode(next)}
+    fun commit(next:StudioState) {
+        val bytes=encode(next)
         val id=newId(); val pending=directory.resolve(".pending-$id")
         val target=directory.resolve("%012d-%s.json".format(sequence+1,id))
         writeNewForced(pending,bytes);fault("DOCUMENT_STAGED")

@@ -28,6 +28,7 @@ class StudioWorkspace private constructor(val root:Path,private val owner:FileCh
     @Synchronized fun save(next:StudioState) {
         checkOpen()
         require(next.version == if(studioMode) 2 else 1) { "Workspace/document version mismatch; migration required" }
+        journal.requireCapacity(next)
         try {journal.commit(next)} catch(e:Exception) {poisoned=true;throw e}
     }
     @Synchronized fun importImage(name:String,bytes:ByteArray,recipe:String=""):String = operation {
@@ -39,6 +40,20 @@ class StudioWorkspace private constructor(val root:Path,private val owner:FileCh
     }
     @Synchronized fun bytes(id:String):ByteArray = operation {
         ByteArrayOutputStream().also {assets.export(UUID.fromString(id),it)}.toByteArray()
+    }
+    @Synchronized fun importDerived(name:String,bytes:ByteArray,parentId:String,recipe:String=""):String = operation {
+        EditorRenderer.decode(bytes).flush()
+        val parent=UUID.fromString(parentId);assets.read(parent).require()
+        val id=UUID.randomUUID()
+        assets.put(AssetStore.Request(id,name.take(512),AssetStore.Kind.DERIVED,parent,recipe.toByteArray(),byteArrayOf()),ByteArrayInputStream(bytes))
+        assets.read(id).require();id.toString()
+    }
+    @Synchronized fun requestPayload(bytes:ByteArray,parentId:String?):String = operation {
+        val parent=parentId?.let(UUID::fromString);parent?.let{assets.read(it).require()}
+        val id=UUID.randomUUID()
+        assets.put(AssetStore.Request(id,"request-payload.bin",if(parent==null)AssetStore.Kind.ORIGINAL else AssetStore.Kind.DERIVED,parent,
+            byteArrayOf(),"CCB_REQUEST_PAYLOAD_V1".toByteArray()),ByteArrayInputStream(bytes))
+        assets.read(id).require();id.toString()
     }
     @Synchronized fun catalog():List<AssetStore.Asset> = operation {assets.catalog()}
     @Synchronized fun newProject(name:String,ids:List<String>):String = operation {
