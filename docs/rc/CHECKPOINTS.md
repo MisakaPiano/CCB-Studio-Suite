@@ -1,3 +1,7 @@
+# 当前：首轮用户验收未通过
+
+见[反馈/源码定位](PREVIEW_USER_REVIEW_1.md)。旧工程检查点仍可追溯，但不等于功能验收通过；下一步仅同一Preview任务纠正，未进入CP4。本轮无源码修复或新包。
+
 # 最新恢复入口 — Windows Preview Gate
 
 最新已推送/核验实现 **209b5252e06ea55b6cdf970da131b330a407e882**，分支 feature/windows-rc-continuous。P1 7d6bc80b、P2 57c909bb、P3 209b5252均已推送；P3修正P1/P2的17份被忽略源码。现代UI、实际包自检及双通道交付见 [Project审阅](PREVIEW_PROJECT_REVIEW.md)、[机器台账](CHECKPOINTS.json)。状态PREVIEW_GATE_WITH_GAPS，停止等待集中真人验收；不自动CP4。以下旧CP1记录保留历史。

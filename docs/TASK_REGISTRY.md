@@ -9,8 +9,8 @@
 | A1-001 | 独立数据根与原始资产提交/恢复 | PASS_WITH_SCOPE (用户提供 Project 审查结论，固定3c17b4c9) | [实际回执](audits/A1_001_EXECUTION.md)；实施基准6d3d2b2；用户随后追加要求远程交付，见[Project审阅入口](../handoff/PROJECT_A1_REVIEW.md)，不合并main，不启动下一任务 |
 | A1-001-R1 | 资产目录完整性与维护排水补强 | PASS_WITH_SCOPE (Issue #2 comment6297274746已实读) / HISTORICAL AUTOMATION 27 PASS | [实际回执](audits/A1_001_R1_EXECUTION.md)；3c17b4c9起点，feature/a1-001-r1-safety；本轮明确允许功能分支Git和指定Drive交付，不merge/release/后续实施 |
 | WINDOWS-RC-CP1 | 继承R1、维护与更新信任基础 | AUTOMATED FOUNDATION GREEN / PUSHED+VERIFIED | 4 targeted / 31 full JVM / 8 trust-lab tests实际PASS；[执行回执](rc/CP1_EXECUTION.md)；非产品/安装验收 |
-| WINDOWS-RC-CP2 | 独立Compose Studio/单一权威生成核心 | PREVIEW_GATE_WITH_GAPS / PUSHED+VERIFIED | 固定85文件来源、现代UI、有限真实探针；真人与真实账户UI缺口见Preview审阅入口 |
-| WINDOWS-RC-CP3-4 | 编辑/完整更新/Windows RC | CP3 PREVIEW_WITH_GAPS / CP4 NOT TESTED / NO RC | 非破坏编辑/导出/恢复进入集中Preview验收，完整应用内更新门槛保留 |
+| WINDOWS-RC-CP2 | 独立Compose Studio/单一权威生成核心 | USER_REVIEW_FAILED / CORRECTION_REQUIRED | 固定85文件来源、现代UI、有限真实探针；真人与真实账户UI缺口见Preview审阅入口 |
+| WINDOWS-RC-CP3-4 | 编辑/完整更新/Windows RC | CP3 USER_REVIEW_FAILED / CP4 NOT TESTED / NO RC | 非破坏编辑/导出/恢复进入集中Preview验收，完整应用内更新门槛保留 |
 | A1-002 | 历史独立更新任务 | NOT RUN AS STANDALONE | 当前更新基础/未来产品门槛改由Issue #2的CP1/CP4管理；不追改旧回执 |
 | X-000 | 向Desktop登记关系 | PROPOSED | 使用交接说明，目标项目自行登记 |
 
@@ -49,3 +49,5 @@ Latest Project correction rescinds generalized source-rights / missing-SDK STOP.
 ## 当前停止点：Windows Preview Gate
 
 实现209b5252e06ea55b6cdf970da131b330a407e882已推送，两个Drive附件原字节回读一致。[完整Project回执](rc/PREVIEW_PROJECT_REVIEW.md)登记实际测试、失败、Git闭包修复和未测项；[集中验收清单](rc/PREVIEW_REVIEW_ITEMS.md)。状态PREVIEW_GATE_WITH_GAPS，停止等待统一真人review，不自动进入CP4。
+
+首轮真人验收未通过：[反馈及源码定位](rc/PREVIEW_USER_REVIEW_1.md)。保留旧自动化结果，未把缺失功能或未知效果标成PASS；没有新构建/真实请求/新包。

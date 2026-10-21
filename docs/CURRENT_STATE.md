@@ -1,4 +1,12 @@
-# CURRENT STATE — PREVIEW_GATE_WITH_GAPS
+# CURRENT STATE — USER_REVIEW_FAILED / CORRECTION_REQUIRED
+
+2026-10-21 JST，用户已完成首轮手测并拒收当前Preview的主要工作流。原包实现209b5252，回执aa086653保留；工程测试PASS不代表产品等效。当前不进入CP4。
+
+[逐项反馈、源码原因及纠正入口](rc/PREVIEW_USER_REVIEW_1.md)。用户确认通过的基础操作与失败/未知项分开登记。已保留三张截图，只读定位Desktop当前固定70b5c30c的相关Desktop/Android源码；尚未完成官方Android最新分支独立比对。
+
+本次只登记用户验收和定位问题，未修改产品源码、重开窗口、读取手测图库或调用API；没有新包或修复PASS。下一项为同一Preview任务内的功能纠正，不能继续把旧交付状态当用户批准。
+
+# 历史工程交付状态 — PREVIEW_GATE_WITH_GAPS
 
 2026-10-21 JST，Issue #3 的集中 Preview Gate 已完成工程交付，等待用户/Project review。
 

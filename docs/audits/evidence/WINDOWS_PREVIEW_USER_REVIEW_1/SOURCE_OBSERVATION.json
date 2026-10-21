@@ -1,0 +1,119 @@
+{
+  "repository": "MisakaPiano/ChatChatBar-Desktop",
+  "commit": "70b5c30c91439e79728bf224c1a44d35b25cf733",
+  "readOnly": true,
+  "promptAuthorityUnchanged": "5ef95428421f7c693b010ac88f51d470804ab07a",
+  "androidScope": "Android source carried in the Desktop repository; not yet independently compared with latest official Android branch",
+  "files": [
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopTitleBar.kt",
+      "bytes": 9804,
+      "sha256": "e9b7d8152cd835b4a8a9b797ffa96b082a708a58fb8f6f0f228bcb6d6fca2cf7"
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopTitleBarPresentation.kt",
+      "bytes": 1000,
+      "sha256": "3c275afe12f44d255271f69aed1f08a72850c5ac7662f8fbca75152483af9107"
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopPrimaryShell.kt",
+      "bytes": 9289,
+      "sha256": "37f20707312494aaa066cb890073130524ba87690278cbd6d882204f6568a4df"
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiStudioPanel.kt",
+      "bytes": 37071,
+      "sha256": "c2f2379ac2dc54312ef3c026e01f2e589658127974ce0847a5f5a1ce8ec4c82f"
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiStudioController.kt",
+      "bytes": 33983,
+      "sha256": "4511f9329082b6877d25ce6a7f77b0302f6d5a391215ead22dd4b620c7b07de2"
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiGenerationRuntime.kt",
+      "bytes": 4382,
+      "sha256": "9bd28cf2fe2f399803889be3cbe0f7958c14bed1438e9ea359840045e84bcba5"
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiRuntime.kt",
+      "bytes": 5224,
+      "sha256": "989b34883a0fa9e1244cdc44fac60284cc457f43747f0e09326920d3b10f37c5"
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopImageEditing.kt",
+      "bytes": 9275,
+      "sha256": "13fe35a032428bb0d2e344958c3ef9c47ab2deb9c0225cf119a2fddd58e9e4b7"
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiPostProcessor.kt",
+      "bytes": 5368,
+      "sha256": "a89dc93d7c3626b24eb0d5a4f727657d7bce6b0c4b9e29d77ea09c6a87bf9e57"
+    },
+    {
+      "path": "app/app/src/main/java/com/example/chatbar/ui/imageprompt/NovelAiHistoryScreen.kt",
+      "bytes": 47967,
+      "sha256": "d62c84d8be60ebb1973469193205fca4968bd5ce1d8987b700987bfcc1d2a7f9"
+    },
+    {
+      "path": "app/app/src/main/java/com/example/chatbar/ui/imageprompt/NovelAiDesignScreen.kt",
+      "bytes": 36632,
+      "sha256": "65c578cd423d43844946adf811869e94aac8109b8168bdc1cd69f5f178c881b9"
+    },
+    {
+      "path": "app/app/src/main/java/com/example/chatbar/ui/imageprompt/NovelAiHistoryViewModel.kt",
+      "bytes": 24130,
+      "sha256": "e1f1e9144a53d8de62fac2b4046ddd855526f8ca1450ea987c2c87192869dcc6"
+    },
+    {
+      "path": "app/app/src/main/java/com/example/chatbar/ui/components/ImageMosaicEditor.kt",
+      "bytes": 26166,
+      "sha256": "1331f230be895c30bd0440054c98652e7a46cf128ab8f14798963e33b95d0968"
+    },
+    {
+      "path": "app/app/src/main/java/com/example/chatbar/domain/image/ImagePrivacyExporter.kt",
+      "bytes": 2956,
+      "sha256": "4b9dbe5f3511b9136680bccc5c1ab2bf35099c1c4bfc408ecc43951dfcba36db"
+    },
+    {
+      "path": "app/app/src/main/java/com/example/chatbar/domain/image/NovelAiHistoryGalleryExport.kt",
+      "bytes": 14833,
+      "sha256": "92047151d3d5074d9785a82cd6e7ed618e205db0e2ba21d8b858e320b6e84ad9"
+    },
+    {
+      "path": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/PrivacyPngEncoder.kt",
+      "bytes": 4002,
+      "sha256": "9b1acae327d5a787017d33d42afebc81d72f5df848f41e49eb60daa0a50eb276"
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioWorkspace.kt",
+      "bytes": 7618,
+      "sha256": "efe53dfc0a90883ea1cd92ef9816c02b290d6aebaf959764946b676676e9e9d9"
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioHistory.kt",
+      "bytes": 14012,
+      "sha256": "dfc1e7b4101f8efb091e26cc54c456ffd5cef08bcd8ce542d3acbccc60a6ecf7"
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopImageTools.kt",
+      "bytes": 11042,
+      "sha256": "6e4c599f5a678dc30686254841b7b9d0f6933bb929cb4f009fec3b36ceb62d63"
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopImageToolsDialog.kt",
+      "bytes": 13478,
+      "sha256": "ac2e3fea38b3a5dbd96524208bb337333657573e05bdd3e94739d2699328d760"
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopImageClipboardFiles.kt",
+      "bytes": 8879,
+      "sha256": "b23d2f2ba4c22dc9badf2a828a7dfd800f510ba245c4ed81c889a53f3289b6d1"
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopSafeClipboard.kt",
+      "bytes": 2710,
+      "sha256": "9d773f9d8b9001cbeb417ca8dc566d539eaf3781138b70c48d1cfd0a1b4242da"
+    }
+  ]
+}

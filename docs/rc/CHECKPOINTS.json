@@ -1,6 +1,6 @@
 {
   "task": "WINDOWS_PREVIEW_GATE",
-  "overallStatus": "PREVIEW_GATE_WITH_GAPS",
+  "overallStatus": "USER_REVIEW_FAILED / CORRECTION_REQUIRED",
   "branch": "feature/windows-rc-continuous",
   "inheritedReviewedBaseline": "27dbd5d578f364afb529fc33944386c0c107f0da",
   "latestVerifiedImplementationCheckpoint": "209b5252e06ea55b6cdf970da131b330a407e882",
@@ -30,7 +30,7 @@
   "delivery": "../audits/evidence/WINDOWS_PREVIEW/DELIVERY.json",
   "review": "PREVIEW_PROJECT_REVIEW.md",
   "resumeContract": "../../tasks/WINDOWS_PREVIEW_GATE.md",
-  "nextAction": "Centralized user/Project Preview review; no automatic CP4",
+  "nextAction": "Correct Preview workflows against exact Desktop/Android references; no CP4 approval",
   "cp4": "NOT IMPLEMENTED / NOT TESTED / NO RC",
   "historicalRecord": {
     "task": "WINDOWS_RC_CONTINUOUS",
@@ -49,5 +49,7 @@
     "resumeContract": "../../tasks/WINDOWS_RC_CONTINUOUS.md",
     "ownerClaim": ".local/windows-rc/owner.json",
     "ownerRelease": "Only after final remote verification; then STOPPED_RC_BLOCKED, no background worker continues"
-  }
+  },
+  "userReview": "PREVIEW_USER_REVIEW_1.md",
+  "latestReviewReceipt": "Containing Git commit; feedback and diagnosis only"
 }
