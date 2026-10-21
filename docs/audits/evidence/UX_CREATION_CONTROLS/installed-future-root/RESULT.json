@@ -1,0 +1,27 @@
+{
+  "sourceSha": "fc1d2b5cd2e77b1a07cbf2de495d5e2045b41f15",
+  "installed": "ab-applications-6/10-fc1d2b5cd2e7",
+  "headlessExeAttempt": {
+    "status": "FAILED",
+    "reason": "HeadlessException in StudioBrand.configureDefaultWindows before workspace access; launcher exceeded 45-second subprocess timeout; owned launcher killed by subprocess.run timeout",
+    "futureFormatGuard": "NOT TESTED by this attempt"
+  },
+  "installedStartupCore": {
+    "status": "PASS",
+    "method": "Reflection calls installed StudioDataLaunchKt.openStudioForLaunch using only installed app JARs and a separate Java fixture; external Temurin 17.0.20.1 JVM, not test-module classpath",
+    "observedConsoleOutput": "INSTALLED_STARTUP_CORE_REJECTED_UNSUPPORTED_VERSION",
+    "exitCode": 0,
+    "runtimeLimitation": "Bundled jlink image has java.dll but no java.exe; first attempt to invoke absent executable did not execute; rerun uses external JDK"
+  },
+  "before": {
+    "preview-root.txt": "4126d82d3fcf10a935d97c858867b8195d111e88ddbff36c9d7f86ef15a5c3c4",
+    "unique-original.bin": "858e21196533377476b8398489a82d5cab18cc955c97cdf5e17493fbaeb98ea1"
+  },
+  "after": {
+    "preview-root.txt": "4126d82d3fcf10a935d97c858867b8195d111e88ddbff36c9d7f86ef15a5c3c4",
+    "unique-original.bin": "858e21196533377476b8398489a82d5cab18cc955c97cdf5e17493fbaeb98ea1"
+  },
+  "rootUnchanged": true,
+  "nativeFailureDialog": "NOT TESTED",
+  "realApiCalls": 0
+}

@@ -307,7 +307,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
         val ref=if(key.isNotBlank()) {val bytes=key.trim().toByteArray();try{vault.put(bytes)}finally{bytes.fill(0)}} else existing?.secretRef
         val a=AccountProfile(id=existing?.id?:newId(),alias=alias,service=service,provider=if(service=="NAI")"NOVELAI" else "OPENAI_COMPATIBLE",endpoint=endpoint.trim().trimEnd('/'),model=model,secretRef=ref,isMultimodal=service=="LLM"&&isMultimodal,visionAccountId=visionAccountId.takeIf{service=="LLM"&&!isMultimodal})
         a.validate();workspace.operation{workspace.save(workspace.state.copy(accounts=workspace.state.accounts.filterNot{it.id==a.id}+a))}
-        if(service=="LLM")llmId=a.id else naiId=a.id
+        if(service=="LLM")llmId=a.id else {naiId=a.id;usage=null;usageAt=null}
         session.update{it.copy(llmAccountId=llmId,naiAccountId=naiId)}
     }
     fun importImages() {

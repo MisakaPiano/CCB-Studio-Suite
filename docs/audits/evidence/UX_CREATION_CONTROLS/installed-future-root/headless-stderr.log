@@ -1,0 +1,13 @@
+Picked up JAVA_TOOL_OPTIONS: -Djava.awt.headless=true
+Exception in thread "main" java.awt.HeadlessException
+	at java.desktop/java.awt.GraphicsEnvironment.checkHeadless(Unknown Source)
+	at java.desktop/java.awt.Window.<init>(Unknown Source)
+	at java.desktop/java.awt.Frame.<init>(Unknown Source)
+	at java.desktop/java.awt.Frame.<init>(Unknown Source)
+	at java.desktop/javax.swing.SwingUtilities$SharedOwnerFrame.<init>(Unknown Source)
+	at java.desktop/javax.swing.SwingUtilities.getSharedOwnerFrame(Unknown Source)
+	at java.desktop/javax.swing.JOptionPane.getRootFrame(Unknown Source)
+	at io.github.misakapiano.ccbstudio.desktop.StudioBrand.configureDefaultWindows(StudioBrand.kt:13)
+	at io.github.misakapiano.ccbstudio.desktop.StudioApplicationKt.launchStudio(StudioApplication.kt:364)
+	at io.github.misakapiano.ccbstudio.desktop.MainKt.main(Main.kt:41)
+Failed to launch JVM

@@ -78,6 +78,7 @@ internal fun DesktopCharacterPositions(draft: NovelAiStudioDraft, edit: ((NovelA
         val center = NovelAiCharacterPositionPolicy.normalize(point, draft.selectedModel)
         edit { current -> current.copy(characters = current.characters.map { if (it.id == selected?.id) it.copy(center = center) else it }) }
     }
+    Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
     StudioChips("定位", listOf(false, true), custom, { if (it) "自定义" else "自动" }) { enabled ->
         edit { it.withActiveSettings(it.activeSettings.copy(useCharacterPositions = enabled)) }
     }
@@ -113,4 +114,5 @@ internal fun DesktopCharacterPositions(draft: NovelAiStudioDraft, edit: ((NovelA
         }
     }
     StudioAction("均匀重置", enabled = custom) { edit { current -> current.copy(characters = current.characters.map { if (it.enabled) it.copy(center = null) else it }) } }
+    }
 }

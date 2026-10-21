@@ -1,0 +1,14 @@
+[
+  {
+    "suite": "com.example.chatbar.desktop.DesktopCharacterPositionsTest",
+    "name": "positionFieldsDoNotOverlapAndTypedCoordinatesReachRequestAndReopen",
+    "seconds": "2.324",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "accountRefreshAndNewSelectionNeverReuseAnotherAccountsQuota",
+    "seconds": "7.007",
+    "status": "PASS"
+  }
+]

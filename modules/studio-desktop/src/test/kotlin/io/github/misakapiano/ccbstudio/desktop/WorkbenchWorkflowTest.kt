@@ -103,6 +103,36 @@ class WorkbenchWorkflowTest {
         }
     }
 
+    @Test fun accountRefreshAndNewSelectionNeverReuseAnotherAccountsQuota()=runBlocking(awt){
+        val r=root();val requests=CopyOnWriteArrayList<String>()
+        val server=HttpServer.create(InetSocketAddress("127.0.0.1",0),0)
+        server.createContext("/"){e->requests+=e.requestMethod;val bytes="""{"trainingStepsLeft":1234,"tier":3,"active":true}""".toByteArray()
+            e.sendResponseHeaders(200,bytes.size.toLong());e.responseBody.use{it.write(bytes)}};server.start()
+        val client=studioHttpClient().newBuilder().addInterceptor{chain->chain.proceed(chain.request().newBuilder().url("http://127.0.0.1:${server.address.port}/").removeHeader("Authorization").build())}.build()
+        val scope=CoroutineScope(SupervisorJob()+awt);val w=StudioWorkspace.openStudio(r)
+        val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),client,RequestAdmission{})
+        val scene=ImageComposeScene(1240,880,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        var selected=""
+        try{
+            c.saveAccount(null,"First quota fixture","NAI","https://image.novelai.net",NovelAiImageModel.V4_5_FULL.apiId,"LOCAL_TEST_ONLY");c.idle()
+            scene.frames();assertNull(c.usage);assertNull(c.usageAt);assertTrue(requests.isEmpty())
+            scene.click("刷新额度");c.idle();scene.frames();assertEquals(1234L,c.usage!!.anlas);assertNotNull(c.usageAt)
+            assertTrue(scene.nodes().any{it.matches("额度 1234 Anlas")});scene.shot("quota-first-account")
+            scene.click("账户");scene.click("新建档案");scene.click("NAI");scene.field("档案名称","Second quota fixture");scene.field("API 凭据","LOCAL_SECOND_TEST_ONLY")
+            scene.click("安全保存并选用");c.idle();scene.click("创作");scene.frames()
+            selected=c.naiId!!;assertEquals("Second quota fixture",w.state.accounts.single{it.id==selected}.alias)
+            assertNull(c.usage,"A newly selected account must not inherit the previous account's quota")
+            assertNull(c.usageAt);assertTrue(scene.nodes().any{it.matches("账户额度未知，未自动请求")})
+            assertEquals(listOf("GET"),requests.toList());scene.shot("quota-new-account-unknown")
+            scene.click("刷新额度");c.idle();assertNotNull(c.usage)
+            val current=w.state.accounts.single{it.id==selected}
+            c.saveAccount(current,current.alias,"NAI",current.endpoint,current.model,"LOCAL_REPLACEMENT_TEST_ONLY");c.idle()
+            assertNull(c.usage,"Replacing credentials also invalidates quota for the same profile ID");assertNull(c.usageAt)
+            assertEquals(2,requests.size);c.flush()
+        }finally{scene.close();c.close();scope.cancel();server.stop(0)}
+        StudioWorkspace.openStudio(r).use{again->assertEquals(selected,again.state.creation!!.naiAccountId);assertEquals(2,again.state.accounts.size)}
+    }
+
     @Test fun roleEditingReorderDisableAndDeleteReachRequestAndSurviveReopen()=runBlocking(awt){
         val r=root();val png=EditorRenderer.synthetic(48,48);val requests=CopyOnWriteArrayList<String>()
         val server=HttpServer.create(InetSocketAddress("127.0.0.1",0),0)

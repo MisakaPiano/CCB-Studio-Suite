@@ -31,11 +31,16 @@
         "DesktopStudioCharacters.kt"
       ],
       "tests": [
-        "DesktopStudioPresentationTest: 13 source component regressions; exact field coverage in JUnit XML"
+        "DesktopStudioPresentationTest: 13 source component regressions; exact field coverage in JUnit XML",
+        "WorkbenchWorkflowTest.accountRefreshAndNewSelectionNeverReuseAnotherAccountsQuota"
       ],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "SOURCE_COMPONENT_ADOPTED / FULL_WORKFLOW_NOT_TESTED / PRODUCT_HOLD"
+      "guiEvidence": [
+        "docs/audits/UX_CREATION_CONTROLS.md (Compose offscreen; exact scope disclosed)"
+      ],
+      "persistenceEvidence": [
+        "Actual Workbench refresh/new profile save and selection; loopback quota only; no automatic requests; selected account preserved on reopen; replacement credential clears old quota"
+      ],
+      "status": "ENGINEERING_PARTIAL / TARGETED_GUI_AND_REOPEN_PASS / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "P03",
@@ -165,11 +170,16 @@
         "DesktopStudioCharacters.kt"
       ],
       "tests": [
-        "DesktopStudioPresentationTest: 13 source component regressions; exact field coverage in JUnit XML"
+        "DesktopStudioPresentationTest: 13 source component regressions; exact field coverage in JUnit XML",
+        "DesktopCharacterPositionsTest.positionFieldsDoNotOverlapAndTypedCoordinatesReachRequestAndReopen"
       ],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "SOURCE_COMPONENT_ADOPTED / FULL_WORKFLOW_NOT_TESTED / PRODUCT_HOLD"
+      "guiEvidence": [
+        "docs/audits/UX_CREATION_CONTROLS.md (Compose offscreen; exact scope disclosed)"
+      ],
+      "persistenceEvidence": [
+        "Actual dialog body with identical Surface parent: non-overlapping fields, V4.5 grid/V5 continuous typed coordinates, request serialization, active-only reset, reopen, scrolling to reset at 640x650; native dialog and pointer dragging NOT TESTED"
+      ],
+      "status": "ENGINEERING_PARTIAL / TARGETED_GUI_AND_REOPEN_PASS / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "P09",

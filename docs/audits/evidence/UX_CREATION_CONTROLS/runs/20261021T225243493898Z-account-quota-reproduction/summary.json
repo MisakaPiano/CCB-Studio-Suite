@@ -1,0 +1,28 @@
+{
+  "phase": "account-quota-reproduction",
+  "startedUtc": "2026-10-21T22:52:44.046645+00:00",
+  "seconds": 29.794,
+  "exitCode": 1,
+  "tests": 1,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "FAILED",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:test",
+    "--tests",
+    "*WorkbenchWorkflowTest.accountRefreshAndNewSelectionNeverReuseAnotherAccountsQuota"
+  ],
+  "baseCommit": "d8b03524654d4e4dcbbca1179f0e4efb9648cf13",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

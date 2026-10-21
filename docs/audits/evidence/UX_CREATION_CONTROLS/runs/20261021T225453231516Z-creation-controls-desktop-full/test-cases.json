@@ -1,0 +1,686 @@
+[
+  {
+    "suite": "com.example.chatbar.desktop.DesktopCharacterPositionsTest",
+    "name": "positionFieldsDoNotOverlapAndTypedCoordinatesReachRequestAndReopen",
+    "seconds": "4.183",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioPresentationTest",
+    "name": "annotation follows glyph lines and rejects stale ranges without changing raw prompt",
+    "seconds": "0.091",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioPresentationTest",
+    "name": "chips are direct keyboard choices and preserve unrelated serialized draft fields",
+    "seconds": "0.094",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioPresentationTest",
+    "name": "small enum menu supports arrows enter escape and nullable follow default",
+    "seconds": "0.193",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioPresentationTest",
+    "name": "precise readout retains imported values and only large choices use search dialog",
+    "seconds": "0.003",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioPresentationTest",
+    "name": "inline and fullscreen text editor share annotations and leave request body unchanged",
+    "seconds": "0.065",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioPresentationTest",
+    "name": "random seed switch conditionally adds fixed editor and preserves stored seed",
+    "seconds": "0.181",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioPresentationTest",
+    "name": "field displays local translation and accepts anchored suggestion with Enter",
+    "seconds": "0.541",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioPresentationTest",
+    "name": "suggestion keyboard acceptance protects selection IME and empty results",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioPresentationTest",
+    "name": "sliders and keyboard keep exact discrete values",
+    "seconds": "0.041",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioPresentationTest",
+    "name": "Wallpaper excludes square without modifying shared size or sampler capability",
+    "seconds": "0.107",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioPresentationTest",
+    "name": "anchored popup flips above near bottom and stays in viewport",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioPresentationTest",
+    "name": "custom size applies valid dimensions resets preset or cancels without publication",
+    "seconds": "0.203",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioPresentationTest",
+    "name": "advanced disclosure starts collapsed and does not alter draft",
+    "seconds": "0.058",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioWorkspaceTest",
+    "name": "tool navigation stays on one row with diagnostics at the right edge",
+    "seconds": "1.428",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioWorkspaceTest",
+    "name": "real divider drag snaps restores and clamps while editor composition survives mode and resize",
+    "seconds": "2.536",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.SourceZoomSurfaceTest",
+    "name": "studio inline double click opens once while default zoom surface retains double zoom",
+    "seconds": "0.758",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.SuiteChromeTest",
+    "name": "negativeMonitorCoordinatesAreSignExtended",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.SuiteChromeTest",
+    "name": "resizeEdgesBelongToWindowsAndStopWhenMaximized",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.SuiteChromeTest",
+    "name": "maximizedButtonRestoresAndNativeCloseUsesDrainCallback",
+    "seconds": "0.003",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.SuiteChromeTest",
+    "name": "measuredControlsNeverBecomeDragRegions",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.SuiteChromeTest",
+    "name": "captionsKeepTheirCommandsAtScaledClientSize",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.SuiteChromeTest",
+    "name": "unmeasuredLayoutCannotInventCaptionTargets",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.WindowsCommonItemDialogTest",
+    "name": "open save and folder preserve options and release all resources in order",
+    "seconds": "0.045",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.WindowsCommonItemDialogTest",
+    "name": "one service reuses its STA and cannot be used after shutdown",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.WindowsCommonItemDialogTest",
+    "name": "EDT stays responsive and concurrent native dialog is rejected without another COM operation",
+    "seconds": "0.006",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.WindowsCommonItemDialogTest",
+    "name": "cancel multiple never retrieves array and folder setup failure frees dialog",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.WindowsCommonItemDialogTest",
+    "name": "missing owner fails explicitly before initializing COM",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.WindowsCommonItemDialogTest",
+    "name": "multiple paths keep order and release every item on success or partial failure",
+    "seconds": "0.01",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.WindowsCommonItemDialogTest",
+    "name": "save preserves supported suffix and appends default otherwise without writing",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.WindowsCommonItemDialogTest",
+    "name": "every setup and retrieval failure releases precisely the resources acquired",
+    "seconds": "0.005",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.WindowsCommonItemDialogTest",
+    "name": "cancel alone returns null while real HRESULT error is explicit and releases",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.WindowsCommonItemDialogTest",
+    "name": "filters preserve every existing caller extension and normalize suffixes",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.WindowsNativeDialogIntegrationTest",
+    "name": "owner is chrome top-level Compose HWND and detach never returns stale handle",
+    "seconds": "1.131",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.WindowsNativeDialogIntegrationTest",
+    "name": "real COM open save and folder configure and release on dedicated STA without showing UI",
+    "seconds": "0.093",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.AssetArchiveWorkflowTest",
+    "name": "confirmCancelRestoreAndAliasTagChoicesPreserveExistingProject",
+    "seconds": "7.478",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.AssetArchiveWorkflowTest",
+    "name": "archiveMetadataFailureShowsOriginalsAndDisablesMutation",
+    "seconds": "0.834",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.AutosaveCancellationTest",
+    "name": "cancellingDebouncedSaveDuringCommitDoesNotReportDataFailure",
+    "seconds": "0.673",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAlbumWorkflowTest",
+    "name": "sourceAlbumsNavigateSelectFilterAndPersistDepthPreferencesWithoutChangingRecipes",
+    "seconds": "7.387",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "animatedGifRetainsTwoFrameColorsTimingAndLoopAfterDisguiseRestore",
+    "seconds": "0.13",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "actualWorkspacePreviewRestoreBatchCopyAndReopenPreserveOriginals",
+    "seconds": "4.177",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "failedBatchKeepsUnpublishedEvidenceAndNeverOverwritesPriorOutput",
+    "seconds": "0.474",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryIngressTest",
+    "name": "filesWinOverRasterAndTextPasteRemainsText",
+    "seconds": "0.003",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryIngressTest",
+    "name": "guiPasteBatchReportsFailuresRetainsExactOriginalAndRasterProvenanceAfterRestart",
+    "seconds": "3.686",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryWorkflowTest",
+    "name": "gridFilterTwoImageComparisonCopyAndMetadataReuseKeepOriginals",
+    "seconds": "7.268",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GuidanceSafetyTest",
+    "name": "q09CanvasRotateUndoMaskResetApplyAndReopen",
+    "seconds": "9.906",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GuidanceSafetyTest",
+    "name": "vibeMissUsesBudgetOnceAndCachedEncodingMakesNoRequest",
+    "seconds": "0.386",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GuidanceSafetyTest",
+    "name": "focusedPreparationUsesAuthorityPixelsAndKeepsRawFinalSeparate",
+    "seconds": "0.78",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ImageCardWorkflowTest",
+    "name": "packageAndPngProduceOnlyImageProjection",
+    "seconds": "0.162",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ImageCardWorkflowTest",
+    "name": "cardDefaultGlobalOverrideClearAndRestart",
+    "seconds": "3.003",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest",
+    "name": "legacyBackupRestoresThenCopiesToCurrentFormatWithoutTouchingBackup",
+    "seconds": "2.578",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest",
+    "name": "restoreRejectsCurrentRootExistingDestinationAndCorruptBackupWithoutPublishing",
+    "seconds": "1.517",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest",
+    "name": "sourceAndDestinationAreSeparateAndLatestBackupCannotBeConfusedWithEmptyParent",
+    "seconds": "0.646",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest",
+    "name": "currentWorkbenchBackupConfirmRestoreAndOpenPreservesSharedAssetsWithoutCredentials",
+    "seconds": "10.024",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest",
+    "name": "queuedRemovedRegistrationIsIgnoredAndUncertainMetadataStopsAutomaticRetries",
+    "seconds": "2.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest",
+    "name": "workbenchAutomaticallyCollectsImagesAndPromptVersionsAndDrainsForMaintenance",
+    "seconds": "12.023",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest",
+    "name": "unreadableLocalRegistrationStopsMonitoringWithoutHidingAssetLabels",
+    "seconds": "1.249",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.MetadataWorkflowTest",
+    "name": "embeddedImageRetainedAndUsedWithoutMutatingOriginal",
+    "seconds": "0.815",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.MetadataWorkflowTest",
+    "name": "missingMalformedUnsupportedAndReadFailureAreDistinct",
+    "seconds": "0.029",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.MetadataWorkflowTest",
+    "name": "historyReuseChecksIdentityAndRetainsOriginal",
+    "seconds": "0.561",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.MetadataWorkflowTest",
+    "name": "actualMetadataUiPreviewApplyUndoAndRestart",
+    "seconds": "1.675",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.PostProcessWorkflowTest",
+    "name": "unexpectedDimensionsRetainReceivedOriginalAndReportFailure",
+    "seconds": "2.034",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.PostProcessWorkflowTest",
+    "name": "upscalePersistsExactRequestAndResult",
+    "seconds": "1.154",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.PostProcessWorkflowTest",
+    "name": "enhanceUsesAuthorityRequestWithoutChangingSource",
+    "seconds": "1.417",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.PromptReferenceWorkflowTest",
+    "name": "imagePreviewBoardRealRoleDragExtractionAndRestartKeepSourceIdentity",
+    "seconds": "16.351",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.PromptReferenceWorkflowTest",
+    "name": "missingOrUnverifiableImagePromptCannotBecomeFalseCompleteReference",
+    "seconds": "0.581",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.PromptReferenceWorkflowTest",
+    "name": "editedImageUsesVerifiedSourcePromptWithoutClaimingAnUneditedResult",
+    "seconds": "4.084",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.PromptReferenceWorkflowTest",
+    "name": "narrowBoardScrollsSourcesAndEmptyPromptFieldsDoNotConsumeRows",
+    "seconds": "2.614",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.RestoredUpdateSnapshotTest",
+    "name": "previouslyReadableCredentialCannotDisappearDuringUpdate",
+    "seconds": "0.264",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.RestoredUpdateSnapshotTest",
+    "name": "unreadableOrCorruptCredentialCannotBeTreatedAsMissing",
+    "seconds": "0.197",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.RestoredUpdateSnapshotTest",
+    "name": "restoredWorkspaceCanBeVerifiedWithoutRecreatingExcludedCredential",
+    "seconds": "1.432",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ReverseWorkflowTest",
+    "name": "missingVisionFailsBeforeAnyPaidAttempt",
+    "seconds": "0.912",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ReverseWorkflowTest",
+    "name": "linkedVisionUsesAuthorityDescriptionAndNeverLeaksKeyToSnapshot",
+    "seconds": "1.433",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ReverseWorkflowTest",
+    "name": "directVisionRequiresApplyAndSurvivesRestart",
+    "seconds": "0.771",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioDataLaunchTest",
+    "name": "futureFormatRefusalPreservesEveryEntryAndExplainsRecoveryWithoutExceptionDetails",
+    "seconds": "0.004",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioDataLaunchTest",
+    "name": "installedIdentityAndApprovedDestinationBindMigration",
+    "seconds": "0.254",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioDataLaunchTest",
+    "name": "cancelledManualMigrationDoesNotPublishOrModifySource",
+    "seconds": "0.275",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioMaintenanceTest",
+    "name": "maintenanceRejectsNewEditsAndKeepsRootOwnedUntilWriterDrains",
+    "seconds": "0.437",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioMaintenanceTest",
+    "name": "migrationDestinationIsSeparateAndCannotReuseExistingWork",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioMaintenanceTest",
+    "name": "snapshotPreservesOriginalAssociationsAndDpapiCredentialWithoutPlaintext",
+    "seconds": "0.682",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioTitleControlsTest",
+    "name": "captionGeometryAndCommandsAtFourDisplayScales",
+    "seconds": "0.808",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioTitleControlsTest",
+    "name": "narrowNavigationKeepsEveryRouteAccessibleWithoutTextOverflow",
+    "seconds": "0.23",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest",
+    "name": "cancellationDrainsOwnedOperationAndRejectsNewWork",
+    "seconds": "0.025",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest",
+    "name": "actualUpdateScreenRequiresDownloadConfirmationAndDoesNotClaimInstall",
+    "seconds": "2.277",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest",
+    "name": "realByteProgressHasSeparateVerificationAndRejectsImpossibleCounts",
+    "seconds": "0.021",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest",
+    "name": "unconfiguredRuntimeFailsWithoutLaunchingProcess",
+    "seconds": "0.043",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest",
+    "name": "currentVersionIsSuccessAndFailureClearsStaleInstallCandidate",
+    "seconds": "0.013",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetQueueWorkflowTest",
+    "name": "dividerResizeCommitsOnceAndContextMoveTargetsClickedPage",
+    "seconds": "5.687",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetQueueWorkflowTest",
+    "name": "popupPositionFlipsAndClampsEvenInSmallWindow",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetQueueWorkflowTest",
+    "name": "displayedNumberMoveRejectsInvalidAndStaleTargetsPreservesSelectionAndRestart",
+    "seconds": "5.405",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetQueueWorkflowTest",
+    "name": "longQueueDragAutoScrollsKeepsBlockAndHoverUsesEditedPageWithoutSelecting",
+    "seconds": "11.014",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "namedProjectLiveVerticalEditingHistoryAndRestart",
+    "seconds": "9.357",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "functionalAndInlineColorsPreviewExportAndReopenWithoutSilentFallback",
+    "seconds": "3.015",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "pointerDrawnMasksChangeEffectSaveUndoAndReopen",
+    "seconds": "6.506",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "unreadablePreviewExplainsFontFailureAndOriginalRemainsViewable",
+    "seconds": "0.478",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "storyCustomControlsSelectedAndAllStylesPreserveCaptionsAndUndoAsOneBatch",
+    "seconds": "9.091",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "webpPreviewExportAndOriginalReopen",
+    "seconds": "2.955",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "continuousMaskDefaultsRespectPerPageSettings",
+    "seconds": "1.19",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "fourCategoryPreviewCopiesCompleteFileDeckWithoutSystemClipboard",
+    "seconds": "6.918",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "durableDefaultFontLoadsOnFirstTextPreviewWithColdCache",
+    "seconds": "2.817",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "fullPreviewKeyboardAndExportDeckKeepEditorStateAndFitNarrowWindow",
+    "seconds": "3.202",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "maximumQueueWidthCannotStarveCanvasAndSurvivesReopen",
+    "seconds": "2.072",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "exportShowsRealPageProgressStopsWithoutPublishingAndRetriesExplicitly",
+    "seconds": "5.089",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "storyCaptionPresetPreviewExportAndRestart",
+    "seconds": "4.692",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "sourceExchangePreviewConfirmExportAndReopen",
+    "seconds": "3.177",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "queueControlSelectionDragOrderNumberingAndRestart",
+    "seconds": "5.923",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "roleEditingReorderDisableAndDeleteReachRequestAndSurviveReopen",
+    "seconds": "5.66",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "creationFooterAndImageSummaryAdaptWithoutLosingDraftOrSelection",
+    "seconds": "2.507",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "accountRefreshAndNewSelectionNeverReuseAnotherAccountsQuota",
+    "seconds": "3.176",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "continuousGenerationCompletesRemainderStopsAndRetainsPartialResultsWithoutReplay",
+    "seconds": "5.519",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "editedAssetIsSelectableAcrossGuidanceAndEditorAndSurvivesRestart",
+    "seconds": "3.573",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "measuredSuiteNavigationSurvivesResizeAndUnsentInput",
+    "seconds": "2.87",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "continuedEditingRetainsExistingAssetsAndCredentials",
+    "seconds": "1.068",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "accountsDesignApplyGenerateGalleryAndRestart",
+    "seconds": "11.754",
+    "status": "PASS"
+  }
+]

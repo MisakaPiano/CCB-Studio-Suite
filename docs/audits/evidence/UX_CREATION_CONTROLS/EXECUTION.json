@@ -1,0 +1,38 @@
+{
+  "baseCommit": "d8b03524654d4e4dcbbca1179f0e4efb9648cf13",
+  "runs": [
+    {
+      "phase": "position-layout-reproduction",
+      "status": "FAILED",
+      "tests": 1,
+      "failures": 1,
+      "seconds": 33.839
+    },
+    {
+      "phase": "account-quota-reproduction",
+      "status": "FAILED",
+      "tests": 1,
+      "failures": 1,
+      "seconds": 29.794
+    },
+    {
+      "phase": "creation-controls-fixed",
+      "status": "PASS",
+      "tests": 2,
+      "failures": 0,
+      "seconds": 38.29
+    },
+    {
+      "phase": "creation-controls-desktop-full",
+      "status": "PASS",
+      "tests": 114,
+      "failures": 0,
+      "seconds": 276.136
+    }
+  ],
+  "realApiCalls": 0,
+  "nativeVisual": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED",
+  "existingInstallers": "Frozen 9/10 do not include these later fixes",
+  "overall": "PRODUCT_HOLD / NOT RC"
+}
