@@ -1,3 +1,7 @@
+## UX-R4 实际更新空间阻塞（2026-10-21）
+
+[实际回执](audits/UX_R4_AB_SPACE_BLOCK.md)：A应用可信检查成功，下载因H盘剩余约147MiB被安全拦截。B未安装/重启，RC BLOCKED；已保留失败和精确清理候选，等待空间解除。
+
 ## UX-R4 维护排水与交接进度（2026-10-21）
 
 [执行记录](audits/UX_R4_HANDOFF.md)：desktop完整62项、随后7项定向、Python更新组件18项实际PASS。实际A→B尚未执行；继续固定包演练，PRODUCT_HOLD。

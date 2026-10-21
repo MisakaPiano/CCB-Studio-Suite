@@ -1,0 +1,19 @@
+{
+  "status": "RC_BLOCKED",
+  "reason": "H_VOLUME_INSUFFICIENT_SPACE",
+  "freeBytes": 153804800,
+  "installerBytes": 166534747,
+  "minimumStagingBytes": 566713105,
+  "sourceSha": "b8a91533e583c16230d5c2801dc5309c64dbc29f",
+  "actualAppCheck": "AVAILABLE",
+  "actualAppDownload": "FAILED: Insufficient update staging space",
+  "installation": "NOT STARTED",
+  "restartB": "NOT TESTED",
+  "nativeCapture": "FAILED twice: window capture timed out: timed out waiting on channel",
+  "nativeVisual": "UNVERIFIED",
+  "testInput": "Computer-use keyboard: Tab, Ctrl+Shift+U, F5, Ctrl+D; product-owned result files observed",
+  "paidCalls": 0,
+  "drive": "NOT UPLOADED",
+  "deletions": 0,
+  "proposedReclaimBytes": 751003334
+}

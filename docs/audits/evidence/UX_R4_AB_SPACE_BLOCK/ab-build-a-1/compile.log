@@ -1,0 +1,24 @@
+Processing script file: "H:\CCB-Studio-Suite\.local\windows-rc\ab-build-a-1\installer.nsi" (UTF8)
+
+Processed 1 file, writing output (x86-unicode):
+warning 9100: Generating version information for language "1033-English" without standard key "FileDescription"
+warning 9100: Generating version information for language "1033-English" without standard key "LegalCopyright"
+
+Output: "H:\CCB-Studio-Suite\.local\windows-rc\ab-build-a-1\studio-installer.exe"
+Install: 2 pages (128 bytes), 1 section (2072 bytes), 1865 instructions (52220 bytes), 546 strings (26068 bytes), 1 language table (230 bytes).
+Uninstall: 2 pages (192 bytes), 1 section (2072 bytes), 632 instructions (17696 bytes), 678 strings (60192 bytes), 1 language table (218 bytes).
+Datablock optimizer saved 2550 bytes (~0.0%).
+
+Using zlib compression.
+
+EXE header size:               39424 / 39936 bytes
+Install code:                  10882 / 81110 bytes
+Install data:              166474708 / 250359449 bytes
+Uninstall code+data:            9710 / 10251 bytes
+CRC (0xAFF966B1):                  4 / 4 bytes
+
+Total size:                166534728 / 250490750 bytes (66.4%)
+
+2 warnings:
+  9100: Generating version information for language "1033-English" without standard key "FileDescription"
+  9100: Generating version information for language "1033-English" without standard key "LegalCopyright"
