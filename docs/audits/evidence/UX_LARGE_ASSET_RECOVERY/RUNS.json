@@ -1,0 +1,35 @@
+[
+  {
+    "directory": "20261021T181118246184Z-large-backup-before-fix",
+    "phase": "large-backup-before-fix",
+    "status": "FAILED",
+    "tests": 1,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 18.968,
+    "sourceStable": true
+  },
+  {
+    "directory": "20261021T181220245372Z-large-backup-targeted",
+    "phase": "large-backup-targeted",
+    "status": "PASS",
+    "tests": 12,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 63.115,
+    "sourceStable": true
+  },
+  {
+    "directory": "20261021T181355619593Z-large-backup-complete-core",
+    "phase": "large-backup-complete-core",
+    "status": "PASS",
+    "tests": 120,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 212.722,
+    "sourceStable": true
+  }
+]

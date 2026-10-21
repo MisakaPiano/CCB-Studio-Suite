@@ -14,8 +14,11 @@ internal fun updateSnapshot(workspace:StudioWorkspace):JsonObject=buildJsonObjec
     put("assets",buildJsonArray {
         workspace.catalog().sortedBy{it.request().id().toString()}.forEach {asset->
             val request=asset.request();val id=request.id().toString()
+            // Export verifies the actual bytes while discarding the stream; large books
+            // must not require a second in-memory copy during the update handoff.
+            workspace.assets.export(request.id(),java.io.OutputStream.nullOutputStream())
             add(buildJsonObject {
-                put("id",id);put("sha256",sha256(workspace.bytes(id)));put("size",asset.size())
+                put("id",id);put("sha256",asset.sha256());put("size",asset.size())
                 put("kind",request.kind().name);put("parent",request.parentId()?.toString()?.let(::JsonPrimitive)?:JsonNull)
                 put("nameSha256",sha256(request.name().toByteArray()));put("recipeSha256",sha256(request.recipe()));put("projectSha256",sha256(request.project()))
             })

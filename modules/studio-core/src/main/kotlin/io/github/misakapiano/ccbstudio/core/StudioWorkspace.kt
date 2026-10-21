@@ -102,7 +102,7 @@ class StudioWorkspace private constructor(val root:Path,private val owner:FileCh
         val documents=dest.resolve("documents");Files.createDirectory(documents)
         Files.list(root.resolve("documents")).use {list ->list.forEach {p->writeNewForced(documents.resolve(p.fileName),readBounded(p,4*1024*1024))}}
         StateJournal(documents) // Validate copied chain before marking complete.
-        val manifest=Files.walk(dest).use {stream->stream.filter {Files.isRegularFile(it,NOFOLLOW_LINKS)}.sorted().map {p->"${dest.relativize(p)} ${Files.size(p)} ${sha256(Files.readAllBytes(p))}"}.toList()}
+        val manifest=Files.walk(dest).use {stream->stream.filter {Files.isRegularFile(it,NOFOLLOW_LINKS)}.sorted().map {p->val f=fingerprintFile(p);"${dest.relativize(p)} ${f.size} ${f.sha256}"}.toList()}
         writeNewForced(dest.resolve("COMPLETE.txt"),("Secrets excluded; references remain OS-bound.\n"+manifest.joinToString("\n")).toByteArray())
         dest
     }

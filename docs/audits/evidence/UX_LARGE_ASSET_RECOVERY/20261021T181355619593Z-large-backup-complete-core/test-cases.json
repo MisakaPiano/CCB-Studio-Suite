@@ -1,0 +1,722 @@
+[
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiHistoryFoldingTest",
+    "name": "comparisonIgnoresWeightsAndPunctuationButRetainsContentNumbers",
+    "seconds": "0.13",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiHistoryFoldingTest",
+    "name": "calendarGroupingUsesLocalDateAcrossYearBoundary",
+    "seconds": "0.027",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiHistoryFoldingTest",
+    "name": "fullIgnoresIdentitySettingsAndWhitespace",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiHistoryFoldingTest",
+    "name": "differenceMustBeStrictlyBelowFifteenPercent",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiHistoryFoldingTest",
+    "name": "rolesRemainOrderedAndFieldsCannotCollide",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiHistoryFoldingTest",
+    "name": "modesCompareOnlyTheirOwnedFields",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.AssetArchiveTest",
+    "name": "interruptedSnapshotIsNotPublishedAndRetryRestores",
+    "seconds": "3.78",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.AssetArchiveTest",
+    "name": "unchangedCollectionDoesNotResurrectArchivedAsset",
+    "seconds": "2.41",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.AssetArchiveTest",
+    "name": "futureAndCorruptArchiveBlocksChangesButPreservesOriginals",
+    "seconds": "3.142",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.AssetArchiveTest",
+    "name": "imagePromptAndBookRestoreWithReferencesLabelsAndOriginalBytes",
+    "seconds": "12.587",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.AssetArchiveTest",
+    "name": "futureSnapshotIsRecognizedBeforeDecodingFields",
+    "seconds": "0.96",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.BackupLargeAssetTest",
+    "name": "largeArchiveBackupRestoresExactBytesWithoutImageSizeLimit",
+    "seconds": "3.656",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.BackupLargeAssetTest",
+    "name": "streamingChecksEnforceExactBoundaryAndKeepFileOnFailure",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "waitingCancellationRetainsLockAndDoesNotSend",
+    "seconds": "0.959",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "normalTransportUsesAuthorityEnvelopeAndCannotAcceptPartialStream",
+    "seconds": "0.254",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "httpErrorsNeverPersistProviderBodyOrRetry",
+    "seconds": "0.066",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "largeGuidanceReceiptKeepsExactWireAndSurvivesBackup",
+    "seconds": "3.891",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "composedResultIsDerivedAndRawResponseSurvivesRestart",
+    "seconds": "1.085",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "documentLimitPreflightDoesNotPoisonReadableWorkspace",
+    "seconds": "0.199",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "requestPayloadChunksRestoreAndDetectAlteredDescriptors",
+    "seconds": "2.83",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "interruptedDesignIsNotReplayedOnOpen",
+    "seconds": "0.454",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "partialGenerationRetainsOriginalAndFullReceiptOnFailure",
+    "seconds": "1.429",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "compositingFailurePreservesUniqueRawFinal",
+    "seconds": "0.631",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "designCandidateRequiresApplyBranchesAndSurvivesRestart",
+    "seconds": "4.389",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.DesignProvenanceTest",
+    "name": "exactGenerationLinkSurvivesLaterDesignBackupAndDetectsReceiptMismatch",
+    "seconds": "9.411",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.DesignProvenanceTest",
+    "name": "interruptionAfterDraftCommitCannotPromoteOrphanApplicationToVerifiedOrigin",
+    "seconds": "1.143",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.DesignProvenanceTest",
+    "name": "explicitApplicationUndoRedoAndUnknownWritesNeverInferFromEqualPrompt",
+    "seconds": "3.086",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.GalleryHistoryTest",
+    "name": "verifiedHistoryFoldsUnknownAndCorruptReceiptsStayIndependentAndOriginalsRemain",
+    "seconds": "1.389",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.GalleryHistoryTest",
+    "name": "perDepthPreferencesSurviveBackupRestoreAndDateGrammarRejectsInvalidCalendar",
+    "seconds": "1.86",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.ImageFormatsTest",
+    "name": "animatedInputsUseFirstOrDefaultRasterAndRetainAllEncodedFrames",
+    "seconds": "3.364",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.ImageFormatsTest",
+    "name": "unrecognizedOrCorruptCodecsDoNotCreateAssets",
+    "seconds": "0.099",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.ImageFormatsTest",
+    "name": "webpBmpGifImportExportAndSourceExchangeRetainOriginalBytes",
+    "seconds": "4.169",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.ImageFormatsTest",
+    "name": "gifLogicalCanvasAndFrameOffsetArePreservedAndOversizeRefused",
+    "seconds": "0.006",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.ImageOriginsTest",
+    "name": "invalidNearestReceiptCannotFallBackToAnOlderValidAncestor",
+    "seconds": "1.591",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.ImageOriginsTest",
+    "name": "editedAndComposedImagesKeepExactSourceAndSeedAfterRestore",
+    "seconds": "4.261",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryCollectionTest",
+    "name": "restoringAtIdenticalPathStillRequiresLocalCollectionReauthorization",
+    "seconds": "2.265",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryCollectionTest",
+    "name": "discoveringNewSubtreeKeepsOtherRegisteredRootLiveDuringConcurrentWrite",
+    "seconds": "0.01",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryCollectionTest",
+    "name": "watchCreatesVersionsAndRestoreRequiresExplicitReconnection",
+    "seconds": "5.965",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryCollectionTest",
+    "name": "intakeCopyIsIdempotentPreservesOriginalAndNeverReplacesModifiedDestination",
+    "seconds": "2.918",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryRepositoryTest",
+    "name": "damagedOrFutureManagementRecordsDoNotResetMetadataOrHideOriginals",
+    "seconds": "1.788",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryRepositoryTest",
+    "name": "directoriesVersionAndMissingSourcesKeepAssetsLabelsPromptsAndBackup",
+    "seconds": "9.284",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryRepositoryTest",
+    "name": "promptEditsPreserveEarlierVersionAndRejectDataRootAsIngress",
+    "seconds": "1.557",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryRepositoryTest",
+    "name": "referencesExcludeWhitespaceAlignRolesWithoutMutatingOriginalAndRestore",
+    "seconds": "6.441",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LiveRequestBudgetTest",
+    "name": "truncatedReservationBlocksInsteadOfFreeingBudget",
+    "seconds": "0.043",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LiveRequestBudgetTest",
+    "name": "allServicesSharePersistentRollingLimitAndFiveMinuteSpacing",
+    "seconds": "0.635",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.PngFieldInspectionTest",
+    "name": "malformedUnknownCompressionMissingAndDecompressionLimitAreDistinct",
+    "seconds": "0.14",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.PngFieldInspectionTest",
+    "name": "alphaAndTextConflictsArePresentedWithoutChoosingPrecedence",
+    "seconds": "0.01",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.PngFieldInspectionTest",
+    "name": "textCompressedInternationalAndDuplicateUnknownFieldsRemainSeparate",
+    "seconds": "0.005",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.RecipeComparisonTest",
+    "name": "missingNullEmptyUnknownAndStructuredPathsAreDistinct",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.RecipeComparisonTest",
+    "name": "exactRowsIncludeEqualValuesAndArrayOrder",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.RecipeComparisonTest",
+    "name": "limitsPreserveRawAndDoNotTreatValidComplexDataAsCorruption",
+    "seconds": "0.049",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.RecipeDraftSelectionTest",
+    "name": "individualSettingsUseActualImageSeedAndRetainUnselectedModelSettings",
+    "seconds": "0.047",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.RecipeDraftSelectionTest",
+    "name": "missingHistoryGuidanceBlocksGuidanceOnlyAndKeepsPromptReuseAvailable",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.RecipeDraftSelectionTest",
+    "name": "selectingOnePromptDoesNotReplaceOtherDraftContentOrSettings",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.RecipeDraftSelectionTest",
+    "name": "historicalReceiptSurvivesUndoRedoAndSerializationWithoutClaimingCurrentState",
+    "seconds": "0.011",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.SharedAssetsTest",
+    "name": "interruptedAssetRetentionNeverPublishesBatchOrDeletesOriginal",
+    "seconds": "1.043",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.SharedAssetsTest",
+    "name": "exportReturnsToSharedLibraryWithExactBytesAndReopenProvenance",
+    "seconds": "3.715",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "dpapiSyntheticSecretRoundTripNotInDocuments",
+    "seconds": "0.532",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "completeChainRejectsDeletedRevisionAndUnknownEntry",
+    "seconds": "0.199",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "originalProjectUndoRedoAndRestart",
+    "seconds": "0.478",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "missingFontPreventsFalseCompleteExportAndUnknownLayerRefused",
+    "seconds": "0.009",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "batchOrderUndoAndExportCategoriesAreNonDestructive",
+    "seconds": "3.853",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "generationDesignRevisionFrozenIdentityAndUncertainRestart",
+    "seconds": "1.359",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "completeRecipeComparisonIncludesNestedCharactersSeedAndIdentity",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "stagedUnknownCorruptAndFutureDocumentsNeverDefault",
+    "seconds": "0.211",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioRestoreTest",
+    "name": "completeSnapshotRestoresOriginalProjectUndoAndSecretReferenceOnly",
+    "seconds": "1.32",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioRestoreTest",
+    "name": "interruptedRestoreRetainsStagingAndCanRetryIntoFreshRoot",
+    "seconds": "0.748",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioRestoreTest",
+    "name": "corruptIncompleteAndUnknownSnapshotsNeverPublishOrOverwrite",
+    "seconds": "0.551",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest",
+    "name": "failedMigrationDoesNotPublishOrOverwriteTarget",
+    "seconds": "0.624",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest",
+    "name": "endpointsCannotContainCredentialsOrInsecureSchemes",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest",
+    "name": "realProfilesRequireExplicitV2RootAndPersistDraft",
+    "seconds": "0.231",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest",
+    "name": "copyMigrationPreservesLegacyAndRestoresV2Backup",
+    "seconds": "2.021",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetBatchTest",
+    "name": "missingPreviousTextDoesNotEraseTargetAndMaskDefaultsSurviveReopen",
+    "seconds": "0.966",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetBatchTest",
+    "name": "previousUsesFrozenSnapshotAndLastStyleForExtraObjects",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetBatchTest",
+    "name": "currentStyleAppliesToAllTextsAndKeepsGeometryVisibilityAndUnselectedPage",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetColorTest",
+    "name": "invalidColorsCannotSilentlyRenderAsThePreviousStyle",
+    "seconds": "0.054",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetColorTest",
+    "name": "namedAndFunctionalRichColorsMatchIndependentSourceCanvasSamples",
+    "seconds": "0.059",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetExportTest",
+    "name": "longBookPagesKeepPhysicalSizeWithoutLegacyPdfClipping",
+    "seconds": "4.426",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetExportTest",
+    "name": "storyPresetsVariablePagesAndIndependentInspectionArtifact",
+    "seconds": "3.414",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetExportTest",
+    "name": "missingFontBlocksRenderingButOriginalDeliveryRemainsAvailable",
+    "seconds": "1.089",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetExportTest",
+    "name": "fourVariantsOriginalBytesJpegAndFailurePublication",
+    "seconds": "8.073",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetImageTest",
+    "name": "allEightOrientationsBothEndianOrdersMatchPixelCoordinates",
+    "seconds": "0.083",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetImageTest",
+    "name": "oldSerializedPagesKeepRawCoordinatesAndNewPagesSurviveReopen",
+    "seconds": "1.141",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetImageTest",
+    "name": "unknownCoordinatesAndMalformedExifFailWithoutChangingLegacyInterpretation",
+    "seconds": "0.006",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetMaskTest",
+    "name": "laterMosaicReadsOriginalAndNeverEarlierMaskPixels",
+    "seconds": "0.032",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetMaskTest",
+    "name": "allShapesAndEffectsComparedWithOriginalTypeSetOutputs",
+    "seconds": "0.181",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetMetadataExportTest",
+    "name": "damagedMetadataIsNotReportedPreserved",
+    "seconds": "0.01",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetMetadataExportTest",
+    "name": "everySelectedCategoryIncludesUneditedPagesAndRecipeZipPathsVerify",
+    "seconds": "3.288",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetMetadataExportTest",
+    "name": "preserveTextChunksAlphaAndPrivacyUseIndependentAuthorityDecoder",
+    "seconds": "1.901",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetMetadataExportTest",
+    "name": "recipeAppliesOnlyToMatchingOriginalAndIsUndoable",
+    "seconds": "2.429",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetObjectsTest",
+    "name": "batchStyleDoesNotChangeTargetLockState",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetObjectsTest",
+    "name": "layerOrderControlsRenderingCopyIsIndependentAndDeleteKeepsValidOrder",
+    "seconds": "0.011",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetPreferencesTest",
+    "name": "newTextRespectsRememberedStyleAndSourceImageLimits",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetPreferencesTest",
+    "name": "presetsSaveOnlyStyleAndSourceMaskSlotsHaveExactParameters",
+    "seconds": "0.032",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetPreferencesTest",
+    "name": "globalPreferencesSurviveWorkspaceBackupAndRestore",
+    "seconds": "0.585",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetPreferencesTest",
+    "name": "sourceDefaultsAreConsumedByNewProjectsWithoutChangingExistingPages",
+    "seconds": "5.183",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetQueueTest",
+    "name": "displayedNumberBeforeAfterUsesSourceRoundingAndRetainsBatchOrder",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetQueueTest",
+    "name": "multiSelectionKeepsRelativeOrderAndAnchorSemantics",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetReferenceTest",
+    "name": "sourceVerticalGlyphsColumnsAndAdvances",
+    "seconds": "0.799",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetReferenceTest",
+    "name": "sourceHorizontalWrappingAndRichStyles",
+    "seconds": "0.448",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetReferenceTest",
+    "name": "measuredCanvasTopBaselineUsesTypoMetrics",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetReferenceTest",
+    "name": "sourceStoryGeometryAndBlankParagraphs",
+    "seconds": "0.87",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetRepositoryTest",
+    "name": "projectCopyRenameAndRemovalKeepIndependentHistoryAndOriginal",
+    "seconds": "3.999",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetRepositoryTest",
+    "name": "thousandPagesHistoryRestartAndBackupPreserveOriginal",
+    "seconds": "7.14",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetRepositoryTest",
+    "name": "badSnapshotHashCannotReplaceCurrentOrDeleteOriginal",
+    "seconds": "0.696",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetRepositoryTest",
+    "name": "stagedDocumentFailureRetainsOriginalAndRefusesUnsafeReopen",
+    "seconds": "1.007",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetSourceExchangeTest",
+    "name": "editedExportRoundTripsStudioExtensionsAndRetainsUnknownSourceFields",
+    "seconds": "2.122",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetSourceExchangeTest",
+    "name": "legacyPresetMigrationMergeReplaceAndUnknownFieldsRoundTrip",
+    "seconds": "0.716",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetSourceExchangeTest",
+    "name": "actualSourcePresetExportMatchesStyleAndDefaults",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetSourceExchangeTest",
+    "name": "actualSourceExportImportsAllObjectsAndKeepsRawAcrossBackup",
+    "seconds": "2.731",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetSourceExchangeTest",
+    "name": "exchangeFileFailureAndConcurrentDestinationNeverOverwrite",
+    "seconds": "0.102",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetSourceExchangeTest",
+    "name": "unknownVersionRemoteDataAndCorruptionRefusedBeforeMutation",
+    "seconds": "0.005",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.WindowsFontDecoderTest",
+    "name": "nativeWoff2AndWoffDecodeToUsableFonts",
+    "seconds": "0.036",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.WindowsFontDecoderTest",
+    "name": "installedOtfAndDecodedTtfImportRetainExactBytes",
+    "seconds": "0.662",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.WindowsFontDecoderTest",
+    "name": "rejectsMalformedContainersAndOversizedHeaders",
+    "seconds": "0.005",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.WindowsFontDecoderTest",
+    "name": "importedFontIsDurableAndBackupRestorableWithoutSystemInstallation",
+    "seconds": "2.275",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.WorkspaceProcessTest",
+    "name": "abruptStagedAndCommittedDocumentCrashesPreserveOriginals",
+    "seconds": "1.84",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.WorkspaceProcessTest",
+    "name": "anotherProcessCannotOwnOpenWorkspaceThenCanAfterClose",
+    "seconds": "0.492",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioMaintenanceTest",
+    "name": "maintenanceRejectsNewEditsAndKeepsRootOwnedUntilWriterDrains",
+    "seconds": "1.364",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioMaintenanceTest",
+    "name": "snapshotPreservesOriginalAssociationsAndDpapiCredentialWithoutPlaintext",
+    "seconds": "0.951",
+    "status": "PASS"
+  }
+]

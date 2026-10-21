@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.AssetArchiveTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-21T18:14:14.108Z" hostname="DD1" time="22.879">
+  <properties/>
+  <testcase name="interruptedSnapshotIsNotPublishedAndRetryRestores" classname="io.github.misakapiano.ccbstudio.core.AssetArchiveTest" time="3.78"/>
+  <testcase name="unchangedCollectionDoesNotResurrectArchivedAsset" classname="io.github.misakapiano.ccbstudio.core.AssetArchiveTest" time="2.41"/>
+  <testcase name="futureAndCorruptArchiveBlocksChangesButPreservesOriginals" classname="io.github.misakapiano.ccbstudio.core.AssetArchiveTest" time="3.142"/>
+  <testcase name="imagePromptAndBookRestoreWithReferencesLabelsAndOriginalBytes" classname="io.github.misakapiano.ccbstudio.core.AssetArchiveTest" time="12.587"/>
+  <testcase name="futureSnapshotIsRecognizedBeforeDecodingFields" classname="io.github.misakapiano.ccbstudio.core.AssetArchiveTest" time="0.96"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

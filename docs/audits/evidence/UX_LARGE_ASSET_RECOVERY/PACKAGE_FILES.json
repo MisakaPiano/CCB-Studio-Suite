@@ -1,0 +1,262 @@
+[
+  {
+    "path": "20261021T181118246184Z-large-backup-before-fix/gradle.log",
+    "bytes": 1900,
+    "sha256": "1a840765fe4ffd12e29388d6a525bc182e3291b5361f880fca26d55980a8ad12"
+  },
+  {
+    "path": "20261021T181118246184Z-large-backup-before-fix/source-before.json",
+    "bytes": 56171,
+    "sha256": "da0381f4aeea63ba395844b4a7d6b90fc1cf67576d06f7144964af18410687c7"
+  },
+  {
+    "path": "20261021T181118246184Z-large-backup-before-fix/studio-core-TEST-io.github.misakapiano.ccbstudio.core.BackupLargeAssetTest.xml",
+    "bytes": 5437,
+    "sha256": "9f6dfa26683f8fb45e7e5946b40a317d879b526c3f34a223b50c6be558277d78"
+  },
+  {
+    "path": "20261021T181118246184Z-large-backup-before-fix/summary.json",
+    "bytes": 812,
+    "sha256": "9f08fba8efe7f4b43126df0647398f6543cfa9401401bb429a76078da5189c56"
+  },
+  {
+    "path": "20261021T181118246184Z-large-backup-before-fix/test-cases.json",
+    "bytes": 214,
+    "sha256": "6b2ba9207514a8bfbdfe74a250f7fa7fe357553cad37abba8140cbf8942149c4"
+  },
+  {
+    "path": "20261021T181220245372Z-large-backup-targeted/gradle.log",
+    "bytes": 4231,
+    "sha256": "f6364657de7a5df74af36f7e933972a47ad5f4dcd03e0379615750f369d97798"
+  },
+  {
+    "path": "20261021T181220245372Z-large-backup-targeted/source-before.json",
+    "bytes": 56335,
+    "sha256": "7017a107cd8dd8e05662298f2b4b5e273eac5c8c4be9c50a4b7bbe1deb5a3bff"
+  },
+  {
+    "path": "20261021T181220245372Z-large-backup-targeted/studio-core-TEST-io.github.misakapiano.ccbstudio.core.AssetArchiveTest.xml",
+    "bytes": 1110,
+    "sha256": "5a5299d477b7f9a6ee75a03602b95bbf8dc2d19e223a3c83bab7ffacc2b0f0ad"
+  },
+  {
+    "path": "20261021T181220245372Z-large-backup-targeted/studio-core-TEST-io.github.misakapiano.ccbstudio.core.BackupLargeAssetTest.xml",
+    "bytes": 665,
+    "sha256": "1057c2fdd9be3eff3dc3e928ebd107ca1c9b73ab8a700d2ca04b693ecc5a3b65"
+  },
+  {
+    "path": "20261021T181220245372Z-large-backup-targeted/studio-core-TEST-io.github.misakapiano.ccbstudio.core.StudioRestoreTest.xml",
+    "bytes": 828,
+    "sha256": "a6b97e3fd1fa183ede8e990f1c62f11464d74ff9b6f2f528ef4b64b30fccdf8f"
+  },
+  {
+    "path": "20261021T181220245372Z-large-backup-targeted/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioMaintenanceTest.xml",
+    "bytes": 697,
+    "sha256": "8c5eb92a0b4a90abaf6462a8da023d0548eccf930f3e5204a7251dde1a2db5a4"
+  },
+  {
+    "path": "20261021T181220245372Z-large-backup-targeted/summary.json",
+    "bytes": 970,
+    "sha256": "775976750d3101326248112f1c951a02f645b58d11066cca123d8f26b2e0963c"
+  },
+  {
+    "path": "20261021T181220245372Z-large-backup-targeted/test-cases.json",
+    "bytes": 2468,
+    "sha256": "c732f25ede4cf748ab6d0eb46ca4ede147a120ba2f83b96f90a3b0b37eaac6cd"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/gradle.log",
+    "bytes": 13908,
+    "sha256": "aa7cf0b2fae65d404347dc245f796c7e4baccc4f6529d95f6fada2cf4b8496ae"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/source-before.json",
+    "bytes": 56335,
+    "sha256": "49d18676a37897dcbb558868be991140d53acb7e01b60534f16c4c43ce58bc4f"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-com.example.chatbar.domain.image.NovelAiHistoryFoldingTest.xml",
+    "bytes": 1246,
+    "sha256": "b58a1b2ca17b44ed5ed41b4f099fbd42d623f4ae9655592ac6416026b4775aa5"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.AssetArchiveTest.xml",
+    "bytes": 1108,
+    "sha256": "e5015b8e778a30052eb546b2711e766fffbfa7d57e245dfc31ad9eabd3a6709b"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.BackupLargeAssetTest.xml",
+    "bytes": 666,
+    "sha256": "d60cf3038e53415864ae97b2ac730a866e559b75936366d9157f8a71761eee3f"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.CreationRuntimeTest.xml",
+    "bytes": 2040,
+    "sha256": "213c7efbc7201140c1adc778f024c35ef81ddaa6d458063e834e95593173422b"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.DesignProvenanceTest.xml",
+    "bytes": 871,
+    "sha256": "2070b5f4ae0142f4bfc02be6a92a7c8e81fda351623a4103579beb5af50d0fa6"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.GalleryHistoryTest.xml",
+    "bytes": 700,
+    "sha256": "034bc671b8a3f22eb9ad4f28ffc50f1ac2fbf10c66ad09d9aca06632d58c1464"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.ImageFormatsTest.xml",
+    "bytes": 970,
+    "sha256": "18bb3e630dbd2df9837ffaf82d3b25a302a4fbf31efb33b399962c1fd469510c"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.ImageOriginsTest.xml",
+    "bytes": 656,
+    "sha256": "a086bb6036acfd49345f04dfdac574d366234ad07dc37ba9f4b1a0db1e6dc0c0"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.LibraryCollectionTest.xml",
+    "bytes": 1040,
+    "sha256": "057369ea00307c0786f13bd3f3204d77bfdfb4718209cbe069413678704f99fd"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.LibraryRepositoryTest.xml",
+    "bytes": 1032,
+    "sha256": "d70d58afcd2aa51fe1cb15f7a55d76914b76ddce8a467f853ee14e21ee8685fb"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.LiveRequestBudgetTest.xml",
+    "bytes": 663,
+    "sha256": "ae191658b46c3f0992d911436ef6db08fd14c96cf7e02d669804b201bafa7f63"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.PngFieldInspectionTest.xml",
+    "bytes": 856,
+    "sha256": "abedec335429b7f2956f0912442127f0ebe53447ab6669c5664b2e50384bd7cf"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.RecipeComparisonTest.xml",
+    "bytes": 808,
+    "sha256": "f6227049c382b64887461bfcb17e6a3a0cd8499c09ca74a02c650ec8b7b85368"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.RecipeDraftSelectionTest.xml",
+    "bytes": 1053,
+    "sha256": "f21f37ca2dde7f04977c6dc7bb5694f797d207532d15a7a41ae56f3fbb562609"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.SharedAssetsTest.xml",
+    "bytes": 664,
+    "sha256": "509da34a27b868119ec153a7e953cdd5fc388063e4c963af31b7047f1023a9ae"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.StudioCoreTest.xml",
+    "bytes": 1542,
+    "sha256": "faafb7527ec3e460aaf9f859356c50c9ef29c4d12c7ed00af616b6d423fec34c"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.StudioRestoreTest.xml",
+    "bytes": 827,
+    "sha256": "a0936e540bb250ebfd2bb69d907c7fbcf7a88ac1415a9ee1f6f4d6255a2f9593"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.StudioVersionTwoTest.xml",
+    "bytes": 957,
+    "sha256": "9359dd4c09f591d491dbdcf0e3faa1e2b94441a2ec804649b89268b5a4e59d9e"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetBatchTest.xml",
+    "bytes": 832,
+    "sha256": "d8e5fc580840fa718aaf718c62c8278c452252c7047311117a3200d9e853b945"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetColorTest.xml",
+    "bytes": 656,
+    "sha256": "35b665f24f01ebbb064c1dd687dcfcce183fc116b89d60439a54c690bf247619"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetExportTest.xml",
+    "bytes": 973,
+    "sha256": "687066706ec89e568f7687dafb6334eca925fbef991ee7bb1ced2336e9e019b2"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetImageTest.xml",
+    "bytes": 833,
+    "sha256": "3e3024eec41c8d5b4cd75bf6c6affe5525f2c58d0950e85125e0fd731532f31f"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetMaskTest.xml",
+    "bytes": 641,
+    "sha256": "1361125155dabf9c4d15ffff6e08237f3aface970cbc7cf48827864ff33e532c"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetMetadataExportTest.xml",
+    "bytes": 1003,
+    "sha256": "e8cd2d50c37ce35574fb39fd6029e2f1a67ad9d20ce210ee347ee6d5336363ef"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetObjectsTest.xml",
+    "bytes": 654,
+    "sha256": "878735bdf93714791cb3dc3bfba990c2f1736d7f16080bffc4dfb4587fbdd0ef"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetPreferencesTest.xml",
+    "bytes": 996,
+    "sha256": "2a124b47b4287f49d1ea0409d5c08e5861cc1abe0db79028afbb7fa3fd30a9a6"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetQueueTest.xml",
+    "bytes": 650,
+    "sha256": "7ef06dc3599515d9ef66d3a2317195d196ebfd81915721e43eecaa0a615153c9"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetReferenceTest.xml",
+    "bytes": 915,
+    "sha256": "7a3da209c2583739a549c89be16ac287ea71f441e1eaa4cffa3235e3be807d83"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetRepositoryTest.xml",
+    "bytes": 992,
+    "sha256": "b4c2b7a661d80024f283d56a62d32737b9205288f9d247dc6f8b7289b0a0bf58"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetSourceExchangeTest.xml",
+    "bytes": 1356,
+    "sha256": "daf4e034ebdc16e51c37f784881f162f9e73b335990857e2f8063ec09067be0a"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.WindowsFontDecoderTest.xml",
+    "bytes": 970,
+    "sha256": "ea63a45843df0c3738ce15e0eddc860e5fc60e12173ae610f69ef09a0eb0f5c3"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-core-TEST-io.github.misakapiano.ccbstudio.core.WorkspaceProcessTest.xml",
+    "bytes": 662,
+    "sha256": "7092d3581e91253b31c01a0d01d82b562300e22eb818eec279b73598dad630f2"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioMaintenanceTest.xml",
+    "bytes": 697,
+    "sha256": "98e98a55cf618db479864c7e2b6304cabd8d8ff13e11cdee847be1ce4d403e26"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/summary.json",
+    "bytes": 877,
+    "sha256": "e7cc6846922ed4d4c8706453601074c1b8733c7a4cea39a31b6f886cb49f25db"
+  },
+  {
+    "path": "20261021T181355619593Z-large-backup-complete-core/test-cases.json",
+    "bytes": 24551,
+    "sha256": "f34ce6140ce6c8532a0707dc9c935a5570a79673bdf816dfdc2abc5f9bd6dc34"
+  },
+  {
+    "path": "RUNS.json",
+    "bytes": 814,
+    "sha256": "c12fb9218d9e44808cfdbb06764b3921cf7b7c29cd0dca95398adead394f7dab"
+  },
+  {
+    "path": "SOURCE_DELIVERY_IDENTITY.json",
+    "bytes": 140345,
+    "sha256": "24e5c2a0781738323fb53d58fc5f82bbcd436df4082b14134ecc7103d8350bef"
+  }
+]

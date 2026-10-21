@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.TypesetPreferencesTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-21T18:16:42.644Z" hostname="DD1" time="5.802">
+  <properties/>
+  <testcase name="newTextRespectsRememberedStyleAndSourceImageLimits" classname="io.github.misakapiano.ccbstudio.core.TypesetPreferencesTest" time="0.0"/>
+  <testcase name="presetsSaveOnlyStyleAndSourceMaskSlotsHaveExactParameters" classname="io.github.misakapiano.ccbstudio.core.TypesetPreferencesTest" time="0.032"/>
+  <testcase name="globalPreferencesSurviveWorkspaceBackupAndRestore" classname="io.github.misakapiano.ccbstudio.core.TypesetPreferencesTest" time="0.585"/>
+  <testcase name="sourceDefaultsAreConsumedByNewProjectsWithoutChangingExistingPages" classname="io.github.misakapiano.ccbstudio.core.TypesetPreferencesTest" time="5.183"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

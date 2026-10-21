@@ -31,10 +31,11 @@ object StudioRestore {
             val relative=backup.relativize(p).toString().replace('\\','/')
             if(relative.isNotEmpty() && relative !in setOf("assets","documents") && expected.keys.none {it.startsWith("$relative/")})throw DataProblem("CORRUPT","Unknown snapshot directory retained")
         }}
-        fun verified(name:String):ByteArray {
-            val value=expected.getValue(name);val bytes=readBounded(backup.resolve(name),EditorRenderer.MAX_BYTES)
-            if(bytes.size.toLong()!=value.first || sha256(bytes)!=value.second)throw DataProblem("CORRUPT","Backup size/hash mismatch; retained")
-            return bytes
+        fun verified(name:String) {
+            val value=expected.getValue(name);val max=if(name.startsWith("documents/"))4L*1024*1024 else STORED_FILE_LIMIT
+            if(value.first !in 0..max)throw DataProblem("CORRUPT","Backup file exceeds stored-file budget; retained")
+            val actual=fingerprintFile(backup.resolve(name),max)
+            if(actual.size!=value.first || actual.sha256!=value.second)throw DataProblem("CORRUPT","Backup size/hash mismatch; retained")
         }
         expected.keys.forEach {verified(it)} // Validate all bytes before creating destination or staging.
         Files.createDirectories(destination.parent);safePath(destination.parent)
@@ -42,7 +43,11 @@ object StudioRestore {
         fault("RESTORE_STAGING")
         AssetBackup.restore(backup.resolve("assets"),staging.resolve("assets"))
         Files.createDirectory(staging.resolve("documents"))
-        expected.keys.filter {it.startsWith("documents/")}.forEach {name->writeNewForced(staging.resolve(name),verified(name));fault("RESTORE_DOCUMENT")}
+        expected.keys.filter {it.startsWith("documents/")}.forEach {name->
+            val bytes=readBounded(backup.resolve(name),4*1024*1024);val value=expected.getValue(name)
+            if(bytes.size.toLong()!=value.first || sha256(bytes)!=value.second)throw DataProblem("CORRUPT","Backup document changed; retained")
+            writeNewForced(staging.resolve(name),bytes);fault("RESTORE_DOCUMENT")
+        }
         val state=StateJournal(staging.resolve("documents")).state
         AssetStore.open(staging.resolve("assets")).use {store->
             store.catalog()

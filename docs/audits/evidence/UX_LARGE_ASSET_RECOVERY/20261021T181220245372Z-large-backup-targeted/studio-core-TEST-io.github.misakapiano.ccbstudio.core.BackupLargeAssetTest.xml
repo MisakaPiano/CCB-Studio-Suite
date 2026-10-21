@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.BackupLargeAssetTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-21T18:12:43.682Z" hostname="DD1" time="4.63">
+  <properties/>
+  <testcase name="largeArchiveBackupRestoresExactBytesWithoutImageSizeLimit" classname="io.github.misakapiano.ccbstudio.core.BackupLargeAssetTest" time="4.613"/>
+  <testcase name="streamingChecksEnforceExactBoundaryAndKeepFileOnFailure" classname="io.github.misakapiano.ccbstudio.core.BackupLargeAssetTest" time="0.017"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
