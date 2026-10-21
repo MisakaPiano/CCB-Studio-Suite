@@ -1,3 +1,7 @@
+## UX-R3 图库与比较进度（2026-10-21）
+
+[实际记录](audits/UX_R3_GALLERY.md)：完整126项实际PASS；随后边界/GUI定向4项PASS，编译失败保留。图库筛选、比较/缩放/复制及确认回用保存重开已测；完整R3和安全更新继续，PRODUCT_HOLD。
+
 ## UX-R2 完整预览进度（2026-10-21）
 
 [实际记录](audits/UX_R2_FULL_PREVIEW.md)：desktop49项完整实际PASS；完整预览键盘/状态隔离、宽窄输出布局及复制回归通过，初始失败与问题截图保留。core未改，继续恢复，PRODUCT_HOLD。

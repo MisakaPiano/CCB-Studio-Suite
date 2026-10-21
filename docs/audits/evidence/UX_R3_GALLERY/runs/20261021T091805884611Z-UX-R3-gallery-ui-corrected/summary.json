@@ -1,0 +1,28 @@
+{
+  "phase": "UX-R3-gallery-ui-corrected",
+  "startedUtc": "2026-10-21T09:18:06.305838+00:00",
+  "seconds": 37.413,
+  "exitCode": 0,
+  "tests": 1,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:test",
+    "--tests",
+    "*GalleryWorkflowTest"
+  ],
+  "baseCommit": "7b2a7a232186798576bd6ef21372b1330aa7a60f",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

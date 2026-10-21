@@ -28,6 +28,7 @@ import javax.swing.JFileChooser
 internal class WorkbenchController(val workspace:StudioWorkspace,val scope:CoroutineScope,val infrastructure:DesktopNovelAiInfrastructure,budgetRoot:Path,
     val http:okhttp3.OkHttpClient=studioHttpClient(),admissionOverride:RequestAdmission?=null) {
     val session=CreationSession(workspace)
+    val gallery = GalleryViewState()
     val editor by lazy {TypesetEditorController(this)}
     val vault=SecretVault(workspace.root.resolve("secrets"))
     var state by mutableStateOf(workspace.state);private set
@@ -405,7 +406,7 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
     if(accounts.isEmpty())StudioAction("配置 $service 账户"){c.view="账户"}
     else CompactChoice(service,accounts,accounts.firstOrNull{it.id==if(service=="LLM")c.llmId else c.naiId},{"${it.alias} · ${it.model}"}){c.chooseAccount(service,it.id)}
 }
-@Composable private fun AssetImage(c:WorkbenchController,id:String?,modifier:Modifier) {
+@Composable internal fun AssetImage(c:WorkbenchController,id:String?,modifier:Modifier) {
     if(id!=null)DesktopOwnedImage("asset:$id",c::readAsset,modifier)
     else Box(modifier,contentAlignment=Alignment.Center){Text("生成或导入图片后在这里查看",color=Quiet)}
 }
@@ -501,21 +502,6 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
                 }}
             }
         },confirmButton={TextButton(onClick={candidate=null;c.apply(conversationId,turnId)}){Text("确认应用")}},dismissButton={TextButton(onClick={candidate=null}){Text("保留当前草稿")}})
-    }
-}
-
-@Composable private fun GalleryWorkspace(c:WorkbenchController) {
-    var query by remember{mutableStateOf("")};val visible=c.assets.filter{it.request().name().contains(query,true)}
-    Column(Modifier.fillMaxSize().padding(16.dp)) {
-        StudioActions{StudioAction("导入图片",!c.busy){c.importImages()};StudioAction("返回创作"){c.view="创作"}}
-        OutlinedTextField(query,{query=it},label={Text("按文件名查找")},modifier=Modifier.fillMaxWidth())
-        Row(Modifier.weight(1f)) {
-            LazyColumn(Modifier.width(280.dp).fillMaxHeight()){items(visible.asReversed(),key={it.request().id().toString()}){a->val id=a.request().id().toString()
-                Row(Modifier.fillMaxWidth().clickable{c.current=id}.padding(6.dp),verticalAlignment=Alignment.CenterVertically){Checkbox(id in c.selection,{c.selection=if(it)c.selection+id else c.selection-id});AssetImage(c,id,Modifier.size(64.dp));Text(a.request().name(),Modifier.weight(1f),fontSize=12.sp)}
-            }}
-            AssetImage(c,c.current,Modifier.weight(1f).fillMaxHeight())
-        }
-        StudioActions{StudioAction("全选"){c.selection=visible.map{it.request().id().toString()}.toSet()};StudioAction("全不选"){c.selection=emptySet()};StudioAction("反选"){c.selection=visible.map{it.request().id().toString()}.toSet()-c.selection};StatusText("${c.selection.size} 项已选");StudioAction("所选图片建立编辑工程",c.selection.isNotEmpty() && !c.busy){c.view="编辑"}}
     }
 }
 

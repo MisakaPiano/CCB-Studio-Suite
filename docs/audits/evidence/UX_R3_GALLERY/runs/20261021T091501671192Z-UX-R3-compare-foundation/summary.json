@@ -1,0 +1,29 @@
+{
+  "phase": "UX-R3-compare-foundation",
+  "startedUtc": "2026-10-21T09:15:02.098051+00:00",
+  "seconds": 23.611,
+  "exitCode": 1,
+  "tests": 2,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "FAILED",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-core:test",
+    "--tests",
+    "*RecipeComparisonTest",
+    ":studio-desktop:compileKotlin"
+  ],
+  "baseCommit": "7b2a7a232186798576bd6ef21372b1330aa7a60f",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

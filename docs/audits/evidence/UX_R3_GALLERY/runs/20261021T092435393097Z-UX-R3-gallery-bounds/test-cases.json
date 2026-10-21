@@ -1,0 +1,26 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.RecipeComparisonTest",
+    "name": "missingNullEmptyUnknownAndStructuredPathsAreDistinct",
+    "seconds": "0.106",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.RecipeComparisonTest",
+    "name": "exactRowsIncludeEqualValuesAndArrayOrder",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.RecipeComparisonTest",
+    "name": "limitsPreserveRawAndDoNotTreatValidComplexDataAsCorruption",
+    "seconds": "0.064",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryWorkflowTest",
+    "name": "gridFilterTwoImageComparisonCopyAndMetadataReuseKeepOriginals",
+    "seconds": "19.099",
+    "status": "PASS"
+  }
+]

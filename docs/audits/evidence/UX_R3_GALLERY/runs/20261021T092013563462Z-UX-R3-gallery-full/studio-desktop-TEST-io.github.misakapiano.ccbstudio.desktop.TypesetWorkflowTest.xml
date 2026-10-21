@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-10-21T09:22:17.536Z" hostname="DD1" time="43.292">
+  <properties/>
+  <testcase name="namedProjectLiveVerticalEditingHistoryAndRestart" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="10.276"/>
+  <testcase name="pointerDrawnMasksChangeEffectSaveUndoAndReopen" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="7.469"/>
+  <testcase name="webpPreviewExportAndOriginalReopen" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="2.939"/>
+  <testcase name="continuousMaskDefaultsRespectPerPageSettings" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="1.277"/>
+  <testcase name="fourCategoryPreviewCopiesCompleteFileDeckWithoutSystemClipboard" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="4.602"/>
+  <testcase name="fullPreviewKeyboardAndExportDeckKeepEditorStateAndFitNarrowWindow" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="3.12"/>
+  <testcase name="storyCaptionPresetPreviewExportAndRestart" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="3.401"/>
+  <testcase name="sourceExchangePreviewConfirmExportAndReopen" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="3.03"/>
+  <testcase name="queueControlSelectionDragOrderNumberingAndRestart" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="7.178"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

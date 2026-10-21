@@ -1,0 +1,14 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.RecipeComparisonTest",
+    "name": "missingNullEmptyUnknownAndStructuredPathsAreDistinct",
+    "seconds": "0.081",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.RecipeComparisonTest",
+    "name": "exactRowsIncludeEqualValuesAndArrayOrder",
+    "seconds": "0.001",
+    "status": "PASS"
+  }
+]
