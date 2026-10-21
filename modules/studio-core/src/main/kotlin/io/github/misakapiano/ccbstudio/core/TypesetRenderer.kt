@@ -17,8 +17,11 @@ object TypesetRenderer {
         val image=EditorRenderer.decode(original)
         val out=BufferedImage(image.width,image.height,BufferedImage.TYPE_INT_ARGB)
         val g=out.createGraphics();try{quality(g);g.drawImage(image,0,0,null)
-            if(variant=="all" || variant=="mask")page.masks.filter{it.visible}.forEach{TypesetMaskRenderer.draw(g,image,it)}
-            if(variant=="all" || variant=="text")page.texts.filter{it.visible}.forEach{text(g,it)}
+            val masks=page.masks.associateBy{it.id};val texts=page.texts.associateBy{it.id}
+            for(id in TypesetObjects.order(page)){
+                if(variant=="all" || variant=="mask")masks[id]?.takeIf{it.visible}?.let{TypesetMaskRenderer.draw(g,image,it)}
+                if(variant=="all" || variant=="text")texts[id]?.takeIf{it.visible}?.let{text(g,it)}
+            }
         }catch(e:Exception){out.flush();throw e}finally{g.dispose();image.flush()};return out
     }
     fun text(given:Graphics2D,t:TypesetText) {

@@ -36,4 +36,17 @@ class TypesetRepositoryTest {
             assertEquals(p,w.state.typesetProjects.single());assertContentEquals(bytes,w.bytes(id));assertEquals(id,repo.load(p).pages.single().assetId)
         }
     }
+    @Test fun projectCopyRenameAndRemovalKeepIndependentHistoryAndOriginal() {
+        val r=root();val bytes=EditorRenderer.synthetic(30,30)
+        StudioWorkspace.openStudio(r).use{w->val id=w.importImage("fixture.png",bytes);val repo=TypesetRepository(w);val p=repo.create("第一册",listOf(id))
+            val copy=repo.copy(p.id,p.revision,"第二册");assertNotEquals(p.id,copy.id);assertTrue(copy.undo.isEmpty())
+            val edited=repo.update(copy.id,copy.revision){d->d.copy(pages=d.pages.map{it.copy(caption="副本旁白")})}
+            assertEquals("",repo.load(p).pages.single().caption);assertEquals("副本旁白",repo.load(edited).pages.single().caption)
+            val named=repo.rename(edited.id,edited.revision,"新册名");assertEquals("新册名",named.name)
+            assertFails{repo.remove(named.id,edited.revision)};repo.remove(p.id,p.revision)
+            assertEquals(listOf(named),w.state.typesetProjects);assertContentEquals(bytes,w.bytes(id))
+        }
+        StudioWorkspace.openStudio(r).use{w->assertEquals("新册名",w.state.typesetProjects.single().name);assertEquals("副本旁白",TypesetRepository(w).load(w.state.typesetProjects.single()).pages.single().caption)}
+    }
+
 }

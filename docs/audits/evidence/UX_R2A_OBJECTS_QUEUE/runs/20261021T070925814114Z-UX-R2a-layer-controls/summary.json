@@ -1,0 +1,31 @@
+{
+  "phase": "UX-R2a-layer-controls",
+  "startedUtc": "2026-10-21T07:09:26.253941+00:00",
+  "seconds": 57.056,
+  "exitCode": 0,
+  "tests": 4,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-core:test",
+    "--tests",
+    "*TypesetObjectsTest",
+    ":studio-desktop:test",
+    "--tests",
+    "*TypesetWorkflowTest"
+  ],
+  "baseCommit": "8137dccacc98ad4301e470b0812250a5252e223b",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

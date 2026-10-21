@@ -467,39 +467,75 @@
         "TypesetLayout.kt",
         "TypesetRenderer.kt",
         "TypesetFonts.kt",
-        "WindowsFontDecoder.kt"
+        "WindowsFontDecoder.kt",
+        "TypesetObjects.kt",
+        "TypesetQueue.kt"
       ],
       "tests": [
         "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart",
         "TypesetReferenceTest",
         "TypesetRepositoryTest",
-        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)"
+        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)",
+        "TypesetObjectsTest",
+        "TypesetQueueTest",
+        "TypesetRepositoryTest.projectCopyRenameAndRemovalKeepIndependentHistoryAndOriginal",
+        "TypesetWorkflowTest.queueControlSelectionDragOrderNumberingAndRestart",
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart (includes lock/unlock pointer, clone/delete/reopen)"
       ],
       "guiEvidence": [
-        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)"
+        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)",
+        "docs/audits/evidence/UX_R2A_OBJECTS_QUEUE/compose-scenes (actual Compose pointer; offscreen)"
       ],
       "persistenceEvidence": [
         "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen"
       ],
-      "status": "ENGINEERING_PARTIAL / SOURCE_GEOMETRY_AND_COMPOSE_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+      "status": "ENGINEERING_PARTIAL / COMPOSE_POINTER_AND_RESTART_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "T02",
       "owner": "UX-R2a",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
+      "implementation": [
+        "TypesetObjects.kt",
+        "TypesetQueue.kt",
+        "TypesetRepository.kt",
+        "TypesetEditorController.kt",
+        "TypesetWorkspace.kt"
+      ],
+      "tests": [
+        "TypesetObjectsTest",
+        "TypesetQueueTest",
+        "TypesetRepositoryTest.projectCopyRenameAndRemovalKeepIndependentHistoryAndOriginal",
+        "TypesetWorkflowTest.queueControlSelectionDragOrderNumberingAndRestart",
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart (includes lock/unlock pointer, clone/delete/reopen)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_OBJECTS_QUEUE/compose-scenes (actual Compose pointer; offscreen)"
+      ],
       "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "status": "ENGINEERING_PARTIAL / COMPOSE_POINTER_AND_RESTART_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "T03",
       "owner": "UX-R2a",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
+      "implementation": [
+        "TypesetObjects.kt",
+        "TypesetQueue.kt",
+        "TypesetRepository.kt",
+        "TypesetEditorController.kt",
+        "TypesetWorkspace.kt"
+      ],
+      "tests": [
+        "TypesetObjectsTest",
+        "TypesetQueueTest",
+        "TypesetRepositoryTest.projectCopyRenameAndRemovalKeepIndependentHistoryAndOriginal",
+        "TypesetWorkflowTest.queueControlSelectionDragOrderNumberingAndRestart",
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart (includes lock/unlock pointer, clone/delete/reopen)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_OBJECTS_QUEUE/compose-scenes (actual Compose pointer; offscreen)"
+      ],
       "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "status": "ENGINEERING_PARTIAL / COMPOSE_POINTER_AND_RESTART_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "T04",
@@ -512,21 +548,29 @@
         "TypesetLayout.kt",
         "TypesetRenderer.kt",
         "TypesetFonts.kt",
-        "WindowsFontDecoder.kt"
+        "WindowsFontDecoder.kt",
+        "TypesetObjects.kt",
+        "TypesetQueue.kt"
       ],
       "tests": [
         "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart",
         "TypesetReferenceTest",
         "TypesetRepositoryTest",
-        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)"
+        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)",
+        "TypesetObjectsTest",
+        "TypesetQueueTest",
+        "TypesetRepositoryTest.projectCopyRenameAndRemovalKeepIndependentHistoryAndOriginal",
+        "TypesetWorkflowTest.queueControlSelectionDragOrderNumberingAndRestart",
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart (includes lock/unlock pointer, clone/delete/reopen)"
       ],
       "guiEvidence": [
-        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)"
+        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)",
+        "docs/audits/evidence/UX_R2A_OBJECTS_QUEUE/compose-scenes (actual Compose pointer; offscreen)"
       ],
       "persistenceEvidence": [
         "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen"
       ],
-      "status": "ENGINEERING_PARTIAL / SOURCE_GEOMETRY_AND_COMPOSE_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+      "status": "ENGINEERING_PARTIAL / COMPOSE_POINTER_AND_RESTART_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "T05",
@@ -737,11 +781,25 @@
     {
       "id": "T13",
       "owner": "UX-R2a",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
+      "implementation": [
+        "TypesetObjects.kt",
+        "TypesetQueue.kt",
+        "TypesetRepository.kt",
+        "TypesetEditorController.kt",
+        "TypesetWorkspace.kt"
+      ],
+      "tests": [
+        "TypesetObjectsTest",
+        "TypesetQueueTest",
+        "TypesetRepositoryTest.projectCopyRenameAndRemovalKeepIndependentHistoryAndOriginal",
+        "TypesetWorkflowTest.queueControlSelectionDragOrderNumberingAndRestart",
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart (includes lock/unlock pointer, clone/delete/reopen)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_OBJECTS_QUEUE/compose-scenes (actual Compose pointer; offscreen)"
+      ],
       "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "status": "ENGINEERING_PARTIAL / COMPOSE_POINTER_AND_RESTART_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "T14",
@@ -776,21 +834,29 @@
         "TypesetLayout.kt",
         "TypesetRenderer.kt",
         "TypesetFonts.kt",
-        "WindowsFontDecoder.kt"
+        "WindowsFontDecoder.kt",
+        "TypesetObjects.kt",
+        "TypesetQueue.kt"
       ],
       "tests": [
         "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart",
         "TypesetReferenceTest",
         "TypesetRepositoryTest",
-        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)"
+        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)",
+        "TypesetObjectsTest",
+        "TypesetQueueTest",
+        "TypesetRepositoryTest.projectCopyRenameAndRemovalKeepIndependentHistoryAndOriginal",
+        "TypesetWorkflowTest.queueControlSelectionDragOrderNumberingAndRestart",
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart (includes lock/unlock pointer, clone/delete/reopen)"
       ],
       "guiEvidence": [
-        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)"
+        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)",
+        "docs/audits/evidence/UX_R2A_OBJECTS_QUEUE/compose-scenes (actual Compose pointer; offscreen)"
       ],
       "persistenceEvidence": [
         "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen"
       ],
-      "status": "ENGINEERING_PARTIAL / SOURCE_GEOMETRY_AND_COMPOSE_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+      "status": "ENGINEERING_PARTIAL / COMPOSE_POINTER_AND_RESTART_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "T16",
@@ -840,20 +906,48 @@
     {
       "id": "Q01",
       "owner": "UX-R2b",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
+      "implementation": [
+        "TypesetObjects.kt",
+        "TypesetQueue.kt",
+        "TypesetRepository.kt",
+        "TypesetEditorController.kt",
+        "TypesetWorkspace.kt"
+      ],
+      "tests": [
+        "TypesetObjectsTest",
+        "TypesetQueueTest",
+        "TypesetRepositoryTest.projectCopyRenameAndRemovalKeepIndependentHistoryAndOriginal",
+        "TypesetWorkflowTest.queueControlSelectionDragOrderNumberingAndRestart",
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart (includes lock/unlock pointer, clone/delete/reopen)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_OBJECTS_QUEUE/compose-scenes (actual Compose pointer; offscreen)"
+      ],
       "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "status": "ENGINEERING_PARTIAL / COMPOSE_POINTER_AND_RESTART_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "Q02",
       "owner": "UX-R2b",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
+      "implementation": [
+        "TypesetObjects.kt",
+        "TypesetQueue.kt",
+        "TypesetRepository.kt",
+        "TypesetEditorController.kt",
+        "TypesetWorkspace.kt"
+      ],
+      "tests": [
+        "TypesetObjectsTest",
+        "TypesetQueueTest",
+        "TypesetRepositoryTest.projectCopyRenameAndRemovalKeepIndependentHistoryAndOriginal",
+        "TypesetWorkflowTest.queueControlSelectionDragOrderNumberingAndRestart",
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart (includes lock/unlock pointer, clone/delete/reopen)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_OBJECTS_QUEUE/compose-scenes (actual Compose pointer; offscreen)"
+      ],
       "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "status": "ENGINEERING_PARTIAL / COMPOSE_POINTER_AND_RESTART_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "Q03",

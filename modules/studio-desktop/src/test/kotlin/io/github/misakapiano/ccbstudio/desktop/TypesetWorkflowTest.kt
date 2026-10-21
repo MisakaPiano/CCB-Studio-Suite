@@ -44,12 +44,31 @@ class TypesetWorkflowTest {
             scene.field("竖排框高度","240")
             assertTrue(c.editor.text!!.vertical)
             scene.rendered();scene.shot("vertical-live");c.editor.drain();assertFalse(c.editor.dirty)
-            val text=c.editor.text!!;assertEquals(text,TypesetRepository(w).load(w.state.typesetProjects.single()).pages.single().texts.single())
+            val beforeMove=c.editor.text!!
+            scene.click("锁定对象");scene.frames()
+            suspend fun dragText(){
+                val b=scene.nodes().first{it.matches("排版编辑画布")}.boundsInRoot
+                val scale=minOf(b.width/600,b.height/400)
+                val from=Offset(b.left+b.width/2,b.top+(b.height-400*scale)/2+(beforeMove.y.toFloat()+20)*scale)
+                scene.sendPointerEvent(PointerEventType.Press,from,button=PointerButton.Primary)
+                for(i in 1..4){scene.sendPointerEvent(PointerEventType.Move,from+Offset(i*15f,0f),button=PointerButton.Primary);scene.frames()}
+                scene.sendPointerEvent(PointerEventType.Release,from+Offset(60f,0f),button=PointerButton.Primary);scene.frames();scene.rendered()
+            }
+            dragText();assertEquals(beforeMove.x,c.editor.page!!.texts.single().x)
+            scene.click("文字 1 · 已锁定");scene.click("解锁对象");dragText()
+            assertTrue(c.editor.page!!.texts.single().x>beforeMove.x)
+            c.editor.drain()
+            val text=c.editor.page!!.texts.single();assertEquals(text,TypesetRepository(w).load(w.state.typesetProjects.single()).pages.single().texts.single())
             scene.field("文字内容","即时改字");c.editor.drain();scene.click("撤销编辑");c.idle();scene.frames();assertEquals(text.text,c.editor.page!!.texts.single().text)
             scene.click("重做编辑");c.idle();scene.frames();assertEquals("即时改字",c.editor.page!!.texts.single().text)
             scene.constraints=Constraints.fixed(700,900);scene.frames();scene.shot("compact-canvas");scene.click("属性");scene.frames();scene.shot("compact-properties")
             assertEquals("即时改字",c.editor.page!!.texts.single().text);assertContentEquals(bytes,w.bytes(id))
             assertEquals(1,c.visibleAssets().size)
+            scene.click("另存工程");scene.field("新工程名称","独立副本");scene.click("确认工程操作");c.idle();scene.frames()
+            assertEquals(2,w.state.typesetProjects.size);assertEquals("独立副本",c.editor.project!!.name);assertTrue(c.editor.project!!.undo.isEmpty())
+            scene.click("删除工程");scene.click("确认工程操作");c.idle();scene.frames();assertNull(c.editor.project)
+            scene.click("继续最近工程");c.idle();scene.frames();assertEquals("排版回归册",c.editor.project!!.name)
+
         }finally{scene.close();c.close();scope.cancel()}
         StudioWorkspace.openStudio(r).use{again->val p=again.state.typesetProjects.single();assertEquals("排版回归册",p.name);val t=TypesetRepository(again).load(p).pages.single().texts.single();assertEquals("即时改字",t.text);assertTrue(t.vertical);assertContentEquals(bytes,again.bytes(id))}
     }
@@ -78,6 +97,38 @@ class TypesetWorkflowTest {
             assertContentEquals(bytes,w.bytes(id))
         }finally{scene.close();c.close();scope.cancel()}
         StudioWorkspace.openStudio(r).use{again->val masks=TypesetRepository(again).load(again.state.typesetProjects.single()).pages.single().masks;assertEquals(3,masks.size);assertEquals("black",masks.last().effect);assertContentEquals(bytes,again.bytes(id))}
+    }
+
+    @Test fun queueControlSelectionDragOrderNumberingAndRestart()=runBlocking(awt) {
+        val r=root();val w=StudioWorkspace.openStudio(r);val bytes=EditorRenderer.synthetic(60,40)
+        val ids=(1..4).map{w.importImage("page-$it.png",bytes)};var expectedOrder=emptyList<String>()
+        val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
+        c.selection=ids.toSet();c.view="编辑"
+        val scene=ImageComposeScene(1320,1000){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        try {
+            scene.frames();scene.click("新建编辑工程");scene.field("工程名称","队列回归");scene.click("建立工程");c.idle();scene.frames()
+            val orderedIds=c.editor.document!!.pages.map{it.assetId};assertEquals(ids.toSet(),orderedIds.toSet())
+            fun position(number:Int)=scene.nodes().first{it.matches("队列页 $number")}.boundsInRoot.center
+            suspend fun choose(number:Int,ctrl:Boolean=false,shift:Boolean=false){val p=position(number);val modifiers=PointerKeyboardModifiers(isCtrlPressed=ctrl,isShiftPressed=shift)
+                scene.sendPointerEvent(PointerEventType.Press,p,button=PointerButton.Primary,keyboardModifiers=modifiers)
+                scene.sendPointerEvent(PointerEventType.Release,p,button=PointerButton.Primary,keyboardModifiers=modifiers);scene.frames()
+            }
+            choose(2);choose(4,ctrl=true);assertEquals(2,c.editor.selectedPages.size)
+            val from=position(4);val to=position(1)-Offset(0f,20f)
+            scene.sendPointerEvent(PointerEventType.Press,from,button=PointerButton.Primary)
+            for(i in 1..6){scene.sendPointerEvent(PointerEventType.Move,from+(to-from)*(i/6f),button=PointerButton.Primary);scene.frames()}
+            scene.sendPointerEvent(PointerEventType.Release,to,button=PointerButton.Primary);scene.frames()
+            assertEquals(listOf(orderedIds[1],orderedIds[3],orderedIds[0],orderedIds[2]),c.editor.document!!.pages.map{it.assetId})
+            c.editor.drain();scene.click("撤销编辑");c.idle();scene.frames();assertEquals(orderedIds,c.editor.document!!.pages.map{it.assetId})
+            choose(1);choose(3,shift=true);assertEquals(3,c.editor.selectedPages.size)
+            expectedOrder=listOf(orderedIds[3],orderedIds[0],orderedIds[1],orderedIds[2]);scene.click("置底页");assertEquals(expectedOrder,c.editor.document!!.pages.map{it.assetId})
+            scene.click("▸ 队列设置");scene.field("开始编号","98");scene.field("编号位数","4");scene.field("缩略图尺寸","64");scene.field("队列栏宽度","260")
+            c.editor.drain();val current=c.editor.pageId;val selected=c.editor.selectedPages;val history=c.editor.project!!.undo.size
+            c.editor.open(c.editor.project!!.id);c.idle();scene.frames()
+            assertEquals(current,c.editor.pageId);assertEquals(selected,c.editor.selectedPages);assertEquals(history,c.editor.project!!.undo.size)
+            scene.shot("queue-workflow")
+        }finally{scene.close();c.close();scope.cancel()}
+        StudioWorkspace.openStudio(r).use{again->val d=TypesetRepository(again).load(again.state.typesetProjects.single());assertEquals(expectedOrder,d.pages.map{it.assetId});assertEquals(98,d.startNumber);assertEquals(4,d.numberDigits);assertEquals(64,d.thumbnailSize);assertEquals(260,d.queueWidth);assertEquals(3,again.state.typesetProjects.single().selectedPageIds.size);assertNotNull(again.state.typesetProjects.single().currentPageId);ids.forEach{assertContentEquals(bytes,again.bytes(it))}}
     }
 
 }

@@ -1,3 +1,4 @@
+@file:OptIn(androidx.compose.ui.ExperimentalComposeUiApi::class)
 package io.github.misakapiano.ccbstudio.desktop
 
 import androidx.compose.foundation.*
@@ -26,11 +27,13 @@ import kotlin.math.*
 
 @Composable internal fun TypesetWorkspace(c:WorkbenchController) {
     val e=c.editor;var newName by remember{mutableStateOf("")};var creating by remember{mutableStateOf(false)}
+    var projectAction by remember{mutableStateOf<String?>(null)};var projectName by remember{mutableStateOf("")};
     var deletePages by remember{mutableStateOf(false)};var tab by remember{mutableStateOf("画布")}
     Column(Modifier.fillMaxSize()) {
         StudioActions {
             CompactChoice("编辑工程",c.workspace.state.typesetProjects,e.project,{it.name}){e.open(it.id)}
             StudioAction("新建编辑工程",!c.busy){creating=true}
+            if(e.project!=null){StudioAction("重命名工程",!c.busy){projectName=e.project!!.name;projectAction="rename"};StudioAction("另存工程",!c.busy){projectName=e.project!!.name+" 副本";projectAction="copy"};StudioAction("删除工程",!c.busy){projectAction="remove"}}
             StudioAction("保存工程",e.dirty && !c.busy){c.run("保存工程"){e.drain()}}
             StudioAction("撤销编辑",!c.busy && (e.dirty || e.project?.undo?.isNotEmpty()==true)){e.history()}
             StudioAction("重做编辑",!c.busy && e.project?.redo?.isNotEmpty()==true){e.history(true)}
@@ -49,10 +52,17 @@ import kotlin.math.*
                 Column {
                     if(compact)StudioChips("",listOf("队列","画布","属性"),tab,{it}){tab=it}
                     Row(Modifier.weight(1f).fillMaxWidth()) {
-                        if(!compact || tab=="队列")Column(if(compact)Modifier.fillMaxSize()else Modifier.width(220.dp).fillMaxHeight()) {
+                        if(!compact || tab=="队列")Column(if(compact)Modifier.fillMaxSize()else Modifier.width(e.document!!.queueWidth.dp).fillMaxHeight()) {
                             TypesetQueue(c,e,Modifier.weight(1f))
+                            StudioDisclosure("队列设置") {
+                                NumberField("开始编号",e.document!!.startNumber.toDouble(),0.0..1000000.0){v->e.change{it.copy(startNumber=v.toInt())}}
+                                NumberField("编号位数",e.document!!.numberDigits.toDouble(),1.0..8.0){v->e.change{it.copy(numberDigits=v.toInt())}}
+                                NumberField("缩略图尺寸",e.document!!.thumbnailSize.toDouble(),32.0..160.0){v->e.change{it.copy(thumbnailSize=v.toInt())}}
+                                NumberField("队列栏宽度",e.document!!.queueWidth.toDouble(),180.0..400.0){v->e.change{it.copy(queueWidth=v.toInt())}}
+                            }
                             StudioActions{StudioAction("全选页"){e.selectedPages=e.document!!.pages.map{it.id}.toSet()};StudioAction("全不选页"){e.selectedPages=emptySet()};StudioAction("反选页"){e.selectedPages=e.document!!.pages.map{it.id}.toSet()-e.selectedPages}}
                             StudioActions{StudioAction("上移页"){e.movePages(-1)};StudioAction("下移页"){e.movePages(1)};StudioAction("移除所选页",e.selectedPages.isNotEmpty()){deletePages=true}}
+                            StudioActions{StudioAction("置顶页"){e.movePagesTo(null,false)};StudioAction("置底页"){e.movePagesTo(null,true)};StudioAction("追加图库所选",c.selection.isNotEmpty() && !c.busy){e.appendSelected()}}
                             StatusText("${e.selectedPages.size} 页已选 / ${e.document!!.pages.size} 页")
                         }
                         if(!compact || tab=="画布")Box(Modifier.weight(1f).fillMaxHeight().background(Ink)){TypesetCanvas(c,e)}
@@ -64,16 +74,28 @@ import kotlin.math.*
             }
         }
     }
+    if(projectAction!=null)AlertDialog(onDismissRequest={projectAction=null},title={Text(when(projectAction){"rename"->"重命名工程";"copy"->"另存为独立工程";else->"删除工程记录？"})},text={Column{
+        if(projectAction=="remove")Text("只移除此工程记录；图库原件与已保存资产保留。删除后不能通过工程撤销恢复，请先备份或另存。")
+        else {OutlinedTextField(projectName,{projectName=it.take(100)},label={Text("新工程名称")});if(projectAction=="copy")Text("保留当前页面与图层，新工程有独立历史；后续修改互不影响。")}
+    }},confirmButton={TextButton(enabled=projectAction=="remove" || projectName.isNotBlank(),onClick={e.manageProject(projectAction!!,projectName);projectAction=null}){Text("确认工程操作")}},dismissButton={TextButton(onClick={projectAction=null}){Text("取消")}})
     if(creating)AlertDialog(onDismissRequest={creating=false},title={Text("新建编辑工程")},text={Column{OutlinedTextField(newName,{newName=it.take(100)},label={Text("工程名称")});Text("将图库选中的 ${c.selection.size} 张图片加入独立队列；编辑不覆盖原件。")}},confirmButton={TextButton(enabled=newName.isNotBlank() && c.selection.isNotEmpty(),onClick={e.create(newName,c.assets.filter{it.request().id().toString() in c.selection}.map{it.request().id().toString()});creating=false;newName=""}){Text("建立工程")}},dismissButton={TextButton(onClick={creating=false}){Text("取消")}})
     if(deletePages)AlertDialog(onDismissRequest={deletePages=false},title={Text("从工程移除 ${e.selectedPages.size} 页？")},text={Text("图库原件保留，可撤销恢复页面与编辑内容。")},confirmButton={TextButton(onClick={e.removePages();deletePages=false}){Text("移除页面")}},dismissButton={TextButton(onClick={deletePages=false}){Text("取消")}})
 }
 
 @Composable private fun TypesetQueue(c:WorkbenchController,e:TypesetEditorController,modifier:Modifier) {
-    LazyColumn(modifier){itemsIndexed(e.document!!.pages,key={_,p->p.id}){index,page->
-        Row(Modifier.fillMaxWidth().background(if(page.id==e.pageId)Color(0xff253c55)else Color.Transparent).padding(6.dp).clickable{e.selectPage(page.id)},verticalAlignment=Alignment.CenterVertically) {
+    val list=rememberLazyListState();var insertion by remember{mutableStateOf<String?>(null)}
+    LazyColumn(modifier,state=list){itemsIndexed(e.document!!.pages,key={_,p->p.id}){index,page->
+        var dragY by remember(page.id){mutableStateOf(0f)}
+        Row(Modifier.fillMaxWidth().background(if(page.id==e.pageId)Color(0xff253c55)else Color.Transparent).padding(6.dp),verticalAlignment=Alignment.CenterVertically) {
             Checkbox(page.id in e.selectedPages,{e.selectPage(page.id,extend=true)})
-            DesktopOwnedImage("asset:${page.assetId}",c::readAsset,Modifier.size(48.dp))
-            Column {Text("${e.document!!.startNumber+index} · ${page.name}",maxLines=2);StatusText("${page.texts.size} 文字 · ${page.masks.size} 打码")}
+            Row(Modifier.weight(1f).semantics{contentDescription="队列页 ${index+1}";onClick{e.selectPage(page.id);true}}
+                .onPointerEvent(PointerEventType.Press){event->if(event.button==PointerButton.Primary && !c.busy)if(page.id in e.selectedPages && !event.keyboardModifiers.isCtrlPressed && !event.keyboardModifiers.isShiftPressed){e.pageId=page.id;e.objectId=null}else e.selectPage(page.id,event.keyboardModifiers.isCtrlPressed,event.keyboardModifiers.isShiftPressed)}
+                .pointerInput(page.id,c.busy){detectDragGestures(onDragStart={pos->dragY=(list.layoutInfo.visibleItemsInfo.firstOrNull{it.key==page.id}?.offset?:0)+pos.y},
+                    onDragCancel={insertion=null},onDragEnd={if(!c.busy)e.movePagesTo(insertion,insertion==null);insertion=null},
+                    onDrag={change,amount->if(!c.busy){change.consume();dragY+=amount.y;insertion=(list.layoutInfo.visibleItemsInfo.firstOrNull{dragY<it.offset+it.size/2}?.key as? String)?:e.document!!.pages.getOrNull((list.layoutInfo.visibleItemsInfo.lastOrNull()?.index?:-1)+1)?.id}})},verticalAlignment=Alignment.CenterVertically){
+                DesktopOwnedImage("asset:${page.assetId}",c::readAsset,Modifier.size(e.document!!.thumbnailSize.dp))
+                Column {if(insertion==page.id)Text("── 插入此页之前 ──",color=Gold);Text("${io.github.misakapiano.ccbstudio.core.TypesetQueue.number(e.document!!,index)} · ${page.name}",maxLines=2);StatusText("${page.texts.size} 文字 · ${page.masks.size} 打码")}
+            }
         }
     }}
 }
@@ -81,15 +103,18 @@ import kotlin.math.*
 private data class EditorRaster(val bitmap:ImageBitmap,val width:Int,val height:Int,val page:TypesetPage,val mode:String?)
 @Composable private fun TypesetCanvas(c:WorkbenchController,e:TypesetEditorController) {
     val page=e.page;val mode=e.document?.mode;var error by remember{mutableStateOf<String?>(null)}
-    val raster by produceState<EditorRaster?>(null,page,mode,e.document?.startNumber) {
+    var draftMask by remember(page?.id){mutableStateOf<TypesetMask?>(null)};var dragText by remember(page?.id){mutableStateOf<TypesetText?>(null)}
+    var dragMask by remember(page?.id){mutableStateOf<TypesetMask?>(null)}
+    val previewPage=page?.copy(texts=page.texts.map{if(it.id==dragText?.id)dragText!!else it},
+        masks=page.masks.map{if(it.id==dragMask?.id)dragMask!!else it}+listOfNotNull(draftMask?.takeIf{it.shape!="lasso" || it.points.size>=3}))
+    val raster by produceState<EditorRaster?>(null,previewPage,mode,e.document?.startNumber) {
         error=null
-        try{value=withContext(Dispatchers.IO){page?.let{p->val image=if(mode=="storybook")TypesetRenderer.story(c.workspace.bytes(p.assetId),p,e.document!!.startNumber+e.document!!.pages.indexOf(p))else TypesetRenderer.render(c.workspace.bytes(p.assetId),p)
+        try{value=withContext(Dispatchers.IO){previewPage?.let{p->val image=if(mode=="storybook")TypesetRenderer.story(c.workspace.bytes(p.assetId),p,e.document!!.startNumber+e.document!!.pages.indexOf(p))else TypesetRenderer.render(c.workspace.bytes(p.assetId),p)
             try{EditorRaster(image.toComposeImageBitmap(),image.width,image.height,p,mode)}finally{image.flush()}}}}
         catch(e:CancellationException){throw e}catch(ex:Exception){error="页面暂无法绘制：${ex.message}";value=null}
     }
     var pan by remember(page?.id){mutableStateOf(Offset.Zero)};var frame by remember{mutableStateOf(IntSize.Zero)}
-    var draftMask by remember{mutableStateOf<TypesetMask?>(null)};var dragText by remember{mutableStateOf<TypesetText?>(null)}
-    var dragMask by remember{mutableStateOf<TypesetMask?>(null)};var origin by remember{mutableStateOf(Offset.Zero)}
+    var origin by remember{mutableStateOf(Offset.Zero)}
     var resize by remember{mutableStateOf(false)}
     val picture=raster
     if(picture==null){Box(Modifier.fillMaxSize(),contentAlignment=Alignment.Center){Text(error?:if(page==null)"请选择页面"else"正在排版…")};return}
@@ -99,19 +124,22 @@ private data class EditorRaster(val bitmap:ImageBitmap,val width:Int,val height:
     fun toImage(point:Offset)=(point-currentOffset)/max(.0001f,scale)
     fun hit(point:Offset):String? {
         val p=page?:return null
-        return p.texts.asReversed().firstOrNull{t->val m=TypesetLayout.layout(t);t.visible && point.x>=t.x-m.width/2 && point.x<=t.x+m.width/2 && point.y>=t.y && point.y<=t.y+m.height}?.id
-            ?:p.masks.asReversed().firstOrNull{it.visible && TypesetRenderer.maskShape(it).contains(point.x.toDouble(),point.y.toDouble())}?.id
+        return TypesetObjects.order(p).asReversed().firstOrNull{id->
+            val t=p.texts.firstOrNull{it.id==id};val m=p.masks.firstOrNull{it.id==id}
+            if(t!=null){val layout=TypesetLayout.layout(t);!t.locked && t.visible && point.x>=t.x-layout.width/2 && point.x<=t.x+layout.width/2 && point.y>=t.y && point.y<=t.y+layout.height}
+            else m!=null && !m.locked && m.visible && TypesetRenderer.maskShape(m).contains(point.x.toDouble(),point.y.toDouble())
+        }
     }
     Column(Modifier.fillMaxSize()) {
-        StudioActions {StatusText("${picture.width} × ${picture.height} · ${e.page?.name.orEmpty()}");if(picture.page!=page || picture.mode!=mode)StatusText("排版中…");if(mode=="editor")StudioAction("添加文字",!c.busy){e.addText(picture.width,picture.height)}}
-        Canvas(Modifier.weight(1f).fillMaxWidth().clipToBounds().semantics{contentDescription="排版编辑画布";stateDescription=if(picture.page==page && picture.mode==mode)"已更新"else"排版中"}.onSizeChanged{frame=it}
+        StudioActions {StatusText("${picture.width} × ${picture.height} · ${e.page?.name.orEmpty()}");if(picture.page!=previewPage || picture.mode!=mode)StatusText("排版中…");if(mode=="editor")StudioAction("添加文字",!c.busy){e.addText(picture.width,picture.height)}}
+        Canvas(Modifier.weight(1f).fillMaxWidth().clipToBounds().semantics{contentDescription="排版编辑画布";stateDescription=if(picture.page==previewPage && picture.mode==mode)"已更新"else"排版中"}.onSizeChanged{frame=it}
             .pointerInput(page?.id,mode,e.tool,scale,offset,page?.texts,page?.masks,c.busy){detectTapGestures{if(!c.busy && mode=="editor" && e.tool=="select")e.objectId=hit(toImage(it))}}
             .pointerInput(page,mode,e.tool,scale,c.busy){detectDragGestures(
                 onDragStart={pos->if(!c.busy){origin=toImage(pos);resize=false
                     if(mode=="editor" && e.tool=="select") {val selected=e.text
-                        if(selected!=null){val l=TypesetLayout.layout(selected);val handle=if(selected.vertical)Offset(selected.x.toFloat(),(selected.y+l.height).toFloat())else Offset((selected.x+l.width/2).toFloat(),(selected.y+l.height/2).toFloat());resize=(origin-handle).getDistance()<14/max(scale,.01f)}
+                        if(selected!=null && !selected.locked){val l=TypesetLayout.layout(selected);val handle=if(selected.vertical)Offset(selected.x.toFloat(),(selected.y+l.height).toFloat())else Offset((selected.x+l.width/2).toFloat(),(selected.y+l.height/2).toFloat());resize=(origin-handle).getDistance()<14/max(scale,.01f)}
                         if(!resize)e.objectId=hit(origin)
-                        dragText=e.text;dragMask=e.mask
+                        dragText=e.text?.takeUnless{it.locked};dragMask=e.mask?.takeUnless{it.locked}
                     }else if(mode=="editor" && e.tool in setOf("rect","brush","lasso"))draftMask=e.maskDefault.copy(id=newId(),shape=e.tool,x=origin.x.toDouble(),y=origin.y.toDouble(),points=listOf(TypesetPoint(origin.x.toDouble(),origin.y.toDouble())))
                 }},onDragCancel={draftMask=null;dragText=null;dragMask=null},onDragEnd={
                     draftMask?.let{m->if(m.shape!="lasso"||m.points.size>=3){e.pageChange{it.copy(masks=it.masks+m)};e.objectId=m.id}};draftMask=null
@@ -137,7 +165,16 @@ private data class EditorRaster(val bitmap:ImageBitmap,val width:Int,val height:
 @Composable private fun TypesetProperties(c:WorkbenchController,e:TypesetEditorController) {
     val page=e.page?:return
     Text("对象与属性")
-    StudioActions {page.texts.forEachIndexed{i,t->StudioAction("文字 ${i+1}",selected=e.objectId==t.id){e.objectId=t.id}};page.masks.forEachIndexed{i,m->StudioAction("打码 ${i+1}",selected=e.objectId==m.id){e.objectId=m.id}}}
+    StudioActions {TypesetObjects.order(page).asReversed().forEach{id->
+        val t=page.texts.firstOrNull{it.id==id};val m=page.masks.firstOrNull{it.id==id}
+        val label=if(t!=null)"文字 ${page.texts.indexOf(t)+1}"else"打码 ${page.masks.indexOf(m)+1}"
+        StudioAction(label+(if(t?.locked==true || m?.locked==true)" · 已锁定"else""),selected=e.objectId==id){e.objectId=id}
+    }}
+    if(e.text!=null || e.mask!=null)StudioActions {
+        val locked=e.text?.locked?:e.mask!!.locked
+        StudioAction(if(locked)"解锁对象"else"锁定对象"){e.lockObject(!locked)}
+        StudioAction("复制对象"){e.copyObject()};StudioAction("上移图层"){e.moveObject(1)};StudioAction("下移图层"){e.moveObject(-1)}
+    }
     e.text?.let{t->
         var input by remember(t.id){mutableStateOf(TextFieldValue(t.text))}
         LaunchedEffect(t.text){if(input.text!=t.text)input=TextFieldValue(t.text,TextRange(input.selection.start.coerceAtMost(t.text.length)))}

@@ -12,7 +12,7 @@ object TypesetBatch {
             val texts=page.texts.mapIndexed { i,target ->
                 val style=if(previous)source!!.texts.getOrNull(minOf(i,source.texts.lastIndex))else currentText
                 if(style==null)target else style.copy(id=target.id,text=target.text,x=target.x,y=target.y,
-                    visible=target.visible,width=maxOf(20.0,minOf(style.width,imageWidth(page)*.95)))
+                    visible=target.visible,locked=target.locked,width=maxOf(20.0,minOf(style.width,imageWidth(page)*.95)))
             }
             page.copy(texts=texts,toolDefaults=maskStyle?:page.toolDefaults,masks=page.masks.map { mask ->
                 if(maskStyle==null)mask else mask.copy(effect=maskStyle.effect,strength=maskStyle.strength,

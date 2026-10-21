@@ -1,3 +1,7 @@
+## UX-R2对象与队列进度（2026-10-21）
+
+[执行与界面证据](audits/UX_R2A_OBJECTS_QUEUE.md)：core50+desktop43共93项实际PASS；对象锁定/层序、工程另存/删除、Ctrl/Shift多选拖序及重开已测。七次运行含失败保留；PRODUCT_HOLD，继续预设/交换/完整导出与R3–R4。
+
 ## UX-R2批次与打码进度（2026-10-21）
 
 [来源比较与执行记录](audits/UX_R2B_MASKS.md)：12组源图对照、真实Compose指针/保存/重开已测；修复防抖保存取消误报。最新desktop完整42 PASS，core46实际PASS来自前次运行且源码未变。失败保留，PRODUCT_HOLD，继续完整R2–R4。

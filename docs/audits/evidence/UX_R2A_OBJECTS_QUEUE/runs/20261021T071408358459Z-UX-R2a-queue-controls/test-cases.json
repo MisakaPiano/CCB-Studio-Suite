@@ -1,0 +1,20 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetQueueTest",
+    "name": "multiSelectionKeepsRelativeOrderAndAnchorSemantics",
+    "seconds": "0.057",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "namedProjectLiveVerticalEditingHistoryAndRestart",
+    "seconds": "10.66",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "pointerDrawnMasksChangeEffectSaveUndoAndReopen",
+    "seconds": "5.036",
+    "status": "PASS"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetObjectsTest",
+    "name": "batchStyleDoesNotChangeTargetLockState",
+    "seconds": "0.055",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetObjectsTest",
+    "name": "layerOrderControlsRenderingCopyIsIndependentAndDeleteKeepsValidOrder",
+    "seconds": "1.323",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "namedProjectLiveVerticalEditingHistoryAndRestart",
+    "seconds": "14.835",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "pointerDrawnMasksChangeEffectSaveUndoAndReopen",
+    "seconds": "5.309",
+    "status": "PASS"
+  }
+]

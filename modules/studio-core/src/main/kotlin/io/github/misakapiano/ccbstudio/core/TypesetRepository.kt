@@ -17,6 +17,29 @@ class TypesetRepository(private val workspace:StudioWorkspace) {
         workspace.save(workspace.state.copy(typesetProjects=workspace.state.typesetProjects+project));project
     }
     fun load(project:TypesetProject):TypesetDocument=workspace.operation {read(project.current)}
+    fun view(id:String,revision:Long,currentPageId:String?,selected:List<String>):TypesetProject=workspace.operation {
+        val old=workspace.state.typesetProjects.first{it.id==id};require(old.revision==revision){"Stale editor revision"}
+        val ids=read(old.current).pages.map{it.id}.toSet();require(currentPageId==null || currentPageId in ids);require(selected.all{it in ids})
+        if(old.currentPageId==currentPageId && old.selectedPageIds==selected)return@operation old
+        old.copy(revision=old.revision+1,currentPageId=currentPageId,selectedPageIds=selected).also(::commit)
+    }
+    fun rename(id:String,revision:Long,name:String):TypesetProject=workspace.operation {
+        require(name.isNotBlank() && name.length<=100)
+        val old=workspace.state.typesetProjects.first{it.id==id};require(old.revision==revision){"Stale editor revision"}
+        old.copy(name=name,revision=old.revision+1).also(::commit)
+    }
+    fun copy(id:String,revision:Long,name:String):TypesetProject=workspace.operation {
+        require(name.isNotBlank() && name.length<=100)
+        val old=workspace.state.typesetProjects.first{it.id==id};require(old.revision==revision){"Stale editor revision"}
+        read(old.current)
+        val next=TypesetProject(name=name,current=old.current,currentPageId=old.currentPageId,selectedPageIds=old.selectedPageIds)
+        workspace.save(workspace.state.copy(typesetProjects=workspace.state.typesetProjects+next));next
+    }
+    fun remove(id:String,revision:Long)=workspace.operation {
+        val old=workspace.state.typesetProjects.first{it.id==id};require(old.revision==revision){"Stale editor revision"}
+        // Remove only the named project entry. Originals and immutable snapshots remain retained.
+        workspace.save(workspace.state.copy(typesetProjects=workspace.state.typesetProjects.filterNot{it.id==id}))
+    }
     fun update(id:String,revision:Long,change:(TypesetDocument)->TypesetDocument):TypesetProject=workspace.operation {
         val old=workspace.state.typesetProjects.first{it.id==id};require(old.revision==revision){"Stale editor revision; reload before editing"}
         val before=read(old.current);val document=change(before);document.validate()

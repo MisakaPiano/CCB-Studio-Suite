@@ -1,0 +1,44 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetRepositoryTest",
+    "name": "projectCopyRenameAndRemovalKeepIndependentHistoryAndOriginal",
+    "seconds": "1.331",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetRepositoryTest",
+    "name": "thousandPagesHistoryRestartAndBackupPreserveOriginal",
+    "seconds": "7.396",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetRepositoryTest",
+    "name": "badSnapshotHashCannotReplaceCurrentOrDeleteOriginal",
+    "seconds": "0.942",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetRepositoryTest",
+    "name": "stagedDocumentFailureRetainsOriginalAndRefusesUnsafeReopen",
+    "seconds": "1.095",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "namedProjectLiveVerticalEditingHistoryAndRestart",
+    "seconds": "14.933",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "pointerDrawnMasksChangeEffectSaveUndoAndReopen",
+    "seconds": "5.471",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "queueControlSelectionDragOrderNumberingAndRestart",
+    "seconds": "6.183",
+    "status": "PASS"
+  }
+]

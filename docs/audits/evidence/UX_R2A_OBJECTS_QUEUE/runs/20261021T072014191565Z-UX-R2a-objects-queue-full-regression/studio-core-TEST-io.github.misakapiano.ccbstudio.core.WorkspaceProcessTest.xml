@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.WorkspaceProcessTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-21T07:21:19.915Z" hostname="DD1" time="3.188">
+  <properties/>
+  <testcase name="abruptStagedAndCommittedDocumentCrashesPreserveOriginals" classname="io.github.misakapiano.ccbstudio.core.WorkspaceProcessTest" time="2.345"/>
+  <testcase name="anotherProcessCannotOwnOpenWorkspaceThenCanAfterClose" classname="io.github.misakapiano.ccbstudio.core.WorkspaceProcessTest" time="0.843"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

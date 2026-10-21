@@ -1,0 +1,50 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetObjectsTest",
+    "name": "batchStyleDoesNotChangeTargetLockState",
+    "seconds": "0.055",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetObjectsTest",
+    "name": "layerOrderControlsRenderingCopyIsIndependentAndDeleteKeepsValidOrder",
+    "seconds": "1.284",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetRepositoryTest",
+    "name": "projectCopyRenameAndRemovalKeepIndependentHistoryAndOriginal",
+    "seconds": "1.394",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetRepositoryTest",
+    "name": "thousandPagesHistoryRestartAndBackupPreserveOriginal",
+    "seconds": "6.723",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetRepositoryTest",
+    "name": "badSnapshotHashCannotReplaceCurrentOrDeleteOriginal",
+    "seconds": "0.698",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetRepositoryTest",
+    "name": "stagedDocumentFailureRetainsOriginalAndRefusesUnsafeReopen",
+    "seconds": "0.976",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "namedProjectLiveVerticalEditingHistoryAndRestart",
+    "seconds": "10.364",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "pointerDrawnMasksChangeEffectSaveUndoAndReopen",
+    "seconds": "5.222",
+    "status": "PASS"
+  }
+]

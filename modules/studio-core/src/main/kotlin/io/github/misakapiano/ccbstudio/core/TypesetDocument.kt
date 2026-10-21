@@ -16,37 +16,39 @@ import java.util.UUID
     val punctuationOptimization:Boolean=true, val punctuationTightness:String="standard",
     val opacity:Double=1.0, val background:String="#000000", val backgroundOpacity:Double=0.0,
     val border:String="#ffffff", val borderWidth:Double=0.0, val borderOpacity:Double=1.0,
-    val visible:Boolean=true,
+    val visible:Boolean=true,val locked:Boolean=false,
 )
 @Serializable data class TypesetPoint(val x:Double,val y:Double)
 @Serializable data class TypesetMask(
     val id:String=newId(), val shape:String="rect", val effect:String="mosaic",
     val x:Double=0.0,val y:Double=0.0,val width:Double=100.0,val height:Double=100.0,
     val points:List<TypesetPoint> = emptyList(), val size:Double=60.0,val strength:Int=16,
-    val color:String="#000000",val opacity:Double=1.0,val visible:Boolean=true,
+    val color:String="#000000",val opacity:Double=1.0,val visible:Boolean=true,val locked:Boolean=false,
     val density:Double=6.0,val stripeThickness:Double=6.0,val pointDensity:Double=8.0,
 )
 @Serializable data class StoryStyle(
     val pageWidth:Int=1200,val pagePadding:Int=48,val gap:Int=28,val textPadding:Int=30,
     val textMinHeight:Int=170,val fontFamily:String="SimSun",val fontSize:Double=36.0,
     val lineHeight:Double=1.55,val textAlign:String="left",val firstIndent:Boolean=true,
-    val showPageNumber:Boolean=true,val pageBackground:String="#fffdf5",val textColor:String="#241f19",
-    val borderColor:String="#655b4e",val pageBorder:Boolean=true,val imageBorder:Boolean=true,
+    val showPageNumber:Boolean=true,val pageBackground:String="#fffdf7",val textColor:String="#17120d",
+    val borderColor:String="#2c241d",val pageBorder:Boolean=true,val imageBorder:Boolean=true,
 )
 @Serializable data class TypesetPage(
     val id:String=newId(),val assetId:String,val name:String,
     val texts:List<TypesetText> = emptyList(),val masks:List<TypesetMask> = emptyList(),
     val caption:String="",val story:StoryStyle=StoryStyle(),
-    val toolDefaults:TypesetMask?=null,
+    val toolDefaults:TypesetMask?=null,val layerOrder:List<String> = emptyList(),
 )
 @Serializable data class TypesetPreset(val id:String=newId(),val name:String,val text:TypesetText)
 @Serializable data class TypesetDocument(
     val version:Int=1,val pages:List<TypesetPage> = emptyList(),val startNumber:Int=1,
     val presets:List<TypesetPreset> = emptyList(),val mode:String="editor",
+    val numberDigits:Int=3,val thumbnailSize:Int=48,val queueWidth:Int=220,
 ) {
     fun validate() {
         if(version!=1)throw DataProblem("UNSUPPORTED_VERSION","Typeset document $version retained")
         require(pages.size<=1000 && pages.map{it.id}.distinct().size==pages.size)
+        require(numberDigits in 1..8 && thumbnailSize in 32..160 && queueWidth in 180..400)
         require(startNumber in 0..1000000 && mode in setOf("editor","storybook") && presets.size<=500)
         fun finite(vararg values:Double)=require(values.all{it.isFinite() && it in -100000.0..100000.0})
         fun text(t:TypesetText) {
@@ -60,6 +62,7 @@ import java.util.UUID
         pages.forEach {p->
             UUID.fromString(p.id);UUID.fromString(p.assetId);require(p.name.length<=512 && p.caption.length<=100000)
             require(p.texts.size<=500 && p.masks.size<=500 && (p.texts.map{it.id}+p.masks.map{it.id}).distinct().size==p.texts.size+p.masks.size)
+            require(p.layerOrder.distinct().size==p.layerOrder.size && p.layerOrder.all{id->p.texts.any{it.id==id} || p.masks.any{it.id==id}})
             p.texts.forEach(::text)
             (p.masks+listOfNotNull(p.toolDefaults)).forEach{m->UUID.fromString(m.id);finite(m.x,m.y,m.width,m.height,m.size,m.opacity)
                 require(m.shape in setOf("rect","brush","lasso") && m.effect in setOf("black","white","solid","mosaic","blur","hatch"))
@@ -85,6 +88,7 @@ internal fun validateColor(value:String) {require(Regex("#[0-9a-fA-F]{3}([0-9a-f
 @Serializable data class TypesetProject(
     val id:String=newId(),val name:String,val revision:Long=0,val current:TypesetReference,
     val undo:List<TypesetReference> = emptyList(),val redo:List<TypesetReference> = emptyList(),
+    val currentPageId:String?=null,val selectedPageIds:List<String> = emptyList(),
 ) {
-    fun validate(){UUID.fromString(id);require(name.length in 1..100 && revision>=0 && undo.size<=30 && redo.size<=30);(listOf(current)+undo+redo).forEach{it.validate()}}
+    fun validate(){currentPageId?.let(UUID::fromString);require(selectedPageIds.size<=1000 && selectedPageIds.distinct().size==selectedPageIds.size);selectedPageIds.forEach{UUID.fromString(it)};UUID.fromString(id);require(name.length in 1..100 && revision>=0 && undo.size<=30 && redo.size<=30);(listOf(current)+undo+redo).forEach{it.validate()}}
 }

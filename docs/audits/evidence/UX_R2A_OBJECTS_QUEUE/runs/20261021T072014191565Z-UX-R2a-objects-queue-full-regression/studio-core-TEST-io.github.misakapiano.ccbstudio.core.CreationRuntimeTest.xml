@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-10-21T07:20:26.438Z" hostname="DD1" time="12.74">
+  <properties/>
+  <testcase name="waitingCancellationRetainsLockAndDoesNotSend" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.818"/>
+  <testcase name="normalTransportUsesAuthorityEnvelopeAndCannotAcceptPartialStream" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.3"/>
+  <testcase name="httpErrorsNeverPersistProviderBodyOrRetry" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.166"/>
+  <testcase name="largeGuidanceReceiptKeepsExactWireAndSurvivesBackup" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="4.503"/>
+  <testcase name="composedResultIsDerivedAndRawResponseSurvivesRestart" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.788"/>
+  <testcase name="documentLimitPreflightDoesNotPoisonReadableWorkspace" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.2"/>
+  <testcase name="requestPayloadChunksRestoreAndDetectAlteredDescriptors" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="3.123"/>
+  <testcase name="interruptedDesignIsNotReplayedOnOpen" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.413"/>
+  <testcase name="partialGenerationRetainsOriginalAndFullReceiptOnFailure" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.765"/>
+  <testcase name="compositingFailurePreservesUniqueRawFinal" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.508"/>
+  <testcase name="designCandidateRequiresApplyBranchesAndSurvivesRestart" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="1.155"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
