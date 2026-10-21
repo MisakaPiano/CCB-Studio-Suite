@@ -24,7 +24,7 @@ class StudioUpdateTest {
             val scene=ImageComposeScene(900,700,coroutineContext=coroutineContext)
             try {
                 scene.setContent {MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)) {
-                    Surface(color=Ink,contentColor=com.example.chatbar.desktop.DesktopBootstrapColors.foreground){UpdateWorkspace(controller){installs++}}
+                    Surface(color=Ink,contentColor=com.example.chatbar.desktop.DesktopBootstrapColors.foreground){UpdateWorkspace(controller,"synthetic-restored-workspace"){installs++}}
                 }}
                 suspend fun frames(){repeat(4){scene.render().close();delay(30)}}
                 fun nodes():List<SemanticsNode>{
@@ -36,7 +36,9 @@ class StudioUpdateTest {
                 assertTrue(controller.message.contains("尚未下载或安装"));scene.sendKeyEvent(KeyEvent(Key.D,KeyEventType.KeyDown,isCtrlPressed=true));scene.sendKeyEvent(KeyEvent(Key.D,KeyEventType.KeyUp,isCtrlPressed=true));frames();controller.job?.join();frames();assertEquals(listOf(false,true),calls)
                 assertEquals("下载完成，安全校验已通过",controller.message)
                 assertTrue(nodes().any{it.config.getOrNull(SemanticsProperties.Text)?.any{t->t.text.contains("目前尚未安装")}==true})
-                click("安装并重启");assertEquals(0,installs);click("暂不安装");assertEquals(0,installs)
+                click("安装并重启");assertEquals(0,installs)
+                assertTrue(nodes().any{it.config.getOrNull(SemanticsProperties.Text)?.any{t->t.text=="本次更新使用的工作区：synthetic-restored-workspace"}==true})
+                click("暂不安装");assertEquals(0,installs)
                 click("安装并重启");click("保存后安装");assertEquals(1,installs)
                 val out=Path.of("build/ux-r4-client/update-download.png");Files.createDirectories(out.parent)
                 scene.render().use{image->image.encodeToData()!!.use{Files.write(out,it.bytes)}}

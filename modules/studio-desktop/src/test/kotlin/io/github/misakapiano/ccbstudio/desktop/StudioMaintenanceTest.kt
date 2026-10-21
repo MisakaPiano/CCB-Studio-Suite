@@ -33,7 +33,7 @@ class StudioMaintenanceTest {
             assertNull(withTimeoutOrNull(100){drain.join();true});assertFails{StudioWorkspace.openStudio(root)}
             assertEquals("saved input",c.composer);assertNotEquals("must not apply",c.draft.basePrompt)
             release.complete(Unit);withTimeout(10000){drain.join()};assertTrue(c.maintenance);assertFails{StudioWorkspace.openStudio(root)}
-            withContext(awt){c.resumeAfterPreflightFailure();c.input("resumed input");c.close()}
+            withContext(awt){c.resumeAfterPreflightFailure();assertFalse(c.maintenance);assertFalse(c.message.contains("排水"));c.input("resumed input");c.close()}
             StudioWorkspace.openStudio(root).use{assertEquals("resumed input",it.state.creation!!.composer)}
         } finally {release.complete(Unit);runCatching{withContext(awt){c.close()}};scope.cancel()}
     }

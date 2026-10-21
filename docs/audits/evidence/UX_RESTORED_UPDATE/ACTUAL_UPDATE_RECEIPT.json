@@ -1,0 +1,20 @@
+{
+  "status": "COMPLETE_ORIGINAL_WORKSPACE_ONLY",
+  "implementation": "08733d5dcc97f47bc1bf813475c505a58391a4c7",
+  "handoff": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-runtime-5\\updates\\handoffs\\656419e5-108a-4675-8fc1-a4352ed5c847",
+  "dataRoot": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-data-5",
+  "version": 8,
+  "sourceSha": "08733d5dcc97f47bc1bf813475c505a58391a4c7",
+  "assetCount": 10,
+  "credentialCount": 1,
+  "snapshotMatch": true,
+  "userRestoredWindowAttempt": "FAILED_BEFORE_INSTALL_REQUIRED_FILE_MISSING",
+  "restoredMissingCredentials": "Expected backup exclusion; user confirmed restored window was used",
+  "restoredSuccessfulUpdate": "NOT TESTED",
+  "realApiCalls": 0,
+  "overall": "PRODUCT_HOLD / NOT RC",
+  "evidenceScriptCorrections": [
+    "Initial evidence destination parent did not exist; corrected to docs/audits/evidence",
+    "Default GBK decoding failed on UTF-8 plan; explicit UTF-8 used. No application data changed."
+  ]
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.RestoredUpdateSnapshotTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-21T22:22:27.083Z" hostname="DD1" time="2.572">
+  <properties/>
+  <testcase name="previouslyReadableCredentialCannotDisappearDuringUpdate" classname="io.github.misakapiano.ccbstudio.desktop.RestoredUpdateSnapshotTest" time="0.727"/>
+  <testcase name="unreadableOrCorruptCredentialCannotBeTreatedAsMissing" classname="io.github.misakapiano.ccbstudio.desktop.RestoredUpdateSnapshotTest" time="0.173"/>
+  <testcase name="restoredWorkspaceCanBeVerifiedWithoutRecreatingExcludedCredential" classname="io.github.misakapiano.ccbstudio.desktop.RestoredUpdateSnapshotTest" time="1.671"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

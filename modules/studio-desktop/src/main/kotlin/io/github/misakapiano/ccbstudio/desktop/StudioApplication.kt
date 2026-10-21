@@ -355,7 +355,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
         library.cancelAndDrain()
         active?.cancelAndJoin();pending?.cancelAndJoin();editor.drain();flush()
     }
-    fun resumeAfterPreflightFailure() {workspace.state;check(active?.isActive!=true);maintenance=false}
+    fun resumeAfterPreflightFailure() {workspace.state;check(active?.isActive!=true);maintenance=false;message="更新未开始安装；工作区仍可继续使用"}
     suspend fun close() {updater.closeAndDrain();enterMaintenance();infrastructure.closeAndDrain();withContext(Dispatchers.IO){workspace.close()};http.dispatcher.executorService.shutdown();http.connectionPool.evictAll()}
 }
 
@@ -391,12 +391,14 @@ internal fun launchStudio(args:Array<String>) {
         if(updatePlan!=null && updateVerified!=null)LaunchedEffect(Unit) {
             withFrameNanos{}
             withContext(Dispatchers.IO){writeUpdateJson(updatePlan.parent.resolve("B_VERIFIED.json"),updateVerified)}
-            c.message="新版已启动，资料和受保护凭据验证一致；正在完成更新交接"
+            val missingCredentials=updateVerified["snapshot"]!!.jsonObject["credentials"]!!.jsonArray.count{it.jsonObject["status"]?.jsonPrimitive?.content=="MISSING_BEFORE_UPDATE"}
+            val credentialNotice=if(missingCredentials>0)"；$missingCredentials 项凭据在更新前已缺失，仍需在账户页重新配置" else ""
+            c.message="新版已启动，资料和凭据状态验证一致；正在完成更新交接$credentialNotice"
             val completed=withTimeoutOrNull(120000) {
                 while(true) {
                     val status=withContext(Dispatchers.IO){val p=updatePlan.parent.resolve("result.json");if(Files.exists(p))Json.parseToJsonElement(Files.readString(p)).jsonObject else null}
                     when(status?.get("status")?.jsonPrimitive?.content){
-                        "COMPLETE"->{c.message="更新完成：新版程序、资料与受保护凭据已验证";return@withTimeoutOrNull true}
+                        "COMPLETE"->{c.message="更新完成：新版程序、资料与凭据状态已验证$credentialNotice";return@withTimeoutOrNull true}
                         "FAILED_RETAINED"->{c.problem="更新交接未完成；现有资料和旧程序均保留";return@withTimeoutOrNull false}
                     };delay(200)
                 }
@@ -439,7 +441,7 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
             }
         }
         Divider()
-        Box(Modifier.weight(1f).fillMaxWidth()) {when(c.view){"AI 设计"->DesignWorkspace(c);"图库"->GalleryWorkspace(c);"编辑"->TypesetWorkspace(c);"资产管理"->LibraryWorkspace(c);"账户"->AccountsWorkspace(c);"更新"->UpdateWorkspace(c.updater,c.installUpdate);else->CreationWorkspace(c)}}
+        Box(Modifier.weight(1f).fillMaxWidth()) {when(c.view){"AI 设计"->DesignWorkspace(c);"图库"->GalleryWorkspace(c);"编辑"->TypesetWorkspace(c);"资产管理"->LibraryWorkspace(c);"账户"->AccountsWorkspace(c);"更新"->UpdateWorkspace(c.updater,c.workspace.root.toString(),c.installUpdate);else->CreationWorkspace(c)}}
         Row(Modifier.fillMaxWidth().padding(8.dp),verticalAlignment=Alignment.CenterVertically) {
             Text(if(closing)"正在保存并排水…"else c.message,Modifier.weight(1f),fontSize=12.sp,color=Quiet)
             Text(if(c.saved)"已保存" else "保存中…",fontSize=12.sp)

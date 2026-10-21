@@ -63,7 +63,7 @@ internal class StudioUpdateController(private val scope:CoroutineScope,cache:Pat
     suspend fun closeAndDrain(){closed=true;job?.cancelAndJoin()}
 }
 
-@Composable internal fun UpdateWorkspace(c:StudioUpdateController,onInstall:(()->Unit)?=null) {
+@Composable internal fun UpdateWorkspace(c:StudioUpdateController,workspacePath:String?=null,onInstall:(()->Unit)?=null) {
     var confirm by remember{mutableStateOf(false)}
     val focus=remember{FocusRequester()}
     LaunchedEffect(Unit){focus.requestFocus()}
@@ -77,6 +77,7 @@ internal class StudioUpdateController(private val scope:CoroutineScope,cache:Pat
         }
     }.focusable().padding(24.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(12.dp)) {
         Text("应用更新",style=MaterialTheme.typography.h5)
+        workspacePath?.let{Text("当前工作区：$it",color=Quiet)}
         Text("更新签名与安装身份由随包固定的信任根验证；资料与下载缓存分别保存。")
         Text("F5 检查 · Ctrl+D 确认下载 · Ctrl+Shift+I 打开安装确认",color=Quiet)
         StudioAction("检查更新",!c.busy){c.check()}
@@ -112,7 +113,10 @@ internal class StudioUpdateController(private val scope:CoroutineScope,cache:Pat
         if(c.busy)StudioAction("取消更新操作"){c.job?.cancel()}
         Text("下载验证后仍需安装、重启和资料核验；任何一步未通过都不会报告更新成功。",color=Quiet)
     }
-    if(confirm)AlertDialog(onDismissRequest={confirm=false},title={Text("安装并重启")},text={Text("将保存编辑并停止活动任务，等待资料写入退出后安装新版。若资料格式升级，将建立独立副本并核验数据和受保护凭据，再切换启动入口；旧程序和原目录保留，不自动重发请求。")},confirmButton={
+    if(confirm)AlertDialog(onDismissRequest={confirm=false},title={Text("安装并重启")},text={Column(verticalArrangement=Arrangement.spacedBy(12.dp)) {
+        workspacePath?.let{Text("本次更新使用的工作区：$it")}
+        Text("将保存编辑并停止活动任务，等待资料写入退出后安装新版。若资料格式升级，将建立独立副本并核验数据和凭据状态，再切换启动入口；旧程序和原目录保留，不自动重发请求。恢复后尚未重新配置的凭据仍保持未配置。")
+    }},confirmButton={
         val confirmFocus=remember{FocusRequester()};LaunchedEffect(Unit){withFrameNanos{};confirmFocus.requestFocus()}
         TextButton(onClick={confirm=false;onInstall?.invoke()},modifier=Modifier.focusRequester(confirmFocus)){Text("保存后安装")}
     },dismissButton={TextButton(onClick={confirm=false}){Text("暂不安装")}})

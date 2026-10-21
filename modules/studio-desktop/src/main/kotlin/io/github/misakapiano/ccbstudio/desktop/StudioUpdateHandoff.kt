@@ -28,7 +28,18 @@ internal fun updateSnapshot(workspace:StudioWorkspace,sourceVersion:Int=workspac
     val vault=SecretVault(workspace.root.resolve("secrets"))
     put("credentials",buildJsonArray {
         workspace.state.accounts.mapNotNull{it.secretRef}.distinct().sorted().forEach{ref->
-            add(buildJsonObject{put("ref",ref);put("sha256",vault.use(ref){sha256(it)})})
+            add(buildJsonObject {
+                put("ref",ref)
+                try {put("sha256",vault.use(ref){sha256(it)})}
+                catch(e:DataProblem) {
+                    // Ordinary backup deliberately omits credentials. Record an absent
+                    // baseline, never skip the reference or accept decryption/read errors.
+                    // B must match this exact snapshot, so loss of a readable credential
+                    // after preflight still fails verification.
+                    if(e.status!="MISSING")throw e
+                    put("status","MISSING_BEFORE_UPDATE")
+                }
+            })
         }
     })
 }
@@ -53,11 +64,18 @@ internal suspend fun prepareUpdateHandoff(c:WorkbenchController,runtime:Path):Pa
     val targetVersion=approved["dataVersion"]?.jsonPrimitive?.int?:sourceVersion
     require(targetVersion in sourceVersion..3){"不支持的目标资料格式"}
     val destination=updateDataDestination(c.workspace.root,sourceVersion,targetVersion,nonce)
+    val snapshot=try {updateSnapshot(c.workspace)}catch(e:Exception) {
+        writeUpdateJson(folder.resolve("PREPARATION_FAILED.json"),buildJsonObject {
+            put("status","FAILED_RETAINED");put("phase","WORKSPACE_SNAPSHOT")
+            put("dataRoot",c.workspace.root.toString());put("reason",if(e is DataProblem)e.status else e.javaClass.simpleName)
+        })
+        throw e
+    }
     val plan=buildJsonObject {
         put("format",1);put("nonce",nonce);put("installed",installed.toAbsolutePath().toString());put("cache",cache.toString())
         put("dataRoot",c.workspace.root.toString());put("runtimeRoot",runtime.toAbsolutePath().toString());put("parentPid",ProcessHandle.current().pid())
         put("sourceDataVersion",sourceVersion);put("targetDataVersion",targetVersion);put("destinationDataRoot",destination.toString())
-        put("approved",approved);put("snapshot",updateSnapshot(c.workspace))
+        put("approved",approved);put("snapshot",snapshot)
     }
     val path=folder.resolve("plan.json");writeUpdateJson(path,plan)
     val process=ProcessBuilder(installed.resolve("updater/pythonw.exe").toString(),"-B",installed.resolve("updater/lib/apply_update.py").toString(),"--handoff",path.toString())
