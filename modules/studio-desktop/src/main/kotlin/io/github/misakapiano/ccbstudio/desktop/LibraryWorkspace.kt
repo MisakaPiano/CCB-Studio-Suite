@@ -19,6 +19,10 @@ internal class LibraryController(private val c:WorkbenchController) {
     var state by mutableStateOf<LibraryState?>(null);private set
     var error by mutableStateOf<String?>(null);private set
     var prompts by mutableStateOf(listOf<io.github.misakapiano.ccbstudio.assets.AssetStore.Asset>());private set
+    var archived by mutableStateOf(setOf<String>());private set
+    var archiveError by mutableStateOf<String?>(null);private set
+    var archiveRequest by mutableStateOf<Set<String>?>(null)
+    val archive=AssetArchive(c.workspace)
     var scanResults by mutableStateOf(listOf<FolderScanResult>());private set
     var automaticNotice by mutableStateOf("")
     var collectionBlocked by mutableStateOf(false);private set
@@ -39,7 +43,15 @@ internal class LibraryController(private val c:WorkbenchController) {
         };return true
     }
     init{refresh()}
-    fun refresh(){runCatching{repository.load() to repository.prompts()}.onSuccess{state=it.first;error=null;prompts=it.second}.onFailure{error="资产管理记录读取失败，原件保留，管理写入已停止：${it.javaClass.simpleName}";state=null}}
+    fun refresh(){runCatching{repository.load() to repository.prompts()}.onSuccess{(loaded,all)->
+        state=loaded;error=null
+        runCatching{archive.ids(loaded)}.onSuccess{archived=it;archiveError=null}.onFailure{archived=emptySet();archiveError="回收站记录不可读取，暂停移入与恢复；原件仍可查看：${it.javaClass.simpleName}"}
+        prompts=all.filterNot{it.request().id().toString() in archived}
+    }.onFailure{error="资产管理记录读取失败，原件保留，管理写入已停止：${it.javaClass.simpleName}";state=null;archiveError=error;archived=emptySet();prompts=emptyList()}}
+    fun changeArchive(ids:Set<String>,archived:Boolean)=c.run(if(archived)"移入资产回收站"else"恢复资产"){
+        archive.change(ids,archived);refresh()
+        if(archived)c.selection=c.selection-ids
+    }
     fun labels(id:String)=state?.labels?.get(id)?:AssetLabels()
     fun saveLabels(id:String,alias:String,tags:String)=c.run("保存资产别名与标签"){repository.label(id,alias,tags.split(',', '，'));refresh()}
     fun savePrompt(text:String,name:String,previous:String?=null)=c.run("保存独立 Prompt 资产"){repository.savePrompt(text,name,"manual",previous);refresh()}
@@ -74,7 +86,7 @@ internal class LibraryController(private val c:WorkbenchController) {
     var selected by remember{mutableStateOf<String?>(null)};var name by remember{mutableStateOf("")};var text by remember{mutableStateOf("")}
     var query by remember{mutableStateOf("")};var category by remember{mutableStateOf("images")};var recursive by remember{mutableStateOf(false)}
     Column(Modifier.fillMaxSize().padding(16.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(8.dp)) {
-        StudioChips("资产管理",listOf("Prompt 资产","多 Prompt 参照","目录入口"),tab,{it}){tab=it}
+        StudioChips("资产管理",listOf("Prompt 资产","多 Prompt 参照","目录入口","回收站"),tab,{it}){tab=it}
         library.error?.let{Text(it,color=MaterialTheme.colors.error);StudioAction("重新读取管理记录"){library.refresh()};return@Column}
         if(tab=="Prompt 资产") {
             Text("Prompt 独立于图片保存；编辑保存为新版本，原版本保留。")
@@ -100,8 +112,10 @@ internal class LibraryController(private val c:WorkbenchController) {
                 StudioAction("应用到创作（可撤销）",!c.busy && text.isNotBlank()){c.pastePrompt(text);c.view="创作"}
                 StudioAction("复制 Prompt",text.isNotEmpty()){desktopCopyText(text)}
             }
-            selected?.let{id->AssetLabelEditor(c,id);StudioAction("加入多 Prompt 参照",!c.busy){c.run("加入参照板"){PromptReferences(library.repository).add(id);tab="多 Prompt 参照";library.refresh()}}}
-        } else if(tab=="多 Prompt 参照") {PromptReferenceBoard(c)} else {
+            selected?.let{id->AssetLabelEditor(c,id);StudioAction("加入多 Prompt 参照",!c.busy){c.run("加入参照板"){PromptReferences(library.repository).add(id);tab="多 Prompt 参照";library.refresh()}}
+                StudioAction("Prompt 移入回收站",!c.busy&&library.archiveError==null&&id !in library.archived){library.archiveRequest=setOf(id)}
+            }
+        } else if(tab=="多 Prompt 参照") {PromptReferenceBoard(c)} else if(tab=="回收站") {AssetArchiveContents(c)} else {
             Text("收集目录与不可变资产库分开。同步只读外部目录；外部改动生成新资产版本，移除目录或外部文件不会删除已入库原件。")
             Text("拖放、剪贴板和普通导入另存到专用 imports 目录；在收集目录放入文件后自动入库。备份恢复到新工作区时，旧外部入口需要重新启用。")
             val paused=library.state?.preferences?.get("collectionsPaused")=="true"
@@ -129,6 +143,29 @@ internal class LibraryController(private val c:WorkbenchController) {
         }
         StudioAction("查看全部图片资产"){c.view="图库"}
     }
+}
+
+@Composable internal fun AssetArchiveContents(c:WorkbenchController) {
+    val library=c.library
+    Text("移入回收站的资产不再出现在新选用列表。已有工程、参照板、生成记录与原始字节继续保留；外部收集目录文件不受影响。恢复后可继续选用。")
+    library.archiveError?.let{Text(it,color=MaterialTheme.colors.error);StudioAction("重读回收站"){library.refresh()};return}
+    val contents=remember(library.state){runCatching{library.archive.manageable().filter{it.request().id().toString() in library.archived}}}
+    contents.exceptionOrNull()?.let{Text("资产目录不可读取，未删除任何文件",color=MaterialTheme.colors.error);return}
+    val assets=contents.getOrThrow()
+    Text("${assets.size} 项资产 · 此处不执行永久删除")
+    assets.asReversed().forEach{asset->
+        val id=asset.request().id().toString();val label=library.labels(id)
+        Text(label.alias.ifBlank{asset.request().name()})
+        Text("${label.tags.joinToString(" · ")} · ${asset.size()} bytes · ${id.take(8)}")
+        StudioAction("恢复资产 ${id.take(8)}",!c.busy){library.changeArchive(setOf(id),false)}
+    }
+}
+
+@Composable internal fun AssetArchiveConfirmation(c:WorkbenchController) {
+    val ids=c.library.archiveRequest?:return
+    AlertDialog(onDismissRequest={c.library.archiveRequest=null},title={Text("移入资产回收站？")},text={
+        Text("将 ${ids.size} 项资产从图库、Prompt 列表和新选用入口移出。已有工程与参照仍可读取，原件和外部目录文件保留。可在资产管理 → 回收站恢复。")
+    },confirmButton={TextButton(enabled=!c.busy&&c.library.error==null&&c.library.archiveError==null,onClick={c.library.archiveRequest=null;c.library.changeArchive(ids,true)}){Text("确认移入回收站")}},dismissButton={TextButton(onClick={c.library.archiveRequest=null}){Text("取消")}})
 }
 
 @Composable internal fun LibrarySynchronization(c:WorkbenchController) {

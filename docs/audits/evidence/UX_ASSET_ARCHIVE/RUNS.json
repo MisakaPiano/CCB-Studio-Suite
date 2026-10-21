@@ -1,0 +1,35 @@
+[
+  {
+    "directory": "20261021T180150798078Z-asset-archive-targeted",
+    "phase": "asset-archive-targeted",
+    "status": "FAILED",
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 62.229,
+    "sourceStable": true
+  },
+  {
+    "directory": "20261021T180305233074Z-asset-archive-gui-retest",
+    "phase": "asset-archive-gui-retest",
+    "status": "PASS",
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 39.355,
+    "sourceStable": true
+  },
+  {
+    "directory": "20261021T180401737570Z-asset-archive-complete-modules",
+    "phase": "asset-archive-complete-modules",
+    "status": "PASS",
+    "tests": 196,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 357.445,
+    "sourceStable": true
+  }
+]

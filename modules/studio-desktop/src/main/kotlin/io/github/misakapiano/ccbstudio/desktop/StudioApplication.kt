@@ -415,6 +415,7 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
 }
 @Composable internal fun Workbench(c:WorkbenchController,chrome:DesktopWindowChrome,closing:Boolean) {
     LibrarySynchronization(c)
+    AssetArchiveConfirmation(c)
     Surface(color=Ink,contentColor=DesktopBootstrapColors.foreground,modifier=Modifier.onPreviewKeyEvent{event->
         if(!c.maintenance && event.type==KeyEventType.KeyDown && event.isCtrlPressed && event.isShiftPressed && event.key==Key.U){c.view="更新";true}else false
     }) {
@@ -536,6 +537,8 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
     var viewing by remember{mutableStateOf<List<String>?>(null)}
     var initial by remember{mutableStateOf(0)}
     val scope=rememberCoroutineScope()
+    val available=c.assets.filterNot{it.request().id().toString() in c.library.archived}
+    fun viewerIds(id:String)=(available.map{it.request().id().toString()}+id).distinct()
     val interim by produceState<ImageBitmap?>(null,c.intermediate){value=withContext(Dispatchers.IO){c.intermediate?.let{bytes->runCatching{val decoded=EditorRenderer.decode(bytes);try{decoded.toComposeImageBitmap()}finally{decoded.flush()}}.getOrNull()}}}
     Column(Modifier.fillMaxSize()) {
         if(!rail)c.current?.let{id->StudioActions{
@@ -544,13 +547,13 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
             StudioAction("增强 / 放大",!c.busy){processing=id}
             StudioAction("反推 Prompt",!c.busy && c.llmId!=null){reversing=true;c.reverseImage(id)}
             StudioAction("元数据与复用",!c.busy){metadata=id}
-            StudioAction("全图查看"){viewing=c.assets.map{it.request().id().toString()};initial=viewing!!.indexOf(id).coerceAtLeast(0)}
+            StudioAction("全图查看"){viewing=viewerIds(id);initial=viewing!!.indexOf(id).coerceAtLeast(0)}
         }}
-        if(!rail) {if(interim!=null && c.busy) {StatusText("生成中预览 · 尚未保存为原件");Image(interim!!,"生成中预览",Modifier.weight(1f).fillMaxWidth(),contentScale=ContentScale.Fit)}else c.current?.let{id->DesktopImageZoomSurface("asset:$id",c::readAsset,Modifier.weight(1f).fillMaxWidth(),onOpenViewer={viewing=c.assets.map{it.request().id().toString()};initial=viewing!!.indexOf(id).coerceAtLeast(0)})}?:AssetImage(c,null,Modifier.weight(1f).fillMaxWidth())}
-        val paths=c.assets.asReversed().map{"asset:${it.request().id()}"}
+        if(!rail) {if(interim!=null && c.busy) {StatusText("生成中预览 · 尚未保存为原件");Image(interim!!,"生成中预览",Modifier.weight(1f).fillMaxWidth(),contentScale=ContentScale.Fit)}else c.current?.let{id->DesktopImageZoomSurface("asset:$id",c::readAsset,Modifier.weight(1f).fillMaxWidth(),onOpenViewer={viewing=viewerIds(id);initial=viewing!!.indexOf(id).coerceAtLeast(0)})}?:AssetImage(c,null,Modifier.weight(1f).fillMaxWidth())}
+        val paths=available.asReversed().map{"asset:${it.request().id()}"}
         val selected=c.current?.let{"asset:$it"}
         val select:(String)->Unit={c.current=it.removePrefix("asset:")}
-        val preview:(String)->Unit={path->viewing=c.assets.map{it.request().id().toString()};initial=viewing!!.indexOf(path.removePrefix("asset:")).coerceAtLeast(0)}
+        val preview:(String)->Unit={path->viewing=viewerIds(path.removePrefix("asset:"));initial=viewing!!.indexOf(path.removePrefix("asset:")).coerceAtLeast(0)}
         if(rail)Box(Modifier.weight(1f)){StudioVerticalFilmstrip(paths,selected,c::readAsset,onPreview=preview,onSelect=select)}
         else StudioFilmstrip(paths,selected,c::readAsset,onPreview=preview,onSelect=select)
         StatusText("${c.assets.size} 份原件 · 原始字节保全")

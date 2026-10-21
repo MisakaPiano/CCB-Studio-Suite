@@ -525,11 +525,19 @@
     {
       "id": "I09",
       "owner": "UX-R3",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
+      "implementation": [
+        "AssetArchive.kt / LibraryWorkspace.kt / SharedAssetPicker.kt / GalleryWorkspace.kt"
+      ],
+      "tests": [
+        "AssetArchiveTest: 5 archive/restore/interruption/version/collection cases",
+        "AssetArchiveWorkflowTest: 2 actual offscreen GUI paths"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_ASSET_ARCHIVE.md"
+      ],
       "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "status": "NOT_IMPLEMENTED_THIS_RUN",
+      "latestScopeEvidence": "Reversible visibility archive preserves references and exact bytes; no permanent deletion or disk reclamation; human acceptance pending"
     },
     {
       "id": "T01",

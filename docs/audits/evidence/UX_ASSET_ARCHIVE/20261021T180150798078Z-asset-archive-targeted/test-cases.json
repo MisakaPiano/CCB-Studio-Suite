@@ -1,0 +1,32 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.AssetArchiveTest",
+    "name": "interruptedSnapshotIsNotPublishedAndRetryRestores",
+    "seconds": "2.722",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.AssetArchiveTest",
+    "name": "unchangedCollectionDoesNotResurrectArchivedAsset",
+    "seconds": "2.482",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.AssetArchiveTest",
+    "name": "futureAndCorruptArchiveBlocksChangesButPreservesOriginals",
+    "seconds": "2.582",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.AssetArchiveTest",
+    "name": "imagePromptAndBookRestoreWithReferencesLabelsAndOriginalBytes",
+    "seconds": "10.628",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.AssetArchiveTest",
+    "name": "futureSnapshotIsRecognizedBeforeDecodingFields",
+    "seconds": "1.161",
+    "status": "PASS"
+  }
+]

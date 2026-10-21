@@ -76,7 +76,8 @@ internal fun readImagePrompt(c:WorkbenchController,id:String):ImagePromptReading
 internal fun saveImagePrompt(c:WorkbenchController,id:String,addToBoard:Boolean):String {
     val read=readImagePrompt(c,id);require(read.sections.isNotEmpty()){ "图片没有可比较的非空 Prompt：${read.status}" }
     val name=c.library.labels(id).alias.ifBlank{c.workspace.assets.read(UUID.fromString(id)).require().request().name()}
-    val existing=c.library.repository.prompts().firstOrNull{a->val p=c.library.repository.prompt(a.request().id().toString());p.image==read.context && p.sections==read.sections}
+    val archived=AssetArchive(c.workspace).ids()
+    val existing=c.library.repository.prompts().firstOrNull{a->val pid=a.request().id().toString();pid !in archived && c.library.repository.prompt(pid).let{p->p.image==read.context && p.sections==read.sections}}
     val prompt=existing?.request()?.id()?.toString()?:c.library.repository.savePrompt(read.text(),name,"image:$id:${read.context.sha256}",sections=read.sections,image=read.context)
     if(addToBoard)PromptReferences(c.library.repository).add(prompt)
     c.library.refresh();return prompt

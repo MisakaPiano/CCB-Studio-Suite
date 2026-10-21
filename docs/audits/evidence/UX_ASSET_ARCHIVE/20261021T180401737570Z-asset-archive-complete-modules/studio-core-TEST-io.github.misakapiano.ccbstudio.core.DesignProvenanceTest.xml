@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.DesignProvenanceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-21T18:04:40.774Z" hostname="DD1" time="9.546">
+  <properties/>
+  <testcase name="exactGenerationLinkSurvivesLaterDesignBackupAndDetectsReceiptMismatch" classname="io.github.misakapiano.ccbstudio.core.DesignProvenanceTest" time="5.733"/>
+  <testcase name="interruptionAfterDraftCommitCannotPromoteOrphanApplicationToVerifiedOrigin" classname="io.github.misakapiano.ccbstudio.core.DesignProvenanceTest" time="0.844"/>
+  <testcase name="explicitApplicationUndoRedoAndUnknownWritesNeverInferFromEqualPrompt" classname="io.github.misakapiano.ccbstudio.core.DesignProvenanceTest" time="2.969"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

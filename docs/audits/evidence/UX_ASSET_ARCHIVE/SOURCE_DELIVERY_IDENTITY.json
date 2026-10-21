@@ -1,0 +1,2427 @@
+{
+  "testRun": "20261021T180401737570Z-asset-archive-complete-modules",
+  "files": [
+    {
+      "path": "build.gradle.kts",
+      "testedWorkingSha256": "2622bdc1dc43dfaa9caa33aecc6b67546698b53b2a82fa3a4e527e9b7a9772f2",
+      "gitBlob": "077d5f3a8d5fe9101d43eae559068141feebda95",
+      "indexSha256": "a8c1bfc94f90f3f99785fc4656d1ec906878277a8208fd58a71822c9a56b20ad",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "gradle.properties",
+      "testedWorkingSha256": "ff487523732b550a9f2667d873e49aaa9c13bb28652942a96d2cd0d06efa7907",
+      "gitBlob": "8e4d512cf5b8065a740af0c1ff890c99e8d16ccb",
+      "indexSha256": "ff487523732b550a9f2667d873e49aaa9c13bb28652942a96d2cd0d06efa7907",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/asset-library/build.gradle.kts",
+      "testedWorkingSha256": "7c8b031aedfc544668ec407844c82e816363818b484669823073eb87ca848c13",
+      "gitBlob": "91de50a6048056f75d5c5b5a56410995b6249460",
+      "indexSha256": "7c8b031aedfc544668ec407844c82e816363818b484669823073eb87ca848c13",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetBackup.java",
+      "testedWorkingSha256": "d29b26c388ea936bdfa26e9518dc4fe9c254812bdd1195dbd3c921506ce30956",
+      "gitBlob": "29e9ee629e70303ff5793a6e317de2623f4ed324",
+      "indexSha256": "d29b26c388ea936bdfa26e9518dc4fe9c254812bdd1195dbd3c921506ce30956",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetMaintenance.java",
+      "testedWorkingSha256": "2bab3c502b429f771f2e93ee8306186613e1cebd2c5226884a3adc3eb36b4e25",
+      "gitBlob": "5d2ae5c93b741dcd7f3154e7dac2df78ce8a0728",
+      "indexSha256": "2bab3c502b429f771f2e93ee8306186613e1cebd2c5226884a3adc3eb36b4e25",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetStore.java",
+      "testedWorkingSha256": "2f045a3c549ee4cd68eb11ac46fc9b12e57463add9655db108837e103f22a088",
+      "gitBlob": "36dbed802a2bf76d605cc73f795e6078aaed8207",
+      "indexSha256": "2f045a3c549ee4cd68eb11ac46fc9b12e57463add9655db108837e103f22a088",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/ReadResult.java",
+      "testedWorkingSha256": "c6d3488f55bc939c0933ccfdfed041efd5eadd0b612a86f444d71dbaa87b2eab",
+      "gitBlob": "b30b71283f8b9a243214073557f0d6389675c1d7",
+      "indexSha256": "c6d3488f55bc939c0933ccfdfed041efd5eadd0b612a86f444d71dbaa87b2eab",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/StoreException.java",
+      "testedWorkingSha256": "d45143aacdb1b2af549c546167be9f6b11c745ad37c7a2abe8c5b79c751006a1",
+      "gitBlob": "6c4a5950086797140b4eee37b05c4cf64fee8770",
+      "indexSha256": "d45143aacdb1b2af549c546167be9f6b11c745ad37c7a2abe8c5b79c751006a1",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/StoreIO.java",
+      "testedWorkingSha256": "5a604e4d3dd0ad45d2b7083a88bc8e0f8636a8aef196beaeac972e9e2c6e5361",
+      "gitBlob": "70ec422f979a65d71ee4b88a9fabebc26dd4c0f4",
+      "indexSha256": "5a604e4d3dd0ad45d2b7083a88bc8e0f8636a8aef196beaeac972e9e2c6e5361",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/asset-library/src/test/java/io/github/misakapiano/ccbstudio/assets/AssetBackupTest.java",
+      "testedWorkingSha256": "53d0ee16d8017dfa57bc7e39331a3b27d99d6d41deae4ae64afcd1ae5f13c59d",
+      "gitBlob": "1de1e31d22a6767a4e69f18a4992e944932fadb8",
+      "indexSha256": "53d0ee16d8017dfa57bc7e39331a3b27d99d6d41deae4ae64afcd1ae5f13c59d",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/asset-library/src/test/java/io/github/misakapiano/ccbstudio/assets/AssetMaintenanceTest.java",
+      "testedWorkingSha256": "3f1e0214307f8eff7a4983017fb33270093918e72c630293beef63ed85895590",
+      "gitBlob": "b3c79856fe686aa6e0fcd026ea50dce470a02df1",
+      "indexSha256": "3f1e0214307f8eff7a4983017fb33270093918e72c630293beef63ed85895590",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/asset-library/src/test/java/io/github/misakapiano/ccbstudio/assets/AssetSafetyTest.java",
+      "testedWorkingSha256": "fccd4cb62290e1befe52ad37e80b1e443d71234adf75ba06bc1c8d462be3540f",
+      "gitBlob": "29397af3c3a62c1c04dce41741f1f1d640416889",
+      "indexSha256": "fccd4cb62290e1befe52ad37e80b1e443d71234adf75ba06bc1c8d462be3540f",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/asset-library/src/test/java/io/github/misakapiano/ccbstudio/assets/AssetStoreTest.java",
+      "testedWorkingSha256": "b735cc16d7fdec8e44b5489a9229b977da69caef146c07053ad8a8b8b18916fa",
+      "gitBlob": "5cbb981b3a660c021d54ce21a75161f6ad94ae1e",
+      "indexSha256": "b735cc16d7fdec8e44b5489a9229b977da69caef146c07053ad8a8b8b18916fa",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/asset-library/src/test/java/io/github/misakapiano/ccbstudio/assets/StoreProcess.java",
+      "testedWorkingSha256": "e6cc83ca0a07023069d8a1e85f15fef299a90ffd44183236b31bffc47e56ad7c",
+      "gitBlob": "01f6e29c9f0b922243ac5043051dda4f5154c180",
+      "indexSha256": "e6cc83ca0a07023069d8a1e85f15fef299a90ffd44183236b31bffc47e56ad7c",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/build.gradle.kts",
+      "testedWorkingSha256": "bb58128ebc5e6e7a5df90693310fdb8dc4e27bacdad6af9884ece4851ecfc162",
+      "gitBlob": "83f09c8f543906cf698754ac81d162bcb5839376",
+      "indexSha256": "7ebdac558ac9e8bd24c450d8764bffba33b92f9e9db5e79c3a901f6936184d7e",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/local/entity/AppSettings.kt",
+      "testedWorkingSha256": "2825f2b758e1f72c8757e89794a80c1e0e672f7ac059d32289623a59930993b4",
+      "gitBlob": "39de30bed735fdfab51c6cce8c9c8e3ecfba675f",
+      "indexSha256": "2825f2b758e1f72c8757e89794a80c1e0e672f7ac059d32289623a59930993b4",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/local/entity/CharacterCard.kt",
+      "testedWorkingSha256": "dbfbf05c9fc144067290e5c509c241f6887260d875ab60c32ed9d9a23c7978f5",
+      "gitBlob": "1c30a23cd165ac8ae7aa8c240d8f447ee7eaab3c",
+      "indexSha256": "dbfbf05c9fc144067290e5c509c241f6887260d875ab60c32ed9d9a23c7978f5",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/local/entity/ChatMessage.kt",
+      "testedWorkingSha256": "f45ebffdc991f07fa5c085b48795d72e56433d97fd5717b97ab6d0efdbcacf9b",
+      "gitBlob": "9c67643dd42ab82bcee5b65c2e9b8bfaa5832b58",
+      "indexSha256": "f45ebffdc991f07fa5c085b48795d72e56433d97fd5717b97ab6d0efdbcacf9b",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/local/entity/FishAudioVoiceBinding.kt",
+      "testedWorkingSha256": "9b50b62b62778590974d1ef73b04d88ec033528f51a587e851e868eba5c50e65",
+      "gitBlob": "8e9d0d0127b248517685537f8692c3fe58833b70",
+      "indexSha256": "9b50b62b62778590974d1ef73b04d88ec033528f51a587e851e868eba5c50e65",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/local/entity/FormatCard.kt",
+      "testedWorkingSha256": "bf0fad6054cc6d58be18b309050593e08c8b9fb8945b64cd10c9df767acf7d76",
+      "gitBlob": "0b454c1585621cca1fd16799e0478361d8c0f61c",
+      "indexSha256": "bf0fad6054cc6d58be18b309050593e08c8b9fb8945b64cd10c9df767acf7d76",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/local/entity/FormatPromptPosition.kt",
+      "testedWorkingSha256": "9b4052f7d0f01c81befcce65ae56a3c96454c11acf53a8247801b938b688f1de",
+      "gitBlob": "241b8f2f3291e787b7efee33601a16955b2e0ea2",
+      "indexSha256": "9b4052f7d0f01c81befcce65ae56a3c96454c11acf53a8247801b938b688f1de",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/local/entity/ModelConfig.kt",
+      "testedWorkingSha256": "1d410c94d486d2bdcb04b178cbaf3d5c0d683f97c91285185598e0d659aa444b",
+      "gitBlob": "d77bd4bda03e816bf2fe21df51e6adae8b4cd5d4",
+      "indexSha256": "1d410c94d486d2bdcb04b178cbaf3d5c0d683f97c91285185598e0d659aa444b",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/local/entity/PlayerSetting.kt",
+      "testedWorkingSha256": "c6f72da807a7ad66cc3fc8afd93c35dec3ba2b825cf7025ed34aa278d4c33231",
+      "gitBlob": "c27f641e61d83894f6d748bf53e368559b20282b",
+      "indexSha256": "c6f72da807a7ad66cc3fc8afd93c35dec3ba2b825cf7025ed34aa278d4c33231",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/local/entity/PresetModelCatalog.kt",
+      "testedWorkingSha256": "3de336e051955e99fec9229d1d9bce65133b6bdcc6543755a78d508fdb4a803a",
+      "gitBlob": "4e78fbb711f3afe240fa10754b7f88697df7acae",
+      "indexSha256": "3de336e051955e99fec9229d1d9bce65133b6bdcc6543755a78d508fdb4a803a",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/local/entity/SpeakerTagRenameTask.kt",
+      "testedWorkingSha256": "266c0d678f76503d4bfb90d32be1d7e89dbf04c3d419772b0dd900a9e62d61f9",
+      "gitBlob": "3999fa4d808664a9cfcbfcf7289c5ce5a9556c22",
+      "indexSha256": "266c0d678f76503d4bfb90d32be1d7e89dbf04c3d419772b0dd900a9e62d61f9",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/local/entity/WorldBook.kt",
+      "testedWorkingSha256": "99a93cc3a2572912e35704cbfd2b591a4000fafce409b34a218f19aea6a1b045",
+      "gitBlob": "92f948f1ccf919bffd4ce1449ae3cb83ed8c5a75",
+      "indexSha256": "99a93cc3a2572912e35704cbfd2b591a4000fafce409b34a218f19aea6a1b045",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/local/JsonFileStorage.kt",
+      "testedWorkingSha256": "02c13bb8d2adae07e1409dd4cc98aee764a0e04755efce333cdc5aeaa2ea97a9",
+      "gitBlob": "e8b219dc8a16652eb502a16a736a5ef58038d24c",
+      "indexSha256": "02c13bb8d2adae07e1409dd4cc98aee764a0e04755efce333cdc5aeaa2ea97a9",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/operation/AppDataOperationGate.kt",
+      "testedWorkingSha256": "d0c08c13152d1af5a1e7c125489e93bc94c738aadbd6445ec330d0ea3fa5d8e1",
+      "gitBlob": "31ca562c32150673b063d3101e26fde574f79f0a",
+      "indexSha256": "d0c08c13152d1af5a1e7c125489e93bc94c738aadbd6445ec330d0ea3fa5d8e1",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/repository/CredentialPersistencePolicy.kt",
+      "testedWorkingSha256": "0a0d62f12f349059df3865ab2d1baf4a33f571ac00ac7896c181c690ef5ee4f1",
+      "gitBlob": "fe7b7d263fa72828de380fb762f45c33ea992e40",
+      "indexSha256": "0a0d62f12f349059df3865ab2d1baf4a33f571ac00ac7896c181c690ef5ee4f1",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/repository/ModelRepository.kt",
+      "testedWorkingSha256": "74e4a250eb0b4bb5d94d204d43e99b32b3ff043caf763b0a5a34c5e3c8bb8f60",
+      "gitBlob": "7344d2385aaee21e43226af3a65f128802d7ff01",
+      "indexSha256": "74e4a250eb0b4bb5d94d204d43e99b32b3ff043caf763b0a5a34c5e3c8bb8f60",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/repository/ModelStorageKeyPolicy.kt",
+      "testedWorkingSha256": "01050ecb88684065acc29d2b34af3fcc493101d5fc5f0d4cfb6e222af253ffec",
+      "gitBlob": "b536d46dbc733fb93ff6adad94d5684ac966c141",
+      "indexSha256": "01050ecb88684065acc29d2b34af3fcc493101d5fc5f0d4cfb6e222af253ffec",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/repository/SettingsDraftMerge.kt",
+      "testedWorkingSha256": "25ba5c87d368c647a4703d17d9822dc61c78f745c8ab8bc26cde4fcc6b5b4ee0",
+      "gitBlob": "4376e9cf7d68ab89d43043be5ea5ee376b64cfcc",
+      "indexSha256": "25ba5c87d368c647a4703d17d9822dc61c78f745c8ab8bc26cde4fcc6b5b4ee0",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/repository/SettingsRepository.kt",
+      "testedWorkingSha256": "bfd3881265988c70aefd96863f7909086c654b2bd6721cefaa2d7f6af9f94d56",
+      "gitBlob": "c9f700d5b09a34c0c720cc06ea1e76e598279c42",
+      "indexSha256": "bfd3881265988c70aefd96863f7909086c654b2bd6721cefaa2d7f6af9f94d56",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/appearance/ThemeColor.kt",
+      "testedWorkingSha256": "5c758a51571538fa8fc3192def551fff993b434c99258cd7d882cbacffe502fc",
+      "gitBlob": "8ea11e466d6392a67e0300cbc3b8b4cdf4a0943b",
+      "indexSha256": "5c758a51571538fa8fc3192def551fff993b434c99258cd7d882cbacffe502fc",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/card/AiJsonOutputExtractor.kt",
+      "testedWorkingSha256": "99f7deb690c0eaed77ba13413b40f6ee3ef27caf5dab4eba5ed1914fe30117d9",
+      "gitBlob": "4e92d4928393728a1c2164891a2d1899f5f29736",
+      "indexSha256": "99f7deb690c0eaed77ba13413b40f6ee3ef27caf5dab4eba5ed1914fe30117d9",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/card/CardTransferModels.kt",
+      "testedWorkingSha256": "5cd8343d45c6f1574534f2511c1a147a3e69b5e49556a3dba33ba905b0749984",
+      "gitBlob": "56e2f398e4a5eec74707589e252a1a906a6e6185",
+      "indexSha256": "5cd8343d45c6f1574534f2511c1a147a3e69b5e49556a3dba33ba905b0749984",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/card/CharacterPlaceholderPolicy.kt",
+      "testedWorkingSha256": "1f1670ac6db465f0352db5603abfe476f01993ca9727381452279c5cb970fe23",
+      "gitBlob": "dec37c4e38308dd668ba7406bea9bcaf5d1a4b60",
+      "indexSha256": "1f1670ac6db465f0352db5603abfe476f01993ca9727381452279c5cb970fe23",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/card/FormatCardUserToolValidator.kt",
+      "testedWorkingSha256": "e40fd208d8e492d17f7a8688c9967d129cb928b019a11fa242cde6ca8d48830c",
+      "gitBlob": "8105e85e5683264a375254314a73f2e50d2f62fe",
+      "indexSha256": "e40fd208d8e492d17f7a8688c9967d129cb928b019a11fa242cde6ca8d48830c",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/card/ModelTemplateTransferService.kt",
+      "testedWorkingSha256": "50d836f4646fc3d03eec573ec63edf92a305ad53ba2c5e0dd45faf20dab13e5f",
+      "gitBlob": "cdcdfd3812223516da8a86a7b1560699446ea0b0",
+      "indexSha256": "50d836f4646fc3d03eec573ec63edf92a305ad53ba2c5e0dd45faf20dab13e5f",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/card/NamePolicy.kt",
+      "testedWorkingSha256": "09b838387634fc1a66a8a874d7764de1e63b76ce26e20cd5f21ca544b05dd772",
+      "gitBlob": "a646652ff0014a346721f25604bb4ee6ce162a58",
+      "indexSha256": "09b838387634fc1a66a8a874d7764de1e63b76ce26e20cd5f21ca544b05dd772",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/card/PngTextChunks.kt",
+      "testedWorkingSha256": "d4975b699e4c5c0440858c8480328e38cd68fb68a7e88d4c868e2687f8299cde",
+      "gitBlob": "e5bfaa1e037f7f90e6c8d933fa2c676b9f4125e3",
+      "indexSha256": "d4975b699e4c5c0440858c8480328e38cd68fb68a7e88d4c868e2687f8299cde",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/ChatApiMessage.kt",
+      "testedWorkingSha256": "eb4b391674ea17fde49f253b4746aa733881819e0f350a39aeb012c179ad843f",
+      "gitBlob": "1e21e93ea50460283d5605a0f2fab05531528a00",
+      "indexSha256": "eb4b391674ea17fde49f253b4746aa733881819e0f350a39aeb012c179ad843f",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/CleartextHttpChatTemplatePolicy.kt",
+      "testedWorkingSha256": "d636ce1009fbf4a5b3e444f2d0ad0c0ee90b05b6b26faa4b896fa240d8f65cc5",
+      "gitBlob": "7fcaf1a18bf7f221fe465c3c7776ed17f43a3097",
+      "indexSha256": "d636ce1009fbf4a5b3e444f2d0ad0c0ee90b05b6b26faa4b896fa240d8f65cc5",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/ImageDescriptionRequestPolicy.kt",
+      "testedWorkingSha256": "8869e8f800d7ac5b3468bd59b4152a221731b23c8901db36e6a27597a80c3059",
+      "gitBlob": "66c4da6fd1838ac7f3f9e5c3ca99d458e472c450",
+      "indexSha256": "8869e8f800d7ac5b3468bd59b4152a221731b23c8901db36e6a27597a80c3059",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/ImageUnderstandingService.kt",
+      "testedWorkingSha256": "dca77daa46adab18a19c8186e5a3930378e85ef9e96b5c608d108d331e18ccbf",
+      "gitBlob": "885ae5ee26f7a7aa079e402ce168b1ca03ccb8e0",
+      "indexSha256": "dca77daa46adab18a19c8186e5a3930378e85ef9e96b5c608d108d331e18ccbf",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/ModelRequestException.kt",
+      "testedWorkingSha256": "5eaf1d84aeafb567458fd86285963653cadbc3f3fb4197c690810c4be031c356",
+      "gitBlob": "dc3bd300cebb05def609157cd579e7952390563c",
+      "indexSha256": "5eaf1d84aeafb567458fd86285963653cadbc3f3fb4197c690810c4be031c356",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/OpenAiChatRequestSerializer.kt",
+      "testedWorkingSha256": "0a4c8ef320c7c9cb32df7b306d6db6de6802e0e18908808cd7de097c54974298",
+      "gitBlob": "2763d72bed03a263b4af5da5b83389862bd8ab81",
+      "indexSha256": "0a4c8ef320c7c9cb32df7b306d6db6de6802e0e18908808cd7de097c54974298",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/OpenAiCompletionResponsePolicy.kt",
+      "testedWorkingSha256": "75a8333599873d890b9692a378168893f030f0e71571a20c5105191bd034ed30",
+      "gitBlob": "27da94a4e01c60918ea39a6fef5907c34867b1b7",
+      "indexSha256": "75a8333599873d890b9692a378168893f030f0e71571a20c5105191bd034ed30",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/OpenAiSseParser.kt",
+      "testedWorkingSha256": "204f8ce51051416c5550b0b34dc83ed0a71a091ae92125b1c513ea8ae0c45aad",
+      "gitBlob": "7ef016073c04df2999358fa77aa4d9fb9682e59e",
+      "indexSha256": "204f8ce51051416c5550b0b34dc83ed0a71a091ae92125b1c513ea8ae0c45aad",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/PlaceholderRenderer.kt",
+      "testedWorkingSha256": "a42a6c182e6e8245df00f1b732ef1cfebfa744a00e401ab1ab7c0776b596f9e6",
+      "gitBlob": "e9779b4f0b6fe7bdc6bbe269b120442a7a7e5c85",
+      "indexSha256": "a42a6c182e6e8245df00f1b732ef1cfebfa744a00e401ab1ab7c0776b596f9e6",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/StreamEvent.kt",
+      "testedWorkingSha256": "4cd452e6a32cc2f71b79c3f8ff125b7ddbf0d3767532f9b64f7f0ba74aaab754",
+      "gitBlob": "52a371a7429ffd73ce22709d6be1b6a4fea1f77b",
+      "indexSha256": "4cd452e6a32cc2f71b79c3f8ff125b7ddbf0d3767532f9b64f7f0ba74aaab754",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/ThinkingRequestPolicy.kt",
+      "testedWorkingSha256": "5a7ff0131c76607342a77fd9a38524998d1a371075f49a1e0f014ee552be2147",
+      "gitBlob": "bad7a7bd5534a2e07f641b3efe723d0244082542",
+      "indexSha256": "5a7ff0131c76607342a77fd9a38524998d1a371075f49a1e0f014ee552be2147",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/ApngDisguiseCodec.kt",
+      "testedWorkingSha256": "534e75d95dc27b9fe163eabd1ebadf1fc2fd6eac6490beaf0ccb0f216ea1006f",
+      "gitBlob": "6493dc3e5c2f56ba2ad6f381fecb09f424d08309",
+      "indexSha256": "534e75d95dc27b9fe163eabd1ebadf1fc2fd6eac6490beaf0ccb0f216ea1006f",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/DanbooruQueryNormalization.kt",
+      "testedWorkingSha256": "26f902dba40ca4271093e3d580bd53dc3c895e341075da910d202ee4b9d04716",
+      "gitBlob": "c49d3e6a0102ed4dbd1a126340edfaa943800b86",
+      "indexSha256": "26f902dba40ca4271093e3d580bd53dc3c895e341075da910d202ee4b9d04716",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/ImageCanvasHistory.kt",
+      "testedWorkingSha256": "19afd9cc63b6d1b3a4128004295ef509aa10585f2cc180bf54f111705a839254",
+      "gitBlob": "3501421b38981bdb1f4a777939ebaf827316ad29",
+      "indexSha256": "19afd9cc63b6d1b3a4128004295ef509aa10585f2cc180bf54f111705a839254",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/ImageCropMath.kt",
+      "testedWorkingSha256": "7e35440173ece17c473fdedd0e47f1f6380073664a62ac7d9a066ed2749aca28",
+      "gitBlob": "131eda5f61e86026a82240091d5532bf460e64d3",
+      "indexSha256": "7e35440173ece17c473fdedd0e47f1f6380073664a62ac7d9a066ed2749aca28",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/ImageMetadataStripper.kt",
+      "testedWorkingSha256": "7aba6565f746e18a51333e5e814fb766c0aa05f5c194e758eb816cd7019c4e1a",
+      "gitBlob": "0d8ab22790fa5478b9a4837c0e7da92b4e5f0753",
+      "indexSha256": "7aba6565f746e18a51333e5e814fb766c0aa05f5c194e758eb816cd7019c4e1a",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiAccountService.kt",
+      "testedWorkingSha256": "8a71d800456e244fc4dc3c5fdf26a8fe04de7ae84ccc426c6ecb42c5ec269a06",
+      "gitBlob": "2528541d9aeb65c6dc79634d7dc31679fb95ba34",
+      "indexSha256": "8a71d800456e244fc4dc3c5fdf26a8fe04de7ae84ccc426c6ecb42c5ec269a06",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiBatchPolicy.kt",
+      "testedWorkingSha256": "3cdf0e9a1303ebbfc6e95a7e2728c3b7022a660706506c11ce5fcccebb07dd75",
+      "gitBlob": "dd282e488992850fddfdfc67e982db7272e2bcf5",
+      "indexSha256": "3cdf0e9a1303ebbfc6e95a7e2728c3b7022a660706506c11ce5fcccebb07dd75",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiCatalogQueries.kt",
+      "testedWorkingSha256": "6bfa4a9db9bd5dd7d6b4872f9ad448320476abe228c7a1a39340d95dea5e2c1e",
+      "gitBlob": "a8538a0a1851a3afe13ea621262f76ce444c5ed4",
+      "indexSha256": "6bfa4a9db9bd5dd7d6b4872f9ad448320476abe228c7a1a39340d95dea5e2c1e",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiCatalogSource.kt",
+      "testedWorkingSha256": "4b1a54079e3f478dc36647d2153ad013e51c9a3066639c4787c5433bd2a99f7c",
+      "gitBlob": "be9ab08664cd5a31f95aeed4f49ec6a94f9d6483",
+      "indexSha256": "4b1a54079e3f478dc36647d2153ad013e51c9a3066639c4787c5433bd2a99f7c",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiCatalogValidation.kt",
+      "testedWorkingSha256": "567891df59aad6a2705226cb569c000fde5158cdd9246abba16384c2c0289d36",
+      "gitBlob": "417f222dbf8ace4255df101bb6ce8708dcc4791b",
+      "indexSha256": "567891df59aad6a2705226cb569c000fde5158cdd9246abba16384c2c0289d36",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiCharacterPositionPolicy.kt",
+      "testedWorkingSha256": "73f2379703a45b65d186126a062ad5ca0b331a79f0cb229ac85688bb86a83527",
+      "gitBlob": "c1193f6753c4579ee6ce59c5a4074655ea1a52ce",
+      "indexSha256": "73f2379703a45b65d186126a062ad5ca0b331a79f0cb229ac85688bb86a83527",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiCodexCatalog.kt",
+      "testedWorkingSha256": "362eae9b1c2e442c27d38f68defcd042a099278a1d813f8dd6c483b129b8cb11",
+      "gitBlob": "1a9d20210deff8068e9b9c43057418d16a084b5c",
+      "indexSha256": "362eae9b1c2e442c27d38f68defcd042a099278a1d813f8dd6c483b129b8cb11",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiDesignConversationModels.kt",
+      "testedWorkingSha256": "f0b492cb683f1aba3080cf56de7be9c89c80649b737d309b27a91833115aa57e",
+      "gitBlob": "987517aea7c45e0cf5d1b81d08e783aade291ed8",
+      "indexSha256": "f0b492cb683f1aba3080cf56de7be9c89c80649b737d309b27a91833115aa57e",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiFocusedInpaintPlanner.kt",
+      "testedWorkingSha256": "28de2228442fc30d5242216c307f513d2cba9d03cf6b96a47d3c59f04a3ac6b6",
+      "gitBlob": "9ee287d2a4e415b32b6d61173f7c47a2302ee608",
+      "indexSha256": "28de2228442fc30d5242216c307f513d2cba9d03cf6b96a47d3c59f04a3ac6b6",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiFocusedMaskPixels.kt",
+      "testedWorkingSha256": "b81383c1dfd0a6961d0c143bcc10a8d0ad3943ab862f295159a37a6c86a63b61",
+      "gitBlob": "e9ff36500b064eecf6d344e90f6b9bb92279ac4b",
+      "indexSha256": "b81383c1dfd0a6961d0c143bcc10a8d0ad3943ab862f295159a37a6c86a63b61",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiImageGuidance.kt",
+      "testedWorkingSha256": "0c87a8de97279acde9103e883a2ecfe0c459d786508811007b641c76cb84aac5",
+      "gitBlob": "3cb75bb2fe079dc8ecf7575652aeecfc0260db1b",
+      "indexSha256": "0c87a8de97279acde9103e883a2ecfe0c459d786508811007b641c76cb84aac5",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiImageModel.kt",
+      "testedWorkingSha256": "f98b0fa9875e4eb6456f5e4db90d36090eaa8c4099f76383465fd3ca743a9a1e",
+      "gitBlob": "4d3009abd7ab58dea4fee9021a60936899513bdc",
+      "indexSha256": "f98b0fa9875e4eb6456f5e4db90d36090eaa8c4099f76383465fd3ca743a9a1e",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiImageModelResolution.kt",
+      "testedWorkingSha256": "433b5d33955cf4e0238f79eea4cb9fa77c6b7bfc51c68262671ee5bca9926fa1",
+      "gitBlob": "cc4c5aed7ef320a50fad5353ee99ab762a96d610",
+      "indexSha256": "433b5d33955cf4e0238f79eea4cb9fa77c6b7bfc51c68262671ee5bca9926fa1",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiImagePostProcessing.kt",
+      "testedWorkingSha256": "67ccca4d501aa1a88b6a3d31449faeeef8d8751409680443f2743c19846e7b0a",
+      "gitBlob": "1c2aded077b700b74722eb2d06e05b85c47277c6",
+      "indexSha256": "67ccca4d501aa1a88b6a3d31449faeeef8d8751409680443f2743c19846e7b0a",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiImageRegeneration.kt",
+      "testedWorkingSha256": "11b43aadd652f036272ea218ad86db04d418bc3dd02e80cca2e058bc040b53b0",
+      "gitBlob": "5caf5e4af27029ddd11368ecb015c02c1c4dda34",
+      "indexSha256": "11b43aadd652f036272ea218ad86db04d418bc3dd02e80cca2e058bc040b53b0",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiImageService.kt",
+      "testedWorkingSha256": "0f5f6a64a3fce6395cda32b33e44b8c1b957d8c02fc998f5235bb5d4970cc02c",
+      "gitBlob": "7fb49126e965272156b32ba215c37a76c7ce2b60",
+      "indexSha256": "0f5f6a64a3fce6395cda32b33e44b8c1b957d8c02fc998f5235bb5d4970cc02c",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiImageSizePolicy.kt",
+      "testedWorkingSha256": "3094f7f995d2bb3df6cd16427fddbf38ac915f63c86bd634b864f35d68c2a3eb",
+      "gitBlob": "44f61e866b2c5103c47621d6551dda3938f78638",
+      "indexSha256": "3094f7f995d2bb3df6cd16427fddbf38ac915f63c86bd634b864f35d68c2a3eb",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiInpaintPixelPolicy.kt",
+      "testedWorkingSha256": "e3f0003196b493d5cd6209e75479df81027e7093d61226ad43b6b393226b046d",
+      "gitBlob": "5f93b669604bf9118f5653dd519e7d03d2928983",
+      "indexSha256": "e3f0003196b493d5cd6209e75479df81027e7093d61226ad43b6b393226b046d",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiPixelResampler.kt",
+      "testedWorkingSha256": "2342482d87ba898c39933e9578f04aa4c67df23ed50369414550a081d75cb492",
+      "gitBlob": "701f50242123ca1647a834d3c01057768ba60aec",
+      "indexSha256": "2342482d87ba898c39933e9578f04aa4c67df23ed50369414550a081d75cb492",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiPngMetadataReader.kt",
+      "testedWorkingSha256": "e905d6608d351e7d21b5583770410e0a40372128f7d3a78957b53baa1865fedd",
+      "gitBlob": "3719a10df36d5a6b6c1ee556db78aa58a79c8d30",
+      "indexSha256": "e905d6608d351e7d21b5583770410e0a40372128f7d3a78957b53baa1865fedd",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiPromptDesigner.kt",
+      "testedWorkingSha256": "4d3efa37bfeef23a4a192daf3d6a02239e9803d2ca407dec3d6af35b7e6fb661",
+      "gitBlob": "cd0dba56e65258727124bf8fd56a5854a1c8b9d2",
+      "indexSha256": "4d3efa37bfeef23a4a192daf3d6a02239e9803d2ca407dec3d6af35b7e6fb661",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiPromptPlan.kt",
+      "testedWorkingSha256": "227df729a08a4fefca4efa8425c06c1709b60d6f550663974c3f1f82c043a15b",
+      "gitBlob": "05db7ec2090f1cd36f43903fa99feed61053c72c",
+      "indexSha256": "227df729a08a4fefca4efa8425c06c1709b60d6f550663974c3f1f82c043a15b",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiPromptPostProcessor.kt",
+      "testedWorkingSha256": "ce384181a98688bac26a28e6d9ee73ffe423740b267651891512a53a33f50b3d",
+      "gitBlob": "31cb6a9287f01a24ddea98c24ceb8806b62a945f",
+      "indexSha256": "ce384181a98688bac26a28e6d9ee73ffe423740b267651891512a53a33f50b3d",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiPromptTokenCounter.kt",
+      "testedWorkingSha256": "caf09f6b7355a702ec7b81f9bb122dc58d0d651034ea4a23a7f7c63d90db6790",
+      "gitBlob": "93971a9cc357ef7ab4488bb9ba5e5d6afa6a3ad7",
+      "indexSha256": "caf09f6b7355a702ec7b81f9bb122dc58d0d651034ea4a23a7f7c63d90db6790",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiPromptTranslation.kt",
+      "testedWorkingSha256": "28a8b1adf9b656e2e073405a8f0295e834f7633f6fe0b7fb6182d1e730baff5a",
+      "gitBlob": "b7c6fba315783c8f56e8abbf96013d0492b6fbec",
+      "indexSha256": "28a8b1adf9b656e2e073405a8f0295e834f7633f6fe0b7fb6182d1e730baff5a",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiPromptWordDictionary.kt",
+      "testedWorkingSha256": "9d2da602d96fb4b38d0bbf5241ee71541a65f9c3ca171d40858e32d6352c58ea",
+      "gitBlob": "1a995447d57362bf54f26e80ce867a62232746da",
+      "indexSha256": "9d2da602d96fb4b38d0bbf5241ee71541a65f9c3ca171d40858e32d6352c58ea",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiSqlDatabase.kt",
+      "testedWorkingSha256": "f9bf39721aedf0a410174ead4cadbfa0659efe30ddf2d5c245950fe02b9929e1",
+      "gitBlob": "97764f325275464bee0b275938f36fa767444483",
+      "indexSha256": "f9bf39721aedf0a410174ead4cadbfa0659efe30ddf2d5c245950fe02b9929e1",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiStreamFrameDecoder.kt",
+      "testedWorkingSha256": "e877856acca3f584e238cd6e1a6c962110c28731f01e8e6c00e76d6c55beff73",
+      "gitBlob": "d21b7819f68461dba0c5c8210f0b798c3546d57a",
+      "indexSha256": "e877856acca3f584e238cd6e1a6c962110c28731f01e8e6c00e76d6c55beff73",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiStudioImageImport.kt",
+      "testedWorkingSha256": "b5b74888eaed0cfc277da6489b203b392c299687f95a8844af5c92398f041987",
+      "gitBlob": "bf2c204d9e81865387e4bae08ba3d75a2e41c551",
+      "indexSha256": "b5b74888eaed0cfc277da6489b203b392c299687f95a8844af5c92398f041987",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiStudioModels.kt",
+      "testedWorkingSha256": "be02ded92c5a9116c398fb0ccb26857ef33452c535820ed68d9cf48846088a34",
+      "gitBlob": "1a225cf09c27632274b0a7de714c8adf592556cb",
+      "indexSha256": "be02ded92c5a9116c398fb0ccb26857ef33452c535820ed68d9cf48846088a34",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiStudioPromptClipboard.kt",
+      "testedWorkingSha256": "e0d08109f223ef5e426db3e471468b01561dd8c515ea48b2c3d3639c83491f8d",
+      "gitBlob": "d05159835b62cc581a66dfc889777e624bf04fcf",
+      "indexSha256": "e0d08109f223ef5e426db3e471468b01561dd8c515ea48b2c3d3639c83491f8d",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiStudioSizePolicy.kt",
+      "testedWorkingSha256": "11b36080ab8f85f9f2dc3d5b60199ecc9724569891e458c3c205fc52886d5b98",
+      "gitBlob": "646719f5dc785c29c11964a4507434792bad56a3",
+      "indexSha256": "11b36080ab8f85f9f2dc3d5b60199ecc9724569891e458c3c205fc52886d5b98",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiTagCompletion.kt",
+      "testedWorkingSha256": "6a1257d2a1148bf780c7f4e3968eda20b21800cd8cdbb17f0fe5ff460e63adf8",
+      "gitBlob": "c888dec0f3c6a9a9d2e87e961fbe95a57158b8e3",
+      "indexSha256": "6a1257d2a1148bf780c7f4e3968eda20b21800cd8cdbb17f0fe5ff460e63adf8",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiTagLookup.kt",
+      "testedWorkingSha256": "d18b765b424cd394ee5ff97f3f8799435cdc399c97d75e63cf972259a4711f82",
+      "gitBlob": "5df24bebac120c484606cf34e60b7010e86287e5",
+      "indexSha256": "d18b765b424cd394ee5ff97f3f8799435cdc399c97d75e63cf972259a4711f82",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiTagResearchService.kt",
+      "testedWorkingSha256": "a24206ae6c26f32bb739b45d32e4dba239afb21eec0e78bb9309071ed5f2795c",
+      "gitBlob": "0ca0ea97b09416f6a22778442fd644f94a3e7077",
+      "indexSha256": "a24206ae6c26f32bb739b45d32e4dba239afb21eec0e78bb9309071ed5f2795c",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiTagSuggestionService.kt",
+      "testedWorkingSha256": "d8413e144074fac613e9bb48761a3983fcbb5aa0fb2f3b3de831950a670fb72b",
+      "gitBlob": "f222a6c84da648bbd158644f89802e675c41c047",
+      "indexSha256": "d8413e144074fac613e9bb48761a3983fcbb5aa0fb2f3b3de831950a670fb72b",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiTextTransport.kt",
+      "testedWorkingSha256": "b2e7a6c178bdbe47e30469d722e6e8f88ff9484c64721cc9ceeee3da368f45a1",
+      "gitBlob": "9390950679924d8d1de80782f309112b1a9686ba",
+      "indexSha256": "b2e7a6c178bdbe47e30469d722e6e8f88ff9484c64721cc9ceeee3da368f45a1",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiUpscaleService.kt",
+      "testedWorkingSha256": "e8d72b75e38346f8975351170679895008434ffd0783928db4f2cf9592648645",
+      "gitBlob": "f60a7ededab8f4f5dd93b16a75342245dde314d6",
+      "indexSha256": "e8d72b75e38346f8975351170679895008434ffd0783928db4f2cf9592648645",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiV5TextPromptPolicy.kt",
+      "testedWorkingSha256": "7342d9abc2b9dda908365e93d45eb36a3e0e458fe08df0c133f9bef3f6a6c794",
+      "gitBlob": "c4df0a4a07127e3d70cef19350b087fae857bebe",
+      "indexSha256": "7342d9abc2b9dda908365e93d45eb36a3e0e458fe08df0c133f9bef3f6a6c794",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiVibeEncodingCore.kt",
+      "testedWorkingSha256": "77e7efb004691ef673c27ae1106e2a6e54b13b1d596af5eba71b7bda3f14b95c",
+      "gitBlob": "5fdc2d6e05dbe40a5a96505b41a657a43a4b2f3d",
+      "indexSha256": "77e7efb004691ef673c27ae1106e2a6e54b13b1d596af5eba71b7bda3f14b95c",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/PrivacyPngEncoder.kt",
+      "testedWorkingSha256": "9b1acae327d5a787017d33d42afebc81d72f5df848f41e49eb60daa0a50eb276",
+      "gitBlob": "07c48328d5be91ebb0034b5392cb3d91b0066273",
+      "indexSha256": "9b1acae327d5a787017d33d42afebc81d72f5df848f41e49eb60daa0a50eb276",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/ProcessedImageModels.kt",
+      "testedWorkingSha256": "24c9f8a4eaef70d217253c2e79a83473bb5684558ff4e831db1eb7beb3dad161",
+      "gitBlob": "57d218a7dbce657b5c3bd57c84903aab4f56f85d",
+      "indexSha256": "24c9f8a4eaef70d217253c2e79a83473bb5684558ff4e831db1eb7beb3dad161",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/RankedTagCompletion.kt",
+      "testedWorkingSha256": "36d3712a3a5f28af58455fc6890f996df1df3f9e6975cf657c9a8270c65ab025",
+      "gitBlob": "2392f313e9e9a95e1b4b1da18072e5616c008902",
+      "indexSha256": "36d3712a3a5f28af58455fc6890f996df1df3f9e6975cf657c9a8270c65ab025",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/StealthAlphaMetadata.kt",
+      "testedWorkingSha256": "9931c84dd6f49acc9affe33839517bf85b20d80b347230b9b976ccc84718ceb1",
+      "gitBlob": "41ab68901206cdbf1cfc1bebf9c4a5a50a050268",
+      "indexSha256": "9931c84dd6f49acc9affe33839517bf85b20d80b347230b9b976ccc84718ceb1",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/model/EffectiveModelResolver.kt",
+      "testedWorkingSha256": "9ae7743bac0b92341ebdbe5b83fd94654af0cfe71b817a9e5ded0161003abf21",
+      "gitBlob": "15fbab0c220ee0f8ee20e110cf9a8f62e04a90b9",
+      "indexSha256": "9ae7743bac0b92341ebdbe5b83fd94654af0cfe71b817a9e5ded0161003abf21",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/model/PresetModelCatalogSource.kt",
+      "testedWorkingSha256": "c1007ddb9211869add5763d93e7e829eceb28126565e25677713b4c83f66e702",
+      "gitBlob": "e6c01b69629049ae3acd67c3ab64a5d4888f03fb",
+      "indexSha256": "c1007ddb9211869add5763d93e7e829eceb28126565e25677713b4c83f66e702",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/model/PresetModelPolicy.kt",
+      "testedWorkingSha256": "c33b2e167f2d6d84a26a2de5c109728b3773c7551fd337dab8ab41b06d14136e",
+      "gitBlob": "f57ebd503656f5756aeba557f01e482610724dd8",
+      "indexSha256": "c33b2e167f2d6d84a26a2de5c109728b3773c7551fd337dab8ab41b06d14136e",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/prompt/AiTaskFailurePolicy.kt",
+      "testedWorkingSha256": "8b41e3aaf07edb0c0db9249d89aacac3994cb3aafd3b6260ff2a0e8e29b849ec",
+      "gitBlob": "a76649b1c4c8c04e47077a2bd3cfd3118b66085a",
+      "indexSha256": "8b41e3aaf07edb0c0db9249d89aacac3994cb3aafd3b6260ff2a0e8e29b849ec",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/prompt/AuxiliaryPromptAuthority.kt",
+      "testedWorkingSha256": "4ab4d1c0dde2f71f5b99723dbaf35894a23f4168e47f93326bfa70f2a7583554",
+      "gitBlob": "5c1e3933c048ab5b949284a1922efc4d9fc1ff66",
+      "indexSha256": "4ab4d1c0dde2f71f5b99723dbaf35894a23f4168e47f93326bfa70f2a7583554",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/prompt/CharacterNaiPromptDefaults.kt",
+      "testedWorkingSha256": "b54be396079c946274b18c41815ccee6f9a355183690648cd2afefe24f224563",
+      "gitBlob": "bba59ac8748a8feb6d55e5f3e28028ab10702013",
+      "indexSha256": "b54be396079c946274b18c41815ccee6f9a355183690648cd2afefe24f224563",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/prompt/NovelAiPromptAuthority.kt",
+      "testedWorkingSha256": "a0e0057dfec51b89eb8c92d2891865a5f865d6add2860c0f0b7fadbc9aef01da",
+      "gitBlob": "f845dde46567779d3b5ebb0f6f614146f61878d3",
+      "indexSha256": "a0e0057dfec51b89eb8c92d2891865a5f865d6add2860c0f0b7fadbc9aef01da",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/ProxyAwareClient.kt",
+      "testedWorkingSha256": "23ccc973c67bf474141682c321129bcd5c046cddfb31c04ba0b2b838d19d2876",
+      "gitBlob": "31cccd9ea49acf4bb70bf9923198ca3a39e86729",
+      "indexSha256": "23ccc973c67bf474141682c321129bcd5c046cddfb31c04ba0b2b838d19d2876",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiCharacterEnabledTest.kt",
+      "testedWorkingSha256": "62ba5b3279c86928f0851c02d4ae88a6dc672c4f54b9061b743537c193cfc6ca",
+      "gitBlob": "ec74576036209c647e9e7c437ecfee0313b50186",
+      "indexSha256": "62ba5b3279c86928f0851c02d4ae88a6dc672c4f54b9061b743537c193cfc6ca",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiCharacterPositionTest.kt",
+      "testedWorkingSha256": "b0da630f3d094a0cefa1ff9da3925e065216f42fa205621433b99db33531365e",
+      "gitBlob": "70a03284b8a6ee9a300196319456d1dc8722b1f4",
+      "indexSha256": "b0da630f3d094a0cefa1ff9da3925e065216f42fa205621433b99db33531365e",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiDesignerTransportTest.kt",
+      "testedWorkingSha256": "3b00b66d0bbd96663da9951be8f1c00554b1cc1d7a86f39396ea3e63cb3f6319",
+      "gitBlob": "55f7248afda9d540b1bf8bf114a2df35e1eb9740",
+      "indexSha256": "3b00b66d0bbd96663da9951be8f1c00554b1cc1d7a86f39396ea3e63cb3f6319",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiImageGuidanceTest.kt",
+      "testedWorkingSha256": "b1ea40fddbdbad6b1e172d7f260a5d91d600eeb73376677928bb46138f3a0b33",
+      "gitBlob": "3f0d32ffc6addf6f359e0090610d0e14bd92bb04",
+      "indexSha256": "b1ea40fddbdbad6b1e172d7f260a5d91d600eeb73376677928bb46138f3a0b33",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiImageModelResolutionTest.kt",
+      "testedWorkingSha256": "4803ae144ae2ab63a17f4d88456ab8552ce7be4436430a59da11a60485471a7d",
+      "gitBlob": "6c94f86496036de7096de07eda6b0bbe2f1d0ef5",
+      "indexSha256": "4803ae144ae2ab63a17f4d88456ab8552ce7be4436430a59da11a60485471a7d",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiImageRetryTest.kt",
+      "testedWorkingSha256": "537834c974c8958c2e4e4ea981f7225f3d444bae052b46555765592e41d8bba4",
+      "gitBlob": "ce292930e90ae86ee9a9fa2f7e16dd13426fcd05",
+      "indexSha256": "537834c974c8958c2e4e4ea981f7225f3d444bae052b46555765592e41d8bba4",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiPngMetadataReaderTest.kt",
+      "testedWorkingSha256": "7c222be55d620de1b3091f5f4c57206f130eda2826f30c805f7a198b897cf81d",
+      "gitBlob": "4008750b499a4390ca85cc1cfb452801225f9fd1",
+      "indexSha256": "7c222be55d620de1b3091f5f4c57206f130eda2826f30c805f7a198b897cf81d",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiPromptPostProcessorTest.kt",
+      "testedWorkingSha256": "c511bf297a1d7eeb4863aa53f7c8e28c7b805395a8bcb1ea3cd2b87789e13c00",
+      "gitBlob": "021623453fa35b95fc311ffa8d611e639fd6d05c",
+      "indexSha256": "c511bf297a1d7eeb4863aa53f7c8e28c7b805395a8bcb1ea3cd2b87789e13c00",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiStudioCustomSizeTest.kt",
+      "testedWorkingSha256": "bb61fdb5a45348afcf9388c81a3c85ea012cfa1696b3320040a3acceb9da45ae",
+      "gitBlob": "cb6b7db75a2e6d8776208b4b43769afbe966810d",
+      "indexSha256": "bb61fdb5a45348afcf9388c81a3c85ea012cfa1696b3320040a3acceb9da45ae",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiStudioRequestTest.kt",
+      "testedWorkingSha256": "30e3f174afaa1a61bb8d95316b463ef23ad774cbf0c3b7e92f4ca92df068fa5b",
+      "gitBlob": "d0b632e27ec02acdcf8bc2bfd2a819a6b6523786",
+      "indexSha256": "30e3f174afaa1a61bb8d95316b463ef23ad774cbf0c3b7e92f4ca92df068fa5b",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiTagCompletionTest.kt",
+      "testedWorkingSha256": "cea09cb11a1cfd86a7e7de12d94e5097b5b3ca4ad81971916dc396efc4dfd5a8",
+      "gitBlob": "9edf3f971e1259673c5f06b256180a5528232d11",
+      "indexSha256": "cea09cb11a1cfd86a7e7de12d94e5097b5b3ca4ad81971916dc396efc4dfd5a8",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiTagResearchServiceTest.kt",
+      "testedWorkingSha256": "a8a5db39c7def550e620385f43e601ff50af58b86132f69b8df1c90204da52bb",
+      "gitBlob": "04d1a4037f76de764f876f06d3e118144fbaa1b8",
+      "indexSha256": "a8a5db39c7def550e620385f43e601ff50af58b86132f69b8df1c90204da52bb",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiTagSuggestionServiceTest.kt",
+      "testedWorkingSha256": "5085333325a9a6955fa981298961a0c7bcac6a2a297f912ed4fefd4b42eb94f2",
+      "gitBlob": "9603cec3aed7f002a2346900169396330a911782",
+      "indexSha256": "5085333325a9a6955fa981298961a0c7bcac6a2a297f912ed4fefd4b42eb94f2",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiV5TextPromptPolicyTest.kt",
+      "testedWorkingSha256": "7a116d477594827c489a1e7ae12f6d35ef56a1d6b7fff7fe3b69dcaaed0e2adc",
+      "gitBlob": "e19e2bd475b8b00b75603d0bf6c68fbec50afe0e",
+      "indexSha256": "7a116d477594827c489a1e7ae12f6d35ef56a1d6b7fff7fe3b69dcaaed0e2adc",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/PrivacyPngEncoderTest.kt",
+      "testedWorkingSha256": "0939d35bb0e253c376b6dce59783e0896d133d6c14f7e54ef236e0387ddbf693",
+      "gitBlob": "c791fcfaadc2731ef05d57ca506fe7b7a63baf43",
+      "indexSha256": "0939d35bb0e253c376b6dce59783e0896d133d6c14f7e54ef236e0387ddbf693",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/StealthAlphaMetadataTest.kt",
+      "testedWorkingSha256": "952b50fbb5ef87d1fb566e6c22acf86e4b166f64c096b67fe7343d5d86d90cce",
+      "gitBlob": "1016b15f21da70963b252683fe8fa10a7a0010cd",
+      "indexSha256": "952b50fbb5ef87d1fb566e6c22acf86e4b166f64c096b67fe7343d5d86d90cce",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/image-authority/src/test/resources/fixtures/novelai_v45_precise_payload.json",
+      "testedWorkingSha256": "b23fb790408e96dcf428b954ba6588125bce5a1737dcb8c059f15a62bd6874db",
+      "gitBlob": "75b3cb8b952055c902cf1ee7775d30084021561e",
+      "indexSha256": "b23fb790408e96dcf428b954ba6588125bce5a1737dcb8c059f15a62bd6874db",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/build.gradle.kts",
+      "testedWorkingSha256": "26ad9f6d6e694a6d8da124e404bb753c722fc6a97d894deb8ca4dd48ea35d0e6",
+      "gitBlob": "076abcd5f945450c8bbf58002a51a7808361759b",
+      "indexSha256": "6de2bcc4e558e05b65f4d94b56c519e8e1b90317859aa7acab46c47665b6a23e",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/com/example/chatbar/domain/image/NovelAiHistoryFolding.kt",
+      "testedWorkingSha256": "3590b24da85bb9c6fb7f987d4f3d46094837bfb5522d9997b3901b8aca4b8627",
+      "gitBlob": "08b354b5ad963ef4ad8fa58274ea702fa6799220",
+      "indexSha256": "3590b24da85bb9c6fb7f987d4f3d46094837bfb5522d9997b3901b8aca4b8627",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/com/example/chatbar/domain/prompt/AuxiliaryMessageAssembler.kt",
+      "testedWorkingSha256": "2dc99b7f9fcd851927d140f603d248cd59c6434a9ee27a9c4a3ad76c55d7700e",
+      "gitBlob": "fb151ce7d5030bf67ed1857d621b44dc5e18da84",
+      "indexSha256": "2dc99b7f9fcd851927d140f603d248cd59c6434a9ee27a9c4a3ad76c55d7700e",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/com/example/chatbar/ui/imageprompt/NovelAiHistoryFilter.kt",
+      "testedWorkingSha256": "5dea9bdcf5841c1fc6e95da2e642d5d7561005c9dc7851bab99147ec7bff47af",
+      "gitBlob": "4a51c44bab41240b1ae8a43fcb9ae1e981251808",
+      "indexSha256": "5dea9bdcf5841c1fc6e95da2e642d5d7561005c9dc7851bab99147ec7bff47af",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/AssetArchive.kt",
+      "testedWorkingSha256": "868bf3d55d3d970075ba35d7e596e9465e553fe1a5ae7d0024e4a4c8d89407f4",
+      "gitBlob": "27807305901d7180b55ffcbb86f8dd056a52c47a",
+      "indexSha256": "868bf3d55d3d970075ba35d7e596e9465e553fe1a5ae7d0024e4a4c8d89407f4",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/CreationSession.kt",
+      "testedWorkingSha256": "4e6e28ac1c5000686cff84efe1d7add2df412f108dd9cd4daa0d36022197b14f",
+      "gitBlob": "c6fd0761fdae084602de5d0f388d7a2e828c9496",
+      "indexSha256": "4e6e28ac1c5000686cff84efe1d7add2df412f108dd9cd4daa0d36022197b14f",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/DesignProvenance.kt",
+      "testedWorkingSha256": "7440caf111644ed195e7a53aeceebd5a4137f8d5c54cd7334ea363775abd8ec4",
+      "gitBlob": "25a3dccd6e0913abdacff72dba31b5bab02be46f",
+      "indexSha256": "7440caf111644ed195e7a53aeceebd5a4137f8d5c54cd7334ea363775abd8ec4",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/EditorRenderer.kt",
+      "testedWorkingSha256": "61ca5d6e4cf19de58c50a11c993d1c9874b3e55955e498662b0dc8a10376f3e9",
+      "gitBlob": "3953ba6ea649c9bbcb2076f2d4bb6441710e43b8",
+      "indexSha256": "bef4bfff27105fdf72d85b873cb1e8edf7124b5b39b9ff5852626cb45aef3d05",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/GalleryHistory.kt",
+      "testedWorkingSha256": "7282b00159e8500116dbe391acd09f459c996df452eb53c8016da57e32a071d9",
+      "gitBlob": "486faf02b425daab31294c26af40c13dafe24994",
+      "indexSha256": "7282b00159e8500116dbe391acd09f459c996df452eb53c8016da57e32a071d9",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/Generation.kt",
+      "testedWorkingSha256": "9a6ae0aa0b6a3cd320e18a034290b407161d1876876e8ee7a0677c2a41d38a3f",
+      "gitBlob": "ebd8a02fe2fe223784fbca645a099505f713d8de",
+      "indexSha256": "9a6ae0aa0b6a3cd320e18a034290b407161d1876876e8ee7a0677c2a41d38a3f",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/ImageCardSource.kt",
+      "testedWorkingSha256": "5f8931c675258f228cb3956b59974031377a35a9a62cce3621e8951222897bf5",
+      "gitBlob": "8994595c8914a3c7800c31720abd3289b291df6b",
+      "indexSha256": "5f8931c675258f228cb3956b59974031377a35a9a62cce3621e8951222897bf5",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/ImageFormats.kt",
+      "testedWorkingSha256": "422b371f7214d88cbe006b27ec46cf3099273818ea13b08b03545ea2ef672259",
+      "gitBlob": "8d6f802cc0dce9df466aa37bdb529fc0c444ef5c",
+      "indexSha256": "3e1b4200807ed38d01cd1230f8e36c3193e8e0bece277e5b450c5e6b6ee01c01",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/ImageOrigins.kt",
+      "testedWorkingSha256": "a9ab302d0519123f0ee1fdd70df694584b950994ce69029fe0b35f1a116695d3",
+      "gitBlob": "55283a1c24e639e6162446794e32d0d16f6ce1c4",
+      "indexSha256": "a9ab302d0519123f0ee1fdd70df694584b950994ce69029fe0b35f1a116695d3",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/LibraryDirectoryMonitor.kt",
+      "testedWorkingSha256": "032aeb9b552ec3429acf7283ac6c5d6561ebe3a03abd37c7d9acc6df3cba28aa",
+      "gitBlob": "01743154e484d4f1f88eb935dedfc8762589aaee",
+      "indexSha256": "06bf8257a01544ab34966ec5d3774d87656d6340092620f5f430723bd03d492c",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/LibraryRepository.kt",
+      "testedWorkingSha256": "34fdac23733276064c7e7a969633506e6e081361d538e41698a7974d4ec7010f",
+      "gitBlob": "c820e2ac9b87152a7d233aefd7861eaedeef3408",
+      "indexSha256": "67889cded8df56495db6e0c197625c09fadb6905826d7a69ee234865925fe616",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/LiveRequestBudget.kt",
+      "testedWorkingSha256": "fb3eec0bbd79ae2b093e801c9604aaa01d4818010bc871ecc172ef3080b73548",
+      "gitBlob": "e99fe068c88251d0ebb59b6363a8f72be65c768f",
+      "indexSha256": "fb3eec0bbd79ae2b093e801c9604aaa01d4818010bc871ecc172ef3080b73548",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/Models.kt",
+      "testedWorkingSha256": "1d830b83dc6129a7bf396ef848b77bfbdabf66e088c30a1c14047de91ec1d6b0",
+      "gitBlob": "736fee25a0279a6834fc792da1c7e34065510ab3",
+      "indexSha256": "e7f132ee02c8bbb94dcbc01dcacdab8c49b4045fa2950a8bbbec2748361fa9a7",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/NativeFontMetrics.kt",
+      "testedWorkingSha256": "29e3b3da4d9053a9011cde89c2cb09eb5b9ead48cfcd6790c4faef9ae1457cd5",
+      "gitBlob": "eaef58842e848ba975a71b6df81315021a2da385",
+      "indexSha256": "29e3b3da4d9053a9011cde89c2cb09eb5b9ead48cfcd6790c4faef9ae1457cd5",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/PngFieldInspection.kt",
+      "testedWorkingSha256": "84c198bfce1fe0088518cdcd0973eb27267b258a51793145d63aacc14f1ff9b8",
+      "gitBlob": "b892b411e759a0d416be0dda9fda5644ad728e4e",
+      "indexSha256": "84c198bfce1fe0088518cdcd0973eb27267b258a51793145d63aacc14f1ff9b8",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/PromptReferences.kt",
+      "testedWorkingSha256": "3da0b9c9da396b5ecdb3c8a1bf9b8c5321982d3cb05fe8d0d18e5729f89e92f7",
+      "gitBlob": "86a6c5bb5422882322d41180abc9103c8f584cda",
+      "indexSha256": "1d0bc2dee7607fd67acafbc2f8fcfd3a5d5a46e40e3ac1ffd5b8914c149afb14",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/RecipeComparison.kt",
+      "testedWorkingSha256": "109f8ecfc674609b04aeed4287df10a0064ddca1e8f5fe7da9ac3f57ff22f64f",
+      "gitBlob": "6e092b8dfe470b4ec16fde81557991b220ac610f",
+      "indexSha256": "74030c29b577deaa8657cfcf1635d868ad198f7f9d47cfeab04c8239c820b6eb",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/RecipeDraftSelection.kt",
+      "testedWorkingSha256": "300d99723e4470b9d3202d0c1221bd02cc83fabf2b4d23fbb87a3baf600ea9d2",
+      "gitBlob": "6fd0ecb137a7b7c8149adac42d94249a52b074fc",
+      "indexSha256": "300d99723e4470b9d3202d0c1221bd02cc83fabf2b4d23fbb87a3baf600ea9d2",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/RequestEvidence.kt",
+      "testedWorkingSha256": "c3b6ec8dc8158e45d3eae88bb399311780adecc062f2c539befff2f5cb99baf8",
+      "gitBlob": "085cf78d78d65299dbf5b5bc6a38d0c8757f047b",
+      "indexSha256": "c3b6ec8dc8158e45d3eae88bb399311780adecc062f2c539befff2f5cb99baf8",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/SecretVault.kt",
+      "testedWorkingSha256": "55b63d287a29e663ef46fef6b1444e31e074d83c9d484b67fead59a56d21cd03",
+      "gitBlob": "eda037d9d3a5f866afd5e86bc46a557380bde439",
+      "indexSha256": "55b63d287a29e663ef46fef6b1444e31e074d83c9d484b67fead59a56d21cd03",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/SharedAssets.kt",
+      "testedWorkingSha256": "9869c32738463af8c8dd0487add128f7a06b7350e479053e2ac2a08b33b59c01",
+      "gitBlob": "e636f510e3ed00bfc19570a4e729d983401f7179",
+      "indexSha256": "61dbe02ed8b0e1f26787d151741ead31d77a73c7170b921143dd3e7d43c00365",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StateJournal.kt",
+      "testedWorkingSha256": "dd8c7ca7412b2ec583ed4d416b097af5e68b21873f9ccad91f6eaa2f3a684b71",
+      "gitBlob": "8661c66ab94715015cdeb90dc06a618dc0dc2e54",
+      "indexSha256": "dd8c7ca7412b2ec583ed4d416b097af5e68b21873f9ccad91f6eaa2f3a684b71",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioMigration.kt",
+      "testedWorkingSha256": "7c209e705bd0a6a043026aae25ff6001456e82e4610103838ba8121486ff06b0",
+      "gitBlob": "05837abd5d6a0d25bd2f85711bae03ef75e4af09",
+      "indexSha256": "7c209e705bd0a6a043026aae25ff6001456e82e4610103838ba8121486ff06b0",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioRestore.kt",
+      "testedWorkingSha256": "adc8a0e2a0d35de1c75e0b1fd8bbbefc6297f8b5d661b4d365b27c8506d7cd10",
+      "gitBlob": "54203927526896d5e9ee5acd493aa32b3601c317",
+      "indexSha256": "98d92e7026b7a88c8c38c3724e9aeaa515782c42a02672c8a58a92d9d6b37876",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioTextTransport.kt",
+      "testedWorkingSha256": "901152d21dbf65e2e861d00b2b7e0a8ea38af9f4d8d9dc99df3f43ee54a89a82",
+      "gitBlob": "b99ab9ec2682a06f6d0e47e725daa408d903793d",
+      "indexSha256": "901152d21dbf65e2e861d00b2b7e0a8ea38af9f4d8d9dc99df3f43ee54a89a82",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioWorkspace.kt",
+      "testedWorkingSha256": "b9719799968ba6e882dd26772c3fa86817f315e8ac3a8dae7f7494b98be7ce8f",
+      "gitBlob": "0452115202a4579a620595768b81bf864a682e53",
+      "indexSha256": "c5cd48896698a2d06690599daaa03466574c16e35dd0f50450235264a40432ca",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetBatch.kt",
+      "testedWorkingSha256": "b7a8423cfc2ef55109a2bbe8d868493c7aa69f180102082f639e95223a787b6d",
+      "gitBlob": "8decc219ccc5336b8c527c313a8af75b1724c12d",
+      "indexSha256": "d782143c5a3466eb58ff1b37e3417a2fabdd07d0dd7e10cb35173940bdc74900",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetBook.kt",
+      "testedWorkingSha256": "f0175a64909f664fe7e7452f70aeacde04c61f10de1cc12b2ac6bca27a8dff38",
+      "gitBlob": "1988c31d6ba1c1eb2a5948fd90fd68aa0432ffbe",
+      "indexSha256": "f0175a64909f664fe7e7452f70aeacde04c61f10de1cc12b2ac6bca27a8dff38",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetColors.kt",
+      "testedWorkingSha256": "ae0a772cf2db0cd35e813893113893d6135182ddd71dd2f1d8398d52e6383684",
+      "gitBlob": "f61f875540bdf6c9ef2b63c827b9eaf8c2bb5c99",
+      "indexSha256": "ae0a772cf2db0cd35e813893113893d6135182ddd71dd2f1d8398d52e6383684",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetDocument.kt",
+      "testedWorkingSha256": "59e9f50e899a7d8b6b33788bee1da9a0bfc572207a8bad65024192fa66e61d12",
+      "gitBlob": "a31a1ba27d6c752e67fa5edab72f83fa314f92fa",
+      "indexSha256": "2d6e8eab2cbef95b331177769158e5c095850f1d944677e28f549dcd2f0a51eb",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetEditRecipe.kt",
+      "testedWorkingSha256": "2877d1e4be8c815ccdc0e83e046ab927d036155c0decf844d2ed8824c3ecdda2",
+      "gitBlob": "42861a18138f33278e7d5ec6a0c86a614e7eb2a8",
+      "indexSha256": "2877d1e4be8c815ccdc0e83e046ab927d036155c0decf844d2ed8824c3ecdda2",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetExport.kt",
+      "testedWorkingSha256": "8c318ee8703b989a7c03edd29e77e5a03cc408110f0a9dc575becf1104e01402",
+      "gitBlob": "ff4cdd39543da8df8756bf452b745dc1df8ea39a",
+      "indexSha256": "e466c72975a7c87b41e7f054cbbd30d83eaf57a1495e8b36c78345129a6d5003",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetFonts.kt",
+      "testedWorkingSha256": "4791b252827dbde294d8797a9ceee23d388f0c14564a516f906a599104dade5c",
+      "gitBlob": "77017c1e9b16fe9cc69fcaf005b84515c308b040",
+      "indexSha256": "4791b252827dbde294d8797a9ceee23d388f0c14564a516f906a599104dade5c",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetImage.kt",
+      "testedWorkingSha256": "30951ff945595a9aca98db15d9062fc5892fa6b26211df3a6181c0d7017ef7dd",
+      "gitBlob": "f5a4061555995222cfc9a2fd7dd4baafeccdf835",
+      "indexSha256": "1a9cf4b0aa607535d4360bfd4f3d8be63b5b33769223f3a397b985abfe462199",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetLayout.kt",
+      "testedWorkingSha256": "03b7bf522caad950571296602153ec8da6796c41036e634b71d36af9994e7419",
+      "gitBlob": "7bf8b7a0d01fadc3756e2ed7d5d125c8ef053861",
+      "indexSha256": "03b7bf522caad950571296602153ec8da6796c41036e634b71d36af9994e7419",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetMaskRenderer.kt",
+      "testedWorkingSha256": "b6d03aca60903b46b8ddbd3a96907bde1e990271ca2eb81b9961e8db13db52df",
+      "gitBlob": "abdad55beb190733963743d7d8f5bb0536238bfc",
+      "indexSha256": "960ae65103393c0533be129b8e26dfe776f454026cf5063227ca0435723c7afa",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetObjects.kt",
+      "testedWorkingSha256": "d3fd8164521916c82b629a2a8d3a241251af0af90fb355f89285919bb71f2fb0",
+      "gitBlob": "458ed918612f342c7e2a8fda4b00b456f0d9a3c8",
+      "indexSha256": "d3fd8164521916c82b629a2a8d3a241251af0af90fb355f89285919bb71f2fb0",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetPngMetadata.kt",
+      "testedWorkingSha256": "26e555d509b208672674a4e2026face2dba99a4aec19a2858830fcaad69e2786",
+      "gitBlob": "a9fb11dfeec4dd605530acc00cffcc7ab7d6ebf1",
+      "indexSha256": "927b386308ccf366fbe8384c2892a5533c32d7170d95ed7b038ceba604f7b9d3",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetPreferences.kt",
+      "testedWorkingSha256": "1679288e7aa87830da7dce8b22e5db6c562b4243543428b1af7a56d1f0f75094",
+      "gitBlob": "cbf620b5575aad911056c56853e6679769189702",
+      "indexSha256": "3e3cb9292cb1c0014cf1476a953052b25445314181ad3627e82b9b0080c21763",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetQueue.kt",
+      "testedWorkingSha256": "b98d77411a7777ba8ff7ff4afd7e3ef939d8dc971c97fab40c50f67f70001d6b",
+      "gitBlob": "0590ec0b404e565595e4c32de95bf5d50a567671",
+      "indexSha256": "b98d77411a7777ba8ff7ff4afd7e3ef939d8dc971c97fab40c50f67f70001d6b",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetRenderer.kt",
+      "testedWorkingSha256": "5513285f42fcc20c8268958bc63c1a6ca98da9dc4d292e716b31b8907b572f88",
+      "gitBlob": "36f42b9a3dc18b47de3b4ccccdf08db4a5d14642",
+      "indexSha256": "7db61bda371f6536ca394f4fb3b1b4f385177604ae50f7b205ce078ab54e6eb1",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetRepository.kt",
+      "testedWorkingSha256": "4f019d93a16ad71322b956b6e516e1d005c03b7748dc83cbf9112814459845f0",
+      "gitBlob": "9a371e6fe1c54ea01f345e081750985914ac3cea",
+      "indexSha256": "fccd7ba2432d7789f3f8248f2e8da873cb9016aa5a5f6c1f7125e482b683506e",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetSourceExchange.kt",
+      "testedWorkingSha256": "038836fe28473fd2a85200261ea9699dead99e4a7160fa4a89ad5189880aa028",
+      "gitBlob": "244d53c06ffc6b11b1774ae2e1344e9329ca5f90",
+      "indexSha256": "38661ba3fcfde152d8b79bca0201f17791598ec097243552cf1e9e6eccb058aa",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/WindowsFontDecoder.kt",
+      "testedWorkingSha256": "730e4d9d35c2e4d5bfe0dedb531a7515f0d6ab3557484db08e04d0ca324cf2d1",
+      "gitBlob": "2a972539872bde06cf905d08e3b9649f3c5249d2",
+      "indexSha256": "730e4d9d35c2e4d5bfe0dedb531a7515f0d6ab3557484db08e04d0ca324cf2d1",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/resources/danbooru/catalog.json",
+      "testedWorkingSha256": "5676e502a20e93e3fbc81b6b89d59647cb857f2851438d7e296e574ebb4f1e60",
+      "gitBlob": "235bbb6177b2865c0b716986588f543e7cf48901",
+      "indexSha256": "5676e502a20e93e3fbc81b6b89d59647cb857f2851438d7e296e574ebb4f1e60",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/resources/danbooru/tag.sqlite.bundle",
+      "testedWorkingSha256": "2399aebb4ce8400774b2d39f93fffd85c29720b00890b0e8b643590ffb7fec12",
+      "gitBlob": "f97cdebe3e187ca2a831efed5dfa4dd219a43960",
+      "indexSha256": "2399aebb4ce8400774b2d39f93fffd85c29720b00890b0e8b643590ffb7fec12",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/resources/licenses/danbooru_tag_catalog.txt",
+      "testedWorkingSha256": "2617c1c85042f06f4a48eedab9401fa35638ffe5e2b2ceeeaa8004b42b3cfcb2",
+      "gitBlob": "8017e43dca87e5b14de108098bb48d40510ccd5e",
+      "indexSha256": "2617c1c85042f06f4a48eedab9401fa35638ffe5e2b2ceeeaa8004b42b3cfcb2",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/resources/licenses/prompt_translation_dictionary_LICENSE.txt",
+      "testedWorkingSha256": "8cda17ab679670e8102ab05b8d0daf8f8d48b0bc9efc84e8f84d3fcc9d4cdd80",
+      "gitBlob": "41883545628b1af2f5babcffe41cbd1c44ffc409",
+      "indexSha256": "8cda17ab679670e8102ab05b8d0daf8f8d48b0bc9efc84e8f84d3fcc9d4cdd80",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/resources/presets/novelai/nai-codex-v1.json",
+      "testedWorkingSha256": "5fd6fa227dac392530fdda689ec8648633f75790edea1889603edfa3b6209b9a",
+      "gitBlob": "25fe389574ef5db082670bcffbbb47c7a5fc947d",
+      "indexSha256": "5fd6fa227dac392530fdda689ec8648633f75790edea1889603edfa3b6209b9a",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/resources/prompt_dictionary/ecdict.sqlite.binz",
+      "testedWorkingSha256": "3388e2e5b083c870f4dae9f2f03b4464289e0111b331ae39b8d0b4b68ffe2a90",
+      "gitBlob": "9da08f49388be408c102cd254e8086f167b803e2",
+      "indexSha256": "3388e2e5b083c870f4dae9f2f03b4464289e0111b331ae39b8d0b4b68ffe2a90",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/resources/prompt_dictionary/metadata.json",
+      "testedWorkingSha256": "84d300b1180040d263fc4386f66df413159780d120097e85f5a497da0d7c2330",
+      "gitBlob": "788b423bc86e8a262a80360623ec7307732ef841",
+      "indexSha256": "84d300b1180040d263fc4386f66df413159780d120097e85f5a497da0d7c2330",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/resources/tag_completion/danbooru.json",
+      "testedWorkingSha256": "bb8ec045091b8207718877e6266ead10216de57830efa4c8917d031ea50913a3",
+      "gitBlob": "8b7b217085d0ad2cddeecd1e46d23ccaeb64db95",
+      "indexSha256": "bb8ec045091b8207718877e6266ead10216de57830efa4c8917d031ea50913a3",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/resources/tag_completion/danbooru.sqlite.binz",
+      "testedWorkingSha256": "28f600c62023b32a7aa2bd9195a4c9d2f0551736c277a2db19a65b4479f0c955",
+      "gitBlob": "8b8afc092e74347ac0ee657fec73c87305b42f7b",
+      "indexSha256": "28f600c62023b32a7aa2bd9195a4c9d2f0551736c277a2db19a65b4479f0c955",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/resources/tag_completion/dictionary.json",
+      "testedWorkingSha256": "f45c7c547fc713120acdc0c350b9c9f92965ac389d43172f802cf13288420958",
+      "gitBlob": "c1ffa31b3aed89a1572288725844eb6458289503",
+      "indexSha256": "f45c7c547fc713120acdc0c350b9c9f92965ac389d43172f802cf13288420958",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/resources/tag_completion/dictionary.sqlite.binz",
+      "testedWorkingSha256": "1ef38c8fc640b62f1e1b6263c80cd01ce937eb755748f7925ce5f017218ba215",
+      "gitBlob": "84c78314f5c943cafe11da5b181c83f4a1effc42",
+      "indexSha256": "1ef38c8fc640b62f1e1b6263c80cd01ce937eb755748f7925ce5f017218ba215",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/resources/tokenizers/nai_qwen35_v2.binz",
+      "testedWorkingSha256": "13faa3bd859af6b053728ef79a8f723f6fbc7b5a7956b68fb8f245db9bd37902",
+      "gitBlob": "9660180d9f1faa4337e229140e0ebdc8765410ba",
+      "indexSha256": "13faa3bd859af6b053728ef79a8f723f6fbc7b5a7956b68fb8f245db9bd37902",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/resources/tokenizers/nai_t5_v2.binz",
+      "testedWorkingSha256": "2d3b41f16434fca97b55757b6a94f2599f5ddb8bad217cfc7d2119e2d50134dc",
+      "gitBlob": "9dcaeac3d00ec4659a9486f2afcc60e57e5a6cf6",
+      "indexSha256": "2d3b41f16434fca97b55757b6a94f2599f5ddb8bad217cfc7d2119e2d50134dc",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/main/resources/typeset/css-named-colors.json",
+      "testedWorkingSha256": "4fe3585d7454204d9e47b64df861d2a43ba0805e22f274240e1063d06dde1976",
+      "gitBlob": "c3d3e101843da6e1a9258096b0473b7538436b40",
+      "indexSha256": "02c347487d439770060574ccabb2d7957ebc218599617753d11587569c6a1e8e",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/com/example/chatbar/domain/image/NovelAiHistoryFoldingTest.kt",
+      "testedWorkingSha256": "9b90a736b2b15ea37436b8162d157cb84788f2a523ff84d9dc3494c355f9963a",
+      "gitBlob": "67d77a09ee164806512f70b5d798b2882e33ec03",
+      "indexSha256": "9b90a736b2b15ea37436b8162d157cb84788f2a523ff84d9dc3494c355f9963a",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/AssetArchiveTest.kt",
+      "testedWorkingSha256": "c55b216ea6a6cf0ce8e51fa1d9203f85fc2bb077e4fb169b4d3f6ee68259b4f9",
+      "gitBlob": "d429f3dc908e085edb6043c17a3ce8c9766eae97",
+      "indexSha256": "c55b216ea6a6cf0ce8e51fa1d9203f85fc2bb077e4fb169b4d3f6ee68259b4f9",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/CreationRuntimeTest.kt",
+      "testedWorkingSha256": "d59306f15900e3af81fed6e18fe323b28d70f2a5d79baa6c4cbe5ad039ec21e0",
+      "gitBlob": "16c1a5b06706245603bb0b1735a1fa8cafe07296",
+      "indexSha256": "d59306f15900e3af81fed6e18fe323b28d70f2a5d79baa6c4cbe5ad039ec21e0",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/DesignProvenanceTest.kt",
+      "testedWorkingSha256": "caeaac97def25425abe1cb4739c2accfa65bdc9fb47386185f6023c61451c48a",
+      "gitBlob": "4cd9adf96172418d62f7927ab7e3f45a39c7eb75",
+      "indexSha256": "caeaac97def25425abe1cb4739c2accfa65bdc9fb47386185f6023c61451c48a",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/GalleryHistoryTest.kt",
+      "testedWorkingSha256": "bbd99eb0024db860136d4efb0ced05da0830bea1e5046e959be0d17167cd4649",
+      "gitBlob": "2b76c610c20c326a56b11614c6d3c6a0cd51d101",
+      "indexSha256": "bbd99eb0024db860136d4efb0ced05da0830bea1e5046e959be0d17167cd4649",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/ImageFormatsTest.kt",
+      "testedWorkingSha256": "a14af35740c1f6fe37fbaebf446b3091b44e45dacb0b815330e9a6fb9c01bdd2",
+      "gitBlob": "e51fa12949d2a46738e7d6384e052744e3b202b4",
+      "indexSha256": "46cfaee4887781e706861991b28ad2ab399601cfeecbb3cf49d36e1386f96a20",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/ImageOriginsTest.kt",
+      "testedWorkingSha256": "b7709b53184e04b5421469758fc3720ef71024022b8b898602e4e6ac83ee9d7f",
+      "gitBlob": "aedce9d3bfc0689b852cfc41281ebed8ced9420e",
+      "indexSha256": "b7709b53184e04b5421469758fc3720ef71024022b8b898602e4e6ac83ee9d7f",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/LibraryCollectionTest.kt",
+      "testedWorkingSha256": "ba592f0e1a6e1d07a983a601fcc083640e819147b4b94eb2a03dda31c8047f89",
+      "gitBlob": "2e56f3a3cae43524cecf50fb9370c93fcbed5316",
+      "indexSha256": "e796e29d8aededdd70a208bbc7d1c7565b150f0cfde89f7fe844bedcfb8c5358",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/LibraryRepositoryTest.kt",
+      "testedWorkingSha256": "4193f4dec9b422d497282a453fbec5e147beb3fe9d8ee76fa52bc7e590418b05",
+      "gitBlob": "797f561074cea7497880d49eacee496913555674",
+      "indexSha256": "a950c9b098036010706534b68d88978d047c3d8ded904ac35e0fcf1ce8f946a2",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/LiveProbe.kt",
+      "testedWorkingSha256": "69cd115193090c22989b7b90361a00e0ec4f77761ed7a67a6ce0f16109713afa",
+      "gitBlob": "e13e6b97f1464bc484f1e8237bf2bb373bca6cee",
+      "indexSha256": "7351018593151e09c12ce77e00788840135f89a523aa908c8a26dc3b66101f48",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/LiveRequestBudgetTest.kt",
+      "testedWorkingSha256": "3e56974576de71cdf73d023b9167a788e84b42bc6f21c081b27c11a2bde59475",
+      "gitBlob": "1675d42df630b0d2b36bb1431a7cbedac771cb29",
+      "indexSha256": "3e56974576de71cdf73d023b9167a788e84b42bc6f21c081b27c11a2bde59475",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/PngFieldInspectionTest.kt",
+      "testedWorkingSha256": "73f0b14d00ac59a53bbef45f05abb0ff1d435f15406a63ff118b0ce6fab34400",
+      "gitBlob": "603e2116bce2ee490594ed7013db06cc22d4e920",
+      "indexSha256": "1110b28f68c37409ae57227a4b6d8518de480fb8013633b80a56270f431ea896",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/RecipeComparisonTest.kt",
+      "testedWorkingSha256": "b1c00f4194357df7eae7e4b9142dbccdd4c86440894c944a294a73f6a1b5cad0",
+      "gitBlob": "08414594f4e2b1934a1f441360309d5dbdb424a1",
+      "indexSha256": "0fc2847f73ce3912329ee6a6b25a4679abc49ff338de07e0adc7ac097f98f618",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/RecipeDraftSelectionTest.kt",
+      "testedWorkingSha256": "49e03753d59f02edabba0b73177f93ff5e06bcebe91ac54d65423be37bf2c8e7",
+      "gitBlob": "ccad15a1e0364f83974d8ad1e2f3e59772421fb7",
+      "indexSha256": "49e03753d59f02edabba0b73177f93ff5e06bcebe91ac54d65423be37bf2c8e7",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/SharedAssetsTest.kt",
+      "testedWorkingSha256": "73ad67b7846d90f2844e6fc0832d15d201af629fe661f8a1b075021ad7d3aa8b",
+      "gitBlob": "219fcf7bd45a4aeeab6a274f68e3a62c31366749",
+      "indexSha256": "c62438f94272ce21e373f18d352b9d7c12b806e9548e0c0471db3d65ed1784b4",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/StudioCoreTest.kt",
+      "testedWorkingSha256": "e657f28ed3a7638b1c22dfecb02dcdd34b8857eface5619f33bab930fecec224",
+      "gitBlob": "04aa30e0b74ebe31e9e27e4adbda3e2b06a30455",
+      "indexSha256": "78315fb331ba42b90c19bba571a906664179578f9c89ab5481e21b25fe3a3d05",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/StudioRestoreTest.kt",
+      "testedWorkingSha256": "4122737dbfc84eb184b581d8ca94dee8acd19681849f5602691635d8276fcc67",
+      "gitBlob": "0bbefbfa462d0c1e9f9f526d3b3fdff394730fed",
+      "indexSha256": "4122737dbfc84eb184b581d8ca94dee8acd19681849f5602691635d8276fcc67",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/StudioVersionTwoTest.kt",
+      "testedWorkingSha256": "a1c663e868c7023583bf99c2775ab1c4ffb0a6f9dc3a177a825a28a66a29ec46",
+      "gitBlob": "80d10b6d14bd45cb573f0f6a0fe9e3197d1c3ff6",
+      "indexSha256": "a1c663e868c7023583bf99c2775ab1c4ffb0a6f9dc3a177a825a28a66a29ec46",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TypesetBatchTest.kt",
+      "testedWorkingSha256": "35731e27eecc0c786673e9637912a2aa7b5cbf0149b1592ffc9e4d3fa5f149e8",
+      "gitBlob": "4caa110ba0df1cc4eba7a6d681320e718b41befa",
+      "indexSha256": "35731e27eecc0c786673e9637912a2aa7b5cbf0149b1592ffc9e4d3fa5f149e8",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TypesetColorTest.kt",
+      "testedWorkingSha256": "a1adf33406b1c2f4335fa33f2e6735ace51efb969a6a14e704408fcbb5b341e5",
+      "gitBlob": "92fa6840a816a794f77d719f1f59437754823be5",
+      "indexSha256": "a1adf33406b1c2f4335fa33f2e6735ace51efb969a6a14e704408fcbb5b341e5",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TypesetExportTest.kt",
+      "testedWorkingSha256": "a46441ccd8a99a19c703687edf8b697e0f5e452c15a4945051a011f65d5182ba",
+      "gitBlob": "7779a672f47cf08748237e80e5be18627f4b54b8",
+      "indexSha256": "a46441ccd8a99a19c703687edf8b697e0f5e452c15a4945051a011f65d5182ba",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TypesetImageTest.kt",
+      "testedWorkingSha256": "87caef0b3a0c422440997361b6e8d01af8ca05df11e074a6da2ce16b233256de",
+      "gitBlob": "3e699514e95918dab70dff94e0e8ca62ad8dda44",
+      "indexSha256": "51e83ed085e588879d7ed6efa654fae73ec2d064f3ac62aed82b185d6924dcc0",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TypesetMaskTest.kt",
+      "testedWorkingSha256": "a463615dfa1d237d5c4a2a9b68f01ef8d547dc2210f80cdb1032bda9f95202ed",
+      "gitBlob": "bab63f686009f27d0be0a2285c68f1c4694992ab",
+      "indexSha256": "a463615dfa1d237d5c4a2a9b68f01ef8d547dc2210f80cdb1032bda9f95202ed",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TypesetMetadataExportTest.kt",
+      "testedWorkingSha256": "e9691e83d754ddf5d46f48933c79772ce20fd4b9b44e738e054e5035c3e9a002",
+      "gitBlob": "c18fe3950c001d9ddafb9af9df5b1acda9ab8eee",
+      "indexSha256": "e9691e83d754ddf5d46f48933c79772ce20fd4b9b44e738e054e5035c3e9a002",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TypesetObjectsTest.kt",
+      "testedWorkingSha256": "5520dbfbe33f926ed68f269c4eb9182f6882de055f00adaf21f593410f27fe5a",
+      "gitBlob": "7278b717d44c22c4dfb17af9049c45f858ddfd12",
+      "indexSha256": "5520dbfbe33f926ed68f269c4eb9182f6882de055f00adaf21f593410f27fe5a",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TypesetPreferencesTest.kt",
+      "testedWorkingSha256": "d8fa7c622910d765555fd4d74597582410e106d69f90026e71baa65dfe227f55",
+      "gitBlob": "80ad4ca879a5f6a1d4be4420baa5d82f9c3c2f52",
+      "indexSha256": "25d65ba1e16c4dc2b896d9f8d7df3a1f7b8d4de0ee523907cec698780fcdc29d",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TypesetQueueTest.kt",
+      "testedWorkingSha256": "ef16b94655ffc9fef417ced08e81fbd34bca27b71966f2e42cb63b9047a7626b",
+      "gitBlob": "23751af892e575fb4e1d08d21406d2e255bdd701",
+      "indexSha256": "ef16b94655ffc9fef417ced08e81fbd34bca27b71966f2e42cb63b9047a7626b",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TypesetReferenceTest.kt",
+      "testedWorkingSha256": "10f853ad6f298be174a189e43a35618edbb417118a646934a246cda72204e8fa",
+      "gitBlob": "8dbd14b8fbabc200e4da58543e7901ae2879f792",
+      "indexSha256": "10f853ad6f298be174a189e43a35618edbb417118a646934a246cda72204e8fa",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TypesetRepositoryTest.kt",
+      "testedWorkingSha256": "3ccf064f72c4f9b711fdaa809062c6860e898e1a1acc8a836595ae9963daa16b",
+      "gitBlob": "4064482d2c6e64db9a566d812ce9c557d2a541f6",
+      "indexSha256": "d4f006ff6be33080c9e49fec5cb05acad5a2995d9f0ba303eb1c597a683405c0",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TypesetSourceExchangeTest.kt",
+      "testedWorkingSha256": "e0f39a64ac47955a185789f4c3a8a73d1501d3b0587a33e51ed5e91b93e0ca59",
+      "gitBlob": "dc4b4568696fed03bbc7a230176be9f4a01c2a75",
+      "indexSha256": "e0f39a64ac47955a185789f4c3a8a73d1501d3b0587a33e51ed5e91b93e0ca59",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/WindowsFontDecoderTest.kt",
+      "testedWorkingSha256": "507c1aade03e06eb5096dee91e296bd7d8fd874a58f1f10a066b56085b0c436b",
+      "gitBlob": "c01c3c02fb94e9b95aaf2b0c665a585c270f6190",
+      "indexSha256": "507c1aade03e06eb5096dee91e296bd7d8fd874a58f1f10a066b56085b0c436b",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/WorkspaceProcessTest.kt",
+      "testedWorkingSha256": "8fadf39ac0d50e052a2e708e80e23cf57a6c68c2c36b04559c36d4a07c17b130",
+      "gitBlob": "474401b5b99abcc5569f227326ae0653b24492cd",
+      "indexSha256": "8fadf39ac0d50e052a2e708e80e23cf57a6c68c2c36b04559c36d4a07c17b130",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/resources/codecs/animated.gif",
+      "testedWorkingSha256": "1cecb5507fcc1a355dd3b1c980660f193053e1e002a87b13b526511c0a04a060",
+      "gitBlob": "54592df1304cf715edc869d826d16e4b1276df76",
+      "indexSha256": "1cecb5507fcc1a355dd3b1c980660f193053e1e002a87b13b526511c0a04a060",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/resources/codecs/animated.png",
+      "testedWorkingSha256": "10071882a4106a3cd9a06b551801f5e186dda084c1fe2e73f3eeac4c2bdb8172",
+      "gitBlob": "1a457b927d8f6e90355e551c7c7bd7467b1951e0",
+      "indexSha256": "10071882a4106a3cd9a06b551801f5e186dda084c1fe2e73f3eeac4c2bdb8172",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/resources/codecs/animated.webp",
+      "testedWorkingSha256": "b168266793e62b4f3363dc6bd48a1081ccfd75d5eb4be4937baae93017f864f7",
+      "gitBlob": "657b5340399af0aadd6180be19babff42bcf330b",
+      "indexSha256": "b168266793e62b4f3363dc6bd48a1081ccfd75d5eb4be4937baae93017f864f7",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/resources/fonts/LICENSE.txt",
+      "testedWorkingSha256": "3645a237b872306e4955bc2ce75783537bd7123bcb57332f8819e4cfbcf50b45",
+      "gitBlob": "02a131eabfe560723b3a70efc5ac2a150eac967a",
+      "indexSha256": "3645a237b872306e4955bc2ce75783537bd7123bcb57332f8819e4cfbcf50b45",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/resources/fonts/MicrosoftPackedFont.hex",
+      "testedWorkingSha256": "d5f20a2a1118d0e3802b0254612beca3565dc562defd5059a03dd292b271fcdf",
+      "gitBlob": "f9b882b216853b9572df242cd5e411889d8f2d56",
+      "indexSha256": "d5f20a2a1118d0e3802b0254612beca3565dc562defd5059a03dd292b271fcdf",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/resources/fonts/OFL-LICENSE.txt",
+      "testedWorkingSha256": "7a042dd2af5f7af8d6ea613170e5f47b0145bbc8269289c1ef782d232c069999",
+      "gitBlob": "f1752dae3f123c80e7cc43af4906c9670e82d97d",
+      "indexSha256": "7a042dd2af5f7af8d6ea613170e5f47b0145bbc8269289c1ef782d232c069999",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/resources/fonts/README.md",
+      "testedWorkingSha256": "b66e1de168065cb6002858a4a264debf6ef84da4b10ea5d599fa8a74f967b2eb",
+      "gitBlob": "2c075ab8e004c4aba1c24d2e04b7aacd00ee3652",
+      "indexSha256": "75c9cac2b0aa249cd53405e68dba482eca5a35954b82aaea7353494d1f9405e1",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-core/src/test/resources/typeset/source-colors.json",
+      "testedWorkingSha256": "2804b572a43d87318d758b3084aaa6beeafbc43da87a112ede61e7eb63ca5364",
+      "gitBlob": "42225ed067c03121baca6bb58aab322177b2d67b",
+      "indexSha256": "2804b572a43d87318d758b3084aaa6beeafbc43da87a112ede61e7eb63ca5364",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/resources/typeset/source-presets.json",
+      "testedWorkingSha256": "60c6a6248dde41c8d870190861cd6a042373cf4ad6f8e6ef6a161f6de77894bf",
+      "gitBlob": "7f2cafb4939955d912708b304ab9a57470aa5a66",
+      "indexSha256": "60c6a6248dde41c8d870190861cd6a042373cf4ad6f8e6ef6a161f6de77894bf",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-core/src/test/resources/typeset/source-workspace.json",
+      "testedWorkingSha256": "45a6215884ede5f7193f88fc2a219f98aae09461b60d44546ad575b7fbf9958c",
+      "gitBlob": "a68e2f75a36de153eee9d9d790a84d04e9a091bd",
+      "indexSha256": "45a6215884ede5f7193f88fc2a219f98aae09461b60d44546ad575b7fbf9958c",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/build.gradle.kts",
+      "testedWorkingSha256": "bc8852120461e172ca156dceac0a415775a151ccd884062b903406875ba1772e",
+      "gitBlob": "60edf834e1641532204c003bb5b8e039978f3325",
+      "indexSha256": "a988c941849683eb3724d66ba1abc8b0a7df83d8cf8c9e37988dbc6de57c4897",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopApngPlayback.kt",
+      "testedWorkingSha256": "3cf5d297e03fcc89874324c00250008baa43d456224e0fda85ebf26face941fb",
+      "gitBlob": "ca68cc5c6ee47ae179f17386fb723e21e91889c3",
+      "indexSha256": "3cf5d297e03fcc89874324c00250008baa43d456224e0fda85ebf26face941fb",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopAppIcons.kt",
+      "testedWorkingSha256": "1b71b78c6ce567c439b9e7447322c6cf89d43ac3eaa191fea88234bbd907d113",
+      "gitBlob": "4a5a3e1f0f841b62fd58f74084ec283b99658728",
+      "indexSha256": "1b71b78c6ce567c439b9e7447322c6cf89d43ac3eaa191fea88234bbd907d113",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopDesignPresentation.kt",
+      "testedWorkingSha256": "edae85c09cd83338a9a745dca6bd1757418b05080d65fb113c4586a9fd511473",
+      "gitBlob": "7823a189b924325001c81fbdc0d896ecc1a9d6e8",
+      "indexSha256": "edae85c09cd83338a9a745dca6bd1757418b05080d65fb113c4586a9fd511473",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopImageEditing.kt",
+      "testedWorkingSha256": "13fe35a032428bb0d2e344958c3ef9c47ab2deb9c0225cf119a2fddd58e9e4b7",
+      "gitBlob": "f9bca57c3a967e9f15fe9b2bf3b4559d32402b8f",
+      "indexSha256": "13fe35a032428bb0d2e344958c3ef9c47ab2deb9c0225cf119a2fddd58e9e4b7",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopImageMetadata.kt",
+      "testedWorkingSha256": "a019e314d55bc13d2a5e2faded3333fd1855c090a3a60da0c47a1a28ee570ccf",
+      "gitBlob": "2f6d70e219fe6b9c8d2ae3e46272b4b4eba9b4d0",
+      "indexSha256": "a019e314d55bc13d2a5e2faded3333fd1855c090a3a60da0c47a1a28ee570ccf",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopImagePostProcessPanel.kt",
+      "testedWorkingSha256": "e02bb1f33cd16ef87108daddf4512df68b92fd5cf06102dd36609898bbdea05f",
+      "gitBlob": "524af25c82b1997f628301ad3d49354f3719bf04",
+      "indexSha256": "e02bb1f33cd16ef87108daddf4512df68b92fd5cf06102dd36609898bbdea05f",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopImagePresentation.kt",
+      "testedWorkingSha256": "79167f511dab8e6af1695618e272f002faf7ee0fff7bffcf1db28cb7ae3fb7c1",
+      "gitBlob": "9a0ce9ac9fdff7853411dc1cc81ded8c82fda7a0",
+      "indexSha256": "79167f511dab8e6af1695618e272f002faf7ee0fff7bffcf1db28cb7ae3fb7c1",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopImageTools.kt",
+      "testedWorkingSha256": "6e4c599f5a678dc30686254841b7b9d0f6933bb929cb4f009fec3b36ceb62d63",
+      "gitBlob": "90bd1c1e4c1cfc440153c5588ec72e8c3a1df607",
+      "indexSha256": "6e4c599f5a678dc30686254841b7b9d0f6933bb929cb4f009fec3b36ceb62d63",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopImageToolsDialog.kt",
+      "testedWorkingSha256": "ee2d0c2fd5f616c03ea77c42573ce31b93a0041a36b39a59ff3a5a2b3057cdcc",
+      "gitBlob": "186058cc48667f3fcdff8c046a9bbe301a2a47f7",
+      "indexSha256": "ee2d0c2fd5f616c03ea77c42573ce31b93a0041a36b39a59ff3a5a2b3057cdcc",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopImageWorkspace.kt",
+      "testedWorkingSha256": "0eed2df097f2514da8c41fc2f8b26b985efe5344c2071d9011aa2375185e3bc8",
+      "gitBlob": "8f7b2757ade79fb34f2b5f8526e03661fdd3a400",
+      "indexSha256": "0eed2df097f2514da8c41fc2f8b26b985efe5344c2071d9011aa2375185e3bc8",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopImageZoomSurface.kt",
+      "testedWorkingSha256": "9d54bc77ad7070f9fadc5cccf36d89412bd95e986e890e1f90ea547bf713ed21",
+      "gitBlob": "b2ae136c758723b6f5f83adb9377d6c295415b73",
+      "indexSha256": "9d54bc77ad7070f9fadc5cccf36d89412bd95e986e890e1f90ea547bf713ed21",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopInputFocus.kt",
+      "testedWorkingSha256": "ba9d5f74f46d663aa08f692829e4310fb6943bb8f122091855198f52deda65d6",
+      "gitBlob": "a3f27e2a9d9f12dc32f8867bc83dcced61237431",
+      "indexSha256": "ba9d5f74f46d663aa08f692829e4310fb6943bb8f122091855198f52deda65d6",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiCatalog.kt",
+      "testedWorkingSha256": "937e5e1971778d91b89bbc9638bede9dcd47f9fa9ff57c2886ee6728b1c86261",
+      "gitBlob": "31f6fba2dee5ea9a6622e5226c371b8e28bbf536",
+      "indexSha256": "937e5e1971778d91b89bbc9638bede9dcd47f9fa9ff57c2886ee6728b1c86261",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiGuidance.kt",
+      "testedWorkingSha256": "d0d482ce65e70dd043fba1c8f11d65092db2c6955eb8919e2d18d1e2a44264b1",
+      "gitBlob": "77f31caadd1a561276b5834eb71dfdd752112e98",
+      "indexSha256": "d0d482ce65e70dd043fba1c8f11d65092db2c6955eb8919e2d18d1e2a44264b1",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiPostProcessor.kt",
+      "testedWorkingSha256": "c5d3f7af0aa07592ec64fe8763c41c8d018046476bb378272b81d54b0bd6f2cb",
+      "gitBlob": "89ed70653f0f14e0ca56b7345fffca57738377dc",
+      "indexSha256": "c5d3f7af0aa07592ec64fe8763c41c8d018046476bb378272b81d54b0bd6f2cb",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopOwnedImage.kt",
+      "testedWorkingSha256": "7768135bb14d6cca0a65342c898757069e16301fc3a4cbf0ff9214c5f1c1da67",
+      "gitBlob": "9d1cd0684194ec928d00e8a183f83c6532002c4c",
+      "indexSha256": "7768135bb14d6cca0a65342c898757069e16301fc3a4cbf0ff9214c5f1c1da67",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioCharacters.kt",
+      "testedWorkingSha256": "8bcc35845cb0e450cde252d801cefd895089fd0de5a31ee3b21a371036ce0b4d",
+      "gitBlob": "f022c32b674c6ed6cb3f434555156e131c52a2d8",
+      "indexSha256": "8bcc35845cb0e450cde252d801cefd895089fd0de5a31ee3b21a371036ce0b4d",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioControls.kt",
+      "testedWorkingSha256": "ae635b681d34b0bec5fda28a9f60ca09b35cdee06c5dc90df5cab39698b49d5c",
+      "gitBlob": "01eebb53ad90cfebf4e73e4ab67776a12484d21c",
+      "indexSha256": "ae635b681d34b0bec5fda28a9f60ca09b35cdee06c5dc90df5cab39698b49d5c",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioFooter.kt",
+      "testedWorkingSha256": "373068fe42aebc58c1800be11d474129f0f5926bbfa6b4945f90e2740c9de888",
+      "gitBlob": "e14d5358d100ca384b164e0cf8d3d19b83d0d27d",
+      "indexSha256": "373068fe42aebc58c1800be11d474129f0f5926bbfa6b4945f90e2740c9de888",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioPromptField.kt",
+      "testedWorkingSha256": "1f043b33308c50f2c39a640c67cc2c5883968775c0581b34f30377630ba53884",
+      "gitBlob": "f51f410b5feff08f6afddbb60c19be7eb3b82607",
+      "indexSha256": "1f043b33308c50f2c39a640c67cc2c5883968775c0581b34f30377630ba53884",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioResultControls.kt",
+      "testedWorkingSha256": "0759311da1d9fc674238e4d27bc059d2f628ba179cd1ccf6b1aee9d4cf60adef",
+      "gitBlob": "4c4ce9ee14e4aeeb7ba7f2fb2fa475fafd75d383",
+      "indexSha256": "0759311da1d9fc674238e4d27bc059d2f628ba179cd1ccf6b1aee9d4cf60adef",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioWorkspace.kt",
+      "testedWorkingSha256": "efe53dfc0a90883ea1cd92ef9816c02b290d6aebaf959764946b676676e9e9d9",
+      "gitBlob": "37a6c5ef5f95c9c064c602f62d53dbaed39419fe",
+      "indexSha256": "efe53dfc0a90883ea1cd92ef9816c02b290d6aebaf959764946b676676e9e9d9",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopWindowChrome.kt",
+      "testedWorkingSha256": "1392d5c70cdb72f88eb990f0897f2b99c2a4c3fd0434aef524aa120c8e832140",
+      "gitBlob": "c489723cc3931ea2c388fe45c0b8b0456af9a26c",
+      "indexSha256": "1392d5c70cdb72f88eb990f0897f2b99c2a4c3fd0434aef524aa120c8e832140",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopWorkspaceControls.kt",
+      "testedWorkingSha256": "fecdbd7dacd0a7c213e2dd19f70ec949d553df85238523b3d1f46261641f7b6c",
+      "gitBlob": "4f167e1750bf5edbd73c814f5128a51110b07951",
+      "indexSha256": "fecdbd7dacd0a7c213e2dd19f70ec949d553df85238523b3d1f46261641f7b6c",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/SuiteImageAdapters.kt",
+      "testedWorkingSha256": "0f55f2c656fcc19fe0522061139a03bee03b7088fdbc84b542f2e96c648acd98",
+      "gitBlob": "3c44ea931b6a7a4a505b1ddbd901f2f6f852ea2a",
+      "indexSha256": "0f55f2c656fcc19fe0522061139a03bee03b7088fdbc84b542f2e96c648acd98",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/SuiteSourceAdapters.kt",
+      "testedWorkingSha256": "6d8ce1ade8bbb0e7c5b24c04831dceded718b3341a1aa2b4b4843e452fd8f41c",
+      "gitBlob": "c70cc92b8504f0ce8d0e11a3fd03bc54e8801d9c",
+      "indexSha256": "6d8ce1ade8bbb0e7c5b24c04831dceded718b3341a1aa2b4b4843e452fd8f41c",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/WindowsWindowChrome.kt",
+      "testedWorkingSha256": "4d14c2b7559d00940ef1f26c9b6a8c56f9c531010c46aff6da54b5b2bc56d3ea",
+      "gitBlob": "f05c0abd8f750f2fc1b9ec00404d13a29de66ba5",
+      "indexSha256": "4d14c2b7559d00940ef1f26c9b6a8c56f9c531010c46aff6da54b5b2bc56d3ea",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/ComparisonWorkspace.kt",
+      "testedWorkingSha256": "da51336d510f11a02f7234ee56a66ef06087db7abac8c78b388b2c77c37be7b7",
+      "gitBlob": "d68437cbccf9cb7a97b4be7de6f81633982dbe84",
+      "indexSha256": "cda7e3432a27daec79ad4d6578d0d22ce6454824c81b1375d3fa0fde983c99e7",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/DesignProvenanceDialog.kt",
+      "testedWorkingSha256": "298c821b2f71036146eef2de4459f8dbefb526516ddfcfcc9ee09cadaea16ef6",
+      "gitBlob": "7f40efe95897bec42d41167a652ccedf3cc35be8",
+      "indexSha256": "298c821b2f71036146eef2de4459f8dbefb526516ddfcfcc9ee09cadaea16ef6",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/ExportClipboard.kt",
+      "testedWorkingSha256": "a6137ff32caccb300cec69b55574f3a2c6ef97afd1397aec98b37e2446ea370d",
+      "gitBlob": "55625d388a6fb9b25c74742698331ff7874ca5bb",
+      "indexSha256": "a6137ff32caccb300cec69b55574f3a2c6ef97afd1397aec98b37e2446ea370d",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryAlbums.kt",
+      "testedWorkingSha256": "19658830f549d2cf30a4834f425e259165d790288aad00db57dca189ea6dd578",
+      "gitBlob": "6086ec1c1f7bed026b60f3032b0941d4c2407f43",
+      "indexSha256": "19658830f549d2cf30a4834f425e259165d790288aad00db57dca189ea6dd578",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryAnimation.kt",
+      "testedWorkingSha256": "4253101762fe9b26a360b3fa5bad22ea2549e1aea6078c1130f7985687ec0970",
+      "gitBlob": "883edaca917a0df5c1f57c0d8e7696cd7b1e52c4",
+      "indexSha256": "4253101762fe9b26a360b3fa5bad22ea2549e1aea6078c1130f7985687ec0970",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryIngress.kt",
+      "testedWorkingSha256": "42f199a1185431291b4186d9e268bea732b3411fd12d12f9e5c79c5af2ddeafa",
+      "gitBlob": "68ac5d65ef02f29bdf547bd3eb9c62c54d9b203c",
+      "indexSha256": "42f199a1185431291b4186d9e268bea732b3411fd12d12f9e5c79c5af2ddeafa",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryWorkspace.kt",
+      "testedWorkingSha256": "705ec7565ff98fd19c9904be7c91972153de1b0a2c6c51c2fe9bc784d097aa51",
+      "gitBlob": "482ec0f5a645524c0f04e86c07fedfdece5c1714",
+      "indexSha256": "0ed94d660c75f4904616a3ea52f6da55df045c12b948fb47ee6b21eb1d19a4fb",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GuidanceWorkspace.kt",
+      "testedWorkingSha256": "6e8fd9abe9e20b360055453dfa0ff0b7560f205ff45f90215477b5d02f3b3692",
+      "gitBlob": "80526d2821beaa6b540a5127db8d27a16a7e9056",
+      "indexSha256": "10438237d020b462c7a1a165cd8398b2af72b73634932e31ea54cd5d8c99e6ad",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/ImageCardChoice.kt",
+      "testedWorkingSha256": "3b0ace90aa62275c3fa94705e1a11e33102a9db158b1ba9ef9cd5f359ef28882",
+      "gitBlob": "e00af7e398afbb4c7974a08f2da130e3c31fcfbf",
+      "indexSha256": "3b0ace90aa62275c3fa94705e1a11e33102a9db158b1ba9ef9cd5f359ef28882",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/ImagePromptPreview.kt",
+      "testedWorkingSha256": "764cacba464ef6ab0ace6b39b1d57dbd8d5174ff1be39f3ea928f5692f6cd32c",
+      "gitBlob": "908b4bf30fcc70945399bba82fc448d3dc651f54",
+      "indexSha256": "764cacba464ef6ab0ace6b39b1d57dbd8d5174ff1be39f3ea928f5692f6cd32c",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/LibraryWorkspace.kt",
+      "testedWorkingSha256": "ddc80ea4837dbc547f87f2e8a173f3a27c82c4974952dfaf5fedc1aeee6e8ac8",
+      "gitBlob": "7a1cc820623cac881917c5f1721e14f1d59e0398",
+      "indexSha256": "188612038bdc7127257ea0c1e6360fbfe16f6271dd5a03f2a076fe8366ba350e",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/Main.kt",
+      "testedWorkingSha256": "5fea4996c3e7d95b5ee90765b98e166430fd90786de0e709f7694584d1950479",
+      "gitBlob": "e98bdcc0fece18247c01bff92214f093da32a6f3",
+      "indexSha256": "26ef9b1df23eccea7a93b08937a75a06b0ec928bce6e2d8c08ecb86ff0442669",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/MetadataWorkspace.kt",
+      "testedWorkingSha256": "9700806c63068b25dbb6ac0323c1a0c2285d1a8d4bb6cadb4e480f6b1e4e95d1",
+      "gitBlob": "c0e35ce533b6cdcc0d2c01ffd9f950e57f4f6633",
+      "indexSha256": "f273320993c5a64f361c24d8d7ab57852300fa3d846c72620e1efc1b0a665d8f",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/PngFieldWorkspace.kt",
+      "testedWorkingSha256": "dfaf7f95d93a525c824bdeb3e7e76469ee429b64c842f4c639dc3ba6acc80074",
+      "gitBlob": "0208fa933f9f0aa13b6892849e6279e59ef0c5c6",
+      "indexSha256": "dfaf7f95d93a525c824bdeb3e7e76469ee429b64c842f4c639dc3ba6acc80074",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/PromptReferenceBoard.kt",
+      "testedWorkingSha256": "3de84f6507d4a6a5eb38199b70022012a0f4dfccd3374e90a17219c8be428a22",
+      "gitBlob": "e544f3c3d062acd4e4a6b1dbe4aa54770ce3cbdc",
+      "indexSha256": "b3e5066d6cb3dea968e4c729c20adea343430e7db58470fc5772128181136362",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/RecipeSelectionWorkspace.kt",
+      "testedWorkingSha256": "24d0f1de256183c05f952995ab8c9b495aa52a5e0db727107a12c83149721731",
+      "gitBlob": "87dbb0c5cdb7f6369d2952e401bd241ecea70e38",
+      "indexSha256": "24d0f1de256183c05f952995ab8c9b495aa52a5e0db727107a12c83149721731",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/SharedAssetPicker.kt",
+      "testedWorkingSha256": "bfe98f4b46267f5e5c5f04e918ea9a9bf69fda16e686fa4540219098d1b353a6",
+      "gitBlob": "ef4f1b12b607d9aecc980ecb4e90f0ce5df7a3fe",
+      "indexSha256": "85b1b48c4561e1578c6542e06c56b04b0d388f0933f132bb2bb5f7cd630dd1e5",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt",
+      "testedWorkingSha256": "ffb3406b9c199b7f41ed81474359f5d08b553135a902789ea80f8738112bdcf1",
+      "gitBlob": "8eee5e077cf72ebc4e1db90c9936c93cfaeeacac",
+      "indexSha256": "5c1d5fac570b4990e55321c77e5585a1cfe4424cb48026421872881181a1493b",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioAssetViewer.kt",
+      "testedWorkingSha256": "3da52985a156e8dd26a434dbdde61949f520cbb8d119059f957fa3687e37606d",
+      "gitBlob": "a213293dc3f02112356bdfcab8e8872f933bfc5a",
+      "indexSha256": "3da52985a156e8dd26a434dbdde61949f520cbb8d119059f957fa3687e37606d",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioBrand.kt",
+      "testedWorkingSha256": "3c1deedc66c93ebff5ced6afc2a4778c2fb13c5eb78d2e752cd859b927eb64e1",
+      "gitBlob": "5aab955257648f09aea960218f8f29c153ace5db",
+      "indexSha256": "3c1deedc66c93ebff5ced6afc2a4778c2fb13c5eb78d2e752cd859b927eb64e1",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioUpdateClient.kt",
+      "testedWorkingSha256": "9bd2fcd0fc714e98e15569489f092b29464cea70610c6e8e252fc6c34a50aa04",
+      "gitBlob": "2ea60f1f85b864234a4b93563b407d44680d4c0b",
+      "indexSha256": "9bd2fcd0fc714e98e15569489f092b29464cea70610c6e8e252fc6c34a50aa04",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioUpdateHandoff.kt",
+      "testedWorkingSha256": "de3c84a99c49c8be36c60b45be3554d7b4b65a9259a917469b45267e5713023f",
+      "gitBlob": "7bd5d63a54e02fad22d24314d0d95f457aa9b6c2",
+      "indexSha256": "de3c84a99c49c8be36c60b45be3554d7b4b65a9259a917469b45267e5713023f",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioUpdates.kt",
+      "testedWorkingSha256": "51a4af1c2e6e52bda9b44e7854c9edde7e41d6543bb8f39b29cb9e66dfe78ca7",
+      "gitBlob": "67ed62b4b95b996e6827ef53d5752d33cc20d6b3",
+      "indexSha256": "51a4af1c2e6e52bda9b44e7854c9edde7e41d6543bb8f39b29cb9e66dfe78ca7",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioVision.kt",
+      "testedWorkingSha256": "01e2ebf496d9b0167b07ea7ed57a3659cf1ff4b7f05197e01beccbf8340189f7",
+      "gitBlob": "0514bf7d44532d95fc1b4e73d8bfa36c8d09c325",
+      "indexSha256": "01e2ebf496d9b0167b07ea7ed57a3659cf1ff4b7f05197e01beccbf8340189f7",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetEditorController.kt",
+      "testedWorkingSha256": "c55869127f589b9a7f8e11fe41b38f81eb58479c19cbeb9a71db00d605c12ba2",
+      "gitBlob": "2cc96722961cc80978b5fdf656da3128923dd27c",
+      "indexSha256": "352d79eaf0305b95fbeda1fde548ee05451e60cb0a44fced29ee25b5b0e68775",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetExportDialog.kt",
+      "testedWorkingSha256": "dea804d53e7fbc77b8b17c3a4306dd3b8f156775d930889ac029b16ff0e35350",
+      "gitBlob": "c289c98088b2c76e8622119d18883f1ac5fc051a",
+      "indexSha256": "0ce4952e8325354be91e802e806bb27d4c8bec8575dcdecebbb56a8e60768785",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetFullPreview.kt",
+      "testedWorkingSha256": "0ef0f024661686caf37933e4ca43d9971eabe11f717fae8e23f571657e8d640d",
+      "gitBlob": "d91a836fa6786e622ef06bf453135643db92331b",
+      "indexSha256": "2c851f0d25d0d7b974b903072786757ebcb4021372959633fa6f9ea926a07600",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetPresets.kt",
+      "testedWorkingSha256": "8643e21897f8d18db6ff8a56dddf2186290903692107031807b08d6fdab7d4ff",
+      "gitBlob": "dd955900682f4826c5bbbcb58b2b6b1d2f5b7db2",
+      "indexSha256": "9621d2eae76ca059bf79228e28c5eb50cf5a2cf6e48f779a1fb478273952abfb",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetPreviewDialog.kt",
+      "testedWorkingSha256": "d59ed82ceaa6a11df110d1ef9590542ce23254e4245eb61c169cfb97ecfac0d1",
+      "gitBlob": "21fae3d9216cae747faa95ddd5ef7a15052694e2",
+      "indexSha256": "2cb73961eff88d76fdbd99b2254856520d643220575f2ac493c388e4a45e0535",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetPreviewRaster.kt",
+      "testedWorkingSha256": "aec8a2a60762e49430927b8e74636b0e6559716909bea45747f687cda3ec6605",
+      "gitBlob": "a41416ef29ba862e3e8d319d26282bf163ca30aa",
+      "indexSha256": "aec8a2a60762e49430927b8e74636b0e6559716909bea45747f687cda3ec6605",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetQueueWorkspace.kt",
+      "testedWorkingSha256": "7cf9f408c4808d793c946c00c391c92f550f1e09648c5d3fab0abda777c71824",
+      "gitBlob": "dae141be40fb200b38c4cfd4da10b05dc5e81e01",
+      "indexSha256": "7cf9f408c4808d793c946c00c391c92f550f1e09648c5d3fab0abda777c71824",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetWorkspace.kt",
+      "testedWorkingSha256": "b28e92eb2c84e5b2cc5893e330e7efc04e8f5ab0debc84553d881eac731dcd05",
+      "gitBlob": "f93b5e669a68bdc710282a2e28d56c489e7463fe",
+      "indexSha256": "2ba053e212e860f65508ed57f5623f848ec8697fb0e7ca083582e6adedcf0f58",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/WorkspaceUi.kt",
+      "testedWorkingSha256": "89a862f96393ed6fedb037c52735810f0be46114cde1cdc61b805d6925d1cd1a",
+      "gitBlob": "606e3ab714cc0e75ee8ab965f654eb4a97ab4e87",
+      "indexSha256": "67e29af55c28e126439e3f812a910a4a60f926dcf1057fcf37ee8cd9a590494c",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/resources/brand/ccb-blue.ico",
+      "testedWorkingSha256": "472c0a1aeafdb2f83ba0aad6f28e09fe21725aa78ce4e043ca0e8497bf553ee4",
+      "gitBlob": "fd749a0837f7d27b164499ca9a218ca1296a191b",
+      "indexSha256": "472c0a1aeafdb2f83ba0aad6f28e09fe21725aa78ce4e043ca0e8497bf553ee4",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/resources/brand/ccb-blue.png",
+      "testedWorkingSha256": "24aaebf9efb0ff7faa91da0d0edc1460c5e4ce126364d301a2bdc725032467c7",
+      "gitBlob": "b6622c66d19f08e86e7d8e5cfcdeba40bb7c0b19",
+      "indexSha256": "24aaebf9efb0ff7faa91da0d0edc1460c5e4ce126364d301a2bdc725032467c7",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/resources/brand/PROVENANCE.json",
+      "testedWorkingSha256": "ca861e4e6f2e81af8cbc4113fd7cfbd12618cd1002dabd3c6f80dce7a8bb7ddc",
+      "gitBlob": "b227e6146f6d51b3b7435a5e3920d2fbd69dc31a",
+      "indexSha256": "c218049ed9b92292ac9320b495d831af86a5bdd620caafdc356ff2442008673e",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/com/example/chatbar/desktop/DesktopStudioPresentationTest.kt",
+      "testedWorkingSha256": "58abb8aa654fcc4d48a560b521f2e11a811b2be6d81261e8e203685388f94cb6",
+      "gitBlob": "e86f53c32860d4f562f7bd44224caa193b06bb3a",
+      "indexSha256": "57c5a3bcafcc2dae02696596c6c5c35f1a2b58550d87769180c7088fd19a7bf2",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/com/example/chatbar/desktop/DesktopStudioWorkspaceTest.kt",
+      "testedWorkingSha256": "afecd5c240d9472e53d520125bfd5620051c1382a2cbd3d4da593173e734b150",
+      "gitBlob": "27609cb7f1e7677d9afe8ce487b98a05890d9db0",
+      "indexSha256": "1841a87011f7462f7e963667d886da98149eda7374dd019e00f30e4519f5c5a2",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/com/example/chatbar/desktop/SourceZoomSurfaceTest.kt",
+      "testedWorkingSha256": "53eb5778f4fa00c0d0ac658d5ab2469b2c3a73327a307ef50a7fed30339fe68e",
+      "gitBlob": "482c6e2d05c328c5ff80a63a13db2dfa2a6730e6",
+      "indexSha256": "53eb5778f4fa00c0d0ac658d5ab2469b2c3a73327a307ef50a7fed30339fe68e",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/com/example/chatbar/desktop/SuiteChromeTest.kt",
+      "testedWorkingSha256": "6184977346a257b33d20399c915fd49afc88a34563eb4d808878b20cbd9a661e",
+      "gitBlob": "14b5dd9818f7e924f9216aea7ebf20aee770833f",
+      "indexSha256": "6184977346a257b33d20399c915fd49afc88a34563eb4d808878b20cbd9a661e",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/AssetArchiveWorkflowTest.kt",
+      "testedWorkingSha256": "7cbbed18b204915745dc09e74cf2f12ec1a9c9cba99ebe361beaaa8d9761bde8",
+      "gitBlob": "a6682742ed2629c1246d88f47a6508ccc09aa04b",
+      "indexSha256": "7cbbed18b204915745dc09e74cf2f12ec1a9c9cba99ebe361beaaa8d9761bde8",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/AutosaveCancellationTest.kt",
+      "testedWorkingSha256": "cc873f92bf8f75174e088a89c15dddd0248ac08fd55fd46faf5d62a100db3be3",
+      "gitBlob": "d5d0b09a4f08c3bbc3691724daf1f8723e33b4a2",
+      "indexSha256": "cc873f92bf8f75174e088a89c15dddd0248ac08fd55fd46faf5d62a100db3be3",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryAlbumWorkflowTest.kt",
+      "testedWorkingSha256": "29d1d8f0bf53f2da0dbb2991a772aad1fa39f37f42ad3a8fbcb0d7254465e323",
+      "gitBlob": "16ed0ea7dab31fc4b2123e893fcdb20e49f0ecba",
+      "indexSha256": "7d37d7057157b3aeda269821541953fe2593ed702f08ecd34f5af3523df8acb7",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryAnimationTest.kt",
+      "testedWorkingSha256": "4f6b1414cf4e9e25f7182d567731bedb1e391c86b52defb19e5f26d0ea5333ef",
+      "gitBlob": "e530b8ad9eee22be67cfb7ad0e777eea9cc82c48",
+      "indexSha256": "4f6b1414cf4e9e25f7182d567731bedb1e391c86b52defb19e5f26d0ea5333ef",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryIngressTest.kt",
+      "testedWorkingSha256": "191a1192778c6c888430df50a326c252926b22c30a0eff3f1dbf120ebcd0985d",
+      "gitBlob": "b85e8305acd744e7eac6a8eefdb2b7c76945ff66",
+      "indexSha256": "191a1192778c6c888430df50a326c252926b22c30a0eff3f1dbf120ebcd0985d",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryWorkflowTest.kt",
+      "testedWorkingSha256": "1ac0bcb530a5bdf2594fb6aeb9eefed25080f413d67d7f7b1c9be0b26b0baacb",
+      "gitBlob": "612243994c5f92283df428e11ca35e82c5e88706",
+      "indexSha256": "a97aa2d1de7d54464b1098a81bd6ab4506603273fbf379e6b6992a4d79190b5d",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GuidanceSafetyTest.kt",
+      "testedWorkingSha256": "f26c3a2d8988b085a8fe035b11ee22e390cf3e16432f8709355b691909ca4e05",
+      "gitBlob": "8469a779f0f9a5855fb658224e9de7bb86bf9c09",
+      "indexSha256": "f26c3a2d8988b085a8fe035b11ee22e390cf3e16432f8709355b691909ca4e05",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/ImageCardWorkflowTest.kt",
+      "testedWorkingSha256": "04e7e1d14bf6d86ba41af69e6d6adbbe3473433049fb0f5eea716ec4218c5ee1",
+      "gitBlob": "40a472fd5a568b1375af70faac7f22ed755f7faa",
+      "indexSha256": "04e7e1d14bf6d86ba41af69e6d6adbbe3473433049fb0f5eea716ec4218c5ee1",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/LibraryCollectionWorkflowTest.kt",
+      "testedWorkingSha256": "a0fd48c12230c46a356a9774162a4882db0e44b0312d027871a1529807f470b7",
+      "gitBlob": "b5c7d37c3f445124d122c9a2afa0838f6b476895",
+      "indexSha256": "f59182b126772bc6b01d1a91ea6e813e44c26fc5ad394deb9b3e3275955ee245",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/MetadataWorkflowTest.kt",
+      "testedWorkingSha256": "0d7d996b0f0523e97570f9563d5250da70fbf21499333ee54458ee5d02c177b1",
+      "gitBlob": "bcefc0498dc30b4eff541bd9bcece5d2fb386017",
+      "indexSha256": "8d98895867cbb8666761788b1206c8868cc7841487df7d4f5267d194edb6b0fe",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/PostProcessWorkflowTest.kt",
+      "testedWorkingSha256": "3ede982f0a735ce312ed0f6520e549f9a2be2bc8d90334fd1fc9386769da8ecf",
+      "gitBlob": "dd2c9384655687c7a764651d61e1758bdb1fcc6e",
+      "indexSha256": "3ede982f0a735ce312ed0f6520e549f9a2be2bc8d90334fd1fc9386769da8ecf",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/PromptReferenceWorkflowTest.kt",
+      "testedWorkingSha256": "55fb4b9f565fb87e3fcaf9babfd4a68b2de74997608bfeaf4ea1e74734762e6d",
+      "gitBlob": "42cf8c407927d852bc7c318533a501a0e966b247",
+      "indexSha256": "663615255cec33aa583a9301375d8665e9f0d5ee16d8994e3412dbb77a6f5399",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/ReverseWorkflowTest.kt",
+      "testedWorkingSha256": "a95251b51dfb14992520d5d4c6decd485f07e4681765810c38c4734bbd2ab00e",
+      "gitBlob": "aea222de1ace09438ec9d0d6e38610222aa6fdf9",
+      "indexSha256": "a95251b51dfb14992520d5d4c6decd485f07e4681765810c38c4734bbd2ab00e",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioMaintenanceTest.kt",
+      "testedWorkingSha256": "31d3d54a46eba0b241255b59184c37b4c56e931950e69a114e78f39cd2bd9296",
+      "gitBlob": "6378221a310c21debb143ae860d6e42fd1c5655f",
+      "indexSha256": "31d3d54a46eba0b241255b59184c37b4c56e931950e69a114e78f39cd2bd9296",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioUpdateTest.kt",
+      "testedWorkingSha256": "fc83952cd98fb7758096917d723c2060cb1b9599b19a550ef24b55d2479a99e7",
+      "gitBlob": "a09849ef5b124b94cd878df86bda315cda18369d",
+      "indexSha256": "fc83952cd98fb7758096917d723c2060cb1b9599b19a550ef24b55d2479a99e7",
+      "normalization": "none"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetQueueWorkflowTest.kt",
+      "testedWorkingSha256": "a78f8fc22e398ece717f0d20f9912fe4b0ae5af5b6230758e6fd2f23980b7b89",
+      "gitBlob": "7177bac8b65524cb7bbcb5a616461069b2e1218f",
+      "indexSha256": "4e33ef03a5846e470fe0fcad29ed23853d4fd73dfcd736e09da7fb21584674d5",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetWorkflowTest.kt",
+      "testedWorkingSha256": "92657b6bb98e3a1981b992506915f9f2d6ce74625d8ee0e8585ae27792c86488",
+      "gitBlob": "c25ff36591307f3776c73b4f18547909aef6c60d",
+      "indexSha256": "fb83ca3cf3d31aaf1eb6f39d28e7b197219e10a1a5d617f5a4b9845bae1b61a0",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/WorkbenchWorkflowTest.kt",
+      "testedWorkingSha256": "fd3f50fc066e21da093c6602e2ed21a0c806b2784ad9d3569e6989300831a106",
+      "gitBlob": "9b9067bb0c38529594c0f236ba802828550b3c68",
+      "indexSha256": "eba8ca5e36029963800b618d4db45d92618b42e6efbe946001de1ad3bff77475",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "settings.gradle.kts",
+      "testedWorkingSha256": "8488e6d35ba2dbc8e1ce6bb83a7293fc22da3f070f8e4ecbdbb3b6d57c45a33f",
+      "gitBlob": "ac0e5a780ea347fa1f68475b239c6eecc7c15ac6",
+      "indexSha256": "8488e6d35ba2dbc8e1ce6bb83a7293fc22da3f070f8e4ecbdbb3b6d57c45a33f",
+      "normalization": "none"
+    },
+    {
+      "path": "tools/Build-InternalInstaller.py",
+      "testedWorkingSha256": "e73ef21da296b4d4eef8089a5491e6d02fffe7981f36febccf01958efacdc10c",
+      "gitBlob": "942004aa24c1fd06078180f0d8a2642c032fb1a8",
+      "indexSha256": "e73ef21da296b4d4eef8089a5491e6d02fffe7981f36febccf01958efacdc10c",
+      "normalization": "none"
+    },
+    {
+      "path": "tools/Capture-TypeSetColors.cjs",
+      "testedWorkingSha256": "f61ebc253607645636cea75d174322d1cabe3b406b1443c104766c416baa4e23",
+      "gitBlob": "a04a2eee866b1310e60eaae27a410e823626cfbe",
+      "indexSha256": "f61ebc253607645636cea75d174322d1cabe3b406b1443c104766c416baa4e23",
+      "normalization": "none"
+    },
+    {
+      "path": "tools/Capture-TypeSetExchange.cjs",
+      "testedWorkingSha256": "16b836f4ac4263dd916d2534bd0f85635b5b330638e8dc6c4954d2eca11f2262",
+      "gitBlob": "0988e08d72f456499be17c8e957e7e97d5c9a2de",
+      "indexSha256": "16b836f4ac4263dd916d2534bd0f85635b5b330638e8dc6c4954d2eca11f2262",
+      "normalization": "none"
+    },
+    {
+      "path": "tools/Capture-TypeSetMasks.cjs",
+      "testedWorkingSha256": "6b02f0c026a15a098a1ac30b8d8c44562d047b3a0a0e7fb60eab75246b4d9d89",
+      "gitBlob": "c9f86ef2339d8c86a0220a1ff85aebb1bc6c9526",
+      "indexSha256": "6b02f0c026a15a098a1ac30b8d8c44562d047b3a0a0e7fb60eab75246b4d9d89",
+      "normalization": "none"
+    },
+    {
+      "path": "tools/Capture-TypeSetReference.cjs",
+      "testedWorkingSha256": "57e6bd51742f88ecf773a29c150a39a97f65b2380ed4ae038f2edd0969dc990d",
+      "gitBlob": "2a1edb9c578eb2cf798a0ddf0b296e9e8cd2c1d6",
+      "indexSha256": "57e6bd51742f88ecf773a29c150a39a97f65b2380ed4ae038f2edd0969dc990d",
+      "normalization": "none"
+    },
+    {
+      "path": "tools/Import-ImageAuthority.py",
+      "testedWorkingSha256": "3628dacc87f433a0f0d3d92a1c9af8299e2e08e697eab0660379e4743621794d",
+      "gitBlob": "997ec880f2703520db7ef24f6150c437723bc29f",
+      "indexSha256": "3628dacc87f433a0f0d3d92a1c9af8299e2e08e697eab0660379e4743621794d",
+      "normalization": "none"
+    },
+    {
+      "path": "tools/Package-WindowsPreview.py",
+      "testedWorkingSha256": "176ebb1b8bce78b42daa4e1b7dc00667eb6e9079aaeb37927d15a096c9a13cf0",
+      "gitBlob": "32bb95dc2d6e28e9d82382f6ce5086d41f858211",
+      "indexSha256": "176ebb1b8bce78b42daa4e1b7dc00667eb6e9079aaeb37927d15a096c9a13cf0",
+      "normalization": "none"
+    },
+    {
+      "path": "tools/Prepare-UpdaterRuntime.py",
+      "testedWorkingSha256": "3b37102d4498de0f47cc3ca343657fe9a33d980b95833b7ed42e99676da74259",
+      "gitBlob": "b834ecf37fbbc11ebde8317f8b6cd379973b34f2",
+      "indexSha256": "3b37102d4498de0f47cc3ca343657fe9a33d980b95833b7ed42e99676da74259",
+      "normalization": "none"
+    },
+    {
+      "path": "tools/Run-PreviewChecks.py",
+      "testedWorkingSha256": "66eaa7b6e795d065b7a8e4273f75f10aeb32414db07a60543e4becc251773183",
+      "gitBlob": "94931d427cfcab566ee2f9a4c35978d72288bdf1",
+      "indexSha256": "9115d107c11378fffd2eba0919b5df01a000f77a2d45e547b85ce448f512dc40",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "tools/Seed-PreviewCache.py",
+      "testedWorkingSha256": "19ac67d9f803e17208a5f5b2b7df54603de8aa05d26bfd2b150a482fe3e02c17",
+      "gitBlob": "7b87ea1710c9773cc3fca435d5a3bf3a5501358b",
+      "indexSha256": "19ac67d9f803e17208a5f5b2b7df54603de8aa05d26bfd2b150a482fe3e02c17",
+      "normalization": "none"
+    },
+    {
+      "path": "tools/Test-AssetDurability.ps1",
+      "testedWorkingSha256": "f82fe050f7f32a503ad42798099149012cb25f57101fd4ab7c68876bf8cd1792",
+      "gitBlob": "b751836ef8d48fab0991738746a38bbea54970ae",
+      "indexSha256": "f82fe050f7f32a503ad42798099149012cb25f57101fd4ab7c68876bf8cd1792",
+      "normalization": "none"
+    },
+    {
+      "path": "tools/Test-AssetSafety.ps1",
+      "testedWorkingSha256": "f5879d3c7b6e32df5b3a61ec3d0cac1adffd53d18baf346ef376eb09fb089b27",
+      "gitBlob": "ec4f2e9bacfc8503cad788b9959deffb790554ad",
+      "indexSha256": "f5879d3c7b6e32df5b3a61ec3d0cac1adffd53d18baf346ef376eb09fb089b27",
+      "normalization": "none"
+    },
+    {
+      "path": "tools/Test-WindowsRc.ps1",
+      "testedWorkingSha256": "132fdbc4041d1959ac81c8bb084603a629b6f7a08cd38cc92285b513345b461e",
+      "gitBlob": "17c5c9dbd63dca8c2001ba9622f14cdd58f3ad55",
+      "indexSha256": "132fdbc4041d1959ac81c8bb084603a629b6f7a08cd38cc92285b513345b461e",
+      "normalization": "none"
+    },
+    {
+      "path": "tools/update-lab/candidate.py",
+      "testedWorkingSha256": "76d32a2c75a016972b6a25c3fa8ef886cf541de186d05616635528e9a898ec62",
+      "gitBlob": "828a5cd8cda48b438b33213de797f175d6888025",
+      "indexSha256": "76d32a2c75a016972b6a25c3fa8ef886cf541de186d05616635528e9a898ec62",
+      "normalization": "none"
+    },
+    {
+      "path": "tools/update-lab/run.py",
+      "testedWorkingSha256": "2cab2aa853dc47a886106c7e2230bcaad151638b58a8127a60d0f8d337f4d579",
+      "gitBlob": "4367a77c4f985b2caf7a9a6985557feee6bdeb5a",
+      "indexSha256": "2cab2aa853dc47a886106c7e2230bcaad151638b58a8127a60d0f8d337f4d579",
+      "normalization": "none"
+    },
+    {
+      "path": "tools/update-lab/test_trust.py",
+      "testedWorkingSha256": "e52623c170e6a69848942e1cb9ed6a4813626c4deef0e3b553fc3842e70a3d7e",
+      "gitBlob": "411efa7135d8035a66734cf525d68ccad8de44ec",
+      "indexSha256": "e52623c170e6a69848942e1cb9ed6a4813626c4deef0e3b553fc3842e70a3d7e",
+      "normalization": "none"
+    },
+    {
+      "path": "tools/update-runtime/apply_update.py",
+      "testedWorkingSha256": "147189098f0e22af965bd519324456a546654a41fcce10cb5891754d04192020",
+      "gitBlob": "e3a58db15a04a345d27538c9f64a807699844484",
+      "indexSha256": "147189098f0e22af965bd519324456a546654a41fcce10cb5891754d04192020",
+      "normalization": "none"
+    },
+    {
+      "path": "tools/update-runtime/install_ops.py",
+      "testedWorkingSha256": "3faf7342ecb50d054a21354402e45077570eef689a363c94425dabe987f2b0f4",
+      "gitBlob": "0bd3aee76636b14fb2889a1bfaba7bcb489c8e4e",
+      "indexSha256": "3faf7342ecb50d054a21354402e45077570eef689a363c94425dabe987f2b0f4",
+      "normalization": "none"
+    },
+    {
+      "path": "tools/update-runtime/internal_repository.py",
+      "testedWorkingSha256": "1796766f082ef92d8842f44338b6285345b7a9d0d8fc0c364ca61dde5851d9c4",
+      "gitBlob": "b43636a3a67485795309f056e0160cd8ec88e329",
+      "indexSha256": "1796766f082ef92d8842f44338b6285345b7a9d0d8fc0c364ca61dde5851d9c4",
+      "normalization": "none"
+    },
+    {
+      "path": "tools/update-runtime/run_tests.py",
+      "testedWorkingSha256": "7f9a70b1ccee5b7b4699aa7f07aeb2febc6763e5efc120284a62dcb6b15287fc",
+      "gitBlob": "6eebc562a701e336add121fc37276509ead9d877",
+      "indexSha256": "7f9a70b1ccee5b7b4699aa7f07aeb2febc6763e5efc120284a62dcb6b15287fc",
+      "normalization": "none"
+    },
+    {
+      "path": "tools/update-runtime/studio_update.py",
+      "testedWorkingSha256": "0fac31cff5f3b9dc985a773ba29efdde2ed64bcdf2520bfeefcf1dc4ecd13fbe",
+      "gitBlob": "36bda6f0f49488ab2fb0df26b6d6a7c2034fbf32",
+      "indexSha256": "0fac31cff5f3b9dc985a773ba29efdde2ed64bcdf2520bfeefcf1dc4ecd13fbe",
+      "normalization": "none"
+    },
+    {
+      "path": "tools/update-runtime/test_client.py",
+      "testedWorkingSha256": "895a8516052dd29971c21c74e897750d6ea3de915b6111b48b179b189e362a2e",
+      "gitBlob": "4a08f59454448b2d0d9b4d5792a98e36386118d0",
+      "indexSha256": "895a8516052dd29971c21c74e897750d6ea3de915b6111b48b179b189e362a2e",
+      "normalization": "none"
+    },
+    {
+      "path": "tools/update-runtime/test_handoff.py",
+      "testedWorkingSha256": "14bf06bc93f18fedd268c133e970e112cdf2c1a7018c34b350a93ca3ab724aa3",
+      "gitBlob": "033ee022d35ae57b07aeeef80d791857230c644e",
+      "indexSha256": "14bf06bc93f18fedd268c133e970e112cdf2c1a7018c34b350a93ca3ab724aa3",
+      "normalization": "none"
+    },
+    {
+      "path": "tools/update-runtime/test_install.py",
+      "testedWorkingSha256": "9e90b1adfd543fbf4edfdc6e43b272737e271e01d07fdf53d71abe030d087231",
+      "gitBlob": "baaa38a6f8551839786c554d350fae9f0473448b",
+      "indexSha256": "9e90b1adfd543fbf4edfdc6e43b272737e271e01d07fdf53d71abe030d087231",
+      "normalization": "none"
+    },
+    {
+      "path": "tools/Verify-Package.ps1",
+      "testedWorkingSha256": "fcccbe5a5cede898401259b89f7d80323d46e231f96fd9660009aaf165e485ed",
+      "gitBlob": "7060d2aeb0f9a0b3ccda03fae675ce5ff2849cf0",
+      "indexSha256": "e426f7a88e60dd44ffc169fe9515a6185536a2b254187db7c6779221e546889d",
+      "normalization": "CRLF_TO_LF"
+    },
+    {
+      "path": "tools/Verify-TypeSetBookExport.cjs",
+      "testedWorkingSha256": "3595d80e7079964fc4ec1b8c34b78aab8a85be3d9e155f9df631101849d26c3d",
+      "gitBlob": "01c2b4d78c6673697bdad19b75bce92fc1ad4b80",
+      "indexSha256": "3595d80e7079964fc4ec1b8c34b78aab8a85be3d9e155f9df631101849d26c3d",
+      "normalization": "none"
+    },
+    {
+      "path": "tools/Verify-TypeSetLongPdf.py",
+      "testedWorkingSha256": "706db553c672e4720c93c7b8f0e24c9a71e8245ccedf90ca08c2b595664feacd",
+      "gitBlob": "2bf1674f996f65497d788d8a3833297f77d9a78d",
+      "indexSha256": "706db553c672e4720c93c7b8f0e24c9a71e8245ccedf90ca08c2b595664feacd",
+      "normalization": "none"
+    },
+    {
+      "path": "tools/Verify-TypeSetReference.cjs",
+      "testedWorkingSha256": "47a4aa50e6855729f093d05342cfd0ae62dfd290cd6498e4c35a71fb95b4603d",
+      "gitBlob": "2294de578e2b78b8b9b314ddd24c38a12cb1543f",
+      "indexSha256": "47a4aa50e6855729f093d05342cfd0ae62dfd290cd6498e4c35a71fb95b4603d",
+      "normalization": "none"
+    },
+    {
+      "path": "tools/verify_package.py",
+      "testedWorkingSha256": "ce91de8bc5859124ef3b93bee1d5d931e0d966e95493822f17f36f648acd84b4",
+      "gitBlob": "d82570e3e214024ea382aa5cd4bf3280d761e041",
+      "indexSha256": "ce91de8bc5859124ef3b93bee1d5d931e0d966e95493822f17f36f648acd84b4",
+      "normalization": "none"
+    }
+  ]
+}

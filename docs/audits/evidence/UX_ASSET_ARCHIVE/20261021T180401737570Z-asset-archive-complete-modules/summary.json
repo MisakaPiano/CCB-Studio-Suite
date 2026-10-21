@@ -1,0 +1,29 @@
+{
+  "phase": "asset-archive-complete-modules",
+  "startedUtc": "2026-10-21T18:04:02.231251+00:00",
+  "seconds": 357.445,
+  "exitCode": 0,
+  "tests": 196,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-core:cleanTest",
+    ":studio-core:test",
+    ":studio-desktop:cleanTest",
+    ":studio-desktop:test"
+  ],
+  "baseCommit": "a4ea37bd9ac28d912fb8a30095d20c737632ef0e",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

@@ -73,7 +73,7 @@ internal class GalleryViewState {
         }
     }
     val visible=c.assets.asReversed().sortedByDescending{a->val id=a.request().id().toString();jobs[id]?.createdAt?:importedAt[id]?:Long.MIN_VALUE}.filter{a->val id=a.request().id().toString();val job=jobs[id]
-        (g.source=="all" || (g.source=="generated")== (job!=null)) && (g.scope.ids?.contains(id)!=false) && dateMatches(id) &&
+        id !in c.library.archived && (g.source=="all" || (g.source=="generated")== (job!=null)) && (g.scope.ids?.contains(id)!=false) && dateMatches(id) &&
         (a.request().name().contains(g.query,true) || labels[id]?.alias?.contains(g.query,true)==true || labels[id]?.tags?.any{it.contains(g.query,true)}==true || id in promptMatches)}
     val visibleIds=visible.map{it.request().id().toString()}
     val albums=galleryAlbums(visibleIds,projection,g.fold.type.takeIf{g.fold.enabled})
@@ -89,6 +89,7 @@ internal class GalleryViewState {
         StudioActions{StudioAction("导入图片",!c.busy){c.importImages()};StudioAction("粘贴图片",!c.busy){if(!c.pasteImages())c.problem="剪贴板没有图片或文件列表；文字请粘贴到输入框"};StudioAction("返回创作"){c.view="创作"}}
         Text("拖入文件 / Ctrl+V · PNG、JPEG、WebP、GIF、BMP · 每文件≤32MiB，≤12582912像素；动图预览首帧，原文件保留",style=MaterialTheme.typography.caption)
         StudioAction("管理收集与导入目录"){c.library.tab="目录入口";c.view="资产管理"}
+        c.library.archiveError?.let{Text(it,color=MaterialTheme.colors.error)}
         SharedDocumentAssets(c)
         if(g.imports.isNotEmpty()){
             var show by remember{mutableStateOf(false)}
@@ -151,6 +152,8 @@ internal class GalleryViewState {
             StudioAction("选中图片用于引导",c.current!=null&&!c.busy){c.section="图像引导";c.view="创作"}
             StudioAction("APNG伪装 / 还原",c.selection.isNotEmpty()&&!c.busy){c.animation.open(c.assets.filter{it.request().id().toString() in c.selection}.map{it.request().id().toString()})}
             StudioAction("所选图片建立编辑工程",c.selection.isNotEmpty() && !c.busy){c.view="编辑"}
+            StudioAction("所选资产移入回收站",c.selection.isNotEmpty()&&!c.busy&&c.library.error==null&&c.library.archiveError==null){c.library.archiveRequest=c.selection.toSet()}
+            StudioAction("资产回收站"){c.library.tab="回收站";c.view="资产管理"}
         }
     }
 }
