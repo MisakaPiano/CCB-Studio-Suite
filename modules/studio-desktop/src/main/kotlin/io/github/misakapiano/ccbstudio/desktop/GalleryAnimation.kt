@@ -57,7 +57,7 @@ internal class GalleryAnimationController(private val c:WorkbenchController,priv
     var completed by mutableStateOf<Path?>(null);private set
     var progress by mutableStateOf(0);private set
     var copyFiles:(List<Path>)->Unit=ExportClipboard::copy
-    var chooseDirectory:()->Path?={val chooser=javax.swing.JFileChooser();chooser.dialogTitle="选择APNG输出目录（新建独立文件夹）";chooser.fileSelectionMode=javax.swing.JFileChooser.DIRECTORIES_ONLY;if(chooser.showSaveDialog(null)==javax.swing.JFileChooser.APPROVE_OPTION)chooser.selectedFile.toPath()else null}
+    var chooseDirectory:()->Path?={StudioFileDialogs.folder("选择APNG输出目录（新建独立文件夹）")}
     fun open(selected:List<String>){ids=selected;index=0;preview=null;error=null;completed=null}
     fun selectMode(value:String){check(!c.busy);mode=value;preview=null;error=null;completed=null}
     fun page(delta:Int){check(!c.busy);index=(index+delta).coerceIn(0,ids.orEmpty().lastIndex);preview=null;error=null}

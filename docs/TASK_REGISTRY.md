@@ -1,3 +1,7 @@
+## Windows 原生选择与分步恢复（2026-10-22）
+
+[实际记录](audits/UX_NATIVE_PICKERS.md)：固定 Desktop 原生选择器适配全部入口；恢复来源/位置分步及错误来源提前提示。定向 16 项、desktop 完整 108 项实际 PASS；首次编译失败和旧安装版 MISSING 保留。原生手选与固定包验证继续，PRODUCT_HOLD / NOT RC。
+
 ## 字体回退与导出反馈（2026-10-22）
 
 [实际记录](audits/UX_GLYPH_EXPORT_FEEDBACK.md)：修复小人书测量/绘制字体不一致、导出进度重绘阻塞及冷字体载入；停止/明确重试/复制失败文件保留已验证。core 129 项与最终 desktop 95 项分别实际 PASS，三轮失败保留。继续固定包与原生验证，PRODUCT_HOLD / NOT RC。

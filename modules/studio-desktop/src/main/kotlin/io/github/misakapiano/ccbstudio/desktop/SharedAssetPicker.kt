@@ -69,9 +69,7 @@ import com.example.chatbar.desktop.*
                 AssetLabelEditor(c,id)
                 StudioActions {
                     StudioAction("另存资产 ${asset.request().id().toString().take(8)}",!c.busy){
-                        val chooser=javax.swing.JFileChooser();chooser.selectedFile=java.io.File(asset.request().name())
-                        if(chooser.showSaveDialog(null)==javax.swing.JFileChooser.APPROVE_OPTION) {
-                            val target=chooser.selectedFile.toPath()
+                        StudioFileDialogs.save("另存资产（不覆盖已有文件）",asset.request().name())?.let{target->
                             c.run("另存资产") {
                                 require(!java.nio.file.Files.exists(target)){"Destination already exists; retained"}
                                 val pending=target.resolveSibling(".${target.fileName}.${io.github.misakapiano.ccbstudio.core.newId()}.pending")

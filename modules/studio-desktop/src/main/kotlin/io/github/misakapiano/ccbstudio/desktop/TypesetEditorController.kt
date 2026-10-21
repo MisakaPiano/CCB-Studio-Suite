@@ -1,6 +1,7 @@
 package io.github.misakapiano.ccbstudio.desktop
 
 import androidx.compose.runtime.*
+import com.example.chatbar.desktop.StudioFileDialogs
 import io.github.misakapiano.ccbstudio.core.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.sync.Mutex
@@ -40,7 +41,7 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
     var presetInspection by mutableStateOf<TypesetSourceExchange.PresetInspection?>(null);private set
     var recipeInspection by mutableStateOf<TypesetEditRecipe?>(null);private set
     private var recipeTarget:Pair<String,String>?=null
-    internal var chooseRecipeFile:()->java.nio.file.Path?={val chooser=javax.swing.JFileChooser();chooser.dialogTitle="导入编辑 Recipe";chooser.fileFilter=javax.swing.filechooser.FileNameExtensionFilter("编辑 Recipe JSON","json");if(chooser.showOpenDialog(null)==javax.swing.JFileChooser.APPROVE_OPTION)chooser.selectedFile.toPath()else null}
+    internal var chooseRecipeFile:()->java.nio.file.Path?={StudioFileDialogs.open("导入编辑 Recipe",listOf("json"))}
     fun inspectRecipe()=c.run("预读编辑 Recipe") {
         drain();val p=project?:return@run;val page=page?:return@run;val path=withContext(ui){chooseRecipeFile()}?:return@run
         val r=TypesetEditRecipes.inspect(readBounded(path,TypesetEditRecipes.MAX_BYTES));withContext(ui){recipeInspection=r;recipeTarget=p.id to page.id}
@@ -53,16 +54,12 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
     }
     var exchangeMessage by mutableStateOf<String?>(null);private set
     internal var chooseExchangeFile:(Boolean)->java.nio.file.Path? = {save->
-        val chooser=javax.swing.JFileChooser();chooser.dialogTitle=if(save)"保存 TypeSet 工程交换文件（不覆盖已有文件）"else"导入 TypeSet 工程交换文件"
-        chooser.fileFilter=javax.swing.filechooser.FileNameExtensionFilter("TypeSet 工程 JSON","json")
-        if(save)chooser.selectedFile=java.io.File("Studio.typesetter-workspace.json")
-        val result=if(save)chooser.showSaveDialog(null)else chooser.showOpenDialog(null)
-        if(result==javax.swing.JFileChooser.APPROVE_OPTION)chooser.selectedFile.toPath() else null
+        if(save)StudioFileDialogs.save("保存 TypeSet 工程交换文件（不覆盖已有文件）","Studio.typesetter-workspace.json",listOf("json"))
+        else StudioFileDialogs.open("导入 TypeSet 工程交换文件",listOf("json"))
     }
     internal var choosePresetFile:(Boolean)->java.nio.file.Path? = {save->
-        val chooser=javax.swing.JFileChooser();chooser.dialogTitle=if(save)"保存 TypeSet 预设文件（不覆盖已有文件）"else"导入 TypeSet 预设文件"
-        chooser.fileFilter=javax.swing.filechooser.FileNameExtensionFilter("TypeSet 预设 JSON","json");if(save)chooser.selectedFile=java.io.File("Studio.typesetter-presets.json")
-        val result=if(save)chooser.showSaveDialog(null)else chooser.showOpenDialog(null);if(result==javax.swing.JFileChooser.APPROVE_OPTION)chooser.selectedFile.toPath() else null
+        if(save)StudioFileDialogs.save("保存 TypeSet 预设文件（不覆盖已有文件）","Studio.typesetter-presets.json",listOf("json"))
+        else StudioFileDialogs.open("导入 TypeSet 预设文件",listOf("json"))
     }
     fun inspectPresets()=c.run("预读 TypeSet 预设") {drain();val path=withContext(ui){choosePresetFile(false)}?:return@run
         val inspection=TypesetSourceExchange.inspectPresets(readBounded(path,4*1024*1024));withContext(ui){presetInspection=inspection}}
@@ -87,8 +84,7 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
         TypesetSourceExchange.saveFile(path,bytes);withContext(ui){exchangeMessage="工程文件已保存：$path · ${bytes.size} bytes · SHA-256 ${sha256(bytes)}"}
     }
     internal var chooseExportDirectory:()->java.nio.file.Path? = {
-        val chooser=javax.swing.JFileChooser();chooser.dialogTitle="选择导出位置（将新建独立输出文件夹）";chooser.fileSelectionMode=javax.swing.JFileChooser.DIRECTORIES_ONLY
-        if(chooser.showSaveDialog(null)==javax.swing.JFileChooser.APPROVE_OPTION)chooser.selectedFile.toPath() else null
+        StudioFileDialogs.folder("选择导出位置（将新建独立输出文件夹）")
     }
     fun export(request:TypesetExportRequest,clipboard:Boolean=false)=c.run(if(clipboard)"复制批量输出文件"else"导出编辑工程") {
         drain();val p=project?:return@run;val d=document?:return@run
@@ -196,7 +192,7 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
     }
     fun importFont()=c.run("导入本地字体") {
         drain()
-        val file=withContext(ui){val chooser=javax.swing.JFileChooser();chooser.dialogTitle="导入字体（仅保存在 Studio）";chooser.fileFilter=javax.swing.filechooser.FileNameExtensionFilter("字体 TTF / OTF / WOFF / WOFF2","ttf","otf","woff","woff2");if(chooser.showOpenDialog(null)==javax.swing.JFileChooser.APPROVE_OPTION)chooser.selectedFile else null}?:return@run
+        val file=withContext(ui){StudioFileDialogs.open("导入字体（仅保存在 Studio）",listOf("ttf","otf","woff","woff2"))?.toFile()}?:return@run
         TypesetFonts.import(c.workspace,file.name,readBounded(file.toPath(),64*1024*1024))
     }
     fun history(redo:Boolean=false)=c.run(if(redo)"重做编辑"else"撤销编辑") {

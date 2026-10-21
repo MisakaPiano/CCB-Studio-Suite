@@ -1,0 +1,53 @@
+{
+  "repository": "MisakaPiano/ChatChatBar-Desktop",
+  "sourceCommit": "62b93e824333540657474d43dc63723d6e90ab24",
+  "readOnly": true,
+  "naiAuthorityUnchanged": "5ef95428421f7c693b010ac88f51d470804ab07a",
+  "files": [
+    {
+      "sourcePath": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/WindowsCommonItemDialog.kt",
+      "sourceGitBlob": "9e929f72efc2b9c35d3d37a3094c0ebb30868857",
+      "sourceSha256": "f16e73870fd4ba671f3fb273f02b6ddf789e8f20ac0476b04f227a9e23b8384b",
+      "sourceBytes": 5997,
+      "suitePath": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/WindowsCommonItemDialog.kt",
+      "suiteSha256": "da7f2f9d38bdda5669241cb8e210519640f526efad1c808a2800fd58e5c091da",
+      "adaptation": "Suite consumer, multi-select / title / initial folder; existing STA, owner and cleanup behavior retained"
+    },
+    {
+      "sourcePath": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/JnaCommonDialogBackend.kt",
+      "sourceGitBlob": "6fc713f3643c481a75c0d79ddf3bca54fa115f2b",
+      "sourceSha256": "e68217dfec309ce541682806157680d6407121bbec678f08acd7eaa4c9f98096",
+      "sourceBytes": 4444,
+      "suitePath": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/JnaCommonDialogBackend.kt",
+      "suiteSha256": "202377f0145ec3a795ddbc387abc87eff67a155e2d85d9f4fb18589854f68b75",
+      "adaptation": "Suite consumer, multi-select / title / initial folder; existing STA, owner and cleanup behavior retained"
+    },
+    {
+      "sourcePath": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopPlatformPickers.kt",
+      "sourceGitBlob": "269f1954acc4fc80a4ddef62f6a739a14850471c",
+      "sourceSha256": "29207fc1504504f5e169bca947695cc7fcaa90e701b439ace71cae8b66cd4170",
+      "sourceBytes": 3240,
+      "suitePath": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopDialogOwner.kt",
+      "suiteSha256": "6d2a01c157fd5b2a600c4483b0c3152aaabfe9dda03deddf637b75555b43eee2",
+      "adaptation": "Suite consumer, multi-select / title / initial folder; existing STA, owner and cleanup behavior retained"
+    },
+    {
+      "sourcePath": "app/desktopApp/src/test/kotlin/com/example/chatbar/desktop/WindowsCommonItemDialogTest.kt",
+      "sourceGitBlob": "08f9a33deddcc83311bbcd749beac197aedf69cc",
+      "sourceSha256": "1a4a968606734505fa052af76fc09848bebb9db84ea2db775aff014f5f13caee",
+      "sourceBytes": 10169,
+      "suitePath": "modules/studio-desktop/src/test/kotlin/com/example/chatbar/desktop/WindowsCommonItemDialogTest.kt",
+      "suiteSha256": "0d590892caff95e58b2862fad523be74b0afb0bde70675b0f1b30d74aedb0186",
+      "adaptation": "Suite regression context plus multi-select / initial folder / cleanup coverage"
+    },
+    {
+      "sourcePath": "app/desktopApp/src/test/kotlin/com/example/chatbar/desktop/WindowsNativeDialogIntegrationTest.kt",
+      "sourceGitBlob": "a0b958109fe626e3844c9a23e7494dd5a5337668",
+      "sourceSha256": "c505266ed65b1f51c67db833ad59dd17bef3899c0ca081019c69026de237ed2b",
+      "sourceBytes": 2227,
+      "suitePath": "modules/studio-desktop/src/test/kotlin/com/example/chatbar/desktop/WindowsNativeDialogIntegrationTest.kt",
+      "suiteSha256": "8d999c6c57ad265d21078cca81cd6bf08c6b36247c8fa080a8412942a46404ec",
+      "adaptation": "Suite regression context plus multi-select / initial folder / cleanup coverage"
+    }
+  ]
+}

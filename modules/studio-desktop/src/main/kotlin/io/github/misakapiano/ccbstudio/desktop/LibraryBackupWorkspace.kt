@@ -9,15 +9,13 @@ import androidx.compose.ui.unit.dp
 import com.example.chatbar.desktop.*
 import io.github.misakapiano.ccbstudio.core.*
 import java.nio.file.*
-import javax.swing.JFileChooser
 
 internal data class RestoreChoice(val backup:Path,val destination:Path)
 
 /** Product entry points over the existing verified backup, restore and copy-migration core. */
 internal class LibraryBackupController(private val c:WorkbenchController,
     internal var chooseFolder:(String,Path?)->Path?={title,initial->
-        val chooser=JFileChooser(initial?.toFile());chooser.dialogTitle=title;chooser.fileSelectionMode=JFileChooser.DIRECTORIES_ONLY
-        if(chooser.showOpenDialog(null)==JFileChooser.APPROVE_OPTION)chooser.selectedFile.toPath()else null
+        StudioFileDialogs.folder(title,initial?.takeIf{Files.isDirectory(it)})
     },internal var launchWorkspace:(Path)->Unit={root->
         val executable=System.getProperty("jpackage.app-path")?.let(Path::of)
             ?:throw DataProblem("INSTALLED_APP_REQUIRED","请使用安装版打开另一个工作区")
@@ -28,6 +26,7 @@ internal class LibraryBackupController(private val c:WorkbenchController,
     var backup by mutableStateOf<Path?>(null);private set
     var restored by mutableStateOf<Path?>(null);private set
     var choice by mutableStateOf<RestoreChoice?>(null);private set
+    var restoreSource by mutableStateOf<Path?>(null);private set
     var receipt by mutableStateOf("");private set
     fun createBackup()=c.run("备份图库与工程") {
         backup=null;receipt="正在保存草稿并校验备份…"
@@ -39,8 +38,26 @@ internal class LibraryBackupController(private val c:WorkbenchController,
     }
     fun selectRestore() {
         if(c.busy||c.maintenance)return
-        val source=chooseFolder("选择包含 COMPLETE.txt 的完整备份目录",backup?:c.workspace.root.resolve("backups"))?:return
-        val parent=chooseFolder("选择恢复工作区的存放位置（将新建目录）",c.workspace.root.parent)?:return
+        val source=chooseFolder("第 1 步：选择备份来源（包含 COMPLETE.txt 的目录）",backup?:c.workspace.root.resolve("backups"))?:return
+        prepareSource(source)
+    }
+    fun useLatestBackup(){if(!c.busy&&!c.maintenance)backup?.let(::prepareSource)}
+    private fun prepareSource(source:Path) {
+        choice=null;restoreSource=null
+        try {
+            safePath(source)
+            if(!Files.isRegularFile(source.resolve("COMPLETE.txt"),LinkOption.NOFOLLOW_LINKS) ||
+                !Files.isRegularFile(source.resolve("assets/backup-manifest.rec"),LinkOption.NOFOLLOW_LINKS) ||
+                !Files.isDirectory(source.resolve("documents"),LinkOption.NOFOLLOW_LINKS)) {
+                c.problem="所选目录不是完整的 Studio 备份。请选择备份完成后显示的目录，其中应有 COMPLETE.txt、assets 和 documents。恢复位置将在下一步单独选择；当前资料未改变。";return
+            }
+            restoreSource=source.toAbsolutePath().normalize()
+        }catch(e:Exception){c.problem="备份来源无法读取；尚未开始恢复，请重新选择完整备份目录。"}
+    }
+    fun selectDestination() {
+        if(c.busy||c.maintenance)return
+        val source=restoreSource?:return
+        val parent=chooseFolder("第 2 步：选择新工作区的存放位置（不是备份来源）",c.workspace.root.parent)?:return
         val destination=parent.toAbsolutePath().normalize().resolve("Studio-Restored-${newId()}")
         val current=c.workspace.root.toAbsolutePath().normalize()
         if(destination.startsWith(current)||current.startsWith(destination)){
@@ -92,8 +109,19 @@ internal class LibraryBackupController(private val c:WorkbenchController,
         Text("完整备份目录（可复制到其他磁盘保管）")
         SelectionContainer{Text(path.toString())}
         StudioActions {
+            StudioAction("恢复这份备份",!c.busy&&!c.maintenance){b.useLatestBackup()}
             StudioAction("打开备份文件夹"){runCatching{java.awt.Desktop.getDesktop().open(path.toFile())}.onFailure{c.problem="文件夹未能打开，备份仍保留在显示的路径。"}}
             StudioAction("复制备份路径"){desktopCopyText(path.toString())}
+        }
+    }
+    b.restoreSource?.let{source->
+        Card(backgroundColor=MaterialTheme.colors.primary.copy(alpha=.10f),modifier=Modifier.fillMaxWidth()) {
+            Column(Modifier.padding(16.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
+                Text("第 1 步已选择备份来源")
+                SelectionContainer{Text(source.toString())}
+                Text("第 2 步选择新工作区的存放位置；开始恢复时会校验全部备份文件。")
+                Button(onClick=b::selectDestination,enabled=!c.busy&&!c.maintenance){Text("选择恢复位置")}
+            }
         }
     }
     b.restored?.let{path->
@@ -108,7 +136,10 @@ internal class LibraryBackupController(private val c:WorkbenchController,
     b.choice?.let{choice->AlertDialog(onDismissRequest=b::cancelRestore,title={Text("恢复到独立新目录")},text={
         Column(verticalArrangement=Arrangement.spacedBy(8.dp)) {
             Text("完整校验后恢复。不会覆盖当前资料或已有目录。旧格式会再建立格式 3 副本，旧恢复目录仍保留。")
-            SelectionContainer{Text("备份：${choice.backup}\n新目录：${choice.destination}")}
+            Text("读取这份备份（不会修改）")
+            SelectionContainer{Text(choice.backup.toString())}
+            Text("建立新工作区（不会覆盖已有目录）")
+            SelectionContainer{Text(choice.destination.toString())}
             Text("API 凭据不会恢复；外部收集目录不会自动扫描。")
         }
     },confirmButton={TextButton(onClick=b::restore){Text("确认恢复新工作区")}},dismissButton={TextButton(onClick=b::cancelRestore){Text("取消恢复")}})}

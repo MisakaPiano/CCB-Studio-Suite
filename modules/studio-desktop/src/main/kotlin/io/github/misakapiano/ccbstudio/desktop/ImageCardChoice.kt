@@ -10,15 +10,13 @@ import androidx.compose.ui.unit.dp
 import com.example.chatbar.desktop.*
 import io.github.misakapiano.ccbstudio.core.*
 import kotlinx.coroutines.*
-import javax.swing.JFileChooser
 
 @Composable internal fun ImageCardChoice(c:WorkbenchController) {
     var candidate by remember{mutableStateOf<ImageCardSource?>(null)}
     val scope=rememberCoroutineScope();val cards=c.state.creation!!.imageCards
     StudioActions {
         StudioAction("导入 CCB 角色卡 Prompt",!c.busy){
-            val chooser=JFileChooser();chooser.dialogTitle="选择 CCB 角色卡 PNG / JSON"
-            if(chooser.showOpenDialog(null)==JFileChooser.APPROVE_OPTION){val path=chooser.selectedFile.toPath();scope.launch{
+            StudioFileDialogs.open("选择 CCB 角色卡 PNG / JSON",listOf("png","json"))?.let{path->scope.launch{
                 runCatching{withContext(Dispatchers.IO){readImageCardSource(readBounded(path,16*1024*1024))}}.onSuccess{candidate=it}.onFailure{c.problem="角色卡未导入：格式不支持、内容不完整或超过限制；现有草稿保留"}
             }}
         }

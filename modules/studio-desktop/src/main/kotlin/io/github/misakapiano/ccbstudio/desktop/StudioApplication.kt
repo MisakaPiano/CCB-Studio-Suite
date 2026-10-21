@@ -24,7 +24,6 @@ import kotlinx.coroutines.*
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.*
 import java.nio.file.*
-import javax.swing.JFileChooser
 
 internal class WorkbenchController(val workspace:StudioWorkspace,val scope:CoroutineScope,val infrastructure:DesktopNovelAiInfrastructure,budgetRoot:Path,
     val http:okhttp3.OkHttpClient=studioHttpClient(),admissionOverride:RequestAdmission?=null) {
@@ -312,9 +311,8 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
         session.update{it.copy(llmAccountId=llmId,naiAccountId=naiId)}
     }
     fun importImages() {
-        val chooser=JFileChooser();chooser.isMultiSelectionEnabled=true
-        if(chooser.showOpenDialog(null)!=JFileChooser.APPROVE_OPTION)return
-        importIngress(GalleryIngress(files=chooser.selectedFiles.map{it.toPath()}))
+        val files=StudioFileDialogs.openMany("导入图片",listOf("png","jpg","jpeg","webp","gif"))
+        if(files.isNotEmpty())importIngress(GalleryIngress(files=files))
     }
     fun pasteImages():Boolean=try{if(busy)false else gallery.pasteContents()?.let{receiveTransfer(it,true)}?:false}catch(e:Exception){problem="剪贴板读取失败；现有资料未改变";true}
     fun receiveTransfer(transfer:java.awt.datatransfer.Transferable,paste:Boolean):Boolean=try {
@@ -406,6 +404,7 @@ internal fun launchStudio(args:Array<String>) {
             if(completed==null)c.problem="更新交接超时，尚不能确认完成；现有资料和旧程序均保留"
         }
         Window(onCloseRequest=::close,title="CCB Studio Suite · 工作台",undecorated=DesktopWindowChrome.isWindows,icon=StudioBrand.painter,state=rememberWindowState(width=1320.dp,height=880.dp)) {
+            DisposableEffect(window){StudioFileDialogs.attach(window){c.problem=it};onDispose{StudioFileDialogs.detach(window)}}
             val chrome=rememberDesktopWindowChrome(window,::close);SideEffect{chrome.appearance(true)}
             MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel,onPrimary=Ink,onSurface=Color(0xffe6edf3))) {Workbench(c,chrome,closing)}
         }

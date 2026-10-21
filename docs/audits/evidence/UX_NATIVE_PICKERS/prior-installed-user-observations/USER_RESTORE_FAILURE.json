@@ -1,0 +1,29 @@
+{
+  "installedSource": "893ae61fb0de39eff59351ade406b94fefa29a1a",
+  "installedVersion": 5,
+  "observed": "Legacy Swing picker; destination parent selected as backup source; MISSING shown; no restore success",
+  "source": "H:/CCB-Studio-Suite/.local/windows-rc/restore-ui-4",
+  "confirmationDestination": ".local\\windows-rc\\Studio-Restored-e0ba913f-b44c-4eb0-88de-dc96df6de4da",
+  "destinationExists": false,
+  "files": [
+    {
+      "name": "user-legacy-folder-picker.png",
+      "bytes": 42458,
+      "sha256": "9110765992cdc8aa2113dbce4e3f18383f901dff21451c61e026265324bca134",
+      "origin": "User-provided screenshot; isolated synthetic workspace"
+    },
+    {
+      "name": "user-wrong-restore-source.png",
+      "bytes": 91500,
+      "sha256": "71ebaacec39fc66a382f9cabfa205b3807ad1cca90eccc8c275194d2501123a4",
+      "origin": "User-provided screenshot; isolated synthetic workspace"
+    },
+    {
+      "name": "user-missing-restore-source.png",
+      "bytes": 77097,
+      "sha256": "b73feb75d1f04131fa8f2c1b4e664604f16521e6a680a5bccfae5eb5d2446970",
+      "origin": "User-provided screenshot; isolated synthetic workspace"
+    }
+  ],
+  "productAcceptance": "FAILED: source/destination confusion and obsolete picker"
+}

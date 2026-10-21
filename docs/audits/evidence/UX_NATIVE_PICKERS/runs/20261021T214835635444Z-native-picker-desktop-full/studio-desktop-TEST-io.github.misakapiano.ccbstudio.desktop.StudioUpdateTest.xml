@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-21T21:50:45.698Z" hostname="DD1" time="2.171">
+  <properties/>
+  <testcase name="cancellationDrainsOwnedOperationAndRejectsNewWork" classname="io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest" time="0.042"/>
+  <testcase name="actualUpdateScreenRequiresDownloadConfirmationAndDoesNotClaimInstall" classname="io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest" time="2.085"/>
+  <testcase name="realByteProgressHasSeparateVerificationAndRejectsImpossibleCounts" classname="io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest" time="0.021"/>
+  <testcase name="unconfiguredRuntimeFailsWithoutLaunchingProcess" classname="io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest" time="0.017"/>
+  <testcase name="currentVersionIsSuccessAndFailureClearsStaleInstallCandidate" classname="io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest" time="0.006"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

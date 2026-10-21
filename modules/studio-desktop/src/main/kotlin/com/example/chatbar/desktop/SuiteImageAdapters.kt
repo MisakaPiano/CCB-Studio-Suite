@@ -16,8 +16,6 @@ import io.github.misakapiano.ccbstudio.desktop.StudioBrand
 import java.awt.Toolkit
 import java.awt.datatransfer.*
 import java.nio.file.*
-import javax.swing.JFileChooser
-import javax.swing.filechooser.FileNameExtensionFilter
 import kotlinx.coroutines.*
 
 internal object DesktopBrandResources {
@@ -29,14 +27,12 @@ internal object DesktopBrandResources {
 @Composable internal fun DesktopImageToolControls(maxHeight:Dp,content:@Composable ColumnScope.()->Unit) {
     Column(Modifier.fillMaxWidth().heightIn(max=maxHeight).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(8.dp),content=content)
 }
-internal data class DesktopFileType(val label:String,val extensions:List<String>)
+internal data class DesktopFileType(val label:String,val extensions:List<String>,val defaultExtension:String=extensions.first()) {
+    val description get()=label
+}
 internal class DesktopFilePicker {
     suspend fun pickSaveFile(type:DesktopFileType,name:String):Path?=withContext(Dispatchers.IO){
-        var chosen:Path?=null
-        javax.swing.SwingUtilities.invokeAndWait {
-            val chooser=JFileChooser();chooser.fileFilter=FileNameExtensionFilter(type.label,*type.extensions.toTypedArray());chooser.selectedFile=java.io.File(name)
-            if(chooser.showSaveDialog(null)==JFileChooser.APPROVE_OPTION) chosen=chooser.selectedFile.toPath()
-        };chosen
+        StudioFileDialogs.save("保存图片（不覆盖已有文件）",name,type.extensions)
     }
 }
 internal object DesktopExternalFileWriter {

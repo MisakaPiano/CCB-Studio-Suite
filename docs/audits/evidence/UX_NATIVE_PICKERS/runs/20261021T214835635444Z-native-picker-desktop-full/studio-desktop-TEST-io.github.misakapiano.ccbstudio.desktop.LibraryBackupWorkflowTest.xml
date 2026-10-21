@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-21T21:49:43.798Z" hostname="DD1" time="10.911">
+  <properties/>
+  <testcase name="legacyBackupRestoresThenCopiesToCurrentFormatWithoutTouchingBackup" classname="io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest" time="2.058"/>
+  <testcase name="restoreRejectsCurrentRootExistingDestinationAndCorruptBackupWithoutPublishing" classname="io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest" time="0.809"/>
+  <testcase name="sourceAndDestinationAreSeparateAndLatestBackupCannotBeConfusedWithEmptyParent" classname="io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest" time="0.349"/>
+  <testcase name="currentWorkbenchBackupConfirmRestoreAndOpenPreservesSharedAssetsWithoutCredentials" classname="io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest" time="7.694"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

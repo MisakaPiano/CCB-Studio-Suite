@@ -1,0 +1,32 @@
+{
+  "phase": "native-picker-backup-binding-fixed",
+  "startedUtc": "2026-10-21T21:47:19.710620+00:00",
+  "seconds": 71.808,
+  "exitCode": 0,
+  "tests": 16,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:test",
+    "--tests",
+    "*WindowsCommonItemDialogTest*",
+    "--tests",
+    "*WindowsNativeDialogIntegrationTest*",
+    "--tests",
+    "*LibraryBackupWorkflowTest*"
+  ],
+  "baseCommit": "893ae61fb0de39eff59351ade406b94fefa29a1a",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

@@ -30,7 +30,6 @@ import kotlinx.serialization.decodeFromString
 import java.nio.file.*
 import java.awt.datatransfer.DataFlavor
 import java.awt.dnd.*
-import javax.swing.JFileChooser
 import java.io.File
 
 internal val Ink=Color(0xff0d1117)
@@ -56,6 +55,7 @@ fun main(args:Array<String>) {
         val c=remember {StudioController(workspace,scope){active=it}}
         fun closeSafely() {if(!closing){closing=true;scope.launch {active?.cancelAndJoin();withContext(Dispatchers.IO){workspace.close()};exitApplication()}}}
         Window(onCloseRequest={closeSafely()},undecorated=DesktopWindowChrome.isWindows,icon=StudioBrand.painter,title="CCB Studio Suite · Windows Preview",state=rememberWindowState(width=1260.dp,height=830.dp)) {
+            DisposableEffect(window){StudioFileDialogs.attach(window){c.popup=it};onDispose{StudioFileDialogs.detach(window)}}
             val chrome=rememberDesktopWindowChrome(window){closeSafely()}
             SideEffect {chrome.appearance(true)}
             DisposableEffect(Unit) {
@@ -190,9 +190,8 @@ internal class StudioController(val workspace:StudioWorkspace,val scope:Coroutin
         }
     }
     fun restoreBackup() {
-        val chooser=JFileChooser(workspace.root.resolve("backups").toFile());chooser.fileSelectionMode=JFileChooser.DIRECTORIES_ONLY
-        if(chooser.showOpenDialog(null)==JFileChooser.APPROVE_OPTION) {
-            val source=chooser.selectedFile.toPath()
+        val source=StudioFileDialogs.folder("选择完整备份目录",workspace.root.resolve("backups").takeIf{Files.isDirectory(it)})?:return
+        run {
             run("验证并恢复到新工作区") {
                 val destination=workspace.root.parent.resolve("restored-preview-${newId()}")
                 StudioRestore.restore(source,destination)
@@ -201,7 +200,7 @@ internal class StudioController(val workspace:StudioWorkspace,val scope:Coroutin
         }
     }
     fun select(id:String){current=id;selected=if(id in selected)selected-id else selected+id;refreshImage()}
-    fun pickImport() {val chooser=JFileChooser();chooser.isMultiSelectionEnabled=true;if(chooser.showOpenDialog(null)==JFileChooser.APPROVE_OPTION)importFiles(chooser.selectedFiles.toList())}
+    fun pickImport() {val files=StudioFileDialogs.openMany("导入原始图片",listOf("png","jpg","jpeg","webp","gif"));if(files.isNotEmpty())importFiles(files.map{it.toFile()})}
     fun importFiles(files:List<File>)=run("导入原始文件") {
         val ids=files.map {f->workspace.importImage(f.name,readBounded(f.toPath(),EditorRenderer.MAX_BYTES))}
         current=ids.firstOrNull();selected=ids.toSet()

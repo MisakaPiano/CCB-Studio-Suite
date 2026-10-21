@@ -42,8 +42,8 @@ class LibraryBackupWorkflowTest {
             scene.frames();scene.click("资产管理");scene.click("备份与恢复");scene.click("备份图库与工程");c.active!!.join();scene.frames();assertNull(c.problem)
             assertNotNull(b.backup);assertTrue(Files.isRegularFile(b.backup!!.resolve("COMPLETE.txt")))
             assertFalse(Files.exists(b.backup!!.resolve("secrets")))
-            scene.click("从备份恢复到新工作区");val cancelled=b.choice!!.destination;scene.click("取消恢复");assertFalse(Files.exists(cancelled))
-            scene.click("从备份恢复到新工作区");scene.click("确认恢复新工作区");c.active!!.join();scene.frames();assertNull(c.problem)
+            scene.click("从备份恢复到新工作区");scene.click("选择恢复位置");val cancelled=b.choice!!.destination;scene.click("取消恢复");assertFalse(Files.exists(cancelled))
+            scene.click("从备份恢复到新工作区");scene.click("选择恢复位置");scene.click("确认恢复新工作区");c.active!!.join();scene.frames();assertNull(c.problem)
             val restored=requireNotNull(b.restored);assertNotEquals(w.root,restored)
             scene.click("打开恢复工作区");assertEquals(restored,opened)
             StudioWorkspace.openStudio(restored).use{next->
@@ -70,13 +70,31 @@ class LibraryBackupWorkflowTest {
         b.chooseFolder={_,_->if(calls++%2==0)b.backup else target}
         try {
             b.createBackup();c.active!!.join();assertNotNull(b.backup)
-            b.selectRestore();assertNull(b.choice);assertTrue(c.problem!!.contains("当前工作区之外"))
-            target=parent;b.selectRestore();val destination=b.choice!!.destination;Files.createDirectory(destination);Files.writeString(destination.resolve("keep.txt"),"retained")
+            b.selectRestore();b.selectDestination();assertNull(b.choice);assertTrue(c.problem!!.contains("当前工作区之外"))
+            target=parent;b.selectRestore();b.selectDestination();val destination=b.choice!!.destination;Files.createDirectory(destination);Files.writeString(destination.resolve("keep.txt"),"retained")
             b.restore();c.active!!.join();assertNull(b.restored);assertTrue(c.problem!!.startsWith("CONFLICT"));assertEquals("retained",Files.readString(destination.resolve("keep.txt")))
             Files.writeString(b.backup!!.resolve("unexpected.txt"),"unknown retained")
-            b.selectRestore();val corruptDestination=b.choice!!.destination;b.restore();c.active!!.join()
+            b.selectRestore();b.selectDestination();val corruptDestination=b.choice!!.destination;b.restore();c.active!!.join()
             assertNull(b.restored);assertTrue(c.problem!!.startsWith("CORRUPT"));assertFalse(Files.exists(corruptDestination));assertTrue(b.receipt.startsWith("恢复未完成"))
             assertContentEquals(original,w.bytes(id));assertTrue(Files.exists(b.backup!!.resolve("unexpected.txt")))
+        }finally{c.close();scope.cancel()}
+    }
+    @Test fun sourceAndDestinationAreSeparateAndLatestBackupCannotBeConfusedWithEmptyParent():Unit=runBlocking(awt) {
+        val w=StudioWorkspace.openStudio(root());val scope=CoroutineScope(SupervisorJob()+awt)
+        val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{error("No network")})
+        val b=c.backups;val parent=Files.createDirectories(root());var calls=0
+        try {
+            b.createBackup();c.active!!.join();val complete=Files.readAllBytes(b.backup!!.resolve("COMPLETE.txt"))
+            b.chooseFolder={_,_->calls++;parent}
+            b.selectRestore();assertEquals(1,calls);assertNull(b.restoreSource);assertNull(b.choice)
+            assertTrue(c.problem!!.contains("所选目录不是完整"));assertEquals(0,Files.list(parent).use{it.count()}.toInt())
+            c.problem=null;b.useLatestBackup();assertEquals(1,calls);assertEquals(b.backup,b.restoreSource);assertNull(b.choice)
+            b.chooseFolder={title,_->calls++;assertTrue(title.startsWith("第 2 步"));null}
+            b.selectDestination();assertEquals(2,calls);assertEquals(b.backup,b.restoreSource);assertNull(b.choice)
+            b.chooseFolder={_,_->calls++;parent};b.selectDestination()
+            assertEquals(b.backup,b.choice!!.backup);assertEquals(parent,b.choice!!.destination.parent)
+            val target=b.choice!!.destination;b.cancelRestore();assertNull(b.choice);assertFalse(Files.exists(target))
+            assertContentEquals(complete,Files.readAllBytes(b.backup!!.resolve("COMPLETE.txt")))
         }finally{c.close();scope.cancel()}
     }
     @Test fun legacyBackupRestoresThenCopiesToCurrentFormatWithoutTouchingBackup():Unit=runBlocking(awt) {
@@ -88,7 +106,7 @@ class LibraryBackupWorkflowTest {
         val b=c.backups;val parent=Files.createDirectories(root());var calls=0
         b.chooseFolder={_,_->if(calls++%2==0)source else parent}
         try {
-            b.selectRestore();val first=b.choice!!.destination;b.restore();c.active!!.join();assertNull(c.problem)
+            b.selectRestore();b.selectDestination();val first=b.choice!!.destination;b.restore();c.active!!.join();assertNull(c.problem)
             assertEquals("CCBStudioSuite/WindowsPreview/SYNTHETIC_ONLY/v1",Files.readString(first.resolve("preview-root.txt")))
             assertNotEquals(first,b.restored)
             StudioWorkspace.openStudio(requireNotNull(b.restored)).use{restored->assertEquals(StudioWorkspace.DATA_VERSION,restored.state.version);assertContentEquals(original,restored.bytes(id));assertEquals("旧工程",restored.state.projects.single().name)}

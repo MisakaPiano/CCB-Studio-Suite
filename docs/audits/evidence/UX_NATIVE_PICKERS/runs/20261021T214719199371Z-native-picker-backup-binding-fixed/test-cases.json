@@ -1,0 +1,98 @@
+[
+  {
+    "suite": "com.example.chatbar.desktop.WindowsCommonItemDialogTest",
+    "name": "open save and folder preserve options and release all resources in order",
+    "seconds": "0.114",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.WindowsCommonItemDialogTest",
+    "name": "one service reuses its STA and cannot be used after shutdown",
+    "seconds": "0.033",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.WindowsCommonItemDialogTest",
+    "name": "EDT stays responsive and concurrent native dialog is rejected without another COM operation",
+    "seconds": "0.013",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.WindowsCommonItemDialogTest",
+    "name": "cancel multiple never retrieves array and folder setup failure frees dialog",
+    "seconds": "0.003",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.WindowsCommonItemDialogTest",
+    "name": "missing owner fails explicitly before initializing COM",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.WindowsCommonItemDialogTest",
+    "name": "multiple paths keep order and release every item on success or partial failure",
+    "seconds": "0.013",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.WindowsCommonItemDialogTest",
+    "name": "save preserves supported suffix and appends default otherwise without writing",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.WindowsCommonItemDialogTest",
+    "name": "every setup and retrieval failure releases precisely the resources acquired",
+    "seconds": "0.005",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.WindowsCommonItemDialogTest",
+    "name": "cancel alone returns null while real HRESULT error is explicit and releases",
+    "seconds": "0.004",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.WindowsCommonItemDialogTest",
+    "name": "filters preserve every existing caller extension and normalize suffixes",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.WindowsNativeDialogIntegrationTest",
+    "name": "owner is chrome top-level Compose HWND and detach never returns stale handle",
+    "seconds": "2.089",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.WindowsNativeDialogIntegrationTest",
+    "name": "real COM open save and folder configure and release on dedicated STA without showing UI",
+    "seconds": "0.099",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest",
+    "name": "legacyBackupRestoresThenCopiesToCurrentFormatWithoutTouchingBackup",
+    "seconds": "3.005",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest",
+    "name": "restoreRejectsCurrentRootExistingDestinationAndCorruptBackupWithoutPublishing",
+    "seconds": "1.47",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest",
+    "name": "sourceAndDestinationAreSeparateAndLatestBackupCannotBeConfusedWithEmptyParent",
+    "seconds": "0.352",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest",
+    "name": "currentWorkbenchBackupConfirmRestoreAndOpenPreservesSharedAssetsWithoutCredentials",
+    "seconds": "10.83",
+    "status": "PASS"
+  }
+]

@@ -10,7 +10,6 @@ import com.example.chatbar.desktop.*
 import com.example.chatbar.domain.image.*
 import io.github.misakapiano.ccbstudio.core.*
 import java.nio.file.*
-import javax.swing.JFileChooser
 import kotlinx.coroutines.*
 
 internal class LibraryController(private val c:WorkbenchController) {
@@ -58,15 +57,13 @@ internal class LibraryController(private val c:WorkbenchController) {
     fun scan(id:String)=c.run("同步资产目录"){scanResults=repository.scan(id);refresh()}
     fun defaults()=c.run("启用资产收集目录"){repository.defaultFolders();refresh()}
     fun addFolder(category:String,recursive:Boolean){
-        val chooser=JFileChooser();chooser.dialogTitle="添加只读资产目录入口";chooser.fileSelectionMode=JFileChooser.DIRECTORIES_ONLY
-        if(chooser.showOpenDialog(null)==JFileChooser.APPROVE_OPTION)c.run("添加资产目录入口"){repository.addFolder(chooser.selectedFile.toPath(),category,recursive);refresh()}
+        StudioFileDialogs.folder("添加只读资产目录入口")?.let{path->c.run("添加资产目录入口"){repository.addFolder(path,category,recursive);refresh()}}
     }
     fun importPrompt(){
-        val chooser=JFileChooser();chooser.dialogTitle="导入独立 Prompt 文件";chooser.fileFilter=javax.swing.filechooser.FileNameExtensionFilter("Prompt 文本","txt","md","prompt")
-        if(chooser.showOpenDialog(null)==JFileChooser.APPROVE_OPTION)c.run("导入 Prompt 资产"){
-            val path=chooser.selectedFile.toPath();val text=readBounded(path,1024*1024).decodeToString(throwOnInvalidSequence=true)
+        StudioFileDialogs.open("导入独立 Prompt 文件",listOf("txt","md","prompt"))?.let{path->c.run("导入 Prompt 资产"){
+            val text=readBounded(path,1024*1024).decodeToString(throwOnInvalidSequence=true)
             repository.savePrompt(text,path.fileName.toString(),"file:"+path.toAbsolutePath());refresh()
-        }
+        }}
     }
 }
 
