@@ -5,6 +5,7 @@ import androidx.compose.material.*
 import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.input.pointer.*
+import androidx.compose.ui.input.key.*
 import androidx.compose.ui.semantics.*
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.Constraints
@@ -17,6 +18,35 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.test.*
 
 class TypesetWorkflowTest {
+    @Test fun fullPreviewKeyboardAndExportDeckKeepEditorStateAndFitNarrowWindow()=runBlocking(awt) {
+        val w=StudioWorkspace.openStudio(root());val id=w.importImage("preview.png",EditorRenderer.synthetic(180,120));val scope=CoroutineScope(SupervisorJob()+awt)
+        val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
+        c.editor.create("preview",listOf(id,id,id));c.idle();val project=c.editor.project;val selected=c.editor.selectedPages;val current=c.editor.pageId
+        val scene=ImageComposeScene(1320,950){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        suspend fun key(key:Key){scene.sendKeyEvent(KeyEvent(key,KeyEventType.KeyDown));scene.sendKeyEvent(KeyEvent(key,KeyEventType.KeyUp));scene.frames()}
+        try {
+            scene.frames();scene.click("完整预览");withTimeout(30000){while(scene.nodes().none{it.matches("完整页面预览")}){delay(80);scene.frames()}}
+            assertTrue(scene.nodes().any{it.matches("1 / 3")});key(Key.DirectionRight);assertTrue(scene.nodes().any{it.matches("2 / 3")})
+            key(Key.DirectionLeft);assertTrue(scene.nodes().any{it.matches("1 / 3")});key(Key.DirectionLeft);assertTrue(scene.nodes().any{it.matches("1 / 3")})
+            val imageBounds=scene.nodes().first{it.matches("完整页面预览")}.boundsInRoot
+            val titleBounds=scene.nodes().first{it.matches("完整预览 · 001 · preview.png")}.boundsInRoot
+            val closeBounds=scene.nodes().first{it.matches("关闭完整预览 · Esc")}.boundsInRoot
+            assertTrue(imageBounds.top>=titleBounds.bottom && imageBounds.bottom<=closeBounds.top,"preview must fit between title and controls: $imageBounds / $titleBounds / $closeBounds")
+            scene.shot("full-preview");key(Key.Escape);assertFalse(scene.nodes().any{it.matches("完整页面预览")})
+            assertEquals(project,c.editor.project);assertEquals(selected,c.editor.selectedPages);assertEquals(current,c.editor.pageId);assertNull(c.editor.exportDirectory)
+            scene.click("预览与导出");withTimeout(30000){while(scene.nodes().none{it.matches("导出页面预览")}){delay(80);scene.frames()}}
+            var bounds=scene.nodes().first{it.matches("导出页面预览")}.boundsInRoot;assertTrue(bounds.width>400 && bounds.height>350,"wide preview $bounds")
+            scene.click("下一张预览");assertTrue(scene.nodes().any{it.matches("2 / 3")});scene.shot("wide-export-deck")
+            scene.click("返回编辑");assertEquals(current,c.editor.pageId);assertEquals(project,c.editor.project)
+            val narrow=ImageComposeScene(700,800){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){TypesetExportDialog(c,c.editor){}}}
+            try{narrow.frames();withTimeout(30000){while(narrow.nodes().none{it.matches("导出页面预览")}){delay(80);narrow.frames()}}
+                bounds=narrow.nodes().first{it.matches("导出页面预览")}.boundsInRoot
+                assertTrue(bounds.left>=0 && bounds.right<=700 && bounds.top>=0 && bounds.bottom<=800 && bounds.height>100,"narrow preview $bounds")
+                for(label in listOf("返回编辑","复制所选输出文件","选择位置并导出")){val b=narrow.nodes().first{it.matches(label)}.boundsInRoot;assertTrue(b.left>=0 && b.right<=700 && b.top>=0 && b.bottom<=800,"action $label at $b")}
+                narrow.shot("narrow-export-deck")
+            }finally{narrow.close()}
+        }finally{scene.close();c.close();scope.cancel();w.close()}
+    }
     @Test fun continuousMaskDefaultsRespectPerPageSettings()=runBlocking(awt) {
         val w=StudioWorkspace.openStudio(root());val id=w.importImage("defaults.png",EditorRenderer.synthetic(100,80));val scope=CoroutineScope(SupervisorJob()+awt)
         val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})

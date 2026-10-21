@@ -1,3 +1,7 @@
+## UX-R2 完整预览进度（2026-10-21）
+
+[实际记录](audits/UX_R2_FULL_PREVIEW.md)：desktop49项完整实际PASS；完整预览键盘/状态隔离、宽窄输出布局及复制回归通过，初始失败与问题截图保留。core未改，继续恢复，PRODUCT_HOLD。
+
 ## UX-R2 预设消费进度（2026-10-21）
 
 [实际记录](audits/UX_R2_PREFERENCE_CONSUMERS.md)：122项完整实际PASS；导出/队列/故事/连续打码默认已接入真实消费者，保存重开与备份恢复通过。继续完整预览、图库和安全更新，PRODUCT_HOLD。

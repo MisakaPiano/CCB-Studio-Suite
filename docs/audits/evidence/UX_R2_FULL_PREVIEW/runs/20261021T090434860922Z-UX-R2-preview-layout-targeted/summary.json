@@ -1,0 +1,30 @@
+{
+  "phase": "UX-R2-preview-layout-targeted",
+  "startedUtc": "2026-10-21T09:04:35.300304+00:00",
+  "seconds": 30.534,
+  "exitCode": 1,
+  "tests": 2,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "FAILED",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:test",
+    "--tests",
+    "*TypesetWorkflowTest.fullPreviewKeyboardAndExportDeckKeepEditorStateAndFitNarrowWindow",
+    "--tests",
+    "*TypesetWorkflowTest.fourCategoryPreviewCopiesCompleteFileDeckWithoutSystemClipboard"
+  ],
+  "baseCommit": "8efeffc2f3aeab26e7d9554e13f7e6768508ef83",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

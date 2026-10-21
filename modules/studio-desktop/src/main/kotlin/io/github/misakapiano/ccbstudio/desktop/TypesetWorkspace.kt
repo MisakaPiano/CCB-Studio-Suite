@@ -30,7 +30,8 @@ import kotlin.math.*
     val e=c.editor;var newName by remember{mutableStateOf("")};var creating by remember{mutableStateOf(false)}
     var projectAction by remember{mutableStateOf<String?>(null)};var projectName by remember{mutableStateOf("")};
     var deletePages by remember{mutableStateOf(false)};var tab by remember{mutableStateOf("画布")}
-    var exporting by remember{mutableStateOf(false)}
+    var exporting by remember{mutableStateOf(false)};var fullPreview by remember{mutableStateOf(false)}
+    if(fullPreview)TypesetFullPreview(c){fullPreview=false}
     Column(Modifier.fillMaxSize()) {
         StudioActions {
             CompactChoice("编辑工程",c.workspace.state.typesetProjects,e.project,{it.name}){e.open(it.id)}
@@ -40,6 +41,7 @@ import kotlin.math.*
             StudioAction("保存工程",e.dirty && !c.busy){c.run("保存工程"){e.drain()}}
             StudioAction("撤销编辑",!c.busy && (e.dirty || e.project?.undo?.isNotEmpty()==true)){e.history()}
             StudioAction("重做编辑",!c.busy && e.project?.redo?.isNotEmpty()==true){e.history(true)}
+            StudioAction("完整预览",!c.busy && e.document?.pages?.isNotEmpty()==true){fullPreview=true}
             StudioAction("预览与导出",!c.busy && e.document?.pages?.isNotEmpty()==true){exporting=true}
             StudioAction("导入编辑 Recipe",!c.busy && e.page!=null){e.inspectRecipe()}
             StatusText(if(e.dirty)"编辑待保存"else"编辑已保存")

@@ -25,10 +25,24 @@ import com.example.chatbar.desktop.*
     val preview by produceState<androidx.compose.ui.graphics.ImageBitmap?>(null,page,variant,book){value=null;value=withContext(Dispatchers.IO){page?.let{p->
         runCatching{val bytes=c.workspace.bytes(p.assetId);val image=if(book)TypesetRenderer.story(bytes,p,document.startNumber+document.pages.indexOf(p))else TypesetRenderer.render(bytes,p,variant)
             try{image.toComposeImageBitmap()}finally{image.flush()}}.getOrNull()}}}
-    AlertDialog(onDismissRequest=dismiss,title={Text(if(book)"整册预览与导出"else"批量预览与导出")},text={Column(Modifier.width(620.dp).heightIn(max=650.dp).verticalScroll(rememberScrollState())){
+    val previewPane:@Composable ()->Unit={
+        Column(Modifier.fillMaxSize(),verticalArrangement=Arrangement.spacedBy(8.dp)) {
+            if(pages.isNotEmpty())CompactChoice("预览页",pages,page,{TypesetQueue.number(document,document.pages.indexOf(it))+" · "+it.name}){previewId=it.id}
+            if(!book)CompactChoice("预览分类",listOf("all","text","mask","original"),variant,::variantName){variant=it}
+            Box(Modifier.fillMaxWidth().weight(1f),contentAlignment=androidx.compose.ui.Alignment.Center){
+                preview?.let{Image(it,"导出页面预览",Modifier.fillMaxSize())}?:Text("预览未就绪；检查页面与字体。")
+            }
+            Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween){
+                val index=pages.indexOf(page)
+                TextButton(enabled=index>0,onClick={previewId=pages[index-1].id}){Text("上一张预览")}
+                Text("${if(index<0)0 else index+1} / ${pages.size}")
+                TextButton(enabled=index>=0 && index<pages.lastIndex,onClick={previewId=pages[index+1].id}){Text("下一张预览")}
+            }
+        }
+    }
+    val settings:@Composable ()->Unit={Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(6.dp)){
         CompactChoice("导出范围",listOf("all","selected","current"),range,{when(it){"all"->"全部页";"selected"->"所选页";else->"当前页"}}){range=it}
         if(!book){listOf("original","mask","all","text").forEach{key->StudioSwitch("导出 · ${variantName(key)}",key in variants){variants=if(key in variants)variants-key else variants+key}}
-            CompactChoice("预览分类",listOf("all","text","mask","original"),variant,::variantName){variant=it}
             CompactChoice("源元数据",listOf("preserve","strip"),metadata,{if(it=="preserve")"保留源数据（PNG）"else"隐私清除文本与像素隐写"}){metadata=it}
         }
         if(orderedVariants.any{it!="original"})CompactChoice("图片格式",listOf("png","jpeg","webp","source"),format,{if(it=="source")"原格式（不支持时PNG）"else it.uppercase()}){format=it}
@@ -42,12 +56,22 @@ import com.example.chatbar.desktop.*
         if(recipe)Text("Recipe 附件包含原图关联信息、编辑内容及源 Recipe，不属于隐私清除范围。")
         Text("GIF、动态WebP仅编辑首帧，APNG使用默认静态图；动画只在原始文件分类中按原字节保留。")
         Text("复制会把所有所选输出文件放入剪贴板，可粘贴到资源管理器；单张静态图片还可粘贴到图像应用。")
-        if(pages.isNotEmpty())CompactChoice("预览页",pages,page,{TypesetQueue.number(document,document.pages.indexOf(it))+" · "+it.name}){previewId=it.id}
-        preview?.let{Image(it,"导出页面预览",Modifier.fillMaxWidth().height(260.dp))}?:Text("预览未就绪；检查页面与字体。")
         e.exportDirectory?.let{Text("最近完成位置：$it")}
-    }},confirmButton={Row{
+    }}
+    TypesetPreviewDialog(if(book)"整册预览与导出"else"批量预览与导出",dismiss,content={
+        BoxWithConstraints(Modifier.fillMaxSize()){
+            if(maxWidth>=700.dp)Row(Modifier.fillMaxSize(),horizontalArrangement=Arrangement.spacedBy(20.dp)){
+                Box(Modifier.weight(1f).fillMaxHeight()){previewPane()}
+                Box(Modifier.width(330.dp).fillMaxHeight()){settings()}
+            }else Column(Modifier.fillMaxSize(),verticalArrangement=Arrangement.spacedBy(8.dp)){
+                Box(Modifier.fillMaxWidth().weight(1f)){previewPane()}
+                Box(Modifier.fillMaxWidth().weight(1f)){settings()}
+            }
+        }
+    },actions={
+        TextButton(onClick=dismiss){Text("返回编辑")}
         val ready=pages.isNotEmpty() && orderedVariants.isNotEmpty() && preview!=null && !c.busy
         TextButton(enabled=ready,onClick={e.export(request(),true);dismiss()}){Text("复制所选输出文件")}
         TextButton(enabled=ready,onClick={e.export(request());dismiss()}){Text("选择位置并导出")}
-    }},dismissButton={TextButton(onClick=dismiss){Text("返回编辑")}})
+    })
 }
