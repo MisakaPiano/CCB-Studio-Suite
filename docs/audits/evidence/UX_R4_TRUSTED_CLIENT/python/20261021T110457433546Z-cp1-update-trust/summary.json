@@ -1,0 +1,22 @@
+{
+  "task": "WINDOWS_RC_CONTINUOUS",
+  "checkpoint": "CP1",
+  "scope": "Real python-tuf trust verification over synthetic in-memory transport; NOT application A-to-B installation",
+  "status": "FAILED",
+  "tests": 8,
+  "failures": 0,
+  "errors": 13,
+  "skipped": 0,
+  "elapsedSeconds": 0.04447230004006997,
+  "python": "3.13.16 (tags/v3.13.16:cbc944f, Sep 30 2026, 19:17:50) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "sourceSha256": {
+    "tools/update-lab/candidate.py": "76d32a2c75a016972b6a25c3fa8ef886cf541de186d05616635528e9a898ec62",
+    "tools/update-lab/run.py": "2cab2aa853dc47a886106c7e2230bcaad151638b58a8127a60d0f8d337f4d579",
+    "tools/update-lab/test_trust.py": "e52623c170e6a69848942e1cb9ed6a4813626c4deef0e3b553fc3842e70a3d7e"
+  },
+  "baseCommit": "151c6ec8ebd6d01bfb3345c0accf04962f0a9232",
+  "applicationInstallRestartAndCredentialMigration": "NOT TESTED",
+  "privateKeyFilesCreated": 0,
+  "networkListeners": 0
+}

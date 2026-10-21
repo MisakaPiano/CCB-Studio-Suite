@@ -1,0 +1,362 @@
+[
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioPresentationTest",
+    "name": "annotation follows glyph lines and rejects stale ranges without changing raw prompt",
+    "seconds": "0.88",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioPresentationTest",
+    "name": "chips are direct keyboard choices and preserve unrelated serialized draft fields",
+    "seconds": "0.142",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioPresentationTest",
+    "name": "small enum menu supports arrows enter escape and nullable follow default",
+    "seconds": "0.159",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioPresentationTest",
+    "name": "precise readout retains imported values and only large choices use search dialog",
+    "seconds": "0.005",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioPresentationTest",
+    "name": "inline and fullscreen text editor share annotations and leave request body unchanged",
+    "seconds": "0.18",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioPresentationTest",
+    "name": "random seed switch conditionally adds fixed editor and preserves stored seed",
+    "seconds": "0.143",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioPresentationTest",
+    "name": "field displays local translation and accepts anchored suggestion with Enter",
+    "seconds": "0.424",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioPresentationTest",
+    "name": "suggestion keyboard acceptance protects selection IME and empty results",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioPresentationTest",
+    "name": "sliders and keyboard keep exact discrete values",
+    "seconds": "0.034",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioPresentationTest",
+    "name": "Wallpaper excludes square without modifying shared size or sampler capability",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioPresentationTest",
+    "name": "anchored popup flips above near bottom and stays in viewport",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioPresentationTest",
+    "name": "custom size applies valid dimensions resets preset or cancels without publication",
+    "seconds": "0.168",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioPresentationTest",
+    "name": "advanced disclosure starts collapsed and does not alter draft",
+    "seconds": "0.016",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioWorkspaceTest",
+    "name": "tool navigation stays on one row with diagnostics at the right edge",
+    "seconds": "1.404",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopStudioWorkspaceTest",
+    "name": "real divider drag snaps restores and clamps while editor composition survives mode and resize",
+    "seconds": "2.501",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.SourceZoomSurfaceTest",
+    "name": "studio inline double click opens once while default zoom surface retains double zoom",
+    "seconds": "0.654",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.SuiteChromeTest",
+    "name": "negativeMonitorCoordinatesAreSignExtended",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.SuiteChromeTest",
+    "name": "resizeEdgesBelongToWindowsAndStopWhenMaximized",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.SuiteChromeTest",
+    "name": "maximizedButtonRestoresAndNativeCloseUsesDrainCallback",
+    "seconds": "0.003",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.SuiteChromeTest",
+    "name": "measuredControlsNeverBecomeDragRegions",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.SuiteChromeTest",
+    "name": "captionsKeepTheirCommandsAtScaledClientSize",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.SuiteChromeTest",
+    "name": "unmeasuredLayoutCannotInventCaptionTargets",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.AutosaveCancellationTest",
+    "name": "cancellingDebouncedSaveDuringCommitDoesNotReportDataFailure",
+    "seconds": "0.64",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "animatedGifRetainsTwoFrameColorsTimingAndLoopAfterDisguiseRestore",
+    "seconds": "0.151",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "actualWorkspacePreviewRestoreBatchCopyAndReopenPreserveOriginals",
+    "seconds": "4.742",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "failedBatchKeepsUnpublishedEvidenceAndNeverOverwritesPriorOutput",
+    "seconds": "0.596",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryIngressTest",
+    "name": "filesWinOverRasterAndTextPasteRemainsText",
+    "seconds": "0.003",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryIngressTest",
+    "name": "guiPasteBatchReportsFailuresRetainsExactOriginalAndRasterProvenanceAfterRestart",
+    "seconds": "1.713",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryWorkflowTest",
+    "name": "gridFilterTwoImageComparisonCopyAndMetadataReuseKeepOriginals",
+    "seconds": "4.443",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GuidanceSafetyTest",
+    "name": "q09CanvasRotateUndoMaskResetApplyAndReopen",
+    "seconds": "8.648",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GuidanceSafetyTest",
+    "name": "vibeMissUsesBudgetOnceAndCachedEncodingMakesNoRequest",
+    "seconds": "0.1",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GuidanceSafetyTest",
+    "name": "focusedPreparationUsesAuthorityPixelsAndKeepsRawFinalSeparate",
+    "seconds": "0.695",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ImageCardWorkflowTest",
+    "name": "packageAndPngProduceOnlyImageProjection",
+    "seconds": "0.015",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ImageCardWorkflowTest",
+    "name": "cardDefaultGlobalOverrideClearAndRestart",
+    "seconds": "0.437",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.MetadataWorkflowTest",
+    "name": "embeddedImageRetainedAndUsedWithoutMutatingOriginal",
+    "seconds": "0.757",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.MetadataWorkflowTest",
+    "name": "missingMalformedUnsupportedAndReadFailureAreDistinct",
+    "seconds": "0.028",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.MetadataWorkflowTest",
+    "name": "historyReuseChecksIdentityAndRetainsOriginal",
+    "seconds": "0.515",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.MetadataWorkflowTest",
+    "name": "actualMetadataUiPreviewApplyUndoAndRestart",
+    "seconds": "1.571",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.PostProcessWorkflowTest",
+    "name": "unexpectedDimensionsRetainReceivedOriginalAndReportFailure",
+    "seconds": "1.36",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.PostProcessWorkflowTest",
+    "name": "upscalePersistsExactRequestAndResult",
+    "seconds": "1.499",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.PostProcessWorkflowTest",
+    "name": "enhanceUsesAuthorityRequestWithoutChangingSource",
+    "seconds": "1.175",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ReverseWorkflowTest",
+    "name": "missingVisionFailsBeforeAnyPaidAttempt",
+    "seconds": "0.847",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ReverseWorkflowTest",
+    "name": "linkedVisionUsesAuthorityDescriptionAndNeverLeaksKeyToSnapshot",
+    "seconds": "0.82",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ReverseWorkflowTest",
+    "name": "directVisionRequiresApplyAndSurvivesRestart",
+    "seconds": "0.774",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest",
+    "name": "cancellationDrainsOwnedOperationAndRejectsNewWork",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest",
+    "name": "actualUpdateScreenRequiresDownloadConfirmationAndDoesNotClaimInstall",
+    "seconds": "0.73",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest",
+    "name": "unconfiguredRuntimeFailsWithoutLaunchingProcess",
+    "seconds": "0.003",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "namedProjectLiveVerticalEditingHistoryAndRestart",
+    "seconds": "9.789",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "pointerDrawnMasksChangeEffectSaveUndoAndReopen",
+    "seconds": "6.558",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "webpPreviewExportAndOriginalReopen",
+    "seconds": "2.702",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "continuousMaskDefaultsRespectPerPageSettings",
+    "seconds": "1.406",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "fourCategoryPreviewCopiesCompleteFileDeckWithoutSystemClipboard",
+    "seconds": "4.634",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "durableDefaultFontLoadsOnFirstTextPreviewWithColdCache",
+    "seconds": "2.823",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "fullPreviewKeyboardAndExportDeckKeepEditorStateAndFitNarrowWindow",
+    "seconds": "3.473",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "maximumQueueWidthCannotStarveCanvasAndSurvivesReopen",
+    "seconds": "1.835",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "storyCaptionPresetPreviewExportAndRestart",
+    "seconds": "3.675",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "sourceExchangePreviewConfirmExportAndReopen",
+    "seconds": "3.184",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "queueControlSelectionDragOrderNumberingAndRestart",
+    "seconds": "5.889",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "measuredSuiteNavigationSurvivesResizeAndUnsentInput",
+    "seconds": "1.284",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "accountsDesignApplyGenerateGalleryAndRestart",
+    "seconds": "3.326",
+    "status": "PASS"
+  }
+]

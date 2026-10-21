@@ -1,0 +1,12 @@
+test_changed_download_has_no_success_receipt (test_client.ClientTests.test_changed_download_has_no_success_receipt) ... ok
+test_check_then_verified_download_no_install (test_client.ClientTests.test_check_then_verified_download_no_install) ... ok
+test_disconnect_preserves_metadata_for_retry (test_client.ClientTests.test_disconnect_preserves_metadata_for_retry) ... ok
+test_installed_root_hash_and_endpoint_are_required (test_client.ClientTests.test_installed_root_hash_and_endpoint_are_required) ... ok
+test_low_space_no_download_or_completion (test_client.ClientTests.test_low_space_no_download_or_completion) ... ok
+test_other_process_cannot_enter_same_cache (test_client.ClientTests.test_other_process_cannot_enter_same_cache) ... ok
+test_wrong_identity_version_and_reader_block_before_download (test_client.ClientTests.test_wrong_identity_version_and_reader_block_before_download) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.926s
+
+OK

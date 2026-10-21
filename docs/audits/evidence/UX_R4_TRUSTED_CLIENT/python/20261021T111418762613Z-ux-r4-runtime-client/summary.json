@@ -1,0 +1,21 @@
+{
+  "task": "UX-R4",
+  "status": "PASS",
+  "tests": 7,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 0.9267942999722436,
+  "python": "3.13.16 (tags/v3.13.16:cbc944f, Sep 30 2026, 19:17:50) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "sourceStable": true,
+  "sourceHashes": {
+    "tools/update-runtime/run_tests.py": "69be5c9e78753e5498ab8f51707d1973eb313fde4dbe7bf7e40dbce2d7f71773",
+    "tools/update-runtime/studio_update.py": "d7daae2926050617b2b24a1e05fb4fb282234a596f6fb8ed68cc6f5617e8ecf5",
+    "tools/update-runtime/test_client.py": "afa4870b1ff9512a772da6d17eb70459cc6841009dde8810f6aa92e43c36d383",
+    "tools/update-runtime/artifacts.json": "6540d0be0af09f8e24dc7464873e0a5891c167685c02b0869eac96a6139432b0",
+    "tools/Prepare-UpdaterRuntime.py": "d4273cd627231475540667c13442eb9657d99346fa91de6b9ffc606265f0d3a2"
+  },
+  "baseCommit": "151c6ec8ebd6d01bfb3345c0accf04962f0a9232",
+  "applicationInstallRestart": "NOT TESTED"
+}

@@ -1,0 +1,26 @@
+{
+  "phase": "ux-r4-client-full",
+  "startedUtc": "2026-10-21T11:11:48.943599+00:00",
+  "seconds": 100.009,
+  "exitCode": 0,
+  "tests": 60,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:test"
+  ],
+  "baseCommit": "151c6ec8ebd6d01bfb3345c0accf04962f0a9232",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

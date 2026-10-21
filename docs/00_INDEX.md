@@ -1,3 +1,7 @@
+## UX-R4 可信客户端进度（2026-10-21）
+
+[实际记录](audits/UX_R4_TRUSTED_CLIENT.md)：隔离Python/TUF和检查/确认下载界面接线；desktop完整60项、最终主题3项、TUF8项/客户端7项实际PASS，失败保留。安装/重启/数据保全未完成，继续R4及剩余UX，PRODUCT_HOLD。
+
 ## UX-R2 长页PDF兼容（2026-10-21）
 
 [实际记录](audits/UX_R2_LONG_PDF.md)：完整142项实际PASS，长页经Poppler/PDFium独立尺寸及像素核验；保留UserUnit方案兼容失败和验证脚本错误。完整恢复与R4继续，PRODUCT_HOLD。

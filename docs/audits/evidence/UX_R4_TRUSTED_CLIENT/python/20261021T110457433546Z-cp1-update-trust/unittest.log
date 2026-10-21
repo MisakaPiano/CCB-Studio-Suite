@@ -1,0 +1,186 @@
+test_authenticated_target_download_has_exact_bytes (test_trust.TrustTests.test_authenticated_target_download_has_exact_bytes) ... ERROR
+test_cached_metadata_cannot_roll_back (test_trust.TrustTests.test_cached_metadata_cannot_roll_back) ... ERROR
+test_disconnected_transport_has_no_successful_payload (test_trust.TrustTests.test_disconnected_transport_has_no_successful_payload) ... ERROR
+test_expired_metadata_freeze_is_rejected (test_trust.TrustTests.test_expired_metadata_freeze_is_rejected) ... ERROR
+test_rotated_root_needs_old_and_new_signatures (test_trust.TrustTests.test_rotated_root_needs_old_and_new_signatures) ... ERROR
+test_signed_wrong_identity_and_unsupported_reader_are_rejected (test_trust.TrustTests.test_signed_wrong_identity_and_unsupported_reader_are_rejected) ... 
+  test_signed_wrong_identity_and_unsupported_reader_are_rejected (test_trust.TrustTests.test_signed_wrong_identity_and_unsupported_reader_are_rejected) (field='product') ... ERROR
+  test_signed_wrong_identity_and_unsupported_reader_are_rejected (test_trust.TrustTests.test_signed_wrong_identity_and_unsupported_reader_are_rejected) (field='platform') ... ERROR
+  test_signed_wrong_identity_and_unsupported_reader_are_rejected (test_trust.TrustTests.test_signed_wrong_identity_and_unsupported_reader_are_rejected) (field='channel') ... ERROR
+  test_signed_wrong_identity_and_unsupported_reader_are_rejected (test_trust.TrustTests.test_signed_wrong_identity_and_unsupported_reader_are_rejected) (field='minimum_reader') ... ERROR
+  test_signed_wrong_identity_and_unsupported_reader_are_rejected (test_trust.TrustTests.test_signed_wrong_identity_and_unsupported_reader_are_rejected) (field='version') ... ERROR
+  test_signed_wrong_identity_and_unsupported_reader_are_rejected (test_trust.TrustTests.test_signed_wrong_identity_and_unsupported_reader_are_rejected) (field='maximum_reader') ... ERROR
+test_tampered_payload_is_not_accepted_as_a_download (test_trust.TrustTests.test_tampered_payload_is_not_accepted_as_a_download) ... ERROR
+test_wrong_target_signature_is_rejected (test_trust.TrustTests.test_wrong_target_signature_is_rejected) ... ERROR
+
+======================================================================
+ERROR: test_authenticated_target_download_has_exact_bytes (test_trust.TrustTests.test_authenticated_target_download_has_exact_bytes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-lab\test_trust.py", line 81, in test_authenticated_target_download_has_exact_bytes
+    client = self.repo.client(self.path)
+  File "H:\CCB-Studio-Suite\tools\update-lab\test_trust.py", line 69, in client
+    (path / "metadata").mkdir(exist_ok=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpbfyb7z1i\\metadata'
+
+======================================================================
+ERROR: test_cached_metadata_cannot_roll_back (test_trust.TrustTests.test_cached_metadata_cannot_roll_back)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-lab\test_trust.py", line 97, in test_cached_metadata_cannot_roll_back
+    self.repo.client(self.path).refresh()
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-lab\test_trust.py", line 69, in client
+    (path / "metadata").mkdir(exist_ok=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpz4x4fglp\\metadata'
+
+======================================================================
+ERROR: test_disconnected_transport_has_no_successful_payload (test_trust.TrustTests.test_disconnected_transport_has_no_successful_payload)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-lab\test_trust.py", line 113, in test_disconnected_transport_has_no_successful_payload
+    select_candidate(self.repo.client(self.path), "studio.zip", self.identity)
+                     ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-lab\test_trust.py", line 69, in client
+    (path / "metadata").mkdir(exist_ok=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpwp94f69e\\metadata'
+
+======================================================================
+ERROR: test_expired_metadata_freeze_is_rejected (test_trust.TrustTests.test_expired_metadata_freeze_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-lab\test_trust.py", line 94, in test_expired_metadata_freeze_is_rejected
+    self.repo.client(self.path).refresh()
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-lab\test_trust.py", line 69, in client
+    (path / "metadata").mkdir(exist_ok=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpqty251t_\\metadata'
+
+======================================================================
+ERROR: test_rotated_root_needs_old_and_new_signatures (test_trust.TrustTests.test_rotated_root_needs_old_and_new_signatures)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-lab\test_trust.py", line 134, in test_rotated_root_needs_old_and_new_signatures
+    self.repo.client(self.path).refresh()
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-lab\test_trust.py", line 69, in client
+    (path / "metadata").mkdir(exist_ok=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmp77ye_q14\\metadata'
+
+======================================================================
+ERROR: test_signed_wrong_identity_and_unsupported_reader_are_rejected (test_trust.TrustTests.test_signed_wrong_identity_and_unsupported_reader_are_rejected) (field='product')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-lab\test_trust.py", line 123, in test_signed_wrong_identity_and_unsupported_reader_are_rejected
+    select_candidate(self.repo.client(path), "studio.zip", self.identity)
+                     ~~~~~~~~~~~~~~~~^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-lab\test_trust.py", line 69, in client
+    (path / "metadata").mkdir(exist_ok=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpok0ceawf\\metadata'
+
+======================================================================
+ERROR: test_signed_wrong_identity_and_unsupported_reader_are_rejected (test_trust.TrustTests.test_signed_wrong_identity_and_unsupported_reader_are_rejected) (field='platform')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-lab\test_trust.py", line 123, in test_signed_wrong_identity_and_unsupported_reader_are_rejected
+    select_candidate(self.repo.client(path), "studio.zip", self.identity)
+                     ~~~~~~~~~~~~~~~~^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-lab\test_trust.py", line 69, in client
+    (path / "metadata").mkdir(exist_ok=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmplamve3cv\\metadata'
+
+======================================================================
+ERROR: test_signed_wrong_identity_and_unsupported_reader_are_rejected (test_trust.TrustTests.test_signed_wrong_identity_and_unsupported_reader_are_rejected) (field='channel')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-lab\test_trust.py", line 123, in test_signed_wrong_identity_and_unsupported_reader_are_rejected
+    select_candidate(self.repo.client(path), "studio.zip", self.identity)
+                     ~~~~~~~~~~~~~~~~^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-lab\test_trust.py", line 69, in client
+    (path / "metadata").mkdir(exist_ok=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpsqip2mkm\\metadata'
+
+======================================================================
+ERROR: test_signed_wrong_identity_and_unsupported_reader_are_rejected (test_trust.TrustTests.test_signed_wrong_identity_and_unsupported_reader_are_rejected) (field='minimum_reader')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-lab\test_trust.py", line 123, in test_signed_wrong_identity_and_unsupported_reader_are_rejected
+    select_candidate(self.repo.client(path), "studio.zip", self.identity)
+                     ~~~~~~~~~~~~~~~~^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-lab\test_trust.py", line 69, in client
+    (path / "metadata").mkdir(exist_ok=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpasrp3e78\\metadata'
+
+======================================================================
+ERROR: test_signed_wrong_identity_and_unsupported_reader_are_rejected (test_trust.TrustTests.test_signed_wrong_identity_and_unsupported_reader_are_rejected) (field='version')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-lab\test_trust.py", line 123, in test_signed_wrong_identity_and_unsupported_reader_are_rejected
+    select_candidate(self.repo.client(path), "studio.zip", self.identity)
+                     ~~~~~~~~~~~~~~~~^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-lab\test_trust.py", line 69, in client
+    (path / "metadata").mkdir(exist_ok=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpme_g_out\\metadata'
+
+======================================================================
+ERROR: test_signed_wrong_identity_and_unsupported_reader_are_rejected (test_trust.TrustTests.test_signed_wrong_identity_and_unsupported_reader_are_rejected) (field='maximum_reader')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-lab\test_trust.py", line 123, in test_signed_wrong_identity_and_unsupported_reader_are_rejected
+    select_candidate(self.repo.client(path), "studio.zip", self.identity)
+                     ~~~~~~~~~~~~~~~~^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-lab\test_trust.py", line 69, in client
+    (path / "metadata").mkdir(exist_ok=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpytum2a3j\\metadata'
+
+======================================================================
+ERROR: test_tampered_payload_is_not_accepted_as_a_download (test_trust.TrustTests.test_tampered_payload_is_not_accepted_as_a_download)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-lab\test_trust.py", line 103, in test_tampered_payload_is_not_accepted_as_a_download
+    client = self.repo.client(self.path)
+  File "H:\CCB-Studio-Suite\tools\update-lab\test_trust.py", line 69, in client
+    (path / "metadata").mkdir(exist_ok=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpx55tbg74\\metadata'
+
+======================================================================
+ERROR: test_wrong_target_signature_is_rejected (test_trust.TrustTests.test_wrong_target_signature_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-lab\test_trust.py", line 89, in test_wrong_target_signature_is_rejected
+    select_candidate(self.repo.client(self.path), "studio.zip", self.identity)
+                     ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-lab\test_trust.py", line 69, in client
+    (path / "metadata").mkdir(exist_ok=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpbslnejr2\\metadata'
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.043s
+
+FAILED (errors=13)

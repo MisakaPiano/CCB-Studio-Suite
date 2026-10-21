@@ -1386,11 +1386,22 @@
     {
       "id": "C06",
       "owner": "UX-R4",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "tools/update-runtime/studio_update.py",
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioUpdates.kt",
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioUpdateClient.kt"
+      ],
+      "tests": [
+        "ClientTests (7 actual)",
+        "StudioUpdateTest (3 actual)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R4_TRUSTED_CLIENT/update-download.png (offscreen injected receipt)"
+      ],
+      "persistenceEvidence": [
+        "TUF metadata cache, verified receipt and separate-process lock; no installed application A-to-B"
+      ],
+      "status": "ENGINEERING_PARTIAL / TRUST_CLIENT_PASS / INSTALL_RESTART_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "C07",
