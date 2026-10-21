@@ -41,6 +41,7 @@ import kotlin.math.*
             StudioAction("撤销编辑",!c.busy && (e.dirty || e.project?.undo?.isNotEmpty()==true)){e.history()}
             StudioAction("重做编辑",!c.busy && e.project?.redo?.isNotEmpty()==true){e.history(true)}
             StudioAction("预览与导出",!c.busy && e.document?.pages?.isNotEmpty()==true){exporting=true}
+            StudioAction("导入编辑 Recipe",!c.busy && e.page!=null){e.inspectRecipe()}
             StatusText(if(e.dirty)"编辑待保存"else"编辑已保存")
         }
         e.exportDirectory?.let{Text("导出已完成并校验：$it",modifier=Modifier.padding(horizontal=12.dp))}
@@ -86,6 +87,11 @@ import kotlin.math.*
         }
     }
     if(exporting)TypesetExportDialog(c,e){exporting=false}
+    e.recipeInspection?.let{r->AlertDialog(onDismissRequest={e.cancelRecipe()},title={Text("应用编辑 Recipe 到当前页？")},text={Column{
+        Text("${r.page.texts.size} 个文字对象 / ${r.page.masks.size} 个遮罩；包含小人书旁白及样式。")
+        Text("将替换当前页编辑内容，可撤销。只有原图SHA-256一致时才能应用；原图与源请求元数据保持不变。")
+        Text("原图 SHA-256：${r.originalSha256}")
+    }},confirmButton={TextButton(enabled=!c.busy,onClick={e.applyRecipe()}){Text("确认应用编辑 Recipe")}},dismissButton={TextButton(onClick={e.cancelRecipe()}){Text("取消 Recipe 导入")}})}
     e.exchangeInspection?.let{inspection->AlertDialog(onDismissRequest={e.cancelExchange()},title={Text("确认导入 TypeSet 工程")},text={Column{
         Text("${inspection.name} · ${inspection.document.pages.size} 页 · ${inspection.bytes.size} bytes")
         Text("将新建独立工程，不替换当前工程或图片。")

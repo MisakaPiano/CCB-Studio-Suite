@@ -12,9 +12,9 @@ import java.util.zip.*
 import javax.imageio.ImageIO
 
 @Serializable data class TypesetExportFile(val name:String,val size:Long,val sha256:String)
-@Serializable data class TypesetExportReceipt(val version:Int=1,val projectId:String,val revision:Long,val mode:String,val variant:String,val format:String,
-    val pageIds:List<String>,val files:List<TypesetExportFile>)
-data class TypesetExportRequest(val pageIds:List<String>,val variant:String="all",val format:String="png",val zip:Boolean=false,val pdf:Boolean=false)
+@Serializable data class TypesetExportReceipt(val version:Int=2,val projectId:String,val revision:Long,val mode:String,val variant:String,val format:String,
+    val pageIds:List<String>,val files:List<TypesetExportFile>,val variants:List<String> = listOf(variant),val metadataStatuses:Map<String,String> = emptyMap())
+data class TypesetExportRequest(val pageIds:List<String>,val variant:String="all",val format:String="png",val zip:Boolean=false,val pdf:Boolean=false, val variants:List<String> = listOf(variant),val metadata:String="preserve",val includeRecipe:Boolean=false)
 
 /** A fresh output directory is published only after every file and completion receipt is durable.
  * Failed staging directories remain identifiable and never replace a user's previous export. */
@@ -22,57 +22,79 @@ object TypesetExport {
     fun create(workspace:StudioWorkspace,project:TypesetProject,document:TypesetDocument,parent:Path,request:TypesetExportRequest,
         hook:(String)->Unit={}):Path=workspace.operation {
         document.validate();require(Files.isDirectory(parent,LinkOption.NOFOLLOW_LINKS)){"Select an existing destination directory"}
-        require(request.variant in setOf("all","text","mask","original") && request.format in setOf("png","jpeg"))
+        require(request.variants.isNotEmpty() && request.variants.distinct().size==request.variants.size && request.variants.all{it in setOf("all","text","mask","original")} && request.format in setOf("png","jpeg"))
+        require(request.metadata in setOf("preserve","strip"))
         require(request.pageIds.isNotEmpty() && request.pageIds.distinct().size==request.pageIds.size)
         val selected=request.pageIds.toSet();val pages=document.pages.filter{it.id in selected};require(pages.size==selected.size)
         require(document.mode=="storybook" || !request.pdf){"PDF export is for book pages"}
-        require(request.variant!="original" || (!request.pdf && document.mode!="storybook")){"Original files are separate from book rendering"}
-        if(request.variant!="original")TypesetFonts.verifyRenderable(workspace,document.copy(pages=pages),request.variant)
+        require("original" !in request.variants || (!request.pdf && document.mode!="storybook")){"Original files are separate from book rendering"}
+        require(document.mode!="storybook" || request.variants==listOf("all"))
+        request.variants.filter{it!="original"}.forEach{TypesetFonts.verifyRenderable(workspace,document.copy(pages=pages),it)}
         val stem="Studio-export-${newId()}";val staging=parent.resolve(".$stem.incomplete");val target=parent.resolve(stem)
         Files.createDirectory(staging)
-        val outputs=mutableListOf<Path>()
+        val outputs=mutableListOf<Path>();val statuses=linkedMapOf<String,String>()
         try {
             val pdf=if(request.pdf)RasterBookPdf(staging.resolve("book.pdf"),pages.size)else null
             try {
-                pages.forEach{page->
-                    hook("BEFORE_PAGE")
-                    val original=workspace.bytes(page.assetId);val index=document.pages.indexOfFirst{it.id==page.id}
-                    val number=TypesetQueue.number(document,index)
-                    val extension=if(request.variant=="original")when{original.size>=8 && original[0]==0x89.toByte() && original[1]==0x50.toByte()->"png";original.size>=2 && original[0]==0xff.toByte() && original[1]==0xd8.toByte()->"jpg";else->"bin"}else if(request.format=="jpeg")"jpg" else "png"
-                    val file=staging.resolve("$number.$extension")
-                    if(request.variant=="original")Files.write(file,original,StandardOpenOption.CREATE_NEW)
-                    else {
-                        val image=if(document.mode=="storybook")TypesetRenderer.story(original,page,document.startNumber+index) else TypesetRenderer.render(original,page,request.variant)
-                        try {writeImage(file,image,request.format);pdf?.page(image)}finally{image.flush()}
+                for(variant in request.variants) {
+                    val directory=if(request.variants.size==1)staging else Files.createDirectory(staging.resolve(variant))
+                    pages.forEach{page->
+                        hook("BEFORE_PAGE")
+                        val original=workspace.bytes(page.assetId);val index=document.pages.indexOfFirst{it.id==page.id}
+                        val number=TypesetQueue.number(document,index)
+                        val extension=if(variant=="original")when{original.size>=8 && original[0]==0x89.toByte() && original[1]==0x50.toByte()->"png";original.size>=2 && original[0]==0xff.toByte() && original[1]==0xd8.toByte()->"jpg";else->"bin"}else if(request.format=="jpeg")"jpg" else "png"
+                        val file=directory.resolve("$number.$extension")
+                        val status=if(variant=="original"){Files.write(file,original,StandardOpenOption.CREATE_NEW);"original-byte-identical"}
+                        else {
+                            val source=if(document.mode!="storybook" && request.metadata=="preserve")TypesetPngMetadata.extract(original)else null
+                            val image=if(document.mode=="storybook")TypesetRenderer.story(original,page,document.startNumber+index) else TypesetRenderer.render(original,page,variant)
+                            try {
+                                if(document.mode=="storybook"){writeImage(file,image,request.format);pdf?.page(image);"composite"}
+                                else if(request.metadata=="strip"){
+                                    if(request.format=="png")Files.newOutputStream(file,StandardOpenOption.CREATE_NEW).use{out->com.example.chatbar.domain.image.PrivacyPngEncoder.write(out,image.width,image.height){y,row->image.getRGB(0,y,image.width,1,row,0,image.width)}}
+                                    else {val sanitized=EditorRenderer.decode(EditorRenderer.encode(EditorRenderer.Result(image,emptyList()),true));try{writeImage(file,sanitized,request.format)}finally{sanitized.flush()}}
+                                    "removed-text-and-pixel-lsb"
+                                }else{
+                                    if(request.format=="png")TypesetPngMetadata.injectAlpha(image,source!!)
+                                    writeImage(file,image,request.format)
+                                    if(request.format=="png" && source!!.chunks.isNotEmpty())Files.write(file,TypesetPngMetadata.injectChunks(readBounded(file,64*1024*1024),source),StandardOpenOption.TRUNCATE_EXISTING)
+                                    if(source!!.chunks.isEmpty() && source.alpha==null)"none"else if(request.format=="jpeg")"dropped-jpeg"else"preserved-source-origin-not-edited-signature"
+                                }
+                            }finally{image.flush()}
+                        }
+                        force(file);outputs.add(file);statuses[staging.relativize(file).toString().replace('\\','/')]=status
+                        if(request.includeRecipe){val recipe=directory.resolve("${number}_recipe.json");val asset=workspace.assets.read(java.util.UUID.fromString(page.assetId)).require()
+                            val json=kotlinx.serialization.json.buildJsonObject{put("version",kotlinx.serialization.json.JsonPrimitive(1));put("variant",kotlinx.serialization.json.JsonPrimitive(variant));put("originalSha256",kotlinx.serialization.json.JsonPrimitive(asset.sha256()));put("page",documentJson.encodeToJsonElement(TypesetPage.serializer(),page));put("sourceRecipeBase64",kotlinx.serialization.json.JsonPrimitive(java.util.Base64.getEncoder().encodeToString(asset.request().recipe())))}
+                            Files.writeString(recipe,json.toString(),StandardOpenOption.CREATE_NEW);force(recipe);outputs.add(recipe)}
+                        hook("PAGE_WRITTEN")
                     }
-                    force(file);outputs.add(file);hook("PAGE_WRITTEN")
                 }
                 pdf?.finish()
             }finally{pdf?.close()}
             if(request.pdf){force(staging.resolve("book.pdf"));outputs.add(staging.resolve("book.pdf"))}
             if(request.zip){val zip=staging.resolve("pages.zip");ZipOutputStream(Files.newOutputStream(zip,StandardOpenOption.CREATE_NEW)).use{out->
-                outputs.filter{it.fileName.toString()!="book.pdf"}.forEach{file->out.putNextEntry(ZipEntry(file.fileName.toString()));Files.newInputStream(file).use{it.copyTo(out)};out.closeEntry()}}
+                outputs.filter{it.fileName.toString()!="book.pdf"}.forEach{file->out.putNextEntry(ZipEntry(staging.relativize(file).toString().replace('\\','/')));Files.newInputStream(file).use{it.copyTo(out)};out.closeEntry()}}
                 force(zip);outputs.add(zip)}
-            val receipt=TypesetExportReceipt(projectId=project.id,revision=project.revision,mode=document.mode,variant=request.variant,format=request.format,pageIds=pages.map{it.id},files=outputs.map(::identity))
+            val receipt=TypesetExportReceipt(projectId=project.id,revision=project.revision,mode=document.mode,variant=if(request.variants.size==1)request.variants.single()else"multiple",format=request.format,pageIds=pages.map{it.id},files=outputs.map{identity(it,staging)},variants=request.variants,metadataStatuses=statuses)
             val marker=staging.resolve("COMPLETE.json");Files.writeString(marker,documentJson.encodeToString(receipt),StandardOpenOption.CREATE_NEW);force(marker)
             hook("BEFORE_PUBLISH")
             Files.move(staging,target,StandardCopyOption.ATOMIC_MOVE)
             target
         } catch(e:Exception) {
             // The incomplete directory (even if it contains a receipt) is not a successful delivery.
-            throw DataProblem("EXPORT_INCOMPLETE","Export did not complete; retained at $staging",e)
+            throw DataProblem("EXPORT_INCOMPLETE","导出未完成：${e.message?.take(300)}。未完成目录保留：$staging",e)
         }
     }
     fun verify(directory:Path):TypesetExportReceipt {
         require(!directory.fileName.toString().endsWith(".incomplete")){"Unpublished export"}
-        val receipt=documentJson.decodeFromString<TypesetExportReceipt>(readBounded(directory.resolve("COMPLETE.json"),1024*1024).decodeToString())
-        require(receipt.version==1 && receipt.files.isNotEmpty() && receipt.files.size<=1002 && receipt.files.map{it.name}.distinct().size==receipt.files.size)
-        receipt.files.forEach{expected->require(Regex("[A-Za-z0-9._-]+").matches(expected.name) && expected.name!="." && expected.name!="..");val path=directory.resolve(expected.name);require(Files.isRegularFile(path,LinkOption.NOFOLLOW_LINKS));require(identity(path)==expected){"Export checksum mismatch"}}
+        val receipt=documentJson.decodeFromString<TypesetExportReceipt>(readBounded(directory.resolve("COMPLETE.json"),4*1024*1024).decodeToString())
+        require(receipt.version in 1..2 && receipt.files.isNotEmpty() && receipt.files.size<=8002 && receipt.files.map{it.name}.distinct().size==receipt.files.size)
+        receipt.files.forEach{expected->require(Regex("(?:(?:all|mask|text|original)/)?[A-Za-z0-9._-]+").matches(expected.name) && expected.name!="." && expected.name!="..");val path=directory.resolve(expected.name);safePath(path);require(Files.isRegularFile(path,LinkOption.NOFOLLOW_LINKS));require(identity(path,directory)==expected){"Export checksum mismatch"}}
         return receipt
     }
-    private fun identity(path:Path):TypesetExportFile {
+    private fun identity(path:Path,base:Path):TypesetExportFile {
         val hash=MessageDigest.getInstance("SHA-256");Files.newInputStream(path).use{input->val buffer=ByteArray(65536);while(true){val n=input.read(buffer);if(n<0)break;hash.update(buffer,0,n)}}
-        return TypesetExportFile(path.fileName.toString(),Files.size(path),hash.digest().joinToString(""){"%02x".format(it)})
+        return TypesetExportFile(base.relativize(path).toString().replace('\\','/'),Files.size(path),hash.digest().joinToString(""){"%02x".format(it)})
     }
     private fun force(path:Path){FileChannel.open(path,StandardOpenOption.WRITE).use{it.force(true)}}
     private fun writeImage(path:Path,image:BufferedImage,format:String) {

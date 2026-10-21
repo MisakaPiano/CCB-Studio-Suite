@@ -23,8 +23,22 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
     var zoom by mutableStateOf(1f)
     var exportDirectory by mutableStateOf<java.nio.file.Path?>(null);private set
     var exportProblem by mutableStateOf<String?>(null);private set
+    internal var copyExportFiles:(List<java.nio.file.Path>)->Unit=ExportClipboard::copy
     var exchangeInspection by mutableStateOf<TypesetSourceExchange.Inspection?>(null);private set
     var presetInspection by mutableStateOf<TypesetSourceExchange.PresetInspection?>(null);private set
+    var recipeInspection by mutableStateOf<TypesetEditRecipe?>(null);private set
+    private var recipeTarget:Pair<String,String>?=null
+    internal var chooseRecipeFile:()->java.nio.file.Path?={val chooser=javax.swing.JFileChooser();chooser.dialogTitle="导入编辑 Recipe";chooser.fileFilter=javax.swing.filechooser.FileNameExtensionFilter("编辑 Recipe JSON","json");if(chooser.showOpenDialog(null)==javax.swing.JFileChooser.APPROVE_OPTION)chooser.selectedFile.toPath()else null}
+    fun inspectRecipe()=c.run("预读编辑 Recipe") {
+        drain();val p=project?:return@run;val page=page?:return@run;val path=withContext(ui){chooseRecipeFile()}?:return@run
+        val r=TypesetEditRecipes.inspect(readBounded(path,16*1024*1024));withContext(ui){recipeInspection=r;recipeTarget=p.id to page.id}
+    }
+    fun cancelRecipe(){recipeInspection=null;recipeTarget=null}
+    fun applyRecipe()=c.run("应用编辑 Recipe") {
+        drain();val r=recipeInspection?:return@run;val p=project?:return@run;require(recipeTarget==p.id to pageId)
+        val next=TypesetEditRecipes.apply(c.workspace,p,pageId!!,r);val d=repository.load(next)
+        withContext(ui){project=next;document=d;dirty=false;objectId=null;cancelRecipe();exchangeMessage="编辑Recipe已应用，可撤销；原图和源请求元数据未改动"}
+    }
     var exchangeMessage by mutableStateOf<String?>(null);private set
     internal var chooseExchangeFile:(Boolean)->java.nio.file.Path? = {save->
         val chooser=javax.swing.JFileChooser();chooser.dialogTitle=if(save)"保存 TypeSet 工程交换文件（不覆盖已有文件）"else"导入 TypeSet 工程交换文件"
@@ -64,12 +78,13 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
         val chooser=javax.swing.JFileChooser();chooser.dialogTitle="选择导出位置（将新建独立输出文件夹）";chooser.fileSelectionMode=javax.swing.JFileChooser.DIRECTORIES_ONLY
         if(chooser.showSaveDialog(null)==javax.swing.JFileChooser.APPROVE_OPTION)chooser.selectedFile.toPath() else null
     }
-    fun export(request:TypesetExportRequest)=c.run("导出编辑工程") {
+    fun export(request:TypesetExportRequest,clipboard:Boolean=false)=c.run(if(clipboard)"复制批量输出文件"else"导出编辑工程") {
         drain();val p=project?:return@run;val d=document?:return@run
-        val parent=withContext(ui){chooseExportDirectory()}?:return@run
+        val parent=if(clipboard)java.nio.file.Files.createDirectories(c.workspace.root.resolve("exports/clipboard"))else withContext(ui){chooseExportDirectory()}?:return@run
         withContext(ui){exportProblem=null;exportDirectory=null}
-        try{val output=TypesetExport.create(c.workspace,p,d,parent,request);TypesetExport.verify(output)
-            withContext(ui){exportDirectory=output}}
+        try{val output=TypesetExport.create(c.workspace,p,d,parent,request);val receipt=TypesetExport.verify(output)
+            withContext(ui){exportDirectory=output}
+            if(clipboard)copyExportFiles(receipt.files.map{output.resolve(it.name)})}
         catch(ex:Exception){withContext(ui){exportProblem=ex.message?:"导出未完成，已有文件保留"};throw ex}
     }
     fun nextCaption() {val d=document?:return;val next=pageId?.let{TypesetBook.next(d,it)}?:return;selectPage(next)}

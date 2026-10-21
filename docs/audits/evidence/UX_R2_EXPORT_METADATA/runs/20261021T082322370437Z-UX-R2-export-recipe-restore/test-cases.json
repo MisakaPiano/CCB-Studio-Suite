@@ -1,0 +1,32 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetMetadataExportTest",
+    "name": "damagedMetadataIsNotReportedPreserved",
+    "seconds": "0.142",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetMetadataExportTest",
+    "name": "everySelectedCategoryIncludesUneditedPagesAndRecipeZipPathsVerify",
+    "seconds": "1.707",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetMetadataExportTest",
+    "name": "preserveTextChunksAlphaAndPrivacyUseIndependentAuthorityDecoder",
+    "seconds": "0.9",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetMetadataExportTest",
+    "name": "recipeAppliesOnlyToMatchingOriginalAndIsUndoable",
+    "seconds": "3.135",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "fourCategoryPreviewCopiesCompleteFileDeckWithoutSystemClipboard",
+    "seconds": "7.391",
+    "status": "PASS"
+  }
+]

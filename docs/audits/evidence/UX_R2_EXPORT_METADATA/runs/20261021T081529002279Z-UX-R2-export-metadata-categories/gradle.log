@@ -1,0 +1,26 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :asset-library:compileJava UP-TO-DATE
+> Task :image-authority:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :image-authority:compileKotlin UP-TO-DATE
+> Task :image-authority:compileJava NO-SOURCE
+> Task :studio-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+
+> Task :studio-core:compileKotlin FAILED
+e: file:///H:/CCB-Studio-Suite/modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetExport.kt:55:170 Cannot access 'fun sanitizePixel(pixel: Int): Int': it is internal in 'com.example.chatbar.domain.image.PrivacyPngEncoder'.
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':studio-core:compileKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.btapi.BuildToolsApiCompilationWork
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to generate a Build Scan (Powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 13s
+3 actionable tasks: 1 executed, 2 up-to-date

@@ -897,29 +897,49 @@
       "implementation": [
         "TypesetExport.kt",
         "TypesetExportDialog.kt",
-        "TypesetBook.kt"
+        "TypesetBook.kt",
+        "TypesetPngMetadata.kt",
+        "TypesetEditRecipe.kt",
+        "ExportClipboard.kt"
       ],
       "tests": [
         "TypesetExportTest",
-        "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart"
+        "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart",
+        "TypesetMetadataExportTest",
+        "TypesetWorkflowTest.fourCategoryPreviewCopiesCompleteFileDeckWithoutSystemClipboard"
       ],
       "guiEvidence": [
-        "docs/audits/evidence/UX_R2C_BOOK_EXPORT/book-export-preview.png"
+        "docs/audits/evidence/UX_R2C_BOOK_EXPORT/book-export-preview.png",
+        "docs/audits/evidence/UX_R2_EXPORT_METADATA/batch-export-deck.png"
       ],
       "persistenceEvidence": [
-        "docs/audits/UX_R2C_BOOK_EXPORT.md"
+        "docs/audits/UX_R2C_BOOK_EXPORT.md",
+        "docs/audits/UX_R2_EXPORT_METADATA.md"
       ],
       "status": "PARTIAL",
-      "remaining": "Multi-category export, source exchange, WebP, metadata/privacy, native visual and full product gates continue"
+      "remaining": "WebP/source formats, full preferences, native clipboard/dialog and product review remain"
     },
     {
       "id": "T18",
       "owner": "UX-R2b",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "TypesetExport.kt",
+        "TypesetPngMetadata.kt",
+        "TypesetEditRecipe.kt",
+        "ExportClipboard.kt"
+      ],
+      "tests": [
+        "TypesetMetadataExportTest",
+        "TypesetWorkflowTest.fourCategoryPreviewCopiesCompleteFileDeckWithoutSystemClipboard"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2_EXPORT_METADATA/batch-export-deck.png"
+      ],
+      "persistenceEvidence": [
+        "docs/audits/UX_R2_EXPORT_METADATA.md"
+      ],
+      "status": "PARTIAL",
+      "remaining": "WebP/source formats, full preferences, native clipboard/dialog and product review remain"
     },
     {
       "id": "T19",
@@ -927,20 +947,27 @@
       "implementation": [
         "TypesetExport.kt",
         "TypesetExportDialog.kt",
-        "TypesetBook.kt"
+        "TypesetBook.kt",
+        "TypesetPngMetadata.kt",
+        "TypesetEditRecipe.kt",
+        "ExportClipboard.kt"
       ],
       "tests": [
         "TypesetExportTest",
-        "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart"
+        "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart",
+        "TypesetMetadataExportTest",
+        "TypesetWorkflowTest.fourCategoryPreviewCopiesCompleteFileDeckWithoutSystemClipboard"
       ],
       "guiEvidence": [
-        "docs/audits/evidence/UX_R2C_BOOK_EXPORT/book-export-preview.png"
+        "docs/audits/evidence/UX_R2C_BOOK_EXPORT/book-export-preview.png",
+        "docs/audits/evidence/UX_R2_EXPORT_METADATA/batch-export-deck.png"
       ],
       "persistenceEvidence": [
-        "docs/audits/UX_R2C_BOOK_EXPORT.md"
+        "docs/audits/UX_R2C_BOOK_EXPORT.md",
+        "docs/audits/UX_R2_EXPORT_METADATA.md"
       ],
       "status": "PARTIAL",
-      "remaining": "Multi-category export, source exchange, WebP, metadata/privacy, native visual and full product gates continue"
+      "remaining": "WebP/source formats, full preferences, native clipboard/dialog and product review remain"
     },
     {
       "id": "T20",

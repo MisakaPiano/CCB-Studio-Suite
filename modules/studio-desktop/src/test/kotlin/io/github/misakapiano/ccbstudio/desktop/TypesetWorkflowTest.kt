@@ -17,6 +17,28 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.test.*
 
 class TypesetWorkflowTest {
+    @Test fun fourCategoryPreviewCopiesCompleteFileDeckWithoutSystemClipboard()=runBlocking(awt) {
+        val r=root();val w=StudioWorkspace.openStudio(r);val bytes=EditorRenderer.synthetic(180,120);val id=w.importImage("deck.png",bytes)
+        val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
+        c.editor.create("批量输出",listOf(id,id));c.idle();val clipboard=java.awt.datatransfer.Clipboard("synthetic isolated clipboard")
+        c.editor.pageChange{it.copy(texts=listOf(TypesetText(text="可恢复",x=90.0,width=100.0)))};c.editor.drain()
+        c.editor.copyExportFiles={paths->clipboard.setContents(ExportClipboard.contents(paths),null)}
+        val scene=ImageComposeScene(1320,950){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        try {
+            scene.frames();scene.click("预览与导出");withTimeout(30000){while(scene.nodes().none{it.matches("导出页面预览")}){delay(80);scene.frames()}}
+            scene.click("导出 · 原始文件（字节保全）");scene.click("导出 · 仅打码");scene.click("导出 · 仅文字");scene.click("附带可编辑 Recipe 文件");scene.click("同时打包 ZIP")
+            scene.shot("batch-export-deck");scene.click("复制所选输出文件");c.idle();scene.frames()
+            val files=clipboard.getData(java.awt.datatransfer.DataFlavor.javaFileListFlavor) as List<*>
+            assertEquals(17,files.size);assertFalse(clipboard.isDataFlavorAvailable(java.awt.datatransfer.DataFlavor.imageFlavor))
+            val output=c.editor.exportDirectory!!;assertEquals(17,TypesetExport.verify(output).files.size);assertContentEquals(bytes,Files.readAllBytes(output.resolve("original/001.png")))
+            val single=ExportClipboard.contents(listOf(output.resolve("all/001.png")));assertTrue(single.isDataFlavorSupported(java.awt.datatransfer.DataFlavor.imageFlavor))
+            assertEquals(180,(single.getTransferData(java.awt.datatransfer.DataFlavor.imageFlavor) as java.awt.image.BufferedImage).width)
+            c.editor.pageChange{page->page.copy(texts=page.texts.map{it.copy(text="修改")})};c.editor.drain();c.editor.chooseRecipeFile={output.resolve("all/001_recipe.json")}
+            scene.click("导入编辑 Recipe");c.idle();scene.frames();assertEquals("修改",c.editor.page!!.texts.single().text)
+            scene.click("确认应用编辑 Recipe");c.idle();scene.frames();assertEquals("可恢复",c.editor.page!!.texts.single().text)
+            scene.click("撤销编辑");c.idle();assertEquals("修改",c.editor.page!!.texts.single().text)
+        }finally{scene.close();c.close();scope.cancel();w.close()}
+    }
     @Test fun sourceExchangePreviewConfirmExportAndReopen()=runBlocking(awt) {
         val r=root();val w=StudioWorkspace.openStudio(r);val scope=CoroutineScope(SupervisorJob()+awt)
         val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{});c.view="编辑"

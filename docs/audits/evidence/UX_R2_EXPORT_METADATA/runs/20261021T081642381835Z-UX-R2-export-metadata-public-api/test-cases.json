@@ -1,0 +1,38 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetExportTest",
+    "name": "storyPresetsVariablePagesAndIndependentInspectionArtifact",
+    "seconds": "3.769",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetExportTest",
+    "name": "missingFontBlocksRenderingButOriginalDeliveryRemainsAvailable",
+    "seconds": "1.018",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetExportTest",
+    "name": "fourVariantsOriginalBytesJpegAndFailurePublication",
+    "seconds": "1.771",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetMetadataExportTest",
+    "name": "damagedMetadataIsNotReportedPreserved",
+    "seconds": "0.011",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetMetadataExportTest",
+    "name": "everySelectedCategoryIncludesUneditedPagesAndRecipeZipPathsVerify",
+    "seconds": "1.311",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetMetadataExportTest",
+    "name": "preserveTextChunksAlphaAndPrivacyUseIndependentAuthorityDecoder",
+    "seconds": "0.868",
+    "status": "PASS"
+  }
+]
