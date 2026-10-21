@@ -61,14 +61,14 @@ class DesktopCharacterPositionsTest {
                     assertEquals(center.x,wire.getValue("x").jsonPrimitive.float);assertEquals(center.y,wire.getValue("y").jsonPrimitive.float)
                 }
                 scene.shot("${model.name}-custom")
-                scene.click("均匀重置");assertTrue(c.draft.activeCharacters.all{it.center==null})
+                scene.click("重置为均匀分布");assertTrue(c.draft.activeCharacters.all{it.center==null})
                 assertEquals(DesignedCharacterCenter(.4f,.4f),c.draft.characters.last().center)
                 scene.type("X %","34");scene.type("Y %","78");expected=c.draft.characters.toList();c.flush()
                 scene.constraints=Constraints.fixed(640,650);scene.frames()
                 val scroll=scene.nodes().first{it.config.getOrNull(SemanticsActions.ScrollBy)!=null}
                 assertTrue(scroll.config[SemanticsProperties.VerticalScrollAxisRange].maxValue()>0f)
                 assertTrue(scroll.config[SemanticsActions.ScrollBy].action!!.invoke(0f,1000f));scene.frames()
-                val reset=scene.nodes().first{it.matches("均匀重置")&&it.config.getOrNull(SemanticsActions.OnClick)!=null}.boundsInRoot
+                val reset=scene.nodes().first{it.matches("重置为均匀分布")&&it.config.getOrNull(SemanticsActions.OnClick)!=null}.boundsInRoot
                 assertTrue(reset.height>0 && reset.top>=0 && reset.bottom<=650,"Reset must be reachable in the real dialog size: $reset")
                 scene.shot("${model.name}-scrolled-650")
             }finally{scene.close();c.close();scope.cancel()}

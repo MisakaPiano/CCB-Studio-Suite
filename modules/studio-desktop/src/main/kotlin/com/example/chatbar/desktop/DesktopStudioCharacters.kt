@@ -12,6 +12,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.semantics.*
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -38,8 +39,14 @@ internal fun DesktopStudioCharacters(draft: NovelAiStudioDraft, infrastructure: 
         fun change(transform: (NovelAiCharacterPromptDraft) -> NovelAiCharacterPromptDraft) = edit { it.copy(characters = it.characters.map { c -> if (c.id == character.id) transform(c) else c }) }
         Column(Modifier.fillMaxWidth().background(if (character.enabled) DesktopBootstrapColors.card else DesktopBootstrapColors.muted)
             .border(1.dp, DesktopBootstrapColors.border).padding(10.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Row(Modifier.fillMaxWidth()) {
-                Box(Modifier.weight(1f)) { StatusText("角色 ${index + 1} · ${if (character.enabled) "已启用" else "已停用"}") }
+            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                val title = "角色 ${index + 1} · ${if (character.enabled) "已启用" else "已停用"}"
+                Box(Modifier.weight(1f).heightIn(min = 32.dp)
+                    .semantics { contentDescription = title; stateDescription = if (expanded) "已展开" else "已收起" }
+                    .clickable(role = Role.Button, onClickLabel = if (expanded) "收起角色" else "展开角色") { expanded = !expanded }
+                    .padding(vertical = 5.dp), contentAlignment = Alignment.CenterStart) {
+                    StatusText((if (expanded) "▾ " else "▸ ") + title)
+                }
                 listOf(-1 to "↑", 1 to "↓").forEach { (offset, label) ->
                     StudioAction(label, enabled = index + offset in draft.characters.indices) { edit { current ->
                         val list = current.characters.toMutableList(); val from = list.indexOfFirst { it.id == character.id }; val to = from + offset
@@ -52,7 +59,6 @@ internal fun DesktopStudioCharacters(draft: NovelAiStudioDraft, infrastructure: 
                     change { it.copy(enabled = !it.enabled) }
                 }
                 StudioAction("删除", icon = DesktopAppIcons.Delete) { edit { it.copy(characters = it.characters.filterNot { c -> c.id == character.id }) } }
-                StudioAction(if (expanded) "⌃" else "⌄") { expanded = !expanded }
             }
             Column(Modifier.alpha(if (character.enabled) 1f else .6f)) {
                 if (expanded) {
@@ -113,6 +119,7 @@ internal fun DesktopCharacterPositions(draft: NovelAiStudioDraft, edit: ((NovelA
             StudioField("Y %", (center.y * 100).roundToInt().toString()) { text -> text.toFloatOrNull()?.takeIf { it.isFinite() }?.let { setCenter(center.copy(y = it / 100)) } }
         }
     }
-    StudioAction("均匀重置", enabled = custom) { edit { current -> current.copy(characters = current.characters.map { if (it.enabled) it.copy(center = null) else it }) } }
+    StudioAction("重置为均匀分布", enabled = custom) { edit { current -> current.copy(characters = current.characters.map { if (it.enabled) it.copy(center = null) else it }) } }
+    StatusText("仅调整已启用角色的位置：单个居中，多个从左到右均匀分布。角色提示词不变。")
     }
 }

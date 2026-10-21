@@ -154,7 +154,13 @@ class WorkbenchWorkflowTest {
             scene.click("添加角色");scene.field("角色正向","second person, blue coat",1);scene.field("角色负面","second unwanted",1)
             val second=c.draft.characters.last().id
             scene.click("↑",1);assertEquals(listOf(second,first),c.draft.characters.map{it.id})
-            scene.click("⌃",0);scene.click("⌄");assertEquals("second person, blue coat",c.draft.characters.first().prompt)
+            val header=scene.nodes().first{it.matches("角色 1 · 已启用") && it.config.getOrNull(SemanticsActions.OnClick)!=null}
+            val reorder=scene.nodes().first{it.matches("↑") && it.config.getOrNull(SemanticsActions.OnClick)!=null}
+            assertTrue(header.boundsInRoot.right<=reorder.boundsInRoot.left)
+            scene.click("角色 1 · 已启用");assertEquals(1,scene.nodes().count{it.matches("角色正向") && it.config.getOrNull(SemanticsActions.SetText)!=null})
+            scene.shot("role-left-header-collapsed")
+            scene.click("角色 1 · 已启用");assertEquals(2,scene.nodes().count{it.matches("角色正向") && it.config.getOrNull(SemanticsActions.SetText)!=null})
+            assertEquals("second person, blue coat",c.draft.characters.first().prompt)
             scene.click("✓",0);assertFalse(c.draft.characters.first().enabled)
             scene.click("添加角色");val removed=c.draft.characters.last().id;scene.click("删除",2)
             assertFalse(c.draft.characters.any{it.id==removed});assertEquals(2,c.draft.characters.size)

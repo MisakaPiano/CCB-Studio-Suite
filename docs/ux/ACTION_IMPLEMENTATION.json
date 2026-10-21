@@ -153,7 +153,8 @@
         "WorkbenchWorkflowTest.roleEditingReorderDisableAndDeleteReachRequestAndSurviveReopen"
       ],
       "guiEvidence": [
-        "docs/audits/UX_ROLE_WORKFLOW.md (actual Workbench Compose semantics; offscreen; loopback HTTP only)"
+        "docs/audits/UX_ROLE_WORKFLOW.md (actual Workbench Compose semantics; offscreen; loopback HTTP only)",
+        "docs/audits/UX_ROLE_HEADER.md (exact native user-observation scope and new offscreen regression separated)"
       ],
       "persistenceEvidence": [
         "Role IDs/order/enabled/positive/negative values equal after controller close and workspace reopen; reopened Workbench state asserted; no automatic request"
@@ -174,12 +175,13 @@
         "DesktopCharacterPositionsTest.positionFieldsDoNotOverlapAndTypedCoordinatesReachRequestAndReopen"
       ],
       "guiEvidence": [
-        "docs/audits/UX_CREATION_CONTROLS.md (Compose offscreen; exact scope disclosed)"
+        "docs/audits/UX_CREATION_CONTROLS.md (Compose offscreen; exact scope disclosed)",
+        "docs/audits/UX_ROLE_HEADER.md (exact native user-observation scope and new offscreen regression separated)"
       ],
       "persistenceEvidence": [
         "Actual dialog body with identical Surface parent: non-overlapping fields, V4.5 grid/V5 continuous typed coordinates, request serialization, active-only reset, reopen, scrolling to reset at 640x650; native dialog and pointer dragging NOT TESTED"
       ],
-      "status": "ENGINEERING_PARTIAL / TARGETED_GUI_AND_REOPEN_PASS / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
+      "status": "TARGETED_GUI_REQUEST_REOPEN_PASS / INSTALLED_XY_RESET_PASS_USER_CONFIRMED / PRODUCT_HOLD"
     },
     {
       "id": "P09",
@@ -1780,14 +1782,15 @@
         "WorkbenchWorkflowTest.measuredSuiteNavigationSurvivesResizeAndUnsentInput"
       ],
       "guiEvidence": [
-        "docs/audits/UX_UPDATE_FEEDBACK.md (scope and test kind disclosed; not human acceptance)"
+        "docs/audits/UX_UPDATE_FEEDBACK.md (scope and test kind disclosed; not human acceptance)",
+        "docs/audits/UX_ROLE_HEADER.md (exact native user-observation scope and new offscreen regression separated)"
       ],
       "persistenceEvidence": [
         "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
       ],
       "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
       "remainingVerification": [
-        "Native IME/focus/multiwindow/high-DPI visual acceptance NOT TESTED; Compose density test is not native display certification"
+        "Basic Chinese IME candidate commit/newline and creation-gallery roundtrip confirmed by user in installed eleven; high-DPI, remaining focus/multiwindow and broader native visual acceptance NOT TESTED"
       ]
     }
   ]

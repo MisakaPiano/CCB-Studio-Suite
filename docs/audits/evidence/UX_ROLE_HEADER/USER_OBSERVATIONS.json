@@ -1,0 +1,20 @@
+{
+  "installedVersion": "0.2.11-internal",
+  "installedSource": "a50f4282012bca80ea46772aa97d48bd9c0d6b3d",
+  "currentSourceChanges": "Left role header disclosure and clearer reset label not yet in installed eleven",
+  "ime": {
+    "status": "PASS_USER_CONFIRMED_WITH_SCOPE",
+    "answer": "正常输入、保留并可继续操作",
+    "scope": "Chinese IME candidate commit, newline, gallery roundtrip to creation; no generation"
+  },
+  "position": {
+    "status": "PASS_USER_CONFIRMED_WITH_SCOPE",
+    "answer": "可以用",
+    "scope": "Separate X/Y fields, scroll to reachable reset; supplied reset image shows 50/50 and centered single role"
+  },
+  "capture": "Two screenshots failed; accessibility exposes window/pane only; no automated app input",
+  "nativeClipboard": "NOT TESTED; user initially replied 暂时未测; then requested editor location. Visible fixture has one image, directions adjusted to single-image paste. No pass inferred.",
+  "highDpi": "NOT TESTED",
+  "productAcceptance": "NOT TESTED",
+  "realApiCalls": 0
+}
