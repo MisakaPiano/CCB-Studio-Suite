@@ -69,6 +69,7 @@ internal fun inspectMetadata(path:Path):MetadataInspection = try {
     val history by produceState<Result<Pair<NovelAiGenerationRecipe,Long>?>?>(null,id){value=withContext(Dispatchers.IO){runCatching{c.historyRecipe(id)}}}
     Column(Modifier.fillMaxSize().background(Ink).padding(16.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(10.dp)) {
         Text("元数据与历史复用")
+        SharedAssetOrigin(c,id)
         StudioAction("查看完整 PNG 字段"){fields=true}
         StatusText("原件 ${id.take(8)} · 参数导入不会重编码原图")
         inspection?.let{read->

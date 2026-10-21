@@ -1,3 +1,7 @@
+## 统一资产回用进度（2026-10-22）
+
+[实际记录](audits/UX_SHARED_ASSETS.md)：编辑图片/PDF/ZIP资产与来源快照接线，跨引导/编辑选用保存重开；完整152项实际PASS。继续目录入口/Prompt资产/别名标签及原UX恢复，PRODUCT_HOLD。
+
 ## 创作页源码继承修正（2026-10-21）
 
 [实际记录](audits/UX_CREATION_LAYOUT.md)：直接继承源图标/固定栏/缩略条并恢复连续编辑及窄窗摘要；desktop 完整64项实际PASS，首轮编译失败保留。产品恢复继续，PRODUCT_HOLD/NOT RC。

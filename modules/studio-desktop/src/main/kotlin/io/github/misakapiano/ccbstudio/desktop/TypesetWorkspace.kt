@@ -27,15 +27,21 @@ import java.awt.GraphicsEnvironment
 import kotlin.math.*
 
 @Composable internal fun TypesetWorkspace(c:WorkbenchController) {
+    var picking by remember{mutableStateOf(false)}
+    var appendPicking by remember{mutableStateOf(false)}
     val e=c.editor;var newName by remember{mutableStateOf("")};var creating by remember{mutableStateOf(false)}
     var projectAction by remember{mutableStateOf<String?>(null)};var projectName by remember{mutableStateOf("")};
     var deletePages by remember{mutableStateOf(false)};var tab by remember{mutableStateOf("画布")}
     var exporting by remember{mutableStateOf(false)};var fullPreview by remember{mutableStateOf(false)}
+    if(picking)SharedAssetPicker(c,true,{picking=false}){ids->c.selection=ids.toSet();creating=true}
+    if(appendPicking)SharedAssetPicker(c,true,{appendPicking=false}){ids->e.appendSelected(confirmedIds=ids)}
     if(fullPreview)TypesetFullPreview(c){fullPreview=false}
     Column(Modifier.fillMaxSize()) {
         StudioActions {
             CompactChoice("编辑工程",c.workspace.state.typesetProjects,e.project,{it.name}){e.open(it.id)}
             StudioAction("新建编辑工程",!c.busy){creating=true}
+            StudioAction("从资产库新建",!c.busy){picking=true}
+            if(e.project!=null)StudioAction("从资产库追加",!c.busy){appendPicking=true}
             StudioAction("导入 TypeSet 工程",!c.busy){e.inspectExchange()}
             if(e.project!=null){StudioAction("重命名工程",!c.busy){projectName=e.project!!.name;projectAction="rename"};StudioAction("另存工程",!c.busy){projectName=e.project!!.name+" 副本";projectAction="copy"};StudioAction("删除工程",!c.busy){projectAction="remove"}}
             StudioAction("保存工程",e.dirty && !c.busy){c.run("保存工程"){e.drain()}}

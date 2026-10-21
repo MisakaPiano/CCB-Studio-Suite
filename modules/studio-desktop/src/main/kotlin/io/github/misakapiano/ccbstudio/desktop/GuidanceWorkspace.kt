@@ -11,6 +11,9 @@ import kotlinx.coroutines.*
 /** Source Studio guidance controls, using immutable Suite IDs instead of Desktop filesystem paths. */
 @Composable internal fun GuidanceWorkspace(c:WorkbenchController) {
     val d=c.draft;val g=d.imageGuidance
+    var picking by remember{mutableStateOf(false)}
+    if(picking)SharedAssetPicker(c,false,{picking=false}){c.current=it.single()}
+    StudioAction("从资产库选择引导图片",!c.busy){picking=true}
     var tools by remember{mutableStateOf<Triple<String,ByteArray,ByteArray?>?>(null)}
     val scope=rememberCoroutineScope()
     fun change(transform:(NovelAiImageGuidanceDraft)->NovelAiImageGuidanceDraft)=c.edit{it.copy(imageGuidance=transform(it.imageGuidance))}

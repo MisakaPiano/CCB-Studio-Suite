@@ -1,0 +1,28 @@
+{
+  "phase": "shared-assets-gui",
+  "startedUtc": "2026-10-21T14:57:08.067127+00:00",
+  "seconds": 32.686,
+  "exitCode": 0,
+  "tests": 1,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:test",
+    "--tests",
+    "*WorkbenchWorkflowTest.editedAssetIsSelectableAcrossGuidanceAndEditorAndSurvivesRestart"
+  ],
+  "baseCommit": "678caf1ab1e8e9611e19a35e8d7c2f27d11b074f",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

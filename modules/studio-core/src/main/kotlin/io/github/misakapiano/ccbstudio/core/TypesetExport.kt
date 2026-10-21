@@ -12,8 +12,8 @@ import java.util.zip.*
 import javax.imageio.ImageIO
 
 @Serializable data class TypesetExportFile(val name:String,val size:Long,val sha256:String)
-@Serializable data class TypesetExportReceipt(val version:Int=2,val projectId:String,val revision:Long,val mode:String,val variant:String,val format:String,
-    val pageIds:List<String>,val files:List<TypesetExportFile>,val variants:List<String> = listOf(variant),val metadataStatuses:Map<String,String> = emptyMap())
+@Serializable data class TypesetExportReceipt(val version:Int=3,val projectId:String,val revision:Long,val mode:String,val variant:String,val format:String,
+    val pageIds:List<String>,val files:List<TypesetExportFile>,val variants:List<String> = listOf(variant),val metadataStatuses:Map<String,String> = emptyMap(),val assetIds:Map<String,String> = emptyMap())
 data class TypesetExportRequest(val pageIds:List<String>,val variant:String="all",val format:String="png",val zip:Boolean=false,val pdf:Boolean=false, val variants:List<String> = listOf(variant),val metadata:String="preserve",val includeRecipe:Boolean=false)
 
 /** A fresh output directory is published only after every file and completion receipt is durable.
@@ -32,7 +32,8 @@ object TypesetExport {
         request.variants.filter{it!="original"}.forEach{TypesetFonts.verifyRenderable(workspace,document.copy(pages=pages),it)}
         val stem="Studio-export-${newId()}";val staging=parent.resolve(".$stem.incomplete");val target=parent.resolve(stem)
         Files.createDirectory(staging)
-        val outputs=mutableListOf<Path>();val statuses=linkedMapOf<String,String>()
+        val outputs=mutableListOf<Path>();val statuses=linkedMapOf<String,String>();val origins=linkedMapOf<Path,AssetProvenance>()
+        val assetIds=linkedMapOf<String,String>()
         try {
             val pdf=if(request.pdf)RasterBookPdf(staging.resolve("book.pdf"),pages.size)else null
             try {
@@ -63,7 +64,11 @@ object TypesetExport {
                                 }
                             }finally{image.flush()}
                         }
-                        force(file);outputs.add(file);statuses[staging.relativize(file).toString().replace('\\','/')]=status
+                        force(file);outputs.add(file)
+                        val relative=staging.relativize(file).toString().replace('\\','/')
+                        if(variant=="original")assetIds[relative]=page.assetId
+                        else origins[file]=AssetProvenance(role=if(document.mode=="storybook")"storybook-page"else"edited-image",sourceIds=listOf(page.assetId),projectId=project.id,projectRevision=project.revision,snapshot=project.current,pageId=page.id,variant=variant,mediaType="image/$format")
+                        statuses[staging.relativize(file).toString().replace('\\','/')]=status
                         if(request.includeRecipe){val recipe=directory.resolve("${number}_recipe.json");val asset=workspace.assets.read(java.util.UUID.fromString(page.assetId)).require()
                             val json=kotlinx.serialization.json.buildJsonObject{put("version",kotlinx.serialization.json.JsonPrimitive(1));put("variant",kotlinx.serialization.json.JsonPrimitive(variant));put("originalSha256",kotlinx.serialization.json.JsonPrimitive(asset.sha256()));put("page",documentJson.encodeToJsonElement(TypesetPage.serializer(),page));put("sourceRecipeBase64",kotlinx.serialization.json.JsonPrimitive(java.util.Base64.getEncoder().encodeToString(asset.request().recipe())))}
                             Files.writeString(recipe,json.toString(),StandardOpenOption.CREATE_NEW);force(recipe);outputs.add(recipe)}
@@ -76,7 +81,12 @@ object TypesetExport {
             if(request.zip){val zip=staging.resolve("pages.zip");ZipOutputStream(Files.newOutputStream(zip,StandardOpenOption.CREATE_NEW)).use{out->
                 outputs.filter{it.fileName.toString()!="book.pdf"}.forEach{file->out.putNextEntry(ZipEntry(staging.relativize(file).toString().replace('\\','/')));Files.newInputStream(file).use{it.copyTo(out)};out.closeEntry()}}
                 force(zip);outputs.add(zip)}
-            val receipt=TypesetExportReceipt(projectId=project.id,revision=project.revision,mode=document.mode,variant=if(request.variants.size==1)request.variants.single()else"multiple",format=request.format,pageIds=pages.map{it.id},files=outputs.map{identity(it,staging)},variants=request.variants,metadataStatuses=statuses)
+            // Keep valid individual assets on interruption; only COMPLETE publishes a batch.
+            outputs.filter{it.fileName.toString() in setOf("book.pdf","pages.zip")}.forEach { file ->
+                origins[file]=AssetProvenance(role="edited-collection",sourceIds=pages.map{it.assetId}.distinct(),projectId=project.id,projectRevision=project.revision,snapshot=project.current,variant=request.variants.joinToString(","),mediaType=if(file.fileName.toString().endsWith("pdf"))"application/pdf"else"application/zip")
+            }
+            origins.forEach{(file,origin)->val expected=identity(file,staging);assetIds[expected.name]=SharedAssets.retain(workspace,file,expected,origin);hook("ASSET_RETAINED")}
+            val receipt=TypesetExportReceipt(assetIds=assetIds,projectId=project.id,revision=project.revision,mode=document.mode,variant=if(request.variants.size==1)request.variants.single()else"multiple",format=request.format,pageIds=pages.map{it.id},files=outputs.map{identity(it,staging)},variants=request.variants,metadataStatuses=statuses)
             val marker=staging.resolve("COMPLETE.json");Files.writeString(marker,documentJson.encodeToString(receipt),StandardOpenOption.CREATE_NEW);force(marker)
             hook("BEFORE_PUBLISH")
             Files.move(staging,target,StandardCopyOption.ATOMIC_MOVE)
@@ -89,7 +99,7 @@ object TypesetExport {
     fun verify(directory:Path):TypesetExportReceipt {
         require(!directory.fileName.toString().endsWith(".incomplete")){"Unpublished export"}
         val receipt=documentJson.decodeFromString<TypesetExportReceipt>(readBounded(directory.resolve("COMPLETE.json"),4*1024*1024).decodeToString())
-        require(receipt.version in 1..2 && receipt.files.isNotEmpty() && receipt.files.size<=8002 && receipt.files.map{it.name}.distinct().size==receipt.files.size)
+        require(receipt.version in 1..3 && receipt.files.isNotEmpty() && receipt.files.size<=8002 && receipt.files.map{it.name}.distinct().size==receipt.files.size)
         receipt.files.forEach{expected->require(Regex("(?:(?:all|mask|text|original)/)?[A-Za-z0-9._-]+").matches(expected.name) && expected.name!="." && expected.name!="..");val path=directory.resolve(expected.name);safePath(path);require(Files.isRegularFile(path,LinkOption.NOFOLLOW_LINKS));require(identity(path,directory)==expected){"Export checksum mismatch"}}
         return receipt
     }

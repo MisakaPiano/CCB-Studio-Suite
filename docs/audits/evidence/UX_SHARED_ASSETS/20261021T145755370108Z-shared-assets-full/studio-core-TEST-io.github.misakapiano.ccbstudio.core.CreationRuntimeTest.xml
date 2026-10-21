@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-10-21T14:58:04.832Z" hostname="DD1" time="8.823">
+  <properties/>
+  <testcase name="waitingCancellationRetainsLockAndDoesNotSend" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.687"/>
+  <testcase name="normalTransportUsesAuthorityEnvelopeAndCannotAcceptPartialStream" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.183"/>
+  <testcase name="httpErrorsNeverPersistProviderBodyOrRetry" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.063"/>
+  <testcase name="largeGuidanceReceiptKeepsExactWireAndSurvivesBackup" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="2.918"/>
+  <testcase name="composedResultIsDerivedAndRawResponseSurvivesRestart" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.69"/>
+  <testcase name="documentLimitPreflightDoesNotPoisonReadableWorkspace" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.215"/>
+  <testcase name="requestPayloadChunksRestoreAndDetectAlteredDescriptors" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="2.55"/>
+  <testcase name="interruptedDesignIsNotReplayedOnOpen" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.16"/>
+  <testcase name="partialGenerationRetainsOriginalAndFullReceiptOnFailure" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.412"/>
+  <testcase name="compositingFailurePreservesUniqueRawFinal" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.532"/>
+  <testcase name="designCandidateRequiresApplyBranchesAndSurvivesRestart" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.412"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -46,6 +46,7 @@ internal class GalleryViewState {
     Column(Modifier.fillMaxSize().galleryIngress(c).padding(12.dp),verticalArrangement=Arrangement.spacedBy(8.dp)){
         StudioActions{StudioAction("导入图片",!c.busy){c.importImages()};StudioAction("粘贴图片",!c.busy){if(!c.pasteImages())c.problem="剪贴板没有图片或文件列表；文字请粘贴到输入框"};StudioAction("返回创作"){c.view="创作"}}
         Text("拖入文件 / Ctrl+V · PNG、JPEG、WebP、GIF、BMP · 每文件≤32MiB，≤12582912像素；动图预览首帧，原文件保留",style=MaterialTheme.typography.caption)
+        SharedDocumentAssets(c)
         if(g.imports.isNotEmpty()){
             var show by remember{mutableStateOf(false)}
             StudioAction("导入结果 ${g.imports.count{it.assetId!=null}} / ${g.imports.size}"){show=!show}
@@ -80,6 +81,7 @@ internal class GalleryViewState {
             StatusText("${c.selection.size} 项已选 · ${c.selection.count{id->visible.none{it.request().id().toString()==id}}} 项在筛选外")
             StudioAction("比较 2 张",c.selection.size==2){g.compare=c.assets.filter{it.request().id().toString() in c.selection}.map{it.request().id().toString()}}
             StudioAction("参数与来源",c.current!=null){g.metadata=c.current}
+            StudioAction("选中图片用于引导",c.current!=null&&!c.busy){c.section="图像引导";c.view="创作"}
             StudioAction("APNG伪装 / 还原",c.selection.isNotEmpty()&&!c.busy){c.animation.open(c.assets.filter{it.request().id().toString() in c.selection}.map{it.request().id().toString()})}
             StudioAction("所选图片建立编辑工程",c.selection.isNotEmpty() && !c.busy){c.view="编辑"}
         }

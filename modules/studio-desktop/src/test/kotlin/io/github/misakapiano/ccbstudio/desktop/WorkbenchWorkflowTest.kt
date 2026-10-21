@@ -126,6 +126,32 @@ class WorkbenchWorkflowTest {
         StudioWorkspace.openStudio(r).use{assertEquals("保留的布局测试草稿",it.state.creation!!.draft.basePrompt)}
     }
 
+    @Test fun editedAssetIsSelectableAcrossGuidanceAndEditorAndSurvivesRestart()=runBlocking(awt){
+        val r=root();val w=StudioWorkspace.openStudio(r);val original=w.importImage("shared.png",EditorRenderer.synthetic(96,96))
+        val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
+        val scene=ImageComposeScene(1240,880){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        var derived="";var project=""
+        try {
+            c.editor.create("Shared project",listOf(original));c.idle();project=c.editor.project!!.id
+            c.editor.chooseExportDirectory={Files.createDirectories(root())}
+            c.editor.export(TypesetExportRequest(c.editor.document!!.pages.map{it.id}));c.idle()
+            derived=TypesetExport.verify(c.editor.exportDirectory!!).assetIds.values.single()
+            assertTrue(c.assets.any{it.request().id().toString()==derived})
+            c.view="创作";c.section="图像引导";scene.frames();scene.click("从资产库选择引导图片")
+            scene.click("选用资产 $derived");scene.click("确认选用资产");assertEquals(derived,c.current)
+            val target=NovelAiImageUseTarget.IMAGE_TO_IMAGE
+            scene.click("当前图片 → ${target.displayName}");c.idle();assertEquals(derived,c.draft.imageGuidance.baseImage!!.id)
+            c.view="编辑";scene.frames();scene.click("从资产库追加");scene.click("选用资产 $derived");scene.click("确认选用资产");c.idle()
+            assertEquals(listOf(original,derived),c.editor.document!!.pages.map{it.assetId});c.editor.drain();c.flush()
+            scene.shot("shared-asset-editor")
+        }finally{scene.close();c.close();scope.cancel()}
+        StudioWorkspace.openStudio(r).use{again->
+            assertEquals(derived,again.state.creation!!.draft.imageGuidance.baseImage!!.id)
+            val p=again.state.typesetProjects.single{it.id==project};assertEquals(listOf(original,derived),TypesetRepository(again).load(p).pages.map{it.assetId})
+            assertTrue(SharedAssets.images(again).any{it.request().id().toString()==derived})
+        }
+    }
+
     @Test fun continuedEditingRetainsExistingAssetsAndCredentials()=runBlocking(awt){
         val supplied=System.getProperty("preview.update.fixture")
         val r=supplied?.let{Path.of(it).toAbsolutePath().normalize()}?:root()
