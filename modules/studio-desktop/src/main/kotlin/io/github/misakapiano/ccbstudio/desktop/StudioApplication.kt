@@ -248,7 +248,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
         if(busy)return
         busy=true;message=label;problem=null
         active=scope.launch {
-            try {pending?.cancelAndJoin();flush();withContext(Dispatchers.IO){body()};message="$label · 已完成"}
+            try {pending?.cancelAndJoin();flush();withContext(Dispatchers.IO){body()};message=if(problem==null)"$label · 已完成" else "$label · 有未完成项，请查看回执"}
             catch(e:CancellationException){message="已停止；已提交结果保留";throw e}
             catch(e:Exception){problem="${if(e is DataProblem)e.status else e.javaClass.simpleName}：操作未完成，未自动重发。已有资料保留。";message="操作未完成"}
             finally {try{state=workspace.state;assets=visibleAssets()}catch(e:Exception){problem="工作区需要恢复，已保留现有文件；请停止写入并检查"};busy=false}
@@ -310,10 +310,39 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     fun importImages() {
         val chooser=JFileChooser();chooser.isMultiSelectionEnabled=true
         if(chooser.showOpenDialog(null)!=JFileChooser.APPROVE_OPTION)return
-        val files=chooser.selectedFiles.toList()
-        run("导入原件") {val accepted=mutableListOf<String>();val failed=mutableListOf<String>()
-            for(f in files)try{accepted+=workspace.importImage(f.name,readBounded(f.toPath(),EditorRenderer.MAX_BYTES))}catch(e:Exception){failed+="${f.name}: ${if(e is DataProblem)e.status else e.javaClass.simpleName}"}
-            current=accepted.lastOrNull()?:current;selection=accepted.toSet();if(failed.isNotEmpty())problem="部分导入未完成：\n"+failed.joinToString("\n")
+        importIngress(GalleryIngress(files=chooser.selectedFiles.map{it.toPath()}))
+    }
+    fun pasteImages():Boolean=try{if(busy)false else gallery.pasteContents()?.let{receiveTransfer(it,true)}?:false}catch(e:Exception){problem="剪贴板读取失败；现有资料未改变";true}
+    fun receiveTransfer(transfer:java.awt.datatransfer.Transferable,paste:Boolean):Boolean=try {
+        if(busy)false else galleryTransfer(transfer,paste)?.let{importIngress(it);true}?:false
+    }catch(e:Exception){problem="图片传入失败：${e.javaClass.simpleName}；现有资料保留";true}
+    fun importIngress(input:GalleryIngress)=run("导入图片") {
+        require(input.files.size<=1000 && (input.files.isNotEmpty() xor (input.raster!=null)))
+        val accepted=mutableListOf<String>()
+        val entries=input.files.map{it.fileName.toString() to it}.ifEmpty{listOf("Clipboard-raster.png" to null)}
+        gallery.imports=entries.map{GalleryImportResult(it.first,"WAITING")}
+        try {
+            for((index,entry) in entries.withIndex()){
+                currentCoroutineContext().ensureActive()
+                val prepared=try {
+                    val bytes=entry.second?.let{readBounded(it,EditorRenderer.MAX_BYTES)}?:requireNotNull(input.raster)
+                    EditorRenderer.decode(bytes).flush()
+                    Result.success(bytes)
+                }catch(e:CancellationException){throw e}catch(e:Exception){Result.failure<ByteArray>(e)}
+                val result=if(prepared.isSuccess){
+                    val receipt=buildJsonObject{put("kind","image-ingress");put("version",1);put("source",if(entry.second==null)"clipboard-raster" else "file");put("createdAt",System.currentTimeMillis())}.toString()
+                    // A storage/commit failure stops the batch; never keep writing after uncertain persistence.
+                    val id=try{workspace.importImage(entry.first,prepared.getOrThrow(),receipt)}catch(e:Exception){
+                        gallery.imports=gallery.imports.toMutableList().also{it[index]=GalleryImportResult(entry.first,"STORAGE_ERROR · 状态待检查，批次停止")};throw e
+                    };accepted+=id;current=id;selection=accepted.toSet()
+                    GalleryImportResult(entry.first,if(entry.second==null)"IMPORTED_RASTER（新编码PNG，无原始文件字节）" else "IMPORTED_ORIGINAL",id)
+                }else{val e=prepared.exceptionOrNull()!!;GalleryImportResult(entry.first,"FAILED · ${if(e is DataProblem)e.status else e.javaClass.simpleName}")}
+                gallery.imports=gallery.imports.toMutableList().also{it[index]=result}
+            }
+        }finally{
+            gallery.imports=gallery.imports.map{if(it.status=="WAITING")it.copy(status="NOT_IMPORTED · 已停止")else it}
+            if(gallery.imports.any{it.assetId==null})problem="部分文件未导入；查看逐项结果。已成功原件保留。"
+            if(accepted.isNotEmpty())view="图库"
         }
     }
     suspend fun close() {active?.cancelAndJoin();pending?.cancelAndJoin();editor.drain();flush();infrastructure.closeAndDrain();withContext(Dispatchers.IO){workspace.close()};http.dispatcher.executorService.shutdown();http.connectionPool.evictAll()}

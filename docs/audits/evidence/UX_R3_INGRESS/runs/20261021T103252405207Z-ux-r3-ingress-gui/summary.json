@@ -1,0 +1,30 @@
+{
+  "phase": "ux-r3-ingress-gui",
+  "startedUtc": "2026-10-21T10:32:52.829045+00:00",
+  "seconds": 32.988,
+  "exitCode": 0,
+  "tests": 3,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:test",
+    "--tests",
+    "*GalleryIngressTest",
+    "--tests",
+    "*GalleryWorkflowTest"
+  ],
+  "baseCommit": "3726939074210a96b34b626b41bb6070c953fd06",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

@@ -13,8 +13,11 @@ import androidx.compose.ui.semantics.*
 import androidx.compose.ui.unit.dp
 import com.example.chatbar.desktop.*
 import io.github.misakapiano.ccbstudio.core.*
+import kotlinx.serialization.json.*
 
 internal class GalleryViewState {
+    var pasteContents:()->java.awt.datatransfer.Transferable?={java.awt.Toolkit.getDefaultToolkit().systemClipboard.getContents(null)}
+    var imports by mutableStateOf<List<GalleryImportResult>>(emptyList())
     var copyText:(String)->Unit={java.awt.Toolkit.getDefaultToolkit().systemClipboard.setContents(java.awt.datatransfer.StringSelection(it),null)}
     var query by mutableStateOf("");var source by mutableStateOf("all");var date by mutableStateOf("")
     var compare by mutableStateOf<List<String>?>(null);var metadata by mutableStateOf<String?>(null)
@@ -25,7 +28,13 @@ internal class GalleryViewState {
     g.metadata?.let{id->MetadataWorkspace(c,id){g.metadata=null};return}
     g.compare?.let{ids->ComparisonWorkspace(c,ids){g.compare=null};return}
     val jobs=c.state.jobs.flatMap{job->(job.results+job.composedResults).map{it to job}}.toMap()
-    fun day(id:String)=jobs[id]?.let{java.time.Instant.ofEpochMilli(it.createdAt).atZone(java.time.ZoneId.systemDefault()).toLocalDate().toString()}.orEmpty()
+    val importedAt=remember(c.assets){c.assets.mapNotNull{a->runCatching{
+        val bytes=a.request().recipe();if(bytes.size>4096)return@runCatching null
+        val receipt=Json.parseToJsonElement(bytes.decodeToString()).jsonObject
+        if(receipt["kind"]?.jsonPrimitive?.content!="image-ingress" || receipt["version"]?.jsonPrimitive?.intOrNull!=1)return@runCatching null
+        a.request().id().toString() to requireNotNull(receipt["createdAt"]?.jsonPrimitive?.longOrNull)
+    }.getOrNull()}.toMap()}
+    fun day(id:String)=runCatching{(jobs[id]?.createdAt?:importedAt[id])?.let{java.time.Instant.ofEpochMilli(it).atZone(java.time.ZoneId.systemDefault()).toLocalDate().toString()}.orEmpty()}.getOrDefault("")
     val visible=c.assets.asReversed().filter{a->val id=a.request().id().toString();val job=jobs[id]
         (g.source=="all" || (g.source=="generated")== (job!=null)) && (g.date.isBlank() || day(id)==g.date) &&
         (a.request().name().contains(g.query,true) || job?.recipe?.contains(g.query,true)==true)}
@@ -33,12 +42,18 @@ internal class GalleryViewState {
         c.selection=when{range && anchor>=0->c.selection+ids.subList(minOf(anchor,target),maxOf(anchor,target)+1);toggle->if(id in c.selection)c.selection-id else c.selection+id;else->setOf(id)}
         c.current=id;if(!range)g.anchor=id
     }
-    Column(Modifier.fillMaxSize().padding(12.dp),verticalArrangement=Arrangement.spacedBy(8.dp)){
-        StudioActions{StudioAction("导入图片",!c.busy){c.importImages()};StudioAction("返回创作"){c.view="创作"}}
+    Column(Modifier.fillMaxSize().galleryIngress(c).padding(12.dp),verticalArrangement=Arrangement.spacedBy(8.dp)){
+        StudioActions{StudioAction("导入图片",!c.busy){c.importImages()};StudioAction("粘贴图片",!c.busy){if(!c.pasteImages())c.problem="剪贴板没有图片或文件列表；文字请粘贴到输入框"};StudioAction("返回创作"){c.view="创作"}}
+        Text("拖入文件 / Ctrl+V · PNG、JPEG、WebP、GIF、BMP · 每文件≤32MiB，≤12582912像素；动图预览首帧，原文件保留",style=MaterialTheme.typography.caption)
+        if(g.imports.isNotEmpty()){
+            var show by remember{mutableStateOf(false)}
+            StudioAction("导入结果 ${g.imports.count{it.assetId!=null}} / ${g.imports.size}"){show=!show}
+            if(show)Column(Modifier.fillMaxWidth().heightIn(max=140.dp).verticalScroll(rememberScrollState())){g.imports.forEach{Text("${it.name} · ${it.status}",style=MaterialTheme.typography.caption)}}
+        }
         Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)){
             OutlinedTextField(g.query,{g.query=it},label={Text("查找文件名或历史 Prompt")},modifier=Modifier.weight(1f))
             CompactChoice("来源",listOf("all","generated","imported"),g.source,{when(it){"generated"->"生成历史";"imported"->"导入/副本";else->"全部来源"}}){g.source=it}
-            CompactChoice("日期",listOf("")+jobs.keys.map(::day).distinct().sortedDescending(),g.date,{it.ifBlank{"全部日期"}}){g.date=it}
+            CompactChoice("日期",listOf("")+(jobs.keys+importedAt.keys).map(::day).filter{it.isNotBlank()}.distinct().sortedDescending(),g.date,{it.ifBlank{"全部日期"}}){g.date=it}
         }
         BoxWithConstraints(Modifier.weight(1f).fillMaxWidth()){
             val wide=maxWidth>=900.dp

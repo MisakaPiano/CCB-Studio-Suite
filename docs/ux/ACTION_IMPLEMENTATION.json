@@ -361,11 +361,22 @@
     {
       "id": "I01",
       "owner": "UX-R3",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "GalleryIngress.kt",
+        "GalleryWorkspace.kt",
+        "StudioApplication.kt"
+      ],
+      "tests": [
+        "GalleryIngressTest.filesWinOverRasterAndTextPasteRemainsText",
+        "GalleryIngressTest.guiPasteBatchReportsFailuresRetainsExactOriginalAndRasterProvenanceAfterRestart"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R3_INGRESS/partial-import.png (Compose offscreen; injected clipboard)"
+      ],
+      "persistenceEvidence": [
+        "Exact file bytes and explicit clipboard-raster provenance verified after close/reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / ISOLATED_CLIPBOARD_GUI_PASS / NATIVE_DROP_AND_PICKER_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "I02",
