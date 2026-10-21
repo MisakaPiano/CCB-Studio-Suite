@@ -1,0 +1,28 @@
+{
+  "phase": "prompt-reference-gui-retry",
+  "startedUtc": "2026-10-21T15:21:55.410624+00:00",
+  "seconds": 32.268,
+  "exitCode": 1,
+  "tests": 2,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "FAILED",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:test",
+    "--tests",
+    "*PromptReferenceWorkflowTest"
+  ],
+  "baseCommit": "649d623721fa0241dd6f8159c2a40d86041c4c8e",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

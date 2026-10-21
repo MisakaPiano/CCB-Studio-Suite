@@ -30,6 +30,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     val http:okhttp3.OkHttpClient=studioHttpClient(),admissionOverride:RequestAdmission?=null) {
     val session=CreationSession(workspace)
     val gallery = GalleryViewState()
+    val library by lazy{LibraryController(this)}
     val updater=StudioUpdateController(scope,budgetRoot.parent.resolve("updates"))
     var maintenance by mutableStateOf(false);private set
     var installUpdate:(()->Unit)?=null
@@ -236,8 +237,9 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
         draft=workspace.state.creation!!.draft
     }
     fun clearPromptDraft()=edit{it.clearPrompts(workspace.state.creation!!.imageCards.firstOrNull{card->card.id==it.importedCharacterCardId}?.negativePrompt)}
-    fun pastePrompt(text:String)=run("粘贴正向 Prompt") {
+    fun pastePrompt(text:String,origin:String="clipboard-or-asset")=run("粘贴正向 Prompt") {
         require(text.length<=100000)
+        library.repository.savePrompt(text,"粘贴的 Prompt",origin);library.refresh()
         session.editDraft{NovelAiStudioPromptClipboard.apply(text,it)};draft=workspace.state.creation!!.draft
     }
     fun input(value:String){if(maintenance)return;composer=value;changed()}
@@ -422,8 +424,8 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
     Column(Modifier.fillMaxSize().background(Ink).onGloballyPositioned{r.width=it.size.width.toFloat();r.height=it.size.height.toFloat();r.publish()}) {
         Row(Modifier.fillMaxWidth().height(44.dp).background(Panel).onGloballyPositioned{r.title=r.rect(it);r.publish()},verticalAlignment=Alignment.CenterVertically) {
             Image(StudioBrand.painter,"CCB 蓝色 logo",Modifier.padding(9.dp).size(26.dp).onGloballyPositioned{r.icon=r.rect(it);r.publish()})
-            if(compact)Box(Modifier.onGloballyPositioned{r.buttons["导航"]=r.rect(it);r.publish()}){CompactChoice("",listOf("创作","AI 设计","图库","编辑","账户","更新"),c.view,{it}){c.view=it}}
-            else listOf("创作","AI 设计","图库","编辑","账户","更新").forEach {label -> Box(Modifier.onGloballyPositioned{r.buttons[label]=r.rect(it);r.publish()}){StudioAction(label,selected=c.view==label){c.view=label}} }
+            if(compact)Box(Modifier.onGloballyPositioned{r.buttons["导航"]=r.rect(it);r.publish()}){CompactChoice("",listOf("创作","AI 设计","图库","编辑","资产管理","账户","更新"),c.view,{it}){c.view=it}}
+            else listOf("创作","AI 设计","图库","编辑","资产管理","账户","更新").forEach {label -> Box(Modifier.onGloballyPositioned{r.buttons[label]=r.rect(it);r.publish()}){StudioAction(label,selected=c.view==label){c.view=label}} }
             Spacer(Modifier.weight(1f))
             listOf(ChromeHit.MINIMIZE,ChromeHit.MAXIMIZE,ChromeHit.CLOSE).forEach {hit ->
                 val label=when(hit){ChromeHit.MINIMIZE->"—";ChromeHit.MAXIMIZE->if(native.maximized)"❐"else"□";else->"×"}
@@ -431,7 +433,7 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
             }
         }
         Divider()
-        Box(Modifier.weight(1f).fillMaxWidth()) {when(c.view){"AI 设计"->DesignWorkspace(c);"图库"->GalleryWorkspace(c);"编辑"->TypesetWorkspace(c);"账户"->AccountsWorkspace(c);"更新"->UpdateWorkspace(c.updater,c.installUpdate);else->CreationWorkspace(c)}}
+        Box(Modifier.weight(1f).fillMaxWidth()) {when(c.view){"AI 设计"->DesignWorkspace(c);"图库"->GalleryWorkspace(c);"编辑"->TypesetWorkspace(c);"资产管理"->LibraryWorkspace(c);"账户"->AccountsWorkspace(c);"更新"->UpdateWorkspace(c.updater,c.installUpdate);else->CreationWorkspace(c)}}
         Row(Modifier.fillMaxWidth().padding(8.dp),verticalAlignment=Alignment.CenterVertically) {
             Text(if(closing)"正在保存并排水…"else c.message,Modifier.weight(1f),fontSize=12.sp,color=Quiet)
             Text(if(c.saved)"已保存" else "保存中…",fontSize=12.sp)
@@ -484,6 +486,7 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
             StudioSwitch("中文注释",translated){c.defaults(translated=!translated)}
             StudioActions {
                 StudioAction("复制正向"){desktopCopyText(c.draft.copyPositivePrompt())}
+                StudioAction("Prompt 资产"){c.view="资产管理"}
                 StudioAction("粘贴并预览",!c.busy){runCatching{java.awt.Toolkit.getDefaultToolkit().systemClipboard.getData(java.awt.datatransfer.DataFlavor.stringFlavor) as? String}.onSuccess{paste=it}.onFailure{c.problem="剪贴板文字暂不可读取"}}
                 StudioAction("清空 Prompt",!c.busy){clear=true}
             }

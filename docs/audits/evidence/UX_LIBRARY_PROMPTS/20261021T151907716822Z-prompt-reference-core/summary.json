@@ -1,0 +1,29 @@
+{
+  "phase": "prompt-reference-core",
+  "startedUtc": "2026-10-21T15:19:08.200529+00:00",
+  "seconds": 49.586,
+  "exitCode": 0,
+  "tests": 3,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-core:test",
+    "--tests",
+    "*LibraryRepositoryTest",
+    ":studio-desktop:compileKotlin"
+  ],
+  "baseCommit": "649d623721fa0241dd6f8159c2a40d86041c4c8e",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

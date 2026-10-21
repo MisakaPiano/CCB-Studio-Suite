@@ -25,6 +25,7 @@ internal class GalleryViewState {
 }
 @Composable internal fun GalleryWorkspace(c:WorkbenchController) {
     val g=c.gallery
+    val labels=c.library.state?.labels.orEmpty()
     if(c.animation.ids!=null){GalleryAnimationWorkspace(c);return}
     g.metadata?.let{id->MetadataWorkspace(c,id){g.metadata=null};return}
     g.compare?.let{ids->ComparisonWorkspace(c,ids){g.compare=null};return}
@@ -38,7 +39,7 @@ internal class GalleryViewState {
     fun day(id:String)=runCatching{(jobs[id]?.createdAt?:importedAt[id])?.let{java.time.Instant.ofEpochMilli(it).atZone(java.time.ZoneId.systemDefault()).toLocalDate().toString()}.orEmpty()}.getOrDefault("")
     val visible=c.assets.asReversed().filter{a->val id=a.request().id().toString();val job=jobs[id]
         (g.source=="all" || (g.source=="generated")== (job!=null)) && (g.date.isBlank() || day(id)==g.date) &&
-        (a.request().name().contains(g.query,true) || job?.recipe?.contains(g.query,true)==true)}
+        (a.request().name().contains(g.query,true) || labels[id]?.alias?.contains(g.query,true)==true || labels[id]?.tags?.any{it.contains(g.query,true)}==true || job?.recipe?.contains(g.query,true)==true)}
     fun select(id:String,toggle:Boolean,range:Boolean){val ids=visible.map{it.request().id().toString()};val anchor=ids.indexOf(g.anchor);val target=ids.indexOf(id)
         c.selection=when{range && anchor>=0->c.selection+ids.subList(minOf(anchor,target),maxOf(anchor,target)+1);toggle->if(id in c.selection)c.selection-id else c.selection+id;else->setOf(id)}
         c.current=id;if(!range)g.anchor=id
@@ -65,14 +66,16 @@ internal class GalleryViewState {
                         Column(Modifier.border(1.dp,if(id in c.selection)Gold else Quiet).padding(6.dp)){
                             Box(Modifier.fillMaxWidth().height(140.dp).semantics{contentDescription="图库图片 $id";onClick{select(id,false,false);true}}
                                 .onPointerEvent(PointerEventType.Press){event->if(event.button==PointerButton.Primary)select(id,event.keyboardModifiers.isCtrlPressed,event.keyboardModifiers.isShiftPressed)}){AssetImage(c,id,Modifier.fillMaxSize())}
-                            Row(verticalAlignment=Alignment.CenterVertically){Checkbox(id in c.selection,{c.selection=if(it)c.selection+id else c.selection-id},modifier=Modifier.semantics{contentDescription="选择图库图片 $id"});Text(a.request().name(),maxLines=2)}
+                            Row(verticalAlignment=Alignment.CenterVertically){Checkbox(id in c.selection,{c.selection=if(it)c.selection+id else c.selection-id},modifier=Modifier.semantics{contentDescription="选择图库图片 $id"});Text(labels[id]?.alias?.takeIf{it.isNotBlank()}?:a.request().name(),maxLines=2)}
+                            labels[id]?.tags?.takeIf{it.isNotEmpty()}?.let{Text(it.joinToString(" · "),style=MaterialTheme.typography.caption)}
                             Text(day(id).ifBlank{"日期未记录"},style=MaterialTheme.typography.caption)
                         }
                     }
                 }
-                if(wide)Column(Modifier.width(300.dp).fillMaxHeight()){
-                    AssetImage(c,c.current,Modifier.fillMaxWidth().weight(1f))
+                if(wide)Column(Modifier.width(340.dp).fillMaxHeight().verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(8.dp)){
+                    AssetImage(c,c.current,Modifier.fillMaxWidth().height(240.dp))
                     c.assets.firstOrNull{it.request().id().toString()==c.current}?.let{a->Text(a.request().name());Text("${a.size()} bytes · SHA-256 ${a.sha256()}",style=MaterialTheme.typography.caption)}
+                    c.current?.let{ImagePromptPreview(c,it)}
                 }
             }
         }
@@ -80,6 +83,11 @@ internal class GalleryViewState {
             StudioAction("全选"){c.selection=visible.map{it.request().id().toString()}.toSet()};StudioAction("全不选"){c.selection=emptySet()};StudioAction("反选"){val ids=visible.map{it.request().id().toString()}.toSet();c.selection=(c.selection-ids)+(ids-c.selection)}
             StatusText("${c.selection.size} 项已选 · ${c.selection.count{id->visible.none{it.request().id().toString()==id}}} 项在筛选外")
             StudioAction("比较 2 张",c.selection.size==2){g.compare=c.assets.filter{it.request().id().toString() in c.selection}.map{it.request().id().toString()}}
+            StudioAction("所选图片多 Prompt 参照",c.selection.isNotEmpty()&&!c.busy){c.run("建立图片参照"){
+                val results=c.assets.filter{it.request().id().toString() in c.selection}.map{a->runCatching{saveImagePrompt(c,a.request().id().toString(),true)}}
+                val failed=results.count{it.isFailure};if(failed>0)c.problem="$failed 张图片没有可读取的非空 Prompt，未加入；其他已保存的参照保留。"
+                c.library.tab="多 Prompt 参照";c.view="资产管理"
+            }}
             StudioAction("参数与来源",c.current!=null){g.metadata=c.current}
             StudioAction("选中图片用于引导",c.current!=null&&!c.busy){c.section="图像引导";c.view="创作"}
             StudioAction("APNG伪装 / 还原",c.selection.isNotEmpty()&&!c.busy){c.animation.open(c.assets.filter{it.request().id().toString() in c.selection}.map{it.request().id().toString()})}

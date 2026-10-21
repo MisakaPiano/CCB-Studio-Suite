@@ -119,8 +119,8 @@ class WorkbenchWorkflowTest {
                 assertEquals("保留的布局测试草稿",c.draft.basePrompt);assertEquals(asset,c.current)
                 scene.shot("creation-layout-$width")
             }
-            scene.click("撤销上次载入/重置");assertEquals("",c.draft.basePrompt)
-            scene.click("重做");assertEquals("保留的布局测试草稿",c.draft.basePrompt)
+            scene.click("撤销上次载入/重置");c.idle();assertEquals("",c.draft.basePrompt)
+            scene.click("重做");c.idle();assertEquals("保留的布局测试草稿",c.draft.basePrompt)
             c.flush()
         } finally {scene.close();c.close();scope.cancel()}
         StudioWorkspace.openStudio(r).use{assertEquals("保留的布局测试草稿",it.state.creation!!.draft.basePrompt)}

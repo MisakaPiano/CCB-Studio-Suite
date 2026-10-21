@@ -1,3 +1,7 @@
+## 资产目录与多 Prompt 参照进度（2026-10-22）
+
+[实际记录](audits/UX_LIBRARY_PROMPTS.md)：独立Prompt/标签别名/目录手动同步、图片Prompt预览及多来源角色拖动对齐已接线。核心91实际PASS、最终桌面68实际PASS，首轮完整回归1失败和修正保留；自动收集及完整恢复继续，PRODUCT_HOLD / NOT RC。
+
 ## 统一资产回用进度（2026-10-22）
 
 [实际记录](audits/UX_SHARED_ASSETS.md)：编辑图片/PDF/ZIP资产与来源快照接线，跨引导/编辑选用保存重开；完整152项实际PASS。继续目录入口/Prompt资产/别名标签及原UX恢复，PRODUCT_HOLD。
@@ -103,7 +107,7 @@
 | ID | 任务 | 状态 | 权限/停止点 |
 |---|---|---|---|
 | UX-R0 | Issue #4完整来源继承/产品恢复/GUI结构合同 | PASS_WITH_SCOPE / CONTINUOUS_IMPLEMENTATION_ELIGIBLE / PRODUCT HOLD | [整体审阅](ux/UX_R0_PROJECT_REVIEW.md)；回执6307947815已读取；完整TypeSet合同保留；当前生产实施由下项授权，不merge/不宣布Preview通过 |
-| UX-RECOVERY | R1a→R1b→R2a→R2b→R2c→R3→R4 | ACTIVE / R2 IN PROGRESS | [创作/回用证据](audits/UX_R1B_CREATION.md)39项desktop新PASS；TypeSet源样本/R2–R4继续，原生产品HOLD；[连续合同](../tasks/UX_RECOVERY_CONTINUOUS.md)，完成W1–W5及更新后集中验收 |
+| UX-RECOVERY | R1a→R1b→R2a→R2b→R2c→R3→R4 | ACTIVE / W1–W5 + UPDATE IN PROGRESS | [创作/回用证据](audits/UX_R1B_CREATION.md)39项desktop新PASS；TypeSet源样本/R2–R4继续，原生产品HOLD；[连续合同](../tasks/UX_RECOVERY_CONTINUOUS.md)，完成W1–W5及更新后集中验收 |
 | INIT-000 | 立项材料 | PACKAGED | 文档/参考交付，不等于软件实现 |
 | A0-001 | 核对初始化并只读复用审计 | AUDIT DELIVERED / REVIEWED WITH SCOPE | 原审计事实保留；A0-002结论见下一行 |
 | A0-002 | Project连续开发门禁 | APPROVED_FOR_RC_RUN | 已实际读取Issue #1正式回执comment6296885017；只解锁#2，不是产品/合并/发布/真实付费验收 |

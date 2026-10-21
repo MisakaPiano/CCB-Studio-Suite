@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-21T15:32:39.163Z" hostname="DD1" time="13.587">
+  <properties/>
+  <testcase name="creationFooterAndImageSummaryAdaptWithoutLosingDraftOrSelection" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="3.517"/>
+  <testcase name="editedAssetIsSelectableAcrossGuidanceAndEditorAndSurvivesRestart" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="3.235"/>
+  <testcase name="measuredSuiteNavigationSurvivesResizeAndUnsentInput" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="1.395"/>
+  <testcase name="continuedEditingRetainsExistingAssetsAndCredentials" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="0.677"/>
+  <testcase name="accountsDesignApplyGenerateGalleryAndRestart" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="4.762"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

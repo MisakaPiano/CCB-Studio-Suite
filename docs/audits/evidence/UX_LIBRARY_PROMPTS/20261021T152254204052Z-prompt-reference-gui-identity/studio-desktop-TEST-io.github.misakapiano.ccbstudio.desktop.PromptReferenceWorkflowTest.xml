@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.PromptReferenceWorkflowTest" tests="2" skipped="0" failures="1" errors="0" timestamp="2026-10-21T15:23:10.735Z" hostname="DD1" time="8.254">
+  <properties/>
+  <testcase name="imagePreviewBoardRealRoleDragExtractionAndRestartKeepSourceIdentity" classname="io.github.misakapiano.ccbstudio.desktop.PromptReferenceWorkflowTest" time="7.77">
+    <failure message="org.junit.ComparisonFailure: expected:&lt;room, moonlight[]&gt; but was:&lt;room, moonlight[&#10;&#10;blue hair&#10;&#10;red hair]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: expected:&lt;room, moonlight[]&gt; but was:&lt;room, moonlight[
+
+blue hair
+
+red hair]&gt;
+	at app//org.junit.Assert.assertEquals(Assert.java:117)
+	at app//kotlin.test.junit.JUnitAsserter.assertEquals(JUnitSupport.kt:32)
+	at app//kotlin.test.AssertionsKt__AssertionsKt.assertEquals(Assertions.kt:63)
+	at app//kotlin.test.AssertionsKt.assertEquals(Unknown Source)
+	at app//kotlin.test.AssertionsKt__AssertionsKt.assertEquals$default(Assertions.kt:62)
+	at app//kotlin.test.AssertionsKt.assertEquals$default(Unknown Source)
+	at app//io.github.misakapiano.ccbstudio.desktop.PromptReferenceWorkflowTest$imagePreviewBoardRealRoleDragExtractionAndRestartKeepSourceIdentity$1.invokeSuspend(PromptReferenceWorkflowTest.kt:67)
+	at app//kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at app//kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at java.desktop@17.0.20.1/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop@17.0.20.1/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop@17.0.20.1/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop@17.0.20.1/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base@17.0.20.1/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base@17.0.20.1/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.desktop@17.0.20.1/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+</failure>
+  </testcase>
+  <testcase name="missingOrUnverifiableImagePromptCannotBecomeFalseCompleteReference" classname="io.github.misakapiano.ccbstudio.desktop.PromptReferenceWorkflowTest" time="0.484"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

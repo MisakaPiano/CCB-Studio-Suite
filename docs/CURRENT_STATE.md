@@ -1,3 +1,7 @@
+## 资产目录与多 Prompt 参照进度（2026-10-22）
+
+[实际记录](audits/UX_LIBRARY_PROMPTS.md)：独立Prompt/标签别名/目录手动同步、图片Prompt预览及多来源角色拖动对齐已接线。核心91实际PASS、最终桌面68实际PASS，首轮完整回归1失败和修正保留；自动收集及完整恢复继续，PRODUCT_HOLD / NOT RC。
+
 ## 统一资产回用进度（2026-10-22）
 
 [实际记录](audits/UX_SHARED_ASSETS.md)：编辑图片/PDF/ZIP资产与来源快照接线，跨引导/编辑选用保存重开；完整152项实际PASS。继续目录入口/Prompt资产/别名标签及原UX恢复，PRODUCT_HOLD。

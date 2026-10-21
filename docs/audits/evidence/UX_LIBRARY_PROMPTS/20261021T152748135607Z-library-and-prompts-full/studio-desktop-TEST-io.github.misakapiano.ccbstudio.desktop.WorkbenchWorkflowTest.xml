@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" tests="5" skipped="0" failures="1" errors="0" timestamp="2026-10-21T15:31:36.216Z" hostname="DD1" time="10.373">
+  <properties/>
+  <testcase name="creationFooterAndImageSummaryAdaptWithoutLosingDraftOrSelection" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="1.586">
+    <failure message="org.junit.ComparisonFailure: expected:&lt;[]&gt; but was:&lt;[保留的布局测试草稿]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: expected:&lt;[]&gt; but was:&lt;[保留的布局测试草稿]&gt;
+	at app//org.junit.Assert.assertEquals(Assert.java:117)
+	at app//kotlin.test.junit.JUnitAsserter.assertEquals(JUnitSupport.kt:32)
+	at app//kotlin.test.AssertionsKt__AssertionsKt.assertEquals(Assertions.kt:63)
+	at app//kotlin.test.AssertionsKt.assertEquals(Unknown Source)
+	at app//kotlin.test.AssertionsKt__AssertionsKt.assertEquals$default(Assertions.kt:62)
+	at app//kotlin.test.AssertionsKt.assertEquals$default(Unknown Source)
+	at app//io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest$creationFooterAndImageSummaryAdaptWithoutLosingDraftOrSelection$1.invokeSuspend(WorkbenchWorkflowTest.kt:122)
+	at app//kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at app//kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at java.desktop@17.0.20.1/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop@17.0.20.1/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop@17.0.20.1/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop@17.0.20.1/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base@17.0.20.1/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base@17.0.20.1/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.desktop@17.0.20.1/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+</failure>
+  </testcase>
+  <testcase name="editedAssetIsSelectableAcrossGuidanceAndEditorAndSurvivesRestart" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="2.873"/>
+  <testcase name="measuredSuiteNavigationSurvivesResizeAndUnsentInput" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="1.27"/>
+  <testcase name="continuedEditingRetainsExistingAssetsAndCredentials" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="0.727"/>
+  <testcase name="accountsDesignApplyGenerateGalleryAndRestart" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="3.917"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
