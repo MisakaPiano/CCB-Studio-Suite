@@ -43,6 +43,8 @@ private fun comparisonSource(c:WorkbenchController,id:String):ComparisonSource {
     var query by remember(ids){mutableStateOf("")};var differences by remember(ids){mutableStateOf(true)}
     var locked by remember(ids){mutableStateOf(true)};var left by remember(ids){mutableStateOf(DesktopViewerTransform())};var right by remember(ids){mutableStateOf(DesktopViewerTransform())}
     var metadata by remember(ids){mutableStateOf<String?>(null)};var expanded by remember(ids){mutableStateOf<RecipeDifference?>(null)}
+    var selection by remember(ids){mutableStateOf<String?>(null)}
+    selection?.let{id->RecipeSelectionWorkspace(c,id){selection=null};return}
     metadata?.let{id->MetadataWorkspace(c,id){metadata=null};return}
     val source by produceState<Result<List<ComparisonSource>>?>(null,ids){value=withContext(Dispatchers.IO){runCatching{ids.map{comparisonSource(c,it)}}}}
     val pair=source?.getOrNull();val rows=pair?.let{RecipeComparison.rows(it[0].fields(),it[1].fields())}.orEmpty().filter{(!differences || it.different) && (it.path.contains(query,true) || it.a?.value?.contains(query,true)==true || it.b?.value?.contains(query,true)==true)}
@@ -56,6 +58,7 @@ private fun comparisonSource(c:WorkbenchController,id:String):ComparisonSource {
                 Text("PNG 字段 ${item?.png?.status?:"READING"}",style=MaterialTheme.typography.caption)
                 ComparisonImage(c,id,if(i==0)left else right,{next->if(locked){left=next;right=next}else if(i==0)left=next else right=next},Modifier.fillMaxWidth().weight(1f))
                 StudioActions{StudioAction("${if(i==0)"A"else"B"} 参数选择与应用",!c.busy){metadata=id};StudioAction("复制 ${if(i==0)"A"else"B"} 完整 Recipe",item?.inspection?.raw!=null){c.gallery.copyText(item!!.inspection.raw!!)}}
+                StudioAction("${if(i==0)"A"else"B"} 选择历史字段",!c.busy){selection=id}
             }}
         }
         Text("搜索完整字段或值",style=MaterialTheme.typography.caption)

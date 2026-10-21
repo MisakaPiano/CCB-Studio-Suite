@@ -1,0 +1,20 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.RecipeDraftSelectionTest",
+    "name": "individualSettingsUseActualImageSeedAndRetainUnselectedModelSettings",
+    "seconds": "0.076",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.RecipeDraftSelectionTest",
+    "name": "selectingOnePromptDoesNotReplaceOtherDraftContentOrSettings",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.RecipeDraftSelectionTest",
+    "name": "historicalReceiptSurvivesUndoRedoAndSerializationWithoutClaimingCurrentState",
+    "seconds": "0.066",
+    "status": "PASS"
+  }
+]

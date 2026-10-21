@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.RecipeDraftSelectionTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-21T10:22:00.497Z" hostname="DD1" time="0.143">
+  <properties/>
+  <testcase name="individualSettingsUseActualImageSeedAndRetainUnselectedModelSettings" classname="io.github.misakapiano.ccbstudio.core.RecipeDraftSelectionTest" time="0.076"/>
+  <testcase name="selectingOnePromptDoesNotReplaceOtherDraftContentOrSettings" classname="io.github.misakapiano.ccbstudio.core.RecipeDraftSelectionTest" time="0.0"/>
+  <testcase name="historicalReceiptSurvivesUndoRedoAndSerializationWithoutClaimingCurrentState" classname="io.github.misakapiano.ccbstudio.core.RecipeDraftSelectionTest" time="0.066"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -193,6 +193,19 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
             session.editDraft{it.applyHistoryRecipe(recipe,history.second,mode)};draft=workspace.state.creation!!.draft;view="创作"
         }
     }
+    fun applyRecipeFields(id:String,fields:Set<RecipeDraftField>,expected:NovelAiStudioDraft)=run("应用所选 Recipe 字段") {
+        workspace.beginTask().use {
+            val history=requireNotNull(historyRecipe(id)){"生成记录不存在"}
+            val asset=workspace.assets.read(java.util.UUID.fromString(id)).require()
+            session.update {old->
+                require(old.draft==expected){"草稿已改变，请重新预览字段差异"}
+                val next=RecipeDraftSelection.apply(old.draft,history.first,history.second,fields)
+                val record=RecipeApplicationRecord(id,asset.sha256(),fields.sortedBy{it.ordinal},RecipeDraftSelection.fingerprint(old.draft),RecipeDraftSelection.fingerprint(next))
+                old.change(next).copy(recipeApplications=(old.recipeApplications+record).takeLast(100))
+            }
+            draft=workspace.state.creation!!.draft;view="创作"
+        }
+    }
     fun historyRecipe(id:String):Pair<NovelAiGenerationRecipe,Long>? {
         val job=workspace.state.jobs.lastOrNull{id in it.results || id in it.composedResults} ?: return null
         val json=Json.parseToJsonElement(job.recipe).jsonObject

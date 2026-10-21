@@ -1,3 +1,7 @@
+## UX-R3 选择应用进度（2026-10-21）
+
+[实际记录](audits/UX_R3_RECIPE_SELECTION.md)：完整136项实际PASS；确认字段应用、取消、草稿冲突保护、撤销/重做和重开已测，初始编译失败保留。继续导入/图库及完整R4，PRODUCT_HOLD。
+
 ## UX-R3 PNG字段进度（2026-10-21）
 
 [实际记录](audits/UX_R3_PNG_FIELDS.md)：完整132项实际PASS；最终页面可读性修正后4项定向PASS。PNG未知字段单图查看/两图比较、复制及勾选保留已验证，历史失败保留；继续完整R3/R4，PRODUCT_HOLD。

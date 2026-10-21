@@ -118,12 +118,14 @@ fun sha256(bytes: ByteArray): String = MessageDigest.getInstance("SHA-256").dige
     val imageCards:List<ImageCardSource> = emptyList(),
     val defaultImageModel:com.example.chatbar.domain.image.NovelAiImageModel=com.example.chatbar.domain.image.NovelAiImageModel.V4_5_FULL,
     val translatedTags:Boolean=false,
+    val recipeApplications:List<RecipeApplicationRecord> = emptyList(),
 ) {
     fun change(next: NovelAiStudioDraft) = copy(draft=next, undo=(undo+draft).takeLast(30), redo=emptyList())
     fun undoDraft() = if(undo.isEmpty()) this else copy(draft=undo.last(),undo=undo.dropLast(1),redo=(redo+draft).takeLast(30))
     fun redoDraft() = if(redo.isEmpty()) this else copy(draft=redo.last(),redo=redo.dropLast(1),undo=(undo+draft).takeLast(30))
     fun validate() {
         require(composer.length <= 100000 && undo.size <= 30 && redo.size <= 30)
+        require(recipeApplications.size<=100);recipeApplications.forEach{it.validate()}
         require(conversations.map {it.id}.distinct().size == conversations.size)
         conversations.forEach {c -> UUID.fromString(c.id); require(c.turns.map {it.id}.distinct().size == c.turns.size); c.turns.forEach {UUID.fromString(it.id)} }
         require(currentConversationId == null || conversations.any {it.id == currentConversationId})

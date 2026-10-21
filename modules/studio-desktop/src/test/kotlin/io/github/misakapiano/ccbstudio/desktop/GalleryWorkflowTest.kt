@@ -59,11 +59,25 @@ class GalleryWorkflowTest {
             scene.shot("compare-fields");scene.click("A 参数选择与应用")
             withTimeout(10000){while(scene.nodes().none{it.matches("完整复现")})scene.frames()};scene.click("完整复现");scene.click("确认复用");c.active!!.join();assertNull(c.problem)
             assertEquals(Json.parseToJsonElement(originals.getValue(left)).jsonObject.getValue("recipe").jsonObject.getValue("basePrompt").jsonPrimitive.content,c.draft.basePrompt)
+            val originalDraft=c.draft
+            c.view="图库";c.gallery.compare=null;scene.frames();c.gallery.compare=listOf(left,right);scene.frames()
+            scene.click("B 选择历史字段")
+            withTimeout(10000){while(scene.nodes().none{it.matches("应用 基础 Prompt")})scene.frames()}
+            scene.click("应用 基础 Prompt");scene.click("返回比较");assertEquals(originalDraft,c.draft);assertTrue(w.state.creation!!.recipeApplications.isEmpty())
+            scene.click("B 选择历史字段");withTimeout(10000){while(scene.nodes().none{it.matches("应用 基础 Prompt")})scene.frames()}
+            scene.click("应用 基础 Prompt");scene.shot("selected-recipe-fields");scene.click("确认应用 1 个字段");c.active!!.join();assertNull(c.problem)
+            val expected=Json.parseToJsonElement(originals.getValue(right)).jsonObject.getValue("recipe").jsonObject.getValue("basePrompt").jsonPrimitive.content
+            assertEquals(originalDraft.copy(basePrompt=expected),c.draft)
+            assertEquals(right,w.state.creation!!.recipeApplications.single().sourceId)
+            c.undo();c.active!!.join();assertEquals(originalDraft,c.draft);c.undo(true);c.active!!.join();assertEquals(expected,c.draft.basePrompt)
+            val applied=c.draft;c.edit{it.copy(basePrompt="concurrent edit")};c.applyRecipeFields(left,setOf(RecipeDraftField.BASE),applied);c.active!!.join()
+            assertNotNull(c.problem);assertEquals("concurrent edit",c.draft.basePrompt);assertEquals(1,w.state.creation!!.recipeApplications.size)
+            c.undo();c.active!!.join();assertEquals(applied,c.draft)
             c.view="图库";c.gallery.metadata=null;c.gallery.compare=listOf(ids.first(),noRecipe);scene.frames();withTimeout(10000){while(scene.nodes().none{it.config.getOrNull(SemanticsProperties.Text)?.any{t->t.text.startsWith("Studio Recipe MISSING")}==true})scene.frames()}
             scene.field("搜索完整字段或值","/pngMetadata/textChunks/0/parsedJson/future")
             scene.click("复制 B 字段 /pngMetadata/textChunks/0/parsedJson/future");assertEquals("\"kept\"",copied);assertContentEquals(imported,w.bytes(noRecipe));scene.shot("png-metadata-comparison")
             scene.click("返回图库");assertEquals("room",c.gallery.query);ids.forEach{assertContentEquals(bytes,w.bytes(it));assertEquals(originals[it],w.assets.read(java.util.UUID.fromString(it)).require().request().recipe().decodeToString())}
         }finally{scene.close();c.close();scope.cancel();w.close()}
-        StudioWorkspace.openStudio(r).use{assertTrue(it.state.creation!!.draft.basePrompt.endsWith("room"));ids.forEach{id->assertContentEquals(bytes,it.bytes(id))}}
+        StudioWorkspace.openStudio(r).use{assertTrue(it.state.creation!!.draft.basePrompt.endsWith("room"));assertEquals(1,it.state.creation!!.recipeApplications.size);ids.forEach{id->assertContentEquals(bytes,it.bytes(id))}}
     }
 }

@@ -413,21 +413,25 @@
         "GalleryWorkspace.kt",
         "ComparisonWorkspace.kt",
         "MetadataWorkspace.kt",
-        "PngFieldInspection.kt / PngFieldWorkspace.kt"
+        "PngFieldInspection.kt / PngFieldWorkspace.kt",
+        "RecipeDraftSelection.kt / RecipeSelectionWorkspace.kt"
       ],
       "tests": [
         "RecipeComparisonTest: missing/null/empty/ordered arrays/JSON Pointer/limits",
         "GalleryWorkflowTest.gridFilterTwoImageComparisonCopyAndMetadataReuseKeepOriginals",
-        "PngFieldInspectionTest / MetadataWorkflowTest / GalleryWorkflowTest"
+        "PngFieldInspectionTest / MetadataWorkflowTest / GalleryWorkflowTest",
+        "RecipeDraftSelectionTest: four cases; GalleryWorkflowTest: selection/cancel/confirm/stale draft rejection/undo/redo/reopen"
       ],
       "guiEvidence": [
         "docs/audits/evidence/UX_R3_GALLERY/compare-fields.png (actual Compose offscreen; no native visual claim)",
-        "docs/audits/evidence/UX_R3_PNG_FIELDS (Compose offscreen)"
+        "docs/audits/evidence/UX_R3_PNG_FIELDS (Compose offscreen)",
+        "docs/audits/evidence/UX_R3_RECIPE_SELECTION/selected-recipe-fields.png (offscreen Compose)"
       ],
       "persistenceEvidence": [
-        "GalleryWorkflowTest: confirmed history reuse, workspace close/reopen, original bytes and Recipe unchanged"
+        "GalleryWorkflowTest: confirmed history reuse, workspace close/reopen, original bytes and Recipe unchanged",
+        "Source hash, selected fields, before/after draft hashes in bounded historical receipt; undo preserves receipt; reopen verified"
       ],
-      "status": "ENGINEERING_PARTIAL / PNG_FIELDS_GUI_PASS / PER_FIELD_RECIPE_APPLY_PENDING / PRODUCT_HOLD"
+      "status": "ENGINEERING_PARTIAL / TYPED_FIELD_SELECTION_GUI_PASS / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "I05",
