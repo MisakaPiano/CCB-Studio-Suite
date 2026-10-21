@@ -1,3 +1,7 @@
+## UX-R2 格式兼容进度（2026-10-21）
+
+[实际记录](audits/UX_R2_IMAGE_FORMATS.md)：120项完整实际PASS，保留首轮GUI测试FAILED。WebP/GIF/BMP原件、首帧/默认图编辑、WebP/原格式导出与重开已验证；完整偏好/图库/更新继续，PRODUCT_HOLD。
+
 ## UX-R2 图片坐标兼容进度（2026-10-21）
 
 [实际记录](audits/UX_R2_IMAGE_COORDINATES.md)：115项完整实际PASS。旧工程保留raw坐标，新工程记录EXIF方向，原件不变；格式/图库/应用内安全更新继续，PRODUCT_HOLD。

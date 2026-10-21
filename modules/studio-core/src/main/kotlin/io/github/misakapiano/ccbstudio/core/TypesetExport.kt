@@ -22,7 +22,7 @@ object TypesetExport {
     fun create(workspace:StudioWorkspace,project:TypesetProject,document:TypesetDocument,parent:Path,request:TypesetExportRequest,
         hook:(String)->Unit={}):Path=workspace.operation {
         document.validate();require(Files.isDirectory(parent,LinkOption.NOFOLLOW_LINKS)){"Select an existing destination directory"}
-        require(request.variants.isNotEmpty() && request.variants.distinct().size==request.variants.size && request.variants.all{it in setOf("all","text","mask","original")} && request.format in setOf("png","jpeg"))
+        require(request.variants.isNotEmpty() && request.variants.distinct().size==request.variants.size && request.variants.all{it in setOf("all","text","mask","original")} && request.format in setOf("png","jpeg","webp","source"))
         require(request.metadata in setOf("preserve","strip"))
         require(request.pageIds.isNotEmpty() && request.pageIds.distinct().size==request.pageIds.size)
         val selected=request.pageIds.toSet();val pages=document.pages.filter{it.id in selected};require(pages.size==selected.size)
@@ -42,23 +42,24 @@ object TypesetExport {
                         hook("BEFORE_PAGE")
                         val original=workspace.bytes(page.assetId);val index=document.pages.indexOfFirst{it.id==page.id}
                         val number=TypesetQueue.number(document,index)
-                        val extension=if(variant=="original")when{original.size>=8 && original[0]==0x89.toByte() && original[1]==0x50.toByte()->"png";original.size>=2 && original[0]==0xff.toByte() && original[1]==0xd8.toByte()->"jpg";else->"bin"}else if(request.format=="jpeg")"jpg" else "png"
+                        val format=if(request.format=="source")ImageFormats.format(original).takeIf{it in setOf("png","jpeg","webp")}?:"png"else request.format
+                        val extension=if(variant=="original")ImageFormats.extension(original)else if(format=="jpeg")"jpg"else format
                         val file=directory.resolve("$number.$extension")
                         val status=if(variant=="original"){Files.write(file,original,StandardOpenOption.CREATE_NEW);"original-byte-identical"}
                         else {
                             val source=if(document.mode!="storybook" && request.metadata=="preserve")TypesetPngMetadata.extract(original)else null
                             val image=if(document.mode=="storybook")TypesetRenderer.story(original,page,document.startNumber+index) else TypesetRenderer.render(original,page,variant)
                             try {
-                                if(document.mode=="storybook"){writeImage(file,image,request.format);pdf?.page(image);"composite"}
+                                if(document.mode=="storybook"){writeImage(file,image,format);pdf?.page(image);"composite"}
                                 else if(request.metadata=="strip"){
-                                    if(request.format=="png")Files.newOutputStream(file,StandardOpenOption.CREATE_NEW).use{out->com.example.chatbar.domain.image.PrivacyPngEncoder.write(out,image.width,image.height){y,row->image.getRGB(0,y,image.width,1,row,0,image.width)}}
-                                    else {val sanitized=EditorRenderer.decode(EditorRenderer.encode(EditorRenderer.Result(image,emptyList()),true));try{writeImage(file,sanitized,request.format)}finally{sanitized.flush()}}
+                                    if(format=="png")Files.newOutputStream(file,StandardOpenOption.CREATE_NEW).use{out->com.example.chatbar.domain.image.PrivacyPngEncoder.write(out,image.width,image.height){y,row->image.getRGB(0,y,image.width,1,row,0,image.width)}}
+                                    else {val sanitized=EditorRenderer.decode(EditorRenderer.encode(EditorRenderer.Result(image,emptyList()),true));try{writeImage(file,sanitized,format)}finally{sanitized.flush()}}
                                     "removed-text-and-pixel-lsb"
                                 }else{
-                                    if(request.format=="png")TypesetPngMetadata.injectAlpha(image,source!!)
-                                    writeImage(file,image,request.format)
-                                    if(request.format=="png" && source!!.chunks.isNotEmpty())Files.write(file,TypesetPngMetadata.injectChunks(readBounded(file,64*1024*1024),source),StandardOpenOption.TRUNCATE_EXISTING)
-                                    if(source!!.chunks.isEmpty() && source.alpha==null)"none"else if(request.format=="jpeg")"dropped-jpeg"else"preserved-source-origin-not-edited-signature"
+                                    if(format=="png")TypesetPngMetadata.injectAlpha(image,source!!)
+                                    writeImage(file,image,format)
+                                    if(format=="png" && source!!.chunks.isNotEmpty())Files.write(file,TypesetPngMetadata.injectChunks(readBounded(file,64*1024*1024),source),StandardOpenOption.TRUNCATE_EXISTING)
+                                    if(source!!.chunks.isEmpty() && source.alpha==null)"none"else if(format!="png")"dropped-$format"else"preserved-source-origin-not-edited-signature"
                                 }
                             }finally{image.flush()}
                         }
@@ -103,7 +104,7 @@ object TypesetExport {
             if(format=="jpeg"){
                 val writer=ImageIO.getImageWritersByFormatName("jpeg").asSequence().firstOrNull()?:error("JPEG encoder unavailable")
                 try{ImageIO.createImageOutputStream(output).use{stream->writer.output=stream;val options=writer.defaultWriteParam;options.compressionMode=javax.imageio.ImageWriteParam.MODE_EXPLICIT;options.compressionQuality=.95f;writer.write(null,javax.imageio.IIOImage(rgb,null,null),options)}}finally{writer.dispose()}
-            }else require(ImageIO.write(rgb,format,output)){"Image encoder unavailable"}
+            }else if(format=="webp")output.write(ImageFormats.webp(rgb))else require(ImageIO.write(rgb,format,output)){"Image encoder unavailable"}
         }}finally{if(rgb!==image)rgb.flush()}
     }
 }

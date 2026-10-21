@@ -116,8 +116,8 @@ object TypesetSourceExchange {
             put("activeIndex",document.pages.indexOfFirst{it.id==project.currentPageId}.coerceAtLeast(0))
             putJsonArray("entries"){document.pages.forEach{p->add(buildJsonObject {
                 p.sourceEntryIndex?.let{entries.getOrNull(it)?.jsonObject}?.forEach{(key,value)->if(key!="blob")put(key,value)}
-                val bytes=workspace.bytes(p.assetId);val png=bytes.size>1 && bytes[0]==0x89.toByte();val mime=if(png)"image/png"else"image/jpeg"
-                put("id",p.id);put("name",p.name);put("fileName",p.name);put("originalMime",mime);put("originalExt",if(png)"png"else"jpg")
+                val bytes=workspace.bytes(p.assetId);val mime="image/"+ImageFormats.format(bytes)
+                put("id",p.id);put("name",p.name);put("fileName",p.name);put("originalMime",mime);put("originalExt",ImageFormats.extension(bytes))
                 put("blobDataUrl","data:$mime;base64,"+Base64.getEncoder().encodeToString(bytes))
                 putJsonArray("texts"){p.texts.filter{it.visible}.forEach{add(textJson(it))}}
                 putJsonArray("masks"){p.masks.filter{it.visible}.forEach{add(maskJson(it))}}

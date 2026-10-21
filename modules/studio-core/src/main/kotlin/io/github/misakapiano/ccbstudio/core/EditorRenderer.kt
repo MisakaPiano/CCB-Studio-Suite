@@ -13,21 +13,7 @@ object EditorRenderer {
     const val MAX_BYTES=32*1024*1024
     const val MAX_PIXELS=12_582_912L
     /** Bounds are checked from the header before allocating decoded pixels. */
-    fun decode(bytes:ByteArray):BufferedImage {
-        require(bytes.size in 1..MAX_BYTES)
-        ImageIO.createImageInputStream(ByteArrayInputStream(bytes)).use { input ->
-            val readers=ImageIO.getImageReaders(input)
-            require(readers.hasNext()) { "Unsupported or corrupt image; original retained" }
-            val reader=readers.next()
-            try {
-                require(reader.formatName.lowercase() in setOf("png","jpeg","jpg")) { "Preview supports PNG/JPEG; other originals are retained" }
-                reader.input=input
-                val w=reader.getWidth(0);val h=reader.getHeight(0)
-                require(w>0 && h>0 && w.toLong()*h<=MAX_PIXELS) { "Image pixel budget exceeded" }
-                return reader.read(0) ?: error("Image decoder returned no pixels")
-            } finally { reader.dispose() }
-        }
-    }
+    fun decode(bytes:ByteArray):BufferedImage = ImageFormats.decode(bytes)
     data class Result(val image:BufferedImage,val warnings:List<String>)
     fun render(bytes:ByteArray,layers:List<Layer>):Result {
         val original=decode(bytes)

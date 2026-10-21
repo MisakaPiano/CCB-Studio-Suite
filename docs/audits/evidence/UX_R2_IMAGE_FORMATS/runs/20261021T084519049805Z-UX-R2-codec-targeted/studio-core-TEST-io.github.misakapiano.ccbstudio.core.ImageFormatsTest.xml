@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.ImageFormatsTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-21T08:45:50.348Z" hostname="DD1" time="2.9">
+  <properties/>
+  <testcase name="unrecognizedOrCorruptCodecsDoNotCreateAssets" classname="io.github.misakapiano.ccbstudio.core.ImageFormatsTest" time="0.528"/>
+  <testcase name="webpBmpGifImportExportAndSourceExchangeRetainOriginalBytes" classname="io.github.misakapiano.ccbstudio.core.ImageFormatsTest" time="2.366"/>
+  <testcase name="gifLogicalCanvasAndFrameOffsetArePreservedAndOversizeRefused" classname="io.github.misakapiano.ccbstudio.core.ImageFormatsTest" time="0.006"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

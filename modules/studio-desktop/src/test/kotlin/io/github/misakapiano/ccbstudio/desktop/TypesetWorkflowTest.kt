@@ -17,6 +17,21 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.test.*
 
 class TypesetWorkflowTest {
+    @Test fun webpPreviewExportAndOriginalReopen()=runBlocking(awt) {
+        val r=root();val w=StudioWorkspace.openStudio(r);val raster=EditorRenderer.decode(EditorRenderer.synthetic(180,120));val bytes=try{ImageFormats.webp(raster)}finally{raster.flush()}
+        val id=w.importImage("webp-source.webp",bytes);val scope=CoroutineScope(SupervisorJob()+awt)
+        val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
+        c.editor.create("WebP编辑",listOf(id));c.idle();c.editor.chooseExportDirectory={Files.createDirectories(root())}
+        val scene=ImageComposeScene(1320,950){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        try {
+            scene.frames();scene.rendered();scene.click("添加文字");scene.field("文字内容","格式验证");c.editor.drain()
+            scene.click("预览与导出");withTimeout(30000){while(scene.nodes().none{it.matches("导出页面预览")}){delay(80);scene.frames()}}
+            scene.click("图片格式 · PNG ▾");scene.click("WEBP");scene.shot("webp-export-preview");scene.click("选择位置并导出");c.idle()
+            val output=c.editor.exportDirectory!!;assertEquals("webp",TypesetExport.verify(output).format)
+            val decoded=EditorRenderer.decode(Files.readAllBytes(output.resolve("001.webp")));assertEquals(180,decoded.width);decoded.flush();assertContentEquals(bytes,w.bytes(id))
+        }finally{scene.close();c.close();scope.cancel();w.close()}
+        StudioWorkspace.openStudio(r).use{next->assertContentEquals(bytes,next.bytes(id));assertEquals("格式验证",TypesetRepository(next).load(next.state.typesetProjects.single()).pages.single().texts.single().text)}
+    }
     @Test fun fourCategoryPreviewCopiesCompleteFileDeckWithoutSystemClipboard()=runBlocking(awt) {
         val r=root();val w=StudioWorkspace.openStudio(r);val bytes=EditorRenderer.synthetic(180,120);val id=w.importImage("deck.png",bytes)
         val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})

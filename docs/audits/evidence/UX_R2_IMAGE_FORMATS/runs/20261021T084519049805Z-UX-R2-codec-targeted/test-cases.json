@@ -1,0 +1,38 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.ImageFormatsTest",
+    "name": "unrecognizedOrCorruptCodecsDoNotCreateAssets",
+    "seconds": "0.528",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.ImageFormatsTest",
+    "name": "webpBmpGifImportExportAndSourceExchangeRetainOriginalBytes",
+    "seconds": "2.366",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.ImageFormatsTest",
+    "name": "gifLogicalCanvasAndFrameOffsetArePreservedAndOversizeRefused",
+    "seconds": "0.006",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetImageTest",
+    "name": "allEightOrientationsBothEndianOrdersMatchPixelCoordinates",
+    "seconds": "0.09",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetImageTest",
+    "name": "oldSerializedPagesKeepRawCoordinatesAndNewPagesSurviveReopen",
+    "seconds": "1.007",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetImageTest",
+    "name": "unknownCoordinatesAndMalformedExifFailWithoutChangingLegacyInterpretation",
+    "seconds": "0.006",
+    "status": "PASS"
+  }
+]

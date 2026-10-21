@@ -1,0 +1,134 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Task :studio-core:dependencies
+
+------------------------------------------------------------
+Project ':studio-core'
+------------------------------------------------------------
+
+runtimeClasspath - Runtime classpath of 'main'.
++--- org.jetbrains.kotlin:kotlin-stdlib:2.3.20
+|    +--- org.jetbrains:annotations:13.0 -> 23.0.0
+|    +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0 -> 1.9.10 (c)
+|    +--- org.jetbrains.kotlin:kotlin-stdlib-common:2.3.20 (c)
+|    \--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0 -> 1.9.10 (c)
++--- project :asset-library
++--- project :image-authority
+|    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2
+|    |    \--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.10.2
+|    |         +--- org.jetbrains:annotations:23.0.0
+|    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.10.2
+|    |         |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.10.2 (c)
+|    |         |    \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2 (c)
+|    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.1.0 -> 2.3.20 (*)
+|    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1
+|    |    \--- org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.8.1
+|    |         +--- org.jetbrains.kotlinx:kotlinx-serialization-bom:1.8.1
+|    |         |    +--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.8.1 (c)
+|    |         |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.8.1 (c)
+|    |         |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1 (c)
+|    |         |    \--- org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.8.1 (c)
+|    |         +--- org.jetbrains.kotlin:kotlin-stdlib:2.1.20 -> 2.3.20 (*)
+|    |         \--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.8.1
+|    |              \--- org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.8.1
+|    |                   +--- org.jetbrains.kotlinx:kotlinx-serialization-bom:1.8.1 (*)
+|    |                   \--- org.jetbrains.kotlin:kotlin-stdlib:2.1.20 -> 2.3.20 (*)
+|    +--- com.squareup.okhttp3:okhttp:4.12.0
+|    |    +--- com.squareup.okio:okio:3.6.0
+|    |    |    \--- com.squareup.okio:okio-jvm:3.6.0
+|    |    |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.10
+|    |    |         |    +--- org.jetbrains.kotlin:kotlin-stdlib:1.9.10 -> 2.3.20 (*)
+|    |    |         |    \--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.10
+|    |    |         |         \--- org.jetbrains.kotlin:kotlin-stdlib:1.9.10 -> 2.3.20 (*)
+|    |    |         \--- org.jetbrains.kotlin:kotlin-stdlib-common:1.9.10 -> 2.3.20
+|    |    |              \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.20 (*)
+|    |    \--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.21 -> 1.9.10 (*)
+|    +--- org.msgpack:msgpack-core:0.9.12
+|    \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.20 (*)
++--- net.java.dev.jna:jna:5.18.1
++--- net.java.dev.jna:jna-platform:5.18.1
+|    \--- net.java.dev.jna:jna:5.18.1
++--- org.jetbrains.skiko:skiko-awt:0.9.37.4
+|    +--- org.jetbrains.runtime:jbr-api:1.5.0
+|    +--- org.jetbrains.kotlin:kotlin-stdlib:2.0.10 -> 2.3.20 (*)
+|    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.8.0 -> 1.10.2 (*)
+|    \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0 -> 1.10.2 (*)
+\--- org.jetbrains.skiko:skiko-awt-runtime-windows-x64:0.9.37.4
+     \--- org.jetbrains.skiko:skiko-awt:0.9.37.4 (*)
+
+(c) - A dependency constraint, not a dependency. The dependency affected by the constraint occurs elsewhere in the tree.
+(*) - Indicates repeated occurrences of a transitive dependency subtree. Gradle expands transitive dependency subtrees only once per project; repeat occurrences only display the root of the subtree, followed by this annotation.
+
+A web-based, searchable dependency report is available by adding the --scan option.
+
+> Task :asset-library:compileJava UP-TO-DATE
+> Task :image-authority:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :image-authority:compileKotlin UP-TO-DATE
+> Task :image-authority:compileJava NO-SOURCE
+> Task :studio-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-core:compileKotlin UP-TO-DATE
+> Task :studio-core:compileJava NO-SOURCE
+> Task :studio-core:processResources UP-TO-DATE
+> Task :studio-core:classes UP-TO-DATE
+> Task :studio-core:jar UP-TO-DATE
+> Task :studio-desktop:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-desktop:convertXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:copyNonXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:prepareComposeResourcesTaskForMain NO-SOURCE
+> Task :studio-desktop:generateResourceAccessorsForMain SKIPPED
+> Task :studio-desktop:generateActualResourceCollectorsForMain SKIPPED
+> Task :studio-desktop:generateComposeResClass SKIPPED
+> Task :studio-desktop:compileKotlin UP-TO-DATE
+> Task :studio-desktop:compileJava NO-SOURCE
+> Task :studio-desktop:assembleMainResources UP-TO-DATE
+> Task :studio-desktop:processResources UP-TO-DATE
+> Task :studio-desktop:classes UP-TO-DATE
+> Task :studio-desktop:jar
+> Task :asset-library:processResources NO-SOURCE
+> Task :asset-library:classes UP-TO-DATE
+> Task :asset-library:jar UP-TO-DATE
+> Task :image-authority:processResources NO-SOURCE
+> Task :image-authority:classes UP-TO-DATE
+> Task :image-authority:jar UP-TO-DATE
+> Task :studio-desktop:convertXmlValueResourcesForTest NO-SOURCE
+> Task :studio-desktop:copyNonXmlValueResourcesForTest NO-SOURCE
+> Task :studio-desktop:prepareComposeResourcesTaskForTest NO-SOURCE
+> Task :studio-desktop:generateResourceAccessorsForTest SKIPPED
+
+> Task :studio-desktop:compileTestKotlin
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/com/example/chatbar/desktop/DesktopStudioPresentationTest.kt:216:36 Unnecessary non-null assertion (!!) on a non-null receiver of type 'TextLayoutResult'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GuidanceSafetyTest.kt:39:226 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Triple<ByteArray, ByteArray?, NovelAiFocusedInpaintRegion>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GuidanceSafetyTest.kt:40:90 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Triple<ByteArray, ByteArray?, NovelAiFocusedInpaintRegion>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GuidanceSafetyTest.kt:40:206 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Triple<ByteArray, ByteArray?, NovelAiFocusedInpaintRegion>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GuidanceSafetyTest.kt:46:148 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Triple<ByteArray, ByteArray?, NovelAiFocusedInpaintRegion>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GuidanceSafetyTest.kt:47:98 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Triple<ByteArray, ByteArray?, NovelAiFocusedInpaintRegion>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GuidanceSafetyTest.kt:47:166 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Triple<ByteArray, ByteArray?, NovelAiFocusedInpaintRegion>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GuidanceSafetyTest.kt:49:55 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Triple<ByteArray, ByteArray?, NovelAiFocusedInpaintRegion>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GuidanceSafetyTest.kt:49:71 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Triple<ByteArray, ByteArray?, NovelAiFocusedInpaintRegion>'.
+
+> Task :studio-desktop:compileTestJava NO-SOURCE
+> Task :studio-desktop:assembleTestResources UP-TO-DATE
+> Task :studio-desktop:processTestResources UP-TO-DATE
+> Task :studio-desktop:testClasses UP-TO-DATE
+
+> Task :studio-desktop:test
+
+TypesetWorkflowTest > webpPreviewExportAndOriginalReopen FAILED
+    java.lang.IllegalStateException at TypesetWorkflowTest.kt:103
+
+1 test completed, 1 failed
+
+> Task :studio-desktop:test FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':studio-desktop:test'.
+> There were failing tests. See the report at: file:///H:/CCB-Studio-Suite/modules/studio-desktop/build/reports/tests/test/index.html
+
+* Try:
+> Run with --scan to generate a Build Scan (Powered by Develocity).
+
+BUILD FAILED in 28s
+16 actionable tasks: 4 executed, 12 up-to-date

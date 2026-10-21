@@ -950,17 +950,21 @@
         "TypesetBook.kt",
         "TypesetPngMetadata.kt",
         "TypesetEditRecipe.kt",
-        "ExportClipboard.kt"
+        "ExportClipboard.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/ImageFormats.kt"
       ],
       "tests": [
         "TypesetExportTest",
         "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart",
         "TypesetMetadataExportTest",
-        "TypesetWorkflowTest.fourCategoryPreviewCopiesCompleteFileDeckWithoutSystemClipboard"
+        "TypesetWorkflowTest.fourCategoryPreviewCopiesCompleteFileDeckWithoutSystemClipboard",
+        "ImageFormatsTest",
+        "TypesetWorkflowTest.webpPreviewExportAndOriginalReopen"
       ],
       "guiEvidence": [
         "docs/audits/evidence/UX_R2C_BOOK_EXPORT/book-export-preview.png",
-        "docs/audits/evidence/UX_R2_EXPORT_METADATA/batch-export-deck.png"
+        "docs/audits/evidence/UX_R2_EXPORT_METADATA/batch-export-deck.png",
+        "docs/audits/UX_R2_IMAGE_FORMATS.md"
       ],
       "persistenceEvidence": [
         "docs/audits/UX_R2C_BOOK_EXPORT.md",
@@ -1103,11 +1107,18 @@
     {
       "id": "Q07",
       "owner": "UX-R2b",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
+      "implementation": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/ImageFormats.kt"
+      ],
+      "tests": [
+        "ImageFormatsTest",
+        "TypesetWorkflowTest.webpPreviewExportAndOriginalReopen"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_R2_IMAGE_FORMATS.md"
+      ],
       "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "status": "PARTIAL"
     },
     {
       "id": "Q08",

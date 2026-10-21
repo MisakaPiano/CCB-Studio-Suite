@@ -1,0 +1,106 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Task :studio-core:dependencies
+
+------------------------------------------------------------
+Project ':studio-core'
+------------------------------------------------------------
+
+runtimeClasspath - Runtime classpath of 'main'.
++--- org.jetbrains.kotlin:kotlin-stdlib:2.3.20
+|    +--- org.jetbrains:annotations:13.0 -> 23.0.0
+|    +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0 -> 1.9.10 (c)
+|    +--- org.jetbrains.kotlin:kotlin-stdlib-common:2.3.20 (c)
+|    \--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0 -> 1.9.10 (c)
++--- project :asset-library
++--- project :image-authority
+|    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2
+|    |    \--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.10.2
+|    |         +--- org.jetbrains:annotations:23.0.0
+|    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.10.2
+|    |         |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.10.2 (c)
+|    |         |    \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2 (c)
+|    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.1.0 -> 2.3.20 (*)
+|    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1
+|    |    \--- org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.8.1
+|    |         +--- org.jetbrains.kotlinx:kotlinx-serialization-bom:1.8.1
+|    |         |    +--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.8.1 (c)
+|    |         |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.8.1 (c)
+|    |         |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1 (c)
+|    |         |    \--- org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.8.1 (c)
+|    |         +--- org.jetbrains.kotlin:kotlin-stdlib:2.1.20 -> 2.3.20 (*)
+|    |         \--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.8.1
+|    |              \--- org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.8.1
+|    |                   +--- org.jetbrains.kotlinx:kotlinx-serialization-bom:1.8.1 (*)
+|    |                   \--- org.jetbrains.kotlin:kotlin-stdlib:2.1.20 -> 2.3.20 (*)
+|    +--- com.squareup.okhttp3:okhttp:4.12.0
+|    |    +--- com.squareup.okio:okio:3.6.0
+|    |    |    \--- com.squareup.okio:okio-jvm:3.6.0
+|    |    |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.10
+|    |    |         |    +--- org.jetbrains.kotlin:kotlin-stdlib:1.9.10 -> 2.3.20 (*)
+|    |    |         |    \--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.10
+|    |    |         |         \--- org.jetbrains.kotlin:kotlin-stdlib:1.9.10 -> 2.3.20 (*)
+|    |    |         \--- org.jetbrains.kotlin:kotlin-stdlib-common:1.9.10 -> 2.3.20
+|    |    |              \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.20 (*)
+|    |    \--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.21 -> 1.9.10 (*)
+|    +--- org.msgpack:msgpack-core:0.9.12
+|    \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.20 (*)
++--- net.java.dev.jna:jna:5.18.1
++--- net.java.dev.jna:jna-platform:5.18.1
+|    \--- net.java.dev.jna:jna:5.18.1
++--- org.jetbrains.skiko:skiko-awt:0.9.37.4
+|    +--- org.jetbrains.runtime:jbr-api:1.5.0
+|    +--- org.jetbrains.kotlin:kotlin-stdlib:2.0.10 -> 2.3.20 (*)
+|    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.8.0 -> 1.10.2 (*)
+|    \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0 -> 1.10.2 (*)
+\--- org.jetbrains.skiko:skiko-awt-runtime-windows-x64:0.9.37.4
+     \--- org.jetbrains.skiko:skiko-awt:0.9.37.4 (*)
+
+(c) - A dependency constraint, not a dependency. The dependency affected by the constraint occurs elsewhere in the tree.
+(*) - Indicates repeated occurrences of a transitive dependency subtree. Gradle expands transitive dependency subtrees only once per project; repeat occurrences only display the root of the subtree, followed by this annotation.
+
+A web-based, searchable dependency report is available by adding the --scan option.
+
+> Task :asset-library:compileJava UP-TO-DATE
+> Task :image-authority:checkKotlinGradlePluginConfigurationErrors SKIPPED
+
+> Task :image-authority:compileKotlin
+w: file:///H:/CCB-Studio-Suite/modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/ModelRequestException.kt:12:10 Condition is always 'true'.
+w: file:///H:/CCB-Studio-Suite/modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiUpscaleService.kt:78:29 Redundant creation of Json format. Creating instances for each usage can be slow.
+
+> Task :image-authority:compileJava NO-SOURCE
+> Task :studio-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-core:compileKotlin
+> Task :studio-core:compileJava NO-SOURCE
+> Task :studio-core:processResources UP-TO-DATE
+> Task :studio-core:classes UP-TO-DATE
+> Task :studio-core:jar UP-TO-DATE
+> Task :asset-library:processResources NO-SOURCE
+> Task :asset-library:classes UP-TO-DATE
+> Task :asset-library:jar UP-TO-DATE
+> Task :image-authority:processResources NO-SOURCE
+> Task :image-authority:classes UP-TO-DATE
+> Task :image-authority:jar UP-TO-DATE
+> Task :studio-core:compileTestKotlin
+> Task :studio-core:compileTestJava NO-SOURCE
+> Task :studio-core:processTestResources
+> Task :studio-core:testClasses
+
+> Task :studio-core:test
+
+ImageFormatsTest > animatedInputsUseFirstOrDefaultRasterAndRetainAllEncodedFrames PASSED
+
+ImageFormatsTest > unrecognizedOrCorruptCodecsDoNotCreateAssets PASSED
+
+ImageFormatsTest > webpBmpGifImportExportAndSourceExchangeRetainOriginalBytes PASSED
+
+ImageFormatsTest > gifLogicalCanvasAndFrameOffsetArePreservedAndOversizeRefused PASSED
+Persisted dependency lock state for buildscript of root project 'CCB-Studio-Suite'
+Persisted dependency lock state for project ':asset-library'
+Persisted dependency lock state for project ':image-authority'
+Persisted dependency lock state for project ':studio-core'
+
+BUILD SUCCESSFUL in 51s
+11 actionable tasks: 6 executed, 5 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.1.0/userguide/configuration_cache_enabling.html

@@ -8,6 +8,8 @@ dependencies {
     implementation(project(":image-authority"))
     implementation("net.java.dev.jna:jna:5.18.1")
     implementation("net.java.dev.jna:jna-platform:5.18.1")
+    implementation("org.jetbrains.skiko:skiko-awt:0.9.37.4")
+    runtimeOnly("org.jetbrains.skiko:skiko-awt-runtime-windows-x64:0.9.37.4")
     testImplementation(kotlin("test-junit"))
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
 }

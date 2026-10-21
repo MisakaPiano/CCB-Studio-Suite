@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2026-10-21T08:46:47.527Z" hostname="DD1" time="5.86">
+  <properties/>
+  <testcase name="webpPreviewExportAndOriginalReopen" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="5.86">
+    <failure message="java.lang.IllegalStateException: Missing action: PNG; available=[创作, AI 设计, 图库, 编辑, 账户, —, □, ×, 编辑工程 · WebP编辑 ▾, 新建编辑工程, 导入 TypeSet 工程, 重命名工程, 另存工程, 删除工程, 保存工程, 撤销编辑, 重做编辑, 预览与导出, 导入编辑 Recipe, 编辑已保存, 静态排版：GIF / 动态WebP / APNG仅编辑首帧，动画原件始终保留。, ▸ 工程交换文件, 工作模式, 图片编辑, 小人书, 工具, 选择 / 移动, 矩形, 画笔, 圈选, 平移, −, 适应, ＋, 001 · webp-source.webp, 1 文字 · 0 打码, ▸ 队列设置, 全选页, 全不选页, 反选页, 上移页, 下移页, 移除所选页, 置顶页, 置底页, 追加图库所选, 1 页已选 / 1 页, 180 × 120 · webp-source.webp, 添加文字, 对象与属性, ▸ 预设与默认, 文字 1, 锁定对象, 复制对象, 上移图层, 下移图层, 文字内容, 选区粗体, 选区斜体, 选区下划线, 选区删除线, 竖排, 字体 · Microsoft YaHei ▾, 导入字体 TTF / OTF / WOFF / WOFF2, 选区使用当前字体, 字号, 选区使用当前字号, 文本框宽度, 行距, 字距, 对齐 · 居中 ▾, 字重 · 400 ▾, 斜体, 下划线, 删除线, 文字颜色 (#RRGGBB), 选区使用当前颜色, 描边颜色 (#RRGGBB), 描边宽度, 文字透明度, 文字背景 (#RRGGBB), 背景透明度, 文本框边框 (#RRGGBB), 边框宽度, 边框透明度, 隐藏对象, 移除对象, ▸ 批次样式, 建立编辑工程 · 已完成, 已保存, 批量预览与导出, 导出范围 · 全部页 ▾, 导出 · 原始文件（字节保全）, 导出 · 仅打码, 导出 · 文字与打码, 导出 · 仅文字, 预览分类 · 文字与打码 ▾, 源元数据 · 保留源数据（PNG） ▾, 图片格式 · PNG ▾, 附带可编辑 Recipe 文件, 同时打包 ZIP, 共 1 页，按队列顺序及编号输出。确认后选择位置，每次新建独立文件夹。, 每个所选分类都包含全部目标页，包括没有文字或打码的页面。JPEG 使用白色背景；JPEG/WebP不携带源元数据。原格式仅保留PNG/JPEG/WebP编码，GIF/BMP编辑结果转PNG。, PNG 保留源文本块和 alpha 隐写；它们描述原图，原签名不能证明编辑后的图片。, GIF、动态WebP和APNG仅编辑首帧；动画只在原始文件分类中按原字节保留。, 复制会把所有所选输出文件放入剪贴板，可粘贴到资源管理器；单张静态图片还可粘贴到图像应用。, 预览页 · 001 · webp-source.webp ▾, 返回编辑, 复制所选输出文件, 选择位置并导出]" type="java.lang.IllegalStateException">java.lang.IllegalStateException: Missing action: PNG; available=[创作, AI 设计, 图库, 编辑, 账户, —, □, ×, 编辑工程 · WebP编辑 ▾, 新建编辑工程, 导入 TypeSet 工程, 重命名工程, 另存工程, 删除工程, 保存工程, 撤销编辑, 重做编辑, 预览与导出, 导入编辑 Recipe, 编辑已保存, 静态排版：GIF / 动态WebP / APNG仅编辑首帧，动画原件始终保留。, ▸ 工程交换文件, 工作模式, 图片编辑, 小人书, 工具, 选择 / 移动, 矩形, 画笔, 圈选, 平移, −, 适应, ＋, 001 · webp-source.webp, 1 文字 · 0 打码, ▸ 队列设置, 全选页, 全不选页, 反选页, 上移页, 下移页, 移除所选页, 置顶页, 置底页, 追加图库所选, 1 页已选 / 1 页, 180 × 120 · webp-source.webp, 添加文字, 对象与属性, ▸ 预设与默认, 文字 1, 锁定对象, 复制对象, 上移图层, 下移图层, 文字内容, 选区粗体, 选区斜体, 选区下划线, 选区删除线, 竖排, 字体 · Microsoft YaHei ▾, 导入字体 TTF / OTF / WOFF / WOFF2, 选区使用当前字体, 字号, 选区使用当前字号, 文本框宽度, 行距, 字距, 对齐 · 居中 ▾, 字重 · 400 ▾, 斜体, 下划线, 删除线, 文字颜色 (#RRGGBB), 选区使用当前颜色, 描边颜色 (#RRGGBB), 描边宽度, 文字透明度, 文字背景 (#RRGGBB), 背景透明度, 文本框边框 (#RRGGBB), 边框宽度, 边框透明度, 隐藏对象, 移除对象, ▸ 批次样式, 建立编辑工程 · 已完成, 已保存, 批量预览与导出, 导出范围 · 全部页 ▾, 导出 · 原始文件（字节保全）, 导出 · 仅打码, 导出 · 文字与打码, 导出 · 仅文字, 预览分类 · 文字与打码 ▾, 源元数据 · 保留源数据（PNG） ▾, 图片格式 · PNG ▾, 附带可编辑 Recipe 文件, 同时打包 ZIP, 共 1 页，按队列顺序及编号输出。确认后选择位置，每次新建独立文件夹。, 每个所选分类都包含全部目标页，包括没有文字或打码的页面。JPEG 使用白色背景；JPEG/WebP不携带源元数据。原格式仅保留PNG/JPEG/WebP编码，GIF/BMP编辑结果转PNG。, PNG 保留源文本块和 alpha 隐写；它们描述原图，原签名不能证明编辑后的图片。, GIF、动态WebP和APNG仅编辑首帧；动画只在原始文件分类中按原字节保留。, 复制会把所有所选输出文件放入剪贴板，可粘贴到资源管理器；单张静态图片还可粘贴到图像应用。, 预览页 · 001 · webp-source.webp ▾, 返回编辑, 复制所选输出文件, 选择位置并导出]
+	at io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest.click(TypesetWorkflowTest.kt:103)
+	at io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest.access$click(TypesetWorkflowTest.kt:19)
+	at io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest$webpPreviewExportAndOriginalReopen$1.invokeSuspend(TypesetWorkflowTest.kt:29)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:47)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

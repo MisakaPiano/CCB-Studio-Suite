@@ -44,6 +44,7 @@ import kotlin.math.*
             StudioAction("导入编辑 Recipe",!c.busy && e.page!=null){e.inspectRecipe()}
             StatusText(if(e.dirty)"编辑待保存"else"编辑已保存")
         }
+        if(e.document!=null)Text("静态排版：GIF / 动态WebP编辑首帧，APNG编辑默认静态图，动画原件始终保留。",modifier=Modifier.padding(horizontal=12.dp))
         e.exportDirectory?.let{Text("导出已完成并校验：$it",modifier=Modifier.padding(horizontal=12.dp))}
         e.exportProblem?.let{Text(it,color=MaterialTheme.colors.error,modifier=Modifier.padding(horizontal=12.dp))}
         e.exchangeMessage?.let{Text(it,modifier=Modifier.padding(horizontal=12.dp))}

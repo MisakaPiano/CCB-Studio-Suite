@@ -22,6 +22,7 @@ object TypesetPngMetadata {
         require(ended){"PNG missing IEND"};return true
     }
     fun extract(original:ByteArray):Source {
+        if(ImageFormats.format(original)!="png")return Source(emptyList(),null,0)
         val text=mutableListOf<ByteArray>();var totalBytes=0L;walk(original){type,start,size->if(type in setOf("tEXt","zTXt","iTXt")){totalBytes+=size;require(totalBytes<=8*1024*1024){"PNG source metadata exceeds 8 MiB"};text+=original.copyOfRange(start,start+size)}}
         val image=EditorRenderer.decode(original)
         try {
