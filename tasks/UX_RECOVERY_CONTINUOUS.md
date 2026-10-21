@@ -1,0 +1,29 @@
+# UX恢复连续实施授权
+
+起点：e85367845e82494fcdd9701009ad101b321a12d9，feature/windows-rc-continuous。2026-10-21启动时HEAD/远程一致，index/worktree/untracked干净；本Suite聊天为唯一执行者。Desktop为其他独立工作区，只读参考。
+
+用户本轮明确批准UX-R1a→R1b→R2a→R2b→R2c→R3→R4连续实施；先文档-only补正Q09责任与源排版样本合同，不需再次R0人工门禁。每检查点安全提交/推送，不merge/release；不改Desktop/upstream/权威Prompt/request；真实API仍最多12次/小时且相邻至少300秒。完成W1–W5及完整应用内安全更新后才交固定RC集中真人验收。旧产品HOLD不变。
+
+正式回执：https://github.com/MisakaPiano/CCB-Studio-Suite/issues/4#issuecomment-6307947815 ，created/updated 2026-10-21T04:20:02Z。以下为实际读取正文，不把历史报告中的待批准说明误作当前阻塞。
+
+## UX-R0 独立 Project Review — PASS_WITH_SCOPE / CONTINUOUS_IMPLEMENTATION_ELIGIBLE
+
+**审查身份：**固定交付 `e85367845e82494fcdd9701009ad101b321a12d9`（`feature/windows-rc-continuous`），相对 `608be5083bb58092988fa68d24b8c8ea646f5a27` 实际比较为 **1 commit / 14 files，仅 docs/tasks/evidence 控制文件，无生产源码/测试修改**。审阅 `UX_R0_PARITY_MATRIX.md`、`UX_R0_ACTION_TRACE.md`、`UX_R0_WORKFLOW_AND_LAYOUT.md`、`UX_RECOVERY_IMPLEMENTATION_PLAN.md`、`UX_R0_PROJECT_REVIEW.md` 和执行/来源证据，定向对照固定 Desktop P7 与 TypeSet 参考功能。报告里的371个保护文件本地 hash 不变是 Codex 的静态执行记录；Git 14文件diff可独立确认，不把其余未经本机运行的声明冒充本轮测试。
+
+**审查结论：**接受 UX-R0 的产品范围、来源继承方法、五条W1–W5用户工作流、两大核心工作台+图库/比较/导出桥梁，以及 UX-R1a/R1b→R2a/R2b/R2c→R3→R4 的连续实现方向。包括 TypeSet 1.1 富文本/混合字体、竖排标点、批次/预设、四类导出、小人书、PDF，禁止未经用户明确批准自动延期。优先复用 Desktop 已有 Compose Studio 的用户组件/行为和固定权威请求核心，保留已验证资产安全和窗口基础；不是重新做一款“类似软件”。
+
+现有 Preview **`USER_REVIEW_FAILED / PRODUCT_HOLD` 不变**。UX-R0 是 **文档合同的限定接受**，不是产品功能 PASS、Preview Gate PASS、RC PASS、实机视觉认证或任何版本合并/公开发布授权。56 项当前差距按文档统计为 MISSING17、PARTIAL24、SOURCE_OR_SYNTHETIC_ONLY11、NOT_TESTED2、USABLE_REAL2（后者仅极窄基础图层动作），不能用现有窗口/合成测试 PASS 自动提升。
+
+### 接续实施的两项必须补正（不用重做 UX-R0）
+1. **补齐动作归属**：`UX_R0_ACTION_TRACE.md` 已包含 `Q09`（CCB原图工具旋转90°、区域打码/蒙版清理、撤销/重置、应用到引导或副本），但 `UX_RECOVERY_IMPLEMENTATION_PLAN.md` 的检查点范围写了 Q01–Q08，遗漏 Q09。UX-R1b 的图像引导/工具适配与 UX-R2b 的图像编辑之间指定**单一负责检查点与回归用例**，回填75个Action ID的最终实现/测试映射，防止有合同却无人做。
+2. **增加排版源效果核对**：现有 V5 固定字体golden+坐标测试必要但不充分，因为新渲染器自己输出的golden不能独立证明已达到TypeSet效果。UX-R2a/R2c 开始前冻结若干中文/日文竖排标点、富文本混合样式、框尺寸/自动换行、长短小人书页面与可变PDF尺寸的**源行为参考样本/经过审阅的期望几何与视觉样张**；原生实现做对应行为对照和真实应用截图。字体/渲染引擎差异可以解释，不要求跨引擎像素完全相同；未实际取得来源输出时标 `SOURCE_VISUAL_NOT_TESTED`，不得用自生成golden冒充比较完成。
+
+### 连续执行授权边界
+- 在当前已获用户授权的目标与 Issue #2/#4 范围内，**可以恢复同一 Suite 主执行者按R1a→R4连续开发**，普通工程错误自行定位/重测，不必逐 Slice 询问用户。执行前先核验实时 `HEAD/index/worktree/untracked/owner`、远程checkpoint及本评论，**从已核验分支接续**，不覆盖旧提交。
+- 开始阶段用文档-only 小修把上述两点回填到实施计划/追踪表，随后连续实现；这个修补不需要新一轮 R0 人工门禁。每个阶段提交原始证据、精确 SHA、受影响回归、真实UI路径和保存/重开结果，安全 push 远程分支，**不自动合并 main**。不用把一次回归出现的临时绿灯升级为端到端验收。
+- 普通人机 UI 功能不能由合成引擎、裸 JSON 角色框、Popup Recipe、只会自己绘制的窗口计数替代。整个Studio/编辑源功能状态必须从 `MISSING/PARTIAL` 经真实GUI→反馈→落盘→重开验证才能提升；涉及提供者实际调用、用户视觉质量的证据分开。
+- 用户之前设立的真实 API 预算/权限边界不因本评论扩大；无授权不能读用户真实资料或额外调用付费服务。不要修改 CCB Desktop/upstream、官方 Prompt 或既有权威请求语义；确需跨仓修复须单独呈交。
+- 首个长期使用版 **CP4 真正的应用内 A→B 下载/验证/安装/重启/数据及凭据保全** 保持阻塞要求。真实数据损坏、迁移/凭据危险、关键来源不可安全保持、正式安装信任或其他未授权行为才触发STOP；不可通过删除测试/项目功能获得 GREEN。仍须一次固定包集中用户真人产品验收，未通过则维持 PRODUCT_HOLD。
+- TypeSet 全功能保留。Windows 完成后再按既定 Suite 路线继续 Android 与 Server；Server 管理员集中上游凭据与多端队列需求不会被本任务悄悄改成强制 BYOK。
+
+**下一动作**：Codex 以本评论和 `e853678...` 的 UX-R0 合同为基线，在既有工作区/开发分支续跑 UX-R1a–R4（先做两项定向修订）。提交/推送是审查证据，不等于批准 merge 或 release。

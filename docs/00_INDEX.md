@@ -1,3 +1,7 @@
+# 当前执行：UX恢复连续实施
+
+[正式授权合同](../tasks/UX_RECOVERY_CONTINUOUS.md) · [源样本/Q09补正](ux/TYPESET_REFERENCE_VALIDATION.md) · [75项实现证据台账](ux/ACTION_IMPLEMENTATION.json)。UX-R0审查通过不等于产品通过，当前PRODUCT HOLD。
+
 # 当前审阅入口：UX-R0 产品恢复合同
 
 **PRODUCT HOLD / NOT ACCEPTED。** Issue #4最新完整继承要求下，已交付[整体Project审阅入口](ux/UX_R0_PROJECT_REVIEW.md)、[来源差距矩阵](ux/UX_R0_PARITY_MATRIX.md)、[逐动作继承合同](ux/UX_R0_ACTION_TRACE.md)、[GUI工作流/宽窄结构](ux/UX_R0_WORKFLOW_AND_LAYOUT.md)、[完整实施方案](ux/UX_RECOVERY_IMPLEMENTATION_PLAN.md)。[当前任务](../tasks/UX_R0_PRODUCT_RECOVERY_AUDIT.md)与[最新Issue范围](../tasks/UX_R0_ISSUE4_FULL_ADOPTION_ADDENDUM.md)。本轮仅文档，Project批准后再实现；下面均保留历史。

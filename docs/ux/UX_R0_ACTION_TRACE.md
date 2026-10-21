@@ -1,5 +1,7 @@
 # UX-R0 — Source → Action → Feedback → Persistence 继承合同
 
+Project补正：Q09唯一负责人UX-R1b，R2b消费/集成回归；验证Q09-01..04及独立TypeSet源样本见[验证合同](TYPESET_REFERENCE_VALIDATION.md)。功能状态仍保留原审查事实；最终实现/执行证据逐ID回填ACTION_IMPLEMENTATION.json。
+
 此表是 [差距矩阵](UX_R0_PARITY_MATRIX.md) 的逐项实施/验收展开，按Issue #4最新五值状态执行。D/S/T代号、固定SHA/文件/行号及Suite现状证据见矩阵；T始终指SHA `892ea08f…e28bb63` 的本地TypeSet 1.1，原件不上传。**反馈与持久化栏是要实现的结果，不是当前已完成；状态栏才是当前事实。** P/I/T/C编号对应原56项，Q/F是为完整继承新增的细分检查项。
 
 ## Suite目标路径约定（全部为拟议位置，当前未创建）
