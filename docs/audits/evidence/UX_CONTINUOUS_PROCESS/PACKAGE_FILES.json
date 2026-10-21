@@ -1,0 +1,567 @@
+[
+  {
+    "path": "compose-scenes/continuous-completed-remainder.png",
+    "bytes": 138927,
+    "sha256": "0fbf7dd4d80b71416e68a0df82c2e0248535a98a64d8913ea6e541dc142fcaac"
+  },
+  {
+    "path": "compose-scenes/continuous-partial-retained.png",
+    "bytes": 118010,
+    "sha256": "d321b79a6ce27b1c2bed9847f32de342842c16426a61376d5f6fa867fff1b811"
+  },
+  {
+    "path": "compose-scenes/continuous-waiting-stoppable.png",
+    "bytes": 138321,
+    "sha256": "ac84676dde5c534ea822b3a9bf59cf331f4d30567eecd74ce2517505381653e7"
+  },
+  {
+    "path": "process-transport/summary.json",
+    "bytes": 1833,
+    "sha256": "5f0e4a37335808c8a11a2141338264529e9a103a6ff631b28b25bbce95cbd6f6"
+  },
+  {
+    "path": "process-transport/test_bad_signature_is_rejected_before_payload-5e843897/2-snapshot.json",
+    "bytes": 467,
+    "sha256": "d88bcbd3539626386319cce0d415c2d99ac2c37d1e0c544b193ac9f85adb8477"
+  },
+  {
+    "path": "process-transport/test_bad_signature_is_rejected_before_payload-5e843897/2-targets.json",
+    "bytes": 789,
+    "sha256": "7d3e81612e2fd78113353ce2d5b49d16a2314a204acb6c88bde7c86a4301128a"
+  },
+  {
+    "path": "process-transport/test_bad_signature_is_rejected_before_payload-5e843897/2-timestamp.json",
+    "bytes": 469,
+    "sha256": "d3dbe3353ba7e5bf3829546e17e61d6d05c961088a0c6870a576ff1793a9c22e"
+  },
+  {
+    "path": "process-transport/test_bad_signature_is_rejected_before_payload-5e843897/cli-0.json",
+    "bytes": 123,
+    "sha256": "4ee2a36c981889fd3ab5a9280649f24cf72b0af8b6766cd982742e6e982d587b"
+  },
+  {
+    "path": "process-transport/test_bad_signature_is_rejected_before_payload-5e843897/package/update-config.json",
+    "bytes": 385,
+    "sha256": "36d9932c45ffb29960ee89f2a7587bb34a91a30c70bfd4c8f1c1b11183a6596a"
+  },
+  {
+    "path": "process-transport/test_bad_signature_is_rejected_before_payload-5e843897/package/update-root.json",
+    "bytes": 1568,
+    "sha256": "04dd5ea10f5630934c52890cb6241b1e8b0bb4060a106ddd0566d9a5a6c46c79"
+  },
+  {
+    "path": "process-transport/test_bad_signature_is_rejected_before_payload-5e843897/requests.json",
+    "bytes": 121,
+    "sha256": "ae3a68860816f9a70f4d294732db278edc284bb14f00203df38f1dec3973c1c4"
+  },
+  {
+    "path": "process-transport/test_cached_metadata_rollback_is_rejected-24d2893c/1-snapshot.json",
+    "bytes": 467,
+    "sha256": "0303c516a7e0df30062210e85dfab95179af0998dfa778462c5e79def8ca1669"
+  },
+  {
+    "path": "process-transport/test_cached_metadata_rollback_is_rejected-24d2893c/1-targets.json",
+    "bytes": 789,
+    "sha256": "7936a16b4a2eb537fd40678a8ce936a6450263f57a6152dd0b3b8d945996c963"
+  },
+  {
+    "path": "process-transport/test_cached_metadata_rollback_is_rejected-24d2893c/1-timestamp.json",
+    "bytes": 469,
+    "sha256": "f5479754c9993ebcccef4056be6816119c6dd99370a2634825a8fb1078a2c2e6"
+  },
+  {
+    "path": "process-transport/test_cached_metadata_rollback_is_rejected-24d2893c/2-snapshot.json",
+    "bytes": 467,
+    "sha256": "d0d2867059882b6596d3291039fc05c47d442b84f6febe7df17a569b3d07b6a3"
+  },
+  {
+    "path": "process-transport/test_cached_metadata_rollback_is_rejected-24d2893c/2-targets.json",
+    "bytes": 789,
+    "sha256": "786f8878409f7fe600df1e697b45c0d0ad121b43ceebae3e2f8aa66e0d3d3400"
+  },
+  {
+    "path": "process-transport/test_cached_metadata_rollback_is_rejected-24d2893c/2-timestamp.json",
+    "bytes": 469,
+    "sha256": "ce2768fb2c0a7766278c1924d88eec9560fc80e06cddb63c96066d2aaaa5a922"
+  },
+  {
+    "path": "process-transport/test_cached_metadata_rollback_is_rejected-24d2893c/cli-0.json",
+    "bytes": 504,
+    "sha256": "7b4b27e09b576f8b412d073054323a152104ca294e3e6b788c729b78250b582f"
+  },
+  {
+    "path": "process-transport/test_cached_metadata_rollback_is_rejected-24d2893c/cli-1.json",
+    "bytes": 123,
+    "sha256": "7cbc3eac05e1d4a0f0ee4b29e4ac87d199888752b9bc9cec79d46cff036fc0a5"
+  },
+  {
+    "path": "process-transport/test_cached_metadata_rollback_is_rejected-24d2893c/package/update-config.json",
+    "bytes": 385,
+    "sha256": "01b19db2d11fbb0d9f219c8cb200ef383b6b174929ef663aef3102091c254ae0"
+  },
+  {
+    "path": "process-transport/test_cached_metadata_rollback_is_rejected-24d2893c/package/update-root.json",
+    "bytes": 1568,
+    "sha256": "ced0469f2d44e799e8f2069dfdd0f5e021398cebb7e7800a13e5be505c6322da"
+  },
+  {
+    "path": "process-transport/test_cached_metadata_rollback_is_rejected-24d2893c/requests.json",
+    "bytes": 180,
+    "sha256": "cfc058effb30260adfa50915b2c50b9fe1fb4d6192abcf8b166248f8a69c4384"
+  },
+  {
+    "path": "process-transport/test_disconnect_then_explicit_retry_verifies_exact_installer-efb4447f/2-snapshot.json",
+    "bytes": 467,
+    "sha256": "2f15570ba31581295607c6c2bd6c9ee9b8d4b058035b17e42f42f69f18570472"
+  },
+  {
+    "path": "process-transport/test_disconnect_then_explicit_retry_verifies_exact_installer-efb4447f/2-targets.json",
+    "bytes": 789,
+    "sha256": "e9171d14a3bf71b0407e7f353e0ba798aaa46eabed5979f75851afadad81f9d7"
+  },
+  {
+    "path": "process-transport/test_disconnect_then_explicit_retry_verifies_exact_installer-efb4447f/2-timestamp.json",
+    "bytes": 469,
+    "sha256": "5ff9d24d92a1f33811cf07fdf29adef0f86a4a6cc09666d2f67f4cf0d07afc2e"
+  },
+  {
+    "path": "process-transport/test_disconnect_then_explicit_retry_verifies_exact_installer-efb4447f/cli-0.json",
+    "bytes": 115,
+    "sha256": "6b889d6b1f5af96548e18829fa37eb2b7b277c9dc0a3f8ee7e18e87c0eb4aa82"
+  },
+  {
+    "path": "process-transport/test_disconnect_then_explicit_retry_verifies_exact_installer-efb4447f/cli-1.json",
+    "bytes": 785,
+    "sha256": "19a2df04ebf0d9eed5418394f5536b2ca237ca6112451f4a39cf779f496b70dd"
+  },
+  {
+    "path": "process-transport/test_disconnect_then_explicit_retry_verifies_exact_installer-efb4447f/package/update-config.json",
+    "bytes": 385,
+    "sha256": "a020770d78cfc505811d42c72299ef9982a5d19845a7d6693a1c9d52f15ec2f1"
+  },
+  {
+    "path": "process-transport/test_disconnect_then_explicit_retry_verifies_exact_installer-efb4447f/package/update-root.json",
+    "bytes": 1568,
+    "sha256": "68f8bb1a2157d62d106213d6427bfb59083788578fa15ac0deb0089b1d7d329e"
+  },
+  {
+    "path": "process-transport/test_disconnect_then_explicit_retry_verifies_exact_installer-efb4447f/requests.json",
+    "bytes": 252,
+    "sha256": "bd02403161445508bfd736d76695ec5c6ea82e05b3cdcb175b9f1dcc0acdbe9d"
+  },
+  {
+    "path": "process-transport/test_expired_metadata_is_rejected_before_payload-725abc88/2-snapshot.json",
+    "bytes": 467,
+    "sha256": "11a58b1a7fd11a4dc177c90f435f8a150106142d84d8f62a2ece5e70b0b24edf"
+  },
+  {
+    "path": "process-transport/test_expired_metadata_is_rejected_before_payload-725abc88/2-targets.json",
+    "bytes": 789,
+    "sha256": "b937d8ddb73e036c302a75de4ac48e848077e38ede36c8cbc5bd5b40641c5aa6"
+  },
+  {
+    "path": "process-transport/test_expired_metadata_is_rejected_before_payload-725abc88/2-timestamp.json",
+    "bytes": 469,
+    "sha256": "0aec55973929df1e0cfb130c400027b69171a7d3f2bb32026eccd37170be1c8e"
+  },
+  {
+    "path": "process-transport/test_expired_metadata_is_rejected_before_payload-725abc88/cli-0.json",
+    "bytes": 122,
+    "sha256": "352ec6c6285ad4006d1044f743da3251dc3151d39927f89f00bf603799a4cec8"
+  },
+  {
+    "path": "process-transport/test_expired_metadata_is_rejected_before_payload-725abc88/package/update-config.json",
+    "bytes": 385,
+    "sha256": "3b2ed9357013d6b3e5eb0b1398c357f749adce6fbb89db1b10fddf8221497d31"
+  },
+  {
+    "path": "process-transport/test_expired_metadata_is_rejected_before_payload-725abc88/package/update-root.json",
+    "bytes": 1568,
+    "sha256": "bcba952ec241a38529597521ee86f89971fd543e74cc237f107f453c1289dcce"
+  },
+  {
+    "path": "process-transport/test_expired_metadata_is_rejected_before_payload-725abc88/requests.json",
+    "bytes": 62,
+    "sha256": "f76822fb12cba466fd0c22cfdd65dc68d387dc7937eb63942ffc61cbf7e41ceb"
+  },
+  {
+    "path": "process-transport/test_killed_download_process_releases_cache_and_never_completes-fe8f02ee/2-snapshot.json",
+    "bytes": 467,
+    "sha256": "2519d54e046ea142e0814be67ae3e374ff90de97ac63ee3568234cbbfac5416f"
+  },
+  {
+    "path": "process-transport/test_killed_download_process_releases_cache_and_never_completes-fe8f02ee/2-targets.json",
+    "bytes": 789,
+    "sha256": "3e77cff0d8e01548308c32690ec6eea0045bc69126cd8b38fc37c772ce59eca9"
+  },
+  {
+    "path": "process-transport/test_killed_download_process_releases_cache_and_never_completes-fe8f02ee/2-timestamp.json",
+    "bytes": 469,
+    "sha256": "d1f23296331ed9b904be3bf4ae6fcf73a15b3b14d5a12e6f5349e9a174d01496"
+  },
+  {
+    "path": "process-transport/test_killed_download_process_releases_cache_and_never_completes-fe8f02ee/cancel-stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "process-transport/test_killed_download_process_releases_cache_and_never_completes-fe8f02ee/cancel-stdout.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "process-transport/test_killed_download_process_releases_cache_and_never_completes-fe8f02ee/cli-0.json",
+    "bytes": 504,
+    "sha256": "7b4b27e09b576f8b412d073054323a152104ca294e3e6b788c729b78250b582f"
+  },
+  {
+    "path": "process-transport/test_killed_download_process_releases_cache_and_never_completes-fe8f02ee/package/update-config.json",
+    "bytes": 385,
+    "sha256": "faf231f6b07f56df3983df46f96b6fe1a28b4ba9cdd177b201755116a7fc6a3b"
+  },
+  {
+    "path": "process-transport/test_killed_download_process_releases_cache_and_never_completes-fe8f02ee/package/update-root.json",
+    "bytes": 1568,
+    "sha256": "66a2e0634a1d378b3bd98f4858cf8e70a7717c23e76109f711d7fe0d78efc133"
+  },
+  {
+    "path": "process-transport/test_killed_download_process_releases_cache_and_never_completes-fe8f02ee/requests.json",
+    "bytes": 216,
+    "sha256": "f5c29a19f7f0ef35c08b21a81df10baf32c2fb6469d331c9f528e70b698fc5ff"
+  },
+  {
+    "path": "process-transport/test_tampered_real_installer_has_no_completion-29e441ad/2-snapshot.json",
+    "bytes": 467,
+    "sha256": "49ca055787e77cb8beb121a11c6532571ddf5d227974ac0d17d6e927908d9959"
+  },
+  {
+    "path": "process-transport/test_tampered_real_installer_has_no_completion-29e441ad/2-targets.json",
+    "bytes": 789,
+    "sha256": "fd11cd76d85eb21ddc56f27d52b17a45188d5ff920f08f768313cef78304a8e7"
+  },
+  {
+    "path": "process-transport/test_tampered_real_installer_has_no_completion-29e441ad/2-timestamp.json",
+    "bytes": 469,
+    "sha256": "e830ed2fd9b57ab55d3942402646a54f6f2730d5f2e125868b90a925e25e9082"
+  },
+  {
+    "path": "process-transport/test_tampered_real_installer_has_no_completion-29e441ad/cli-0.json",
+    "bytes": 127,
+    "sha256": "faadb725f4f8ef675f07e8e85c27826c61039b7295ba0a2fa22dda2d634a96fa"
+  },
+  {
+    "path": "process-transport/test_tampered_real_installer_has_no_completion-29e441ad/package/update-config.json",
+    "bytes": 385,
+    "sha256": "3a670375f0f919308a0077da9d0648d2dca232dd0e976759e722063437907d62"
+  },
+  {
+    "path": "process-transport/test_tampered_real_installer_has_no_completion-29e441ad/package/update-root.json",
+    "bytes": 1568,
+    "sha256": "038d8e0865028be2c6aafbf4d89713fd1f99377d7387d23bc04d831722411d1d"
+  },
+  {
+    "path": "process-transport/test_tampered_real_installer_has_no_completion-29e441ad/requests.json",
+    "bytes": 157,
+    "sha256": "2693433e9ca16bb22e1102d51536a4cfc05059acafc2a3c3e8e68f3ba65062b0"
+  },
+  {
+    "path": "process-transport/test_unreachable_loopback_does_not_download-b3af57ac/2-snapshot.json",
+    "bytes": 467,
+    "sha256": "8e98a3d8b7ba0b57a7e1d40c826d918a575cc63f49474318016116e8b55cf8f4"
+  },
+  {
+    "path": "process-transport/test_unreachable_loopback_does_not_download-b3af57ac/2-targets.json",
+    "bytes": 789,
+    "sha256": "4caee943f169308874c8a46ded293af0cd9d6036d825921b61831ee7de72bdb3"
+  },
+  {
+    "path": "process-transport/test_unreachable_loopback_does_not_download-b3af57ac/2-timestamp.json",
+    "bytes": 469,
+    "sha256": "7d0068944a069c875c8cb8597780971144a7262c2069321dada010a5efbccd4c"
+  },
+  {
+    "path": "process-transport/test_unreachable_loopback_does_not_download-b3af57ac/cli-0.json",
+    "bytes": 120,
+    "sha256": "06f853da3b5976a1c380fb7f6adec1aba32ac54a1a992d40f6d3a03abffd0062"
+  },
+  {
+    "path": "process-transport/test_unreachable_loopback_does_not_download-b3af57ac/package/update-config.json",
+    "bytes": 385,
+    "sha256": "633504257ff468cf6862353758a2c7a21e89a59e51e355cb79d6dc4afc343167"
+  },
+  {
+    "path": "process-transport/test_unreachable_loopback_does_not_download-b3af57ac/package/update-root.json",
+    "bytes": 1568,
+    "sha256": "1d8b1027d70097412cb467a3582fee8ccf52c8686818e5a410e39b355d057098"
+  },
+  {
+    "path": "process-transport/test_unreachable_loopback_does_not_download-b3af57ac/requests.json",
+    "bytes": 2,
+    "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+    "path": "process-transport/test_wrong_platform_is_rejected_before_payload-eade5ad1/2-snapshot.json",
+    "bytes": 467,
+    "sha256": "79821a340bea84010e44f8202aabf83925d5c01a427f8f2c6a933213b7c46a26"
+  },
+  {
+    "path": "process-transport/test_wrong_platform_is_rejected_before_payload-eade5ad1/2-targets.json",
+    "bytes": 782,
+    "sha256": "82257cf87641de48b6b695f21d8be53ea31c3b7b897f966ff8d6974782c70bbc"
+  },
+  {
+    "path": "process-transport/test_wrong_platform_is_rejected_before_payload-eade5ad1/2-timestamp.json",
+    "bytes": 469,
+    "sha256": "c3efc65a3b6209a6ad69deb08b6a14e1821c3426240b43a91e42757634b90a53"
+  },
+  {
+    "path": "process-transport/test_wrong_platform_is_rejected_before_payload-eade5ad1/cli-0.json",
+    "bytes": 123,
+    "sha256": "324bbebddedd190221f0ca08ca45d6c68cd1490c29344d086b9353d42e02ab22"
+  },
+  {
+    "path": "process-transport/test_wrong_platform_is_rejected_before_payload-eade5ad1/package/update-config.json",
+    "bytes": 385,
+    "sha256": "f96eb0b64aefefd3c69880cd821f59e7bb0061db38b8b61731e97044eb096548"
+  },
+  {
+    "path": "process-transport/test_wrong_platform_is_rejected_before_payload-eade5ad1/package/update-root.json",
+    "bytes": 1568,
+    "sha256": "8b040ee78956e9cccf085117f8cb1e14d3b68e93c0a5afc1d090ded79afd1966"
+  },
+  {
+    "path": "process-transport/test_wrong_platform_is_rejected_before_payload-eade5ad1/requests.json",
+    "bytes": 121,
+    "sha256": "ae3a68860816f9a70f4d294732db278edc284bb14f00203df38f1dec3973c1c4"
+  },
+  {
+    "path": "process-transport/tests.log",
+    "bytes": 1232,
+    "sha256": "15f060a23a2b3ac2a7cbfb6df6525aed0241771eb9e82c91b31730e5284a3bdf"
+  },
+  {
+    "path": "runs/20261021T202133677580Z-continuous-generation-targeted/gradle.log",
+    "bytes": 3004,
+    "sha256": "aba9d3552ab1e5cb6f551c2a54831cfbd6238250964887b043478a841535b6b9"
+  },
+  {
+    "path": "runs/20261021T202133677580Z-continuous-generation-targeted/source-before.json",
+    "bytes": 57750,
+    "sha256": "c0fda29b394c5a7ff2254f6e195ac3859b03308eae5ffbdc0aab3f23dc4a11af"
+  },
+  {
+    "path": "runs/20261021T202133677580Z-continuous-generation-targeted/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest.xml",
+    "bytes": 3263,
+    "sha256": "594acf86a598bd02822d89ac6151c36d909528c60a016b3afa52654943e582fb"
+  },
+  {
+    "path": "runs/20261021T202133677580Z-continuous-generation-targeted/summary.json",
+    "bytes": 845,
+    "sha256": "6f7987c9026fd1f1ac3c752fecab4f1ad219246293b39d90da36946980f02893"
+  },
+  {
+    "path": "runs/20261021T202133677580Z-continuous-generation-targeted/test-cases.json",
+    "bytes": 241,
+    "sha256": "cbf722f16d8802276019af59bbc8ebe426c8205948e11e54fd8eb5944e83ffa0"
+  },
+  {
+    "path": "runs/20261021T202246232499Z-continuous-generation-valid-fixture/gradle.log",
+    "bytes": 3013,
+    "sha256": "bc96361bc9945d4a008cb8ec63784b59065ff9ead1c1c9b7b651fcc433476a35"
+  },
+  {
+    "path": "runs/20261021T202246232499Z-continuous-generation-valid-fixture/source-before.json",
+    "bytes": 57750,
+    "sha256": "51e6c01f09d00bd79ab02cb3b8ae37ed4b8b455aaa0ac5e223eff2c5a52430e6"
+  },
+  {
+    "path": "runs/20261021T202246232499Z-continuous-generation-valid-fixture/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest.xml",
+    "bytes": 2278,
+    "sha256": "94d3e94c773b58930960c90f77de4e9cd0357f8cc9370b3b33550e67b83c5fee"
+  },
+  {
+    "path": "runs/20261021T202246232499Z-continuous-generation-valid-fixture/summary.json",
+    "bytes": 850,
+    "sha256": "e23d56fb0d19e2305dc8bea805aae61b5ce1665ed06001bcfeee861b72e3a4f0"
+  },
+  {
+    "path": "runs/20261021T202246232499Z-continuous-generation-valid-fixture/test-cases.json",
+    "bytes": 241,
+    "sha256": "3438d61553d92dea6828ea4cb5c8e47bb3a2944b80106f3c09b873801be82949"
+  },
+  {
+    "path": "runs/20261021T202330484440Z-continuous-generation-semantic-switch/gradle.log",
+    "bytes": 2685,
+    "sha256": "0753eb42b6dec50c43f1d51dbb3bbe0cf470023c5d58a3819ff76a3ed9e09dde"
+  },
+  {
+    "path": "runs/20261021T202330484440Z-continuous-generation-semantic-switch/source-before.json",
+    "bytes": 57750,
+    "sha256": "cbe105572b8f415dc7a1e9bb162fec82adb55b7179930a900c46afc4c4588e0c"
+  },
+  {
+    "path": "runs/20261021T202330484440Z-continuous-generation-semantic-switch/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest.xml",
+    "bytes": 536,
+    "sha256": "8450315bc666bb62b0caa182ff3a8c1239e023e98ecbe92ea5ab097f9caa63c1"
+  },
+  {
+    "path": "runs/20261021T202330484440Z-continuous-generation-semantic-switch/summary.json",
+    "bytes": 850,
+    "sha256": "a538011ab4f5cab5a841a965121355bd2e16ffe1e12d9ba9e7598e88ef8750be"
+  },
+  {
+    "path": "runs/20261021T202330484440Z-continuous-generation-semantic-switch/test-cases.json",
+    "bytes": 239,
+    "sha256": "4d7c008f873066c5421e652b2b6fbb36eaf0829385cf8727ce0c4ca583988e64"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/gradle.log",
+    "bytes": 11281,
+    "sha256": "ca0f6e6a52ead06a09feaf20aa889961120f49f3a20426ee7bfe4744cd95f97c"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/source-before.json",
+    "bytes": 57871,
+    "sha256": "7634ca77f2ccc528c5b03d68ca1380b1985dcfec9f017f091ec375247a3a6fee"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/studio-desktop-TEST-com.example.chatbar.desktop.DesktopStudioPresentationTest.xml",
+    "bytes": 2661,
+    "sha256": "d48deaaf18d1b480245232d1875ad436f826d99c224be66668bc24d84f811b04"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/studio-desktop-TEST-com.example.chatbar.desktop.DesktopStudioWorkspaceTest.xml",
+    "bytes": 704,
+    "sha256": "c3718ab3ebea26842669a7ae31331503e3e667c19362650a33eb2aaa28c231e9"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/studio-desktop-TEST-com.example.chatbar.desktop.SourceZoomSurfaceTest.xml",
+    "bytes": 516,
+    "sha256": "f5956428926e975fbc668b0320d4d17395f960acfe2632b1ec1cc50e301e4603"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/studio-desktop-TEST-com.example.chatbar.desktop.SuiteChromeTest.xml",
+    "bytes": 1136,
+    "sha256": "77ce8bc73802eee3ddc3845cc383ed9eb9f202f9f3c04c5001ff17f70d317b91"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.AssetArchiveWorkflowTest.xml",
+    "bytes": 693,
+    "sha256": "43266f955594e5634f872fe822e9f3b8676085ee5d36c57d541c2a3343669a13"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.AutosaveCancellationTest.xml",
+    "bytes": 521,
+    "sha256": "d32e52509eeacc31cc2f288c6083ebceace3809889419aa01a0bbf892b239907"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GalleryAlbumWorkflowTest.xml",
+    "bytes": 542,
+    "sha256": "61c47ff2e245aa47fcb95bebcf16c6a70b0ede9936fe1c4420df1c330234cb68"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest.xml",
+    "bytes": 864,
+    "sha256": "d2105a48f0f95e9018f1af2dcaa82f30aa73f76cef5d38172c72f6def4a435d4"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GalleryIngressTest.xml",
+    "bytes": 676,
+    "sha256": "a73b38d3eecdb972be2301f5763ccfa3acfee0817aa1ae7ed669b4bed07dab47"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GalleryWorkflowTest.xml",
+    "bytes": 513,
+    "sha256": "acb73dce4ead37b3ad10e329b41090c5bff4175ed0c7d889b3508d31918bb417"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GuidanceSafetyTest.xml",
+    "bytes": 819,
+    "sha256": "de4f84e5e0df93a7cd7b7b5c5f696b3294a432dcb2260fa11beca64eb174ca3f"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.ImageCardWorkflowTest.xml",
+    "bytes": 645,
+    "sha256": "a62e206c3e3856828e7a6871a2e1c40e8710266f4374538c4908fb87ea7dfabf"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest.xml",
+    "bytes": 919,
+    "sha256": "bb48b62caf95f79dac1578187dfef7dbc65d5878bfbb7d315044d8e866545935"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest.xml",
+    "bytes": 926,
+    "sha256": "58a046d417ea7b1ee5e5d8d4742358876a2101a1b119b342346e433fe469bdf6"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.MetadataWorkflowTest.xml",
+    "bytes": 970,
+    "sha256": "331729dbc0da451f7efd02e996494df54346da15eb3b586dfe54228828961ed1"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.PostProcessWorkflowTest.xml",
+    "bytes": 825,
+    "sha256": "37a6be3734baa63b24d2448fb96587a585bb46a3cef636a5ddbe5ea0d6faf639"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.PromptReferenceWorkflowTest.xml",
+    "bytes": 1078,
+    "sha256": "954e894176959668dc9ca41cb3b0fe3bb5d96ecd3712c54e4de25509ba0d0d66"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.ReverseWorkflowTest.xml",
+    "bytes": 810,
+    "sha256": "9ac0e4f1fb0238a9d020207bcd9f0ec107de785874e935860f4e399715bdfc87"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioDataLaunchTest.xml",
+    "bytes": 667,
+    "sha256": "69c67b4dbbbdd8dbe8a85afa39ab0549ebc090e6be0f4384004083106d6ecbe5"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioMaintenanceTest.xml",
+    "bytes": 861,
+    "sha256": "4c65fc368f55c09a7e369161f5966e0c539da8dffd4ebfb1c67a779b7acaff63"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioTitleControlsTest.xml",
+    "bytes": 677,
+    "sha256": "947551f5b901ca58f910b66867549ae0efaeb7b5bbf9c13a5933d437f382caf8"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest.xml",
+    "bytes": 1155,
+    "sha256": "370554ebc3664fab0b3951351d69693ae5944367cea91c5fb30d4f4fe4d314c6"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.TypesetQueueWorkflowTest.xml",
+    "bytes": 1049,
+    "sha256": "6bd082f63efafdb163e12784d447bfcc42414c6bb24fcb900aff8d80b6f243b6"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest.xml",
+    "bytes": 2247,
+    "sha256": "05f372e75d317e167221a4b9199217a21ac484d63c6c823e1dbea36eeeefafae"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest.xml",
+    "bytes": 1361,
+    "sha256": "3610b71a3d5a01c3fa30f1ac4b60eedbb7cb69f4f2a25e7a5a322b615c358fe2"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/summary.json",
+    "bytes": 814,
+    "sha256": "147e62adc3bd20abac008bb32375ccfa0c02139fa9478cf8fe080f4ecf982f16"
+  },
+  {
+    "path": "runs/20261021T202520002611Z-continuous-generation-desktop-full/test-cases.json",
+    "bytes": 19214,
+    "sha256": "6d3ce622e55d2a3267a4c077652655414f4c7f4dac7d2ed2e8e34ecce2dc78bf"
+  },
+  {
+    "path": "SOURCE_DELIVERY_IDENTITY.json",
+    "bytes": 144073,
+    "sha256": "e32dd4396406d85140c629ecc59767a856b4df730ec328fb12fb7460fba6c925"
+  }
+]

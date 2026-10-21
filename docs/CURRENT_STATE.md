@@ -1,3 +1,7 @@
+## 连续生成及更新进程验证（2026-10-22）
+
+[实际记录](audits/UX_CONTINUOUS_PROCESS.md)：连续批次/停止/部分结果/重开不重发定向 PASS，桌面完整 91 项 PASS；真实 CLI/HTTP 更新故障 8 项 PASS，历史失败保留。继续安装/迁移故障与固定包验证，PRODUCT_HOLD / NOT RC。
+
 ## 新工作台备份恢复进度（2026-10-22）
 
 [实际记录](audits/UX_LIBRARY_BACKUP.md)：接入已有安全核心，恢复到新目录、缺凭据/目录重连提示及直接打开入口；3 项定向、90 项桌面完整实际 PASS，失败保留。安装版第二窗口与集中真人验收未签；继续完整工程门槛，PRODUCT_HOLD / NOT RC。

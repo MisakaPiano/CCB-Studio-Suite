@@ -1,0 +1,28 @@
+{
+  "phase": "continuous-generation-targeted",
+  "startedUtc": "2026-10-21T20:21:34.528354+00:00",
+  "seconds": 20.732,
+  "exitCode": 1,
+  "tests": 1,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "FAILED",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:test",
+    "--tests",
+    "*WorkbenchWorkflowTest.continuousGeneration*"
+  ],
+  "baseCommit": "e3b444df46214ab3af8e726a8f817948b5576c41",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

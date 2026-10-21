@@ -114,6 +114,66 @@ class WorkbenchWorkflowTest {
         }finally{scene.close();c.close();scope.cancel()}
     }
 
+    @Test fun continuousGenerationCompletesRemainderStopsAndRetainsPartialResultsWithoutReplay()=runBlocking(awt){
+        val r=root();val png=EditorRenderer.synthetic(64,64)
+        val requests=CopyOnWriteArrayList<Int>()
+        val admissions=java.util.concurrent.atomic.AtomicInteger()
+        val waiting=CompletableDeferred<Unit>()
+        val partial=java.util.concurrent.atomic.AtomicBoolean(false)
+        val server=HttpServer.create(InetSocketAddress("127.0.0.1",0),0)
+        server.createContext("/"){e->
+            val request=Json.parseToJsonElement(e.requestBody.readBytes().decodeToString()).jsonObject
+            val count=request.getValue("parameters").jsonObject.getValue("n_samples").jsonPrimitive.int
+            requests+=count
+            val bytes=(0 until if(partial.get())1 else count).fold(byteArrayOf()){all,_->all+frame(png)}
+            e.sendResponseHeaders(200,bytes.size.toLong());e.responseBody.use{it.write(bytes)}
+        };server.start()
+        val client=studioHttpClient().newBuilder().addInterceptor{chain->chain.proceed(chain.request().newBuilder().url("http://127.0.0.1:${server.address.port}/").removeHeader("Authorization").build())}.build()
+        val scope=CoroutineScope(SupervisorJob()+awt);val w=StudioWorkspace.openStudio(r)
+        val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),client,RequestAdmission{
+            if(admissions.incrementAndGet()==4){waiting.complete(Unit);awaitCancellation()}
+        })
+        val scene=ImageComposeScene(1240,880,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        try {
+            c.saveAccount(null,"Continuous fixture","NAI","https://image.novelai.net",NovelAiImageModel.V4_5_FULL.apiId,"LOCAL_TEST_ONLY");c.idle()
+            scene.frames();scene.field("基础 Prompt","Continuous fixture")
+            val toggle=scene.nodes().first{it.config.getOrNull(SemanticsProperties.Role)==androidx.compose.ui.semantics.Role.Switch && (it.matches("连续生成")||it.children.any{child->child.matches("连续生成")})}
+            assertTrue(toggle.config[SemanticsActions.OnClick].action!!.invoke());scene.frames()
+            scene.field("目标图片数","3");scene.click("2")
+            assertTrue(c.draft.continuousModeEnabled);assertEquals(2,c.draft.activeSettings.count)
+            scene.click("生成图片");c.idle();scene.frames()
+            assertEquals(listOf(2,1),requests.toList());assertEquals(3,c.assets.size)
+            assertEquals(listOf("COMPLETED","COMPLETED"),w.state.jobs.map{it.state})
+            scene.shot("continuous-completed-remainder")
+
+            scene.field("目标图片数","5");scene.click("生成图片")
+            withTimeout(30000){waiting.await()};scene.frames()
+            assertEquals(5,c.assets.size);assertEquals(listOf(2,1,2),requests.toList())
+            scene.shot("continuous-waiting-stoppable");scene.click("停止")
+            withTimeout(30000){c.active!!.join()};scene.frames()
+            assertFalse(c.busy);assertNull(c.problem);assertEquals("CANCELLED",w.state.jobs.last().state)
+            assertTrue(w.state.jobs.last().results.isEmpty());assertEquals(5,c.assets.size)
+
+            partial.set(true);scene.click("生成图片")
+            withTimeout(30000){c.active!!.join()};scene.frames()
+            assertNotNull(c.problem);assertEquals(listOf(2,1,2,2),requests.toList())
+            assertEquals("FAILED",w.state.jobs.last().state);assertEquals(1,w.state.jobs.last().results.size)
+            assertEquals(6,c.assets.size);scene.shot("continuous-partial-retained")
+            c.assets.forEach{assertContentEquals(png,w.bytes(it.request().id().toString()))};c.flush()
+        } finally {scene.close();c.close();scope.cancel();server.stop(0)}
+        StudioWorkspace.openStudio(r).use{again->
+            assertEquals(6,SharedAssets.images(again).size)
+            assertEquals(listOf("COMPLETED","COMPLETED","COMPLETED","CANCELLED","FAILED"),again.state.jobs.map{it.state})
+            assertTrue(again.state.creation!!.draft.continuousModeEnabled)
+            assertEquals(5,again.state.creation!!.draft.continuousTargetCount)
+            val reopenedScope=CoroutineScope(SupervisorJob()+awt)
+            val reopened=WorkbenchController(again,reopenedScope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{error("Reopen must not submit a request")})
+            val reopenedScene=ImageComposeScene(1240,880,coroutineContext=awt){MaterialTheme{Workbench(reopened,DesktopWindowChrome{},false)}}
+            try {reopenedScene.frames();assertNull(reopened.active);assertFalse(reopened.busy);assertEquals(6,reopened.assets.size)}
+            finally {reopenedScene.close();reopened.close();reopenedScope.cancel()}
+        }
+    }
+
     @Test fun creationFooterAndImageSummaryAdaptWithoutLosingDraftOrSelection()=runBlocking(awt){
         val r=root();val w=StudioWorkspace.openStudio(r)
         val asset=w.importImage("layout-fixture.png",EditorRenderer.synthetic(96,96))

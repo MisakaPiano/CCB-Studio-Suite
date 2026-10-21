@@ -188,11 +188,21 @@
     {
       "id": "P10",
       "owner": "UX-R1b",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "StudioApplication.kt: WorkbenchController.generate",
+        "DesktopStudioControls.kt: StudioGenerationSettings",
+        "CreationSession.kt: StudioGenerator"
+      ],
+      "tests": [
+        "WorkbenchWorkflowTest.continuousGenerationCompletesRemainderStopsAndRetainsPartialResultsWithoutReplay"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_CONTINUOUS_PROCESS/compose-scenes"
+      ],
+      "persistenceEvidence": [
+        "6 original images byte-identical after reopen; completed/cancelled/failed histories retained; no replay"
+      ],
+      "status": "ENGINEERING_PARTIAL / LOOPBACK_GUI_PASS / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "P11",

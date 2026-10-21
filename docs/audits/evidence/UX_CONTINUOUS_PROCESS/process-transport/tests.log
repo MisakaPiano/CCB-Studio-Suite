@@ -1,0 +1,13 @@
+test_bad_signature_is_rejected_before_payload (__main__.ProcessTransportTests.test_bad_signature_is_rejected_before_payload) ... ok
+test_cached_metadata_rollback_is_rejected (__main__.ProcessTransportTests.test_cached_metadata_rollback_is_rejected) ... ok
+test_disconnect_then_explicit_retry_verifies_exact_installer (__main__.ProcessTransportTests.test_disconnect_then_explicit_retry_verifies_exact_installer) ... ok
+test_expired_metadata_is_rejected_before_payload (__main__.ProcessTransportTests.test_expired_metadata_is_rejected_before_payload) ... ok
+test_killed_download_process_releases_cache_and_never_completes (__main__.ProcessTransportTests.test_killed_download_process_releases_cache_and_never_completes) ... ok
+test_tampered_real_installer_has_no_completion (__main__.ProcessTransportTests.test_tampered_real_installer_has_no_completion) ... ok
+test_unreachable_loopback_does_not_download (__main__.ProcessTransportTests.test_unreachable_loopback_does_not_download) ... ok
+test_wrong_platform_is_rejected_before_payload (__main__.ProcessTransportTests.test_wrong_platform_is_rejected_before_payload) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 23.164s
+
+OK
