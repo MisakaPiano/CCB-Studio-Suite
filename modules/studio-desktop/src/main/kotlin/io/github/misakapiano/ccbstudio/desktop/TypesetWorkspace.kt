@@ -33,6 +33,7 @@ import kotlin.math.*
     val e=c.editor;var newName by remember{mutableStateOf("")};var creating by remember{mutableStateOf(false)}
     var projectAction by remember{mutableStateOf<String?>(null)};var projectName by remember{mutableStateOf("")};
     var deletePages by remember{mutableStateOf(false)};var tab by remember{mutableStateOf("画布")}
+    var management by remember{mutableStateOf(false)}
     var exporting by remember{mutableStateOf(false)};var fullPreview by remember{mutableStateOf(false)}
     if(picking)SharedAssetPicker(c,true,{picking=false}){ids->c.selection=ids.toSet();creating=true}
     if(appendPicking)SharedAssetPicker(c,true,{appendPicking=false}){ids->e.appendSelected(confirmedIds=ids)}
@@ -41,19 +42,28 @@ import kotlin.math.*
         StudioActions {
             CompactChoice("编辑工程",c.state.typesetProjects.map{if(it.id==e.project?.id)e.project!!else it},e.project,{it.name}){e.open(it.id)}
             StudioAction("新建编辑工程",!c.busy){creating=true}
-            StudioAction("从资产库新建",!c.busy){picking=true}
             if(e.project!=null)StudioAction("从资产库追加",!c.busy){appendPicking=true}
+            StudioAction("撤销编辑",!c.busy && (e.dirty || e.project?.undo?.isNotEmpty()==true)){e.history()}
+            StudioAction("重做编辑",!c.busy && e.project?.redo?.isNotEmpty()==true){e.history(true)}
+            StudioAction("预览与导出",!c.busy && e.document?.pages?.isNotEmpty()==true){exporting=true}
+            StatusText(if(e.dirty)"编辑待保存"else"编辑已保存")
+            StudioAction("工程选项",selected=management){management=!management}
+        }
+        if(management)Column(Modifier.fillMaxWidth().heightIn(max=240.dp).verticalScroll(rememberScrollState())) {
+            StudioActions {
+            StudioAction("从资产库新建",!c.busy){picking=true}
             StudioAction("导入 TypeSet 工程",!c.busy){e.inspectExchange()}
             if(e.project!=null){StudioAction("重命名工程",!c.busy){projectName=e.project!!.name;projectAction="rename"};StudioAction("另存工程",!c.busy){projectName=e.project!!.name+" 副本";projectAction="copy"};StudioAction("删除工程",!c.busy){projectAction="remove"}}
             StudioAction("保存工程",e.dirty && !c.busy){c.run("保存工程"){e.drain()}}
-            StudioAction("撤销编辑",!c.busy && (e.dirty || e.project?.undo?.isNotEmpty()==true)){e.history()}
-            StudioAction("重做编辑",!c.busy && e.project?.redo?.isNotEmpty()==true){e.history(true)}
             StudioAction("完整预览",!c.busy && e.document?.pages?.isNotEmpty()==true){fullPreview=true}
-            StudioAction("预览与导出",!c.busy && e.document?.pages?.isNotEmpty()==true){exporting=true}
             StudioAction("导入编辑 Recipe",!c.busy && e.page!=null){e.inspectRecipe()}
-            StatusText(if(e.dirty)"编辑待保存"else"编辑已保存")
+            }
+        if(e.project!=null)StudioDisclosure("工程交换文件") {
+            Text("包含原始图片和可编辑内容。TypeSet不支持的锁定与混合层序保存在Studio扩展中；外部TypeSet按其原有先打码后文字规则显示。字体文件不自动再分发。")
+            StudioActions {StudioAction("导出当前 TypeSet 工程",!c.busy){e.exportExchange()};StudioAction("另存导入原文件",!c.busy && e.project?.sourceExchangeId!=null){e.exportExchange(true)}}
         }
-        if(e.document!=null)Text("静态排版：GIF / 动态WebP编辑首帧，APNG编辑默认静态图，动画原件始终保留。",modifier=Modifier.padding(horizontal=12.dp))
+            StudioDisclosure("编辑说明") { Text("编辑结果自动保存；动画图片仅编辑首帧或默认图，原始文件保留。") }
+        }
         e.exportProgress?.let{progress->
             Column(Modifier.fillMaxWidth().padding(horizontal=12.dp,vertical=6.dp)) {
                 val label=when(progress.stage){
@@ -81,10 +91,6 @@ import kotlin.math.*
         }
         e.exportProblem?.let{Text(it,color=MaterialTheme.colors.error,modifier=Modifier.padding(horizontal=12.dp))}
         e.exchangeMessage?.let{Text(it,modifier=Modifier.padding(horizontal=12.dp))}
-        if(e.project!=null)StudioDisclosure("工程交换文件") {
-            Text("包含原始图片和可编辑内容。TypeSet不支持的锁定与混合层序保存在Studio扩展中；外部TypeSet按其原有先打码后文字规则显示。字体文件不自动再分发。")
-            StudioActions {StudioAction("导出当前 TypeSet 工程",!c.busy){e.exportExchange()};StudioAction("另存导入原文件",!c.busy && e.project?.sourceExchangeId!=null){e.exportExchange(true)}}
-        }
         if(e.document==null) {
             Box(Modifier.fillMaxSize(),contentAlignment=Alignment.Center){Column(horizontalAlignment=Alignment.CenterHorizontally){Text("把图片编成可再次编辑的工程");Text("从图库选择图片，命名后建立队列；原件保持完整。")
                 StudioAction("前往图库选择图片"){c.view="图库"};if(c.state.typesetProjects.isNotEmpty())StudioAction("继续最近工程"){e.open(c.state.typesetProjects.last().id)}}}
@@ -104,6 +110,7 @@ import kotlin.math.*
                     Row(Modifier.weight(1f).fillMaxWidth()) {
                         if(!compact || tab=="队列")Column(if(compact)Modifier.fillMaxSize()else Modifier.width((queueDragWidth?:e.document!!.queueWidth.toFloat()).dp).fillMaxHeight()) {
                             TypesetQueue(c,e,Modifier.weight(1f))
+                            StudioDisclosure("页面操作") {
                             StudioDisclosure("队列设置") {
                                 NumberField("开始编号",e.document!!.startNumber.toDouble(),0.0..1000000.0){v->e.change{it.copy(startNumber=v.toInt())}}
                                 NumberField("编号位数",e.document!!.numberDigits.toDouble(),1.0..8.0){v->e.change{it.copy(numberDigits=v.toInt())}}
@@ -114,6 +121,7 @@ import kotlin.math.*
                             StudioActions{StudioAction("全选页"){e.selectedPages=e.document!!.pages.map{it.id}.toSet()};StudioAction("全不选页"){e.selectedPages=emptySet()};StudioAction("反选页"){e.selectedPages=e.document!!.pages.map{it.id}.toSet()-e.selectedPages}}
                             StudioActions{StudioAction("上移页"){e.movePages(-1)};StudioAction("下移页"){e.movePages(1)};StudioAction("移除所选页",e.selectedPages.isNotEmpty()){deletePages=true}}
                             StudioActions{StudioAction("置顶页"){e.movePagesTo(null,false)};StudioAction("置底页"){e.movePagesTo(null,true)};StudioAction("追加图库所选",c.selection.isNotEmpty() && !c.busy){e.appendSelected()}}
+                            }
                             StatusText("${e.selectedPages.size} 页已选 / ${e.document!!.pages.size} 页")
                         }
                         if(!compact)Box(Modifier.width(6.dp).fillMaxHeight().background(if(queueDragWidth!=null)Gold else Panel)
@@ -271,11 +279,7 @@ private data class EditorRaster(val bitmap:ImageBitmap,val width:Int,val height:
     if(e.mask!=null || e.tool in setOf("rect","brush","lasso")) {
         val m=e.mask?:e.maskDefault
         Text(if(e.mask!=null)"所选打码属性"else"新打码参数")
-        fun update(transform:(TypesetMask)->TypesetMask){
-            e.maskDefault=transform(e.maskDefault)
-            if(e.mask!=null)e.pageChange{p->p.copy(masks=p.masks.map{if(it.id==e.objectId)transform(it)else it})}
-            e.pageChange{it.copy(toolDefaults=e.maskDefault)}
-        }
+        fun update(transform:(TypesetMask)->TypesetMask)=e.updateMaskSettings(transform)
         if(m.effect in setOf("solid","hatch"))Text("旧中间版效果已保留，请明确选择下列效果完成转换。")
         CompactChoice("打码效果",listOf("black","white","mosaic","blur"),m.effect,{when(it){"black"->"黑条 / 黑色";"white"->"白条 / 白色";"mosaic"->"马赛克";else->"模糊"}}){v->update{it.copy(effect=v)}}
         NumberField("效果强度",m.strength.toDouble(),1.0..256.0){v->update{it.copy(strength=v.toInt())}}
@@ -287,7 +291,7 @@ private data class EditorRaster(val bitmap:ImageBitmap,val width:Int,val height:
         }
         if(e.mask!=null){StudioAction(if(m.visible)"隐藏打码"else"显示打码"){e.pageChange{p->p.copy(masks=p.masks.map{if(it.id==m.id)it.copy(visible=!it.visible)else it})}};StudioAction("移除打码"){e.removeObject()}}
     }
-    if(e.text==null)Text("在画布中点击文字或从对象列表选择。新增文字后输入，样式与方向即时更新。")
+    if(e.text==null && e.mask==null && e.tool=="select")Text("选中文字或打码以调整样式。")
     StudioDisclosure("批次样式") {Text("当前文字样式应用到所有所选页面的文字；上一页样式按对象顺序匹配，多出的文字沿用上一页最后一项。保留文字和位置，可整体撤销。")
         StudioAction("当前样式应用到所选页",e.selectedPages.isNotEmpty()){e.applyStyleToSelection()};StudioAction("各自上一页样式",e.selectedPages.isNotEmpty()){e.applyStyleToSelection(true)}}
 }

@@ -13,14 +13,22 @@ import io.github.misakapiano.ccbstudio.core.*
     var name by remember(selected){mutableStateOf(prefs.textPresets.firstOrNull{it.id==selected}?.name.orEmpty())}
     var slot by remember{mutableStateOf("light_mosaic")}
     var confirm by remember{mutableStateOf<String?>(null)}
+    var saving by remember{mutableStateOf(false)}
+    var newName by remember{mutableStateOf("")}
     fun slotName(key:String)=when(key){"light_mosaic"->"轻马赛克";"heavy_mosaic"->"重马赛克";"fine_stripes"->"细条纹";"coarse_stripes"->"粗条纹";else->"已保存自定义参数"}
+    if(e.text!=null)StudioActions {
+        if(prefs.textPresets.isNotEmpty())CompactChoice("样式",prefs.textPresets,prefs.textPresets.firstOrNull{it.id==selected},{it.name}){selected=it.id;e.applyTextPreset(it.id)}
+        StudioAction("存为预设",!c.busy){newName="";saving=true}
+    }
+    if(saving)AlertDialog(onDismissRequest={saving=false},title={Text("保存嵌字样式")},text={OutlinedTextField(newName,{newName=it.take(100)},label={Text("样式名称，例如对白或旁白")})},
+        confirmButton={TextButton(enabled=newName.isNotBlank()&&!c.busy,onClick={e.saveTextPreset(newName.trim());saving=false}){Text("保存样式")}},
+        dismissButton={TextButton(onClick={saving=false}){Text("取消")}})
     StudioDisclosure("预设与默认") {
         Text("文字预设跨工程可用，只保存样式，不保存本页文字和位置。")
         StudioActions{StudioAction("导入 TypeSet 预设",!c.busy){e.inspectPresets()};StudioAction("导出 TypeSet 预设",!c.busy){e.exportPresets()}}
         CompactChoice("文字预设",prefs.textPresets, prefs.textPresets.firstOrNull{it.id==selected},{it.name}){selected=it.id}
         OutlinedTextField(name,{name=it.take(100)},label={Text("预设名称")},modifier=Modifier.fillMaxWidth())
         StudioActions {
-            StudioAction("记住新建文字样式",e.text!=null && !c.busy){e.rememberTextDefault()}
             StudioAction("保存新文字预设",e.text!=null && name.isNotBlank() && !c.busy){e.saveTextPreset(name)}
             StudioAction("应用文字预设",e.text!=null && selected!=null && !c.busy){e.applyTextPreset(selected!!)}
             StudioAction("覆盖文字预设",e.text!=null && selected!=null && name.isNotBlank() && !c.busy){confirm="text-overwrite"}
@@ -37,7 +45,7 @@ import io.github.misakapiano.ccbstudio.core.*
         }
         CompactChoice("启动默认",listOf("custom")+TypesetPreferences.MASK_SLOTS,prefs.preferredMaskSlot,::slotName){e.maskPreset("prefer",it)}
         StudioAction("记住连续工作打码参数",!c.busy){e.rememberLaterMaskDefault()}
-        Text("已存页面优先使用自己的参数；无单页默认的后续切图/新页使用连续工作参数；否则按启动默认选择工具。细/粗条纹保留当前黑白色，否则使用黑色。")
+        StudioDisclosure("设置如何沿用") { Text("新文字自动沿用最近修改的样式，文字和位置各张独立。已有页面保留自己的打码参数；其余图片沿用连续工作参数或当前工具。") }
     }
     e.presetInspection?.let{inspection->AlertDialog(onDismissRequest={e.cancelPresetImport()},title={Text("确认导入 TypeSet 预设")},text={Column{
         Text("${inspection.preferences.textPresets.size} 个文字预设，${inspection.preferences.maskOverrides.size} 个自定义打码槽。")

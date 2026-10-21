@@ -41,12 +41,15 @@ import com.example.chatbar.desktop.*
         if(book)StudioSwitch("同时生成整册 PDF",pdf){pdf=!pdf}
         if(book && pdf)Text("PDF 2.0按实际页面高度输出；超长页需支持大页面的阅读器，不截断或缩小旁白。")
         Text("共 ${pages.size} 页，按队列顺序及编号输出。确认后选择位置，每次新建独立文件夹。")
+        if(metadata=="strip" && ("original" in orderedVariants || recipe))Text("原始文件和 Recipe 附件保留来源信息，不属于隐私清除范围。")
+        StudioDisclosure("格式与文件说明") {
         Text("每个所选分类都包含全部目标页，包括没有文字或打码的页面。JPEG 使用白色背景；JPEG/WebP不携带源元数据。原格式仅保留PNG/JPEG/WebP编码，GIF/BMP编辑结果转PNG。")
         Text(if(book)"小人书为合成页面，不携带源元数据。"else if(metadata=="preserve")"PNG 保留源文本块和 alpha 隐写；它们描述原图，原签名不能证明编辑后的图片。"else"隐私清除会重写像素低位并移除源元数据，像素值可能轻微变化。")
         if("original" in orderedVariants)Text("原始文件分类始终保留所有原始字节和元数据，不执行隐私清除。")
         if(recipe)Text("Recipe 附件包含原图关联信息、编辑内容及源 Recipe，不属于隐私清除范围。")
         Text("GIF、动态WebP仅编辑首帧，APNG使用默认静态图；动画只在原始文件分类中按原字节保留。")
         Text("复制会把所有所选输出文件放入剪贴板，可粘贴到资源管理器；单张静态图片还可粘贴到图像应用。")
+        }
         e.exportDirectory?.let{Text("最近完成位置：$it")}
     }}
     TypesetPreviewDialog(if(book)"整册预览与导出"else"批量预览与导出",dismiss,content={

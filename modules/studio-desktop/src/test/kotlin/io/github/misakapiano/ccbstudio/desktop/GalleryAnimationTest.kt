@@ -49,7 +49,7 @@ class GalleryAnimationTest {
         suspend fun click(text:String){val n=nodes().first{it.config.getOrNull(SemanticsProperties.Text)?.any{t->t.text==text}==true&&it.config.getOrNull(SemanticsActions.OnClick)!=null};assertTrue(n.config[SemanticsActions.OnClick].action!!.invoke());frames()}
         var restored=""
         try{
-            frames();click("APNG伪装 / 还原");click("预览当前处理");c.active!!.join();frames();assertNull(c.problem);assertNotNull(c.animation.preview)
+            frames();click("图片工具");click("APNG伪装 / 还原");click("预览当前处理");c.active!!.join();frames();assertNull(c.problem);assertNotNull(c.animation.preview)
             val preview=c.animation.preview!!;val tmp=Files.write(r.resolve("preview.png"),preview)
             assertNotNull(ApngDisguiseCodec.inspectDisguise(tmp.toFile()));assertFails{DesktopImageEditing.requireStatic(preview)}
             withTimeout(10000){while(nodes().none{it.config.getOrNull(SemanticsProperties.ContentDescription)?.contains("处理结果静态封面")==true})frames()}
@@ -69,7 +69,7 @@ class GalleryAnimationTest {
             click("取消，保留动画");assertTrue(w.state.typesetProjects.isEmpty());assertNull(c.editor.staticChoice)
             c.editor.create("静态确认",listOf(disguised));c.active!!.join();frames();click("同意仅编辑静态图");c.active!!.join();assertEquals(disguised,c.editor.document!!.pages.single().assetId)
             c.view="图库";frames()
-            click("返回图库");click("APNG伪装 / 还原");click("还原伪装 APNG");click("预览当前处理");c.active!!.join();assertNull(c.problem);samePixels(bytes,c.animation.preview!!)
+            click("返回图库");click("图片工具");click("APNG伪装 / 还原");click("还原伪装 APNG");click("预览当前处理");c.active!!.join();assertNull(c.problem);samePixels(bytes,c.animation.preview!!)
             click("保存当前副本到图库");c.active!!.join();restored=c.current!!;samePixels(bytes,w.bytes(restored));ids.forEach{assertContentEquals(bytes,w.bytes(it))}
         }finally{scene.close();c.close();scope.cancel();w.close()}
         StudioWorkspace.openStudio(r.resolve("workspace")).use{reopened->samePixels(bytes,reopened.bytes(restored));assertTrue(restored in reopened.state.savedCopies);ids.forEach{assertContentEquals(bytes,reopened.bytes(it))}}

@@ -92,13 +92,15 @@ internal fun saveImagePrompt(c:WorkbenchController,id:String,addToBoard:Boolean)
         result==null->Text("正在读取…")
         result!!.isFailure->Text("READ_ERROR · 历史或原件不能核验，未替换为空 Prompt。",color=MaterialTheme.colors.error)
         read!=null->{
-            Text("${promptReadingLabel(read.status)} · ${read.explanation}",style=MaterialTheme.typography.caption)
-            if(read.sections.isEmpty())Text("没有非空 Prompt；原图仍可查看和编辑。")
+            Text(promptReadingLabel(read.status),style=MaterialTheme.typography.caption)
+            if(read.sections.isNotEmpty() || read.status!="MISSING")StudioDisclosure("参数来源说明"){Text(read.explanation,style=MaterialTheme.typography.caption)}
             read.sections.forEach{s->Text(s.label+(s.roleId?.let{" · 原始 ${s.attributes["原始角色位置"]}"}?:""),color=Gold);SelectionContainer{Text(s.text)}}
             StudioActions {
                 if(read.context.parameters["AI 设计关联"]?.let{it!="未记录"}==true)StudioAction("查看 AI 设计过程"){showDesign=true}
+                if(read.sections.isNotEmpty()) {
                 StudioAction("保存图片 Prompt 资产",!c.busy&&read.sections.isNotEmpty()){c.run("保留图片 Prompt"){saveImagePrompt(c,id,false)}}
                 StudioAction("图片加入多 Prompt 参照",!c.busy&&read.sections.isNotEmpty()){c.run("加入图片参照"){saveImagePrompt(c,id,true);c.library.tab="多 Prompt 参照";c.view="资产管理"}}
+                }
             }
         }
     }

@@ -38,7 +38,7 @@ class PromptReferenceWorkflowTest {
             val reading=readImagePrompt(c,edited)
             assertEquals("VERIFIED_SOURCE_HISTORY",reading.status);assertEquals(original,reading.context.parameters["来源图片"])
             assertTrue(reading.explanation.contains("后续处理"));assertEquals("original scene",reading.sections.single{it.id=="base"}.text)
-            scene.click("所选图片多 Prompt 参照");c.idle();scene.frames()
+            scene.openGalleryTools();scene.click("所选图片多 Prompt 参照");c.idle();scene.frames()
             val id=PromptReferences(c.library.repository).load().ids.single()
             assertTrue(scene.nodes().any{it.matches("参数来自源图 ${original.take(8)}；当前图包含后续处理。")})
             scene.click("发送请求快照 ${id.take(8)}");c.idle();scene.frames();scene.click("复制完整内容")
@@ -76,7 +76,7 @@ class PromptReferenceWorkflowTest {
         try {
             scene.frames();withTimeout(10000){while(scene.nodes().none{it.matches("保存图片 Prompt 资产")})scene.frames()}
             assertTrue(readImagePrompt(c,ids.first()).sections.none{it.text.isBlank()});scene.shot("gallery-image-prompt")
-            scene.click("所选图片多 Prompt 参照");c.idle();scene.frames()
+            scene.openGalleryTools();scene.click("所选图片多 Prompt 参照");c.idle();scene.frames()
             val refs=PromptReferences(c.library.repository);promptIds=refs.load().ids;assertEquals(2,promptIds.size)
             val a=promptIds.single{c.library.repository.prompt(it).image!!.imageId==ids.first()}
             b=promptIds.single{c.library.repository.prompt(it).image!!.imageId==ids.last()};originalPrompt=w.bytes(b)
@@ -135,5 +135,8 @@ class PromptReferenceWorkflowTest {
             w.save(w.state.copy(jobs=listOf(JobRecord(account=account,recipe=bad,state="COMPLETED",results=listOf(id)))))
             assertFails{readImagePrompt(c,id)};assertFails{saveImagePrompt(c,id,true)};assertTrue(c.library.repository.prompts().isEmpty())
         }finally{c.close();scope.cancel();w.close()}
+    }
+    private suspend fun ImageComposeScene.openGalleryTools(){
+        if(nodes().none{it.matches("APNG伪装 / 还原")})click("图片工具")
     }
 }

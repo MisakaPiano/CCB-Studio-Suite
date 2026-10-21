@@ -45,7 +45,7 @@ class GalleryAlbumWorkflowTest {
         suspend fun until(check:()->Boolean){withTimeout(20000){while(!check())scene.frames()};scene.frames()}
         suspend fun idle(){until{!c.busy};assertNull(c.problem)}
         try {
-            until{c.gallery.foldPreferences!=null};scene.click("折叠方式 · 完整 ▾");scene.click("基础");idle()
+            until{c.gallery.foldPreferences!=null};scene.click("▸ 筛选与分组");scene.click("折叠方式 · 完整 ▾");scene.click("基础");idle()
             scene.click("折叠为相册");idle()
             until{scene.nodes().any{it.config.getOrNull(SemanticsProperties.ContentDescription)?.any{d->d.startsWith("图库相册 ")}==true}}
             val cover=scene.nodes().first{it.config.getOrNull(SemanticsProperties.ContentDescription)?.any{d->d.startsWith("图库相册 ")}==true}.config[SemanticsProperties.ContentDescription].first().removePrefix("图库相册 ")

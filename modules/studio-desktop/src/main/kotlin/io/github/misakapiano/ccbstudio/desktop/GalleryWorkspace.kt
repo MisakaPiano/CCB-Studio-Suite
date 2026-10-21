@@ -43,6 +43,7 @@ internal class GalleryViewState {
 }
 @Composable internal fun GalleryWorkspace(c:WorkbenchController) {
     val g=c.gallery
+    var toolsOpen by remember{mutableStateOf(false)}
     val labels=c.library.state?.labels.orEmpty()
     if(c.animation.ids!=null){GalleryAnimationWorkspace(c);return}
     g.metadata?.let{id->MetadataWorkspace(c,id){g.metadata=null};return}
@@ -87,8 +88,6 @@ internal class GalleryViewState {
     }
     Column(Modifier.fillMaxSize().galleryIngress(c).padding(12.dp),verticalArrangement=Arrangement.spacedBy(8.dp)){
         StudioActions{StudioAction("导入图片",!c.busy){c.importImages()};StudioAction("粘贴图片",!c.busy){if(!c.pasteImages())c.problem="剪贴板没有图片或文件列表；文字请粘贴到输入框"};StudioAction("返回创作"){c.view="创作"}}
-        Text("拖入文件 / Ctrl+V · PNG、JPEG、WebP、GIF、BMP · 每文件≤32MiB，≤12582912像素；动图预览首帧，原文件保留",style=MaterialTheme.typography.caption)
-        StudioAction("管理收集与导入目录"){c.library.tab="目录入口";c.view="资产管理"}
         c.library.archiveError?.let{Text(it,color=MaterialTheme.colors.error)}
         SharedDocumentAssets(c)
         if(g.imports.isNotEmpty()){
@@ -98,7 +97,7 @@ internal class GalleryViewState {
         }
         Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)){
             OutlinedTextField(g.query,{g.query=it;c.selection=emptySet();g.anchor=null},label={Text("查找文件名或历史 Prompt")},modifier=Modifier.weight(1f))
-            CompactChoice("来源",listOf("all","generated","imported"),g.source,{when(it){"generated"->"生成历史";"imported"->"导入/副本";else->"全部来源"}}){g.source=it;c.selection=emptySet();g.anchor=null}
+
         }
         GalleryAlbumControls(c)
         if(history==null)StatusText("正在核验生成记录，图片原件可查看…")
@@ -134,7 +133,7 @@ internal class GalleryViewState {
 
                 if(wide)Column(Modifier.width(340.dp).fillMaxHeight().verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(8.dp)){
                     AssetImage(c,c.current,Modifier.fillMaxWidth().height(240.dp))
-                    c.assets.firstOrNull{it.request().id().toString()==c.current}?.let{a->Text(a.request().name());Text("${a.size()} bytes · SHA-256 ${a.sha256()}",style=MaterialTheme.typography.caption)}
+                    c.assets.firstOrNull{it.request().id().toString()==c.current}?.let{a->Text(a.request().name());StudioDisclosure("文件详情"){Text("${a.size()} bytes · SHA-256 ${a.sha256()}",style=MaterialTheme.typography.caption)}}
                     c.current?.let{ImagePromptPreview(c,it)}
                 }
             }
@@ -143,6 +142,11 @@ internal class GalleryViewState {
             StudioAction("全选",history!=null){c.selection=visible.map{it.request().id().toString()}.toSet()};StudioAction("全不选"){c.selection=emptySet()};StudioAction("反选",history!=null){val ids=visible.map{it.request().id().toString()}.toSet();c.selection=(c.selection-ids)+(ids-c.selection)}
             StatusText("${c.selection.size} 项已选 · ${c.selection.count{id->visible.none{it.request().id().toString()==id}}} 项在筛选外")
             StudioAction("比较 2 张",c.selection.size==2){g.compare=c.assets.filter{it.request().id().toString() in c.selection}.map{it.request().id().toString()}}
+            StudioAction("所选图片建立编辑工程",c.selection.isNotEmpty() && !c.busy){c.view="编辑"}
+            StudioAction("图片工具",selected=toolsOpen){toolsOpen=!toolsOpen}
+        }
+        if(toolsOpen)Column(Modifier.fillMaxWidth().heightIn(max=200.dp).verticalScroll(rememberScrollState())) {
+            StudioActions {
             StudioAction("所选图片多 Prompt 参照",c.selection.isNotEmpty()&&!c.busy){c.run("建立图片参照"){
                 val results=c.assets.filter{it.request().id().toString() in c.selection}.map{a->runCatching{saveImagePrompt(c,a.request().id().toString(),true)}}
                 val failed=results.count{it.isFailure};if(failed>0)c.problem="$failed 张图片没有可读取的非空 Prompt，未加入；其他已保存的参照保留。"
@@ -151,9 +155,11 @@ internal class GalleryViewState {
             StudioAction("参数与来源",c.current!=null){g.metadata=c.current}
             StudioAction("选中图片用于引导",c.current!=null&&!c.busy){c.section="图像引导";c.view="创作"}
             StudioAction("APNG伪装 / 还原",c.selection.isNotEmpty()&&!c.busy){c.animation.open(c.assets.filter{it.request().id().toString() in c.selection}.map{it.request().id().toString()})}
-            StudioAction("所选图片建立编辑工程",c.selection.isNotEmpty() && !c.busy){c.view="编辑"}
             StudioAction("所选资产移入回收站",c.selection.isNotEmpty()&&!c.busy&&c.library.error==null&&c.library.archiveError==null){c.library.archiveRequest=c.selection.toSet()}
             StudioAction("资产回收站"){c.library.tab="回收站";c.view="资产管理"}
+            }
+            StudioAction("管理收集与导入目录"){c.library.tab="目录入口";c.view="资产管理"}
+            StudioDisclosure("导入说明") {Text("拖入文件或 Ctrl+V 粘贴；支持 PNG、JPEG、WebP、GIF、BMP。每文件最多 32 MiB、12582912 像素。动图预览首帧，原文件保留。")}
         }
     }
 }

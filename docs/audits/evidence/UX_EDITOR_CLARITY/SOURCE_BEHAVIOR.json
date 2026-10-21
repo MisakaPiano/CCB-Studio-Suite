@@ -1,0 +1,10 @@
+{
+  "referenceSha256": "892ea08f0070bdfd264b8895d38f6239f32f436b68a74ab42a2ef3336e28bb63",
+  "automaticTextStyle": "updateSelectedText saves textDefaults when a style property changes; defaultText reuses style with image-relative limits",
+  "namedTextPresets": "saveTextPresetAsNew / updateCurrentTextPreset / applyCurrentTextPreset persist named style-only records",
+  "maskPriority": "Per-page tool settings first, then explicit continuous-work defaults/current tool; existing masks and per-page text never copied implicitly",
+  "reproduction": "42-point style on page one became default 27 on page two; actual failing GUI test retained",
+  "nativeCapture": "No new capture or user test requested; user screenshots preferred for future native observations",
+  "installedBuild": "Current installed 0.2.11 predates these changes. Previous 0.2.12 build-only snapshot predates this change and is not delivered as the fix.",
+  "productAcceptance": "NOT TESTED / PRODUCT_HOLD"
+}

@@ -1,0 +1,28 @@
+{
+  "phase": "editor-continuity-reproduction",
+  "startedUtc": "2026-10-21T23:24:38.402283+00:00",
+  "seconds": 156.766,
+  "exitCode": 1,
+  "tests": 1,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "FAILED",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:test",
+    "--tests",
+    "*TypesetWorkflowTest.newTextAutomaticallyContinuesStyleAcrossPagesAndRestartWithoutCopyingContent"
+  ],
+  "baseCommit": "9e6c586a89805d599e83c094bf0be3639ad2dcec",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

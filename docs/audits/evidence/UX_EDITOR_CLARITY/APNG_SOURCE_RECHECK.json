@@ -1,0 +1,18 @@
+[
+  {
+    "sourceCommit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+    "sourcePath": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopImageTools.kt",
+    "suitePath": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopImageTools.kt",
+    "sourceSha256Lf": "6e4c599f5a678dc30686254841b7b9d0f6933bb929cb4f009fec3b36ceb62d63",
+    "suiteSha256Lf": "6e4c599f5a678dc30686254841b7b9d0f6933bb929cb4f009fec3b36ceb62d63",
+    "identicalLf": true
+  },
+  {
+    "sourceCommit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+    "sourcePath": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/ApngDisguiseCodec.kt",
+    "suitePath": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/ApngDisguiseCodec.kt",
+    "sourceSha256Lf": "534e75d95dc27b9fe163eabd1ebadf1fc2fd6eac6490beaf0ccb0f216ea1006f",
+    "suiteSha256Lf": "534e75d95dc27b9fe163eabd1ebadf1fc2fd6eac6490beaf0ccb0f216ea1006f",
+    "identicalLf": true
+  }
+]

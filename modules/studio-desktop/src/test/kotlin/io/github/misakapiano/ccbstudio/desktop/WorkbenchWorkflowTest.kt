@@ -81,7 +81,7 @@ class WorkbenchWorkflowTest {
             assertTrue(scene.nodes().any{it.matches("quiet room, window, warm light")})
             scene.click("复制生成 基础 Prompt");assertEquals("quiet room, window, warm light",copied);scene.shot("design-generated-origin")
             scene.click("设计过程");assertTrue(scene.nodes().any{it.matches("Quiet room")});assertTrue(scene.nodes().any{it.matches("本轮候选被明确应用")});scene.shot("design-origin-history");scene.click("关闭设计来源")
-            scene.click("全选");scene.click("所选图片多 Prompt 参照");c.idle();scene.frames()
+            scene.click("全选");scene.openGalleryTools();scene.click("所选图片多 Prompt 参照");c.idle();scene.frames()
             val promptId=c.library.repository.prompts().single().request().id().toString()
             scene.click("设计来源 ${promptId.take(8)}")
             withTimeout(30000){while(scene.nodes().none{it.matches("应用后又有修改：以最终生成内容和请求快照为准。")})scene.frames()}
@@ -341,5 +341,8 @@ class WorkbenchWorkflowTest {
                 put("result","SAVED_REOPENED_ASSETS_CREDENTIALS_RETAINED");put("before",before);put("after",after)
             })
         }
+    }
+    private suspend fun ImageComposeScene.openGalleryTools(){
+        if(nodes().none{it.matches("APNG伪装 / 还原")})click("图片工具")
     }
 }

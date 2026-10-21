@@ -36,12 +36,12 @@ class AssetArchiveWorkflowTest {
         }}
         try{
             c.editor.create("Kept editor",listOf(image));c.idle();c.view="图库";c.selection=setOf(image);scene.frames()
-            scene.click("所选资产移入回收站");scene.click("取消");assertTrue(c.library.archived.isEmpty())
-            scene.click("所选资产移入回收站");scene.click("确认移入回收站");c.idle();scene.frames()
+            scene.openGalleryTools();scene.click("所选资产移入回收站");scene.click("取消");assertTrue(c.library.archived.isEmpty())
+            scene.openGalleryTools();scene.click("所选资产移入回收站");scene.click("确认移入回收站");c.idle();scene.frames()
             assertEquals(setOf(image),c.library.archived);assertFalse(scene.nodes().any{it.matches("图库图片 $image")});assertTrue(c.selection.isEmpty())
             assertEquals(image,c.editor.document!!.pages.single().assetId);assertContentEquals(original,w.bytes(image))
             picker=true;scene.frames();assertFalse(scene.nodes().any{it.matches("选用资产 $image")});assertTrue(scene.nodes().any{it.matches("选用资产 $other")});scene.click("取消")
-            scene.click("资产回收站");scene.click("恢复资产 ${image.take(8)}");c.idle();scene.frames();assertTrue(c.library.archived.isEmpty())
+            scene.openGalleryTools();scene.click("资产回收站");scene.click("恢复资产 ${image.take(8)}");c.idle();scene.frames();assertTrue(c.library.archived.isEmpty())
             picker=true;scene.frames()
             val field=scene.nodes().first{it.config.getOrNull(SemanticsActions.SetText)!=null&&it.matches("查找文件名、别名或标签")}
             field.config[SemanticsActions.SetText].action!!.invoke(AnnotatedString("月光"));scene.frames()
@@ -60,8 +60,11 @@ class AssetArchiveWorkflowTest {
         val scene=ImageComposeScene(1400,1200,coroutineContext=awt){MaterialTheme{Workbench(c,DesktopWindowChrome{},false)}}
         try{c.view="图库";c.selection=setOf(image);scene.frames()
             assertNotNull(c.library.archiveError);assertTrue(scene.nodes().any{it.matches("图库图片 $image")})
-            val action=scene.nodes().first{it.matches("所选资产移入回收站")&&it.config.getOrNull(SemanticsActions.OnClick)!=null}
+            scene.openGalleryTools();val action=scene.nodes().first{it.matches("所选资产移入回收站")&&it.config.getOrNull(SemanticsActions.OnClick)!=null}
             assertTrue(action.config.contains(SemanticsProperties.Disabled));assertTrue(w.bytes(image).isNotEmpty())
         }finally{scene.close();c.close();scope.cancel()}
+    }
+    private suspend fun ImageComposeScene.openGalleryTools(){
+        if(nodes().none{it.matches("APNG伪装 / 还原")})click("图片工具")
     }
 }

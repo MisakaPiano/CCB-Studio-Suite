@@ -18,6 +18,36 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.test.*
 
 class TypesetWorkflowTest {
+    @Test fun newTextAutomaticallyContinuesStyleAcrossPagesAndRestartWithoutCopyingContent()=runBlocking(awt) {
+        val path=root();val w=StudioWorkspace.openStudio(path);val original=EditorRenderer.synthetic(600,400);val id=w.importImage("continuity.png",original)
+        val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
+        c.editor.create("连续嵌字",listOf(id,id));c.idle()
+        val scene=ImageComposeScene(1400,1000,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        try {
+            scene.frames();scene.rendered();assertFalse(scene.nodes().any{it.matches("删除工程")});scene.shot("editor-simplified-default")
+            scene.click("添加文字");scene.field("文字内容","第一张自己的文字");scene.field("字号","42");scene.click("竖排")
+            scene.click("队列页 2");scene.rendered();scene.click("添加文字")
+            assertEquals(42.0,c.editor.text!!.style.fontSize);assertTrue(c.editor.text!!.vertical);assertEquals("",c.editor.text!!.text)
+            assertEquals("第一张自己的文字",c.editor.document!!.pages.first().texts.single().text)
+            scene.field("文字内容","第二张独立内容");c.editor.drain()
+            assertEquals(42.0,w.state.typesetPreferences.textDefault!!.style.fontSize);assertEquals("",w.state.typesetPreferences.textDefault!!.text)
+            scene.click("存为预设");scene.field("样式名称，例如对白或旁白","对白");scene.click("保存样式");c.idle();scene.frames()
+            scene.field("字号","30");scene.click("存为预设");scene.field("样式名称，例如对白或旁白","旁白");scene.click("保存样式");c.idle();scene.frames()
+            scene.click("样式 · 旁白 ▾");scene.click("对白");c.idle();scene.frames()
+            assertEquals(listOf("对白","旁白"),w.state.typesetPreferences.textPresets.map{it.name});assertEquals(42.0,c.editor.text!!.style.fontSize)
+            assertEquals("第二张独立内容",c.editor.text!!.text)
+            scene.shot("editor-quick-named-presets")
+            scene.click("矩形");scene.field("效果强度","73");scene.click("队列页 1");assertEquals(73,c.editor.maskDefault.strength)
+            assertTrue(c.editor.document!!.pages.all{it.masks.isEmpty()},"Remember settings, never copy mask regions")
+            c.editor.drain();assertEquals(73,w.state.typesetPreferences.currentMask.strength);scene.shot("editor-named-presets")
+            assertContentEquals(original,w.bytes(id))
+        }finally{scene.close();c.close();scope.cancel()}
+        StudioWorkspace.openStudio(path).use{again->
+            val remembered=again.state.typesetPreferences.textDefault!!;val next=TypesetPreferences.newText(600,400,remembered)
+            assertEquals(42.0,next.style.fontSize);assertTrue(next.vertical);assertEquals("",next.text)
+            assertEquals(listOf("第一张自己的文字","第二张独立内容"),TypesetRepository(again).load(again.state.typesetProjects.single()).pages.map{it.texts.single().text})
+        }
+    }
     @Test fun exportShowsRealPageProgressStopsWithoutPublishingAndRetriesExplicitly()=runBlocking(awt) {
         val w=StudioWorkspace.openStudio(root());val original=EditorRenderer.synthetic(96,64);val id=w.importImage("progress.png",original)
         val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
@@ -299,7 +329,12 @@ class TypesetWorkflowTest {
         return semanticsOwners.flatMap{walk(it.rootSemanticsNode)}
     }
     private fun SemanticsNode.matches(s:String)=config.getOrNull(SemanticsProperties.Text)?.any{it.text==s}==true || config.getOrNull(SemanticsProperties.ContentDescription)?.contains(s)==true
-    private suspend fun ImageComposeScene.click(s:String){val n=nodes().firstOrNull{it.matches(s) && it.config.getOrNull(SemanticsActions.OnClick)!=null}?:error("Missing action: $s; available="+nodes().mapNotNull{it.config.getOrNull(SemanticsProperties.Text)?.joinToString{it.text}});assertTrue(n.config[SemanticsActions.OnClick].action!!.invoke());frames()}
+    private suspend fun ImageComposeScene.click(s:String){
+        if(nodes().none{it.matches(s)&&it.config.getOrNull(SemanticsActions.OnClick)!=null}) {
+            if(s in setOf("从资产库新建","导入 TypeSet 工程","重命名工程","另存工程","删除工程","保存工程","完整预览","导入编辑 Recipe","▸ 工程交换文件"))click("工程选项")
+            if(s in setOf("▸ 队列设置","全选页","全不选页","反选页","上移页","下移页","移除所选页","置顶页","置底页","追加图库所选"))click("▸ 页面操作")
+        }
+        val n=nodes().firstOrNull{it.matches(s) && it.config.getOrNull(SemanticsActions.OnClick)!=null}?:error("Missing action: $s; available="+nodes().mapNotNull{it.config.getOrNull(SemanticsProperties.Text)?.joinToString{it.text}});assertTrue(n.config[SemanticsActions.OnClick].action!!.invoke());frames()}
     private suspend fun ImageComposeScene.field(s:String,value:String){val n=nodes().first{it.config.getOrNull(SemanticsActions.SetText)!=null && (it.matches(s)||it.children.any{it.matches(s)})};assertTrue(n.config[SemanticsActions.SetText].action!!.invoke(AnnotatedString(value)));frames()}
     private suspend fun WorkbenchController.idle(){withTimeout(30000){active?.join()};assertNull(problem,problem)}
     private suspend fun ImageComposeScene.rendered(){withTimeout(30000){while(nodes().none{it.matches("排版编辑画布") && it.config.getOrNull(SemanticsProperties.StateDescription)=="已更新"}){delay(40);frames()}}}

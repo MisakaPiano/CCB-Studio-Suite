@@ -27,8 +27,10 @@ internal data class GalleryScope(val ids:Set<String>?=null,val label:String="全
         }
     }
     var dateInput by remember(g.depth,g.scope.ids,g.date){mutableStateOf(g.date)}
-    StudioActions {
         if(g.depth>0)StudioAction("返回上层相册",!c.busy){g.back();c.selection=emptySet();g.anchor=null}
+    StudioDisclosure("筛选与分组") {
+        CompactChoice("来源",listOf("all","generated","imported"),g.source,{when(it){"generated"->"生成历史";"imported"->"导入/副本";else->"全部来源"}}){g.source=it;c.selection=emptySet();g.anchor=null}
+    StudioActions {
         StatusText("${g.scope.label} · 第 ${g.depth+1} 层")
         if(g.foldPreferences!=null&&!c.busy)StudioSwitch("折叠为相册",g.fold.enabled){fold(!g.fold.enabled,g.fold.type)}
         if(g.foldPreferences!=null&&!c.busy)CompactChoice("折叠方式",NovelAiHistoryFoldType.entries,g.fold.type,{it.label}){fold(g.fold.enabled,it)}
@@ -37,6 +39,7 @@ internal data class GalleryScope(val ids:Set<String>?=null,val label:String="全
         OutlinedTextField(dateInput,{dateInput=it},label={Text("日期（YYYY / YYYY-MM / YYYY-MM-DD）")},modifier=Modifier.weight(1f))
         StudioAction("应用日期"){runCatching{galleryDateFilter(dateInput)}.onSuccess{g.date=dateInput.trim();g.historyProblem=null;c.selection=emptySet();g.anchor=null}.onFailure{g.historyProblem="日期无效，请使用年、年月或年月日"}}
         StudioAction("清除日期"){g.date="";dateInput="";g.historyProblem=null;c.selection=emptySet();g.anchor=null}
+    }
     }
     if(g.fold.enabled)Text(g.fold.type.description,style=MaterialTheme.typography.caption)
     g.historyProblem?.let{Text(it,color=MaterialTheme.colors.error)}

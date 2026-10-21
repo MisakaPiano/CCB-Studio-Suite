@@ -15,6 +15,9 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
     private val repository=TypesetRepository(c.workspace)
     private val commit=Mutex()
     private var pending:Job?=null
+    // Pending styles are usable immediately, before the debounced disk write.
+    private var pendingTextStyle:TypesetText?=null
+    private var pendingMaskStyle:MaskToolSettings?=null
     var project by mutableStateOf<TypesetProject?>(null);private set
     var document by mutableStateOf<TypesetDocument?>(null);private set
     var dirty by mutableStateOf(false);private set
@@ -124,13 +127,34 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
         pending=c.scope.launch{delay(400);try{flush()}catch(e:CancellationException){throw e}catch(e:Exception){c.problem="工程未能保存，当前编辑仍保留；请重试保存或导出工程"}}
     }
     fun pageChange(transform:(TypesetPage)->TypesetPage)=change{d->d.copy(pages=d.pages.map{if(it.id==pageId)transform(it)else it})}
-    fun textChange(transform:(TypesetText)->TypesetText)=pageChange{p->p.copy(texts=p.texts.map{if(it.id==objectId)transform(it)else it})}
+    fun textChange(transform:(TypesetText)->TypesetText) {
+        val before=text?:return
+        pageChange{p->p.copy(texts=p.texts.map{if(it.id==objectId)transform(it)else it})}
+        val after=text?:return
+        if(TypesetPreferences.styleOnly(before)!=TypesetPreferences.styleOnly(after))pendingTextStyle=TypesetPreferences.styleOnly(after)
+    }
+    fun updateMaskSettings(transform:(TypesetMask)->TypesetMask) {
+        if(c.busy||c.maintenance)return
+        val next=transform(maskDefault)
+        try{MaskToolSettings.from(next)}catch(e:Exception){c.problem="打码参数无效，原设置保留";return}
+        val before=document
+        pageChange{p->p.copy(toolDefaults=next,masks=p.masks.map{if(it.id==objectId)transform(it)else it})}
+        if(document!=before){maskDefault=next;pendingMaskStyle=MaskToolSettings.from(next)}
+    }
     suspend fun flush()=withContext(NonCancellable) {commit.withLock {
         val p=project?:return@withLock;val snapshot=document?:return@withLock
         val ids=snapshot.pages.map{it.id}.toSet();val current=pageId?.takeIf{it in ids};val selected=selectedPages.filter{it in ids}
-        if(!dirty && p.currentPageId==current && p.selectedPageIds==selected)return@withLock
-        val next=withContext(Dispatchers.IO){val updated=repository.update(p.id,p.revision){snapshot};repository.view(updated.id,updated.revision,current,selected)}
-        project=next;dirty=document!=snapshot
+        if(dirty || p.currentPageId!=current || p.selectedPageIds!=selected){
+            val next=withContext(Dispatchers.IO){val updated=repository.update(p.id,p.revision){snapshot};repository.view(updated.id,updated.revision,current,selected)}
+            project=next;dirty=document!=snapshot
+        }
+        val textStyle=pendingTextStyle;val maskStyle=pendingMaskStyle
+        if(textStyle!=null || maskStyle!=null){
+            try{withContext(Dispatchers.IO){preferences{it.copy(textDefault=textStyle?:it.textDefault,currentMask=maskStyle?:it.currentMask)}}}
+            catch(e:Exception){dirty=true;throw e}
+            if(pendingTextStyle==textStyle)pendingTextStyle=null
+            if(pendingMaskStyle==maskStyle)pendingMaskStyle=null
+        }
     }}
     suspend fun drain(){pending?.cancelAndJoin();flush()}
     fun create(name:String,ids:List<String>,staticConfirmed:Boolean=false)=c.run("建立编辑工程") {
@@ -211,7 +235,7 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
         pageId=id;objectId=null;maskDefault=page?.toolDefaults?:c.workspace.state.typesetPreferences.batchToolDefault?.apply(maskDefault)?:maskDefault
     }
     fun addText(width:Int,height:Int) {
-        val template=text?:c.workspace.state.typesetPreferences.textDefault?:document?.presets?.firstOrNull()?.text
+        val template=text?:pendingTextStyle?:c.workspace.state.typesetPreferences.textDefault?:document?.presets?.firstOrNull()?.text
         val next=TypesetPreferences.newText(width,height,template)
         pageChange{it.copy(texts=it.texts+next)};objectId=next.id;tool="select"
     }
