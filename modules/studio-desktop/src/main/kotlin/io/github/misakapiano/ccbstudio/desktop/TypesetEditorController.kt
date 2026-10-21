@@ -24,6 +24,7 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
     var exportDirectory by mutableStateOf<java.nio.file.Path?>(null);private set
     var exportProblem by mutableStateOf<String?>(null);private set
     internal var copyExportFiles:(List<java.nio.file.Path>)->Unit=ExportClipboard::copy
+    internal var previewTrace:(String)->Unit={}
     var exchangeInspection by mutableStateOf<TypesetSourceExchange.Inspection?>(null);private set
     var presetInspection by mutableStateOf<TypesetSourceExchange.PresetInspection?>(null);private set
     var recipeInspection by mutableStateOf<TypesetEditRecipe?>(null);private set

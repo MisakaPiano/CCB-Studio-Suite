@@ -21,24 +21,14 @@ import com.example.chatbar.desktop.*
     var zip by remember{mutableStateOf(book || prefs.exportZip)};var pdf by remember{mutableStateOf(book)};var previewId by remember{mutableStateOf(e.pageId)}
     val pages=document.pages.filter{when(range){"selected"->it.id in e.selectedPages;"current"->it.id==e.pageId;else->true}}
     val page=pages.firstOrNull{it.id==previewId}?:pages.firstOrNull()
+    val previewError=remember{mutableStateOf<String?>(null)}
     fun request()=TypesetExportRequest(pages.map{it.id},orderedVariants.first(),format,zip,book && pdf,orderedVariants,metadata,recipe)
-    val preview by produceState<androidx.compose.ui.graphics.ImageBitmap?>(null,page,variant,book){value=null;value=withContext(Dispatchers.IO){page?.let{p->
-        runCatching{val bytes=c.workspace.bytes(p.assetId);val image=if(book)TypesetRenderer.story(bytes,p,document.startNumber+document.pages.indexOf(p))else TypesetRenderer.render(bytes,p,variant)
-            try{image.toComposeImageBitmap()}finally{image.flush()}}.getOrNull()}}}
-    val previewPane:@Composable ()->Unit={
-        Column(Modifier.fillMaxSize(),verticalArrangement=Arrangement.spacedBy(8.dp)) {
-            if(pages.isNotEmpty())CompactChoice("预览页",pages,page,{TypesetQueue.number(document,document.pages.indexOf(it))+" · "+it.name}){previewId=it.id}
-            if(!book)CompactChoice("预览分类",listOf("all","text","mask","original"),variant,::variantName){variant=it}
-            Box(Modifier.fillMaxWidth().weight(1f),contentAlignment=androidx.compose.ui.Alignment.Center){
-                preview?.let{Image(it,"导出页面预览",Modifier.fillMaxSize())}?:Text("预览未就绪；检查页面与字体。")
-            }
-            Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween){
-                val index=pages.indexOf(page)
-                TextButton(enabled=index>0,onClick={previewId=pages[index-1].id}){Text("上一张预览")}
-                Text("${if(index<0)0 else index+1} / ${pages.size}")
-                TextButton(enabled=index>=0 && index<pages.lastIndex,onClick={previewId=pages[index+1].id}){Text("下一张预览")}
-            }
-        }
+    val preview=produceState<androidx.compose.ui.graphics.ImageBitmap?>(null,page,variant,book){value=null;previewError.value=null;e.previewTrace("start:${page?.id}")
+        try{value=withContext(Dispatchers.IO){page?.let{p->
+            val image=typesetPreviewRaster(c.workspace,p,book,document.startNumber+document.pages.indexOf(p),variant)
+            try{image.toComposeImageBitmap().also{e.previewTrace("converted:${p.id}")}}finally{image.flush()}}};e.previewTrace("assigned:${page?.id}:${value!=null}")}
+        catch(ex:CancellationException){e.previewTrace("cancel:${page?.id}");throw ex}
+        catch(ex:Exception){e.previewTrace("error:${page?.id}:${ex.javaClass.simpleName}");previewError.value="预览失败 · ${if(ex is DataProblem)ex.status else ex.javaClass.simpleName} · ${ex.message}"}
     }
     val settings:@Composable ()->Unit={Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(6.dp)){
         CompactChoice("导出范围",listOf("all","selected","current"),range,{when(it){"all"->"全部页";"selected"->"所选页";else->"当前页"}}){range=it}
@@ -61,17 +51,38 @@ import com.example.chatbar.desktop.*
     TypesetPreviewDialog(if(book)"整册预览与导出"else"批量预览与导出",dismiss,content={
         BoxWithConstraints(Modifier.fillMaxSize()){
             if(maxWidth>=700.dp)Row(Modifier.fillMaxSize(),horizontalArrangement=Arrangement.spacedBy(20.dp)){
-                Box(Modifier.weight(1f).fillMaxHeight()){previewPane()}
+                Box(Modifier.weight(1f).fillMaxHeight()){TypesetExportPreviewPane(document,pages,page,book,variant,{variant=it},{previewId=it},preview,previewError)}
                 Box(Modifier.width(330.dp).fillMaxHeight()){settings()}
             }else Column(Modifier.fillMaxSize(),verticalArrangement=Arrangement.spacedBy(8.dp)){
-                Box(Modifier.fillMaxWidth().weight(1f)){previewPane()}
+                Box(Modifier.fillMaxWidth().weight(1f)){TypesetExportPreviewPane(document,pages,page,book,variant,{variant=it},{previewId=it},preview,previewError)}
                 Box(Modifier.fillMaxWidth().weight(1f)){settings()}
             }
         }
     },actions={
         TextButton(onClick=dismiss){Text("返回编辑")}
-        val ready=pages.isNotEmpty() && orderedVariants.isNotEmpty() && preview!=null && !c.busy
+        val ready=pages.isNotEmpty() && orderedVariants.isNotEmpty() && preview.value!=null && !c.busy
         TextButton(enabled=ready,onClick={e.export(request(),true);dismiss()}){Text("复制所选输出文件")}
         TextButton(enabled=ready,onClick={e.export(request());dismiss()}){Text("选择位置并导出")}
     })
 }
+
+@Composable private fun TypesetExportPreviewPane(
+    document:TypesetDocument,pages:List<TypesetPage>,page:TypesetPage?,book:Boolean,variant:String,
+    selectVariant:(String)->Unit,selectPage:(String)->Unit,
+    preview:State<androidx.compose.ui.graphics.ImageBitmap?>,error:State<String?>
+) {
+    fun variantName(key:String)=when(key){"all"->"文字与打码";"text"->"仅文字";"mask"->"仅打码";else->"原始文件（字节保全）"}
+        Column(Modifier.fillMaxSize(),verticalArrangement=Arrangement.spacedBy(8.dp)) {
+            if(pages.isNotEmpty())CompactChoice("预览页",pages,page,{TypesetQueue.number(document,document.pages.indexOf(it))+" · "+it.name}){selectPage(it.id)}
+            if(!book)CompactChoice("预览分类",listOf("all","text","mask","original"),variant,::variantName){selectVariant(it)}
+            Box(Modifier.fillMaxWidth().weight(1f),contentAlignment=androidx.compose.ui.Alignment.Center){
+                preview.value?.let{Image(it,"导出页面预览",Modifier.fillMaxSize())}?:Text(error.value?:"预览未就绪；检查页面与字体。")
+            }
+            Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween){
+                val index=pages.indexOf(page)
+                TextButton(enabled=index>0,onClick={selectPage(pages[index-1].id)}){Text("上一张预览")}
+                Text("${if(index<0)0 else index+1} / ${pages.size}")
+                TextButton(enabled=index>=0 && index<pages.lastIndex,onClick={selectPage(pages[index+1].id)}){Text("下一张预览")}
+            }
+        }
+    }

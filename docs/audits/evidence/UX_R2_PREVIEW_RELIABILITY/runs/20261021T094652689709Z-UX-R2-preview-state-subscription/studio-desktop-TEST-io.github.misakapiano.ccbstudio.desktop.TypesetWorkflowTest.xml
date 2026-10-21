@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" tests="11" skipped="0" failures="1" errors="0" timestamp="2026-10-21T09:47:11.399Z" hostname="DD1" time="82.068">
+  <properties/>
+  <testcase name="namedProjectLiveVerticalEditingHistoryAndRestart" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="11.871"/>
+  <testcase name="pointerDrawnMasksChangeEffectSaveUndoAndReopen" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="7.316"/>
+  <testcase name="webpPreviewExportAndOriginalReopen" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="2.835"/>
+  <testcase name="continuousMaskDefaultsRespectPerPageSettings" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="1.222"/>
+  <testcase name="fourCategoryPreviewCopiesCompleteFileDeckWithoutSystemClipboard" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="4.734"/>
+  <testcase name="durableDefaultFontLoadsOnFirstTextPreviewWithColdCache" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="2.895"/>
+  <testcase name="fullPreviewKeyboardAndExportDeckKeepEditorStateAndFitNarrowWindow" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="33.018">
+    <failure message="kotlinx.coroutines.TimeoutCancellationException: Timed out waiting for 30000 ms" type="kotlinx.coroutines.TimeoutCancellationException">kotlinx.coroutines.TimeoutCancellationException: Timed out waiting for 30000 ms
+	at _COROUTINE._BOUNDARY._(CoroutineDebugging.kt:42)
+	at io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest$fullPreviewKeyboardAndExportDeckKeepEditorStateAndFitNarrowWindow$1$9.invokeSuspend(TypesetWorkflowTest.kt:94)
+	at io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest$fullPreviewKeyboardAndExportDeckKeepEditorStateAndFitNarrowWindow$1.invokeSuspend(TypesetWorkflowTest.kt:91)
+Caused by: kotlinx.coroutines.TimeoutCancellationException: Timed out waiting for 30000 ms
+	at kotlinx.coroutines.TimeoutKt.TimeoutCancellationException(Timeout.kt:189)
+	at kotlinx.coroutines.TimeoutCoroutine.run(Timeout.kt:157)
+	at kotlinx.coroutines.EventLoopImplBase$DelayedRunnableTask.run(EventLoop.common.kt:505)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.DefaultExecutor.run(DefaultExecutor.kt:105)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+</failure>
+  </testcase>
+  <testcase name="maximumQueueWidthCannotStarveCanvasAndSurvivesReopen" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="2.096"/>
+  <testcase name="storyCaptionPresetPreviewExportAndRestart" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="5.951"/>
+  <testcase name="sourceExchangePreviewConfirmExportAndReopen" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="4.503"/>
+  <testcase name="queueControlSelectionDragOrderNumberingAndRestart" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="5.627"/>
+  <system-out><![CDATA[NARROW_DIAGNOSTIC [null, null, Rect.fromLTRB(0.0, 0.0, 0.0, 0.0)]
+[null, null, Rect.fromLTRB(0.0, 0.0, 700.0, 800.0)]
+[null, null, Rect.fromLTRB(0.0, 0.0, 700.0, 800.0)]
+[null, null, Rect.fromLTRB(16.0, 16.0, 684.0, 784.0)]
+[[批量预览与导出], null, Rect.fromLTRB(36.0, 36.0, 178.0, 60.0)]
+[null, null, Rect.fromLTRB(36.0, 72.0, 664.0, 704.0)]
+[[预览页 · 001 · preview.png ?], [预览页 · 001 · preview.png ?], Rect.fromLTRB(36.0, 72.0, 217.0, 104.0)]
+[[预览分类 · 文字与打码 ?], [预览分类 · 文字与打码 ?], Rect.fromLTRB(36.0, 112.0, 194.0, 144.0)]
+[[预览未就绪；检查页面与字体。], null, Rect.fromLTRB(235.0, 228.0, 466.0, 253.0)]
+[[上一张预览], null, Rect.fromLTRB(36.0, 342.0, 129.0, 378.0)]
+[[1 / 3], null, Rect.fromLTRB(333.0, 336.0, 368.0, 360.0)]
+[[下一张预览], null, Rect.fromLTRB(571.0, 342.0, 664.0, 378.0)]
+[null, null, Rect.fromLTRB(36.0, 392.0, 664.0, 704.0)]
+[[导出范围 · 全部页 ?], [导出范围 · 全部页 ?], Rect.fromLTRB(36.0, 392.0, 168.0, 424.0)]
+[[导出 · 原始文件（字节保全）], null, Rect.fromLTRB(36.0, 430.0, 259.0, 462.0)]
+[[导出 · 仅打码], null, Rect.fromLTRB(36.0, 468.0, 161.0, 500.0)]
+[[导出 · 文字与打码], null, Rect.fromLTRB(36.0, 506.0, 189.0, 538.0)]
+[[导出 · 仅文字], null, Rect.fromLTRB(36.0, 544.0, 161.0, 576.0)]
+[[源元数据 · 保留源数据（PNG） ?], [源元数据 · 保留源数据（PNG） ?], Rect.fromLTRB(36.0, 582.0, 246.0, 614.0)]
+[[图片格式 · PNG ?], [图片格式 · PNG ?], Rect.fromLTRB(36.0, 620.0, 155.0, 652.0)]
+[[附带可编辑 Recipe 文件], null, Rect.fromLTRB(36.0, 658.0, 227.0, 690.0)]
+[[同时打包 ZIP], null, Rect.fromLTRB(36.0, 696.0, 160.0, 704.0)]
+[[共 3 页，按队列顺序及编号输出。确认后选择位置，每次新建独立文件夹。], null, Rect.fromLTRB(0.0, 0.0, 0.0, 0.0)]
+[[每个所选分类都包含全部目标页，包括没有文字或打码的页面。JPEG 使用白色背景；JPEG/WebP不携带源元数据。原格式仅保留PNG/JPEG/WebP编码，GIF/BMP编辑结果转PNG。], null, Rect.fromLTRB(0.0, 0.0, 0.0, 0.0)]
+[[PNG 保留源文本块和 alpha 隐写；它们描述原图，原签名不能证明编辑后的图片。], null, Rect.fromLTRB(0.0, 0.0, 0.0, 0.0)]
+[[GIF、动态WebP仅编辑首帧，APNG使用默认静态图；动画只在原始文件分类中按原字节保留。], null, Rect.fromLTRB(0.0, 0.0, 0.0, 0.0)]
+[[复制会把所有所选输出文件放入剪贴板，可粘贴到资源管理器；单张静态图片还可粘贴到图像应用。], null, Rect.fromLTRB(0.0, 0.0, 0.0, 0.0)]
+[[返回编辑], null, Rect.fromLTRB(326.0, 722.0, 403.0, 758.0)]
+[[复制所选输出文件], null, Rect.fromLTRB(403.0, 722.0, 541.0, 758.0)]
+[[选择位置并导出], null, Rect.fromLTRB(541.0, 722.0, 664.0, 758.0)]
+NARROW_PROJECT pages=3 current=eb464371-23b9-4f03-944f-63454140a449 problem=null
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

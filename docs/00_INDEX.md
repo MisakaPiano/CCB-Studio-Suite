@@ -1,3 +1,7 @@
+## UX-R2 预览可靠性进度（2026-10-21）
+
+[实际记录](audits/UX_R2_PREVIEW_RELIABILITY.md)：完整工作台路径连续两次52项实际PASS；字体冷缓存和最大队列空间已测，独立挂载弹窗的历史超时及根因UNKNOWN保留。继续R3与安全更新，PRODUCT_HOLD。
+
 ## UX-R3 图库与比较进度（2026-10-21）
 
 [实际记录](audits/UX_R3_GALLERY.md)：完整126项实际PASS；随后边界/GUI定向4项PASS，编译失败保留。图库筛选、比较/缩放/复制及确认回用保存重开已测；完整R3和安全更新继续，PRODUCT_HOLD。

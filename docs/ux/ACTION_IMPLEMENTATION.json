@@ -405,11 +405,23 @@
     {
       "id": "I04",
       "owner": "UX-R3",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "RecipeComparison.kt",
+        "GalleryWorkspace.kt",
+        "ComparisonWorkspace.kt",
+        "MetadataWorkspace.kt"
+      ],
+      "tests": [
+        "RecipeComparisonTest: missing/null/empty/ordered arrays/JSON Pointer/limits",
+        "GalleryWorkflowTest.gridFilterTwoImageComparisonCopyAndMetadataReuseKeepOriginals"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R3_GALLERY/compare-fields.png (actual Compose offscreen; no native visual claim)"
+      ],
+      "persistenceEvidence": [
+        "GalleryWorkflowTest: confirmed history reuse, workspace close/reopen, original bytes and Recipe unchanged"
+      ],
+      "status": "ENGINEERING_PARTIAL / IMPORTED_PNG_FIELDS_AND_PER_FIELD_APPLY_PENDING / PRODUCT_HOLD"
     },
     {
       "id": "I05",

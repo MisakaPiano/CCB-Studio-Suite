@@ -63,7 +63,8 @@ import kotlin.math.*
                 StudioAction("−"){e.zoom=(e.zoom/1.25f).coerceAtLeast(.25f)};StudioAction("适应"){e.zoom=1f};StudioAction("＋"){e.zoom=(e.zoom*1.25f).coerceAtMost(8f)}
             }
             BoxWithConstraints(Modifier.weight(1f).fillMaxWidth()) {
-                val compact=maxWidth<1000.dp
+                // Keep a useful canvas even when a source preset requests a wide queue.
+                val compact=maxWidth<maxOf(1000.dp,(e.document!!.queueWidth+300+400).dp)
                 Column {
                     if(compact)StudioChips("",listOf("队列","画布","属性"),tab,{it}){tab=it}
                     Row(Modifier.weight(1f).fillMaxWidth()) {
@@ -136,7 +137,7 @@ private data class EditorRaster(val bitmap:ImageBitmap,val width:Int,val height:
         masks=page.masks.map{if(it.id==dragMask?.id)dragMask!!else it}+listOfNotNull(draftMask?.takeIf{it.shape!="lasso" || it.points.size>=3}))
     val raster by produceState<EditorRaster?>(null,previewPage,mode,e.document?.startNumber) {
         error=null
-        try{value=withContext(Dispatchers.IO){previewPage?.let{p->val image=if(mode=="storybook")TypesetRenderer.story(c.workspace.bytes(p.assetId),p,e.document!!.startNumber+e.document!!.pages.indexOf(p))else TypesetRenderer.render(c.workspace.bytes(p.assetId),p)
+        try{value=withContext(Dispatchers.IO){previewPage?.let{p->val image=typesetPreviewRaster(c.workspace,p,mode=="storybook",e.document!!.startNumber+e.document!!.pages.indexOf(p))
             try{EditorRaster(image.toComposeImageBitmap(),image.width,image.height,p,mode)}finally{image.flush()}}}}
         catch(e:CancellationException){throw e}catch(ex:Exception){error="页面暂无法绘制：${ex.message}";value=null}
     }

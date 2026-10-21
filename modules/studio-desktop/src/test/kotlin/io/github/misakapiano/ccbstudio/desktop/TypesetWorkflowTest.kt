@@ -18,12 +18,60 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.test.*
 
 class TypesetWorkflowTest {
+    @Test fun durableDefaultFontLoadsOnFirstTextPreviewWithColdCache()=runBlocking(awt) {
+        val r=root();var alias="";var imageId=""
+        val fixture=Files.readString(Path.of("../studio-core/src/test/resources/fonts/MicrosoftPackedFont.hex")).trim().chunked(2).map{it.toInt(16).toByte()}.toByteArray()
+        StudioWorkspace.openStudio(r).use{w->
+            val font=TypesetFonts.import(w,"fixture.woff2",fixture);alias=font.alias
+            imageId=w.importImage("font-page.png",EditorRenderer.synthetic(180,120))
+            w.save(w.state.copy(typesetPreferences=w.state.typesetPreferences.copy(textDefault=TypesetText(style=TypesetStyle(fontFamily=alias)))))
+        }
+        // Simulate an empty process font cache without adding a production cache-control API.
+        val cache=TypesetFonts::class.java.getDeclaredField("loaded").apply{isAccessible=true}.get(TypesetFonts) as MutableMap<*,*>
+        cache.remove(alias);assertFailsWith<DataProblem>{TypesetFonts.font(alias)}
+        val w=StudioWorkspace.openStudio(r);val scope=CoroutineScope(SupervisorJob()+awt)
+        val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
+        c.editor.create("font restored",listOf(imageId));c.idle()
+        val scene=ImageComposeScene(1320,950){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        try {
+            scene.frames();scene.rendered();scene.click("添加文字");scene.rendered()
+            assertEquals(alias,c.editor.text!!.style.fontFamily);assertNotNull(TypesetFonts.font(alias));c.editor.drain()
+            cache.remove(alias);scene.click("完整预览")
+            withTimeout(30000){while(scene.nodes().none{it.matches("完整页面预览")}){delay(80);scene.frames()}}
+            assertNotNull(TypesetFonts.font(alias));scene.click("关闭完整预览 · Esc")
+            cache.remove(alias);scene.click("预览与导出")
+            withTimeout(30000){while(scene.nodes().none{it.matches("导出页面预览")}){delay(80);scene.frames()}}
+            assertNotNull(TypesetFonts.font(alias));scene.click("返回编辑")
+            val page=c.editor.page!!.copy(texts=c.editor.page!!.texts.map{it.copy(style=it.style.copy(fontFamily="ccb-font:"+newId()))})
+            assertFailsWith<DataProblem>{typesetPreviewRaster(w,page,false,1)}
+            typesetPreviewRaster(w,page,false,1,"original").flush()
+            assertContentEquals(EditorRenderer.synthetic(180,120),w.bytes(imageId))
+        }finally{scene.close();c.close();scope.cancel();w.close();cache.remove(alias)}
+    }
+    @Test fun maximumQueueWidthCannotStarveCanvasAndSurvivesReopen()=runBlocking(awt) {
+        val r=root();val w=StudioWorkspace.openStudio(r);val id=w.importImage("wide-queue.png",EditorRenderer.synthetic(180,120));val scope=CoroutineScope(SupervisorJob()+awt)
+        val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
+        c.editor.create("wide queue",listOf(id));c.idle();c.editor.change{it.copy(queueWidth=720)};c.editor.drain()
+        val scene=ImageComposeScene(1100,900){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        try {
+            scene.frames();scene.rendered()
+            val canvas=scene.nodes().first{it.matches("排版编辑画布")}.boundsInRoot
+            assertTrue(canvas.width>=400,"maximum queue must not squeeze the canvas: $canvas")
+            scene.click("队列");assertFalse(scene.nodes().any{it.matches("排版编辑画布")})
+            scene.click("全不选页");assertTrue(c.editor.selectedPages.isEmpty());scene.click("全选页");assertEquals(1,c.editor.selectedPages.size)
+            scene.click("画布");scene.rendered();scene.shot("maximum-queue-compact")
+            assertEquals(720,c.editor.document!!.queueWidth);c.editor.drain()
+        }finally{scene.close();c.close();scope.cancel();w.close()}
+        StudioWorkspace.openStudio(r).use{assertEquals(720,TypesetRepository(it).load(it.state.typesetProjects.single()).queueWidth);assertContentEquals(EditorRenderer.synthetic(180,120),it.bytes(id))}
+    }
     @Test fun fullPreviewKeyboardAndExportDeckKeepEditorStateAndFitNarrowWindow()=runBlocking(awt) {
         val w=StudioWorkspace.openStudio(root());val id=w.importImage("preview.png",EditorRenderer.synthetic(180,120));val scope=CoroutineScope(SupervisorJob()+awt)
         val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
         c.editor.create("preview",listOf(id,id,id));c.idle();val project=c.editor.project;val selected=c.editor.selectedPages;val current=c.editor.pageId
+        val trace=java.util.concurrent.ConcurrentLinkedQueue<String>();c.editor.previewTrace={trace.add(it)}
         val scene=ImageComposeScene(1320,950){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
         suspend fun key(key:Key){scene.sendKeyEvent(KeyEvent(key,KeyEventType.KeyDown));scene.sendKeyEvent(KeyEvent(key,KeyEventType.KeyUp));scene.frames()}
+        var wideClosed=false
         try {
             scene.frames();scene.click("完整预览");withTimeout(30000){while(scene.nodes().none{it.matches("完整页面预览")}){delay(80);scene.frames()}}
             assertTrue(scene.nodes().any{it.matches("1 / 3")});key(Key.DirectionRight);assertTrue(scene.nodes().any{it.matches("2 / 3")})
@@ -38,14 +86,25 @@ class TypesetWorkflowTest {
             var bounds=scene.nodes().first{it.matches("导出页面预览")}.boundsInRoot;assertTrue(bounds.width>400 && bounds.height>350,"wide preview $bounds")
             scene.click("下一张预览");assertTrue(scene.nodes().any{it.matches("2 / 3")});scene.shot("wide-export-deck")
             scene.click("返回编辑");assertEquals(current,c.editor.pageId);assertEquals(project,c.editor.project)
-            val narrow=ImageComposeScene(700,800){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){TypesetExportDialog(c,c.editor){}}}
-            try{narrow.frames();withTimeout(30000){while(narrow.nodes().none{it.matches("导出页面预览")}){delay(80);narrow.frames()}}
+            // This checks two real viewport sizes, not concurrent offscreen window scheduling.
+            scene.close();wideClosed=true
+            val narrow=ImageComposeScene(700,800){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+            try{narrow.frames();narrow.click("预览与导出");withTimeout(30000){while(narrow.nodes().none{it.matches("导出页面预览")}){
+                val errors=narrow.nodes().flatMap{it.config.getOrNull(SemanticsProperties.Text).orEmpty()}.map{it.text}.filter{it.startsWith("预览失败")}
+                if(errors.isNotEmpty()){narrow.shot("narrow-preview-failure");fail(errors.joinToString("\n"))}
+                delay(80);narrow.frames()}}
                 bounds=narrow.nodes().first{it.matches("导出页面预览")}.boundsInRoot
                 assertTrue(bounds.left>=0 && bounds.right<=700 && bounds.top>=0 && bounds.bottom<=800 && bounds.height>100,"narrow preview $bounds")
                 for(label in listOf("返回编辑","复制所选输出文件","选择位置并导出")){val b=narrow.nodes().first{it.matches(label)}.boundsInRoot;assertTrue(b.left>=0 && b.right<=700 && b.top>=0 && b.bottom<=800,"action $label at $b")}
                 narrow.shot("narrow-export-deck")
+            }catch(ex:Exception){
+                narrow.shot("narrow-preview-timeout")
+                println("NARROW_DIAGNOSTIC "+narrow.nodes().map{n->listOf(n.config.getOrNull(SemanticsProperties.Text),n.config.getOrNull(SemanticsProperties.ContentDescription),n.boundsInRoot)}.joinToString("\n"))
+                println("NARROW_PROJECT pages=${c.editor.document?.pages?.size} current=${c.editor.pageId} problem=${c.problem}")
+                println("PREVIEW_TRACE "+trace.joinToString("\n"))
+                throw ex
             }finally{narrow.close()}
-        }finally{scene.close();c.close();scope.cancel();w.close()}
+        }finally{if(!wideClosed)scene.close();c.close();scope.cancel();w.close()}
     }
     @Test fun continuousMaskDefaultsRespectPerPageSettings()=runBlocking(awt) {
         val w=StudioWorkspace.openStudio(root());val id=w.importImage("defaults.png",EditorRenderer.synthetic(100,80));val scope=CoroutineScope(SupervisorJob()+awt)
@@ -134,7 +193,7 @@ class TypesetWorkflowTest {
     }
     private val awt=object:CoroutineDispatcher(){override fun dispatch(context:CoroutineContext,block:Runnable)=SwingUtilities.invokeLater(block)}
     private fun root()=Path.of(System.getProperty("preview.test.root")).resolve(newId())
-    private suspend fun ImageComposeScene.frames(){repeat(8){render().close();yield()};delay(80);render().close()}
+    private suspend fun ImageComposeScene.frames(){repeat(8){androidx.compose.runtime.snapshots.Snapshot.sendApplyNotifications();render().close();yield()};delay(80);androidx.compose.runtime.snapshots.Snapshot.sendApplyNotifications();render().close()}
     private fun ImageComposeScene.nodes():List<SemanticsNode>{
         fun walk(n:SemanticsNode):List<SemanticsNode> = listOf(n)+n.children.flatMap(::walk)
         return semanticsOwners.flatMap{walk(it.rootSemanticsNode)}

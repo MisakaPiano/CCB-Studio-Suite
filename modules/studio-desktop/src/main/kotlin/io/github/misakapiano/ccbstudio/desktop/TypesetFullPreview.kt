@@ -20,7 +20,7 @@ import kotlinx.coroutines.*
     val page=document.pages.getOrNull(index)?:return
     val focus=remember{FocusRequester()};var error by remember{mutableStateOf<String?>(null)}
     val image by produceState<androidx.compose.ui.graphics.ImageBitmap?>(null,page,document.mode){value=null;error=null
-        try{value=withContext(Dispatchers.IO){val bytes=c.workspace.bytes(page.assetId);val raster=if(document.mode=="storybook")TypesetRenderer.story(bytes,page,document.startNumber+index)else TypesetRenderer.render(bytes,page)
+        try{value=withContext(Dispatchers.IO){val raster=typesetPreviewRaster(c.workspace,page,document.mode=="storybook",document.startNumber+index)
             try{raster.toComposeImageBitmap()}finally{raster.flush()}}}catch(e:CancellationException){throw e}catch(e:Exception){error=e.message}
     }
     TypesetPreviewDialog("完整预览 · ${TypesetQueue.number(document,index)} · ${page.name}",dismiss,content={

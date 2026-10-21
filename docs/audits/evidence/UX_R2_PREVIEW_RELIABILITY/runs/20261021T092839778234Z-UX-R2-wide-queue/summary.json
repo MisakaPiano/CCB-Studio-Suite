@@ -1,0 +1,28 @@
+{
+  "phase": "UX-R2-wide-queue",
+  "startedUtc": "2026-10-21T09:28:40.252234+00:00",
+  "seconds": 52.057,
+  "exitCode": 0,
+  "tests": 1,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:test",
+    "--tests",
+    "*maximumQueueWidthCannotStarveCanvasAndSurvivesReopen"
+  ],
+  "baseCommit": "155d27df5807337531995ff767fa8a694961a7d7",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}
