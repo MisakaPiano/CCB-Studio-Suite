@@ -1,0 +1,80 @@
+[
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiHistoryFoldingTest",
+    "name": "comparisonIgnoresWeightsAndPunctuationButRetainsContentNumbers",
+    "seconds": "0.043",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiHistoryFoldingTest",
+    "name": "calendarGroupingUsesLocalDateAcrossYearBoundary",
+    "seconds": "0.025",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiHistoryFoldingTest",
+    "name": "fullIgnoresIdentitySettingsAndWhitespace",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiHistoryFoldingTest",
+    "name": "differenceMustBeStrictlyBelowFifteenPercent",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiHistoryFoldingTest",
+    "name": "rolesRemainOrderedAndFieldsCannotCollide",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.domain.image.NovelAiHistoryFoldingTest",
+    "name": "modesCompareOnlyTheirOwnedFields",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.GalleryHistoryTest",
+    "name": "verifiedHistoryFoldsUnknownAndCorruptReceiptsStayIndependentAndOriginalsRemain",
+    "seconds": "1.679",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.GalleryHistoryTest",
+    "name": "perDepthPreferencesSurviveBackupRestoreAndDateGrammarRejectsInvalidCalendar",
+    "seconds": "7.724",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAlbumWorkflowTest",
+    "name": "sourceAlbumsNavigateSelectFilterAndPersistDepthPreferencesWithoutChangingRecipes",
+    "seconds": "50.13",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryWorkflowTest",
+    "name": "gridFilterTwoImageComparisonCopyAndMetadataReuseKeepOriginals",
+    "seconds": "8.083",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.PromptReferenceWorkflowTest",
+    "name": "imagePreviewBoardRealRoleDragExtractionAndRestartKeepSourceIdentity",
+    "seconds": "22.542",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.PromptReferenceWorkflowTest",
+    "name": "missingOrUnverifiableImagePromptCannotBecomeFalseCompleteReference",
+    "seconds": "1.111",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.PromptReferenceWorkflowTest",
+    "name": "narrowBoardScrollsSourcesAndEmptyPromptFieldsDoNotConsumeRows",
+    "seconds": "5.385",
+    "status": "PASS"
+  }
+]

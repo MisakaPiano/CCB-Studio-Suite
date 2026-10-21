@@ -1,0 +1,13 @@
+{
+  "library": "org.jetbrains.compose.ui:ui-desktop:1.10.3",
+  "jarSha256": "ec8887c03a333fa374d0b4c46bb9fb700937857f4088eaea4c4cc0ec835f7498",
+  "method": "Local JDK javap -c androidx.compose.ui.ImageComposeScene",
+  "observed": "render$default loads lconst_0 for omitted nanoTime; repeated render() does not advance animations.",
+  "changedTests": [
+    "GalleryAlbumWorkflowTest",
+    "GalleryWorkflowTest",
+    "PromptReferenceWorkflowTest"
+  ],
+  "fix": "Explicit System.nanoTime() frames and 180ms settling before capture. Existing raw prior evidence retained.",
+  "acceptance": "Offscreen Compose behavior/layout only; not native Windows or human acceptance"
+}

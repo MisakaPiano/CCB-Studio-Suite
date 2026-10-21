@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.RecipeComparisonTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-21T16:37:43.431Z" hostname="DD1" time="0.051">
+  <properties/>
+  <testcase name="missingNullEmptyUnknownAndStructuredPathsAreDistinct" classname="io.github.misakapiano.ccbstudio.core.RecipeComparisonTest" time="0.002"/>
+  <testcase name="exactRowsIncludeEqualValuesAndArrayOrder" classname="io.github.misakapiano.ccbstudio.core.RecipeComparisonTest" time="0.0"/>
+  <testcase name="limitsPreserveRawAndDoNotTreatValidComplexDataAsCorruption" classname="io.github.misakapiano.ccbstudio.core.RecipeComparisonTest" time="0.049"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

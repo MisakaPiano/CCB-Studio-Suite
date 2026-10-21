@@ -1,3 +1,7 @@
+## Desktop 相册与参照结构进度（2026-10-22）
+
+[实际记录](audits/UX_HISTORY_REFERENCE.md)：固定Desktop源码的分组/筛选/选择策略已接入统一资产；Prompt与参数切换、角色对齐和摘取保留。13项定向、完整175项实际PASS；继续TypeSet和更新门槛，PRODUCT_HOLD / NOT RC。
+
 ## 自动资产收集进度（2026-10-22）
 
 [实际记录](audits/UX_COLLECTIONS.md)：专用导入路径、多目录自动收集、恢复后重连门禁及维护排水已接线。最终完整166项实际PASS，初始化错误与历史超时证据保留；继续 Desktop 相册源码继承、TypeSet与更新门槛，PRODUCT_HOLD / NOT RC。

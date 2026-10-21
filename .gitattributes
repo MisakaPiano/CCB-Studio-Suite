@@ -54,3 +54,7 @@ docs/audits/evidence/UX_CREATION_LAYOUT/** -text
 docs/audits/evidence/UX_SHARED_ASSETS/** -text
 docs/audits/evidence/UX_LIBRARY_PROMPTS/** -text
 docs/audits/evidence/UX_COLLECTIONS/** -text
+/modules/studio-core/src/main/kotlin/com/example/chatbar/domain/image/NovelAiHistoryFolding.kt text eol=lf
+/modules/studio-core/src/main/kotlin/com/example/chatbar/ui/imageprompt/NovelAiHistoryFilter.kt text eol=lf
+/modules/studio-core/src/test/kotlin/com/example/chatbar/domain/image/NovelAiHistoryFoldingTest.kt text eol=lf
+docs/audits/evidence/UX_HISTORY_REFERENCE/** -text

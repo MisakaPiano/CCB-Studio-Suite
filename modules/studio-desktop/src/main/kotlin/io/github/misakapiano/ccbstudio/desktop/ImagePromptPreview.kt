@@ -18,6 +18,17 @@ internal data class ImagePromptReading(val status:String,val sections:List<Promp
     fun text()=sections.joinToString("\n\n"){it.text}
 }
 
+internal fun promptReadingLabel(status:String)=when(status) {
+    "VERIFIED_HISTORY"->"已核验生成记录"
+    "HISTORY_WITHOUT_REQUEST_HASH"->"生成记录（旧请求无摘要）"
+    "READABLE"->"图片附带的生成参数"
+    "MISSING"->"未找到生成参数"
+    "CORRUPT"->"生成参数损坏"
+    "UNSUPPORTED"->"尚不支持此参数格式"
+    "READ_ERROR"->"生成参数读取失败"
+    else->"来源状态未识别（$status）"
+}
+
 /** Read-only projection. A broken linked receipt is not silently replaced with embedded PNG text. */
 internal fun readImagePrompt(c:WorkbenchController,id:String):ImagePromptReading = c.workspace.operation {
     val asset=c.workspace.assets.read(UUID.fromString(id)).require()
@@ -74,7 +85,7 @@ internal fun saveImagePrompt(c:WorkbenchController,id:String,addToBoard:Boolean)
         result==null->Text("正在读取…")
         result!!.isFailure->Text("READ_ERROR · 历史或原件不能核验，未替换为空 Prompt。",color=MaterialTheme.colors.error)
         read!=null->{
-            Text("${read.status} · ${read.explanation}",style=MaterialTheme.typography.caption)
+            Text("${promptReadingLabel(read.status)} · ${read.explanation}",style=MaterialTheme.typography.caption)
             if(read.sections.isEmpty())Text("没有非空 Prompt；原图仍可查看和编辑。")
             read.sections.forEach{s->Text(s.label+(s.roleId?.let{" · 原始 ${s.attributes["原始角色位置"]}"}?:""),color=Gold);SelectionContainer{Text(s.text)}}
             StudioActions {

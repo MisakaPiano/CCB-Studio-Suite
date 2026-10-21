@@ -18,6 +18,8 @@ import androidx.compose.ui.unit.dp
 import com.example.chatbar.desktop.*
 import io.github.misakapiano.ccbstudio.core.*
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonPrimitive
+import com.example.chatbar.domain.image.*
 import kotlinx.serialization.encodeToString
 
 @Composable internal fun PromptReferenceBoard(c:WorkbenchController) = BoxWithConstraints(Modifier.fillMaxWidth()) {
@@ -30,7 +32,7 @@ import kotlinx.serialization.encodeToString
     val rows=remember(state,c.library.state){repo.rows()}
     val roleOrders=remember(state,c.library.state){state.ids.associateWith{repo.roles(it)}}
     var excerpt by remember{mutableStateOf("")};var origins by remember{mutableStateOf(listOf<String>())}
-    var differences by remember{mutableStateOf(false)};var parameters by remember{mutableStateOf(true)};var advanced by remember{mutableStateOf(false)};var confirm by remember{mutableStateOf(false)}
+    var differences by remember{mutableStateOf(false)};var panel by remember{mutableStateOf("Prompt 对比")};var advanced by remember{mutableStateOf(false)};var confirm by remember{mutableStateOf(false)}
     var detail by remember{mutableStateOf<Pair<String,String>?>(null)}
     val bounds=remember{mutableMapOf<Pair<String,String>,Rect>()}
     val boardScroll=rememberScrollState()
@@ -58,31 +60,35 @@ import kotlinx.serialization.encodeToString
             }
         }
     }
-    Text("图片与完整来源在上；对应内容按行对齐。只比较非空 Prompt，亮色表示该行未共有的原文片段，不代表效果优劣。")
-    StudioActions {StudioSwitch("仅看不同内容",differences){differences=!differences};StudioSwitch("显示生成参数",parameters){parameters=!parameters}}
-    Text("拖动角色标题与另一列对齐；不会改变原 Recipe 或生成顺序。窄窗口可横向滚动。")
+    StudioActions {
+        StudioChips("",listOf("Prompt 对比","生成参数"),panel,{it}){panel=it}
+        StudioSwitch("仅看不同内容",differences){differences=!differences}
+    }
+    StudioDisclosure("比较说明") {Text("只比较非空 Prompt；亮色表示不共有的原文片段。拖动角色标题对齐，不改变原 Recipe 或请求顺序。窄窗可横向滚动，摘取不自动发送给 AI。")}
     if(state.ids.isEmpty())Text("从图库选择多张图片，或将独立 Prompt 资产加入参照。")
     if(boardScroll.maxValue>0)HorizontalScrollbar(rememberScrollbarAdapter(boardScroll),Modifier.fillMaxWidth().height(12.dp).semantics{contentDescription="横向查看参照"})
     Column(Modifier.fillMaxWidth().horizontalScroll(boardScroll),verticalArrangement=Arrangement.spacedBy(8.dp)) {
         matrixRow{id->val p=sources.getValue(id)
-            p.image?.let{image->AssetImage(c,image.imageId,Modifier.fillMaxWidth().height(200.dp))}
-                ?:Box(Modifier.fillMaxWidth().height(200.dp),contentAlignment=androidx.compose.ui.Alignment.Center){Text("独立 Prompt 资产")}
+            p.image?.let{image->AssetImage(c,image.imageId,Modifier.fillMaxWidth().height(180.dp))}
+                ?:Box(Modifier.fillMaxWidth().height(180.dp),contentAlignment=androidx.compose.ui.Alignment.Center){Text("独立 Prompt 资产")}
             Text(c.library.labels(id).alias.ifBlank{"Prompt ${id.take(8)}"},style=MaterialTheme.typography.subtitle1)
-            StudioDisclosure("来源详情"){SelectionContainer{Text(p.origin,style=MaterialTheme.typography.caption)};p.image?.let{Text("SHA-256 ${it.sha256}",style=MaterialTheme.typography.caption)}}
+            StudioDisclosure("来源详情"){SelectionContainer{Text(p.origin,style=MaterialTheme.typography.caption)};p.image?.let{Text("SHA-256 ${it.sha256}",style=MaterialTheme.typography.caption);Text("AI 设计关联：未记录。",style=MaterialTheme.typography.caption)}}
             p.image?.let{image->
-                Text("Seed ${image.parameters["实际 Seed"]?:"未记录"} · ${if(image.status=="VERIFIED_HISTORY")"已核验生成记录" else "来自图片参数"}",style=MaterialTheme.typography.caption)
+                Text("Seed ${image.parameters["实际 Seed"]?:"未记录"} · ${when(image.status){"VERIFIED_HISTORY"->"已核验生成记录";"HISTORY_WITHOUT_REQUEST_HASH"->"生成记录 · 旧请求无摘要";else->"来自图片参数"}}",style=MaterialTheme.typography.caption)
+                StudioActions {
                 StudioAction("完整 Recipe",image.recipeJson!=null,accessibilityLabel="完整 Recipe ${id.take(8)}"){detail="保存的 Recipe" to image.recipeJson!!}
-                StudioAction("发送请求快照",image.requestSha256!=null&&!c.busy,accessibilityLabel="发送请求快照 ${id.take(8)}"){c.run("读取已验证请求"){
+                StudioAction("实际请求",image.requestSha256!=null&&!c.busy,accessibilityLabel="发送请求快照 ${id.take(8)}"){c.run("读取已验证请求"){
                     c.historyRecipe(image.imageId) ?: error("历史请求不存在")
                     val job=c.workspace.state.jobs.last{image.imageId in it.results || image.imageId in it.composedResults}
                     val receipt=documentJson.decodeFromString<GenerationReceipt>(job.recipe)
                     require(receipt.wireSha256==image.requestSha256)
                     detail="实际请求 SHA-256 ${receipt.wireSha256}" to receipt.expandedRequest(c.workspace).toString()
                 }}
-                Text("AI 设计关联：未记录；不自动按时间猜测。",style=MaterialTheme.typography.caption)
+                }
             }
             StudioAction("移出参照",!c.busy,accessibilityLabel="移出参照 ${id.take(8)}"){c.run("调整参照板"){repo.remove(id);c.library.refresh()}}
         }
+        if(panel=="Prompt 对比") {
         rows.filter{it.key.startsWith("global:")}.forEach{promptRow(it)}
         repeat(roleOrders.values.maxOfOrNull{it.size}?:0){index->
             matrixRow{id->val roles=roleOrders.getValue(id);val role=roles.getOrNull(index)
@@ -103,14 +109,15 @@ import kotlinx.serialization.encodeToString
             }
             rows.filter{it.key.startsWith("role:$index:")}.forEach{promptRow(it)}
         }
-        if(parameters) {
+        }
+        if(panel=="生成参数") {
             StudioSwitch("展开完整参数字段",advanced){advanced=!advanced}
             val allKeys=sources.values.flatMap{it.image?.parameters?.keys.orEmpty()}.distinct()
             val keys=promptParameterLabels.keys.filter{it in allKeys}+(allKeys-promptParameterLabels.keys).sorted()
             keys.filter{advanced || it in promptParameterLabels}.forEach{key->val values=state.ids.map{sources.getValue(it).image?.parameters?.get(key)}
                 if(!differences || values.distinct().size>1)matrixRow{id->
                     Text(promptParameterLabels[key]?:key,color=if(values.distinct().size>1)Gold else Quiet)
-                    SelectionContainer{Text(sources.getValue(id).image?.parameters?.get(key)?:"未记录（未知，不等于默认值）",Modifier.heightIn(max=160.dp).verticalScroll(rememberScrollState()))}
+                    SelectionContainer{Text(sources.getValue(id).image?.parameters?.get(key)?.let{promptParameterDisplay(key,it)}?:"未记录（未知，不等于默认值）",Modifier.heightIn(max=160.dp).verticalScroll(rememberScrollState()))}
                 }
             }
         }
@@ -129,3 +136,15 @@ import kotlinx.serialization.encodeToString
 }
 
 private val promptParameterLabels=linkedMapOf("实际 Seed" to "实际 Seed","图片尺寸" to "图片尺寸", "/settings/model" to "模型", "/settings/steps" to "Steps", "/settings/guidance" to "Guidance", "/settings/cfgRescale" to "CFG Rescale", "/settings/sampler" to "采样器", "/settings/seedMode" to "种子模式", "/settings/count" to "生成数量", "/settings/useCharacterPositions" to "启用角色位置", "/imageGuidance/action" to "图像引导模式", "/naturalLanguageMode" to "自然语言模式")
+
+private fun promptParameterDisplay(key:String,raw:String):String {
+    val value=runCatching{(Json.parseToJsonElement(raw) as? JsonPrimitive)?.content}.getOrNull()?:raw
+    return when(key) {
+        "/settings/model"->NovelAiImageModel.entries.firstOrNull{it.name==value||it.apiId==value}?.displayName?:value
+        "/settings/sampler"->NovelAiSampler.entries.firstOrNull{it.name==value||it.apiId==value}?.displayName?:value
+        "/imageGuidance/action"->NovelAiGenerationAction.entries.firstOrNull{it.name==value||it.apiId==value}?.displayName?:value
+        "/settings/seedMode"->when(value){"RANDOM"->"随机";"FIXED"->"固定";else->value}
+        "/settings/useCharacterPositions","/naturalLanguageMode"->when(value){"true"->"开启";"false"->"关闭";else->value}
+        else->value
+    }
+}

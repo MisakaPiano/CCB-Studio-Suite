@@ -20,7 +20,7 @@ import kotlin.test.*
 class PromptReferenceWorkflowTest {
     private val awt=object:CoroutineDispatcher(){override fun dispatch(context:CoroutineContext,block:Runnable)=SwingUtilities.invokeLater(block)}
     private fun root()=Path.of(System.getProperty("preview.test.root"),newId())
-    private suspend fun ImageComposeScene.frames(){repeat(4){render().close();yield()};delay(50);render().close()}
+    private suspend fun ImageComposeScene.frames(){repeat(4){render(System.nanoTime()).close();yield()};delay(180);render(System.nanoTime()).close()}
     private fun ImageComposeScene.nodes():List<SemanticsNode>{
         fun walk(n:SemanticsNode):List<SemanticsNode> = listOf(n)+n.children.flatMap(::walk)
         return semanticsOwners.flatMap{walk(it.rootSemanticsNode)}
@@ -28,7 +28,7 @@ class PromptReferenceWorkflowTest {
     private fun SemanticsNode.matches(text:String)=config.getOrNull(SemanticsProperties.Text)?.any{it.text==text}==true || config.getOrNull(SemanticsProperties.ContentDescription)?.contains(text)==true
     private suspend fun ImageComposeScene.click(text:String){val n=nodes().first{it.matches(text)&&it.config.getOrNull(SemanticsActions.OnClick)!=null};assertTrue(n.config[SemanticsActions.OnClick].action!!.invoke());frames()}
     private suspend fun WorkbenchController.idle(){active?.join();assertNull(problem)}
-    private fun ImageComposeScene.shot(name:String){val p=Path.of("build/prompt-references/$name.png");Files.createDirectories(p.parent);render().use{it.encodeToData()!!.use{Files.write(p,it.bytes)}}}
+    private fun ImageComposeScene.shot(name:String){val p=Path.of("build/prompt-references/$name.png");Files.createDirectories(p.parent);render(System.nanoTime()).use{it.encodeToData()!!.use{Files.write(p,it.bytes)}}}
     @Test fun imagePreviewBoardRealRoleDragExtractionAndRestartKeepSourceIdentity()=runBlocking(awt) {
         val data=root();val w=StudioWorkspace.openStudio(data);val original=EditorRenderer.synthetic(160,120)
         val account=AccountProfile(alias="local fixture",service="NAI",provider="NOVELAI",endpoint="https://image.novelai.net",model=NovelAiImageModel.V4_5_FULL.apiId)
@@ -64,6 +64,9 @@ class PromptReferenceWorkflowTest {
             assertEquals("red hair",refs.rows().single{it.key=="role:0:角色正向"}.cells[b]!!.text)
             assertContentEquals(originalPrompt,w.bytes(b));assertEquals(before,c.draft)
             scene.click("摘取 基础 Prompt ${a.take(8)}");scene.click("复制摘取");assertEquals("room, moonlight",copied)
+            scene.click("生成参数");assertTrue(scene.nodes().any{it.matches("实际 Seed")});scene.shot("board-generation-parameters")
+            scene.click("Prompt 对比");scene.click("复制摘取");assertEquals("room, moonlight",copied)
+            assertEquals(listOf("role:1","role:0"),refs.roles(b));assertContentEquals(originalPrompt,w.bytes(b))
             scene.click("摘取保存为 Prompt 资产");c.idle();scene.frames()
             val excerpt=c.library.repository.prompts().single{c.library.repository.prompt(it.request().id().toString()).origin.startsWith("prompt-excerpts:")}.request().id().toString();assertEquals("room, moonlight",c.library.repository.prompt(excerpt).text);assertTrue(c.library.repository.prompt(excerpt).origin.contains("$a#base"))
             scene.click("发送请求快照 ${a.take(8)}");c.idle();scene.frames();scene.click("复制完整内容");assertEquals(documentJson.decodeFromString<GenerationReceipt>(jobs.first().recipe).request,Json.parseToJsonElement(copied));scene.click("关闭")

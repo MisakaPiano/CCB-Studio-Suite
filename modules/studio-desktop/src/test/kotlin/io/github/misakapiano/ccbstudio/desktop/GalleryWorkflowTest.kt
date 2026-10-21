@@ -21,7 +21,7 @@ import kotlin.test.*
 class GalleryWorkflowTest {
     private val awt=object:CoroutineDispatcher(){override fun dispatch(context:CoroutineContext,block:Runnable)=SwingUtilities.invokeLater(block)}
     private fun root()=Path.of(System.getProperty("preview.test.root"),newId())
-    private suspend fun ImageComposeScene.frames(){repeat(4){render().close();yield()};delay(80);render().close()}
+    private suspend fun ImageComposeScene.frames(){repeat(4){render(System.nanoTime()).close();yield()};delay(180);render(System.nanoTime()).close()}
     private fun ImageComposeScene.nodes():List<SemanticsNode>{
         fun walk(n:SemanticsNode):List<SemanticsNode> = listOf(n)+n.children.flatMap(::walk)
         return semanticsOwners.flatMap{walk(it.rootSemanticsNode)}
@@ -29,7 +29,7 @@ class GalleryWorkflowTest {
     private fun SemanticsNode.matches(text:String)=config.getOrNull(SemanticsProperties.Text)?.any{it.text==text}==true || config.getOrNull(SemanticsProperties.ContentDescription)?.contains(text)==true
     private suspend fun ImageComposeScene.click(text:String){val n=nodes().first{it.matches(text)&&it.config.getOrNull(SemanticsActions.OnClick)!=null};assertTrue(n.config[SemanticsActions.OnClick].action!!.invoke());frames()}
     private suspend fun ImageComposeScene.field(label:String,value:String){val n=nodes().first{it.config.getOrNull(SemanticsActions.SetText)!=null&&(it.matches(label)||it.children.any{it.matches(label)})};n.config[SemanticsActions.SetText].action!!.invoke(AnnotatedString(value));frames()}
-    private fun ImageComposeScene.shot(name:String){val path=Path.of("build/ux-r3-gallery/$name.png");Files.createDirectories(path.parent);render().use{it.encodeToData()!!.use{Files.write(path,it.bytes)}}}
+    private fun ImageComposeScene.shot(name:String){val path=Path.of("build/ux-r3-gallery/$name.png");Files.createDirectories(path.parent);render(System.nanoTime()).use{it.encodeToData()!!.use{Files.write(path,it.bytes)}}}
     @Test fun gridFilterTwoImageComparisonCopyAndMetadataReuseKeepOriginals()=runBlocking(awt){
         val r=root();val w=StudioWorkspace.openStudio(r);val bytes=EditorRenderer.synthetic(128,96)
         val account=AccountProfile(alias="Synthetic local",service="NAI",provider="NOVELAI",endpoint="https://image.novelai.net",model=NovelAiImageModel.V4_5_FULL.apiId)

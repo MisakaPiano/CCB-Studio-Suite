@@ -1,0 +1,34 @@
+{
+  "repository": "MisakaPiano/ChatChatBar-Desktop",
+  "commit": "37c67c724fe21107d7eaff0306439481c6f2bf07",
+  "scope": "Selected live consumers only; does not change image-authority pinned Prompt/request closure",
+  "files": [
+    {
+      "sourcePath": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/NovelAiHistoryFolding.kt",
+      "targetPath": "src/main/kotlin/com/example/chatbar/domain/image/NovelAiHistoryFolding.kt",
+      "role": "unchanged production folding policy",
+      "sizeBytes": 4654,
+      "sha256": "3590b24da85bb9c6fb7f987d4f3d46094837bfb5522d9997b3901b8aca4b8627"
+    },
+    {
+      "sourcePath": "app/sharedCore/src/main/kotlin/com/example/chatbar/ui/imageprompt/NovelAiHistoryFilter.kt",
+      "targetPath": "src/main/kotlin/com/example/chatbar/ui/imageprompt/NovelAiHistoryFilter.kt",
+      "role": "unchanged production filtering, album and selection policy",
+      "sizeBytes": 6656,
+      "sha256": "5dea9bdcf5841c1fc6e95da2e642d5d7561005c9dc7851bab99147ec7bff47af"
+    },
+    {
+      "sourcePath": "app/sharedCore/src/test/kotlin/com/example/chatbar/domain/image/NovelAiHistoryFoldingTest.kt",
+      "targetPath": "src/test/kotlin/com/example/chatbar/domain/image/NovelAiHistoryFoldingTest.kt",
+      "role": "unchanged source regression",
+      "sizeBytes": 4757,
+      "sha256": "9b90a736b2b15ea37436b8162d157cb84788f2a523ff84d9dc3494c355f9963a"
+    }
+  ],
+  "uiReference": {
+    "sourcePath": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioHistory.kt",
+    "sizeBytes": 14012,
+    "sha256": "dfc1e7b4101f8efb091e26cc54c456ffd5cef08bcd8ce542d3acbccc60a6ecf7",
+    "adoption": "Read-only workflow reference; Suite adapts date grammar, per-depth preferences and album navigation to its asset IDs. Whole composable/controller not copied."
+  }
+}

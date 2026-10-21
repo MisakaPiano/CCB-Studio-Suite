@@ -1,0 +1,27 @@
+{
+  "phase": "history-reference-complete-modules",
+  "startedUtc": "2026-10-21T16:36:32.933674+00:00",
+  "seconds": 330.086,
+  "exitCode": 0,
+  "tests": 175,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-core:test",
+    ":studio-desktop:test"
+  ],
+  "baseCommit": "5e5882234d35f561ec7f744c046ace54db949b5c",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

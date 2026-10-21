@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.LibraryCollectionTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-21T16:37:08.525Z" hostname="DD1" time="10.093">
+  <properties/>
+  <testcase name="restoringAtIdenticalPathStillRequiresLocalCollectionReauthorization" classname="io.github.misakapiano.ccbstudio.core.LibraryCollectionTest" time="1.71"/>
+  <testcase name="discoveringNewSubtreeKeepsOtherRegisteredRootLiveDuringConcurrentWrite" classname="io.github.misakapiano.ccbstudio.core.LibraryCollectionTest" time="0.01"/>
+  <testcase name="watchCreatesVersionsAndRestoreRequiresExplicitReconnection" classname="io.github.misakapiano.ccbstudio.core.LibraryCollectionTest" time="5.63"/>
+  <testcase name="intakeCopyIsIdempotentPreservesOriginalAndNeverReplacesModifiedDestination" classname="io.github.misakapiano.ccbstudio.core.LibraryCollectionTest" time="2.743"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
