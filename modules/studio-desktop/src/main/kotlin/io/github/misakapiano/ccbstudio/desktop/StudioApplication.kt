@@ -61,7 +61,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     },admission,http)
     fun visibleAssets():List<AssetStore.Asset> {
         val s=workspace.state;val copies=(s.savedCopies+s.jobs.flatMap{it.composedResults}).toSet()
-        return workspace.catalog().filter{it.request().project().decodeToString() !in setOf("CCB_REQUEST_PAYLOAD_V1",TypesetRepository.TAG,TypesetFonts.TAG) && (it.request().kind()==AssetStore.Kind.ORIGINAL || it.request().id().toString() in copies)}
+        return workspace.catalog().filter{it.request().project().decodeToString() !in setOf("CCB_REQUEST_PAYLOAD_V1",TypesetRepository.TAG,TypesetFonts.TAG,TypesetSourceExchange.TAG) && (it.request().kind()==AssetStore.Kind.ORIGINAL || it.request().id().toString() in copies)}
     }
     fun readAsset(path:String):ByteArray {require(path.startsWith("asset:"));return workspace.bytes(path.removePrefix("asset:"))}
     fun assetRef(id:String):NovelAiStudioAssetRef {

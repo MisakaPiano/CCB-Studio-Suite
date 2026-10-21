@@ -16,6 +16,7 @@ import io.github.misakapiano.ccbstudio.core.*
     fun slotName(key:String)=when(key){"light_mosaic"->"轻马赛克";"heavy_mosaic"->"重马赛克";"fine_stripes"->"细条纹";"coarse_stripes"->"粗条纹";else->"已保存自定义参数"}
     StudioDisclosure("预设与默认") {
         Text("文字预设跨工程可用，只保存样式，不保存本页文字和位置。")
+        StudioActions{StudioAction("导入 TypeSet 预设",!c.busy){e.inspectPresets()};StudioAction("导出 TypeSet 预设",!c.busy){e.exportPresets()}}
         CompactChoice("文字预设",prefs.textPresets, prefs.textPresets.firstOrNull{it.id==selected},{it.name}){selected=it.id}
         OutlinedTextField(name,{name=it.take(100)},label={Text("预设名称")},modifier=Modifier.fillMaxWidth())
         StudioActions {
@@ -37,5 +38,10 @@ import io.github.misakapiano.ccbstudio.core.*
         CompactChoice("启动默认",listOf("custom")+TypesetPreferences.MASK_SLOTS,prefs.preferredMaskSlot,::slotName){e.maskPreset("prefer",it)}
         Text("已存页面优先使用自己的参数；新工程按启动默认选择工具。细/粗条纹保留当前黑白色，否则使用黑色。")
     }
+    e.presetInspection?.let{inspection->AlertDialog(onDismissRequest={e.cancelPresetImport()},title={Text("确认导入 TypeSet 预设")},text={Column{
+        Text("${inspection.preferences.textPresets.size} 个文字预设，${inspection.preferences.maskOverrides.size} 个自定义打码槽。")
+        Text("合并会追加文字预设、覆盖同名打码槽并导入默认值；替换会移除原预设列表。已有页面不变，原交换文件保留。")
+        Text("本次应用文字与打码默认；源侧栏、故事书和导出设置保存在原文件中，尚不自动应用。")
+    }},confirmButton={Row{TextButton(enabled=!c.busy,onClick={e.importPresets(true)}){Text("合并并导入默认")};TextButton(enabled=!c.busy,onClick={e.importPresets(false)}){Text("替换全部预设")}}},dismissButton={TextButton(onClick={e.cancelPresetImport()}){Text("取消预设导入")}})}
     if(confirm!=null)AlertDialog(onDismissRequest={confirm=null},title={Text("确认预设变更")},text={Text(when(confirm){"text-overwrite"->"用当前文字样式覆盖所选预设；已有页面不变。";"text-remove"->"删除所选预设；已应用的文字与样式保留。";"mask-overwrite"->"用当前工具参数覆盖${slotName(slot)}；其他槽不变。";else->"将${slotName(slot)}恢复为TypeSet内置值；已有遮罩不变。"})},confirmButton={TextButton(onClick={when(confirm){"text-overwrite"->e.saveTextPreset(name,selected);"text-remove"->selected?.let(e::deleteTextPreset);"mask-overwrite"->e.maskPreset("overwrite",slot);"mask-reset"->e.maskPreset("reset",slot)};confirm=null}){Text("确认预设变更")}},dismissButton={TextButton(onClick={confirm=null}){Text("取消")}})
 }

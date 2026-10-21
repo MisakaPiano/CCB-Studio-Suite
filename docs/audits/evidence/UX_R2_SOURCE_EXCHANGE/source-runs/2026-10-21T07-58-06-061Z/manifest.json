@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "errors": [],
+  "blocked": [
+    "https://fonts.googleapis.com/css2?family=Long+Cang&family=Ma+Shan+Zheng&family=Noto+Sans+JP:wght@400;700;900&family=Noto+Sans+SC:wght@400;700;900&family=Noto+Serif+JP:wght@400;700;900&family=Noto+Serif+SC:wght@400;700;900&family=ZCOOL+KuaiLe&family=ZCOOL+QingKe+HuangYou&display=swap"
+  ],
+  "instrumentation": [
+    "Move DEFAULT_PREFS after STORYBOOK_PRESETS to bypass previously recorded source TDZ startup failure",
+    "Expose original exporter/importer and fixture state; exchange algorithms unchanged"
+  ],
+  "humanReview": "NOT TESTED",
+  "sourceSha256": "892ea08f0070bdfd264b8895d38f6239f32f436b68a74ab42a2ef3336e28bb63",
+  "instrumentedSha256": "ecc03c7d8a072dc84f09a9955e559e8c26322d13ab56af4b6824063873f59ce5",
+  "browser": "131.0.2903.112",
+  "output": {
+    "size": 2911,
+    "sha256": "45a6215884ede5f7193f88fc2a219f98aae09461b60d44546ad575b7fbf9958c"
+  }
+}

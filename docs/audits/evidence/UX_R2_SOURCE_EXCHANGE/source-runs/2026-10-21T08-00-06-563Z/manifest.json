@@ -1,0 +1,125 @@
+{
+  "status": "PASS",
+  "errors": [],
+  "blocked": [
+    "https://fonts.googleapis.com/css2?family=Long+Cang&family=Ma+Shan+Zheng&family=Noto+Sans+JP:wght@400;700;900&family=Noto+Sans+SC:wght@400;700;900&family=Noto+Serif+JP:wght@400;700;900&family=Noto+Serif+SC:wght@400;700;900&family=ZCOOL+KuaiLe&family=ZCOOL+QingKe+HuangYou&display=swap"
+  ],
+  "instrumentation": [
+    "Move DEFAULT_PREFS after STORYBOOK_PRESETS to bypass previously recorded source TDZ startup failure",
+    "Expose original exporter/importer and fixture state; exchange algorithms unchanged"
+  ],
+  "humanReview": "NOT TESTED",
+  "sourceSha256": "892ea08f0070bdfd264b8895d38f6239f32f436b68a74ab42a2ef3336e28bb63",
+  "instrumentedSha256": "ecc03c7d8a072dc84f09a9955e559e8c26322d13ab56af4b6824063873f59ce5",
+  "browser": "131.0.2903.112",
+  "suiteInputSha256": "d796368022dc1ea0bfa72a9d155d48236d0587970fac26dfea10847b037e864b",
+  "imported": {
+    "name": "来源交换合成样本",
+    "mode": "image",
+    "entries": [
+      {
+        "name": "source-synthetic",
+        "texts": [
+          {
+            "text": "编辑后 [b]正文[/]",
+            "x": 90,
+            "y": 10,
+            "width": 100,
+            "fontFamily": "Microsoft YaHei",
+            "fontSize": 24,
+            "fontWeight": 400,
+            "fontStyle": "normal",
+            "underline": false,
+            "strike": false,
+            "fill": "#ffffff",
+            "stroke": "#000000",
+            "strokeWidth": 1,
+            "writingMode": "vertical",
+            "align": "center",
+            "lineHeight": 1.2,
+            "letterSpacing": 0,
+            "verticalPuncOpt": true,
+            "verticalPuncTightness": "standard",
+            "textOpacity": 1,
+            "bgColor": "#000000",
+            "bgOpacity": 0,
+            "boxBorderColor": "#ffffff",
+            "boxBorderWidth": 0,
+            "boxBorderOpacity": 1
+          }
+        ],
+        "masks": [
+          {
+            "shape": "rect",
+            "type": "black",
+            "x": 3,
+            "y": 4,
+            "w": 12,
+            "h": 15,
+            "size": 60,
+            "strength": 16,
+            "density": 6,
+            "stripeThickness": 6,
+            "pointDensity": 8,
+            "points": []
+          },
+          {
+            "shape": "brush",
+            "type": "mosaic",
+            "x": 0,
+            "y": 0,
+            "w": 100,
+            "h": 100,
+            "size": 12,
+            "strength": 8,
+            "density": 6,
+            "stripeThickness": 3,
+            "pointDensity": 8,
+            "points": [
+              {
+                "x": 10,
+                "y": 60
+              },
+              {
+                "x": 50,
+                "y": 80
+              }
+            ]
+          },
+          {
+            "shape": "lasso",
+            "type": "blur",
+            "x": 0,
+            "y": 0,
+            "w": 100,
+            "h": 100,
+            "size": 60,
+            "strength": 4,
+            "density": 6,
+            "stripeThickness": 6,
+            "pointDensity": 8,
+            "points": [
+              {
+                "x": 80,
+                "y": 80
+              },
+              {
+                "x": 100,
+                "y": 80
+              },
+              {
+                "x": 90,
+                "y": 100
+              }
+            ]
+          }
+        ],
+        "caption": "修改后旁白"
+      }
+    ]
+  },
+  "output": {
+    "size": 3088,
+    "sha256": "e056c07cae1aa4261105902959713cc43b5bca6254f173a2e7e585137ed17fa8"
+  }
+}

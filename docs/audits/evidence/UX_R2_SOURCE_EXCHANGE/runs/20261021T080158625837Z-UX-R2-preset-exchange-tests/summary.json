@@ -1,0 +1,29 @@
+{
+  "phase": "UX-R2-preset-exchange-tests",
+  "startedUtc": "2026-10-21T08:01:59.122368+00:00",
+  "seconds": 58.216,
+  "exitCode": 0,
+  "tests": 4,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-core:test",
+    "--tests",
+    "*TypesetSourceExchangeTest",
+    ":studio-desktop:compileTestKotlin"
+  ],
+  "baseCommit": "6453a1bcd7c71298531d74e5921ce770e7bd8273",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

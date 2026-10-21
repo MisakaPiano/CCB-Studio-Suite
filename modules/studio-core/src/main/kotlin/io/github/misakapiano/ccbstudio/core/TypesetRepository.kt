@@ -9,6 +9,12 @@ import java.util.UUID
 
 /** Immutable snapshot assets first, journal reference last. Failed writes retain orphans; no originals are deleted. */
 class TypesetRepository(private val workspace:StudioWorkspace) {
+    fun importDocument(name:String,document:TypesetDocument,sourceExchangeId:String,current:Int):TypesetProject=workspace.operation {
+        require(name.isNotBlank() && name.length<=100);document.validate();workspace.assets.read(UUID.fromString(sourceExchangeId)).require()
+        val page=document.pages.getOrNull(current)?.id?:document.pages.firstOrNull()?.id
+        val project=TypesetProject(name=name,current=write(document),sourceExchangeId=sourceExchangeId,currentPageId=page,selectedPageIds=listOfNotNull(page))
+        workspace.save(workspace.state.copy(typesetProjects=workspace.state.typesetProjects+project));project
+    }
     fun create(name:String,ids:List<String>):TypesetProject=workspace.operation {
         require(name.length in 1..100 && ids.isNotEmpty() && ids.size<=1000)
         val document=TypesetDocument(pages=ids.map{id->val a=workspace.assets.read(UUID.fromString(id)).require();
@@ -32,7 +38,7 @@ class TypesetRepository(private val workspace:StudioWorkspace) {
         require(name.isNotBlank() && name.length<=100)
         val old=workspace.state.typesetProjects.first{it.id==id};require(old.revision==revision){"Stale editor revision"}
         read(old.current)
-        val next=TypesetProject(name=name,current=old.current,currentPageId=old.currentPageId,selectedPageIds=old.selectedPageIds)
+        val next=TypesetProject(name=name,current=old.current,currentPageId=old.currentPageId,selectedPageIds=old.selectedPageIds,sourceExchangeId=old.sourceExchangeId)
         workspace.save(workspace.state.copy(typesetProjects=workspace.state.typesetProjects+next));next
     }
     fun remove(id:String,revision:Long)=workspace.operation {

@@ -1,3 +1,7 @@
+## UX-R2 工程与预设交换进度（2026-10-21）
+
+[执行记录](audits/UX_R2_SOURCE_EXCHANGE.md)：107项完整实际PASS；源程序导出→Studio编辑→源程序回读、独立导入/取消、预设合并/替换、原件及备份恢复已验证。继续完整导出/图库/更新，PRODUCT_HOLD。
+
 ## UX-R2c 小人书与文件导出进度（2026-10-21）
 
 [执行记录](audits/UX_R2C_BOOK_EXPORT.md)：完整100项实际PASS，随后JPEG质量定向3项PASS；整册PNG/ZIP/PDF、目录选择接线、故障保全和重开已测。继续源交换/完整导出/图库/更新，PRODUCT_HOLD。

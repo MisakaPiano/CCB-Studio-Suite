@@ -469,7 +469,9 @@
         "TypesetFonts.kt",
         "WindowsFontDecoder.kt",
         "TypesetObjects.kt",
-        "TypesetQueue.kt"
+        "TypesetQueue.kt",
+        "TypesetSourceExchange.kt",
+        "TypesetPresets.kt"
       ],
       "tests": [
         "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart",
@@ -480,16 +482,21 @@
         "TypesetQueueTest",
         "TypesetRepositoryTest.projectCopyRenameAndRemovalKeepIndependentHistoryAndOriginal",
         "TypesetWorkflowTest.queueControlSelectionDragOrderNumberingAndRestart",
-        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart (includes lock/unlock pointer, clone/delete/reopen)"
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart (includes lock/unlock pointer, clone/delete/reopen)",
+        "TypesetSourceExchangeTest",
+        "TypesetWorkflowTest.sourceExchangePreviewConfirmExportAndReopen"
       ],
       "guiEvidence": [
         "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)",
-        "docs/audits/evidence/UX_R2A_OBJECTS_QUEUE/compose-scenes (actual Compose pointer; offscreen)"
+        "docs/audits/evidence/UX_R2A_OBJECTS_QUEUE/compose-scenes (actual Compose pointer; offscreen)",
+        "docs/audits/evidence/UX_R2_SOURCE_EXCHANGE/source-exchange-confirm.png"
       ],
       "persistenceEvidence": [
-        "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen"
+        "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen",
+        "docs/audits/UX_R2_SOURCE_EXCHANGE.md"
       ],
-      "status": "ENGINEERING_PARTIAL / COMPOSE_POINTER_AND_RESTART_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+      "status": "PARTIAL",
+      "remaining": "Source global layout/story/export preferences preserved but not yet applied; full codecs and native visual review remain"
     },
     {
       "id": "T02",
@@ -864,19 +871,25 @@
       "implementation": [
         "TypesetPreferences.kt",
         "TypesetPresets.kt",
-        "TypesetEditorController.kt"
+        "TypesetEditorController.kt",
+        "TypesetSourceExchange.kt"
       ],
       "tests": [
         "TypesetPreferencesTest: exact source slots, style projection, image limits, backup restore",
-        "TypesetWorkflowTest: actual preset save/apply/override/reset/preferred slot GUI and reopen"
+        "TypesetWorkflowTest: actual preset save/apply/override/reset/preferred slot GUI and reopen",
+        "TypesetSourceExchangeTest",
+        "TypesetWorkflowTest.sourceExchangePreviewConfirmExportAndReopen"
       ],
       "guiEvidence": [
-        "UX_R2A_PRESETS runs: actual Compose semantics; no native visual acceptance"
+        "UX_R2A_PRESETS runs: actual Compose semantics; no native visual acceptance",
+        "docs/audits/evidence/UX_R2_SOURCE_EXCHANGE/source-exchange-confirm.png"
       ],
       "persistenceEvidence": [
-        "TypesetPreferencesTest.globalPreferencesSurviveWorkspaceBackupAndRestore"
+        "TypesetPreferencesTest.globalPreferencesSurviveWorkspaceBackupAndRestore",
+        "docs/audits/UX_R2_SOURCE_EXCHANGE.md"
       ],
-      "status": "ENGINEERING_PARTIAL / PRESETS_TESTED / SOURCE_FILE_EXCHANGE_PENDING / PRODUCT_HOLD"
+      "status": "PARTIAL",
+      "remaining": "Source global layout/story/export preferences preserved but not yet applied; full codecs and native visual review remain"
     },
     {
       "id": "T17",
@@ -1020,19 +1033,25 @@
       "implementation": [
         "TypesetPreferences.kt",
         "TypesetPresets.kt",
-        "TypesetEditorController.kt"
+        "TypesetEditorController.kt",
+        "TypesetSourceExchange.kt"
       ],
       "tests": [
         "TypesetPreferencesTest: exact source slots, style projection, image limits, backup restore",
-        "TypesetWorkflowTest: actual preset save/apply/override/reset/preferred slot GUI and reopen"
+        "TypesetWorkflowTest: actual preset save/apply/override/reset/preferred slot GUI and reopen",
+        "TypesetSourceExchangeTest",
+        "TypesetWorkflowTest.sourceExchangePreviewConfirmExportAndReopen"
       ],
       "guiEvidence": [
-        "UX_R2A_PRESETS runs: actual Compose semantics; no native visual acceptance"
+        "UX_R2A_PRESETS runs: actual Compose semantics; no native visual acceptance",
+        "docs/audits/evidence/UX_R2_SOURCE_EXCHANGE/source-exchange-confirm.png"
       ],
       "persistenceEvidence": [
-        "TypesetPreferencesTest.globalPreferencesSurviveWorkspaceBackupAndRestore"
+        "TypesetPreferencesTest.globalPreferencesSurviveWorkspaceBackupAndRestore",
+        "docs/audits/UX_R2_SOURCE_EXCHANGE.md"
       ],
-      "status": "ENGINEERING_PARTIAL / PRESETS_TESTED / SOURCE_FILE_EXCHANGE_PENDING / PRODUCT_HOLD"
+      "status": "PARTIAL",
+      "remaining": "Source global layout/story/export preferences preserved but not yet applied; full codecs and native visual review remain"
     },
     {
       "id": "Q06",

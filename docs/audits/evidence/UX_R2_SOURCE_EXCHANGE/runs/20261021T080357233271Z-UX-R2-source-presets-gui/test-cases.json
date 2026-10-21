@@ -1,0 +1,38 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetSourceExchangeTest",
+    "name": "editedExportRoundTripsStudioExtensionsAndRetainsUnknownSourceFields",
+    "seconds": "2.373",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetSourceExchangeTest",
+    "name": "legacyPresetMigrationMergeReplaceAndUnknownFieldsRoundTrip",
+    "seconds": "0.617",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetSourceExchangeTest",
+    "name": "actualSourcePresetExportMatchesStyleAndDefaults",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetSourceExchangeTest",
+    "name": "actualSourceExportImportsAllObjectsAndKeepsRawAcrossBackup",
+    "seconds": "2.736",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetSourceExchangeTest",
+    "name": "unknownVersionRemoteDataAndCorruptionRefusedBeforeMutation",
+    "seconds": "0.005",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "sourceExchangePreviewConfirmExportAndReopen",
+    "seconds": "6.259",
+    "status": "PASS"
+  }
+]

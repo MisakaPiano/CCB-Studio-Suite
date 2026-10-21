@@ -1,3 +1,7 @@
+## UX-R2 工程与预设交换进度（2026-10-21）
+
+[执行记录](audits/UX_R2_SOURCE_EXCHANGE.md)：107项完整实际PASS；源程序导出→Studio编辑→源程序回读、独立导入/取消、预设合并/替换、原件及备份恢复已验证。继续完整导出/图库/更新，PRODUCT_HOLD。
+
 ## UX-R2c 小人书与文件导出进度（2026-10-21）
 
 [执行记录](audits/UX_R2C_BOOK_EXPORT.md)：完整100项实际PASS，随后JPEG质量定向3项PASS；整册PNG/ZIP/PDF、目录选择接线、故障保全和重开已测。继续源交换/完整导出/图库/更新，PRODUCT_HOLD。
@@ -23,7 +27,7 @@
 | ID | 任务 | 状态 | 权限/停止点 |
 |---|---|---|---|
 | UX-R0 | Issue #4完整来源继承/产品恢复/GUI结构合同 | PASS_WITH_SCOPE / CONTINUOUS_IMPLEMENTATION_ELIGIBLE / PRODUCT HOLD | [整体审阅](ux/UX_R0_PROJECT_REVIEW.md)；回执6307947815已读取；完整TypeSet合同保留；当前生产实施由下项授权，不merge/不宣布Preview通过 |
-| UX-RECOVERY | R1a→R1b→R2a→R2b→R2c→R3→R4 | ACTIVE / R1b IN PROGRESS | [创作/回用证据](audits/UX_R1B_CREATION.md)39项desktop新PASS；TypeSet源样本/R2–R4继续，原生产品HOLD；[连续合同](../tasks/UX_RECOVERY_CONTINUOUS.md)，完成W1–W5及更新后集中验收 |
+| UX-RECOVERY | R1a→R1b→R2a→R2b→R2c→R3→R4 | ACTIVE / R2 IN PROGRESS | [创作/回用证据](audits/UX_R1B_CREATION.md)39项desktop新PASS；TypeSet源样本/R2–R4继续，原生产品HOLD；[连续合同](../tasks/UX_RECOVERY_CONTINUOUS.md)，完成W1–W5及更新后集中验收 |
 | INIT-000 | 立项材料 | PACKAGED | 文档/参考交付，不等于软件实现 |
 | A0-001 | 核对初始化并只读复用审计 | AUDIT DELIVERED / REVIEWED WITH SCOPE | 原审计事实保留；A0-002结论见下一行 |
 | A0-002 | Project连续开发门禁 | APPROVED_FOR_RC_RUN | 已实际读取Issue #1正式回执comment6296885017；只解锁#2，不是产品/合并/发布/真实付费验收 |

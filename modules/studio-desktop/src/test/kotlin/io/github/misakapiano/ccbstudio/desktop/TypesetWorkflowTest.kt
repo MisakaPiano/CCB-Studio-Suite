@@ -17,6 +17,26 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.test.*
 
 class TypesetWorkflowTest {
+    @Test fun sourceExchangePreviewConfirmExportAndReopen()=runBlocking(awt) {
+        val r=root();val w=StudioWorkspace.openStudio(r);val scope=CoroutineScope(SupervisorJob()+awt)
+        val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{});c.view="编辑"
+        val input=Path.of("../studio-core/src/test/resources/typeset/source-workspace.json");val output=Files.createDirectories(root()).resolve("exchange.json")
+        c.editor.chooseExchangeFile={save->if(save)output else input}
+        val presetInput=Path.of("../studio-core/src/test/resources/typeset/source-presets.json");val presetOutput=output.resolveSibling("presets.json")
+        c.editor.choosePresetFile={save->if(save)presetOutput else presetInput}
+        val scene=ImageComposeScene(1320,950){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        try {
+            scene.frames();scene.click("导入 TypeSet 工程");c.idle();scene.frames();assertTrue(w.state.typesetProjects.isEmpty());scene.click("取消导入");assertNull(c.editor.exchangeInspection)
+            scene.click("导入 TypeSet 工程");c.idle();scene.frames();scene.shot("source-exchange-confirm");scene.click("建立独立导入工程");c.idle();scene.frames()
+            assertEquals(1,c.assets.size);assertEquals(3,c.editor.page!!.masks.size);scene.click("▸ 工程交换文件");scene.click("导出当前 TypeSet 工程");c.idle();assertTrue(Files.exists(output))
+            val roundTrip=TypesetSourceExchange.inspect(Files.readAllBytes(output));assertEquals(c.editor.page!!.texts,roundTrip.document.pages.single().texts)
+            scene.click("▸ 预设与默认");scene.click("导入 TypeSet 预设");c.idle();scene.frames();assertTrue(w.state.typesetPreferences.textPresets.isEmpty());scene.click("合并并导入默认");c.idle();scene.frames()
+            assertEquals("heavy_mosaic",w.state.typesetPreferences.preferredMaskSlot);assertEquals(1,w.state.typesetPreferences.textPresets.size)
+            scene.click("导出 TypeSet 预设");c.idle();assertEquals(48.0,TypesetSourceExchange.inspectPresets(Files.readAllBytes(presetOutput)).preferences.textPresets.single().text.style.fontSize)
+            c.editor.drain()
+        }finally{scene.close();c.close();scope.cancel();w.close()}
+        StudioWorkspace.openStudio(r).use{next->assertContentEquals(Files.readAllBytes(input),TypesetSourceExchange.originalExchange(next,next.state.typesetProjects.single()));assertEquals("heavy_mosaic",next.state.typesetPreferences.preferredMaskSlot)}
+    }
     @Test fun storyCaptionPresetPreviewExportAndRestart()=runBlocking(awt) {
         val r=root();val w=StudioWorkspace.openStudio(r);val original=EditorRenderer.synthetic(180,120);val id=w.importImage("book.png",original)
         val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})

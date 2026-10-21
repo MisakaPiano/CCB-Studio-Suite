@@ -35,6 +35,7 @@ import kotlin.math.*
         StudioActions {
             CompactChoice("编辑工程",c.workspace.state.typesetProjects,e.project,{it.name}){e.open(it.id)}
             StudioAction("新建编辑工程",!c.busy){creating=true}
+            StudioAction("导入 TypeSet 工程",!c.busy){e.inspectExchange()}
             if(e.project!=null){StudioAction("重命名工程",!c.busy){projectName=e.project!!.name;projectAction="rename"};StudioAction("另存工程",!c.busy){projectName=e.project!!.name+" 副本";projectAction="copy"};StudioAction("删除工程",!c.busy){projectAction="remove"}}
             StudioAction("保存工程",e.dirty && !c.busy){c.run("保存工程"){e.drain()}}
             StudioAction("撤销编辑",!c.busy && (e.dirty || e.project?.undo?.isNotEmpty()==true)){e.history()}
@@ -44,6 +45,11 @@ import kotlin.math.*
         }
         e.exportDirectory?.let{Text("导出已完成并校验：$it",modifier=Modifier.padding(horizontal=12.dp))}
         e.exportProblem?.let{Text(it,color=MaterialTheme.colors.error,modifier=Modifier.padding(horizontal=12.dp))}
+        e.exchangeMessage?.let{Text(it,modifier=Modifier.padding(horizontal=12.dp))}
+        if(e.project!=null)StudioDisclosure("工程交换文件") {
+            Text("包含原始图片和可编辑内容。TypeSet不支持的锁定与混合层序保存在Studio扩展中；外部TypeSet按其原有先打码后文字规则显示。字体文件不自动再分发。")
+            StudioActions {StudioAction("导出当前 TypeSet 工程",!c.busy){e.exportExchange()};StudioAction("另存导入原文件",!c.busy && e.project?.sourceExchangeId!=null){e.exportExchange(true)}}
+        }
         if(e.document==null) {
             Box(Modifier.fillMaxSize(),contentAlignment=Alignment.Center){Column(horizontalAlignment=Alignment.CenterHorizontally){Text("把图片编成可再次编辑的工程");Text("从图库选择图片，命名后建立队列；原件保持完整。")
                 StudioAction("前往图库选择图片"){c.view="图库"};if(c.workspace.state.typesetProjects.isNotEmpty())StudioAction("继续最近工程"){e.open(c.workspace.state.typesetProjects.last().id)}}}
@@ -80,6 +86,11 @@ import kotlin.math.*
         }
     }
     if(exporting)TypesetExportDialog(c,e){exporting=false}
+    e.exchangeInspection?.let{inspection->AlertDialog(onDismissRequest={e.cancelExchange()},title={Text("确认导入 TypeSet 工程")},text={Column{
+        Text("${inspection.name} · ${inspection.document.pages.size} 页 · ${inspection.bytes.size} bytes")
+        Text("将新建独立工程，不替换当前工程或图片。")
+        inspection.notes.forEach{Text(it)}
+    }},confirmButton={TextButton(enabled=!c.busy,onClick={e.importExchange()}){Text("建立独立导入工程")}},dismissButton={TextButton(onClick={e.cancelExchange()}){Text("取消导入")}})}
     if(projectAction!=null)AlertDialog(onDismissRequest={projectAction=null},title={Text(when(projectAction){"rename"->"重命名工程";"copy"->"另存为独立工程";else->"删除工程记录？"})},text={Column{
         if(projectAction=="remove")Text("只移除此工程记录；图库原件与已保存资产保留。删除后不能通过工程撤销恢复，请先备份或另存。")
         else {OutlinedTextField(projectName,{projectName=it.take(100)},label={Text("新工程名称")});if(projectAction=="copy")Text("保留当前页面与图层，新工程有独立历史；后续修改互不影响。")}

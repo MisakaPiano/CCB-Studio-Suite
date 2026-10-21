@@ -15,8 +15,10 @@ import kotlinx.serialization.Serializable
     val textPresets:List<TypesetPreset> = emptyList(),val selectedTextPresetId:String?=null,
     val textDefault:TypesetText?=null,val maskOverrides:Map<String,MaskToolSettings> = emptyMap(),
     val preferredMaskSlot:String="custom",val currentMask:MaskToolSettings=MaskToolSettings(),
+    val sourceExchangeId:String?=null,
 ) {
     fun validate(){
+        sourceExchangeId?.let(java.util.UUID::fromString)
         require(textPresets.size<=200 && (selectedTextPresetId==null || textPresets.any{it.id==selectedTextPresetId}))
         TypesetDocument(presets=textPresets).validate()
         textDefault?.let{TypesetDocument(presets=listOf(TypesetPreset(id="00000000-0000-0000-0000-000000000000",name="Default",text=it))).validate()}

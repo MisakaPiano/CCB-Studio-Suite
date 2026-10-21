@@ -23,6 +23,43 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
     var zoom by mutableStateOf(1f)
     var exportDirectory by mutableStateOf<java.nio.file.Path?>(null);private set
     var exportProblem by mutableStateOf<String?>(null);private set
+    var exchangeInspection by mutableStateOf<TypesetSourceExchange.Inspection?>(null);private set
+    var presetInspection by mutableStateOf<TypesetSourceExchange.PresetInspection?>(null);private set
+    var exchangeMessage by mutableStateOf<String?>(null);private set
+    internal var chooseExchangeFile:(Boolean)->java.nio.file.Path? = {save->
+        val chooser=javax.swing.JFileChooser();chooser.dialogTitle=if(save)"保存 TypeSet 工程交换文件（不覆盖已有文件）"else"导入 TypeSet 工程交换文件"
+        chooser.fileFilter=javax.swing.filechooser.FileNameExtensionFilter("TypeSet 工程 JSON","json")
+        if(save)chooser.selectedFile=java.io.File("Studio.typesetter-workspace.json")
+        val result=if(save)chooser.showSaveDialog(null)else chooser.showOpenDialog(null)
+        if(result==javax.swing.JFileChooser.APPROVE_OPTION)chooser.selectedFile.toPath() else null
+    }
+    internal var choosePresetFile:(Boolean)->java.nio.file.Path? = {save->
+        val chooser=javax.swing.JFileChooser();chooser.dialogTitle=if(save)"保存 TypeSet 预设文件（不覆盖已有文件）"else"导入 TypeSet 预设文件"
+        chooser.fileFilter=javax.swing.filechooser.FileNameExtensionFilter("TypeSet 预设 JSON","json");if(save)chooser.selectedFile=java.io.File("Studio.typesetter-presets.json")
+        val result=if(save)chooser.showSaveDialog(null)else chooser.showOpenDialog(null);if(result==javax.swing.JFileChooser.APPROVE_OPTION)chooser.selectedFile.toPath() else null
+    }
+    fun inspectPresets()=c.run("预读 TypeSet 预设") {drain();val path=withContext(ui){choosePresetFile(false)}?:return@run
+        val inspection=TypesetSourceExchange.inspectPresets(readBounded(path,4*1024*1024));withContext(ui){presetInspection=inspection}}
+    fun cancelPresetImport(){presetInspection=null}
+    fun importPresets(merge:Boolean)=c.run("导入 TypeSet 预设") {drain();val inspection=presetInspection?:return@run;TypesetSourceExchange.importPresets(c.workspace,inspection,merge);withContext(ui){presetInspection=null;exchangeMessage="预设已导入；已有页面保持原样"}}
+    fun exportPresets()=c.run("保存 TypeSet 预设文件") {drain();val bytes=TypesetSourceExchange.exportPresets(c.workspace);val path=withContext(ui){choosePresetFile(true)}?:return@run
+        TypesetSourceExchange.saveFile(path,bytes);withContext(ui){exchangeMessage="预设文件已保存：$path · ${bytes.size} bytes · SHA-256 ${sha256(bytes)}"}}
+    fun inspectExchange()=c.run("预读 TypeSet 工程") {
+        drain();val path=withContext(ui){chooseExchangeFile(false)}?:return@run
+        val inspection=TypesetSourceExchange.inspect(readBounded(path,TypesetSourceExchange.MAX_BYTES))
+        withContext(ui){exchangeInspection=inspection}
+    }
+    fun cancelExchange(){exchangeInspection=null}
+    fun importExchange()=c.run("导入 TypeSet 工程") {
+        drain();val inspection=exchangeInspection?:return@run;val next=TypesetSourceExchange.import(c.workspace,inspection);val d=repository.load(next)
+        withContext(ui){project=next;document=d;dirty=false;pageId=next.currentPageId;selectedPages=next.selectedPageIds.toSet();objectId=null;exchangeInspection=null;exchangeMessage="已建立独立工程，原始交换文件与图片已保全";c.view="编辑"}
+    }
+    fun exportExchange(original:Boolean=false)=c.run("保存 TypeSet 工程文件") {
+        drain();val p=project?:return@run;val d=document?:return@run
+        val bytes=if(original)TypesetSourceExchange.originalExchange(c.workspace,p)else TypesetSourceExchange.export(c.workspace,p,d)
+        val path=withContext(ui){chooseExchangeFile(true)}?:return@run
+        TypesetSourceExchange.saveFile(path,bytes);withContext(ui){exchangeMessage="工程文件已保存：$path · ${bytes.size} bytes · SHA-256 ${sha256(bytes)}"}
+    }
     internal var chooseExportDirectory:()->java.nio.file.Path? = {
         val chooser=javax.swing.JFileChooser();chooser.dialogTitle="选择导出位置（将新建独立输出文件夹）";chooser.fileSelectionMode=javax.swing.JFileChooser.DIRECTORIES_ONLY
         if(chooser.showSaveDialog(null)==javax.swing.JFileChooser.APPROVE_OPTION)chooser.selectedFile.toPath() else null

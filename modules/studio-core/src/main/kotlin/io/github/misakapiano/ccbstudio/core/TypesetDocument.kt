@@ -38,6 +38,7 @@ import java.util.UUID
     val texts:List<TypesetText> = emptyList(),val masks:List<TypesetMask> = emptyList(),
     val caption:String="",val story:StoryStyle=StoryStyle(),
     val toolDefaults:TypesetMask?=null,val layerOrder:List<String> = emptyList(),
+    val sourceEntryIndex:Int?=null,
 )
 @Serializable data class TypesetPreset(val id:String=newId(),val name:String,val text:TypesetText)
 @Serializable data class TypesetDocument(
@@ -60,6 +61,7 @@ import java.util.UUID
             listOf(t.style.fill,t.style.stroke,t.background,t.border).forEach(::validateColor)
         }
         pages.forEach {p->
+            require(p.sourceEntryIndex==null || p.sourceEntryIndex in 0..999)
             UUID.fromString(p.id);UUID.fromString(p.assetId);require(p.name.length<=512 && p.caption.length<=100000)
             require(p.texts.size<=500 && p.masks.size<=500 && (p.texts.map{it.id}+p.masks.map{it.id}).distinct().size==p.texts.size+p.masks.size)
             require(p.layerOrder.distinct().size==p.layerOrder.size && p.layerOrder.all{id->p.texts.any{it.id==id} || p.masks.any{it.id==id}})
@@ -89,6 +91,7 @@ internal fun validateColor(value:String) {require(Regex("#[0-9a-fA-F]{3}([0-9a-f
     val id:String=newId(),val name:String,val revision:Long=0,val current:TypesetReference,
     val undo:List<TypesetReference> = emptyList(),val redo:List<TypesetReference> = emptyList(),
     val currentPageId:String?=null,val selectedPageIds:List<String> = emptyList(),
+    val sourceExchangeId:String?=null,
 ) {
-    fun validate(){currentPageId?.let(UUID::fromString);require(selectedPageIds.size<=1000 && selectedPageIds.distinct().size==selectedPageIds.size);selectedPageIds.forEach{UUID.fromString(it)};UUID.fromString(id);require(name.length in 1..100 && revision>=0 && undo.size<=30 && redo.size<=30);(listOf(current)+undo+redo).forEach{it.validate()}}
+    fun validate(){sourceExchangeId?.let(UUID::fromString);currentPageId?.let(UUID::fromString);require(selectedPageIds.size<=1000 && selectedPageIds.distinct().size==selectedPageIds.size);selectedPageIds.forEach{UUID.fromString(it)};UUID.fromString(id);require(name.length in 1..100 && revision>=0 && undo.size<=30 && redo.size<=30);(listOf(current)+undo+redo).forEach{it.validate()}}
 }

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.TypesetBatchTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-21T08:06:22.526Z" hostname="DD1" time="1.131">
+  <properties/>
+  <testcase name="missingPreviousTextDoesNotEraseTargetAndMaskDefaultsSurviveReopen" classname="io.github.misakapiano.ccbstudio.core.TypesetBatchTest" time="1.13"/>
+  <testcase name="previousUsesFrozenSnapshotAndLastStyleForExtraObjects" classname="io.github.misakapiano.ccbstudio.core.TypesetBatchTest" time="0.001"/>
+  <testcase name="currentStyleAppliesToAllTextsAndKeepsGeometryVisibilityAndUnselectedPage" classname="io.github.misakapiano.ccbstudio.core.TypesetBatchTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
