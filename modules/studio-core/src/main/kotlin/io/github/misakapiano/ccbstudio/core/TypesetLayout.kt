@@ -54,15 +54,16 @@ object TypesetLayout {
         fun number(default:Double)=v.toDoubleOrNull()?.takeIf{it.isFinite() && it!=0.0}?:default
         return when(m.groupValues[1].lowercase()) {
             "f","font","fontfamily"->s.copy(fontFamily=v.take(256))
-            "c","color","fill"->s.copy(fill=checkedColor(v,s.fill))
-            "stroke","outline"->s.copy(stroke=checkedColor(v,s.stroke))
+            // Preserve source syntax for editing/layout; color validation belongs to
+            // rendering so an invalid inline color cannot crash selection geometry.
+            "c","color","fill"->s.copy(fill=v)
+            "stroke","outline"->s.copy(stroke=v)
             "strokewidth","ow","outlinewidth"->s.copy(strokeWidth=number(0.0).coerceIn(0.0,100.0))
             "size","fs"->s.copy(fontSize=number(s.fontSize).coerceIn(6.0,1000.0))
             "weight","w"->s.copy(fontWeight=number(s.fontWeight.toDouble()).coerceIn(100.0,900.0).toInt())
             else->null
         }
     }
-    private fun checkedColor(value:String,fallback:String)=runCatching{validateColor(value);value}.getOrDefault(fallback)
     private val force=buildMap<String,String> {
         fun group(input:String,output:String){chars(input).forEach{put(it,output)}}
         group("，,﹐","︐");group("、﹑","︑");group("。．.","︒");group("：:﹕","︓");group("；;﹔","︔")

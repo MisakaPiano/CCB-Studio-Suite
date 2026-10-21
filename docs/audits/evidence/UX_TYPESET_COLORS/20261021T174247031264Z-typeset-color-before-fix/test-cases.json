@@ -1,0 +1,14 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetColorTest",
+    "name": "invalidColorsCannotSilentlyRenderAsThePreviousStyle",
+    "seconds": "0.076",
+    "status": "FAILED"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetColorTest",
+    "name": "namedAndFunctionalRichColorsMatchIndependentSourceCanvasSamples",
+    "seconds": "0.049",
+    "status": "FAILED"
+  }
+]

@@ -1,0 +1,41 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :asset-library:compileJava UP-TO-DATE
+> Task :image-authority:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :image-authority:compileKotlin UP-TO-DATE
+> Task :image-authority:compileJava NO-SOURCE
+> Task :studio-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-core:compileKotlin UP-TO-DATE
+> Task :studio-core:compileJava NO-SOURCE
+> Task :studio-core:processResources UP-TO-DATE
+> Task :studio-core:classes UP-TO-DATE
+> Task :studio-core:jar UP-TO-DATE
+> Task :asset-library:processResources NO-SOURCE
+> Task :asset-library:classes UP-TO-DATE
+> Task :asset-library:jar UP-TO-DATE
+> Task :image-authority:processResources NO-SOURCE
+> Task :image-authority:classes UP-TO-DATE
+> Task :image-authority:jar UP-TO-DATE
+> Task :studio-core:compileTestKotlin
+> Task :studio-core:compileTestJava NO-SOURCE
+> Task :studio-core:processTestResources UP-TO-DATE
+> Task :studio-core:testClasses UP-TO-DATE
+
+> Task :studio-core:test FAILED
+
+TypesetColorTest > namedAndFunctionalRichColorsMatchIndependentSourceCanvasSamples FAILED
+    org.junit.ComparisonFailure at TypesetColorTest.kt:22
+
+1 test completed, 1 failed
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':studio-core:test'.
+> There were failing tests. See the report at: file:///H:/CCB-Studio-Suite/modules/studio-core/build/reports/tests/test/index.html
+
+* Try:
+> Run with --scan to generate a Build Scan (Powered by Develocity).
+
+BUILD FAILED in 14s
+10 actionable tasks: 2 executed, 8 up-to-date

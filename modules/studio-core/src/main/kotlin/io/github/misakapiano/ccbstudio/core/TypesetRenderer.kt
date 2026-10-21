@@ -7,10 +7,7 @@ import kotlin.math.*
 
 /** Preview and export share this renderer. Original bytes are never replaced. */
 object TypesetRenderer {
-    fun color(value:String):Color {
-        validateColor(value);val hex=value.drop(1).let{if(it.length==3)it.flatMap{c->listOf(c,c)}.joinToString("")else it}
-        return Color(hex.toInt(16))
-    }
+    fun color(value:String):Color = TypesetColors.parse(value)
     private fun quality(g:Graphics2D){g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_ON);g.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS,RenderingHints.VALUE_FRACTIONALMETRICS_ON);g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BICUBIC)}
     fun render(original:ByteArray,page:TypesetPage,variant:String="all"):BufferedImage {
         require(variant in setOf("all","text","mask","original"))

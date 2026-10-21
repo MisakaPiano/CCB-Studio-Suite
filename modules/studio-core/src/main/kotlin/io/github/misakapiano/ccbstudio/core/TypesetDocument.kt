@@ -84,7 +84,7 @@ import java.util.UUID
         presets.forEach{UUID.fromString(it.id);require(it.name.length in 1..100);text(it.text)}
     }
 }
-internal fun validateColor(value:String) {require(Regex("#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?").matches(value)){"Use an RGB hex color"}}
+internal fun validateColor(value:String) {TypesetColors.parse(value)}
 
 @Serializable data class TypesetReference(val chunks:List<String>,val bytes:Int,val sha256:String) {
     fun validate(){require(chunks.size in 1..4 && bytes in 1..16*1024*1024 && sha256.matches(Regex("[0-9a-f]{64}")));chunks.forEach{UUID.fromString(it)}}

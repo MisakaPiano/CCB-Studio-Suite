@@ -274,8 +274,10 @@ private data class EditorRaster(val bitmap:ImageBitmap,val width:Int,val height:
     OutlinedTextField(text,{text=it;it.toDoubleOrNull()?.takeIf{n->n.isFinite()&&n in range}?.let(change)},label={Text(label)},isError=!valid,singleLine=true,modifier=Modifier.fillMaxWidth())
 }
 @Composable internal fun ColorField(label:String,value:String,change:(String)->Unit) {
-    var text by remember(value){mutableStateOf(value)};val valid=Regex("#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?").matches(text)
-    OutlinedTextField(text,{text=it;if(Regex("#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?").matches(it))change(it)},label={Text("$label (#RRGGBB)")},isError=!valid,singleLine=true,modifier=Modifier.fillMaxWidth())
+    var text by remember(value){mutableStateOf(value)};val parsed=runCatching{TypesetColors.parse(text)}
+    OutlinedTextField(text,{text=it;if(runCatching{TypesetColors.parse(it)}.isSuccess)change(it)},label={Text(label)},isError=parsed.isFailure,singleLine=true,modifier=Modifier.fillMaxWidth())
+    if(parsed.isFailure)Text("尚未应用：${parsed.exceptionOrNull()?.message?:"颜色格式无效"}",color=MaterialTheme.colors.error,style=MaterialTheme.typography.caption)
+    else Text("色名 / HEX / RGB / HSL / HWB；支持透明度",style=MaterialTheme.typography.caption)
 }
 @Composable private fun StoryProperties(c:WorkbenchController,e:TypesetEditorController) {
     val p=e.page?:return;val s=p.story

@@ -1,0 +1,38 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetColorTest",
+    "name": "invalidColorsCannotSilentlyRenderAsThePreviousStyle",
+    "seconds": "0.106",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetColorTest",
+    "name": "namedAndFunctionalRichColorsMatchIndependentSourceCanvasSamples",
+    "seconds": "0.137",
+    "status": "FAILED"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetReferenceTest",
+    "name": "sourceVerticalGlyphsColumnsAndAdvances",
+    "seconds": "1.932",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetReferenceTest",
+    "name": "sourceHorizontalWrappingAndRichStyles",
+    "seconds": "0.007",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetReferenceTest",
+    "name": "measuredCanvasTopBaselineUsesTypoMetrics",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetReferenceTest",
+    "name": "sourceStoryGeometryAndBlankParagraphs",
+    "seconds": "0.733",
+    "status": "PASS"
+  }
+]

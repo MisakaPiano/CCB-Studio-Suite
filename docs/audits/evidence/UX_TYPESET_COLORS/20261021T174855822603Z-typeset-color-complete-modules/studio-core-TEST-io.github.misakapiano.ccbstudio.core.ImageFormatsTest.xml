@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.ImageFormatsTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-21T17:49:34.330Z" hostname="DD1" time="7.426">
+  <properties/>
+  <testcase name="animatedInputsUseFirstOrDefaultRasterAndRetainAllEncodedFrames" classname="io.github.misakapiano.ccbstudio.core.ImageFormatsTest" time="3.549"/>
+  <testcase name="unrecognizedOrCorruptCodecsDoNotCreateAssets" classname="io.github.misakapiano.ccbstudio.core.ImageFormatsTest" time="0.198"/>
+  <testcase name="webpBmpGifImportExportAndSourceExchangeRetainOriginalBytes" classname="io.github.misakapiano.ccbstudio.core.ImageFormatsTest" time="3.674"/>
+  <testcase name="gifLogicalCanvasAndFrameOffsetArePreservedAndOversizeRefused" classname="io.github.misakapiano.ccbstudio.core.ImageFormatsTest" time="0.005"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

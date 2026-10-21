@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.StudioCoreTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-10-21T17:50:33.801Z" hostname="DD1" time="7.757">
+  <properties/>
+  <testcase name="dpapiSyntheticSecretRoundTripNotInDocuments" classname="io.github.misakapiano.ccbstudio.core.StudioCoreTest" time="0.414"/>
+  <testcase name="completeChainRejectsDeletedRevisionAndUnknownEntry" classname="io.github.misakapiano.ccbstudio.core.StudioCoreTest" time="0.182"/>
+  <testcase name="originalProjectUndoRedoAndRestart" classname="io.github.misakapiano.ccbstudio.core.StudioCoreTest" time="0.714"/>
+  <testcase name="missingFontPreventsFalseCompleteExportAndUnknownLayerRefused" classname="io.github.misakapiano.ccbstudio.core.StudioCoreTest" time="0.009"/>
+  <testcase name="batchOrderUndoAndExportCategoriesAreNonDestructive" classname="io.github.misakapiano.ccbstudio.core.StudioCoreTest" time="4.65"/>
+  <testcase name="generationDesignRevisionFrozenIdentityAndUncertainRestart" classname="io.github.misakapiano.ccbstudio.core.StudioCoreTest" time="1.498"/>
+  <testcase name="completeRecipeComparisonIncludesNestedCharactersSeedAndIdentity" classname="io.github.misakapiano.ccbstudio.core.StudioCoreTest" time="0.001"/>
+  <testcase name="stagedUnknownCorruptAndFutureDocumentsNeverDefault" classname="io.github.misakapiano.ccbstudio.core.StudioCoreTest" time="0.288"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

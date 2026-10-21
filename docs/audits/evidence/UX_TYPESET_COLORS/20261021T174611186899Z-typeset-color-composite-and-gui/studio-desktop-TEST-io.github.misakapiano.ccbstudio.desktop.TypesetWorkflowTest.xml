@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2026-10-21T17:46:46.968Z" hostname="DD1" time="7.851">
+  <properties/>
+  <testcase name="functionalAndInlineColorsPreviewExportAndReopenWithoutSilentFallback" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="7.851">
+    <failure message="java.lang.IllegalArgumentException: 无法识别颜色；可使用色名、HEX、RGB、HSL 或 HWB" type="java.lang.IllegalArgumentException">java.lang.IllegalArgumentException: 无法识别颜色；可使用色名、HEX、RGB、HSL 或 HWB
+	at io.github.misakapiano.ccbstudio.core.TypesetColors.parse(TypesetColors.kt:25)
+	at io.github.misakapiano.ccbstudio.core.TypesetDocumentKt.validateColor(TypesetDocument.kt:87)
+	at io.github.misakapiano.ccbstudio.core.TypesetLayout.checkedColor(TypesetLayout.kt:65)
+	at io.github.misakapiano.ccbstudio.core.TypesetLayout.patch(TypesetLayout.kt:57)
+	at io.github.misakapiano.ccbstudio.core.TypesetLayout.tokens(TypesetLayout.kt:38)
+	at io.github.misakapiano.ccbstudio.core.TypesetLayout.layout(TypesetLayout.kt:110)
+	at io.github.misakapiano.ccbstudio.desktop.TypesetWorkspaceKt.TypesetCanvas$lambda$33$5$0(TypesetWorkspace.kt:188)
+	at androidx.compose.ui.draw.DrawBackgroundModifier.draw(DrawModifier.kt:126)
+	at androidx.compose.ui.node.LayoutNodeDrawScope.drawDirect-eZhPAX0$ui(LayoutNodeDrawScope.kt:132)
+	at androidx.compose.ui.node.LayoutNodeDrawScope.draw-eZhPAX0$ui(LayoutNodeDrawScope.kt:119)
+	at androidx.compose.ui.node.NodeCoordinator.drawContainedDrawModifiers(NodeCoordinator.kt:484)
+	at androidx.compose.ui.node.NodeCoordinator._get_drawBlock_$lambda$0(NodeCoordinator.kt:507)
+	at androidx.compose.runtime.snapshots.SnapshotStateObserver.observeReads(SnapshotStateObserver.kt:729)
+	at androidx.compose.ui.node.NodeCoordinator._get_drawBlock_$lambda$1(NodeCoordinator.kt:2330)
+	at androidx.compose.ui.platform.GraphicsLayerOwnerLayer.recordLambda$lambda$0(GraphicsLayerOwnerLayer.skiko.kt:260)
+	at androidx.compose.ui.graphics.layer.GraphicsLayer.record_mL_hObY$lambda$0(SkiaGraphicsLayer.skiko.kt:598)
+	at androidx.compose.ui.graphics.layer.GraphicsLayer.recordWithTracking(SkiaGraphicsLayer.skiko.kt:342)
+	at androidx.compose.ui.graphics.layer.GraphicsLayer.record-mL-hObY(SkiaGraphicsLayer.skiko.kt:318)
+	at androidx.compose.ui.platform.GraphicsLayerOwnerLayer.updateDisplayList(GraphicsLayerOwnerLayer.skiko.kt:253)
+	at androidx.compose.ui.node.RootNodeOwner$OwnedLayerManagerImpl.draw(RootNodeOwner.skiko.kt:916)
+	at androidx.compose.ui.node.RootNodeOwner.draw(RootNodeOwner.skiko.kt:280)
+	at androidx.compose.ui.scene.CanvasLayersComposeSceneImpl.draw(CanvasLayersComposeScene.skiko.kt:273)
+	at androidx.compose.ui.scene.BaseComposeScene.render(BaseComposeScene.skiko.kt:201)
+	at androidx.compose.ui.ImageComposeScene.render(ImageComposeScene.skiko.kt:272)
+	at io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest.frames(TypesetWorkflowTest.kt:222)
+	at io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest.field(TypesetWorkflowTest.kt:229)
+	at io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest.access$field(TypesetWorkflowTest.kt:20)
+	at io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest$functionalAndInlineColorsPreviewExportAndReopenWithoutSilentFallback$1.invokeSuspend(TypesetWorkflowTest.kt:35)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

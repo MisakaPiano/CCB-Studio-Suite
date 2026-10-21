@@ -1,0 +1,44 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetColorTest",
+    "name": "invalidColorsCannotSilentlyRenderAsThePreviousStyle",
+    "seconds": "0.117",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetColorTest",
+    "name": "namedAndFunctionalRichColorsMatchIndependentSourceCanvasSamples",
+    "seconds": "0.092",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetReferenceTest",
+    "name": "sourceVerticalGlyphsColumnsAndAdvances",
+    "seconds": "1.408",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetReferenceTest",
+    "name": "sourceHorizontalWrappingAndRichStyles",
+    "seconds": "0.007",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetReferenceTest",
+    "name": "measuredCanvasTopBaselineUsesTypoMetrics",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetReferenceTest",
+    "name": "sourceStoryGeometryAndBlankParagraphs",
+    "seconds": "0.69",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "functionalAndInlineColorsPreviewExportAndReopenWithoutSilentFallback",
+    "seconds": "6.341",
+    "status": "PASS"
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "phase": "typeset-color-native-targeted",
+  "startedUtc": "2026-10-21T17:44:55.797143+00:00",
+  "seconds": 28.944,
+  "exitCode": 1,
+  "tests": 6,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "FAILED",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-core:test",
+    "--tests",
+    "*TypesetColorTest",
+    "--tests",
+    "*TypesetReferenceTest",
+    ":studio-desktop:compileKotlin"
+  ],
+  "baseCommit": "d80acf68828fbbb1204dc6fedb2e6e0dd5011f6e",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

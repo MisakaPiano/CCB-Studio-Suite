@@ -1,3 +1,7 @@
+## TypeSet 颜色兼容进度（2026-10-22）
+
+[实际记录](audits/UX_TYPESET_COLORS.md)：162组独立源颜色样本、富文本/透明色及非法值恢复已验证；7项定向、完整189项实际PASS，历史失败保留。继续资产维护与数据读取/更新门槛，PRODUCT_HOLD / NOT RC。
+
 ## 设计应用与图片来源进度（2026-10-22）
 
 [实际记录](audits/UX_DESIGN_PROVENANCE.md)：明确候选应用→最终请求、撤销/重做来源及编辑图回查源图已接线；10项定向、完整186项实际PASS，首次复制入口测试失败保留。继续剩余TypeSet/资产与更新门槛，PRODUCT_HOLD / NOT RC。

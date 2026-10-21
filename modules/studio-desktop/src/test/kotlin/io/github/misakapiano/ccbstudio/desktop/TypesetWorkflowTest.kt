@@ -18,6 +18,32 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.test.*
 
 class TypesetWorkflowTest {
+    @Test fun functionalAndInlineColorsPreviewExportAndReopenWithoutSilentFallback()=runBlocking(awt) {
+        val path=root();val w=StudioWorkspace.openStudio(path);val pixels=EditorRenderer.synthetic(320,240);val id=w.importImage("colors.png",pixels)
+        val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
+        c.editor.create("颜色保全",listOf(id));c.idle()
+        val scene=ImageComposeScene(1400,1000,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        val rich="[color=rebeccapurple]彩色[/] [color=rgba(0,128,255,0.5)]半透明[/]"
+        try {
+            scene.frames();scene.rendered();scene.click("添加文字");scene.field("文字内容",rich)
+            scene.field("文字颜色","hsl(210 50% 40% / 75%)");scene.field("描边颜色","#1234");scene.rendered()
+            assertEquals("hsl(210 50% 40% / 75%)",c.editor.text!!.style.fill);assertEquals("#1234",c.editor.text!!.style.stroke)
+            scene.shot("rich-colors")
+            scene.field("文字颜色","not-a-color");assertEquals("hsl(210 50% 40% / 75%)",c.editor.text!!.style.fill)
+            assertTrue(scene.nodes().any{n->n.config.getOrNull(SemanticsProperties.Text)?.any{it.text.startsWith("尚未应用：")}==true})
+            scene.field("文字颜色","hsl(210 50% 40% / 75%)")
+            scene.field("文字内容","[color=not-a-color]不能忽略[/]")
+            withTimeout(30000){while(scene.nodes().none{n->n.config.getOrNull(SemanticsProperties.Text)?.any{it.text.startsWith("页面暂无法绘制：")}==true})scene.frames()}
+            assertEquals("[color=not-a-color]不能忽略[/]",c.editor.text!!.text)
+            scene.field("文字内容",rich);scene.rendered();c.editor.drain()
+            c.editor.chooseExportDirectory={Files.createDirectories(root())}
+            c.editor.export(TypesetExportRequest(listOf(c.editor.pageId!!)));c.idle()
+            val output=TypesetExport.verify(c.editor.exportDirectory!!);assertEquals(1,output.assetIds.size)
+            assertContentEquals(pixels,w.bytes(id))
+        }finally{scene.close();c.close();scope.cancel()}
+        StudioWorkspace.openStudio(path).use{again->val t=TypesetRepository(again).load(again.state.typesetProjects.single()).pages.single().texts.single()
+            assertEquals(rich,t.text);assertEquals("hsl(210 50% 40% / 75%)",t.style.fill);assertEquals("#1234",t.style.stroke);assertContentEquals(pixels,again.bytes(id))}
+    }
     @Test fun durableDefaultFontLoadsOnFirstTextPreviewWithColdCache()=runBlocking(awt) {
         val r=root();var alias="";var imageId=""
         val fixture=Files.readString(Path.of("../studio-core/src/test/resources/fonts/MicrosoftPackedFont.hex")).trim().chunked(2).map{it.toInt(16).toByte()}.toByteArray()

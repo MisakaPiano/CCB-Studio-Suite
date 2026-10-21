@@ -1,0 +1,9 @@
+page.evaluate: TypeError: Cannot read properties of null (reading 'fontFamily')
+    at cloneInlineStyle (https://typeset.invalid/:2601:18)
+    at Object.parseRichTextTokens (https://typeset.invalid/:2639:16)
+    at eval (eval at evaluate (:311:30), <anonymous>:3:46)
+    at Array.map (<anonymous>)
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:313:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+    at H:\CCB-Studio-Suite\tools\Capture-TypeSetColors.cjs:20:23

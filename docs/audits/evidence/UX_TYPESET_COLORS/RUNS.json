@@ -1,0 +1,68 @@
+[
+  {
+    "directory": "20261021T174247031264Z-typeset-color-before-fix",
+    "phase": "typeset-color-before-fix",
+    "status": "FAILED",
+    "tests": 2,
+    "failures": 2,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 30.725,
+    "sourceStable": true
+  },
+  {
+    "directory": "20261021T174348608005Z-typeset-color-reference-count-corrected",
+    "phase": "typeset-color-reference-count-corrected",
+    "status": "FAILED",
+    "tests": 1,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 15.319,
+    "sourceStable": true
+  },
+  {
+    "directory": "20261021T174455290597Z-typeset-color-native-targeted",
+    "phase": "typeset-color-native-targeted",
+    "status": "FAILED",
+    "tests": 6,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 28.944,
+    "sourceStable": true
+  },
+  {
+    "directory": "20261021T174611186899Z-typeset-color-composite-and-gui",
+    "phase": "typeset-color-composite-and-gui",
+    "status": "FAILED",
+    "tests": 7,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 44.188,
+    "sourceStable": true
+  },
+  {
+    "directory": "20261021T174737902594Z-typeset-color-layout-separation",
+    "phase": "typeset-color-layout-separation",
+    "status": "PASS",
+    "tests": 7,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 30.43,
+    "sourceStable": true
+  },
+  {
+    "directory": "20261021T174855822603Z-typeset-color-complete-modules",
+    "phase": "typeset-color-complete-modules",
+    "status": "PASS",
+    "tests": 189,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 353.642,
+    "sourceStable": true
+  }
+]

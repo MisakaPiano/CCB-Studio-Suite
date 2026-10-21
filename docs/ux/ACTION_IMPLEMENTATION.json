@@ -751,21 +751,26 @@
         "TypesetLayout.kt",
         "TypesetRenderer.kt",
         "TypesetFonts.kt",
-        "WindowsFontDecoder.kt"
+        "WindowsFontDecoder.kt",
+        "TypesetColors.kt / TypesetLayout.kt / TypesetRenderer.kt / ColorField"
       ],
       "tests": [
         "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart",
         "TypesetReferenceTest",
         "TypesetRepositoryTest",
-        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)"
+        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)",
+        "TypesetColorTest: independent 162 color samples and invalid-value preservation",
+        "TypesetWorkflowTest.functionalAndInlineColorsPreviewExportAndReopenWithoutSilentFallback"
       ],
       "guiEvidence": [
-        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)"
+        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)",
+        "docs/audits/UX_TYPESET_COLORS.md (offscreen GUI; color syntax/compatibility limits explicit)"
       ],
       "persistenceEvidence": [
         "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen"
       ],
-      "status": "ENGINEERING_PARTIAL / SOURCE_GEOMETRY_AND_COMPOSE_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+      "status": "ENGINEERING_PARTIAL / SOURCE_GEOMETRY_AND_COMPOSE_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD",
+      "latestScopeEvidence": "Common sRGB source colors, preview/export/reopen and recovery tested; no full CSS/browser or old-reader downgrade claim"
     },
     {
       "id": "T09",
@@ -778,21 +783,26 @@
         "TypesetLayout.kt",
         "TypesetRenderer.kt",
         "TypesetFonts.kt",
-        "WindowsFontDecoder.kt"
+        "WindowsFontDecoder.kt",
+        "TypesetColors.kt / TypesetLayout.kt / TypesetRenderer.kt / ColorField"
       ],
       "tests": [
         "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart",
         "TypesetReferenceTest",
         "TypesetRepositoryTest",
-        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)"
+        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)",
+        "TypesetColorTest: independent 162 color samples and invalid-value preservation",
+        "TypesetWorkflowTest.functionalAndInlineColorsPreviewExportAndReopenWithoutSilentFallback"
       ],
       "guiEvidence": [
-        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)"
+        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)",
+        "docs/audits/UX_TYPESET_COLORS.md (offscreen GUI; color syntax/compatibility limits explicit)"
       ],
       "persistenceEvidence": [
         "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen"
       ],
-      "status": "ENGINEERING_PARTIAL / SOURCE_GEOMETRY_AND_COMPOSE_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+      "status": "ENGINEERING_PARTIAL / SOURCE_GEOMETRY_AND_COMPOSE_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD",
+      "latestScopeEvidence": "Common sRGB source colors, preview/export/reopen and recovery tested; no full CSS/browser or old-reader downgrade claim"
     },
     {
       "id": "T10",
