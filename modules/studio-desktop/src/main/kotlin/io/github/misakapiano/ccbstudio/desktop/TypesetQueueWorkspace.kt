@@ -94,7 +94,7 @@ private val queueRasterDispatcher=Dispatchers.IO.limitedParallelism(1)
             )},state=list){itemsIndexed(document.pages,key={_,p->p.id}){index,page->
             var origin by remember(page.id){mutableStateOf(Offset.Zero)}
             Row(Modifier.fillMaxWidth().background(if(page.id==e.pageId)Color(0xff253c55)else Color.Transparent).padding(6.dp),verticalAlignment=Alignment.CenterVertically){
-                Checkbox(page.id in e.selectedPages,{e.selectPage(page.id,extend=true)},enabled=!c.busy&&!c.maintenance)
+                Checkbox(page.id in e.selectedPages,{e.togglePageSelection(page.id)},enabled=!c.busy&&!c.maintenance)
                 Row(Modifier.weight(1f).onGloballyPositioned{origin=it.positionInWindow()}
                     .semantics{contentDescription="队列页 ${index+1}";onClick{e.selectPage(page.id);true}}
                     .onPointerEvent(PointerEventType.Enter){event->if(!dragging&&!c.busy){hoverId=page.id;cursor=origin+event.changes.first().position}}

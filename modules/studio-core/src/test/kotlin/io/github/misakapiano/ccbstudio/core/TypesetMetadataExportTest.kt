@@ -9,6 +9,22 @@ import javax.imageio.ImageIO
 import kotlin.test.*
 
 class TypesetMetadataExportTest {
+    @Test fun largeValidPageRecipeExportsAndReimportsWithoutLosingSourceMetadata() {
+        val original=EditorRenderer.synthetic(24,24);val sourceRecipe="s".repeat(1024*1024)
+        StudioWorkspace.openStudio(root()).use{w->
+            val id=w.importImage("large-recipe.png",original,sourceRecipe);val repo=TypesetRepository(w)
+            val initial=repo.create("large valid page",listOf(id))
+            val project=repo.update(initial.id,initial.revision){d->d.copy(pages=d.pages.map{p->p.copy(texts=List(158){TypesetText(text="x".repeat(100000),visible=false)})})}
+            val document=repo.load(project)
+            val out=TypesetExport.create(w,project,document,Files.createDirectories(root()),TypesetExportRequest(document.pages.map{it.id},variant="original",format="source",includeRecipe=true))
+            TypesetExport.verify(out)
+            val bytes=Files.readAllBytes(out.resolve("001_recipe.json"));assertTrue(bytes.size>16*1024*1024)
+            val recipe=TypesetEditRecipes.inspect(bytes)
+            assertEquals(document.pages.single(),recipe.page)
+            assertContentEquals(sourceRecipe.toByteArray(),java.util.Base64.getDecoder().decode(recipe.sourceRecipeBase64))
+            assertContentEquals(original,w.bytes(id))
+        }
+    }
     @Test fun recipeAppliesOnlyToMatchingOriginalAndIsUndoable() {
         StudioWorkspace.openStudio(root()).use{w->val id=w.importImage("source.png",fixture());val other=w.importImage("other.png",EditorRenderer.synthetic(90,70));val repo=TypesetRepository(w)
             var p=repo.create("recipe",listOf(id,other));p=repo.update(p.id,p.revision){d->d.copy(pages=d.pages.mapIndexed{i,page->if(i==0)page.copy(texts=listOf(TypesetText(text="恢复样式",vertical=true)))else page})}

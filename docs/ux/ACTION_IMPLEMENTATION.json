@@ -286,11 +286,23 @@
     {
       "id": "P15",
       "owner": "UX-R3",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryWorkspace.kt",
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryAlbums.kt"
+      ],
+      "tests": [
+        "GalleryAlbumWorkflowTest.sourceAlbumsNavigateSelectFilterAndPersistDepthPreferencesWithoutChangingRecipes"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_HISTORY_REFERENCE.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
     },
     {
       "id": "P16",
@@ -483,11 +495,25 @@
     {
       "id": "I05",
       "owner": "UX-R2b",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetExportDialog.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetExport.kt"
+      ],
+      "tests": [
+        "TypesetMetadataExportTest",
+        "TypesetWorkflowTest.fourCategoryPreviewCopiesCompleteFileDeckWithoutSystemClipboard"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_FLOW_COMPLETION.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate",
+        "OS clipboard receiving application paste is separate from injected file-deck test"
+      ]
     },
     {
       "id": "I06",
@@ -526,11 +552,24 @@
     {
       "id": "I08",
       "owner": "UX-R2b",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetExport.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/SharedAssets.kt"
+      ],
+      "tests": [
+        "TypesetMetadataExportTest",
+        "SharedAssetsTest"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_FLOW_COMPLETION.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
     },
     {
       "id": "I09",
@@ -1151,20 +1190,44 @@
     {
       "id": "Q03",
       "owner": "UX-R2b",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetFullPreview.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.fullPreviewKeyboardAndExportDeckKeepEditorStateAndFitNarrowWindow"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_FLOW_COMPLETION.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
     },
     {
       "id": "Q04",
       "owner": "UX-R2b",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetSourceExchange.kt",
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetEditorController.kt"
+      ],
+      "tests": [
+        "TypesetSourceExchangeTest",
+        "TypesetWorkflowTest.sourceExchangePreviewConfirmExportAndReopen"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_FLOW_COMPLETION.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
     },
     {
       "id": "Q05",
@@ -1282,83 +1345,230 @@
     {
       "id": "F01",
       "owner": "UX-R2c",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetWorkspace.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetBook.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetRenderer.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetExport.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart",
+        "TypesetWorkflowTest.storyCustomControlsSelectedAndAllStylesPreserveCaptionsAndUndoAsOneBatch",
+        "TypesetReferenceTest.sourceStoryGeometryAndBlankParagraphs"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_FLOW_COMPLETION.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
     },
     {
       "id": "F02",
       "owner": "UX-R2c",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetWorkspace.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetBook.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetRenderer.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetExport.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart",
+        "TypesetWorkflowTest.storyCustomControlsSelectedAndAllStylesPreserveCaptionsAndUndoAsOneBatch",
+        "TypesetReferenceTest.sourceStoryGeometryAndBlankParagraphs"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_FLOW_COMPLETION.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
     },
     {
       "id": "F03",
       "owner": "UX-R2c",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetWorkspace.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetBook.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetRenderer.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetExport.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart",
+        "TypesetWorkflowTest.storyCustomControlsSelectedAndAllStylesPreserveCaptionsAndUndoAsOneBatch",
+        "TypesetReferenceTest.sourceStoryGeometryAndBlankParagraphs"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_FLOW_COMPLETION.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
     },
     {
       "id": "F04",
       "owner": "UX-R2c",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetWorkspace.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetBook.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetRenderer.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetExport.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart",
+        "TypesetWorkflowTest.storyCustomControlsSelectedAndAllStylesPreserveCaptionsAndUndoAsOneBatch",
+        "TypesetReferenceTest.sourceStoryGeometryAndBlankParagraphs"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_FLOW_COMPLETION.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
     },
     {
       "id": "F05",
       "owner": "UX-R2c",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetWorkspace.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetBook.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetRenderer.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetExport.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart",
+        "TypesetWorkflowTest.storyCustomControlsSelectedAndAllStylesPreserveCaptionsAndUndoAsOneBatch",
+        "TypesetReferenceTest.sourceStoryGeometryAndBlankParagraphs"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_FLOW_COMPLETION.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
     },
     {
       "id": "F06",
       "owner": "UX-R2c",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetWorkspace.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetBook.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetRenderer.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetExport.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart",
+        "TypesetWorkflowTest.storyCustomControlsSelectedAndAllStylesPreserveCaptionsAndUndoAsOneBatch",
+        "TypesetReferenceTest.sourceStoryGeometryAndBlankParagraphs"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_FLOW_COMPLETION.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
     },
     {
       "id": "F07",
       "owner": "UX-R2c",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetWorkspace.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetBook.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetRenderer.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetExport.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart",
+        "TypesetWorkflowTest.storyCustomControlsSelectedAndAllStylesPreserveCaptionsAndUndoAsOneBatch",
+        "TypesetReferenceTest.sourceStoryGeometryAndBlankParagraphs"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_FLOW_COMPLETION.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate",
+        "Ctrl+Enter handler exists; current new regression uses next-caption button, not native IME/shortcut interaction"
+      ]
     },
     {
       "id": "F08",
       "owner": "UX-R2c",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetWorkspace.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetBook.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetRenderer.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetExport.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart",
+        "TypesetWorkflowTest.storyCustomControlsSelectedAndAllStylesPreserveCaptionsAndUndoAsOneBatch",
+        "TypesetReferenceTest.sourceStoryGeometryAndBlankParagraphs",
+        "TypesetExportTest"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_FLOW_COMPLETION.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
     },
     {
       "id": "F09",
       "owner": "UX-R2c",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetWorkspace.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetBook.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetRenderer.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetExport.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart",
+        "TypesetWorkflowTest.storyCustomControlsSelectedAndAllStylesPreserveCaptionsAndUndoAsOneBatch",
+        "TypesetReferenceTest.sourceStoryGeometryAndBlankParagraphs",
+        "TypesetExportTest"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_FLOW_COMPLETION.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
     },
     {
       "id": "F10",
@@ -1409,11 +1619,28 @@
     {
       "id": "C02",
       "owner": "UX-R4",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetStore.java",
+        "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetBackup.java",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioWorkspace.kt"
+      ],
+      "tests": [
+        "AssetStoreTest",
+        "AssetSafetyTest",
+        "AssetMaintenanceTest",
+        "AssetBackupTest",
+        "StudioMaintenanceTest.maintenanceRejectsNewEditsAndKeepsRootOwnedUntilWriterDrains"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_STARTUP_SAFETY.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
     },
     {
       "id": "C03",
@@ -1442,20 +1669,50 @@
     {
       "id": "C04",
       "owner": "UX-R4",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioFormatMigration.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioWorkspace.kt",
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioDataLaunch.kt"
+      ],
+      "tests": [
+        "StudioVersionTwoTest",
+        "StudioFormatMigrationTest",
+        "StudioDataLaunchTest"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_STARTUP_SAFETY.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
     },
     {
       "id": "C05",
       "owner": "UX-R4",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/SecretVault.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/LiveRequestBudget.kt",
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt"
+      ],
+      "tests": [
+        "LiveRequestBudgetTest",
+        "StudioMaintenanceTest.snapshotPreservesOriginalAssociationsAndDpapiCredentialWithoutPlaintext",
+        "WorkbenchWorkflowTest.accountsDesignApplyGenerateGalleryAndRestart"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_UPDATE_FEEDBACK.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
     },
     {
       "id": "C06",
@@ -1482,11 +1739,25 @@
     {
       "id": "C07",
       "owner": "UX-R4",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioBrand.kt",
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioTitleControls.kt",
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt"
+      ],
+      "tests": [
+        "StudioTitleControlsTest.captionGeometryAndCommandsAtFourDisplayScales",
+        "WorkbenchWorkflowTest.measuredSuiteNavigationSurvivesResizeAndUnsentInput"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_UPDATE_FEEDBACK.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Native IME/focus/multiwindow/high-DPI visual acceptance NOT TESTED; Compose density test is not native display certification"
+      ]
     }
   ]
 }

@@ -305,6 +305,7 @@ private data class EditorRaster(val bitmap:ImageBitmap,val width:Int,val height:
     ColorField("纸张颜色",s.pageBackground){v->style{it.copy(pageBackground=v)}}
     ColorField("旁白颜色",s.textColor){v->style{it.copy(textColor=v)}}
     ColorField("页面描边",s.borderColor){v->style{it.copy(borderColor=v)}}
+    Text("使用当前页样式；所选 ${e.selectedPages.size} 页 / 全册 ${e.document!!.pages.size} 页。各页旁白保留，可整体撤销。",style=MaterialTheme.typography.caption)
     StudioAction("样式应用到所选页",e.selectedPages.isNotEmpty()){e.change{d->d.copy(pages=d.pages.map{if(it.id in e.selectedPages)it.copy(story=s)else it})}}
     StudioAction("样式应用到全册"){e.change{d->d.copy(pages=d.pages.map{it.copy(story=s)})}}
 }

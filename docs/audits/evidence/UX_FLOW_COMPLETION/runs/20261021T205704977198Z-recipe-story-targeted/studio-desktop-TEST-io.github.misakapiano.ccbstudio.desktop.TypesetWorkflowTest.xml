@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2026-10-21T20:57:56.696Z" hostname="DD1" time="9.027">
+  <properties/>
+  <testcase name="storyCustomControlsSelectedAndAllStylesPreserveCaptionsAndUndoAsOneBatch" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="9.027">
+    <failure message="org.junit.ComparisonFailure: Checking another page must not replace the active style source expected:&lt;[2c474a23-c96b-4344-b51b-e3cb84cd1815]&gt; but was:&lt;[e8c82ac5-ce77-41fd-859c-1666cad98b2d]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Checking another page must not replace the active style source expected:&lt;[2c474a23-c96b-4344-b51b-e3cb84cd1815]&gt; but was:&lt;[e8c82ac5-ce77-41fd-859c-1666cad98b2d]&gt;
+	at app//org.junit.Assert.assertEquals(Assert.java:117)
+	at app//kotlin.test.junit.JUnitAsserter.assertEquals(JUnitSupport.kt:32)
+	at app//kotlin.test.AssertionsKt__AssertionsKt.assertEquals(Assertions.kt:63)
+	at app//kotlin.test.AssertionsKt.assertEquals(Unknown Source)
+	at app//io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest$storyCustomControlsSelectedAndAllStylesPreserveCaptionsAndUndoAsOneBatch$1.invokeSuspend(TypesetWorkflowTest.kt:42)
+	at app//kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at app//kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at java.desktop@17.0.20.1/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop@17.0.20.1/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop@17.0.20.1/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop@17.0.20.1/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base@17.0.20.1/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base@17.0.20.1/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.desktop@17.0.20.1/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

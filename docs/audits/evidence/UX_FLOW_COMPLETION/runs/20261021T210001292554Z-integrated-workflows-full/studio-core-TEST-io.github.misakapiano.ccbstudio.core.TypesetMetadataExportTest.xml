@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.TypesetMetadataExportTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-21T21:09:01.841Z" hostname="DD1" time="11.277">
+  <properties/>
+  <testcase name="damagedMetadataIsNotReportedPreserved" classname="io.github.misakapiano.ccbstudio.core.TypesetMetadataExportTest" time="0.008"/>
+  <testcase name="everySelectedCategoryIncludesUneditedPagesAndRecipeZipPathsVerify" classname="io.github.misakapiano.ccbstudio.core.TypesetMetadataExportTest" time="3.491"/>
+  <testcase name="largeValidPageRecipeExportsAndReimportsWithoutLosingSourceMetadata" classname="io.github.misakapiano.ccbstudio.core.TypesetMetadataExportTest" time="3.591"/>
+  <testcase name="preserveTextChunksAlphaAndPrivacyUseIndependentAuthorityDecoder" classname="io.github.misakapiano.ccbstudio.core.TypesetMetadataExportTest" time="2.035"/>
+  <testcase name="recipeAppliesOnlyToMatchingOriginalAndIsUndoable" classname="io.github.misakapiano.ccbstudio.core.TypesetMetadataExportTest" time="2.152"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

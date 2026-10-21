@@ -1,0 +1,28 @@
+{
+  "phase": "large-edit-recipe-reproduction",
+  "startedUtc": "2026-10-21T20:55:17.308492+00:00",
+  "seconds": 21.557,
+  "exitCode": 1,
+  "tests": 1,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "FAILED",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-core:test",
+    "--tests",
+    "*TypesetMetadataExportTest.largeValidPageRecipeExportsAndReimportsWithoutLosingSourceMetadata"
+  ],
+  "baseCommit": "f2b64dee9bda07dcf7b6c154b267292a80d511ea",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

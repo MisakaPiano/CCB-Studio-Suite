@@ -1,0 +1,33 @@
+{
+  "phase": "recipe-story-selection-fixed",
+  "startedUtc": "2026-10-21T20:58:53.355192+00:00",
+  "seconds": 58.302,
+  "exitCode": 0,
+  "tests": 5,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-core:test",
+    "--tests",
+    "*TypesetMetadataExportTest",
+    ":studio-desktop:test",
+    "--tests",
+    "*TypesetWorkflowTest.storyCustomControlsSelectedAndAllStylesPreserveCaptionsAndUndoAsOneBatch",
+    "--tests",
+    "*TypesetQueueWorkflowTest"
+  ],
+  "baseCommit": "f2b64dee9bda07dcf7b6c154b267292a80d511ea",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

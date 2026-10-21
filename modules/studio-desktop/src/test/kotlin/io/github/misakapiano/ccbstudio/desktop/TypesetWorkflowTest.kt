@@ -18,6 +18,39 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.test.*
 
 class TypesetWorkflowTest {
+    @Test fun storyCustomControlsSelectedAndAllStylesPreserveCaptionsAndUndoAsOneBatch()=runBlocking(awt) {
+        val path=root();val w=StudioWorkspace.openStudio(path);val original=EditorRenderer.synthetic(180,120);val id=w.importImage("story.png",original)
+        val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
+        c.editor.create("逐页旁白与批量样式",listOf(id,id,id));c.idle()
+        val scene=ImageComposeScene(1400,1100,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        var saved:TypesetDocument?=null
+        try {
+            scene.frames();scene.click("小人书")
+            val captions=listOf("第一张原文。","第二张旁白，不能被批量替换。","第三张。")
+            for(i in 1..3){scene.click("队列页 $i");scene.field("本页旁白",captions[i-1])}
+            scene.click("队列页 1");val first=c.editor.page!!.id
+            for((label,value) in listOf("页面宽度" to "480","页边距" to "24","图文间距" to "18","文字内边距" to "16","文字区最小高度" to "80","旁白字号" to "22","旁白行距" to "1.4"))scene.field(label,value)
+            scene.click("旁白对齐 · left ▾");scene.click("center")
+            scene.click("首行缩进");scene.click("显示页码");scene.click("页面边框");scene.click("图片边框")
+            scene.field("纸张颜色","#f0e0d0");scene.field("旁白颜色","#112233");scene.field("页面描边","#445566")
+            val font=java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().availableFontFamilyNames.first()
+            scene.click("旁白字体 · SimSun ▾");scene.click(font)
+            val expected=StoryStyle(pageWidth=480,pagePadding=24,gap=18,textPadding=16,textMinHeight=80,fontFamily=font,fontSize=22.0,lineHeight=1.4,textAlign="center",firstIndent=false,showPageNumber=false,pageBackground="#f0e0d0",textColor="#112233",borderColor="#445566",pageBorder=false,imageBorder=false)
+            assertEquals(expected,c.editor.page!!.story);c.editor.drain();scene.frames()
+            val checks=scene.nodes().filter{it.config.getOrNull(SemanticsProperties.Role)==Role.Checkbox}
+            assertEquals(3,checks.size);assertTrue(checks[2].config[SemanticsActions.OnClick].action!!.invoke());scene.frames()
+            assertEquals(first,c.editor.pageId,"Checking another page must not replace the active style source")
+            val before=c.editor.document!!;scene.click("样式应用到所选页");c.editor.drain()
+            assertEquals(listOf(expected,StoryStyle(),expected),c.editor.document!!.pages.map{it.story});assertEquals(captions,c.editor.document!!.pages.map{it.caption})
+            scene.click("撤销编辑");c.idle();scene.frames();assertEquals(before,c.editor.document)
+            scene.click("重做编辑");c.idle();scene.frames();assertEquals(expected,c.editor.document!!.pages[2].story)
+            scene.click("样式应用到全册");c.editor.drain();assertTrue(c.editor.document!!.pages.all{it.story==expected});assertEquals(captions,c.editor.document!!.pages.map{it.caption})
+            scene.click("撤销编辑");c.idle();scene.frames();assertEquals(StoryStyle(),c.editor.document!!.pages[1].story)
+            scene.click("重做编辑");c.idle();scene.frames();scene.rendered();scene.shot("story-custom-batch")
+            saved=c.editor.document;assertContentEquals(original,w.bytes(id))
+        }finally{scene.close();c.close();scope.cancel();w.close()}
+        StudioWorkspace.openStudio(path).use{next->assertEquals(saved,TypesetRepository(next).load(next.state.typesetProjects.single()));assertContentEquals(original,next.bytes(id))}
+    }
     @Test fun functionalAndInlineColorsPreviewExportAndReopenWithoutSilentFallback()=runBlocking(awt) {
         val path=root();val w=StudioWorkspace.openStudio(path);val pixels=EditorRenderer.synthetic(320,240);val id=w.importImage("colors.png",pixels)
         val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})

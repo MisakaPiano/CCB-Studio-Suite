@@ -41,7 +41,7 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
     internal var chooseRecipeFile:()->java.nio.file.Path?={val chooser=javax.swing.JFileChooser();chooser.dialogTitle="导入编辑 Recipe";chooser.fileFilter=javax.swing.filechooser.FileNameExtensionFilter("编辑 Recipe JSON","json");if(chooser.showOpenDialog(null)==javax.swing.JFileChooser.APPROVE_OPTION)chooser.selectedFile.toPath()else null}
     fun inspectRecipe()=c.run("预读编辑 Recipe") {
         drain();val p=project?:return@run;val page=page?:return@run;val path=withContext(ui){chooseRecipeFile()}?:return@run
-        val r=TypesetEditRecipes.inspect(readBounded(path,16*1024*1024));withContext(ui){recipeInspection=r;recipeTarget=p.id to page.id}
+        val r=TypesetEditRecipes.inspect(readBounded(path,TypesetEditRecipes.MAX_BYTES));withContext(ui){recipeInspection=r;recipeTarget=p.id to page.id}
     }
     fun cancelRecipe(){recipeInspection=null;recipeTarget=null}
     fun applyRecipe()=c.run("应用编辑 Recipe") {
@@ -186,6 +186,10 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
     fun history(redo:Boolean=false)=c.run(if(redo)"重做编辑"else"撤销编辑") {
         drain();val p=project?:return@run;val next=repository.history(p.id,p.revision,redo);val d=repository.load(next)
         withContext(ui){project=next;document=d;dirty=false;if(d.pages.none{it.id==pageId})pageId=d.pages.firstOrNull()?.id;objectId=null;selectedPages=selectedPages.intersect(d.pages.map{it.id}.toSet())}
+    }
+    fun togglePageSelection(id:String) {
+        require(document?.pages?.any{it.id==id}==true)
+        selectedPages=if(id in selectedPages)selectedPages-id else selectedPages+id
     }
     fun selectPage(id:String,extend:Boolean=false,range:Boolean=false) {
         val pages=document?.pages.orEmpty();val previous=pageId

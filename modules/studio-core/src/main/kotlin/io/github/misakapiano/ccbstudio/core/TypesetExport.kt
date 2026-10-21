@@ -70,8 +70,8 @@ object TypesetExport {
                         else origins[file]=AssetProvenance(role=if(document.mode=="storybook")"storybook-page"else"edited-image",sourceIds=listOf(page.assetId),projectId=project.id,projectRevision=project.revision,snapshot=project.current,pageId=page.id,variant=variant,mediaType="image/$format")
                         statuses[staging.relativize(file).toString().replace('\\','/')]=status
                         if(request.includeRecipe){val recipe=directory.resolve("${number}_recipe.json");val asset=workspace.assets.read(java.util.UUID.fromString(page.assetId)).require()
-                            val json=kotlinx.serialization.json.buildJsonObject{put("version",kotlinx.serialization.json.JsonPrimitive(1));put("variant",kotlinx.serialization.json.JsonPrimitive(variant));put("originalSha256",kotlinx.serialization.json.JsonPrimitive(asset.sha256()));put("page",documentJson.encodeToJsonElement(TypesetPage.serializer(),page));put("sourceRecipeBase64",kotlinx.serialization.json.JsonPrimitive(java.util.Base64.getEncoder().encodeToString(asset.request().recipe())))}
-                            Files.writeString(recipe,json.toString(),StandardOpenOption.CREATE_NEW);force(recipe);outputs.add(recipe)}
+                            val bytes=TypesetEditRecipes.encode(TypesetEditRecipe(variant=variant,originalSha256=asset.sha256(),page=page,sourceRecipeBase64=java.util.Base64.getEncoder().encodeToString(asset.request().recipe())))
+                            Files.write(recipe,bytes,StandardOpenOption.CREATE_NEW);force(recipe);outputs.add(recipe)}
                         hook("PAGE_WRITTEN")
                     }
                 }

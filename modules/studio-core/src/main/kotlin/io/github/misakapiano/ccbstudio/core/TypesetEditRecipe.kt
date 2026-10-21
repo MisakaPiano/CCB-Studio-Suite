@@ -1,14 +1,21 @@
 package io.github.misakapiano.ccbstudio.core
 
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.*
 import java.util.Base64
 import java.util.UUID
 
 @Serializable data class TypesetEditRecipe(val version:Int=1,val variant:String,val originalSha256:String,val page:TypesetPage,val sourceRecipeBase64:String)
 object TypesetEditRecipes {
+    // A valid editor document is at most 16 MiB; an original's 1 MiB Recipe
+    // adds base64 overhead. Sidecars must round-trip without truncating either.
+    const val MAX_BYTES=20*1024*1024
+    fun encode(recipe:TypesetEditRecipe):ByteArray = documentJson.encodeToString(recipe).toByteArray().also {
+        if(it.size>MAX_BYTES)throw DataProblem("RECIPE_TOO_LARGE","编辑 Recipe 超过 20 MiB，未发布完整导出；请拆分页面对象后重试")
+    }
     fun inspect(bytes:ByteArray):TypesetEditRecipe {
-        require(bytes.size in 1..16*1024*1024)
+        require(bytes.size in 1..MAX_BYTES)
         val raw=documentJson.parseToJsonElement(bytes.decodeToString(throwOnInvalidSequence=true)).jsonObject
         if(raw["version"]?.jsonPrimitive?.intOrNull!=1)throw DataProblem("UNSUPPORTED_VERSION","未知编辑Recipe版本，文件未改动")
         return documentJson.decodeFromJsonElement<TypesetEditRecipe>(raw).also{r->

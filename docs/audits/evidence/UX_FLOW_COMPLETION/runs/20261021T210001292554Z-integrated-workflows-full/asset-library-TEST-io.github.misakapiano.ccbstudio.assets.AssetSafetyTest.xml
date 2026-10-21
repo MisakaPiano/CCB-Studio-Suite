@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.assets.AssetSafetyTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-21T21:00:21.502Z" hostname="DD1" time="8.45">
+  <properties/>
+  <testcase name="R1_01_normalEmptyAndCommittedCatalogsStillRebuild" classname="io.github.misakapiano.ccbstudio.assets.AssetSafetyTest" time="0.41"/>
+  <testcase name="R1_02_interruptedRegisteredBackupNeverReportsSuccessAndRetainsLockUntilSettled" classname="io.github.misakapiano.ccbstudio.assets.AssetSafetyTest" time="0.394"/>
+  <testcase name="R1_02_registeredBackupCompletesDuringDrainWithVerifiedMarker" classname="io.github.misakapiano.ccbstudio.assets.AssetSafetyTest" time="1.235"/>
+  <testcase name="R1_01_unknownNamesAndDirectoriesCannotBecomeACompleteCatalog" classname="io.github.misakapiano.ccbstudio.assets.AssetSafetyTest" time="2.773"/>
+  <testcase name="R1_01_damagedUnsupportedAndUnreadableEntriesRetainTheirClassification" classname="io.github.misakapiano.ccbstudio.assets.AssetSafetyTest" time="2.438"/>
+  <testcase name="R1_01_actualInterruptedRecordPublicationRemainsVisibleAfterRecoveryAndRestart" classname="io.github.misakapiano.ccbstudio.assets.AssetSafetyTest" time="1.199"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
