@@ -1,0 +1,27 @@
+{
+  "phase": "UX-R2-exif-full",
+  "startedUtc": "2026-10-21T08:38:08.733657+00:00",
+  "seconds": 160.774,
+  "exitCode": 0,
+  "tests": 115,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-core:test",
+    ":studio-desktop:test"
+  ],
+  "baseCommit": "66bda99309b9cc4c230498eeef60bf8b5f0314ea",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

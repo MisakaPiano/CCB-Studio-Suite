@@ -1,3 +1,7 @@
+## UX-R2 图片坐标兼容进度（2026-10-21）
+
+[实际记录](audits/UX_R2_IMAGE_COORDINATES.md)：115项完整实际PASS。旧工程保留raw坐标，新工程记录EXIF方向，原件不变；格式/图库/应用内安全更新继续，PRODUCT_HOLD。
+
 ## UX-R2 四分类导出与Recipe恢复进度（2026-10-21）
 
 [执行记录](audits/UX_R2_EXPORT_METADATA.md)：112项完整实际PASS；四分类完整序列、PNG元数据/隐写保留、隐私清除、隔离剪贴板及Recipe确认/撤销已测。保留编译失败，继续格式/图库/更新，PRODUCT_HOLD。

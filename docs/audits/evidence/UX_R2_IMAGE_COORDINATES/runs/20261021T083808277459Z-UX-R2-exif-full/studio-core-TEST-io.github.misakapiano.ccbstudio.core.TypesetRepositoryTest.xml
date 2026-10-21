@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.TypesetRepositoryTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-21T08:38:54.045Z" hostname="DD1" time="9.853">
+  <properties/>
+  <testcase name="projectCopyRenameAndRemovalKeepIndependentHistoryAndOriginal" classname="io.github.misakapiano.ccbstudio.core.TypesetRepositoryTest" time="1.157"/>
+  <testcase name="thousandPagesHistoryRestartAndBackupPreserveOriginal" classname="io.github.misakapiano.ccbstudio.core.TypesetRepositoryTest" time="6.965"/>
+  <testcase name="badSnapshotHashCannotReplaceCurrentOrDeleteOriginal" classname="io.github.misakapiano.ccbstudio.core.TypesetRepositoryTest" time="0.762"/>
+  <testcase name="stagedDocumentFailureRetainsOriginalAndRefusesUnsafeReopen" classname="io.github.misakapiano.ccbstudio.core.TypesetRepositoryTest" time="0.969"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

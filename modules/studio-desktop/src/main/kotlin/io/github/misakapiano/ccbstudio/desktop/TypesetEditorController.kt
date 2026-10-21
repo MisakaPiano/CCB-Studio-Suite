@@ -196,7 +196,7 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
     fun appendSelected()=c.run("追加图库图片") {
         drain();val p=project?:return@run
         val ids=c.assets.filter{it.request().id().toString() in c.selection}.map{it.request().id().toString()}
-        val added=ids.map{id->val asset=c.workspace.assets.read(java.util.UUID.fromString(id)).require();TypesetPage(assetId=id,name=asset.request().name())}
+        val added=ids.map{id->val asset=c.workspace.assets.read(java.util.UUID.fromString(id)).require();TypesetPage(assetId=id,name=asset.request().name(),coordinates=TypesetImage.DISPLAY)}
         val next=repository.update(p.id,p.revision){it.copy(pages=it.pages+added)};val d=repository.load(next)
         withContext(ui){project=next;document=d;dirty=false;pageId=added.firstOrNull()?.id?:pageId;selectedPages=added.map{it.id}.toSet();objectId=null}
     }
@@ -206,7 +206,7 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
         val selected=selectedPages.toSet();val textStyle=text?:snapshot.presets.firstOrNull()?.text
         val widths=mutableMapOf<String,Int>()
         val updated=TypesetBatch.apply(snapshot,selected,previous,textStyle,mask?:maskDefault){page->
-            widths.getOrPut(page.assetId){val image=EditorRenderer.decode(c.workspace.bytes(page.assetId));try{image.width}finally{image.flush()}}
+            widths.getOrPut(page.assetId+page.coordinates){val image=TypesetImage.decode(c.workspace.bytes(page.assetId),page.coordinates);try{image.width}finally{image.flush()}}
         }
         if(updated!=snapshot){val next=repository.update(p.id,p.revision){updated}
             withContext(ui){project=next;document=updated;dirty=false;page?.toolDefaults?.let{maskDefault=it}}

@@ -14,7 +14,7 @@ object TypesetRenderer {
     private fun quality(g:Graphics2D){g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_ON);g.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS,RenderingHints.VALUE_FRACTIONALMETRICS_ON);g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BICUBIC)}
     fun render(original:ByteArray,page:TypesetPage,variant:String="all"):BufferedImage {
         require(variant in setOf("all","text","mask","original"))
-        val image=EditorRenderer.decode(original)
+        val image=TypesetImage.decode(original,page.coordinates)
         val out=BufferedImage(image.width,image.height,BufferedImage.TYPE_INT_ARGB)
         val g=out.createGraphics();try{quality(g);g.drawImage(image,0,0,null)
             val masks=page.masks.associateBy{it.id};val texts=page.texts.associateBy{it.id}

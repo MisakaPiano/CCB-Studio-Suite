@@ -84,7 +84,7 @@ object TypesetSourceExchange {
             val extension=e["ccbStudio"]?.takeUnless{it==JsonNull}?.jsonObject
             if(extension!=null && extension["version"]?.jsonPrimitive?.intOrNull!=1)throw DataProblem("UNSUPPORTED_VERSION","Unknown Studio exchange extension; retained")
             if(extension!=null)documentJson.decodeFromJsonElement<TypesetPage>(extension.getValue("page")).copy(assetId=newId(),sourceEntryIndex=index)
-            else TypesetPage(assetId=newId(),name=e.s("name",e.s("fileName","Imported image")),texts=e.a("texts").map{ text(it.jsonObject)},masks=e.a("masks").map{mask(it.jsonObject)},
+            else TypesetPage(coordinates=TypesetImage.DISPLAY,assetId=newId(),name=e.s("name",e.s("fileName","Imported image")),texts=e.a("texts").map{ text(it.jsonObject)},masks=e.a("masks").map{mask(it.jsonObject)},
                 caption=e.o("storybook").s("caption"),story=story(e.o("storybook")),toolDefaults=e["toolDefaults"]?.takeUnless{it==JsonNull}?.let{settings(it.jsonObject).apply(TypesetMask())},sourceEntryIndex=index)
         }
         val mode=raw.s("workspaceMode","image");require(mode in setOf("image","storybook"))

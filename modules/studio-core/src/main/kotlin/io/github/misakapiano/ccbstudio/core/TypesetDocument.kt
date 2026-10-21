@@ -39,6 +39,7 @@ import java.util.UUID
     val caption:String="",val story:StoryStyle=StoryStyle(),
     val toolDefaults:TypesetMask?=null,val layerOrder:List<String> = emptyList(),
     val sourceEntryIndex:Int?=null,
+    val coordinates:String=TypesetImage.RAW,
 )
 @Serializable data class TypesetPreset(val id:String=newId(),val name:String,val text:TypesetText)
 @Serializable data class TypesetDocument(
@@ -61,6 +62,7 @@ import java.util.UUID
             listOf(t.style.fill,t.style.stroke,t.background,t.border).forEach(::validateColor)
         }
         pages.forEach {p->
+            if(p.coordinates !in setOf(TypesetImage.RAW,TypesetImage.DISPLAY))throw DataProblem("UNSUPPORTED_VERSION","Unknown image coordinates retained")
             require(p.sourceEntryIndex==null || p.sourceEntryIndex in 0..999)
             UUID.fromString(p.id);UUID.fromString(p.assetId);require(p.name.length<=512 && p.caption.length<=100000)
             require(p.texts.size<=500 && p.masks.size<=500 && (p.texts.map{it.id}+p.masks.map{it.id}).distinct().size==p.texts.size+p.masks.size)
