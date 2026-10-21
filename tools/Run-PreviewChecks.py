@@ -6,7 +6,7 @@ root=Path(__file__).resolve().parents[1];local=root/'.local/windows-preview'
 stamp=datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
 out=local/'evidence'/(stamp+'-'+a.phase);out.mkdir(parents=True)
 def hashes():
- files=[f for d in ['modules','tools'] for f in (root/d).rglob('*') if f.is_file() and f.suffix in ['.kt','.java','.kts','.py','.ps1','.png','.ico'] and not any(x in f.parts for x in ['build','__pycache__'])]
+ files=[f for d in ['modules','tools'] for f in (root/d).rglob('*') if f.is_file() and (f.suffix in ['.kt','.java','.kts','.py','.ps1','.cjs','.png','.ico','.hex'] or 'resources' in f.parts) and not any(x in f.parts for x in ['build','__pycache__'])]
  files += [root/f for f in ['settings.gradle.kts','build.gradle.kts','gradle.properties']]
  return {f.relative_to(root).as_posix():hashlib.sha256(f.read_bytes()).hexdigest() for f in sorted(files)}
 before=hashes();(out/'source-before.json').write_text(json.dumps(before,indent=2))

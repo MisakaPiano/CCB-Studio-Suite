@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.WindowsFontDecoderTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-21T06:39:36.621Z" hostname="DD1" time="2.112">
+  <properties/>
+  <testcase name="nativeWoff2AndWoffDecodeToUsableFonts" classname="io.github.misakapiano.ccbstudio.core.WindowsFontDecoderTest" time="0.078"/>
+  <testcase name="malformedOrOversizedContainerCannotReachUnboundedDecode" classname="io.github.misakapiano.ccbstudio.core.WindowsFontDecoderTest" time="0.005"/>
+  <testcase name="importedFontIsDurableAndBackupRestorableWithoutSystemInstallation" classname="io.github.misakapiano.ccbstudio.core.WindowsFontDecoderTest" time="2.029"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

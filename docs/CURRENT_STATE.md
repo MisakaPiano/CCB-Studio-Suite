@@ -1,3 +1,7 @@
+## UX-R2a 原生排版工程进度（2026-10-21）
+
+[实际执行证据](audits/UX_R2A_EDITOR.md)：core+desktop完整80项PASS，后续字体格式定向4项PASS；10次构建/测试尝试及失败保留。来源样本对照、工程保存/重开、字体与备份恢复已测；完整编辑/批量/整册导出继续实施，原生视觉和真人验收NOT TESTED，PRODUCT_HOLD。
+
 ## TypeSet来源样本冻结（2026-10-21）
 
 [来源回执](audits/TYPESET_SOURCE_REFERENCE.md)：16项源排版/导出输出已取得，独立PDF/ZIP检查PASS；原件启动TDZ失败保留，只修改测试副本初始化顺序与依赖加载。Studio原生对照及真人审阅NOT TESTED，继续R2–R4，PRODUCT_HOLD。

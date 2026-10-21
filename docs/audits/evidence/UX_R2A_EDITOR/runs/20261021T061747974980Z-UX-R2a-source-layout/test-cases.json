@@ -1,0 +1,20 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetReferenceTest",
+    "name": "sourceVerticalGlyphsColumnsAndAdvances",
+    "seconds": "1.239",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetReferenceTest",
+    "name": "sourceHorizontalWrappingAndRichStyles",
+    "seconds": "0.036",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetReferenceTest",
+    "name": "sourceStoryGeometryAndBlankParagraphs",
+    "seconds": "0.747",
+    "status": "PASS"
+  }
+]

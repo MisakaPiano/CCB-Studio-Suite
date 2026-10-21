@@ -1,3 +1,7 @@
+## UX-R2a 原生排版工程进度（2026-10-21）
+
+[实际执行证据](audits/UX_R2A_EDITOR.md)：core+desktop完整80项PASS，后续字体格式定向4项PASS；10次构建/测试尝试及失败保留。来源样本对照、工程保存/重开、字体与备份恢复已测；完整编辑/批量/整册导出继续实施，原生视觉和真人验收NOT TESTED，PRODUCT_HOLD。
+
 # TASK REGISTRY
 
 | ID | 任务 | 状态 | 权限/停止点 |

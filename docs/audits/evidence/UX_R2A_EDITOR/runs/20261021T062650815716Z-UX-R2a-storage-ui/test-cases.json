@@ -1,0 +1,44 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetReferenceTest",
+    "name": "sourceVerticalGlyphsColumnsAndAdvances",
+    "seconds": "1.991",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetReferenceTest",
+    "name": "sourceHorizontalWrappingAndRichStyles",
+    "seconds": "0.035",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetReferenceTest",
+    "name": "measuredCanvasTopBaselineUsesTypoMetrics",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetReferenceTest",
+    "name": "sourceStoryGeometryAndBlankParagraphs",
+    "seconds": "0.724",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetRepositoryTest",
+    "name": "thousandPagesHistoryRestartAndBackupPreserveOriginal",
+    "seconds": "12.606",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetRepositoryTest",
+    "name": "badSnapshotHashCannotReplaceCurrentOrDeleteOriginal",
+    "seconds": "1.027",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetRepositoryTest",
+    "name": "stagedDocumentFailureRetainsOriginalAndRefusesUnsafeReopen",
+    "seconds": "1.01",
+    "status": "PASS"
+  }
+]

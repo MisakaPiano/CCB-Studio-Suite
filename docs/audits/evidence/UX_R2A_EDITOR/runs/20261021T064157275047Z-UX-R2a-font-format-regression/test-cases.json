@@ -1,0 +1,26 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.WindowsFontDecoderTest",
+    "name": "nativeWoff2AndWoffDecodeToUsableFonts",
+    "seconds": "0.161",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.WindowsFontDecoderTest",
+    "name": "installedOtfAndDecodedTtfImportRetainExactBytes",
+    "seconds": "0.672",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.WindowsFontDecoderTest",
+    "name": "rejectsMalformedContainersAndOversizedHeaders",
+    "seconds": "0.009",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.WindowsFontDecoderTest",
+    "name": "importedFontIsDurableAndBackupRestorableWithoutSystemInstallation",
+    "seconds": "1.92",
+    "status": "PASS"
+  }
+]
