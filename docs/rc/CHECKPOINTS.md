@@ -1,3 +1,7 @@
+# 当前恢复入口 — UX-R0文档交付 / 等待Project批准
+
+Issue #4完整来源继承覆盖旧候选缩减。见[UX-R0 Project入口](../ux/UX_R0_PROJECT_REVIEW.md)。产品实现仍209b5252；本次checkpoint为文档/审计/control-only。不得据下面旧续跑描述开始改生产代码；先获Project整体合同审查通过。USER_REVIEW_FAILED / PRODUCT HOLD保持，CP4完整门槛保持。
+
 # 当前：首轮用户验收未通过
 
 见[反馈/源码定位](PREVIEW_USER_REVIEW_1.md)。旧工程检查点仍可追溯，但不等于功能验收通过；下一步仅同一Preview任务纠正，未进入CP4。本轮无源码修复或新包。

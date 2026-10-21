@@ -2,6 +2,7 @@
 
 | ID | 任务 | 状态 | 权限/停止点 |
 |---|---|---|---|
+| UX-R0 | Issue #4完整来源继承/产品恢复/GUI结构合同 | READY FOR PROJECT REVIEW / PRODUCT HOLD | [整体审阅](ux/UX_R0_PROJECT_REVIEW.md)；只交文档，包含TypeSet全功能；Project批准后另行实施；不改生产源码/不merge/不宣布Preview通过 |
 | INIT-000 | 立项材料 | PACKAGED | 文档/参考交付，不等于软件实现 |
 | A0-001 | 核对初始化并只读复用审计 | AUDIT DELIVERED / REVIEWED WITH SCOPE | 原审计事实保留；A0-002结论见下一行 |
 | A0-002 | Project连续开发门禁 | APPROVED_FOR_RC_RUN | 已实际读取Issue #1正式回执comment6296885017；只解锁#2，不是产品/合并/发布/真实付费验收 |

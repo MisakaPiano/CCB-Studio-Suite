@@ -1,6 +1,6 @@
 {
-  "task": "WINDOWS_PREVIEW_GATE",
-  "overallStatus": "USER_REVIEW_FAILED / CORRECTION_REQUIRED",
+  "task": "UX-R0",
+  "overallStatus": "PRODUCT HOLD / NOT ACCEPTED / UX-R0 READY FOR PROJECT REVIEW",
   "branch": "feature/windows-rc-continuous",
   "inheritedReviewedBaseline": "27dbd5d578f364afb529fc33944386c0c107f0da",
   "latestVerifiedImplementationCheckpoint": "209b5252e06ea55b6cdf970da131b330a407e882",
@@ -25,12 +25,17 @@
       "id": "P3",
       "sha": "209b5252e06ea55b6cdf970da131b330a407e882",
       "status": "PUSHED + REMOTE VERIFIED; complete pinned source closure and modern Preview"
+    },
+    {
+      "id": "UX-R0",
+      "sha": "Containing Git commit; documentation only",
+      "status": "READY FOR PROJECT REVIEW; production implementation remains P3; no new product test run"
     }
   ],
   "delivery": "../audits/evidence/WINDOWS_PREVIEW/DELIVERY.json",
-  "review": "PREVIEW_PROJECT_REVIEW.md",
-  "resumeContract": "../../tasks/WINDOWS_PREVIEW_GATE.md",
-  "nextAction": "Correct Preview workflows against exact Desktop/Android references; no CP4 approval",
+  "review": "../ux/UX_R0_PROJECT_REVIEW.md",
+  "resumeContract": "../../tasks/UX_R0_PRODUCT_RECOVERY_AUDIT.md",
+  "nextAction": "Project review of full source adoption and GUI contract; no implementation before approval",
   "cp4": "NOT IMPLEMENTED / NOT TESTED / NO RC",
   "historicalRecord": {
     "task": "WINDOWS_RC_CONTINUOUS",

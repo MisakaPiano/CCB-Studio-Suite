@@ -1,0 +1,276 @@
+{
+  "task": "UX-R0",
+  "date": "2026-10-21",
+  "referenceMode": "PINNED_GIT_OBJECTS_AND_IGNORED_LOCAL_TYPESET",
+  "desktopAuthority": "5ef95428421f7c693b010ac88f51d470804ab07a",
+  "issue": {
+    "url": "https://github.com/MisakaPiano/CCB-Studio-Suite/issues/4",
+    "initialUpdatedAt": "2026-10-21T02:39:52Z",
+    "latestUpdatedAt": "2026-10-21T02:49:22Z",
+    "comments": 0,
+    "scope": "FULL SOURCE ADOPTION; UX-R0 documentation only this turn"
+  },
+  "files": [
+    {
+      "repository": "MisakaPiano/ChatChatBar-Desktop",
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiStudioPanel.kt",
+      "bytes": 37071,
+      "sha256": "c2f2379ac2dc54312ef3c026e01f2e589658127974ce0847a5f5a1ce8ec4c82f"
+    },
+    {
+      "repository": "MisakaPiano/ChatChatBar-Desktop",
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiStudioController.kt",
+      "bytes": 33983,
+      "sha256": "4511f9329082b6877d25ce6a7f77b0302f6d5a391215ead22dd4b620c7b07de2"
+    },
+    {
+      "repository": "MisakaPiano/ChatChatBar-Desktop",
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopDesignConversation.kt",
+      "bytes": 7517,
+      "sha256": "078eac89c8db3ef578a8493aba13b61899624318ff50ef2c594f686de4694fd0"
+    },
+    {
+      "repository": "MisakaPiano/ChatChatBar-Desktop",
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioPromptField.kt",
+      "bytes": 13781,
+      "sha256": "1f043b33308c50f2c39a640c67cc2c5883968775c0581b34f30377630ba53884"
+    },
+    {
+      "repository": "MisakaPiano/ChatChatBar-Desktop",
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioCharacters.kt",
+      "bytes": 8582,
+      "sha256": "8bcc35845cb0e450cde252d801cefd895089fd0de5a31ee3b21a371036ce0b4d"
+    },
+    {
+      "repository": "MisakaPiano/ChatChatBar-Desktop",
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioHistory.kt",
+      "bytes": 14012,
+      "sha256": "dfc1e7b4101f8efb091e26cc54c456ffd5cef08bcd8ce542d3acbccc60a6ecf7"
+    },
+    {
+      "repository": "MisakaPiano/ChatChatBar-Desktop",
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiGuidance.kt",
+      "bytes": 7211,
+      "sha256": "3d80a7d1760217fc4d56bfd0f5ecf3add1a6d24a5da0f8e83aaf1206fb73c09b"
+    },
+    {
+      "repository": "MisakaPiano/ChatChatBar-Desktop",
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioWorkspace.kt",
+      "bytes": 7618,
+      "sha256": "efe53dfc0a90883ea1cd92ef9816c02b290d6aebaf959764946b676676e9e9d9"
+    },
+    {
+      "repository": "MisakaPiano/ChatChatBar-Desktop",
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopImageToolsDialog.kt",
+      "bytes": 13478,
+      "sha256": "ac2e3fea38b3a5dbd96524208bb337333657573e05bdd3e94739d2699328d760"
+    },
+    {
+      "repository": "MisakaPiano/ChatChatBar-Desktop",
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "docs/desktop/40_PHASE7_R2_UX_CONTRACT.md",
+      "bytes": 11239,
+      "sha256": "04013b2dbc3e873b5dc34bbbd43a0788b5a86d6258c48de4e16635242f00eb33"
+    },
+    {
+      "repository": "MisakaPiano/ChatChatBar-Desktop",
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "docs/desktop/58_PHASE7_FINAL_SCREENSHOT_INDEX.md",
+      "bytes": 1311,
+      "sha256": "8056eceec1507f4080e6bd128e731421def703ff1a7c2c0f8e3eb674934a6078"
+    },
+    {
+      "repository": "MisakaPiano/ChatChatBar-Desktop",
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "docs/desktop/79_PHASE7_FINAL_MANUAL_EVIDENCE_RECONCILIATION.md",
+      "bytes": 32798,
+      "sha256": "367b755bfe27f7e61ad4bf631d93e20369fcbf932617ef488ed7be60bfe34737"
+    },
+    {
+      "repository": "MisakaPiano/ChatChatBar-Desktop",
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "docs/desktop/86_PHASE7_FINAL_ONE_SESSION_USER_ACCEPTANCE.md",
+      "bytes": 4372,
+      "sha256": "e415988f27620955f3964793a93b09525dc1574c25e0a528f8ab6c2ffc95e645"
+    },
+    {
+      "repository": "MisakaPiano/ChatChatBar-Desktop",
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "docs/desktop/89_PHASE7_APNG_CLIPBOARD_USER_ACCEPTANCE.md",
+      "bytes": 4975,
+      "sha256": "27ca1d96e4451f77d76fa81113450f00bae637cafe800a3411c2e8020a42ba34"
+    },
+    {
+      "repository": "MisakaPiano/ChatChatBar-Desktop",
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "docs/desktop/91_PHASE7_FINAL_PROJECT_ACCEPTANCE.md",
+      "bytes": 11907,
+      "sha256": "5f8373f6e480fd845ba2fb67402b6402fd2ff26fcb8d18158d5f496b2daa40a9"
+    },
+    {
+      "path": ".reference-assets/typeset-forge-1.1/CHANGELOG_1.1.md",
+      "bytes": 1594,
+      "sha256": "58486e13439e1593a0d07054413bbeeaadad50912d73e96cff0f9689115b3a31",
+      "distribution": "LOCAL_READ_ONLY_NOT_UPLOADED"
+    },
+    {
+      "path": ".reference-assets/typeset-forge-1.1/README_1.1.md",
+      "bytes": 16158,
+      "sha256": "cd6fda7d43c1993e15f075d26fa1dc3e15b3729c37cb5a3258e1bf566099bf05",
+      "distribution": "LOCAL_READ_ONLY_NOT_UPLOADED"
+    },
+    {
+      "path": ".reference-assets/typeset-forge-1.1/TypesetForge_1.1.html",
+      "bytes": 200005,
+      "sha256": "892ea08f0070bdfd264b8895d38f6239f32f436b68a74ab42a2ef3336e28bb63",
+      "distribution": "LOCAL_READ_ONLY_NOT_UPLOADED"
+    },
+    {
+      "repository": "MisakaPiano/ChatChatBar-Desktop",
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioControls.kt",
+      "bytes": 20378,
+      "sha256": "9d54e8e6936115cf706986932abe48bd1f68df63ff173e80205b91918dc4290a"
+    },
+    {
+      "repository": "MisakaPiano/ChatChatBar-Desktop",
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopImageMetadata.kt",
+      "bytes": 3032,
+      "sha256": "a019e314d55bc13d2a5e2faded3333fd1855c090a3a60da0c47a1a28ee570ccf"
+    },
+    {
+      "repository": "MisakaPiano/ChatChatBar-Desktop",
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopImagePostProcessPanel.kt",
+      "bytes": 6498,
+      "sha256": "42496847830a84661bb8c9489e43614072d1b462d1ed39b657b5da29993a7cc0"
+    },
+    {
+      "repository": "MisakaPiano/CCB-Studio-Suite",
+      "commit": "608be5083bb58092988fa68d24b8c8ea646f5a27",
+      "implementation": "209b5252e06ea55b6cdf970da131b330a407e882",
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/Main.kt",
+      "bytes": 17172,
+      "sha256": "7b00dd82646eaeab921e01e7f8a5c110ea94272abdc98e97e82f61209c9ffc46",
+      "inspection": "STATIC_SOURCE"
+    },
+    {
+      "repository": "MisakaPiano/CCB-Studio-Suite",
+      "commit": "608be5083bb58092988fa68d24b8c8ea646f5a27",
+      "implementation": "209b5252e06ea55b6cdf970da131b330a407e882",
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/WorkspaceUi.kt",
+      "bytes": 33176,
+      "sha256": "89a862f96393ed6fedb037c52735810f0be46114cde1cdc61b805d6925d1cd1a",
+      "inspection": "STATIC_SOURCE"
+    },
+    {
+      "repository": "MisakaPiano/CCB-Studio-Suite",
+      "commit": "608be5083bb58092988fa68d24b8c8ea646f5a27",
+      "implementation": "209b5252e06ea55b6cdf970da131b330a407e882",
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioBrand.kt",
+      "bytes": 666,
+      "sha256": "3c1deedc66c93ebff5ced6afc2a4778c2fb13c5eb78d2e752cd859b927eb64e1",
+      "inspection": "STATIC_SOURCE"
+    },
+    {
+      "repository": "MisakaPiano/CCB-Studio-Suite",
+      "commit": "608be5083bb58092988fa68d24b8c8ea646f5a27",
+      "implementation": "209b5252e06ea55b6cdf970da131b330a407e882",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/Models.kt",
+      "bytes": 4681,
+      "sha256": "af275fd879314649ab7f681409d86bb8c5e108ca393ed864634967604cc94956",
+      "inspection": "STATIC_SOURCE"
+    },
+    {
+      "repository": "MisakaPiano/CCB-Studio-Suite",
+      "commit": "608be5083bb58092988fa68d24b8c8ea646f5a27",
+      "implementation": "209b5252e06ea55b6cdf970da131b330a407e882",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/Generation.kt",
+      "bytes": 7829,
+      "sha256": "c9149a45afe6eda3f3a7cf8f616441615961fc488acdabb823bb2d84dce61686",
+      "inspection": "STATIC_SOURCE"
+    },
+    {
+      "repository": "MisakaPiano/CCB-Studio-Suite",
+      "commit": "608be5083bb58092988fa68d24b8c8ea646f5a27",
+      "implementation": "209b5252e06ea55b6cdf970da131b330a407e882",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/EditorRenderer.kt",
+      "bytes": 6696,
+      "sha256": "6fa9963e6e4196067c286dd5fffe4949518666c76f705ea27443cd68df5de2be",
+      "inspection": "STATIC_SOURCE"
+    },
+    {
+      "repository": "MisakaPiano/CCB-Studio-Suite",
+      "commit": "608be5083bb58092988fa68d24b8c8ea646f5a27",
+      "implementation": "209b5252e06ea55b6cdf970da131b330a407e882",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioWorkspace.kt",
+      "bytes": 8133,
+      "sha256": "08fe0ed640066e8bac29db74b042e9c2af3d57b2f770c7c06f317bb68899325c",
+      "inspection": "STATIC_SOURCE"
+    },
+    {
+      "repository": "MisakaPiano/CCB-Studio-Suite",
+      "commit": "608be5083bb58092988fa68d24b8c8ea646f5a27",
+      "implementation": "209b5252e06ea55b6cdf970da131b330a407e882",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioRestore.kt",
+      "bytes": 4751,
+      "sha256": "dd07e0f08e19ad6540ff6cbb7cda8ce9f5c95dc7adadca9ce70810b1b49dd2f1",
+      "inspection": "STATIC_SOURCE"
+    },
+    {
+      "repository": "MisakaPiano/CCB-Studio-Suite",
+      "commit": "608be5083bb58092988fa68d24b8c8ea646f5a27",
+      "implementation": "209b5252e06ea55b6cdf970da131b330a407e882",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StateJournal.kt",
+      "bytes": 4205,
+      "sha256": "735bf10b63f97af9c972f4b17fca4e40ecc8ec98711c0754170ec748bb43dab3",
+      "inspection": "STATIC_SOURCE"
+    },
+    {
+      "repository": "MisakaPiano/CCB-Studio-Suite",
+      "commit": "608be5083bb58092988fa68d24b8c8ea646f5a27",
+      "implementation": "209b5252e06ea55b6cdf970da131b330a407e882",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/SecretVault.kt",
+      "bytes": 1250,
+      "sha256": "55b63d287a29e663ef46fef6b1444e31e074d83c9d484b67fead59a56d21cd03",
+      "inspection": "STATIC_SOURCE"
+    },
+    {
+      "repository": "MisakaPiano/CCB-Studio-Suite",
+      "commit": "608be5083bb58092988fa68d24b8c8ea646f5a27",
+      "implementation": "209b5252e06ea55b6cdf970da131b330a407e882",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/LiveRequestBudget.kt",
+      "bytes": 3065,
+      "sha256": "fb3eec0bbd79ae2b093e801c9604aaa01d4818010bc871ecc172ef3080b73548",
+      "inspection": "STATIC_SOURCE"
+    },
+    {
+      "repository": "MisakaPiano/CCB-Studio-Suite",
+      "commit": "608be5083bb58092988fa68d24b8c8ea646f5a27",
+      "implementation": "209b5252e06ea55b6cdf970da131b330a407e882",
+      "path": "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetStore.java",
+      "bytes": 22424,
+      "sha256": "2f045a3c549ee4cd68eb11ac46fc9b12e57463add9655db108837e103f22a088",
+      "inspection": "STATIC_SOURCE"
+    },
+    {
+      "repository": "MisakaPiano/CCB-Studio-Suite",
+      "commit": "608be5083bb58092988fa68d24b8c8ea646f5a27",
+      "implementation": "209b5252e06ea55b6cdf970da131b330a407e882",
+      "path": "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetBackup.java",
+      "bytes": 10124,
+      "sha256": "d29b26c388ea936bdfa26e9518dc4fe9c254812bdd1195dbd3c921506ce30956",
+      "inspection": "STATIC_SOURCE"
+    }
+  ]
+}

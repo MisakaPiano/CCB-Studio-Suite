@@ -1,3 +1,11 @@
+# CURRENT — PRODUCT HOLD / UX-R0 READY FOR PROJECT REVIEW
+
+2026-10-21 JST：Issue #4最新FULL SOURCE ADOPTION已读取（updated_at 02:49:22Z，0评论）。本轮只完成整体来源审计、GUI合同与实施方案，见[UX-R0固定审阅入口](ux/UX_R0_PROJECT_REVIEW.md)。完整继承CCB P7与TypeSet 1.1，含富文本/小人书/整册PDF；不默认延期。
+
+产品实现仍209b5252，USER_REVIEW_FAILED / NOT ACCEPTED；生产源码、测试与构建未改，没有新包/产品PASS。保留A1/R1及全部历史证据。下一步仅Project审查整体合同，批准后另行连续实施；本轮不进入UX-R1–R4或CP4。唯一Suite执行者当前停止等待，不后台续跑。
+
+以下为历史状态记录，不能据旧连续授权绕过本轮UX-R0停止点。
+
 # CURRENT STATE — USER_REVIEW_FAILED / CORRECTION_REQUIRED
 
 2026-10-21 JST，用户已完成首轮手测并拒收当前Preview的主要工作流。原包实现209b5252，回执aa086653保留；工程测试PASS不代表产品等效。当前不进入CP4。
