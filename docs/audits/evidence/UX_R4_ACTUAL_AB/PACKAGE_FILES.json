@@ -1,0 +1,242 @@
+[
+  {
+    "path": "20261021T141825424267Z-ux-r4-resumed-app-a/gradle.log",
+    "bytes": 2477,
+    "sha256": "4809ab0584f57611191d4de21d3b07c98e913a26829c05bad7ae091885ef9e20"
+  },
+  {
+    "path": "20261021T141825424267Z-ux-r4-resumed-app-a/source-before.json",
+    "bytes": 49612,
+    "sha256": "5ea0c7174cd0b16004ea22debf285c2077bbe9253f6977b5179ff7667d31f829"
+  },
+  {
+    "path": "20261021T141825424267Z-ux-r4-resumed-app-a/summary.json",
+    "bytes": 868,
+    "sha256": "1740eb0e4b5cb46d2ff7d833274d1262d4652924385cf65a9fbac5a72e76c031"
+  },
+  {
+    "path": "20261021T141825424267Z-ux-r4-resumed-app-a/test-cases.json",
+    "bytes": 4,
+    "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+  },
+  {
+    "path": "20261021T142119049725Z-ux-r4-resumed-app-b/gradle.log",
+    "bytes": 2474,
+    "sha256": "3bbe5024ad5b6a39c0ae8e56a394ea1e0559b693f4d76d1dd519ed3630bab3c9"
+  },
+  {
+    "path": "20261021T142119049725Z-ux-r4-resumed-app-b/source-before.json",
+    "bytes": 49612,
+    "sha256": "5ea0c7174cd0b16004ea22debf285c2077bbe9253f6977b5179ff7667d31f829"
+  },
+  {
+    "path": "20261021T142119049725Z-ux-r4-resumed-app-b/summary.json",
+    "bytes": 868,
+    "sha256": "db22d30d6d2e545646752d0990078310ed76ed782faf601724a7afe9d2f89a61"
+  },
+  {
+    "path": "20261021T142119049725Z-ux-r4-resumed-app-b/test-cases.json",
+    "bytes": 4,
+    "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+  },
+  {
+    "path": "20261021T142621362017Z-ux-r4-post-update-write/gradle.log",
+    "bytes": 2656,
+    "sha256": "4e001f75dc9dee1520efaa9ecc8292c44a72e85bcd9948ee1b850e2e430e8daa"
+  },
+  {
+    "path": "20261021T142621362017Z-ux-r4-post-update-write/source-before.json",
+    "bytes": 49612,
+    "sha256": "035507d6a3fc1ec7b65b063a52d1f3ea2154f7b559109873f92e5a20fb874d8d"
+  },
+  {
+    "path": "20261021T142621362017Z-ux-r4-post-update-write/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest.xml",
+    "bytes": 507,
+    "sha256": "779180315eb580eaa4d183e6959991415ebf0bdeb62d776776865d1f2606e3a7"
+  },
+  {
+    "path": "20261021T142621362017Z-ux-r4-post-update-write/summary.json",
+    "bytes": 946,
+    "sha256": "db5c2dc000c1c7d4916de45fe123c764c657a6f34ef84a28cf425b47166a4e0d"
+  },
+  {
+    "path": "20261021T142621362017Z-ux-r4-post-update-write/test-cases.json",
+    "bytes": 210,
+    "sha256": "4568c4844def10742e01efa5d4a25f525c6ec68b0f52515c5260f3d2eb8823e6"
+  },
+  {
+    "path": "a-stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "a-stdout.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "ab-build-a-2/BUILD_RECEIPT.json",
+    "bytes": 320,
+    "sha256": "3351bd9e9f37ada75300842bc298b99f27a7ca324ab7ccc692d47a520eb49f07"
+  },
+  {
+    "path": "ab-build-a-2/compile.log",
+    "bytes": 1381,
+    "sha256": "180f75958369f2eebccb7473c89c1421c8adab427617467039a71021f27f2a52"
+  },
+  {
+    "path": "ab-build-a-2/INSTALL_MANIFEST.json",
+    "bytes": 100956,
+    "sha256": "ac3f80a994836458be32260e572a15390715c9608aeee87319ee3742b9795010"
+  },
+  {
+    "path": "ab-build-a-2/update-config.json",
+    "bytes": 462,
+    "sha256": "b52ed83ed2e0cb4bb5bb16938536bfaa7a98f4c6b02c3ac485d9e8bded58e0a3"
+  },
+  {
+    "path": "ab-build-b-2/BUILD_RECEIPT.json",
+    "bytes": 320,
+    "sha256": "97e5668cc7647e4a839bcc4ce0b444a05573c26194895bcbc63d3bca64aa6c45"
+  },
+  {
+    "path": "ab-build-b-2/compile.log",
+    "bytes": 1381,
+    "sha256": "4199ae6eaa41c4f9171a812c76133ebb9bdb626e16d37e915c90fdc9de3b61fb"
+  },
+  {
+    "path": "ab-build-b-2/INSTALL_MANIFEST.json",
+    "bytes": 100955,
+    "sha256": "f1ac4919983f8264d5a0f95875eb327b46ad3fd8dc5fd1fd34907273103a8d51"
+  },
+  {
+    "path": "ab-build-b-2/update-config.json",
+    "bytes": 462,
+    "sha256": "908d9442d33ff016473a1603421beb6a8c3f964ce9ccc216018f973a7983303b"
+  },
+  {
+    "path": "DOWNLOAD_VERIFIED.json",
+    "bytes": 531,
+    "sha256": "9151e423113b2912b3a8656fedcaf2ee3e86e92d94ba89b2882a4dc25f7ad919"
+  },
+  {
+    "path": "handoffs/d79bc8d3-a833-43d0-931d-3e97ec24fd7b/b-stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "handoffs/d79bc8d3-a833-43d0-931d-3e97ec24fd7b/b-stdout.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "handoffs/d79bc8d3-a833-43d0-931d-3e97ec24fd7b/B_VERIFIED.json",
+    "bytes": 1742,
+    "sha256": "65a4eef36c8db8e5933e6cc861e9cd4b1b1669ad94928e214d8413a3e8d3cd57"
+  },
+  {
+    "path": "handoffs/d79bc8d3-a833-43d0-931d-3e97ec24fd7b/client.lock",
+    "bytes": 1,
+    "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+  },
+  {
+    "path": "handoffs/d79bc8d3-a833-43d0-931d-3e97ec24fd7b/events.jsonl",
+    "bytes": 1281,
+    "sha256": "20228ef5993e3b0c2a4fb9d0bd763657fad628e6054e32297259fcf74130faae"
+  },
+  {
+    "path": "handoffs/d79bc8d3-a833-43d0-931d-3e97ec24fd7b/helper-stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "handoffs/d79bc8d3-a833-43d0-931d-3e97ec24fd7b/helper-stdout.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "handoffs/d79bc8d3-a833-43d0-931d-3e97ec24fd7b/plan.json",
+    "bytes": 2568,
+    "sha256": "077628f39e0ff3188ec7776268c63e28a81faba173ac8980aa23698175a89477"
+  },
+  {
+    "path": "handoffs/d79bc8d3-a833-43d0-931d-3e97ec24fd7b/result.json",
+    "bytes": 543,
+    "sha256": "eb5ab248afe8c73693a1abddba5b01e97bfedead8757ed3c78937a3a7cbe798a"
+  },
+  {
+    "path": "install-1dcefbb8f62d4879a563542e76a99452.json",
+    "bytes": 657,
+    "sha256": "a49e33d63b3009ee6256e7d3ebaa09817169c95f2d115dfabc5e36d7d2ebdd9c"
+  },
+  {
+    "path": "NATIVE_INPUT.json",
+    "bytes": 613,
+    "sha256": "3d6859956a1586e9c4392fee599ecdd87eb21e7d30e4771c9feec471d752071f"
+  },
+  {
+    "path": "operations/b411985a-1d22-4aa6-846b-5c1aef4413c1/process-error.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "operations/b411985a-1d22-4aa6-846b-5c1aef4413c1/result.json",
+    "bytes": 658,
+    "sha256": "d5c736f75e1357b76b945a7e579d43b0fb995899fc101d7d16ba965629b29120"
+  },
+  {
+    "path": "operations/d5e79e52-4adf-4698-8432-0ff5c8ec06f8/process-error.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "operations/d5e79e52-4adf-4698-8432-0ff5c8ec06f8/result.json",
+    "bytes": 497,
+    "sha256": "48ca5057aa85307ed65c1ffd7f9234dee8c54d503c7139fb566805efd3b73960"
+  },
+  {
+    "path": "post-update-receipts/fe924396-afde-416b-8b8b-6192e7c57ca4.json",
+    "bytes": 3411,
+    "sha256": "e0a3e52c7fdfe3ab9a344b9d8675b9a1bc9769c9975e430afe88b3867c85ee7f"
+  },
+  {
+    "path": "PUBLISHED.json",
+    "bytes": 389,
+    "sha256": "2eeed3738cfa9e137ecf1e9081d9177d1eddcd8cc237083790be8aa26de40472"
+  },
+  {
+    "path": "requests.jsonl",
+    "bytes": 587,
+    "sha256": "bb11dee1027a546b4786d91f03fde00a916ef2a9f39e28f259c4634c3cbdf8e6"
+  },
+  {
+    "path": "root.json",
+    "bytes": 1568,
+    "sha256": "85c4a93f11a2bc2463d5e874761ade679ca4cb3d19b8dc28a59b993adac42258"
+  },
+  {
+    "path": "server.json",
+    "bytes": 148,
+    "sha256": "0de2a9be35fd80f947248ab30e414c2c28c461c85daeb54b99481a5c33d85630"
+  },
+  {
+    "path": "snapshot.json",
+    "bytes": 467,
+    "sha256": "cd12c1da2510d4f361bb30befe23e7eb1869b7ec6a379d1cd465ef41375003fd"
+  },
+  {
+    "path": "targets.json",
+    "bytes": 899,
+    "sha256": "c0393cd86ba15a1f5994b4085a714da5907c2182228e1be84665c1967230ac37"
+  },
+  {
+    "path": "timestamp.json",
+    "bytes": 469,
+    "sha256": "431b19c12bb0d1a0f66de7033a598fed5caacaa3385bd2c43aee2bca1b416c35"
+  },
+  {
+    "path": "verification-note.txt",
+    "bytes": 150,
+    "sha256": "16b67e2e22d8709e49d348401e0b5e49c75d5b0c772b0d219ff0d0bff3a93906"
+  }
+]

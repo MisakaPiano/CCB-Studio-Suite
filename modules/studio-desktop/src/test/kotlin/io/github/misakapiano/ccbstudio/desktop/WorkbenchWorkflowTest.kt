@@ -98,4 +98,33 @@ class WorkbenchWorkflowTest {
             c.flush();assertEquals("尚未发送的中文草稿",w.state.creation!!.composer)
         }finally{scene.close();c.close();scope.cancel()}
     }
+
+    @Test fun continuedEditingRetainsExistingAssetsAndCredentials()=runBlocking(awt){
+        val supplied=System.getProperty("preview.update.fixture")
+        val r=supplied?.let{Path.of(it).toAbsolutePath().normalize()}?:root()
+        if(supplied!=null){
+            val allowed=Path.of(System.getProperty("preview.test.root")).toAbsolutePath().parent.parent.resolve("windows-rc")
+            require(r.parent==allowed && r.fileName.toString().startsWith("ab-data-")){"Only explicit isolated update fixtures allowed"}
+        }else StudioWorkspace.openStudio(r).use{it.importImage("synthetic.png",EditorRenderer.synthetic(48,48))}
+        val w=StudioWorkspace.openStudio(r);val before=updateSnapshot(w)
+        val scope=CoroutineScope(SupervisorJob()+awt)
+        val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
+        val scene=ImageComposeScene(1240,880){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        val input="更新后新增的中文草稿：保留原件与历史。"
+        try{
+            scene.frames();scene.click("AI 设计");scene.field("画面需求 / 继续修改",input);c.flush()
+            assertEquals(input,w.state.creation!!.composer)
+        }finally{scene.close();c.close();scope.cancel()}
+        StudioWorkspace.openStudio(r).use{again->
+            assertEquals(input,again.state.creation!!.composer)
+            val after=updateSnapshot(again)
+            assertEquals(before["assets"],after["assets"]);assertEquals(before["credentials"],after["credentials"])
+            val output=Path.of("build/ux-r4-post-update/${newId()}.json");Files.createDirectories(output.parent)
+            writeUpdateJson(output,buildJsonObject{
+                put("fixture",if(supplied==null)"FRESH_SYNTHETIC"else"ACTUAL_UPDATED_DATA_ROOT")
+                put("dataRoot",r.toString());put("gui","OFFSCREEN_COMPOSE_CURRENT_SOURCE; not native B input")
+                put("result","SAVED_REOPENED_ASSETS_CREDENTIALS_RETAINED");put("before",before);put("after",after)
+            })
+        }
+    }
 }

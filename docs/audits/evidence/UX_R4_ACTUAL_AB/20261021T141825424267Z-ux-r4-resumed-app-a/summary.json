@@ -1,0 +1,27 @@
+{
+  "phase": "ux-r4-resumed-app-a",
+  "startedUtc": "2026-10-21T14:18:42.299510+00:00",
+  "seconds": 74.393,
+  "exitCode": 0,
+  "tests": 0,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "COMMAND_SUCCESS",
+  "testEvidence": "NOT TESTED (build only or failed before execution)",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    "-PstudioPackageVersion=0.2.1",
+    ":studio-desktop:createDistributable"
+  ],
+  "baseCommit": "1a013737d08579bc413d2dbf4da20e18cb523c99",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

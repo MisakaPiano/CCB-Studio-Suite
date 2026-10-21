@@ -1,0 +1,17 @@
+{
+  "sourceSha": "1a013737d08579bc413d2dbf4da20e18cb523c99",
+  "aPid": 10424,
+  "aWindow": 197796,
+  "bWindow": 592022,
+  "reopenedBWindow": 133314,
+  "reopenedBPid": 12320,
+  "path": "actual installed A window: Tab, Ctrl+Shift+U, F5, Ctrl+D, Ctrl+Shift+I, Return",
+  "result": "app-owned COMPLETE and B_VERIFIED; actual B window observed; generated shortcut reopened B",
+  "capture": [
+    "FrameArrived timed out: timed out waiting on channel",
+    "window capture timed out: timed out waiting on channel"
+  ],
+  "visual": "UNVERIFIED",
+  "providerCalls": 0,
+  "userAcceptance": "NOT TESTED"
+}

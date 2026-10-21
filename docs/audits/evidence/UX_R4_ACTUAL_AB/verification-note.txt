@@ -1,0 +1,1 @@
+First ad-hoc verifier used Windows default GBK and failed decoding UTF-8 JSON; corrected explicit UTF-8 verifier passed. No app failure or mutation.

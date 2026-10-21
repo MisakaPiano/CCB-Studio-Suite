@@ -1396,12 +1396,14 @@
         "StudioUpdateTest (3 actual)"
       ],
       "guiEvidence": [
-        "docs/audits/evidence/UX_R4_TRUSTED_CLIENT/update-download.png (offscreen injected receipt)"
+        "docs/audits/evidence/UX_R4_TRUSTED_CLIENT/update-download.png (offscreen injected receipt)",
+        "docs/audits/UX_R4_ACTUAL_AB.md: actual A keyboard path, actual installer and B window; capture failed"
       ],
       "persistenceEvidence": [
-        "TUF metadata cache, verified receipt and separate-process lock; no installed application A-to-B"
+        "TUF metadata cache, verified receipt and separate-process lock; no installed application A-to-B",
+        "B_VERIFIED snapshot matches A; actual upgraded root post-update write/reopen PASS"
       ],
-      "status": "ENGINEERING_PARTIAL / TRUST_CLIENT_PASS / INSTALL_RESTART_NOT_TESTED / PRODUCT_HOLD"
+      "status": "ACTUAL_INSTALLED_A_TO_B_PASS / FAULT_COVERAGE_PARTIAL / NATIVE_VISUAL_UNVERIFIED / PRODUCT_HOLD"
     },
     {
       "id": "C07",

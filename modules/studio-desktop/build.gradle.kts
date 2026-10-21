@@ -36,5 +36,6 @@ compose.desktop {
 tasks.test {
     useJUnit(); maxParallelForks=1; maxHeapSize="256m"; jvmArgs("-XX:ActiveProcessorCount=2")
     systemProperty("preview.test.root", rootProject.file(".local/windows-preview/desktop-tests").absolutePath)
+    providers.gradleProperty("updateFixtureRoot").orNull?.let { systemProperty("preview.update.fixture", it) }
     testLogging { events("passed","failed","skipped") }
 }
