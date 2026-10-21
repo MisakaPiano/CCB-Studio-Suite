@@ -29,6 +29,8 @@ import javax.swing.JFileChooser
 internal class WorkbenchController(val workspace:StudioWorkspace,val scope:CoroutineScope,val infrastructure:DesktopNovelAiInfrastructure,budgetRoot:Path,
     val http:okhttp3.OkHttpClient=studioHttpClient(),admissionOverride:RequestAdmission?=null) {
     val session=CreationSession(workspace)
+    val runtimeRoot:Path=budgetRoot.parent
+    val backups by lazy{LibraryBackupController(this)}
     val gallery = GalleryViewState()
     val library by lazy{LibraryController(this)}
     val updater=StudioUpdateController(scope,budgetRoot.parent.resolve("updates"))

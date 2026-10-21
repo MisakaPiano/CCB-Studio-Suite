@@ -1408,11 +1408,26 @@
     {
       "id": "C03",
       "owner": "UX-R4",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "LibraryBackupWorkspace.kt",
+        "LibraryWorkspace.kt",
+        "StudioWorkspace.backup (unchanged core)",
+        "StudioRestore.restore (unchanged core)",
+        "StudioFormatMigration / StudioMigration (unchanged core)"
+      ],
+      "tests": [
+        "LibraryBackupWorkflowTest.currentWorkbenchBackupConfirmRestoreAndOpenPreservesSharedAssetsWithoutCredentials",
+        "LibraryBackupWorkflowTest.restoreRejectsCurrentRootExistingDestinationAndCorruptBackupWithoutPublishing",
+        "LibraryBackupWorkflowTest.legacyBackupRestoresThenCopiesToCurrentFormatWithoutTouchingBackup"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_LIBRARY_BACKUP.md",
+        "docs/audits/evidence/UX_LIBRARY_BACKUP/compose-scenes"
+      ],
+      "persistenceEvidence": [
+        "Real restored workspace reopened; original bytes, typeset project, independent prompt, labels, unsent draft and unresolved credential refs checked; source retained"
+      ],
+      "status": "ENGINEERING_PARTIAL / OFFSCREEN_WORKFLOW_PASS / INSTALLED_SECOND_WINDOW_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "C04",

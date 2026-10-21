@@ -86,7 +86,8 @@ internal class LibraryController(private val c:WorkbenchController) {
     var selected by remember{mutableStateOf<String?>(null)};var name by remember{mutableStateOf("")};var text by remember{mutableStateOf("")}
     var query by remember{mutableStateOf("")};var category by remember{mutableStateOf("images")};var recursive by remember{mutableStateOf(false)}
     Column(Modifier.fillMaxSize().padding(16.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(8.dp)) {
-        StudioChips("资产管理",listOf("Prompt 资产","多 Prompt 参照","目录入口","回收站"),tab,{it}){tab=it}
+        StudioChips("资产管理",listOf("Prompt 资产","多 Prompt 参照","目录入口","回收站","备份与恢复"),tab,{it}){tab=it}
+        if(tab=="备份与恢复"){LibraryBackupWorkspace(c);return@Column}
         library.error?.let{Text(it,color=MaterialTheme.colors.error);StudioAction("重新读取管理记录"){library.refresh()};return@Column}
         if(tab=="Prompt 资产") {
             Text("Prompt 独立于图片保存；编辑保存为新版本，原版本保留。")
