@@ -11,6 +11,15 @@ import kotlin.test.*
 class StudioMaintenanceTest {
     private val awt=object:CoroutineDispatcher(){override fun dispatch(context:CoroutineContext,block:Runnable)=SwingUtilities.invokeLater(block)}
     private fun root()=Path.of(System.getProperty("preview.test.root"),newId())
+    @Test fun migrationDestinationIsSeparateAndCannotReuseExistingWork() {
+        val source=Files.createDirectories(root());val nonce="a".repeat(64)
+        assertEquals(source,updateDataDestination(source,2,2,nonce))
+        val destination=updateDataDestination(source,2,3,nonce)
+        assertEquals(source.parent,destination.parent);assertNotEquals(source,destination)
+        Files.createDirectory(destination);Files.writeString(destination.resolve("keep"),"retained")
+        assertFails{updateDataDestination(source,2,3,nonce)};assertEquals("retained",Files.readString(destination.resolve("keep")))
+        assertFails{updateDataDestination(source,3,2,nonce)};assertFails{updateDataDestination(source,2,3,"bad nonce")}
+    }
     @Test fun maintenanceRejectsNewEditsAndKeepsRootOwnedUntilWriterDrains()=runBlocking {
         val root=root();val w=StudioWorkspace.openStudio(root);val scope=CoroutineScope(SupervisorJob()+awt)
         val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root.resolveSibling(newId())),root.resolveSibling(newId()))

@@ -64,6 +64,9 @@ def inspect(updater, installed):
         if type(custom.get(name)) is not int or custom[name]<1:raise UpdateRejected('Invalid target '+name)
     if custom['version']<=installed.version:raise UpdateRejected('Target is not newer than installed version')
     if not custom['minimum_reader']<=installed.reader<=custom['maximum_reader']:raise UpdateRejected('Data reader is outside supported target range')
+    output=custom.get('data_version',installed.reader)
+    if type(output) is not int or not installed.reader<=output<=3 or not custom['minimum_reader']<=output<=custom['maximum_reader']:
+        raise UpdateRejected('Unsupported target output data version')
     if not re.fullmatch('[0-9a-f]{40}',custom.get('sourceSha','')):raise UpdateRejected('Missing source identity')
     if not isinstance(custom.get('displayVersion'),str) or not 1<=len(custom['displayVersion'])<=80:raise UpdateRejected('Missing display version')
     if not isinstance(custom.get('notes'),str) or len(custom['notes'])>16000:raise UpdateRejected('Unsupported release notes')
@@ -81,7 +84,7 @@ def execute(installed:Installed,cache:Path,download=False,fetcher=None,disk_usag
         result={'status':'AVAILABLE','version':custom['version'],'displayVersion':custom['displayVersion'],
                 'channel':custom['channel'],'notes':custom['notes'],'sourceSha':custom['sourceSha'],
                 'bytes':target.length,'installedBytes':custom['installedBytes'],'sha256':target.hashes['sha256'],'minimumReader':custom['minimum_reader'],
-                'maximumReader':custom['maximum_reader']}
+                'maximumReader':custom['maximum_reader'],'dataVersion':custom.get('data_version',installed.reader)}
         if download:
             if disk_usage(cache).free<target.length*3+64*1024**2:raise UpdateRejected('Insufficient update staging space')
             stage=targets/(str(uuid.uuid4())+'.incomplete');stage.mkdir()

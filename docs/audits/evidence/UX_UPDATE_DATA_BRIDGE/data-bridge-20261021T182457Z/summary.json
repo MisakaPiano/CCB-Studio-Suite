@@ -1,0 +1,12 @@
+{
+  "exitCode": 0,
+  "seconds": 9.423404216766357,
+  "sourceStable": true,
+  "arguments": [
+    "H:\\CCB-Studio-Suite\\.local\\windows-rc\\updater-runtime-v5\\python.exe",
+    "-B",
+    "-c",
+    "import sys,unittest;sys.path.insert(0,r'H:\\CCB-Studio-Suite\\tools\\update-runtime');suite=unittest.defaultTestLoader.discover(r'H:\\CCB-Studio-Suite\\tools\\update-runtime',pattern='test_*.py');r=unittest.TextTestRunner(verbosity=2).run(suite);print('COUNTS',r.testsRun,len(r.failures),len(r.errors),len(r.skipped));sys.exit(not r.wasSuccessful())"
+  ],
+  "baseCommit": "cddaf131c1634ffd38a08f4d05ccc5d4c0b5827f"
+}

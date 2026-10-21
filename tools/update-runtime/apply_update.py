@@ -9,6 +9,19 @@ from tuf.ngclient import Updater
 from studio_update import Installed,UpdateRejected,exclusive,inspect
 from install_ops import atomic_json,no_reparse,install_candidate
 
+def data_destination(plan,source,identity,custom):
+    """Bind a fresh copy destination to the confirmed, authenticated data transition."""
+    output=custom.get('data_version',identity.reader)
+    if plan.get('sourceDataVersion',identity.reader)!=identity.reader or plan.get('targetDataVersion',identity.reader)!=output:
+        raise UpdateRejected('Data transition changed after confirmation')
+    destination=no_reparse(Path(plan.get('destinationDataRoot',str(source))))
+    if output==identity.reader:
+        if destination!=source:raise UpdateRejected('Unexpected data relocation')
+    else:
+        expected=source.with_name(source.name+'-format'+str(output)+'-'+plan['nonce'][:12])
+        if destination!=expected or destination.exists():raise UpdateRejected('Fresh confirmed migration destination required')
+    return destination
+
 def create_launcher(final,data,runtime):
     """Windows Shell Link preserves Unicode paths without batch parsing/codepage rules."""
     launcher=final.parent/'Launch-CCB-Studio.lnk'
@@ -80,6 +93,8 @@ def _perform(plan_path):
             approved=plan['approved']
             if target.hashes['sha256']!=approved['sha256'] or custom['version']!=approved['version'] or custom['sourceSha']!=approved['sourceSha']:
                 raise UpdateRejected('Release changed after confirmation; confirmation must be repeated')
+            destination=data_destination(plan,data,identity,custom)
+            if approved.get('dataVersion',identity.reader)!=custom.get('data_version',identity.reader):raise UpdateRejected('Output data format changed after confirmation')
             installer=no_reparse(Path(approved['installer']))
             update('READY_TO_DRAIN')
             deadline=time.monotonic()+120
@@ -106,9 +121,11 @@ def _perform(plan_path):
             verified=json.loads(ack.read_text(encoding='utf-8'))
             if verified.get('nonce')!=plan['nonce'] or verified.get('version')!=custom['version'] or verified.get('sourceSha')!=custom['sourceSha'] or verified.get('snapshot')!=plan['snapshot']:
                 raise UpdateRejected('B data/credential verification mismatch')
+            if Path(verified.get('dataRoot',str(data))).absolute()!=destination or verified.get('dataVersion',identity.reader)!=custom.get('data_version',identity.reader):
+                raise UpdateRejected('B data destination/format mismatch')
             # A stable launcher is committed only after B verifies the actual workspace.
-            launcher=create_launcher(final,data,runtime)
-            update('COMPLETE',verification='B_PROGRAM_DATA_AND_CREDENTIAL_SNAPSHOT_MATCH',launcher=str(launcher))
+            launcher=create_launcher(final,destination,runtime)
+            update('COMPLETE',verification='B_PROGRAM_DATA_AND_CREDENTIAL_SNAPSHOT_MATCH',launcher=str(launcher),dataRoot=str(destination),sourceDataRoot=str(data))
     except Exception as error:
         update('FAILED_RETAINED',reason=str(error) if isinstance(error,UpdateRejected) else type(error).__name__)
         return 1

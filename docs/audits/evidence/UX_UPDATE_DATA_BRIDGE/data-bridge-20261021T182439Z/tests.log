@@ -1,0 +1,196 @@
+test_authenticated_output_format_is_explicit_and_unknown_or_downgrade_rejected (test_client.ClientTests.test_authenticated_output_format_is_explicit_and_unknown_or_downgrade_rejected) ... ok
+test_changed_download_has_no_success_receipt (test_client.ClientTests.test_changed_download_has_no_success_receipt) ... ok
+test_check_then_verified_download_no_install (test_client.ClientTests.test_check_then_verified_download_no_install) ... ok
+test_disconnect_preserves_metadata_for_retry (test_client.ClientTests.test_disconnect_preserves_metadata_for_retry) ... ok
+test_http_is_allowed_only_for_explicit_internal_literal_loopback (test_client.ClientTests.test_http_is_allowed_only_for_explicit_internal_literal_loopback) ... ok
+test_installed_root_hash_and_endpoint_are_required (test_client.ClientTests.test_installed_root_hash_and_endpoint_are_required) ... ok
+test_low_space_no_download_or_completion (test_client.ClientTests.test_low_space_no_download_or_completion) ... ok
+test_other_process_cannot_enter_same_cache (test_client.ClientTests.test_other_process_cannot_enter_same_cache) ... ok
+test_wrong_identity_version_and_reader_block_before_download (test_client.ClientTests.test_wrong_identity_version_and_reader_block_before_download) ... ok
+test_migration_destination_is_fresh_sibling_and_bound_to_confirmed_versions (test_handoff.HandoffTests.test_migration_destination_is_fresh_sibling_and_bound_to_confirmed_versions) ... ERROR
+test_parent_handle_binds_actual_process_image (test_handoff.HandoffTests.test_parent_handle_binds_actual_process_image) ... ok
+test_terminal_handoff_replay_does_not_reinstall_or_replace_receipt (test_handoff.HandoffTests.test_terminal_handoff_replay_does_not_reinstall_or_replace_receipt) ... ERROR
+test_unicode_shortcut_keeps_explicit_roots_without_execution (test_handoff.HandoffTests.test_unicode_shortcut_keeps_explicit_roots_without_execution) ... ERROR
+test_download_stays_immutable_during_executor (test_install.InstallTests.test_download_stays_immutable_during_executor) ... ERROR
+test_existing_version_and_data_overlap_refuse_before_install (test_install.InstallTests.test_existing_version_and_data_overlap_refuse_before_install) ... ERROR
+test_installer_failure_retains_partial_without_publish (test_install.InstallTests.test_installer_failure_retains_partial_without_publish) ... ERROR
+test_insufficient_space_has_no_install_stage (test_install.InstallTests.test_insufficient_space_has_no_install_stage) ... ERROR
+test_manifest_wrong_identity_hash_or_unknown_file_is_rejected (test_install.InstallTests.test_manifest_wrong_identity_hash_or_unknown_file_is_rejected) ... ERROR
+test_success_is_installed_not_started_and_preserves_sources (test_install.InstallTests.test_success_is_installed_not_started_and_preserves_sources) ... ERROR
+test_tampered_executable_is_never_executed (test_install.InstallTests.test_tampered_executable_is_never_executed) ... ERROR
+
+======================================================================
+ERROR: test_migration_destination_is_fresh_sibling_and_bound_to_confirmed_versions (test_handoff.HandoffTests.test_migration_destination_is_fresh_sibling_and_bound_to_confirmed_versions)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_handoff.py", line 34, in test_migration_destination_is_fresh_sibling_and_bound_to_confirmed_versions
+    source=self.path/'data';source.mkdir();identity=Installed(1,2,'internal','','',b'')
+                            ~~~~~~~~~~~~^^
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\handoff-fixtures\\tmpzr7m3uye\\data'
+
+======================================================================
+ERROR: test_terminal_handoff_replay_does_not_reinstall_or_replace_receipt (test_handoff.HandoffTests.test_terminal_handoff_replay_does_not_reinstall_or_replace_receipt)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "pathlib\_local.py", line 722, in mkdir
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\handoff-fixtures\\tmphzvstpmy\\cache\\handoffs\\test'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "pathlib\_local.py", line 722, in mkdir
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\handoff-fixtures\\tmphzvstpmy\\cache\\handoffs'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_handoff.py", line 25, in test_terminal_handoff_replay_does_not_reinstall_or_replace_receipt
+    cache=self.path/'cache';folder=cache/'handoffs/test';folder.mkdir(parents=True);data=self.path/'data';data.mkdir();(data/'.owner.lock').touch()
+                                                         ~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 726, in mkdir
+  File "pathlib\_local.py", line 726, in mkdir
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\handoff-fixtures\\tmphzvstpmy\\cache'
+
+======================================================================
+ERROR: test_unicode_shortcut_keeps_explicit_roots_without_execution (test_handoff.HandoffTests.test_unicode_shortcut_keeps_explicit_roots_without_execution)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "pathlib\_local.py", line 722, in mkdir
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\handoff-fixtures\\tmp003pcso9\\programs\\2-test'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_handoff.py", line 17, in test_unicode_shortcut_keeps_explicit_roots_without_execution
+    final=self.path/'programs/2-test';final.mkdir(parents=True);(final/'CCBStudioSuitePreview.exe').write_bytes(b'not an executable')
+                                      ~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 726, in mkdir
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\handoff-fixtures\\tmp003pcso9\\programs'
+
+======================================================================
+ERROR: test_download_stays_immutable_during_executor (test_install.InstallTests.test_download_stays_immutable_during_executor)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "pathlib\_local.py", line 722, in mkdir
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmp6cex_ay6\\programs\\old'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_install.py", line 13, in setUp
+    self.path=Path(tempfile.mkdtemp(dir=base));self.old=self.path/'programs/old';self.old.mkdir(parents=True)
+                                                                                 ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 726, in mkdir
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmp6cex_ay6\\programs'
+
+======================================================================
+ERROR: test_existing_version_and_data_overlap_refuse_before_install (test_install.InstallTests.test_existing_version_and_data_overlap_refuse_before_install)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "pathlib\_local.py", line 722, in mkdir
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpesjfsptg\\programs\\old'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_install.py", line 13, in setUp
+    self.path=Path(tempfile.mkdtemp(dir=base));self.old=self.path/'programs/old';self.old.mkdir(parents=True)
+                                                                                 ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 726, in mkdir
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpesjfsptg\\programs'
+
+======================================================================
+ERROR: test_installer_failure_retains_partial_without_publish (test_install.InstallTests.test_installer_failure_retains_partial_without_publish)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "pathlib\_local.py", line 722, in mkdir
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpl3i_oqag\\programs\\old'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_install.py", line 13, in setUp
+    self.path=Path(tempfile.mkdtemp(dir=base));self.old=self.path/'programs/old';self.old.mkdir(parents=True)
+                                                                                 ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 726, in mkdir
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpl3i_oqag\\programs'
+
+======================================================================
+ERROR: test_insufficient_space_has_no_install_stage (test_install.InstallTests.test_insufficient_space_has_no_install_stage)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "pathlib\_local.py", line 722, in mkdir
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpov2lr78k\\programs\\old'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_install.py", line 13, in setUp
+    self.path=Path(tempfile.mkdtemp(dir=base));self.old=self.path/'programs/old';self.old.mkdir(parents=True)
+                                                                                 ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 726, in mkdir
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpov2lr78k\\programs'
+
+======================================================================
+ERROR: test_manifest_wrong_identity_hash_or_unknown_file_is_rejected (test_install.InstallTests.test_manifest_wrong_identity_hash_or_unknown_file_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "pathlib\_local.py", line 722, in mkdir
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpnrv64saw\\programs\\old'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_install.py", line 13, in setUp
+    self.path=Path(tempfile.mkdtemp(dir=base));self.old=self.path/'programs/old';self.old.mkdir(parents=True)
+                                                                                 ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 726, in mkdir
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpnrv64saw\\programs'
+
+======================================================================
+ERROR: test_success_is_installed_not_started_and_preserves_sources (test_install.InstallTests.test_success_is_installed_not_started_and_preserves_sources)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "pathlib\_local.py", line 722, in mkdir
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpaa7nz8w1\\programs\\old'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_install.py", line 13, in setUp
+    self.path=Path(tempfile.mkdtemp(dir=base));self.old=self.path/'programs/old';self.old.mkdir(parents=True)
+                                                                                 ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 726, in mkdir
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpaa7nz8w1\\programs'
+
+======================================================================
+ERROR: test_tampered_executable_is_never_executed (test_install.InstallTests.test_tampered_executable_is_never_executed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "pathlib\_local.py", line 722, in mkdir
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmp2prbkxs7\\programs\\old'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_install.py", line 13, in setUp
+    self.path=Path(tempfile.mkdtemp(dir=base));self.old=self.path/'programs/old';self.old.mkdir(parents=True)
+                                                                                 ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 726, in mkdir
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmp2prbkxs7\\programs'
+
+----------------------------------------------------------------------
+Ran 20 tests in 1.919s
+
+FAILED (errors=10)
+COUNTS 20 0 10 0

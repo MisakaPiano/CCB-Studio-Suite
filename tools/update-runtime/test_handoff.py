@@ -1,13 +1,13 @@
-import base64,json,os,subprocess,sys,tempfile,unittest
+import base64,json,os,subprocess,sys,uuid,unittest
 from pathlib import Path
-from apply_update import ParentProcess,create_launcher,perform
-from studio_update import UpdateRejected
+from apply_update import ParentProcess,create_launcher,perform,data_destination
+from studio_update import UpdateRejected,Installed
 ROOT=Path(__file__).resolve().parents[2]
 
 class HandoffTests(unittest.TestCase):
     def setUp(self):
         base=ROOT/'.local/windows-rc/handoff-fixtures';base.mkdir(exist_ok=True)
-        self.path=Path(tempfile.mkdtemp(dir=base))
+        self.path=base/uuid.uuid4().hex;self.path.mkdir()
     def test_parent_handle_binds_actual_process_image(self):
         parent=ParentProcess(os.getpid(),Path(sys.executable))
         try:self.assertFalse(parent.exited())
@@ -29,3 +29,15 @@ class HandoffTests(unittest.TestCase):
         self.assertEqual(perform(path),0);self.assertEqual(receipt.read_bytes(),before)
         receipt.write_text(json.dumps(dict(status='INSTALLING',nonce=plan['nonce'])))
         self.assertEqual(perform(path),1);self.assertEqual(json.loads(receipt.read_text())['status'],'FAILED_RETAINED')
+
+    def test_migration_destination_is_fresh_sibling_and_bound_to_confirmed_versions(self):
+        source=self.path/'data';source.mkdir();identity=Installed(1,2,'internal','','',b'')
+        nonce='a'*64;target=source.with_name('data-format3-'+nonce[:12])
+        plan=dict(nonce=nonce,sourceDataVersion=2,targetDataVersion=3,destinationDataRoot=str(target))
+        self.assertEqual(data_destination(plan,source,identity,{'data_version':3}),target)
+        for key,value in [('sourceDataVersion',1),('targetDataVersion',4),('destinationDataRoot',str(source)),('destinationDataRoot',str(source/'nested'))]:
+            changed=dict(plan);changed[key]=value
+            with self.assertRaises(UpdateRejected):data_destination(changed,source,identity,{'data_version':3})
+        target.mkdir()
+        with self.assertRaises(UpdateRejected):data_destination(plan,source,identity,{'data_version':3})
+        self.assertEqual(data_destination({'nonce':nonce},source,identity,{}),source)

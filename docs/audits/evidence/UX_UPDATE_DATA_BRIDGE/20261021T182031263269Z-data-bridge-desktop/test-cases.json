@@ -1,0 +1,38 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioMaintenanceTest",
+    "name": "maintenanceRejectsNewEditsAndKeepsRootOwnedUntilWriterDrains",
+    "seconds": "3.499",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioMaintenanceTest",
+    "name": "migrationDestinationIsSeparateAndCannotReuseExistingWork",
+    "seconds": "0.129",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioMaintenanceTest",
+    "name": "snapshotPreservesOriginalAssociationsAndDpapiCredentialWithoutPlaintext",
+    "seconds": "5.078",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest",
+    "name": "cancellationDrainsOwnedOperationAndRejectsNewWork",
+    "seconds": "0.068",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest",
+    "name": "actualUpdateScreenRequiresDownloadConfirmationAndDoesNotClaimInstall",
+    "seconds": "17.873",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest",
+    "name": "unconfiguredRuntimeFailsWithoutLaunchingProcess",
+    "seconds": "0.177",
+    "status": "PASS"
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "phase": "data-bridge-desktop-full",
+  "startedUtc": "2026-10-21T18:25:14.255235+00:00",
+  "seconds": 391.786,
+  "exitCode": 0,
+  "tests": 81,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:cleanTest",
+    ":studio-desktop:test"
+  ],
+  "baseCommit": "cddaf131c1634ffd38a08f4d05ccc5d4c0b5827f",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

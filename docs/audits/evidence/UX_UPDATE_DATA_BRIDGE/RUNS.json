@@ -1,0 +1,24 @@
+[
+  {
+    "directory": "20261021T182031263269Z-data-bridge-desktop",
+    "phase": "data-bridge-desktop",
+    "status": "PASS",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 233.894,
+    "sourceStable": true
+  },
+  {
+    "directory": "20261021T182513760558Z-data-bridge-desktop-full",
+    "phase": "data-bridge-desktop-full",
+    "status": "PASS",
+    "tests": 81,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 391.786,
+    "sourceStable": true
+  }
+]

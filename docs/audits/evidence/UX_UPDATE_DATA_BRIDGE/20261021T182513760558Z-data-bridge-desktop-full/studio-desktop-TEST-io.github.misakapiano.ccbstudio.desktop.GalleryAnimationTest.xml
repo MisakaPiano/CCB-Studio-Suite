@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-21T18:26:49.142Z" hostname="DD1" time="8.421">
+  <properties/>
+  <testcase name="animatedGifRetainsTwoFrameColorsTimingAndLoopAfterDisguiseRestore" classname="io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest" time="0.775"/>
+  <testcase name="actualWorkspacePreviewRestoreBatchCopyAndReopenPreserveOriginals" classname="io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest" time="6.672"/>
+  <testcase name="failedBatchKeepsUnpublishedEvidenceAndNeverOverwritesPriorOutput" classname="io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest" time="0.974"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

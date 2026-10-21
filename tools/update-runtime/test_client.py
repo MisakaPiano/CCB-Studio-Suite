@@ -1,5 +1,5 @@
 """Synthetic trust/client boundary tests; not an installer or A-to-B acceptance."""
-import hashlib, json, os, shutil, subprocess, sys, tempfile, unittest
+import hashlib, json, os, shutil, subprocess, sys, uuid, unittest
 from pathlib import Path
 from types import SimpleNamespace
 ROOT=Path(__file__).resolve().parents[2]
@@ -11,7 +11,7 @@ from studio_update import Installed, UpdateRejected, execute, exclusive
 class ClientTests(unittest.TestCase):
     def setUp(self):
         base=ROOT/'.local/windows-rc/runtime-client-fixtures';base.mkdir(exist_ok=True)
-        self.path=Path(tempfile.mkdtemp(dir=base));self.repo=Repository()
+        self.path=base/uuid.uuid4().hex;self.path.mkdir();self.repo=Repository()
         self.identity=Installed(1,2,'internal','https://updates.invalid/metadata/','https://updates.invalid/targets/',self.repo.bootstrap)
         self.publish()
 
@@ -47,6 +47,17 @@ class ClientTests(unittest.TestCase):
         with self.assertRaisesRegex(UpdateRejected,'space'):
             execute(self.identity,self.path,True,self.repo.fetcher,lambda _:SimpleNamespace(free=1))
         self.assertFalse(list(self.path.rglob('VERIFIED.json')))
+
+    def test_authenticated_output_format_is_explicit_and_unknown_or_downgrade_rejected(self):
+        self.publish({'maximum_reader':3,'data_version':3})
+        result=execute(self.identity,self.path/'v3',fetcher=self.repo.fetcher)
+        self.assertEqual(result['dataVersion'],3)
+        for i,changes in enumerate([{'data_version':3},{'data_version':True},{'maximum_reader':4,'data_version':4},{'data_version':0}]):
+            self.publish(changes)
+            with self.assertRaises(UpdateRejected):execute(self.identity,self.path/str(i),True,self.repo.fetcher)
+        self.publish({'minimum_reader':2,'maximum_reader':3,'data_version':2})
+        newer=Installed(1,3,'internal',self.identity.metadata_url,self.identity.targets_url,self.identity.bootstrap)
+        with self.assertRaises(UpdateRejected):execute(newer,self.path/'downgrade',True,self.repo.fetcher)
 
     def test_changed_download_has_no_success_receipt(self):
         self.repo.files['targets/studio-installer.exe']=b'changed bytes'

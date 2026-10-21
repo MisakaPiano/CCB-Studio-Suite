@@ -9,8 +9,9 @@ import java.nio.channels.FileChannel
 import java.security.SecureRandom
 
 /** Fingerprints only. Plain credentials never enter the handoff or log. */
-internal fun updateSnapshot(workspace:StudioWorkspace):JsonObject=buildJsonObject {
-    put("stateSha256",sha256(documentJson.encodeToString(workspace.state).toByteArray()))
+internal fun updateSnapshot(workspace:StudioWorkspace,sourceVersion:Int=workspace.state.version):JsonObject=buildJsonObject {
+    require(sourceVersion in 1..workspace.state.version)
+    put("stateSha256",sha256(documentJson.encodeToString(workspace.state.copy(version=sourceVersion)).toByteArray()))
     put("assets",buildJsonArray {
         workspace.catalog().sortedBy{it.request().id().toString()}.forEach {asset->
             val request=asset.request();val id=request.id().toString()
@@ -48,9 +49,14 @@ internal suspend fun prepareUpdateHandoff(c:WorkbenchController,runtime:Path):Pa
     val cache=runtime.resolve("updates").toAbsolutePath().normalize()
     val folder=cache.resolve("handoffs").resolve(newId());Files.createDirectories(folder)
     val nonce=ByteArray(32).also{SecureRandom().nextBytes(it)}.joinToString(""){"%02x".format(it)}
+    val sourceVersion=c.workspace.state.version
+    val targetVersion=approved["dataVersion"]?.jsonPrimitive?.int?:sourceVersion
+    require(targetVersion in sourceVersion..3){"不支持的目标资料格式"}
+    val destination=updateDataDestination(c.workspace.root,sourceVersion,targetVersion,nonce)
     val plan=buildJsonObject {
         put("format",1);put("nonce",nonce);put("installed",installed.toAbsolutePath().toString());put("cache",cache.toString())
         put("dataRoot",c.workspace.root.toString());put("runtimeRoot",runtime.toAbsolutePath().toString());put("parentPid",ProcessHandle.current().pid())
+        put("sourceDataVersion",sourceVersion);put("targetDataVersion",targetVersion);put("destinationDataRoot",destination.toString())
         put("approved",approved);put("snapshot",updateSnapshot(c.workspace))
     }
     val path=folder.resolve("plan.json");writeUpdateJson(path,plan)
@@ -78,18 +84,32 @@ internal suspend fun prepareUpdateHandoff(c:WorkbenchController,runtime:Path):Pa
     path
 }
 
+internal fun updateDataDestination(root:Path,sourceVersion:Int,targetVersion:Int,nonce:String):Path {
+    require(nonce.matches(Regex("[0-9a-f]{64}")) && targetVersion>=sourceVersion)
+    val source=root.toAbsolutePath().normalize()
+    if(sourceVersion==targetVersion)return source
+    val destination=source.resolveSibling("${source.fileName}-format$targetVersion-${nonce.take(12)}")
+    safePath(destination);require(!Files.exists(destination,LinkOption.NOFOLLOW_LINKS)){"资料迁移目标已存在；保留并停止本次交接"}
+    return destination
+}
+
 internal fun verifyUpdatedWorkspace(workspace:StudioWorkspace,planPath:Path):JsonObject {
     require(Files.size(planPath)<=4*1024*1024)
     val plan=Json.parseToJsonElement(Files.readString(planPath)).jsonObject
     require(plan["format"]?.jsonPrimitive?.int==1)
     val cache=Path.of(plan["cache"]!!.jsonPrimitive.content).toAbsolutePath().normalize()
     require(planPath.toAbsolutePath().normalize().startsWith(cache.resolve("handoffs")))
-    require(plan["dataRoot"]?.jsonPrimitive?.content?.let{Path.of(it).toAbsolutePath().normalize()}==workspace.root)
+    val destination=(plan["destinationDataRoot"]?:plan["dataRoot"])!!.jsonPrimitive.content
+    require(Path.of(destination).toAbsolutePath().normalize()==workspace.root)
     val installed=System.getProperty("jpackage.app-path")?.let{Path.of(it).parent}?:error("更新验证需要安装版本")
     val config=Json.parseToJsonElement(Files.readString(installed.resolve("update-config.json"))).jsonObject
     val approved=plan["approved"]!!.jsonObject
     require(config["version"]==approved["version"] && config["sourceSha"]==approved["sourceSha"]){"程序身份不匹配"}
-    val snapshot=updateSnapshot(workspace)
+    val sourceVersion=plan["sourceDataVersion"]?.jsonPrimitive?.int?:workspace.state.version
+    val targetVersion=plan["targetDataVersion"]?.jsonPrimitive?.int?:sourceVersion
+    require(workspace.state.version==targetVersion && config["reader"]?.jsonPrimitive?.int==targetVersion){"资料格式与程序身份不匹配"}
+    val snapshot=updateSnapshot(workspace,sourceVersion)
     require(snapshot==plan["snapshot"]){"更新后资料或凭据验证不一致；已保留旧程序与现有资料"}
-    return buildJsonObject{put("nonce",plan["nonce"]!!);put("version",config["version"]!!);put("sourceSha",config["sourceSha"]!!);put("snapshot",snapshot)}
+    return buildJsonObject{put("nonce",plan["nonce"]!!);put("version",config["version"]!!);put("sourceSha",config["sourceSha"]!!);put("snapshot",snapshot)
+        put("dataRoot",workspace.root.toString());put("dataVersion",workspace.state.version);put("actualStateSha256",sha256(documentJson.encodeToString(workspace.state).toByteArray()))}
 }

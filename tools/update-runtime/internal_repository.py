@@ -45,7 +45,9 @@ def serve(folder):
                 file=candidate/'studio-installer.exe'
                 if receipt['status']!='BUILT' or hashlib.file_digest(file.open('rb'),'sha256').hexdigest()!=receipt['sha256']:raise ValueError('Build receipt mismatch')
                 manifest=json.loads((candidate/'payload/INSTALL_MANIFEST.json').read_text(encoding='utf-8'))
-                custom=dict(product='ccb-studio-suite',platform='windows-x86_64',channel='internal',version=receipt['version'],minimum_reader=2,maximum_reader=2,sourceSha=receipt['sourceSha'],displayVersion=f"0.2.{receipt['version']}-internal",notes='隔离内部真实应用更新；保留原件、工程、历史和测试凭据。',installedBytes=sum(x['bytes'] for x in manifest['files']))
+                config=json.loads((candidate/'payload/update-config.json').read_text(encoding='utf-8'))
+                if config['reader'] not in [2,3]:raise ValueError('Unsupported internal data capability')
+                custom=dict(product='ccb-studio-suite',platform='windows-x86_64',channel='internal',version=receipt['version'],minimum_reader=2,maximum_reader=config['reader'],data_version=config['reader'],sourceSha=receipt['sourceSha'],displayVersion=f"0.2.{receipt['version']}-internal",notes='隔离内部真实应用更新；保留原件、工程、历史和测试凭据。',installedBytes=sum(x['bytes'] for x in manifest['files']))
                 target=TargetFile.from_file('studio-installer.exe',str(file),['sha256']);target.unrecognized_fields['custom']=custom
                 targets=Metadata(Targets(version=2,expires=expiry));targets.signed.targets['studio-installer.exe']=target;targets.sign(signers['targets'])
                 snapshot=Metadata(Snapshot(version=2,expires=expiry));snapshot.signed.meta['targets.json']=MetaFile.from_data(2,targets.to_bytes(),['sha256']);snapshot.sign(signers['snapshot'])

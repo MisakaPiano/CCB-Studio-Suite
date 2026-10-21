@@ -68,6 +68,7 @@ internal class StudioUpdateController(private val scope:CoroutineScope,cache:Pat
             Text("版本 ${r["displayVersion"]?.jsonPrimitive?.content} · 渠道 ${r["channel"]?.jsonPrimitive?.content}")
             Text(r["notes"]?.jsonPrimitive?.content.orEmpty())
             Text("下载大小 ${r["bytes"]?.jsonPrimitive?.content} bytes")
+            Text("目标资料格式 ${r["dataVersion"]?.jsonPrimitive?.content?:"与当前相同"}；需要转换时在新目录建立副本，保留原目录。")
             Text("源码 ${r["sourceSha"]?.jsonPrimitive?.content}")
             StudioAction("确认下载并验证",!c.busy && r["status"]?.jsonPrimitive?.content=="AVAILABLE"){c.check(true)}
             if(r["status"]?.jsonPrimitive?.content=="DOWNLOADED_VERIFIED")StudioAction("安装并重启",!c.busy && onInstall!=null){confirm=true}
@@ -75,7 +76,7 @@ internal class StudioUpdateController(private val scope:CoroutineScope,cache:Pat
         if(c.busy)StudioAction("取消更新操作"){c.job?.cancel()}
         Text("下载验证后仍需安装、重启和资料核验；任何一步未通过都不会报告更新成功。",color=Quiet)
     }
-    if(confirm)AlertDialog(onDismissRequest={confirm=false},title={Text("安装并重启")},text={Text("将保存编辑并停止活动任务，等待资料写入退出后安装新版。旧程序和资料保留，不自动重发请求。")},confirmButton={
+    if(confirm)AlertDialog(onDismissRequest={confirm=false},title={Text("安装并重启")},text={Text("将保存编辑并停止活动任务，等待资料写入退出后安装新版。若资料格式升级，将建立独立副本并核验数据和受保护凭据，再切换启动入口；旧程序和原目录保留，不自动重发请求。")},confirmButton={
         val confirmFocus=remember{FocusRequester()};LaunchedEffect(Unit){withFrameNanos{};confirmFocus.requestFocus()}
         TextButton(onClick={confirm=false;onInstall?.invoke()},modifier=Modifier.focusRequester(confirmFocus)){Text("保存后安装")}
     },dismissButton={TextButton(onClick={confirm=false}){Text("暂不安装")}})

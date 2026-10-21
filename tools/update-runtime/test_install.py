@@ -1,5 +1,5 @@
 """Installer safety boundaries with a synthetic executor, not real A-to-B acceptance."""
-import hashlib,json,tempfile,unittest
+import hashlib,json,uuid,unittest
 from pathlib import Path
 from types import SimpleNamespace
 from tuf.api.metadata import TargetFile
@@ -10,7 +10,7 @@ ROOT=Path(__file__).resolve().parents[2]
 class InstallTests(unittest.TestCase):
     def setUp(self):
         base=ROOT/'.local/windows-rc/install-ops-fixtures';base.mkdir(exist_ok=True)
-        self.path=Path(tempfile.mkdtemp(dir=base));self.old=self.path/'programs/old';self.old.mkdir(parents=True)
+        self.path=base/uuid.uuid4().hex;self.path.mkdir();self.old=self.path/'programs/old';self.old.mkdir(parents=True)
         (self.old/'retain.txt').write_bytes(b'old installation retained')
         self.data=self.path/'data';self.data.mkdir();(self.data/'original.bin').write_bytes(b'unique original')
         self.cache=self.path/'cache';(self.cache/'downloads').mkdir(parents=True)

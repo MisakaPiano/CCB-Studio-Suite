@@ -1,0 +1,469 @@
+test_authenticated_output_format_is_explicit_and_unknown_or_downgrade_rejected (test_client.ClientTests.test_authenticated_output_format_is_explicit_and_unknown_or_downgrade_rejected) ... ERROR
+test_changed_download_has_no_success_receipt (test_client.ClientTests.test_changed_download_has_no_success_receipt) ... FAIL
+test_check_then_verified_download_no_install (test_client.ClientTests.test_check_then_verified_download_no_install) ... ERROR
+test_disconnect_preserves_metadata_for_retry (test_client.ClientTests.test_disconnect_preserves_metadata_for_retry) ... ERROR
+test_http_is_allowed_only_for_explicit_internal_literal_loopback (test_client.ClientTests.test_http_is_allowed_only_for_explicit_internal_literal_loopback) ... ERROR
+test_installed_root_hash_and_endpoint_are_required (test_client.ClientTests.test_installed_root_hash_and_endpoint_are_required) ... ERROR
+test_low_space_no_download_or_completion (test_client.ClientTests.test_low_space_no_download_or_completion) ... ERROR
+test_other_process_cannot_enter_same_cache (test_client.ClientTests.test_other_process_cannot_enter_same_cache) ... ERROR
+test_wrong_identity_version_and_reader_block_before_download (test_client.ClientTests.test_wrong_identity_version_and_reader_block_before_download) ... 
+  test_wrong_identity_version_and_reader_block_before_download (test_client.ClientTests.test_wrong_identity_version_and_reader_block_before_download) (field='channel', value='stable') ... ERROR
+  test_wrong_identity_version_and_reader_block_before_download (test_client.ClientTests.test_wrong_identity_version_and_reader_block_before_download) (field='platform', value='linux') ... ERROR
+  test_wrong_identity_version_and_reader_block_before_download (test_client.ClientTests.test_wrong_identity_version_and_reader_block_before_download) (field='product', value='other') ... ERROR
+  test_wrong_identity_version_and_reader_block_before_download (test_client.ClientTests.test_wrong_identity_version_and_reader_block_before_download) (field='version', value=1) ... ERROR
+  test_wrong_identity_version_and_reader_block_before_download (test_client.ClientTests.test_wrong_identity_version_and_reader_block_before_download) (field='version', value=True) ... ERROR
+  test_wrong_identity_version_and_reader_block_before_download (test_client.ClientTests.test_wrong_identity_version_and_reader_block_before_download) (field='minimum_reader', value=3) ... ERROR
+  test_wrong_identity_version_and_reader_block_before_download (test_client.ClientTests.test_wrong_identity_version_and_reader_block_before_download) (field='maximum_reader', value=1) ... ERROR
+  test_wrong_identity_version_and_reader_block_before_download (test_client.ClientTests.test_wrong_identity_version_and_reader_block_before_download) (field='sourceSha', value='unknown') ... ERROR
+  test_wrong_identity_version_and_reader_block_before_download (test_client.ClientTests.test_wrong_identity_version_and_reader_block_before_download) (field='notes', value=42) ... ERROR
+test_migration_destination_is_fresh_sibling_and_bound_to_confirmed_versions (test_handoff.HandoffTests.test_migration_destination_is_fresh_sibling_and_bound_to_confirmed_versions) ... ERROR
+test_parent_handle_binds_actual_process_image (test_handoff.HandoffTests.test_parent_handle_binds_actual_process_image) ... ok
+test_terminal_handoff_replay_does_not_reinstall_or_replace_receipt (test_handoff.HandoffTests.test_terminal_handoff_replay_does_not_reinstall_or_replace_receipt) ... ERROR
+test_unicode_shortcut_keeps_explicit_roots_without_execution (test_handoff.HandoffTests.test_unicode_shortcut_keeps_explicit_roots_without_execution) ... ERROR
+test_download_stays_immutable_during_executor (test_install.InstallTests.test_download_stays_immutable_during_executor) ... ERROR
+test_existing_version_and_data_overlap_refuse_before_install (test_install.InstallTests.test_existing_version_and_data_overlap_refuse_before_install) ... ERROR
+test_installer_failure_retains_partial_without_publish (test_install.InstallTests.test_installer_failure_retains_partial_without_publish) ... ERROR
+test_insufficient_space_has_no_install_stage (test_install.InstallTests.test_insufficient_space_has_no_install_stage) ... ERROR
+test_manifest_wrong_identity_hash_or_unknown_file_is_rejected (test_install.InstallTests.test_manifest_wrong_identity_hash_or_unknown_file_is_rejected) ... ERROR
+test_success_is_installed_not_started_and_preserves_sources (test_install.InstallTests.test_success_is_installed_not_started_and_preserves_sources) ... ERROR
+test_tampered_executable_is_never_executed (test_install.InstallTests.test_tampered_executable_is_never_executed) ... ERROR
+
+======================================================================
+ERROR: test_authenticated_output_format_is_explicit_and_unknown_or_downgrade_rejected (test_client.ClientTests.test_authenticated_output_format_is_explicit_and_unknown_or_downgrade_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_client.py", line 53, in test_authenticated_output_format_is_explicit_and_unknown_or_downgrade_rejected
+    result=execute(self.identity,self.path/'v3',fetcher=self.repo.fetcher)
+  File "H:\CCB-Studio-Suite\tools\update-runtime\studio_update.py", line 78, in execute
+    with exclusive(cache):
+         ~~~~~~~~~^^^^^^^
+  File "contextlib.py", line 141, in __enter__
+  File "H:\CCB-Studio-Suite\tools\update-runtime\studio_update.py", line 47, in exclusive
+    cache.mkdir(parents=True,exist_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmptzzp22d7\\v3'
+
+======================================================================
+ERROR: test_check_then_verified_download_no_install (test_client.ClientTests.test_check_then_verified_download_no_install)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_client.py", line 32, in test_check_then_verified_download_no_install
+    before=execute(self.identity,self.path,fetcher=self.repo.fetcher)
+  File "H:\CCB-Studio-Suite\tools\update-runtime\studio_update.py", line 78, in execute
+    with exclusive(cache):
+         ~~~~~~~~~^^^^^^^
+  File "contextlib.py", line 141, in __enter__
+  File "H:\CCB-Studio-Suite\tools\update-runtime\studio_update.py", line 48, in exclusive
+    with (cache/'client.lock').open('a+b') as stream:
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "pathlib\_local.py", line 537, in open
+PermissionError: [Errno 13] Permission denied: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpu6_iivql\\client.lock'
+
+======================================================================
+ERROR: test_disconnect_preserves_metadata_for_retry (test_client.ClientTests.test_disconnect_preserves_metadata_for_retry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_client.py", line 69, in test_disconnect_preserves_metadata_for_retry
+    execute(self.identity,self.path,fetcher=self.repo.fetcher)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\studio_update.py", line 78, in execute
+    with exclusive(cache):
+         ~~~~~~~~~^^^^^^^
+  File "contextlib.py", line 141, in __enter__
+  File "H:\CCB-Studio-Suite\tools\update-runtime\studio_update.py", line 48, in exclusive
+    with (cache/'client.lock').open('a+b') as stream:
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "pathlib\_local.py", line 537, in open
+PermissionError: [Errno 13] Permission denied: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpex_t3req\\client.lock'
+
+======================================================================
+ERROR: test_http_is_allowed_only_for_explicit_internal_literal_loopback (test_client.ClientTests.test_http_is_allowed_only_for_explicit_internal_literal_loopback)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_client.py", line 100, in test_http_is_allowed_only_for_explicit_internal_literal_loopback
+    (self.path/'update-root.json').write_bytes(self.repo.bootstrap)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "pathlib\_abc.py", line 641, in write_bytes
+  File "pathlib\_local.py", line 537, in open
+PermissionError: [Errno 13] Permission denied: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpgfv4tbek\\update-root.json'
+
+======================================================================
+ERROR: test_installed_root_hash_and_endpoint_are_required (test_client.ClientTests.test_installed_root_hash_and_endpoint_are_required)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_client.py", line 88, in test_installed_root_hash_and_endpoint_are_required
+    (self.path/'update-root.json').write_bytes(self.repo.bootstrap)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "pathlib\_abc.py", line 641, in write_bytes
+  File "pathlib\_local.py", line 537, in open
+PermissionError: [Errno 13] Permission denied: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmp8aoa59ae\\update-root.json'
+
+======================================================================
+ERROR: test_low_space_no_download_or_completion (test_client.ClientTests.test_low_space_no_download_or_completion)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_client.py", line 48, in test_low_space_no_download_or_completion
+    execute(self.identity,self.path,True,self.repo.fetcher,lambda _:SimpleNamespace(free=1))
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\studio_update.py", line 78, in execute
+    with exclusive(cache):
+         ~~~~~~~~~^^^^^^^
+  File "contextlib.py", line 141, in __enter__
+  File "H:\CCB-Studio-Suite\tools\update-runtime\studio_update.py", line 48, in exclusive
+    with (cache/'client.lock').open('a+b') as stream:
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "pathlib\_local.py", line 537, in open
+PermissionError: [Errno 13] Permission denied: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpur3kmqab\\client.lock'
+
+======================================================================
+ERROR: test_other_process_cannot_enter_same_cache (test_client.ClientTests.test_other_process_cannot_enter_same_cache)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_client.py", line 79, in test_other_process_cannot_enter_same_cache
+    with exclusive(self.path):
+         ~~~~~~~~~^^^^^^^^^^^
+  File "contextlib.py", line 141, in __enter__
+  File "H:\CCB-Studio-Suite\tools\update-runtime\studio_update.py", line 48, in exclusive
+    with (cache/'client.lock').open('a+b') as stream:
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "pathlib\_local.py", line 537, in open
+PermissionError: [Errno 13] Permission denied: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpf0wlr2g9\\client.lock'
+
+======================================================================
+ERROR: test_wrong_identity_version_and_reader_block_before_download (test_client.ClientTests.test_wrong_identity_version_and_reader_block_before_download) (field='channel', value='stable')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_client.py", line 43, in test_wrong_identity_version_and_reader_block_before_download
+    with self.assertRaises(UpdateRejected):execute(self.identity,cache,True,self.repo.fetcher)
+                                           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\studio_update.py", line 78, in execute
+    with exclusive(cache):
+         ~~~~~~~~~^^^^^^^
+  File "contextlib.py", line 141, in __enter__
+  File "H:\CCB-Studio-Suite\tools\update-runtime\studio_update.py", line 47, in exclusive
+    cache.mkdir(parents=True,exist_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpntr402yo\\channelstable'
+
+======================================================================
+ERROR: test_wrong_identity_version_and_reader_block_before_download (test_client.ClientTests.test_wrong_identity_version_and_reader_block_before_download) (field='platform', value='linux')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_client.py", line 43, in test_wrong_identity_version_and_reader_block_before_download
+    with self.assertRaises(UpdateRejected):execute(self.identity,cache,True,self.repo.fetcher)
+                                           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\studio_update.py", line 78, in execute
+    with exclusive(cache):
+         ~~~~~~~~~^^^^^^^
+  File "contextlib.py", line 141, in __enter__
+  File "H:\CCB-Studio-Suite\tools\update-runtime\studio_update.py", line 47, in exclusive
+    cache.mkdir(parents=True,exist_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpntr402yo\\platformlinux'
+
+======================================================================
+ERROR: test_wrong_identity_version_and_reader_block_before_download (test_client.ClientTests.test_wrong_identity_version_and_reader_block_before_download) (field='product', value='other')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_client.py", line 43, in test_wrong_identity_version_and_reader_block_before_download
+    with self.assertRaises(UpdateRejected):execute(self.identity,cache,True,self.repo.fetcher)
+                                           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\studio_update.py", line 78, in execute
+    with exclusive(cache):
+         ~~~~~~~~~^^^^^^^
+  File "contextlib.py", line 141, in __enter__
+  File "H:\CCB-Studio-Suite\tools\update-runtime\studio_update.py", line 47, in exclusive
+    cache.mkdir(parents=True,exist_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpntr402yo\\productother'
+
+======================================================================
+ERROR: test_wrong_identity_version_and_reader_block_before_download (test_client.ClientTests.test_wrong_identity_version_and_reader_block_before_download) (field='version', value=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_client.py", line 43, in test_wrong_identity_version_and_reader_block_before_download
+    with self.assertRaises(UpdateRejected):execute(self.identity,cache,True,self.repo.fetcher)
+                                           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\studio_update.py", line 78, in execute
+    with exclusive(cache):
+         ~~~~~~~~~^^^^^^^
+  File "contextlib.py", line 141, in __enter__
+  File "H:\CCB-Studio-Suite\tools\update-runtime\studio_update.py", line 47, in exclusive
+    cache.mkdir(parents=True,exist_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpntr402yo\\version1'
+
+======================================================================
+ERROR: test_wrong_identity_version_and_reader_block_before_download (test_client.ClientTests.test_wrong_identity_version_and_reader_block_before_download) (field='version', value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_client.py", line 43, in test_wrong_identity_version_and_reader_block_before_download
+    with self.assertRaises(UpdateRejected):execute(self.identity,cache,True,self.repo.fetcher)
+                                           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\studio_update.py", line 78, in execute
+    with exclusive(cache):
+         ~~~~~~~~~^^^^^^^
+  File "contextlib.py", line 141, in __enter__
+  File "H:\CCB-Studio-Suite\tools\update-runtime\studio_update.py", line 47, in exclusive
+    cache.mkdir(parents=True,exist_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpntr402yo\\versionTrue'
+
+======================================================================
+ERROR: test_wrong_identity_version_and_reader_block_before_download (test_client.ClientTests.test_wrong_identity_version_and_reader_block_before_download) (field='minimum_reader', value=3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_client.py", line 43, in test_wrong_identity_version_and_reader_block_before_download
+    with self.assertRaises(UpdateRejected):execute(self.identity,cache,True,self.repo.fetcher)
+                                           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\studio_update.py", line 78, in execute
+    with exclusive(cache):
+         ~~~~~~~~~^^^^^^^
+  File "contextlib.py", line 141, in __enter__
+  File "H:\CCB-Studio-Suite\tools\update-runtime\studio_update.py", line 47, in exclusive
+    cache.mkdir(parents=True,exist_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpntr402yo\\minimum_reader3'
+
+======================================================================
+ERROR: test_wrong_identity_version_and_reader_block_before_download (test_client.ClientTests.test_wrong_identity_version_and_reader_block_before_download) (field='maximum_reader', value=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_client.py", line 43, in test_wrong_identity_version_and_reader_block_before_download
+    with self.assertRaises(UpdateRejected):execute(self.identity,cache,True,self.repo.fetcher)
+                                           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\studio_update.py", line 78, in execute
+    with exclusive(cache):
+         ~~~~~~~~~^^^^^^^
+  File "contextlib.py", line 141, in __enter__
+  File "H:\CCB-Studio-Suite\tools\update-runtime\studio_update.py", line 47, in exclusive
+    cache.mkdir(parents=True,exist_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpntr402yo\\maximum_reader1'
+
+======================================================================
+ERROR: test_wrong_identity_version_and_reader_block_before_download (test_client.ClientTests.test_wrong_identity_version_and_reader_block_before_download) (field='sourceSha', value='unknown')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_client.py", line 43, in test_wrong_identity_version_and_reader_block_before_download
+    with self.assertRaises(UpdateRejected):execute(self.identity,cache,True,self.repo.fetcher)
+                                           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\studio_update.py", line 78, in execute
+    with exclusive(cache):
+         ~~~~~~~~~^^^^^^^
+  File "contextlib.py", line 141, in __enter__
+  File "H:\CCB-Studio-Suite\tools\update-runtime\studio_update.py", line 47, in exclusive
+    cache.mkdir(parents=True,exist_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpntr402yo\\sourceShaunknown'
+
+======================================================================
+ERROR: test_wrong_identity_version_and_reader_block_before_download (test_client.ClientTests.test_wrong_identity_version_and_reader_block_before_download) (field='notes', value=42)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_client.py", line 43, in test_wrong_identity_version_and_reader_block_before_download
+    with self.assertRaises(UpdateRejected):execute(self.identity,cache,True,self.repo.fetcher)
+                                           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\studio_update.py", line 78, in execute
+    with exclusive(cache):
+         ~~~~~~~~~^^^^^^^
+  File "contextlib.py", line 141, in __enter__
+  File "H:\CCB-Studio-Suite\tools\update-runtime\studio_update.py", line 47, in exclusive
+    cache.mkdir(parents=True,exist_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpntr402yo\\notes42'
+
+======================================================================
+ERROR: test_migration_destination_is_fresh_sibling_and_bound_to_confirmed_versions (test_handoff.HandoffTests.test_migration_destination_is_fresh_sibling_and_bound_to_confirmed_versions)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_handoff.py", line 34, in test_migration_destination_is_fresh_sibling_and_bound_to_confirmed_versions
+    source=self.path/'data';source.mkdir();identity=Installed(1,2,'internal','','',b'')
+                            ~~~~~~~~~~~~^^
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\handoff-fixtures\\tmpob0hegny\\data'
+
+======================================================================
+ERROR: test_terminal_handoff_replay_does_not_reinstall_or_replace_receipt (test_handoff.HandoffTests.test_terminal_handoff_replay_does_not_reinstall_or_replace_receipt)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "pathlib\_local.py", line 722, in mkdir
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\handoff-fixtures\\tmp8tdt0pgx\\cache\\handoffs\\test'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "pathlib\_local.py", line 722, in mkdir
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\handoff-fixtures\\tmp8tdt0pgx\\cache\\handoffs'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_handoff.py", line 25, in test_terminal_handoff_replay_does_not_reinstall_or_replace_receipt
+    cache=self.path/'cache';folder=cache/'handoffs/test';folder.mkdir(parents=True);data=self.path/'data';data.mkdir();(data/'.owner.lock').touch()
+                                                         ~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 726, in mkdir
+  File "pathlib\_local.py", line 726, in mkdir
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\handoff-fixtures\\tmp8tdt0pgx\\cache'
+
+======================================================================
+ERROR: test_unicode_shortcut_keeps_explicit_roots_without_execution (test_handoff.HandoffTests.test_unicode_shortcut_keeps_explicit_roots_without_execution)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "pathlib\_local.py", line 722, in mkdir
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\handoff-fixtures\\tmpr3irolwu\\programs\\2-test'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_handoff.py", line 17, in test_unicode_shortcut_keeps_explicit_roots_without_execution
+    final=self.path/'programs/2-test';final.mkdir(parents=True);(final/'CCBStudioSuitePreview.exe').write_bytes(b'not an executable')
+                                      ~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 726, in mkdir
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\handoff-fixtures\\tmpr3irolwu\\programs'
+
+======================================================================
+ERROR: test_download_stays_immutable_during_executor (test_install.InstallTests.test_download_stays_immutable_during_executor)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "pathlib\_local.py", line 722, in mkdir
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpof5v1orm\\programs\\old'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_install.py", line 13, in setUp
+    self.path=Path(tempfile.mkdtemp(dir=base));self.old=self.path/'programs/old';self.old.mkdir(parents=True)
+                                                                                 ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 726, in mkdir
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpof5v1orm\\programs'
+
+======================================================================
+ERROR: test_existing_version_and_data_overlap_refuse_before_install (test_install.InstallTests.test_existing_version_and_data_overlap_refuse_before_install)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "pathlib\_local.py", line 722, in mkdir
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpy8lsn8w_\\programs\\old'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_install.py", line 13, in setUp
+    self.path=Path(tempfile.mkdtemp(dir=base));self.old=self.path/'programs/old';self.old.mkdir(parents=True)
+                                                                                 ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 726, in mkdir
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpy8lsn8w_\\programs'
+
+======================================================================
+ERROR: test_installer_failure_retains_partial_without_publish (test_install.InstallTests.test_installer_failure_retains_partial_without_publish)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "pathlib\_local.py", line 722, in mkdir
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpp334s6g7\\programs\\old'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_install.py", line 13, in setUp
+    self.path=Path(tempfile.mkdtemp(dir=base));self.old=self.path/'programs/old';self.old.mkdir(parents=True)
+                                                                                 ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 726, in mkdir
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpp334s6g7\\programs'
+
+======================================================================
+ERROR: test_insufficient_space_has_no_install_stage (test_install.InstallTests.test_insufficient_space_has_no_install_stage)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "pathlib\_local.py", line 722, in mkdir
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpt7tip5wv\\programs\\old'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_install.py", line 13, in setUp
+    self.path=Path(tempfile.mkdtemp(dir=base));self.old=self.path/'programs/old';self.old.mkdir(parents=True)
+                                                                                 ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 726, in mkdir
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpt7tip5wv\\programs'
+
+======================================================================
+ERROR: test_manifest_wrong_identity_hash_or_unknown_file_is_rejected (test_install.InstallTests.test_manifest_wrong_identity_hash_or_unknown_file_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "pathlib\_local.py", line 722, in mkdir
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmphfo66ecy\\programs\\old'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_install.py", line 13, in setUp
+    self.path=Path(tempfile.mkdtemp(dir=base));self.old=self.path/'programs/old';self.old.mkdir(parents=True)
+                                                                                 ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 726, in mkdir
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmphfo66ecy\\programs'
+
+======================================================================
+ERROR: test_success_is_installed_not_started_and_preserves_sources (test_install.InstallTests.test_success_is_installed_not_started_and_preserves_sources)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "pathlib\_local.py", line 722, in mkdir
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpkji7jfb1\\programs\\old'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_install.py", line 13, in setUp
+    self.path=Path(tempfile.mkdtemp(dir=base));self.old=self.path/'programs/old';self.old.mkdir(parents=True)
+                                                                                 ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 726, in mkdir
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpkji7jfb1\\programs'
+
+======================================================================
+ERROR: test_tampered_executable_is_never_executed (test_install.InstallTests.test_tampered_executable_is_never_executed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "pathlib\_local.py", line 722, in mkdir
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpkilgk76b\\programs\\old'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_install.py", line 13, in setUp
+    self.path=Path(tempfile.mkdtemp(dir=base));self.old=self.path/'programs/old';self.old.mkdir(parents=True)
+                                                                                 ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 726, in mkdir
+  File "pathlib\_local.py", line 722, in mkdir
+PermissionError: [WinError 5] 拒绝访问。: 'H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpkilgk76b\\programs'
+
+======================================================================
+FAIL: test_changed_download_has_no_success_receipt (test_client.ClientTests.test_changed_download_has_no_success_receipt)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_client.py", line 65, in test_changed_download_has_no_success_receipt
+    self.assertTrue(list((self.path/'downloads').glob('*.incomplete')))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true
+
+----------------------------------------------------------------------
+Ran 20 tests in 1.749s
+
+FAILED (failures=1, errors=26)
+COUNTS 20 1 26 0
