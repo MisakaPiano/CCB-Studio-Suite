@@ -82,6 +82,7 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
         drain();val p=project?:return@run;val d=document?:return@run
         val parent=if(clipboard)java.nio.file.Files.createDirectories(c.workspace.root.resolve("exports/clipboard"))else withContext(ui){chooseExportDirectory()}?:return@run
         withContext(ui){exportProblem=null;exportDirectory=null}
+        if(d.mode!="storybook")preferences{it.copy(exportFormat=request.format,preserveSourceMetadata=request.metadata=="preserve",exportVariants=request.variants,exportZip=request.zip,exportRecipe=request.includeRecipe)}
         try{val output=TypesetExport.create(c.workspace,p,d,parent,request);val receipt=TypesetExport.verify(output)
             withContext(ui){exportDirectory=output}
             if(clipboard)copyExportFiles(receipt.files.map{output.resolve(it.name)})}
@@ -132,6 +133,9 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
     private fun preferences(change:(TypesetPreferences)->TypesetPreferences)=c.workspace.operation {
         val next=change(c.workspace.state.typesetPreferences);next.validate();c.workspace.save(c.workspace.state.copy(typesetPreferences=next))
     }
+    fun rememberQueueDefaults()=c.run("保存新工程队列默认") {drain();val d=document?:return@run;preferences{it.copy(sidebarWidth=d.queueWidth,queueThumbSize=d.thumbnailSize)}}
+    fun rememberStoryDefault()=c.run("保存新页面小人书默认") {drain();val s=page?.story?:return@run;preferences{it.copy(storyDefault=s)}}
+    fun rememberLaterMaskDefault()=c.run("保存连续工作打码默认") {drain();val settings=MaskToolSettings.from(mask?:maskDefault);preferences{it.copy(batchToolDefault=settings)}}
     fun rememberTextDefault()=c.run("保存新建文字默认") {drain();val selected=text?:return@run;preferences{it.copy(textDefault=TypesetPreferences.styleOnly(selected))}}
     fun rememberMaskDefault()=c.run("保存自定义打码参数") {drain();val settings=MaskToolSettings.from(mask?:maskDefault);preferences{it.copy(currentMask=settings)}}
     fun saveTextPreset(name:String,replace:String?=null)=c.run("保存文字预设") {
@@ -176,7 +180,7 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
         selectedPages=when{range && previous!=null->{val a=pages.indexOfFirst{it.id==previous};val b=pages.indexOfFirst{it.id==id};selectedPages+pages.subList(minOf(a,b),maxOf(a,b)+1).map{it.id}}
             extend->if(id in selectedPages)selectedPages-id else selectedPages+id
             else->setOf(id)}
-        pageId=id;objectId=null;page?.toolDefaults?.let{maskDefault=it}
+        pageId=id;objectId=null;maskDefault=page?.toolDefaults?:c.workspace.state.typesetPreferences.batchToolDefault?.apply(maskDefault)?:maskDefault
     }
     fun addText(width:Int,height:Int) {
         val template=text?:c.workspace.state.typesetPreferences.textDefault?:document?.presets?.firstOrNull()?.text
@@ -196,7 +200,7 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
     fun appendSelected()=c.run("追加图库图片") {
         drain();val p=project?:return@run
         val ids=c.assets.filter{it.request().id().toString() in c.selection}.map{it.request().id().toString()}
-        val added=ids.map{id->val asset=c.workspace.assets.read(java.util.UUID.fromString(id)).require();TypesetPage(assetId=id,name=asset.request().name(),coordinates=TypesetImage.DISPLAY)}
+        val added=ids.map{id->val asset=c.workspace.assets.read(java.util.UUID.fromString(id)).require();TypesetPage(assetId=id,name=asset.request().name(),coordinates=TypesetImage.DISPLAY,story=c.workspace.state.typesetPreferences.storyDefault?:StoryStyle(),toolDefaults=c.workspace.state.typesetPreferences.batchToolDefault?.apply(TypesetMask()))}
         val next=repository.update(p.id,p.revision){it.copy(pages=it.pages+added)};val d=repository.load(next)
         withContext(ui){project=next;document=d;dirty=false;pageId=added.firstOrNull()?.id?:pageId;selectedPages=added.map{it.id}.toSet();objectId=null}
     }

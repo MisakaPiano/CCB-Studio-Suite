@@ -50,7 +50,7 @@ import java.util.UUID
     fun validate() {
         if(version!=1)throw DataProblem("UNSUPPORTED_VERSION","Typeset document $version retained")
         require(pages.size<=1000 && pages.map{it.id}.distinct().size==pages.size)
-        require(numberDigits in 1..8 && thumbnailSize in 32..160 && queueWidth in 180..400)
+        require(numberDigits in 1..8 && thumbnailSize in 32..220 && queueWidth in 180..720)
         require(startNumber in 0..1000000 && mode in setOf("editor","storybook") && presets.size<=500)
         fun finite(vararg values:Double)=require(values.all{it.isFinite() && it in -100000.0..100000.0})
         fun text(t:TypesetText) {

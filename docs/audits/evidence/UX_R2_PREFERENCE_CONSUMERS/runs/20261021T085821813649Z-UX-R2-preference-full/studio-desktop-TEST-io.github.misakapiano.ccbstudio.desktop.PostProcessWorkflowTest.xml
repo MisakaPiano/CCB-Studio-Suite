@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.PostProcessWorkflowTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-21T09:00:18.446Z" hostname="DD1" time="3.318">
+  <properties/>
+  <testcase name="unexpectedDimensionsRetainReceivedOriginalAndReportFailure" classname="io.github.misakapiano.ccbstudio.desktop.PostProcessWorkflowTest" time="1.021"/>
+  <testcase name="upscalePersistsExactRequestAndResult" classname="io.github.misakapiano.ccbstudio.desktop.PostProcessWorkflowTest" time="1.088"/>
+  <testcase name="enhanceUsesAuthorityRequestWithoutChangingSource" classname="io.github.misakapiano.ccbstudio.desktop.PostProcessWorkflowTest" time="1.209"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

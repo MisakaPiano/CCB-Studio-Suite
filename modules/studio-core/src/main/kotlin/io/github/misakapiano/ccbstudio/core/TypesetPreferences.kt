@@ -16,8 +16,18 @@ import kotlinx.serialization.Serializable
     val textDefault:TypesetText?=null,val maskOverrides:Map<String,MaskToolSettings> = emptyMap(),
     val preferredMaskSlot:String="custom",val currentMask:MaskToolSettings=MaskToolSettings(),
     val sourceExchangeId:String?=null,
+    val exportFormat:String="png",val preserveSourceMetadata:Boolean=true,
+    val exportVariants:List<String> = listOf("all"),val exportZip:Boolean=false,val exportRecipe:Boolean=false,
+    val sidebarWidth:Int=220,val queueThumbSize:Int=48,val storyDefault:StoryStyle?=null,
+    val batchToolDefault:MaskToolSettings?=null,
+
 ) {
     fun validate(){
+        require(exportFormat in setOf("png","jpeg","webp","source"))
+        require(exportVariants.distinct().size==exportVariants.size && exportVariants.all{it in setOf("original","mask","all","text")})
+        require(sidebarWidth in 180..720 && queueThumbSize in 32..220)
+        batchToolDefault?.validate()
+        storyDefault?.let{TypesetDocument(pages=listOf(TypesetPage(id="00000000-0000-0000-0000-000000000000",assetId="00000000-0000-0000-0000-000000000000",name="Default",story=it))).validate()}
         sourceExchangeId?.let(java.util.UUID::fromString)
         require(textPresets.size<=200 && (selectedTextPresetId==null || textPresets.any{it.id==selectedTextPresetId}))
         TypesetDocument(presets=textPresets).validate()

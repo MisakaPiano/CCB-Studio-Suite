@@ -17,8 +17,9 @@ class TypesetRepository(private val workspace:StudioWorkspace) {
     }
     fun create(name:String,ids:List<String>):TypesetProject=workspace.operation {
         require(name.length in 1..100 && ids.isNotEmpty() && ids.size<=1000)
-        val document=TypesetDocument(pages=ids.map{id->val a=workspace.assets.read(UUID.fromString(id)).require();
-            TypesetPage(assetId=id,name=a.request().name(),coordinates=TypesetImage.DISPLAY)})
+        val prefs=workspace.state.typesetPreferences
+        val document=TypesetDocument(thumbnailSize=prefs.queueThumbSize,queueWidth=prefs.sidebarWidth,pages=ids.map{id->val a=workspace.assets.read(UUID.fromString(id)).require();
+            TypesetPage(assetId=id,name=a.request().name(),coordinates=TypesetImage.DISPLAY,story=prefs.storyDefault?:StoryStyle(),toolDefaults=prefs.batchToolDefault?.apply(TypesetMask()))})
         val project=TypesetProject(name=name,current=write(document))
         workspace.save(workspace.state.copy(typesetProjects=workspace.state.typesetProjects+project));project
     }

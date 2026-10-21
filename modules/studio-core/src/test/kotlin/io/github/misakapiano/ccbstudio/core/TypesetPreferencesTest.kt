@@ -2,8 +2,25 @@ package io.github.misakapiano.ccbstudio.core
 
 import kotlin.test.*
 import java.nio.file.Path
+import kotlinx.serialization.json.*
 
 class TypesetPreferencesTest {
+    @Test fun sourceDefaultsAreConsumedByNewProjectsWithoutChangingExistingPages() {
+        val root=Path.of(System.getProperty("preview.test.root")).resolve(newId());val target=root.resolveSibling(newId())
+        var expected:TypesetPreferences?=null
+        val backup=StudioWorkspace.openStudio(root).use{w->val id=w.importImage("image.png",EditorRenderer.synthetic(100,80));val repo=TypesetRepository(w);val old=repo.create("existing",listOf(id));val oldDocument=repo.load(old)
+            val raw=javaClass.getResourceAsStream("/typeset/source-presets.json")!!.use{it.readBytes()}
+            val source=TypesetSourceExchange.inspectPresets(raw);assertEquals(300,source.preferences.sidebarWidth);assertEquals(120,source.preferences.queueThumbSize)
+            TypesetSourceExchange.importPresets(w,source,true)
+            val pref=w.state.typesetPreferences.copy(exportFormat="webp",preserveSourceMetadata=false,sidebarWidth=720,queueThumbSize=220,batchToolDefault=MaskToolSettings(strength=50))
+            w.save(w.state.copy(typesetPreferences=pref));expected=pref
+            val next=repo.load(repo.create("new",listOf(id)));assertEquals(720,next.queueWidth);assertEquals(220,next.thumbnailSize);assertEquals(pref.storyDefault,next.pages.single().story);assertEquals(50,next.pages.single().toolDefaults!!.strength)
+            assertEquals(oldDocument,repo.load(old));val round=TypesetSourceExchange.inspectPresets(TypesetSourceExchange.exportPresets(w)).preferences
+            assertEquals(pref.exportFormat,round.exportFormat);assertEquals(pref.exportVariants,round.exportVariants);assertEquals(pref.storyDefault,round.storyDefault);assertEquals(pref.batchToolDefault,round.batchToolDefault)
+            assertFalse(round.preserveSourceMetadata);w.backup()
+        }
+        StudioRestore.restore(backup,target);StudioWorkspace.openStudio(target).use{w->assertEquals(expected,w.state.typesetPreferences)}
+    }
     @Test fun presetsSaveOnlyStyleAndSourceMaskSlotsHaveExactParameters() {
         val source=TypesetText(text="本页正文",x=200.0,y=90.0,locked=true,style=TypesetStyle(fontSize=72.0),vertical=true)
         var prefs=TypesetPreferences().saveText("字幕",source);val id=prefs.selectedTextPresetId!!

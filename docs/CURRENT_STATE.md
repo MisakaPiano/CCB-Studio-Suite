@@ -1,3 +1,7 @@
+## UX-R2 预设消费进度（2026-10-21）
+
+[实际记录](audits/UX_R2_PREFERENCE_CONSUMERS.md)：122项完整实际PASS；导出/队列/故事/连续打码默认已接入真实消费者，保存重开与备份恢复通过。继续完整预览、图库和安全更新，PRODUCT_HOLD。
+
 ## UX-R2 格式兼容进度（2026-10-21）
 
 [实际记录](audits/UX_R2_IMAGE_FORMATS.md)：120项完整实际PASS，保留首轮GUI测试FAILED。WebP/GIF/BMP原件、首帧/默认图编辑、WebP/原格式导出与重开已验证；完整偏好/图库/更新继续，PRODUCT_HOLD。

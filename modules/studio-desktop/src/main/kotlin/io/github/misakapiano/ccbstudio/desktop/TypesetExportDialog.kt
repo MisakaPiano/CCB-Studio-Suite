@@ -13,11 +13,12 @@ import com.example.chatbar.desktop.*
 
 @Composable internal fun TypesetExportDialog(c:WorkbenchController,e:TypesetEditorController,dismiss:()->Unit) {
     val document=e.document?:return;val book=document.mode=="storybook"
-    var range by remember{mutableStateOf("all")};var variant by remember{mutableStateOf("all")};var format by remember{mutableStateOf("png")}
-    var variants by remember{mutableStateOf(setOf("all"))};var metadata by remember{mutableStateOf("preserve")};var recipe by remember{mutableStateOf(false)}
+    val prefs=c.state.typesetPreferences
+    var range by remember{mutableStateOf("all")};var variant by remember{mutableStateOf("all")};var format by remember{mutableStateOf(prefs.exportFormat)}
+    var variants by remember{mutableStateOf(prefs.exportVariants.toSet())};var metadata by remember{mutableStateOf(if(prefs.preserveSourceMetadata)"preserve"else"strip")};var recipe by remember{mutableStateOf(prefs.exportRecipe)}
     val orderedVariants=if(book)listOf("all")else listOf("original","mask","all","text").filter{it in variants}
     fun variantName(key:String)=when(key){"all"->"文字与打码";"text"->"仅文字";"mask"->"仅打码";else->"原始文件（字节保全）"}
-    var zip by remember{mutableStateOf(book)};var pdf by remember{mutableStateOf(book)};var previewId by remember{mutableStateOf(e.pageId)}
+    var zip by remember{mutableStateOf(book || prefs.exportZip)};var pdf by remember{mutableStateOf(book)};var previewId by remember{mutableStateOf(e.pageId)}
     val pages=document.pages.filter{when(range){"selected"->it.id in e.selectedPages;"current"->it.id==e.pageId;else->true}}
     val page=pages.firstOrNull{it.id==previewId}?:pages.firstOrNull()
     fun request()=TypesetExportRequest(pages.map{it.id},orderedVariants.first(),format,zip,book && pdf,orderedVariants,metadata,recipe)

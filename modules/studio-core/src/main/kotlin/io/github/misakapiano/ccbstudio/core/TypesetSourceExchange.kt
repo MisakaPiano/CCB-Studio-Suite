@@ -32,7 +32,12 @@ object TypesetSourceExchange {
         var preferred=raw.s("preferredPreset","custom")
         if(overrides.isEmpty() && raw["userMaskPreset"]!=null && raw["userMaskPreset"]!=JsonNull){val target=preferred.takeIf{it in TypesetPreferences.MASK_SLOTS}?:"light_mosaic";overrides[target]=settings(raw.o("userMaskPreset"));if(preferred=="user_custom")preferred=target}
         if(preferred !in TypesetPreferences.MASK_SLOTS+"custom")preferred="custom"
-        val prefs=TypesetPreferences(presets,selectedId,raw["textDefaults"]?.takeUnless{it==JsonNull}?.let{TypesetPreferences.styleOnly(text(it.jsonObject))},overrides,preferred,settings(raw)).also{it.validate()}
+        val prefs=TypesetPreferences(presets,selectedId,raw["textDefaults"]?.takeUnless{it==JsonNull}?.let{TypesetPreferences.styleOnly(text(it.jsonObject))},overrides,preferred,settings(raw),
+            exportFormat=raw.s("exportFormat","png").let{if(it=="original")"source"else it},preserveSourceMetadata=raw.b("preserveSourceMetadata",true),
+            exportVariants=listOf("original" to "original","maskOnly" to "mask","maskText" to "all","textOnly" to "text").filter{raw.o("exportVariantSelection").b(it.first,true)}.map{it.second},
+            sidebarWidth=raw.n("sidebarWidth",300.0).toInt(),queueThumbSize=raw.n("queueThumbSize",120.0).toInt(),
+            storyDefault=raw["storybookDefaults"]?.takeUnless{it==JsonNull}?.let{story(it.jsonObject)},
+            batchToolDefault=raw["batchToolDefaults"]?.takeUnless{it==JsonNull}?.let{settings(it.jsonObject)}).also{it.validate()}
         return PresetInspection(bytes.copyOf(),prefs)
     }
     fun importPresets(workspace:StudioWorkspace,inspection:PresetInspection,merge:Boolean)=workspace.operation {
@@ -50,6 +55,11 @@ object TypesetSourceExchange {
         }?:JsonObject(emptyMap())
         val result=buildJsonObject {raw.forEach{(k,v)->put(k,v)};put("app","image_typesetter_frontend_presets");put("version",1);put("exportedAt",System.currentTimeMillis())
             putJsonObject("prefs") {raw.o("prefs").forEach{(k,v)->if(k!="userMaskPreset")put(k,v)};settingsJson(prefs.currentMask).forEach{(k,v)->put(k,v)}
+                put("exportFormat",if(prefs.exportFormat=="source")"original"else prefs.exportFormat);put("preserveSourceMetadata",prefs.preserveSourceMetadata)
+                put("sidebarWidth",prefs.sidebarWidth);put("queueThumbSize",prefs.queueThumbSize)
+                put("storybookDefaults",prefs.storyDefault?.let{s->buildJsonObject{raw.o("prefs").o("storybookDefaults").forEach{(k,v)->put(k,v)};storyJson(TypesetPage(assetId="",name="",story=s)).filterKeys{it!="caption"}.forEach{(k,v)->put(k,v)}}}?:JsonNull)
+                put("batchToolDefaults",prefs.batchToolDefault?.let(::settingsJson)?:JsonNull)
+                putJsonObject("exportVariantSelection"){listOf("original" to "original","maskOnly" to "mask","maskText" to "all","textOnly" to "text").forEach{(source,native)->put(source,native in prefs.exportVariants)}}
                 put("preferredPreset",prefs.preferredMaskSlot);put("selectedTextPresetId",prefs.selectedTextPresetId.orEmpty());put("textDefaults",prefs.textDefault?.let(::textJson)?:JsonNull)
                 putJsonObject("presetOverrides"){prefs.maskOverrides.forEach{(k,v)->put(k,settingsJson(v))}}
                 putJsonArray("textPresets"){prefs.textPresets.forEach{p->add(buildJsonObject{put("id",p.id);put("name",p.name);put("style",textJson(p.text))})}}

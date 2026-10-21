@@ -36,12 +36,13 @@ import io.github.misakapiano.ccbstudio.core.*
             StudioAction("恢复内置打码预设",slot in prefs.maskOverrides && !c.busy){confirm="mask-reset"}
         }
         CompactChoice("启动默认",listOf("custom")+TypesetPreferences.MASK_SLOTS,prefs.preferredMaskSlot,::slotName){e.maskPreset("prefer",it)}
-        Text("已存页面优先使用自己的参数；新工程按启动默认选择工具。细/粗条纹保留当前黑白色，否则使用黑色。")
+        StudioAction("记住连续工作打码参数",!c.busy){e.rememberLaterMaskDefault()}
+        Text("已存页面优先使用自己的参数；无单页默认的后续切图/新页使用连续工作参数；否则按启动默认选择工具。细/粗条纹保留当前黑白色，否则使用黑色。")
     }
     e.presetInspection?.let{inspection->AlertDialog(onDismissRequest={e.cancelPresetImport()},title={Text("确认导入 TypeSet 预设")},text={Column{
         Text("${inspection.preferences.textPresets.size} 个文字预设，${inspection.preferences.maskOverrides.size} 个自定义打码槽。")
         Text("合并会追加文字预设、覆盖同名打码槽并导入默认值；替换会移除原预设列表。已有页面不变，原交换文件保留。")
-        Text("本次应用文字与打码默认；源侧栏、故事书和导出设置保存在原文件中，尚不自动应用。")
+        Text("同时导入导出分类/格式/元数据政策、队列尺寸、小人书和后续打码默认。队列及故事书默认只影响新工程/新页面，已有页面不改写。")
     }},confirmButton={Row{TextButton(enabled=!c.busy,onClick={e.importPresets(true)}){Text("合并并导入默认")};TextButton(enabled=!c.busy,onClick={e.importPresets(false)}){Text("替换全部预设")}}},dismissButton={TextButton(onClick={e.cancelPresetImport()}){Text("取消预设导入")}})}
     if(confirm!=null)AlertDialog(onDismissRequest={confirm=null},title={Text("确认预设变更")},text={Text(when(confirm){"text-overwrite"->"用当前文字样式覆盖所选预设；已有页面不变。";"text-remove"->"删除所选预设；已应用的文字与样式保留。";"mask-overwrite"->"用当前工具参数覆盖${slotName(slot)}；其他槽不变。";else->"将${slotName(slot)}恢复为TypeSet内置值；已有遮罩不变。"})},confirmButton={TextButton(onClick={when(confirm){"text-overwrite"->e.saveTextPreset(name,selected);"text-remove"->selected?.let(e::deleteTextPreset);"mask-overwrite"->e.maskPreset("overwrite",slot);"mask-reset"->e.maskPreset("reset",slot)};confirm=null}){Text("确认预设变更")}},dismissButton={TextButton(onClick={confirm=null}){Text("取消")}})
 }

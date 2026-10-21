@@ -70,8 +70,9 @@ import kotlin.math.*
                             StudioDisclosure("队列设置") {
                                 NumberField("开始编号",e.document!!.startNumber.toDouble(),0.0..1000000.0){v->e.change{it.copy(startNumber=v.toInt())}}
                                 NumberField("编号位数",e.document!!.numberDigits.toDouble(),1.0..8.0){v->e.change{it.copy(numberDigits=v.toInt())}}
-                                NumberField("缩略图尺寸",e.document!!.thumbnailSize.toDouble(),32.0..160.0){v->e.change{it.copy(thumbnailSize=v.toInt())}}
-                                NumberField("队列栏宽度",e.document!!.queueWidth.toDouble(),180.0..400.0){v->e.change{it.copy(queueWidth=v.toInt())}}
+                                NumberField("缩略图尺寸",e.document!!.thumbnailSize.toDouble(),32.0..220.0){v->e.change{it.copy(thumbnailSize=v.toInt())}}
+                                NumberField("队列栏宽度",e.document!!.queueWidth.toDouble(),180.0..720.0){v->e.change{it.copy(queueWidth=v.toInt())}}
+                                StudioAction("记住新工程队列尺寸",!c.busy){e.rememberQueueDefaults()}
                             }
                             StudioActions{StudioAction("全选页"){e.selectedPages=e.document!!.pages.map{it.id}.toSet()};StudioAction("全不选页"){e.selectedPages=emptySet()};StudioAction("反选页"){e.selectedPages=e.document!!.pages.map{it.id}.toSet()-e.selectedPages}}
                             StudioActions{StudioAction("上移页"){e.movePages(-1)};StudioAction("下移页"){e.movePages(1)};StudioAction("移除所选页",e.selectedPages.isNotEmpty()){deletePages=true}}
@@ -275,6 +276,7 @@ private data class EditorRaster(val bitmap:ImageBitmap,val width:Int,val height:
     StudioActions {TypesetBook.presets.forEach{(key,preset)->StudioAction(when(key){"traditional"->"传统小人书";"clean"->"清爽画册";else->"复古纸张"}){e.pageChange{it.copy(story=preset)}}}}
     OutlinedTextField(p.caption,{v->e.pageChange{it.copy(caption=v)}},label={Text("本页旁白")},modifier=Modifier.fillMaxWidth().heightIn(min=160.dp).onPreviewKeyEvent{if(it.type==KeyEventType.KeyDown && it.key==Key.Enter && it.isCtrlPressed){e.nextCaption();true}else false})
     StudioAction("下一页旁白 · Ctrl+Enter",TypesetBook.next(e.document!!,p.id)!=null){e.nextCaption()}
+    StudioAction("记住新页面小人书样式",!c.busy){e.rememberStoryDefault()}
     fun style(change:(StoryStyle)->StoryStyle)=e.pageChange{it.copy(story=change(it.story))}
     NumberField("页面宽度",s.pageWidth.toDouble(),200.0..8000.0){v->style{it.copy(pageWidth=v.toInt())}}
     NumberField("页边距",s.pagePadding.toDouble(),0.0..2000.0){v->style{it.copy(pagePadding=v.toInt())}}

@@ -17,6 +17,16 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.test.*
 
 class TypesetWorkflowTest {
+    @Test fun continuousMaskDefaultsRespectPerPageSettings()=runBlocking(awt) {
+        val w=StudioWorkspace.openStudio(root());val id=w.importImage("defaults.png",EditorRenderer.synthetic(100,80));val scope=CoroutineScope(SupervisorJob()+awt)
+        val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
+        try{c.editor.create("defaults",listOf(id,id,id));c.idle();val pages=c.editor.document!!.pages
+            c.editor.change{it.copy(pages=it.pages.mapIndexed{i,p->if(i==2)p.copy(toolDefaults=TypesetMask(strength=88))else p})};c.editor.drain()
+            c.editor.maskDefault=TypesetMask(strength=51);c.editor.rememberLaterMaskDefault();c.idle();c.editor.selectPage(pages[1].id);assertEquals(51,c.editor.maskDefault.strength)
+            c.editor.selectPage(pages[2].id);assertEquals(88,c.editor.maskDefault.strength);c.editor.selectPage(pages[0].id);assertEquals(51,c.editor.maskDefault.strength)
+            assertTrue(c.editor.document!!.pages.all{it.masks.isEmpty()})
+        }finally{c.close();scope.cancel();w.close()}
+    }
     @Test fun webpPreviewExportAndOriginalReopen()=runBlocking(awt) {
         val r=root();val w=StudioWorkspace.openStudio(r);val raster=EditorRenderer.decode(EditorRenderer.synthetic(180,120));val bytes=try{ImageFormats.webp(raster)}finally{raster.flush()}
         val id=w.importImage("webp-source.webp",bytes);val scope=CoroutineScope(SupervisorJob()+awt)
@@ -27,10 +37,10 @@ class TypesetWorkflowTest {
             scene.frames();scene.rendered();scene.click("添加文字");scene.field("文字内容","格式验证");c.editor.drain()
             scene.click("预览与导出");withTimeout(30000){while(scene.nodes().none{it.matches("导出页面预览")}){delay(80);scene.frames()}}
             scene.click("图片格式 · PNG ▾");scene.click("WEBP");scene.shot("webp-export-preview");scene.click("选择位置并导出");c.idle()
-            val output=c.editor.exportDirectory!!;assertEquals("webp",TypesetExport.verify(output).format)
+            val output=c.editor.exportDirectory!!;assertEquals("webp",TypesetExport.verify(output).format);assertEquals("webp",w.state.typesetPreferences.exportFormat)
             val decoded=EditorRenderer.decode(Files.readAllBytes(output.resolve("001.webp")));assertEquals(180,decoded.width);decoded.flush();assertContentEquals(bytes,w.bytes(id))
         }finally{scene.close();c.close();scope.cancel();w.close()}
-        StudioWorkspace.openStudio(r).use{next->assertContentEquals(bytes,next.bytes(id));assertEquals("格式验证",TypesetRepository(next).load(next.state.typesetProjects.single()).pages.single().texts.single().text)}
+        StudioWorkspace.openStudio(r).use{next->assertEquals("webp",next.state.typesetPreferences.exportFormat);assertContentEquals(bytes,next.bytes(id));assertEquals("格式验证",TypesetRepository(next).load(next.state.typesetProjects.single()).pages.single().texts.single().text)}
     }
     @Test fun fourCategoryPreviewCopiesCompleteFileDeckWithoutSystemClipboard()=runBlocking(awt) {
         val r=root();val w=StudioWorkspace.openStudio(r);val bytes=EditorRenderer.synthetic(180,120);val id=w.importImage("deck.png",bytes)
@@ -83,14 +93,14 @@ class TypesetWorkflowTest {
         try {
             scene.frames();scene.click("小人书");scene.field("本页旁白","第一页，保留旁白。");scene.click("清爽画册")
             assertEquals("第一页，保留旁白。",c.editor.page!!.caption);assertEquals(TypesetBook.presets.getValue("clean"),c.editor.page!!.story)
-            scene.click("下一页旁白 · Ctrl+Enter");scene.field("本页旁白","第二页。".repeat(100));scene.click("复古纸张");c.editor.drain()
+            scene.click("下一页旁白 · Ctrl+Enter");scene.field("本页旁白","第二页。".repeat(100));scene.click("复古纸张");c.editor.drain();scene.click("记住新页面小人书样式");c.idle()
             scene.click("预览与导出");withTimeout(30000){while(scene.nodes().none{it.matches("导出页面预览")}){delay(80);scene.frames()}}
             scene.shot("book-export-preview");scene.click("选择位置并导出");c.idle();scene.frames()
             assertEquals(1,chooserCalls);val output=c.editor.exportDirectory!!;val receipt=TypesetExport.verify(output)
             assertEquals(4,receipt.files.size);assertTrue(Files.exists(output.resolve("book.pdf")));assertTrue(Files.exists(output.resolve("pages.zip")))
             assertContentEquals(original,w.bytes(id));c.editor.drain()
         }finally{scene.close();c.close();scope.cancel();w.close()}
-        StudioWorkspace.openStudio(r).use{next->val d=TypesetRepository(next).load(next.state.typesetProjects.single());assertEquals("storybook",d.mode);assertEquals("第一页，保留旁白。",d.pages.first().caption);assertEquals(TypesetBook.presets.getValue("vintage"),d.pages.last().story)}
+        StudioWorkspace.openStudio(r).use{next->val d=TypesetRepository(next).load(next.state.typesetProjects.single());assertEquals("storybook",d.mode);assertEquals("第一页，保留旁白。",d.pages.first().caption);assertEquals(TypesetBook.presets.getValue("vintage"),d.pages.last().story);assertEquals(TypesetBook.presets.getValue("vintage"),next.state.typesetPreferences.storyDefault)}
     }
     private val awt=object:CoroutineDispatcher(){override fun dispatch(context:CoroutineContext,block:Runnable)=SwingUtilities.invokeLater(block)}
     private fun root()=Path.of(System.getProperty("preview.test.root")).resolve(newId())
