@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.TypesetImageTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-21T10:57:16.777Z" hostname="DD1" time="1.095">
+  <properties/>
+  <testcase name="allEightOrientationsBothEndianOrdersMatchPixelCoordinates" classname="io.github.misakapiano.ccbstudio.core.TypesetImageTest" time="0.07"/>
+  <testcase name="oldSerializedPagesKeepRawCoordinatesAndNewPagesSurviveReopen" classname="io.github.misakapiano.ccbstudio.core.TypesetImageTest" time="1.02"/>
+  <testcase name="unknownCoordinatesAndMalformedExifFailWithoutChangingLegacyInterpretation" classname="io.github.misakapiano.ccbstudio.core.TypesetImageTest" time="0.005"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

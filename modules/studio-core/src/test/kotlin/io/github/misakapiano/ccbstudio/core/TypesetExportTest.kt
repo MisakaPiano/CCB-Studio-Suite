@@ -7,6 +7,22 @@ import kotlin.test.*
 
 class TypesetExportTest {
     private fun root()=Path.of(System.getProperty("preview.test.root")).resolve(newId())
+    @Test fun longBookPagesKeepPhysicalSizeWithoutLegacyPdfClipping() {
+        StudioWorkspace.openStudio(root()).use{w->
+            val bytes=EditorRenderer.synthetic(200,80);val id=w.importImage("source.png",bytes);val repo=TypesetRepository(w)
+            var p=repo.create("长页PDF",listOf(id,id));val style=StoryStyle(pageWidth=200,pagePadding=10,gap=10,textPadding=10,fontSize=12.0,lineHeight=1.0,fontFamily="Dialog",firstIndent=false)
+            p=repo.update(p.id,p.revision){d->d.copy(mode="storybook",pages=d.pages.mapIndexed{i,page->page.copy(story=style,caption=if(i==0)"Short page" else (1..1700).joinToString("\n"){"Row ${it.toString().padStart(4,'0')}"})})}
+            val d=repo.load(p);val parent=Files.createDirectories(Path.of("build/typeset-long-pdf"))
+            val out=TypesetExport.create(w,p,d,parent,TypesetExportRequest(d.pages.map{it.id},pdf=true,includeRecipe=false))
+            TypesetExport.verify(out)
+            val sizes=d.pages.map{page->TypesetLayout.story(200,80,page.caption,style).let{it.width to it.height}}
+            assertTrue(sizes[1].second*.75>14400);assertTrue(sizes[0].second*.75<14400)
+            val pdf=Files.readAllBytes(out.resolve("book.pdf")).toString(Charsets.ISO_8859_1)
+            assertTrue(pdf.startsWith("%PDF-2.0"));assertFalse(pdf.contains("/UserUnit"))
+            Files.writeString(parent.resolve("latest.json"),"{\"directory\":\"${out.toAbsolutePath().toString().replace("\\","\\\\")}\",\"pixels\":[${sizes.joinToString(","){"[${it.first},${it.second}]"}}]}\n")
+            assertContentEquals(bytes,w.bytes(id));assertEquals(d,repo.load(p))
+        }
+    }
     @Test fun missingFontBlocksRenderingButOriginalDeliveryRemainsAvailable() {
         StudioWorkspace.openStudio(root()).use{w->val id=w.importImage("original.png",EditorRenderer.synthetic(100,80));val repository=TypesetRepository(w)
             var p=repository.create("字体门禁",listOf(id));p=repository.update(p.id,p.revision){d->d.copy(pages=d.pages.map{it.copy(texts=listOf(TypesetText(text="Hello",style=TypesetStyle(fontFamily="CCB-missing-${newId()}"))))})}

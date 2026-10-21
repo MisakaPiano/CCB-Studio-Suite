@@ -1,0 +1,26 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetExportTest",
+    "name": "longBookPagesKeepPhysicalSizeWithoutLegacyPdfClipping",
+    "seconds": "3.287",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetExportTest",
+    "name": "storyPresetsVariablePagesAndIndependentInspectionArtifact",
+    "seconds": "3.21",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetExportTest",
+    "name": "missingFontBlocksRenderingButOriginalDeliveryRemainsAvailable",
+    "seconds": "3.976",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetExportTest",
+    "name": "fourVariantsOriginalBytesJpegAndFailurePublication",
+    "seconds": "6.155",
+    "status": "PASS"
+  }
+]

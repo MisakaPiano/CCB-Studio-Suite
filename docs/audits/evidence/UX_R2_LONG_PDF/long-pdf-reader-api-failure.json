@@ -1,0 +1,46 @@
+{
+  "status": "FAILED",
+  "pypdf": "6.10.0",
+  "pdfium": "156.0.8076.0",
+  "pdfSha256": "01f736eff31b0fa6ea0ce5b56bf07086d785218463149e45c5a2c65494f166d2",
+  "pages": [
+    {
+      "page": 1,
+      "pixels": [
+        200,
+        289
+      ],
+      "userUnit": 1.0,
+      "mediaBox": [
+        150.0,
+        216.75
+      ],
+      "points": [
+        150.0,
+        216.75
+      ],
+      "embeddedRaster": "EXACT_RGB",
+      "renderCommand": [
+        "pdftoppm",
+        "-r",
+        "96",
+        "-f",
+        "1",
+        "-l",
+        "1",
+        "-singlefile",
+        "-png",
+        "H:\\CCB-Studio-Suite\\modules\\studio-core\\build\\typeset-long-pdf\\Studio-export-2f077701-1f4f-4a81-9457-dbbb6e02a3f7\\book.pdf",
+        "H:\\CCB-Studio-Suite\\modules\\studio-core\\build\\typeset-long-pdf\\independent\\page-1"
+      ],
+      "renderStderr": "",
+      "renderPixels": [
+        200,
+        289
+      ],
+      "renderPixelExact": false
+    }
+  ],
+  "poppler": "pdftoppm version 26.07.0\nCopyright 2005-2026 The Poppler Developers - http://poppler.freedesktop.org\nCopyright 1996-2011, 2022 Glyph & Cog, LLC",
+  "error": "TypeError: 'PdfPage' object does not support the context manager protocol"
+}

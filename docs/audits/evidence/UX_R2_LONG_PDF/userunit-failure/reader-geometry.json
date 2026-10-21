@@ -1,0 +1,23 @@
+{
+  "status": "FAILED",
+  "pdfSha256": "57cdf8cced343354affb1884ade10ade59ba4196716eacb6efdd759dbe61006d",
+  "expectedPixels": [
+    200,
+    20539
+  ],
+  "popplerPixels": [
+    100,
+    10270
+  ],
+  "pdfiumPixels": [
+    100,
+    10270
+  ],
+  "pdfiumReportedPoints": [
+    75,
+    7702.125
+  ],
+  "cause": "UserUnit ignored by both tested readers; halved physical geometry",
+  "popplerShortRasterExact": false,
+  "pdfiumShortRasterExact": true
+}

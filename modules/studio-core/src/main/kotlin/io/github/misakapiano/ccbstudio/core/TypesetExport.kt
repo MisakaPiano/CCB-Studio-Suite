@@ -109,16 +109,19 @@ object TypesetExport {
     }
 }
 
-/** Bounded, sequential PDF 1.4 raster pages; 96 px/in -> 72 pt/in matches source jsPDF. */
+/** Bounded PDF 2.0 raster pages, using direct 1/72-inch coordinates for reader compatibility.
+ * 96 px/in -> 72 pt/in; PDF 2.0 removes the legacy page-size limit. UserUnit is deliberately
+ * avoided: tested Poppler/PDFium versions ignore it and shrink scaled long pages. */
 private class RasterBookPdf(path:Path,private val count:Int):Closeable {
     private val file=RandomAccessFile(path.toFile(),"rw")
     private val offsets=LongArray(3+count*3);private var current=0
-    init {require(count in 1..1000);file.write("%PDF-1.4\n%\u00e2\u00e3\u00cf\u00d3\n".toByteArray(Charsets.ISO_8859_1));obj(1,"<< /Type /Catalog /Pages 2 0 R >>");obj(2,"<< /Type /Pages /Count $count /Kids [${(0 until count).joinToString(" "){"${3+it*3} 0 R"}}] >>")}
+    init {require(count in 1..1000);file.write("%PDF-2.0\n%\u00e2\u00e3\u00cf\u00d3\n".toByteArray(Charsets.ISO_8859_1));obj(1,"<< /Type /Catalog /Pages 2 0 R >>");obj(2,"<< /Type /Pages /Count $count /Kids [${(0 until count).joinToString(" "){"${3+it*3} 0 R"}}] >>")}
     private fun ascii(s:String)=file.write(s.toByteArray(Charsets.US_ASCII))
     private fun obj(id:Int,s:String){offsets[id]=file.filePointer;ascii("$id 0 obj\n$s\nendobj\n")}
     private fun stream(id:Int,dict:String,data:ByteArray){offsets[id]=file.filePointer;ascii("$id 0 obj\n<< $dict /Length ${data.size} >>\nstream\n");file.write(data);ascii("\nendstream\nendobj\n")}
     fun page(image:BufferedImage) {
-        require(current<count);val id=3+current*3;val w=image.width*.75;val h=image.height*.75
+        require(current<count);val id=3+current*3
+        val w=image.width*.75;val h=image.height*.75
         obj(id,"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 $w $h] /Resources << /XObject << /Im0 ${id+2} 0 R >> >> /Contents ${id+1} 0 R >>")
         stream(id+1,"","q $w 0 0 $h 0 0 cm /Im0 Do Q".toByteArray(Charsets.US_ASCII))
         offsets[id+2]=file.filePointer;ascii("${id+2} 0 obj\n<< /Type /XObject /Subtype /Image /Width ${image.width} /Height ${image.height} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /FlateDecode /Length ")

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-10-21T10:56:38.541Z" hostname="DD1" time="10.959">
+  <properties/>
+  <testcase name="waitingCancellationRetainsLockAndDoesNotSend" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.921"/>
+  <testcase name="normalTransportUsesAuthorityEnvelopeAndCannotAcceptPartialStream" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.265"/>
+  <testcase name="httpErrorsNeverPersistProviderBodyOrRetry" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.058"/>
+  <testcase name="largeGuidanceReceiptKeepsExactWireAndSurvivesBackup" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="4.521"/>
+  <testcase name="composedResultIsDerivedAndRawResponseSurvivesRestart" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.946"/>
+  <testcase name="documentLimitPreflightDoesNotPoisonReadableWorkspace" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.15"/>
+  <testcase name="requestPayloadChunksRestoreAndDetectAlteredDescriptors" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="2.537"/>
+  <testcase name="interruptedDesignIsNotReplayedOnOpen" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.263"/>
+  <testcase name="partialGenerationRetainsOriginalAndFullReceiptOnFailure" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.412"/>
+  <testcase name="compositingFailurePreservesUniqueRawFinal" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.408"/>
+  <testcase name="designCandidateRequiresApplyBranchesAndSurvivesRestart" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.477"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

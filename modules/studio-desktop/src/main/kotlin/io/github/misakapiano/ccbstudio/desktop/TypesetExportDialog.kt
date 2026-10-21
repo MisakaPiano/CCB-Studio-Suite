@@ -39,6 +39,7 @@ import com.example.chatbar.desktop.*
         StudioSwitch("附带可编辑 Recipe 文件",recipe){recipe=!recipe}
         StudioSwitch("同时打包 ZIP",zip){zip=!zip}
         if(book)StudioSwitch("同时生成整册 PDF",pdf){pdf=!pdf}
+        if(book && pdf)Text("PDF 2.0按实际页面高度输出；超长页需支持大页面的阅读器，不截断或缩小旁白。")
         Text("共 ${pages.size} 页，按队列顺序及编号输出。确认后选择位置，每次新建独立文件夹。")
         Text("每个所选分类都包含全部目标页，包括没有文字或打码的页面。JPEG 使用白色背景；JPEG/WebP不携带源元数据。原格式仅保留PNG/JPEG/WebP编码，GIF/BMP编辑结果转PNG。")
         Text(if(book)"小人书为合成页面，不携带源元数据。"else if(metadata=="preserve")"PNG 保留源文本块和 alpha 隐写；它们描述原图，原签名不能证明编辑后的图片。"else"隐私清除会重写像素低位并移除源元数据，像素值可能轻微变化。")

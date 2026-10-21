@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.TypesetSourceExchangeTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-21T10:57:38.750Z" hostname="DD1" time="6.032">
+  <properties/>
+  <testcase name="editedExportRoundTripsStudioExtensionsAndRetainsUnknownSourceFields" classname="io.github.misakapiano.ccbstudio.core.TypesetSourceExchangeTest" time="2.698"/>
+  <testcase name="legacyPresetMigrationMergeReplaceAndUnknownFieldsRoundTrip" classname="io.github.misakapiano.ccbstudio.core.TypesetSourceExchangeTest" time="0.722"/>
+  <testcase name="actualSourcePresetExportMatchesStyleAndDefaults" classname="io.github.misakapiano.ccbstudio.core.TypesetSourceExchangeTest" time="0.0"/>
+  <testcase name="actualSourceExportImportsAllObjectsAndKeepsRawAcrossBackup" classname="io.github.misakapiano.ccbstudio.core.TypesetSourceExchangeTest" time="2.469"/>
+  <testcase name="exchangeFileFailureAndConcurrentDestinationNeverOverwrite" classname="io.github.misakapiano.ccbstudio.core.TypesetSourceExchangeTest" time="0.14"/>
+  <testcase name="unknownVersionRemoteDataAndCorruptionRefusedBeforeMutation" classname="io.github.misakapiano.ccbstudio.core.TypesetSourceExchangeTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

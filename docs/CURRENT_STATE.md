@@ -1,3 +1,7 @@
+## UX-R2 长页PDF兼容（2026-10-21）
+
+[实际记录](audits/UX_R2_LONG_PDF.md)：完整142项实际PASS，长页经Poppler/PDFium独立尺寸及像素核验；保留UserUnit方案兼容失败和验证脚本错误。完整恢复与R4继续，PRODUCT_HOLD。
+
 ## UX-R3 APNG进度（2026-10-21）
 
 [实际记录](audits/UX_R3_APNG.md)：桌面57项完整PASS，最后确认状态修正后5项定向PASS；伪装/还原、批次文件交付、GIF时序、原件/副本重开和静态确认已测。失败记录保留；继续完整恢复和R4，PRODUCT_HOLD。
