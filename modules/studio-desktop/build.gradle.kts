@@ -24,8 +24,8 @@ compose.desktop {
         jvmArgs("-Xmx512m", "-XX:ActiveProcessorCount=2")
         nativeDistributions {
             packageName = "CCBStudioSuitePreview"
-            packageVersion = "0.1.0"
-            description = "CCB Studio Suite - synthetic workspace Preview"
+            packageVersion = providers.gradleProperty("studioPackageVersion").orElse("0.2.0").get()
+            description = "CCB Studio Suite Windows Preview"
             vendor = "MisakaPiano"
             windows { iconFile.set(project.file("src/main/resources/brand/ccb-blue.ico")) }
             modules("java.desktop", "java.logging", "java.naming", "java.net.http", "java.sql", "jdk.unsupported", "jdk.crypto.ec")

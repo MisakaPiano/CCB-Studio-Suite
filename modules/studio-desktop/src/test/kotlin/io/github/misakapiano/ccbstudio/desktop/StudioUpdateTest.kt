@@ -4,6 +4,7 @@ package io.github.misakapiano.ccbstudio.desktop
 import androidx.compose.material.*
 import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.semantics.*
+import androidx.compose.ui.input.key.*
 import kotlinx.coroutines.*
 import kotlinx.serialization.json.*
 import java.nio.file.*
@@ -15,7 +16,7 @@ class StudioUpdateTest {
     private val awt=object:CoroutineDispatcher(){override fun dispatch(context:CoroutineContext,block:Runnable)=SwingUtilities.invokeLater(block)}
     private fun root()=Path.of(System.getProperty("preview.test.root"),java.util.UUID.randomUUID().toString())
     @Test fun actualUpdateScreenRequiresDownloadConfirmationAndDoesNotClaimInstall()=runBlocking {
-        val scope=CoroutineScope(SupervisorJob()+awt);val calls=mutableListOf<Boolean>()
+        val scope=CoroutineScope(SupervisorJob()+awt);val calls=mutableListOf<Boolean>();var installs=0
         val controller=StudioUpdateController(scope,root()){download->calls+=download;buildJsonObject {
             put("status",if(download)"DOWNLOADED_VERIFIED" else "AVAILABLE");put("displayVersion","0.2.0-internal");put("channel","internal");put("notes","合成回执：不执行安装");put("sourceSha","a".repeat(40));put("bytes",1234)
         }}
@@ -23,7 +24,7 @@ class StudioUpdateTest {
             val scene=ImageComposeScene(900,700,coroutineContext=coroutineContext)
             try {
                 scene.setContent {MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)) {
-                    Surface(color=Ink,contentColor=com.example.chatbar.desktop.DesktopBootstrapColors.foreground){UpdateWorkspace(controller)}
+                    Surface(color=Ink,contentColor=com.example.chatbar.desktop.DesktopBootstrapColors.foreground){UpdateWorkspace(controller){installs++}}
                 }}
                 suspend fun frames(){repeat(4){scene.render().close();delay(30)}}
                 fun nodes():List<SemanticsNode>{
@@ -31,9 +32,11 @@ class StudioUpdateTest {
                     return scene.semanticsOwners.flatMap{walk(it.rootSemanticsNode)}
                 }
                 suspend fun click(text:String){nodes().first{it.config.getOrNull(SemanticsProperties.Text)?.any{t->t.text==text}==true && it.config.getOrNull(SemanticsActions.OnClick)!=null}.config[SemanticsActions.OnClick].action!!.invoke();frames();controller.job?.join();frames()}
-                frames();assertTrue(calls.isEmpty());click("检查更新");assertEquals(listOf(false),calls)
-                assertTrue(controller.message.contains("尚未下载或安装"));click("确认下载并验证");assertEquals(listOf(false,true),calls)
+                frames();assertTrue(calls.isEmpty());scene.sendKeyEvent(KeyEvent(Key.F5,KeyEventType.KeyDown));scene.sendKeyEvent(KeyEvent(Key.F5,KeyEventType.KeyUp));frames();controller.job?.join();frames();assertEquals(listOf(false),calls)
+                assertTrue(controller.message.contains("尚未下载或安装"));scene.sendKeyEvent(KeyEvent(Key.D,KeyEventType.KeyDown,isCtrlPressed=true));scene.sendKeyEvent(KeyEvent(Key.D,KeyEventType.KeyUp,isCtrlPressed=true));frames();controller.job?.join();frames();assertEquals(listOf(false,true),calls)
                 assertTrue(controller.message.contains("尚未安装或重启"))
+                click("安装并重启");assertEquals(0,installs);click("暂不安装");assertEquals(0,installs)
+                click("安装并重启");click("保存后安装");assertEquals(1,installs)
                 val out=Path.of("build/ux-r4-client/update-download.png");Files.createDirectories(out.parent)
                 scene.render().use{image->image.encodeToData()!!.use{Files.write(out,it.bytes)}}
             } finally{scene.close();controller.closeAndDrain()}

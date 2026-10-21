@@ -74,7 +74,18 @@ class WorkbenchWorkflowTest {
             scene.click("图库");scene.click("全选");assertEquals(setOf(asset),c.selection);scene.click("反选");assertTrue(c.selection.isEmpty());scene.click("全选");scene.click("全不选");assertTrue(c.selection.isEmpty())
             assertEquals(3,requests.size);assertFalse(w.state.jobs.single().recipe.contains("LOCAL_TEST_ONLY"));assertEquals("COMPLETED",w.state.jobs.single().state)
         }finally{scene.close();c.close();scope.cancel();server.stop(0)}
-        StudioWorkspace.openStudio(r).use{again->assertEquals("quiet room, window",again.state.creation!!.draft.basePrompt);assertEquals(2,again.state.accounts.size);assertContentEquals(png,again.bytes(asset));assertEquals(asset,again.state.jobs.single().results.single())}
+        StudioWorkspace.openStudio(r).use{again->
+            assertEquals("quiet room, window",again.state.creation!!.draft.basePrompt);assertEquals(2,again.state.accounts.size);assertContentEquals(png,again.bytes(asset));assertEquals(asset,again.state.jobs.single().results.single())
+            // Seed a persistent update fixture, not evidence of GUI typesetting acceptance.
+            val repository=TypesetRepository(again)
+            val project=repository.create("更新保全测试册",listOf(asset))
+            repository.update(project.id,project.revision){document->document.copy(pages=document.pages.map{page->page.copy(
+                caption="更新前的小人书说明。",texts=listOf(TypesetText(text="更新前：中文、かな。",x=48.0,y=12.0,width=70.0,vertical=true,style=TypesetStyle(fontSize=12.0))),
+                masks=listOf(TypesetMask(width=20.0,height=20.0)))})}
+            val receipt=Path.of("build/ux-r4-update-fixture/${newId()}.json")
+            Files.createDirectories(receipt.parent)
+            writeUpdateJson(receipt,buildJsonObject{put("dataRoot",r.toAbsolutePath().toString());put("fixture","LOOPBACK_GUI_WITH_SEEDED_TYPESET_DOCUMENT");put("snapshot",updateSnapshot(again))})
+        }
     }
 
     @Test fun measuredSuiteNavigationSurvivesResizeAndUnsentInput()=runBlocking(awt){

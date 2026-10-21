@@ -1,3 +1,7 @@
+## UX-R4 维护排水与交接进度（2026-10-21）
+
+[执行记录](audits/UX_R4_HANDOFF.md)：desktop完整62项、随后7项定向、Python更新组件18项实际PASS。实际A→B尚未执行；继续固定包演练，PRODUCT_HOLD。
+
 ## UX-R4 实际安装器进度（2026-10-21）
 
 [实际记录](audits/UX_R4_INITIAL_INSTALLER.md)：真实NSIS安装544个文件核验、拒绝覆盖；新Python8项PASS。原生窗口存在但截图超时，视觉未验证；尚未串联A→B，继续实施，PRODUCT_HOLD。

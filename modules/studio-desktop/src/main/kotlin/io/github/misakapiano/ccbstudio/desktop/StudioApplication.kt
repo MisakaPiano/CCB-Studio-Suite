@@ -11,6 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.toComposeImageBitmap
 import androidx.compose.ui.layout.*
+import androidx.compose.ui.input.key.*
 import androidx.compose.ui.semantics.*
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.*
@@ -30,6 +31,9 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     val session=CreationSession(workspace)
     val gallery = GalleryViewState()
     val updater=StudioUpdateController(scope,budgetRoot.parent.resolve("updates"))
+    var maintenance by mutableStateOf(false);private set
+    var installUpdate:(()->Unit)?=null
+    var requestClose:(()->Unit)?=null
     val animation=GalleryAnimationController(this,budgetRoot.parent.resolve("apng-exports"))
     val editor by lazy {TypesetEditorController(this)}
     val vault=SecretVault(workspace.root.resolve("secrets"))
@@ -222,7 +226,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     }
     init {if(current==null)current=assets.lastOrNull()?.request()?.id()?.toString()}
     private fun changed(){saved=false;pending?.cancel();pending=scope.launch {delay(350);try{flush()}catch(e:CancellationException){throw e}catch(e:Exception){problem="草稿未能保存，保留当前输入；请先处理数据错误"}}}
-    fun edit(change:(NovelAiStudioDraft)->NovelAiStudioDraft){draft=workspace.state.creation!!.resolvedDraft(change(draft));changed()}
+    fun edit(change:(NovelAiStudioDraft)->NovelAiStudioDraft){if(maintenance)return;draft=workspace.state.creation!!.resolvedDraft(change(draft));changed()}
     fun selectImageCard(card:ImageCardSource)=run("应用角色卡图像字段") {
         session.update{old->
             val cards=old.imageCards.filterNot{it.id==card.id}+card
@@ -239,16 +243,16 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
         require(text.length<=100000)
         session.editDraft{NovelAiStudioPromptClipboard.apply(text,it)};draft=workspace.state.creation!!.draft
     }
-    fun input(value:String){composer=value;changed()}
-    fun attach(value:Boolean){attach=value;changed()}
-    fun chooseAccount(service:String,id:String){if(service=="LLM")llmId=id else {naiId=id;usage=null;usageAt=null};changed()}
+    fun input(value:String){if(maintenance)return;composer=value;changed()}
+    fun attach(value:Boolean){if(maintenance)return;attach=value;changed()}
+    fun chooseAccount(service:String,id:String){if(maintenance)return;if(service=="LLM")llmId=id else {naiId=id;usage=null;usageAt=null};changed()}
     suspend fun flush() {
         val d=draft;val input=composer;val attached=attach;val l=llmId;val n=naiId
         withContext(Dispatchers.IO){session.update {old -> (if(old.draft==d)old else old.change(d)).copy(composer=input,attachCurrentPrompt=attached,llmAccountId=l,naiAccountId=n)}}
         state=workspace.state;saved=draft==d && composer==input && attach==attached && llmId==l && naiId==n
     }
     fun run(label:String,body:suspend ()->Unit) {
-        if(busy)return
+        if(busy||maintenance)return
         busy=true;message=label;problem=null;operationNotice=null
         active=scope.launch {
             try {pending?.cancelAndJoin();flush();withContext(Dispatchers.IO){body()};message=operationNotice?:if(problem==null)"$label · 已完成" else "$label · 有未完成项，请查看回执"}
@@ -348,7 +352,12 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
             if(accepted.isNotEmpty())view="图库"
         }
     }
-    suspend fun close() {updater.closeAndDrain();active?.cancelAndJoin();pending?.cancelAndJoin();editor.drain();flush();infrastructure.closeAndDrain();withContext(Dispatchers.IO){workspace.close()};http.dispatcher.executorService.shutdown();http.connectionPool.evictAll()}
+    suspend fun enterMaintenance() {
+        maintenance=true;message="正在停止接收新操作并保存、排水…"
+        active?.cancelAndJoin();pending?.cancelAndJoin();editor.drain();flush()
+    }
+    fun resumeAfterPreflightFailure() {workspace.state;check(active?.isActive!=true);maintenance=false}
+    suspend fun close() {updater.closeAndDrain();enterMaintenance();infrastructure.closeAndDrain();withContext(Dispatchers.IO){workspace.close()};http.dispatcher.executorService.shutdown();http.connectionPool.evictAll()}
 }
 
 internal fun launchStudio(args:Array<String>) {
@@ -358,10 +367,40 @@ internal fun launchStudio(args:Array<String>) {
     val root=option("--studio-root")?.let(Paths::get)?:home.resolve("workspace-v2")
     val runtime=option("--runtime-root")?.let(Paths::get)?:home.resolve("runtime")
     val workspace=try{StudioWorkspace.openStudio(root)}catch(e:Exception){javax.swing.JOptionPane.showMessageDialog(null,"工作区无法安全打开；现有文件保留。\n${if(e is DataProblem)e.status else e.javaClass.simpleName}","CCB Studio Suite",javax.swing.JOptionPane.ERROR_MESSAGE);return}
+    val updatePlan=option("--update-handoff")?.let(Paths::get)
+    val updateVerified=try{updatePlan?.let{verifyUpdatedWorkspace(workspace,it)}}catch(e:Exception){
+        if(updatePlan!=null && updatePlan.toAbsolutePath().normalize().startsWith(runtime.toAbsolutePath().normalize().resolve("updates/handoffs")))runCatching{writeUpdateJson(updatePlan.parent.resolve("B_FAILED.json"),buildJsonObject{put("status","FAILED");put("reason",if(e is DataProblem)e.status else e.javaClass.simpleName)})}
+        workspace.close();javax.swing.JOptionPane.showMessageDialog(null,"更新后的程序或资料验证未通过；已有程序和资料保留。","CCB Studio Suite",javax.swing.JOptionPane.ERROR_MESSAGE);return
+    }
     application {
         val scope=rememberCoroutineScope();val c=remember{WorkbenchController(workspace,scope,DesktopNovelAiInfrastructure(runtime.resolve("catalog")),runtime.resolve("request-budget"))}
         var closing by remember{mutableStateOf(false)}
         fun close(){if(!closing){closing=true;scope.launch{try{c.close();exitApplication()}catch(e:Exception){closing=false;c.problem="保存或排水尚未完成，窗口保持打开"}}}}
+        c.requestClose=::close
+        c.installUpdate={if(!closing){closing=true;scope.launch{
+            var handoff:Path?=null
+            var teardownStarted=false
+            try {c.enterMaintenance();handoff=prepareUpdateHandoff(c,runtime);teardownStarted=true;c.close();exitApplication()}
+            catch(e:Exception){
+                handoff?.let{withContext(Dispatchers.IO){Files.writeString(it.parent.resolve("CANCEL"),"Application did not complete close",StandardOpenOption.CREATE,StandardOpenOption.TRUNCATE_EXISTING)}}
+                closing=false;if(!teardownStarted)runCatching{c.resumeAfterPreflightFailure()};c.problem="更新未完成，未强制释放资料锁：${e.message?.take(200)}"
+            }
+        }}}
+        if(updatePlan!=null && updateVerified!=null)LaunchedEffect(Unit) {
+            withFrameNanos{}
+            withContext(Dispatchers.IO){writeUpdateJson(updatePlan.parent.resolve("B_VERIFIED.json"),updateVerified)}
+            c.message="新版已启动，资料和受保护凭据验证一致；正在完成更新交接"
+            val completed=withTimeoutOrNull(120000) {
+                while(true) {
+                    val status=withContext(Dispatchers.IO){val p=updatePlan.parent.resolve("result.json");if(Files.exists(p))Json.parseToJsonElement(Files.readString(p)).jsonObject else null}
+                    when(status?.get("status")?.jsonPrimitive?.content){
+                        "COMPLETE"->{c.message="更新完成：新版程序、资料与受保护凭据已验证";return@withTimeoutOrNull true}
+                        "FAILED_RETAINED"->{c.problem="更新交接未完成；现有资料和旧程序均保留";return@withTimeoutOrNull false}
+                    };delay(200)
+                }
+            }
+            if(completed==null)c.problem="更新交接超时，尚不能确认完成；现有资料和旧程序均保留"
+        }
         Window(onCloseRequest=::close,title="CCB Studio Suite · 工作台",undecorated=DesktopWindowChrome.isWindows,icon=StudioBrand.painter,state=rememberWindowState(width=1320.dp,height=880.dp)) {
             val chrome=rememberDesktopWindowChrome(window,::close);SideEffect{chrome.appearance(true)}
             MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel,onPrimary=Ink,onSurface=Color(0xffe6edf3))) {Workbench(c,chrome,closing)}
@@ -376,7 +415,9 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
     fun publish(){chrome.updateLayout(DesktopChromeLayout(width,height,title,buttons.values.toList(),captions.toMap(),icon))}
 }
 @Composable internal fun Workbench(c:WorkbenchController,chrome:DesktopWindowChrome,closing:Boolean) {
-    Surface(color=Ink,contentColor=DesktopBootstrapColors.foreground) {
+    Surface(color=Ink,contentColor=DesktopBootstrapColors.foreground,modifier=Modifier.onPreviewKeyEvent{event->
+        if(!c.maintenance && event.type==KeyEventType.KeyDown && event.isCtrlPressed && event.isShiftPressed && event.key==Key.U){c.view="更新";true}else false
+    }) {
     val r=remember{WorkbenchChrome(chrome)};val native by chrome.state.collectAsState()
     BoxWithConstraints(Modifier.fillMaxSize()) {
     val compact=maxWidth<760.dp
@@ -393,7 +434,7 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
             }
         }
         Divider()
-        Box(Modifier.weight(1f).fillMaxWidth()) {when(c.view){"AI 设计"->DesignWorkspace(c);"图库"->GalleryWorkspace(c);"编辑"->TypesetWorkspace(c);"账户"->AccountsWorkspace(c);"更新"->UpdateWorkspace(c.updater);else->CreationWorkspace(c)}}
+        Box(Modifier.weight(1f).fillMaxWidth()) {when(c.view){"AI 设计"->DesignWorkspace(c);"图库"->GalleryWorkspace(c);"编辑"->TypesetWorkspace(c);"账户"->AccountsWorkspace(c);"更新"->UpdateWorkspace(c.updater,c.installUpdate);else->CreationWorkspace(c)}}
         Row(Modifier.fillMaxWidth().padding(8.dp),verticalAlignment=Alignment.CenterVertically) {
             Text(if(closing)"正在保存并排水…"else c.message,Modifier.weight(1f),fontSize=12.sp,color=Quiet)
             Text(if(c.saved)"已保存" else "保存中…",fontSize=12.sp)
@@ -401,6 +442,7 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
         }
     }
     }
+    if(c.maintenance)AlertDialog(onDismissRequest={},title={Text("正在维护")},text={Text("正在保存、排水或交接更新。现有资料锁保持到操作完成；请等待，不会强制终止写入。")},confirmButton={if(!closing && c.requestClose!=null)TextButton(onClick={c.requestClose?.invoke()}){Text("再次尝试安全退出")}})
     c.problem?.let {AlertDialog(onDismissRequest={c.problem=null},title={Text("操作回执")},text={SelectionContainer{Text(it)}},confirmButton={TextButton(onClick={c.problem=null}){Text("关闭")}})}
     }
 }

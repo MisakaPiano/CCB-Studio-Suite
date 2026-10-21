@@ -104,7 +104,7 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
     val text get()=page?.texts?.firstOrNull{it.id==objectId}
     val mask get()=page?.masks?.firstOrNull{it.id==objectId}
     fun change(transform:(TypesetDocument)->TypesetDocument) {
-        if(c.busy)return
+        if(c.busy||c.maintenance)return
         val old=document?:return;val next=transform(old)
         try{next.validate()}catch(e:Exception){c.problem="编辑值无效，原内容保留：${e.message}";return}
         if(next==old)return

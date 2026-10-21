@@ -1,0 +1,23 @@
+{
+  "task": "UX-R4",
+  "status": "PASS",
+  "tests": 15,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 2.0480891999904998,
+  "python": "3.13.16 (tags/v3.13.16:cbc944f, Sep 30 2026, 19:17:50) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "sourceStable": true,
+  "sourceHashes": {
+    "tools/update-runtime/install_ops.py": "3faf7342ecb50d054a21354402e45077570eef689a363c94425dabe987f2b0f4",
+    "tools/update-runtime/run_tests.py": "9a627bf1aa8e4b5a8789699a014cbba70ab5c4bcd5b94b681eebb20aeef2ee4b",
+    "tools/update-runtime/studio_update.py": "0fac31cff5f3b9dc985a773ba29efdde2ed64bcdf2520bfeefcf1dc4ecd13fbe",
+    "tools/update-runtime/test_client.py": "895a8516052dd29971c21c74e897750d6ea3de915b6111b48b179b189e362a2e",
+    "tools/update-runtime/test_install.py": "9e90b1adfd543fbf4edfdc6e43b272737e271e01d07fdf53d71abe030d087231",
+    "tools/update-runtime/artifacts.json": "6540d0be0af09f8e24dc7464873e0a5891c167685c02b0869eac96a6139432b0",
+    "tools/Prepare-UpdaterRuntime.py": "1dd460ab1e21ea2562f1d4cb0afd8002435aaa46bcb308c40def70ebb2dbcc86"
+  },
+  "baseCommit": "1f0352c1c89b8045cf129346b3736a46eb3075af",
+  "applicationInstallRestart": "NOT TESTED"
+}

@@ -1,11 +1,15 @@
 package io.github.misakapiano.ccbstudio.desktop
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.input.key.*
 import androidx.compose.ui.unit.dp
 import com.example.chatbar.desktop.StudioAction
 import kotlinx.coroutines.*
@@ -42,10 +46,22 @@ internal class StudioUpdateController(private val scope:CoroutineScope,cache:Pat
     suspend fun closeAndDrain(){closed=true;job?.cancelAndJoin()}
 }
 
-@Composable internal fun UpdateWorkspace(c:StudioUpdateController) {
-    Column(Modifier.fillMaxSize().padding(24.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(12.dp)) {
+@Composable internal fun UpdateWorkspace(c:StudioUpdateController,onInstall:(()->Unit)?=null) {
+    var confirm by remember{mutableStateOf(false)}
+    val focus=remember{FocusRequester()}
+    LaunchedEffect(Unit){focus.requestFocus()}
+    Column(Modifier.fillMaxSize().focusRequester(focus).onPreviewKeyEvent {event->
+        if(event.type!=KeyEventType.KeyDown || c.busy || confirm)false
+        else when {
+            event.key==Key.F5->{c.check();true}
+            event.isCtrlPressed && event.key==Key.D && c.result?.get("status")?.jsonPrimitive?.content=="AVAILABLE"->{c.check(true);true}
+            event.isCtrlPressed && event.isShiftPressed && event.key==Key.I && c.result?.get("status")?.jsonPrimitive?.content=="DOWNLOADED_VERIFIED" && onInstall!=null->{confirm=true;true}
+            else->false
+        }
+    }.focusable().padding(24.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(12.dp)) {
         Text("应用更新",style=MaterialTheme.typography.h5)
         Text("更新签名与安装身份由随包固定的信任根验证；资料与下载缓存分别保存。")
+        Text("F5 检查 · Ctrl+D 确认下载 · Ctrl+Shift+I 打开安装确认",color=Quiet)
         StudioAction("检查更新",!c.busy){c.check()}
         Text(c.message)
         c.result?.takeIf{it["status"]?.jsonPrimitive?.content in setOf("AVAILABLE","DOWNLOADED_VERIFIED")}?.let{r->
@@ -54,8 +70,13 @@ internal class StudioUpdateController(private val scope:CoroutineScope,cache:Pat
             Text("下载大小 ${r["bytes"]?.jsonPrimitive?.content} bytes")
             Text("源码 ${r["sourceSha"]?.jsonPrimitive?.content}")
             StudioAction("确认下载并验证",!c.busy && r["status"]?.jsonPrimitive?.content=="AVAILABLE"){c.check(true)}
+            if(r["status"]?.jsonPrimitive?.content=="DOWNLOADED_VERIFIED")StudioAction("安装并重启",!c.busy && onInstall!=null){confirm=true}
         }
         if(c.busy)StudioAction("取消更新操作"){c.job?.cancel()}
-        Text("当前恢复构建的安装接续仍在实施，下载通过不代表更新完成。",color=Quiet)
+        Text("下载验证后仍需安装、重启和资料核验；任何一步未通过都不会报告更新成功。",color=Quiet)
     }
+    if(confirm)AlertDialog(onDismissRequest={confirm=false},title={Text("安装并重启")},text={Text("将保存编辑并停止活动任务，等待资料写入退出后安装新版。旧程序和资料保留，不自动重发请求。")},confirmButton={
+        val confirmFocus=remember{FocusRequester()};LaunchedEffect(Unit){withFrameNanos{};confirmFocus.requestFocus()}
+        TextButton(onClick={confirm=false;onInstall?.invoke()},modifier=Modifier.focusRequester(confirmFocus)){Text("保存后安装")}
+    },dismissButton={TextButton(onClick={confirm=false}){Text("暂不安装")}})
 }

@@ -1,0 +1,20 @@
+test_changed_download_has_no_success_receipt (test_client.ClientTests.test_changed_download_has_no_success_receipt) ... ok
+test_check_then_verified_download_no_install (test_client.ClientTests.test_check_then_verified_download_no_install) ... ok
+test_disconnect_preserves_metadata_for_retry (test_client.ClientTests.test_disconnect_preserves_metadata_for_retry) ... ok
+test_http_is_allowed_only_for_explicit_internal_literal_loopback (test_client.ClientTests.test_http_is_allowed_only_for_explicit_internal_literal_loopback) ... ok
+test_installed_root_hash_and_endpoint_are_required (test_client.ClientTests.test_installed_root_hash_and_endpoint_are_required) ... ok
+test_low_space_no_download_or_completion (test_client.ClientTests.test_low_space_no_download_or_completion) ... ok
+test_other_process_cannot_enter_same_cache (test_client.ClientTests.test_other_process_cannot_enter_same_cache) ... ok
+test_wrong_identity_version_and_reader_block_before_download (test_client.ClientTests.test_wrong_identity_version_and_reader_block_before_download) ... ok
+test_download_stays_immutable_during_executor (test_install.InstallTests.test_download_stays_immutable_during_executor) ... ok
+test_existing_version_and_data_overlap_refuse_before_install (test_install.InstallTests.test_existing_version_and_data_overlap_refuse_before_install) ... ok
+test_installer_failure_retains_partial_without_publish (test_install.InstallTests.test_installer_failure_retains_partial_without_publish) ... ok
+test_insufficient_space_has_no_install_stage (test_install.InstallTests.test_insufficient_space_has_no_install_stage) ... ok
+test_manifest_wrong_identity_hash_or_unknown_file_is_rejected (test_install.InstallTests.test_manifest_wrong_identity_hash_or_unknown_file_is_rejected) ... ok
+test_success_is_installed_not_started_and_preserves_sources (test_install.InstallTests.test_success_is_installed_not_started_and_preserves_sources) ... ok
+test_tampered_executable_is_never_executed (test_install.InstallTests.test_tampered_executable_is_never_executed) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 2.047s
+
+OK

@@ -17,7 +17,7 @@ class ClientTests(unittest.TestCase):
 
     def publish(self,changes=None,payload=b'MZ synthetic trust fixture; NOT an executable installer'):
         custom={'product':'ccb-studio-suite','platform':'windows-x86_64','channel':'internal','version':2,
-                'minimum_reader':2,'maximum_reader':2,'sourceSha':'a'*40,'displayVersion':'0.2.0-internal','notes':'Synthetic release'}
+                'minimum_reader':2,'maximum_reader':2,'sourceSha':'a'*40,'displayVersion':'0.2.0-internal','notes':'Synthetic release','installedBytes':1000}
         custom.update(changes or {})
         self.repo.publish(custom=custom)
         target=TargetFile.from_data('studio-installer.exe',payload,['sha256']);target.unrecognized_fields['custom']=custom

@@ -41,11 +41,16 @@ def build(app,runtime,bootstrap,destination,version,metadata_url,targets_url,bui
     compiler=ROOT/'.local/windows-rc/nsis-tools/nsis-3.13/makensis.exe'
     archive=ROOT/'.local/windows-rc/updater-downloads/nsis-3.13-verified.zip'
     if digest(archive)!='ba63dffc4410ee89193e1cb5a41989991bd77c61068da17e3156d136b7b0b3d8':raise ValueError('NSIS archive identity changed')
-    # Verify the executable against the pinned archive too, not merely its filename.
+    # Includes/stubs/plugins are executable build inputs too: verify every extracted file.
     import zipfile
     with zipfile.ZipFile(archive) as z:
-        if compiler.read_bytes()!=z.read('nsis-3.13/makensis.exe'):raise ValueError('Compiler changed')
+        for member in z.infolist():
+            if member.is_dir():continue
+            installed_tool=compiler.parent.parent/member.filename
+            if not installed_tool.is_file() or installed_tool.read_bytes()!=z.read(member):raise ValueError('NSIS toolchain changed: '+member.filename)
     script=['Unicode true','RequestExecutionLevel user','SetCompressor zlib','SetOverwrite off',
+            f'VIProductVersion "0.2.{version}.0"','VIAddVersionKey "ProductName" "CCB Studio Suite Internal"',
+            f'VIAddVersionKey "FileVersion" "0.2.{version}.0"',
             'Name "CCB Studio Suite Internal"','OutFile '+quote(destination/'studio-installer.exe'),
             f'InstallDir "$LOCALAPPDATA\\CCBStudioSuite\\applications\\{version}-{sha[:12]}"',
             'Page directory','Page instfiles','Section "Install"',
