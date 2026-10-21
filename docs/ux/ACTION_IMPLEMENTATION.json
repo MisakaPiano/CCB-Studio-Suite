@@ -636,7 +636,8 @@
         "TypesetWorkflowTest.queueControlSelectionDragOrderNumberingAndRestart",
         "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart (includes lock/unlock pointer, clone/delete/reopen)",
         "TypesetSourceExchangeTest",
-        "TypesetWorkflowTest.sourceExchangePreviewConfirmExportAndReopen"
+        "TypesetWorkflowTest.sourceExchangePreviewConfirmExportAndReopen",
+        "TypesetPreferencesTest.sourceDefaultsAreConsumedByNewProjectsWithoutChangingExistingPages (4-test class in unchanged 129-pass core module run)"
       ],
       "guiEvidence": [
         "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)",
@@ -648,7 +649,7 @@
         "docs/audits/UX_R2_SOURCE_EXCHANGE.md"
       ],
       "status": "PARTIAL",
-      "remaining": "Source global layout/story/export preferences preserved but not yet applied; full codecs and native visual review remain"
+      "remaining": "Native installed interaction/visual acceptance remain. Source layout/story/export defaults have executed core coverage; see UX_FIXED_ELEVEN reconciliation, not the historical implementation-stage limitation."
     },
     {
       "id": "T02",
@@ -1045,7 +1046,8 @@
         "TypesetPreferencesTest: exact source slots, style projection, image limits, backup restore",
         "TypesetWorkflowTest: actual preset save/apply/override/reset/preferred slot GUI and reopen",
         "TypesetSourceExchangeTest",
-        "TypesetWorkflowTest.sourceExchangePreviewConfirmExportAndReopen"
+        "TypesetWorkflowTest.sourceExchangePreviewConfirmExportAndReopen",
+        "TypesetPreferencesTest.sourceDefaultsAreConsumedByNewProjectsWithoutChangingExistingPages (4-test class in unchanged 129-pass core module run)"
       ],
       "guiEvidence": [
         "UX_R2A_PRESETS runs: actual Compose semantics; no native visual acceptance",
@@ -1056,7 +1058,7 @@
         "docs/audits/UX_R2_SOURCE_EXCHANGE.md"
       ],
       "status": "PARTIAL",
-      "remaining": "Source global layout/story/export preferences preserved but not yet applied; full codecs and native visual review remain"
+      "remaining": "Native installed interaction/visual acceptance remain. Source layout/story/export defaults have executed core coverage; see UX_FIXED_ELEVEN reconciliation, not the historical implementation-stage limitation."
     },
     {
       "id": "T17",
@@ -1084,7 +1086,7 @@
         "docs/audits/UX_R2_EXPORT_METADATA.md"
       ],
       "status": "PARTIAL",
-      "remaining": "WebP/source formats, full preferences, native clipboard/dialog and product review remain"
+      "remaining": "Installed export/dialog/OS clipboard receiver and concentrated product review remain. WebP/source encoding, four categories, metadata/privacy, source exchange and defaults have separate executed evidence; not certified by this documentation reconciliation."
     },
     {
       "id": "T18",
@@ -1106,7 +1108,7 @@
         "docs/audits/UX_R2_EXPORT_METADATA.md"
       ],
       "status": "PARTIAL",
-      "remaining": "WebP/source formats, full preferences, native clipboard/dialog and product review remain"
+      "remaining": "Installed export/dialog/OS clipboard receiver and concentrated product review remain. WebP/source encoding, four categories, metadata/privacy, source exchange and defaults have separate executed evidence; not certified by this documentation reconciliation."
     },
     {
       "id": "T19",
@@ -1138,7 +1140,7 @@
         "docs/audits/UX_R2_EXPORT_METADATA.md"
       ],
       "status": "PARTIAL",
-      "remaining": "WebP/source formats, full preferences, native clipboard/dialog and product review remain"
+      "remaining": "Installed export/dialog/OS clipboard receiver and concentrated product review remain. WebP/source encoding, four categories, metadata/privacy, source exchange and defaults have separate executed evidence; not certified by this documentation reconciliation."
     },
     {
       "id": "T20",
@@ -1159,7 +1161,7 @@
         "docs/audits/UX_R2C_BOOK_EXPORT.md"
       ],
       "status": "PARTIAL",
-      "remaining": "Multi-category export, source exchange, WebP, metadata/privacy, native visual and full product gates continue"
+      "remaining": "Installed export/dialog/OS clipboard receiver and concentrated product review remain. WebP/source encoding, four categories, metadata/privacy, source exchange and defaults have separate executed evidence; not certified by this documentation reconciliation."
     },
     {
       "id": "Q01",
@@ -1262,7 +1264,8 @@
         "TypesetPreferencesTest: exact source slots, style projection, image limits, backup restore",
         "TypesetWorkflowTest: actual preset save/apply/override/reset/preferred slot GUI and reopen",
         "TypesetSourceExchangeTest",
-        "TypesetWorkflowTest.sourceExchangePreviewConfirmExportAndReopen"
+        "TypesetWorkflowTest.sourceExchangePreviewConfirmExportAndReopen",
+        "TypesetPreferencesTest.sourceDefaultsAreConsumedByNewProjectsWithoutChangingExistingPages (4-test class in unchanged 129-pass core module run)"
       ],
       "guiEvidence": [
         "UX_R2A_PRESETS runs: actual Compose semantics; no native visual acceptance",
@@ -1273,7 +1276,7 @@
         "docs/audits/UX_R2_SOURCE_EXCHANGE.md"
       ],
       "status": "PARTIAL",
-      "remaining": "Source global layout/story/export preferences preserved but not yet applied; full codecs and native visual review remain"
+      "remaining": "Native installed interaction/visual acceptance remain. Source layout/story/export defaults have executed core coverage; see UX_FIXED_ELEVEN reconciliation, not the historical implementation-stage limitation."
     },
     {
       "id": "Q06",
@@ -1285,15 +1288,18 @@
       ],
       "tests": [
         "TypesetPreferencesTest: exact source slots, style projection, image limits, backup restore",
-        "TypesetWorkflowTest: actual preset save/apply/override/reset/preferred slot GUI and reopen"
+        "TypesetWorkflowTest: actual preset save/apply/override/reset/preferred slot GUI and reopen",
+        "TypesetSourceExchangeTest",
+        "TypesetWorkflowTest.sourceExchangePreviewConfirmExportAndReopen"
       ],
       "guiEvidence": [
-        "UX_R2A_PRESETS runs: actual Compose semantics; no native visual acceptance"
+        "UX_R2A_PRESETS runs: actual Compose semantics; no native visual acceptance",
+        "docs/audits/UX_R2_SOURCE_EXCHANGE.md (source preset file import/merge/export/reopen; offscreen Compose)"
       ],
       "persistenceEvidence": [
         "TypesetPreferencesTest.globalPreferencesSurviveWorkspaceBackupAndRestore"
       ],
-      "status": "ENGINEERING_PARTIAL / PRESETS_TESTED / SOURCE_FILE_EXCHANGE_PENDING / PRODUCT_HOLD"
+      "status": "ENGINEERING_PARTIAL / PRESET_FILE_EXCHANGE_AND_REOPEN_PASS / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "Q07",
@@ -1679,12 +1685,14 @@
       ],
       "guiEvidence": [
         "docs/audits/UX_LIBRARY_BACKUP.md",
-        "docs/audits/evidence/UX_LIBRARY_BACKUP/compose-scenes"
+        "docs/audits/evidence/UX_LIBRARY_BACKUP/compose-scenes",
+        "docs/audits/UX_NATIVE_RESTORE.md (user actual installed backup/restore/second window screenshots)"
       ],
       "persistenceEvidence": [
-        "Real restored workspace reopened; original bytes, typeset project, independent prompt, labels, unsent draft and unresolved credential refs checked; source retained"
+        "Real restored workspace reopened; original bytes, typeset project, independent prompt, labels, unsent draft and unresolved credential refs checked; source retained",
+        "61 restored files match source backup and original; 10 asset records; credentials excluded as specified"
       ],
-      "status": "ENGINEERING_PARTIAL / OFFSCREEN_WORKFLOW_PASS / INSTALLED_SECOND_WINDOW_NOT_TESTED / PRODUCT_HOLD"
+      "status": "INSTALLED_BACKUP_RESTORE_SECOND_WINDOW_PASS_USER_CONFIRMED / PRODUCT_HOLD"
     },
     {
       "id": "C04",
@@ -1748,13 +1756,16 @@
       ],
       "guiEvidence": [
         "docs/audits/evidence/UX_R4_TRUSTED_CLIENT/update-download.png (offscreen injected receipt)",
-        "docs/audits/UX_R4_ACTUAL_AB.md: actual A keyboard path, actual installer and B window; capture failed"
+        "docs/audits/UX_R4_ACTUAL_AB.md: actual A keyboard path, actual installer and B window; capture failed",
+        "docs/audits/UX_RESTORED_UPDATE_ACTUAL.md (0.2.9 to 0.2.10; user confirmed restart)",
+        "docs/audits/UX_RESTORED_UPDATE.md (original 0.2.7 to 0.2.8; latest-version user screenshot)"
       ],
       "persistenceEvidence": [
-        "TUF metadata cache, verified receipt and separate-process lock; no installed application A-to-B",
-        "B_VERIFIED snapshot matches A; actual upgraded root post-update write/reopen PASS"
+        "Earlier trusted-client-only stage: metadata cache, verified receipt and separate-process lock; superseded for installed A-to-B coverage by cited actual update reports",
+        "B_VERIFIED snapshot matches A; actual upgraded root post-update write/reopen PASS",
+        "Restored 9-to-10 COMPLETE; 10 asset snapshot and MISSING_BEFORE_UPDATE credential reference match, 546 installed files independently verified"
       ],
-      "status": "ACTUAL_INSTALLED_A_TO_B_PASS / FAULT_COVERAGE_PARTIAL / NATIVE_VISUAL_UNVERIFIED / PRODUCT_HOLD"
+      "status": "ACTUAL_INSTALLED_A_TO_B_AND_RESTORED_ROOT_PASS / FAULT_SCOPE_IN_CITED_REPORTS / PRODUCT_HOLD"
     },
     {
       "id": "C07",

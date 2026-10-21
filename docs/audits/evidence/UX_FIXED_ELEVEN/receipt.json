@@ -1,0 +1,48 @@
+{
+  "installer": {
+    "task": "UX-R4",
+    "status": "BUILT",
+    "sourceSha": "a50f4282012bca80ea46772aa97d48bd9c0d6b3d",
+    "version": 11,
+    "compiler": "NSIS3.13",
+    "exitCode": 0,
+    "files": 546,
+    "installed": "NOT TESTED",
+    "bytes": 167308030,
+    "sha256": "b423e3d4d1e4fa637e488452dc7b8471048dfa8b402534d865599c528465bd5d"
+  },
+  "destination": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\fixed-eleven-applications\\11-a50f4282012b",
+  "results": [
+    {
+      "test": "LONG_PATH_REFUSE_BEFORE_WRITES",
+      "exitCode": 19,
+      "expected": 19,
+      "seconds": 0.5870231000008062,
+      "status": "PASS"
+    },
+    {
+      "test": "FRESH_INSTALL",
+      "exitCode": 0,
+      "expected": 0,
+      "seconds": 2.991283499999554,
+      "status": "PASS",
+      "verification": {
+        "files": 546,
+        "bytes": 251073864,
+        "manifestSha256": "d3e07ec4dfb29626b0e88cb0384b18a3b3eb710e15e60899fbeadf4012c1cc18"
+      }
+    },
+    {
+      "test": "OCCUPIED_REFUSE",
+      "exitCode": 17,
+      "expected": 17,
+      "seconds": 0.38581580000027316,
+      "status": "PASS",
+      "verification": {
+        "files": 546,
+        "bytes": 251073864,
+        "manifestSha256": "d3e07ec4dfb29626b0e88cb0384b18a3b3eb710e15e60899fbeadf4012c1cc18"
+      }
+    }
+  ]
+}
