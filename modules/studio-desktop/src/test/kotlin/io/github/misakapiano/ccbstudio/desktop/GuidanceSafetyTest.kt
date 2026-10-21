@@ -39,7 +39,7 @@ class GuidanceSafetyTest {
             scene.frames();repeat(4){scene.click("旋转 90°")};scene.click("应用");assertContentEquals(DesktopImageEditing.decode(bytes).pixels(),DesktopImageEditing.decode(applied!!.first).pixels());assertEquals(initial.x,applied!!.third.x,.00001f)
             scene.click("区域打码");scene.click("应用");assertFalse(bytes.contentEquals(applied!!.first));scene.click("撤销");scene.click("重做");scene.click("重置");scene.click("应用");assertContentEquals(bytes,applied!!.first)
             scene.click("绘制蒙版")
-            val bounds=scene.nodes().first{it.config.getOrNull(SemanticsProperties.ContentDescription)?.contains("图像工具预览")==true}.boundsInRoot
+            val bounds=scene.nodes().first{it.config.getOrNull(SemanticsProperties.ContentDescription)?.contains("图像工具画布")==true}.boundsInRoot
             val from=bounds.topLeft+Offset(bounds.width*.3f,bounds.height*.4f);val to=bounds.topLeft+Offset(bounds.width*.6f,bounds.height*.6f)
             scene.sendPointerEvent(PointerEventType.Press,from,button=PointerButton.Primary)
             repeat(5){scene.sendPointerEvent(PointerEventType.Move,from+(to-from)*((it+1)/5f),button=PointerButton.Primary);scene.frames()}

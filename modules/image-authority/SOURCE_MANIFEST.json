@@ -31,6 +31,8 @@
       "size": 4990,
       "sha256": "dbfbf05c9fc144067290e5c509c241f6887260d875ab60c32ed9d9a23c7978f5",
       "reasons": [
+        "src/main/kotlin/com/example/chatbar/domain/card/CardTransferModels.kt",
+        "src/main/kotlin/com/example/chatbar/domain/card/CharacterPlaceholderPolicy.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiPromptDesigner.kt",
         "src/main/kotlin/com/example/chatbar/domain/prompt/NovelAiPromptAuthority.kt"
       ]
@@ -54,7 +56,18 @@
       "size": 495,
       "sha256": "9b50b62b62778590974d1ef73b04d88ec033528f51a587e851e868eba5c50e65",
       "reasons": [
-        "src/main/kotlin/com/example/chatbar/data/local/entity/CharacterCard.kt"
+        "src/main/kotlin/com/example/chatbar/data/local/entity/CharacterCard.kt",
+        "src/main/kotlin/com/example/chatbar/domain/card/CardTransferModels.kt"
+      ]
+    },
+    {
+      "source": "app/sharedCore/src/main/kotlin/com/example/chatbar/data/local/entity/FormatCard.kt",
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/local/entity/FormatCard.kt",
+      "size": 1744,
+      "sha256": "bf0fad6054cc6d58be18b309050593e08c8b9fb8945b64cd10c9df767acf7d76",
+      "reasons": [
+        "src/main/kotlin/com/example/chatbar/domain/card/CardTransferModels.kt",
+        "src/main/kotlin/com/example/chatbar/domain/card/FormatCardUserToolValidator.kt"
       ]
     },
     {
@@ -64,7 +77,8 @@
       "sha256": "9b4052f7d0f01c81befcce65ae56a3c96454c11acf53a8247801b938b688f1de",
       "reasons": [
         "src/main/kotlin/com/example/chatbar/data/local/entity/ModelConfig.kt",
-        "src/main/kotlin/com/example/chatbar/data/repository/ModelRepository.kt"
+        "src/main/kotlin/com/example/chatbar/data/repository/ModelRepository.kt",
+        "src/main/kotlin/com/example/chatbar/domain/card/ModelTemplateTransferService.kt"
       ]
     },
     {
@@ -76,6 +90,7 @@
         "src/main/kotlin/com/example/chatbar/data/local/entity/PresetModelCatalog.kt",
         "src/main/kotlin/com/example/chatbar/data/repository/CredentialPersistencePolicy.kt",
         "src/main/kotlin/com/example/chatbar/data/repository/ModelRepository.kt",
+        "src/main/kotlin/com/example/chatbar/domain/card/ModelTemplateTransferService.kt",
         "src/main/kotlin/com/example/chatbar/domain/chat/ImageDescriptionRequestPolicy.kt",
         "src/main/kotlin/com/example/chatbar/domain/chat/ImageUnderstandingService.kt",
         "src/main/kotlin/com/example/chatbar/domain/chat/OpenAiChatRequestSerializer.kt",
@@ -123,7 +138,8 @@
       "size": 3172,
       "sha256": "99a93cc3a2572912e35704cbfd2b591a4000fafce409b34a218f19aea6a1b045",
       "reasons": [
-        "src/main/kotlin/com/example/chatbar/data/local/entity/CharacterCard.kt"
+        "src/main/kotlin/com/example/chatbar/data/local/entity/CharacterCard.kt",
+        "src/main/kotlin/com/example/chatbar/domain/card/CardTransferModels.kt"
       ]
     },
     {
@@ -151,6 +167,7 @@
       "size": 13907,
       "sha256": "74e4a250eb0b4bb5d94d204d43e99b32b3ff043caf763b0a5a34c5e3c8bb8f60",
       "reasons": [
+        "src/main/kotlin/com/example/chatbar/domain/card/ModelTemplateTransferService.kt",
         "src/main/kotlin/com/example/chatbar/domain/model/EffectiveModelResolver.kt"
       ]
     },
@@ -212,12 +229,59 @@
       ]
     },
     {
+      "source": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/card/CardTransferModels.kt",
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/card/CardTransferModels.kt",
+      "size": 5294,
+      "sha256": "5cd8343d45c6f1574534f2511c1a147a3e69b5e49556a3dba33ba905b0749984",
+      "reasons": [
+        "approved image authority consumer",
+        "src/main/kotlin/com/example/chatbar/domain/card/CharacterPlaceholderPolicy.kt",
+        "src/main/kotlin/com/example/chatbar/domain/card/ModelTemplateTransferService.kt"
+      ]
+    },
+    {
+      "source": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/card/CharacterPlaceholderPolicy.kt",
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/card/CharacterPlaceholderPolicy.kt",
+      "size": 2114,
+      "sha256": "1f1670ac6db465f0352db5603abfe476f01993ca9727381452279c5cb970fe23",
+      "reasons": [
+        "src/main/kotlin/com/example/chatbar/domain/card/CardTransferModels.kt"
+      ]
+    },
+    {
+      "source": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/card/FormatCardUserToolValidator.kt",
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/card/FormatCardUserToolValidator.kt",
+      "size": 1968,
+      "sha256": "e40fd208d8e492d17f7a8688c9967d129cb928b019a11fa242cde6ca8d48830c",
+      "reasons": [
+        "src/main/kotlin/com/example/chatbar/domain/card/CardTransferModels.kt"
+      ]
+    },
+    {
+      "source": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/card/ModelTemplateTransferService.kt",
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/card/ModelTemplateTransferService.kt",
+      "size": 4506,
+      "sha256": "50d836f4646fc3d03eec573ec63edf92a305ad53ba2c5e0dd45faf20dab13e5f",
+      "reasons": [
+        "src/main/kotlin/com/example/chatbar/domain/card/CardTransferModels.kt"
+      ]
+    },
+    {
       "source": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/card/NamePolicy.kt",
       "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/card/NamePolicy.kt",
       "size": 816,
       "sha256": "09b838387634fc1a66a8a874d7764de1e63b76ce26e20cd5f21ca544b05dd772",
       "reasons": [
         "src/main/kotlin/com/example/chatbar/data/repository/ModelRepository.kt"
+      ]
+    },
+    {
+      "source": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/card/PngTextChunks.kt",
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/card/PngTextChunks.kt",
+      "size": 4413,
+      "sha256": "d4975b699e4c5c0440858c8480328e38cd68fb68a7e88d4c868e2687f8299cde",
+      "reasons": [
+        "approved image authority consumer"
       ]
     },
     {
@@ -517,6 +581,7 @@
       "reasons": [
         "src/main/kotlin/com/example/chatbar/data/local/entity/AppSettings.kt",
         "src/main/kotlin/com/example/chatbar/data/local/entity/CharacterCard.kt",
+        "src/main/kotlin/com/example/chatbar/domain/card/CardTransferModels.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiAccountService.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiCharacterPositionPolicy.kt",
         "src/main/kotlin/com/example/chatbar/domain/image/NovelAiDesignConversationModels.kt",

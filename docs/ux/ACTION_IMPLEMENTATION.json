@@ -113,11 +113,14 @@
         "DesktopStudioCharacters.kt"
       ],
       "tests": [
-        "DesktopStudioPresentationTest: 13 source component regressions; exact field coverage in JUnit XML"
+        "DesktopStudioPresentationTest: 13 source component regressions; exact field coverage in JUnit XML",
+        "WorkbenchWorkflowTest + source prompt component regressions"
       ],
-      "guiEvidence": [],
+      "guiEvidence": [
+        "docs/audits/UX_R1B_CREATION.md (exact scope; no native visual claim)"
+      ],
       "persistenceEvidence": [],
-      "status": "SOURCE_COMPONENT_ADOPTED / FULL_WORKFLOW_NOT_TESTED / PRODUCT_HOLD"
+      "status": "ENGINEERING_PARTIAL / CONTROLLER_OR_COMPOSE_TESTED / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "P07",
@@ -161,11 +164,14 @@
         "DesktopStudioCharacters.kt"
       ],
       "tests": [
-        "DesktopStudioPresentationTest: 13 source component regressions; exact field coverage in JUnit XML"
+        "DesktopStudioPresentationTest: 13 source component regressions; exact field coverage in JUnit XML",
+        "ImageCardWorkflowTest.cardDefaultGlobalOverrideClearAndRestart"
       ],
-      "guiEvidence": [],
+      "guiEvidence": [
+        "docs/audits/UX_R1B_CREATION.md (exact scope; no native visual claim)"
+      ],
       "persistenceEvidence": [],
-      "status": "SOURCE_COMPONENT_ADOPTED / FULL_WORKFLOW_NOT_TESTED / PRODUCT_HOLD"
+      "status": "ENGINEERING_PARTIAL / CONTROLLER_OR_COMPOSE_TESTED / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "P10",
@@ -236,20 +242,24 @@
       "id": "P14",
       "owner": "UX-R1a",
       "implementation": [
-        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt"
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt",
+        "StudioApplication.kt",
+        "StudioAssetViewer.kt"
       ],
       "tests": [
         "WorkbenchWorkflowTest.accountsDesignApplyGenerateGalleryAndRestart",
-        "WorkbenchWorkflowTest.measuredSuiteNavigationSurvivesResizeAndUnsentInput"
+        "WorkbenchWorkflowTest.measuredSuiteNavigationSurvivesResizeAndUnsentInput",
+        "SourceZoomSurfaceTest: source zoom/double-click rendered regression"
       ],
       "guiEvidence": [
         "docs/audits/evidence/UX_R1A_WORKBENCH/compose-scenes (actual Compose tree; offscreen; loopback)",
-        "docs/audits/evidence/UX_R1A_WORKBENCH/NATIVE_UI.json (capture unavailable)"
+        "docs/audits/evidence/UX_R1A_WORKBENCH/NATIVE_UI.json (capture unavailable)",
+        "docs/audits/UX_R1B_CREATION.md (exact scope; no native visual claim)"
       ],
       "persistenceEvidence": [
         "WorkbenchWorkflowTest: same workspace close/reopen; accounts, candidate draft, completed job and exact original bytes"
       ],
-      "status": "ENGINEERING_PARTIAL / LOOPBACK_GUI_PASS / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+      "status": "ENGINEERING_PARTIAL / CONTROLLER_OR_COMPOSE_TESTED / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "P15",
@@ -263,47 +273,90 @@
     {
       "id": "P16",
       "owner": "UX-R1b",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "StudioApplication.kt",
+        "MetadataWorkspace.kt"
+      ],
+      "tests": [
+        "MetadataWorkflowTest.historyReuseChecksIdentityAndRetainsOriginal"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_R1B_CREATION.md (exact scope; no native visual claim)"
+      ],
+      "persistenceEvidence": [
+        "MetadataWorkflowTest validates stored Recipe identity and draft changes; independent history-reuse-after-restart remains NOT TESTED"
+      ],
+      "status": "ENGINEERING_PARTIAL / CONTROLLER_OR_COMPOSE_TESTED / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "P17",
       "owner": "UX-R1b",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "StudioApplication.kt",
+        "DesktopNovelAiPostProcessor.kt"
+      ],
+      "tests": [
+        "PostProcessWorkflowTest (3 loopback/controller tests)"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_R1B_CREATION.md (exact scope; no native visual claim)"
+      ],
+      "persistenceEvidence": [
+        "Corresponding WorkflowTest: same root close/reopen, exact fields/bytes; see JUnit XML"
+      ],
+      "status": "ENGINEERING_PARTIAL / CONTROLLER_OR_COMPOSE_TESTED / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "P18",
       "owner": "UX-R1b",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "StudioApplication.kt",
+        "StudioVision.kt"
+      ],
+      "tests": [
+        "ReverseWorkflowTest (3 loopback/controller tests)"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_R1B_CREATION.md (exact scope; no native visual claim)"
+      ],
+      "persistenceEvidence": [
+        "Corresponding WorkflowTest: same root close/reopen, exact fields/bytes; see JUnit XML"
+      ],
+      "status": "ENGINEERING_PARTIAL / CONTROLLER_OR_COMPOSE_TESTED / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "P19",
       "owner": "UX-R1b",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "StudioApplication.kt",
+        "ImageCardSource.kt"
+      ],
+      "tests": [
+        "ImageCardWorkflowTest (2 tests)"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_R1B_CREATION.md (exact scope; no native visual claim)"
+      ],
+      "persistenceEvidence": [
+        "Corresponding WorkflowTest: same root close/reopen, exact fields/bytes; see JUnit XML"
+      ],
+      "status": "ENGINEERING_PARTIAL / CONTROLLER_OR_COMPOSE_TESTED / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "P20",
       "owner": "UX-R1b",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
+      "implementation": [
+        "StudioApplication.kt",
+        "DesktopStudioControls.kt"
+      ],
+      "tests": [
+        "ImageCardWorkflowTest.cardDefaultGlobalOverrideClearAndRestart"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_R1B_CREATION.md (exact scope; no native visual claim)"
+      ],
       "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "status": "ENGINEERING_PARTIAL / CONTROLLER_OR_COMPOSE_TESTED / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "I01",
@@ -317,20 +370,37 @@
     {
       "id": "I02",
       "owner": "UX-R3",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
-      "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "implementation": [
+        "StudioApplication.kt",
+        "MetadataWorkspace.kt"
+      ],
+      "tests": [
+        "MetadataWorkflowTest.actualMetadataUiPreviewApplyUndoAndRestart",
+        "MetadataWorkflowTest.embeddedImageRetainedAndUsedWithoutMutatingOriginal"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_R1B_CREATION.md (exact scope; no native visual claim)"
+      ],
+      "persistenceEvidence": [
+        "Corresponding WorkflowTest: same root close/reopen, exact fields/bytes; see JUnit XML"
+      ],
+      "status": "ENGINEERING_PARTIAL / CONTROLLER_OR_COMPOSE_TESTED / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "I03",
       "owner": "UX-R3",
-      "implementation": [],
-      "tests": [],
-      "guiEvidence": [],
+      "implementation": [
+        "StudioApplication.kt",
+        "MetadataWorkspace.kt"
+      ],
+      "tests": [
+        "MetadataWorkflowTest.missingMalformedUnsupportedAndReadFailureAreDistinct"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_R1B_CREATION.md (exact scope; no native visual claim)"
+      ],
       "persistenceEvidence": [],
-      "status": "NOT_IMPLEMENTED_THIS_RUN"
+      "status": "ENGINEERING_PARTIAL / CONTROLLER_OR_COMPOSE_TESTED / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "I04",
@@ -645,18 +715,22 @@
         "DesktopImageToolsDialog.kt (source adapted)",
         "DesktopImageTools.kt (exact source)",
         "WorkbenchController.applyGuidanceTools/saveToolCopy",
-        "StudioWorkspace.importDerived"
+        "StudioWorkspace.importDerived",
+        "StudioApplication.kt",
+        "DesktopStudioControls.kt"
       ],
       "tests": [
-        "GuidanceSafetyTest.q09CanvasRotateUndoMaskResetApplyAndReopen"
+        "GuidanceSafetyTest.q09CanvasRotateUndoMaskResetApplyAndReopen",
+        "GuidanceSafetyTest: same canvas assertions after source image reader adoption"
       ],
       "guiEvidence": [
-        "docs/audits/evidence/UX_R1B_GUIDANCE/mask-and-focus.png (actual Compose content, offscreen)"
+        "docs/audits/evidence/UX_R1B_GUIDANCE/mask-and-focus.png (actual Compose content, offscreen)",
+        "docs/audits/UX_R1B_CREATION.md (exact scope; no native visual claim)"
       ],
       "persistenceEvidence": [
         "Q09 test same workspace reopen verifies original hash, mask asset, visible copy"
       ],
-      "status": "ENGINEERING_REGRESSION_PASS / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+      "status": "ENGINEERING_PARTIAL / CONTROLLER_OR_COMPOSE_TESTED / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
     },
     {
       "id": "F01",

@@ -15,7 +15,9 @@ fun sha256(bytes: ByteArray): String = MessageDigest.getInstance("SHA-256").dige
     val id: String = newId(), val alias: String, val service: String,
     val provider: String, val endpoint: String = "https://synthetic.invalid",
     val model: String, val secretRef: String? = null,
+    val isMultimodal:Boolean=false, val visionAccountId:String?=null,
 ) {
+    fun modelConfig()=com.example.chatbar.data.local.entity.ModelConfig(id,alias,endpoint,"",model,isMultimodal=isMultimodal,visionModelId=visionAccountId,createdAt=1)
     fun validate() {
         UUID.fromString(id)
         require(alias.isNotBlank() && alias.length <= 100)
@@ -29,6 +31,7 @@ fun sha256(bytes: ByteArray): String = MessageDigest.getInstance("SHA-256").dige
         }
         require(model.isNotBlank() && model.length <= 160)
         secretRef?.let { UUID.fromString(it) }
+        visionAccountId?.let {UUID.fromString(it);require(it!=id && service=="LLM")}
     }
 }
 @Serializable data class Point(val x: Float, val y: Float)
@@ -103,6 +106,10 @@ fun sha256(bytes: ByteArray): String = MessageDigest.getInstance("SHA-256").dige
     val attachCurrentPrompt: Boolean = false,
     val llmAccountId: String? = null,
     val naiAccountId: String? = null,
+    val reverseCandidate:ReverseCandidate?=null,
+    val imageCards:List<ImageCardSource> = emptyList(),
+    val defaultImageModel:com.example.chatbar.domain.image.NovelAiImageModel=com.example.chatbar.domain.image.NovelAiImageModel.V4_5_FULL,
+    val translatedTags:Boolean=false,
 ) {
     fun change(next: NovelAiStudioDraft) = copy(draft=next, undo=(undo+draft).takeLast(30), redo=emptyList())
     fun undoDraft() = if(undo.isEmpty()) this else copy(draft=undo.last(),undo=undo.dropLast(1),redo=(redo+draft).takeLast(30))
@@ -113,6 +120,10 @@ fun sha256(bytes: ByteArray): String = MessageDigest.getInstance("SHA-256").dige
         conversations.forEach {c -> UUID.fromString(c.id); require(c.turns.map {it.id}.distinct().size == c.turns.size); c.turns.forEach {UUID.fromString(it.id)} }
         require(currentConversationId == null || conversations.any {it.id == currentConversationId})
         listOfNotNull(llmAccountId,naiAccountId).forEach {UUID.fromString(it)}
+        require(imageCards.size<=500 && imageCards.map{it.id}.distinct().size==imageCards.size)
+        imageCards.forEach{UUID.fromString(it.id);require(it.sourceSha256.matches(Regex("[0-9a-f]{64}")))}
     }
 }
+@Serializable data class ReverseCandidate(val sourceId:String,val accountId:String,val targetModel:com.example.chatbar.domain.image.NovelAiImageModel,
+    val plan:com.example.chatbar.domain.image.NovelAiPromptPlan,val createdAt:Long=System.currentTimeMillis())
 class DataProblem(val status: String, message: String, cause: Throwable?=null): java.io.IOException(message,cause)

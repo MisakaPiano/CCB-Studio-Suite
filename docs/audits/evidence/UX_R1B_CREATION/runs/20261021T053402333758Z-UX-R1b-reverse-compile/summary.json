@@ -1,0 +1,26 @@
+{
+  "phase": "UX-R1b-reverse-compile",
+  "startedUtc": "2026-10-21T05:34:02.572126+00:00",
+  "seconds": 32.964,
+  "exitCode": 0,
+  "tests": 0,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "COMMAND_SUCCESS",
+  "testEvidence": "NOT TESTED (build only or failed before execution)",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:compileKotlin"
+  ],
+  "baseCommit": "74c30d85eb1b917a7fdd9a9d4f87374396bd544d",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

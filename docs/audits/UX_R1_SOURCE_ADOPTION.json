@@ -15,7 +15,7 @@
       "target": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/CreationSession.kt",
       "sourceSha256": "2b716d05c1ca1ddc4bab0e315da1d471bd01b29dea900cfab99ae0ea57cc5047",
       "adaptation": "Suite journal replaces Desktop repository; same design/revise baseline and research dispatch; cancellation/restart persistence; explicit candidate application",
-      "sha256": "a32460e7a606cb55319cc449e6d0ba27074f511b2bec7f60ccf57e5ff1ed4037"
+      "sha256": "b1986b4b0f56b15ace9e046dd8eca174c170f6fb5785e9c6e1d437e81e52b28e"
     },
     {
       "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiTextTransport.kt",
@@ -203,7 +203,7 @@
       "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopImageToolsDialog.kt",
       "target": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopImageToolsDialog.kt",
       "sourceSha256": "ac2e3fea38b3a5dbd96524208bb337333657573e05bdd3e94739d2699328d760",
-      "sha256": "ecb6a742fe71771e091de188cf07f9bb943a25821f4260fa517b8d303d1328c4",
+      "sha256": "ee2d0c2fd5f616c03ea77c42573ce31b93a0041a36b39a59ff3a5a2b3057cdcc",
       "adaptation": "Source tool UI and canvas retained. Added embeddable container for actual Compose regression; completion callbacks await durable Suite storage; rotation clears mask and transforms focus rectangle with source pixels, undo preserves both."
     },
     {
@@ -245,8 +245,78 @@
       "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiStudioController.kt",
       "target": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt",
       "sourceSha256": "4511f9329082b6877d25ce6a7f77b0302f6d5a391215ead22dd4b620c7b07de2",
-      "sha256": "96244b6adb35d594d0a2598e26449974f2c5b9453b66a66ee29663b8ded08773",
+      "sha256": "89487c70dfda77f3af6888ce7abac8874365a0615e63917b2a04555726cc23b9",
       "adaptation": "Suite lifecycle/DPAPI/journal adapters; normalize imported guidance into a derived PNG as source controller does; source original retained; budget per cache miss and generation attempt."
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiPostProcessor.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiPostProcessor.kt",
+      "sourceSha256": "a89dc93d7c3626b24eb0d5a4f727657d7bce6b0c4b9e29d77ea09c6a87bf9e57",
+      "sha256": "c5d3f7af0aa07592ec64fe8763c41c8d018046476bb378272b81d54b0bd6f2cb",
+      "adaptation": "Suite DPAPI callback and explicit per-attempt admission; retain every final in AssetStore before subsequent output checks; exact source raster, Enhance/Upscale request, cost and validation policies."
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopImagePostProcessPanel.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopImagePostProcessPanel.kt",
+      "sourceSha256": "42496847830a84661bb8c9489e43614072d1b462d1ed39b657b5da29993a7cc0",
+      "sha256": "e02bb1f33cd16ef87108daddf4512df68b92fd5cf06102dd36609898bbdea05f",
+      "adaptation": "Same source controls, options, cost eligibility and comparison; Suite immutable asset reader and controlled temporary metadata snapshot; controller task journal replaces Desktop task flow; clipboard adapter retains file bytes."
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopImageZoomSurface.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopImageZoomSurface.kt",
+      "sourceSha256": "9d54bc77ad7070f9fadc5cccf36d89412bd95e986e890e1f90ea547bf713ed21",
+      "sha256": "9d54bc77ad7070f9fadc5cccf36d89412bd95e986e890e1f90ea547bf713ed21",
+      "adaptation": "Exact source"
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopApngPlayback.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopApngPlayback.kt",
+      "sourceSha256": "3cf5d297e03fcc89874324c00250008baa43d456224e0fda85ebf26face941fb",
+      "sha256": "3cf5d297e03fcc89874324c00250008baa43d456224e0fda85ebf26face941fb",
+      "adaptation": "Exact source"
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopImageViewer.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopOwnedImage.kt",
+      "sourceSha256": "bad4294d2c088901f00954382f14450a4d489ea8344ca60055284e4ed00100b0",
+      "sha256": "7768135bb14d6cca0a65342c898757069e16301fc3a4cbf0ff9214c5f1c1da67",
+      "adaptation": "Exact imports and DesktopOwnedImage/display bitmap functions; omit unrelated chat/controller consumers"
+    },
+    {
+      "source": "app/desktopApp/src/test/kotlin/com/example/chatbar/desktop/DesktopUnifiedViewerTest.kt",
+      "target": "modules/studio-desktop/src/test/kotlin/com/example/chatbar/desktop/SourceZoomSurfaceTest.kt",
+      "sourceSha256": "ea7d5b27d84e69b36ebc2ae2546ae6000dbb6a9535232303aa211a1aed3f1182",
+      "sha256": "53eb5778f4fa00c0d0ac658d5ab2469b2c3a73327a307ef50a7fed30339fe68e",
+      "adaptation": "Exact helper and double-click/scroll rendered-source regression; class renamed, unrelated app fixtures excluded"
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopAuxiliaryImageUnderstanding.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioVision.kt",
+      "sourceSha256": "8fc2023b97cfe45d7ae223c43db0203df7ffea28c51c6edfb9e75fff45c0aa24",
+      "adaptation": "Exact ImageUnderstandingService/resolver; Suite credential-free snapshot and DPAPI hydration; same description prompt/transport policy",
+      "sha256": "01e2ebf496d9b0167b07ea7ed57a3659cf1ff4b7f05197e01beccbf8340189f7"
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiStudioPanel.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/MetadataWorkspace.kt",
+      "sourceSha256": "c2f2379ac2dc54312ef3c026e01f2e589658127974ce0847a5f5a1ce8ec4c82f",
+      "adaptation": "Same metadata field switches and authority merge; Suite diagnostics, proposed values, durable asset IDs",
+      "sha256": "a8595e7917594da25779a9b7358594f1ed3192bc57146f80f1a8fc2a4645c566"
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiStudioPanel.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/ImageCardChoice.kt",
+      "sourceSha256": "c2f2379ac2dc54312ef3c026e01f2e589658127974ce0847a5f5a1ce8ec4c82f",
+      "adaptation": "Image-related card fields only with confirmation; no Desktop account/chat store",
+      "sha256": "3b0ace90aa62275c3fa94705e1a11e33102a9db158b1ba9ef9cd5f359ef28882"
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopImageViewer.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioAssetViewer.kt",
+      "sourceSha256": "bad4294d2c088901f00954382f14450a4d489ea8344ca60055284e4ed00100b0",
+      "adaptation": "Suite asset-ID navigation/byte export plus exact source zoom/animation surface",
+      "sha256": "3da52985a156e8dd26a434dbdde61949f520cbb8d119059f957fa3687e37606d"
     }
   ]
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.MetadataWorkflowTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-21T05:48:40.948Z" hostname="DD1" time="3.392">
+  <properties/>
+  <testcase name="embeddedImageRetainedAndUsedWithoutMutatingOriginal" classname="io.github.misakapiano.ccbstudio.desktop.MetadataWorkflowTest" time="0.794"/>
+  <testcase name="missingMalformedUnsupportedAndReadFailureAreDistinct" classname="io.github.misakapiano.ccbstudio.desktop.MetadataWorkflowTest" time="0.041"/>
+  <testcase name="historyReuseChecksIdentityAndRetainsOriginal" classname="io.github.misakapiano.ccbstudio.desktop.MetadataWorkflowTest" time="0.649"/>
+  <testcase name="actualMetadataUiPreviewApplyUndoAndRestart" classname="io.github.misakapiano.ccbstudio.desktop.MetadataWorkflowTest" time="1.908"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -11,6 +11,8 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogWindow
 import androidx.compose.ui.window.rememberDialogState
@@ -67,7 +69,7 @@ internal fun DesktopImageToolsDialog(source: ByteArray, picker: DesktopFilePicke
             StatusText(status)
             Box(Modifier.weight(1f).fillMaxWidth(), contentAlignment = androidx.compose.ui.Alignment.Center) {
                 var start by remember { mutableStateOf(Offset.Zero) }
-                Box(Modifier.aspectRatio(dimensions.first.toFloat() / dimensions.second).fillMaxSize().pointerInput(current, maskMode, paintMode, brush, fullSize, busy) {
+                Box(Modifier.aspectRatio(dimensions.first.toFloat() / dimensions.second).fillMaxSize().semantics { contentDescription = "图像工具画布" }.pointerInput(current, maskMode, paintMode, brush, fullSize, busy) {
                     fun point(position: Offset) = Offset((position.x / size.width).coerceIn(0f, 1f), (position.y / size.height).coerceIn(0f, 1f))
                     detectDragGestures(onDragStart = { start = point(it); stroke.clear(); if (!busy) { checkpoint(); stroke += start.x to start.y } },
                         onDragEnd = {

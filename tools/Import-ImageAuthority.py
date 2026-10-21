@@ -16,7 +16,8 @@ SEEDS = ['domain/prompt/NovelAiPromptAuthority.kt', 'domain/image/NovelAiPromptD
          'domain/image/NovelAiFocusedInpaintPlanner.kt', 'domain/image/NovelAiUpscaleService.kt',
          'domain/image/ImageCanvasHistory.kt', 'domain/image/NovelAiFocusedMaskPixels.kt',
          'domain/image/NovelAiPixelResampler.kt', 'domain/image/ImageCropMath.kt',
-         'domain/image/NovelAiInpaintPixelPolicy.kt']
+         'domain/image/NovelAiInpaintPixelPolicy.kt', 'domain/card/CardTransferModels.kt',
+         'domain/card/PngTextChunks.kt']
 TESTS = ['NovelAiDesignerTransportTest', 'NovelAiImageModelResolutionTest',
          'NovelAiImageGuidanceTest', 'NovelAiStudioRequestTest', 'NovelAiImageRetryTest',
          'NovelAiPngMetadataReaderTest', 'NovelAiV5TextPromptPolicyTest',

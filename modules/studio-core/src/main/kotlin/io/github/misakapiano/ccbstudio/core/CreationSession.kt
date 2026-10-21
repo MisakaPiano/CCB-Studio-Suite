@@ -61,7 +61,7 @@ class CreationSession(private val workspace: StudioWorkspace) {
                 // Mirrors pinned NovelAiDesignTurnRunner's orchestration; repository is the Suite journal.
                 val index=conversation.turns.lastIndex; val baseline=conversation.revisionBaselineFor(index)
                 val context=conversation.designContext
-                val model=ModelConfig(account.id,account.alias,account.endpoint,"",account.model,createdAt=1)
+                val model=account.modelConfig()
                 val result=if(baseline==null) designer.designForPromptToolDetailed(
                     imageDescription=turn.userText,characterPrompt=context.characterPrompt,
                     characterImagePrompts=context.characterImagePrompts.map {it.name to it.prompt},

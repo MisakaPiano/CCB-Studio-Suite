@@ -1,0 +1,28 @@
+{
+  "phase": "UX-R1b-full-surface-regression",
+  "startedUtc": "2026-10-21T05:50:27.082833+00:00",
+  "seconds": 98.693,
+  "exitCode": 1,
+  "tests": 167,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "FAILED",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":image-authority:test",
+    ":studio-core:test",
+    ":studio-desktop:test"
+  ],
+  "baseCommit": "74c30d85eb1b917a7fdd9a9d4f87374396bd544d",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

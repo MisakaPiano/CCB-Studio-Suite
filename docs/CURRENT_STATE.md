@@ -1,3 +1,7 @@
+## UX-R1b创作与回用进度（2026-10-21）
+
+[执行证据](audits/UX_R1B_CREATION.md)：desktop完整39项新PASS及分发构建成功；前次authority99/core30实际PASS、整体FAILED保留。反推/后处理/元数据/角色卡/来源查看器已接入；原生视觉及提供者效果NOT TESTED，PRODUCT_HOLD。继续TypeSet源样本与R2–R4。
+
 ## UX-R1b图像引导与Q09进度（2026-10-21）
 
 [执行与保全证据](audits/UX_R1B_GUIDANCE.md)：155项新执行PASS；Q09来源Canvas与保存重开、聚焦原始响应/合成副本分离、大请求引用及备份恢复已测。R1b其他功能继续实施，原生视觉NOT TESTED，PRODUCT_HOLD。

@@ -1,3 +1,5 @@
+[UX-R1b创作/回用检查点](audits/UX_R1B_CREATION.md)：39 desktop实际PASS；保留17次构建/测试运行。继续完整UX恢复，非RC。
+
 # 当前执行：UX恢复连续实施
 
 [正式授权合同](../tasks/UX_RECOVERY_CONTINUOUS.md) · [源样本/Q09补正](ux/TYPESET_REFERENCE_VALIDATION.md) · [75项实现证据台账](ux/ACTION_IMPLEMENTATION.json)。UX-R0审查通过不等于产品通过，当前PRODUCT HOLD。

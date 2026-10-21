@@ -20,6 +20,8 @@ import com.example.chatbar.domain.image.*
 import io.github.misakapiano.ccbstudio.core.*
 import io.github.misakapiano.ccbstudio.assets.AssetStore
 import kotlinx.coroutines.*
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.*
 import java.nio.file.*
 import javax.swing.JFileChooser
 
@@ -51,6 +53,8 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     private var pending:Job?=null
     private val admission=admissionOverride?:BudgetAdmission(LiveRequestBudget(budgetRoot)){wait -> if(wait>0)message="请求预算等待 ${(wait+999)/1000} 秒 · 可停止"}
     private val guidanceRoot=budgetRoot.parent.resolve("guidance")
+    private val metadataRoot=budgetRoot.parent.resolve("metadata-snapshots")
+    private val modelRoot=budgetRoot.parent.resolve("model-snapshots")
     private fun guidanceFor(account:AccountProfile?)=DesktopNovelAiGuidance(guidanceRoot,::readAsset,{
         vault.use(requireNotNull(account?.secretRef)){it.decodeToString()}
     },admission,http)
@@ -100,9 +104,123 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
         }finally{busy=false}
     }
     fun vibeMisses()=guidanceFor(null).vibeCacheMisses(draft)
+    fun <T> metadataFile(id:String,read:(Path)->T):T {
+        Files.createDirectories(metadataRoot)
+        val path=metadataRoot.resolve("${newId()}.png")
+        writeNewForced(path,workspace.bytes(id))
+        try{return read(path)}finally{Files.deleteIfExists(path)}
+    }
+    fun postProcess(parent:String,bytes:ByteArray,tab:NovelAiPostProcessTab,source:NovelAiEnhanceSource?,options:NovelAiEnhanceOptions,
+        onComplete:(ByteArray)->Unit,onStatus:(String)->Unit)=run(tab.label) {
+        val account=state.accounts.single{it.id==naiId && it.service=="NAI"}
+        workspace.beginTask().use {
+            var job=JobRecord(account=account,recipe="",state="QUEUED",detail="POSTPROCESS:${tab.name}")
+            fun save()=workspace.operation{workspace.save(workspace.state.copy(jobs=workspace.state.jobs.filterNot{it.id==job.id}+job))}
+            save()
+            val captured=http.newBuilder().addInterceptor{chain->
+                val body=okio.Buffer().also{chain.request().body!!.writeTo(it)}.readUtf8()
+                val retained=RequestEvidence(workspace,parent).retainRequest(Json.parseToJsonElement(body))
+                val receipt=buildJsonObject{put("version",3);put("kind",tab.name);put("parentAsset",parent);put("authoritySha",AUTHORITY_SHA);put("wireSha256",sha256(body.toByteArray()));put("request",retained);put("account",documentJson.encodeToJsonElement(account))}.toString()
+                require(receipt.toByteArray().size<=1024*1024)
+                job=job.copy(state="RUNNING",recipe=receipt);save();chain.proceed(chain.request())
+            }.build()
+            try {
+                val processor=DesktopNovelAiPostProcessor({vault.use(requireNotNull(account.secretRef)){it.decodeToString()}},admission,captured){final->
+                    val id=workspace.importImage("${tab.name}-${job.id}.png",final,job.recipe)
+                    job=job.copy(results=job.results+id);save();current=id;assets=visibleAssets()
+                }
+                val output=processor.process(bytes,tab,source,options,usage,onStatus)
+                job=job.copy(state="COMPLETED");save();onComplete(output)
+            } catch(e:Exception) {
+                job=job.copy(state=if(e is CancellationException)"CANCELLED"else"FAILED",detail="${tab.name} 未完成；已提交原件保留；未自动重发")
+                withContext(NonCancellable){save()};throw e
+            }
+        }
+    }
+    fun reverseImage(id:String)=run("图片反推") {
+        val account=state.accounts.single{it.id==llmId && it.service=="LLM"};val launch=draft
+        val bytes=workspace.bytes(id);DesktopImageEditing.requireStatic(bytes);DesktopImageEditing.decode(bytes).flush()
+        workspace.beginTask().use {
+            var job=JobRecord(account=account,recipe=buildJsonObject{put("kind","REVERSE");put("sourceAsset",id);put("targetModel",launch.selectedModel.apiId)}.toString(),state="RUNNING")
+            fun save()=workspace.operation{workspace.save(workspace.state.copy(jobs=workspace.state.jobs.filterNot{it.id==job.id}+job))}
+            save();stream="";reasoning="";session.update{it.copy(reverseCandidate=null)};state=workspace.state
+            try {
+                val understanding=studioVision(modelRoot.resolve(newId()),state.accounts,vault,admission,http)
+                val designer=infrastructure.designer(StudioTextTransport(account,vault,admission,http),understanding)
+                val plan=designer.designForPromptTool(imageDescription="",characterPrompt="",finalPromptRequirement=launch.extraRequirement,
+                    imageBase64s=listOf(java.util.Base64.getEncoder().encodeToString(bytes)),model=account.modelConfig(),targetImageModel=launch.selectedModel,
+                    referenceImageInstruction=com.example.chatbar.domain.prompt.NovelAiPromptAuthority.novelAiImageReversePromptUser(launch.selectedModel.displayName),
+                    excludeStyle=false,onContentDelta={stream=it},onReasoningDelta={reasoning=it})
+                session.update{it.copy(reverseCandidate=ReverseCandidate(id,account.id,launch.selectedModel,plan))}
+                job=job.copy(state="COMPLETED");save()
+            }catch(e:Exception){job=job.copy(state=if(e is CancellationException)"CANCELLED"else"FAILED");withContext(NonCancellable){save()};throw e}
+        }
+    }
+    fun applyReverse()=run("应用反推候选") {
+        session.editDraft{it.applyReversePromptPlan(requireNotNull(workspace.state.creation!!.reverseCandidate).plan)}
+        draft=workspace.state.creation!!.draft;section="Prompt";view="创作"
+    }
+    fun importMetadata(id:String,selection:NovelAiStudioMetadataSelection)=run("导入元数据") {
+        workspace.beginTask().use {
+            val metadata=metadataFile(id){DesktopImageMetadata.readStudio(it.toString())} ?: throw DataProblem("METADATA_UNAVAILABLE","无可导入的元数据")
+            var next=draft.applyImportedMetadata(metadata,selection)
+            if(selection.imageGuidance && metadata.imageGuidance.hasAny) {
+                fun materialize(encoded:String?):NovelAiStudioAssetRef?=encoded?.let {
+                    require(it.length<=DesktopImageEditing.MAX_BYTES*2)
+                    val bytes=java.util.Base64.getDecoder().decode(it)
+                    DesktopImageEditing.requireStatic(bytes)
+                    val raster=DesktopImageEditing.decode(bytes)
+                    val normalized=try{DesktopImageEditing.png(raster)}finally{raster.flush()}
+                    // Preserve embedded source bytes as well as its normalized consumer representation.
+                    val source=workspace.importDerived("Metadata-source.png",bytes,id)
+                    assetRef(if(bytes.contentEquals(normalized))source else workspace.importDerived("Metadata-guidance.png",normalized,source))
+                }
+                val g=metadata.imageGuidance
+                next=next.copy(imageGuidance=next.imageGuidance.copy(baseImage=materialize(g.baseImageBase64),maskImage=materialize(g.maskBase64),
+                    preciseReference=next.imageGuidance.preciseReference.copy(asset=materialize(g.preciseImageBase64)),focusedInpaintRegion=null))
+            }
+            session.editDraft{next};draft=workspace.state.creation!!.draft;view="创作";section="Prompt"
+        }
+    }
+    fun reuseHistory(id:String,mode:NovelAiHistoryApplyMode,confirmed:Boolean=false)=run("复用历史参数") {
+        workspace.beginTask().use {
+            val history=historyRecipe(id) ?: throw DataProblem("MISSING_RECIPE","没有可复用的生成记录")
+            val recipe=history.first
+            require(mode!=NovelAiHistoryApplyMode.FULL || !recipe.imageGuidance.hasMissingHistorySource()) {"缺少原始引导，不能完整复现"}
+            require(confirmed || !recipe.requiresImageGuidanceReuseWarning(mode)) {"需确认缺失引导警告"}
+            session.editDraft{it.applyHistoryRecipe(recipe,history.second,mode)};draft=workspace.state.creation!!.draft;view="创作"
+        }
+    }
+    fun historyRecipe(id:String):Pair<NovelAiGenerationRecipe,Long>? {
+        val job=workspace.state.jobs.lastOrNull{id in it.results || id in it.composedResults} ?: return null
+        val json=Json.parseToJsonElement(job.recipe).jsonObject
+        if(json["kind"]!=null)return null
+        val receipt=documentJson.decodeFromString<GenerationReceipt>(job.recipe)
+        receipt.expandedRequest(workspace) // Fail closed when referenced request evidence is unavailable or corrupt.
+        val recipe=receipt.recipeForReuse(workspace)
+        val index=job.results.indexOf(id).takeIf{it>=0} ?: workspace.catalog().single{it.request().id().toString()==id}.request().parentId()?.let{job.results.indexOf(it.toString())} ?: -1
+        require(index>=0)
+        return recipe to recipe.settings.seed+index
+    }
     init {if(current==null)current=assets.lastOrNull()?.request()?.id()?.toString()}
     private fun changed(){saved=false;pending?.cancel();pending=scope.launch {delay(350);try{flush()}catch(e:Exception){problem="草稿未能保存，保留当前输入；请先处理数据错误"}}}
-    fun edit(change:(NovelAiStudioDraft)->NovelAiStudioDraft){draft=change(draft);changed()}
+    fun edit(change:(NovelAiStudioDraft)->NovelAiStudioDraft){draft=workspace.state.creation!!.resolvedDraft(change(draft));changed()}
+    fun selectImageCard(card:ImageCardSource)=run("应用角色卡图像字段") {
+        session.update{old->
+            val cards=old.imageCards.filterNot{it.id==card.id}+card
+            val next=old.copy(imageCards=cards)
+            next.change(next.resolvedDraft(old.draft.importCharacterCardPromptSources(card.id,card.stylePrompt,card.negativePrompt,card.characters)))
+        };draft=workspace.state.creation!!.draft
+    }
+    fun defaults(model:NovelAiImageModel?=null,translated:Boolean?=null)=run("保存创作偏好") {
+        session.update{old->val next=old.copy(defaultImageModel=model?:old.defaultImageModel,translatedTags=translated?:old.translatedTags);next.copy(draft=next.resolvedDraft(next.draft))}
+        draft=workspace.state.creation!!.draft
+    }
+    fun clearPromptDraft()=edit{it.clearPrompts(workspace.state.creation!!.imageCards.firstOrNull{card->card.id==it.importedCharacterCardId}?.negativePrompt)}
+    fun pastePrompt(text:String)=run("粘贴正向 Prompt") {
+        require(text.length<=100000)
+        session.editDraft{NovelAiStudioPromptClipboard.apply(text,it)};draft=workspace.state.creation!!.draft
+    }
     fun input(value:String){composer=value;changed()}
     fun attach(value:Boolean){attach=value;changed()}
     fun chooseAccount(service:String,id:String){if(service=="LLM")llmId=id else {naiId=id;usage=null;usageAt=null};changed()}
@@ -167,9 +285,9 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
             if(naiId==account.id){usage=result;usageAt=System.currentTimeMillis()}
         }
     }
-    fun saveAccount(existing:AccountProfile?,alias:String,service:String,endpoint:String,model:String,key:String)=run("保存账户") {
+    fun saveAccount(existing:AccountProfile?,alias:String,service:String,endpoint:String,model:String,key:String,isMultimodal:Boolean=false,visionAccountId:String?=null)=run("保存账户") {
         val ref=if(key.isNotBlank()) {val bytes=key.trim().toByteArray();try{vault.put(bytes)}finally{bytes.fill(0)}} else existing?.secretRef
-        val a=AccountProfile(id=existing?.id?:newId(),alias=alias,service=service,provider=if(service=="NAI")"NOVELAI" else "OPENAI_COMPATIBLE",endpoint=endpoint.trim().trimEnd('/'),model=model,secretRef=ref)
+        val a=AccountProfile(id=existing?.id?:newId(),alias=alias,service=service,provider=if(service=="NAI")"NOVELAI" else "OPENAI_COMPATIBLE",endpoint=endpoint.trim().trimEnd('/'),model=model,secretRef=ref,isMultimodal=service=="LLM"&&isMultimodal,visionAccountId=visionAccountId.takeIf{service=="LLM"&&!isMultimodal})
         a.validate();workspace.operation{workspace.save(workspace.state.copy(accounts=workspace.state.accounts.filterNot{it.id==a.id}+a))}
         if(service=="LLM")llmId=a.id else naiId=a.id
         session.update{it.copy(llmAccountId=llmId,naiAccountId=naiId)}
@@ -211,6 +329,7 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
     fun publish(){chrome.updateLayout(DesktopChromeLayout(width,height,title,buttons.values.toList(),captions.toMap(),icon))}
 }
 @Composable internal fun Workbench(c:WorkbenchController,chrome:DesktopWindowChrome,closing:Boolean) {
+    Surface(color=Ink,contentColor=DesktopBootstrapColors.foreground) {
     val r=remember{WorkbenchChrome(chrome)};val native by chrome.state.collectAsState()
     BoxWithConstraints(Modifier.fillMaxSize()) {
     val compact=maxWidth<760.dp
@@ -236,28 +355,38 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
     }
     }
     c.problem?.let {AlertDialog(onDismissRequest={c.problem=null},title={Text("操作回执")},text={SelectionContainer{Text(it)}},confirmButton={TextButton(onClick={c.problem=null}){Text("关闭")}})}
+    }
 }
 
 @Composable private fun CreationWorkspace(c:WorkbenchController) {
-    var translated by remember{mutableStateOf(false)}
+    val translated=c.state.creation!!.translatedTags
+    var paste by remember{mutableStateOf<String?>(null)}
+    var clear by remember{mutableStateOf(false)}
+    val tokens by produceState<NovelAiPromptTokenUsage?>(null,c.draft.toPromptPlan(),c.draft.selectedModel){value=runCatching{c.infrastructure.countTokens(c.draft)}.getOrNull()}
     DesktopStudioWorkspace(compact={expand -> StudioAction("展开图片预览",onClick=expand)},editor={
         StudioActions{StudioAction("AI 设计"){c.view="AI 设计"};StudioAction("导入图片",!c.busy){c.importImages()};StudioAction("历史图库"){c.view="图库"}}
         Spacer(Modifier.height(12.dp));StudioChips("",listOf("Prompt","角色","参数","图像引导"),c.section,{it}){c.section=it}
         Spacer(Modifier.height(12.dp))
         when(c.section) {
             "角色"->DesktopStudioCharacters(c.draft,c.infrastructure,translated,c::edit)
-            "参数"->StudioGenerationSettings(c.draft,c::edit)
+            "参数"->{
+                CompactChoice("全局默认生图模型",NovelAiImageModel.entries,c.state.creation!!.defaultImageModel,{it.displayName}){c.defaults(model=it)}
+                StudioGenerationSettings(c.draft,c::edit)
+            }
             "图像引导"->GuidanceWorkspace(c)
             else->{
-                StudioSwitch("中文注释",translated){translated=!translated}
+                StudioSwitch("中文注释",translated){c.defaults(translated=!translated)}
+                ImageCardChoice(c)
                 StudioPromptField("画风",c.draft.stylePrompt,c.infrastructure,translated){v->c.edit{it.copy(stylePrompt=v)}}
                 Spacer(Modifier.height(10.dp));StudioPromptField("基础 Prompt",c.draft.basePrompt,c.infrastructure,translated){v->c.edit{it.copy(basePrompt=v)}}
                 Spacer(Modifier.height(10.dp));StudioPromptField("补充 Prompt",c.draft.extraPrompt,c.infrastructure,translated){v->c.edit{it.copy(extraPrompt=v)}}
                 Spacer(Modifier.height(10.dp));StudioPromptField("负向 Prompt",c.draft.negativePrompt,c.infrastructure,translated){v->c.edit{it.copy(negativePrompt=v)}}
                 Spacer(Modifier.height(12.dp));StudioActions{StudioAction("撤销",!c.busy && c.state.creation!!.undo.isNotEmpty()){c.undo()};StudioAction("重做",!c.busy && c.state.creation!!.redo.isNotEmpty()){c.undo(true)};StudioAction("复制正向"){desktopCopyText(c.draft.copyPositivePrompt())}}
+                StudioActions {StudioAction("粘贴并预览",!c.busy){runCatching{java.awt.Toolkit.getDefaultToolkit().systemClipboard.getData(java.awt.datatransfer.DataFlavor.stringFlavor) as? String}.onSuccess{paste=it}.onFailure{c.problem="剪贴板文字暂不可读取"}};StudioAction("清空 Prompt",!c.busy){clear=true}}
             }
         }
     },footer={Column {
+        tokens?.let{StatusText("正向 ${it.positive}/${it.limit} · 负向 ${it.negative}/${it.limit}",if(it.positive>it.limit||it.negative>it.limit)DesktopBootstrapColors.warning else Quiet)}
         AccountChoice(c,"NAI")
         val cost=runCatching{NovelAiImageCostEstimator.estimate(c.draft.activeSettings,c.usage,c.draft.imageGuidance,c.vibeMisses())}.getOrNull()
         StatusText(cost?.let{"预计 ${it.anlas} Anlas · ${it.kind}"}?:"参数无效，暂无法估算")
@@ -266,6 +395,8 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
         StatusText("${c.draft.selectedModel.displayName} · ${c.draft.activeSettings.count} 张 · 实际账户请求；遵守全局调用预算")
         StudioAction(if(c.busy)"停止" else "生成图片",enabled=c.busy||c.naiId!=null,style=StudioActionStyle.PRIMARY){if(c.busy)c.active?.cancel() else c.generate()}
     }},preview={rail -> ResultPreview(c,rail)})
+    paste?.let{text->AlertDialog(onDismissRequest={paste=null},title={Text("确认粘贴覆盖")},text={SelectionContainer{Text(text,Modifier.heightIn(max=400.dp).verticalScroll(rememberScrollState()))}},confirmButton={TextButton(onClick={c.pastePrompt(text);paste=null}){Text("确认覆盖，可撤销")}},dismissButton={TextButton(onClick={paste=null}){Text("取消")}})}
+    if(clear)AlertDialog(onDismissRequest={clear=false},title={Text("清空 Prompt？")},text={Text("保留图像引导和生成设置。可撤销恢复。")},confirmButton={TextButton(onClick={c.clearPromptDraft();clear=false}){Text("确认清空")}},dismissButton={TextButton(onClick={clear=false}){Text("取消")}})
 }
 
 @Composable private fun AccountChoice(c:WorkbenchController,service:String) {
@@ -274,25 +405,54 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
     else CompactChoice(service,accounts,accounts.firstOrNull{it.id==if(service=="LLM")c.llmId else c.naiId},{"${it.alias} · ${it.model}"}){c.chooseAccount(service,it.id)}
 }
 @Composable private fun AssetImage(c:WorkbenchController,id:String?,modifier:Modifier) {
-    val bitmap by produceState<ImageBitmap?>(null,id){value=withContext(Dispatchers.IO){if(id==null)null else runCatching{val image=EditorRenderer.decode(c.workspace.bytes(id));try{image.toComposeImageBitmap()}finally{image.flush()}}.getOrNull()}}
-    Box(modifier,contentAlignment=Alignment.Center){bitmap?.let{Image(it,"原始图片预览",Modifier.fillMaxSize(),contentScale=ContentScale.Fit)}?:Text("生成或导入图片后在这里查看",color=Quiet)}
+    if(id!=null)DesktopOwnedImage("asset:$id",c::readAsset,modifier)
+    else Box(modifier,contentAlignment=Alignment.Center){Text("生成或导入图片后在这里查看",color=Quiet)}
 }
 @Composable private fun ResultPreview(c:WorkbenchController,rail:Boolean) {
     var toolImage by remember{mutableStateOf<Pair<String,ByteArray>?>(null)}
+    var processing by remember{mutableStateOf<String?>(null)}
+    var reversing by remember{mutableStateOf(false)}
+    var metadata by remember{mutableStateOf<String?>(null)}
+    var viewing by remember{mutableStateOf<List<String>?>(null)}
+    var initial by remember{mutableStateOf(0)}
     val scope=rememberCoroutineScope()
     val interim by produceState<ImageBitmap?>(null,c.intermediate){value=withContext(Dispatchers.IO){c.intermediate?.let{bytes->runCatching{val decoded=EditorRenderer.decode(bytes);try{decoded.toComposeImageBitmap()}finally{decoded.flush()}}.getOrNull()}}}
     Column(Modifier.fillMaxSize()) {
         if(!rail)c.current?.let{id->StudioActions{
             StudioAction("图像工具",!c.busy){scope.launch{toolImage=id to withContext(Dispatchers.IO){c.workspace.bytes(id)}}}
             StudioAction("用于图像引导",!c.busy){c.section="图像引导"}
+            StudioAction("增强 / 放大",!c.busy){processing=id}
+            StudioAction("反推 Prompt",!c.busy && c.llmId!=null){reversing=true;c.reverseImage(id)}
+            StudioAction("元数据与复用",!c.busy){metadata=id}
+            StudioAction("全图查看"){viewing=c.assets.map{it.request().id().toString()};initial=viewing!!.indexOf(id).coerceAtLeast(0)}
         }}
-        if(!rail) {if(interim!=null && c.busy) {StatusText("生成中预览 · 尚未保存为原件");Image(interim!!,"生成中预览",Modifier.weight(1f).fillMaxWidth(),contentScale=ContentScale.Fit)}else AssetImage(c,c.current,Modifier.weight(1f).fillMaxWidth())}
+        if(!rail) {if(interim!=null && c.busy) {StatusText("生成中预览 · 尚未保存为原件");Image(interim!!,"生成中预览",Modifier.weight(1f).fillMaxWidth(),contentScale=ContentScale.Fit)}else c.current?.let{id->DesktopImageZoomSurface("asset:$id",c::readAsset,Modifier.weight(1f).fillMaxWidth(),onOpenViewer={viewing=c.assets.map{it.request().id().toString()};initial=viewing!!.indexOf(id).coerceAtLeast(0)})}?:AssetImage(c,null,Modifier.weight(1f).fillMaxWidth())}
         val modifier=if(rail)Modifier.fillMaxSize() else Modifier.fillMaxWidth().height(92.dp)
         if(rail)LazyColumn(modifier){items(c.assets.asReversed(),key={it.request().id().toString()}){a->val id=a.request().id().toString();AssetImage(c,id,Modifier.size(80.dp).clickable{c.current=id})}}
         else LazyRow(modifier){items(c.assets.asReversed(),key={it.request().id().toString()}){a->val id=a.request().id().toString();AssetImage(c,id,Modifier.padding(4.dp).size(84.dp).border(if(c.current==id)2.dp else 0.dp,Gold).clickable{c.current=id})}}
         StatusText("${c.assets.size} 份原件 · 原始字节保全")
     }
     toolImage?.let{(id,bytes)->DesktopImageToolsDialog(bytes,c.picker,{toolImage=null},onProcessedImage={c.saveToolCopy(id,it)})}
+    viewing?.let{ids->StudioAssetViewer(c,ids,initial){viewing=null}}
+    metadata?.let{id->DesktopImageToolWindow("元数据与历史复用",{if(!c.busy)metadata=null}){MetadataWorkspace(c,id){metadata=null}}}
+    processing?.let{id->DesktopImageToolWindow("增强与放大",{if(!c.busy)processing=null}) {
+        Column(Modifier.fillMaxSize().background(Ink).padding(16.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(10.dp)) {
+            DesktopImagePostProcessPanel(id,c){processing=null}
+            StudioAction("返回创作",!c.busy){processing=null}
+        }
+    }}
+    if(reversing)DesktopImageToolWindow("图片反推候选",{if(!c.busy)reversing=false}) {
+        Column(Modifier.fillMaxSize().background(Ink).padding(16.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(10.dp)) {
+            StatusText(c.message);if(c.stream.isNotBlank())SelectionContainer{Text(c.stream)}
+            if(c.reasoning.isNotBlank())StudioDisclosure("思考过程"){SelectionContainer{Text(c.reasoning)}}
+            c.state.creation!!.reverseCandidate?.let{candidate->
+                StatusText("来源 ${candidate.sourceId.take(8)} · ${candidate.targetModel.displayName}")
+                DesktopDesignResult(NovelAiDesignReply(candidate.plan,candidate.targetModel,candidate.accountId,false))
+                StudioAction("确认应用反推候选",!c.busy){c.applyReverse();reversing=false}
+            }
+            StudioAction(if(c.busy)"停止"else"返回创作"){if(c.busy)c.active?.cancel()else reversing=false}
+        }
+    }
 }
 
 @Composable private fun DesignWorkspace(c:WorkbenchController) {
@@ -301,6 +461,10 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
     Column(Modifier.fillMaxSize().padding(16.dp)) {
         StudioActions {StudioAction("返回创作"){c.view="创作"};StudioAction("新对话",!c.busy){c.newConversation()};AccountChoice(c,"LLM")}
         Spacer(Modifier.height(8.dp));CompactChoice("设计历史",creation.conversations,conversation,{it.title}){c.selectConversation(it.id)}
+        StudioDisclosure("设计设置") {
+            StudioSwitch("V5 自然语言设计",c.draft.aiDesignNaturalLanguageMode){c.edit{it.copy(aiDesignNaturalLanguageMode=!it.aiDesignNaturalLanguageMode)}}
+            DesktopDesignField("额外要求",c.draft.extraRequirement,"extraRequirement"){value->c.edit{it.copy(extraRequirement=value)}}
+        }
         LazyColumn(Modifier.weight(1f).fillMaxWidth(),verticalArrangement=Arrangement.spacedBy(12.dp)) {
             items(conversation?.turns.orEmpty(),key={it.id}) {turn ->
                 var edit by remember{mutableStateOf(false)};var text by remember(turn.userText){mutableStateOf(turn.userText)}
@@ -358,16 +522,26 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
     var editing by remember{mutableStateOf<AccountProfile?>(null)}
     var alias by remember{mutableStateOf("")};var service by remember{mutableStateOf("LLM")}
     var endpoint by remember{mutableStateOf("https://api.siliconflow.cn/v1")};var model by remember{mutableStateOf("")};var secret by remember{mutableStateOf("")}
+    var multimodal by remember{mutableStateOf(false)};var visionId by remember{mutableStateOf<String?>(null)}
     Column(Modifier.fillMaxSize().padding(24.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(10.dp)) {
         Text("账户与模型",fontSize=22.sp);Text("凭据只保存在本机受保护存储。档案选择不会自动调用 API。")
-        c.state.accounts.forEach {a->StudioAction("${a.alias} · ${a.service} · ${a.model}"){editing=a;alias=a.alias;service=a.service;endpoint=a.endpoint;model=a.model;secret=""}}
-        StudioAction("新建档案"){editing=null;alias="";secret=""}
+        c.state.accounts.forEach {a->StudioAction("${a.alias} · ${a.service} · ${a.model}"){editing=a;alias=a.alias;service=a.service;endpoint=a.endpoint;model=a.model;secret="";multimodal=a.isMultimodal;visionId=a.visionAccountId}}
+        StudioAction("新建档案"){editing=null;alias="";secret="";multimodal=false;visionId=null}
         StudioChips("服务",listOf("LLM","NAI"),service,{it}){service=it;endpoint=if(it=="NAI")"https://image.novelai.net" else "https://api.siliconflow.cn/v1";model=if(it=="NAI")NovelAiImageModel.V4_5_FULL.apiId else ""}
         OutlinedTextField(alias,{alias=it},label={Text("档案名称")},modifier=Modifier.fillMaxWidth())
         OutlinedTextField(endpoint,{endpoint=it},label={Text("HTTPS API 地址")},enabled=service=="LLM",modifier=Modifier.fillMaxWidth())
         OutlinedTextField(model,{model=it},label={Text("模型 ID")},modifier=Modifier.fillMaxWidth())
+        if(service=="LLM") {
+            StudioSwitch("此模型支持图片输入",multimodal){multimodal=!multimodal}
+            if(!multimodal) {
+                val vision=c.state.accounts.filter{it.service=="LLM"&&it.isMultimodal&&it.id!=editing?.id}
+                CompactChoice("关联视觉模型",vision,vision.firstOrNull{it.id==visionId},{it.alias}){visionId=it.id}
+                if(visionId!=null)StudioAction("清除视觉关联"){visionId=null}
+                StatusText("图片反推需要可用视觉模型；未配置时明确失败，不以文字猜测图片。")
+            }
+        }
         OutlinedTextField(secret,{secret=it},label={Text(if(editing?.secretRef!=null)"新凭据（留空保留已有）"else"API 凭据")},visualTransformation=PasswordVisualTransformation(),modifier=Modifier.fillMaxWidth())
-        StudioAction("安全保存并选用",enabled=!c.busy && alias.isNotBlank() && model.isNotBlank() && (secret.isNotBlank()||editing?.secretRef!=null),style=StudioActionStyle.PRIMARY){c.saveAccount(editing,alias,service,endpoint,model,secret);secret=""}
+        StudioAction("安全保存并选用",enabled=!c.busy && alias.isNotBlank() && model.isNotBlank() && (secret.isNotBlank()||editing?.secretRef!=null),style=StudioActionStyle.PRIMARY){c.saveAccount(editing,alias,service,endpoint,model,secret,multimodal,visionId);secret=""}
         StudioAction("返回创作"){c.view="创作"}
     }
 }

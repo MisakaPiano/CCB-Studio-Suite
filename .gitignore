@@ -1,6 +1,7 @@
 .gradle/
 **/build/
 .idea/
+.kotlin/
 *.iml
 local.properties
 .reference-assets/

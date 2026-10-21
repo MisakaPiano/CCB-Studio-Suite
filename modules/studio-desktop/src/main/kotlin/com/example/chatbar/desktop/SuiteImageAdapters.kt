@@ -29,14 +29,6 @@ internal object DesktopBrandResources {
 @Composable internal fun DesktopImageToolControls(maxHeight:Dp,content:@Composable ColumnScope.()->Unit) {
     Column(Modifier.fillMaxWidth().heightIn(max=maxHeight).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(8.dp),content=content)
 }
-@Composable internal fun DesktopOwnedImage(identity:String,load:()->ByteArray,modifier:Modifier) {
-    val bytesLoader by rememberUpdatedState(load)
-    val bitmap by produceState<ImageBitmap?>(null,identity) {value=withContext(Dispatchers.IO){runCatching {
-        val raster=DesktopImageEditing.decode(bytesLoader(),1600)
-        try{raster.toComposeImageBitmap()}finally{raster.flush()}
-    }.getOrNull()}}
-    bitmap?.let{Image(it,"图像工具预览",modifier,contentScale=ContentScale.Fit)}
-}
 internal data class DesktopFileType(val label:String,val extensions:List<String>)
 internal class DesktopFilePicker {
     suspend fun pickSaveFile(type:DesktopFileType,name:String):Path?=withContext(Dispatchers.IO){

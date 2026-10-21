@@ -34,7 +34,9 @@ internal object DesktopBootstrapColors {
 @Composable internal fun desktopImageWindowIcon()=StudioBrand.painter
 @Composable internal fun rememberDesktopImageWindowSize(width:Dp,height:Dp)=remember(width,height){DpSize(width,height)}
 @Composable internal fun DesktopImageToolWindow(title:String,close:()->Unit,width:Dp=800.dp,height:Dp=700.dp,content:@Composable ()->Unit) {
-    DialogWindow(onCloseRequest=close,title=title,icon=StudioBrand.painter,state=rememberDialogState(width=width,height=height)) {content()}
+    DialogWindow(onCloseRequest=close,title=title,icon=StudioBrand.painter,state=rememberDialogState(width=width,height=height)) {
+        androidx.compose.material.Surface(color=DesktopBootstrapColors.background,contentColor=DesktopBootstrapColors.foreground,modifier=Modifier.fillMaxSize()){content()}
+    }
 }
 internal class DesktopChromeLayoutRecorder(private val observe:(LayoutCoordinates?)->Unit={}) {
     fun previewTitle(value:LayoutCoordinates)=observe(value)
@@ -51,8 +53,8 @@ internal class DesktopNovelAiInfrastructure(root:Path) {
     val translations=NovelAiPromptTranslationService(dictionary,tags)
     private val tokens=NovelAiPromptTokenCounter(::open)
     private val codex by lazy {NovelAiCodexCatalogParser(Json{ignoreUnknownKeys=true}).parse(open(NOVEL_AI_CODEX_ASSET_PATH).bufferedReader().use{it.readText()}).also {check(it.fatalError==null && it.errors.isEmpty())}}
-    fun designer(transport:NovelAiTextTransport)=NovelAiPromptDesigner(transport,
-        NovelAiTagResearchService(LlmNovelAiTagSearchPlanner(transport),tags,NovelAiCodexSearchEngine(codex.catalog)),NovelAiPromptPostProcessor(codex.catalog.rewriteRules))
+    fun designer(transport:NovelAiTextTransport,understanding:com.example.chatbar.domain.chat.ImageUnderstandingService?=null)=NovelAiPromptDesigner(transport,
+        NovelAiTagResearchService(LlmNovelAiTagSearchPlanner(transport),tags,NovelAiCodexSearchEngine(codex.catalog)),NovelAiPromptPostProcessor(codex.catalog.rewriteRules),{understanding})
     suspend fun countTokens(draft:NovelAiStudioDraft)=withContext(Dispatchers.IO){tokens.count(draft.toPromptPlan(),draft.selectedModel)}
     suspend fun closeAndDrain(){scope.coroutineContext[Job]?.cancelAndJoin()}
 }
