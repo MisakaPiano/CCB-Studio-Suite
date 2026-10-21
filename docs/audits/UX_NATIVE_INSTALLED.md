@@ -31,3 +31,7 @@ Gradle 两次实际 createDistributable 成功分别 20.029 / 16.401 秒，属�
 以上实际上传成功，逐个 metadata 回读确认 ID、名称、大小及指定父文件夹。连接器未返回远端散列；上述 SHA-256 为本地上传文件散列，完整重组也只声明本地实际验证。未导出私钥、凭据、数据根、私人 Prompt/图库或 TypeSet 原件。0.2.8 尚未上传 Drive。
 
 将两个分卷和说明 ZIP 下载到同一新目录，解压说明 ZIP，运行其中 Reassemble-Installer.ps1，可得到精确 0.2.7 安装包。此包供内部测试，尚不是最终 Windows RC；不把本记录当成 W1–W5 产品验收通过。
+
+## 2026-10-22 真人反馈增量
+
+用户对“在原生选择框点取消后，主窗口是否能正常点击和输入”明确回答“能，已经回到主窗口”。取消后返回与主窗口可操作登记为 PASS_USER_CONFIRMED；仅此窄项通过，不提升完整产品验收。此前 NOT TESTED 是该时点记录，原始 JSON / Drive 证据保持不变。新增原始答复见 [用户回执](evidence/UX_NATIVE_CANCEL_CONFIRMATION/USER_RECEIPT.json)。继续安装版备份恢复和更新验证。

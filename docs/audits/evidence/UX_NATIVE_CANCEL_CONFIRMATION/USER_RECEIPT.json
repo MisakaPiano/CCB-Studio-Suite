@@ -1,0 +1,18 @@
+{
+  "task": "UX_RECOVERY_CONTINUOUS",
+  "date": "2026-10-22",
+  "timezone": "Asia/Tokyo",
+  "sourceSha": "08733d5dcc97f47bc1bf813475c505a58391a4c7",
+  "version": "0.2.7-internal",
+  "question": "在原生选择框点「取消」后，主窗口是否能正常点击和输入？",
+  "userAnswer": "能，已经回到主窗口",
+  "status": "PASS_USER_CONFIRMED",
+  "scope": "Cancel from actual installed image import dialog returns to responsive main window",
+  "notCovered": [
+    "Manual file selection and import",
+    "Native backup restore destination selection",
+    "Restored second window",
+    "Version 7 to 8 update",
+    "Overall product acceptance"
+  ]
+}

@@ -1,6 +1,6 @@
 ## 原生选择框安装版观察（2026-10-22）
 
-[实际交付](audits/UX_NATIVE_INSTALLED.md)：固定源码 08733d5 的 0.2.7 安装/文件验证通过，用户截图确认真实 Windows 原生导入框；Drive 分卷与证据已上传并回读。取消焦点/恢复第二窗口及 0.2.8 更新继续，PRODUCT_HOLD / NOT RC。
+[实际交付](audits/UX_NATIVE_INSTALLED.md)：固定源码 08733d5 的 0.2.7 安装/文件验证通过，用户截图确认真实 Windows 原生导入框；Drive 分卷与证据已上传并回读。取消返回已由用户确认；恢复第二窗口及 0.2.8 更新继续，PRODUCT_HOLD / NOT RC。
 
 ## Windows 原生选择与分步恢复（2026-10-22）
 
