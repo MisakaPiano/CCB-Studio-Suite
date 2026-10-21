@@ -58,6 +58,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     var current by mutableStateOf(state.jobs.lastOrNull()?.let{it.composedResults.lastOrNull()?:it.results.lastOrNull()})
     var selection by mutableStateOf(setOf<String>())
     var assets by mutableStateOf(visibleAssets());private set
+    fun refreshLibraryAssets(){assets=visibleAssets()}
     val picker=DesktopFilePicker()
     var active:Job?=null;private set
     private var pending:Job?=null
@@ -336,11 +337,14 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
                     Result.success(bytes)
                 }catch(e:CancellationException){throw e}catch(e:Exception){Result.failure<ByteArray>(e)}
                 val result=if(prepared.isSuccess){
-                    val receipt=buildJsonObject{put("kind","image-ingress");put("version",1);put("source",if(entry.second==null)"clipboard-raster" else "file");put("createdAt",System.currentTimeMillis())}.toString()
+                    val receipt=buildJsonObject{put("kind","image-ingress");put("version",1);put("source",if(entry.second==null)"clipboard-raster" else "file");put("channel",input.channel);entry.second?.let{put("sourcePath",it.toAbsolutePath().normalize().toString())};put("createdAt",System.currentTimeMillis())}.toString()
                     // A storage/commit failure stops the batch; never keep writing after uncertain persistence.
                     val id=try{workspace.importImage(entry.first,prepared.getOrThrow(),receipt)}catch(e:Exception){
                         gallery.imports=gallery.imports.toMutableList().also{it[index]=GalleryImportResult(entry.first,"STORAGE_ERROR · 状态待检查，批次停止")};throw e
                     };accepted+=id;current=id;selection=accepted.toSet()
+                    try {library.repository.retainIngress(id);library.refresh()}catch(e:Exception){
+                        gallery.imports=gallery.imports.toMutableList().also{it[index]=GalleryImportResult(entry.first,"ORIGINAL_RETAINED · 导入目录副本未完成，批次停止",id)};throw e
+                    }
                     GalleryImportResult(entry.first,if(entry.second==null)"IMPORTED_RASTER（新编码PNG，无原始文件字节）" else "IMPORTED_ORIGINAL",id)
                 }else{val e=prepared.exceptionOrNull()!!;GalleryImportResult(entry.first,"FAILED · ${if(e is DataProblem)e.status else e.javaClass.simpleName}")}
                 gallery.imports=gallery.imports.toMutableList().also{it[index]=result}
@@ -353,6 +357,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     }
     suspend fun enterMaintenance() {
         maintenance=true;message="正在停止接收新操作并保存、排水…"
+        library.cancelAndDrain()
         active?.cancelAndJoin();pending?.cancelAndJoin();editor.drain();flush()
     }
     fun resumeAfterPreflightFailure() {workspace.state;check(active?.isActive!=true);maintenance=false}
@@ -414,6 +419,7 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
     fun publish(){chrome.updateLayout(DesktopChromeLayout(width,height,title,buttons.values.toList(),captions.toMap(),icon))}
 }
 @Composable internal fun Workbench(c:WorkbenchController,chrome:DesktopWindowChrome,closing:Boolean) {
+    LibrarySynchronization(c)
     Surface(color=Ink,contentColor=DesktopBootstrapColors.foreground,modifier=Modifier.onPreviewKeyEvent{event->
         if(!c.maintenance && event.type==KeyEventType.KeyDown && event.isCtrlPressed && event.isShiftPressed && event.key==Key.U){c.view="更新";true}else false
     }) {

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.GalleryIngressTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-21T15:51:08.659Z" hostname="DD1" time="16.967">
+  <properties/>
+  <testcase name="filesWinOverRasterAndTextPasteRemainsText" classname="io.github.misakapiano.ccbstudio.desktop.GalleryIngressTest" time="0.109"/>
+  <testcase name="guiPasteBatchReportsFailuresRetainsExactOriginalAndRasterProvenanceAfterRestart" classname="io.github.misakapiano.ccbstudio.desktop.GalleryIngressTest" time="16.858"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage
 import java.io.ByteArrayOutputStream
 import javax.imageio.ImageIO
 
-internal data class GalleryIngress(val files:List<Path> = emptyList(),val raster:ByteArray?=null)
+internal data class GalleryIngress(val files:List<Path> = emptyList(),val raster:ByteArray?=null,val channel:String="file-dialog")
 internal data class GalleryImportResult(val name:String,val status:String,val assetId:String?=null)
 
 /** Desktop 5ef9542 DesktopImageIngress behavior: file flavor wins; text paste is never stolen.
@@ -21,7 +21,7 @@ internal fun galleryTransfer(transfer:Transferable,paste:Boolean):GalleryIngress
     if(transfer.isDataFlavorSupported(DataFlavor.javaFileListFlavor)){
         val values=transfer.getTransferData(DataFlavor.javaFileListFlavor) as? List<*> ?: error("Invalid file list")
         require(values.size<=1000 && values.all{it is java.io.File}){"一次最多导入1000个文件"}
-        return values.takeIf{it.isNotEmpty()}?.let{GalleryIngress(files=it.map{f->(f as java.io.File).toPath()})}
+        return values.takeIf{it.isNotEmpty()}?.let{GalleryIngress(files=it.map{f->(f as java.io.File).toPath()},channel=if(paste)"clipboard-files"else"drag-files")}
     }
     if(paste && transfer.isDataFlavorSupported(DataFlavor.stringFlavor))return null
     if(!transfer.isDataFlavorSupported(DataFlavor.imageFlavor))return null
@@ -33,7 +33,7 @@ internal fun galleryTransfer(transfer:Transferable,paste:Boolean):GalleryIngress
         raster.createGraphics().let{g->try{check(g.drawImage(image,0,0,null)){"剪贴板图像尚未载入"}}finally{g.dispose()}}
         val bytes=ByteArrayOutputStream().also{check(ImageIO.write(raster,"png",it))}.toByteArray()
         require(bytes.size<=EditorRenderer.MAX_BYTES)
-        return GalleryIngress(raster=bytes)
+        return GalleryIngress(raster=bytes,channel=if(paste)"clipboard-raster"else"drag-raster")
     }finally{raster.flush()}
 }
 

@@ -1,0 +1,74 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryCollectionTest",
+    "name": "restoringAtIdenticalPathStillRequiresLocalCollectionReauthorization",
+    "seconds": "5.87",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryCollectionTest",
+    "name": "watchCreatesVersionsAndRestoreRequiresExplicitReconnection",
+    "seconds": "22.491",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryCollectionTest",
+    "name": "intakeCopyIsIdempotentPreservesOriginalAndNeverReplacesModifiedDestination",
+    "seconds": "6.934",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryRepositoryTest",
+    "name": "damagedOrFutureManagementRecordsDoNotResetMetadataOrHideOriginals",
+    "seconds": "8.448",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryRepositoryTest",
+    "name": "directoriesVersionAndMissingSourcesKeepAssetsLabelsPromptsAndBackup",
+    "seconds": "38.984",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryRepositoryTest",
+    "name": "promptEditsPreserveEarlierVersionAndRejectDataRootAsIngress",
+    "seconds": "7.363",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryRepositoryTest",
+    "name": "referencesExcludeWhitespaceAlignRolesWithoutMutatingOriginalAndRestore",
+    "seconds": "20.695",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryIngressTest",
+    "name": "filesWinOverRasterAndTextPasteRemainsText",
+    "seconds": "0.165",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryIngressTest",
+    "name": "guiPasteBatchReportsFailuresRetainsExactOriginalAndRasterProvenanceAfterRestart",
+    "seconds": "38.894",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest",
+    "name": "initializationError",
+    "seconds": "0.006",
+    "status": "FAILED"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioMaintenanceTest",
+    "name": "maintenanceRejectsNewEditsAndKeepsRootOwnedUntilWriterDrains",
+    "seconds": "0.827",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioMaintenanceTest",
+    "name": "snapshotPreservesOriginalAssociationsAndDpapiCredentialWithoutPlaintext",
+    "seconds": "3.534",
+    "status": "PASS"
+  }
+]

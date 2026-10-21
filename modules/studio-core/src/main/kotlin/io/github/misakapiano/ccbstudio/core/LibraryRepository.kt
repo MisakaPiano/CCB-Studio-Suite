@@ -42,6 +42,7 @@ class LibraryRepository(private val workspace:StudioWorkspace) {
         require(s.folders.map{it.id}.distinct().size==s.folders.size)
         s.folders.forEach{require(it.category in setOf("images","prompts","imports"));require(it.path.length<=4096)}
         require(s.preferences.all{it.key.length<=100 && it.value.length<=65536})
+        s.preferences["collectionBindings"]?.let{raw->val map=documentJson.decodeFromString<Map<String,String>>(raw);require(map.size<=100);map.forEach{(id,path)->UUID.fromString(id);require(path.length<=4096)}}
     }
     fun update(transform:(LibraryState)->LibraryState):LibraryState=workspace.operation {
         val records=records();val old=load();val next=transform(old);validate(next)
@@ -59,6 +60,7 @@ class LibraryRepository(private val workspace:StudioWorkspace) {
         documentJson.decodeFromString<PromptAsset>(workspace.bytes(id).decodeToString(throwOnInvalidSequence=true)).also{if(it.version!=1)throw DataProblem("UNSUPPORTED_VERSION","Prompt version retained")}
     }
     fun savePrompt(text:String,alias:String,origin:String,previous:String?=null,sections:List<PromptSection> = emptyList(),image:PromptImageContext?=null):String=workspace.operation {
+        val management=load() // Reject unreadable management history before creating another asset.
         require(text.isNotBlank() && text.toByteArray().size<=1024*1024 && origin.length<=4096)
         require(alias.trim().length<=200 && sections.size<=256 && sections.map{it.id}.distinct().size==sections.size)
         require(sections.all{it.id.length<=200 && it.label.length<=200 && (it.roleId?.length?:0)<=200 && it.attributes.size<=32 && it.attributes.all{a->a.key.length<=200 && a.value.length<=4096}})
@@ -67,17 +69,59 @@ class LibraryRepository(private val workspace:StudioWorkspace) {
         val id=UUID.randomUUID();val bytes=documentJson.encodeToString(PromptAsset(text=text,origin=origin,sections=sections.filter{it.text.isNotBlank()},image=image)).toByteArray()
         require(bytes.size<=4*1024*1024){"Prompt snapshot limit exceeded; original retained"}
         workspace.assets.put(AssetStore.Request(id,"prompt.txt",if(previous==null)AssetStore.Kind.ORIGINAL else AssetStore.Kind.DERIVED,previous?.let(UUID::fromString),byteArrayOf(),PROMPT.toByteArray()),ByteArrayInputStream(bytes))
-        val oldTags=previous?.let{load().labels[it]?.tags}.orEmpty();label(id.toString(),alias,oldTags);id.toString()
+        val oldTags=previous?.let{management.labels[it]?.tags}.orEmpty();label(id.toString(),alias,oldTags);id.toString()
     }
     fun addFolder(path:Path,category:String,recursive:Boolean):LibraryState {
         val absolute=path.toAbsolutePath().normalize();safePath(absolute);require(Files.isDirectory(absolute,LinkOption.NOFOLLOW_LINKS))
         require(!absolute.startsWith(workspace.root) && !workspace.root.startsWith(absolute)){"Choose a collection directory separate from the data root"}
-        return update{s->require(s.folders.none{Path.of(it.path).equals(absolute) && it.category==category}){"Folder already registered"};s.copy(folders=s.folders+LibraryFolder(path=absolute.toString(),category=category,recursive=recursive))}
+        return update{s->require(s.folders.none{Path.of(it.path).equals(absolute) && it.category==category}){"Folder already registered"}
+            val folder=LibraryFolder(path=absolute.toString(),category=category,recursive=recursive)
+            bind(s.copy(folders=s.folders+folder),folder.id)
+        }
     }
-    fun removeFolder(id:String)=update{it.copy(folders=it.folders.filterNot{f->f.id==id})}
+    private fun bindings(state:LibraryState):Map<String,String> = state.preferences["collectionBindings"]?.let{documentJson.decodeFromString<Map<String,String>>(it)}?:emptyMap()
+    /** Non-secret local registration identity, deliberately excluded from ordinary backup.
+     * A fresh restore at the SAME path must not inherit permission to scan old external paths. */
+    private fun localBinding(create:Boolean):String? {
+        val dir=workspace.root.resolve("exports/.local-bindings");val marker=dir.resolve("collections.id");safePath(marker)
+        if(!Files.exists(marker,LinkOption.NOFOLLOW_LINKS)) {
+            if(!create)return null
+            Files.createDirectories(dir);writeNewForced(marker,newId().toByteArray())
+        }
+        val id=readBounded(marker,100).decodeToString(throwOnInvalidSequence=true);UUID.fromString(id)
+        return workspace.root.toString()+"\n"+id
+    }
+    private fun bind(state:LibraryState,id:String)=state.copy(preferences=state.preferences+("collectionBindings" to documentJson.encodeToString(bindings(state)+(id to requireNotNull(localBinding(true))))))
+    fun automaticFolders(state:LibraryState=load()):List<LibraryFolder> {
+        if(state.preferences["collectionsPaused"]=="true")return emptyList()
+        val local=localBinding(false)?:return emptyList();return state.folders.filter{bindings(state)[it.id]==local}
+    }
+    /** An explicit UI action is required after restore/move. Never scan old absolute paths on restore. */
+    fun enableHere(id:String)=update{state->val folder=state.folders.single{it.id==id};safePath(Path.of(folder.path));bind(state,id)}
+    fun pauseCollections(paused:Boolean)=update{it.copy(preferences=it.preferences+("collectionsPaused" to paused.toString()))}
+    fun removeFolder(id:String)=update{it.copy(folders=it.folders.filterNot{f->f.id==id},preferences=it.preferences+("collectionBindings" to documentJson.encodeToString(bindings(it)-id)))}
     fun defaultFolders():List<Path> {
         val base=workspace.root.resolveSibling(workspace.root.fileName.toString()+"-collections");safePath(base)
         return listOf("images","prompts","imports").map{category->Files.createDirectories(base.resolve(category)).also{p->if(load().folders.none{it.path==p.toString()})addFolder(p,category,false)}}
+    }
+    /** A visible intake copy is secondary to the already-committed original. Never overwrites a file.
+     * The pending observation makes crash/partial-copy status explicit and keeps scans idempotent. */
+    fun retainIngress(id:String):Path=workspace.operation {
+        val asset=workspace.assets.read(UUID.fromString(id)).require()
+        val base=workspace.root.resolveSibling(workspace.root.fileName.toString()+"-collections").resolve("imports");safePath(base);Files.createDirectories(base)
+        if(load().folders.none{it.category=="imports" && Path.of(it.path)==base})addFolder(base,"imports",false)
+        val folder=load().folders.first{it.category=="imports" && Path.of(it.path)==base}
+        val safeName=asset.request().name().replace(Regex("[<>:\"/\\\\|?*\\p{Cntrl}]"),"_").takeLast(160).ifBlank{"image.png"}
+        val destination=base.resolve("$id-$safeName");safePath(destination)
+        val key=folder.id+":"+destination.fileName
+        val observation=FolderObservation(id,asset.sha256(),asset.size(),"COPY_PENDING")
+        update{it.copy(observations=it.observations+(key to observation))}
+        if(Files.exists(destination,LinkOption.NOFOLLOW_LINKS)) {
+            require(Files.isRegularFile(destination,LinkOption.NOFOLLOW_LINKS) && sha256(readBounded(destination,32*1024*1024))==asset.sha256()){"Intake destination exists with different content; retained both source and destination"}
+        }else writeNewForced(destination,workspace.bytes(id))
+        require(Files.size(destination)==asset.size() && sha256(readBounded(destination,32*1024*1024))==asset.sha256())
+        update{it.copy(observations=it.observations+(key to observation.copy(status="PRESENT")))}
+        destination
     }
     fun scan(folderId:String):List<FolderScanResult> =workspace.operation {
         val state=load();val folder=state.folders.single{it.id==folderId};val root=Path.of(folder.path);safePath(root)
@@ -85,36 +129,48 @@ class LibraryRepository(private val workspace:StudioWorkspace) {
             update{it.copy(observations=it.observations.mapValues{(key,value)->if(key.startsWith(folder.id+":"))value.copy(status="SOURCE_MISSING")else value})}
             return@operation listOf(FolderScanResult(folder.path,"DIRECTORY_MISSING; retained existing assets"))
         }
-        val files=mutableListOf<Path>()
+        val files=mutableListOf<Path>();val excluded=mutableListOf<FolderScanResult>()
         Files.walkFileTree(root,emptySet(),if(folder.recursive)32 else 1,object:SimpleFileVisitor<Path>() {
             override fun preVisitDirectory(dir:Path,attrs:java.nio.file.attribute.BasicFileAttributes):FileVisitResult {
-                return if(runCatching{safePath(dir)}.isSuccess)FileVisitResult.CONTINUE else FileVisitResult.SKIP_SUBTREE
+                return if(runCatching{safePath(dir)}.isSuccess)FileVisitResult.CONTINUE else {excluded+=FolderScanResult(dir.toString(),"SKIPPED_LINK_OR_REPARSE");FileVisitResult.SKIP_SUBTREE}
             }
             override fun visitFile(file:Path,attrs:java.nio.file.attribute.BasicFileAttributes):FileVisitResult {
                 if(attrs.isRegularFile && !attrs.isSymbolicLink && !attrs.isOther)files.add(file)
+                else excluded+=FolderScanResult(file.toString(),if(attrs.isDirectory)"SKIPPED_DEPTH_LIMIT"else"SKIPPED_LINK_OR_REPARSE")
                 return if(files.size>2000)FileVisitResult.TERMINATE else FileVisitResult.CONTINUE
             }
         })
         require(files.size<=2000){"Scan exceeds 2000 files; use narrower directory entries"}
-        val observations=state.observations.toMutableMap();val seen=mutableSetOf<String>();val result=mutableListOf<FolderScanResult>()
+        val observations=state.observations.toMutableMap();val seen=mutableSetOf<String>();val result=excluded
         for(path in files) {
             val extension=path.fileName.toString().substringAfterLast('.',"").lowercase()
             if(extension !in if(folder.category=="prompts")setOf("txt","md","prompt")else setOf("png","jpg","jpeg","webp","gif","bmp"))continue
             val key=folder.id+":"+root.relativize(path);seen+=key
-            try {
+            val bytes=try {
                 safePath(path);val before=Files.readAttributes(path,java.nio.file.attribute.BasicFileAttributes::class.java,LinkOption.NOFOLLOW_LINKS)
                 val bytes=readBounded(path,if(folder.category=="prompts")1024*1024 else 32*1024*1024)
                 val after=Files.readAttributes(path,java.nio.file.attribute.BasicFileAttributes::class.java,LinkOption.NOFOLLOW_LINKS)
                 require(before.size()==after.size() && before.lastModifiedTime()==after.lastModifiedTime() && before.fileKey()==after.fileKey()){"File changed during read; retry after writing finishes"}
-                val hash=sha256(bytes);val old=observations[key]
+                if(observations[key]?.sha256!=sha256(bytes)) {
+                    if(folder.category=="prompts")require(bytes.decodeToString(throwOnInvalidSequence=true).isNotBlank())else EditorRenderer.decode(bytes).flush()
+                }
+                bytes
+            }catch(e:Exception){observations[key]?.let{observations[key]=it.copy(status="READ_ERROR")};result+=FolderScanResult(path.toString(),"READ_ERROR: "+e.javaClass.simpleName);continue}
+            // After validation, a persistence failure aborts the scan instead of retrying later files.
+            val hash=sha256(bytes);val old=observations[key]
                 if(old?.sha256==hash){observations[key]=old.copy(status="PRESENT");result+=FolderScanResult(path.toString(),"UNCHANGED",old.assetId);continue}
-                val id=if(folder.category=="prompts")savePrompt(bytes.decodeToString(throwOnInvalidSequence=true),path.fileName.toString(),"folder:${folder.id}:${root.relativize(path)}",old?.assetId)
-                    else workspace.importImage(path.fileName.toString(),bytes,documentJson.encodeToString(mapOf("source" to "managed-folder","folderId" to folder.id,"relativePath" to root.relativize(path).toString(),"previousAssetId" to old?.assetId.orEmpty())))
+                val id=if(folder.category=="prompts")savePrompt(bytes.decodeToString(throwOnInvalidSequence=true),old?.assetId?.let{state.labels[it]?.alias}?.takeIf{it.isNotBlank()}?:path.fileName.toString(),"folder:${folder.id}:${root.relativize(path)}",old?.assetId)
+                    else workspace.importImage(path.fileName.toString(),bytes,kotlinx.serialization.json.buildJsonObject{
+                        put("kind",kotlinx.serialization.json.JsonPrimitive("image-ingress"));put("version",kotlinx.serialization.json.JsonPrimitive(1));put("createdAt",kotlinx.serialization.json.JsonPrimitive(System.currentTimeMillis()))
+                        put("source",kotlinx.serialization.json.JsonPrimitive("managed-folder"));put("folderId",kotlinx.serialization.json.JsonPrimitive(folder.id));put("relativePath",kotlinx.serialization.json.JsonPrimitive(root.relativize(path).toString()));put("previousAssetId",kotlinx.serialization.json.JsonPrimitive(old?.assetId.orEmpty()))
+                    }.toString())
                 if(folder.category!="prompts" && old!=null)state.labels[old.assetId]?.let{label(id,it.alias,it.tags)}
                 observations[key]=FolderObservation(id,hash,bytes.size.toLong());result+=FolderScanResult(path.toString(),if(old==null)"IMPORTED"else"NEW_VERSION",id)
-            }catch(e:Exception){observations[key]?.let{observations[key]=it.copy(status="READ_ERROR")};result+=FolderScanResult(path.toString(),"READ_ERROR: "+e.javaClass.simpleName)}
         }
-        observations.keys.filter{it.startsWith(folder.id+":") && it !in seen}.forEach{key->observations[key]=observations.getValue(key).copy(status="SOURCE_MISSING")}
+        observations.keys.filter{it.startsWith(folder.id+":") && it !in seen}.forEach{key->
+            val old=observations.getValue(key);observations[key]=old.copy(status="SOURCE_MISSING")
+            result+=FolderScanResult(root.resolve(key.removePrefix(folder.id+":")).toString(),"SOURCE_MISSING; retained existing asset",old.assetId)
+        }
         update{it.copy(observations=observations)};result
     }
 }

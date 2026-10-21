@@ -47,6 +47,7 @@ internal class GalleryViewState {
     Column(Modifier.fillMaxSize().galleryIngress(c).padding(12.dp),verticalArrangement=Arrangement.spacedBy(8.dp)){
         StudioActions{StudioAction("导入图片",!c.busy){c.importImages()};StudioAction("粘贴图片",!c.busy){if(!c.pasteImages())c.problem="剪贴板没有图片或文件列表；文字请粘贴到输入框"};StudioAction("返回创作"){c.view="创作"}}
         Text("拖入文件 / Ctrl+V · PNG、JPEG、WebP、GIF、BMP · 每文件≤32MiB，≤12582912像素；动图预览首帧，原文件保留",style=MaterialTheme.typography.caption)
+        StudioAction("管理收集与导入目录"){c.library.tab="目录入口";c.view="资产管理"}
         SharedDocumentAssets(c)
         if(g.imports.isNotEmpty()){
             var show by remember{mutableStateOf(false)}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-10-21T15:47:03.180Z" hostname="DD1" time="53.383">
+  <properties/>
+  <testcase name="namedProjectLiveVerticalEditingHistoryAndRestart" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="11.202"/>
+  <testcase name="pointerDrawnMasksChangeEffectSaveUndoAndReopen" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="6.695"/>
+  <testcase name="webpPreviewExportAndOriginalReopen" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="3.74"/>
+  <testcase name="continuousMaskDefaultsRespectPerPageSettings" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="1.744"/>
+  <testcase name="fourCategoryPreviewCopiesCompleteFileDeckWithoutSystemClipboard" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="7.394"/>
+  <testcase name="durableDefaultFontLoadsOnFirstTextPreviewWithColdCache" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="3.151"/>
+  <testcase name="fullPreviewKeyboardAndExportDeckKeepEditorStateAndFitNarrowWindow" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="3.366"/>
+  <testcase name="maximumQueueWidthCannotStarveCanvasAndSurvivesReopen" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="2.009"/>
+  <testcase name="storyCaptionPresetPreviewExportAndRestart" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="4.775"/>
+  <testcase name="sourceExchangePreviewConfirmExportAndReopen" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="3.374"/>
+  <testcase name="queueControlSelectionDragOrderNumberingAndRestart" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="5.933"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

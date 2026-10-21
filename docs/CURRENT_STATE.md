@@ -1,3 +1,7 @@
+## 自动资产收集进度（2026-10-22）
+
+[实际记录](audits/UX_COLLECTIONS.md)：专用导入路径、多目录自动收集、恢复后重连门禁及维护排水已接线。最终完整166项实际PASS，初始化错误与历史超时证据保留；继续 Desktop 相册源码继承、TypeSet与更新门槛，PRODUCT_HOLD / NOT RC。
+
 ## 资产目录与多 Prompt 参照进度（2026-10-22）
 
 [实际记录](audits/UX_LIBRARY_PROMPTS.md)：独立Prompt/标签别名/目录手动同步、图片Prompt预览及多来源角色拖动对齐已接线。核心91实际PASS、最终桌面68实际PASS，首轮完整回归1失败和修正保留；自动收集及完整恢复继续，PRODUCT_HOLD / NOT RC。

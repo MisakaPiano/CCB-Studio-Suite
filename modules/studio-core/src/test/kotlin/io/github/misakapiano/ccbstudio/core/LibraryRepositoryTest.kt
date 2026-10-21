@@ -11,6 +11,7 @@ class LibraryRepositoryTest {
                 repo.label(image,"original label",listOf("kept"));val count=w.catalog().size
                 w.assets.put(io.github.misakapiano.ccbstudio.assets.AssetStore.Request(java.util.UUID.randomUUID(),"future.json",io.github.misakapiano.ccbstudio.assets.AssetStore.Kind.ORIGINAL,null,header.toByteArray(),LibraryRepository.TAG.toByteArray()),java.io.ByteArrayInputStream("{}".toByteArray()))
                 assertFails{repo.load()};assertFails{repo.label(image,"must not replace",emptyList())}
+                assertFails{repo.savePrompt("must not write","blocked","manual")}
                 assertEquals(count+1,w.catalog().size);assertContentEquals(bytes,w.bytes(image));assertEquals(image,SharedAssets.images(w).single().request().id().toString())
             }
         }

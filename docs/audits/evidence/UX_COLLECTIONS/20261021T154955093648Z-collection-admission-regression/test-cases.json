@@ -1,0 +1,74 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryCollectionTest",
+    "name": "watchCreatesVersionsAndRestoreRequiresExplicitReconnection",
+    "seconds": "7.262",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryCollectionTest",
+    "name": "intakeCopyIsIdempotentPreservesOriginalAndNeverReplacesModifiedDestination",
+    "seconds": "2.76",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryRepositoryTest",
+    "name": "damagedOrFutureManagementRecordsDoNotResetMetadataOrHideOriginals",
+    "seconds": "1.711",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryRepositoryTest",
+    "name": "directoriesVersionAndMissingSourcesKeepAssetsLabelsPromptsAndBackup",
+    "seconds": "12.354",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryRepositoryTest",
+    "name": "promptEditsPreserveEarlierVersionAndRejectDataRootAsIngress",
+    "seconds": "1.858",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryRepositoryTest",
+    "name": "referencesExcludeWhitespaceAlignRolesWithoutMutatingOriginalAndRestore",
+    "seconds": "7.16",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryIngressTest",
+    "name": "filesWinOverRasterAndTextPasteRemainsText",
+    "seconds": "0.109",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryIngressTest",
+    "name": "guiPasteBatchReportsFailuresRetainsExactOriginalAndRasterProvenanceAfterRestart",
+    "seconds": "16.858",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest",
+    "name": "queuedRemovedRegistrationIsIgnoredAndUncertainMetadataStopsAutomaticRetries",
+    "seconds": "5.881",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest",
+    "name": "workbenchAutomaticallyCollectsImagesAndPromptVersionsAndDrainsForMaintenance",
+    "seconds": "33.346",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioMaintenanceTest",
+    "name": "maintenanceRejectsNewEditsAndKeepsRootOwnedUntilWriterDrains",
+    "seconds": "2.071",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioMaintenanceTest",
+    "name": "snapshotPreservesOriginalAssociationsAndDpapiCredentialWithoutPlaintext",
+    "seconds": "2.229",
+    "status": "PASS"
+  }
+]

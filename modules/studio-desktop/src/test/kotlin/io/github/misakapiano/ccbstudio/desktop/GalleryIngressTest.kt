@@ -60,13 +60,17 @@ class GalleryIngressTest {
             c.gallery.pasteContents={transfer(DataFlavor.imageFlavor to raster)};click("粘贴图片");c.active!!.join();frames()
             rasterId=c.gallery.imports.single().assetId!!;assertTrue(c.gallery.imports.single().status.startsWith("IMPORTED_RASTER"))
             val saved=EditorRenderer.decode(w.bytes(rasterId));try{assertEquals(raster.getRGB(5,6),saved.getRGB(5,6))}finally{saved.flush();raster.flush()}
-            c.gallery.pasteContents={StringSelection("normal text")};assertFalse(c.pasteImages());assertEquals(3,w.catalog().size)
+            c.gallery.pasteContents={StringSelection("normal text")};assertFalse(c.pasteImages());assertEquals(3,SharedAssets.images(w).size)
+            val intake=c.library.repository.load().folders.single{it.category=="imports"}
+            assertEquals(3,c.library.repository.load().observations.size)
+            (originals+rasterId).forEach{id->val copy=Files.list(Path.of(intake.path)).use{paths->paths.filter{it.fileName.toString().startsWith(id)}.findFirst().orElseThrow()};assertContentEquals(w.bytes(id),Files.readAllBytes(copy))}
             assertFalse(c.receiveTransfer(StringSelection("drop text"),false))
         }finally{scene.close();c.close();scope.cancel();w.close()}
         StudioWorkspace.openStudio(root.resolve("workspace")).use{reopened->
             originals.forEach{assertContentEquals(bytes,reopened.bytes(it))}
             val recipe=reopened.assets.read(java.util.UUID.fromString(rasterId)).require().request().recipe().decodeToString()
             assertEquals("clipboard-raster",Json.parseToJsonElement(recipe).jsonObject.getValue("source").jsonPrimitive.content)
+            assertEquals("clipboard-raster",Json.parseToJsonElement(recipe).jsonObject.getValue("channel").jsonPrimitive.content)
         }
     }
 }

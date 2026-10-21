@@ -1,0 +1,27 @@
+{
+  "phase": "collection-complete-module-regression",
+  "startedUtc": "2026-10-21T16:19:18.905797+00:00",
+  "seconds": 464.011,
+  "exitCode": 0,
+  "tests": 166,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-core:test",
+    ":studio-desktop:test"
+  ],
+  "baseCommit": "f883b16e8b0ae341502fe50d8b8c2fa5fba85781",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

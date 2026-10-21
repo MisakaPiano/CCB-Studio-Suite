@@ -1,0 +1,65 @@
+{
+  "run": "20261021T161122690655Z-collection-registration-test-signature",
+  "syntheticOnly": true,
+  "observation": "One image and its observation persisted; Prompt source exists but no Prompt asset in retained objects. Postmortem only; missing original runtime monitor diagnostics. Full causal attribution UNKNOWN.",
+  "items": [
+    {
+      "relativePath": "assets/objects/120d5f5893e501bd08dfff7ddd957fa697bbad9e55a8f0d1ebf8978f8293f7d1.blob",
+      "size": 867,
+      "sha256": "120d5f5893e501bd08dfff7ddd957fa697bbad9e55a8f0d1ebf8978f8293f7d1",
+      "modifiedUtc": "2026-10-21T16:13:12.198876+00:00",
+      "metadataSummary": {
+        "labelCount": 0,
+        "folderCount": 2,
+        "observations": {}
+      }
+    },
+    {
+      "relativePath": "assets/objects/53dc4921919b18ae473c5ed8241a09df7a1e9ec41ef33e8a87897258ef31cdee.blob",
+      "size": 481,
+      "sha256": "53dc4921919b18ae473c5ed8241a09df7a1e9ec41ef33e8a87897258ef31cdee",
+      "modifiedUtc": "2026-10-21T16:13:11.622760+00:00",
+      "metadataSummary": {
+        "labelCount": 0,
+        "folderCount": 1,
+        "observations": {}
+      }
+    },
+    {
+      "relativePath": "assets/objects/55defdf082b1f0f86ab71ce0024e405df8138612efef42f3f40fc510145c40c6.blob",
+      "size": 1462,
+      "sha256": "55defdf082b1f0f86ab71ce0024e405df8138612efef42f3f40fc510145c40c6",
+      "modifiedUtc": "2026-10-21T16:13:27.852855+00:00"
+    },
+    {
+      "relativePath": "assets/objects/9391da94830751f4b59262d154e7004f1d4b541e36654bbc046c2f54824da59d.blob",
+      "size": 1077,
+      "sha256": "9391da94830751f4b59262d154e7004f1d4b541e36654bbc046c2f54824da59d",
+      "modifiedUtc": "2026-10-21T16:13:28.370085+00:00",
+      "metadataSummary": {
+        "labelCount": 0,
+        "folderCount": 2,
+        "observations": {
+          "4660b6e6-5d50-4b12-a8fa-0672c8a92b47:automatic.png": {
+            "assetId": "61e495ae-c570-45ee-b15a-15004766d522",
+            "sha256": "55defdf082b1f0f86ab71ce0024e405df8138612efef42f3f40fc510145c40c6",
+            "size": 1462,
+            "status": "PRESENT"
+          }
+        }
+      }
+    },
+    {
+      "collectionRelativePath": "6cc8339d-c1a4-41c3-830b-9c2cced372af/standalone.prompt",
+      "size": 24,
+      "sha256": "0715ef1b608ea96679f60b1dfccbee2aaf7310c5412ed976628cbd05cb7c0b36",
+      "modifiedUtc": "2026-10-21T16:13:26.583603+00:00"
+    },
+    {
+      "collectionRelativePath": "de811dc4-604c-46c7-8566-0c25bb415db5/automatic.png",
+      "size": 1462,
+      "sha256": "55defdf082b1f0f86ab71ce0024e405df8138612efef42f3f40fc510145c40c6",
+      "modifiedUtc": "2026-10-21T16:13:26.583603+00:00"
+    }
+  ]
+}

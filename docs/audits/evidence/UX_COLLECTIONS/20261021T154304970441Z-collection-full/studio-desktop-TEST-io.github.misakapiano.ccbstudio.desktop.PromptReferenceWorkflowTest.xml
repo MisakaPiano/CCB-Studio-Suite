@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.PromptReferenceWorkflowTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-21T15:46:42.058Z" hostname="DD1" time="15.238">
+  <properties/>
+  <testcase name="imagePreviewBoardRealRoleDragExtractionAndRestartKeepSourceIdentity" classname="io.github.misakapiano.ccbstudio.desktop.PromptReferenceWorkflowTest" time="12.637"/>
+  <testcase name="missingOrUnverifiableImagePromptCannotBecomeFalseCompleteReference" classname="io.github.misakapiano.ccbstudio.desktop.PromptReferenceWorkflowTest" time="0.397"/>
+  <testcase name="narrowBoardScrollsSourcesAndEmptyPromptFieldsDoNotConsumeRows" classname="io.github.misakapiano.ccbstudio.desktop.PromptReferenceWorkflowTest" time="2.204"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
