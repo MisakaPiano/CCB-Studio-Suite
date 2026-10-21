@@ -1,0 +1,26 @@
+{
+  "phase": "ux-creation-layout-full",
+  "startedUtc": "2026-10-21T14:39:09.818628+00:00",
+  "seconds": 100.289,
+  "exitCode": 0,
+  "tests": 64,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:test"
+  ],
+  "baseCommit": "1f2b5fea605772443108367ed1556efcbfad89a3",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

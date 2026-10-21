@@ -99,6 +99,33 @@ class WorkbenchWorkflowTest {
         }finally{scene.close();c.close();scope.cancel()}
     }
 
+    @Test fun creationFooterAndImageSummaryAdaptWithoutLosingDraftOrSelection()=runBlocking(awt){
+        val r=root();val w=StudioWorkspace.openStudio(r)
+        val asset=w.importImage("layout-fixture.png",EditorRenderer.synthetic(96,96))
+        val scope=CoroutineScope(SupervisorJob()+awt)
+        val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
+        c.current=asset;c.edit{it.copy(basePrompt="保留的布局测试草稿")}
+        val scene=ImageComposeScene(1240,720){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        try {
+            for(width in listOf(1240,900,640,480,1240)) {
+                scene.constraints=Constraints.fixed(width,720);scene.frames()
+                val footer=scene.nodes().first{it.matches("Studio 固定生成栏")}.boundsInRoot
+                val editor=scene.nodes().first{it.matches("Studio Prompt 编辑区")}.boundsInRoot
+                assertTrue(footer.height in 48f..125f,"footer at $width: $footer")
+                assertTrue(editor.height>250f,"editor at $width: $editor")
+                val action=scene.nodes().first{it.matches("撤销上次载入/重置")}.boundsInRoot
+                assertTrue(action.width>=48f && action.height>=48f)
+                assertEquals(width<900,scene.nodes().any{it.matches("Studio 当前图片摘要")})
+                assertEquals("保留的布局测试草稿",c.draft.basePrompt);assertEquals(asset,c.current)
+                scene.shot("creation-layout-$width")
+            }
+            scene.click("撤销上次载入/重置");assertEquals("",c.draft.basePrompt)
+            scene.click("重做");assertEquals("保留的布局测试草稿",c.draft.basePrompt)
+            c.flush()
+        } finally {scene.close();c.close();scope.cancel()}
+        StudioWorkspace.openStudio(r).use{assertEquals("保留的布局测试草稿",it.state.creation!!.draft.basePrompt)}
+    }
+
     @Test fun continuedEditingRetainsExistingAssetsAndCredentials()=runBlocking(awt){
         val supplied=System.getProperty("preview.update.fixture")
         val r=supplied?.let{Path.of(it).toAbsolutePath().normalize()}?:root()

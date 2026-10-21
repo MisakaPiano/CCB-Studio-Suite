@@ -452,38 +452,68 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
     var paste by remember{mutableStateOf<String?>(null)}
     var clear by remember{mutableStateOf(false)}
     val tokens by produceState<NovelAiPromptTokenUsage?>(null,c.draft.toPromptPlan(),c.draft.selectedModel){value=runCatching{c.infrastructure.countTokens(c.draft)}.getOrNull()}
-    DesktopStudioWorkspace(compact={expand -> StudioAction("展开图片预览",onClick=expand)},editor={
-        StudioActions{StudioAction("AI 设计"){c.view="AI 设计"};StudioAction("导入图片",!c.busy){c.importImages()};StudioAction("历史图库"){c.view="图库"}}
-        Spacer(Modifier.height(12.dp));StudioChips("",listOf("Prompt","角色","参数","图像引导"),c.section,{it}){c.section=it}
-        Spacer(Modifier.height(12.dp))
-        when(c.section) {
-            "角色"->DesktopStudioCharacters(c.draft,c.infrastructure,translated,c::edit)
-            "参数"->{
-                CompactChoice("全局默认生图模型",NovelAiImageModel.entries,c.state.creation!!.defaultImageModel,{it.displayName}){c.defaults(model=it)}
-                StudioGenerationSettings(c.draft,c::edit)
-            }
-            "图像引导"->GuidanceWorkspace(c)
-            else->{
-                StudioSwitch("中文注释",translated){c.defaults(translated=!translated)}
-                ImageCardChoice(c)
-                StudioPromptField("画风",c.draft.stylePrompt,c.infrastructure,translated){v->c.edit{it.copy(stylePrompt=v)}}
-                Spacer(Modifier.height(10.dp));StudioPromptField("基础 Prompt",c.draft.basePrompt,c.infrastructure,translated){v->c.edit{it.copy(basePrompt=v)}}
-                Spacer(Modifier.height(10.dp));StudioPromptField("补充 Prompt",c.draft.extraPrompt,c.infrastructure,translated){v->c.edit{it.copy(extraPrompt=v)}}
-                Spacer(Modifier.height(10.dp));StudioPromptField("负向 Prompt",c.draft.negativePrompt,c.infrastructure,translated){v->c.edit{it.copy(negativePrompt=v)}}
-                Spacer(Modifier.height(12.dp));StudioActions{StudioAction("撤销",!c.busy && c.state.creation!!.undo.isNotEmpty()){c.undo()};StudioAction("重做",!c.busy && c.state.creation!!.redo.isNotEmpty()){c.undo(true)};StudioAction("复制正向"){desktopCopyText(c.draft.copyPositivePrompt())}}
-                StudioActions {StudioAction("粘贴并预览",!c.busy){runCatching{java.awt.Toolkit.getDefaultToolkit().systemClipboard.getData(java.awt.datatransfer.DataFlavor.stringFlavor) as? String}.onSuccess{paste=it}.onFailure{c.problem="剪贴板文字暂不可读取"}};StudioAction("清空 Prompt",!c.busy){clear=true}}
+    DesktopStudioWorkspace(compact={expand ->
+        Column(Modifier.fillMaxWidth().border(1.dp,DesktopBootstrapColors.border).padding(8.dp)
+            .semantics{contentDescription="Studio 当前图片摘要"}) {
+            Row(verticalAlignment=Alignment.CenterVertically) {
+                Box(Modifier.size(88.dp).clickable(onClick=expand)){AssetImage(c,c.current,Modifier.fillMaxSize())}
+                Column(Modifier.weight(1f).padding(start=10.dp)) {
+                    StatusText(if(c.busy)"生成中 · 先前图片保留" else "当前图片")
+                    StudioAction("展开图片预览",onClick=expand)
+                    if(c.current!=null)StudioAction("图像操作 / 用作",icon=DesktopAppIcons.Star){c.section="图像引导"}
+                }
             }
         }
-    },footer={Column {
-        tokens?.let{StatusText("正向 ${it.positive}/${it.limit} · 负向 ${it.negative}/${it.limit}",if(it.positive>it.limit||it.negative>it.limit)DesktopBootstrapColors.warning else Quiet)}
+    },editor={
         AccountChoice(c,"NAI")
         val cost=runCatching{NovelAiImageCostEstimator.estimate(c.draft.activeSettings,c.usage,c.draft.imageGuidance,c.vibeMisses())}.getOrNull()
         StatusText(cost?.let{"预计 ${it.anlas} Anlas · ${it.kind}"}?:"参数无效，暂无法估算")
-        StudioActions{StatusText(c.usage?.let{"额度 ${it.anlas} Anlas · 刷新于 ${java.time.Instant.ofEpochMilli(c.usageAt!!)}"}?:"账户额度未知，未自动请求")
-            StudioAction("刷新额度",!c.busy && c.naiId!=null){c.refreshUsage()}}
-        StatusText("${c.draft.selectedModel.displayName} · ${c.draft.activeSettings.count} 张 · 实际账户请求；遵守全局调用预算")
-        StudioAction(if(c.busy)"停止" else "生成图片",enabled=c.busy||c.naiId!=null,style=StudioActionStyle.PRIMARY){if(c.busy)c.active?.cancel() else c.generate()}
-    }},preview={rail -> ResultPreview(c,rail)})
+        StudioActions {
+            StatusText(c.usage?.let{"额度 ${it.anlas} Anlas"}?:"账户额度未知，未自动请求")
+            StudioAction("刷新额度",!c.busy && c.naiId!=null){c.refreshUsage()}
+        }
+        Spacer(Modifier.height(10.dp))
+        StudioActions {
+            StudioAction("AI 设计",icon=DesktopAppIcons.Chat){c.view="AI 设计"}
+            StudioAction("图像引导",icon=DesktopAppIcons.Star){c.section="图像引导"}
+            StudioAction("导入图片",!c.busy,icon=DesktopAppIcons.ImageAdd){c.importImages()}
+            StudioAction("历史图库",icon=DesktopAppIcons.History){c.view="图库"}
+        }
+        Spacer(Modifier.height(12.dp))
+        if(c.section=="图像引导") {
+            StudioAction("返回 Prompt"){c.section="Prompt"}
+            GuidanceWorkspace(c)
+        } else {
+            StudioSwitch("中文注释",translated){c.defaults(translated=!translated)}
+            StudioActions {
+                StudioAction("复制正向"){desktopCopyText(c.draft.copyPositivePrompt())}
+                StudioAction("粘贴并预览",!c.busy){runCatching{java.awt.Toolkit.getDefaultToolkit().systemClipboard.getData(java.awt.datatransfer.DataFlavor.stringFlavor) as? String}.onSuccess{paste=it}.onFailure{c.problem="剪贴板文字暂不可读取"}}
+                StudioAction("清空 Prompt",!c.busy){clear=true}
+            }
+            ImageCardChoice(c)
+            StudioDisclosure("画风",summary=c.draft.stylePrompt.take(60)) {
+                StudioPromptField("画风",c.draft.stylePrompt,c.infrastructure,translated){v->c.edit{it.copy(stylePrompt=v)}}
+            }
+            StudioDisclosure("基础 Prompt",initiallyOpen=true) {
+                StudioPromptField("基础 Prompt",c.draft.basePrompt,c.infrastructure,translated){v->c.edit{it.copy(basePrompt=v)}}
+            }
+            StudioDisclosure("补充 Prompt",summary=c.draft.extraPrompt.take(60),initiallyOpen=c.draft.extraPrompt.isNotBlank()) {
+                StudioPromptField("补充 Prompt",c.draft.extraPrompt,c.infrastructure,translated){v->c.edit{it.copy(extraPrompt=v)}}
+            }
+            StudioDisclosure("负向 Prompt",summary=c.draft.negativePrompt.take(60)) {
+                StudioPromptField("负向 Prompt",c.draft.negativePrompt,c.infrastructure,translated){v->c.edit{it.copy(negativePrompt=v)}}
+            }
+            DesktopStudioCharacters(c.draft,c.infrastructure,translated,c::edit)
+            StudioDisclosure("生成设置",initiallyOpen=true) {
+                CompactChoice("全局默认生图模型",NovelAiImageModel.entries,c.state.creation!!.defaultImageModel,{it.displayName}){c.defaults(model=it)}
+                StudioGenerationSettings(c.draft,c::edit)
+            }
+        }
+    },footer={
+        DesktopStudioFooter(tokens,!c.busy && c.state.creation!!.undo.isNotEmpty(),!c.busy && c.state.creation!!.redo.isNotEmpty(),
+            if(c.busy)"停止" else "生成图片",c.busy||c.naiId!=null,
+            {c.undo()},{c.undo(true)},{if(c.busy)c.active?.cancel() else c.generate()})
+    },preview={rail -> ResultPreview(c,rail)})
     paste?.let{text->AlertDialog(onDismissRequest={paste=null},title={Text("确认粘贴覆盖")},text={SelectionContainer{Text(text,Modifier.heightIn(max=400.dp).verticalScroll(rememberScrollState()))}},confirmButton={TextButton(onClick={c.pastePrompt(text);paste=null}){Text("确认覆盖，可撤销")}},dismissButton={TextButton(onClick={paste=null}){Text("取消")}})}
     if(clear)AlertDialog(onDismissRequest={clear=false},title={Text("清空 Prompt？")},text={Text("保留图像引导和生成设置。可撤销恢复。")},confirmButton={TextButton(onClick={c.clearPromptDraft();clear=false}){Text("确认清空")}},dismissButton={TextButton(onClick={clear=false}){Text("取消")}})
 }
@@ -516,9 +546,12 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
             StudioAction("全图查看"){viewing=c.assets.map{it.request().id().toString()};initial=viewing!!.indexOf(id).coerceAtLeast(0)}
         }}
         if(!rail) {if(interim!=null && c.busy) {StatusText("生成中预览 · 尚未保存为原件");Image(interim!!,"生成中预览",Modifier.weight(1f).fillMaxWidth(),contentScale=ContentScale.Fit)}else c.current?.let{id->DesktopImageZoomSurface("asset:$id",c::readAsset,Modifier.weight(1f).fillMaxWidth(),onOpenViewer={viewing=c.assets.map{it.request().id().toString()};initial=viewing!!.indexOf(id).coerceAtLeast(0)})}?:AssetImage(c,null,Modifier.weight(1f).fillMaxWidth())}
-        val modifier=if(rail)Modifier.fillMaxSize() else Modifier.fillMaxWidth().height(92.dp)
-        if(rail)LazyColumn(modifier){items(c.assets.asReversed(),key={it.request().id().toString()}){a->val id=a.request().id().toString();AssetImage(c,id,Modifier.size(80.dp).clickable{c.current=id})}}
-        else LazyRow(modifier){items(c.assets.asReversed(),key={it.request().id().toString()}){a->val id=a.request().id().toString();AssetImage(c,id,Modifier.padding(4.dp).size(84.dp).border(if(c.current==id)2.dp else 0.dp,Gold).clickable{c.current=id})}}
+        val paths=c.assets.asReversed().map{"asset:${it.request().id()}"}
+        val selected=c.current?.let{"asset:$it"}
+        val select:(String)->Unit={c.current=it.removePrefix("asset:")}
+        val preview:(String)->Unit={path->viewing=c.assets.map{it.request().id().toString()};initial=viewing!!.indexOf(path.removePrefix("asset:")).coerceAtLeast(0)}
+        if(rail)Box(Modifier.weight(1f)){StudioVerticalFilmstrip(paths,selected,c::readAsset,onPreview=preview,onSelect=select)}
+        else StudioFilmstrip(paths,selected,c::readAsset,onPreview=preview,onSelect=select)
         StatusText("${c.assets.size} 份原件 · 原始字节保全")
     }
     toolImage?.let{(id,bytes)->DesktopImageToolsDialog(bytes,c.picker,{toolImage=null},onProcessedImage={c.saveToolCopy(id,it)})}

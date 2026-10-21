@@ -1,0 +1,36 @@
+{
+  "sourceCommit": "37c67c724fe21107d7eaff0306439481c6f2bf07",
+  "files": [
+    {
+      "source": "H:\\ChatChatBar-Desktop\\app\\desktopApp\\src\\main\\kotlin\\com\\example\\chatbar\\desktop\\DesktopStudioFooter.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioFooter.kt",
+      "sourceSha256": "373068fe42aebc58c1800be11d474129f0f5926bbfa6b4945f90e2740c9de888",
+      "adaptation": "exact bytes; presentation-only consumer in Suite",
+      "targetSha256": "373068fe42aebc58c1800be11d474129f0f5926bbfa6b4945f90e2740c9de888"
+    },
+    {
+      "source": "H:\\ChatChatBar-Desktop\\app\\desktopApp\\src\\main\\kotlin\\com\\example\\chatbar\\desktop\\DesktopWorkspaceControls.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopWorkspaceControls.kt",
+      "sourceSha256": "fecdbd7dacd0a7c213e2dd19f70ec949d553df85238523b3d1f46261641f7b6c",
+      "adaptation": "exact bytes; presentation-only consumer in Suite",
+      "targetSha256": "fecdbd7dacd0a7c213e2dd19f70ec949d553df85238523b3d1f46261641f7b6c"
+    },
+    {
+      "source": "H:\\ChatChatBar-Desktop\\app\\desktopApp\\src\\main\\kotlin\\com\\example\\chatbar\\desktop\\DesktopStudioOutput.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioResultControls.kt",
+      "sourceSha256": "bd139a13f90d0eee15f41e5ea230d5e068ae971b58d30e746144fbe4b616b58c",
+      "adaptation": "DesktopTokenProgress, StudioTokenBar, StudioFilmstrip, StudioVerticalFilmstrip; unused account/controller dependencies excluded",
+      "targetSha256": "0759311da1d9fc674238e4d27bc059d2f628ba179cd1ccf6b1aee9d4cf60adef"
+    },
+    {
+      "source": "H:\\ChatChatBar-Desktop\\app\\desktopApp\\src\\main\\kotlin\\com\\example\\chatbar\\desktop\\DesktopNovelAiStudioPanel.kt",
+      "sourceSha256": "7c057bf43774681e2e691d41b225d6eeb197e49779a353e762f3c0302e3830e6",
+      "adaptation": "CreationWorkspace account/actions/continuous Prompt+characters/settings and compact image summary; Suite controller/storage adapter"
+    },
+    {
+      "source": "H:\\ChatChatBar-Desktop\\app\\desktopApp\\src\\main\\kotlin\\com\\example\\chatbar\\desktop\\DesktopViewerPresentation.kt",
+      "sourceSha256": "b138e5544bafd96867a986f1e347b4926109854cac14b11959b32e9a040134e6",
+      "adaptation": "desktopViewerEntry selected exact combinedClickable function"
+    }
+  ]
+}
