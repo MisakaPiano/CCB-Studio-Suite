@@ -1,0 +1,82 @@
+[
+  {
+    "path": "20261021T111720995770Z-ux-r4-app-image/gradle.log",
+    "bytes": 2474,
+    "sha256": "3bbe5024ad5b6a39c0ae8e56a394ea1e0559b693f4d76d1dd519ed3630bab3c9"
+  },
+  {
+    "path": "20261021T111720995770Z-ux-r4-app-image/source-before.json",
+    "bytes": 48590,
+    "sha256": "5c06759d97f31e1c63432f1e29375cfc61bd9d035dad8e27a9b9280529954676"
+  },
+  {
+    "path": "20261021T111720995770Z-ux-r4-app-image/summary.json",
+    "bytes": 827,
+    "sha256": "696af030a1ef00613eb74e0b8f51d7dbfe5c1fda22defb81b0aff92bb7fe5bbe"
+  },
+  {
+    "path": "20261021T111720995770Z-ux-r4-app-image/test-cases.json",
+    "bytes": 4,
+    "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+  },
+  {
+    "path": "20261021T112501421844Z-ux-r4-runtime-client/summary.json",
+    "bytes": 1003,
+    "sha256": "3a9f1e8a3bbd1b89beb5cb0162be51c7f5f1e253e84d5f1d54b84326bb9060ae"
+  },
+  {
+    "path": "20261021T112501421844Z-ux-r4-runtime-client/tests.log",
+    "bytes": 1167,
+    "sha256": "0d6b3e7bea8ee60d47c640ec4cdb7639dfe26d8913c09eef54c461fe9b665b47"
+  },
+  {
+    "path": "app-stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "app-stdout.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "BUILD_RECEIPT.json",
+    "bytes": 320,
+    "sha256": "377d693c64d87fc7e456359661f9563505ed6e5248d8d148bd72b25f00f73967"
+  },
+  {
+    "path": "compile.log",
+    "bytes": 942,
+    "sha256": "15fc2ccf3e94b29c154ce3b12277773aa2391f9f0446477182a1d0a2e71d8a2e"
+  },
+  {
+    "path": "DOWNLOAD_FAILURE.json",
+    "bytes": 266,
+    "sha256": "8745a9c04250a830e078afeb5852c13a64114e5b5b12da0f3ce6b84b96826ed9"
+  },
+  {
+    "path": "hidden-start-failure.json",
+    "bytes": 310,
+    "sha256": "6482754761b6bd257f33b0b8cc303177b1c341dfdbcd2d14208cad1974e054aa"
+  },
+  {
+    "path": "INSTALL_MANIFEST.json",
+    "bytes": 100622,
+    "sha256": "aa972178dce6e857d830de986e1be7e4acd26eb94eefeda845ca5317e330aea9"
+  },
+  {
+    "path": "INSTALL_SMOKE.json",
+    "bytes": 413,
+    "sha256": "77480392c8fd64872442b0262afb8de2dc964cd1b249faf78efa126ca6f1a9e7"
+  },
+  {
+    "path": "installer.nsi",
+    "bytes": 128829,
+    "sha256": "5d130a2d8eb454158edf260a532b4ebe16882e6263ed986fc991cb82ec579088"
+  },
+  {
+    "path": "NATIVE_START.json",
+    "bytes": 665,
+    "sha256": "2e9e57ceedad2405b4db394ebe1e139f3db28155d6a85405d9c812abedcc2118"
+  }
+]

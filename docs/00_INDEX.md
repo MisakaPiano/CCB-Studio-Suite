@@ -1,3 +1,7 @@
+## UX-R4 实际安装器进度（2026-10-21）
+
+[实际记录](audits/UX_R4_INITIAL_INSTALLER.md)：真实NSIS安装544个文件核验、拒绝覆盖；新Python8项PASS。原生窗口存在但截图超时，视觉未验证；尚未串联A→B，继续实施，PRODUCT_HOLD。
+
 ## UX-R4 可信客户端进度（2026-10-21）
 
 [实际记录](audits/UX_R4_TRUSTED_CLIENT.md)：隔离Python/TUF和检查/确认下载界面接线；desktop完整60项、最终主题3项、TUF8项/客户端7项实际PASS，失败保留。安装/重启/数据保全未完成，继续R4及剩余UX，PRODUCT_HOLD。

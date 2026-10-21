@@ -34,7 +34,8 @@ class Installed:
         if data.get('channel') not in ['internal','preview','stable']:raise UpdateRejected('Invalid channel')
         for name in ['metadataUrl','targetsUrl']:
             url=urlsplit(data[name])
-            if url.scheme!='https' or not url.hostname or url.username or url.password or url.query or url.fragment or not url.path.endswith('/'):
+            internal_loopback=(data.get('internalTest') is True and data['channel']=='internal' and url.scheme=='http' and url.hostname=='127.0.0.1')
+            if (url.scheme!='https' and not internal_loopback) or not url.hostname or url.username or url.password or url.query or url.fragment or not url.path.endswith('/'):
                 raise UpdateRejected('Update endpoints must be fixed HTTPS base URLs')
         root=(package/'update-root.json').read_bytes()
         if hashlib.sha256(root).hexdigest()!=data.get('rootSha256'):raise UpdateRejected('Installed bootstrap identity changed')

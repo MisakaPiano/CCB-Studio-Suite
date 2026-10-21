@@ -1,0 +1,14 @@
+{
+  "status": "NATIVE_VISUAL_UNVERIFIED",
+  "applicationWindow": "CCB Studio Suite \u5de5\u4f5c\u53f0 (owned test process 972)",
+  "initialHiddenProcess": 27928,
+  "captureErrors": [
+    "FrameArrived timed out: timed out waiting on channel",
+    "window capture timed out: timed out waiting on channel"
+  ],
+  "accessibility": "Window and pane only; no product buttons",
+  "normalClose": "Alt+F4 sent to uniquely selected test window; process972 subsequently absent",
+  "applicationSourceSha": "bc3c4d863fdd80ca6f7d2690fdbbe50e6ef794ec",
+  "builderSha256": "e93b95ea7e4db01221f3227614551951a67ce6cbc6b22e251e00d562edc2c60e",
+  "AtoB": "NOT TESTED"
+}

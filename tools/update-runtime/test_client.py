@@ -82,4 +82,16 @@ class ClientTests(unittest.TestCase):
         config['metadataUrl']=self.identity.metadata_url;config['rootSha256']='0'*64;write()
         with self.assertRaises(UpdateRejected):Installed.load(self.path)
 
+    def test_http_is_allowed_only_for_explicit_internal_literal_loopback(self):
+        config={'format':1,'product':'ccb-studio-suite','platform':'windows-x86_64','channel':'internal','version':1,'reader':2,
+                'metadataUrl':'http://127.0.0.1:12345/metadata/','targetsUrl':'http://127.0.0.1:12345/targets/',
+                'rootSha256':hashlib.sha256(self.repo.bootstrap).hexdigest(),'internalTest':True}
+        (self.path/'update-root.json').write_bytes(self.repo.bootstrap)
+        def write():(self.path/'update-config.json').write_text(json.dumps(config))
+        write();self.assertEqual(Installed.load(self.path).channel,'internal')
+        for changes in [{'channel':'stable'},{'internalTest':False},{'metadataUrl':'http://localhost:12345/metadata/'},{'metadataUrl':'http://example.com/metadata/'}]:
+            old=dict(config);config.update(changes);write()
+            with self.assertRaises(UpdateRejected):Installed.load(self.path)
+            config=old
+
 if __name__=='__main__':unittest.main()
