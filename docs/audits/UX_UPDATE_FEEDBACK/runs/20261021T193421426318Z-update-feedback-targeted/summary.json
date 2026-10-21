@@ -1,0 +1,28 @@
+{
+  "phase": "update-feedback-targeted",
+  "startedUtc": "2026-10-21T19:34:37.971938+00:00",
+  "seconds": 174.369,
+  "exitCode": 0,
+  "tests": 5,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:test",
+    "--tests",
+    "*StudioUpdateTest"
+  ],
+  "baseCommit": "0ae42d9b5e6dec3fd796b28a8f92fca507cccbdc",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

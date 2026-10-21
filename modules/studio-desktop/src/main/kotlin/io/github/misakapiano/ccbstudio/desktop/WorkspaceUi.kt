@@ -110,12 +110,7 @@ private class ChromeRecorder(private val chrome:DesktopWindowChrome) {
         Box(Modifier.onGloballyPositioned(r.button("accounts"))){IconAction("账户档案","account",!c.busy){c.popup="ACCOUNT"}}
         Spacer(Modifier.weight(1f))
         listOf(ChromeHit.MINIMIZE,ChromeHit.MAXIMIZE,ChromeHit.CLOSE).forEach {hit->
-            val hover=native.hovered==hit;val bg=if(hover&&hit==ChromeHit.CLOSE)Color(0xffe81123)else if(hover)Soft else Color.Transparent
-            val label=when(hit){ChromeHit.MINIMIZE->"最小化";ChromeHit.MAXIMIZE->if(native.maximized)"还原"else"最大化";else->"关闭"}
-            Box(Modifier.width(if(compact)42.dp else 46.dp).fillMaxHeight().background(bg).onGloballyPositioned(r.caption(hit)).semantics {contentDescription=label}
-                .clickable(role=Role.Button){desktopCaptionCommand(hit,native.maximized)?.let(chrome::command)},contentAlignment=Alignment.Center) {
-                Glyph(when(hit){ChromeHit.MINIMIZE->"minus";ChromeHit.MAXIMIZE->if(native.maximized)"restore"else"maximize";else->"close"},TextInk,Modifier.size(12.dp))
-            }
+            StudioCaptionButton(hit,native,compact,Modifier.onGloballyPositioned(r.caption(hit)),chrome::command)
         }
     }
 }

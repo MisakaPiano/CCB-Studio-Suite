@@ -1,3 +1,7 @@
+## 实际更新与界面反馈修正（2026-10-22）
+
+[实际记录](audits/UX_UPDATE_FEEDBACK.md)：用户操作真实 A→B，格式 2→3 独立复制与 10 条资产/1 个合成凭据核验 COMPLETE；同版本误报失败、下载进度/完成反馈及 Desktop 顶栏图形已修正。Python 23 项、定向 7 项、桌面完整 87 项实际 PASS，历史失败保留。继续完整门槛，PRODUCT_HOLD / NOT RC。
+
 ## 格式 3 复制迁移进度（2026-10-22）
 
 [实际记录](audits/UX_FORMAT_THREE_MIGRATION.md)：独立副本迁移、启动确认/签名目标绑定及真实旧 A 读取拒绝已验证；完整 208 项实际PASS，旧备份锁初始化失败及修正保留。A安装包已封存，继续B打包和真实2→3应用内更新，PRODUCT_HOLD / NOT RC。

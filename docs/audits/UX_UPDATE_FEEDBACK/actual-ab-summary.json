@@ -1,0 +1,47 @@
+{
+  "status": "ACTUAL_A_TO_B_COMPLETE",
+  "execution": "User operated check/download/install confirmation. Application performed drain/install/restart/copy migration/verification.",
+  "aSource": "251dc34950990b0878e1910d16ed289e9400db8d",
+  "bSource": "0ae42d9b5e6dec3fd796b28a8f92fca507cccbdc",
+  "sourceDataVersion": 2,
+  "targetDataVersion": 3,
+  "assets": 10,
+  "syntheticCredentials": 1,
+  "snapshotMatches": true,
+  "oldDataRootRetained": true,
+  "packages": [
+    {
+      "path": ".local/windows-rc/ab-build-a-3/studio-installer.exe",
+      "bytes": 167179366,
+      "sha256": "adf29307dae955d54f91e63620c24c0d547b85d6a24942998edd8d9f0e4ff734"
+    },
+    {
+      "path": ".local/windows-rc/ab-build-b-3/studio-installer.exe",
+      "bytes": 167196555,
+      "sha256": "eda9b2d3a7ffaa7691f10d506148005862f33c931cb38855455cb370e3b155e9"
+    }
+  ],
+  "operations": [
+    {
+      "operation": "2cf1412f-1315-4efc-8b9d-ab21aa1ea373",
+      "status": "FAILED"
+    },
+    {
+      "operation": "89011f80-3fb6-48a2-9605-7dba605b86b5",
+      "status": "AVAILABLE"
+    },
+    {
+      "operation": "ebcd092d-7d00-4bc5-b552-51495c37d794",
+      "status": "DOWNLOADED_VERIFIED"
+    },
+    {
+      "operation": "f73b0b47-0c36-43c4-bcc7-70e1663f1e9f",
+      "status": "FAILED"
+    }
+  ],
+  "knownFailure": "Re-check after success reported FAILED for same version; original result and user screenshot retained.",
+  "nativeAutomation": "Capture timed out; automated navigation was not verified. User took over.",
+  "productGate": "PRODUCT_HOLD / NOT RC",
+  "realApiCalls": 0,
+  "drive": "NOT UPLOADED for this checkpoint; safe evidence is tracked in Git, installers remain local."
+}

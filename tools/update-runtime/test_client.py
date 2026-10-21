@@ -6,7 +6,8 @@ ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT/'tools/update-lab'))
 from test_trust import Repository
 from tuf.api.metadata import Metadata, TargetFile, MetaFile
-from studio_update import Installed, UpdateRejected, execute, exclusive
+from studio_update import Installed, UpdateRejected, execute, exclusive, inspect
+from dataclasses import replace
 
 class ClientTests(unittest.TestCase):
     def setUp(self):
@@ -35,6 +36,39 @@ class ClientTests(unittest.TestCase):
         file=Path(after['installer']);self.assertEqual(after['status'],'DOWNLOADED_VERIFIED')
         self.assertEqual(hashlib.sha256(file.read_bytes()).hexdigest(),after['sha256'])
         self.assertTrue((file.parent/'VERIFIED.json').is_file());self.assertFalse(file.parent.name.endswith('.incomplete'))
+
+    def test_current_version_requires_exact_identity_and_never_downloads(self):
+        current=replace(self.identity,version=2,source_sha='a'*40)
+        result=execute(current,self.path/'current',True,self.repo.fetcher)
+        self.assertEqual(result['status'],'UP_TO_DATE');self.assertNotIn('installer',result)
+        self.assertFalse(list((self.path/'current/downloads').iterdir()))
+        for index,identity in enumerate([replace(current,source_sha='b'*40),replace(current,source_sha=''),replace(current,version=3)]):
+            with self.assertRaises(UpdateRejected):execute(identity,self.path/str(index),True,self.repo.fetcher)
+        self.publish({'maximum_reader':3,'data_version':3})
+        with self.assertRaises(UpdateRejected):execute(current,self.path/'format-change',True,self.repo.fetcher)
+
+    def test_installer_validation_still_rejects_equal_version(self):
+        target=TargetFile.from_data('studio-installer.exe',b'x',['sha256'])
+        target.unrecognized_fields['custom']={'product':'ccb-studio-suite','platform':'windows-x86_64','channel':'internal','version':1,'minimum_reader':2,'maximum_reader':2}
+        with self.assertRaisesRegex(UpdateRejected,'not newer'):
+            inspect(SimpleNamespace(get_targetinfo=lambda _:target),self.identity)
+
+    def test_progress_counts_actual_target_bytes_and_success_only_after_commit(self):
+        payload=b'x'*1100000;self.publish(payload=payload);events=[]
+        def report(value):
+            events.append(value)
+            if value['phase']=='DOWNLOADED_VERIFIED':self.assertTrue(list(self.path.rglob('VERIFIED.json')))
+        result=execute(self.identity,self.path,True,self.repo.fetcher,progress=report)
+        self.assertEqual(result['status'],'DOWNLOADED_VERIFIED')
+        self.assertEqual(events[0],{'phase':'CHECKING'})
+        downloading=[v for v in events if v['phase']=='DOWNLOADING']
+        self.assertEqual(downloading[0]['received'],0);self.assertEqual(downloading[-1]['received'],len(payload))
+        self.assertTrue(all(v['total']==len(payload) for v in downloading))
+        self.assertEqual([v['phase'] for v in events][-2:],['VERIFYING','DOWNLOADED_VERIFIED'])
+        self.repo.files['targets/studio-installer.exe']=b'y'*len(payload);failed=[]
+        with self.assertRaises(Exception):execute(self.identity,self.path/'corrupt',True,self.repo.fetcher,progress=failed.append)
+        self.assertNotIn('DOWNLOADED_VERIFIED',[v['phase'] for v in failed])
+        self.assertFalse(list((self.path/'corrupt').rglob('VERIFIED.json')))
 
     def test_wrong_identity_version_and_reader_block_before_download(self):
         for field,value in [('channel','stable'),('platform','linux'),('product','other'),('version',1),('version',True),('minimum_reader',3),('maximum_reader',1),('sourceSha','unknown'),('notes',42)]:

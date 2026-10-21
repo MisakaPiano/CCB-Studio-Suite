@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.StudioTitleControlsTest" tests="2" skipped="0" failures="1" errors="0" timestamp="2026-10-21T19:44:19.043Z" hostname="DD1" time="1.478">
+  <properties/>
+  <testcase name="captionGeometryAndCommandsAtFourDisplayScales" classname="io.github.misakapiano.ccbstudio.desktop.StudioTitleControlsTest" time="1.062">
+    <failure message="java.lang.AssertionError: Expected &lt;57.5&gt; with absolute tolerance &lt;1.0&gt;, actual &lt;56.0&gt;." type="java.lang.AssertionError">java.lang.AssertionError: Expected &lt;57.5&gt; with absolute tolerance &lt;1.0&gt;, actual &lt;56.0&gt;.
+	at org.junit.Assert.fail(Assert.java:89)
+	at kotlin.test.junit.JUnitAsserter.fail(JUnitSupport.kt:56)
+	at kotlin.test.Asserter.assertTrue(Assertions.kt:766)
+	at kotlin.test.junit.JUnitAsserter.assertTrue(JUnitSupport.kt:30)
+	at kotlin.test.UtilsKt.checkFloatsAreEqual(Utils.kt:53)
+	at kotlin.test.UtilsKt.checkFloatsAreEqual$default(Utils.kt:43)
+	at kotlin.test.AssertionsKt__AssertionsKt.assertEquals(Assertions.kt:75)
+	at kotlin.test.AssertionsKt.assertEquals(Unknown Source)
+	at kotlin.test.AssertionsKt__AssertionsKt.assertEquals$default(Assertions.kt:74)
+	at kotlin.test.AssertionsKt.assertEquals$default(Unknown Source)
+	at io.github.misakapiano.ccbstudio.desktop.StudioTitleControlsTest$captionGeometryAndCommandsAtFourDisplayScales$1$1.invokeSuspend(StudioTitleControlsTest.kt:41)
+	at _COROUTINE._BOUNDARY._(CoroutineDebugging.kt:42)
+	at io.github.misakapiano.ccbstudio.desktop.StudioTitleControlsTest$captionGeometryAndCommandsAtFourDisplayScales$1.invokeSuspend(StudioTitleControlsTest.kt:28)
+Caused by: java.lang.AssertionError: Expected &lt;57.5&gt; with absolute tolerance &lt;1.0&gt;, actual &lt;56.0&gt;.
+	at org.junit.Assert.fail(Assert.java:89)
+	at kotlin.test.junit.JUnitAsserter.fail(JUnitSupport.kt:56)
+	at kotlin.test.Asserter.assertTrue(Assertions.kt:766)
+	at kotlin.test.junit.JUnitAsserter.assertTrue(JUnitSupport.kt:30)
+	at kotlin.test.UtilsKt.checkFloatsAreEqual(Utils.kt:53)
+	at kotlin.test.UtilsKt.checkFloatsAreEqual$default(Utils.kt:43)
+	at kotlin.test.AssertionsKt__AssertionsKt.assertEquals(Assertions.kt:75)
+	at kotlin.test.AssertionsKt.assertEquals(Unknown Source)
+	at kotlin.test.AssertionsKt__AssertionsKt.assertEquals$default(Assertions.kt:74)
+	at kotlin.test.AssertionsKt.assertEquals$default(Unknown Source)
+	at io.github.misakapiano.ccbstudio.desktop.StudioTitleControlsTest$captionGeometryAndCommandsAtFourDisplayScales$1$1.invokeSuspend(StudioTitleControlsTest.kt:41)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+</failure>
+  </testcase>
+  <testcase name="narrowNavigationKeepsEveryRouteAccessibleWithoutTextOverflow" classname="io.github.misakapiano.ccbstudio.desktop.StudioTitleControlsTest" time="0.416"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

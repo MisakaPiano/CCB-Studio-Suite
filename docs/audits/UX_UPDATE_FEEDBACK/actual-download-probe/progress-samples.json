@@ -1,0 +1,60 @@
+[
+  {
+    "seconds": 0.6709999999984575,
+    "phase": "CHECKING"
+  },
+  {
+    "seconds": 0.7959999999984575,
+    "phase": "DOWNLOADING",
+    "received": 0,
+    "total": 167196555,
+    "bytesPerSecond": 0
+  },
+  {
+    "seconds": 1.0459999999984575,
+    "phase": "DOWNLOADING",
+    "received": 18000000,
+    "total": 167196555,
+    "bytesPerSecond": 70824957
+  },
+  {
+    "seconds": 1.3280000000013388,
+    "phase": "DOWNLOADING",
+    "received": 48400000,
+    "total": 167196555,
+    "bytesPerSecond": 95162931
+  },
+  {
+    "seconds": 1.5780000000013388,
+    "phase": "DOWNLOADING",
+    "received": 78800000,
+    "total": 167196555,
+    "bytesPerSecond": 103641567
+  },
+  {
+    "seconds": 1.8120000000017171,
+    "phase": "DOWNLOADING",
+    "received": 111600000,
+    "total": 167196555,
+    "bytesPerSecond": 110432234
+  },
+  {
+    "seconds": 2.062000000001717,
+    "phase": "DOWNLOADING",
+    "received": 141600000,
+    "total": 167196555,
+    "bytesPerSecond": 111857450
+  },
+  {
+    "seconds": 2.312000000001717,
+    "phase": "VERIFYING",
+    "received": 167196555,
+    "total": 167196555
+  },
+  {
+    "seconds": 4.593000000000757,
+    "phase": "DOWNLOADED_VERIFIED",
+    "received": 167196555,
+    "total": 167196555
+  }
+]

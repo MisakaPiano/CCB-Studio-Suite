@@ -424,17 +424,17 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
     }) {
     val r=remember{WorkbenchChrome(chrome)};val native by chrome.state.collectAsState()
     BoxWithConstraints(Modifier.fillMaxSize()) {
-    val compact=maxWidth<760.dp
+    val compact=maxWidth<860.dp
+    val showBrand=maxWidth>=1100.dp
     DisposableEffect(compact){r.buttons.clear();r.publish();onDispose{r.buttons.clear();r.publish()}}
     Column(Modifier.fillMaxSize().background(Ink).onGloballyPositioned{r.width=it.size.width.toFloat();r.height=it.size.height.toFloat();r.publish()}) {
         Row(Modifier.fillMaxWidth().height(44.dp).background(Panel).onGloballyPositioned{r.title=r.rect(it);r.publish()},verticalAlignment=Alignment.CenterVertically) {
-            Image(StudioBrand.painter,"CCB 蓝色 logo",Modifier.padding(9.dp).size(26.dp).onGloballyPositioned{r.icon=r.rect(it);r.publish()})
-            if(compact)Box(Modifier.onGloballyPositioned{r.buttons["导航"]=r.rect(it);r.publish()}){CompactChoice("",listOf("创作","AI 设计","图库","编辑","资产管理","账户","更新"),c.view,{it}){c.view=it}}
-            else listOf("创作","AI 设计","图库","编辑","资产管理","账户","更新").forEach {label -> Box(Modifier.onGloballyPositioned{r.buttons[label]=r.rect(it);r.publish()}){StudioAction(label,selected=c.view==label){c.view=label}} }
+            Box(Modifier.width(40.dp).fillMaxHeight().onGloballyPositioned{r.icon=r.rect(it);r.publish()},contentAlignment=Alignment.Center){Image(StudioBrand.painter,"CCB 蓝色 logo",Modifier.size(24.dp))}
+            if(showBrand)Text("Studio Suite",Modifier.width(120.dp),fontSize=14.sp)
+            studioRoutes.forEach {label -> StudioRouteButton(label,c.view==label,compact,Modifier.onGloballyPositioned{r.buttons[label]=r.rect(it);r.publish()}){c.view=label} }
             Spacer(Modifier.weight(1f))
             listOf(ChromeHit.MINIMIZE,ChromeHit.MAXIMIZE,ChromeHit.CLOSE).forEach {hit ->
-                val label=when(hit){ChromeHit.MINIMIZE->"—";ChromeHit.MAXIMIZE->if(native.maximized)"❐"else"□";else->"×"}
-                Box(Modifier.width(44.dp).fillMaxHeight().onGloballyPositioned{r.captions[hit]=r.rect(it);r.publish()}.clickable{desktopCaptionCommand(hit,native.maximized)?.let(chrome::command)},contentAlignment=Alignment.Center){Text(label)}
+                StudioCaptionButton(hit,native,compact,Modifier.onGloballyPositioned{r.captions[hit]=r.rect(it);r.publish()},chrome::command)
             }
         }
         Divider()

@@ -5,11 +5,13 @@ never supplies the bootstrap trust anchor. No credentials or installer execution
 """
 from contextlib import contextmanager
 from dataclasses import dataclass
-import argparse, hashlib, json, os, re, shutil, uuid
+import argparse, hashlib, json, os, re, shutil, time, uuid
 from pathlib import Path
 from urllib.parse import urlsplit
 from tuf.ngclient import Updater
 from tuf.ngclient.config import UpdaterConfig
+from tuf.ngclient.fetcher import FetcherInterface
+from tuf.ngclient.urllib3_fetcher import Urllib3Fetcher
 
 class UpdateRejected(ValueError):
     pass
@@ -22,6 +24,7 @@ class Installed:
     metadata_url: str
     targets_url: str
     bootstrap: bytes
+    source_sha: str = ''
 
     @staticmethod
     def load(package: Path):
@@ -39,7 +42,9 @@ class Installed:
                 raise UpdateRejected('Update endpoints must be fixed HTTPS base URLs')
         root=(package/'update-root.json').read_bytes()
         if hashlib.sha256(root).hexdigest()!=data.get('rootSha256'):raise UpdateRejected('Installed bootstrap identity changed')
-        return Installed(data['version'],data['reader'],data['channel'],data['metadataUrl'],data['targetsUrl'],root)
+        source=data.get('sourceSha','')
+        if source and not re.fullmatch('[0-9a-f]{40}',source):raise UpdateRejected('Invalid installed source identity')
+        return Installed(data['version'],data['reader'],data['channel'],data['metadataUrl'],data['targetsUrl'],root,source)
 
 @contextmanager
 def exclusive(cache:Path):
@@ -54,7 +59,7 @@ def exclusive(cache:Path):
         try:yield
         finally:stream.seek(0);msvcrt.locking(stream.fileno(),msvcrt.LK_UNLCK,1)
 
-def inspect(updater, installed):
+def inspect(updater, installed, allow_current=False):
     target=updater.get_targetinfo('studio-installer.exe')
     if target is None:raise UpdateRejected('No authenticated installer published')
     custom=target.unrecognized_fields.get('custom',{})
@@ -62,7 +67,8 @@ def inspect(updater, installed):
         if custom.get(name)!=value:raise UpdateRejected('Wrong target '+name)
     for name in ['version','minimum_reader','maximum_reader']:
         if type(custom.get(name)) is not int or custom[name]<1:raise UpdateRejected('Invalid target '+name)
-    if custom['version']<=installed.version:raise UpdateRejected('Target is not newer than installed version')
+    if custom['version']<installed.version or (custom['version']==installed.version and not allow_current):
+        raise UpdateRejected('Target is not newer than installed version')
     if not custom['minimum_reader']<=installed.reader<=custom['maximum_reader']:raise UpdateRejected('Data reader is outside supported target range')
     output=custom.get('data_version',installed.reader)
     if type(output) is not int or not installed.reader<=output<=3 or not custom['minimum_reader']<=output<=custom['maximum_reader']:
@@ -72,41 +78,78 @@ def inspect(updater, installed):
     if not isinstance(custom.get('notes'),str) or len(custom['notes'])>16000:raise UpdateRejected('Unsupported release notes')
     if type(custom.get('installedBytes')) is not int or not 0<custom['installedBytes']<=4*1024**3:raise UpdateRejected('Invalid installation size')
     if not 0<target.length<=1024**3 or not re.fullmatch('[0-9a-f]{64}',target.hashes.get('sha256','')):raise UpdateRejected('Unsupported target size or hash')
+    if custom['version']==installed.version and (not installed.source_sha or custom['sourceSha']!=installed.source_sha or output!=installed.reader):
+        raise UpdateRejected('Current version target identity does not match installed package')
     return target,custom
 
-def execute(installed:Installed,cache:Path,download=False,fetcher=None,disk_usage=shutil.disk_usage):
+class ProgressFetcher(FetcherInterface):
+    """Observe actual target bytes; TUF still owns length/hash verification."""
+    def __init__(self,delegate,report):
+        self.delegate=delegate;self.report=report;self.total=None
+
+    def _fetch(self,url):
+        received=0;start=last=time.monotonic()
+        for chunk in self.delegate.fetch(url):
+            received+=len(chunk);now=time.monotonic()
+            if self.total is not None and (now-last>=0.25 or received>=self.total):
+                self.report({'phase':'DOWNLOADING','received':received,'total':self.total,
+                             'bytesPerSecond':int(received/max(now-start,0.001))})
+                last=now
+            yield chunk
+        if self.total is not None:
+            self.report({'phase':'VERIFYING','received':received,'total':self.total})
+
+def execute(installed:Installed,cache:Path,download=False,fetcher=None,disk_usage=shutil.disk_usage,progress=None):
+    report=progress or (lambda value:None)
+    report({'phase':'CHECKING'})
     with exclusive(cache):
         metadata=cache/'metadata';metadata.mkdir(exist_ok=True)
         targets=cache/'downloads';targets.mkdir(exist_ok=True)
+        observed=ProgressFetcher(fetcher or Urllib3Fetcher(app_user_agent='CCBStudioSuite'),report)
         updater=Updater(str(metadata),installed.metadata_url,str(targets),installed.targets_url,
-                        bootstrap=installed.bootstrap,fetcher=fetcher,config=UpdaterConfig(app_user_agent='CCBStudioSuite'))
-        target,custom=inspect(updater,installed)
+                        bootstrap=installed.bootstrap,fetcher=observed,config=UpdaterConfig(app_user_agent='CCBStudioSuite'))
+        target,custom=inspect(updater,installed,allow_current=True)
         result={'status':'AVAILABLE','version':custom['version'],'displayVersion':custom['displayVersion'],
                 'channel':custom['channel'],'notes':custom['notes'],'sourceSha':custom['sourceSha'],
                 'bytes':target.length,'installedBytes':custom['installedBytes'],'sha256':target.hashes['sha256'],'minimumReader':custom['minimum_reader'],
                 'maximumReader':custom['maximum_reader'],'dataVersion':custom.get('data_version',installed.reader)}
+        if custom['version']==installed.version:
+            result['status']='UP_TO_DATE'
+            return result
         if download:
             if disk_usage(cache).free<target.length*3+64*1024**2:raise UpdateRejected('Insufficient update staging space')
             stage=targets/(str(uuid.uuid4())+'.incomplete');stage.mkdir()
             file=stage/'studio-installer.exe'
+            observed.total=target.length
+            report({'phase':'DOWNLOADING','received':0,'total':target.length,'bytesPerSecond':0})
             updater.download_target(target,filepath=str(file))
             # Commit completion only after upstream byte verification and durable local write.
             with file.open('rb+') as stream:os.fsync(stream.fileno())
-            target.verify_length_and_hashes(file.read_bytes())
+            with file.open('rb') as stream:target.verify_length_and_hashes(stream)
             receipt=stage/'VERIFIED.json'
             with receipt.open('x',encoding='utf-8') as stream:
                 json.dump(result,stream,indent=2);stream.flush();os.fsync(stream.fileno())
             final=stage.with_suffix('');os.rename(stage,final)
             result.update(status='DOWNLOADED_VERIFIED',installer=str((final/file.name).resolve()))
+            report({'phase':'DOWNLOADED_VERIFIED','received':target.length,'total':target.length})
         return result
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--package',required=True);parser.add_argument('--cache',required=True);parser.add_argument('--download',action='store_true')
+    parser.add_argument('--progress')
     args=parser.parse_args()
     try:
         package=Path(args.package).resolve();cache=Path(args.cache).resolve()
         if cache==package or cache.is_relative_to(package) or package.is_relative_to(cache):raise UpdateRejected('Update cache must be separate from installed package')
-        result=execute(Installed.load(package),cache,args.download)
+        progress=None
+        if args.progress:
+            path=Path(args.progress).resolve()
+            if path.parent.parent!=cache/'operations' or not path.parent.is_dir() or path.name!='progress.json':
+                raise UpdateRejected('Invalid progress destination')
+            def progress(value):
+                temporary=path.with_suffix('.tmp')
+                temporary.write_text(json.dumps(value),encoding='utf-8');os.replace(temporary,path)
+        result=execute(Installed.load(package),cache,args.download,progress=progress)
     except Exception as error:
         # No URLs, arbitrary server text, local credentials or traceback in product output.
         result={'status':'FAILED','reason':str(error) if isinstance(error,UpdateRejected) else type(error).__name__}

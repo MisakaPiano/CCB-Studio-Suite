@@ -1,0 +1,472 @@
+[
+  {
+    "path": "ab-a-3-before-restart.json",
+    "bytes": 33845,
+    "sha256": "c487ad1a12d5815a2d89241dd7ec9a171c6219f0e93ebf9dd6f9fbb61bd4dcc9"
+  },
+  {
+    "path": "ab-a-3-jvm-threads.txt",
+    "bytes": 12332,
+    "sha256": "bd471f37664daa5a769c3e8c9b8b2161e1ec8942f9e7323356fde6c66b731b7b"
+  },
+  {
+    "path": "ab-a-3-startup-threads.txt",
+    "bytes": 8,
+    "sha256": "5232094629b362bda76fc4d1906aa17020b891db5ede147e1f68068e5222beb9"
+  },
+  {
+    "path": "actual-ab-B_VERIFIED.json",
+    "bytes": 4808,
+    "sha256": "7a987f88b486490058a22d1522a524c4584a7ed96e2ef7766820c3657e828eb1"
+  },
+  {
+    "path": "actual-ab-events.jsonl",
+    "bytes": 1445,
+    "sha256": "ab316f20aeab9824797e764befc6c5b0f3d9bf48a4593445e7579938119058b3"
+  },
+  {
+    "path": "actual-ab-plan.json",
+    "bytes": 5601,
+    "sha256": "5be043cc3329b09c1dd48c088f2958b9acf8b8970e6dc29fa0539303d45b04bb"
+  },
+  {
+    "path": "actual-ab-result.json",
+    "bytes": 710,
+    "sha256": "62c2f3d324221e06c84da0e6d2286458b6ada3ad2cedaf8a37bd14b2b94bde51"
+  },
+  {
+    "path": "actual-ab-summary.json",
+    "bytes": 1719,
+    "sha256": "53f4368f6702ea6d1a1f8b059e9ecbda2505bea23a7edbfcd425bfa4f07a8a1f"
+  },
+  {
+    "path": "actual-current-check.json",
+    "bytes": 516,
+    "sha256": "d5bc94344835db6a94df5c9df0ba149c7b7ceccaebb846694fd55be09a095de2"
+  },
+  {
+    "path": "actual-download-probe/progress-samples.json",
+    "bytes": 1287,
+    "sha256": "778838c1e9548913244d1def59f6f20f9b1c3dadc0e2f339298f308443d65467"
+  },
+  {
+    "path": "actual-download-probe/progress.json",
+    "bytes": 75,
+    "sha256": "3ae28015eb0ff4c8a8617c4eea676f408538d9edc60d62862ae49c7de0075537"
+  },
+  {
+    "path": "actual-download-probe/result.json",
+    "bytes": 705,
+    "sha256": "a4b8918261a98a85dc679759c41b912d0c7aeb169d26a366c9315d41869e5528"
+  },
+  {
+    "path": "actual-download-probe/stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "actual-download-probe/summary.json",
+    "bytes": 554,
+    "sha256": "ea82e34959c8d0810797c7a5b349959b4713869da7ecbfcb013076a5719efd44"
+  },
+  {
+    "path": "actual-install-journal.json",
+    "bytes": 657,
+    "sha256": "abd127b6f7e01726c38b099dfa0ec56dfba342a51f389027046c792165574b8b"
+  },
+  {
+    "path": "compose-scenes/captions-1.0-false.png",
+    "bytes": 349,
+    "sha256": "6e43de4555967afa6efa1a6b9a61ebe1780433e285238c295d122602b1f65f57"
+  },
+  {
+    "path": "compose-scenes/captions-1.0-true.png",
+    "bytes": 392,
+    "sha256": "31e0c3b854ef6b5b0c556574ab527fc0564c8e42dabae715cded711ff1a172bb"
+  },
+  {
+    "path": "compose-scenes/captions-1.25-false.png",
+    "bytes": 599,
+    "sha256": "7434f9c6b19b90cf7c6aca7781bfa570c4c3f68a182a13921666b712a5ecdc7d"
+  },
+  {
+    "path": "compose-scenes/captions-1.25-true.png",
+    "bytes": 724,
+    "sha256": "5730939546d26fe771cc83f641706b9be93f093fcafbf508b25537503f4e55c7"
+  },
+  {
+    "path": "compose-scenes/captions-1.5-false.png",
+    "bytes": 544,
+    "sha256": "3099e1fc1fc85a2450c246b24dfb08ef9b55619c5031e7af02049c74cd4903e4"
+  },
+  {
+    "path": "compose-scenes/captions-1.5-true.png",
+    "bytes": 604,
+    "sha256": "727c4e55256454cccd7dc9baf1d9b1d90a09a0de66685508236659b7e68ce7da"
+  },
+  {
+    "path": "compose-scenes/captions-2.0-false.png",
+    "bytes": 663,
+    "sha256": "1f5fd1456fd288e73a5bfcab41432215951c7a93a2626cf9baa7b8c79dc39f9f"
+  },
+  {
+    "path": "compose-scenes/captions-2.0-true.png",
+    "bytes": 692,
+    "sha256": "f4f6b63078f1132bfb61d570fb9672fd08b6664a184fd28f145c6e740daa86e6"
+  },
+  {
+    "path": "compose-scenes/navigation-false.png",
+    "bytes": 7108,
+    "sha256": "294011bc106de37b6972c219e87df9cd18ec944bd7e8b079fe2a0574b648bac5"
+  },
+  {
+    "path": "compose-scenes/navigation-true.png",
+    "bytes": 4101,
+    "sha256": "b34b8ea9f416d616f7608ccea71ffeade51f4d3793f9e38ae99ed979abe987c5"
+  },
+  {
+    "path": "compose-scenes/update-download.png",
+    "bytes": 40268,
+    "sha256": "22b77556dcf53181b037092b4d096c94de8a4425b6c34058fcfd26f244eeca48"
+  },
+  {
+    "path": "operation-2cf1412f-1315-4efc-8b9d-ab21aa1ea373.json",
+    "bytes": 78,
+    "sha256": "3f517b6c102fa9446f1959fbf414da015bb5487eed53cb5afb11aa95098ad5c3"
+  },
+  {
+    "path": "operation-89011f80-3fb6-48a2-9605-7dba605b86b5.json",
+    "bytes": 515,
+    "sha256": "b642e60170579c8a9d5514c0e55c2c918a18b84a259592678ffecef2e2cd6abd"
+  },
+  {
+    "path": "operation-ebcd092d-7d00-4bc5-b552-51495c37d794.json",
+    "bytes": 676,
+    "sha256": "cf54758588ff265d5385af5da50f64d4bf4deaf9e5acbeeb400196f42b9f57d4"
+  },
+  {
+    "path": "operation-f73b0b47-0c36-43c4-bcc7-70e1663f1e9f.json",
+    "bytes": 78,
+    "sha256": "3f517b6c102fa9446f1959fbf414da015bb5487eed53cb5afb11aa95098ad5c3"
+  },
+  {
+    "path": "runs/20261021T193421426318Z-update-feedback-targeted/gradle.log",
+    "bytes": 2990,
+    "sha256": "ec1444f341bbde2de68a1d898726b901294309762d81d6754882ae976549f313"
+  },
+  {
+    "path": "runs/20261021T193421426318Z-update-feedback-targeted/source-before.json",
+    "bytes": 57033,
+    "sha256": "d24d84ede2eb05582b6289c548027c1c45e7396560dac57b26c7c48a20346a96"
+  },
+  {
+    "path": "runs/20261021T193421426318Z-update-feedback-targeted/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest.xml",
+    "bytes": 1155,
+    "sha256": "e0ce8a60cef9e5291604d34368bd983a4c16483845a52fb2acd9fbade8900c15"
+  },
+  {
+    "path": "runs/20261021T193421426318Z-update-feedback-targeted/summary.json",
+    "bytes": 811,
+    "sha256": "2dfd16d99dce6421e6b0bf212e861aeeeb827cbc2d317dee0bd8abd0712b9880"
+  },
+  {
+    "path": "runs/20261021T193421426318Z-update-feedback-targeted/test-cases.json",
+    "bytes": 1039,
+    "sha256": "d3b6e09ef67bc2fe270f25b23e2ea7eebf530c45da42f056440a132f19443f3e"
+  },
+  {
+    "path": "runs/20261021T193911188379Z-update-title-targeted/gradle.log",
+    "bytes": 2787,
+    "sha256": "e41b8ff27dc1c1ebad45b62e5f25f554b931408dc02602e66d1c3afea21285c5"
+  },
+  {
+    "path": "runs/20261021T193911188379Z-update-title-targeted/source-before.json",
+    "bytes": 57389,
+    "sha256": "bea85ec7d4561349c37ada78f255495478d2366913e76bb21d5b1ba8a03de209"
+  },
+  {
+    "path": "runs/20261021T193911188379Z-update-title-targeted/summary.json",
+    "bytes": 900,
+    "sha256": "7370114e852414ba92ddd70176f10b9b8eb9d66c5cc046410fbb90f62890c140"
+  },
+  {
+    "path": "runs/20261021T193911188379Z-update-title-targeted/test-cases.json",
+    "bytes": 4,
+    "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+  },
+  {
+    "path": "runs/20261021T194036302581Z-update-title-targeted-fixed/gradle.log",
+    "bytes": 3539,
+    "sha256": "33b94c4c82d79da265eb7711fedc10f2479e91327c80828900c8135bb9449d29"
+  },
+  {
+    "path": "runs/20261021T194036302581Z-update-title-targeted-fixed/source-before.json",
+    "bytes": 57389,
+    "sha256": "320991b44502d3fc1bc03aa22f02a397eafdff9cb73fd547d65da863c2c664e5"
+  },
+  {
+    "path": "runs/20261021T194036302581Z-update-title-targeted-fixed/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioTitleControlsTest.xml",
+    "bytes": 4012,
+    "sha256": "b05a11ec6cfabcd0941e3e76b8a11bf9a28da28aa7d152a377cdc2943a50e6b0"
+  },
+  {
+    "path": "runs/20261021T194036302581Z-update-title-targeted-fixed/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest.xml",
+    "bytes": 1155,
+    "sha256": "b7fb33a32dff6f4bafc240a0b7839b0e14954aa257e6c297dc062ae2b6ddfc20"
+  },
+  {
+    "path": "runs/20261021T194036302581Z-update-title-targeted-fixed/summary.json",
+    "bytes": 865,
+    "sha256": "b9b2c952f3ec864b5fca859cebd59034be6cccc10afcea56122063f3e4775460"
+  },
+  {
+    "path": "runs/20261021T194036302581Z-update-title-targeted-fixed/test-cases.json",
+    "bytes": 1458,
+    "sha256": "8f713afe34c4a3925b905443925c81cf790e4067b4c2aa3adbe5d7099846432f"
+  },
+  {
+    "path": "runs/20261021T194355363320Z-update-title-targeted-coverage/gradle.log",
+    "bytes": 3558,
+    "sha256": "61069eae52a17f254c4eb87d03cad31aa07a16baa3d416f72c76155cac2b0a61"
+  },
+  {
+    "path": "runs/20261021T194355363320Z-update-title-targeted-coverage/source-before.json",
+    "bytes": 57389,
+    "sha256": "5b3715a66fda61a35d286c88cf5cb1e8bdbfccae4e753cdd21aa2a9ceea9bf7d"
+  },
+  {
+    "path": "runs/20261021T194355363320Z-update-title-targeted-coverage/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioTitleControlsTest.xml",
+    "bytes": 4187,
+    "sha256": "ecca9408c96612993bf02fe357385cbb9f25a663664791723d97ee28925292f5"
+  },
+  {
+    "path": "runs/20261021T194355363320Z-update-title-targeted-coverage/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest.xml",
+    "bytes": 1154,
+    "sha256": "5689ef360ea6f18acb71d38c2a203542d51df673eecf5c9ea48de1b84af56fff"
+  },
+  {
+    "path": "runs/20261021T194355363320Z-update-title-targeted-coverage/summary.json",
+    "bytes": 867,
+    "sha256": "0023e35de85a8c93871efec314972779e4736026f7c28b4399198942f6f4d3a6"
+  },
+  {
+    "path": "runs/20261021T194355363320Z-update-title-targeted-coverage/test-cases.json",
+    "bytes": 1458,
+    "sha256": "bcd361bf91a1cb1116a5c0b660489b7a7cdb626f95b5d4639348b8eb7e7eed27"
+  },
+  {
+    "path": "runs/20261021T194507864312Z-update-title-targeted-final/gradle.log",
+    "bytes": 3188,
+    "sha256": "97a667c72f5d496950a1a4fa1e771e2ae6bf4461539685845c975fe553891918"
+  },
+  {
+    "path": "runs/20261021T194507864312Z-update-title-targeted-final/source-before.json",
+    "bytes": 57389,
+    "sha256": "92408a5797189833b98ac0e949b5789aed52d89f5b91837d5882b254ada73a63"
+  },
+  {
+    "path": "runs/20261021T194507864312Z-update-title-targeted-final/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioTitleControlsTest.xml",
+    "bytes": 676,
+    "sha256": "7662689581371d26fa3314745f7e2fb893940921d9abf26da8745606af0d203b"
+  },
+  {
+    "path": "runs/20261021T194507864312Z-update-title-targeted-final/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest.xml",
+    "bytes": 1154,
+    "sha256": "aa92dc0cad5ed3f47abdcc2d9670a6c36d51dbfde6e3ebe96536b19c43ef17ef"
+  },
+  {
+    "path": "runs/20261021T194507864312Z-update-title-targeted-final/summary.json",
+    "bytes": 862,
+    "sha256": "85cbe6ac42eb5527219ed8aafedbf45d88eab0e8a51cb991fa4ca9da664cd24a"
+  },
+  {
+    "path": "runs/20261021T194507864312Z-update-title-targeted-final/test-cases.json",
+    "bytes": 1455,
+    "sha256": "8a36d2eab5509e0826d07f067d523ff0c15951cb042477f9eea2368a4b2b3bf3"
+  },
+  {
+    "path": "runs/20261021T194616891981Z-update-feedback-desktop-full/gradle.log",
+    "bytes": 10825,
+    "sha256": "661488d274fe23d6dae046f03bc502c16b7c872f93ed7f93f5239457152b36cf"
+  },
+  {
+    "path": "runs/20261021T194616891981Z-update-feedback-desktop-full/source-before.json",
+    "bytes": 57389,
+    "sha256": "92408a5797189833b98ac0e949b5789aed52d89f5b91837d5882b254ada73a63"
+  },
+  {
+    "path": "runs/20261021T194616891981Z-update-feedback-desktop-full/studio-desktop-TEST-com.example.chatbar.desktop.DesktopStudioPresentationTest.xml",
+    "bytes": 2663,
+    "sha256": "c7dc160c785b33d7ee653c5a340b39d4ae1d66457ace065995f4db24573aa42f"
+  },
+  {
+    "path": "runs/20261021T194616891981Z-update-feedback-desktop-full/studio-desktop-TEST-com.example.chatbar.desktop.DesktopStudioWorkspaceTest.xml",
+    "bytes": 705,
+    "sha256": "6062f9b0202e3d981f077643b8d183f9d57e75ea7d7db9faea3423f1b379f38f"
+  },
+  {
+    "path": "runs/20261021T194616891981Z-update-feedback-desktop-full/studio-desktop-TEST-com.example.chatbar.desktop.SourceZoomSurfaceTest.xml",
+    "bytes": 516,
+    "sha256": "66f7ed96268f9f13fae477eeab630fd95b80fd74e71a226594baf6908fa114a5"
+  },
+  {
+    "path": "runs/20261021T194616891981Z-update-feedback-desktop-full/studio-desktop-TEST-com.example.chatbar.desktop.SuiteChromeTest.xml",
+    "bytes": 1136,
+    "sha256": "5bd533267ae62324b9802032aa441800d9b95d6eadfc4044bac53212edd0f8b6"
+  },
+  {
+    "path": "runs/20261021T194616891981Z-update-feedback-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.AssetArchiveWorkflowTest.xml",
+    "bytes": 692,
+    "sha256": "5dabce54fa057b072ef461d5aab99b8074f3abf9e80e290c8f3e1d2e838af22b"
+  },
+  {
+    "path": "runs/20261021T194616891981Z-update-feedback-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.AutosaveCancellationTest.xml",
+    "bytes": 521,
+    "sha256": "ce29c3d5b023a6b2033ea3b6088bd4c388eb07451a6fe2a657f915ff40c95064"
+  },
+  {
+    "path": "runs/20261021T194616891981Z-update-feedback-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GalleryAlbumWorkflowTest.xml",
+    "bytes": 542,
+    "sha256": "13bb7ae09912c8f70feca7fa17ee7a3d3482d97b6a3acfc490ce29c0ca9ebd7b"
+  },
+  {
+    "path": "runs/20261021T194616891981Z-update-feedback-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest.xml",
+    "bytes": 865,
+    "sha256": "92affa75e5fdd91012422b1a8f30081d8bd7ef0be3852c00cd0bc6aa89316205"
+  },
+  {
+    "path": "runs/20261021T194616891981Z-update-feedback-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GalleryIngressTest.xml",
+    "bytes": 677,
+    "sha256": "655624be1892cb9864d7b2722569b4585c4388015b2acb576546c4919fe7dbff"
+  },
+  {
+    "path": "runs/20261021T194616891981Z-update-feedback-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GalleryWorkflowTest.xml",
+    "bytes": 513,
+    "sha256": "5dd25e0c8c426a9b5dfd1992b98fe531d1114f93a8b80ab47ddc32147af235b9"
+  },
+  {
+    "path": "runs/20261021T194616891981Z-update-feedback-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GuidanceSafetyTest.xml",
+    "bytes": 820,
+    "sha256": "483fbd48f5573981718762635f9c4e6816c51e42533df80e24fd8814db05c97f"
+  },
+  {
+    "path": "runs/20261021T194616891981Z-update-feedback-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.ImageCardWorkflowTest.xml",
+    "bytes": 644,
+    "sha256": "b3a6ae7ab31383e7bf5b9019f700d0183cc616075faf3c2400b18c3cad8aec6c"
+  },
+  {
+    "path": "runs/20261021T194616891981Z-update-feedback-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest.xml",
+    "bytes": 926,
+    "sha256": "ad53b92a3acb27ab8b864fcf4a98c6a361efae4a08e35c067601dd8552870c3f"
+  },
+  {
+    "path": "runs/20261021T194616891981Z-update-feedback-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.MetadataWorkflowTest.xml",
+    "bytes": 969,
+    "sha256": "ef5656477a15ca0d5a7752a65a7900b7d2aa40823e478b2fd9337e93951ce44d"
+  },
+  {
+    "path": "runs/20261021T194616891981Z-update-feedback-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.PostProcessWorkflowTest.xml",
+    "bytes": 826,
+    "sha256": "49abb0fcd0a8b789483968d616f02a81f7b63bbd30a227ec4e72d8fd91ee14f4"
+  },
+  {
+    "path": "runs/20261021T194616891981Z-update-feedback-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.PromptReferenceWorkflowTest.xml",
+    "bytes": 1078,
+    "sha256": "b7c59805737946b9ebba916882faea7f856ee95665f9606871c9ba39e0819e92"
+  },
+  {
+    "path": "runs/20261021T194616891981Z-update-feedback-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.ReverseWorkflowTest.xml",
+    "bytes": 811,
+    "sha256": "7b671159c0327939a58109928b3f7efd4b659a594edecdffb73bd56be75929c7"
+  },
+  {
+    "path": "runs/20261021T194616891981Z-update-feedback-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioDataLaunchTest.xml",
+    "bytes": 667,
+    "sha256": "35768f9e519f84e7927e3c9645d5ce1409100e050bf91f1c475c1e116a9b8a54"
+  },
+  {
+    "path": "runs/20261021T194616891981Z-update-feedback-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioMaintenanceTest.xml",
+    "bytes": 862,
+    "sha256": "04ca62ce774f0d080394a697008e1b7f06c5d3e38c0ade0aa412ffbc0d2f92c1"
+  },
+  {
+    "path": "runs/20261021T194616891981Z-update-feedback-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioTitleControlsTest.xml",
+    "bytes": 677,
+    "sha256": "b110c72c25e822047d7df518eb392026ec05cfa1f5dbf089fbc975888a6e4546"
+  },
+  {
+    "path": "runs/20261021T194616891981Z-update-feedback-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest.xml",
+    "bytes": 1155,
+    "sha256": "2ed1155fb1569827e81028705a2112c9a887e87dcb5da3db41e4da810eadfd9b"
+  },
+  {
+    "path": "runs/20261021T194616891981Z-update-feedback-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.TypesetQueueWorkflowTest.xml",
+    "bytes": 1048,
+    "sha256": "81dc0cf7614fa688baecbd3fd581b2d81b3e98a33fb785fafceaee8d63ae8e0e"
+  },
+  {
+    "path": "runs/20261021T194616891981Z-update-feedback-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest.xml",
+    "bytes": 2247,
+    "sha256": "c35ec4665f03785ec06796e1d07efc3b1fcbddc8ca9611fac7c9f91c4420d937"
+  },
+  {
+    "path": "runs/20261021T194616891981Z-update-feedback-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest.xml",
+    "bytes": 1171,
+    "sha256": "cb9490d0c31f5eefe7bca2cd14400b6355725867953716695e9fe36f103f7e78"
+  },
+  {
+    "path": "runs/20261021T194616891981Z-update-feedback-desktop-full/summary.json",
+    "bytes": 808,
+    "sha256": "1676bd9ab4d416caff1a735e296bbcecb90cb2fe7dac61705a5514e858c4a273"
+  },
+  {
+    "path": "runs/20261021T194616891981Z-update-feedback-desktop-full/test-cases.json",
+    "bytes": 18284,
+    "sha256": "65c08ba2a00f21611b9eca3bc0922785beb310ae6c4a71e0e50f959748d2f80d"
+  },
+  {
+    "path": "runs/update-feedback-20261021T193340Z/source-before.json",
+    "bytes": 910,
+    "sha256": "3d90c2db67bbb06ab14d3f1c4ead003ad53d0b5d907b652e0d6f6e09f3cceca9"
+  },
+  {
+    "path": "runs/update-feedback-20261021T193340Z/summary.json",
+    "bytes": 625,
+    "sha256": "1be29ca6ca0ea948a6ecec78c2801edfb7678e311343e837bdafeaee6b7528fa"
+  },
+  {
+    "path": "runs/update-feedback-20261021T193340Z/tests.log",
+    "bytes": 3499,
+    "sha256": "23095690275c300d3323fd51e8522542cef873b502775b0c103fc59f4e68ada9"
+  },
+  {
+    "path": "SOURCE_DELIVERY_IDENTITY.json",
+    "bytes": 142865,
+    "sha256": "ea08bb0a87667253dc69b4a27d3876cfa331455a3169e3eec2d4886598b35319"
+  },
+  {
+    "path": "user-caption-feedback.png",
+    "bytes": 54632,
+    "sha256": "2b10b9b7c070943df21be617bd4efe40139415c76ec410ec642a3b8d829f6b3a"
+  },
+  {
+    "path": "user-current-version-error.png",
+    "bytes": 53992,
+    "sha256": "59e79732272c6dbe0f389f815c61ae9b7cd473c99bb21a68ffbc40fe7abbfe9a"
+  },
+  {
+    "path": "user-download-feedback.png",
+    "bytes": 71675,
+    "sha256": "89ac2da29518662e7703664a4c540bd68458af5c00cbde6c7925da4f2026a0ca"
+  },
+  {
+    "path": "user-install-confirm.png",
+    "bytes": 84257,
+    "sha256": "96a71473577cd1937f1b8f4b89b23584369d8a0a1585e79d39b7cee33a107a72"
+  },
+  {
+    "path": "user-restarted-b.png",
+    "bytes": 196839,
+    "sha256": "29fc308ef1bf88f6fa268311abba125d6caabdc6d8558c13a2c6d57663c3ad83"
+  }
+]
