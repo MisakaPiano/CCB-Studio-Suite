@@ -26,7 +26,7 @@ import org.msgpack.core.MessagePack
 class WorkbenchWorkflowTest {
     private val awt=object:CoroutineDispatcher(){override fun dispatch(context:CoroutineContext,block:Runnable)=SwingUtilities.invokeLater(block)}
     private fun root()=Paths.get(System.getProperty("preview.test.root")).resolve(newId())
-    private suspend fun ImageComposeScene.frames(){repeat(6){render().close();yield()};delay(60);render().close()}
+    private suspend fun ImageComposeScene.frames(){repeat(6){render(System.nanoTime()).close();yield()};delay(180);render(System.nanoTime()).close()}
     private fun ImageComposeScene.nodes():List<SemanticsNode>{
         fun walk(n:SemanticsNode):List<SemanticsNode> = listOf(n)+n.children.flatMap(::walk)
         return semanticsOwners.flatMap{walk(it.rootSemanticsNode)}
@@ -35,7 +35,7 @@ class WorkbenchWorkflowTest {
     private suspend fun ImageComposeScene.click(text:String){val n=nodes().first{it.matches(text)&&it.config.getOrNull(SemanticsActions.OnClick)!=null};assertTrue(n.config[SemanticsActions.OnClick].action!!.invoke());frames()}
     private suspend fun ImageComposeScene.field(label:String,text:String){val n=nodes().first{it.config.getOrNull(SemanticsActions.SetText)!=null && (it.matches(label)||it.children.any{child->child.matches(label)})};assertTrue(n.config[SemanticsActions.SetText].action!!.invoke(AnnotatedString(text)));frames()}
     private suspend fun WorkbenchController.idle(){withTimeout(30000){active?.join()};assertNull(problem,problem)}
-    private fun ImageComposeScene.shot(name:String){val out=Path.of("build/ux-r1a-workbench/$name.png");Files.createDirectories(out.parent);render().use{im->im.encodeToData()!!.use{Files.write(out,it.bytes)}}}
+    private fun ImageComposeScene.shot(name:String){val out=Path.of("build/ux-r1a-workbench/$name.png");Files.createDirectories(out.parent);render(System.nanoTime()).use{im->im.encodeToData()!!.use{Files.write(out,it.bytes)}}}
     private fun sse(text:String):ByteArray {
         val json=buildJsonObject {
             put("choices",buildJsonArray {
@@ -58,8 +58,8 @@ class WorkbenchWorkflowTest {
         val client=studioHttpClient().newBuilder().addInterceptor{chain->chain.proceed(chain.request().newBuilder().url("http://127.0.0.1:${server.address.port}/").removeHeader("Authorization").build())}.build()
         val scope=CoroutineScope(SupervisorJob()+awt);val w=StudioWorkspace.openStudio(r)
         val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),client,RequestAdmission{})
-        val scene=ImageComposeScene(1240,880){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
-        var asset=""
+        val scene=ImageComposeScene(1240,880,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        var asset="";var copied="";c.gallery.copyText={copied=it}
         try{
             scene.frames();scene.click("账户")
             scene.field("档案名称","Local LLM");scene.field("HTTPS API 地址","https://fixture.invalid/v1");scene.field("模型 ID","fixture");scene.field("API 凭据","LOCAL_TEST_ONLY")
@@ -70,12 +70,27 @@ class WorkbenchWorkflowTest {
             assertEquals("",c.composer);assertEquals("",c.draft.basePrompt);assertEquals(NovelAiDesignTurnStatus.COMPLETED,w.state.creation!!.conversations.single().turns.single().status)
             scene.shot("design-candidate");scene.click("应用候选到创作");assertEquals("",c.draft.basePrompt);scene.shot("apply-difference");scene.click("保留当前草稿");assertEquals("",c.draft.basePrompt)
             scene.click("应用候选到创作");scene.click("确认应用");c.idle();scene.frames();assertEquals("quiet room, window",c.draft.basePrompt)
+            assertNotNull(DesignProvenance(w).current())
+            scene.field("基础 Prompt","quiet room, window, warm light")
             scene.click("生成图片");c.idle();scene.frames();assertEquals(1,c.assets.size);asset=c.current!!;assertContentEquals(png,w.bytes(asset));scene.shot("generated-original")
             scene.click("图库");scene.click("全选");assertEquals(setOf(asset),c.selection);scene.click("反选");assertTrue(c.selection.isEmpty());scene.click("全选");scene.click("全不选");assertTrue(c.selection.isEmpty())
+            withTimeout(30000){while(scene.nodes().none{it.matches("查看 AI 设计过程")})scene.frames()}
+            assertEquals("已核验 · 应用后有修改",readImagePrompt(c,asset).context.parameters["AI 设计关联"])
+            scene.click("查看 AI 设计过程")
+            withTimeout(30000){while(scene.nodes().none{it.matches("应用后又有修改：以最终生成内容和请求快照为准。")})scene.frames()}
+            assertTrue(scene.nodes().any{it.matches("quiet room, window, warm light")})
+            scene.click("复制生成 基础 Prompt");assertEquals("quiet room, window, warm light",copied);scene.shot("design-generated-origin")
+            scene.click("设计过程");assertTrue(scene.nodes().any{it.matches("Quiet room")});assertTrue(scene.nodes().any{it.matches("本轮候选被明确应用")});scene.shot("design-origin-history");scene.click("关闭设计来源")
+            scene.click("全选");scene.click("所选图片多 Prompt 参照");c.idle();scene.frames()
+            val promptId=c.library.repository.prompts().single().request().id().toString()
+            scene.click("设计来源 ${promptId.take(8)}")
+            withTimeout(30000){while(scene.nodes().none{it.matches("应用后又有修改：以最终生成内容和请求快照为准。")})scene.frames()}
+            scene.click("关闭设计来源");assertEquals("quiet room, window, warm light",c.draft.basePrompt)
             assertEquals(3,requests.size);assertFalse(w.state.jobs.single().recipe.contains("LOCAL_TEST_ONLY"));assertEquals("COMPLETED",w.state.jobs.single().state)
         }finally{scene.close();c.close();scope.cancel();server.stop(0)}
         StudioWorkspace.openStudio(r).use{again->
-            assertEquals("quiet room, window",again.state.creation!!.draft.basePrompt);assertEquals(2,again.state.accounts.size);assertContentEquals(png,again.bytes(asset));assertEquals(asset,again.state.jobs.single().results.single())
+            assertEquals("quiet room, window, warm light",again.state.creation!!.draft.basePrompt);assertEquals(2,again.state.accounts.size);assertContentEquals(png,again.bytes(asset));assertEquals(asset,again.state.jobs.single().results.single())
+            assertEquals("quiet room, window",DesignProvenance(again).forGeneration(again.state.jobs.single())!!.applied.base)
             // Seed a persistent update fixture, not evidence of GUI typesetting acceptance.
             val repository=TypesetRepository(again)
             val project=repository.create("更新保全测试册",listOf(asset))
@@ -90,7 +105,7 @@ class WorkbenchWorkflowTest {
 
     @Test fun measuredSuiteNavigationSurvivesResizeAndUnsentInput()=runBlocking(awt){
         val scope=CoroutineScope(SupervisorJob()+awt);val w=StudioWorkspace.openStudio(root());val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
-        val scene=ImageComposeScene(1240,880){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        val scene=ImageComposeScene(1240,880,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
         try{
             scene.frames();scene.click("AI 设计");scene.field("画面需求 / 继续修改","尚未发送的中文草稿")
             for(width in listOf(640,900,1240)){scene.constraints=Constraints.fixed(width,880);scene.frames();assertTrue(scene.nodes().any{it.config.getOrNull(SemanticsProperties.EditableText)?.text=="尚未发送的中文草稿"});scene.shot("design-width-$width")}
@@ -105,7 +120,7 @@ class WorkbenchWorkflowTest {
         val scope=CoroutineScope(SupervisorJob()+awt)
         val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
         c.current=asset;c.edit{it.copy(basePrompt="保留的布局测试草稿")}
-        val scene=ImageComposeScene(1240,720){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        val scene=ImageComposeScene(1240,720,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
         try {
             for(width in listOf(1240,900,640,480,1240)) {
                 scene.constraints=Constraints.fixed(width,720);scene.frames()
@@ -129,7 +144,7 @@ class WorkbenchWorkflowTest {
     @Test fun editedAssetIsSelectableAcrossGuidanceAndEditorAndSurvivesRestart()=runBlocking(awt){
         val r=root();val w=StudioWorkspace.openStudio(r);val original=w.importImage("shared.png",EditorRenderer.synthetic(96,96))
         val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
-        val scene=ImageComposeScene(1240,880){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        val scene=ImageComposeScene(1240,880,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
         var derived="";var project=""
         try {
             c.editor.create("Shared project",listOf(original));c.idle();project=c.editor.project!!.id
@@ -162,7 +177,7 @@ class WorkbenchWorkflowTest {
         val w=StudioWorkspace.openStudio(r);val before=updateSnapshot(w)
         val scope=CoroutineScope(SupervisorJob()+awt)
         val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
-        val scene=ImageComposeScene(1240,880){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        val scene=ImageComposeScene(1240,880,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
         val input="更新后新增的中文草稿：保留原件与历史。"
         try{
             scene.frames();scene.click("AI 设计");scene.field("画面需求 / 继续修改",input);c.flush()

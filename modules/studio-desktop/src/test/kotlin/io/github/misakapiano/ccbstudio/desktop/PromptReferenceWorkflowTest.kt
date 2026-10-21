@@ -18,6 +18,35 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.test.*
 
 class PromptReferenceWorkflowTest {
+    @Test fun editedImageUsesVerifiedSourcePromptWithoutClaimingAnUneditedResult()=runBlocking(awt) {
+        val data=root();val w=StudioWorkspace.openStudio(data);val pixels=EditorRenderer.synthetic(120,90)
+        val account=AccountProfile(alias="local fixture",service="NAI",provider="NOVELAI",endpoint="https://image.novelai.net",model=NovelAiImageModel.V4_5_FULL.apiId)
+        val draft=NovelAiStudioDraft(basePrompt="original scene")
+        val wire=NovelAiImageService().buildRequestBody(draft.toPromptPlan(),draft.activeSettings.imageSize(),draft.activeSettings)
+        val receipt=documentJson.encodeToString(GenerationReceipt(recipe=draft.toRecipe(),account=account,request=Json.parseToJsonElement(wire),wireSha256=sha256(wire.toByteArray())))
+        val original=w.importImage("source.png",pixels,receipt)
+        w.save(w.state.copy(jobs=listOf(JobRecord(account=account,recipe=receipt,state="COMPLETED",results=listOf(original)))))
+        val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{error("No network")})
+        var edited="";var copied="";c.gallery.copyText={copied=it}
+        val scene=ImageComposeScene(1240,1100,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        try {
+            c.editor.create("Edited source",listOf(original));c.idle()
+            c.editor.chooseExportDirectory={Files.createDirectories(root())}
+            c.editor.export(TypesetExportRequest(c.editor.document!!.pages.map{it.id}));c.idle()
+            edited=TypesetExport.verify(c.editor.exportDirectory!!).assetIds.values.single()
+            c.current=edited;c.selection=setOf(edited);c.view="图库";scene.frames()
+            val reading=readImagePrompt(c,edited)
+            assertEquals("VERIFIED_SOURCE_HISTORY",reading.status);assertEquals(original,reading.context.parameters["来源图片"])
+            assertTrue(reading.explanation.contains("后续处理"));assertEquals("original scene",reading.sections.single{it.id=="base"}.text)
+            scene.click("所选图片多 Prompt 参照");c.idle();scene.frames()
+            val id=PromptReferences(c.library.repository).load().ids.single()
+            assertTrue(scene.nodes().any{it.matches("参数来自源图 ${original.take(8)}；当前图包含后续处理。")})
+            scene.click("发送请求快照 ${id.take(8)}");c.idle();scene.frames();scene.click("复制完整内容")
+            assertEquals(Json.parseToJsonElement(wire),Json.parseToJsonElement(copied));scene.click("关闭");scene.shot("edited-image-source")
+            assertContentEquals(pixels,w.bytes(original));assertEquals("original scene",c.historyRecipe(edited)!!.first.basePrompt)
+        }finally{scene.close();c.close();scope.cancel()}
+        StudioWorkspace.openStudio(data).use{again->assertEquals(original,imageOrigin(again,edited).sourceId);assertContentEquals(pixels,again.bytes(original))}
+    }
     private val awt=object:CoroutineDispatcher(){override fun dispatch(context:CoroutineContext,block:Runnable)=SwingUtilities.invokeLater(block)}
     private fun root()=Path.of(System.getProperty("preview.test.root"),newId())
     private suspend fun ImageComposeScene.frames(){repeat(4){render(System.nanoTime()).close();yield()};delay(180);render(System.nanoTime()).close()}

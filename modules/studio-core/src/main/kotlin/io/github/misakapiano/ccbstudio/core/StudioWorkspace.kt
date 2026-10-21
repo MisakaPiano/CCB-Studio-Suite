@@ -23,6 +23,7 @@ class StudioWorkspace private constructor(val root:Path,private val owner:FileCh
         return AutoCloseable { synchronized(this) {if(!released){released=true;activeTasks--}} }
     }
     val state:StudioState @Synchronized get() {checkOpen();return journal.state}
+    val creationRevision:String? @Synchronized get() {checkOpen();return journal.creationRevision}
     @Synchronized fun <T> operation(body:()->T):T {checkOpen();return body()}
     private fun checkOpen() {check(!closed && !poisoned) { "Workspace closed or requires recovery; reopen after inspection" }}
     @Synchronized fun save(next:StudioState) {

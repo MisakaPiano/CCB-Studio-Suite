@@ -213,15 +213,9 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
         }
     }
     fun historyRecipe(id:String):Pair<NovelAiGenerationRecipe,Long>? {
-        val job=workspace.state.jobs.lastOrNull{id in it.results || id in it.composedResults} ?: return null
-        val json=Json.parseToJsonElement(job.recipe).jsonObject
-        if(json["kind"]!=null)return null
-        val receipt=documentJson.decodeFromString<GenerationReceipt>(job.recipe)
-        receipt.expandedRequest(workspace) // Fail closed when referenced request evidence is unavailable or corrupt.
-        val recipe=receipt.recipeForReuse(workspace)
-        val index=job.results.indexOf(id).takeIf{it>=0} ?: workspace.catalog().single{it.request().id().toString()==id}.request().parentId()?.let{job.results.indexOf(it.toString())} ?: -1
-        require(index>=0)
-        return recipe to recipe.settings.seed+index
+        val origin=imageOrigin(workspace,id)
+        val receipt=origin.receipt?:return null
+        return receipt.recipeForReuse(workspace) to requireNotNull(origin.seed)
     }
     init {if(current==null)current=assets.lastOrNull()?.request()?.id()?.toString()}
     private fun changed(){saved=false;pending?.cancel();pending=scope.launch {delay(350);try{flush()}catch(e:CancellationException){throw e}catch(e:Exception){problem="草稿未能保存，保留当前输入；请先处理数据错误"}}}
@@ -248,7 +242,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     fun chooseAccount(service:String,id:String){if(maintenance)return;if(service=="LLM")llmId=id else {naiId=id;usage=null;usageAt=null};changed()}
     suspend fun flush() {
         val d=draft;val input=composer;val attached=attach;val l=llmId;val n=naiId
-        withContext(Dispatchers.IO){session.update {old -> (if(old.draft==d)old else old.change(d)).copy(composer=input,attachCurrentPrompt=attached,llmAccountId=l,naiAccountId=n)}}
+        withContext(Dispatchers.IO){session.update(DesignLineageOperation.EDIT) {old -> (if(old.draft==d)old else old.change(d)).copy(composer=input,attachCurrentPrompt=attached,llmAccountId=l,naiAccountId=n)}}
         state=workspace.state;saved=draft==d && composer==input && attach==attached && llmId==l && naiId==n
     }
     fun run(label:String,body:suspend ()->Unit) {
@@ -280,11 +274,12 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
         session.branch(c,t,turn.userText);composer=turn.userText;state=workspace.state
         message="已保留原记录；检查后发送重试分支"
     }
-    fun undo(redo:Boolean=false)=run(if(redo)"重做草稿" else "撤销草稿") {session.update{if(redo)it.redoDraft() else it.undoDraft()};draft=workspace.state.creation!!.draft}
+    fun undo(redo:Boolean=false)=run(if(redo)"重做草稿" else "撤销草稿") {session.undo(redo);draft=workspace.state.creation!!.draft}
     fun generate()=run("NovelAI 生成") {
         val account=state.accounts.single{it.id==naiId && it.service=="NAI"}.copy(model=draft.selectedModel.apiId)
         require(draft.basePrompt.isNotBlank())
         val requested=draft
+        val designApplication=DesignProvenance(workspace).current()
         val prepared=workspace.beginTask().use{guidanceFor(account).prepare(requested)}
         val launch=requested.copy(imageGuidance=prepared.retainedGuidance)
         val total=if(launch.continuousModeEnabled)launch.continuousTargetCount else launch.activeSettings.count
@@ -295,7 +290,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
             val batch=launch.withActiveSettings(launch.activeSettings.copy(count=minOf(launch.activeSettings.count,total-completed)))
             val result=StudioGenerator(workspace,vault,admission,http).generate(account,batch,prepared.guidance,prepared.requestSize,if(launch.imageGuidance.action==NovelAiGenerationAction.INPAINT)prepared.compose else null,onIntermediate={intermediate=it},onResult={id->
                 intermediate=null;current=id;assets=visibleAssets();message="已保存 ${++completed}/$total 张"
-            })
+            },designApplication=designApplication)
             check(result.state=="COMPLETED")
         }
     }
@@ -618,7 +613,7 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
         val proposed=c.draft.applyDesignedPromptPlan(reply.plan,reply.targetImageModel)
         AlertDialog(onDismissRequest={candidate=null},title={Text("确认应用设计候选")},text={
             Column(Modifier.heightIn(max=480.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(10.dp)) {
-                Text("应用后可以撤销；画风、补充词与手动设置按原 Studio 规则保留。")
+                Text("应用后可以撤销。按原 Studio 规则替换基础 Prompt 和角色、清空附加 Prompt；保留画风及手动采样设置。")
                 SelectionContainer {Column {
                     Text("当前基础 Prompt");Text(c.draft.basePrompt.ifBlank{"（空）"})
                     Spacer(Modifier.height(10.dp));Text("候选基础 Prompt");Text(proposed.basePrompt)

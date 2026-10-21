@@ -34,6 +34,7 @@ import kotlinx.serialization.encodeToString
     var excerpt by remember{mutableStateOf("")};var origins by remember{mutableStateOf(listOf<String>())}
     var differences by remember{mutableStateOf(false)};var panel by remember{mutableStateOf("Prompt 对比")};var advanced by remember{mutableStateOf(false)};var confirm by remember{mutableStateOf(false)}
     var detail by remember{mutableStateOf<Pair<String,String>?>(null)}
+    var designImage by remember{mutableStateOf<String?>(null)}
     val bounds=remember{mutableMapOf<Pair<String,String>,Rect>()}
     val boardScroll=rememberScrollState()
     fun take(id:String,s:PromptSection){excerpt+=if(excerpt.isBlank())s.text else "\n"+s.text;origins=(origins+"$id#${s.id}").distinct()}
@@ -72,15 +73,15 @@ import kotlinx.serialization.encodeToString
             p.image?.let{image->AssetImage(c,image.imageId,Modifier.fillMaxWidth().height(180.dp))}
                 ?:Box(Modifier.fillMaxWidth().height(180.dp),contentAlignment=androidx.compose.ui.Alignment.Center){Text("独立 Prompt 资产")}
             Text(c.library.labels(id).alias.ifBlank{"Prompt ${id.take(8)}"},style=MaterialTheme.typography.subtitle1)
-            StudioDisclosure("来源详情"){SelectionContainer{Text(p.origin,style=MaterialTheme.typography.caption)};p.image?.let{Text("SHA-256 ${it.sha256}",style=MaterialTheme.typography.caption);Text("AI 设计关联：未记录。",style=MaterialTheme.typography.caption)}}
+            StudioDisclosure("来源详情"){SelectionContainer{Text(p.origin,style=MaterialTheme.typography.caption)};p.image?.let{Text("SHA-256 ${it.sha256}",style=MaterialTheme.typography.caption);Text("AI 设计关联：${it.parameters["AI 设计关联"]?:"未记录"}",style=MaterialTheme.typography.caption)}}
             p.image?.let{image->
-                Text("Seed ${image.parameters["实际 Seed"]?:"未记录"} · ${when(image.status){"VERIFIED_HISTORY"->"已核验生成记录";"HISTORY_WITHOUT_REQUEST_HASH"->"生成记录 · 旧请求无摘要";else->"来自图片参数"}}",style=MaterialTheme.typography.caption)
+                Text("Seed ${image.parameters["实际 Seed"]?:"未记录"} · ${promptReadingLabel(image.status)}",style=MaterialTheme.typography.caption)
+                image.parameters["来源图片"]?.let{Text("参数来自源图 ${it.take(8)}；当前图包含后续处理。",color=Gold,style=MaterialTheme.typography.caption)}
                 StudioActions {
+                if(image.parameters["AI 设计关联"]?.let{it!="未记录"}==true)StudioAction("AI 设计过程",accessibilityLabel="设计来源 ${id.take(8)}"){designImage=image.imageId}
                 StudioAction("完整 Recipe",image.recipeJson!=null,accessibilityLabel="完整 Recipe ${id.take(8)}"){detail="保存的 Recipe" to image.recipeJson!!}
                 StudioAction("实际请求",image.requestSha256!=null&&!c.busy,accessibilityLabel="发送请求快照 ${id.take(8)}"){c.run("读取已验证请求"){
-                    c.historyRecipe(image.imageId) ?: error("历史请求不存在")
-                    val job=c.workspace.state.jobs.last{image.imageId in it.results || image.imageId in it.composedResults}
-                    val receipt=documentJson.decodeFromString<GenerationReceipt>(job.recipe)
+                    val receipt=imageOrigin(c.workspace,image.imageId).receipt ?: error("历史请求不存在")
                     require(receipt.wireSha256==image.requestSha256)
                     detail="实际请求 SHA-256 ${receipt.wireSha256}" to receipt.expandedRequest(c.workspace).toString()
                 }}
@@ -132,6 +133,7 @@ import kotlinx.serialization.encodeToString
     }
     if(confirm)AlertDialog(onDismissRequest={confirm=false},title={Text("应用摘取到创作？")},text={SelectionContainer{Text(excerpt,Modifier.heightIn(max=300.dp).verticalScroll(rememberScrollState()))}},confirmButton={TextButton(onClick={c.pastePrompt(excerpt,origin());confirm=false;c.view="创作"}){Text("确认应用，可撤销")}},dismissButton={TextButton(onClick={confirm=false}){Text("取消")}})
     detail?.let{(title,text)->AlertDialog(onDismissRequest={detail=null},title={Text(title)},text={Column{if(text.length>20000)Text("内容较长，预览前 20000 字；复制获取完整快照。");SelectionContainer{Text(text.take(20000),Modifier.heightIn(max=500.dp).verticalScroll(rememberScrollState()))}}},confirmButton={TextButton(onClick={c.gallery.copyText(text)}){Text("复制完整内容")}},dismissButton={TextButton(onClick={detail=null}){Text("关闭")}})}
+    designImage?.let{DesignProvenanceDialog(c,it){designImage=null}}
 }
 }
 

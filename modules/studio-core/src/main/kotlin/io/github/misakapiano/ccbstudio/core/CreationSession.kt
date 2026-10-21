@@ -12,17 +12,21 @@ import okhttp3.OkHttpClient
 /** One creation-state owner used by the normal GUI and integration tests. No alternate demo path. */
 class CreationSession(private val workspace: StudioWorkspace) {
     init { require(workspace.studioMode) }
-    fun update(change: (CreationState) -> CreationState) = workspace.operation {
-        workspace.save(workspace.state.copy(creation=change(requireNotNull(workspace.state.creation))))
+    fun update(operation:DesignLineageOperation=DesignLineageOperation.PRESERVE,change: (CreationState) -> CreationState) = workspace.operation {
+        DesignProvenance(workspace).update(change(requireNotNull(workspace.state.creation)),operation)
     }
     fun newConversation(): String {
         val c = NovelAiDesignConversation()
         update { it.copy(conversations=it.conversations+c,currentConversationId=c.id,composer="") }; return c.id
     }
-    fun editDraft(change: (NovelAiStudioDraft) -> NovelAiStudioDraft) = update { it.change(change(it.draft)) }
-    fun applyReply(conversationId: String, turnId: String) = update { state ->
-        val reply = requireNotNull(state.conversations.single {it.id==conversationId}.turns.single {it.id==turnId}.reply)
-        state.change(state.draft.applyDesignedPromptPlan(reply.plan, reply.targetImageModel))
+    fun editDraft(change: (NovelAiStudioDraft) -> NovelAiStudioDraft) = update(DesignLineageOperation.EDIT) { it.change(change(it.draft)) }
+    fun undo(redo:Boolean=false)=update(if(redo)DesignLineageOperation.REDO else DesignLineageOperation.UNDO){if(redo)it.redoDraft()else it.undoDraft()}
+    fun applyReply(conversationId: String, turnId: String) = workspace.operation {
+        val state=workspace.state.creation!!;val conversation=state.conversations.single{it.id==conversationId}
+        val reply = requireNotNull(conversation.turns.single {it.id==turnId}.reply)
+        val applied=state.draft.applyDesignedPromptPlan(reply.plan, reply.targetImageModel)
+        val provenance=DesignProvenance(workspace);val reference=provenance.retain(conversation,turnId,state.draft,applied)
+        provenance.update(state.change(applied),DesignLineageOperation.APPLY,reference)
     }
     /** Edit creates a new branch. The old completed history and its descendants remain intact. */
     fun branch(conversationId: String, turnId: String, replacement: String): String {
@@ -97,7 +101,7 @@ class StudioGenerator(private val workspace:StudioWorkspace,private val vault:Se
         guidance:NovelAiPreparedImageGuidance=NovelAiPreparedImageGuidance.NONE,
         requestSize:NovelAiImageSize=draft.activeSettings.imageSize(),
         compose:((ByteArray)->ByteArray)?=null,
-        onIntermediate:(ByteArray)->Unit={},onResult:(String)->Unit={}):JobRecord {
+        onIntermediate:(ByteArray)->Unit={},onResult:(String)->Unit={},designApplication:DesignApplicationRef?=null):JobRecord {
         require(workspace.studioMode);account.validate();require(account.service=="NAI" && account.provider=="NOVELAI")
         require(guidance.action==draft.imageGuidance.action) {"Guidance must be prepared before generation"}
         require(draft.imageGuidance.effectiveReferenceMode(draft.selectedModel)==NovelAiReferenceMode.NONE || guidance!=NovelAiPreparedImageGuidance.NONE)
@@ -113,6 +117,7 @@ class StudioGenerator(private val workspace:StudioWorkspace,private val vault:Se
             val recipe=documentJson.encodeToString(GenerationReceipt(recipe=snapshot,account=account,request=savedRequest,wireSha256=sha256(wire.toByteArray()),vibePayloads=savedVibes))
             require(recipe.toByteArray().size<=1024*1024){"Receipt exceeds descriptor budget; request not sent"}
             var job=JobRecord(account=account,recipe=recipe,state="QUEUED")
+            designApplication?.let{DesignProvenance(workspace).linkGeneration(job,it)}
             workspace.operation {workspace.save(workspace.state.copy(jobs=workspace.state.jobs+job))}
             fun save()=workspace.operation {workspace.save(workspace.state.copy(jobs=workspace.state.jobs.map {if(it.id==job.id)job else it}))}
             try {

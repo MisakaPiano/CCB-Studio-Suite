@@ -1,0 +1,57 @@
+[
+  {
+    "directory": "20261021T172002200812Z-design-provenance-core-targeted",
+    "phase": "design-provenance-core-targeted",
+    "status": "PASS",
+    "tests": 14,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 56.89,
+    "sourceStable": true
+  },
+  {
+    "directory": "20261021T172204422040Z-design-provenance-gui-targeted",
+    "phase": "design-provenance-gui-targeted",
+    "status": "FAILED",
+    "tests": 4,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 52.928,
+    "sourceStable": true
+  },
+  {
+    "directory": "20261021T172644260898Z-design-provenance-copy-targeted",
+    "phase": "design-provenance-copy-targeted",
+    "status": "PASS",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 91.125,
+    "sourceStable": true
+  },
+  {
+    "directory": "20261021T173126612246Z-image-origin-design-targeted",
+    "phase": "image-origin-design-targeted",
+    "status": "PASS",
+    "tests": 10,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 114.908,
+    "sourceStable": true
+  },
+  {
+    "directory": "20261021T173338971474Z-design-provenance-complete-modules",
+    "phase": "design-provenance-complete-modules",
+    "status": "PASS",
+    "tests": 186,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 371.013,
+    "sourceStable": true
+  }
+]

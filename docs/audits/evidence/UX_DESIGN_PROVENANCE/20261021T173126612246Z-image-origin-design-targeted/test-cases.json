@@ -1,0 +1,62 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.DesignProvenanceTest",
+    "name": "exactGenerationLinkSurvivesLaterDesignBackupAndDetectsReceiptMismatch",
+    "seconds": "7.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.DesignProvenanceTest",
+    "name": "interruptionAfterDraftCommitCannotPromoteOrphanApplicationToVerifiedOrigin",
+    "seconds": "0.939",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.DesignProvenanceTest",
+    "name": "explicitApplicationUndoRedoAndUnknownWritesNeverInferFromEqualPrompt",
+    "seconds": "3.097",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.ImageOriginsTest",
+    "name": "invalidNearestReceiptCannotFallBackToAnOlderValidAncestor",
+    "seconds": "1.011",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.ImageOriginsTest",
+    "name": "editedAndComposedImagesKeepExactSourceAndSeedAfterRestore",
+    "seconds": "4.507",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.PromptReferenceWorkflowTest",
+    "name": "imagePreviewBoardRealRoleDragExtractionAndRestartKeepSourceIdentity",
+    "seconds": "24.894",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.PromptReferenceWorkflowTest",
+    "name": "missingOrUnverifiableImagePromptCannotBecomeFalseCompleteReference",
+    "seconds": "0.426",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.PromptReferenceWorkflowTest",
+    "name": "editedImageUsesVerifiedSourcePromptWithoutClaimingAnUneditedResult",
+    "seconds": "4.1",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.PromptReferenceWorkflowTest",
+    "name": "narrowBoardScrollsSourcesAndEmptyPromptFieldsDoNotConsumeRows",
+    "seconds": "2.495",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "accountsDesignApplyGenerateGalleryAndRestart",
+    "seconds": "12.635",
+    "status": "PASS"
+  }
+]

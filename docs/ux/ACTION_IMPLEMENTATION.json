@@ -43,21 +43,27 @@
       "implementation": [
         "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/CreationSession.kt",
         "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioTextTransport.kt",
-        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt"
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt",
+        "DesignProvenance.kt / DesignProvenanceDialog.kt",
+        "ImageOrigins.kt / ImagePromptPreview.kt / PromptReferenceBoard.kt"
       ],
       "tests": [
         "CreationRuntimeTest.designCandidateRequiresApplyBranchesAndSurvivesRestart",
         "WorkbenchWorkflowTest.accountsDesignApplyGenerateGalleryAndRestart",
-        "WorkbenchWorkflowTest.measuredSuiteNavigationSurvivesResizeAndUnsentInput"
+        "WorkbenchWorkflowTest.measuredSuiteNavigationSurvivesResizeAndUnsentInput",
+        "DesignProvenanceTest / ImageOriginsTest",
+        "PromptReferenceWorkflowTest.editedImageUsesVerifiedSourcePromptWithoutClaimingAnUneditedResult"
       ],
       "guiEvidence": [
         "docs/audits/evidence/UX_R1A_WORKBENCH/compose-scenes (actual Compose tree; offscreen; loopback)",
-        "docs/audits/evidence/UX_R1A_WORKBENCH/NATIVE_UI.json (capture unavailable)"
+        "docs/audits/evidence/UX_R1A_WORKBENCH/NATIVE_UI.json (capture unavailable)",
+        "docs/audits/UX_DESIGN_PROVENANCE.md (explicit design application and derived-image source; offscreen/loopback only)"
       ],
       "persistenceEvidence": [
         "WorkbenchWorkflowTest: same workspace close/reopen; accounts, candidate draft, completed job and exact original bytes"
       ],
-      "status": "ENGINEERING_PARTIAL / LOOPBACK_GUI_PASS / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+      "status": "ENGINEERING_PARTIAL / LOOPBACK_GUI_PASS / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD",
+      "latestScopeEvidence": "Explicit association / interrupted commit / backup restore / derived source checks PASS; product/native acceptance remains NOT TESTED"
     },
     {
       "id": "P04",
@@ -65,21 +71,27 @@
       "implementation": [
         "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/CreationSession.kt",
         "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioTextTransport.kt",
-        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt"
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt",
+        "DesignProvenance.kt / DesignProvenanceDialog.kt",
+        "ImageOrigins.kt / ImagePromptPreview.kt / PromptReferenceBoard.kt"
       ],
       "tests": [
         "CreationRuntimeTest.designCandidateRequiresApplyBranchesAndSurvivesRestart",
         "WorkbenchWorkflowTest.accountsDesignApplyGenerateGalleryAndRestart",
-        "WorkbenchWorkflowTest.measuredSuiteNavigationSurvivesResizeAndUnsentInput"
+        "WorkbenchWorkflowTest.measuredSuiteNavigationSurvivesResizeAndUnsentInput",
+        "DesignProvenanceTest / ImageOriginsTest",
+        "PromptReferenceWorkflowTest.editedImageUsesVerifiedSourcePromptWithoutClaimingAnUneditedResult"
       ],
       "guiEvidence": [
         "docs/audits/evidence/UX_R1A_WORKBENCH/compose-scenes (actual Compose tree; offscreen; loopback)",
-        "docs/audits/evidence/UX_R1A_WORKBENCH/NATIVE_UI.json (capture unavailable)"
+        "docs/audits/evidence/UX_R1A_WORKBENCH/NATIVE_UI.json (capture unavailable)",
+        "docs/audits/UX_DESIGN_PROVENANCE.md (explicit design application and derived-image source; offscreen/loopback only)"
       ],
       "persistenceEvidence": [
         "WorkbenchWorkflowTest: same workspace close/reopen; accounts, candidate draft, completed job and exact original bytes"
       ],
-      "status": "ENGINEERING_PARTIAL / LOOPBACK_GUI_PASS / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+      "status": "ENGINEERING_PARTIAL / LOOPBACK_GUI_PASS / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD",
+      "latestScopeEvidence": "Explicit association / interrupted commit / backup restore / derived source checks PASS; product/native acceptance remains NOT TESTED"
     },
     {
       "id": "P05",
@@ -383,19 +395,26 @@
       "owner": "UX-R3",
       "implementation": [
         "StudioApplication.kt",
-        "MetadataWorkspace.kt"
+        "MetadataWorkspace.kt",
+        "DesignProvenance.kt / DesignProvenanceDialog.kt",
+        "ImageOrigins.kt / ImagePromptPreview.kt / PromptReferenceBoard.kt"
       ],
       "tests": [
         "MetadataWorkflowTest.actualMetadataUiPreviewApplyUndoAndRestart",
-        "MetadataWorkflowTest.embeddedImageRetainedAndUsedWithoutMutatingOriginal"
+        "MetadataWorkflowTest.embeddedImageRetainedAndUsedWithoutMutatingOriginal",
+        "DesignProvenanceTest / ImageOriginsTest",
+        "WorkbenchWorkflowTest.accountsDesignApplyGenerateGalleryAndRestart",
+        "PromptReferenceWorkflowTest.editedImageUsesVerifiedSourcePromptWithoutClaimingAnUneditedResult"
       ],
       "guiEvidence": [
-        "docs/audits/UX_R1B_CREATION.md (exact scope; no native visual claim)"
+        "docs/audits/UX_R1B_CREATION.md (exact scope; no native visual claim)",
+        "docs/audits/UX_DESIGN_PROVENANCE.md (explicit design application and derived-image source; offscreen/loopback only)"
       ],
       "persistenceEvidence": [
         "Corresponding WorkflowTest: same root close/reopen, exact fields/bytes; see JUnit XML"
       ],
-      "status": "ENGINEERING_PARTIAL / CONTROLLER_OR_COMPOSE_TESTED / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
+      "status": "ENGINEERING_PARTIAL / CONTROLLER_OR_COMPOSE_TESTED / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD",
+      "latestScopeEvidence": "Explicit association / interrupted commit / backup restore / derived source checks PASS; product/native acceptance remains NOT TESTED"
     },
     {
       "id": "I03",
@@ -425,24 +444,31 @@
         "ComparisonWorkspace.kt",
         "MetadataWorkspace.kt",
         "PngFieldInspection.kt / PngFieldWorkspace.kt",
-        "RecipeDraftSelection.kt / RecipeSelectionWorkspace.kt"
+        "RecipeDraftSelection.kt / RecipeSelectionWorkspace.kt",
+        "DesignProvenance.kt / DesignProvenanceDialog.kt",
+        "ImageOrigins.kt / ImagePromptPreview.kt / PromptReferenceBoard.kt"
       ],
       "tests": [
         "RecipeComparisonTest: missing/null/empty/ordered arrays/JSON Pointer/limits",
         "GalleryWorkflowTest.gridFilterTwoImageComparisonCopyAndMetadataReuseKeepOriginals",
         "PngFieldInspectionTest / MetadataWorkflowTest / GalleryWorkflowTest",
-        "RecipeDraftSelectionTest: four cases; GalleryWorkflowTest: selection/cancel/confirm/stale draft rejection/undo/redo/reopen"
+        "RecipeDraftSelectionTest: four cases; GalleryWorkflowTest: selection/cancel/confirm/stale draft rejection/undo/redo/reopen",
+        "DesignProvenanceTest / ImageOriginsTest",
+        "WorkbenchWorkflowTest.accountsDesignApplyGenerateGalleryAndRestart",
+        "PromptReferenceWorkflowTest.editedImageUsesVerifiedSourcePromptWithoutClaimingAnUneditedResult"
       ],
       "guiEvidence": [
         "docs/audits/evidence/UX_R3_GALLERY/compare-fields.png (actual Compose offscreen; no native visual claim)",
         "docs/audits/evidence/UX_R3_PNG_FIELDS (Compose offscreen)",
-        "docs/audits/evidence/UX_R3_RECIPE_SELECTION/selected-recipe-fields.png (offscreen Compose)"
+        "docs/audits/evidence/UX_R3_RECIPE_SELECTION/selected-recipe-fields.png (offscreen Compose)",
+        "docs/audits/UX_DESIGN_PROVENANCE.md (explicit design application and derived-image source; offscreen/loopback only)"
       ],
       "persistenceEvidence": [
         "GalleryWorkflowTest: confirmed history reuse, workspace close/reopen, original bytes and Recipe unchanged",
         "Source hash, selected fields, before/after draft hashes in bounded historical receipt; undo preserves receipt; reopen verified"
       ],
-      "status": "ENGINEERING_PARTIAL / TYPED_FIELD_SELECTION_GUI_PASS / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
+      "status": "ENGINEERING_PARTIAL / TYPED_FIELD_SELECTION_GUI_PASS / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD",
+      "latestScopeEvidence": "Explicit association / interrupted commit / backup restore / derived source checks PASS; product/native acceptance remains NOT TESTED"
     },
     {
       "id": "I05",

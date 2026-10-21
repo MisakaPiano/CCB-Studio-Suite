@@ -1,0 +1,21 @@
+{
+  "suiteBaseline": "9560446df8eb5cb3ecfae47b6c04260a0c52b3b6",
+  "branch": "feature/windows-rc-continuous",
+  "desktopReference": "37c67c724fe21107d7eaff0306439481c6f2bf07",
+  "preserved": [
+    "applyDesignedPromptPlan",
+    "NovelAiImageService.buildRequestBody",
+    "GenerationReceipt v3",
+    "StudioState and journal envelope",
+    "AssetStore commit and recovery"
+  ],
+  "newBehavior": [
+    "explicit candidate application snapshots bound to creation-changing commit",
+    "job/recipe/wire-bound design links saved before network",
+    "recorded single-parent image ancestry with separate source labels"
+  ],
+  "realProviderCalls": 0,
+  "nativeWindowsAcceptance": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED",
+  "drive": "No new non-Git attachment; all evidence delivered through Git"
+}

@@ -1,3 +1,7 @@
+## 设计应用与图片来源进度（2026-10-22）
+
+[实际记录](audits/UX_DESIGN_PROVENANCE.md)：明确候选应用→最终请求、撤销/重做来源及编辑图回查源图已接线；10项定向、完整186项实际PASS，首次复制入口测试失败保留。继续剩余TypeSet/资产与更新门槛，PRODUCT_HOLD / NOT RC。
+
 ## TypeSet 队列操作进度（2026-10-22）
 
 [实际记录](audits/UX_TYPESET_QUEUE.md)：按序号/右键移动、长队列边缘滚动、编辑后缩略预览与侧栏拖动已接入；最终完整180项实际PASS，全部失败保留。继续设计请求关联和剩余工程门槛，PRODUCT_HOLD / NOT RC。

@@ -15,6 +15,8 @@ class StateJournal(private val directory: Path, private val fault:(String)->Unit
     private var sequence=0L
     private var previous=""
     var state=StudioState(); private set
+    /** Read projection only; the on-disk envelope and commit algorithm remain unchanged. */
+    var creationRevision:String?=null; private set
     init {
         safePath(directory); Files.createDirectories(directory)
         val entries=Files.list(directory).use { it.sorted().toList() }
@@ -31,7 +33,9 @@ class StateJournal(private val directory: Path, private val fault:(String)->Unit
             val next=try { documentJson.decodeFromString<StudioState>(e.body).also { it.validate() } }
                 catch(ex:DataProblem) { throw ex }
                 catch(ex:Exception) { throw DataProblem("CORRUPT","Document fields retained",ex) }
-            sequence=e.sequence; previous=sha256(bytes);state=next
+            sequence=e.sequence; previous=sha256(bytes)
+            if(next.creation!=state.creation)creationRevision=previous.takeIf{next.creation!=null}
+            state=next
         }
     }
     private fun encode(next:StudioState):ByteArray {
@@ -49,7 +53,9 @@ class StateJournal(private val directory: Path, private val fault:(String)->Unit
         writeNewForced(pending,bytes);fault("DOCUMENT_STAGED")
         Files.move(pending,target,StandardCopyOption.ATOMIC_MOVE)
         // Durable file + atomic publication; no claim of arbitrary power-loss directory durability.
-        sequence++;previous=sha256(bytes);state=next;fault("DOCUMENT_COMMITTED")
+        sequence++;previous=sha256(bytes)
+        if(next.creation!=state.creation)creationRevision=previous.takeIf{next.creation!=null}
+        state=next;fault("DOCUMENT_COMMITTED")
     }
 }
 

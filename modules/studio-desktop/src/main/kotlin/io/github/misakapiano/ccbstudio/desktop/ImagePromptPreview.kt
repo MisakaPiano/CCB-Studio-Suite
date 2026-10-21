@@ -20,6 +20,7 @@ internal data class ImagePromptReading(val status:String,val sections:List<Promp
 
 internal fun promptReadingLabel(status:String)=when(status) {
     "VERIFIED_HISTORY"->"已核验生成记录"
+    "VERIFIED_SOURCE_HISTORY"->"已核验来源图片的生成记录"
     "HISTORY_WITHOUT_REQUEST_HASH"->"生成记录（旧请求无摘要）"
     "READABLE"->"图片附带的生成参数"
     "MISSING"->"未找到生成参数"
@@ -32,14 +33,15 @@ internal fun promptReadingLabel(status:String)=when(status) {
 /** Read-only projection. A broken linked receipt is not silently replaced with embedded PNG text. */
 internal fun readImagePrompt(c:WorkbenchController,id:String):ImagePromptReading = c.workspace.operation {
     val asset=c.workspace.assets.read(UUID.fromString(id)).require()
-    val history=c.historyRecipe(id)
+    val origin=imageOrigin(c.workspace,id)
+    val sourceNotice=if(origin.derived)"当前图片经过后续处理；以下参数属于来源图片 ${origin.sourceId.take(8)}，不描述后续编辑。"else""
     val sections=mutableListOf<PromptSection>()
     fun part(key:String,label:String,text:String?,role:String?=null,attributes:Map<String,String> = emptyMap()) {
         if(!text.isNullOrBlank())sections+=PromptSection(key,label,text,role,attributes)
     }
-    if(history!=null) {
-        val job=c.workspace.state.jobs.last{ id in it.results || id in it.composedResults }
-        val receipt=documentJson.decodeFromString<GenerationReceipt>(job.recipe)
+    val receipt=origin.receipt
+    if(receipt!=null) {
+        val job=requireNotNull(origin.job)
         // Stored recipe uses asset references rather than expanding large image payloads into the UI.
         val recipe=receipt.recipe;val raw=documentJson.encodeToString(recipe)
         part("style","风格 Prompt",recipe.stylePrompt);part("base","基础 Prompt",recipe.basePrompt)
@@ -48,14 +50,17 @@ internal fun readImagePrompt(c:WorkbenchController,id:String):ImagePromptReading
             val role="role:$i";val attributes=mapOf("原始角色位置" to (i+1).toString(),"位置" to ch.center.toString(),"启用" to ch.enabled.toString())
             part("$role:positive","角色正向",ch.prompt,role,attributes);part("$role:negative","角色负向",ch.negativePrompt,role,attributes)
         }
+        val design=runCatching{DesignProvenance(c.workspace).forGeneration(job)}
+        val designLabel=when{design.isFailure->"关联无法核验";design.getOrNull()==null->"未记录";design.getOrThrow()!!.applied==DesignPromptSnapshot.of(recipe)->"已核验 · 应用后未改 Prompt";else->"已核验 · 应用后有修改"}
         val parameters=RecipeComparison.inspect(raw).fields.filter{(key,value)->
             value.kind !in setOf("object","array") && (key.startsWith("/settings/") || key.startsWith("/imageGuidance/") || key=="/naturalLanguageMode")
-        }.mapValues{it.value.value}+mapOf("实际 Seed" to history.second.toString(),"图片尺寸" to recipe.settings.imageSize().let{"${it.width}×${it.height}"})
-        val status=if(receipt.wireSha256.isNotBlank())"VERIFIED_HISTORY"else"HISTORY_WITHOUT_REQUEST_HASH"
-        return@operation ImagePromptReading(status,sections,PromptImageContext(id,asset.sha256(),status,parameters,raw,receipt.wireSha256.takeIf{it.isNotBlank()}),"读取保存的生成 Recipe；${if(receipt.wireSha256.isNotBlank())"请求摘要已核验"else"旧请求没有校验摘要"}。AI 设计记录与本图未建立可验证关联时，不推断它们属于同一次设计。")
+        }.mapValues{it.value.value}+mapOf("实际 Seed" to origin.seed.toString(),"图片尺寸" to recipe.settings.imageSize().let{"${it.width}×${it.height}"},"AI 设计关联" to designLabel)+if(origin.derived)mapOf("来源图片" to origin.sourceId)else emptyMap()
+        val status=if(receipt.wireSha256.isNotBlank())if(origin.derived)"VERIFIED_SOURCE_HISTORY"else"VERIFIED_HISTORY"else"HISTORY_WITHOUT_REQUEST_HASH"
+        return@operation ImagePromptReading(status,sections,PromptImageContext(id,asset.sha256(),status,parameters,raw,receipt.wireSha256.takeIf{it.isNotBlank()}),sourceNotice+"读取保存的生成 Recipe；${if(receipt.wireSha256.isNotBlank())"请求摘要已核验"else"旧请求没有校验摘要"}。AI 设计：$designLabel；无明确记录时不推断关联。")
     }
-    val read=c.metadataFile(id,::inspectMetadata);val m=read.metadata
+    val read=c.metadataFile(origin.sourceId,::inspectMetadata);val m=read.metadata
     val parameters=linkedMapOf<String,String>()
+    if(origin.derived)parameters["来源图片"]=origin.sourceId
     if(m!=null) {
         part("base","基础 Prompt",m.positivePrompt);part("negative","负向 Prompt",m.negativePrompt)
         m.characters.forEachIndexed{i,ch->val role="role:$i";val attributes=mapOf("原始角色位置" to (i+1).toString(),"位置" to ch.center.toString())
@@ -65,7 +70,7 @@ internal fun readImagePrompt(c:WorkbenchController,id:String):ImagePromptReading
         m.seed?.let{parameters["实际 Seed"]=it.toString()}
         m.settings.let{s->listOf("/settings/model" to s.model?.apiId,"/settings/steps" to s.steps,"/settings/guidance" to s.guidance,"/settings/cfgRescale" to s.cfgRescale,"/settings/sampler" to s.sampler?.name,"/settings/useCharacterPositions" to s.useCharacterPositions).forEach{(key,value)->if(value!=null)parameters[key]=value.toString()}}
     }
-    ImagePromptReading(read.status,sections,PromptImageContext(id,asset.sha256(),read.status,parameters),read.explanation+"；嵌入参数不是已核验的完整发送请求。")
+    ImagePromptReading(read.status,sections,PromptImageContext(id,asset.sha256(),read.status,parameters),sourceNotice+read.explanation+"；嵌入参数不是已核验的完整发送请求。")
 }
 
 internal fun saveImagePrompt(c:WorkbenchController,id:String,addToBoard:Boolean):String {
@@ -78,6 +83,7 @@ internal fun saveImagePrompt(c:WorkbenchController,id:String,addToBoard:Boolean)
 }
 
 @Composable internal fun ImagePromptPreview(c:WorkbenchController,id:String) {
+    var showDesign by remember(id){mutableStateOf(false)}
     val result by produceState<Result<ImagePromptReading>?>(null,id,c.state.jobs){value=withContext(Dispatchers.IO){runCatching{readImagePrompt(c,id)}}}
     Text("图片 Prompt 预览",style=MaterialTheme.typography.subtitle1)
     val read=result?.getOrNull()
@@ -89,9 +95,11 @@ internal fun saveImagePrompt(c:WorkbenchController,id:String,addToBoard:Boolean)
             if(read.sections.isEmpty())Text("没有非空 Prompt；原图仍可查看和编辑。")
             read.sections.forEach{s->Text(s.label+(s.roleId?.let{" · 原始 ${s.attributes["原始角色位置"]}"}?:""),color=Gold);SelectionContainer{Text(s.text)}}
             StudioActions {
+                if(read.context.parameters["AI 设计关联"]?.let{it!="未记录"}==true)StudioAction("查看 AI 设计过程"){showDesign=true}
                 StudioAction("保存图片 Prompt 资产",!c.busy&&read.sections.isNotEmpty()){c.run("保留图片 Prompt"){saveImagePrompt(c,id,false)}}
                 StudioAction("图片加入多 Prompt 参照",!c.busy&&read.sections.isNotEmpty()){c.run("加入图片参照"){saveImagePrompt(c,id,true);c.library.tab="多 Prompt 参照";c.view="资产管理"}}
             }
         }
     }
+    if(showDesign)DesignProvenanceDialog(c,id){showDesign=false}
 }
