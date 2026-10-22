@@ -37,3 +37,5 @@ Desktop观察：现有disguise(source)和私有cover固定默认，没有多套�
 快捷方式`.local/windows-rc/apng-covers-review/Start-apng-covers-review.lnk`指向application-auto，工作区/runtime参数与原正常快捷方式逐字一致；未自行启动第二实例，未读取/复制其数据。inputs/cover-green.png及cover-blue.png为两张纯色合成验收材料，非用户图。已异步请用户关闭旧包后核对自动预览/最新定位/缩略图切换，以及两套保存/切换/恢复默认/重开；此时人工回执尚待提供，完整接收端/APNG兼容及多Prompt专项仍分别待测。无公开新包，PRODUCT_HOLD / NOT RC。
 
 后续用户报告旧studio-usability-review窗口目录收集阻塞，已独立[诊断修复](UX_COLLECTION_RESPONSIVENESS.md)。当前应先使用其中library-recovery-review恢复入口（默认暂停目录收集），包含本轮封面和自动预览；旧APNG包保留原快照，不再作为当前恢复入口，尚未收到的APNG人工结果继续保留待验。
+
+用户已确认恢复包暂停打开及随包两张纯色图小目录单次同步/切页正常。已请其沿用同包和两张合成图检查免手点预览、最后一张/缩略图切换，以及两套纯色封面切换/恢复默认/重开保留；回执仍待提供，不要求真实生成或恢复原大目录。只读核对时发现封面摘要仍有“切换后需重新预览”的旧文案，与现有自动请求逻辑不符，列为下一次UI修订项；本次人工回复记录不变更应用包。

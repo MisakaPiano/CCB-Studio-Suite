@@ -7,10 +7,13 @@
   "reviewedPackage": "PACKAGE_FILES.json",
   "startup": "Start-library-recovery-review.lnk with --pause-collections",
   "userReply": "正常打开，配置、目录和已入库图片可见",
+  "syntheticDirectoryFollowup": "同步正常，切页正常，两张纯色图片可见",
   "accepted": [
     "Recovery package opens with automatic collection paused",
     "Account, gallery and directory pages can be switched normally",
-    "Saved configuration, registered directories and admitted pictures are visible"
+    "Saved configuration, registered directories and admitted pictures are visible",
+    "Explicit single-entry sync of the supplied two-image synthetic directory succeeds with automatic collection paused",
+    "Pages remain responsive and both synthetic images are visible after sync"
   ],
   "notAcceptedByThisReply": [
     "Resumed automatic collection or full original directory scan",

@@ -1,6 +1,6 @@
 ## 2026-10-23 旧窗口目录收集阻塞
 
-用户已确认cc93735恢复包在暂停自动收集下正常打开，配置、目录和已入库图片可见；[限定人工回执](audits/evidence/UX_COLLECTION_RESPONSIVENESS/HUMAN_ACCEPTANCE.json)。原目录重扫、进度/停止交互及全量完整性未由该回复签收，先验证随包合成小目录。
+用户已确认cc93735恢复包暂停打开正常，配置、目录和已入库图片可见；随后合成小目录单次同步、切页及两张纯色图片可见也通过。[限定人工回执](audits/evidence/UX_COLLECTION_RESPONSIVENESS/HUMAN_ACCEPTANCE.json)。原大目录继续暂停，其重扫、进度/停止交互及全量完整性仍未签收；下一组为原先待验的APNG交互。
 
 用户澄清为旧测试窗口；线程诊断确认整批收集持锁、图库在界面线程等待。经用户明确允许后仅结束已核验的旧Suite进程，未删资料。[诊断与修复](audits/UX_COLLECTION_RESPONSIVENESS.md)记录后台进度/停止、锁范围和暂停启动恢复入口。最终桌面15项通过，首轮核心10项通过；220文件恢复包核验，快捷方式`.local/windows-rc/library-recovery-review/Start-library-recovery-review.lnk`默认暂停收集。暂停状态恢复已获用户确认，原目录重扫与完整性仍未签收。PRODUCT_HOLD / NOT RC。
 
