@@ -114,7 +114,7 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
         }
     }
     fun nextCaption() {val d=document?:return;val next=pageId?.let{TypesetBook.next(d,it)}?:return;selectPage(next)}
-    var maskDefault by mutableStateOf(c.workspace.state.typesetPreferences.resolveMask(c.workspace.state.typesetPreferences.preferredMaskSlot).apply(TypesetMask()))
+    var maskDefault by mutableStateOf(c.state.typesetPreferences.resolveMask(c.state.typesetPreferences.preferredMaskSlot).apply(TypesetMask()))
     val page get()=document?.pages?.firstOrNull{it.id==pageId}
     val text get()=page?.texts?.firstOrNull{it.id==objectId}
     val mask get()=page?.masks?.firstOrNull{it.id==objectId}

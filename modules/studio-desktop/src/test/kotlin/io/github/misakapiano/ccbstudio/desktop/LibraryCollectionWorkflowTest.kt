@@ -12,6 +12,60 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.test.*
 
 class LibraryCollectionWorkflowTest {
+    @Test fun cancelledCollectionCannotBeReplacedUntilItsBlockedIoHasDrained()=runBlocking(awt){
+        val w=StudioWorkspace.openStudio(root());val scope=CoroutineScope(SupervisorJob()+awt)
+        val folder=Files.createDirectories(root());val id=LibraryRepository(w).addFolder(folder,"images",false).folders.single().id
+        val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{error("No HTTP")})
+        c.library.refresh()
+        val release=java.util.concurrent.CountDownLatch(1);val locked=java.util.concurrent.CountDownLatch(1)
+        val writer=java.util.concurrent.Executors.newSingleThreadExecutor()
+        val task=writer.submit{w.operation{locked.countDown();release.await(5,java.util.concurrent.TimeUnit.SECONDS)}}
+        assertTrue(locked.await(2,java.util.concurrent.TimeUnit.SECONDS))
+        try {
+            assertTrue(c.library.synchronize(setOf(id),scope));delay(50)
+            c.library.stopCollection()
+            assertTrue(c.library.collectionBusy);assertFalse(c.library.synchronize(setOf(id),scope,automatic=false))
+            release.countDown();c.library.cancelAndDrain()
+            assertFalse(c.library.collectionBusy);assertTrue(c.library.sessionPaused)
+            assertTrue(c.assets.isEmpty());assertEquals(listOf(id),c.library.state!!.folders.map{it.id})
+        }finally{release.countDown();task.get();writer.shutdownNow();c.close();scope.cancel();w.close()}
+    }
+    @Test fun galleryAndDraftEditingRemainResponsiveWhileBackgroundWriterOwnsWorkspace()=runBlocking(awt){
+        val w=StudioWorkspace.openStudio(root());val scope=CoroutineScope(SupervisorJob()+awt)
+        val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{error("No HTTP")},pauseCollectionsOnStart=true)
+        c.library.refresh();c.view="图库"
+        val release=java.util.concurrent.CountDownLatch(1);val locked=java.util.concurrent.CountDownLatch(1)
+        val writer=java.util.concurrent.Executors.newSingleThreadExecutor()
+        val task=writer.submit{w.operation{locked.countDown();release.await(5,java.util.concurrent.TimeUnit.SECONDS)}}
+        assertTrue(locked.await(2,java.util.concurrent.TimeUnit.SECONDS))
+        val scene=ImageComposeScene(1200,850){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        try {
+            val start=System.nanoTime();scene.render().close()
+            c.edit{it.copy(basePrompt="synthetic responsive draft")}
+            c.editor.maskDefault
+            c.library.tab="多 Prompt 参照";c.view="资产管理";scene.render().close()
+            assertTrue(java.util.concurrent.TimeUnit.NANOSECONDS.toMillis(System.nanoTime()-start)<2500,"Rendering/editing must not wait for the five-second writer")
+            assertEquals("synthetic responsive draft",c.draft.basePrompt)
+        }finally{release.countDown();task.get();writer.shutdownNow();scene.close();c.close();scope.cancel();w.close()}
+    }
+    @Test fun recoveryStartupPausesWatchersWithoutChangingRegistrationsAndAllowsExplicitSingleScan()=runBlocking(awt){
+        val w=StudioWorkspace.openStudio(root());val folder=Files.createDirectories(root())
+        Files.write(folder.resolve("synthetic.png"),EditorRenderer.synthetic(32,32))
+        val id=LibraryRepository(w).addFolder(folder,"images",false).folders.single().id
+        val scope=CoroutineScope(SupervisorJob()+awt)
+        val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{error("No HTTP")},pauseCollectionsOnStart=true)
+        val scene=ImageComposeScene(1200,850){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        try {
+            c.view="资产管理";c.library.tab="目录入口"
+            repeat(12){scene.render().close();delay(100)}
+            assertTrue(c.library.sessionPaused);assertTrue(c.assets.isEmpty());assertEquals(listOf(id),c.library.state!!.folders.map{it.id})
+            assertFalse(c.library.synchronize(setOf(id),scope));assertTrue(c.library.repository.automaticFolders().isNotEmpty())
+            c.library.scan(id)
+            withTimeout(10000){while(c.library.collectionBusy)delay(20)}
+            assertEquals(1,c.assets.size);assertTrue(c.library.sessionPaused);assertEquals(1,c.library.state!!.observations.size)
+            assertFalse(c.busy)
+        }finally{scene.close();c.close();scope.cancel();w.close()}
+    }
     private val awt=object:CoroutineDispatcher(){override fun dispatch(context:CoroutineContext,block:Runnable)=SwingUtilities.invokeLater(block)}
     private fun root()=Path.of(System.getProperty("preview.test.root"),newId())
     @Test fun unreadableLocalRegistrationStopsMonitoringWithoutHidingAssetLabels():Unit=runBlocking(awt){
@@ -36,7 +90,7 @@ class LibraryCollectionWorkflowTest {
             val folder=Files.createDirectories(root());Files.write(folder.resolve("must-not-import.png"),EditorRenderer.synthetic(32,32))
             val repo=c.library.repository;val id=repo.addFolder(folder,"images",false).folders.single().id;repo.removeFolder(id)
             assertTrue(c.library.synchronize(setOf(id),scope))
-            withTimeout(5000){while(c.library.automaticNotice.isEmpty())delay(20)}
+            withTimeout(5000){while(c.library.collectionBusy)delay(20)}
             assertFalse(c.library.collectionBlocked);assertTrue(SharedAssets.images(w).isEmpty())
             val next=repo.addFolder(folder,"images",false).folders.single().id
             val header="{\"version\":2,\"sequence\":999,\"previous\":null}".toByteArray()

@@ -35,3 +35,5 @@ Desktop观察：现有disguise(source)和私有cover固定默认，没有多套�
 原始成功和失败运行均位于evidence/UX_APNG_COVERS，source-before/JUnit/日志/计数不改写。SOURCE_VERIFICATION.json注明DesktopImageTools的可选封面平台适配以及共享权威未变。PACKAGE_FILES.json逐项核对当前最终构建输出与`.local/windows-rc/apng-covers-review/application-auto`共220文件，构建源码快照与当前modules/tools一致。手动预览中间包留在application及独立stage清单，不覆写旧运行文件、不混为最终包。
 
 快捷方式`.local/windows-rc/apng-covers-review/Start-apng-covers-review.lnk`指向application-auto，工作区/runtime参数与原正常快捷方式逐字一致；未自行启动第二实例，未读取/复制其数据。inputs/cover-green.png及cover-blue.png为两张纯色合成验收材料，非用户图。已异步请用户关闭旧包后核对自动预览/最新定位/缩略图切换，以及两套保存/切换/恢复默认/重开；此时人工回执尚待提供，完整接收端/APNG兼容及多Prompt专项仍分别待测。无公开新包，PRODUCT_HOLD / NOT RC。
+
+后续用户报告旧studio-usability-review窗口目录收集阻塞，已独立[诊断修复](UX_COLLECTION_RESPONSIVENESS.md)。当前应先使用其中library-recovery-review恢复入口（默认暂停目录收集），包含本轮封面和自动预览；旧APNG包保留原快照，不再作为当前恢复入口，尚未收到的APNG人工结果继续保留待验。

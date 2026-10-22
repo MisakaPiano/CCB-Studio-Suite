@@ -1,0 +1,7 @@
+{
+  "workingDirectory": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\library-recovery-review\\application",
+  "humanAcceptance": "NOT TESTED",
+  "target": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\library-recovery-review\\application\\CCBStudioSuitePreview.exe",
+  "autoLaunch": false,
+  "arguments": "--studio-root \"H:\\CCB-Studio-Suite\\.local\\windows-rc\\model-accounts-review\\workspace\" --runtime-root \"H:\\CCB-Studio-Suite\\.local\\windows-rc\\model-accounts-review\\runtime\" --pause-collections"
+}

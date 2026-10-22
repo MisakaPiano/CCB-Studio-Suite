@@ -3,6 +3,7 @@ package io.github.misakapiano.ccbstudio.core
 import io.github.misakapiano.ccbstudio.assets.AssetStore
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.*
 import java.io.ByteArrayInputStream
 import java.nio.file.*
 import java.util.UUID
@@ -18,6 +19,7 @@ import java.util.UUID
     val parameters:Map<String,String> = emptyMap(),val recipeJson:String?=null,val requestSha256:String?=null)
 @Serializable data class PromptAsset(val version:Int=1,val text:String,val origin:String,val createdAt:Long=System.currentTimeMillis(),val sections:List<PromptSection> = emptyList(),val image:PromptImageContext?=null)
 data class FolderScanResult(val path:String,val status:String,val assetId:String?=null)
+data class FolderScanProgress(val completed:Int,val total:Int)
 
 /** Metadata and prompt revisions use the same transactional asset core and backup path.
  * Headers form a checked append chain. A failed/incomplete write never replaces the last revision. */
@@ -123,28 +125,52 @@ class LibraryRepository(private val workspace:StudioWorkspace) {
         update{it.copy(observations=it.observations+(key to observation.copy(status="PRESENT")))}
         destination
     }
-    fun scan(folderId:String):List<FolderScanResult> =workspace.operation {
+    /** External IO and progress callbacks must never own the workspace monitor. Commits remain
+     * serialized and cancellation is checked between files, after any durable commit settles. */
+    fun scan(folderId:String,checkCancelled:()->Unit={},progress:(FolderScanProgress)->Unit={}):List<FolderScanResult> =workspace.beginTask().use {
+        checkCancelled()
         val state=load();val folder=state.folders.single{it.id==folderId};val root=Path.of(folder.path);safePath(root)
         if(!Files.isDirectory(root,LinkOption.NOFOLLOW_LINKS)){
             update{it.copy(observations=it.observations.mapValues{(key,value)->if(key.startsWith(folder.id+":"))value.copy(status="SOURCE_MISSING")else value})}
-            return@operation listOf(FolderScanResult(folder.path,"DIRECTORY_MISSING; retained existing assets"))
+            return@use listOf(FolderScanResult(folder.path,"DIRECTORY_MISSING; retained existing assets"))
         }
         val files=mutableListOf<Path>();val excluded=mutableListOf<FolderScanResult>()
         Files.walkFileTree(root,emptySet(),if(folder.recursive)32 else 1,object:SimpleFileVisitor<Path>() {
             override fun preVisitDirectory(dir:Path,attrs:java.nio.file.attribute.BasicFileAttributes):FileVisitResult {
+                checkCancelled()
                 return if(runCatching{safePath(dir)}.isSuccess)FileVisitResult.CONTINUE else {excluded+=FolderScanResult(dir.toString(),"SKIPPED_LINK_OR_REPARSE");FileVisitResult.SKIP_SUBTREE}
             }
             override fun visitFile(file:Path,attrs:java.nio.file.attribute.BasicFileAttributes):FileVisitResult {
+                checkCancelled()
                 if(attrs.isRegularFile && !attrs.isSymbolicLink && !attrs.isOther)files.add(file)
                 else excluded+=FolderScanResult(file.toString(),if(attrs.isDirectory)"SKIPPED_DEPTH_LIMIT"else"SKIPPED_LINK_OR_REPARSE")
                 return if(files.size>2000)FileVisitResult.TERMINATE else FileVisitResult.CONTINUE
             }
         })
         require(files.size<=2000){"Scan exceeds 2000 files; use narrower directory entries"}
+        val candidates=files.filter {path->path.fileName.toString().substringAfterLast('.',"").lowercase() in
+            if(folder.category=="prompts")setOf("txt","md","prompt")else setOf("png","jpg","jpeg","webp","gif","bmp")}
+        // Reuse an image committed before an interrupted scan could publish its observations.
+        // This also repairs the old scanner's commit-then-observe window without changing originals.
+        val retained=if(folder.category=="prompts")emptyMap()else workspace.catalog().mapNotNull{a->
+            if(a.request().project().isNotEmpty())null else runCatching {
+                val recipe=Json.parseToJsonElement(a.request().recipe().decodeToString()).jsonObject
+                if(recipe["kind"]?.jsonPrimitive?.content=="image-ingress" && recipe["folderId"]?.jsonPrimitive?.content==folder.id)
+                    Triple(recipe["relativePath"]!!.jsonPrimitive.content,a.sha256(),recipe["previousAssetId"]?.jsonPrimitive?.content.orEmpty()) to a.request().id().toString()
+                else null
+            }.getOrNull()
+        }.toMap()
         val observations=state.observations.toMutableMap();val seen=mutableSetOf<String>();val result=excluded
-        for(path in files) {
-            val extension=path.fileName.toString().substringAfterLast('.',"").lowercase()
-            if(extension !in if(folder.category=="prompts")setOf("txt","md","prompt")else setOf("png","jpg","jpeg","webp","gif","bmp"))continue
+        var completed=0;var persisted=observations.toMap();var persistenceFailed=false;var committing=false
+        fun checkpoint() {
+            val changes=observations.filter{(key,value)->persisted[key]!=value}
+            if(changes.isEmpty())return
+            try {update{it.copy(observations=it.observations+changes)};persisted=observations.toMap()}
+            catch(e:Exception){persistenceFailed=true;throw e}
+        }
+        progress(FolderScanProgress(0,candidates.size))
+        try {for(path in candidates) {
+            checkCancelled()
             val key=folder.id+":"+root.relativize(path);seen+=key
             val bytes=try {
                 safePath(path);val before=Files.readAttributes(path,java.nio.file.attribute.BasicFileAttributes::class.java,LinkOption.NOFOLLOW_LINKS)
@@ -155,22 +181,29 @@ class LibraryRepository(private val workspace:StudioWorkspace) {
                     if(folder.category=="prompts")require(bytes.decodeToString(throwOnInvalidSequence=true).isNotBlank())else EditorRenderer.decode(bytes).flush()
                 }
                 bytes
-            }catch(e:Exception){observations[key]?.let{observations[key]=it.copy(status="READ_ERROR")};result+=FolderScanResult(path.toString(),"READ_ERROR: "+e.javaClass.simpleName);continue}
+            }catch(e:Exception){observations[key]?.let{observations[key]=it.copy(status="READ_ERROR")};result+=FolderScanResult(path.toString(),"READ_ERROR: "+e.javaClass.simpleName);completed++;progress(FolderScanProgress(completed,candidates.size));continue}
             // After validation, a persistence failure aborts the scan instead of retrying later files.
             val hash=sha256(bytes);val old=observations[key]
-                if(old?.sha256==hash){observations[key]=old.copy(status="PRESENT");result+=FolderScanResult(path.toString(),"UNCHANGED",old.assetId);continue}
+                if(old?.sha256==hash){observations[key]=old.copy(status="PRESENT");result+=FolderScanResult(path.toString(),"UNCHANGED",old.assetId);completed++;progress(FolderScanProgress(completed,candidates.size));continue}
+                checkCancelled()
+                committing=true
                 val id=if(folder.category=="prompts")savePrompt(bytes.decodeToString(throwOnInvalidSequence=true),old?.assetId?.let{state.labels[it]?.alias}?.takeIf{it.isNotBlank()}?:path.fileName.toString(),"folder:${folder.id}:${root.relativize(path)}",old?.assetId)
-                    else workspace.importImage(path.fileName.toString(),bytes,kotlinx.serialization.json.buildJsonObject{
+                    else retained[Triple(root.relativize(path).toString(),hash,old?.assetId.orEmpty())]?:workspace.importImage(path.fileName.toString(),bytes,kotlinx.serialization.json.buildJsonObject{
                         put("kind",kotlinx.serialization.json.JsonPrimitive("image-ingress"));put("version",kotlinx.serialization.json.JsonPrimitive(1));put("createdAt",kotlinx.serialization.json.JsonPrimitive(System.currentTimeMillis()))
                         put("source",kotlinx.serialization.json.JsonPrimitive("managed-folder"));put("folderId",kotlinx.serialization.json.JsonPrimitive(folder.id));put("relativePath",kotlinx.serialization.json.JsonPrimitive(root.relativize(path).toString()));put("previousAssetId",kotlinx.serialization.json.JsonPrimitive(old?.assetId.orEmpty()))
                     }.toString())
                 if(folder.category!="prompts" && old!=null)state.labels[old.assetId]?.let{label(id,it.alias,it.tags)}
                 observations[key]=FolderObservation(id,hash,bytes.size.toLong());result+=FolderScanResult(path.toString(),if(old==null)"IMPORTED"else"NEW_VERSION",id)
+                committing=false
+                completed++;if(completed%32==0)checkpoint()
+                progress(FolderScanProgress(completed,candidates.size))
         }
+        checkCancelled()
         observations.keys.filter{it.startsWith(folder.id+":") && it !in seen}.forEach{key->
             val old=observations.getValue(key);observations[key]=old.copy(status="SOURCE_MISSING")
             result+=FolderScanResult(root.resolve(key.removePrefix(folder.id+":")).toString(),"SOURCE_MISSING; retained existing asset",old.assetId)
         }
-        update{it.copy(observations=observations)};result
+        checkpoint();result
+        }finally{if(!persistenceFailed && !committing)checkpoint()}
     }
 }

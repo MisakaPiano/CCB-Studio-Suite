@@ -21,16 +21,25 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonPrimitive
 import com.example.chatbar.domain.image.*
 import kotlinx.serialization.encodeToString
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+
+private data class PromptBoardRead(val state:PromptReferenceState,val sources:Map<String,PromptAsset>,
+    val rows:List<PromptReferenceRow>,val roleOrders:Map<String,List<String>>)
 
 @Composable internal fun PromptReferenceBoard(c:WorkbenchController) = BoxWithConstraints(Modifier.fillMaxWidth()) {
     val availableWidth=maxWidth
     Column(verticalArrangement=Arrangement.spacedBy(8.dp)) {
     val repo=remember(c){PromptReferences(c.library.repository)}
-    val state=remember(c.library.state){repo.load()}
+    val loaded by produceState<Result<PromptBoardRead>?>(null,c.library.state){value=withContext(Dispatchers.IO){runCatching{
+        val state=repo.load()
+        PromptBoardRead(state,state.ids.associateWith{c.library.repository.prompt(it)},repo.rows(),state.ids.associateWith{repo.roles(it)})
+    }}}
+    if(loaded==null){Text("正在读取 Prompt 参照…");return@Column}
+    if(loaded!!.isFailure){Text("参照记录无法读取，原始资料保留",color=MaterialTheme.colors.error);return@Column}
+    val snapshot=loaded!!.getOrThrow();val state=snapshot.state
     val columnWidth=((availableWidth-10.dp*(state.ids.size-1).coerceAtLeast(0))/state.ids.size.coerceAtLeast(1)).coerceIn(320.dp,640.dp)
-    val sources=remember(state,c.library.state){state.ids.associateWith{c.library.repository.prompt(it)}}
-    val rows=remember(state,c.library.state){repo.rows()}
-    val roleOrders=remember(state,c.library.state){state.ids.associateWith{repo.roles(it)}}
+    val sources=snapshot.sources;val rows=snapshot.rows;val roleOrders=snapshot.roleOrders
     var excerpt by remember{mutableStateOf("")};var origins by remember{mutableStateOf(listOf<String>())}
     var differences by remember{mutableStateOf(false)};var panel by remember{mutableStateOf("Prompt 对比")};var advanced by remember{mutableStateOf(false)};var confirm by remember{mutableStateOf(false)}
     var detail by remember{mutableStateOf<Pair<String,String>?>(null)}

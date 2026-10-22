@@ -1,0 +1,123 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :asset-library:compileJava UP-TO-DATE
+> Task :image-authority:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :image-authority:compileKotlin UP-TO-DATE
+> Task :image-authority:compileJava NO-SOURCE
+> Task :studio-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-core:compileKotlin
+> Task :studio-core:compileJava NO-SOURCE
+> Task :studio-core:processResources UP-TO-DATE
+> Task :studio-core:classes UP-TO-DATE
+> Task :studio-core:jar
+> Task :asset-library:processResources NO-SOURCE
+> Task :asset-library:classes UP-TO-DATE
+> Task :asset-library:jar UP-TO-DATE
+> Task :image-authority:processResources NO-SOURCE
+> Task :image-authority:classes UP-TO-DATE
+> Task :image-authority:jar UP-TO-DATE
+> Task :studio-core:compileTestKotlin
+> Task :studio-core:compileTestJava NO-SOURCE
+> Task :studio-core:processTestResources UP-TO-DATE
+> Task :studio-core:testClasses UP-TO-DATE
+
+> Task :studio-core:test
+
+LibraryCollectionTest > progressReleasesWorkspaceAndCancellationCheckpointsOnlyCompletedFiles PASSED
+
+LibraryCollectionTest > restoringAtIdenticalPathStillRequiresLocalCollectionReauthorization PASSED
+
+LibraryCollectionTest > rescanAdoptsOldCommittedImageWithoutObservationAndDoesNotImportItAgain PASSED
+
+LibraryCollectionTest > discoveringNewSubtreeKeepsOtherRegisteredRootLiveDuringConcurrentWrite PASSED
+
+LibraryCollectionTest > watchCreatesVersionsAndRestoreRequiresExplicitReconnection PASSED
+
+LibraryCollectionTest > intakeCopyIsIdempotentPreservesOriginalAndNeverReplacesModifiedDestination PASSED
+
+LibraryRepositoryTest > damagedOrFutureManagementRecordsDoNotResetMetadataOrHideOriginals PASSED
+
+LibraryRepositoryTest > directoriesVersionAndMissingSourcesKeepAssetsLabelsPromptsAndBackup PASSED
+
+LibraryRepositoryTest > promptEditsPreserveEarlierVersionAndRejectDataRootAsIngress PASSED
+
+LibraryRepositoryTest > referencesExcludeWhitespaceAlignRolesWithoutMutatingOriginalAndRestore PASSED
+
+> Task :studio-desktop:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-desktop:convertXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:copyNonXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:prepareComposeResourcesTaskForMain NO-SOURCE
+> Task :studio-desktop:generateResourceAccessorsForMain SKIPPED
+> Task :studio-desktop:generateActualResourceCollectorsForMain SKIPPED
+> Task :studio-desktop:generateComposeResClass SKIPPED
+> Task :studio-desktop:compileKotlin
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetQueueWorkspace.kt:142:72 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Double'.
+
+> Task :studio-desktop:compileJava NO-SOURCE
+> Task :studio-desktop:assembleMainResources UP-TO-DATE
+> Task :studio-desktop:processResources UP-TO-DATE
+> Task :studio-desktop:classes UP-TO-DATE
+> Task :studio-desktop:jar
+> Task :studio-desktop:convertXmlValueResourcesForTest NO-SOURCE
+> Task :studio-desktop:copyNonXmlValueResourcesForTest NO-SOURCE
+> Task :studio-desktop:prepareComposeResourcesTaskForTest NO-SOURCE
+> Task :studio-desktop:generateResourceAccessorsForTest SKIPPED
+
+> Task :studio-desktop:compileTestKotlin
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryAlbumWorkflowTest.kt:59:106 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Pair<List<String>, Int>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryAlbumWorkflowTest.kt:59:140 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Pair<List<String>, Int>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GuidanceSafetyTest.kt:39:226 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Triple<ByteArray, ByteArray?, NovelAiFocusedInpaintRegion>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GuidanceSafetyTest.kt:40:90 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Triple<ByteArray, ByteArray?, NovelAiFocusedInpaintRegion>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GuidanceSafetyTest.kt:40:206 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Triple<ByteArray, ByteArray?, NovelAiFocusedInpaintRegion>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GuidanceSafetyTest.kt:46:148 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Triple<ByteArray, ByteArray?, NovelAiFocusedInpaintRegion>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GuidanceSafetyTest.kt:47:98 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Triple<ByteArray, ByteArray?, NovelAiFocusedInpaintRegion>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GuidanceSafetyTest.kt:47:166 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Triple<ByteArray, ByteArray?, NovelAiFocusedInpaintRegion>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GuidanceSafetyTest.kt:49:55 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Triple<ByteArray, ByteArray?, NovelAiFocusedInpaintRegion>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GuidanceSafetyTest.kt:49:71 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Triple<ByteArray, ByteArray?, NovelAiFocusedInpaintRegion>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/ModelAccountsTest.kt:62:301 'fun create(contentType: MediaType?, content: String): ResponseBody' is deprecated. Moved to extension function. Put the 'content' argument first to fix Java.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/ModelAccountsTest.kt:71:230 'fun create(contentType: MediaType?, content: String): ResponseBody' is deprecated. Moved to extension function. Put the 'content' argument first to fix Java.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/PromptReferenceWorkflowTest.kt:106:57 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Path'.
+
+> Task :studio-desktop:compileTestJava NO-SOURCE
+> Task :studio-desktop:assembleTestResources UP-TO-DATE
+> Task :studio-desktop:processTestResources UP-TO-DATE
+> Task :studio-desktop:testClasses UP-TO-DATE
+
+> Task :studio-desktop:test
+
+LibraryCollectionWorkflowTest > recoveryStartupPausesWatchersWithoutChangingRegistrationsAndAllowsExplicitSingleScan PASSED
+
+LibraryCollectionWorkflowTest > queuedRemovedRegistrationIsIgnoredAndUncertainMetadataStopsAutomaticRetries FAILED
+    java.lang.AssertionError at Assert.java:89
+
+LibraryCollectionWorkflowTest > galleryAndDraftEditingRemainResponsiveWhileBackgroundWriterOwnsWorkspace PASSED
+
+LibraryCollectionWorkflowTest > workbenchAutomaticallyCollectsImagesAndPromptVersionsAndDrainsForMaintenance PASSED
+
+LibraryCollectionWorkflowTest > unreadableLocalRegistrationStopsMonitoringWithoutHidingAssetLabels PASSED
+
+PromptReferenceWorkflowTest > imagePreviewBoardRealRoleDragExtractionAndRestartKeepSourceIdentity PASSED
+
+PromptReferenceWorkflowTest > missingOrUnverifiableImagePromptCannotBecomeFalseCompleteReference PASSED
+
+PromptReferenceWorkflowTest > editedImageUsesVerifiedSourcePromptWithoutClaimingAnUneditedResult PASSED
+
+PromptReferenceWorkflowTest > narrowBoardScrollsSourcesAndEmptyPromptFieldsDoNotConsumeRows PASSED
+
+StudioAssetViewerTest > hoverAndContextActionsUseTheViewedImageAndPreserveExistingProject PASSED
+
+10 tests completed, 1 failed
+
+> Task :studio-desktop:test FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':studio-desktop:test'.
+> There were failing tests. See the report at: file:///H:/CCB-Studio-Suite/modules/studio-desktop/build/reports/tests/test/index.html
+
+* Try:
+> Run with --scan to generate a Build Scan (Powered by Develocity).
+
+BUILD FAILED in 3m 23s
+18 actionable tasks: 8 executed, 10 up-to-date

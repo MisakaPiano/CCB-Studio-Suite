@@ -26,7 +26,7 @@ import kotlinx.serialization.json.*
 import java.nio.file.*
 
 internal class WorkbenchController(val workspace:StudioWorkspace,val scope:CoroutineScope,val infrastructure:DesktopNovelAiInfrastructure,budgetRoot:Path,
-    val http:okhttp3.OkHttpClient=studioHttpClient(),admissionOverride:RequestAdmission?=null) {
+    val http:okhttp3.OkHttpClient=studioHttpClient(),admissionOverride:RequestAdmission?=null,val pauseCollectionsOnStart:Boolean=false) {
     val session=CreationSession(workspace)
     val runtimeRoot:Path=budgetRoot.parent
     val backups by lazy{LibraryBackupController(this)}
@@ -60,6 +60,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     var usageAt by mutableStateOf<Long?>(null);private set
     var current by mutableStateOf(state.jobs.lastOrNull()?.let{it.composedResults.lastOrNull()?:it.results.lastOrNull()})
     var selection by mutableStateOf(setOf<String>())
+    var documentAssets by mutableStateOf(emptyList<AssetStore.Asset>());private set
     var assets by mutableStateOf(visibleAssets());private set
     fun refreshLibraryAssets(){assets=visibleAssets()}
     val picker=DesktopFilePicker()
@@ -78,7 +79,11 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     private fun guidanceFor(account:AccountProfile?)=DesktopNovelAiGuidance(guidanceRoot,::readAsset,{
         vault.use(requireNotNull(account?.secretRef)){it.decodeToString()}
     },admission,http)
-    fun visibleAssets():List<AssetStore.Asset> = SharedAssets.images(workspace)
+    fun visibleAssets():List<AssetStore.Asset> {
+        val catalog=workspace.catalog()
+        documentAssets=catalog.filter{it.request().project().decodeToString()==SharedAssets.DOCUMENT}
+        return SharedAssets.images(catalog)
+    }
     fun readAsset(path:String):ByteArray {require(path.startsWith("asset:"));return workspace.bytes(path.removePrefix("asset:"))}
     fun assetRef(id:String):NovelAiStudioAssetRef {
         val bytes=workspace.bytes(id);val image=DesktopImageEditing.decode(bytes)
@@ -228,7 +233,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     }
     init {if(current==null)current=assets.lastOrNull()?.request()?.id()?.toString()}
     private fun changed(){saved=false;pending?.cancel();pending=scope.launch {delay(350);try{flush()}catch(e:CancellationException){throw e}catch(e:Exception){problem="草稿未能保存，保留当前输入；请先处理数据错误"}}}
-    fun edit(change:(NovelAiStudioDraft)->NovelAiStudioDraft){if(maintenance)return;draft=workspace.state.creation!!.resolvedDraft(change(draft));changed()}
+    fun edit(change:(NovelAiStudioDraft)->NovelAiStudioDraft){if(maintenance)return;draft=state.creation!!.resolvedDraft(change(draft));changed()}
     fun selectImageCard(card:ImageCardSource)=run("应用角色卡图像字段") {
         session.update{old->
             val cards=old.imageCards.filterNot{it.id==card.id}+card
@@ -240,7 +245,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
         session.update{old->val next=old.copy(defaultImageModel=model?:old.defaultImageModel,translatedTags=translated?:old.translatedTags);next.copy(draft=next.resolvedDraft(next.draft))}
         draft=workspace.state.creation!!.draft
     }
-    fun clearPromptDraft()=edit{it.clearPrompts(workspace.state.creation!!.imageCards.firstOrNull{card->card.id==it.importedCharacterCardId}?.negativePrompt)}
+    fun clearPromptDraft()=edit{it.clearPrompts(state.creation!!.imageCards.firstOrNull{card->card.id==it.importedCharacterCardId}?.negativePrompt)}
     fun pastePrompt(text:String,origin:String="clipboard-or-asset")=run("粘贴正向 Prompt") {
         require(text.length<=100000)
         library.repository.savePrompt(text,"粘贴的 Prompt",origin);library.refresh()
@@ -252,7 +257,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     suspend fun flush() {
         val d=draft;val input=composer;val attached=attach;val l=llmId;val n=naiId
         withContext(Dispatchers.IO){session.update(DesignLineageOperation.EDIT) {old -> (if(old.draft==d)old else old.change(d)).copy(composer=input,attachCurrentPrompt=attached,llmAccountId=l,naiAccountId=n)}}
-        state=workspace.state;saved=draft==d && composer==input && attach==attached && llmId==l && naiId==n
+        state=withContext(Dispatchers.IO){workspace.state};saved=draft==d && composer==input && attach==attached && llmId==l && naiId==n
     }
     fun run(label:String,body:suspend ()->Unit) {
         if(busy||maintenance)return
@@ -261,7 +266,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
             try {pending?.cancelAndJoin();flush();withContext(Dispatchers.IO){body()};message=operationNotice?:if(problem==null)"$label · 已完成" else "$label · 有未完成项，请查看回执"}
             catch(e:CancellationException){message="已停止；已提交结果保留";throw e}
             catch(e:Exception){problem="${if(e is DataProblem)e.status else e.javaClass.simpleName}：操作未完成，未自动重发。已有资料保留。";message="操作未完成"}
-            finally {try{state=workspace.state;modelAccounts.syncSavedProfile();assets=visibleAssets()}catch(e:Exception){problem="工作区需要恢复，已保留现有文件；请停止写入并检查"};activeOperation="";busy=false}
+            finally {try{withContext(NonCancellable+Dispatchers.IO){state=workspace.state;assets=visibleAssets()};modelAccounts.syncSavedProfile()}catch(e:Exception){problem="工作区需要恢复，已保留现有文件；请停止写入并检查"};activeOperation="";busy=false}
         }
     }
     fun design()=run("AI 设计") {
@@ -403,7 +408,7 @@ internal fun launchStudio(args:Array<String>) {
         workspace.close();javax.swing.JOptionPane.showMessageDialog(null,"更新后的程序或资料验证未通过；已有程序和资料保留。","CCB Studio Suite",javax.swing.JOptionPane.ERROR_MESSAGE);return
     }
     application {
-        val scope=rememberCoroutineScope();val c=remember{WorkbenchController(workspace,scope,DesktopNovelAiInfrastructure(runtime.resolve("catalog")),runtime.resolve("request-budget"))}
+        val scope=rememberCoroutineScope();val c=remember{WorkbenchController(workspace,scope,DesktopNovelAiInfrastructure(runtime.resolve("catalog")),runtime.resolve("request-budget"),pauseCollectionsOnStart="--pause-collections" in args)}
         var closing by remember{mutableStateOf(false)}
         fun close(){if(!closing){closing=true;scope.launch{try{c.close();exitApplication()}catch(e:Exception){closing=false;c.problem=if(e is DataProblem && e.status=="ACCOUNT_DRAFT_UNSAVED")"账户档案尚未保存，请在账户页保存或放弃修改后再关闭" else "保存或排水尚未完成，窗口保持打开"}}}}
         c.requestClose=::close
@@ -476,6 +481,10 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
             }
         }
         Divider()
+        if(c.library.collectionBusy)Row(Modifier.fillMaxWidth().background(Panel).padding(horizontal=12.dp),verticalAlignment=Alignment.CenterVertically) {
+            Text(c.library.automaticNotice,Modifier.weight(1f),fontSize=12.sp)
+            TextButton(onClick={c.library.stopCollection()}){Text("停止目录收集")}
+        }
         Box(Modifier.weight(1f).fillMaxWidth()) {when(c.view){"AI 设计"->if(c.designDetached)Column(Modifier.padding(20.dp)){Text("AI 设计已在独立窗口打开");StudioAction("切回主窗口编辑",onClick=c::reattachDesign)}else DesignWorkspace(c);"图库"->GalleryWorkspace(c);"编辑"->TypesetWorkspace(c);"资产管理"->LibraryWorkspace(c);"账户"->AccountsWorkspace(c);"更新"->UpdateWorkspace(c.updater,c.workspace.root.toString(),c.installUpdate);else->CreationWorkspace(c)}}
         Row(Modifier.fillMaxWidth().padding(8.dp),verticalAlignment=Alignment.CenterVertically) {
             Text(if(closing)"正在保存并排水…"else c.message,Modifier.weight(1f),fontSize=12.sp,color=Quiet)

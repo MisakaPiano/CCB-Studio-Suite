@@ -15,7 +15,8 @@ object SharedAssets {
     const val IMAGE="CCB_SHARED_IMAGE_V1"
     const val DOCUMENT="CCB_SHARED_DOCUMENT_V1"
     private val internalTags=setOf("CCB_REQUEST_PAYLOAD_V1",TypesetRepository.TAG,TypesetFonts.TAG,TypesetSourceExchange.TAG)
-    fun images(workspace:StudioWorkspace)=workspace.catalog().filter { a ->
+    fun images(workspace:StudioWorkspace)=images(workspace.catalog())
+    fun images(catalog:List<AssetStore.Asset>)=catalog.filter { a ->
         val tag=a.request().project().decodeToString()
         tag !in internalTags && tag!=DOCUMENT && (tag.isEmpty() || tag==IMAGE)
     }

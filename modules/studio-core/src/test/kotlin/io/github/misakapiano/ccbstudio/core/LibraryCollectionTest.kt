@@ -4,6 +4,41 @@ import java.nio.file.*
 import kotlin.test.*
 
 class LibraryCollectionTest {
+    @Test fun progressReleasesWorkspaceAndCancellationCheckpointsOnlyCompletedFiles() {
+        val folder=Files.createDirectories(root());repeat(3){Files.write(folder.resolve("$it.png"),EditorRenderer.synthetic(32+it,32))}
+        StudioWorkspace.openStudio(root()).use {w->
+            val repo=LibraryRepository(w);val registration=repo.addFolder(folder,"images",false).folders.single()
+            val pool=java.util.concurrent.Executors.newSingleThreadExecutor();var cancel=false
+            try {
+                assertFailsWith<java.util.concurrent.CancellationException>{repo.scan(registration.id,
+                    checkCancelled={if(cancel)throw java.util.concurrent.CancellationException()},progress={p->
+                        assertFalse(Thread.holdsLock(w),"Progress must not own the workspace monitor")
+                        pool.submit<Int>{w.catalog().size}.get(3,java.util.concurrent.TimeUnit.SECONDS)
+                        if(p.completed==1){repo.update{it.copy(preferences=it.preferences+("concurrent-setting" to "kept"))};cancel=true}
+                    })}
+                assertEquals(1,repo.load().observations.size);assertEquals("kept",repo.load().preferences["concurrent-setting"])
+                assertTrue(repo.load().observations.values.all{it.status=="PRESENT"})
+                assertEquals(1,SharedAssets.images(w).size)
+                val retained=SharedAssets.images(w).single();val bytes=w.bytes(retained.request().id().toString())
+                repo.scan(registration.id);assertEquals(3,SharedAssets.images(w).size)
+                assertContentEquals(bytes,w.bytes(retained.request().id().toString()))
+            }finally{pool.shutdownNow()}
+        }
+    }
+    @Test fun rescanAdoptsOldCommittedImageWithoutObservationAndDoesNotImportItAgain() {
+        val data=root();val folder=Files.createDirectories(root());val bytes=EditorRenderer.synthetic(33,35)
+        Files.write(folder.resolve("retained.png"),bytes);var id="";var registration=""
+        StudioWorkspace.openStudio(data).use{w->
+            val repo=LibraryRepository(w);registration=repo.addFolder(folder,"images",false).folders.single().id
+            id=w.importImage("retained.png",bytes,"""{"kind":"image-ingress","version":1,"source":"managed-folder","folderId":"$registration","relativePath":"retained.png","previousAssetId":""}""")
+            assertTrue(repo.load().observations.isEmpty())
+        }
+        StudioWorkspace.openStudio(data).use{w->val repo=LibraryRepository(w)
+            assertEquals(id,repo.scan(registration).single().assetId)
+            assertEquals(1,SharedAssets.images(w).size);assertContentEquals(bytes,w.bytes(id))
+            assertEquals("UNCHANGED",repo.scan(registration).single().status)
+        }
+    }
     private fun root()=Path.of(System.getProperty("preview.test.root"),newId())
     @Test fun discoveringNewSubtreeKeepsOtherRegisteredRootLiveDuringConcurrentWrite() {
         val first=Files.createDirectories(root());val second=Files.createDirectories(root());val nested=first.resolve("new-subtree")

@@ -57,7 +57,7 @@ import com.example.chatbar.desktop.*
 }
 
 @Composable internal fun SharedDocumentAssets(c:WorkbenchController) {
-    val documents=remember(c.assets,c.state,c.library.state){io.github.misakapiano.ccbstudio.core.SharedAssets.documents(c.workspace).filterNot{it.request().id().toString() in c.library.archived}}
+    val documents=remember(c.documentAssets,c.library.archived){c.documentAssets.filterNot{it.request().id().toString() in c.library.archived}}
     if(documents.isNotEmpty())StudioDisclosure("整册与归档资产 · ${documents.size}") {
         Column(Modifier.heightIn(max=180.dp).verticalScroll(rememberScrollState())) {
             documents.asReversed().forEach{asset->

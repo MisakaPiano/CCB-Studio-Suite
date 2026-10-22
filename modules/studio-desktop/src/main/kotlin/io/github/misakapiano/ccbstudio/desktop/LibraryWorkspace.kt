@@ -11,6 +11,7 @@ import com.example.chatbar.domain.image.*
 import io.github.misakapiano.ccbstudio.core.*
 import java.nio.file.*
 import kotlinx.coroutines.*
+import kotlinx.coroutines.channels.Channel
 
 internal class LibraryController(private val c:WorkbenchController) {
     var tab by mutableStateOf("Prompt 资产")
@@ -26,19 +27,38 @@ internal class LibraryController(private val c:WorkbenchController) {
     var automaticNotice by mutableStateOf("")
     var collectionBlocked by mutableStateOf(false);private set
     var monitorEpoch by mutableStateOf(0);private set
-    fun retryCollections(){repository.load();c.workspace.catalog();collectionBlocked=false;monitorEpoch++}
+    var sessionPaused by mutableStateOf(c.pauseCollectionsOnStart);private set
+    var collectionBusy by mutableStateOf(false);private set
+    fun retryCollections(){repository.load();c.workspace.catalog();collectionBlocked=false;sessionPaused=false;monitorEpoch++}
     private var collectionTask:Job?=null
     suspend fun cancelAndDrain(){collectionTask?.cancelAndJoin()}
-    fun synchronize(ids:Set<String>,scope:CoroutineScope):Boolean {
-        if(c.busy || c.maintenance || collectionBlocked || collectionTask?.isActive==true)return false
-        collectionTask=scope.launch {
+    fun stopCollection(){sessionPaused=true;collectionTask?.cancel();automaticNotice="正在停止目录收集，等待当前文件安全写入；已入库原件保留"}
+    fun pauseCollections(paused:Boolean) {
+        if(paused)stopCollection()
+        c.run("设置目录收集"){cancelAndDrain();repository.pauseCollections(paused);sessionPaused=paused;refresh()}
+    }
+    fun synchronize(ids:Set<String>,scope:CoroutineScope,automatic:Boolean=true):Boolean {
+        if(c.busy || c.maintenance || collectionBlocked || collectionBusy || collectionTask?.isCompleted==false || (automatic && sessionPaused))return false
+        collectionBusy=true;automaticNotice="正在检查目录文件…"
+        collectionTask=scope.launch(start=CoroutineStart.UNDISPATCHED) {
+            val events=Channel<FolderScanProgress>(Channel.CONFLATED)
+            val display=launch{for(p in events)automaticNotice="目录收集 ${p.completed} / ${p.total} 项 · 可切换页面，已入库原件保留"}
             try {
-                val results=withContext(Dispatchers.IO){ids.flatMap{id->ensureActive();c.workspace.operation {
-                    if(repository.automaticFolders().any{it.id==id})repository.scan(id)else emptyList()
-                }}}
-                scanResults=results;refresh();c.refreshLibraryAssets()
+                val results=withContext(Dispatchers.IO){val context=currentCoroutineContext();ids.flatMap{id->context.ensureActive()
+                    if((if(automatic)repository.automaticFolders()else repository.load().folders).any{it.id==id})
+                        repository.scan(id,{context.ensureActive()},{events.trySend(it);Unit}) else emptyList()
+                }}
+                events.close();display.join();scanResults=results
                 automaticNotice=if(results.any{it.status !in setOf("IMPORTED","NEW_VERSION","UNCHANGED")})"部分目录项目未导入，详见逐项回执；已保存资产保留"else"目录已同步 · 新增或更新 ${results.count{it.status=="IMPORTED" || it.status=="NEW_VERSION"}} 项"
-            }catch(e:CancellationException){throw e}catch(e:Exception){collectionBlocked=true;automaticNotice="目录自动同步已停止：${e.javaClass.simpleName}；原件保留，请检查入口后重试"}
+            }catch(e:CancellationException){automaticNotice="目录收集已停止；已入库原件保留，可检查后恢复收集";throw e}
+            catch(e:Exception){collectionBlocked=true;automaticNotice="目录自动同步已停止：${e.javaClass.simpleName}；原件保留，请检查入口后重试"}
+            finally {
+                withContext(NonCancellable) {
+                    events.close();display.cancelAndJoin()
+                    try {withContext(Dispatchers.IO){refresh();runCatching{c.refreshLibraryAssets()}.onFailure{collectionBlocked=true}}}
+                    finally {collectionBusy=false}
+                }
+            }
         };return true
     }
     init{refresh()}
@@ -61,7 +81,7 @@ internal class LibraryController(private val c:WorkbenchController) {
         val id=existing?:repository.savePrompt(text,name,"manual",previous)
         board.add(id);refresh();tab="多 Prompt 参照"
     }
-    fun scan(id:String)=c.run("同步资产目录"){scanResults=repository.scan(id);refresh()}
+    fun scan(id:String){synchronize(setOf(id),c.scope,automatic=false)}
     fun defaults()=c.run("启用资产收集目录"){repository.defaultFolders();refresh()}
     fun addFolder(category:String,recursive:Boolean){
         StudioFileDialogs.folder("添加只读资产目录入口")?.let{path->c.run("添加资产目录入口"){repository.addFolder(path,category,recursive);refresh()}}
@@ -124,10 +144,11 @@ internal class LibraryController(private val c:WorkbenchController) {
         } else if(tab=="多 Prompt 参照") {PromptReferenceBoard(c)} else if(tab=="回收站") {AssetArchiveContents(c)} else {
             Text("收集目录与不可变资产库分开。同步只读外部目录；外部改动生成新资产版本，移除目录或外部文件不会删除已入库原件。")
             Text("拖放、剪贴板和普通导入另存到专用 imports 目录；在收集目录放入文件后自动入库。备份恢复到新工作区时，旧外部入口需要重新启用。")
-            val paused=library.state?.preferences?.get("collectionsPaused")=="true"
+            val paused=library.sessionPaused || library.state?.preferences?.get("collectionsPaused")=="true"
             val eligibility=remember(library.state,library.monitorEpoch){runCatching{library.state?.let{library.repository.automaticFolders(it)}.orEmpty()}}
             if(eligibility.isFailure)Text("本机目录登记不可读取，自动收集已停止；已保存资产和分类可继续使用。",color=MaterialTheme.colors.error)
-            StudioSwitch("暂停目录自动收集",paused){c.run("设置目录收集"){library.repository.pauseCollections(!paused);library.refresh()}}
+            StudioSwitch("暂停目录自动收集",paused){library.pauseCollections(!paused)}
+            if(library.sessionPaused)Text("本次启动已暂停自动收集；可先检查目录入口，再关闭暂停开关。手动同步只处理所选入口。")
             if(library.automaticNotice.isNotBlank())Text(library.automaticNotice)
             StudioAction("检查并重试目录自动收集",!c.busy){c.run("检查目录状态"){library.retryCollections();library.refresh()}}
             StudioAction("启用默认收集目录",!c.busy){library.defaults()}
@@ -138,9 +159,9 @@ internal class LibraryController(private val c:WorkbenchController) {
                 Text("${folder.category} · ${folder.path}" )
                 StudioActions {
                     if(folder !in eligibility.getOrDefault(emptyList()))StudioAction("在此工作区启用 ${folder.id.take(8)}",!c.busy && eligibility.isSuccess){c.run("确认重新连接目录"){library.repository.enableHere(folder.id);library.refresh()}}
-                    StudioAction("同步目录 ${folder.id.take(8)}",!c.busy){library.scan(folder.id)}
+                    StudioAction("同步目录 ${folder.id.take(8)}",!c.busy && !library.collectionBusy){library.scan(folder.id)}
                     StudioAction("打开目录 ${folder.id.take(8)}"){java.awt.Desktop.getDesktop().open(Path.of(folder.path).toFile())}
-                    StudioAction("移除入口 ${folder.id.take(8)}",!c.busy){c.run("移除目录入口，保留资产"){library.repository.removeFolder(folder.id);library.refresh()}}
+                    StudioAction("移除入口 ${folder.id.take(8)}",!c.busy){library.stopCollection();c.run("移除目录入口，保留资产"){library.cancelAndDrain();library.repository.removeFolder(folder.id);library.refresh()}}
                 }
             }
             library.scanResults.forEach{Text("${it.path} · ${it.status}")}
@@ -155,9 +176,10 @@ internal class LibraryController(private val c:WorkbenchController) {
     val library=c.library
     Text("移入回收站的资产不再出现在新选用列表。已有工程、参照板、生成记录与原始字节继续保留；外部收集目录文件不受影响。恢复后可继续选用。")
     library.archiveError?.let{Text(it,color=MaterialTheme.colors.error);StudioAction("重读回收站"){library.refresh()};return}
-    val contents=remember(library.state){runCatching{library.archive.manageable().filter{it.request().id().toString() in library.archived}}}
-    contents.exceptionOrNull()?.let{Text("资产目录不可读取，未删除任何文件",color=MaterialTheme.colors.error);return}
-    val assets=contents.getOrThrow()
+    val contents by produceState<Result<List<io.github.misakapiano.ccbstudio.assets.AssetStore.Asset>>?>(null,library.state){value=withContext(Dispatchers.IO){runCatching{library.archive.manageable().filter{it.request().id().toString() in library.archived}}}}
+    if(contents==null){Text("正在读取回收站…");return}
+    contents!!.exceptionOrNull()?.let{Text("资产目录不可读取，未删除任何文件",color=MaterialTheme.colors.error);return}
+    val assets=contents!!.getOrThrow()
     Text("${assets.size} 项资产 · 此处不执行永久删除")
     assets.asReversed().forEach{asset->
         val id=asset.request().id().toString();val label=library.labels(id)
@@ -176,7 +198,7 @@ internal class LibraryController(private val c:WorkbenchController) {
 
 @Composable internal fun LibrarySynchronization(c:WorkbenchController) {
     val library=c.library;val scope=rememberCoroutineScope()
-    val eligibility=remember(library.state,library.monitorEpoch,c.maintenance){runCatching{if(c.maintenance)emptyList()else library.state?.let{library.repository.automaticFolders(it)}.orEmpty()}}
+    val eligibility=remember(library.state,library.monitorEpoch,c.maintenance,library.sessionPaused){runCatching{if(c.maintenance || library.sessionPaused)emptyList()else library.state?.let{library.repository.automaticFolders(it)}.orEmpty()}}
     val folders=eligibility.getOrDefault(emptyList())
     LaunchedEffect(eligibility){if(eligibility.isFailure)library.automaticNotice="本机目录登记不可读取，自动收集已停止；已保存资产和分类保留，请检查目录登记。"}
     LaunchedEffect(c,folders,library.monitorEpoch) {

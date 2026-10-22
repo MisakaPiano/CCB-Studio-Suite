@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.LibraryCollectionTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-22T22:21:35.266Z" hostname="DD1" time="14.401">
+  <properties/>
+  <testcase name="progressReleasesWorkspaceAndCancellationCheckpointsOnlyCompletedFiles" classname="io.github.misakapiano.ccbstudio.core.LibraryCollectionTest" time="2.444"/>
+  <testcase name="restoringAtIdenticalPathStillRequiresLocalCollectionReauthorization" classname="io.github.misakapiano.ccbstudio.core.LibraryCollectionTest" time="1.622"/>
+  <testcase name="rescanAdoptsOldCommittedImageWithoutObservationAndDoesNotImportItAgain" classname="io.github.misakapiano.ccbstudio.core.LibraryCollectionTest" time="1.006"/>
+  <testcase name="discoveringNewSubtreeKeepsOtherRegisteredRootLiveDuringConcurrentWrite" classname="io.github.misakapiano.ccbstudio.core.LibraryCollectionTest" time="0.023"/>
+  <testcase name="watchCreatesVersionsAndRestoreRequiresExplicitReconnection" classname="io.github.misakapiano.ccbstudio.core.LibraryCollectionTest" time="5.443"/>
+  <testcase name="intakeCopyIsIdempotentPreservesOriginalAndNeverReplacesModifiedDestination" classname="io.github.misakapiano.ccbstudio.core.LibraryCollectionTest" time="3.862"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

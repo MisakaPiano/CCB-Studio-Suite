@@ -1,3 +1,7 @@
+## 2026-10-23 旧窗口目录收集阻塞
+
+用户澄清为旧测试窗口；线程诊断确认整批收集持锁、图库在界面线程等待。经用户明确允许后仅结束已核验的旧Suite进程，未删资料。[诊断与修复](audits/UX_COLLECTION_RESPONSIVENESS.md)记录后台进度/停止、锁范围和暂停启动恢复入口。最终桌面15项通过，首轮核心10项通过；220文件恢复包核验，快捷方式`.local/windows-rc/library-recovery-review/Start-library-recovery-review.lnk`默认暂停收集。原生恢复反馈仍待提供，不能宣称用户库已完整恢复。PRODUCT_HOLD / NOT RC。
+
 ## 2026-10-23 APNG封面与自动预览接续
 
 用户追加多套自定义伪装封面、恢复默认、默认静止封面效果、免手点自动预览及当前批次缩略图定位最新。见[实现/验证](audits/UX_APNG_COVERS.md)，保持原件和共享编解码器，原生新交互待签收。新包与快捷方式以该记录最终段为准；先前studio-usability-review为已签收查看器/设计窗口的阶段包。[Desktop报告](rc/DESKTOP_DANBOORU_STATUS_REFERENCE.md)包含词库状态、查看器右键、自定义封面及自动预览边界。PRODUCT_HOLD / NOT RC。
