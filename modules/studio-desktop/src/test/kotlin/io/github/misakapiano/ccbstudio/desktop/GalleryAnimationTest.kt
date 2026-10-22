@@ -83,7 +83,12 @@ class GalleryAnimationTest {
         suspend fun frames(){repeat(4){scene.render().close();yield()};delay(80)}
         fun nodes():List<SemanticsNode>{fun walk(n:SemanticsNode):List<SemanticsNode> = listOf(n)+n.children.flatMap(::walk)
             return scene.semanticsOwners.flatMap{walk(it.rootSemanticsNode)}}
-        suspend fun click(label:String){assertTrue(nodes().first{it.config.getOrNull(SemanticsProperties.ContentDescription)?.contains(label)==true&&it.config.getOrNull(SemanticsActions.OnClick)!=null}.config[SemanticsActions.OnClick].action!!.invoke());frames()}
+        suspend fun click(label:String){
+            if(nodes().none{it.config.getOrNull(SemanticsProperties.ContentDescription)?.contains(label)==true&&it.config.getOrNull(SemanticsActions.OnClick)!=null}) {
+                val menu=if(label in setOf("选择目录并导出全部","复制全部处理文件"))"整批处理 ▾"else"当前结果 ▾"
+                nodes().first{it.config.getOrNull(SemanticsProperties.Text)?.any{t->t.text==menu}==true&&it.config.getOrNull(SemanticsActions.OnClick)!=null}.config[SemanticsActions.OnClick].action!!.invoke();frames()
+            }
+            assertTrue(nodes().first{(it.config.getOrNull(SemanticsProperties.ContentDescription)?.contains(label)==true||it.config.getOrNull(SemanticsProperties.Text)?.any{t->t.text==label}==true)&&it.config.getOrNull(SemanticsActions.OnClick)!=null}.config[SemanticsActions.OnClick].action!!.invoke());frames()}
         suspend fun idle(){c.active?.join();c.animation.awaitPreview();assertNull(c.problem,c.problem);frames()}
         try {
             c.animation.chooseCoverFile={Files.write(r.resolve("green.png"),green)};c.animation.addCover("Green");idle()
@@ -138,7 +143,12 @@ class GalleryAnimationTest {
             fun walk(n:SemanticsNode):List<SemanticsNode> = listOf(n)+n.children.flatMap(::walk)
             return scene.semanticsOwners.flatMap{walk(it.rootSemanticsNode)}
         }
-        suspend fun click(text:String){val n=nodes().first{it.config.getOrNull(SemanticsProperties.Text)?.any{t->t.text==text}==true&&it.config.getOrNull(SemanticsActions.OnClick)!=null};assertTrue(n.config[SemanticsActions.OnClick].action!!.invoke());frames()}
+        suspend fun click(text:String){
+            if(text in setOf("选择目录并导出全部","复制全部处理文件","保存当前副本到图库")) {
+                val menu=if(text=="保存当前副本到图库")"当前结果 ▾"else"整批处理 ▾"
+                nodes().first{it.config.getOrNull(SemanticsProperties.Text)?.any{t->t.text==menu}==true&&it.config.getOrNull(SemanticsActions.OnClick)!=null}.config[SemanticsActions.OnClick].action!!.invoke();frames()
+            }
+            val n=nodes().first{it.config.getOrNull(SemanticsProperties.Text)?.any{t->t.text==text}==true&&it.config.getOrNull(SemanticsActions.OnClick)!=null};assertTrue(n.config[SemanticsActions.OnClick].action!!.invoke());frames()}
         var restored=""
         try{
             frames();click("图片工具");click("APNG伪装 / 还原");c.animation.awaitPreview();frames();assertNull(c.problem);assertNotNull(c.animation.preview)

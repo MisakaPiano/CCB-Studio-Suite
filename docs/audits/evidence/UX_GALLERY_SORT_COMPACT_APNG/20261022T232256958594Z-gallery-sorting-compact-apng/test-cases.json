@@ -1,0 +1,32 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.GalleryHistoryTest",
+    "name": "verifiedHistoryFoldsUnknownAndCorruptReceiptsStayIndependentAndOriginalsRemain",
+    "seconds": "1.577",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.GalleryHistoryTest",
+    "name": "perDepthPreferencesSurviveBackupRestoreAndDateGrammarRejectsInvalidCalendar",
+    "seconds": "1.891",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.GalleryHistoryTest",
+    "name": "directoryGroupingUsesOnlyRecordedProvenanceAndPreferencesSurviveReopen",
+    "seconds": "2.258",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.GallerySortingTest",
+    "name": "futureSortMetadataRefusesOverwriteAndCachedFoldDecodingDoesNotReadRepository",
+    "seconds": "0.554",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.GallerySortingTest",
+    "name": "naturalOrderIndependentAlbumsAndNewArrivalsKeepPreferencesAcrossReopen",
+    "seconds": "2.301",
+    "status": "PASS"
+  }
+]

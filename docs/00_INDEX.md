@@ -1,3 +1,7 @@
+## 2026-10-23 相册排序与紧凑APNG工作台
+
+已补常驻折叠控件、未变生成记录缓存、根及每相册独立自然排序，APNG紧凑分类工具栏、本页文件/目录本层/拖放/粘贴及结果专用右键。相关25项回归、最后边界2项（有重叠）通过；220文件新包`.local/windows-rc/gallery-sort-apng-review/Start-gallery-sort-apng-review.lnk`逐项核验，继续暂停目录收集。合成输入album-A/album-B/apng-batch便于直接测试。见[实现与证据](audits/UX_GALLERY_SORT_COMPACT_APNG.md)，新增原生交互待验；此前已通过项保留，重点多Prompt仍单列。三类表33项扩展，Desktop转交报告更新；PRODUCT_HOLD / NOT RC。
+
 ## 2026-10-23 可视封面库及图库目录分组
 
 用户已确认5563a3a包目录分组清楚、滚动条正常，独立封面库布局符合预期、两套管理及重开保留正常。[实现与限定回执](audits/UX_COVER_LIBRARY_GALLERY.md)保留独立自动预览/缩略图、APNG实际交付和多Prompt专项待验；此前目录恢复/小同步限定人工通过仍保留。三类能力表同步Suite31项，原大目录继续暂停，PRODUCT_HOLD / NOT RC。

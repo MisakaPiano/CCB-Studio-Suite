@@ -347,10 +347,13 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     fun receiveTransfer(transfer:java.awt.datatransfer.Transferable,paste:Boolean):Boolean=try {
         if(busy)false else galleryTransfer(transfer,paste)?.let{importIngress(it);true}?:false
     }catch(e:Exception){problem="图片传入失败：${e.javaClass.simpleName}；现有资料保留";true}
-    fun importIngress(input:GalleryIngress)=run("导入图片") {
+    fun importIngress(input:GalleryIngress,expandDirectories:Boolean=false,maxImages:Int=1000,onAccepted:(List<String>)->Unit={})=run("导入图片") {
         require(input.files.size<=1000 && (input.files.isNotEmpty() xor (input.raster!=null)))
         val accepted=mutableListOf<String>()
-        val entries=input.files.map{it.fileName.toString() to it}.ifEmpty{listOf("Clipboard-raster.png" to null)}
+        val files=if(expandDirectories)animationIngressFiles(input.files)else input.files
+        require(files.size.coerceAtLeast(if(input.raster!=null)1 else 0)<=maxImages){"当前批次最多1000张，请先移除部分项目"}
+        if(files.isEmpty()&&input.raster==null){problem="所选目录本层没有支持的图片，未添加；不包含子目录";return@run}
+        val entries=files.map{it.fileName.toString() to it}.ifEmpty{listOf("Clipboard-raster.png" to null)}
         gallery.imports=entries.map{GalleryImportResult(it.first,"WAITING")}
         try {
             for((index,entry) in entries.withIndex()){
@@ -376,7 +379,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
         }finally{
             gallery.imports=gallery.imports.map{if(it.status=="WAITING")it.copy(status="NOT_IMPORTED · 已停止")else it}
             if(gallery.imports.any{it.assetId==null})problem="部分文件未导入；查看逐项结果。已成功原件保留。"
-            if(accepted.isNotEmpty())view="图库"
+            if(accepted.isNotEmpty()){onAccepted(accepted.toList());view="图库"}
         }
     }
     suspend fun enterMaintenance() {

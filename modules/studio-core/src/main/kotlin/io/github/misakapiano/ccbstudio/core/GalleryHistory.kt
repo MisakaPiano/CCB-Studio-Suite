@@ -82,21 +82,21 @@ fun galleryDateFilter(text:String):NovelAiHistoryDateFilter? {
 }
 
 class GalleryFoldPreferences(private val library:LibraryRepository) {
-    fun directoryDepths():Set<Int> {
-        val raw=library.load().preferences["galleryDirectoryFoldDepths"]?:return emptySet()
+    fun directoryDepths(state:LibraryState=library.load()):Set<Int> {
+        val raw=state.preferences["galleryDirectoryFoldDepths"]?:return emptySet()
         val values=documentJson.decodeFromString<List<Int>>(raw)
         require(values.size<=32 && values.all{it in 0..31} && values.distinct().size==values.size)
         return values.toSet()
     }
-    fun load():Map<Int,NovelAiHistoryFoldPreference> {
-        val raw=library.load().preferences["historyFoldPreferences"]?:return emptyMap()
+    fun load(state:LibraryState=library.load()):Map<Int,NovelAiHistoryFoldPreference> {
+        val raw=state.preferences["historyFoldPreferences"]?:return emptyMap()
         val values=documentJson.decodeFromString<List<NovelAiHistoryFoldPreference>>(raw)
         require(values.size<=32 && values.all{it.depth in 0..31} && values.distinctBy{it.depth}.size==values.size)
         return values.associateBy{it.depth}
     }
     fun save(value:NovelAiHistoryFoldPreference,directory:Boolean=false) {
         require(value.depth in 0..31)
-        library.update{state->val values=load()+(value.depth to value);val directories=if(directory)directoryDepths()+value.depth else directoryDepths()-value.depth
+        library.update{state->val values=load(state)+(value.depth to value);val directories=if(directory)directoryDepths(state)+value.depth else directoryDepths(state)-value.depth
             state.copy(preferences=state.preferences+("historyFoldPreferences" to documentJson.encodeToString(values.values.sortedBy{it.depth}))+("galleryDirectoryFoldDepths" to documentJson.encodeToString(directories.sorted())))}
     }
 }

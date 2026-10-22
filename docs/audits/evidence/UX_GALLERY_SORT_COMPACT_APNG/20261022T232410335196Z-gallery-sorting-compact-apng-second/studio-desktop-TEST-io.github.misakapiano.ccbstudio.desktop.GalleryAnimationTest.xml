@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-10-22T23:25:59.130Z" hostname="DD1" time="19.258">
+  <properties/>
+  <testcase name="selectingMultipleCoverPresetsResetsPlaybackAndPreviewAndControlsExports" classname="io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest" time="5.417"/>
+  <testcase name="animatedGifRetainsTwoFrameColorsTimingAndLoopAfterDisguiseRestore" classname="io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest" time="0.109"/>
+  <testcase name="automaticPreviewRejectsSupersededWorkAndShutdownDrainsIt" classname="io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest" time="1.002"/>
+  <testcase name="thumbnailStripStartsAtLatestAndSelectingAnOlderImageUpdatesPreviewAutomatically" classname="io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest" time="7.065"/>
+  <testcase name="actualWorkspacePreviewRestoreBatchCopyAndReopenPreserveOriginals" classname="io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest" time="4.96"/>
+  <testcase name="failedBatchKeepsUnpublishedEvidenceAndNeverOverwritesPriorOutput" classname="io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest" time="0.607"/>
+  <testcase name="staticDisguisePreviewIsTheChosenCoverAndPlaybackKeepsTheContent" classname="io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest" time="0.098"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

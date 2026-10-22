@@ -19,7 +19,10 @@ import kotlinx.coroutines.*
 import io.github.misakapiano.ccbstudio.core.*
 import kotlinx.serialization.json.*
 
+internal data class GalleryHistoryIdentity(val assets:List<Pair<String,String>>,val jobs:List<JobRecord>)
 internal class GalleryViewState {
+    var historyCache:Pair<GalleryHistoryIdentity,GalleryHistoryProjection>?=null
+    var historyReadOverride:(suspend ()->GalleryHistoryProjection)?=null
     var pasteContents:()->java.awt.datatransfer.Transferable?={java.awt.Toolkit.getDefaultToolkit().systemClipboard.getContents(null)}
     var imports by mutableStateOf<List<GalleryImportResult>>(emptyList())
     var copyText:(String)->Unit={java.awt.Toolkit.getDefaultToolkit().systemClipboard.setContents(java.awt.datatransfer.StringSelection(it),null)}
@@ -31,15 +34,17 @@ internal class GalleryViewState {
     val scope get()=levels.last()
     var foldPreferences by mutableStateOf<Map<Int,NovelAiHistoryFoldPreference>?>(null)
     var directoryFoldDepths by mutableStateOf<Set<Int>?>(null)
+    var sortPreferences by mutableStateOf<Map<String,GallerySort>?>(null)
+    val sort get()=sortPreferences?.get(scope.identity)?:sortPreferences?.get("root")?:GallerySort()
     val directoryFold get()=depth in directoryFoldDepths.orEmpty()
     val fold get()=foldPreferences?.get(depth)?:NovelAiHistoryFoldPreference(depth)
     var historyProblem by mutableStateOf<String?>(null)
     var viewing by mutableStateOf<Pair<List<String>,Int>?>(null)
     var previewOverride:((List<String>,Int)->Unit)?=null
     fun preview(ids:List<String>,id:String){val index=ids.indexOf(id);if(index<0)return;previewOverride?.invoke(ids,index)?:run{viewing=ids to index}}
-    fun enter(album:NovelAiHistoryAlbum){
+    fun enter(album:NovelAiHistoryAlbum,identity:String=sha256((scope.identity+album.images.map{it.image.path}.sorted().joinToString()).toByteArray())){
         if(depth>=31){historyProblem="相册层级已达32层，请返回上层调整分组";return}
-        levels=levels.dropLast(1)+scope.copy(query=query,date=date,source=source)+GalleryScope(album.images.map{it.image.path}.toSet(),album.label)
+        levels=levels.dropLast(1)+scope.copy(query=query,date=date,source=source)+GalleryScope(album.images.map{it.image.path}.toSet(),album.label,identity=identity)
         query="";date="";source="all"
     }
     fun back(){if(depth>0){levels=levels.dropLast(1);query=scope.query;date=scope.date;source=scope.source}}
@@ -52,8 +57,14 @@ internal class GalleryViewState {
     g.metadata?.let{id->MetadataWorkspace(c,id){g.metadata=null};return}
     g.compare?.let{ids->ComparisonWorkspace(c,ids){g.compare=null};return}
     g.viewing?.let{(ids,index)->StudioAssetViewer(c,ids,index){g.viewing=null}}
-    val history by produceState<Result<GalleryHistoryProjection>?>(null,c.assets,c.state.jobs) {
-        value=null;value=withContext(Dispatchers.IO){runCatching{readGalleryHistory(c.workspace)}}
+    val historyIdentity=GalleryHistoryIdentity(c.assets.map{it.request().id().toString() to it.sha256()},c.state.jobs)
+    val cached=g.historyCache?.takeIf{it.first==historyIdentity}?.second
+    val history by produceState<Result<GalleryHistoryProjection>?>(cached?.let{Result.success(it)},historyIdentity) {
+        if(cached!=null){value=Result.success(cached);return@produceState}
+        value=null
+        val result=withContext(Dispatchers.IO){try{Result.success(g.historyReadOverride?.invoke()?:readGalleryHistory(c.workspace))}catch(e:CancellationException){throw e}catch(e:Exception){Result.failure(e)}}
+        currentCoroutineContext().ensureActive()
+        result.getOrNull()?.let{g.historyCache=historyIdentity to it};value=result
     }
     val projection=history?.getOrNull()?:GalleryHistoryProjection(emptyList(),emptyMap())
     val promptMatches=NovelAiHistoryFilterPolicy.filter(projection.entries,g.query,null).map{it.image.path}.toSet()
@@ -76,13 +87,20 @@ internal class GalleryViewState {
             NovelAiHistoryDateGranularity.DAY->month==dateFilter.month && day==dateFilter.day
         }
     }
-    val visible=c.assets.asReversed().sortedByDescending{a->val id=a.request().id().toString();jobs[id]?.createdAt?:importedAt[id]?:Long.MIN_VALUE}.filter{a->val id=a.request().id().toString();val job=jobs[id]
+    val added=c.assets.mapIndexed{index,a->val id=a.request().id().toString();id to (jobs[id]?.createdAt?:importedAt[id]?:Long.MIN_VALUE+index)}.toMap()
+    val visible=sortGalleryAssets(c.assets,g.sort,added,labels.mapValues{it.value.alias}).filter{a->val id=a.request().id().toString();val job=jobs[id]
         id !in c.library.archived && (g.source=="all" || (g.source=="generated")== (job!=null)) && (g.scope.ids?.contains(id)!=false) && dateMatches(id) &&
         (a.request().name().contains(g.query,true) || labels[id]?.alias?.contains(g.query,true)==true || labels[id]?.tags?.any{it.contains(g.query,true)}==true || id in promptMatches)}
     val visibleIds=visible.map{it.request().id().toString()}
-    val albums=remember(visibleIds,projection,g.fold,g.directoryFold,c.assets,c.library.state?.folders){
-        if(g.fold.enabled && g.directoryFold)galleryDirectoryAlbums(visibleIds,c.assets,c.library.state?.folders.orEmpty())
+    val albums=remember(visibleIds,projection,g.fold,g.directoryFold,g.sort,c.assets,c.library.state?.folders){
+        val grouped=if(g.fold.enabled && g.directoryFold)galleryDirectoryAlbums(visibleIds,c.assets,c.library.state?.folders.orEmpty())
         else galleryAlbums(visibleIds,projection,g.fold.type.takeIf{g.fold.enabled})
+        val order=visibleIds.withIndex().associate{it.value to it.index}
+        val arranged=grouped.map{NovelAiHistoryAlbum(it.images.sortedBy{image->order.getValue(image.image.path)},it.label)}
+        if(g.sort.field==GallerySortField.NAME&&g.fold.enabled)arranged.sortedWith { a,b->
+            fun name(album:NovelAiHistoryAlbum)=album.label.takeIf{album.images.size>1}?:visible.first{it.request().id().toString()==album.cover.image.path}.request().name()
+            val compared=galleryNaturalCompare(name(a),name(b));(if(g.sort.descending)-compared else compared).takeIf{it!=0}?:a.key.compareTo(b.key)
+        }else arranged
     }
     fun select(album:NovelAiHistoryAlbum,range:Boolean){
         val byId=albums.flatMap{it.images}.associateBy{it.image.path}
@@ -122,7 +140,7 @@ internal class GalleryViewState {
                         var shift by remember{mutableStateOf(false)};var ctrl by remember{mutableStateOf(false)}
                         fun open(){
                             if(shift||ctrl)select(album,shift)
-                            else if(album.images.size>1){g.enter(album);c.selection=emptySet();g.anchor=null}
+                            else if(album.images.size>1){g.enter(album,galleryAlbumIdentity(g.scope.identity,album,g.fold.type,g.directoryFold,c.assets));c.selection=emptySet();g.anchor=null}
                             else {c.current=id;g.preview(visibleIds,id)}
                         }
                         Column(Modifier.border(1.dp,if(selected)Gold else Quiet).padding(6.dp)){
@@ -169,7 +187,7 @@ internal class GalleryViewState {
             }}
             StudioAction("参数与来源",c.current!=null){g.metadata=c.current}
             StudioAction("选中图片用于引导",c.current!=null&&!c.busy){c.section="图像引导";c.view="创作"}
-            StudioAction("APNG伪装 / 还原",c.selection.isNotEmpty()&&!c.busy){c.animation.open(c.assets.filter{it.request().id().toString() in c.selection}.map{it.request().id().toString()})}
+            StudioAction("APNG伪装 / 还原",!c.busy){c.animation.open(c.assets.filter{it.request().id().toString() in c.selection}.map{it.request().id().toString()})}
             StudioAction("所选资产移入回收站",c.selection.isNotEmpty()&&!c.busy&&c.library.error==null&&c.library.archiveError==null){c.library.archiveRequest=c.selection.toSet()}
             StudioAction("资产回收站"){c.library.tab="回收站";c.view="资产管理"}
             }

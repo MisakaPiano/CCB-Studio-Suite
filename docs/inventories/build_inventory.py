@@ -151,7 +151,9 @@ features=[
  ('单一生图模型、动态费用和单机本地停止','NaiSettings.kt','UX_NAI_BACKGROUND','IMPLEMENTED_AUTO_MODEL_AND_COST_LAYOUT_HUMAN_SCOPED_PASS'),
  ('图片查看器悬浮翻页、右键及直达编辑/APNG','StudioAssetViewer.kt','UX_NAI_BACKGROUND','IMPLEMENTED_AUTO_VIEWER_ENTRY_HUMAN_SCOPED_PASS_APNG_DELIVERY_PENDING'),
  ('可视多套封面库、独立管理窗口、默认恢复与自动预览','DisguiseCoverManager.kt','UX_COVER_LIBRARY_GALLERY','IMPLEMENTED_COVER_LIBRARY_HUMAN_SCOPED_PASS_PREVIEW_AND_DELIVERY_PENDING'),
- ('图库来源目录折叠、层级偏好及可见滚动条','GalleryHistory.kt','UX_COVER_LIBRARY_GALLERY','IMPLEMENTED_DIRECTORY_GROUPING_AND_SCROLLBARS_HUMAN_SCOPED_PASS')]
+ ('图库来源目录折叠、层级偏好及可见滚动条','GalleryHistory.kt','UX_COVER_LIBRARY_GALLERY','IMPLEMENTED_DIRECTORY_GROUPING_AND_SCROLLBARS_HUMAN_SCOPED_PASS'),
+ ('常驻分组控件、未变记录缓存及每相册独立自然排序','GallerySorting.kt','UX_GALLERY_SORT_COMPACT_APNG','IMPLEMENTED_AUTO_NEW_SORTING_HUMAN_PENDING'),
+ ('紧凑APNG工作台、本页多来源输入与结果专用右键','GalleryAnimationWorkspace.kt','UX_GALLERY_SORT_COMPACT_APNG','IMPLEMENTED_AUTO_NEW_INTAKE_AND_RESULT_OPERATIONS_HUMAN_PENDING')]
 rows=[]
 for i,(label,target,audit,status) in enumerate(features,1):
     if target.endswith('.kt'):

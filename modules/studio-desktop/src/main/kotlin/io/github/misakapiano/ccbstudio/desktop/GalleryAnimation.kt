@@ -38,6 +38,7 @@ internal fun animationDefaultPreview(bytes:ByteArray):java.awt.image.BufferedIma
     }
 }
 internal data class AnimationCoverSnapshot(val preset:DisguiseCover,val bytes:ByteArray)
+internal data class AnimationOutputSnapshot(val epoch:Long,val source:String,val mode:String,val bytes:ByteArray,val cover:AnimationCoverSnapshot?)
 internal fun needsStaticEditingConsent(c:WorkbenchController,id:String):Boolean {
     val bytes=c.workspace.bytes(id)
     return when(ImageFormats.format(bytes)){
@@ -77,6 +78,9 @@ internal class GalleryAnimationController(private val c:WorkbenchController,priv
     private var previewTask:Job?=null
     private val previewJobs=java.util.concurrent.ConcurrentHashMap.newKeySet<Job>()
     private val previewEpoch=java.util.concurrent.atomic.AtomicLong()
+    private var readyOutput:AnimationOutputSnapshot?=null
+    val outputGeneration get()=previewEpoch.get()
+    val outputReady get()=readyOutput?.let{it.epoch==previewEpoch.get()&&it.source==ids?.getOrNull(index)&&it.mode==mode}==true&&!previewBusy
     internal var previewTransform:suspend (ByteArray,String,ByteArray?)->ByteArray=::animationTransform
     var chooseCoverFile:()->Path?={StudioFileDialogs.open("选择静态伪装封面",listOf("png","jpg","jpeg","webp","bmp"))}
     var ids by mutableStateOf<List<String>?>(null)
@@ -90,16 +94,34 @@ internal class GalleryAnimationController(private val c:WorkbenchController,priv
     var chooseDirectory:()->Path?={StudioFileDialogs.folder("选择APNG输出目录（新建独立文件夹）")}
     init {reloadCovers()}
     fun reloadCovers(){runCatching{covers.load()}.onSuccess{coverState=it;coverError=null}.onFailure{coverState=null;coverError="封面配置读取失败，暂停伪装处理；原配置和原件保留"}}
-    private fun invalidate(){previewEpoch.incrementAndGet();previewTask?.cancel();preview=null;error=null;completed=null;playResult=false}
-    fun open(selected:List<String>){require(selected.isNotEmpty());ids=selected.toList();index=selected.lastIndex;invalidate();requestPreview()}
+    private fun invalidate(){previewEpoch.incrementAndGet();previewTask?.cancel();preview=null;readyOutput=null;error=null;completed=null;playResult=false}
+    fun open(selected:List<String>){require(selected.size<=1000);ids=selected.distinct();index=ids.orEmpty().lastIndex.coerceAtLeast(0);invalidate();requestPreview()}
     @Synchronized fun close(){ids=null;coverManagerOpen=false;invalidate();previewJobs.forEach{it.cancel()};previewBusy=false}
     suspend fun cancelAndDrain(){val jobs=synchronized(this){previewEpoch.incrementAndGet();previewJobs.toList().also{tasks->tasks.forEach{it.cancel()}}};jobs.joinAll();previewBusy=false}
     suspend fun awaitPreview(){previewTask?.join()}
     fun cancelPreview(){previewTask?.cancel()}
     fun selectMode(value:String){check(!c.busy);require(value in setOf("disguise","restore"));mode=value;invalidate();requestPreview()}
-    fun selectIndex(value:Int){if(c.busy||c.maintenance)return;index=value.coerceIn(0,ids.orEmpty().lastIndex);invalidate();requestPreview()}
+    fun selectIndex(value:Int){if(c.busy||c.maintenance||ids.isNullOrEmpty())return;val next=value.coerceIn(0,ids.orEmpty().lastIndex);if(next==index)return;index=next;invalidate();requestPreview()}
     fun page(delta:Int)=selectIndex(index+delta)
     fun playback(value:Boolean){playResult=value}
+    var chooseInputFiles:()->List<Path> = {StudioFileDialogs.openMany("添加APNG处理图片",listOf("png","apng","jpg","jpeg","webp","gif","bmp"))}
+    var chooseInputDirectory:()->Path?={StudioFileDialogs.folder("添加目录本层图片（不含子目录）")}
+    var chooseOutputFile:suspend ()->Path?={c.picker.pickSaveFile(DesktopFileType("当前处理结果",listOf("png")),"$mode-result.png")}
+    fun addFiles(){if(!c.busy&&!c.maintenance)chooseInputFiles().takeIf{it.isNotEmpty()}?.let{intake(GalleryIngress(files=it,channel="apng-file-dialog"))}}
+    fun addDirectory(){if(!c.busy&&!c.maintenance)chooseInputDirectory()?.let{intake(GalleryIngress(files=listOf(it),channel="apng-directory-dialog"))}}
+    fun paste():Boolean=try{if(c.busy||c.maintenance)false else c.gallery.pasteContents()?.let{receive(it,true)}?:false}catch(e:Exception){c.problem="剪贴板读取失败；原件和批次保留";true}
+    fun receive(transfer:java.awt.datatransfer.Transferable,paste:Boolean):Boolean=try {
+        if(c.busy||c.maintenance)false else galleryTransfer(transfer,paste)?.let{intake(it);true}?:false
+    }catch(e:Exception){c.problem="图片传入失败，原件和批次保留";true}
+    fun intake(input:GalleryIngress){
+        if(c.busy||c.maintenance)return
+        val previous=ids?:return
+        c.importIngress(input,expandDirectories=true,maxImages=1000-previous.size){added->
+            val combined=(previous+added).distinct();require(combined.size<=1000){"批次最多1000张，已导入原件保留在图库"}
+            ids=combined;index=combined.lastIndex;invalidate();requestPreview()
+        }
+    }
+    fun removeCurrent(){if(c.busy||c.maintenance)return;val remaining=ids.orEmpty().filterIndexed{i,_->i!=index};ids=remaining;index=index.coerceAtMost(remaining.lastIndex).coerceAtLeast(0);invalidate();requestPreview()}
     fun selectCover(id:String?)=c.run("选择伪装封面"){covers.select(id);reloadCovers();invalidate();requestPreview()}
     fun removeCover(id:String)=c.run("移除伪装封面配置"){covers.remove(id);reloadCovers();invalidate();requestPreview()}
     fun renameCover(id:String,name:String)=c.run("重命名伪装封面"){covers.rename(id,name);reloadCovers()}
@@ -124,29 +146,45 @@ internal class GalleryAnimationController(private val c:WorkbenchController,priv
         if(c.maintenance)return
         val source=ids?.getOrNull(index)?:return
         val selectedMode=mode;val epoch=previewEpoch.incrementAndGet();previewTask?.cancel()
-        preview=null;error=null;previewBusy=true;playResult=false
+        preview=null;readyOutput=null;error=null;previewBusy=true;playResult=false
         val task=c.scope.launch(start=CoroutineStart.UNDISPATCHED) {
             try {
                 delay(120)
                 val output=withContext(Dispatchers.IO){
-                    val input=c.workspace.operation{c.workspace.bytes(source) to if(selectedMode=="disguise")selectedCover()?.bytes else null}
-                    previewTransform(input.first,selectedMode,input.second)
+                    val input=c.workspace.operation{c.workspace.bytes(source) to if(selectedMode=="disguise")selectedCover() else null}
+                    AnimationOutputSnapshot(epoch,source,selectedMode,previewTransform(input.first,selectedMode,input.second?.bytes),input.second)
                 }
                 ensureActive()
-                if(previewEpoch.get()==epoch){preview=output;playResult=false}
+                if(previewEpoch.get()==epoch){readyOutput=output;preview=output.bytes;playResult=false}
             }catch(e:CancellationException){if(previewEpoch.get()==epoch)error="预览已停止，可重新预览";throw e}
             catch(e:Exception){if(previewEpoch.get()==epoch)error="预览未完成 · ${e.javaClass.simpleName}；原件未变，可重新预览"}
             finally{previewJobs.remove(currentCoroutineContext().job);if(previewEpoch.get()==epoch)previewBusy=false}
         }
         previewTask=task;previewJobs.add(task);task.invokeOnCompletion{previewJobs.remove(task)}
     }
-    fun saveCopy()=c.run("保存APNG工具副本到图库"){
-        val bytes=requireNotNull(preview);val source=requireNotNull(ids)[index]
+    private fun outputSnapshot():AnimationOutputSnapshot?=readyOutput?.takeIf{outputReady&&!c.busy&&!c.maintenance}
+    fun saveCopy(){val output=outputSnapshot()?:return
+      c.run("保存APNG工具副本到图库"){
+        check(output.epoch==previewEpoch.get());val bytes=output.bytes;val source=output.source
         c.workspace.beginTask().use{
-            val cover=if(mode=="disguise")selectedCover()else null
-            val receipt=buildJsonObject{put("kind","animation-copy");put("mode",mode);put("sourceId",source);if(mode=="disguise"){put("cover",cover?.preset?.id?:"CCB_DEFAULT");cover?.let{put("coverSha256",it.preset.sha256)}}}.toString()
-            val id=c.workspace.importDerived("$mode-copy.png",bytes,source,receipt)
+            val cover=output.cover
+            val receipt=buildJsonObject{put("kind","animation-copy");put("mode",output.mode);put("sourceId",source);if(output.mode=="disguise"){put("cover",cover?.preset?.id?:"CCB_DEFAULT");cover?.let{put("coverSha256",it.preset.sha256)}}}.toString()
+            val id=c.workspace.importDerived("${output.mode}-copy.png",bytes,source,receipt)
             c.workspace.operation{c.workspace.save(c.workspace.state.copy(savedCopies=c.workspace.state.savedCopies+id))};c.current=id;c.selection=setOf(id)
+        }
+      }
+    }
+    /** File-list clipboard keeps APNG bytes. There is deliberately no original/raster fallback. */
+    fun currentFile(copy:Boolean){
+        val output=outputSnapshot()?:return
+        c.run(if(copy)"复制当前处理文件"else"另存当前处理文件"){
+            val destination=if(copy)null else chooseOutputFile()?:return@run
+            if(destination!=null)require(!destination.toAbsolutePath().normalize().startsWith(c.workspace.root.toAbsolutePath().normalize())){"不能向资料根另存处理文件"}
+            check(output.epoch==previewEpoch.get()){"处理结果已改变，请重新选择"}
+            c.workspace.beginTask().use {
+                if(copy){Files.createDirectories(temp);val file=temp.resolve("${output.mode}-${newId()}.png");writeNewForced(file,output.bytes);copyFiles(listOf(file))}
+                else DesktopExternalFileWriter.writeBytes(requireNotNull(destination),output.bytes)
+            }
         }
     }
     fun export(copy:Boolean=false){
@@ -162,31 +200,3 @@ internal class GalleryAnimationController(private val c:WorkbenchController,priv
     }
 }
 
-@Composable internal fun GalleryAnimationWorkspace(c:WorkbenchController) {
-    val a=c.animation;val ids=a.ids?:return;val id=ids[a.index]
-    val cover by produceState<Result<androidx.compose.ui.graphics.ImageBitmap>?>(null,a.preview){value=withContext(Dispatchers.IO){a.preview?.let{bytes->runCatching{val image=animationDefaultPreview(bytes);try{image.toComposeImageBitmap()}finally{image.flush()}}}}}
-    Column(Modifier.fillMaxSize().padding(12.dp),verticalArrangement=Arrangement.spacedBy(8.dp)){
-        StudioActions{StudioAction("返回图库",!c.busy){a.close()};StudioAction("生成伪装 APNG",!c.busy,selected=a.mode=="disguise"){a.selectMode("disguise")};StudioAction("还原伪装 APNG",!c.busy,selected=a.mode=="restore"){a.selectMode("restore")}}
-        Text("${a.index+1} / ${ids.size} · 原件保留。静止显示所选封面，主动播放才显示内容；不是加密或隐私清除。还原保留像素/动画语义。")
-        Text("静态图片 / GIF可伪装；动态WebP明确拒绝静态化。已有APNG先还原。",style=MaterialTheme.typography.caption)
-        if(a.mode=="disguise")DisguiseCoverControls(c)
-        Row(Modifier.weight(1f).fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(12.dp)){
-            Column(Modifier.weight(1f).fillMaxHeight()){Text("来源 · $id");AssetImage(c,id,Modifier.fillMaxSize())}
-            Column(Modifier.weight(1f).fillMaxHeight()){
-                Text(if(a.mode=="disguise")"伪装后的封面预览"else"还原结果预览")
-                StudioSwitch("播放原内容（查看动画）",a.playResult){a.playback(!a.playResult)}
-                if(a.previewBusy){Text("正在自动更新预览…");LinearProgressIndicator(Modifier.fillMaxWidth());StudioAction("停止预览"){a.cancelPreview()}}
-                a.preview?.let{bytes->if(a.playResult)DesktopOwnedImage(sha256(bytes),{bytes},Modifier.fillMaxSize())else cover?.onSuccess{Image(it,"处理结果静态封面",Modifier.fillMaxSize())}?.onFailure{Text("静态预览读取失败，未替换为原内容",color=MaterialTheme.colors.error)}}
-            }
-        }
-        Column(Modifier.semantics{contentDescription="APNG 批次缩略图"}) {
-            StudioFilmstrip(ids.map{"asset:$it"},"asset:$id",c::readAsset){path->a.selectIndex(ids.indexOf(path.removePrefix("asset:")))}
-        }
-        val canProcess=!c.busy&&(a.mode=="restore"||a.coverState!=null)
-        StudioActions{StudioAction("上一张",!c.busy&&a.index>0){a.page(-1)};StudioAction("下一张",!c.busy&&a.index<ids.lastIndex){a.page(1)};if(a.error!=null)StudioAction("重新预览",canProcess){a.requestPreview()};StudioAction("保存当前副本到图库",!c.busy&&!a.previewBusy&&a.preview!=null){a.saveCopy()}}
-        StudioActions{StudioAction("选择目录并导出全部",canProcess){a.export()};StudioAction("复制全部处理文件",canProcess){a.export(true)}}
-        if(c.busy&&c.activeOperation in setOf("预览APNG处理","保存APNG工具副本到图库","复制APNG文件批次","导出APNG文件批次"))StudioAction("停止APNG处理"){c.active?.cancel()}
-        Text("批次已写 ${a.progress} / ${ids.size}；完整目录与完成清单发布后才成功。失败.incomplete目录保留，不覆盖旧输出。复制使用文件列表保留动画。",style=MaterialTheme.typography.caption)
-        a.error?.let{Text(it,color=MaterialTheme.colors.error)};a.completed?.let{Text("完成文件目录：$it",style=MaterialTheme.typography.caption)}
-    }
-}

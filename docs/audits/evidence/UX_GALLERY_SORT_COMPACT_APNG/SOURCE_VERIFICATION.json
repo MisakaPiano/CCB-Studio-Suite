@@ -1,0 +1,51 @@
+{
+  "authorityCommit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+  "authorityFilesVerified": 113,
+  "authorityChanged": false,
+  "finalVerification": {
+    "phase": "apng-intake-output-boundary",
+    "startedUtc": "2026-10-22T23:30:29.138141+00:00",
+    "seconds": 34.443,
+    "exitCode": 0,
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "sourceStable": true,
+    "status": "PASS",
+    "testEvidence": "EXECUTED",
+    "arguments": [
+      "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+      "--no-daemon",
+      "--max-workers=1",
+      "--console=plain",
+      "-Pkotlin.compiler.execution.strategy=in-process",
+      "--offline",
+      "--dependency-verification=strict",
+      ":studio-desktop:test",
+      "--tests",
+      "*AnimationIntakeTest",
+      ":studio-desktop:createDistributable"
+    ],
+    "baseCommit": "2f50982de832b2e91dc2ab0e1b5b7c7824210e94",
+    "realProvider": "NOT TESTED",
+    "humanAcceptance": "NOT TESTED"
+  },
+  "regressionEvidence": "20261022T232814522346Z-gallery-cache-sort-apng-final",
+  "regressionTests": 25,
+  "finalBoundaryDelta": [
+    "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryAnimation.kt",
+    "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/AnimationIntakeTest.kt"
+  ],
+  "syntheticUi": "Actual offscreen Compose content rendered with synthetic assets; native Windows operation NOT TESTED",
+  "environment": {
+    "jdk": "Temurin17.0.20.1+1",
+    "gradle": "9.1.0",
+    "offline": true,
+    "strictDependencyVerification": true,
+    "maxWorkers": 1
+  },
+  "userPicturesReadOrCopied": false,
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

@@ -329,6 +329,28 @@
       "evidence": [
         "docs/audits/UX_COVER_LIBRARY_GALLERY.md"
       ]
+    },
+    {
+      "id": "SUITE-032",
+      "capability": "常驻分组控件、未变记录缓存及每相册独立自然排序",
+      "implementationStatus": "IMPLEMENTED_AUTO_NEW_SORTING_HUMAN_PENDING",
+      "suiteTargets": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/GallerySorting.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_GALLERY_SORT_COMPACT_APNG.md"
+      ]
+    },
+    {
+      "id": "SUITE-033",
+      "capability": "紧凑APNG工作台、本页多来源输入与结果专用右键",
+      "implementationStatus": "IMPLEMENTED_AUTO_NEW_INTAKE_AND_RESULT_OPERATIONS_HUMAN_PENDING",
+      "suiteTargets": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryAnimationWorkspace.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_GALLERY_SORT_COMPACT_APNG.md"
+      ]
     }
   ],
   "relatedInheritedActions": [

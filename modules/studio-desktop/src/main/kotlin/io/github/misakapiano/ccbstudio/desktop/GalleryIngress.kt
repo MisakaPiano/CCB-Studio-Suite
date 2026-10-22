@@ -11,6 +11,28 @@ import java.nio.file.Path
 import java.awt.image.BufferedImage
 import java.io.ByteArrayOutputStream
 import javax.imageio.ImageIO
+import java.nio.file.Files
+import java.nio.file.LinkOption
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.ensureActive
+
+/** Explicit APNG intake only: one level, bounded, cancellable, and no directory registration/watch. */
+internal suspend fun animationIngressFiles(paths:List<Path>):List<Path> {
+    val result=linkedSetOf<Path>();var examined=0
+    for(path in paths) {
+        currentCoroutineContext().ensureActive()
+        io.github.misakapiano.ccbstudio.core.safePath(path)
+        if(Files.isDirectory(path,LinkOption.NOFOLLOW_LINKS))Files.newDirectoryStream(path).use{entries->
+            for(child in entries) {
+                currentCoroutineContext().ensureActive();require(++examined<=10000){"目录项目过多，请选择较小目录"}
+                if(Files.isRegularFile(child,LinkOption.NOFOLLOW_LINKS)&&child.fileName.toString().substringAfterLast('.',"").lowercase() in setOf("png","apng","jpg","jpeg","webp","gif","bmp")) {
+                    io.github.misakapiano.ccbstudio.core.safePath(child);result.add(child.toAbsolutePath().normalize());require(result.size<=1000){"一次最多导入1000张图片"}
+                }
+            }
+        }else{result.add(path.toAbsolutePath().normalize());require(result.size<=1000)}
+    }
+    return result.sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER){it.toString()})
+}
 
 internal data class GalleryIngress(val files:List<Path> = emptyList(),val raster:ByteArray?=null,val channel:String="file-dialog")
 internal data class GalleryImportResult(val name:String,val status:String,val assetId:String?=null)
@@ -38,12 +60,12 @@ internal fun galleryTransfer(transfer:Transferable,paste:Boolean):GalleryIngress
 }
 
 @OptIn(androidx.compose.ui.ExperimentalComposeUiApi::class)
-@Composable internal fun Modifier.galleryIngress(c:WorkbenchController):Modifier {
+@Composable internal fun Modifier.galleryIngress(c:WorkbenchController,animation:Boolean=false):Modifier {
     val enabled=!c.busy
-    val target=remember(c,enabled){object:DragAndDropTarget{
-        override fun onDrop(event:DragAndDropEvent):Boolean=if(!enabled)false else c.receiveTransfer(event.awtTransferable,false)
+    val target=remember(c,enabled,animation){object:DragAndDropTarget{
+        override fun onDrop(event:DragAndDropEvent):Boolean=if(!enabled)false else if(animation)c.animation.receive(event.awtTransferable,false)else c.receiveTransfer(event.awtTransferable,false)
     }}
     return dragAndDropTarget(shouldStartDragAndDrop={enabled},target=target).onPreviewKeyEvent{event->
-        if(enabled && event.type==KeyEventType.KeyDown && event.isCtrlPressed && event.key==Key.V)c.pasteImages() else false
+        if(enabled && event.type==KeyEventType.KeyDown && event.isCtrlPressed && event.key==Key.V){if(animation)c.animation.paste()else c.pasteImages()}else false
     }
 }
