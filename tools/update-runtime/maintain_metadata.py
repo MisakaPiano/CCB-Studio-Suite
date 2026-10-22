@@ -24,6 +24,12 @@ def maintain(folder, pinned_hash, signers, now=None):
     old['timestamp'].signed.snapshot_meta.verify_length_and_hashes(blobs['snapshot'])
     if old['snapshot'].signed.meta['targets.json'].version!=old['targets'].signed.version:raise ValueError('Targets version mismatch')
     if old['timestamp'].signed.snapshot_meta.version!=old['snapshot'].signed.version:raise ValueError('Snapshot version mismatch')
+    # With consistent snapshots clients fetch these versioned objects, not the
+    # unversioned working copies. Do not renew a repository they cannot consume.
+    if root.signed.consistent_snapshot:
+        for role in ('targets','snapshot'):
+            versioned=folder/(str(old[role].signed.version)+'.'+role+'.json')
+            if versioned.read_bytes()!=blobs[role]:raise ValueError('Versioned metadata differs from signed working copy')
     expires=min(root.signed.expires,old['targets'].signed.expires)
     if expires<=now+timedelta(days=7):raise ValueError('Offline root or targets renewal due')
     snapshot=Metadata(Snapshot(version=old['snapshot'].signed.version+1,expires=min(now+timedelta(days=14),expires)))

@@ -16,6 +16,7 @@ class MaintenanceTests(unittest.TestCase):
         ts=Metadata(Timestamp(expires=now-timedelta(days=1)));ts.signed.snapshot_meta=MetaFile.from_data(1,s.to_bytes(),['sha256']);ts.sign(signers['timestamp'])
         with tempfile.TemporaryDirectory() as d:
             f=Path(d);(f/'1.root.json').write_text(b['root']);(f/'targets.json').write_bytes(t.to_bytes());(f/'snapshot.json').write_bytes(s.to_bytes());(f/'timestamp.json').write_bytes(ts.to_bytes())
+            (f/'1.targets.json').write_bytes(t.to_bytes());(f/'1.snapshot.json').write_bytes(s.to_bytes())
             pin=hashlib.sha256(b['root'].encode()).hexdigest();online={r:signers[r] for r in ('snapshot','timestamp')}
             with self.assertRaises(ValueError):maintain(f,'0'*64,online)
             with self.assertRaises(ValueError):maintain(f,pin,signers)
@@ -24,3 +25,24 @@ class MaintenanceTests(unittest.TestCase):
             before=(f/'timestamp.json').read_bytes()
             with self.assertRaises(ValueError):maintain(f,pin,online,now+timedelta(days=84))
             self.assertEqual(before,(f/'timestamp.json').read_bytes())
+
+    def test_inconsistent_versioned_metadata_is_rejected_without_writes(self):
+        b=generate();signers={r:CryptoSigner(load_pem_private_key(k.encode(),None)) for r,k in b['private'].items()}
+        now=datetime.now(timezone.utc)
+        t=Metadata(Targets(expires=now+timedelta(days=90)));t.sign(signers['targets'])
+        s=Metadata(Snapshot(expires=now+timedelta(days=14)));s.signed.meta['targets.json']=MetaFile.from_data(1,t.to_bytes(),['sha256']);s.sign(signers['snapshot'])
+        ts=Metadata(Timestamp(expires=now+timedelta(days=7)));ts.signed.snapshot_meta=MetaFile.from_data(1,s.to_bytes(),['sha256']);ts.sign(signers['timestamp'])
+        online={r:signers[r] for r in ('snapshot','timestamp')};pin=hashlib.sha256(b['root'].encode()).hexdigest()
+        for role in ('targets','snapshot'):
+            for missing in (False,True):
+                with self.subTest(role=role,missing=missing),tempfile.TemporaryDirectory() as d:
+                    f=Path(d);(f/'1.root.json').write_text(b['root'])
+                    for name,m in [('targets',t),('snapshot',s),('timestamp',ts)]:
+                        (f/(name+'.json')).write_bytes(m.to_bytes())
+                        if name!='timestamp':(f/('1.'+name+'.json')).write_bytes(m.to_bytes())
+                    target=f/('1.'+role+'.json')
+                    if missing:target.unlink()
+                    else:target.write_bytes(b'corrupt versioned metadata')
+                    before={p.name:p.read_bytes() for p in f.iterdir()}
+                    with self.assertRaises((ValueError,FileNotFoundError)):maintain(f,pin,online)
+                    self.assertEqual(before,{p.name:p.read_bytes() for p in f.iterdir()})
