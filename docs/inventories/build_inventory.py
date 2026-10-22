@@ -121,7 +121,7 @@ features=[
  ('多收集目录、变更版本、重新授权','LibraryDirectoryMonitor.kt','UX_DAILY_USE_READINESS','IMPLEMENTED_HUMAN_PENDING'),
  ('独立Prompt资产与多来源参照','LibraryRepository.kt','UX_DAILY_USE_READINESS','IMPLEMENTED_HUMAN_PENDING'),
  ('多图Recipe比较、角色展示位置对齐、字段摘取','PromptReferenceBoard.kt','UX_DAILY_USE_READINESS','IMPLEMENTED_HUMAN_PENDING'),
- ('语言/视觉/NAI分类、生效状态、列表与默认选择','StudioModelAccounts.kt','UX_ACCOUNT_ROLES','IMPLEMENTED_CONFIGURATION_HUMAN_PASS_NEW_LAYOUT_PENDING'),
+ ('语言/视觉/NAI分类、生效状态、列表与默认选择','StudioModelAccounts.kt','UX_ACCOUNT_ROLES','IMPLEMENTED_CONFIGURATION_AND_ACTIVE_LAYOUT_HUMAN_SCOPED_PASS'),
  ('独立视觉模型与共用默认凭据','StudioModelAccounts.kt','UX_VISION_CREDENTIALS','IMPLEMENTED_CONFIGURATION_HUMAN_PASS_ACTUAL_VISION_PENDING'),
  ('模型用途提示与不兼容用途拦截','ModelPurpose.kt','UX_MODEL_PURPOSE','IMPLEMENTED_AUTO_HUMAN_SCOPED_PASS'),
  ('生成任务不确定状态与禁止盲目重发','CreationSession.kt','UX_DAILY_USE_READINESS','IMPLEMENTED_HUMAN_PENDING'),
