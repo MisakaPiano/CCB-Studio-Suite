@@ -1,0 +1,9 @@
+{
+  "status": "FAILED",
+  "stage": "HARNESS_ORDER_BEFORE_FRESH_INSTALL",
+  "error": "Installation manifest missing or oversized",
+  "explanation": "Python evaluates assignment RHS before the subscription target; verify_install ran before check(FRESH_INSTALL). No fresh installation was attempted.",
+  "productFailure": false,
+  "freshInstall": "NOT TESTED",
+  "resolution": "Separate installer invocation and verification into sequential statements; retain this attempt and retry into a new evidence directory."
+}

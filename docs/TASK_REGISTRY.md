@@ -1,3 +1,7 @@
+## 固定 0.2.12 内部包与长期使用条件（2026-10-22）
+
+[实际记录](audits/UX_FIXED_TWELVE.md)：3bea16b 最新界面完整桌面 115 项实际 PASS；新固定内部包构建、546 文件安装核验及路径/覆盖拒绝通过，失败与中断尝试保留。本轮没有启动应用或开展人工测试。[长期使用版剩余条件](rc/FIRST_DAILY_USE_READINESS.md)明确集中体验验收及持久更新渠道仍未完成；PRODUCT_HOLD / NOT RC。
+
 ## 图库/编辑清晰度与设置沿用（2026-10-22）
 
 [实际记录](audits/UX_EDITOR_CLARITY.md)：按用户反馈收起次要操作与长说明，复现并修复连续嵌字样式回退，提供快捷命名预设；自动回归与源 APNG 接线核验记录保留。[单张 PNG 文件粘贴](audits/UX_NATIVE_CLIPBOARD_ELEVEN.md)经用户及字节核对通过，不能代替多文件/APNG。用户要求本轮改好告知即可，暂不开展新人工测试；PRODUCT_HOLD / NOT RC。

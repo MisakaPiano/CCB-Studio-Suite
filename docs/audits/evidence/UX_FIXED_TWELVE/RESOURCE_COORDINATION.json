@@ -1,0 +1,9 @@
+{
+  "reason": "An independent Desktop Android build started after the initial Suite resource check. Own Suite packaging processes were stopped after identity verification to avoid concurrent heavy builds.",
+  "stoppedOwnProcesses": [
+    10724,
+    35488
+  ],
+  "unrelatedProcessesStopped": false,
+  "retryRule": "Resume only after confirming the other build has ended; preserve the interrupted build attempt."
+}

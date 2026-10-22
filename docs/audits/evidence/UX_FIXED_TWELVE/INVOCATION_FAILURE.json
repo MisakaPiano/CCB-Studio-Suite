@@ -1,0 +1,9 @@
+{
+  "stage": "ARGUMENT_PARSING_BEFORE_RUN",
+  "exitCode": 1,
+  "command": "python tools/Run-PreviewChecks.py --phase fixed-twelve-current-package :studio-desktop:createDistributable -PstudioPackageVersion=0.2.12",
+  "error": "Run-PreviewChecks.py: error: unrecognized arguments: -PstudioPackageVersion=0 .2.12",
+  "gradleStarted": false,
+  "tests": 0,
+  "resolution": "Use argument separator -- and quote the Gradle property; successful build receipt retained separately."
+}

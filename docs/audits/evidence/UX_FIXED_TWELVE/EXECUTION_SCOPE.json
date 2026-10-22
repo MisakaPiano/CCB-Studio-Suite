@@ -1,0 +1,19 @@
+{
+  "sourceSha": "3bea16b7405d1c1890d840e76ff3dee759faad5c",
+  "os": "Windows-10-10.0.19045-SP0",
+  "python": "3.10.6",
+  "applicationLaunched": false,
+  "newManualTests": false,
+  "realApiCalls": 0,
+  "publicRelease": false,
+  "updatePublished": false,
+  "persistentReleaseKeysCreated": false,
+  "packageState": "INTERNAL_ONLY_NOT_RC",
+  "updateRootExpires": "2026-10-22T23:18:42Z",
+  "limitations": [
+    "Fresh-directory installer verified without launching application.",
+    "No A-to-B update with this exact package; earlier updates have separate evidence.",
+    "Loopback trust is temporary and not a long-term release channel.",
+    "No current-package human acceptance, provider validation or native APNG/multifile receiver test."
+  ]
+}

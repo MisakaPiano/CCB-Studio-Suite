@@ -1,0 +1,27 @@
+{
+  "phase": "fixed-twelve-current-package-retry",
+  "startedUtc": "2026-10-22T09:05:56.801435+00:00",
+  "seconds": 29.509,
+  "exitCode": 0,
+  "tests": 0,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "COMMAND_SUCCESS",
+  "testEvidence": "NOT TESTED (build only or failed before execution)",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:createDistributable",
+    "-PstudioPackageVersion=0.2.12"
+  ],
+  "baseCommit": "3bea16b7405d1c1890d840e76ff3dee759faad5c",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

@@ -1,0 +1,24 @@
+Processing script file: "H:\CCB-Studio-Suite\.local\windows-rc\fixed-twelve-3bea16b-build\installer.nsi" (UTF8)
+
+Processed 1 file, writing output (x86-unicode):
+warning 9100: Generating version information for language "1033-English" without standard key "FileDescription"
+warning 9100: Generating version information for language "1033-English" without standard key "LegalCopyright"
+
+Output: "H:\CCB-Studio-Suite\.local\windows-rc\fixed-twelve-3bea16b-build\studio-installer.exe"
+Install: 2 pages (128 bytes), 1 section (2072 bytes), 1874 instructions (52472 bytes), 553 strings (26280 bytes), 1 language table (230 bytes).
+Uninstall: 2 pages (192 bytes), 1 section (2072 bytes), 632 instructions (17696 bytes), 678 strings (60198 bytes), 1 language table (218 bytes).
+Datablock optimizer saved 2550 bytes (~0.0%).
+
+Using zlib compression.
+
+EXE header size:               39424 / 39936 bytes
+Install code:                  11025 / 81574 bytes
+Install data:              167260385 / 251188977 bytes
+Uninstall code+data:            9714 / 10252 bytes
+CRC (0x586DBA1C):                  4 / 4 bytes
+
+Total size:                167320552 / 251320743 bytes (66.5%)
+
+2 warnings:
+  9100: Generating version information for language "1033-English" without standard key "FileDescription"
+  9100: Generating version information for language "1033-English" without standard key "LegalCopyright"

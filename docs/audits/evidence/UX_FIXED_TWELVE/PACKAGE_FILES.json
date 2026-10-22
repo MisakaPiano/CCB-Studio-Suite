@@ -1,0 +1,302 @@
+[
+  {
+    "path": "BUILD_RECEIPT.json",
+    "bytes": 321,
+    "sha256": "a087c1de3eae54e745b5dc6c45fed7a4aba6bcf2697d3a0e3b3916645260b456"
+  },
+  {
+    "path": "compile.log",
+    "bytes": 1409,
+    "sha256": "40fec13c3e75a17b5a92b75221b7571b04911e47ead0f70eafbded9a4d50c669"
+  },
+  {
+    "path": "EXECUTION_SCOPE.json",
+    "bytes": 765,
+    "sha256": "de4de763192fee08c9e5879ddb4aa70fd1498285478fd460a7793ca6ec959167"
+  },
+  {
+    "path": "FRESH_INSTALL.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "install-harness-first-attempt/HARNESS_FAILURE.json",
+    "bytes": 523,
+    "sha256": "be6aeea377a6ab5c870ff32757f48c74329a0fb3971e87b4910cd715b85e86c5"
+  },
+  {
+    "path": "install-harness-first-attempt/LONG_PATH_REFUSE_BEFORE_WRITES.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "install-harness-first-attempt/receipt.json",
+    "bytes": 782,
+    "sha256": "355ce0a07b0018b9eba7cf45f2c687487835f2481e0ec7e6b1fbf8fc5b8b8865"
+  },
+  {
+    "path": "install-harness-first-attempt/verification-harness.py",
+    "bytes": 3116,
+    "sha256": "01c0fb3fa3645d9db6f9521869b8622f9114a541c32f04afa0743c24ed7e5cc1"
+  },
+  {
+    "path": "INSTALL_MANIFEST.json",
+    "bytes": 100960,
+    "sha256": "a308520556979cdcd24edf45a47250a501f73d69a9fea9b8e3a1af4a068a1575"
+  },
+  {
+    "path": "INVOCATION_FAILURE.json",
+    "bytes": 484,
+    "sha256": "b1659b42685afd0698bf3cde17a3a0c80316e45fba3b25dde508a8f9dcce0dc8"
+  },
+  {
+    "path": "LONG_PATH_REFUSE_BEFORE_WRITES.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "OCCUPIED_REFUSE.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "receipt.json",
+    "bytes": 1497,
+    "sha256": "7152c9929e06e17c776b9e68cce34cb7ca9455cf833f4c53d3ee302529b61e41"
+  },
+  {
+    "path": "REGRESSION_IDENTITY.json",
+    "bytes": 58450,
+    "sha256": "e345c3e3359e08464b2615570dc40d8c5688d76bbb5b98e49e73c0b1d38bcf76"
+  },
+  {
+    "path": "RESOURCE_COORDINATION.json",
+    "bytes": 422,
+    "sha256": "df5d5718bdc6ffc32b8c377ccc8da56611948dd26d2bdc1073795ae085edb54c"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/gradle.log",
+    "bytes": 13879,
+    "sha256": "caaba917f66daadb96ecd54273f329a192715d68a7f81ca08f51ca5eb609fd22"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/source-before.json",
+    "bytes": 59239,
+    "sha256": "3532ad79169369a26d69f095595ae4803afe6a05dd0b13b1c175d5819ce3b1ba"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-com.example.chatbar.desktop.DesktopCharacterPositionsTest.xml",
+    "bytes": 512,
+    "sha256": "addf1e113efe89cdc0e8ec9e4d4d6f94093a3a8a23005f3cd56ac149565e123b"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-com.example.chatbar.desktop.DesktopStudioPresentationTest.xml",
+    "bytes": 2664,
+    "sha256": "d6b33eb54ac3067e257b700380470decec0677b93a83e67b40289ab32d362d00"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-com.example.chatbar.desktop.DesktopStudioWorkspaceTest.xml",
+    "bytes": 704,
+    "sha256": "13accb0f5e0810f4a1db51e8e191cf34635fa91425277ee955ba463a5ae93f8b"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-com.example.chatbar.desktop.SourceZoomSurfaceTest.xml",
+    "bytes": 516,
+    "sha256": "c50edb40a7e682a9826bf54509932a8be830f7577a7d2ae07fad1b205e8260e9"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-com.example.chatbar.desktop.SuiteChromeTest.xml",
+    "bytes": 1136,
+    "sha256": "86b2c9bd8c40cb03a15892951288bca43ed0eedf60acc115b6a2f3adcfa1aa4c"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-com.example.chatbar.desktop.WindowsCommonItemDialogTest.xml",
+    "bytes": 2105,
+    "sha256": "f3ab4406d5b1aa6be6e98538ca93e15dfd71c5dd3cc9b4a852c8862bcbad6ec3"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-com.example.chatbar.desktop.WindowsNativeDialogIntegrationTest.xml",
+    "bytes": 730,
+    "sha256": "62ac9969c010fc16fc7fb49a1e9d3840ef1f68b8bdae1c91d1ca1e3646a32493"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.AssetArchiveWorkflowTest.xml",
+    "bytes": 692,
+    "sha256": "ec74fab0460f50f9b80ef75083cfb30fd21440c705aca9f8063b230fc89990a8"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.AutosaveCancellationTest.xml",
+    "bytes": 519,
+    "sha256": "9fb6df4c802c026a99fd7fc4a2131ecad5987a0e986ee226163a49b63f965ae6"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GalleryAlbumWorkflowTest.xml",
+    "bytes": 542,
+    "sha256": "525ba364dd47061ab4e468ce79cc90acccd93b54254375baa1164fa9dac24ee0"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest.xml",
+    "bytes": 864,
+    "sha256": "9c76899aae2934376fdda99d79ef5d272eb719a6aa5fb4e7094c444d41337c77"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GalleryIngressTest.xml",
+    "bytes": 677,
+    "sha256": "30380e099070bb4bf1235c880d2208fd84779b467bc27b141bd5455bd368c431"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GalleryWorkflowTest.xml",
+    "bytes": 511,
+    "sha256": "1e6e0cb92f2faac521f441920635fae708ea386bd8db3090f8db8b7f98bdc55d"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GuidanceSafetyTest.xml",
+    "bytes": 819,
+    "sha256": "c1cae33c9f00cc313aba05f75bb0ef88b37722a8bc4829ad8e2baa9544c083fe"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.ImageCardWorkflowTest.xml",
+    "bytes": 645,
+    "sha256": "0d5fb2286148ac3087c0d59db74c34004c927114714b3735da25e668fdfc06d0"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest.xml",
+    "bytes": 1109,
+    "sha256": "a22bb735976566ab5a21cbf5a4a2856eb49b2c0ed5a366c82baab7df3d9de51f"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest.xml",
+    "bytes": 927,
+    "sha256": "35ca5de78cd6341a8323c36758c65de64d0a900f94bf192ee3fee3d0064c14ce"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.MetadataWorkflowTest.xml",
+    "bytes": 970,
+    "sha256": "32fe211b1d212f683fb031acae142c052809a562f4607a2f1d765f7ee736a672"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.PostProcessWorkflowTest.xml",
+    "bytes": 826,
+    "sha256": "b9cba7c868c1e7546d5a8b9f74b4508406ea6ef8b46c4bf9f2ca1ee947041773"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.PromptReferenceWorkflowTest.xml",
+    "bytes": 1078,
+    "sha256": "fd61a663655328402358889677f8318b04827e127f1e3c8045ed1662a9f59894"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.RestoredUpdateSnapshotTest.xml",
+    "bytes": 869,
+    "sha256": "e0dd16ad1da08438f8d31bb7d90a630bcddd77e1a4587640a1bb9bbefaed0283"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.ReverseWorkflowTest.xml",
+    "bytes": 811,
+    "sha256": "f16470eca4fd578e40984510bb4a4ba3f370998155c6f6afa56310d9ad308e6f"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioDataLaunchTest.xml",
+    "bytes": 853,
+    "sha256": "21fb9e9318105dfc3e58ae784b271cc0abe49ce36d9c728cfdf17be98eb4ff0e"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioMaintenanceTest.xml",
+    "bytes": 863,
+    "sha256": "c6dbf0748f58d045c0c95b98d4859f0c4315281a047c7b2bb1a359dd93ebd37c"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioTitleControlsTest.xml",
+    "bytes": 676,
+    "sha256": "86ba8d280a8a9eb893170f711fc78979a7711580befe355d1dda932bd3f21323"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest.xml",
+    "bytes": 1155,
+    "sha256": "b895bbc6c87dbed018e751e9d909dded220de6d007b5c75045fac8265d1f9b1c"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.TypesetQueueWorkflowTest.xml",
+    "bytes": 1048,
+    "sha256": "2a3184a409e19aed2366bb07aec9f6a39d5aa2679883ca0bbf32a1011f7c8d02"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest.xml",
+    "bytes": 2960,
+    "sha256": "18cd5eb2e651d9e965aa358e125411064d231d23c54ac13105a86eb2a729bd58"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest.xml",
+    "bytes": 1703,
+    "sha256": "1099fb452868dcf44aeb614c18f671224518c033bc8f7980d6846d3cf789080b"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/summary.json",
+    "bytes": 774,
+    "sha256": "686387232419193200ee99850de1ad298d22a1185959ccfbe87fe3eefe25ee91"
+  },
+  {
+    "path": "runs/20261022T083522084367Z-editor-clarity-desktop-full/test-cases.json",
+    "bytes": 24540,
+    "sha256": "7c4cf69b73bb766dcb5b828713b75a6386e8eeab87c3b3d5e135e0671435ffdd"
+  },
+  {
+    "path": "runs/20261022T084208403654Z-fixed-twelve-current-package/gradle.log",
+    "bytes": 2153,
+    "sha256": "64023a80ed036b3fda6422155257202b989aa8515d9a1ddb55696bcf29147b3c"
+  },
+  {
+    "path": "runs/20261022T084208403654Z-fixed-twelve-current-package/source-before.json",
+    "bytes": 59239,
+    "sha256": "3532ad79169369a26d69f095595ae4803afe6a05dd0b13b1c175d5819ce3b1ba"
+  },
+  {
+    "path": "runs/20261022T084208403654Z-fixed-twelve-current-package/summary.json",
+    "bytes": 879,
+    "sha256": "a8ddf674f92d37cbf7fe31097c76f9c0c2693c2f71ffd7725dd35201f5cbdbf3"
+  },
+  {
+    "path": "runs/20261022T084208403654Z-fixed-twelve-current-package/test-cases.json",
+    "bytes": 4,
+    "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+  },
+  {
+    "path": "runs/20261022T090552192998Z-fixed-twelve-current-package-retry/gradle.log",
+    "bytes": 2474,
+    "sha256": "f8207202bf75ca5ecf14340ae9c23ef53c85f52c55ca6f4c6e68b453ba99cd0b"
+  },
+  {
+    "path": "runs/20261022T090552192998Z-fixed-twelve-current-package-retry/source-before.json",
+    "bytes": 59239,
+    "sha256": "3532ad79169369a26d69f095595ae4803afe6a05dd0b13b1c175d5819ce3b1ba"
+  },
+  {
+    "path": "runs/20261022T090552192998Z-fixed-twelve-current-package-retry/summary.json",
+    "bytes": 884,
+    "sha256": "123629214fc00aeeba7b7a9f2b94465b8fee81957fef6985e1ca14ad9bb9a998"
+  },
+  {
+    "path": "runs/20261022T090552192998Z-fixed-twelve-current-package-retry/test-cases.json",
+    "bytes": 4,
+    "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+  },
+  {
+    "path": "SOURCE_DELIVERY_IDENTITY.json",
+    "bytes": 148788,
+    "sha256": "d84b7f70e9e46867c9fb06162dcb9dbb7b49d3fedce1515cd79b07b945b7aad1"
+  },
+  {
+    "path": "update-config.json",
+    "bytes": 464,
+    "sha256": "5c5831b7ed9a3691db45513b8ff0af85f27b7ae38e7e7a9bac648459de5f6037"
+  },
+  {
+    "path": "update-root.json",
+    "bytes": 1568,
+    "sha256": "842d418eedefce350e7fcd4dc0367925b4bdcc0a66d5ecda24a8c4d8e36c593d"
+  },
+  {
+    "path": "verify-install.py",
+    "bytes": 3146,
+    "sha256": "459759545e92ffe23947208e74875810279b68e0abe822198d374b3eaa5cf547"
+  }
+]
