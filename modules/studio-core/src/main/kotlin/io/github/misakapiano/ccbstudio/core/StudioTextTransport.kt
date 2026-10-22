@@ -36,6 +36,7 @@ class StudioTextTransport(
 ) : NovelAiTextTransport {
     override fun streamText(stage: NovelAiTextStage, messages: List<ChatApiMessage>, modelConfig: ModelConfig): Flow<StreamEvent> = flow {
         account.validate(); require(account.service == "LLM" && account.provider == "OPENAI_COMPATIBLE")
+        requireChatModelPurpose(account.model)
         require(modelConfig.id == account.id && modelConfig.baseUrl == account.endpoint && modelConfig.modelName == account.model)
         val input = AuxiliaryMessageAssembler.assemble(messages, stage == NovelAiTextStage.GENERATE)
         val body = OpenAiChatRequestSerializer.serialize(input, modelConfig, stream=true)

@@ -1,0 +1,24 @@
+# 三类能力清单与覆盖边界
+
+日期2026-10-23 JST，Suite核对起点f9877d89f5e26e1edbca86d268bcfba2f597033c。本轮名称/用途改动见[专项记录](../audits/UX_MODEL_PURPOSE.md)。清单不是发布许可，也不扩大Suite为完整聊天产品。
+
+|清单|来源范围|实际枚举与文件|
+|---|---|---|
+|[官方图片](CCB_IMAGE_CAPABILITIES.md)|官方979cb505958dffb1b6d64a8de657434f198ffa96|全部生产Kotlin384个单元，4028个函数声明、713个文字标签；207个图片关联候选列入可读表。完整JSON保留其他文件，便于查漏|
+|[Desktop全部](CCBDESKTOP_CAPABILITIES.md)|集成5ef95428421f7c693b010ac88f51d470804ab07a；开发参考c4098e08bec84372911a5a8bc38c2cfa72f98978|desktopApp/sharedCore全范围337/406个单元，含104个新增或变更单元；开发文件删除另列，不导入整个分支|
+|[Suite扩展](SUITE_ADDED_CAPABILITIES.md)|Suite实际模块及需求/审计|25项平台/图库/工程/交付/运维/跨端扩展，关联原75项来源动作，明确Android/Server尚未实现|
+
+JSON给出稳定单元ID、来源blob和SHA-256、每个匹配函数/文字标签的行号、Suite目标和证据。生成器仅通过`ls-tree`和`cat-file --batch`读取固定Git对象；没有checkout/fetch、构建Desktop、读取其私人资料或更改任何refs。
+
+状态解释：
+
+- `SOURCE_PRESENT_UNVERIFIED`：Suite有同名源单元，不能据此认定UI或完整能力迁入。
+- `PARTIAL_REQUIRES_ACTION_REVIEW`：已找到适配入口及相关证据，仍需逐动作确认；专项通过不能升级整文件。
+- `NOT_MAPPED`：尚未找到已核实的对应关系，不等于已经证明功能绝对不存在。下一轮逐项判定未实现、部分实现或不适用。
+- Suite表中的`IMPLEMENTED_*`只承认列出的限定验证范围，`HUMAN_PENDING`与`NOT_IMPLEMENTED`保持独立。
+
+这轮已完成固定来源入口与声明的全量枚举，并建立三类实现底表；**尚未完成所有来源控件、动态入口与持久化行为逐一对应的全量语义审计**。名称/内容宽匹配会有误报，匹配不到的图片能力也可能藏在通用模块；全部文件目录用来暴露这些待核项。资源/XML/反射生成或运行期条件不能只靠Kotlin字符串扫描判为已覆盖。官方207个候选与Desktop源文件数都不是产品功能数；不汇报虚假的“已完成XX%”。
+
+可读分组覆盖模型与接口、NAI生成、AI设计/反推、Prompt/角色、图像引导、增强放大、图库历史、metadata/隐私、APNG、聊天图片/截图、角色世界书、语音、数据备份和平台更新。类型与跨域场景继续依据JSON逐控件/函数核对。固定版本外的新上游/活动Desktop分支尚未盘点，不混入稳定来源。
+
+接续优先：先逐项核实图片相关未映射单元和模型高级配置；为每项补Suite实际入口、保存重开与限定证据；再判定完整Desktop中与Suite产品定位无关的能力。当前已签收的基础模型及视觉配置只回填其指定范围。

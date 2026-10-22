@@ -1,0 +1,26 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ModelAccountsTest",
+    "name": "unsavedAccountPreventsCloseAndInvalidSaveKeepsDraft",
+    "seconds": "0.77",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ModelAccountsTest",
+    "name": "errorsNeverExposeProviderBodyAndRedirectNeverForwardsCredential",
+    "seconds": "0.051",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ModelAccountsTest",
+    "name": "editedEndpointInvalidatesPendingResponseAndManualModelRemains",
+    "seconds": "0.712",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ModelAccountsTest",
+    "name": "discoverySelectionSaveAndReopenUseRealUi",
+    "seconds": "5.444",
+    "status": "PASS"
+  }
+]

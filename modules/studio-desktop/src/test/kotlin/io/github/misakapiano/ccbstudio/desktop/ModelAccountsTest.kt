@@ -30,21 +30,23 @@ class ModelAccountsTest {
 
     @Test fun discoverySelectionSaveAndReopenUseRealUi()=runBlocking(awt) {
         val requests=CopyOnWriteArrayList<String>();val server=HttpServer.create(InetSocketAddress("127.0.0.1",0),0)
-        server.createContext("/"){e->requests+="${e.requestMethod} ${e.requestURI} ${e.requestHeaders.getFirst("Authorization")}";val bytes="""{"data":[{"id":"zeta"},{"id":"alpha"},{"id":"alpha"},{"id":2}]}""".toByteArray();e.sendResponseHeaders(200,bytes.size.toLong());e.responseBody.use{it.write(bytes)}};server.start()
+        server.createContext("/"){e->requests+="${e.requestMethod} ${e.requestURI} ${e.requestHeaders.getFirst("Authorization")}";val bytes="""{"data":[{"id":"zeta"},{"id":"alpha"},{"id":"alpha"},{"id":"Qwen/Qwen3-Embedding-8B"},{"id":2}]}""".toByteArray();e.sendResponseHeaders(200,bytes.size.toLong());e.responseBody.use{it.write(bytes)}};server.start()
         val http=studioHttpClient().newBuilder().addInterceptor{chain->chain.proceed(chain.request().newBuilder().url("http://127.0.0.1:${server.address.port}${chain.request().url.encodedPath}").build())}.build()
         val r=root();val w=StudioWorkspace.openStudio(r);val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),http,RequestAdmission{})
         val scene=ImageComposeScene(1240,1000,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
         try {
             scene.frames();scene.click("账户");scene.field("档案名称","Model test");scene.field("HTTPS API 地址","https://fixture.invalid/v1");scene.field("API 凭据","SYNTHETIC_ONLY")
             scene.click("获取模型列表");withTimeout(5000){while(c.modelAccounts.searching)delay(20)};scene.frames()
-            assertEquals(listOf("alpha","zeta"),c.modelAccounts.ids)
+            assertEquals(listOf("alpha","Qwen/Qwen3-Embedding-8B","zeta"),c.modelAccounts.ids)
+            assertTrue(scene.nodes().any{it.label("Qwen/Qwen3-Embedding-8B")&&it.config.getOrNull(SemanticsProperties.Disabled)!=null})
+            c.modelAccounts.select("Qwen/Qwen3-Embedding-8B");assertEquals("",c.modelAccounts.draft.model)
             scene.field("筛选模型","ZET");scene.click("zeta");assertEquals("zeta",c.modelAccounts.draft.model)
             scene.field("筛选模型","");scene.click("alpha")
             assertTrue(w.state.accounts.isEmpty());assertEquals("alpha",c.modelAccounts.draft.model)
-            scene.click("安全保存并选用");c.active?.join();scene.frames();assertNull(c.problem)
+            scene.click("保存并设为当前模型");c.active?.join();scene.frames();assertNull(c.problem)
             val a=w.state.accounts.single();assertEquals("alpha",a.model);assertEquals(a.id,c.llmId);assertEquals("",c.modelAccounts.draft.key)
-            scene.click("安全保存并选用");c.active?.join();scene.frames();assertEquals(1,w.state.accounts.size)
-            scene.field("档案名称","Renamed");scene.click("安全保存并选用");c.active?.join();scene.frames();assertEquals(a.secretRef,w.state.accounts.single().secretRef)
+            scene.click("保存并设为当前模型");c.active?.join();scene.frames();assertEquals(1,w.state.accounts.size)
+            scene.field("档案名称","Renamed");scene.click("保存并设为当前模型");c.active?.join();scene.frames();assertEquals(a.secretRef,w.state.accounts.single().secretRef)
             scene.click("获取模型列表");withTimeout(5000){while(c.modelAccounts.searching)delay(20)}
             assertEquals(listOf("GET /v1/models Bearer SYNTHETIC_ONLY","GET /v1/models Bearer SYNTHETIC_ONLY"),requests.toList())
             c.modelAccounts.edit{it.copy(model="manual-id")};c.view="创作";scene.frames();c.view="账户";scene.frames();assertEquals("manual-id",c.modelAccounts.draft.model)

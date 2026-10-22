@@ -1,0 +1,26 @@
+{
+  "phase": "model-purpose-package",
+  "startedUtc": "2026-10-22T19:06:34.388798+00:00",
+  "seconds": 27.9,
+  "exitCode": 0,
+  "tests": 0,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "COMMAND_SUCCESS",
+  "testEvidence": "NOT TESTED (build only or failed before execution)",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:createDistributable"
+  ],
+  "baseCommit": "f9877d89f5e26e1edbca86d268bcfba2f597033c",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

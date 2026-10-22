@@ -60,11 +60,11 @@ internal class ModelAccountsController(private val c:WorkbenchController) {
     var globalKey by mutableStateOf("")
     var globalConfigured by mutableStateOf(c.vault.hasGlobalKey());private set
     val dirty get()=draft!=baseline || globalKey.isNotEmpty()
-    val canSave get()=draft.alias.isNotBlank() && draft.model.isNotBlank() && (draft.useGlobalKey || draft.key.isNotBlank() || draft.existing?.secretRef?.takeUnless{it==SecretVault.GLOBAL_LLM_REF}!=null)
+    val canSave get()=(draft.service!="LLM"||modelPurpose(draft.model).supportsChatSelection) && draft.alias.isNotBlank() && draft.model.isNotBlank() && (draft.useGlobalKey || draft.key.isNotBlank() || draft.existing?.secretRef?.takeUnless{it==SecretVault.GLOBAL_LLM_REF}!=null)
     fun saveGlobal() {
         if(c.busy||c.maintenance||globalKey.isBlank())return
         val value=globalKey;invalidate()
-        c.run("保存全局 API Key") {
+        c.run("保存共用默认 API Key") {
             val bytes=value.trim().toByteArray()
             try{c.vault.putGlobal(bytes)}finally{bytes.fill(0)}
             withContext(c.scope.coroutineContext.minusKey(Job)){globalKey="";globalConfigured=true}
@@ -94,7 +94,7 @@ internal class ModelAccountsController(private val c:WorkbenchController) {
     fun discardAndContinue(){val action=pending;pending=null;if(action!=null){globalKey="";action()}}
     fun continueEditing(){pending=null}
     fun discard(){if(!c.busy&&!c.maintenance){globalKey="";load(draft.existing)}}
-    fun select(id:String){if(id in ids)edit{it.copy(model=id)}}
+    fun select(id:String){if(id in ids&&modelPurpose(id).supportsChatSelection)edit{it.copy(model=id)}}
     fun cancel(){invalidate()}
     fun discover() {
         if(c.busy||c.maintenance||draft.service!="LLM")return

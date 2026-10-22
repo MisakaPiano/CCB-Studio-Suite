@@ -1,0 +1,2075 @@
+{
+  "date": "2026-10-23",
+  "features": [
+    {
+      "id": "SUITE-001",
+      "capability": "资产原件字节保留及独立工程/导出",
+      "implementationStatus": "IMPLEMENTED_AUTO_HUMAN_PARTIAL",
+      "suiteTargets": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioWorkspace.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_DAILY_USE_READINESS.md"
+      ]
+    },
+    {
+      "id": "SUITE-002",
+      "capability": "统一持久图库、别名与标签",
+      "implementationStatus": "IMPLEMENTED_HUMAN_PENDING",
+      "suiteTargets": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryWorkspace.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_LIBRARY_PROMPTS.md"
+      ]
+    },
+    {
+      "id": "SUITE-003",
+      "capability": "多收集目录、变更版本、重新授权",
+      "implementationStatus": "IMPLEMENTED_HUMAN_PENDING",
+      "suiteTargets": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/LibraryDirectoryMonitor.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_DAILY_USE_READINESS.md"
+      ]
+    },
+    {
+      "id": "SUITE-004",
+      "capability": "独立Prompt资产与多来源参照",
+      "implementationStatus": "IMPLEMENTED_HUMAN_PENDING",
+      "suiteTargets": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/LibraryRepository.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_DAILY_USE_READINESS.md"
+      ]
+    },
+    {
+      "id": "SUITE-005",
+      "capability": "多图Recipe比较、角色展示位置对齐、字段摘取",
+      "implementationStatus": "IMPLEMENTED_HUMAN_PENDING",
+      "suiteTargets": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/PromptReferenceBoard.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_DAILY_USE_READINESS.md"
+      ]
+    },
+    {
+      "id": "SUITE-006",
+      "capability": "LLM/NAI多档案、列表筛选、保存与选用",
+      "implementationStatus": "IMPLEMENTED_HUMAN_SCOPED_PASS",
+      "suiteTargets": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioModelAccounts.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_MODEL_ACCOUNTS.md"
+      ]
+    },
+    {
+      "id": "SUITE-007",
+      "capability": "独立视觉模型与共用默认凭据",
+      "implementationStatus": "IMPLEMENTED_CONFIGURATION_HUMAN_PASS_ACTUAL_VISION_PENDING",
+      "suiteTargets": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioModelAccounts.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_VISION_CREDENTIALS.md"
+      ]
+    },
+    {
+      "id": "SUITE-008",
+      "capability": "模型用途提示与不兼容用途拦截",
+      "implementationStatus": "IMPLEMENTED_AUTO_HUMAN_PENDING",
+      "suiteTargets": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/ModelPurpose.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_MODEL_PURPOSE.md"
+      ]
+    },
+    {
+      "id": "SUITE-009",
+      "capability": "生成任务不确定状态与禁止盲目重发",
+      "implementationStatus": "IMPLEMENTED_HUMAN_PENDING",
+      "suiteTargets": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/CreationSession.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_DAILY_USE_READINESS.md"
+      ]
+    },
+    {
+      "id": "SUITE-010",
+      "capability": "设计、应用草稿、最终生成的来源链",
+      "implementationStatus": "IMPLEMENTED_HUMAN_PENDING",
+      "suiteTargets": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/DesignProvenance.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_DAILY_USE_READINESS.md"
+      ]
+    },
+    {
+      "id": "SUITE-011",
+      "capability": "原生多工程图片编辑与历史",
+      "implementationStatus": "IMPLEMENTED_HUMAN_PENDING",
+      "suiteTargets": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetWorkspace.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_EDITOR_CLARITY.md"
+      ]
+    },
+    {
+      "id": "SUITE-012",
+      "capability": "连续嵌字样式与别名预设",
+      "implementationStatus": "IMPLEMENTED_HUMAN_PENDING",
+      "suiteTargets": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetWorkspace.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_EDITOR_CLARITY.md"
+      ]
+    },
+    {
+      "id": "SUITE-013",
+      "capability": "批量交付及多文件剪贴板",
+      "implementationStatus": "IMPLEMENTED_SINGLE_PNG_HUMAN_PASS_BATCH_PENDING",
+      "suiteTargets": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/ExportClipboard.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_NATIVE_CLIPBOARD_ELEVEN.md"
+      ]
+    },
+    {
+      "id": "SUITE-014",
+      "capability": "资产回收及工程引用保全",
+      "implementationStatus": "IMPLEMENTED_HUMAN_PENDING",
+      "suiteTargets": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/AssetArchive.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_DAILY_USE_READINESS.md"
+      ]
+    },
+    {
+      "id": "SUITE-015",
+      "capability": "资料损坏拒绝默认覆盖及单工作区所有权",
+      "implementationStatus": "IMPLEMENTED_AUTO_HUMAN_PARTIAL",
+      "suiteTargets": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioWorkspace.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_DAILY_USE_READINESS.md"
+      ]
+    },
+    {
+      "id": "SUITE-016",
+      "capability": "完整备份、恢复新目录及凭据排除",
+      "implementationStatus": "IMPLEMENTED_HUMAN_SCOPED_PASS",
+      "suiteTargets": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioRestore.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_NATIVE_RESTORE.md"
+      ]
+    },
+    {
+      "id": "SUITE-017",
+      "capability": "资料格式升级建立副本",
+      "implementationStatus": "IMPLEMENTED_AUTO_HUMAN_PARTIAL",
+      "suiteTargets": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioFormatMigration.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_RESTORED_UPDATE.md"
+      ]
+    },
+    {
+      "id": "SUITE-018",
+      "capability": "Windows原生窗口、文件选择及拖放",
+      "implementationStatus": "IMPLEMENTED_HUMAN_PARTIAL",
+      "suiteTargets": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_FIXED_ELEVEN.md"
+      ]
+    },
+    {
+      "id": "SUITE-019",
+      "capability": "安全GitHub应用内下载、安装及重启",
+      "implementationStatus": "IMPLEMENTED_HUMAN_SCOPED_PASS",
+      "suiteTargets": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioUpdateHandoff.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_LONGTERM_UPGRADE.md"
+      ]
+    },
+    {
+      "id": "SUITE-020",
+      "capability": "项目Release迁移与旧渠道兼容",
+      "implementationStatus": "IMPLEMENTED_HUMAN_SCOPED_PASS",
+      "suiteTargets": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioUpdates.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_RELEASE_MIGRATION.md"
+      ]
+    },
+    {
+      "id": "SUITE-021",
+      "capability": "长期签名、加密云备份和独立恢复码",
+      "implementationStatus": "IMPLEMENTED_RECOVERY_SCOPED_PASS",
+      "suiteTargets": [
+        "tools/update-runtime"
+      ],
+      "evidence": [
+        "docs/audits/UX_SIGNING_CUSTODY.md"
+      ]
+    },
+    {
+      "id": "SUITE-022",
+      "capability": "新旧渠道自动续签及离线targets维护",
+      "implementationStatus": "IMPLEMENTED_MANUAL_RUN_PASS_NATURAL_SCHEDULE_PENDING",
+      "suiteTargets": [
+        "tools/update-runtime"
+      ],
+      "evidence": [
+        "docs/audits/UX_RENEWAL_PREFLIGHT.md"
+      ]
+    },
+    {
+      "id": "SUITE-023",
+      "capability": "Suite Android完整独立创作",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "suiteTargets": [],
+      "evidence": []
+    },
+    {
+      "id": "SUITE-024",
+      "capability": "Suite Server管理员上游凭据及多用户队列",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "suiteTargets": [],
+      "evidence": []
+    },
+    {
+      "id": "SUITE-025",
+      "capability": "跨Windows/Android/Server资产与任务协议",
+      "implementationStatus": "NOT_IMPLEMENTED",
+      "suiteTargets": [],
+      "evidence": []
+    }
+  ],
+  "relatedInheritedActions": [
+    {
+      "id": "P01",
+      "owner": "UX-R1a",
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt"
+      ],
+      "tests": [
+        "WorkbenchWorkflowTest.accountsDesignApplyGenerateGalleryAndRestart",
+        "WorkbenchWorkflowTest.measuredSuiteNavigationSurvivesResizeAndUnsentInput",
+        "ModelAccountsTest (list/select/save/reopen; exact executions in UX_MODEL_ACCOUNTS)",
+        "VisionCredentialsTest (global/independent credentials; exact executions in UX_VISION_CREDENTIALS)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R1A_WORKBENCH/compose-scenes (actual Compose tree; offscreen; loopback)",
+        "docs/audits/evidence/UX_R1A_WORKBENCH/NATIVE_UI.json (capture unavailable)",
+        "docs/audits/UX_MODEL_ACCOUNTS.md (2026-10-23 user-confirmed list/selection/save/reopen only)",
+        "docs/audits/UX_VISION_CREDENTIALS.md (new visual configuration human acceptance pending)"
+      ],
+      "persistenceEvidence": [
+        "WorkbenchWorkflowTest: same workspace close/reopen; accounts, candidate draft, completed job and exact original bytes"
+      ],
+      "status": "ENGINEERING_PARTIAL / LOOPBACK_GUI_PASS / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "P02",
+      "owner": "UX-R1a",
+      "implementation": [
+        "StudioApplication.kt",
+        "DesktopStudioControls.kt",
+        "DesktopStudioPromptField.kt",
+        "DesktopStudioCharacters.kt"
+      ],
+      "tests": [
+        "DesktopStudioPresentationTest: 13 source component regressions; exact field coverage in JUnit XML",
+        "WorkbenchWorkflowTest.accountRefreshAndNewSelectionNeverReuseAnotherAccountsQuota"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_CREATION_CONTROLS.md (Compose offscreen; exact scope disclosed)"
+      ],
+      "persistenceEvidence": [
+        "Actual Workbench refresh/new profile save and selection; loopback quota only; no automatic requests; selected account preserved on reopen; replacement credential clears old quota"
+      ],
+      "status": "ENGINEERING_PARTIAL / TARGETED_GUI_AND_REOPEN_PASS / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "P03",
+      "owner": "UX-R1a",
+      "implementation": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/CreationSession.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioTextTransport.kt",
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt",
+        "DesignProvenance.kt / DesignProvenanceDialog.kt",
+        "ImageOrigins.kt / ImagePromptPreview.kt / PromptReferenceBoard.kt"
+      ],
+      "tests": [
+        "CreationRuntimeTest.designCandidateRequiresApplyBranchesAndSurvivesRestart",
+        "WorkbenchWorkflowTest.accountsDesignApplyGenerateGalleryAndRestart",
+        "WorkbenchWorkflowTest.measuredSuiteNavigationSurvivesResizeAndUnsentInput",
+        "DesignProvenanceTest / ImageOriginsTest",
+        "PromptReferenceWorkflowTest.editedImageUsesVerifiedSourcePromptWithoutClaimingAnUneditedResult"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R1A_WORKBENCH/compose-scenes (actual Compose tree; offscreen; loopback)",
+        "docs/audits/evidence/UX_R1A_WORKBENCH/NATIVE_UI.json (capture unavailable)",
+        "docs/audits/UX_DESIGN_PROVENANCE.md (explicit design application and derived-image source; offscreen/loopback only)"
+      ],
+      "persistenceEvidence": [
+        "WorkbenchWorkflowTest: same workspace close/reopen; accounts, candidate draft, completed job and exact original bytes"
+      ],
+      "status": "ENGINEERING_PARTIAL / LOOPBACK_GUI_PASS / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD",
+      "latestScopeEvidence": "Explicit association / interrupted commit / backup restore / derived source checks PASS; product/native acceptance remains NOT TESTED"
+    },
+    {
+      "id": "P04",
+      "owner": "UX-R1a",
+      "implementation": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/CreationSession.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioTextTransport.kt",
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt",
+        "DesignProvenance.kt / DesignProvenanceDialog.kt",
+        "ImageOrigins.kt / ImagePromptPreview.kt / PromptReferenceBoard.kt"
+      ],
+      "tests": [
+        "CreationRuntimeTest.designCandidateRequiresApplyBranchesAndSurvivesRestart",
+        "WorkbenchWorkflowTest.accountsDesignApplyGenerateGalleryAndRestart",
+        "WorkbenchWorkflowTest.measuredSuiteNavigationSurvivesResizeAndUnsentInput",
+        "DesignProvenanceTest / ImageOriginsTest",
+        "PromptReferenceWorkflowTest.editedImageUsesVerifiedSourcePromptWithoutClaimingAnUneditedResult"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R1A_WORKBENCH/compose-scenes (actual Compose tree; offscreen; loopback)",
+        "docs/audits/evidence/UX_R1A_WORKBENCH/NATIVE_UI.json (capture unavailable)",
+        "docs/audits/UX_DESIGN_PROVENANCE.md (explicit design application and derived-image source; offscreen/loopback only)"
+      ],
+      "persistenceEvidence": [
+        "WorkbenchWorkflowTest: same workspace close/reopen; accounts, candidate draft, completed job and exact original bytes"
+      ],
+      "status": "ENGINEERING_PARTIAL / LOOPBACK_GUI_PASS / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD",
+      "latestScopeEvidence": "Explicit association / interrupted commit / backup restore / derived source checks PASS; product/native acceptance remains NOT TESTED"
+    },
+    {
+      "id": "P05",
+      "owner": "UX-R1a",
+      "implementation": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/CreationSession.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioTextTransport.kt",
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt"
+      ],
+      "tests": [
+        "CreationRuntimeTest.designCandidateRequiresApplyBranchesAndSurvivesRestart",
+        "WorkbenchWorkflowTest.accountsDesignApplyGenerateGalleryAndRestart",
+        "WorkbenchWorkflowTest.measuredSuiteNavigationSurvivesResizeAndUnsentInput"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R1A_WORKBENCH/compose-scenes (actual Compose tree; offscreen; loopback)",
+        "docs/audits/evidence/UX_R1A_WORKBENCH/NATIVE_UI.json (capture unavailable)"
+      ],
+      "persistenceEvidence": [
+        "WorkbenchWorkflowTest: same workspace close/reopen; accounts, candidate draft, completed job and exact original bytes"
+      ],
+      "status": "ENGINEERING_PARTIAL / LOOPBACK_GUI_PASS / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "P06",
+      "owner": "UX-R1b",
+      "implementation": [
+        "StudioApplication.kt",
+        "DesktopStudioControls.kt",
+        "DesktopStudioPromptField.kt",
+        "DesktopStudioCharacters.kt"
+      ],
+      "tests": [
+        "DesktopStudioPresentationTest: 13 source component regressions; exact field coverage in JUnit XML",
+        "WorkbenchWorkflowTest + source prompt component regressions"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_R1B_CREATION.md (exact scope; no native visual claim)"
+      ],
+      "persistenceEvidence": [],
+      "status": "ENGINEERING_PARTIAL / CONTROLLER_OR_COMPOSE_TESTED / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "P07",
+      "owner": "UX-R1a",
+      "implementation": [
+        "StudioApplication.kt",
+        "DesktopStudioControls.kt",
+        "DesktopStudioPromptField.kt",
+        "DesktopStudioCharacters.kt"
+      ],
+      "tests": [
+        "DesktopStudioPresentationTest: 13 source component regressions; exact field coverage in JUnit XML",
+        "WorkbenchWorkflowTest.roleEditingReorderDisableAndDeleteReachRequestAndSurviveReopen"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_ROLE_WORKFLOW.md (actual Workbench Compose semantics; offscreen; loopback HTTP only)",
+        "docs/audits/UX_ROLE_HEADER.md (exact native user-observation scope and new offscreen regression separated)"
+      ],
+      "persistenceEvidence": [
+        "Role IDs/order/enabled/positive/negative values equal after controller close and workspace reopen; reopened Workbench state asserted; no automatic request"
+      ],
+      "status": "ENGINEERING_PARTIAL / LOOPBACK_GUI_REQUEST_AND_REOPEN_PASS / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "P08",
+      "owner": "UX-R1b",
+      "implementation": [
+        "StudioApplication.kt",
+        "DesktopStudioControls.kt",
+        "DesktopStudioPromptField.kt",
+        "DesktopStudioCharacters.kt"
+      ],
+      "tests": [
+        "DesktopStudioPresentationTest: 13 source component regressions; exact field coverage in JUnit XML",
+        "DesktopCharacterPositionsTest.positionFieldsDoNotOverlapAndTypedCoordinatesReachRequestAndReopen"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_CREATION_CONTROLS.md (Compose offscreen; exact scope disclosed)",
+        "docs/audits/UX_ROLE_HEADER.md (exact native user-observation scope and new offscreen regression separated)"
+      ],
+      "persistenceEvidence": [
+        "Actual dialog body with identical Surface parent: non-overlapping fields, V4.5 grid/V5 continuous typed coordinates, request serialization, active-only reset, reopen, scrolling to reset at 640x650; native dialog and pointer dragging NOT TESTED"
+      ],
+      "status": "TARGETED_GUI_REQUEST_REOPEN_PASS / INSTALLED_XY_RESET_PASS_USER_CONFIRMED / PRODUCT_HOLD"
+    },
+    {
+      "id": "P09",
+      "owner": "UX-R1a",
+      "implementation": [
+        "StudioApplication.kt",
+        "DesktopStudioControls.kt",
+        "DesktopStudioPromptField.kt",
+        "DesktopStudioCharacters.kt"
+      ],
+      "tests": [
+        "DesktopStudioPresentationTest: 13 source component regressions; exact field coverage in JUnit XML",
+        "ImageCardWorkflowTest.cardDefaultGlobalOverrideClearAndRestart"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_R1B_CREATION.md (exact scope; no native visual claim)"
+      ],
+      "persistenceEvidence": [],
+      "status": "ENGINEERING_PARTIAL / CONTROLLER_OR_COMPOSE_TESTED / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "P10",
+      "owner": "UX-R1b",
+      "implementation": [
+        "StudioApplication.kt: WorkbenchController.generate",
+        "DesktopStudioControls.kt: StudioGenerationSettings",
+        "CreationSession.kt: StudioGenerator"
+      ],
+      "tests": [
+        "WorkbenchWorkflowTest.continuousGenerationCompletesRemainderStopsAndRetainsPartialResultsWithoutReplay"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_CONTINUOUS_PROCESS/compose-scenes"
+      ],
+      "persistenceEvidence": [
+        "6 original images byte-identical after reopen; completed/cancelled/failed histories retained; no replay"
+      ],
+      "status": "ENGINEERING_PARTIAL / LOOPBACK_GUI_PASS / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "P11",
+      "owner": "UX-R1b",
+      "implementation": [
+        "GuidanceWorkspace.kt",
+        "DesktopNovelAiGuidance.kt",
+        "RequestEvidence.kt"
+      ],
+      "tests": [
+        "GuidanceSafetyTest",
+        "CreationRuntimeTest.largeGuidanceReceiptKeepsExactWireAndSurvivesBackup",
+        "CreationRuntimeTest.requestPayloadChunksRestoreAndDetectAlteredDescriptors"
+      ],
+      "guiEvidence": [],
+      "persistenceEvidence": [],
+      "status": "ENGINEERING_PARTIAL / LOOPBACK_AND_RASTER_PASS / FULL_PRODUCT_NOT_TESTED"
+    },
+    {
+      "id": "P12",
+      "owner": "UX-R1b",
+      "implementation": [
+        "GuidanceWorkspace.kt",
+        "DesktopNovelAiGuidance.kt",
+        "RequestEvidence.kt"
+      ],
+      "tests": [
+        "GuidanceSafetyTest",
+        "CreationRuntimeTest.largeGuidanceReceiptKeepsExactWireAndSurvivesBackup",
+        "CreationRuntimeTest.requestPayloadChunksRestoreAndDetectAlteredDescriptors"
+      ],
+      "guiEvidence": [],
+      "persistenceEvidence": [],
+      "status": "ENGINEERING_PARTIAL / LOOPBACK_AND_RASTER_PASS / FULL_PRODUCT_NOT_TESTED"
+    },
+    {
+      "id": "P13",
+      "owner": "UX-R1a",
+      "implementation": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/CreationSession.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioTextTransport.kt",
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt"
+      ],
+      "tests": [
+        "CreationRuntimeTest.partialGenerationRetainsOriginalAndFullReceiptOnFailure",
+        "WorkbenchWorkflowTest.accountsDesignApplyGenerateGalleryAndRestart",
+        "WorkbenchWorkflowTest.measuredSuiteNavigationSurvivesResizeAndUnsentInput"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R1A_WORKBENCH/compose-scenes (actual Compose tree; offscreen; loopback)",
+        "docs/audits/evidence/UX_R1A_WORKBENCH/NATIVE_UI.json (capture unavailable)"
+      ],
+      "persistenceEvidence": [
+        "WorkbenchWorkflowTest: same workspace close/reopen; accounts, candidate draft, completed job and exact original bytes"
+      ],
+      "status": "ENGINEERING_PARTIAL / LOOPBACK_GUI_PASS / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "P14",
+      "owner": "UX-R1a",
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt",
+        "StudioApplication.kt",
+        "StudioAssetViewer.kt"
+      ],
+      "tests": [
+        "WorkbenchWorkflowTest.accountsDesignApplyGenerateGalleryAndRestart",
+        "WorkbenchWorkflowTest.measuredSuiteNavigationSurvivesResizeAndUnsentInput",
+        "SourceZoomSurfaceTest: source zoom/double-click rendered regression"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R1A_WORKBENCH/compose-scenes (actual Compose tree; offscreen; loopback)",
+        "docs/audits/evidence/UX_R1A_WORKBENCH/NATIVE_UI.json (capture unavailable)",
+        "docs/audits/UX_R1B_CREATION.md (exact scope; no native visual claim)"
+      ],
+      "persistenceEvidence": [
+        "WorkbenchWorkflowTest: same workspace close/reopen; accounts, candidate draft, completed job and exact original bytes"
+      ],
+      "status": "ENGINEERING_PARTIAL / CONTROLLER_OR_COMPOSE_TESTED / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "P15",
+      "owner": "UX-R3",
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryWorkspace.kt",
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryAlbums.kt"
+      ],
+      "tests": [
+        "GalleryAlbumWorkflowTest.sourceAlbumsNavigateSelectFilterAndPersistDepthPreferencesWithoutChangingRecipes"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_HISTORY_REFERENCE.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
+    },
+    {
+      "id": "P16",
+      "owner": "UX-R1b",
+      "implementation": [
+        "StudioApplication.kt",
+        "MetadataWorkspace.kt"
+      ],
+      "tests": [
+        "MetadataWorkflowTest.historyReuseChecksIdentityAndRetainsOriginal"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_R1B_CREATION.md (exact scope; no native visual claim)"
+      ],
+      "persistenceEvidence": [
+        "MetadataWorkflowTest validates stored Recipe identity and draft changes; independent history-reuse-after-restart remains NOT TESTED"
+      ],
+      "status": "ENGINEERING_PARTIAL / CONTROLLER_OR_COMPOSE_TESTED / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "P17",
+      "owner": "UX-R1b",
+      "implementation": [
+        "StudioApplication.kt",
+        "DesktopNovelAiPostProcessor.kt"
+      ],
+      "tests": [
+        "PostProcessWorkflowTest (3 loopback/controller tests)"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_R1B_CREATION.md (exact scope; no native visual claim)"
+      ],
+      "persistenceEvidence": [
+        "Corresponding WorkflowTest: same root close/reopen, exact fields/bytes; see JUnit XML"
+      ],
+      "status": "ENGINEERING_PARTIAL / CONTROLLER_OR_COMPOSE_TESTED / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "P18",
+      "owner": "UX-R1b",
+      "implementation": [
+        "StudioApplication.kt",
+        "StudioVision.kt"
+      ],
+      "tests": [
+        "ReverseWorkflowTest (3 loopback/controller tests)"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_R1B_CREATION.md (exact scope; no native visual claim)"
+      ],
+      "persistenceEvidence": [
+        "Corresponding WorkflowTest: same root close/reopen, exact fields/bytes; see JUnit XML"
+      ],
+      "status": "ENGINEERING_PARTIAL / CONTROLLER_OR_COMPOSE_TESTED / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "P19",
+      "owner": "UX-R1b",
+      "implementation": [
+        "StudioApplication.kt",
+        "ImageCardSource.kt"
+      ],
+      "tests": [
+        "ImageCardWorkflowTest (2 tests)"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_R1B_CREATION.md (exact scope; no native visual claim)"
+      ],
+      "persistenceEvidence": [
+        "Corresponding WorkflowTest: same root close/reopen, exact fields/bytes; see JUnit XML"
+      ],
+      "status": "ENGINEERING_PARTIAL / CONTROLLER_OR_COMPOSE_TESTED / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "P20",
+      "owner": "UX-R1b",
+      "implementation": [
+        "StudioApplication.kt",
+        "DesktopStudioControls.kt"
+      ],
+      "tests": [
+        "ImageCardWorkflowTest.cardDefaultGlobalOverrideClearAndRestart"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_R1B_CREATION.md (exact scope; no native visual claim)"
+      ],
+      "persistenceEvidence": [],
+      "status": "ENGINEERING_PARTIAL / CONTROLLER_OR_COMPOSE_TESTED / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "I01",
+      "owner": "UX-R3",
+      "implementation": [
+        "GalleryIngress.kt",
+        "GalleryWorkspace.kt",
+        "StudioApplication.kt"
+      ],
+      "tests": [
+        "GalleryIngressTest.filesWinOverRasterAndTextPasteRemainsText",
+        "GalleryIngressTest.guiPasteBatchReportsFailuresRetainsExactOriginalAndRasterProvenanceAfterRestart"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R3_INGRESS/partial-import.png (Compose offscreen; injected clipboard)"
+      ],
+      "persistenceEvidence": [
+        "Exact file bytes and explicit clipboard-raster provenance verified after close/reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / ISOLATED_CLIPBOARD_GUI_PASS / NATIVE_DROP_AND_PICKER_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "I02",
+      "owner": "UX-R3",
+      "implementation": [
+        "StudioApplication.kt",
+        "MetadataWorkspace.kt",
+        "DesignProvenance.kt / DesignProvenanceDialog.kt",
+        "ImageOrigins.kt / ImagePromptPreview.kt / PromptReferenceBoard.kt"
+      ],
+      "tests": [
+        "MetadataWorkflowTest.actualMetadataUiPreviewApplyUndoAndRestart",
+        "MetadataWorkflowTest.embeddedImageRetainedAndUsedWithoutMutatingOriginal",
+        "DesignProvenanceTest / ImageOriginsTest",
+        "WorkbenchWorkflowTest.accountsDesignApplyGenerateGalleryAndRestart",
+        "PromptReferenceWorkflowTest.editedImageUsesVerifiedSourcePromptWithoutClaimingAnUneditedResult"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_R1B_CREATION.md (exact scope; no native visual claim)",
+        "docs/audits/UX_DESIGN_PROVENANCE.md (explicit design application and derived-image source; offscreen/loopback only)"
+      ],
+      "persistenceEvidence": [
+        "Corresponding WorkflowTest: same root close/reopen, exact fields/bytes; see JUnit XML"
+      ],
+      "status": "ENGINEERING_PARTIAL / CONTROLLER_OR_COMPOSE_TESTED / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD",
+      "latestScopeEvidence": "Explicit association / interrupted commit / backup restore / derived source checks PASS; product/native acceptance remains NOT TESTED"
+    },
+    {
+      "id": "I03",
+      "owner": "UX-R3",
+      "implementation": [
+        "StudioApplication.kt",
+        "MetadataWorkspace.kt",
+        "PngFieldInspection.kt / PngFieldWorkspace.kt"
+      ],
+      "tests": [
+        "MetadataWorkflowTest.missingMalformedUnsupportedAndReadFailureAreDistinct",
+        "PngFieldInspectionTest / MetadataWorkflowTest / GalleryWorkflowTest",
+        "MetadataWorkflowTest.actualMetadataUiPreviewApplyUndoAndRestart; typed Recipe selection belongs to I04"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_R1B_CREATION.md (exact scope; no native visual claim)",
+        "docs/audits/evidence/UX_R3_PNG_FIELDS (Compose offscreen)"
+      ],
+      "persistenceEvidence": [
+        "MetadataWorkflowTest: confirmed selection, undo/redo, same-root reopen and exact original bytes; UX_R3_RECIPE_SELECTION documents typed history-field application under I04"
+      ],
+      "status": "ENGINEERING_PARTIAL / PNG_FIELDS_GUI_AND_REOPEN_PASS / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "I04",
+      "owner": "UX-R3",
+      "implementation": [
+        "RecipeComparison.kt",
+        "GalleryWorkspace.kt",
+        "ComparisonWorkspace.kt",
+        "MetadataWorkspace.kt",
+        "PngFieldInspection.kt / PngFieldWorkspace.kt",
+        "RecipeDraftSelection.kt / RecipeSelectionWorkspace.kt",
+        "DesignProvenance.kt / DesignProvenanceDialog.kt",
+        "ImageOrigins.kt / ImagePromptPreview.kt / PromptReferenceBoard.kt"
+      ],
+      "tests": [
+        "RecipeComparisonTest: missing/null/empty/ordered arrays/JSON Pointer/limits",
+        "GalleryWorkflowTest.gridFilterTwoImageComparisonCopyAndMetadataReuseKeepOriginals",
+        "PngFieldInspectionTest / MetadataWorkflowTest / GalleryWorkflowTest",
+        "RecipeDraftSelectionTest: four cases; GalleryWorkflowTest: selection/cancel/confirm/stale draft rejection/undo/redo/reopen",
+        "DesignProvenanceTest / ImageOriginsTest",
+        "WorkbenchWorkflowTest.accountsDesignApplyGenerateGalleryAndRestart",
+        "PromptReferenceWorkflowTest.editedImageUsesVerifiedSourcePromptWithoutClaimingAnUneditedResult"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R3_GALLERY/compare-fields.png (actual Compose offscreen; no native visual claim)",
+        "docs/audits/evidence/UX_R3_PNG_FIELDS (Compose offscreen)",
+        "docs/audits/evidence/UX_R3_RECIPE_SELECTION/selected-recipe-fields.png (offscreen Compose)",
+        "docs/audits/UX_DESIGN_PROVENANCE.md (explicit design application and derived-image source; offscreen/loopback only)"
+      ],
+      "persistenceEvidence": [
+        "GalleryWorkflowTest: confirmed history reuse, workspace close/reopen, original bytes and Recipe unchanged",
+        "Source hash, selected fields, before/after draft hashes in bounded historical receipt; undo preserves receipt; reopen verified"
+      ],
+      "status": "ENGINEERING_PARTIAL / TYPED_FIELD_SELECTION_GUI_PASS / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD",
+      "latestScopeEvidence": "Explicit association / interrupted commit / backup restore / derived source checks PASS; product/native acceptance remains NOT TESTED"
+    },
+    {
+      "id": "I05",
+      "owner": "UX-R2b",
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetExportDialog.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetExport.kt"
+      ],
+      "tests": [
+        "TypesetMetadataExportTest",
+        "TypesetWorkflowTest.fourCategoryPreviewCopiesCompleteFileDeckWithoutSystemClipboard"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_FLOW_COMPLETION.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate",
+        "OS clipboard receiving application paste is separate from injected file-deck test"
+      ]
+    },
+    {
+      "id": "I06",
+      "owner": "UX-R2b",
+      "implementation": [
+        "GalleryAnimation.kt / TypesetEditorController.kt / TypesetWorkspace.kt"
+      ],
+      "tests": [
+        "GalleryAnimationTest: GUI preview/restore/batch file-copy/reopen, GIF frame timing and loop, failed publication, static editing consent"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R3_APNG/disguise-preview.png (Compose offscreen; isolated clipboard)",
+        "docs/audits/UX_EDITOR_CLARITY.md (grouped actions, automatic style reuse and source APNG recheck; new native acceptance deferred by user)"
+      ],
+      "persistenceEvidence": [
+        "Original bytes unchanged; derived copies and source parent retained after restart; completed export file hashes verified"
+      ],
+      "status": "ENGINEERING_PARTIAL / APNG_GUI_AND_FILE_DECK_PASS / NATIVE_RECEIVING_APP_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "I07",
+      "owner": "UX-R2b",
+      "implementation": [
+        "GalleryAnimation.kt / TypesetEditorController.kt / TypesetWorkspace.kt"
+      ],
+      "tests": [
+        "GalleryAnimationTest: GUI preview/restore/batch file-copy/reopen, GIF frame timing and loop, failed publication, static editing consent"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R3_APNG/disguise-preview.png (Compose offscreen; isolated clipboard)",
+        "docs/audits/UX_EDITOR_CLARITY.md (grouped actions, automatic style reuse and source APNG recheck; new native acceptance deferred by user)"
+      ],
+      "persistenceEvidence": [
+        "Original bytes unchanged; derived copies and source parent retained after restart; completed export file hashes verified"
+      ],
+      "status": "ENGINEERING_PARTIAL / APNG_GUI_AND_FILE_DECK_PASS / NATIVE_RECEIVING_APP_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "I08",
+      "owner": "UX-R2b",
+      "implementation": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetExport.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/SharedAssets.kt"
+      ],
+      "tests": [
+        "TypesetMetadataExportTest",
+        "SharedAssetsTest"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_FLOW_COMPLETION.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
+    },
+    {
+      "id": "I09",
+      "owner": "UX-R3",
+      "implementation": [
+        "AssetArchive.kt / LibraryWorkspace.kt / SharedAssetPicker.kt / GalleryWorkspace.kt"
+      ],
+      "tests": [
+        "AssetArchiveTest: 5 archive/restore/interruption/version/collection cases",
+        "AssetArchiveWorkflowTest: 2 actual offscreen GUI paths"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_ASSET_ARCHIVE.md"
+      ],
+      "persistenceEvidence": [
+        "UX_ASSET_ARCHIVE: original/project/reference preservation, restore, backup/reopen and publication interruption assertions; no permanent deletion"
+      ],
+      "status": "ENGINEERING_PARTIAL / ARCHIVE_GUI_AND_PERSISTENCE_PASS / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD",
+      "latestScopeEvidence": "Reversible visibility archive preserves references and exact bytes; no permanent deletion or disk reclamation; human acceptance pending"
+    },
+    {
+      "id": "T01",
+      "owner": "UX-R2a",
+      "implementation": [
+        "TypesetWorkspace.kt",
+        "TypesetEditorController.kt",
+        "TypesetDocument.kt",
+        "TypesetRepository.kt",
+        "TypesetLayout.kt",
+        "TypesetRenderer.kt",
+        "TypesetFonts.kt",
+        "WindowsFontDecoder.kt",
+        "TypesetObjects.kt",
+        "TypesetQueue.kt",
+        "TypesetSourceExchange.kt",
+        "TypesetPresets.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart",
+        "TypesetReferenceTest",
+        "TypesetRepositoryTest",
+        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)",
+        "TypesetObjectsTest",
+        "TypesetQueueTest",
+        "TypesetRepositoryTest.projectCopyRenameAndRemovalKeepIndependentHistoryAndOriginal",
+        "TypesetWorkflowTest.queueControlSelectionDragOrderNumberingAndRestart",
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart (includes lock/unlock pointer, clone/delete/reopen)",
+        "TypesetSourceExchangeTest",
+        "TypesetWorkflowTest.sourceExchangePreviewConfirmExportAndReopen",
+        "TypesetPreferencesTest.sourceDefaultsAreConsumedByNewProjectsWithoutChangingExistingPages (4-test class in unchanged 129-pass core module run)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)",
+        "docs/audits/evidence/UX_R2A_OBJECTS_QUEUE/compose-scenes (actual Compose pointer; offscreen)",
+        "docs/audits/evidence/UX_R2_SOURCE_EXCHANGE/source-exchange-confirm.png"
+      ],
+      "persistenceEvidence": [
+        "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen",
+        "docs/audits/UX_R2_SOURCE_EXCHANGE.md"
+      ],
+      "status": "PARTIAL",
+      "remaining": "Native installed interaction/visual acceptance remain. Source layout/story/export defaults have executed core coverage; see UX_FIXED_ELEVEN reconciliation, not the historical implementation-stage limitation."
+    },
+    {
+      "id": "T02",
+      "owner": "UX-R2a",
+      "implementation": [
+        "TypesetObjects.kt",
+        "TypesetQueue.kt",
+        "TypesetRepository.kt",
+        "TypesetEditorController.kt",
+        "TypesetWorkspace.kt",
+        "TypesetQueueWorkspace.kt"
+      ],
+      "tests": [
+        "TypesetObjectsTest",
+        "TypesetQueueTest",
+        "TypesetRepositoryTest.projectCopyRenameAndRemovalKeepIndependentHistoryAndOriginal",
+        "TypesetWorkflowTest.queueControlSelectionDragOrderNumberingAndRestart",
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart (includes lock/unlock pointer, clone/delete/reopen)",
+        "TypesetQueueWorkflowTest (displayed serial, stale target, hover, edge auto-scroll, context single-page and divider resize)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_OBJECTS_QUEUE/compose-scenes (actual Compose pointer; offscreen)",
+        "docs/audits/evidence/UX_TYPESET_QUEUE/compose-scenes (actual Compose pointer; offscreen; synthetic assets)"
+      ],
+      "persistenceEvidence": [
+        "TypesetQueueWorkflowTest: page order/width/selection persist and originals stay byte-identical; undo restores queue"
+      ],
+      "status": "ENGINEERING_PARTIAL / COMPOSE_POINTER_AND_RESTART_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "T03",
+      "owner": "UX-R2a",
+      "implementation": [
+        "TypesetObjects.kt",
+        "TypesetQueue.kt",
+        "TypesetRepository.kt",
+        "TypesetEditorController.kt",
+        "TypesetWorkspace.kt"
+      ],
+      "tests": [
+        "TypesetObjectsTest",
+        "TypesetQueueTest",
+        "TypesetRepositoryTest.projectCopyRenameAndRemovalKeepIndependentHistoryAndOriginal",
+        "TypesetWorkflowTest.queueControlSelectionDragOrderNumberingAndRestart",
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart (includes lock/unlock pointer, clone/delete/reopen)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_OBJECTS_QUEUE/compose-scenes (actual Compose pointer; offscreen)"
+      ],
+      "persistenceEvidence": [],
+      "status": "ENGINEERING_PARTIAL / COMPOSE_POINTER_AND_RESTART_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "T04",
+      "owner": "UX-R2a",
+      "implementation": [
+        "TypesetWorkspace.kt",
+        "TypesetEditorController.kt",
+        "TypesetDocument.kt",
+        "TypesetRepository.kt",
+        "TypesetLayout.kt",
+        "TypesetRenderer.kt",
+        "TypesetFonts.kt",
+        "WindowsFontDecoder.kt",
+        "TypesetObjects.kt",
+        "TypesetQueue.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart",
+        "TypesetReferenceTest",
+        "TypesetRepositoryTest",
+        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)",
+        "TypesetObjectsTest",
+        "TypesetQueueTest",
+        "TypesetRepositoryTest.projectCopyRenameAndRemovalKeepIndependentHistoryAndOriginal",
+        "TypesetWorkflowTest.queueControlSelectionDragOrderNumberingAndRestart",
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart (includes lock/unlock pointer, clone/delete/reopen)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)",
+        "docs/audits/evidence/UX_R2A_OBJECTS_QUEUE/compose-scenes (actual Compose pointer; offscreen)"
+      ],
+      "persistenceEvidence": [
+        "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / COMPOSE_POINTER_AND_RESTART_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "T05",
+      "owner": "UX-R2a",
+      "implementation": [
+        "TypesetWorkspace.kt",
+        "TypesetEditorController.kt",
+        "TypesetDocument.kt",
+        "TypesetRepository.kt",
+        "TypesetLayout.kt",
+        "TypesetRenderer.kt",
+        "TypesetFonts.kt",
+        "WindowsFontDecoder.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart",
+        "TypesetReferenceTest",
+        "TypesetRepositoryTest",
+        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)"
+      ],
+      "persistenceEvidence": [
+        "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / SOURCE_GEOMETRY_AND_COMPOSE_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "T06",
+      "owner": "UX-R2a",
+      "implementation": [
+        "TypesetWorkspace.kt",
+        "TypesetEditorController.kt",
+        "TypesetDocument.kt",
+        "TypesetRepository.kt",
+        "TypesetLayout.kt",
+        "TypesetRenderer.kt",
+        "TypesetFonts.kt",
+        "WindowsFontDecoder.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart",
+        "TypesetReferenceTest",
+        "TypesetRepositoryTest",
+        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)"
+      ],
+      "persistenceEvidence": [
+        "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / SOURCE_GEOMETRY_AND_COMPOSE_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "T07",
+      "owner": "UX-R2a",
+      "implementation": [
+        "TypesetWorkspace.kt",
+        "TypesetEditorController.kt",
+        "TypesetDocument.kt",
+        "TypesetRepository.kt",
+        "TypesetLayout.kt",
+        "TypesetRenderer.kt",
+        "TypesetFonts.kt",
+        "WindowsFontDecoder.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart",
+        "TypesetReferenceTest",
+        "TypesetRepositoryTest",
+        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)"
+      ],
+      "persistenceEvidence": [
+        "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / SOURCE_GEOMETRY_AND_COMPOSE_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "T08",
+      "owner": "UX-R2a",
+      "implementation": [
+        "TypesetWorkspace.kt",
+        "TypesetEditorController.kt",
+        "TypesetDocument.kt",
+        "TypesetRepository.kt",
+        "TypesetLayout.kt",
+        "TypesetRenderer.kt",
+        "TypesetFonts.kt",
+        "WindowsFontDecoder.kt",
+        "TypesetColors.kt / TypesetLayout.kt / TypesetRenderer.kt / ColorField"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart",
+        "TypesetReferenceTest",
+        "TypesetRepositoryTest",
+        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)",
+        "TypesetColorTest: independent 162 color samples and invalid-value preservation",
+        "TypesetWorkflowTest.functionalAndInlineColorsPreviewExportAndReopenWithoutSilentFallback"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)",
+        "docs/audits/UX_TYPESET_COLORS.md (offscreen GUI; color syntax/compatibility limits explicit)"
+      ],
+      "persistenceEvidence": [
+        "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / SOURCE_GEOMETRY_AND_COMPOSE_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD",
+      "latestScopeEvidence": "Common sRGB source colors, preview/export/reopen and recovery tested; no full CSS/browser or old-reader downgrade claim"
+    },
+    {
+      "id": "T09",
+      "owner": "UX-R2a",
+      "implementation": [
+        "TypesetWorkspace.kt",
+        "TypesetEditorController.kt",
+        "TypesetDocument.kt",
+        "TypesetRepository.kt",
+        "TypesetLayout.kt",
+        "TypesetRenderer.kt",
+        "TypesetFonts.kt",
+        "WindowsFontDecoder.kt",
+        "TypesetColors.kt / TypesetLayout.kt / TypesetRenderer.kt / ColorField"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart",
+        "TypesetReferenceTest",
+        "TypesetRepositoryTest",
+        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)",
+        "TypesetColorTest: independent 162 color samples and invalid-value preservation",
+        "TypesetWorkflowTest.functionalAndInlineColorsPreviewExportAndReopenWithoutSilentFallback"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)",
+        "docs/audits/UX_TYPESET_COLORS.md (offscreen GUI; color syntax/compatibility limits explicit)"
+      ],
+      "persistenceEvidence": [
+        "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / SOURCE_GEOMETRY_AND_COMPOSE_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD",
+      "latestScopeEvidence": "Common sRGB source colors, preview/export/reopen and recovery tested; no full CSS/browser or old-reader downgrade claim"
+    },
+    {
+      "id": "T10",
+      "owner": "UX-R2a",
+      "implementation": [
+        "TypesetWorkspace.kt",
+        "TypesetEditorController.kt",
+        "TypesetDocument.kt",
+        "TypesetRepository.kt",
+        "TypesetLayout.kt",
+        "TypesetRenderer.kt",
+        "TypesetFonts.kt",
+        "WindowsFontDecoder.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart",
+        "TypesetReferenceTest",
+        "TypesetRepositoryTest",
+        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)"
+      ],
+      "persistenceEvidence": [
+        "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / SOURCE_GEOMETRY_AND_COMPOSE_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "T11",
+      "owner": "UX-R2b",
+      "implementation": [
+        "TypesetMaskRenderer.kt",
+        "TypesetBatch.kt",
+        "TypesetWorkspace.kt",
+        "TypesetEditorController.kt"
+      ],
+      "tests": [
+        "TypesetMaskTest: 12 frozen source cases and original-only overlap",
+        "TypesetBatchTest: snapshot, fallback, geometry, durable defaults",
+        "TypesetWorkflowTest.pointerDrawnMasksChangeEffectSaveUndoAndReopen"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2B_MASKS/compose-scenes (actual Compose pointer input; offscreen)"
+      ],
+      "persistenceEvidence": [
+        "TypesetWorkflowTest: drawn rect/brush/lasso, effect edit, save/delete/undo/reopen; TypesetBatchTest: per-page defaults reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / SOURCE_AND_POINTER_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "T12",
+      "owner": "UX-R2b",
+      "implementation": [
+        "TypesetMaskRenderer.kt",
+        "TypesetBatch.kt",
+        "TypesetWorkspace.kt",
+        "TypesetEditorController.kt"
+      ],
+      "tests": [
+        "TypesetMaskTest: 12 frozen source cases and original-only overlap",
+        "TypesetBatchTest: snapshot, fallback, geometry, durable defaults",
+        "TypesetWorkflowTest.pointerDrawnMasksChangeEffectSaveUndoAndReopen"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2B_MASKS/compose-scenes (actual Compose pointer input; offscreen)"
+      ],
+      "persistenceEvidence": [
+        "TypesetWorkflowTest: drawn rect/brush/lasso, effect edit, save/delete/undo/reopen; TypesetBatchTest: per-page defaults reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / SOURCE_AND_POINTER_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "T13",
+      "owner": "UX-R2a",
+      "implementation": [
+        "TypesetObjects.kt",
+        "TypesetQueue.kt",
+        "TypesetRepository.kt",
+        "TypesetEditorController.kt",
+        "TypesetWorkspace.kt"
+      ],
+      "tests": [
+        "TypesetObjectsTest",
+        "TypesetQueueTest",
+        "TypesetRepositoryTest.projectCopyRenameAndRemovalKeepIndependentHistoryAndOriginal",
+        "TypesetWorkflowTest.queueControlSelectionDragOrderNumberingAndRestart",
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart (includes lock/unlock pointer, clone/delete/reopen)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_OBJECTS_QUEUE/compose-scenes (actual Compose pointer; offscreen)"
+      ],
+      "persistenceEvidence": [],
+      "status": "ENGINEERING_PARTIAL / COMPOSE_POINTER_AND_RESTART_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "T14",
+      "owner": "UX-R2b",
+      "implementation": [
+        "TypesetMaskRenderer.kt",
+        "TypesetBatch.kt",
+        "TypesetWorkspace.kt",
+        "TypesetEditorController.kt"
+      ],
+      "tests": [
+        "TypesetMaskTest: 12 frozen source cases and original-only overlap",
+        "TypesetBatchTest: snapshot, fallback, geometry, durable defaults",
+        "TypesetWorkflowTest.pointerDrawnMasksChangeEffectSaveUndoAndReopen"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2B_MASKS/compose-scenes (actual Compose pointer input; offscreen)"
+      ],
+      "persistenceEvidence": [
+        "TypesetWorkflowTest: drawn rect/brush/lasso, effect edit, save/delete/undo/reopen; TypesetBatchTest: per-page defaults reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / SOURCE_AND_POINTER_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "T15",
+      "owner": "UX-R2a",
+      "implementation": [
+        "TypesetWorkspace.kt",
+        "TypesetEditorController.kt",
+        "TypesetDocument.kt",
+        "TypesetRepository.kt",
+        "TypesetLayout.kt",
+        "TypesetRenderer.kt",
+        "TypesetFonts.kt",
+        "WindowsFontDecoder.kt",
+        "TypesetObjects.kt",
+        "TypesetQueue.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart",
+        "TypesetReferenceTest",
+        "TypesetRepositoryTest",
+        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)",
+        "TypesetObjectsTest",
+        "TypesetQueueTest",
+        "TypesetRepositoryTest.projectCopyRenameAndRemovalKeepIndependentHistoryAndOriginal",
+        "TypesetWorkflowTest.queueControlSelectionDragOrderNumberingAndRestart",
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart (includes lock/unlock pointer, clone/delete/reopen)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)",
+        "docs/audits/evidence/UX_R2A_OBJECTS_QUEUE/compose-scenes (actual Compose pointer; offscreen)"
+      ],
+      "persistenceEvidence": [
+        "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / COMPOSE_POINTER_AND_RESTART_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "T16",
+      "owner": "UX-R2b",
+      "implementation": [
+        "TypesetPreferences.kt",
+        "TypesetPresets.kt",
+        "TypesetEditorController.kt",
+        "TypesetSourceExchange.kt"
+      ],
+      "tests": [
+        "TypesetPreferencesTest: exact source slots, style projection, image limits, backup restore",
+        "TypesetWorkflowTest: actual preset save/apply/override/reset/preferred slot GUI and reopen",
+        "TypesetSourceExchangeTest",
+        "TypesetWorkflowTest.sourceExchangePreviewConfirmExportAndReopen",
+        "TypesetPreferencesTest.sourceDefaultsAreConsumedByNewProjectsWithoutChangingExistingPages (4-test class in unchanged 129-pass core module run)"
+      ],
+      "guiEvidence": [
+        "UX_R2A_PRESETS runs: actual Compose semantics; no native visual acceptance",
+        "docs/audits/evidence/UX_R2_SOURCE_EXCHANGE/source-exchange-confirm.png",
+        "docs/audits/UX_EDITOR_CLARITY.md (grouped actions, automatic style reuse and source APNG recheck; new native acceptance deferred by user)"
+      ],
+      "persistenceEvidence": [
+        "TypesetPreferencesTest.globalPreferencesSurviveWorkspaceBackupAndRestore",
+        "docs/audits/UX_R2_SOURCE_EXCHANGE.md"
+      ],
+      "status": "PARTIAL",
+      "remaining": "Native installed interaction/visual acceptance remain. Source layout/story/export defaults have executed core coverage; see UX_FIXED_ELEVEN reconciliation, not the historical implementation-stage limitation."
+    },
+    {
+      "id": "T17",
+      "owner": "UX-R2b",
+      "implementation": [
+        "TypesetExport.kt",
+        "TypesetExportDialog.kt",
+        "TypesetBook.kt",
+        "TypesetPngMetadata.kt",
+        "TypesetEditRecipe.kt",
+        "ExportClipboard.kt"
+      ],
+      "tests": [
+        "TypesetExportTest",
+        "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart",
+        "TypesetMetadataExportTest",
+        "TypesetWorkflowTest.fourCategoryPreviewCopiesCompleteFileDeckWithoutSystemClipboard"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2C_BOOK_EXPORT/book-export-preview.png",
+        "docs/audits/evidence/UX_R2_EXPORT_METADATA/batch-export-deck.png",
+        "docs/audits/UX_EDITOR_CLARITY.md (grouped actions, automatic style reuse and source APNG recheck; new native acceptance deferred by user)",
+        "docs/audits/UX_NATIVE_CLIPBOARD_ELEVEN.md (single static PNG file receiver only; multiple files and APNG NOT TESTED)"
+      ],
+      "persistenceEvidence": [
+        "docs/audits/UX_R2C_BOOK_EXPORT.md",
+        "docs/audits/UX_R2_EXPORT_METADATA.md"
+      ],
+      "status": "PARTIAL",
+      "remaining": "Installed export/dialog/OS clipboard receiver and concentrated product review remain. WebP/source encoding, four categories, metadata/privacy, source exchange and defaults have separate executed evidence; not certified by this documentation reconciliation."
+    },
+    {
+      "id": "T18",
+      "owner": "UX-R2b",
+      "implementation": [
+        "TypesetExport.kt",
+        "TypesetPngMetadata.kt",
+        "TypesetEditRecipe.kt",
+        "ExportClipboard.kt"
+      ],
+      "tests": [
+        "TypesetMetadataExportTest",
+        "TypesetWorkflowTest.fourCategoryPreviewCopiesCompleteFileDeckWithoutSystemClipboard"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2_EXPORT_METADATA/batch-export-deck.png",
+        "docs/audits/UX_EDITOR_CLARITY.md (grouped actions, automatic style reuse and source APNG recheck; new native acceptance deferred by user)"
+      ],
+      "persistenceEvidence": [
+        "docs/audits/UX_R2_EXPORT_METADATA.md"
+      ],
+      "status": "PARTIAL",
+      "remaining": "Installed export/dialog/OS clipboard receiver and concentrated product review remain. WebP/source encoding, four categories, metadata/privacy, source exchange and defaults have separate executed evidence; not certified by this documentation reconciliation."
+    },
+    {
+      "id": "T19",
+      "owner": "UX-R2b",
+      "implementation": [
+        "TypesetExport.kt",
+        "TypesetExportDialog.kt",
+        "TypesetBook.kt",
+        "TypesetPngMetadata.kt",
+        "TypesetEditRecipe.kt",
+        "ExportClipboard.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/ImageFormats.kt"
+      ],
+      "tests": [
+        "TypesetExportTest",
+        "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart",
+        "TypesetMetadataExportTest",
+        "TypesetWorkflowTest.fourCategoryPreviewCopiesCompleteFileDeckWithoutSystemClipboard",
+        "ImageFormatsTest",
+        "TypesetWorkflowTest.webpPreviewExportAndOriginalReopen"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2C_BOOK_EXPORT/book-export-preview.png",
+        "docs/audits/evidence/UX_R2_EXPORT_METADATA/batch-export-deck.png",
+        "docs/audits/UX_R2_IMAGE_FORMATS.md",
+        "docs/audits/UX_EDITOR_CLARITY.md (grouped actions, automatic style reuse and source APNG recheck; new native acceptance deferred by user)",
+        "docs/audits/UX_NATIVE_CLIPBOARD_ELEVEN.md (single static PNG file receiver only; multiple files and APNG NOT TESTED)"
+      ],
+      "persistenceEvidence": [
+        "docs/audits/UX_R2C_BOOK_EXPORT.md",
+        "docs/audits/UX_R2_EXPORT_METADATA.md"
+      ],
+      "status": "PARTIAL",
+      "remaining": "Installed export/dialog/OS clipboard receiver and concentrated product review remain. WebP/source encoding, four categories, metadata/privacy, source exchange and defaults have separate executed evidence; not certified by this documentation reconciliation."
+    },
+    {
+      "id": "T20",
+      "owner": "UX-R2c",
+      "implementation": [
+        "TypesetExport.kt",
+        "TypesetExportDialog.kt",
+        "TypesetBook.kt"
+      ],
+      "tests": [
+        "TypesetExportTest",
+        "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2C_BOOK_EXPORT/book-export-preview.png"
+      ],
+      "persistenceEvidence": [
+        "docs/audits/UX_R2C_BOOK_EXPORT.md"
+      ],
+      "status": "PARTIAL",
+      "remaining": "Installed export/dialog/OS clipboard receiver and concentrated product review remain. WebP/source encoding, four categories, metadata/privacy, source exchange and defaults have separate executed evidence; not certified by this documentation reconciliation."
+    },
+    {
+      "id": "Q01",
+      "owner": "UX-R2b",
+      "implementation": [
+        "TypesetObjects.kt",
+        "TypesetQueue.kt",
+        "TypesetRepository.kt",
+        "TypesetEditorController.kt",
+        "TypesetWorkspace.kt"
+      ],
+      "tests": [
+        "TypesetObjectsTest",
+        "TypesetQueueTest",
+        "TypesetRepositoryTest.projectCopyRenameAndRemovalKeepIndependentHistoryAndOriginal",
+        "TypesetWorkflowTest.queueControlSelectionDragOrderNumberingAndRestart",
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart (includes lock/unlock pointer, clone/delete/reopen)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_OBJECTS_QUEUE/compose-scenes (actual Compose pointer; offscreen)"
+      ],
+      "persistenceEvidence": [],
+      "status": "ENGINEERING_PARTIAL / COMPOSE_POINTER_AND_RESTART_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "Q02",
+      "owner": "UX-R2b",
+      "implementation": [
+        "TypesetObjects.kt",
+        "TypesetQueue.kt",
+        "TypesetRepository.kt",
+        "TypesetEditorController.kt",
+        "TypesetWorkspace.kt"
+      ],
+      "tests": [
+        "TypesetObjectsTest",
+        "TypesetQueueTest",
+        "TypesetRepositoryTest.projectCopyRenameAndRemovalKeepIndependentHistoryAndOriginal",
+        "TypesetWorkflowTest.queueControlSelectionDragOrderNumberingAndRestart",
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart (includes lock/unlock pointer, clone/delete/reopen)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_OBJECTS_QUEUE/compose-scenes (actual Compose pointer; offscreen)"
+      ],
+      "persistenceEvidence": [],
+      "status": "ENGINEERING_PARTIAL / COMPOSE_POINTER_AND_RESTART_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "Q03",
+      "owner": "UX-R2b",
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetFullPreview.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.fullPreviewKeyboardAndExportDeckKeepEditorStateAndFitNarrowWindow"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_FLOW_COMPLETION.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
+    },
+    {
+      "id": "Q04",
+      "owner": "UX-R2b",
+      "implementation": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetSourceExchange.kt",
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetEditorController.kt"
+      ],
+      "tests": [
+        "TypesetSourceExchangeTest",
+        "TypesetWorkflowTest.sourceExchangePreviewConfirmExportAndReopen"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_FLOW_COMPLETION.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
+    },
+    {
+      "id": "Q05",
+      "owner": "UX-R2b",
+      "implementation": [
+        "TypesetPreferences.kt",
+        "TypesetPresets.kt",
+        "TypesetEditorController.kt",
+        "TypesetSourceExchange.kt"
+      ],
+      "tests": [
+        "TypesetPreferencesTest: exact source slots, style projection, image limits, backup restore",
+        "TypesetWorkflowTest: actual preset save/apply/override/reset/preferred slot GUI and reopen",
+        "TypesetSourceExchangeTest",
+        "TypesetWorkflowTest.sourceExchangePreviewConfirmExportAndReopen",
+        "TypesetPreferencesTest.sourceDefaultsAreConsumedByNewProjectsWithoutChangingExistingPages (4-test class in unchanged 129-pass core module run)"
+      ],
+      "guiEvidence": [
+        "UX_R2A_PRESETS runs: actual Compose semantics; no native visual acceptance",
+        "docs/audits/evidence/UX_R2_SOURCE_EXCHANGE/source-exchange-confirm.png",
+        "docs/audits/UX_EDITOR_CLARITY.md (grouped actions, automatic style reuse and source APNG recheck; new native acceptance deferred by user)"
+      ],
+      "persistenceEvidence": [
+        "TypesetPreferencesTest.globalPreferencesSurviveWorkspaceBackupAndRestore",
+        "docs/audits/UX_R2_SOURCE_EXCHANGE.md"
+      ],
+      "status": "PARTIAL",
+      "remaining": "Native installed interaction/visual acceptance remain. Source layout/story/export defaults have executed core coverage; see UX_FIXED_ELEVEN reconciliation, not the historical implementation-stage limitation."
+    },
+    {
+      "id": "Q06",
+      "owner": "UX-R2b",
+      "implementation": [
+        "TypesetPreferences.kt",
+        "TypesetPresets.kt",
+        "TypesetEditorController.kt"
+      ],
+      "tests": [
+        "TypesetPreferencesTest: exact source slots, style projection, image limits, backup restore",
+        "TypesetWorkflowTest: actual preset save/apply/override/reset/preferred slot GUI and reopen",
+        "TypesetSourceExchangeTest",
+        "TypesetWorkflowTest.sourceExchangePreviewConfirmExportAndReopen"
+      ],
+      "guiEvidence": [
+        "UX_R2A_PRESETS runs: actual Compose semantics; no native visual acceptance",
+        "docs/audits/UX_R2_SOURCE_EXCHANGE.md (source preset file import/merge/export/reopen; offscreen Compose)"
+      ],
+      "persistenceEvidence": [
+        "TypesetPreferencesTest.globalPreferencesSurviveWorkspaceBackupAndRestore"
+      ],
+      "status": "ENGINEERING_PARTIAL / PRESET_FILE_EXCHANGE_AND_REOPEN_PASS / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "Q07",
+      "owner": "UX-R2b",
+      "implementation": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/ImageFormats.kt"
+      ],
+      "tests": [
+        "ImageFormatsTest",
+        "TypesetWorkflowTest.webpPreviewExportAndOriginalReopen"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_R2_IMAGE_FORMATS.md"
+      ],
+      "persistenceEvidence": [],
+      "status": "PARTIAL"
+    },
+    {
+      "id": "Q08",
+      "owner": "UX-R2b",
+      "implementation": [
+        "TypesetWorkspace.kt",
+        "TypesetEditorController.kt",
+        "TypesetDocument.kt",
+        "TypesetRepository.kt",
+        "TypesetLayout.kt",
+        "TypesetRenderer.kt",
+        "TypesetFonts.kt",
+        "WindowsFontDecoder.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart",
+        "TypesetReferenceTest",
+        "TypesetRepositoryTest",
+        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)"
+      ],
+      "persistenceEvidence": [
+        "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / SOURCE_GEOMETRY_AND_COMPOSE_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "Q09",
+      "owner": "UX-R1b",
+      "implementation": [
+        "DesktopImageToolsDialog.kt (source adapted)",
+        "DesktopImageTools.kt (exact source)",
+        "WorkbenchController.applyGuidanceTools/saveToolCopy",
+        "StudioWorkspace.importDerived",
+        "StudioApplication.kt",
+        "DesktopStudioControls.kt"
+      ],
+      "tests": [
+        "GuidanceSafetyTest.q09CanvasRotateUndoMaskResetApplyAndReopen",
+        "GuidanceSafetyTest: same canvas assertions after source image reader adoption"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R1B_GUIDANCE/mask-and-focus.png (actual Compose content, offscreen)",
+        "docs/audits/UX_R1B_CREATION.md (exact scope; no native visual claim)"
+      ],
+      "persistenceEvidence": [
+        "Q09 test same workspace reopen verifies original hash, mask asset, visible copy"
+      ],
+      "status": "ENGINEERING_PARTIAL / CONTROLLER_OR_COMPOSE_TESTED / NATIVE_GUI_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "F01",
+      "owner": "UX-R2c",
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetWorkspace.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetBook.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetRenderer.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetExport.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart",
+        "TypesetWorkflowTest.storyCustomControlsSelectedAndAllStylesPreserveCaptionsAndUndoAsOneBatch",
+        "TypesetReferenceTest.sourceStoryGeometryAndBlankParagraphs"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_FLOW_COMPLETION.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
+    },
+    {
+      "id": "F02",
+      "owner": "UX-R2c",
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetWorkspace.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetBook.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetRenderer.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetExport.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart",
+        "TypesetWorkflowTest.storyCustomControlsSelectedAndAllStylesPreserveCaptionsAndUndoAsOneBatch",
+        "TypesetReferenceTest.sourceStoryGeometryAndBlankParagraphs"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_FLOW_COMPLETION.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
+    },
+    {
+      "id": "F03",
+      "owner": "UX-R2c",
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetWorkspace.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetBook.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetRenderer.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetExport.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart",
+        "TypesetWorkflowTest.storyCustomControlsSelectedAndAllStylesPreserveCaptionsAndUndoAsOneBatch",
+        "TypesetReferenceTest.sourceStoryGeometryAndBlankParagraphs"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_FLOW_COMPLETION.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
+    },
+    {
+      "id": "F04",
+      "owner": "UX-R2c",
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetWorkspace.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetBook.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetRenderer.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetExport.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart",
+        "TypesetWorkflowTest.storyCustomControlsSelectedAndAllStylesPreserveCaptionsAndUndoAsOneBatch",
+        "TypesetReferenceTest.sourceStoryGeometryAndBlankParagraphs"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_FLOW_COMPLETION.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
+    },
+    {
+      "id": "F05",
+      "owner": "UX-R2c",
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetWorkspace.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetBook.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetRenderer.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetExport.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart",
+        "TypesetWorkflowTest.storyCustomControlsSelectedAndAllStylesPreserveCaptionsAndUndoAsOneBatch",
+        "TypesetReferenceTest.sourceStoryGeometryAndBlankParagraphs"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_FLOW_COMPLETION.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
+    },
+    {
+      "id": "F06",
+      "owner": "UX-R2c",
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetWorkspace.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetBook.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetRenderer.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetExport.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart",
+        "TypesetWorkflowTest.storyCustomControlsSelectedAndAllStylesPreserveCaptionsAndUndoAsOneBatch",
+        "TypesetReferenceTest.sourceStoryGeometryAndBlankParagraphs"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_FLOW_COMPLETION.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
+    },
+    {
+      "id": "F07",
+      "owner": "UX-R2c",
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetWorkspace.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetBook.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetRenderer.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetExport.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart",
+        "TypesetWorkflowTest.storyCustomControlsSelectedAndAllStylesPreserveCaptionsAndUndoAsOneBatch",
+        "TypesetReferenceTest.sourceStoryGeometryAndBlankParagraphs"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_FLOW_COMPLETION.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate",
+        "Ctrl+Enter handler exists; current new regression uses next-caption button, not native IME/shortcut interaction"
+      ]
+    },
+    {
+      "id": "F08",
+      "owner": "UX-R2c",
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetWorkspace.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetBook.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetRenderer.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetExport.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart",
+        "TypesetWorkflowTest.storyCustomControlsSelectedAndAllStylesPreserveCaptionsAndUndoAsOneBatch",
+        "TypesetReferenceTest.sourceStoryGeometryAndBlankParagraphs",
+        "TypesetExportTest"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_FLOW_COMPLETION.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
+    },
+    {
+      "id": "F09",
+      "owner": "UX-R2c",
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetWorkspace.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetBook.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetRenderer.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetExport.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.storyCaptionPresetPreviewExportAndRestart",
+        "TypesetWorkflowTest.storyCustomControlsSelectedAndAllStylesPreserveCaptionsAndUndoAsOneBatch",
+        "TypesetReferenceTest.sourceStoryGeometryAndBlankParagraphs",
+        "TypesetExportTest"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_FLOW_COMPLETION.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
+    },
+    {
+      "id": "F10",
+      "owner": "UX-R2c",
+      "implementation": [
+        "TypesetWorkspace.kt",
+        "TypesetEditorController.kt",
+        "TypesetDocument.kt",
+        "TypesetRepository.kt",
+        "TypesetLayout.kt",
+        "TypesetRenderer.kt",
+        "TypesetFonts.kt",
+        "WindowsFontDecoder.kt"
+      ],
+      "tests": [
+        "TypesetWorkflowTest.namedProjectLiveVerticalEditingHistoryAndRestart",
+        "TypesetReferenceTest",
+        "TypesetRepositoryTest",
+        "WindowsFontDecoderTest (actual case scope in UX_R2A_EDITOR JUnit XML)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R2A_EDITOR/compose-scenes (actual Compose tree, offscreen; no native mouse/IME acceptance)"
+      ],
+      "persistenceEvidence": [
+        "TypesetRepositoryTest: immutable document, restart, 1000-page repository, backup restore; TypesetWorkflowTest: named project edit/save/reopen"
+      ],
+      "status": "ENGINEERING_PARTIAL / SOURCE_GEOMETRY_AND_COMPOSE_TESTED / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "C01",
+      "owner": "UX-R4",
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt"
+      ],
+      "tests": [
+        "WorkbenchWorkflowTest.accountsDesignApplyGenerateGalleryAndRestart",
+        "WorkbenchWorkflowTest.measuredSuiteNavigationSurvivesResizeAndUnsentInput"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R1A_WORKBENCH/compose-scenes (actual Compose tree; offscreen; loopback)",
+        "docs/audits/evidence/UX_R1A_WORKBENCH/NATIVE_UI.json (capture unavailable)"
+      ],
+      "persistenceEvidence": [
+        "WorkbenchWorkflowTest: same workspace close/reopen; accounts, candidate draft, completed job and exact original bytes"
+      ],
+      "status": "ENGINEERING_PARTIAL / LOOPBACK_GUI_PASS / NATIVE_VISUAL_NOT_TESTED / PRODUCT_HOLD"
+    },
+    {
+      "id": "C02",
+      "owner": "UX-R4",
+      "implementation": [
+        "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetStore.java",
+        "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetBackup.java",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioWorkspace.kt"
+      ],
+      "tests": [
+        "AssetStoreTest",
+        "AssetSafetyTest",
+        "AssetMaintenanceTest",
+        "AssetBackupTest",
+        "StudioMaintenanceTest.maintenanceRejectsNewEditsAndKeepsRootOwnedUntilWriterDrains"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_STARTUP_SAFETY.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
+    },
+    {
+      "id": "C03",
+      "owner": "UX-R4",
+      "implementation": [
+        "LibraryBackupWorkspace.kt",
+        "LibraryWorkspace.kt",
+        "StudioWorkspace.backup (unchanged core)",
+        "StudioRestore.restore (unchanged core)",
+        "StudioFormatMigration / StudioMigration (unchanged core)"
+      ],
+      "tests": [
+        "LibraryBackupWorkflowTest.currentWorkbenchBackupConfirmRestoreAndOpenPreservesSharedAssetsWithoutCredentials",
+        "LibraryBackupWorkflowTest.restoreRejectsCurrentRootExistingDestinationAndCorruptBackupWithoutPublishing",
+        "LibraryBackupWorkflowTest.legacyBackupRestoresThenCopiesToCurrentFormatWithoutTouchingBackup"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_LIBRARY_BACKUP.md",
+        "docs/audits/evidence/UX_LIBRARY_BACKUP/compose-scenes",
+        "docs/audits/UX_NATIVE_RESTORE.md (user actual installed backup/restore/second window screenshots)"
+      ],
+      "persistenceEvidence": [
+        "Real restored workspace reopened; original bytes, typeset project, independent prompt, labels, unsent draft and unresolved credential refs checked; source retained",
+        "61 restored files match source backup and original; 10 asset records; credentials excluded as specified"
+      ],
+      "status": "INSTALLED_BACKUP_RESTORE_SECOND_WINDOW_PASS_USER_CONFIRMED / PRODUCT_HOLD"
+    },
+    {
+      "id": "C04",
+      "owner": "UX-R4",
+      "implementation": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioFormatMigration.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioWorkspace.kt",
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioDataLaunch.kt"
+      ],
+      "tests": [
+        "StudioVersionTwoTest",
+        "StudioFormatMigrationTest",
+        "StudioDataLaunchTest"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_STARTUP_SAFETY.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
+    },
+    {
+      "id": "C05",
+      "owner": "UX-R4",
+      "implementation": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/SecretVault.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/LiveRequestBudget.kt",
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt"
+      ],
+      "tests": [
+        "LiveRequestBudgetTest",
+        "StudioMaintenanceTest.snapshotPreservesOriginalAssociationsAndDpapiCredentialWithoutPlaintext",
+        "WorkbenchWorkflowTest.accountsDesignApplyGenerateGalleryAndRestart"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_UPDATE_FEEDBACK.md (scope and test kind disclosed; not human acceptance)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Fixed installed package interaction and concentrated human acceptance remain separate"
+      ]
+    },
+    {
+      "id": "C06",
+      "owner": "UX-R4",
+      "implementation": [
+        "tools/update-runtime/studio_update.py",
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioUpdates.kt",
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioUpdateClient.kt"
+      ],
+      "tests": [
+        "ClientTests (7 actual)",
+        "StudioUpdateTest (3 actual)"
+      ],
+      "guiEvidence": [
+        "docs/audits/evidence/UX_R4_TRUSTED_CLIENT/update-download.png (offscreen injected receipt)",
+        "docs/audits/UX_R4_ACTUAL_AB.md: actual A keyboard path, actual installer and B window; capture failed",
+        "docs/audits/UX_RESTORED_UPDATE_ACTUAL.md (0.2.9 to 0.2.10; user confirmed restart)",
+        "docs/audits/UX_RESTORED_UPDATE.md (original 0.2.7 to 0.2.8; latest-version user screenshot)"
+      ],
+      "persistenceEvidence": [
+        "Earlier trusted-client-only stage: metadata cache, verified receipt and separate-process lock; superseded for installed A-to-B coverage by cited actual update reports",
+        "B_VERIFIED snapshot matches A; actual upgraded root post-update write/reopen PASS",
+        "Restored 9-to-10 COMPLETE; 10 asset snapshot and MISSING_BEFORE_UPDATE credential reference match, 546 installed files independently verified"
+      ],
+      "status": "ACTUAL_INSTALLED_A_TO_B_AND_RESTORED_ROOT_PASS / FAULT_SCOPE_IN_CITED_REPORTS / PRODUCT_HOLD"
+    },
+    {
+      "id": "C07",
+      "owner": "UX-R4",
+      "implementation": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioBrand.kt",
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioTitleControls.kt",
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt"
+      ],
+      "tests": [
+        "StudioTitleControlsTest.captionGeometryAndCommandsAtFourDisplayScales",
+        "WorkbenchWorkflowTest.measuredSuiteNavigationSurvivesResizeAndUnsentInput"
+      ],
+      "guiEvidence": [
+        "docs/audits/UX_UPDATE_FEEDBACK.md (scope and test kind disclosed; not human acceptance)",
+        "docs/audits/UX_ROLE_HEADER.md (exact native user-observation scope and new offscreen regression separated)"
+      ],
+      "persistenceEvidence": [
+        "Actual test assertions and restart/byte-preservation evidence in cited report; no automatic promotion from source presence"
+      ],
+      "status": "ENGINEERING_PARTIAL / EXECUTED_REGRESSION / PRODUCT_HOLD",
+      "remainingVerification": [
+        "Basic Chinese IME candidate commit/newline and creation-gallery roundtrip confirmed by user in installed eleven; high-DPI, remaining focus/multiwindow and broader native visual acceptance NOT TESTED"
+      ]
+    }
+  ],
+  "scopeNote": "增强/平台适配/运维与继承项有交叉；TypeSet继承动作仍按75项来源合同单列，不冒称全为Suite原创。"
+}
