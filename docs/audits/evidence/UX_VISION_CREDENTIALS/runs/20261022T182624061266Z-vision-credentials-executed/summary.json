@@ -1,0 +1,30 @@
+{
+  "phase": "vision-credentials-executed",
+  "startedUtc": "2026-10-22T18:26:24.724895+00:00",
+  "seconds": 42.94,
+  "exitCode": 0,
+  "tests": 6,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:test",
+    "--tests",
+    "*VisionCredentialsTest",
+    "--tests",
+    "*ModelAccountsTest"
+  ],
+  "baseCommit": "1897c8ad18291461562dd8d81c4f4c926067d967",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

@@ -31,6 +31,7 @@ fun sha256(bytes: ByteArray): String = MessageDigest.getInstance("SHA-256").dige
         }
         require(model.isNotBlank() && model.length <= 160)
         secretRef?.let { UUID.fromString(it) }
+        require(secretRef!=SecretVault.GLOBAL_LLM_REF || service=="LLM")
         visionAccountId?.let {UUID.fromString(it);require(it!=id && service=="LLM")}
     }
 }

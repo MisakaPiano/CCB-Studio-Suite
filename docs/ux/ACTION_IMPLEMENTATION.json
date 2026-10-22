@@ -10,11 +10,15 @@
       ],
       "tests": [
         "WorkbenchWorkflowTest.accountsDesignApplyGenerateGalleryAndRestart",
-        "WorkbenchWorkflowTest.measuredSuiteNavigationSurvivesResizeAndUnsentInput"
+        "WorkbenchWorkflowTest.measuredSuiteNavigationSurvivesResizeAndUnsentInput",
+        "ModelAccountsTest (list/select/save/reopen; exact executions in UX_MODEL_ACCOUNTS)",
+        "VisionCredentialsTest (global/independent credentials; exact executions in UX_VISION_CREDENTIALS)"
       ],
       "guiEvidence": [
         "docs/audits/evidence/UX_R1A_WORKBENCH/compose-scenes (actual Compose tree; offscreen; loopback)",
-        "docs/audits/evidence/UX_R1A_WORKBENCH/NATIVE_UI.json (capture unavailable)"
+        "docs/audits/evidence/UX_R1A_WORKBENCH/NATIVE_UI.json (capture unavailable)",
+        "docs/audits/UX_MODEL_ACCOUNTS.md (2026-10-23 user-confirmed list/selection/save/reopen only)",
+        "docs/audits/UX_VISION_CREDENTIALS.md (new visual configuration human acceptance pending)"
       ],
       "persistenceEvidence": [
         "WorkbenchWorkflowTest: same workspace close/reopen; accounts, candidate draft, completed job and exact original bytes"

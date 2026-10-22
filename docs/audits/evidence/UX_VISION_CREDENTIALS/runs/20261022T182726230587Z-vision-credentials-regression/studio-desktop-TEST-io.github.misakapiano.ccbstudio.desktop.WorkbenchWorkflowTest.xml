@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" tests="8" skipped="0" failures="2" errors="0" timestamp="2026-10-22T18:41:20.486Z" hostname="DD1" time="36.16">
+  <properties/>
+  <testcase name="roleEditingReorderDisableAndDeleteReachRequestAndSurviveReopen" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="8.039"/>
+  <testcase name="creationFooterAndImageSummaryAdaptWithoutLosingDraftOrSelection" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="3.515"/>
+  <testcase name="accountRefreshAndNewSelectionNeverReuseAnotherAccountsQuota" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="2.304">
+    <failure message="io.github.misakapiano.ccbstudio.core.DataProblem: 账户档案尚未保存，请在账户页保存或放弃修改后再关闭/更新" type="io.github.misakapiano.ccbstudio.core.DataProblem">io.github.misakapiano.ccbstudio.core.DataProblem: 账户档案尚未保存，请在账户页保存或放弃修改后再关闭/更新
+	at app//io.github.misakapiano.ccbstudio.desktop.WorkbenchController.enterMaintenance(StudioApplication.kt:361)
+	at app//io.github.misakapiano.ccbstudio.desktop.WorkbenchController.close(StudioApplication.kt:368)
+	at app//io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest$accountRefreshAndNewSelectionNeverReuseAnotherAccountsQuota$1.invokeSuspend(WorkbenchWorkflowTest.kt:132)
+	at app//kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at app//kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at java.desktop@17.0.20.1/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop@17.0.20.1/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop@17.0.20.1/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop@17.0.20.1/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base@17.0.20.1/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base@17.0.20.1/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.desktop@17.0.20.1/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+</failure>
+  </testcase>
+  <testcase name="continuousGenerationCompletesRemainderStopsAndRetainsPartialResultsWithoutReplay" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="9.074"/>
+  <testcase name="editedAssetIsSelectableAcrossGuidanceAndEditorAndSurvivesRestart" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="6.288"/>
+  <testcase name="measuredSuiteNavigationSurvivesResizeAndUnsentInput" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="3.345"/>
+  <testcase name="continuedEditingRetainsExistingAssetsAndCredentials" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="2.117"/>
+  <testcase name="accountsDesignApplyGenerateGalleryAndRestart" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="1.478">
+    <failure message="io.github.misakapiano.ccbstudio.core.DataProblem: 账户档案尚未保存，请在账户页保存或放弃修改后再关闭/更新" type="io.github.misakapiano.ccbstudio.core.DataProblem">io.github.misakapiano.ccbstudio.core.DataProblem: 账户档案尚未保存，请在账户页保存或放弃修改后再关闭/更新
+	at app//io.github.misakapiano.ccbstudio.desktop.WorkbenchController.enterMaintenance(StudioApplication.kt:361)
+	at app//io.github.misakapiano.ccbstudio.desktop.WorkbenchController.close(StudioApplication.kt:368)
+	at app//io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest$accountsDesignApplyGenerateGalleryAndRestart$1.invokeSuspend(WorkbenchWorkflowTest.kt:90)
+	at app//kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at app//kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at java.desktop@17.0.20.1/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop@17.0.20.1/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop@17.0.20.1/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop@17.0.20.1/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base@17.0.20.1/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base@17.0.20.1/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.desktop@17.0.20.1/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop@17.0.20.1/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

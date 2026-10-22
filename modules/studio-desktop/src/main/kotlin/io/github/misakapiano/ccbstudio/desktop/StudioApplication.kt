@@ -304,13 +304,17 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
             if(naiId==account.id){usage=result;usageAt=System.currentTimeMillis()}
         }
     }
-    fun saveAccount(existing:AccountProfile?,alias:String,service:String,endpoint:String,model:String,key:String,isMultimodal:Boolean=false,visionAccountId:String?=null,onSaved:(AccountProfile)->Unit={})=run("保存账户") {
+    fun saveAccount(existing:AccountProfile?,alias:String,service:String,endpoint:String,model:String,key:String,isMultimodal:Boolean=false,visionAccountId:String?=null,useGlobalKey:Boolean=false,selectAfterSave:Boolean=true,onSaved:(AccountProfile)->Unit={})=run("保存账户") {
         AccountProfile(id=existing?.id?:newId(),alias=alias.trim(),service=service,provider=if(service=="NAI")"NOVELAI" else "OPENAI_COMPATIBLE",endpoint=endpoint.trim().trimEnd('/'),model=model.trim(),isMultimodal=isMultimodal,visionAccountId=visionAccountId).validate()
-        val ref=if(key.isNotBlank()) {val bytes=key.trim().toByteArray();try{vault.put(bytes)}finally{bytes.fill(0)}} else existing?.secretRef
+        require(!useGlobalKey || service=="LLM")
+        val ref=if(useGlobalKey) SecretVault.GLOBAL_LLM_REF else if(key.isNotBlank()) {val bytes=key.trim().toByteArray();try{vault.put(bytes)}finally{bytes.fill(0)}} else existing?.secretRef?.takeUnless{it==SecretVault.GLOBAL_LLM_REF}
+        require(ref!=null){"请填写独立凭据，或选择使用全局 API Key"}
         val a=AccountProfile(id=existing?.id?:newId(),alias=alias.trim(),service=service,provider=if(service=="NAI")"NOVELAI" else "OPENAI_COMPATIBLE",endpoint=endpoint.trim().trimEnd('/'),model=model.trim(),secretRef=ref,isMultimodal=service=="LLM"&&isMultimodal,visionAccountId=visionAccountId.takeIf{service=="LLM"&&!isMultimodal})
         a.validate();workspace.operation{workspace.save(workspace.state.copy(accounts=workspace.state.accounts.filterNot{it.id==a.id}+a))}
-        if(service=="LLM")llmId=a.id else {naiId=a.id;usage=null;usageAt=null}
-        session.update{it.copy(llmAccountId=llmId,naiAccountId=naiId)}
+        if(selectAfterSave) {
+            if(service=="LLM")llmId=a.id else {naiId=a.id;usage=null;usageAt=null}
+            session.update{it.copy(llmAccountId=llmId,naiAccountId=naiId)}
+        }
         withContext(scope.coroutineContext.minusKey(Job)){onSaved(a)}
     }
     fun importImages() {
@@ -645,12 +649,23 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
     DisposableEffect(editor){onDispose{editor.cancel()}}
     Column(Modifier.fillMaxSize().padding(24.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(10.dp)) {
         Text("账户与模型",fontSize=22.sp)
+        var showGlobal by remember{mutableStateOf(false)}
+        StudioAction(if(showGlobal)"收起全局 API Key" else "全局 API Key · ${if(editor.globalConfigured)"已配置" else "未配置"}"){showGlobal=!showGlobal}
+        if(showGlobal) {
+            Text("仅供选择“使用全局”的文本和视觉模型使用；接口地址仍分别设置。")
+            OutlinedTextField(editor.globalKey,{editor.globalKey=it},label={Text("设置或替换全局 API Key")},visualTransformation=PasswordVisualTransformation(),enabled=!c.busy,modifier=Modifier.fillMaxWidth())
+            StudioAction("保存全局 API Key",enabled=!c.busy&&editor.globalKey.isNotBlank()){editor.saveGlobal()}
+        }
         c.state.accounts.forEach {a->StudioAction("${a.alias} · ${a.service} · ${a.model}",enabled=!c.busy){editor.open(a)}}
         StudioAction("新建档案",enabled=!c.busy){editor.open(null)}
-        StudioChips("服务",listOf("LLM","NAI"),d.service,{it}){value->editor.edit{it.copy(service=value,endpoint=if(value=="NAI")"https://image.novelai.net" else "https://api.siliconflow.cn/v1",model=if(value=="NAI")NovelAiImageModel.V4_5_FULL.apiId else "",multimodal=false,visionId=null)}}
+        StudioAction("新建视觉模型",enabled=!c.busy){editor.newVision()}
+        Text(if(d.existing==null)"新建档案" else "编辑已保存档案")
+        StudioChips("服务",listOf("LLM","NAI"),d.service,{it}){value->editor.edit{it.copy(service=value,endpoint=if(value=="NAI")"https://image.novelai.net" else "https://api.siliconflow.cn/v1",model=if(value=="NAI")NovelAiImageModel.V4_5_FULL.apiId else "",multimodal=false,visionId=null,useGlobalKey=false,key="")}}
         OutlinedTextField(d.alias,{value->editor.edit{it.copy(alias=value)}},label={Text("档案名称")},enabled=!c.busy,modifier=Modifier.fillMaxWidth())
         OutlinedTextField(d.endpoint,{value->editor.edit{it.copy(endpoint=value)}},label={Text("HTTPS API 地址")},enabled=d.service=="LLM"&&!c.busy,modifier=Modifier.fillMaxWidth())
-        OutlinedTextField(d.key,{value->editor.edit{it.copy(key=value)}},label={Text(if(d.existing?.secretRef!=null)"新凭据（留空保留已有）"else"API 凭据")},visualTransformation=PasswordVisualTransformation(),enabled=!c.busy,modifier=Modifier.fillMaxWidth())
+        if(d.service=="LLM")StudioChips("API Key 来源",listOf(false,true),d.useGlobalKey,{if(it)"使用全局" else "独立配置"}){value->editor.edit{it.copy(useGlobalKey=value,key="")}}
+        if(!d.useGlobalKey)OutlinedTextField(d.key,{value->editor.edit{it.copy(key=value)}},label={Text(if(d.existing?.secretRef!=null&&d.existing.secretRef!=SecretVault.GLOBAL_LLM_REF)"新凭据（留空保留已有）"else"API 凭据")},visualTransformation=PasswordVisualTransformation(),enabled=!c.busy,modifier=Modifier.fillMaxWidth())
+        else Text(if(editor.globalConfigured)"使用本工作区全局凭据" else "尚未配置全局凭据；可先保存档案，调用前需配置")
         if(d.service=="LLM") {
             Row(horizontalArrangement=Arrangement.spacedBy(8.dp)) {
                 StudioAction(if(editor.searching)"正在获取…" else "获取模型列表",enabled=!c.busy&&!editor.searching){editor.discover()}
@@ -669,14 +684,18 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
         OutlinedTextField(d.model,{value->editor.edit{it.copy(model=value)}},label={Text("模型 ID")},enabled=!c.busy,modifier=Modifier.fillMaxWidth())
         if(d.service=="LLM") {
             Text("可从列表选择，也可手动填写；选择不会发送生成请求。")
-            StudioSwitch("此模型支持图片输入",d.multimodal){editor.edit{it.copy(multimodal=!it.multimodal,visionId=null)}}
+            StudioSwitch("当前模型直接识图",d.multimodal){editor.edit{it.copy(multimodal=!it.multimodal,visionId=null)}}
             if(!d.multimodal) {
                 val vision=c.state.accounts.filter{it.service=="LLM"&&it.isMultimodal&&it.id!=d.existing?.id}
-                CompactChoice("关联视觉模型",vision,vision.firstOrNull{it.id==d.visionId},{it.alias}){value->editor.edit{it.copy(visionId=value.id)}}
+                CompactChoice("使用独立视觉模型",vision,vision.firstOrNull{it.id==d.visionId},{it.alias}){value->editor.edit{it.copy(visionId=value.id)}}
+                if(vision.isEmpty())Text("先用“新建视觉模型”配置并仅保存，再返回此档案关联。")
                 if(d.visionId!=null)StudioAction("清除视觉关联"){editor.edit{it.copy(visionId=null)}}
             }
         }
-        StudioAction("安全保存并选用",enabled=!c.busy && d.alias.isNotBlank() && d.model.isNotBlank() && (d.key.isNotBlank()||d.existing?.secretRef!=null),style=StudioActionStyle.PRIMARY){editor.save()}
+        Row(horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+            StudioAction("仅保存",enabled=!c.busy&&editor.canSave){editor.save(false)}
+            StudioAction("安全保存并选用",enabled=!c.busy&&editor.canSave,style=StudioActionStyle.PRIMARY){editor.save()}
+        }
         Text(if(editor.dirty)"有未保存修改" else if(d.existing!=null)"已保存" else "凭据保存在本机受保护存储")
         if(editor.dirty)StudioAction("放弃修改",enabled=!c.busy){editor.discard()}
         if(!editor.dirty && d.existing!=null)StudioAction("选用此档案",enabled=!c.busy){c.chooseAccount(d.service,d.existing.id)}

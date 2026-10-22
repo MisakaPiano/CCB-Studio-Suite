@@ -7,7 +7,18 @@ import java.util.UUID
 
 /** Suite-only, user-bound DPAPI. Plaintext never belongs to a document or ordinary backup. */
 class SecretVault(private val root:Path) {
+    companion object {
+        // Stable credential reference, scoped to this workspace's vault. No document format change.
+        const val GLOBAL_LLM_REF="a90a39b7-b8bb-4bf7-9272-4c063320fe02"
+    }
     init { safePath(root);Files.createDirectories(root) }
+    fun hasGlobalKey():Boolean=Files.isRegularFile(root.resolve("$GLOBAL_LLM_REF.dpapi"),LinkOption.NOFOLLOW_LINKS)
+    fun putGlobal(plaintext:ByteArray) {
+        val revision=put(plaintext) // Retain previous ciphertext and the new revision on failure.
+        val staged=root.resolve(".${newId()}.pending")
+        writeNewForced(staged,readBounded(root.resolve("$revision.dpapi"),65536))
+        Files.move(staged,root.resolve("$GLOBAL_LLM_REF.dpapi"),StandardCopyOption.ATOMIC_MOVE,StandardCopyOption.REPLACE_EXISTING)
+    }
     fun put(plaintext:ByteArray):String {
         require(plaintext.size in 1..16384)
         val id=newId()
