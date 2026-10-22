@@ -130,4 +130,3 @@ class GitHubTests(unittest.TestCase):
         for change in ({'channel':'stable'},{'displayVersion':'unsafe"name'},{'githubRepository':'Other/Repo'}):
             with self.assertRaises(ValueError):module.release_identity(100,self.identity.metadata_url,self.identity.targets_url,dict(profile,**change))
         with self.assertRaises(ValueError):module.release_identity(65536,'','')
-

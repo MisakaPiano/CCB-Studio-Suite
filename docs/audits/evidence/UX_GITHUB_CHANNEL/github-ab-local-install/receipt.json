@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "transport": "SYNTHETIC_GITHUB_RESPONSE_WITH_REAL_INSTALLER_BYTES",
+  "a": {
+    "files": 547,
+    "bytes": 251091625,
+    "manifestSha256": "422a8cd09d04042a877a18206ca9279516dda83db208a6a8eb820df1bb4f974a"
+  },
+  "b": {
+    "files": 547,
+    "bytes": 251091625,
+    "manifestSha256": "09d858eaa84d896d453a143f38f053e319f54c39d6aeb47800809dab69846fc3"
+  },
+  "download": {
+    "status": "DOWNLOADED_VERIFIED",
+    "version": 101,
+    "displayVersion": "0.0.0-preview.101",
+    "channel": "preview",
+    "notes": "Synthetic channel validation only. Not a daily-use release. Test workspace only.",
+    "sourceSha": "271eef55fcd7d3421f3cd93eb227f8d54889e78d",
+    "bytes": 167322654,
+    "installedBytes": 251091625,
+    "sha256": "94f041c85aed935c11e2bc2eb1df5879d45e460f289380e01559df5861017a28",
+    "minimumReader": 2,
+    "maximumReader": 3,
+    "dataVersion": 3,
+    "installer": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\github-ab-local-cache\\downloads\\b493e67b-537c-48b5-b171-d8cc0828bb74\\studio-installer.exe"
+  },
+  "installedB": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\github-ab-apps\\101-271eef55fcd7",
+  "journal": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\github-ab-local-cache\\install-0a86a695254a451ba482ee6304489cb6.json",
+  "dataBytesUnchanged": true,
+  "oldInstallUnchanged": true,
+  "applicationRestart": "NOT TESTED",
+  "realGitHubNetwork": "NOT TESTED"
+}

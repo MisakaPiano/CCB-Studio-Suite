@@ -1,0 +1,4 @@
+{
+  "status": "TEST_HARNESS_REQUIRES_RETRY",
+  "reason": "Smoke import omitted -B and added pycache files. Real app uses -B. First receipt only verified manifest before import; retained without claiming post-import validity. Retry uses fresh destination and verifies again after import."
+}

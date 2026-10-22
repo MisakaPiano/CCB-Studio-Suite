@@ -1,0 +1,24 @@
+Processing script file: "H:\CCB-Studio-Suite\.local\windows-rc\github-ab-prepared\build-100\installer.nsi" (UTF8)
+
+Processed 1 file, writing output (x86-unicode):
+warning 9100: Generating version information for language "1033-English" without standard key "FileDescription"
+warning 9100: Generating version information for language "1033-English" without standard key "LegalCopyright"
+
+Output: "H:\CCB-Studio-Suite\.local\windows-rc\github-ab-prepared\build-100\studio-installer.exe"
+Install: 2 pages (128 bytes), 1 section (2072 bytes), 1877 instructions (52556 bytes), 554 strings (26322 bytes), 1 language table (230 bytes).
+Uninstall: 2 pages (192 bytes), 1 section (2072 bytes), 633 instructions (17724 bytes), 679 strings (60266 bytes), 1 language table (218 bytes).
+Datablock optimizer saved 2550 bytes (~0.0%).
+
+Using zlib compression.
+
+EXE header size:               39424 / 39936 bytes
+Install code:                  11039 / 81700 bytes
+Install data:              167262440 / 251194956 bytes
+Uninstall code+data:            9740 / 10278 bytes
+CRC (0x5E29D62A):                  4 / 4 bytes
+
+Total size:                167322647 / 251326874 bytes (66.5%)
+
+2 warnings:
+  9100: Generating version information for language "1033-English" without standard key "FileDescription"
+  9100: Generating version information for language "1033-English" without standard key "LegalCopyright"

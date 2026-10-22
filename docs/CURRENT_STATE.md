@@ -1,3 +1,7 @@
+## GitHub 渠道实现与本地安装验证（2026-10-22）
+
+[实施记录](audits/UX_GITHUB_CHANNEL.md)：39 项实际通过，公共 GitHub 传输、共用安装前复核、preview 打包和持久元数据准备已实现；实际 A/B 安装器通过合成传输下载/安装，旧程序与合成资料未变。真实 GitHub 发布/重启尚未验证，正式密钥未建立；不提供完整成功的 Desktop 报告。等待用户对公开发行仓库仅 README 创建的单独确认，尚不上传安装包。PRODUCT_HOLD / NOT RC。
+
 ## 长期更新渠道方案（2026-10-22）
 
 [具体方案](rc/LONG_TERM_UPDATE_CHANNEL_PLAN.md)：只读参考官方 Android v1.4.6 GitHub 发布/下载流程，建议独立发行仓库的公开 preview、不主动推广；保留真正私有备选。列明现有客户端传输适配、持久签名/续签、发布顺序和验收。仅方案，未创建密钥或外部发布；用户已重新表示可配合人工测试，优先人工截图。PRODUCT_HOLD / NOT RC。

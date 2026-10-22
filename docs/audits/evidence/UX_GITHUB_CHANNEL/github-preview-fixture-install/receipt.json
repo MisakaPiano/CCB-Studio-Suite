@@ -1,0 +1,48 @@
+{
+  "build": {
+    "task": "UX-R4",
+    "status": "BUILT",
+    "sourceSha": "271eef55fcd7d3421f3cd93eb227f8d54889e78d",
+    "appBuildSourceSha": "3bea16b7405d1c1890d840e76ff3dee759faad5c",
+    "version": 100,
+    "channel": "preview",
+    "displayVersion": "0.3.0-preview.1",
+    "compiler": "NSIS3.13",
+    "exitCode": 0,
+    "files": 547,
+    "installed": "NOT TESTED",
+    "bytes": 167322649,
+    "sha256": "68fc84ebc286d188bb5aa6ad9ed3e7a87f9d4a932c57bf21c552b39692c733b9"
+  },
+  "applicationLaunched": false,
+  "realGitHubUpdate": "NOT TESTED",
+  "formalKeysCreated": false,
+  "tests": [
+    {
+      "name": "long-path",
+      "exitCode": 19,
+      "expected": 19,
+      "seconds": 0.3818959000054747
+    },
+    {
+      "name": "fresh-install",
+      "exitCode": 0,
+      "expected": 0,
+      "seconds": 2.397794399992563
+    },
+    {
+      "name": "occupied-refusal",
+      "exitCode": 17,
+      "expected": 17,
+      "seconds": 0.38655589999689255
+    }
+  ],
+  "verification": {
+    "files": 547,
+    "bytes": 251091602,
+    "manifestSha256": "3ddc2f991d52de97fe0b26c843b6c4ae29b96b621b75b11ed7566070fb8d03fe"
+  },
+  "occupiedFilesUnchanged": 668,
+  "isolatedRuntimeImports": "PASS",
+  "status": "PASS"
+}

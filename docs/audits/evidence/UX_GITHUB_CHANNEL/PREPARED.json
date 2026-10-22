@@ -1,0 +1,86 @@
+{
+  "scope": "SYNTHETIC A/B CHANNEL VALIDATION ONLY",
+  "repository": "MisakaPiano/CCB-Studio-Suite-Releases",
+  "privateKeys": "MEMORY_ONLY_DISCARDED_ON_EXIT",
+  "published": false,
+  "builds": [
+    {
+      "version": 100,
+      "tag": "v0.0.0-preview.100",
+      "asset": "CCB-Studio-Suite-channel-test-100.exe",
+      "receipt": {
+        "task": "UX-R4",
+        "status": "BUILT",
+        "sourceSha": "271eef55fcd7d3421f3cd93eb227f8d54889e78d",
+        "appBuildSourceSha": "3bea16b7405d1c1890d840e76ff3dee759faad5c",
+        "version": 100,
+        "channel": "preview",
+        "displayVersion": "0.0.0-preview.100",
+        "compiler": "NSIS3.13",
+        "exitCode": 0,
+        "files": 547,
+        "installed": "NOT TESTED",
+        "bytes": 167322647,
+        "sha256": "947bb931851671292e4a414d42cdfdf6da4aed5e20e8e7dcd804334a9c2564c1"
+      },
+      "metadata": {
+        "generation": "df961519e8f14b0f97ca04eb439f477e",
+        "repository": "MisakaPiano/CCB-Studio-Suite-Releases",
+        "channel": "preview",
+        "rootVersion": 1,
+        "timestampVersion": 1,
+        "releaseVersion": 100,
+        "files": {
+          "1.root.json": "d58d61ec67ef259df562f8b73f2d38f85cb9b21b05898ff7076d334e04230195",
+          "1.snapshot.json": "2adf0bb1386cb3e97c229f327ba854894f186d5f3062be7f886c14a3d424a22e",
+          "1.targets.json": "53527753cfad0262f0c387ff4967922519f1ef158e8121a0f90658256a28dc60",
+          "snapshot.json": "2adf0bb1386cb3e97c229f327ba854894f186d5f3062be7f886c14a3d424a22e",
+          "targets.json": "53527753cfad0262f0c387ff4967922519f1ef158e8121a0f90658256a28dc60",
+          "timestamp.json": "45419b19379b1caa5c8628765e9fe676a39b36397e82c166c7940234bb59875a"
+        },
+        "status": "PREPARED_NOT_PUBLISHED",
+        "publishLast": "timestamp.json"
+      }
+    },
+    {
+      "version": 101,
+      "tag": "v0.0.0-preview.101",
+      "asset": "CCB-Studio-Suite-channel-test-101.exe",
+      "receipt": {
+        "task": "UX-R4",
+        "status": "BUILT",
+        "sourceSha": "271eef55fcd7d3421f3cd93eb227f8d54889e78d",
+        "appBuildSourceSha": "3bea16b7405d1c1890d840e76ff3dee759faad5c",
+        "version": 101,
+        "channel": "preview",
+        "displayVersion": "0.0.0-preview.101",
+        "compiler": "NSIS3.13",
+        "exitCode": 0,
+        "files": 547,
+        "installed": "NOT TESTED",
+        "bytes": 167322654,
+        "sha256": "94f041c85aed935c11e2bc2eb1df5879d45e460f289380e01559df5861017a28"
+      },
+      "metadata": {
+        "generation": "3db951a726be4520aa26b36e8c809dfa",
+        "repository": "MisakaPiano/CCB-Studio-Suite-Releases",
+        "channel": "preview",
+        "rootVersion": 1,
+        "timestampVersion": 2,
+        "releaseVersion": 101,
+        "files": {
+          "1.root.json": "d58d61ec67ef259df562f8b73f2d38f85cb9b21b05898ff7076d334e04230195",
+          "1.snapshot.json": "2adf0bb1386cb3e97c229f327ba854894f186d5f3062be7f886c14a3d424a22e",
+          "1.targets.json": "53527753cfad0262f0c387ff4967922519f1ef158e8121a0f90658256a28dc60",
+          "2.snapshot.json": "cc4e45b8cd04be59774df676c67f57b28ed517de93b496e390d86667af9496fd",
+          "2.targets.json": "d81413ead9d2535b3a9b4383672e9c8f5d179afc1055693070a2bac09b722216",
+          "snapshot.json": "cc4e45b8cd04be59774df676c67f57b28ed517de93b496e390d86667af9496fd",
+          "targets.json": "d81413ead9d2535b3a9b4383672e9c8f5d179afc1055693070a2bac09b722216",
+          "timestamp.json": "f4d0e098fe4559fc609131794ccdc7602eb7ffea0566110b829112a5dfea52f3"
+        },
+        "status": "PREPARED_NOT_PUBLISHED",
+        "publishLast": "timestamp.json"
+      }
+    }
+  ]
+}
