@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-23",
+  "timezone": "Asia/Tokyo",
+  "source": "Explicit user reply in this chat; no user images, prompts or credentials read or copied",
+  "reviewedCommit": "cc93735a3d29d733d78dc3be684e1a1f3b06824f",
+  "reviewedBuildEvidence": "20261022T222631749095Z-collection-drain-and-recovery-final",
+  "reviewedPackage": "PACKAGE_FILES.json",
+  "startup": "Start-library-recovery-review.lnk with --pause-collections",
+  "userReply": "正常打开，配置、目录和已入库图片可见",
+  "accepted": [
+    "Recovery package opens with automatic collection paused",
+    "Account, gallery and directory pages can be switched normally",
+    "Saved configuration, registered directories and admitted pictures are visible"
+  ],
+  "notAcceptedByThisReply": [
+    "Resumed automatic collection or full original directory scan",
+    "Native collection progress, stop and drain interaction",
+    "Complete or byte-exact recovery of all user assets",
+    "New APNG cover presets and automatic preview interaction",
+    "Full multi-source Prompt comparison",
+    "Complete editing/export/restore or AI design/generation workflow"
+  ]
+}
