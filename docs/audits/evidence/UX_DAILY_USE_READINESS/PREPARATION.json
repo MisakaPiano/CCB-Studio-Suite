@@ -1,0 +1,28 @@
+{
+  "status": "AUTOMATED_PREPARATION_AND_PROVENANCE_PASS",
+  "head": "120a742b331a233d64ed6690c0aeef3e86c327d8",
+  "packageVersion": 103,
+  "packageSourceSha": "bebc78c6f36f3c026c362b48a335cc5a7b28f0d8",
+  "metadataBranch": "long-term-metadata",
+  "packageRootSha256": "408008d80aeb2dd3844325d74f09da9d248733e220dd88c08cc6299c4a24cc7a",
+  "installation": {
+    "files": 547,
+    "bytes": 251092053,
+    "manifestSha256": "fe1f5f5714f07add91b1535c2300371f7dc3fc6af56e54f914fdcc1bb12ed38f"
+  },
+  "moduleSourceFilesUnchanged": 332,
+  "unexpectedSigningFiles": [],
+  "inputs": {
+    "synthetic-1.png": {
+      "bytes": 131331,
+      "sha256": "5a75d7fd154d4056c4d46fdc430bfef78f06a4b2e912e0fc06346201ef9eada1"
+    },
+    "synthetic-2.png": {
+      "bytes": 131306,
+      "sha256": "dd6b6f1b765308f5c36ac5f9d78783681a42ba84a01ec80c80986b7691b85f36"
+    }
+  },
+  "humanAcceptance": "NOT TESTED",
+  "realProviderCalls": 0,
+  "privateDataAccess": false
+}

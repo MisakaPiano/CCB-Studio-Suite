@@ -69,3 +69,7 @@
 ### 2026-10-22 长期渠道102/103升级验证授权
 
 用户要求将新安装包接入长期签名并完整验证，表示约20分钟后暂离、需要操作尽早告知。两份包完成构建与安装核验后，用户明确允许向 MisakaPiano/CCB-Studio-Suite-Releases 发布 0.0.0-preview.102/.103 两份预发布测试包（各159.6 MiB）、测试说明/版权声明和 long-term-metadata 配套签名目标。仅隔离合成资料，不作为日常正式版；人工升级与重启获授权，原100/101测试渠道保持不变。
+
+### 2026-10-22 用户离席与额度 checkpoint
+
+用户要求继续核对首个日常版缺口，能自动完成的继续；人工项目只列清单，待返回后再做。随后要求额度耗尽前留下checkpoint。已完成45项更新/恢复回归与安装来源核对，无新生产改动/包发布。接续入口docs/rc/FIRST_DAILY_USE_READINESS.md、docs/rc/DAILY_USE_MANUAL_CHECKLIST.md、docs/audits/UX_DAILY_USE_READINESS.md；用户返回前不发起人工操作或真实API。下一步先图库/编辑/导出组，已通过长期102→103链路不重做。

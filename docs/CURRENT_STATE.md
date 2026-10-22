@@ -1,3 +1,6 @@
+## 日常版条件核对 checkpoint（2026-10-22）
+
+[剩余条件](rc/FIRST_DAILY_USE_READINESS.md)、[返回后的人工清单](rc/DAILY_USE_MANUAL_CHECKLIST.md)、[自动补验](audits/UX_DAILY_USE_READINESS.md)已保存。最新45项更新/恢复回归通过；103安装547文件和332模块源码核对、105声明匹配、两张合成图片及接收目录准备完成。用户离开电脑且要求保留checkpoint：不开始人工测试/真实API，不重复已通过102→103。下一步用户回来做图库/编辑/导出组，实际提供者最后另确认范围。PRODUCT_HOLD / NOT RC。
 ## 长期签名102→103完整升级通过（2026-10-22）
 
 [实际记录](audits/UX_LONGTERM_UPGRADE.md)：经用户明确授权发布102/103测试包，长期根真实GitHub应用内下载、安装重启、资料核验及再次检查最新通过；A/B各547文件、10条合成资产与状态快照一致，原备份未变。用户确认并提交103最新截图。44项回归通过，发布目标后的续签工作流成功并回读验证。[Desktop参考报告](rc/WINDOWS_UPDATE_REFERENCE.md)已补充长期渠道来源。无需追加人工操作；首个日常版产品验收、自然定时触发和跨机恢复未完成，PRODUCT_HOLD / NOT RC。
