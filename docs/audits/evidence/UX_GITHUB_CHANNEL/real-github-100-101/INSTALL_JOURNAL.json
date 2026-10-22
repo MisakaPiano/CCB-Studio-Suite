@@ -1,0 +1,18 @@
+{
+  "status": "INSTALLED_NOT_STARTED",
+  "target": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\github-real-100-101\\applications\\101-271eef55fcd7",
+  "stage": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\github-real-100-101\\applications\\101-271eef55fcd7.cf68120497f64feda9cc794dc00cd35b.installing",
+  "expected": {
+    "product": "ccb-studio-suite",
+    "platform": "windows-x86_64",
+    "channel": "preview",
+    "version": 101,
+    "sourceSha": "271eef55fcd7d3421f3cd93eb227f8d54889e78d"
+  },
+  "dataModified": false,
+  "verification": {
+    "files": 547,
+    "bytes": 251091625,
+    "manifestSha256": "09d858eaa84d896d453a143f38f053e319f54c39d6aeb47800809dab69846fc3"
+  }
+}

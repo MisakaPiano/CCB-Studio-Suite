@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "scope": "REAL_PUBLIC_GITHUB_APPLICATION_100_TO_101_SYNTHETIC_WORKSPACE",
+  "handoff": "915cb53c-21ab-413e-9472-794413599900",
+  "sourceSha": "271eef55fcd7d3421f3cd93eb227f8d54889e78d",
+  "snapshotEqual": true,
+  "assetsVerified": 10,
+  "stateSha256": "f86215354f246a43984c9a31adbf7aef323dd40a86ccf24f0fddbaab9fec300c",
+  "credentials": [
+    {
+      "ref": "6189c523-64e9-42e3-93c3-5e5c9c6d3daf",
+      "status": "MISSING_BEFORE_UPDATE"
+    }
+  ],
+  "installations": {
+    "A": {
+      "files": 547,
+      "bytes": 251091625,
+      "manifestSha256": "422a8cd09d04042a877a18206ca9279516dda83db208a6a8eb820df1bb4f974a"
+    },
+    "B": {
+      "files": 547,
+      "bytes": 251091625,
+      "manifestSha256": "09d858eaa84d896d453a143f38f053e319f54c39d6aeb47800809dab69846fc3"
+    }
+  },
+  "installerSha256": "94f041c85aed935c11e2bc2eb1df5879d45e460f289380e01559df5861017a28",
+  "originalBackupUnchanged": true,
+  "dataModifiedByInstaller": false,
+  "dataRoot": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\github-real-100-101\\restored-workspace",
+  "userEvidence": "Seven screenshots: candidate, downloading, verified, confirmation, B startup success, check, UP_TO_DATE 101",
+  "longTermChannel": "NOT_DEPLOYED: ephemeral test keys discarded",
+  "overallProduct": "PRODUCT_HOLD / NOT RC"
+}

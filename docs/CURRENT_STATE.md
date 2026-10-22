@@ -1,3 +1,7 @@
+## 真实 GitHub 应用内升级已验证（2026-10-22）
+
+[Desktop 参考报告](rc/WINDOWS_UPDATE_REFERENCE.md)：经用户授权发布测试包后，真实公开 GitHub 100→101 下载、安装、重启、再次检查最新版本完成。A/B 各547文件、10条合成资产与整体状态快照核验通过；原备份未变，原本缺失的凭据仍未配置。人工截图及 COMPLETE 交接证据完整保留；首次夹具误用备份目录导致 FOREIGN_ROOT 的失败也已记录。长期密钥/续签尚未部署，本批是一次性测试信任；PRODUCT_HOLD / NOT RC。
+
 ## GitHub 渠道实现与本地安装验证（2026-10-22）
 
 [实施记录](audits/UX_GITHUB_CHANNEL.md)：39 项实际通过，公共 GitHub 传输、共用安装前复核、preview 打包和持久元数据准备已实现；实际 A/B 安装器通过合成传输下载/安装，旧程序与合成资料未变。真实 GitHub 发布/重启尚未验证，正式密钥未建立；不提供完整成功的 Desktop 报告。用户已授权并完成公开发行仓库仅 README 创建；已回读核验，无 Release/安装包，源码仓库权限未变。PRODUCT_HOLD / NOT RC。

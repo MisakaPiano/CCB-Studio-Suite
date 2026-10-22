@@ -1,5 +1,21 @@
 # GitHub 长期渠道实施记录
 
+## 最终实机结果：本次真实升级链路 PASS
+
+用户完成实际检查、下载、安装与重启并提交七张截图，最后一张确认 101 已是最新版本。交接 `915cb53c-21ab-413e-9472-794413599900` 为 COMPLETE / B_PROGRAM_DATA_AND_CREDENTIAL_SNAPSHOT_MATCH；独立回读 A/B 各547文件、10条资产字节、整体状态快照一致，备份源未变。凭据一项在 A/B 均为 MISSING_BEFORE_UPDATE。见 [ACTUAL_RESULT](evidence/UX_GITHUB_CHANNEL/real-github-100-101/ACTUAL_RESULT.json) 与 [Desktop 参考报告](../rc/WINDOWS_UPDATE_REFERENCE.md)。以下阶段记录保留其当时状态；当前无需继续保留测试窗口。长期钥匙/续签、日常版本与整体产品验收仍未完成，不升级为 RC。
+
+## 真实公开 GitHub 验证进展（2026-10-22，后续执行）
+
+用户已明确授权两份测试包和配套元数据公开发布。两份 prerelease 发布并回读：100（Release 420579234）和 101（420579506），8 份元数据原子发布到 `update-metadata` 提交 `f2ab4c5a5cecaf458e875d565062bfdf99b6dea4`。安装器与说明附件的 GitHub digest/大小均核对；源码仓库可见性未变。签名仍为已丢弃私钥的一次性测试信任根，timestamp 到期为 2026-10-29T09:52:41Z，不能冒充长期渠道部署完成。
+
+附带 105 项许可证/版权记录压缩包（从实际 payload/JAR 提取及现有 Skiko/Skia notices）；保留 native transitive 归属审查限制，不宣称完整法务审查或免责。两份包明确为非日常使用版，无 Windows 发布者代码签名。
+
+真实公开 HTTPS 下载 A 后，新目录安装，547 文件/251091625 字节核验通过；实际安装的 Python/TUF 更新器从真实 GitHub 签名元数据取得 B，完成 167322654 字节下载与验证（DOWNLOADED_VERIFIED）。没有注入本地响应。首次 setup 使用系统 Python 缺 TUF，在任何下载/安装前失败；改为随包运行时执行。
+
+人工启动首次失败 FOREIGN_ROOT：测试准备脚本错误地将备份直接复制为工作区，产品正确拒绝；失败目录与截图保留。改为调用实际已安装 JAR 的 StudioRestore 正式恢复方法，在新 `restored-workspace` 完整恢复；这不是手动写 marker 或放宽入口校验。用户截图确认 A 主界面与合成图片已载入。用户第一次“已重启”答复经进程/目录核对仅为 A 启动，不能登记升级 PASS；已明确继续实际更新步骤。资料来源是此前已核验合成备份，凭据原本被备份排除。
+
+本节暂为等待应用内安装重启/资料核验的阶段证据，非完整成功报告。证据见 `evidence/UX_GITHUB_CHANNEL/real-github-100-101/`。历史段落中的未授权/未发布状态按当时阶段保留。
+
 2026-10-22。起点 `e9c261f692372718ff5fbc438b032e1f4748bd98`，当前开发分支；本轮开工 index/worktree/untracked 干净。用户明确继续按方案实现并可配合人工测试。尚未授权外部发布或创建正式发行密钥。PRODUCT_HOLD / NOT RC 不变。
 
 ## 已实现
