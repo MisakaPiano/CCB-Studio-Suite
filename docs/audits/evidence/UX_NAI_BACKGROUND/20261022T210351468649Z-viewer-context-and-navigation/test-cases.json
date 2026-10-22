@@ -1,0 +1,38 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAlbumWorkflowTest",
+    "name": "sourceAlbumsNavigateSelectFilterAndPersistDepthPreferencesWithoutChangingRecipes",
+    "seconds": "9.346",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "animatedGifRetainsTwoFrameColorsTimingAndLoopAfterDisguiseRestore",
+    "seconds": "0.141",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "actualWorkspacePreviewRestoreBatchCopyAndReopenPreserveOriginals",
+    "seconds": "4.659",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "failedBatchKeepsUnpublishedEvidenceAndNeverOverwritesPriorOutput",
+    "seconds": "0.497",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryWorkflowTest",
+    "name": "gridFilterTwoImageComparisonCopyAndMetadataReuseKeepOriginals",
+    "seconds": "7.44",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioAssetViewerTest",
+    "name": "hoverAndContextActionsUseTheViewedImageAndPreserveExistingProject",
+    "seconds": "2.05",
+    "status": "PASS"
+  }
+]

@@ -1,0 +1,110 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "selectingMultipleCoverPresetsResetsPlaybackAndPreviewAndControlsExports",
+    "seconds": "21.91",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "animatedGifRetainsTwoFrameColorsTimingAndLoopAfterDisguiseRestore",
+    "seconds": "0.111",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "automaticPreviewRejectsSupersededWorkAndShutdownDrainsIt",
+    "seconds": "2.443",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "thumbnailStripStartsAtLatestAndSelectingAnOlderImageUpdatesPreviewAutomatically",
+    "seconds": "19.465",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "actualWorkspacePreviewRestoreBatchCopyAndReopenPreserveOriginals",
+    "seconds": "11.8",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "failedBatchKeepsUnpublishedEvidenceAndNeverOverwritesPriorOutput",
+    "seconds": "1.128",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "staticDisguisePreviewIsTheChosenCoverAndPlaybackKeepsTheContent",
+    "seconds": "0.1",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest",
+    "name": "legacyBackupRestoresThenCopiesToCurrentFormatWithoutTouchingBackup",
+    "seconds": "13.348",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest",
+    "name": "restoreRejectsCurrentRootExistingDestinationAndCorruptBackupWithoutPublishing",
+    "seconds": "5.394",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest",
+    "name": "sourceAndDestinationAreSeparateAndLatestBackupCannotBeConfusedWithEmptyParent",
+    "seconds": "2.888",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest",
+    "name": "currentWorkbenchBackupConfirmRestoreAndOpenPreservesSharedAssetsWithoutCredentials",
+    "seconds": "47.605",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest",
+    "name": "unknownAndNonFiniteAllowanceNeverPretendToBeFull",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest",
+    "name": "singleUserDefaultHasNoFiveMinuteOrHourlyReservationGate",
+    "seconds": "3.633",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest",
+    "name": "catalogTaskReturnsToWorkbenchWithoutBlockingEditingAndDrainsBeforeMaintenance",
+    "seconds": "27.652",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest",
+    "name": "actualBundledChineseAnnotationsKeepTheRawPrompt",
+    "seconds": "7.4",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest",
+    "name": "naiAccountDoesNotOwnGenerationModelAndOnlyV5ShowsAllowance",
+    "seconds": "10.423",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest",
+    "name": "buttonShowsAuthoritativeCostIncludingExtraFeesWithoutPromisingUnknownQuotaIsFree",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioAssetViewerTest",
+    "name": "hoverAndContextActionsUseTheViewedImageAndPreserveExistingProject",
+    "seconds": "15.708",
+    "status": "PASS"
+  }
+]

@@ -1,0 +1,116 @@
+[
+  {
+    "suite": "com.example.chatbar.desktop.DesktopNovelAiCatalogUpdateTest",
+    "name": "official shared checker pins download to commit and compares blob rather than commit sha",
+    "seconds": "0.288",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopNovelAiCatalogUpdateTest",
+    "name": "cancellation and schema failure retain durable authority and remove only staged files",
+    "seconds": "1.935",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopNovelAiCatalogUpdateTest",
+    "name": "catalog update builds shared ranking before durable switch and corrupt authority is retained",
+    "seconds": "2.245",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.AccountRolesTest",
+    "name": "separateSelectionsAreVisibleAndPersistWithoutStaleEditorOverwrite",
+    "seconds": "3.425",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.DetachedDesignTest",
+    "name": "stopLabelsAlwaysDescribeTheActiveTask",
+    "seconds": "0.134",
+    "status": "FAILED"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.DetachedDesignTest",
+    "name": "detachingReattachingAndClosingRetainUnsentInputAndNeverSend",
+    "seconds": "0.958",
+    "status": "FAILED"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest",
+    "name": "unknownAndNonFiniteAllowanceNeverPretendToBeFull",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest",
+    "name": "catalogTaskReturnsToWorkbenchWithoutBlockingEditingAndDrainsBeforeMaintenance",
+    "seconds": "1.302",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest",
+    "name": "actualBundledChineseAnnotationsKeepTheRawPrompt",
+    "seconds": "0.847",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest",
+    "name": "naiAccountDoesNotOwnGenerationModelAndOnlyV5ShowsAllowance",
+    "seconds": "2.005",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest",
+    "name": "buttonShowsAuthoritativeCostIncludingExtraFeesWithoutPromisingUnknownQuotaIsFree",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "roleEditingReorderDisableAndDeleteReachRequestAndSurviveReopen",
+    "seconds": "7.557",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "creationFooterAndImageSummaryAdaptWithoutLosingDraftOrSelection",
+    "seconds": "2.643",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "accountRefreshAndNewSelectionNeverReuseAnotherAccountsQuota",
+    "seconds": "3.391",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "continuousGenerationCompletesRemainderStopsAndRetainsPartialResultsWithoutReplay",
+    "seconds": "5.494",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "editedAssetIsSelectableAcrossGuidanceAndEditorAndSurvivesRestart",
+    "seconds": "4.513",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "measuredSuiteNavigationSurvivesResizeAndUnsentInput",
+    "seconds": "2.817",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "continuedEditingRetainsExistingAssetsAndCredentials",
+    "seconds": "1.11",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "accountsDesignApplyGenerateGalleryAndRestart",
+    "seconds": "12.275",
+    "status": "PASS"
+  }
+]

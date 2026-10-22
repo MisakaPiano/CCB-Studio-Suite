@@ -1,0 +1,92 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.DesignPromptReferenceTest",
+    "name": "candidateAndStandaloneReferencesPreserveRawRolesAndDraftWithoutSending",
+    "seconds": "1.575",
+    "status": "FAILED"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.DetachedDesignTest",
+    "name": "stopLabelsAlwaysDescribeTheActiveTask",
+    "seconds": "1.388",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.DetachedDesignTest",
+    "name": "detachingReattachingAndClosingRetainUnsentInputAndNeverSend",
+    "seconds": "0.934",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.PromptReferenceWorkflowTest",
+    "name": "imagePreviewBoardRealRoleDragExtractionAndRestartKeepSourceIdentity",
+    "seconds": "16.826",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.PromptReferenceWorkflowTest",
+    "name": "missingOrUnverifiableImagePromptCannotBecomeFalseCompleteReference",
+    "seconds": "0.436",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.PromptReferenceWorkflowTest",
+    "name": "editedImageUsesVerifiedSourcePromptWithoutClaimingAnUneditedResult",
+    "seconds": "3.911",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.PromptReferenceWorkflowTest",
+    "name": "narrowBoardScrollsSourcesAndEmptyPromptFieldsDoNotConsumeRows",
+    "seconds": "2.162",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "roleEditingReorderDisableAndDeleteReachRequestAndSurviveReopen",
+    "seconds": "6.057",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "creationFooterAndImageSummaryAdaptWithoutLosingDraftOrSelection",
+    "seconds": "2.537",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "accountRefreshAndNewSelectionNeverReuseAnotherAccountsQuota",
+    "seconds": "3.088",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "continuousGenerationCompletesRemainderStopsAndRetainsPartialResultsWithoutReplay",
+    "seconds": "5.483",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "editedAssetIsSelectableAcrossGuidanceAndEditorAndSurvivesRestart",
+    "seconds": "3.812",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "measuredSuiteNavigationSurvivesResizeAndUnsentInput",
+    "seconds": "2.843",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "continuedEditingRetainsExistingAssetsAndCredentials",
+    "seconds": "1.257",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "accountsDesignApplyGenerateGalleryAndRestart",
+    "seconds": "13.33",
+    "status": "PASS"
+  }
+]

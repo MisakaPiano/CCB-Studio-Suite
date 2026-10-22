@@ -5704,11 +5704,16 @@
         }
       ],
       "uiLabels": [],
-      "implementationStatus": "SOURCE_PRESENT_UNVERIFIED",
+      "implementationStatus": "PARTIAL_REQUIRES_ACTION_REVIEW",
       "suiteTargets": [
-        "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopImageTools.kt"
+        "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopImageTools.kt",
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryAnimation.kt",
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/DisguiseCovers.kt"
       ],
-      "evidence": [],
+      "evidence": [
+        "docs/audits/UX_EDITOR_CLARITY.md",
+        "docs/audits/UX_APNG_COVERS.md"
+      ],
       "humanAcceptance": "NOT_SIGNED_OFF_FOR_WHOLE_SOURCE_UNIT",
       "sourceKind": "desktop-development"
     },
@@ -5880,9 +5885,13 @@
           "label": "删除这张聊天图片？"
         }
       ],
-      "implementationStatus": "NOT_MAPPED",
-      "suiteTargets": [],
-      "evidence": [],
+      "implementationStatus": "PARTIAL_REQUIRES_ACTION_REVIEW",
+      "suiteTargets": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioAssetViewer.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_NAI_BACKGROUND.md"
+      ],
       "humanAcceptance": "NOT_SIGNED_OFF_FOR_WHOLE_SOURCE_UNIT",
       "sourceKind": "desktop-development"
     },
@@ -7236,7 +7245,8 @@
         "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiCatalog.kt"
       ],
       "evidence": [
-        "docs/audits/UX_NAI_SETTINGS.md"
+        "docs/audits/UX_NAI_SETTINGS.md",
+        "docs/audits/UX_NAI_BACKGROUND.md"
       ],
       "humanAcceptance": "NOT_SIGNED_OFF_FOR_WHOLE_SOURCE_UNIT",
       "sourceKind": "desktop-development"
@@ -7343,7 +7353,8 @@
         "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiCatalogUpdate.kt"
       ],
       "evidence": [
-        "docs/audits/UX_NAI_SETTINGS.md"
+        "docs/audits/UX_NAI_SETTINGS.md",
+        "docs/audits/UX_NAI_BACKGROUND.md"
       ],
       "humanAcceptance": "NOT_SIGNED_OFF_FOR_WHOLE_SOURCE_UNIT",
       "sourceKind": "desktop-development"
@@ -10909,9 +10920,13 @@
           "label": "Viewer 图片区域"
         }
       ],
-      "implementationStatus": "NOT_MAPPED",
-      "suiteTargets": [],
-      "evidence": [],
+      "implementationStatus": "PARTIAL_REQUIRES_ACTION_REVIEW",
+      "suiteTargets": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioAssetViewer.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_NAI_BACKGROUND.md"
+      ],
       "humanAcceptance": "NOT_SIGNED_OFF_FOR_WHOLE_SOURCE_UNIT",
       "sourceKind": "desktop-development"
     },
@@ -19335,7 +19350,8 @@
         "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiRankedIndexBuilder.kt"
       ],
       "evidence": [
-        "docs/audits/UX_NAI_SETTINGS.md"
+        "docs/audits/UX_NAI_SETTINGS.md",
+        "docs/audits/UX_NAI_BACKGROUND.md"
       ],
       "humanAcceptance": "NOT_SIGNED_OFF_FOR_WHOLE_SOURCE_UNIT",
       "sourceKind": "desktop-development"
@@ -21332,7 +21348,8 @@
         "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/update/SharedDanbooruCatalogUpdateChecker.kt"
       ],
       "evidence": [
-        "docs/audits/UX_NAI_SETTINGS.md"
+        "docs/audits/UX_NAI_SETTINGS.md",
+        "docs/audits/UX_NAI_BACKGROUND.md"
       ],
       "humanAcceptance": "NOT_SIGNED_OFF_FOR_WHOLE_SOURCE_UNIT",
       "sourceKind": "desktop-development"

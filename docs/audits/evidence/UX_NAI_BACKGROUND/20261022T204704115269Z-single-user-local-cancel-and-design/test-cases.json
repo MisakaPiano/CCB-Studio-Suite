@@ -1,0 +1,242 @@
+[
+  {
+    "suite": "com.example.chatbar.desktop.DesktopNovelAiCatalogUpdateTest",
+    "name": "official shared checker pins download to commit and compares blob rather than commit sha",
+    "seconds": "0.033",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopNovelAiCatalogUpdateTest",
+    "name": "cancellation and schema failure retain durable authority and remove only staged files",
+    "seconds": "1.828",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopNovelAiCatalogUpdateTest",
+    "name": "catalog update builds shared ranking before durable switch and corrupt authority is retained",
+    "seconds": "2.287",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.AccountRolesTest",
+    "name": "separateSelectionsAreVisibleAndPersistWithoutStaleEditorOverwrite",
+    "seconds": "3.35",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.DetachedDesignTest",
+    "name": "stopLabelsAlwaysDescribeTheActiveTask",
+    "seconds": "2.674",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.DetachedDesignTest",
+    "name": "detachingReattachingAndClosingRetainUnsentInputAndNeverSend",
+    "seconds": "1.176",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest",
+    "name": "legacyBackupRestoresThenCopiesToCurrentFormatWithoutTouchingBackup",
+    "seconds": "9.157",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest",
+    "name": "restoreRejectsCurrentRootExistingDestinationAndCorruptBackupWithoutPublishing",
+    "seconds": "2.742",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest",
+    "name": "sourceAndDestinationAreSeparateAndLatestBackupCannotBeConfusedWithEmptyParent",
+    "seconds": "1.287",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest",
+    "name": "currentWorkbenchBackupConfirmRestoreAndOpenPreservesSharedAssetsWithoutCredentials",
+    "seconds": "14.883",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest",
+    "name": "unknownAndNonFiniteAllowanceNeverPretendToBeFull",
+    "seconds": "0.004",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest",
+    "name": "singleUserDefaultHasNoFiveMinuteOrHourlyReservationGate",
+    "seconds": "0.421",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest",
+    "name": "catalogTaskReturnsToWorkbenchWithoutBlockingEditingAndDrainsBeforeMaintenance",
+    "seconds": "1.433",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest",
+    "name": "actualBundledChineseAnnotationsKeepTheRawPrompt",
+    "seconds": "0.872",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest",
+    "name": "naiAccountDoesNotOwnGenerationModelAndOnlyV5ShowsAllowance",
+    "seconds": "2.401",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest",
+    "name": "buttonShowsAuthoritativeCostIncludingExtraFeesWithoutPromisingUnknownQuotaIsFree",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "newTextAutomaticallyContinuesStyleAcrossPagesAndRestartWithoutCopyingContent",
+    "seconds": "8.683",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "namedProjectLiveVerticalEditingHistoryAndRestart",
+    "seconds": "13.307",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "functionalAndInlineColorsPreviewExportAndReopenWithoutSilentFallback",
+    "seconds": "4.167",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "pointerDrawnMasksChangeEffectSaveUndoAndReopen",
+    "seconds": "7.139",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "unreadablePreviewExplainsFontFailureAndOriginalRemainsViewable",
+    "seconds": "0.536",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "storyCustomControlsSelectedAndAllStylesPreserveCaptionsAndUndoAsOneBatch",
+    "seconds": "10.224",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "webpPreviewExportAndOriginalReopen",
+    "seconds": "3.079",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "continuousMaskDefaultsRespectPerPageSettings",
+    "seconds": "1.315",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "fourCategoryPreviewCopiesCompleteFileDeckWithoutSystemClipboard",
+    "seconds": "6.679",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "durableDefaultFontLoadsOnFirstTextPreviewWithColdCache",
+    "seconds": "3.224",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "fullPreviewKeyboardAndExportDeckKeepEditorStateAndFitNarrowWindow",
+    "seconds": "3.467",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "maximumQueueWidthCannotStarveCanvasAndSurvivesReopen",
+    "seconds": "2.251",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "exportShowsRealPageProgressStopsWithoutPublishingAndRetriesExplicitly",
+    "seconds": "5.476",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "storyCaptionPresetPreviewExportAndRestart",
+    "seconds": "4.612",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "sourceExchangePreviewConfirmExportAndReopen",
+    "seconds": "3.103",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+    "name": "queueControlSelectionDragOrderNumberingAndRestart",
+    "seconds": "6.079",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "roleEditingReorderDisableAndDeleteReachRequestAndSurviveReopen",
+    "seconds": "5.926",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "creationFooterAndImageSummaryAdaptWithoutLosingDraftOrSelection",
+    "seconds": "2.508",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "accountRefreshAndNewSelectionNeverReuseAnotherAccountsQuota",
+    "seconds": "3.054",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "continuousGenerationCompletesRemainderStopsAndRetainsPartialResultsWithoutReplay",
+    "seconds": "5.344",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "editedAssetIsSelectableAcrossGuidanceAndEditorAndSurvivesRestart",
+    "seconds": "3.746",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "measuredSuiteNavigationSurvivesResizeAndUnsentInput",
+    "seconds": "2.826",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "continuedEditingRetainsExistingAssetsAndCredentials",
+    "seconds": "1.051",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "accountsDesignApplyGenerateGalleryAndRestart",
+    "seconds": "11.839",
+    "status": "PASS"
+  }
+]

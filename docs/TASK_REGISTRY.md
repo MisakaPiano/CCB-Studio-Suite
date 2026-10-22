@@ -1,3 +1,11 @@
+## 2026-10-23 APNG封面与自动预览接续
+
+用户追加多套自定义伪装封面、恢复默认、默认静止封面效果、免手点自动预览及当前批次缩略图定位最新。见[实现/验证](audits/UX_APNG_COVERS.md)，保持原件和共享编解码器，原生新交互待签收。新包与快捷方式以该记录最终段为准；先前studio-usability-review为已签收查看器/设计窗口的阶段包。[Desktop报告](rc/DESKTOP_DANBOORU_STATUS_REFERENCE.md)包含词库状态、查看器右键、自定义封面及自动预览边界。PRODUCT_HOLD / NOT RC。
+
+## 2026-10-23 NAI人工澄清与后台/费用整理
+
+用户已确认真实词库更新/检查最新、注释/补全、V5体力及一次NAI生图。完成独立后台词库、单一生图模型/紧凑顶部/动态费用、独立AI设计窗口，取消单机固定频率门槛与全局停止，保留各任务就地取消。补齐AI候选/文字直接加入多Prompt参照、查看器悬浮翻页/右键/当前图编辑及APNG入口。[实现与逐轮证据](audits/UX_NAI_BACKGROUND.md)保留40项、15项、6项及收尾定向结果（有重叠，不累加为独立总数）；用户已确认查看器入口、独立AI窗口和动态显示正常；封面/自动预览新交互仍待测。阶段新包快捷方式为 `.local/windows-rc/studio-usability-review/Start-studio-usability-review.lnk`，220文件逐项核对，不公开发布。[Desktop转交报告](rc/DESKTOP_DANBOORU_STATUS_REFERENCE.md)同时包含词库状态和大图右键；[重点多Prompt人工单](rc/PROMPT_COMPARISON_MANUAL_ACCEPTANCE.md)之后单独验收。三类能力底表已同步Suite30项，仍不是全量语义签收。PRODUCT_HOLD / NOT RC；邀请版剩余连贯编辑/交付/恢复、多Prompt专项、完整创作来源重开闭环和固定安装候选。
+
 ## 2026-10-23 NAI配置、Danbooru词库与V5体力
 
 [实现及证据](audits/UX_NAI_SETTINGS.md)：NAI账户与本次生图模型分开；新增创作设置及校验后原子词库更新，中文注释实际连接本地词库；V5显示服务返回的Opus体力，未知不冒充满格。30项回归和最终7项定向复验实际通过，220文件固定本地包逐项核验，快捷方式参数已核对，真实网络词库/V5额度与新界面人工尚未验收。无新公开包，PRODUCT_HOLD / NOT RC。

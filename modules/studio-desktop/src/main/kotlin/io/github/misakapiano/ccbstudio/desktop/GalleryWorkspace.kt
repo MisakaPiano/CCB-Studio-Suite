@@ -89,6 +89,7 @@ internal class GalleryViewState {
     Column(Modifier.fillMaxSize().galleryIngress(c).padding(12.dp),verticalArrangement=Arrangement.spacedBy(8.dp)){
         StudioActions{StudioAction("导入图片",!c.busy){c.importImages()};StudioAction("粘贴图片",!c.busy){if(!c.pasteImages())c.problem="剪贴板没有图片或文件列表；文字请粘贴到输入框"};StudioAction("返回创作"){c.view="创作"}}
         c.library.archiveError?.let{Text(it,color=MaterialTheme.colors.error)}
+        if(c.busy&&c.activeOperation=="导入图片")StudioAction("停止导入图片"){c.active?.cancel()}
         SharedDocumentAssets(c)
         if(g.imports.isNotEmpty()){
             var show by remember{mutableStateOf(false)}

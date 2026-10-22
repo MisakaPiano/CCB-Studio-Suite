@@ -36,24 +36,24 @@
     },
     {
       "id": "SUITE-004",
-      "capability": "独立Prompt资产与多来源参照",
-      "implementationStatus": "IMPLEMENTED_HUMAN_PENDING",
+      "capability": "独立Prompt资产与AI候选/图片/文字主动加入参照",
+      "implementationStatus": "IMPLEMENTED_AUTO_DEDICATED_HUMAN_PENDING",
       "suiteTargets": [
-        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/LibraryRepository.kt"
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/DesignPromptReference.kt"
       ],
       "evidence": [
-        "docs/audits/UX_DAILY_USE_READINESS.md"
+        "docs/audits/UX_NAI_BACKGROUND.md"
       ]
     },
     {
       "id": "SUITE-005",
       "capability": "多图Recipe比较、角色展示位置对齐、字段摘取",
-      "implementationStatus": "IMPLEMENTED_HUMAN_PENDING",
+      "implementationStatus": "IMPLEMENTED_AUTO_DEDICATED_HUMAN_PENDING",
       "suiteTargets": [
         "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/PromptReferenceBoard.kt"
       ],
       "evidence": [
-        "docs/audits/UX_DAILY_USE_READINESS.md"
+        "docs/audits/UX_LIBRARY_PROMPTS.md"
       ]
     },
     {
@@ -263,6 +263,61 @@
       "implementationStatus": "NOT_IMPLEMENTED",
       "suiteTargets": [],
       "evidence": []
+    },
+    {
+      "id": "SUITE-026",
+      "capability": "词库独立后台任务、可见进度与就地取消",
+      "implementationStatus": "IMPLEMENTED_AUTO_NEW_BACKGROUND_UI_HUMAN_PENDING",
+      "suiteTargets": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/NaiSettings.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_NAI_BACKGROUND.md"
+      ]
+    },
+    {
+      "id": "SUITE-027",
+      "capability": "AI设计独立可调窗口和共享未发送输入",
+      "implementationStatus": "IMPLEMENTED_AUTO_WINDOW_HUMAN_SCOPED_PASS",
+      "suiteTargets": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_NAI_BACKGROUND.md"
+      ]
+    },
+    {
+      "id": "SUITE-028",
+      "capability": "单一生图模型、动态费用和单机本地停止",
+      "implementationStatus": "IMPLEMENTED_AUTO_MODEL_AND_COST_LAYOUT_HUMAN_SCOPED_PASS",
+      "suiteTargets": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/NaiSettings.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_NAI_BACKGROUND.md"
+      ]
+    },
+    {
+      "id": "SUITE-029",
+      "capability": "图片查看器悬浮翻页、右键及直达编辑/APNG",
+      "implementationStatus": "IMPLEMENTED_AUTO_VIEWER_ENTRY_HUMAN_SCOPED_PASS_APNG_DELIVERY_PENDING",
+      "suiteTargets": [
+        "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioAssetViewer.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_NAI_BACKGROUND.md"
+      ]
+    },
+    {
+      "id": "SUITE-030",
+      "capability": "多套APNG封面、默认恢复、自动预览与批次缩略图",
+      "implementationStatus": "IMPLEMENTED_AUTO_CUSTOM_COVER_AND_PREVIEW_HUMAN_PENDING",
+      "suiteTargets": [
+        "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/DisguiseCovers.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_APNG_COVERS.md"
+      ]
     }
   ],
   "relatedInheritedActions": [

@@ -54,6 +54,13 @@ internal class LibraryController(private val c:WorkbenchController) {
     fun labels(id:String)=state?.labels?.get(id)?:AssetLabels()
     fun saveLabels(id:String,alias:String,tags:String)=c.run("保存资产别名与标签"){repository.label(id,alias,tags.split(',', '，'));refresh()}
     fun savePrompt(text:String,name:String,previous:String?=null)=c.run("保存独立 Prompt 资产"){repository.savePrompt(text,name,"manual",previous);refresh()}
+    fun savePromptReference(text:String,name:String,previous:String?=null)=c.run("保存独立 Prompt 参照"){
+        val board=PromptReferences(repository)
+        val existing=previous?.takeIf{repository.prompt(it).let{p->p.text==text && p.sections.isEmpty() && p.image==null}}
+        require(existing in board.load().ids || board.load().ids.size<16){"参照板最多保留 16 个来源，请先移除一项"}
+        val id=existing?:repository.savePrompt(text,name,"manual",previous)
+        board.add(id);refresh();tab="多 Prompt 参照"
+    }
     fun scan(id:String)=c.run("同步资产目录"){scanResults=repository.scan(id);refresh()}
     fun defaults()=c.run("启用资产收集目录"){repository.defaultFolders();refresh()}
     fun addFolder(category:String,recursive:Boolean){
@@ -107,6 +114,7 @@ internal class LibraryController(private val c:WorkbenchController) {
             OutlinedTextField(text,{text=it},label={Text("独立 Prompt 正文")},modifier=Modifier.fillMaxWidth().heightIn(min=160.dp,max=320.dp))
             StudioActions {
                 StudioAction("保存 Prompt 新版本",!c.busy && text.isNotBlank()){library.savePrompt(text,name,selected)}
+                StudioAction("保存并加入多 Prompt 参照",!c.busy && text.isNotBlank()){library.savePromptReference(text,name,selected)}
                 StudioAction("应用到创作（可撤销）",!c.busy && text.isNotBlank()){c.pastePrompt(text);c.view="创作"}
                 StudioAction("复制 Prompt",text.isNotEmpty()){desktopCopyText(text)}
             }

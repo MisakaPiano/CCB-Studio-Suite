@@ -60,7 +60,7 @@ class TypesetWorkflowTest {
         try {
             begin();withTimeout(20000){while(c.editor.exportProgress?.completed!=1)delay(20)};scene.frames()
             assertTrue(scene.nodes().any{it.matches("正在生成页面 · 1 / 3")});assertTrue(scene.nodes().any{it.matches("编辑工程 · 导出进度 ▾")});scene.shot("export-one-of-three")
-            assertNull(c.editor.exportDirectory);scene.click("停止");gate.countDown();c.active?.join();scene.frames()
+            assertNull(c.editor.exportDirectory);scene.click("停止导出");gate.countDown();c.active?.join();scene.frames()
             assertEquals("CANCELLED",c.editor.exportProgress?.stage);assertNull(c.editor.exportDirectory);assertNull(c.problem)
             val incomplete=Files.list(parent).use{it.filter{p->p.fileName.toString().endsWith(".incomplete")}.toList()}.single()
             assertFalse(Files.exists(incomplete.resolve("COMPLETE.json")));assertFails{TypesetExport.verify(incomplete)}

@@ -1,0 +1,98 @@
+[
+  {
+    "suite": "com.example.chatbar.desktop.DesktopNovelAiCatalogUpdateTest",
+    "name": "official shared checker pins download to commit and compares blob rather than commit sha",
+    "seconds": "0.018",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopNovelAiCatalogUpdateTest",
+    "name": "cancellation and schema failure retain durable authority and remove only staged files",
+    "seconds": "1.64",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopNovelAiCatalogUpdateTest",
+    "name": "catalog update builds shared ranking before durable switch and corrupt authority is retained",
+    "seconds": "2.37",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest",
+    "name": "unknownAndNonFiniteAllowanceNeverPretendToBeFull",
+    "seconds": "0.052",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest",
+    "name": "catalogTaskReturnsToWorkbenchWithoutBlockingEditingAndDrainsBeforeMaintenance",
+    "seconds": "3.301",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest",
+    "name": "actualBundledChineseAnnotationsKeepTheRawPrompt",
+    "seconds": "1.03",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest",
+    "name": "naiAccountDoesNotOwnGenerationModelAndOnlyV5ShowsAllowance",
+    "seconds": "1.881",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest",
+    "name": "buttonShowsAuthoritativeCostIncludingExtraFeesWithoutPromisingUnknownQuotaIsFree",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "roleEditingReorderDisableAndDeleteReachRequestAndSurviveReopen",
+    "seconds": "6.685",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "creationFooterAndImageSummaryAdaptWithoutLosingDraftOrSelection",
+    "seconds": "2.999",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "accountRefreshAndNewSelectionNeverReuseAnotherAccountsQuota",
+    "seconds": "3.188",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "continuousGenerationCompletesRemainderStopsAndRetainsPartialResultsWithoutReplay",
+    "seconds": "5.502",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "editedAssetIsSelectableAcrossGuidanceAndEditorAndSurvivesRestart",
+    "seconds": "4.054",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "measuredSuiteNavigationSurvivesResizeAndUnsentInput",
+    "seconds": "2.788",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "continuedEditingRetainsExistingAssetsAndCredentials",
+    "seconds": "1.083",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "accountsDesignApplyGenerateGalleryAndRestart",
+    "seconds": "11.97",
+    "status": "PASS"
+  }
+]

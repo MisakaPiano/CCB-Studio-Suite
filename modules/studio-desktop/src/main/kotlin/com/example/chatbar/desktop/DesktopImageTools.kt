@@ -51,7 +51,8 @@ internal object DesktopImageTools {
         return out
     }
 
-    suspend fun disguise(source: ByteArray): ByteArray = withContext(Dispatchers.IO) {
+    suspend fun disguise(source: ByteArray, customCover: ByteArray? = null): ByteArray = withContext(Dispatchers.IO) {
+        customCover?.let { DesktopImageEditing.requireStatic(it) }
         val gif = source.take(3).toByteArray().toString(Charsets.US_ASCII) == "GIF"
         if (!gif) DesktopImageEditing.requireStatic(source)
         val output = object : ByteArrayOutputStream() {
@@ -95,7 +96,7 @@ internal object DesktopImageTools {
                     val writer = ApngDisguiseCodec.Writer(output, width, height, if (count == 1) 2 else count,
                         if (count == 1) 0 else ApngDisguiseCodec.gifLoopCountToApngPlayCount(loop),
                         if (count == 1) ApngDisguiseContentKind.STATIC else ApngDisguiseContentKind.ANIMATED, count)
-                    writer.writeDefaultImage(cover(width, height).asApngRaster())
+                    writer.writeDefaultImage(cover(width, height, customCover).asApngRaster())
                     var canvas = BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB)
                     canvas.createGraphics().let { g -> try { g.composite = java.awt.AlphaComposite.Src
                         g.color = background(child(firstMetadata, "GraphicControlExtension")); g.fillRect(0, 0, width, height) } finally { g.dispose() } }
@@ -126,7 +127,7 @@ internal object DesktopImageTools {
         } else {
             val image = DesktopImageEditing.decode(source)
             val writer = ApngDisguiseCodec.Writer(output, image.width, image.height, 2, 0, ApngDisguiseContentKind.STATIC, 1)
-            writer.writeDefaultImage(cover(image.width, image.height).asApngRaster())
+            writer.writeDefaultImage(cover(image.width, image.height, customCover).asApngRaster())
             writer.writeFrame(image.asApngRaster(), 10, 100)
             writer.writeStaticHeartbeatFrame(); writer.finish()
         }
@@ -149,11 +150,21 @@ internal object DesktopImageTools {
         DesktopImageMetadata.privacyCopy(source)
     }
 
-    private fun cover(width: Int, height: Int): BufferedImage = BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB).also { image ->
+    private fun cover(width: Int, height: Int, customCover: ByteArray? = null): BufferedImage = BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB).also { image ->
         image.createGraphics().let { g -> try {
             g.color = Color(25, 27, 32); g.fillRect(0, 0, width, height)
-            val side = minOf(width, height) / 3
-            g.drawImage(DesktopImageEditing.decode(DesktopBrandResources.logoBytes()), (width - side) / 2, (height - side) / 2, side, side, null)
+            if(customCover==null) {
+                val side = minOf(width, height) / 3
+                g.drawImage(DesktopImageEditing.decode(DesktopBrandResources.logoBytes()), (width - side) / 2, (height - side) / 2, side, side, null)
+            } else {
+                val custom=DesktopImageEditing.decode(customCover)
+                try {
+                    val scale=minOf(width.toDouble()/custom.width,height.toDouble()/custom.height)
+                    val w=(custom.width*scale).toInt().coerceAtLeast(1);val h=(custom.height*scale).toInt().coerceAtLeast(1)
+                    g.setRenderingHint(java.awt.RenderingHints.KEY_INTERPOLATION,java.awt.RenderingHints.VALUE_INTERPOLATION_BICUBIC)
+                    g.drawImage(custom,(width-w)/2,(height-h)/2,w,h,null)
+                } finally {custom.flush()}
+            }
         } finally { g.dispose() } }
     }
 }

@@ -212,16 +212,19 @@ internal fun studioAdvancedSummary(s: NovelAiGenerationSettings): String =
     "${s.steps} Steps · CFG ${studioNumericText(s.guidance, 1)} / ${studioNumericText(s.cfgRescale, 2)} · ${s.sampler.displayName} · ${if (s.seedMode == NovelAiSeedMode.RANDOM) "Random Seed" else "Seed ${s.seed}"}"
 
 @Composable
+internal fun StudioGenerationModelChoice(draft: NovelAiStudioDraft, edit: ((NovelAiStudioDraft) -> NovelAiStudioDraft) -> Unit) {
+    CompactChoice("生图模型", NovelAiImageModel.entries, draft.selectedModel, { it.displayName }) { model ->
+        edit { it.copy(selectedModel = model, followDefaultNovelAiImageModel = false) }
+    }
+}
+
+@Composable
 internal fun StudioGenerationSettings(draft: NovelAiStudioDraft, edit: ((NovelAiStudioDraft) -> NovelAiStudioDraft) -> Unit) {
     val s = draft.activeSettings
     fun change(transform: (NovelAiGenerationSettings) -> NovelAiGenerationSettings) = edit { it.withActiveSettings(transform(it.activeSettings)) }
     var customSize by remember { mutableStateOf(false) }
     Column(Modifier.fillMaxWidth().background(DesktopBootstrapColors.card, RoundedCornerShape(8.dp))
         .border(1.dp, DesktopBootstrapColors.border, RoundedCornerShape(8.dp)).padding(12.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-    CompactChoice("模型", listOf<NovelAiImageModel?>(null) + NovelAiImageModel.entries,
-        if (draft.followDefaultNovelAiImageModel) null else draft.selectedModel, { it?.displayName ?: "跟随角色卡 / 全局" }) { model ->
-        edit { if (model == null) it.copy(followDefaultNovelAiImageModel = true) else it.copy(selectedModel = model, followDefaultNovelAiImageModel = false) }
-    }
     BoxWithConstraints(Modifier.fillMaxWidth()) {
         val size: @Composable () -> Unit = {
             StudioChips("尺寸", NovelAiSizeTier.entries, s.sizeTier.takeUnless { s.usesCustomSize }, { it.displayName }) { value -> change { it.copy(sizeTier = value, customWidth = null, customHeight = null) } }

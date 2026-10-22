@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest" tests="7" skipped="0" failures="1" errors="0" timestamp="2026-10-22T21:25:13.509Z" hostname="DD1" time="36.635">
+  <properties/>
+  <testcase name="selectingMultipleCoverPresetsResetsPlaybackAndPreviewAndControlsExports" classname="io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest" time="8.419"/>
+  <testcase name="animatedGifRetainsTwoFrameColorsTimingAndLoopAfterDisguiseRestore" classname="io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest" time="0.097"/>
+  <testcase name="automaticPreviewRejectsSupersededWorkAndShutdownDrainsIt" classname="io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest" time="0.952">
+    <failure message="java.lang.AssertionError: actual value is null" type="java.lang.AssertionError">java.lang.AssertionError: actual value is null
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertNotNull(Assert.java:713)
+	at kotlin.test.junit.JUnitAsserter.assertNotNull(JUnitSupport.kt:48)
+	at kotlin.test.AssertionsKt__AssertionsKt.assertNotNull(Assertions.kt:147)
+	at kotlin.test.AssertionsKt.assertNotNull(Unknown Source)
+	at kotlin.test.AssertionsKt__AssertionsKt.assertNotNull$default(Assertions.kt:145)
+	at kotlin.test.AssertionsKt.assertNotNull$default(Unknown Source)
+	at io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest$automaticPreviewRejectsSupersededWorkAndShutdownDrainsIt$1.invokeSuspend(GalleryAnimationTest.kt:31)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+</failure>
+  </testcase>
+  <testcase name="thumbnailStripStartsAtLatestAndSelectingAnOlderImageUpdatesPreviewAutomatically" classname="io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest" time="15.17"/>
+  <testcase name="actualWorkspacePreviewRestoreBatchCopyAndReopenPreserveOriginals" classname="io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest" time="10.892"/>
+  <testcase name="failedBatchKeepsUnpublishedEvidenceAndNeverOverwritesPriorOutput" classname="io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest" time="1.007"/>
+  <testcase name="staticDisguisePreviewIsTheChosenCoverAndPlaybackKeepsTheContent" classname="io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest" time="0.098"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

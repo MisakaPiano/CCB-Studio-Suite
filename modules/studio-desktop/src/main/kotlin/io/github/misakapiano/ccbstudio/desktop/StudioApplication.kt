@@ -64,8 +64,14 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     fun refreshLibraryAssets(){assets=visibleAssets()}
     val picker=DesktopFilePicker()
     var active:Job?=null;private set
+    var activeOperation by mutableStateOf("");private set
+    val cancelLabel get()=when(activeOperation){"AI 设计"->"停止 AI 设计";"NovelAI 生成"->"停止生图";"刷新账户额度"->"取消刷新额度";else->"停止${activeOperation.ifBlank{"当前任务"}}"}
+    var designDetached by mutableStateOf(false);private set
+    fun detachDesign(){if(!maintenance){designDetached=true;view="创作"}}
+    fun reattachDesign(){designDetached=false;view="AI 设计"}
+    fun dismissDesign(){designDetached=false}
     private var pending:Job?=null
-    private val admission=admissionOverride?:BudgetAdmission(LiveRequestBudget(budgetRoot)){wait -> if(wait>0)message="请求预算等待 ${(wait+999)/1000} 秒 · 可停止"}
+    private val admission=admissionOverride?:RequestAdmission{}
     private val guidanceRoot=budgetRoot.parent.resolve("guidance")
     private val metadataRoot=budgetRoot.parent.resolve("metadata-snapshots")
     private val modelRoot=budgetRoot.parent.resolve("model-snapshots")
@@ -250,12 +256,12 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     }
     fun run(label:String,body:suspend ()->Unit) {
         if(busy||maintenance)return
-        busy=true;message=label;problem=null;operationNotice=null
-        active=scope.launch {
+        busy=true;activeOperation=label;message=label;problem=null;operationNotice=null
+        active=scope.launch(start=CoroutineStart.UNDISPATCHED) {
             try {pending?.cancelAndJoin();flush();withContext(Dispatchers.IO){body()};message=operationNotice?:if(problem==null)"$label · 已完成" else "$label · 有未完成项，请查看回执"}
             catch(e:CancellationException){message="已停止；已提交结果保留";throw e}
             catch(e:Exception){problem="${if(e is DataProblem)e.status else e.javaClass.simpleName}：操作未完成，未自动重发。已有资料保留。";message="操作未完成"}
-            finally {try{state=workspace.state;modelAccounts.syncSavedProfile();assets=visibleAssets()}catch(e:Exception){problem="工作区需要恢复，已保留现有文件；请停止写入并检查"};busy=false}
+            finally {try{state=workspace.state;modelAccounts.syncSavedProfile();assets=visibleAssets()}catch(e:Exception){problem="工作区需要恢复，已保留现有文件；请停止写入并检查"};activeOperation="";busy=false}
         }
     }
     fun design()=run("AI 设计") {
@@ -372,6 +378,8 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
         if(modelAccounts.dirty)throw DataProblem("ACCOUNT_DRAFT_UNSAVED","账户档案尚未保存，请在账户页保存或放弃修改后再关闭/更新")
         maintenance=true;message="正在停止接收新操作并保存、排水…"
         modelAccounts.cancel()
+        naiSettings.cancelAndDrain()
+        animation.cancelAndDrain()
         library.cancelAndDrain()
         active?.cancelAndJoin();pending?.cancelAndJoin();editor.drain();flush()
     }
@@ -430,6 +438,13 @@ internal fun launchStudio(args:Array<String>) {
             val chrome=rememberDesktopWindowChrome(window,::close);SideEffect{chrome.appearance(true)}
             MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel,onPrimary=Ink,onSurface=Color(0xffe6edf3))) {Workbench(c,chrome,closing)}
         }
+        if(c.designDetached)Window(onCloseRequest=c::dismissDesign,title="CCB Studio Suite · AI 设计",icon=StudioBrand.painter,
+            resizable=true,state=rememberWindowState(width=1120.dp,height=820.dp)) {
+            SideEffect{window.minimumSize=java.awt.Dimension(700,520)}
+            MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel,onPrimary=Ink,onSurface=DesktopBootstrapColors.foreground)) {
+                Surface(color=Ink,contentColor=DesktopBootstrapColors.foreground){DesignWorkspace(c,detached=true)}
+            }
+        }
     }
 }
 
@@ -461,11 +476,10 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
             }
         }
         Divider()
-        Box(Modifier.weight(1f).fillMaxWidth()) {when(c.view){"AI 设计"->DesignWorkspace(c);"图库"->GalleryWorkspace(c);"编辑"->TypesetWorkspace(c);"资产管理"->LibraryWorkspace(c);"账户"->AccountsWorkspace(c);"更新"->UpdateWorkspace(c.updater,c.workspace.root.toString(),c.installUpdate);else->CreationWorkspace(c)}}
+        Box(Modifier.weight(1f).fillMaxWidth()) {when(c.view){"AI 设计"->if(c.designDetached)Column(Modifier.padding(20.dp)){Text("AI 设计已在独立窗口打开");StudioAction("切回主窗口编辑",onClick=c::reattachDesign)}else DesignWorkspace(c);"图库"->GalleryWorkspace(c);"编辑"->TypesetWorkspace(c);"资产管理"->LibraryWorkspace(c);"账户"->AccountsWorkspace(c);"更新"->UpdateWorkspace(c.updater,c.workspace.root.toString(),c.installUpdate);else->CreationWorkspace(c)}}
         Row(Modifier.fillMaxWidth().padding(8.dp),verticalAlignment=Alignment.CenterVertically) {
             Text(if(closing)"正在保存并排水…"else c.message,Modifier.weight(1f),fontSize=12.sp,color=Quiet)
-            Text(if(c.saved)"已保存" else "保存中…",fontSize=12.sp)
-            if(c.busy)TextButton(onClick={c.active?.cancel()}){Text("停止")}
+            Text(if(c.saved)"创作草稿已保存" else "创作草稿保存中…",fontSize=12.sp)
         }
     }
     }
@@ -479,6 +493,9 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
     var paste by remember{mutableStateOf<String?>(null)}
     var clear by remember{mutableStateOf(false)}
     var showSettings by remember{mutableStateOf(false)}
+    val cost=runCatching{NovelAiImageCostEstimator.estimate(c.draft.activeSettings,c.usage,c.draft.imageGuidance,c.vibeMisses())}.getOrNull()
+    val generating=c.busy&&c.activeOperation=="NovelAI 生成"
+    val refreshing=c.busy&&c.activeOperation=="刷新账户额度"
     val tokens by produceState<NovelAiPromptTokenUsage?>(null,c.draft.toPromptPlan(),c.draft.selectedModel){value=runCatching{c.infrastructure.countTokens(c.draft)}.getOrNull()}
     DesktopStudioWorkspace(compact={expand ->
         Column(Modifier.fillMaxWidth().border(1.dp,DesktopBootstrapColors.border).padding(8.dp)
@@ -493,20 +510,19 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
             }
         }
     },editor={
-        AccountChoice(c,"NAI")
-        StatusText("当前生图模型：${c.draft.selectedModel.displayName}")
-        val cost=runCatching{NovelAiImageCostEstimator.estimate(c.draft.activeSettings,c.usage,c.draft.imageGuidance,c.vibeMisses())}.getOrNull()
-        StatusText(cost?.let{"预计 ${it.anlas} Anlas · ${when(it.kind){NovelAiGenerationChargeKind.FREE->"免费";NovelAiGenerationChargeKind.V5_ALLOWANCE->"使用 Opus 体力";NovelAiGenerationChargeKind.ANLAS->"消耗 Anlas"}}"}?:"参数无效，暂无法估算")
         StudioActions {
+            StudioGenerationModelChoice(c.draft,c::edit)
+            AccountChoice(c,"NAI")
             StatusText(c.usage?.let{"额度 ${it.anlas} Anlas"}?:"账户额度未知，未自动请求")
-            StudioAction("刷新额度",!c.busy && c.naiId!=null){c.refreshUsage()}
+            StudioAction(if(refreshing)"取消刷新额度" else "刷新额度",refreshing||(!c.busy && c.naiId!=null),icon=DesktopAppIcons.Refresh){if(refreshing)c.active?.cancel()else c.refreshUsage()}
         }
         if(c.draft.selectedModel==NovelAiImageModel.V5_FULL)NaiAllowanceBar(c.usage)
+        NaiCatalogBackgroundStatus(c)
         Spacer(Modifier.height(10.dp))
         StudioActions {
             StudioAction("AI 设计",icon=DesktopAppIcons.Chat){c.view="AI 设计"}
             StudioAction("图像引导",icon=DesktopAppIcons.Star){c.section="图像引导"}
-            StudioAction("导入图片",!c.busy,icon=DesktopAppIcons.ImageAdd){c.importImages()}
+            StudioAction(if(c.busy&&c.activeOperation=="导入图片")"停止导入图片" else "导入图片",!c.busy||c.activeOperation=="导入图片",icon=DesktopAppIcons.ImageAdd){if(c.busy)c.active?.cancel()else c.importImages()}
             StudioAction("历史图库",icon=DesktopAppIcons.History){c.view="图库"}
             StudioAction("创作设置"){showSettings=true}
         }
@@ -537,15 +553,13 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
             }
             DesktopStudioCharacters(c.draft,c.infrastructure,translated,c::edit)
             StudioDisclosure("生成设置",initiallyOpen=true) {
-                CompactChoice("新建创作默认模型",NovelAiImageModel.entries,c.state.creation!!.defaultImageModel,{it.displayName}){c.defaults(model=it)}
-                if(!c.draft.followDefaultNovelAiImageModel)StatusText("本次已指定 ${c.draft.selectedModel.displayName}；修改默认值不会覆盖本次选择")
                 StudioGenerationSettings(c.draft,c::edit)
             }
         }
     },footer={
         DesktopStudioFooter(tokens,!c.busy && c.state.creation!!.undo.isNotEmpty(),!c.busy && c.state.creation!!.redo.isNotEmpty(),
-            if(c.busy)"停止" else "生成图片",c.busy||c.naiId!=null,
-            {c.undo()},{c.undo(true)},{if(c.busy)c.active?.cancel() else c.generate()})
+            if(generating)"停止生图" else naiGenerateLabel(false,c.naiId!=null,cost,c.usage!=null,c.draft.continuousModeEnabled),generating||(!c.busy&&c.naiId!=null&&cost!=null),
+            {c.undo()},{c.undo(true)},{if(generating)c.active?.cancel() else if(!c.busy)c.generate()})
     },preview={rail -> ResultPreview(c,rail)})
     if(showSettings)NaiSettingsDialog(c){showSettings=false}
     paste?.let{text->AlertDialog(onDismissRequest={paste=null},title={Text("确认粘贴覆盖")},text={SelectionContainer{Text(text,Modifier.heightIn(max=400.dp).verticalScroll(rememberScrollState()))}},confirmButton={TextButton(onClick={c.pastePrompt(text);paste=null}){Text("确认覆盖，可撤销")}},dismissButton={TextButton(onClick={paste=null}){Text("取消")}})}
@@ -613,11 +627,16 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
     }
 }
 
-@Composable private fun DesignWorkspace(c:WorkbenchController) {
+@Composable internal fun DesignWorkspace(c:WorkbenchController,detached:Boolean=false) {
+    val designing=c.busy&&c.activeOperation=="AI 设计"
     val creation=c.state.creation!!;val conversation=creation.conversations.firstOrNull{it.id==creation.currentConversationId}
     var candidate by remember{mutableStateOf<Pair<String,String>?>(null)}
     Column(Modifier.fillMaxSize().padding(16.dp)) {
-        StudioActions {StudioAction("返回创作"){c.view="创作"};StudioAction("新对话",!c.busy){c.newConversation()};AccountChoice(c,"LLM")}
+        StudioActions {
+            if(detached)StudioAction("切回主窗口",onClick=c::reattachDesign)
+            else {StudioAction("返回创作"){c.view="创作"};StudioAction("独立窗口",onClick=c::detachDesign)}
+            StudioAction("新对话",!c.busy){c.newConversation()};AccountChoice(c,"LLM")
+        }
         Spacer(Modifier.height(8.dp));CompactChoice("设计历史",creation.conversations,conversation,{it.title}){c.selectConversation(it.id)}
         StudioDisclosure("设计设置") {
             StudioSwitch("V5 自然语言设计",c.draft.aiDesignNaturalLanguageMode){c.edit{it.copy(aiDesignNaturalLanguageMode=!it.aiDesignNaturalLanguageMode)}}
@@ -631,7 +650,15 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
                     turn.attachedStudioPrompt?.let{StatusText("附加当前基础 Prompt 与 ${it.characterPrompts.size} 个角色")}
                     if(edit)DesktopDesignField("编辑本轮要求",text,turn.id){text=it}
                     StudioActions{StudioAction(if(edit)"取消编辑" else "编辑并分支",!c.busy){edit=!edit};if(edit)StudioAction("建立分支",!c.busy && text.isNotBlank()){c.branch(conversation!!.id,turn.id,text);edit=false}}
-                    turn.reply?.let {reply->DesktopDesignResult(reply);StudioAction("应用候选到创作",!c.busy,style=StudioActionStyle.PRIMARY){candidate=conversation!!.id to turn.id}}
+                    turn.reply?.let {reply->
+                        DesktopDesignResult(reply)
+                        StudioActions {
+                            StudioAction("应用候选到创作",!c.busy,style=StudioActionStyle.PRIMARY){candidate=conversation!!.id to turn.id}
+                            StudioAction("候选加入多 Prompt 参照",!c.busy){c.run("加入设计参照"){
+                                saveDesignPromptReference(c,conversation!!.id,turn.id);c.library.tab="多 Prompt 参照";c.view="资产管理"
+                            }}
+                        }
+                    }
                     if(turn.status!=NovelAiDesignTurnStatus.COMPLETED)StatusText(turn.error.ifBlank{"正在设计…"},Gold)
                     if(turn.status in listOf(NovelAiDesignTurnStatus.FAILED,NovelAiDesignTurnStatus.CANCELLED))StudioAction("准备重试分支",!c.busy){c.retry(conversation!!.id,turn.id)}
                 }
@@ -641,7 +668,8 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
         }
         StudioSwitch("附加当前基础 Prompt 与启用角色",c.attach){c.attach(!c.attach)}
         DesktopDesignField("画面需求 / 继续修改",c.composer,"composer",c::input)
-        StudioAction(if(c.busy)"停止" else "发送",enabled=c.busy || (c.composer.isNotBlank() && c.llmId!=null),style=StudioActionStyle.PRIMARY){if(c.busy)c.active?.cancel()else c.design()}
+        StudioAction(if(designing)"停止 AI 设计" else "发送",enabled=designing || (!c.busy&&c.composer.isNotBlank() && c.llmId!=null),style=StudioActionStyle.PRIMARY){if(designing)c.active?.cancel()else if(!c.busy)c.design()}
+        if(detached){StatusText(c.message);c.problem?.let{Text(it,color=MaterialTheme.colors.error)}}
     }
     candidate?.let{(conversationId,turnId)->
         val reply=creation.conversations.single{it.id==conversationId}.turns.single{it.id==turnId}.reply!!

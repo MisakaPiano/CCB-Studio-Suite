@@ -1,0 +1,62 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "selectingMultipleCoverPresetsResetsPlaybackAndPreviewAndControlsExports",
+    "seconds": "6.503",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "animatedGifRetainsTwoFrameColorsTimingAndLoopAfterDisguiseRestore",
+    "seconds": "0.092",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "actualWorkspacePreviewRestoreBatchCopyAndReopenPreserveOriginals",
+    "seconds": "4.905",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "failedBatchKeepsUnpublishedEvidenceAndNeverOverwritesPriorOutput",
+    "seconds": "0.494",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "staticDisguisePreviewIsTheChosenCoverAndPlaybackKeepsTheContent",
+    "seconds": "0.099",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest",
+    "name": "legacyBackupRestoresThenCopiesToCurrentFormatWithoutTouchingBackup",
+    "seconds": "2.121",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest",
+    "name": "restoreRejectsCurrentRootExistingDestinationAndCorruptBackupWithoutPublishing",
+    "seconds": "0.877",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest",
+    "name": "sourceAndDestinationAreSeparateAndLatestBackupCannotBeConfusedWithEmptyParent",
+    "seconds": "0.398",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryBackupWorkflowTest",
+    "name": "currentWorkbenchBackupConfirmRestoreAndOpenPreservesSharedAssetsWithoutCredentials",
+    "seconds": "7.71",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioAssetViewerTest",
+    "name": "hoverAndContextActionsUseTheViewedImageAndPreserveExistingProject",
+    "seconds": "2.754",
+    "status": "PASS"
+  }
+]

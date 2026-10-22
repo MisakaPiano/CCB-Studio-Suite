@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-22T21:26:20.676Z" hostname="DD1" time="68.803">
+  <properties/>
+  <testcase name="unknownAndNonFiniteAllowanceNeverPretendToBeFull" classname="io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest" time="0.052"/>
+  <testcase name="singleUserDefaultHasNoFiveMinuteOrHourlyReservationGate" classname="io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest" time="6.165"/>
+  <testcase name="catalogTaskReturnsToWorkbenchWithoutBlockingEditingAndDrainsBeforeMaintenance" classname="io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest" time="30.323"/>
+  <testcase name="actualBundledChineseAnnotationsKeepTheRawPrompt" classname="io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest" time="29.313"/>
+  <testcase name="naiAccountDoesNotOwnGenerationModelAndOnlyV5ShowsAllowance" classname="io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest" time="2.95"/>
+  <testcase name="buttonShowsAuthoritativeCostIncludingExtraFeesWithoutPromisingUnknownQuotaIsFree" classname="io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

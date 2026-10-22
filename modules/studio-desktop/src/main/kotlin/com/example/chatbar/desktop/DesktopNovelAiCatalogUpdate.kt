@@ -51,7 +51,7 @@ internal class DesktopNovelAiCatalogUpdate(private val catalog: DesktopNovelAiTa
             val structure = DesktopNovelAiSqlDatabase(stage).use { validateNovelAiCatalogStructure(it) }
             report("构建词条补全索引")
             DesktopNovelAiSqlDatabase(stage).use { source ->
-                DesktopNovelAiIndexWriter(stagedIndex).use { writer ->
+                DesktopNovelAiIndexWriter(stagedIndex, report).use { writer ->
                     buildNovelAiRankedIndex(writer, source, structure.tableName, info.latestSourceSha, "danbooru")
                 }
             }
@@ -93,19 +93,29 @@ internal class DesktopNovelAiCatalogUpdate(private val catalog: DesktopNovelAiTa
     }
 }
 
-internal class DesktopNovelAiIndexWriter(path: Path) : NovelAiIndexWriter, AutoCloseable {
+internal class DesktopNovelAiIndexWriter(path: Path, private val progress:(String)->Unit = {}) : NovelAiIndexWriter, AutoCloseable {
     private val connection = DriverManager.getConnection("jdbc:sqlite:$path")
     private var committed = false
+    private var entries=0L
+    private var packed=0L
+    private var packing=false
     override fun execSQL(sql: String, args: Array<Any>) {
+        if(sql=="VACUUM")progress("正在整理补全索引文件…")
         connection.prepareStatement(sql).use { statement -> args.forEachIndexed { i, value -> statement.setObject(i + 1, value) }; statement.execute() }
     }
     override fun rawQuery(sql: String, args: Array<String>): NovelAiSqlCursor {
+        val postingQuery=sql.startsWith("SELECT gram,rank FROM postings")
+        if(postingQuery&&!packing){packing=true;progress("整理查询索引：已收录 $entries 个词条")}
         val statement = connection.prepareStatement(sql)
         args.forEachIndexed { i, value -> statement.setString(i + 1, value) }
         val result = statement.executeQuery()
         return object : NovelAiSqlCursor {
             override fun moveToFirst() = result.next()
-            override fun moveToNext() = result.next()
+            override fun moveToNext():Boolean {
+                val next=result.next()
+                if(next&&postingQuery){packed++;if(packed%100000L==0L)progress("整理查询索引：已处理 $packed 条索引记录")}
+                return next
+            }
             override fun getString(index: Int) = result.getString(index + 1).orEmpty()
             override fun getInt(index: Int) = result.getInt(index + 1)
             override fun getLong(index: Int) = result.getLong(index + 1)
@@ -115,11 +125,15 @@ internal class DesktopNovelAiIndexWriter(path: Path) : NovelAiIndexWriter, AutoC
     }
     override fun compileStatement(sql: String): NovelAiIndexStatement {
         val statement = connection.prepareStatement(sql)
+        val entryInsert=sql.startsWith("INSERT INTO entries")
         return object : NovelAiIndexStatement {
             override fun bindLong(index: Int, value: Long) = statement.setLong(index, value)
             override fun bindString(index: Int, value: String) = statement.setString(index, value)
             override fun bindBlob(index: Int, value: ByteArray) = statement.setBytes(index, value)
-            override fun executeInsert() { statement.executeUpdate() }
+            override fun executeInsert() {
+                statement.executeUpdate()
+                if(entryInsert){entries++;if(entries==1L||entries%2000L==0L)progress("构建补全索引：已收录 $entries 个词条")}
+            }
             override fun close() = statement.close()
         }
     }

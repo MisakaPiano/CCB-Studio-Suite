@@ -102,6 +102,7 @@ internal class LibraryBackupController(private val c:WorkbenchController,
     StudioActions {
         StudioAction("备份图库与工程",!c.busy&&!c.maintenance){b.createBackup()}
         StudioAction("从备份恢复到新工作区",!c.busy&&!c.maintenance){b.selectRestore()}
+        if(c.busy&&c.activeOperation in setOf("备份图库与工程","验证并恢复工作区"))StudioAction(if(c.activeOperation=="备份图库与工程")"取消备份" else "取消恢复"){c.active?.cancel()}
     }
     if(c.busy)LinearProgressIndicator(Modifier.fillMaxWidth())
     if(b.receipt.isNotBlank())Text(b.receipt)

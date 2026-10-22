@@ -54,7 +54,11 @@ class DesktopNovelAiCatalogUpdateTest {
             val installer = DesktopNovelAiCatalogUpdate(catalog, client)
             assertFails { installer.install(info.copy(latestSourceSha = "f".repeat(40))) {} }
             assertEquals(metadata, catalog.catalogMetadata())
-            installer.install(info) {}
+            val progress=mutableListOf<String>()
+            installer.install(info) {progress+=it}
+            assertTrue(progress.any{it.startsWith("构建补全索引：已收录")})
+            assertTrue(progress.any{it.startsWith("整理查询索引：")})
+            assertTrue(progress.contains("正在整理补全索引文件…"))
             assertEquals(next, catalog.catalogMetadata())
             assertEquals(next.sourceSha, catalog.completionVersion.value)
             val found = mutableListOf<String>()

@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-23",
+  "reviewedBuildEvidence": "20261022T210351468649Z-viewer-context-and-navigation",
+  "reviewedPackage": "PACKAGE_FILES_HUMAN_REVIEWED.json",
+  "source": "Explicit user replies in this chat; no screenshot or private data retained",
+  "accepted": [
+    "Viewer context menu, hover navigation and current image edit entry",
+    "Detached AI design window, resizing and unsent input retained when returning",
+    "Single generation model and dynamic generation cost display"
+  ],
+  "notAcceptedByThisReply": [
+    "Full multi-source Prompt comparison",
+    "Complete editing/export/restore pipeline",
+    "Complete real AI design/apply/generate/provenance/reopen pipeline",
+    "APNG actual receiver compatibility",
+    "New background dictionary UI",
+    "Additional APNG local stop native acceptance"
+  ],
+  "finalBuildDifference": [
+    "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryAnimation.kt",
+    "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioAssetViewerTest.kt"
+  ]
+}

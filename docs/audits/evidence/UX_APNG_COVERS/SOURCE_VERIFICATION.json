@@ -1,0 +1,27 @@
+{
+  "authorityCommit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+  "authorityFilesVerified": 113,
+  "authorityChanged": false,
+  "platformAdaptation": {
+    "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopImageTools.kt",
+    "sourceSha256": "6e4c599f5a678dc30686254841b7b9d0f6933bb929cb4f009fec3b36ceb62d63",
+    "target": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopImageTools.kt",
+    "targetSha256": "2f70ae50675d05846cdcd2cc33d8a2f04a886c4ba2234a7ef72a719579123c65",
+    "scope": "Optional custom cover input and fit rendering only; writer and GIF content timeline retained"
+  },
+  "environment": {
+    "os": "Windows",
+    "jdk": "Temurin 17.0.20.1+1",
+    "gradle": "9.1.0",
+    "offline": true,
+    "strictDependencyVerification": true,
+    "maxWorkers": 1
+  },
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "PENDING",
+  "userImagesReadOrCopied": false,
+  "finalBuildEvidence": "20261022T212821880680Z-automatic-preview-snapshot-final",
+  "finalTests": 18,
+  "finalSourceStable": true,
+  "automaticPreview": "Read-only byte snapshot, independent cancellable jobs, stale output rejected and all jobs drained before close"
+}

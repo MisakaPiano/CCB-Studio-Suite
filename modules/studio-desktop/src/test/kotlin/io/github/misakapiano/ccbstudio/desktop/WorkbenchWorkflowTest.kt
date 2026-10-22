@@ -33,6 +33,10 @@ class WorkbenchWorkflowTest {
     }
     private fun SemanticsNode.matches(text:String)=config.getOrNull(SemanticsProperties.Text)?.any{it.text==text}==true || config.getOrNull(SemanticsProperties.ContentDescription)?.contains(text)==true
     private suspend fun ImageComposeScene.click(text:String,index:Int=0){val n=nodes().filter{it.matches(text)&&it.config.getOrNull(SemanticsActions.OnClick)!=null}[index];assertTrue(n.config[SemanticsActions.OnClick].action!!.invoke());frames()}
+    private suspend fun ImageComposeScene.generateClick(){
+        val n=nodes().first{node->node.config.getOrNull(SemanticsActions.OnClick)!=null&&node.config.getOrNull(SemanticsProperties.Text)?.any{it.text.startsWith("生成预计 ")||it.text.startsWith("生成消耗 ")||it.text.startsWith("生成免费")}==true}
+        assertTrue(n.config[SemanticsActions.OnClick].action!!.invoke());frames()
+    }
     private suspend fun ImageComposeScene.field(label:String,text:String,index:Int=0){val n=nodes().filter{it.config.getOrNull(SemanticsActions.SetText)!=null && (it.matches(label)||it.children.any{child->child.matches(label)})}[index];assertTrue(n.config[SemanticsActions.SetText].action!!.invoke(AnnotatedString(text)));frames()}
     private suspend fun WorkbenchController.idle(){withTimeout(30000){active?.join()};assertNull(problem,problem)}
     private fun ImageComposeScene.shot(name:String){val out=Path.of("build/ux-r1a-workbench/$name.png");Files.createDirectories(out.parent);render(System.nanoTime()).use{im->im.encodeToData()!!.use{Files.write(out,it.bytes)}}}
@@ -68,11 +72,18 @@ class WorkbenchWorkflowTest {
             scene.click("保存并选用此账户");c.idle();scene.frames();assertEquals(2,w.state.accounts.size)
             scene.click("AI 设计");scene.field("画面需求 / 继续修改","Quiet room");scene.click("发送");c.idle();scene.frames()
             assertEquals("",c.composer);assertEquals("",c.draft.basePrompt);assertEquals(NovelAiDesignTurnStatus.COMPLETED,w.state.creation!!.conversations.single().turns.single().status)
+            val beforeReference=c.draft
+            scene.click("候选加入多 Prompt 参照");c.idle();scene.frames()
+            assertEquals("资产管理",c.view);assertEquals(beforeReference,c.draft);assertEquals(2,requests.size)
+            val candidateId=PromptReferences(c.library.repository).load().ids.single()
+            assertNull(c.library.repository.prompt(candidateId).image)
+            assertEquals("quiet room, window",c.library.repository.prompt(candidateId).sections.single{it.id=="base"}.text)
+            scene.click("AI 设计")
             scene.shot("design-candidate");scene.click("应用候选到创作");assertEquals("",c.draft.basePrompt);scene.shot("apply-difference");scene.click("保留当前草稿");assertEquals("",c.draft.basePrompt)
             scene.click("应用候选到创作");scene.click("确认应用");c.idle();scene.frames();assertEquals("quiet room, window",c.draft.basePrompt)
             assertNotNull(DesignProvenance(w).current())
             scene.field("基础 Prompt","quiet room, window, warm light")
-            scene.click("生成图片");c.idle();scene.frames();assertEquals(1,c.assets.size);asset=c.current!!;assertContentEquals(png,w.bytes(asset));scene.shot("generated-original")
+            scene.generateClick();c.idle();scene.frames();assertEquals(1,c.assets.size);asset=c.current!!;assertContentEquals(png,w.bytes(asset));scene.shot("generated-original")
             scene.click("图库");scene.click("全选");assertEquals(setOf(asset),c.selection);scene.click("反选");assertTrue(c.selection.isEmpty());scene.click("全选");scene.click("全不选");assertTrue(c.selection.isEmpty())
             withTimeout(30000){while(scene.nodes().none{it.matches("查看 AI 设计过程")})scene.frames()}
             assertEquals("已核验 · 应用后有修改",readImagePrompt(c,asset).context.parameters["AI 设计关联"])
@@ -82,7 +93,7 @@ class WorkbenchWorkflowTest {
             scene.click("复制生成 基础 Prompt");assertEquals("quiet room, window, warm light",copied);scene.shot("design-generated-origin")
             scene.click("设计过程");assertTrue(scene.nodes().any{it.matches("Quiet room")});assertTrue(scene.nodes().any{it.matches("本轮候选被明确应用")});scene.shot("design-origin-history");scene.click("关闭设计来源")
             scene.click("全选");scene.openGalleryTools();scene.click("所选图片多 Prompt 参照");c.idle();scene.frames()
-            val promptId=c.library.repository.prompts().single().request().id().toString()
+            val promptId=c.library.repository.prompts().single{c.library.repository.prompt(it.request().id().toString()).image?.imageId==asset}.request().id().toString()
             scene.click("设计来源 ${promptId.take(8)}")
             withTimeout(30000){while(scene.nodes().none{it.matches("应用后又有修改：以最终生成内容和请求快照为准。")})scene.frames()}
             scene.click("关闭设计来源");assertEquals("quiet room, window, warm light",c.draft.basePrompt)
@@ -164,12 +175,12 @@ class WorkbenchWorkflowTest {
             scene.click("✓",0);assertFalse(c.draft.characters.first().enabled)
             scene.click("添加角色");val removed=c.draft.characters.last().id;scene.click("删除",2)
             assertFalse(c.draft.characters.any{it.id==removed});assertEquals(2,c.draft.characters.size)
-            scene.click("生成图片");c.idle();scene.frames()
+            scene.generateClick();c.idle();scene.frames()
             assertEquals(listOf("first person, red coat"),captions(requests.single(),"v4_prompt"))
             assertEquals(listOf("first unwanted"),captions(requests.single(),"v4_negative_prompt"))
             assertFalse(requests.single().contains("second person"));assertFalse(requests.single().contains("second unwanted"))
             scene.shot("role-disabled-request")
-            scene.click("×");scene.click("生成图片");c.idle();scene.frames()
+            scene.click("×");scene.generateClick();c.idle();scene.frames()
             assertEquals(listOf("second person, blue coat","first person, red coat"),captions(requests.last(),"v4_prompt"))
             assertEquals(listOf("second unwanted","first unwanted"),captions(requests.last(),"v4_negative_prompt"))
             scene.click("✓",0);expected=c.draft.characters.toList();c.flush();scene.shot("role-reordered-persisted")
@@ -228,20 +239,20 @@ class WorkbenchWorkflowTest {
             assertTrue(toggle.config[SemanticsActions.OnClick].action!!.invoke());scene.frames()
             scene.field("目标图片数","3");scene.click("2")
             assertTrue(c.draft.continuousModeEnabled);assertEquals(2,c.draft.activeSettings.count)
-            scene.click("生成图片");c.idle();scene.frames()
+            scene.generateClick();c.idle();scene.frames()
             assertEquals(listOf(2,1),requests.toList());assertEquals(3,c.assets.size)
             assertEquals(listOf("COMPLETED","COMPLETED"),w.state.jobs.map{it.state})
             scene.shot("continuous-completed-remainder")
 
-            scene.field("目标图片数","5");scene.click("生成图片")
+            scene.field("目标图片数","5");scene.generateClick()
             withTimeout(30000){waiting.await()};scene.frames()
             assertEquals(5,c.assets.size);assertEquals(listOf(2,1,2),requests.toList())
-            scene.shot("continuous-waiting-stoppable");scene.click("停止")
+            scene.shot("continuous-waiting-stoppable");scene.click("停止生图")
             withTimeout(30000){c.active!!.join()};scene.frames()
             assertFalse(c.busy);assertNull(c.problem);assertEquals("CANCELLED",w.state.jobs.last().state)
             assertTrue(w.state.jobs.last().results.isEmpty());assertEquals(5,c.assets.size)
 
-            partial.set(true);scene.click("生成图片")
+            partial.set(true);scene.generateClick()
             withTimeout(30000){c.active!!.join()};scene.frames()
             assertNotNull(c.problem);assertEquals(listOf(2,1,2,2),requests.toList())
             assertEquals("FAILED",w.state.jobs.last().state);assertEquals(1,w.state.jobs.last().results.size)

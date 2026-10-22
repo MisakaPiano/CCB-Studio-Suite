@@ -65,6 +65,7 @@ import kotlin.math.*
             StudioDisclosure("编辑说明") { Text("编辑结果自动保存；动画图片仅编辑首帧或默认图，原始文件保留。") }
         }
         e.exportProgress?.let{progress->
+            if(c.busy&&c.activeOperation in setOf("导出编辑工程","复制批量输出文件"))StudioAction("停止导出"){c.active?.cancel()}
             Column(Modifier.fillMaxWidth().padding(horizontal=12.dp,vertical=6.dp)) {
                 val label=when(progress.stage){
                     "GENERATING"->"正在生成页面 · ${progress.completed} / ${progress.total}"

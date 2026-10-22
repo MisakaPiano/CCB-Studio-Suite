@@ -1,0 +1,26 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "animatedGifRetainsTwoFrameColorsTimingAndLoopAfterDisguiseRestore",
+    "seconds": "0.396",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "actualWorkspacePreviewRestoreBatchCopyAndReopenPreserveOriginals",
+    "seconds": "8.216",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "failedBatchKeepsUnpublishedEvidenceAndNeverOverwritesPriorOutput",
+    "seconds": "1.234",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioAssetViewerTest",
+    "name": "hoverAndContextActionsUseTheViewedImageAndPreserveExistingProject",
+    "seconds": "4.075",
+    "status": "PASS"
+  }
+]

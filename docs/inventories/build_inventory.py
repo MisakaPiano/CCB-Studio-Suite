@@ -36,10 +36,13 @@ actions=json.loads((ROOT/'docs/ux/ACTION_IMPLEMENTATION.json').read_text(encodin
 
 def mapping(path):
     name=Path(path).name
+    if name=='DesktopImageTools.kt':
+        return 'PARTIAL_REQUIRES_ACTION_REVIEW',[suite_by_name[n] for n in ['DesktopImageTools.kt','GalleryAnimation.kt','DisguiseCovers.kt']],['docs/audits/UX_EDITOR_CLARITY.md','docs/audits/UX_APNG_COVERS.md']
     if name in ['SharedDanbooruCatalogUpdateChecker.kt','NovelAiRankedIndexBuilder.kt','DesktopNovelAiCatalogUpdate.kt','DesktopNovelAiCatalog.kt'] and name in suite_by_name:
-        return 'IMPLEMENTED_REQUIRES_HUMAN_REVIEW',[suite_by_name[name]],['docs/audits/UX_NAI_SETTINGS.md']
+        return 'IMPLEMENTED_REQUIRES_HUMAN_REVIEW',[suite_by_name[name]],['docs/audits/UX_NAI_SETTINGS.md','docs/audits/UX_NAI_BACKGROUND.md']
     if name in suite_by_name:return 'SOURCE_PRESENT_UNVERIFIED',[suite_by_name[name]],[]
     groups=[
+      ('ImageViewer|ViewerPresentation', ['StudioAssetViewer.kt'],['UX_NAI_BACKGROUND']),
       ('NovelAiStudio|StudioControls|StudioCharacters|StudioPrompt|StudioHistory|DesignConversation|NovelAiGuidance|NovelAiImage', ['StudioApplication.kt','StudioVision.kt'],['UX_R1A_WORKBENCH','UX_ROLE_WORKFLOW','UX_CREATION_CONTROLS']),
       ('ImageTools|Apng|Disguise', ['GalleryAnimation.kt','StudioApplication.kt'],['UX_EDITOR_CLARITY']),
       ('ImagePostProcess', ['StudioApplication.kt'],['UX_R1B_POSTPROCESS']),
@@ -121,8 +124,8 @@ features=[
  ('资产原件字节保留及独立工程/导出','StudioWorkspace.kt','UX_DAILY_USE_READINESS','IMPLEMENTED_AUTO_HUMAN_PARTIAL'),
  ('统一持久图库、别名与标签','GalleryWorkspace.kt','UX_LIBRARY_PROMPTS','IMPLEMENTED_HUMAN_PENDING'),
  ('多收集目录、变更版本、重新授权','LibraryDirectoryMonitor.kt','UX_DAILY_USE_READINESS','IMPLEMENTED_HUMAN_PENDING'),
- ('独立Prompt资产与多来源参照','LibraryRepository.kt','UX_DAILY_USE_READINESS','IMPLEMENTED_HUMAN_PENDING'),
- ('多图Recipe比较、角色展示位置对齐、字段摘取','PromptReferenceBoard.kt','UX_DAILY_USE_READINESS','IMPLEMENTED_HUMAN_PENDING'),
+ ('独立Prompt资产与AI候选/图片/文字主动加入参照','DesignPromptReference.kt','UX_NAI_BACKGROUND','IMPLEMENTED_AUTO_DEDICATED_HUMAN_PENDING'),
+ ('多图Recipe比较、角色展示位置对齐、字段摘取','PromptReferenceBoard.kt','UX_LIBRARY_PROMPTS','IMPLEMENTED_AUTO_DEDICATED_HUMAN_PENDING'),
  ('语言/视觉/NAI分类、生效状态、列表与默认选择','StudioModelAccounts.kt','UX_ACCOUNT_ROLES','IMPLEMENTED_CONFIGURATION_AND_ACTIVE_LAYOUT_HUMAN_SCOPED_PASS'),
  ('独立视觉模型与共用默认凭据','StudioModelAccounts.kt','UX_VISION_CREDENTIALS','IMPLEMENTED_CONFIGURATION_HUMAN_PASS_ACTUAL_VISION_PENDING'),
  ('模型用途提示与不兼容用途拦截','ModelPurpose.kt','UX_MODEL_PURPOSE','IMPLEMENTED_AUTO_HUMAN_SCOPED_PASS'),
@@ -142,7 +145,12 @@ features=[
  ('新旧渠道自动续签及离线targets维护','tools/update-runtime','UX_RENEWAL_PREFLIGHT','IMPLEMENTED_MANUAL_RUN_PASS_NATURAL_SCHEDULE_PENDING'),
  ('Suite Android完整独立创作','NOT_IMPLEMENTED','', 'NOT_IMPLEMENTED'),
  ('Suite Server管理员上游凭据及多用户队列','NOT_IMPLEMENTED','', 'NOT_IMPLEMENTED'),
- ('跨Windows/Android/Server资产与任务协议','NOT_IMPLEMENTED','','NOT_IMPLEMENTED')]
+ ('跨Windows/Android/Server资产与任务协议','NOT_IMPLEMENTED','','NOT_IMPLEMENTED'),
+ ('词库独立后台任务、可见进度与就地取消','NaiSettings.kt','UX_NAI_BACKGROUND','IMPLEMENTED_AUTO_NEW_BACKGROUND_UI_HUMAN_PENDING'),
+ ('AI设计独立可调窗口和共享未发送输入','StudioApplication.kt','UX_NAI_BACKGROUND','IMPLEMENTED_AUTO_WINDOW_HUMAN_SCOPED_PASS'),
+ ('单一生图模型、动态费用和单机本地停止','NaiSettings.kt','UX_NAI_BACKGROUND','IMPLEMENTED_AUTO_MODEL_AND_COST_LAYOUT_HUMAN_SCOPED_PASS'),
+ ('图片查看器悬浮翻页、右键及直达编辑/APNG','StudioAssetViewer.kt','UX_NAI_BACKGROUND','IMPLEMENTED_AUTO_VIEWER_ENTRY_HUMAN_SCOPED_PASS_APNG_DELIVERY_PENDING'),
+ ('多套APNG封面、默认恢复、自动预览与批次缩略图','DisguiseCovers.kt','UX_APNG_COVERS','IMPLEMENTED_AUTO_CUSTOM_COVER_AND_PREVIEW_HUMAN_PENDING')]
 rows=[]
 for i,(label,target,audit,status) in enumerate(features,1):
     if target.endswith('.kt'):

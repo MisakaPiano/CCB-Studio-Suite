@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "suiteEnhancements": 30,
+  "sources": {
+    "official": {
+      "commit": "979cb505958dffb1b6d64a8de657434f198ffa96",
+      "sourceFiles": 384,
+      "functions": 4028,
+      "labels": 713
+    },
+    "desktop": {
+      "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+      "sourceFiles": 337,
+      "functions": 2834,
+      "labels": 233
+    },
+    "desktop-development": {
+      "commit": "c4098e08bec84372911a5a8bc38c2cfa72f98978",
+      "sourceFiles": 406,
+      "functions": 3566,
+      "labels": 304
+    }
+  },
+  "scope": "Paths/counts/source ledger integrity only; not complete semantic parity or human acceptance"
+}
