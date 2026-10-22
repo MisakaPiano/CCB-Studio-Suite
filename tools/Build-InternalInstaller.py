@@ -1,6 +1,6 @@
 """Build a fresh-directory NSIS installer from an actual Compose application image.
 
-Internal test channel only. Does not execute the installer or change system state.
+Internal by default; explicit preview profile supported. Never publishes a release.
 Payloads never include data roots. Existing destinations are rejected, not overlaid.
 """
 import argparse,hashlib,json,re,shutil,subprocess
@@ -27,25 +27,47 @@ def path_preflight(payload):
             f'IntOp $1 $0 + {longest_directory+1}',
             'IntCmp $1 247 path_lengths_ok path_lengths_ok path_too_long','path_lengths_ok:']
 
-def build(app,runtime,bootstrap,destination,version,metadata_url,targets_url,build_evidence):
+def release_identity(version,metadata_url,targets_url,profile=None):
+    if type(version) is not int or not 1<=version<=65535:raise ValueError('Invalid installer version')
+    if profile is None:
+        return dict(channel='internal',displayVersion=f'0.2.{version}-internal',internalTest=True)
+    if set(profile)!={'channel','displayVersion','githubRepository'} or profile['channel']!='preview':
+        raise ValueError('Explicit preview profile required')
+    repository=profile['githubRepository']
+    if not isinstance(repository,str) or not re.fullmatch(r'[A-Za-z0-9_-]+/[A-Za-z0-9_.-]+',repository) or repository.split('/')[1] in ('.','..'):
+        raise ValueError('Invalid release repository')
+    if not re.fullmatch(r'[0-9]+\.[0-9]+\.[0-9]+-preview\.[1-9][0-9]*',profile['displayVersion']):
+        raise ValueError('Invalid preview display version')
+    if metadata_url!=f'https://raw.githubusercontent.com/{repository}/update-metadata/preview/windows-x86_64/metadata/' or targets_url!=f'https://github.com/{repository}/releases/download/':
+        raise ValueError('Preview endpoints must match pinned GitHub repository')
+    return dict(profile,internalTest=False)
+
+def build(app,runtime,bootstrap,destination,version,metadata_url,targets_url,build_evidence,profile=None):
+    identity=release_identity(version,metadata_url,targets_url,profile)
     destination=destination.resolve()
     if not destination.is_relative_to(ROOT/'.local') or destination.exists():raise ValueError('New Suite-local destination required')
     summary=json.loads((build_evidence/'summary.json').read_text(encoding='utf-8'))
     if summary['exitCode']!=0 or not summary['sourceStable'] or ':studio-desktop:createDistributable' not in summary['arguments']:raise ValueError('No verified actual app build')
     source=json.loads((build_evidence/'source-before.json').read_text(encoding='utf-8'))
     if any(digest(ROOT/p)!=h for p,h in source.items() if p.startswith('modules/')):raise ValueError('Application sources changed since build')
-    sha=summary['baseCommit']
+    app_sha=summary['baseCommit']
+    sha=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
+    # The app image can be reused after an updater-only change; record both origins.
+    tracked=subprocess.check_output(['git','diff','HEAD','--name-only','--','modules','tools/update-runtime','tools/Build-InternalInstaller.py','tools/Prepare-UpdaterRuntime.py'],cwd=ROOT,text=True)
+    if tracked.strip():raise ValueError('Commit package inputs before building a fixed installer')
     if not re.fullmatch('[0-9a-f]{40}',sha) or version<1:raise ValueError('Invalid identity')
     if not (app/'CCBStudioSuitePreview.exe').is_file():raise ValueError('Actual app launcher missing')
     receipt=json.loads((runtime/'RUNTIME_MANIFEST.json').read_text(encoding='utf-8'))
     for item in receipt['files']:
         p=runtime/item['path']
         if p.stat().st_size!=item['bytes'] or digest(p)!=item['sha256']:raise ValueError('Runtime changed: '+item['path'])
+    for name in ['studio_update.py','github_transport.py','apply_update.py','install_ops.py']:
+        if digest(runtime/'lib'/name)!=digest(ROOT/'tools/update-runtime'/name):raise ValueError('Runtime source is stale: '+name)
     destination.mkdir(parents=True)
     payload=destination/'payload';shutil.copytree(app,payload)
     shutil.copytree(runtime,payload/'updater',ignore=shutil.ignore_patterns('__pycache__'))
     shutil.copy2(bootstrap,payload/'update-root.json')
-    config=dict(format=1,product='ccb-studio-suite',platform='windows-x86_64',channel='internal',version=version,displayVersion=f'0.2.{version}-internal',reader=3,sourceSha=sha,metadataUrl=metadata_url,targetsUrl=targets_url,rootSha256=digest(bootstrap),internalTest=True)
+    config=dict(format=1,product='ccb-studio-suite',platform='windows-x86_64',version=version,reader=3,sourceSha=sha,metadataUrl=metadata_url,targetsUrl=targets_url,rootSha256=digest(bootstrap),**identity)
     (payload/'update-config.json').write_text(json.dumps(config,indent=2)+'\n',encoding='utf-8')
     manifest=dict(format=1,product=config['product'],platform=config['platform'],channel=config['channel'],version=version,sourceSha=sha,files=[])
     for p in sorted(payload.rglob('*')):
@@ -62,10 +84,11 @@ def build(app,runtime,bootstrap,destination,version,metadata_url,targets_url,bui
             if member.is_dir():continue
             installed_tool=compiler.parent.parent/member.filename
             if not installed_tool.is_file() or installed_tool.read_bytes()!=z.read(member):raise ValueError('NSIS toolchain changed: '+member.filename)
+    label='CCB Studio Suite Internal' if identity['channel']=='internal' else 'CCB Studio Suite Preview'
     script=['Unicode true','RequestExecutionLevel user','SetCompressor zlib','SetOverwrite off',
-            f'VIProductVersion "0.2.{version}.0"','VIAddVersionKey "ProductName" "CCB Studio Suite Internal"',
+            f'VIProductVersion "0.2.{version}.0"',f'VIAddVersionKey "ProductName" "{label}"',
             f'VIAddVersionKey "FileVersion" "0.2.{version}.0"',
-            'Name "CCB Studio Suite Internal"','OutFile '+quote(destination/'studio-installer.exe'),
+            f'Name "{label}"','OutFile '+quote(destination/'studio-installer.exe'),
             f'InstallDir "$LOCALAPPDATA\\CCBStudioSuite\\applications\\{version}-{sha[:12]}"',
             'Page directory','Page instfiles','Section "Install"']
     script+=path_preflight(payload)
@@ -95,7 +118,7 @@ def build(app,runtime,bootstrap,destination,version,metadata_url,targets_url,bui
     nsi=destination/'installer.nsi';nsi.write_text('\n'.join(script)+'\n',encoding='utf-8-sig')
     with (destination/'compile.log').open('wb') as log:
         result=subprocess.run([str(compiler),'/NOCONFIG',str(nsi)],stdout=log,stderr=subprocess.STDOUT)
-    report=dict(task='UX-R4',status='BUILT' if result.returncode==0 else 'FAILED',sourceSha=sha,version=version,compiler='NSIS3.13',exitCode=result.returncode,files=len(manifest['files']),installed='NOT TESTED')
+    report=dict(task='UX-R4',status='BUILT' if result.returncode==0 else 'FAILED',sourceSha=sha,appBuildSourceSha=app_sha,version=version,channel=identity['channel'],displayVersion=identity['displayVersion'],compiler='NSIS3.13',exitCode=result.returncode,files=len(manifest['files']),installed='NOT TESTED')
     if result.returncode==0:report.update(bytes=(destination/'studio-installer.exe').stat().st_size,sha256=digest(destination/'studio-installer.exe'))
     (destination/'BUILD_RECEIPT.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8');print(json.dumps(report))
     if result.returncode:raise RuntimeError('NSIS compiler failed; inspect retained compile.log')
@@ -105,4 +128,6 @@ if __name__=='__main__':
     p=argparse.ArgumentParser()
     for name in ['app','runtime','bootstrap','destination','build-evidence']:p.add_argument('--'+name,required=True,type=Path)
     p.add_argument('--version',required=True,type=int);p.add_argument('--metadata-url',required=True);p.add_argument('--targets-url',required=True)
-    a=p.parse_args();build(a.app,a.runtime,a.bootstrap,a.destination,a.version,a.metadata_url,a.targets_url,a.build_evidence)
+    p.add_argument('--release-profile',type=Path,help='Explicit preview JSON profile; omission keeps internal channel')
+    a=p.parse_args();build(a.app,a.runtime,a.bootstrap,a.destination,a.version,a.metadata_url,a.targets_url,a.build_evidence,
+                          json.loads(a.release_profile.read_text(encoding='utf-8')) if a.release_profile else None)

@@ -1,0 +1,30 @@
+{
+  "task": "UX-R4",
+  "status": "FAILED",
+  "tests": 32,
+  "failures": 0,
+  "errors": 1,
+  "skipped": 0,
+  "seconds": 7.724888500000816,
+  "python": "3.13.16 (tags/v3.13.16:cbc944f, Sep 30 2026, 19:17:50) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "sourceStable": true,
+  "sourceHashes": {
+    "tools/update-runtime/apply_update.py": "9d87523638ea7728ee71e194cb40fc7b10860b493f8196696c66e31de55534bf",
+    "tools/update-runtime/github_transport.py": "d616c1291064d49549a57750d58ad01f6a2533b339d810a175931a041e6475f1",
+    "tools/update-runtime/install_ops.py": "3faf7342ecb50d054a21354402e45077570eef689a363c94425dabe987f2b0f4",
+    "tools/update-runtime/internal_repository.py": "a65f2053251e80579d098d81144b5bb07f3eebd36ce1b3bde70a596c82c70a0c",
+    "tools/update-runtime/run_tests.py": "1b103aaeb5daeea2f7bbb770a2fb32f6a85e9fd91b9458318fbcbd4da6a7f732",
+    "tools/update-runtime/studio_update.py": "f994f04af919df2de4dfe599d3b1db268778af4fa4d4010753bd509370e34731",
+    "tools/update-runtime/test_client.py": "87dd1ed95d1ba11db8003d4ebf497b3f233d01a2c4d9e7a69e2eab5eb0716204",
+    "tools/update-runtime/test_github.py": "42474c784a531f7240956823d95d1afb863262cc4e94cae02ad827563eb28c53",
+    "tools/update-runtime/test_handoff.py": "1facc768381f9ee54a6eb64641a3dde868cda2232903540fa34ade49a88ef629",
+    "tools/update-runtime/test_install.py": "22469a4c1bf3564cfcd3c9156ed96cdc7bc6a51f0a9c40a3518471b1f0a03650",
+    "tools/update-runtime/test_process_transport.py": "a7cf4bdd2ed60348a1f81f7223dde61be86c000ef8fe7c07cf563a313e52e2ca",
+    "tools/update-runtime/artifacts.json": "6540d0be0af09f8e24dc7464873e0a5891c167685c02b0869eac96a6139432b0",
+    "tools/Prepare-UpdaterRuntime.py": "c3caa757bd9937935c4add892278966de22e6bfea21df4b4e84be9bffac0ea71",
+    "tools/Build-InternalInstaller.py": "7fe9928817a14fea9648598b0ae8fe8b81813e299dca99c59653879a1479762b"
+  },
+  "baseCommit": "e9c261f692372718ff5fbc438b032e1f4748bd98",
+  "applicationInstallRestart": "NOT TESTED"
+}

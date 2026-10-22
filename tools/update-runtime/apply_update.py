@@ -5,8 +5,7 @@ No old-binary/data rollback, forced writer termination, public trust changes or 
 import argparse,base64,ctypes,json,os,re,subprocess,time,uuid
 from ctypes import wintypes
 from pathlib import Path
-from tuf.ngclient import Updater
-from studio_update import Installed,UpdateRejected,exclusive,inspect
+from studio_update import Installed,UpdateRejected,exclusive,inspect,create_updater,authorize_download
 from install_ops import atomic_json,no_reparse,install_candidate
 
 def data_destination(plan,source,identity,custom):
@@ -88,8 +87,9 @@ def _perform(plan_path):
         parent=ParentProcess(plan['parentPid'],installed/'CCBStudioSuitePreview.exe')
         identity=Installed.load(installed)
         with exclusive(cache):
-            updater=Updater(str(cache/'metadata'),identity.metadata_url,str(cache/'downloads'),identity.targets_url,bootstrap=identity.bootstrap)
+            updater,observed=create_updater(identity,cache/'metadata',cache/'downloads')
             target,custom=inspect(updater,identity)
+            authorize_download(observed,target,identity)
             approved=plan['approved']
             if target.hashes['sha256']!=approved['sha256'] or custom['version']!=approved['version'] or custom['sourceSha']!=approved['sourceSha']:
                 raise UpdateRejected('Release changed after confirmation; confirmation must be repeated')

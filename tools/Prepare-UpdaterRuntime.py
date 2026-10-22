@@ -40,6 +40,7 @@ def build(destination, sources):
     # ._pth isolates registry/environment/current-directory import paths; site remains off.
     (destination/'python313._pth').write_text('python313.zip\n.\nlib\n',encoding='utf-8')
     shutil.copyfile(ROOT/'tools/update-runtime/studio_update.py',destination/'lib/studio_update.py')
+    shutil.copyfile(ROOT/'tools/update-runtime/github_transport.py',destination/'lib/github_transport.py')
     shutil.copyfile(ROOT/'tools/update-runtime/install_ops.py',destination/'lib/install_ops.py')
     shutil.copyfile(ROOT/'tools/update-runtime/apply_update.py',destination/'lib/apply_update.py')
     receipt={'task':'UX-R4','status':'ASSEMBLED_NOT_APPLICATION_UPDATE_VALIDATED','artifacts':artifacts,

@@ -12,6 +12,7 @@ from tuf.ngclient import Updater
 from tuf.ngclient.config import UpdaterConfig
 from tuf.ngclient.fetcher import FetcherInterface
 from tuf.ngclient.urllib3_fetcher import Urllib3Fetcher
+from github_transport import GitHubFetcher, endpoints
 
 class UpdateRejected(ValueError):
     pass
@@ -25,6 +26,7 @@ class Installed:
     targets_url: str
     bootstrap: bytes
     source_sha: str = ''
+    github_repository: str = ''
 
     @staticmethod
     def load(package: Path):
@@ -44,7 +46,27 @@ class Installed:
         if hashlib.sha256(root).hexdigest()!=data.get('rootSha256'):raise UpdateRejected('Installed bootstrap identity changed')
         source=data.get('sourceSha','')
         if source and not re.fullmatch('[0-9a-f]{40}',source):raise UpdateRejected('Invalid installed source identity')
-        return Installed(data['version'],data['reader'],data['channel'],data['metadataUrl'],data['targetsUrl'],root,source)
+        repository=data.get('githubRepository','')
+        if 'githubRepository' in data and (not isinstance(repository,str) or not repository):
+            raise UpdateRejected('Invalid installed GitHub repository')
+        if repository:
+            try:expected=endpoints(repository,data['channel'])
+            except ValueError:raise UpdateRejected('Invalid installed GitHub configuration') from None
+            if (data['metadataUrl'],data['targetsUrl'])!=expected:raise UpdateRejected('GitHub endpoint identity mismatch')
+        return Installed(data['version'],data['reader'],data['channel'],data['metadataUrl'],data['targetsUrl'],root,source,repository)
+
+def create_updater(installed,metadata,targets,fetcher=None,progress=None):
+    delegate=fetcher or (GitHubFetcher(installed.github_repository,installed.channel) if installed.github_repository
+                        else Urllib3Fetcher(app_user_agent='CCBStudioSuite'))
+    observed=ProgressFetcher(delegate,progress or (lambda value:None))
+    updater=Updater(str(metadata),installed.metadata_url,str(targets),installed.targets_url,
+                    bootstrap=installed.bootstrap,fetcher=observed,config=UpdaterConfig(app_user_agent='CCBStudioSuite'))
+    return updater,observed
+
+def authorize_download(observed,target,installed):
+    if installed.github_repository:
+        try:observed.delegate.authorize(target)
+        except (ValueError,AttributeError):raise UpdateRejected('Invalid authenticated GitHub release location') from None
 
 @contextmanager
 def exclusive(cache:Path):
@@ -105,10 +127,9 @@ def execute(installed:Installed,cache:Path,download=False,fetcher=None,disk_usag
     with exclusive(cache):
         metadata=cache/'metadata';metadata.mkdir(exist_ok=True)
         targets=cache/'downloads';targets.mkdir(exist_ok=True)
-        observed=ProgressFetcher(fetcher or Urllib3Fetcher(app_user_agent='CCBStudioSuite'),report)
-        updater=Updater(str(metadata),installed.metadata_url,str(targets),installed.targets_url,
-                        bootstrap=installed.bootstrap,fetcher=observed,config=UpdaterConfig(app_user_agent='CCBStudioSuite'))
+        updater,observed=create_updater(installed,metadata,targets,fetcher,report)
         target,custom=inspect(updater,installed,allow_current=True)
+        authorize_download(observed,target,installed)
         result={'status':'AVAILABLE','version':custom['version'],'displayVersion':custom['displayVersion'],
                 'channel':custom['channel'],'notes':custom['notes'],'sourceSha':custom['sourceSha'],
                 'bytes':target.length,'installedBytes':custom['installedBytes'],'sha256':target.hashes['sha256'],'minimumReader':custom['minimum_reader'],
