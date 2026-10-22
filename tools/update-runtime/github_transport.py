@@ -10,18 +10,20 @@ from tuf.api.exceptions import DownloadHTTPError
 from tuf.ngclient.fetcher import FetcherInterface
 
 
-def endpoints(repository, channel):
+def endpoints(repository, channel, metadata_branch='update-metadata'):
     if not isinstance(repository, str) or not re.fullmatch(r'[A-Za-z0-9_-]+/[A-Za-z0-9_.-]+', repository):
         raise ValueError('Invalid release repository')
     if repository.split('/')[1] in ('.', '..') or channel not in ('preview', 'stable'):
         raise ValueError('Invalid release channel')
-    return (f'https://raw.githubusercontent.com/{repository}/update-metadata/{channel}/windows-x86_64/metadata/',
+    if metadata_branch not in ('update-metadata', 'long-term-metadata'):
+        raise ValueError('Invalid pinned metadata branch')
+    return (f'https://raw.githubusercontent.com/{repository}/{metadata_branch}/{channel}/windows-x86_64/metadata/',
             f'https://github.com/{repository}/releases/download/')
 
 
 class GitHubFetcher(FetcherInterface):
-    def __init__(self, repository, channel, pool=None):
-        self.metadata, self.targets = endpoints(repository, channel)
+    def __init__(self, repository, channel, pool=None, metadata_branch='update-metadata'):
+        self.metadata, self.targets = endpoints(repository, channel, metadata_branch)
         self.pool = pool or urllib3.PoolManager()
         self.authorized = {}
 

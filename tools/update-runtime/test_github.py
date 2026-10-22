@@ -130,3 +130,24 @@ class GitHubTests(unittest.TestCase):
         for change in ({'channel':'stable'},{'displayVersion':'unsafe"name'},{'githubRepository':'Other/Repo'}):
             with self.assertRaises(ValueError):module.release_identity(100,self.identity.metadata_url,self.identity.targets_url,dict(profile,**change))
         with self.assertRaises(ValueError):module.release_identity(65536,'','')
+
+    def test_long_term_branch_pinned_and_old_channel_cannot_be_substituted(self):
+        metadata,targets=endpoints(self.repository,'preview','long-term-metadata')
+        config=dict(format=1,product='ccb-studio-suite',platform='windows-x86_64',version=102,reader=3,channel='preview',
+                    metadataUrl=metadata,targetsUrl=targets,githubRepository=self.repository,metadataBranch='long-term-metadata',
+                    rootSha256=__import__('hashlib').sha256(self.identity.bootstrap).hexdigest())
+        (self.path/'update-root.json').write_bytes(self.identity.bootstrap)
+        path=self.path/'update-config.json';path.write_text(json.dumps(config))
+        installed=Installed.load(self.path)
+        _,observed=create_updater(installed,self.path/'long-meta',self.path/'long-targets')
+        self.assertEqual(observed.delegate.metadata,metadata)
+        with self.assertRaises(DownloadError):list(observed.delegate.fetch(self.identity.metadata_url+'timestamp.json'))
+        config['metadataBranch']='update-metadata';path.write_text(json.dumps(config))
+        with self.assertRaises(UpdateRejected):Installed.load(self.path)
+        for branch in ('main','../main','long-term-metadata?x=1'):
+            with self.assertRaises(ValueError):endpoints(self.repository,'preview',branch)
+        spec=importlib.util.spec_from_file_location('build_installer_long',Path(__file__).parents[1]/'Build-InternalInstaller.py')
+        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        profile=dict(channel='preview',displayVersion='0.0.0-preview.102',githubRepository=self.repository,metadataBranch='long-term-metadata')
+        self.assertEqual(module.release_identity(102,metadata,targets,profile)['metadataBranch'],'long-term-metadata')
+        with self.assertRaises(ValueError):module.release_identity(102,self.identity.metadata_url,targets,profile)

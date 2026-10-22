@@ -31,14 +31,16 @@ def release_identity(version,metadata_url,targets_url,profile=None):
     if type(version) is not int or not 1<=version<=65535:raise ValueError('Invalid installer version')
     if profile is None:
         return dict(channel='internal',displayVersion=f'0.2.{version}-internal',internalTest=True)
-    if set(profile)!={'channel','displayVersion','githubRepository'} or profile['channel']!='preview':
+    if set(profile)-{'metadataBranch'}!={'channel','displayVersion','githubRepository'} or profile['channel']!='preview':
         raise ValueError('Explicit preview profile required')
     repository=profile['githubRepository']
     if not isinstance(repository,str) or not re.fullmatch(r'[A-Za-z0-9_-]+/[A-Za-z0-9_.-]+',repository) or repository.split('/')[1] in ('.','..'):
         raise ValueError('Invalid release repository')
     if not re.fullmatch(r'[0-9]+\.[0-9]+\.[0-9]+-preview\.[1-9][0-9]*',profile['displayVersion']):
         raise ValueError('Invalid preview display version')
-    if metadata_url!=f'https://raw.githubusercontent.com/{repository}/update-metadata/preview/windows-x86_64/metadata/' or targets_url!=f'https://github.com/{repository}/releases/download/':
+    branch=profile.get('metadataBranch','update-metadata')
+    if branch not in ('update-metadata','long-term-metadata'):raise ValueError('Invalid metadata branch')
+    if metadata_url!=f'https://raw.githubusercontent.com/{repository}/{branch}/preview/windows-x86_64/metadata/' or targets_url!=f'https://github.com/{repository}/releases/download/':
         raise ValueError('Preview endpoints must match pinned GitHub repository')
     return dict(profile,internalTest=False)
 

@@ -27,6 +27,7 @@ class Installed:
     bootstrap: bytes
     source_sha: str = ''
     github_repository: str = ''
+    metadata_branch: str = 'update-metadata'
 
     @staticmethod
     def load(package: Path):
@@ -49,14 +50,15 @@ class Installed:
         repository=data.get('githubRepository','')
         if 'githubRepository' in data and (not isinstance(repository,str) or not repository):
             raise UpdateRejected('Invalid installed GitHub repository')
+        branch=data.get('metadataBranch','update-metadata')
         if repository:
-            try:expected=endpoints(repository,data['channel'])
+            try:expected=endpoints(repository,data['channel'],branch)
             except ValueError:raise UpdateRejected('Invalid installed GitHub configuration') from None
             if (data['metadataUrl'],data['targetsUrl'])!=expected:raise UpdateRejected('GitHub endpoint identity mismatch')
-        return Installed(data['version'],data['reader'],data['channel'],data['metadataUrl'],data['targetsUrl'],root,source,repository)
+        return Installed(data['version'],data['reader'],data['channel'],data['metadataUrl'],data['targetsUrl'],root,source,repository,branch)
 
 def create_updater(installed,metadata,targets,fetcher=None,progress=None):
-    delegate=fetcher or (GitHubFetcher(installed.github_repository,installed.channel) if installed.github_repository
+    delegate=fetcher or (GitHubFetcher(installed.github_repository,installed.channel,metadata_branch=installed.metadata_branch) if installed.github_repository
                         else Urllib3Fetcher(app_user_agent='CCBStudioSuite'))
     observed=ProgressFetcher(delegate,progress or (lambda value:None))
     updater=Updater(str(metadata),installed.metadata_url,str(targets),installed.targets_url,
