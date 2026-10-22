@@ -16,6 +16,16 @@ internal object StudioFileDialogs {
     fun detach(window:Window){owner.detach(window);failure=null}
     fun folder(title:String,initial:Path?=null):Path?=choose(DesktopDialogRequest(DesktopDialogKind.FOLDER,title=title,initialFolder=initial)).firstOrNull()
     fun open(title:String,extensions:List<String> = listOf("*")):Path?=openMany(title,extensions,false).firstOrNull()
+    /** A separate tool window owns its own native picker; the main owner's registration stays intact. */
+    fun openOwned(window:Window,title:String,extensions:List<String>):Path? {
+        if(!DesktopWindowChrome.isWindows)return open(title,extensions)
+        val temporaryOwner=DesktopDialogOwner()
+        return try {
+            temporaryOwner.attach(window)
+            WindowsCommonItemDialog(temporaryOwner::requireHandle).pickPaths(DesktopDialogRequest(DesktopDialogKind.OPEN,DesktopFileType(title,extensions),title=title,multiple=false)).firstOrNull()
+        }catch(e:Exception){failure?.invoke("文件选择器未能打开；封面库未改变，请重试。");null}
+        finally{temporaryOwner.detach(window)}
+    }
     fun openMany(title:String,extensions:List<String> = listOf("*"),multiple:Boolean=true):List<Path> =
         choose(DesktopDialogRequest(DesktopDialogKind.OPEN,DesktopFileType(title,extensions),title=title,multiple=multiple))
     fun save(title:String,name:String,extensions:List<String> = listOf("*")):Path?=

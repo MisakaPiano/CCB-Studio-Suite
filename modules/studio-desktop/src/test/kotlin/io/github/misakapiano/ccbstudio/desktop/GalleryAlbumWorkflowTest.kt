@@ -17,6 +17,27 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.test.*
 
 class GalleryAlbumWorkflowTest {
+    @Test fun directoryChoiceHasVisibleScrollbarsAndKeepsFolderSelectionSeparate()=runBlocking(awt){
+        val w=StudioWorkspace.openStudio(root());val bytes=EditorRenderer.synthetic(32,32)
+        val folder=LibraryFolder(path=root().toString(),category="images")
+        LibraryRepository(w).update{it.copy(folders=listOf(folder))}
+        val ids=(1..3).map{n->w.importImage("synthetic-$n.png",bytes,buildJsonObject{put("kind","image-ingress");put("version",1);put("source","managed-folder");put("folderId",folder.id);put("relativePath","$n.png")}.toString())}
+        val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{error("No HTTP")},pauseCollectionsOnStart=true)
+        c.view="图库";val scene=ImageComposeScene(1320,880){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
+        suspend fun idle(){c.active?.join();assertNull(c.problem);scene.frames()}
+        try {
+            withTimeout(10000){while(c.gallery.foldPreferences==null)scene.frames()}
+            scene.click("▸ 筛选与分组");scene.click("折叠方式 · 完整 ▾");scene.click("目录");idle();scene.click("折叠为相册");idle()
+            assertTrue(c.gallery.directoryFold);assertTrue(c.gallery.fold.enabled)
+            assertTrue(scene.nodes().any{it.matches("图库图片滚动条")});assertTrue(scene.nodes().any{it.matches("图片详情滚动条")})
+            val album=scene.nodes().first{it.config.getOrNull(SemanticsProperties.ContentDescription)?.any{d->d.startsWith("图库相册 ")}==true}
+            val id=album.config[SemanticsProperties.ContentDescription].first().removePrefix("图库相册 ")
+            scene.click("选择图库图片 $id");assertEquals(ids.toSet(),c.selection)
+            scene.shot("directory-scrollbars");scene.click("图库相册 $id");assertEquals(1,c.gallery.depth);assertFalse(c.gallery.directoryFold)
+            scene.click("返回上层相册");assertTrue(c.gallery.directoryFold)
+            assertTrue(c.state.jobs.isEmpty());ids.forEach{assertContentEquals(bytes,w.bytes(it))}
+        }finally{scene.close();c.close();scope.cancel();w.close()}
+    }
     private val awt=object:CoroutineDispatcher(){override fun dispatch(context:CoroutineContext,block:Runnable)=SwingUtilities.invokeLater(block)}
     private fun root()=Path.of(System.getProperty("preview.test.root"),newId())
     private suspend fun ImageComposeScene.frames(){repeat(3){render(System.nanoTime()).close();yield()};delay(180);render(System.nanoTime()).close()}

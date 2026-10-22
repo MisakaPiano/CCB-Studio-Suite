@@ -1,0 +1,98 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.DisguiseCoverManagerTest",
+    "name": "filePickerAddsMultipleNamedThumbnailsAndRenameRemoveDefaultReopenPreserveBytes",
+    "seconds": "5.761",
+    "status": "FAILED"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAlbumWorkflowTest",
+    "name": "directoryChoiceHasVisibleScrollbarsAndKeepsFolderSelectionSeparate",
+    "seconds": "4.487",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAlbumWorkflowTest",
+    "name": "sourceAlbumsNavigateSelectFilterAndPersistDepthPreferencesWithoutChangingRecipes",
+    "seconds": "7.554",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "selectingMultipleCoverPresetsResetsPlaybackAndPreviewAndControlsExports",
+    "seconds": "5.279",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "animatedGifRetainsTwoFrameColorsTimingAndLoopAfterDisguiseRestore",
+    "seconds": "0.115",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "automaticPreviewRejectsSupersededWorkAndShutdownDrainsIt",
+    "seconds": "1.123",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "thumbnailStripStartsAtLatestAndSelectingAnOlderImageUpdatesPreviewAutomatically",
+    "seconds": "7.4",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "actualWorkspacePreviewRestoreBatchCopyAndReopenPreserveOriginals",
+    "seconds": "4.475",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "failedBatchKeepsUnpublishedEvidenceAndNeverOverwritesPriorOutput",
+    "seconds": "2.021",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "staticDisguisePreviewIsTheChosenCoverAndPlaybackKeepsTheContent",
+    "seconds": "0.094",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest",
+    "name": "recoveryStartupPausesWatchersWithoutChangingRegistrationsAndAllowsExplicitSingleScan",
+    "seconds": "2.847",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest",
+    "name": "cancelledCollectionCannotBeReplacedUntilItsBlockedIoHasDrained",
+    "seconds": "0.617",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest",
+    "name": "queuedRemovedRegistrationIsIgnoredAndUncertainMetadataStopsAutomaticRetries",
+    "seconds": "1.446",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest",
+    "name": "galleryAndDraftEditingRemainResponsiveWhileBackgroundWriterOwnsWorkspace",
+    "seconds": "0.175",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest",
+    "name": "workbenchAutomaticallyCollectsImagesAndPromptVersionsAndDrainsForMaintenance",
+    "seconds": "12.309",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest",
+    "name": "unreadableLocalRegistrationStopsMonitoringWithoutHidingAssetLabels",
+    "seconds": "1.365",
+    "status": "PASS"
+  }
+]

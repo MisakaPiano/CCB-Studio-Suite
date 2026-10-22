@@ -123,7 +123,7 @@ table('CCBDESKTOP_CAPABILITIES.md','CCBdesktop全产品来源与Suite实现清�
 features=[
  ('资产原件字节保留及独立工程/导出','StudioWorkspace.kt','UX_DAILY_USE_READINESS','IMPLEMENTED_AUTO_HUMAN_PARTIAL'),
  ('统一持久图库、别名与标签','GalleryWorkspace.kt','UX_LIBRARY_PROMPTS','IMPLEMENTED_HUMAN_PENDING'),
- ('多收集目录、变更版本、重新授权','LibraryDirectoryMonitor.kt','UX_DAILY_USE_READINESS','IMPLEMENTED_HUMAN_PENDING'),
+ ('多收集目录、变更版本、暂停恢复与重新授权','LibraryDirectoryMonitor.kt','UX_COLLECTION_RESPONSIVENESS','IMPLEMENTED_RECOVERY_AND_SMALL_SYNC_HUMAN_SCOPED_PASS_BULK_PENDING'),
  ('独立Prompt资产与AI候选/图片/文字主动加入参照','DesignPromptReference.kt','UX_NAI_BACKGROUND','IMPLEMENTED_AUTO_DEDICATED_HUMAN_PENDING'),
  ('多图Recipe比较、角色展示位置对齐、字段摘取','PromptReferenceBoard.kt','UX_LIBRARY_PROMPTS','IMPLEMENTED_AUTO_DEDICATED_HUMAN_PENDING'),
  ('语言/视觉/NAI分类、生效状态、列表与默认选择','StudioModelAccounts.kt','UX_ACCOUNT_ROLES','IMPLEMENTED_CONFIGURATION_AND_ACTIVE_LAYOUT_HUMAN_SCOPED_PASS'),
@@ -150,7 +150,8 @@ features=[
  ('AI设计独立可调窗口和共享未发送输入','StudioApplication.kt','UX_NAI_BACKGROUND','IMPLEMENTED_AUTO_WINDOW_HUMAN_SCOPED_PASS'),
  ('单一生图模型、动态费用和单机本地停止','NaiSettings.kt','UX_NAI_BACKGROUND','IMPLEMENTED_AUTO_MODEL_AND_COST_LAYOUT_HUMAN_SCOPED_PASS'),
  ('图片查看器悬浮翻页、右键及直达编辑/APNG','StudioAssetViewer.kt','UX_NAI_BACKGROUND','IMPLEMENTED_AUTO_VIEWER_ENTRY_HUMAN_SCOPED_PASS_APNG_DELIVERY_PENDING'),
- ('多套APNG封面、默认恢复、自动预览与批次缩略图','DisguiseCovers.kt','UX_APNG_COVERS','IMPLEMENTED_AUTO_CUSTOM_COVER_AND_PREVIEW_HUMAN_PENDING')]
+ ('可视多套封面库、独立管理窗口、默认恢复与自动预览','DisguiseCoverManager.kt','UX_COVER_LIBRARY_GALLERY','IMPLEMENTED_VISUAL_LIBRARY_AUTO_PREVIEW_HUMAN_PENDING'),
+ ('图库来源目录折叠、层级偏好及可见滚动条','GalleryHistory.kt','UX_COVER_LIBRARY_GALLERY','IMPLEMENTED_DIRECTORY_GROUPING_HUMAN_PENDING')]
 rows=[]
 for i,(label,target,audit,status) in enumerate(features,1):
     if target.endswith('.kt'):

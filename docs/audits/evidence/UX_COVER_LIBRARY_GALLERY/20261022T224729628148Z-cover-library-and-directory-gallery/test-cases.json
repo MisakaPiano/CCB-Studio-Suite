@@ -1,0 +1,32 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.DisguiseCoversTest",
+    "name": "multiplePresetsDefaultChoiceAndBackupKeepOriginalCoverBytes",
+    "seconds": "7.69",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.DisguiseCoversTest",
+    "name": "unreadableOrFutureCoverSettingsAreNeverSilentlyReset",
+    "seconds": "0.738",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.GalleryHistoryTest",
+    "name": "verifiedHistoryFoldsUnknownAndCorruptReceiptsStayIndependentAndOriginalsRemain",
+    "seconds": "1.575",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.GalleryHistoryTest",
+    "name": "perDepthPreferencesSurviveBackupRestoreAndDateGrammarRejectsInvalidCalendar",
+    "seconds": "2.088",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.GalleryHistoryTest",
+    "name": "directoryGroupingUsesOnlyRecordedProvenanceAndPreferencesSurviveReopen",
+    "seconds": "2.997",
+    "status": "PASS"
+  }
+]

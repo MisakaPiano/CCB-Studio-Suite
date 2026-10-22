@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.input.pointer.*
 import androidx.compose.ui.semantics.*
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.text.style.TextOverflow
 import com.example.chatbar.desktop.*
 import com.example.chatbar.domain.image.*
 import com.example.chatbar.ui.imageprompt.*
@@ -29,6 +30,8 @@ internal class GalleryViewState {
     val depth get()=levels.lastIndex
     val scope get()=levels.last()
     var foldPreferences by mutableStateOf<Map<Int,NovelAiHistoryFoldPreference>?>(null)
+    var directoryFoldDepths by mutableStateOf<Set<Int>?>(null)
+    val directoryFold get()=depth in directoryFoldDepths.orEmpty()
     val fold get()=foldPreferences?.get(depth)?:NovelAiHistoryFoldPreference(depth)
     var historyProblem by mutableStateOf<String?>(null)
     var viewing by mutableStateOf<Pair<List<String>,Int>?>(null)
@@ -77,7 +80,10 @@ internal class GalleryViewState {
         id !in c.library.archived && (g.source=="all" || (g.source=="generated")== (job!=null)) && (g.scope.ids?.contains(id)!=false) && dateMatches(id) &&
         (a.request().name().contains(g.query,true) || labels[id]?.alias?.contains(g.query,true)==true || labels[id]?.tags?.any{it.contains(g.query,true)}==true || id in promptMatches)}
     val visibleIds=visible.map{it.request().id().toString()}
-    val albums=galleryAlbums(visibleIds,projection,g.fold.type.takeIf{g.fold.enabled})
+    val albums=remember(visibleIds,projection,g.fold,g.directoryFold,c.assets,c.library.state?.folders){
+        if(g.fold.enabled && g.directoryFold)galleryDirectoryAlbums(visibleIds,c.assets,c.library.state?.folders.orEmpty())
+        else galleryAlbums(visibleIds,projection,g.fold.type.takeIf{g.fold.enabled})
+    }
     fun select(album:NovelAiHistoryAlbum,range:Boolean){
         val byId=albums.flatMap{it.images}.associateBy{it.image.path}
         val input=NovelAiHistorySelection(c.selection.mapNotNull{byId[it]?.key},if(range)g.anchor else null)
@@ -107,7 +113,9 @@ internal class GalleryViewState {
         BoxWithConstraints(Modifier.weight(1f).fillMaxWidth()){
             val wide=maxWidth>=900.dp
             Row(Modifier.fillMaxSize(),horizontalArrangement=Arrangement.spacedBy(12.dp)){
-                LazyVerticalGrid(GridCells.Adaptive(150.dp),Modifier.weight(1f).fillMaxHeight(),horizontalArrangement=Arrangement.spacedBy(8.dp),verticalArrangement=Arrangement.spacedBy(8.dp)){
+                val gridScroll=rememberLazyGridState()
+                Box(Modifier.weight(1f).fillMaxHeight()) {
+                LazyVerticalGrid(GridCells.Adaptive(150.dp),Modifier.fillMaxSize().padding(end=16.dp),state=gridScroll,horizontalArrangement=Arrangement.spacedBy(8.dp),verticalArrangement=Arrangement.spacedBy(8.dp)){
                     items(albums,key={it.key}){album->
                         val id=album.cover.image.path;val a=visible.first{it.request().id().toString()==id}
                         val selected=album.images.all{it.image.path in c.selection}
@@ -124,18 +132,24 @@ internal class GalleryViewState {
                                 AssetImage(c,id,Modifier.fillMaxSize())
                                 if(album.images.size>1)Text("${album.images.size} 张",Modifier.align(Alignment.TopEnd).background(Panel).padding(4.dp))
                             }
-                            Row(verticalAlignment=Alignment.CenterVertically){Checkbox(selected,{select(album,false)},modifier=Modifier.semantics{contentDescription="选择图库图片 $id"});Text(if(album.images.size>1)album.label else labels[id]?.alias?.takeIf{it.isNotBlank()}?:a.request().name(),maxLines=2)}
+                            Row(verticalAlignment=Alignment.CenterVertically){Checkbox(selected,{select(album,false)},modifier=Modifier.semantics{contentDescription="选择图库图片 $id"});Text(if(album.images.size>1)album.label else labels[id]?.alias?.takeIf{it.isNotBlank()}?:a.request().name(),maxLines=2,overflow=TextOverflow.Ellipsis)}
                             labels[id]?.tags?.takeIf{it.isNotEmpty()}?.let{Text(it.joinToString(" · "),style=MaterialTheme.typography.caption)}
                             Text(day(id).ifBlank{"日期未记录"},style=MaterialTheme.typography.caption)
                             StudioAction("参数与来源",accessibilityLabel="图片参数与来源 $id"){c.current=id;g.metadata=id}
                         }
                     }
                 }
+                VerticalScrollbar(rememberScrollbarAdapter(gridScroll),Modifier.align(Alignment.CenterEnd).fillMaxHeight().semantics{contentDescription="图库图片滚动条"},style=studioVisibleScrollbarStyle())
+                }
 
-                if(wide)Column(Modifier.width(340.dp).fillMaxHeight().verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(8.dp)){
+                if(wide)Box(Modifier.width(340.dp).fillMaxHeight()) {
+                val detailScroll=rememberScrollState()
+                Column(Modifier.fillMaxSize().padding(end=16.dp).verticalScroll(detailScroll),verticalArrangement=Arrangement.spacedBy(8.dp)){
                     AssetImage(c,c.current,Modifier.fillMaxWidth().height(240.dp))
                     c.assets.firstOrNull{it.request().id().toString()==c.current}?.let{a->Text(a.request().name());StudioDisclosure("文件详情"){Text("${a.size()} bytes · SHA-256 ${a.sha256()}",style=MaterialTheme.typography.caption)}}
                     c.current?.let{ImagePromptPreview(c,it)}
+                }
+                VerticalScrollbar(rememberScrollbarAdapter(detailScroll),Modifier.align(Alignment.CenterEnd).fillMaxHeight().semantics{contentDescription="图片详情滚动条"},style=studioVisibleScrollbarStyle())
                 }
             }
         }

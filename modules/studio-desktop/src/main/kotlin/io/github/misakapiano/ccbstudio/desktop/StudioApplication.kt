@@ -450,6 +450,7 @@ internal fun launchStudio(args:Array<String>) {
                 Surface(color=Ink,contentColor=DesktopBootstrapColors.foreground){DesignWorkspace(c,detached=true)}
             }
         }
+        DisguiseCoverManagerWindow(c)
     }
 }
 

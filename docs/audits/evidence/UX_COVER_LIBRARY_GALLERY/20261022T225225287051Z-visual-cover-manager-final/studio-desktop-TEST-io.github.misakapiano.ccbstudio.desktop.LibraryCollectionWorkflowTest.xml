@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-22T22:53:24.337Z" hostname="DD1" time="16.207">
+  <properties/>
+  <testcase name="recoveryStartupPausesWatchersWithoutChangingRegistrationsAndAllowsExplicitSingleScan" classname="io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest" time="2.513"/>
+  <testcase name="cancelledCollectionCannotBeReplacedUntilItsBlockedIoHasDrained" classname="io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest" time="0.532"/>
+  <testcase name="queuedRemovedRegistrationIsIgnoredAndUncertainMetadataStopsAutomaticRetries" classname="io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest" time="2.037"/>
+  <testcase name="galleryAndDraftEditingRemainResponsiveWhileBackgroundWriterOwnsWorkspace" classname="io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest" time="0.215"/>
+  <testcase name="workbenchAutomaticallyCollectsImagesAndPromptVersionsAndDrainsForMaintenance" classname="io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest" time="9.732"/>
+  <testcase name="unreadableLocalRegistrationStopsMonitoringWithoutHidingAssetLabels" classname="io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest" time="1.178"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -69,6 +69,9 @@ internal class GalleryAnimationController(private val c:WorkbenchController,priv
     private val covers=DisguiseCovers(c.workspace)
     var coverState by mutableStateOf<DisguiseCoverState?>(null);private set
     var coverError by mutableStateOf<String?>(null);private set
+    var coverManagerOpen by mutableStateOf(false);private set
+    fun openCoverManager(){if(!c.maintenance)coverManagerOpen=true}
+    fun closeCoverManager(){coverManagerOpen=false}
     var playResult by mutableStateOf(false);private set
     var previewBusy by mutableStateOf(false);private set
     private var previewTask:Job?=null
@@ -88,8 +91,8 @@ internal class GalleryAnimationController(private val c:WorkbenchController,priv
     init {reloadCovers()}
     fun reloadCovers(){runCatching{covers.load()}.onSuccess{coverState=it;coverError=null}.onFailure{coverState=null;coverError="封面配置读取失败，暂停伪装处理；原配置和原件保留"}}
     private fun invalidate(){previewEpoch.incrementAndGet();previewTask?.cancel();preview=null;error=null;completed=null;playResult=false}
-    fun open(selected:List<String>){require(selected.isNotEmpty());ids=selected.toList();index=selected.lastIndex;invalidate();reloadCovers();requestPreview()}
-    @Synchronized fun close(){ids=null;invalidate();previewJobs.forEach{it.cancel()};previewBusy=false}
+    fun open(selected:List<String>){require(selected.isNotEmpty());ids=selected.toList();index=selected.lastIndex;invalidate();requestPreview()}
+    @Synchronized fun close(){ids=null;coverManagerOpen=false;invalidate();previewJobs.forEach{it.cancel()};previewBusy=false}
     suspend fun cancelAndDrain(){val jobs=synchronized(this){previewEpoch.incrementAndGet();previewJobs.toList().also{tasks->tasks.forEach{it.cancel()}}};jobs.joinAll();previewBusy=false}
     suspend fun awaitPreview(){previewTask?.join()}
     fun cancelPreview(){previewTask?.cancel()}
@@ -100,9 +103,9 @@ internal class GalleryAnimationController(private val c:WorkbenchController,priv
     fun selectCover(id:String?)=c.run("选择伪装封面"){covers.select(id);reloadCovers();invalidate();requestPreview()}
     fun removeCover(id:String)=c.run("移除伪装封面配置"){covers.remove(id);reloadCovers();invalidate();requestPreview()}
     fun renameCover(id:String,name:String)=c.run("重命名伪装封面"){covers.rename(id,name);reloadCovers()}
-    fun addCover(name:String) {
+    fun addCover(name:String,choose:()->Path?=chooseCoverFile) {
         if(c.busy||c.maintenance)return
-        val path=chooseCoverFile()?:return
+        val path=choose()?:return
         c.run("保存伪装封面"){
             val bytes=readBounded(path,DesktopImageEditing.MAX_BYTES)
             DesktopImageEditing.requireStatic(bytes)
@@ -113,8 +116,9 @@ internal class GalleryAnimationController(private val c:WorkbenchController,priv
         }
     }
     private fun selectedCover():AnimationCoverSnapshot? {
-        val state=covers.load();val selected=state.covers.firstOrNull{it.id==state.selected}?:return null
-        return AnimationCoverSnapshot(selected,covers.bytes(selected))
+        val state=requireNotNull(coverState){"封面配置暂不可用"};val selected=state.covers.firstOrNull{it.id==state.selected}?:return null
+        val bytes=c.workspace.bytes(selected.id);require(sha256(bytes)==selected.sha256){"封面校验失败，原件保留"}
+        return AnimationCoverSnapshot(selected,bytes)
     }
     @Synchronized fun requestPreview() {
         if(c.maintenance)return
@@ -184,31 +188,5 @@ internal class GalleryAnimationController(private val c:WorkbenchController,priv
         if(c.busy&&c.activeOperation in setOf("预览APNG处理","保存APNG工具副本到图库","复制APNG文件批次","导出APNG文件批次"))StudioAction("停止APNG处理"){c.active?.cancel()}
         Text("批次已写 ${a.progress} / ${ids.size}；完整目录与完成清单发布后才成功。失败.incomplete目录保留，不覆盖旧输出。复制使用文件列表保留动画。",style=MaterialTheme.typography.caption)
         a.error?.let{Text(it,color=MaterialTheme.colors.error)};a.completed?.let{Text("完成文件目录：$it",style=MaterialTheme.typography.caption)}
-    }
-}
-
-@Composable private fun DisguiseCoverControls(c:WorkbenchController) {
-    val a=c.animation;val state=a.coverState
-    a.coverError?.let{Text(it,color=MaterialTheme.colors.error);StudioAction("重新读取封面配置",!c.busy){a.reloadCovers()}}
-    if(state==null)return
-    var name by remember{mutableStateOf("")}
-    var manage by remember{mutableStateOf(false)}
-    Column(Modifier.fillMaxWidth().heightIn(max=100.dp).verticalScroll(rememberScrollState())){StudioActions {
-        StudioAction("CCB 默认封面",!c.busy,selected=state.selected==null){a.selectCover(null)}
-        state.covers.forEach{cover->StudioAction(cover.name,!c.busy,selected=state.selected==cover.id){a.selectCover(cover.id)}}
-        StudioAction("管理自定义封面",selected=manage){manage=!manage}
-    }}
-    Text("当前封面：${state.covers.firstOrNull{it.id==state.selected}?.name?:"CCB 默认封面"} · 自定义图片等比适应、深色补边。切换后需重新预览。",style=MaterialTheme.typography.caption)
-    if(manage)Column(Modifier.heightIn(max=180.dp).verticalScroll(rememberScrollState())) {
-        OutlinedTextField(name,{name=it.take(100)},label={Text("封面名称（留空用文件名）")},modifier=Modifier.fillMaxWidth())
-        StudioActions {
-            StudioAction("添加并保存封面",!c.busy&&state.covers.size<64){a.addCover(name)}
-            StudioAction("恢复 CCB 默认封面",!c.busy){a.selectCover(null)}
-            state.covers.firstOrNull{it.id==state.selected}?.let{selected->
-                StudioAction("重命名所选封面",!c.busy&&name.isNotBlank()){a.renameCover(selected.id,name)}
-                StudioAction("移除所选封面配置",!c.busy){a.removeCover(selected.id)}
-            }
-        }
-        Text("封面随工作区保存，可保留多套；恢复默认不删除自定义封面。移除配置保留原件和已有导出。",style=MaterialTheme.typography.caption)
     }
 }

@@ -8,6 +8,25 @@ import java.nio.file.Path
 import kotlin.test.*
 
 class GalleryHistoryTest {
+    @Test fun directoryGroupingUsesOnlyRecordedProvenanceAndPreferencesSurviveReopen() {
+        val data=root();val bytes=EditorRenderer.synthetic(32,32);var ids=emptyList<String>();var before=emptyMap<String,ByteArray>()
+        StudioWorkspace.openStudio(data).use{w->
+            val roots=listOf(LibraryFolder(path=root().resolve("same-name").toString(),category="images"),LibraryFolder(path=root().resolve("same-name").toString(),category="images"))
+            fun imported(folder:LibraryFolder,name:String)=w.importImage(name,bytes,buildJsonObject{put("kind","image-ingress");put("version",1);put("source","managed-folder");put("folderId",folder.id);put("relativePath",name)}.toString())
+            ids=listOf(imported(roots[0],"a.png"),imported(roots[0],"b.png"),imported(roots[1],"c.png"),imported(roots[1],"d.png"),w.importImage("unknown.png",bytes))
+            before=ids.associateWith{w.bytes(it)}
+            val albums=galleryDirectoryAlbums(ids,w.catalog(),roots)
+            assertEquals(listOf(2,2,1),albums.map{it.images.size});assertNotEquals(albums[0].label,albums[1].label)
+            assertEquals(ids.take(2),albums[0].images.map{it.image.path})
+            assertTrue(galleryDirectoryAlbums(ids.take(2),w.catalog(),emptyList()).single().label.contains("已移除"))
+            val preferences=GalleryFoldPreferences(LibraryRepository(w));preferences.save(NovelAiHistoryFoldPreference(0,true),directory=true)
+            preferences.save(NovelAiHistoryFoldPreference(1,true,NovelAiHistoryFoldType.BASE))
+            assertEquals(setOf(0),preferences.directoryDepths());assertEquals(NovelAiHistoryFoldType.BASE,preferences.load().getValue(1).type)
+            ids.forEach{assertContentEquals(before.getValue(it),w.bytes(it))}
+        }
+        StudioWorkspace.openStudio(data).use{w->val p=GalleryFoldPreferences(LibraryRepository(w));assertEquals(setOf(0),p.directoryDepths())
+            p.save(p.load().getValue(0),directory=false);assertTrue(p.directoryDepths().isEmpty());ids.forEach{assertContentEquals(before.getValue(it),w.bytes(it))}}
+    }
     private fun root()=Path.of(System.getProperty("preview.test.root"),newId())
     @Test fun verifiedHistoryFoldsUnknownAndCorruptReceiptsStayIndependentAndOriginalsRemain() {
         StudioWorkspace.openStudio(root()).use {w->

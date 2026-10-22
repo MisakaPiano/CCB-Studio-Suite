@@ -79,7 +79,7 @@ class GalleryAnimationTest {
         val r=root();val w=StudioWorkspace.openStudio(r.resolve("workspace"));val original=colorPng(0xffff0000.toInt());val green=colorPng(0xff00ff00.toInt());val blue=colorPng(0xff0000ff.toInt())
         val id=w.importImage("synthetic-original.png",original);val scope=CoroutineScope(SupervisorJob()+awt)
         val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(r.resolve("runtime")),r.resolve("budget"));c.animation.open(listOf(id))
-        val scene=ImageComposeScene(1320,1000,coroutineContext=awt){MaterialTheme{GalleryAnimationWorkspace(c)}}
+        val scene=ImageComposeScene(1000,740,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){if(c.animation.coverManagerOpen)DisguiseCoverManagerContent(c,c.animation::closeCoverManager)else GalleryAnimationWorkspace(c)}}
         suspend fun frames(){repeat(4){scene.render().close();yield()};delay(80)}
         fun nodes():List<SemanticsNode>{fun walk(n:SemanticsNode):List<SemanticsNode> = listOf(n)+n.children.flatMap(::walk)
             return scene.semanticsOwners.flatMap{walk(it.rootSemanticsNode)}}
@@ -88,17 +88,22 @@ class GalleryAnimationTest {
         try {
             c.animation.chooseCoverFile={Files.write(r.resolve("green.png"),green)};c.animation.addCover("Green");idle()
             c.animation.chooseCoverFile={Files.write(r.resolve("blue.png"),blue)};c.animation.addCover("Blue");idle()
-            assertEquals(2,c.animation.coverState!!.covers.size);frames();click("Green");idle()
+            assertEquals(2,c.animation.coverState!!.covers.size);frames();click("更换封面");assertTrue(c.animation.coverManagerOpen)
+            assertTrue(nodes().any{it.config.getOrNull(SemanticsProperties.ContentDescription)?.contains("封面库滚动条")==true})
+            click("选择封面 Green");idle()
             assertFalse(c.animation.playResult)
             animationDefaultPreview(c.animation.preview!!).let{image->try{assertEquals(0xff00ff00.toInt(),image.getRGB(30,30))}finally{image.flush()}}
-            c.animation.playback(true);click("Blue");idle();assertFalse(c.animation.playResult);val preview=c.animation.preview!!
+            c.animation.playback(true);click("选择封面 Blue");idle();assertFalse(c.animation.playResult);val preview=c.animation.preview!!
+            val shot=Path.of("build/cover-manager/cover-library.png");Files.createDirectories(shot.parent);scene.render().use{it.encodeToData()!!.use{Files.write(shot,it.bytes)}}
+            click("完成");assertFalse(c.animation.coverManagerOpen)
             animationDefaultPreview(preview).let{image->try{assertEquals(0xff0000ff.toInt(),image.getRGB(30,30))}finally{image.flush()}}
             c.animation.chooseDirectory={Files.createDirectories(r.resolve("output"))};click("选择目录并导出全部");idle()
             val receipt=Json.parseToJsonElement(Files.readString(c.animation.completed!!.resolve("COMPLETE.json"))).jsonObject
             assertEquals(c.animation.coverState!!.selected,receipt.getValue("cover").jsonPrimitive.content)
             assertContentEquals(preview,Files.readAllBytes(c.animation.completed!!.resolve("0001.png")))
             click("保存当前副本到图库");idle();assertContentEquals(preview,w.bytes(c.current!!));assertContentEquals(original,w.bytes(id))
-            click("CCB 默认封面");idle();assertNull(c.animation.coverState!!.selected);assertEquals(2,c.animation.coverState!!.covers.size)
+            click("更换封面");click("选择封面 CCB 默认封面");idle();assertNull(c.animation.coverState!!.selected);assertEquals(2,c.animation.coverState!!.covers.size)
+            click("完成")
             animationDefaultPreview(c.animation.preview!!).let{image->try{assertEquals(0xff191b20.toInt(),image.getRGB(0,0))}finally{image.flush()}}
         }finally{scene.close();c.close();scope.cancel()}
         StudioWorkspace.openStudio(r.resolve("workspace")).use{again->assertNull(DisguiseCovers(again).load().selected);assertEquals(2,DisguiseCovers(again).load().covers.size);assertContentEquals(original,again.bytes(id))}

@@ -6,7 +6,7 @@
 |---|---|---|---|
 |SUITE-001|资产原件字节保留及独立工程/导出|IMPLEMENTED_AUTO_HUMAN_PARTIAL|modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioWorkspace.kt<br>docs/audits/UX_DAILY_USE_READINESS.md|
 |SUITE-002|统一持久图库、别名与标签|IMPLEMENTED_HUMAN_PENDING|modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryWorkspace.kt<br>docs/audits/UX_LIBRARY_PROMPTS.md|
-|SUITE-003|多收集目录、变更版本、重新授权|IMPLEMENTED_HUMAN_PENDING|modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/LibraryDirectoryMonitor.kt<br>docs/audits/UX_DAILY_USE_READINESS.md|
+|SUITE-003|多收集目录、变更版本、暂停恢复与重新授权|IMPLEMENTED_RECOVERY_AND_SMALL_SYNC_HUMAN_SCOPED_PASS_BULK_PENDING|modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/LibraryDirectoryMonitor.kt<br>docs/audits/UX_COLLECTION_RESPONSIVENESS.md|
 |SUITE-004|独立Prompt资产与AI候选/图片/文字主动加入参照|IMPLEMENTED_AUTO_DEDICATED_HUMAN_PENDING|modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/DesignPromptReference.kt<br>docs/audits/UX_NAI_BACKGROUND.md|
 |SUITE-005|多图Recipe比较、角色展示位置对齐、字段摘取|IMPLEMENTED_AUTO_DEDICATED_HUMAN_PENDING|modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/PromptReferenceBoard.kt<br>docs/audits/UX_LIBRARY_PROMPTS.md|
 |SUITE-006|语言/视觉/NAI分类、生效状态、列表与默认选择|IMPLEMENTED_CONFIGURATION_AND_ACTIVE_LAYOUT_HUMAN_SCOPED_PASS|modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioModelAccounts.kt<br>docs/audits/UX_ACCOUNT_ROLES.md|
@@ -33,4 +33,5 @@
 |SUITE-027|AI设计独立可调窗口和共享未发送输入|IMPLEMENTED_AUTO_WINDOW_HUMAN_SCOPED_PASS|modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt<br>docs/audits/UX_NAI_BACKGROUND.md|
 |SUITE-028|单一生图模型、动态费用和单机本地停止|IMPLEMENTED_AUTO_MODEL_AND_COST_LAYOUT_HUMAN_SCOPED_PASS|modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/NaiSettings.kt<br>docs/audits/UX_NAI_BACKGROUND.md|
 |SUITE-029|图片查看器悬浮翻页、右键及直达编辑/APNG|IMPLEMENTED_AUTO_VIEWER_ENTRY_HUMAN_SCOPED_PASS_APNG_DELIVERY_PENDING|modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioAssetViewer.kt<br>docs/audits/UX_NAI_BACKGROUND.md|
-|SUITE-030|多套APNG封面、默认恢复、自动预览与批次缩略图|IMPLEMENTED_AUTO_CUSTOM_COVER_AND_PREVIEW_HUMAN_PENDING|modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/DisguiseCovers.kt<br>docs/audits/UX_APNG_COVERS.md|
+|SUITE-030|可视多套封面库、独立管理窗口、默认恢复与自动预览|IMPLEMENTED_VISUAL_LIBRARY_AUTO_PREVIEW_HUMAN_PENDING|modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/DisguiseCoverManager.kt<br>docs/audits/UX_COVER_LIBRARY_GALLERY.md|
+|SUITE-031|图库来源目录折叠、层级偏好及可见滚动条|IMPLEMENTED_DIRECTORY_GROUPING_HUMAN_PENDING|modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/GalleryHistory.kt<br>docs/audits/UX_COVER_LIBRARY_GALLERY.md|

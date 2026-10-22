@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.GalleryHistoryTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-22T22:55:25.115Z" hostname="DD1" time="6.596">
+  <properties/>
+  <testcase name="verifiedHistoryFoldsUnknownAndCorruptReceiptsStayIndependentAndOriginalsRemain" classname="io.github.misakapiano.ccbstudio.core.GalleryHistoryTest" time="1.864"/>
+  <testcase name="perDepthPreferencesSurviveBackupRestoreAndDateGrammarRejectsInvalidCalendar" classname="io.github.misakapiano.ccbstudio.core.GalleryHistoryTest" time="2.098"/>
+  <testcase name="directoryGroupingUsesOnlyRecordedProvenanceAndPreferencesSurviveReopen" classname="io.github.misakapiano.ccbstudio.core.GalleryHistoryTest" time="2.634"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
