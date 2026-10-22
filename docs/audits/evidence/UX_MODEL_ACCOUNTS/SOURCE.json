@@ -1,0 +1,21 @@
+{
+  "repository": "MisakaPiano/ChatChatBar-Desktop",
+  "commit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+  "files": [
+    {
+      "path": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/model/ModelDiscoveryService.kt",
+      "sourceSha256": "1a1782ee1b0abbfa232cf3cdec419ddf1f7ba1dd33e3c48cfe1233f212afdd64"
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopModelSettingsController.kt",
+      "sourceSha256": "f8556fa7b94875e6b83b781d2d9bda83e0f51970b50561f460d43ee76fb08d95"
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopManagePanel.kt",
+      "sourceSha256": "c4c6232f84080bc83d51648667404d2e49007911e785a4917e29d2c0d1c63e7f"
+    }
+  ],
+  "observedLocalHead": "3ec2a3239a296713b79303aff7e1aa41928d8e53",
+  "sourceAccess": "read-only git object inspection; no checkout or source changes",
+  "adoption": "Suite adapter, no Prompt/request serializer changes"
+}

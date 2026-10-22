@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.AssetArchiveWorkflowTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-22T18:00:24.742Z" hostname="DD1" time="12.751">
+  <properties/>
+  <testcase name="confirmCancelRestoreAndAliasTagChoicesPreserveExistingProject" classname="io.github.misakapiano.ccbstudio.desktop.AssetArchiveWorkflowTest" time="11.669"/>
+  <testcase name="archiveMetadataFailureShowsOriginalsAndDisablesMutation" classname="io.github.misakapiano.ccbstudio.desktop.AssetArchiveWorkflowTest" time="1.082"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

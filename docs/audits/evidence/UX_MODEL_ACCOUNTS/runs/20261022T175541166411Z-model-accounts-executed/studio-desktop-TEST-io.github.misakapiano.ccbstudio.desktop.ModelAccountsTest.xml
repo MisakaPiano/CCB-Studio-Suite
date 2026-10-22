@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.ModelAccountsTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-22T17:57:24.277Z" hostname="DD1" time="32.482">
+  <properties/>
+  <testcase name="errorsNeverExposeProviderBodyAndRedirectNeverForwardsCredential" classname="io.github.misakapiano.ccbstudio.desktop.ModelAccountsTest" time="1.201"/>
+  <testcase name="editedEndpointInvalidatesPendingResponseAndManualModelRemains" classname="io.github.misakapiano.ccbstudio.desktop.ModelAccountsTest" time="5.341"/>
+  <testcase name="discoverySelectionSaveAndReopenUseRealUi" classname="io.github.misakapiano.ccbstudio.desktop.ModelAccountsTest" time="25.94"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

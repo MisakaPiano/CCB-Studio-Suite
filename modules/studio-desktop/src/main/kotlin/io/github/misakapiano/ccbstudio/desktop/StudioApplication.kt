@@ -39,6 +39,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     val animation=GalleryAnimationController(this,budgetRoot.parent.resolve("apng-exports"))
     val editor by lazy {TypesetEditorController(this)}
     val vault=SecretVault(workspace.root.resolve("secrets"))
+    val modelAccounts by lazy{ModelAccountsController(this)}
     var state by mutableStateOf(workspace.state);private set
     var draft by mutableStateOf(state.creation!!.draft);private set
     var composer by mutableStateOf(state.creation!!.composer);private set
@@ -303,12 +304,14 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
             if(naiId==account.id){usage=result;usageAt=System.currentTimeMillis()}
         }
     }
-    fun saveAccount(existing:AccountProfile?,alias:String,service:String,endpoint:String,model:String,key:String,isMultimodal:Boolean=false,visionAccountId:String?=null)=run("保存账户") {
+    fun saveAccount(existing:AccountProfile?,alias:String,service:String,endpoint:String,model:String,key:String,isMultimodal:Boolean=false,visionAccountId:String?=null,onSaved:(AccountProfile)->Unit={})=run("保存账户") {
+        AccountProfile(id=existing?.id?:newId(),alias=alias.trim(),service=service,provider=if(service=="NAI")"NOVELAI" else "OPENAI_COMPATIBLE",endpoint=endpoint.trim().trimEnd('/'),model=model.trim(),isMultimodal=isMultimodal,visionAccountId=visionAccountId).validate()
         val ref=if(key.isNotBlank()) {val bytes=key.trim().toByteArray();try{vault.put(bytes)}finally{bytes.fill(0)}} else existing?.secretRef
-        val a=AccountProfile(id=existing?.id?:newId(),alias=alias,service=service,provider=if(service=="NAI")"NOVELAI" else "OPENAI_COMPATIBLE",endpoint=endpoint.trim().trimEnd('/'),model=model,secretRef=ref,isMultimodal=service=="LLM"&&isMultimodal,visionAccountId=visionAccountId.takeIf{service=="LLM"&&!isMultimodal})
+        val a=AccountProfile(id=existing?.id?:newId(),alias=alias.trim(),service=service,provider=if(service=="NAI")"NOVELAI" else "OPENAI_COMPATIBLE",endpoint=endpoint.trim().trimEnd('/'),model=model.trim(),secretRef=ref,isMultimodal=service=="LLM"&&isMultimodal,visionAccountId=visionAccountId.takeIf{service=="LLM"&&!isMultimodal})
         a.validate();workspace.operation{workspace.save(workspace.state.copy(accounts=workspace.state.accounts.filterNot{it.id==a.id}+a))}
         if(service=="LLM")llmId=a.id else {naiId=a.id;usage=null;usageAt=null}
         session.update{it.copy(llmAccountId=llmId,naiAccountId=naiId)}
+        withContext(scope.coroutineContext.minusKey(Job)){onSaved(a)}
     }
     fun importImages() {
         val files=StudioFileDialogs.openMany("导入图片",listOf("png","jpg","jpeg","webp","gif"))
@@ -351,7 +354,9 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
         }
     }
     suspend fun enterMaintenance() {
+        if(modelAccounts.dirty)throw DataProblem("ACCOUNT_DRAFT_UNSAVED","账户档案尚未保存，请在账户页保存或放弃修改后再关闭/更新")
         maintenance=true;message="正在停止接收新操作并保存、排水…"
+        modelAccounts.cancel()
         library.cancelAndDrain()
         active?.cancelAndJoin();pending?.cancelAndJoin();editor.drain();flush()
     }
@@ -377,7 +382,7 @@ internal fun launchStudio(args:Array<String>) {
     application {
         val scope=rememberCoroutineScope();val c=remember{WorkbenchController(workspace,scope,DesktopNovelAiInfrastructure(runtime.resolve("catalog")),runtime.resolve("request-budget"))}
         var closing by remember{mutableStateOf(false)}
-        fun close(){if(!closing){closing=true;scope.launch{try{c.close();exitApplication()}catch(e:Exception){closing=false;c.problem="保存或排水尚未完成，窗口保持打开"}}}}
+        fun close(){if(!closing){closing=true;scope.launch{try{c.close();exitApplication()}catch(e:Exception){closing=false;c.problem=if(e is DataProblem && e.status=="ACCOUNT_DRAFT_UNSAVED")"账户档案尚未保存，请在账户页保存或放弃修改后再关闭" else "保存或排水尚未完成，窗口保持打开"}}}}
         c.requestClose=::close
         c.installUpdate={if(!closing){closing=true;scope.launch{
             var handoff:Path?=null
@@ -636,29 +641,46 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
 }
 
 @Composable private fun AccountsWorkspace(c:WorkbenchController) {
-    var editing by remember{mutableStateOf<AccountProfile?>(null)}
-    var alias by remember{mutableStateOf("")};var service by remember{mutableStateOf("LLM")}
-    var endpoint by remember{mutableStateOf("https://api.siliconflow.cn/v1")};var model by remember{mutableStateOf("")};var secret by remember{mutableStateOf("")}
-    var multimodal by remember{mutableStateOf(false)};var visionId by remember{mutableStateOf<String?>(null)}
+    val editor=c.modelAccounts;val d=editor.draft
+    DisposableEffect(editor){onDispose{editor.cancel()}}
     Column(Modifier.fillMaxSize().padding(24.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(10.dp)) {
-        Text("账户与模型",fontSize=22.sp);Text("凭据只保存在本机受保护存储。档案选择不会自动调用 API。")
-        c.state.accounts.forEach {a->StudioAction("${a.alias} · ${a.service} · ${a.model}"){editing=a;alias=a.alias;service=a.service;endpoint=a.endpoint;model=a.model;secret="";multimodal=a.isMultimodal;visionId=a.visionAccountId}}
-        StudioAction("新建档案"){editing=null;alias="";secret="";multimodal=false;visionId=null}
-        StudioChips("服务",listOf("LLM","NAI"),service,{it}){service=it;endpoint=if(it=="NAI")"https://image.novelai.net" else "https://api.siliconflow.cn/v1";model=if(it=="NAI")NovelAiImageModel.V4_5_FULL.apiId else ""}
-        OutlinedTextField(alias,{alias=it},label={Text("档案名称")},modifier=Modifier.fillMaxWidth())
-        OutlinedTextField(endpoint,{endpoint=it},label={Text("HTTPS API 地址")},enabled=service=="LLM",modifier=Modifier.fillMaxWidth())
-        OutlinedTextField(model,{model=it},label={Text("模型 ID")},modifier=Modifier.fillMaxWidth())
-        if(service=="LLM") {
-            StudioSwitch("此模型支持图片输入",multimodal){multimodal=!multimodal}
-            if(!multimodal) {
-                val vision=c.state.accounts.filter{it.service=="LLM"&&it.isMultimodal&&it.id!=editing?.id}
-                CompactChoice("关联视觉模型",vision,vision.firstOrNull{it.id==visionId},{it.alias}){visionId=it.id}
-                if(visionId!=null)StudioAction("清除视觉关联"){visionId=null}
-                StatusText("图片反推需要可用视觉模型；未配置时明确失败，不以文字猜测图片。")
+        Text("账户与模型",fontSize=22.sp)
+        c.state.accounts.forEach {a->StudioAction("${a.alias} · ${a.service} · ${a.model}",enabled=!c.busy){editor.open(a)}}
+        StudioAction("新建档案",enabled=!c.busy){editor.open(null)}
+        StudioChips("服务",listOf("LLM","NAI"),d.service,{it}){value->editor.edit{it.copy(service=value,endpoint=if(value=="NAI")"https://image.novelai.net" else "https://api.siliconflow.cn/v1",model=if(value=="NAI")NovelAiImageModel.V4_5_FULL.apiId else "",multimodal=false,visionId=null)}}
+        OutlinedTextField(d.alias,{value->editor.edit{it.copy(alias=value)}},label={Text("档案名称")},enabled=!c.busy,modifier=Modifier.fillMaxWidth())
+        OutlinedTextField(d.endpoint,{value->editor.edit{it.copy(endpoint=value)}},label={Text("HTTPS API 地址")},enabled=d.service=="LLM"&&!c.busy,modifier=Modifier.fillMaxWidth())
+        OutlinedTextField(d.key,{value->editor.edit{it.copy(key=value)}},label={Text(if(d.existing?.secretRef!=null)"新凭据（留空保留已有）"else"API 凭据")},visualTransformation=PasswordVisualTransformation(),enabled=!c.busy,modifier=Modifier.fillMaxWidth())
+        if(d.service=="LLM") {
+            Row(horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+                StudioAction(if(editor.searching)"正在获取…" else "获取模型列表",enabled=!c.busy&&!editor.searching){editor.discover()}
+                if(editor.searching)StudioAction("取消获取"){editor.cancel()}
+            }
+            editor.error?.let{StatusText(it)}
+            if(editor.ids.isNotEmpty()) {
+                OutlinedTextField(editor.query,{editor.query=it},label={Text("筛选模型")},modifier=Modifier.fillMaxWidth())
+                val filtered=editor.ids.filter{it.contains(editor.query,ignoreCase=true)}
+                Text("${filtered.size} 个匹配 · ${editor.ids.size} 个模型")
+                LazyColumn(Modifier.fillMaxWidth().heightIn(max=220.dp)) {
+                    items(filtered,key={it}){id->StudioAction(if(d.model==id)"✓ $id" else id,enabled=!c.busy){editor.select(id)}}
+                }
             }
         }
-        OutlinedTextField(secret,{secret=it},label={Text(if(editing?.secretRef!=null)"新凭据（留空保留已有）"else"API 凭据")},visualTransformation=PasswordVisualTransformation(),modifier=Modifier.fillMaxWidth())
-        StudioAction("安全保存并选用",enabled=!c.busy && alias.isNotBlank() && model.isNotBlank() && (secret.isNotBlank()||editing?.secretRef!=null),style=StudioActionStyle.PRIMARY){c.saveAccount(editing,alias,service,endpoint,model,secret,multimodal,visionId);secret=""}
+        OutlinedTextField(d.model,{value->editor.edit{it.copy(model=value)}},label={Text("模型 ID")},enabled=!c.busy,modifier=Modifier.fillMaxWidth())
+        if(d.service=="LLM") {
+            Text("可从列表选择，也可手动填写；选择不会发送生成请求。")
+            StudioSwitch("此模型支持图片输入",d.multimodal){editor.edit{it.copy(multimodal=!it.multimodal,visionId=null)}}
+            if(!d.multimodal) {
+                val vision=c.state.accounts.filter{it.service=="LLM"&&it.isMultimodal&&it.id!=d.existing?.id}
+                CompactChoice("关联视觉模型",vision,vision.firstOrNull{it.id==d.visionId},{it.alias}){value->editor.edit{it.copy(visionId=value.id)}}
+                if(d.visionId!=null)StudioAction("清除视觉关联"){editor.edit{it.copy(visionId=null)}}
+            }
+        }
+        StudioAction("安全保存并选用",enabled=!c.busy && d.alias.isNotBlank() && d.model.isNotBlank() && (d.key.isNotBlank()||d.existing?.secretRef!=null),style=StudioActionStyle.PRIMARY){editor.save()}
+        Text(if(editor.dirty)"有未保存修改" else if(d.existing!=null)"已保存" else "凭据保存在本机受保护存储")
+        if(editor.dirty)StudioAction("放弃修改",enabled=!c.busy){editor.discard()}
+        if(!editor.dirty && d.existing!=null)StudioAction("选用此档案",enabled=!c.busy){c.chooseAccount(d.service,d.existing.id)}
         StudioAction("返回创作"){c.view="创作"}
     }
+    if(editor.pending!=null) AlertDialog(onDismissRequest={editor.continueEditing()},title={Text("保留当前修改？")},text={Text("当前档案尚未保存。切换会放弃这些修改。")},confirmButton={TextButton(onClick={editor.discardAndContinue()}){Text("放弃修改并切换")}},dismissButton={TextButton(onClick={editor.continueEditing()}){Text("继续编辑")}})
 }

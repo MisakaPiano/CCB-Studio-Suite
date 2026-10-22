@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.ReverseWorkflowTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-22T18:04:23.173Z" hostname="DD1" time="8.662">
+  <properties/>
+  <testcase name="missingVisionFailsBeforeAnyPaidAttempt" classname="io.github.misakapiano.ccbstudio.desktop.ReverseWorkflowTest" time="2.625"/>
+  <testcase name="linkedVisionUsesAuthorityDescriptionAndNeverLeaksKeyToSnapshot" classname="io.github.misakapiano.ccbstudio.desktop.ReverseWorkflowTest" time="3.459"/>
+  <testcase name="directVisionRequiresApplyAndSurvivesRestart" classname="io.github.misakapiano.ccbstudio.desktop.ReverseWorkflowTest" time="2.578"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
