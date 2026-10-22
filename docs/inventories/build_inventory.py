@@ -123,7 +123,7 @@ features=[
  ('多图Recipe比较、角色展示位置对齐、字段摘取','PromptReferenceBoard.kt','UX_DAILY_USE_READINESS','IMPLEMENTED_HUMAN_PENDING'),
  ('LLM/NAI多档案、列表筛选、保存与选用','StudioModelAccounts.kt','UX_MODEL_ACCOUNTS','IMPLEMENTED_HUMAN_SCOPED_PASS'),
  ('独立视觉模型与共用默认凭据','StudioModelAccounts.kt','UX_VISION_CREDENTIALS','IMPLEMENTED_CONFIGURATION_HUMAN_PASS_ACTUAL_VISION_PENDING'),
- ('模型用途提示与不兼容用途拦截','ModelPurpose.kt','UX_MODEL_PURPOSE','IMPLEMENTED_AUTO_HUMAN_PENDING'),
+ ('模型用途提示与不兼容用途拦截','ModelPurpose.kt','UX_MODEL_PURPOSE','IMPLEMENTED_AUTO_HUMAN_SCOPED_PASS'),
  ('生成任务不确定状态与禁止盲目重发','CreationSession.kt','UX_DAILY_USE_READINESS','IMPLEMENTED_HUMAN_PENDING'),
  ('设计、应用草稿、最终生成的来源链','DesignProvenance.kt','UX_DAILY_USE_READINESS','IMPLEMENTED_HUMAN_PENDING'),
  ('原生多工程图片编辑与历史','TypesetWorkspace.kt','UX_EDITOR_CLARITY','IMPLEMENTED_HUMAN_PENDING'),

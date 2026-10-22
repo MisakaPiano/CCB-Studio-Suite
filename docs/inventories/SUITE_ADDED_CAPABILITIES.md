@@ -11,7 +11,7 @@
 |SUITE-005|多图Recipe比较、角色展示位置对齐、字段摘取|IMPLEMENTED_HUMAN_PENDING|modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/PromptReferenceBoard.kt<br>docs/audits/UX_DAILY_USE_READINESS.md|
 |SUITE-006|LLM/NAI多档案、列表筛选、保存与选用|IMPLEMENTED_HUMAN_SCOPED_PASS|modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioModelAccounts.kt<br>docs/audits/UX_MODEL_ACCOUNTS.md|
 |SUITE-007|独立视觉模型与共用默认凭据|IMPLEMENTED_CONFIGURATION_HUMAN_PASS_ACTUAL_VISION_PENDING|modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioModelAccounts.kt<br>docs/audits/UX_VISION_CREDENTIALS.md|
-|SUITE-008|模型用途提示与不兼容用途拦截|IMPLEMENTED_AUTO_HUMAN_PENDING|modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/ModelPurpose.kt<br>docs/audits/UX_MODEL_PURPOSE.md|
+|SUITE-008|模型用途提示与不兼容用途拦截|IMPLEMENTED_AUTO_HUMAN_SCOPED_PASS|modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/ModelPurpose.kt<br>docs/audits/UX_MODEL_PURPOSE.md|
 |SUITE-009|生成任务不确定状态与禁止盲目重发|IMPLEMENTED_HUMAN_PENDING|modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/CreationSession.kt<br>docs/audits/UX_DAILY_USE_READINESS.md|
 |SUITE-010|设计、应用草稿、最终生成的来源链|IMPLEMENTED_HUMAN_PENDING|modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/DesignProvenance.kt<br>docs/audits/UX_DAILY_USE_READINESS.md|
 |SUITE-011|原生多工程图片编辑与历史|IMPLEMENTED_HUMAN_PENDING|modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetWorkspace.kt<br>docs/audits/UX_EDITOR_CLARITY.md|

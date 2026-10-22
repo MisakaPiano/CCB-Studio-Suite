@@ -81,7 +81,7 @@
     {
       "id": "SUITE-008",
       "capability": "模型用途提示与不兼容用途拦截",
-      "implementationStatus": "IMPLEMENTED_AUTO_HUMAN_PENDING",
+      "implementationStatus": "IMPLEMENTED_AUTO_HUMAN_SCOPED_PASS",
       "suiteTargets": [
         "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/ModelPurpose.kt"
       ],
