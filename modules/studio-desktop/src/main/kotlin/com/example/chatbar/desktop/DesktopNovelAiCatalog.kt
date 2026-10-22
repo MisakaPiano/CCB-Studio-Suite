@@ -104,8 +104,17 @@ internal class DesktopNovelAiTagCatalog(private val assets: DesktopNovelAiCatalo
     @Synchronized private fun snapshot(): Snapshot {
         active?.let { return it }
         val manifest = assets.root.resolve("active-catalog.json")
-        check(!Files.exists(manifest)) { "Suite bundled catalog only: external activation manifest retained for review" }
-        val next = Snapshot(bundled,
+        val next = if (Files.exists(manifest)) {
+            val metadata = Json.decodeFromString<DanbooruCatalogMetadata>(Files.readString(manifest))
+            require(metadata.sourceSha.matches(Regex("[a-f0-9]{40}")))
+            val database = assets.root.resolve("${metadata.sourceSha}.sqlite")
+            val index = assets.root.resolve("index-${metadata.sourceSha}.sqlite")
+            DesktopNovelAiCatalogUpdate.verify(database, metadata.sourceSizeBytes, metadata.sourceSha)
+            DesktopNovelAiSqlDatabase(index).use { db -> db.rawQuery("SELECT version,source FROM metadata", emptyArray()).use {
+                check(it.moveToFirst() && it.getInt(0) == 2 && it.getString(1) == metadata.sourceSha)
+            } }
+            Snapshot(metadata, database, index)
+        } else Snapshot(bundled,
             assets.install("danbooru/tag.sqlite.bundle", bundled.sourceSha, bundled.sourceSizeBytes, gitBlob = true),
             assets.index("danbooru", bundled.sourceSha))
         active = next

@@ -1,0 +1,44 @@
+[
+  {
+    "suite": "com.example.chatbar.desktop.DesktopNovelAiCatalogUpdateTest",
+    "name": "official shared checker pins download to commit and compares blob rather than commit sha",
+    "seconds": "0.303",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopNovelAiCatalogUpdateTest",
+    "name": "cancellation and schema failure retain durable authority and remove only staged files",
+    "seconds": "1.845",
+    "status": "PASS"
+  },
+  {
+    "suite": "com.example.chatbar.desktop.DesktopNovelAiCatalogUpdateTest",
+    "name": "catalog update builds shared ranking before durable switch and corrupt authority is retained",
+    "seconds": "2.537",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.AccountRolesTest",
+    "name": "separateSelectionsAreVisibleAndPersistWithoutStaleEditorOverwrite",
+    "seconds": "3.114",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest",
+    "name": "unknownAndNonFiniteAllowanceNeverPretendToBeFull",
+    "seconds": "0.003",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest",
+    "name": "actualBundledChineseAnnotationsKeepTheRawPrompt",
+    "seconds": "0.909",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest",
+    "name": "naiAccountDoesNotOwnGenerationModelAndOnlyV5ShowsAllowance",
+    "seconds": "1.531",
+    "status": "PASS"
+  }
+]

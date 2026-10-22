@@ -1,0 +1,22 @@
+{
+  "sourceCommit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+  "files": [
+    {
+      "source": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/update/SharedDanbooruCatalogUpdateChecker.kt",
+      "target": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/update/SharedDanbooruCatalogUpdateChecker.kt",
+      "sha256": "a9608c905754529784e9a82427911b2bb5937fbbbabe76db7546d2ebeb2981ab"
+    },
+    {
+      "source": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiCatalogUpdate.kt",
+      "target": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiCatalogUpdate.kt",
+      "sha256": "6d97e242821549fa5383b5a31e8a585038a7632c094ced2011b074c19cf80ec3"
+    },
+    {
+      "source": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/NovelAiRankedIndexBuilder.kt",
+      "target": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiRankedIndexBuilder.kt",
+      "sha256": "58df6ea205e587c49b9e3e68fd6478d9f714fe3f4981cb755b508b3d934e64fe"
+    }
+  ],
+  "method": "Read-only fixed objects; exact bytes; no Desktop modifications",
+  "testBaseline": "app/desktopApp/src/test/kotlin/com/example/chatbar/desktop/DesktopNovelAiCatalogUpdateTest.kt; same commit, augmented with Suite cancellation/schema tests"
+}

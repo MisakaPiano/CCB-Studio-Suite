@@ -95,3 +95,8 @@
 ### 2026-10-22 用户离席与额度 checkpoint
 
 用户要求继续核对首个日常版缺口，能自动完成的继续；人工项目只列清单，待返回后再做。随后要求额度耗尽前留下checkpoint。已完成45项更新/恢复回归与安装来源核对，无新生产改动/包发布。接续入口docs/rc/FIRST_DAILY_USE_READINESS.md、docs/rc/DAILY_USE_MANUAL_CHECKLIST.md、docs/audits/UX_DAILY_USE_READINESS.md；用户返回前不发起人工操作或真实API。下一步先图库/编辑/导出组，已通过长期102→103链路不重做。
+
+
+### 2026-10-23 NAI配置、Danbooru更新和V5体力用户反馈
+
+用户提供Suite与Desktop截图，要求核对NAI配置、设置中的CCB Danbooru更新、翻译实装与NAI5的Opus体力。当前连续授权内完成账户/生成模型职责分离、固定来源词库更新链和状态显示；沿用原Prompt、模型分辨和计费权威。只读Desktop固定5ef9542，精确采用及验证见docs/audits/UX_NAI_SETTINGS.md。用户图片/Prompt/凭据不作为公开测试数据，不自动读取真实资料、不自行生成、不因截图中的预算等待绕过限制。新增本地包人工测试另请用户确认结果，未授权新公开发行。

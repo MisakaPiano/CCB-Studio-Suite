@@ -1,0 +1,121 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :asset-library:compileJava UP-TO-DATE
+> Task :image-authority:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :image-authority:compileKotlin
+> Task :image-authority:compileJava NO-SOURCE
+> Task :studio-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-core:compileKotlin
+> Task :studio-core:compileJava NO-SOURCE
+> Task :studio-core:processResources UP-TO-DATE
+> Task :studio-core:classes UP-TO-DATE
+> Task :studio-core:jar UP-TO-DATE
+> Task :studio-desktop:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-desktop:convertXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:copyNonXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:prepareComposeResourcesTaskForMain NO-SOURCE
+> Task :studio-desktop:generateResourceAccessorsForMain SKIPPED
+> Task :studio-desktop:generateActualResourceCollectorsForMain SKIPPED
+> Task :studio-desktop:generateComposeResClass SKIPPED
+
+> Task :studio-desktop:compileKotlin
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioPromptField.kt:158:74 Unnecessary safe call on a non-null receiver of type 'NovelAiActiveTagFragment'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioPromptField.kt:166:135 Unnecessary safe call on a non-null receiver of type 'NovelAiActiveTagFragment'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioPromptField.kt:177:97 Unnecessary safe call on a non-null receiver of type 'NovelAiActiveTagFragment'.
+
+> Task :studio-desktop:compileJava NO-SOURCE
+> Task :studio-desktop:assembleMainResources UP-TO-DATE
+> Task :studio-desktop:processResources UP-TO-DATE
+> Task :studio-desktop:classes UP-TO-DATE
+> Task :studio-desktop:jar
+> Task :asset-library:processResources NO-SOURCE
+> Task :asset-library:classes UP-TO-DATE
+> Task :asset-library:jar UP-TO-DATE
+> Task :image-authority:processResources NO-SOURCE
+> Task :image-authority:classes UP-TO-DATE
+> Task :image-authority:jar
+> Task :studio-desktop:convertXmlValueResourcesForTest NO-SOURCE
+> Task :studio-desktop:copyNonXmlValueResourcesForTest NO-SOURCE
+> Task :studio-desktop:prepareComposeResourcesTaskForTest NO-SOURCE
+> Task :studio-desktop:generateResourceAccessorsForTest SKIPPED
+> Task :studio-desktop:compileTestKotlin
+> Task :studio-desktop:compileTestJava NO-SOURCE
+> Task :studio-desktop:assembleTestResources UP-TO-DATE
+> Task :studio-desktop:processTestResources UP-TO-DATE
+> Task :studio-desktop:testClasses UP-TO-DATE
+
+> Task :studio-desktop:test
+
+DesktopNovelAiCatalogUpdateTest > official shared checker pins download to commit and compares blob rather than commit sha PASSED
+
+DesktopNovelAiCatalogUpdateTest > cancellation and schema failure retain durable authority and remove only staged files PASSED
+
+DesktopNovelAiCatalogUpdateTest > catalog update builds shared ranking before durable switch and corrupt authority is retained PASSED
+
+DesktopStudioPresentationTest > annotation follows glyph lines and rejects stale ranges without changing raw prompt PASSED
+
+DesktopStudioPresentationTest > chips are direct keyboard choices and preserve unrelated serialized draft fields PASSED
+
+DesktopStudioPresentationTest > small enum menu supports arrows enter escape and nullable follow default PASSED
+
+DesktopStudioPresentationTest > precise readout retains imported values and only large choices use search dialog PASSED
+
+DesktopStudioPresentationTest > inline and fullscreen text editor share annotations and leave request body unchanged PASSED
+
+DesktopStudioPresentationTest > random seed switch conditionally adds fixed editor and preserves stored seed PASSED
+
+DesktopStudioPresentationTest > field displays local translation and accepts anchored suggestion with Enter PASSED
+
+DesktopStudioPresentationTest > suggestion keyboard acceptance protects selection IME and empty results PASSED
+
+DesktopStudioPresentationTest > sliders and keyboard keep exact discrete values PASSED
+
+DesktopStudioPresentationTest > Wallpaper excludes square without modifying shared size or sampler capability PASSED
+
+DesktopStudioPresentationTest > anchored popup flips above near bottom and stays in viewport PASSED
+
+DesktopStudioPresentationTest > custom size applies valid dimensions resets preset or cancels without publication PASSED
+
+DesktopStudioPresentationTest > advanced disclosure starts collapsed and does not alter draft PASSED
+
+AccountRolesTest > separateSelectionsAreVisibleAndPersistWithoutStaleEditorOverwrite PASSED
+
+ImageCardWorkflowTest > packageAndPngProduceOnlyImageProjection PASSED
+
+ImageCardWorkflowTest > cardDefaultGlobalOverrideClearAndRestart PASSED
+
+NaiSettingsTest > unknownAndNonFiniteAllowanceNeverPretendToBeFull PASSED
+
+NaiSettingsTest > actualBundledChineseAnnotationsKeepTheRawPrompt PASSED
+
+NaiSettingsTest > naiAccountDoesNotOwnGenerationModelAndOnlyV5ShowsAllowance PASSED
+
+WorkbenchWorkflowTest > roleEditingReorderDisableAndDeleteReachRequestAndSurviveReopen PASSED
+
+WorkbenchWorkflowTest > creationFooterAndImageSummaryAdaptWithoutLosingDraftOrSelection PASSED
+
+WorkbenchWorkflowTest > accountRefreshAndNewSelectionNeverReuseAnotherAccountsQuota PASSED
+
+WorkbenchWorkflowTest > continuousGenerationCompletesRemainderStopsAndRetainsPartialResultsWithoutReplay PASSED
+
+WorkbenchWorkflowTest > editedAssetIsSelectableAcrossGuidanceAndEditorAndSurvivesRestart PASSED
+
+WorkbenchWorkflowTest > measuredSuiteNavigationSurvivesResizeAndUnsentInput PASSED
+
+WorkbenchWorkflowTest > continuedEditingRetainsExistingAssetsAndCredentials PASSED
+
+WorkbenchWorkflowTest > accountsDesignApplyGenerateGalleryAndRestart PASSED
+
+> Task :downloadWix SKIPPED
+> Task :unzipWix UP-TO-DATE
+> Task :studio-desktop:checkRuntime UP-TO-DATE
+> Task :studio-desktop:createRuntimeImage UP-TO-DATE
+> Task :studio-desktop:prepareAppResources NO-SOURCE
+> Task :studio-desktop:unpackDefaultComposeDesktopJvmApplicationResources UP-TO-DATE
+
+> Task :studio-desktop:createDistributable
+The distribution is written to H:\CCB-Studio-Suite\modules\studio-desktop\build\compose\binaries\main\app
+
+BUILD SUCCESSFUL in 3m 49s
+20 actionable tasks: 8 executed, 12 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.1.0/userguide/configuration_cache_enabling.html

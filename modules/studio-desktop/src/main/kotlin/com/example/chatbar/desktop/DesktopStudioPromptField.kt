@@ -115,7 +115,7 @@ internal fun StudioPromptField(label: String, value: String, suggestionService: 
     }
     val suggestions = suggestionResult?.takeIf { focused && it.first == fragment?.query }?.second ?: TagSuggestionUpdate(loading = false)
     val source = input.text
-    val annotations by produceState<Pair<String, NovelAiPromptTranslationResult>?>(null, source, translated) {
+    val annotations by produceState<Pair<String, NovelAiPromptTranslationResult>?>(null, source, translated, translationService) {
         this.value = null
         if (translated) this.value = source to try {
             translationService.resolve(NovelAiPromptTranslationParser.parse(source, false))

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-22T20:09:46.655Z" hostname="DD1" time="2.443">
+  <properties/>
+  <testcase name="unknownAndNonFiniteAllowanceNeverPretendToBeFull" classname="io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest" time="0.003"/>
+  <testcase name="actualBundledChineseAnnotationsKeepTheRawPrompt" classname="io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest" time="0.909"/>
+  <testcase name="naiAccountDoesNotOwnGenerationModelAndOnlyV5ShowsAllowance" classname="io.github.misakapiano.ccbstudio.desktop.NaiSettingsTest" time="1.531"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -40,6 +40,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     val editor by lazy {TypesetEditorController(this)}
     val vault=SecretVault(workspace.root.resolve("secrets"))
     val modelAccounts by lazy{ModelAccountsController(this)}
+    val naiSettings by lazy{NaiSettingsController(this)}
     var state by mutableStateOf(workspace.state);private set
     var draft by mutableStateOf(state.creation!!.draft);private set
     var composer by mutableStateOf(state.creation!!.composer);private set
@@ -477,6 +478,7 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
     val translated=c.state.creation!!.translatedTags
     var paste by remember{mutableStateOf<String?>(null)}
     var clear by remember{mutableStateOf(false)}
+    var showSettings by remember{mutableStateOf(false)}
     val tokens by produceState<NovelAiPromptTokenUsage?>(null,c.draft.toPromptPlan(),c.draft.selectedModel){value=runCatching{c.infrastructure.countTokens(c.draft)}.getOrNull()}
     DesktopStudioWorkspace(compact={expand ->
         Column(Modifier.fillMaxWidth().border(1.dp,DesktopBootstrapColors.border).padding(8.dp)
@@ -492,18 +494,21 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
         }
     },editor={
         AccountChoice(c,"NAI")
+        StatusText("当前生图模型：${c.draft.selectedModel.displayName}")
         val cost=runCatching{NovelAiImageCostEstimator.estimate(c.draft.activeSettings,c.usage,c.draft.imageGuidance,c.vibeMisses())}.getOrNull()
-        StatusText(cost?.let{"预计 ${it.anlas} Anlas · ${it.kind}"}?:"参数无效，暂无法估算")
+        StatusText(cost?.let{"预计 ${it.anlas} Anlas · ${when(it.kind){NovelAiGenerationChargeKind.FREE->"免费";NovelAiGenerationChargeKind.V5_ALLOWANCE->"使用 Opus 体力";NovelAiGenerationChargeKind.ANLAS->"消耗 Anlas"}}"}?:"参数无效，暂无法估算")
         StudioActions {
             StatusText(c.usage?.let{"额度 ${it.anlas} Anlas"}?:"账户额度未知，未自动请求")
             StudioAction("刷新额度",!c.busy && c.naiId!=null){c.refreshUsage()}
         }
+        if(c.draft.selectedModel==NovelAiImageModel.V5_FULL)NaiAllowanceBar(c.usage)
         Spacer(Modifier.height(10.dp))
         StudioActions {
             StudioAction("AI 设计",icon=DesktopAppIcons.Chat){c.view="AI 设计"}
             StudioAction("图像引导",icon=DesktopAppIcons.Star){c.section="图像引导"}
             StudioAction("导入图片",!c.busy,icon=DesktopAppIcons.ImageAdd){c.importImages()}
             StudioAction("历史图库",icon=DesktopAppIcons.History){c.view="图库"}
+            StudioAction("创作设置"){showSettings=true}
         }
         Spacer(Modifier.height(12.dp))
         if(c.section=="图像引导") {
@@ -532,7 +537,8 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
             }
             DesktopStudioCharacters(c.draft,c.infrastructure,translated,c::edit)
             StudioDisclosure("生成设置",initiallyOpen=true) {
-                CompactChoice("全局默认生图模型",NovelAiImageModel.entries,c.state.creation!!.defaultImageModel,{it.displayName}){c.defaults(model=it)}
+                CompactChoice("新建创作默认模型",NovelAiImageModel.entries,c.state.creation!!.defaultImageModel,{it.displayName}){c.defaults(model=it)}
+                if(!c.draft.followDefaultNovelAiImageModel)StatusText("本次已指定 ${c.draft.selectedModel.displayName}；修改默认值不会覆盖本次选择")
                 StudioGenerationSettings(c.draft,c::edit)
             }
         }
@@ -541,6 +547,7 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
             if(c.busy)"停止" else "生成图片",c.busy||c.naiId!=null,
             {c.undo()},{c.undo(true)},{if(c.busy)c.active?.cancel() else c.generate()})
     },preview={rail -> ResultPreview(c,rail)})
+    if(showSettings)NaiSettingsDialog(c){showSettings=false}
     paste?.let{text->AlertDialog(onDismissRequest={paste=null},title={Text("确认粘贴覆盖")},text={SelectionContainer{Text(text,Modifier.heightIn(max=400.dp).verticalScroll(rememberScrollState()))}},confirmButton={TextButton(onClick={c.pastePrompt(text);paste=null}){Text("确认覆盖，可撤销")}},dismissButton={TextButton(onClick={paste=null}){Text("取消")}})}
     if(clear)AlertDialog(onDismissRequest={clear=false},title={Text("清空 Prompt？")},text={Text("保留图像引导和生成设置。可撤销恢复。")},confirmButton={TextButton(onClick={c.clearPromptDraft();clear=false}){Text("确认清空")}},dismissButton={TextButton(onClick={clear=false}){Text("取消")}})
 }
@@ -548,7 +555,7 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
 @Composable private fun AccountChoice(c:WorkbenchController,service:String) {
     val accounts=c.state.accounts.filter{it.service==service}
     if(accounts.isEmpty())StudioAction("配置 $service 账户"){c.view="账户"}
-    else CompactChoice(service,accounts,accounts.firstOrNull{it.id==if(service=="LLM")c.llmId else c.naiId},{"${it.alias} · ${it.model}"}){c.chooseAccount(service,it.id)}
+    else CompactChoice(service,accounts,accounts.firstOrNull{it.id==if(service=="LLM")c.llmId else c.naiId},{if(service=="NAI")it.alias else "${it.alias} · ${it.model}"}){c.chooseAccount(service,it.id)}
 }
 @Composable internal fun AssetImage(c:WorkbenchController,id:String?,modifier:Modifier) {
     if(id!=null)DesktopOwnedImage("asset:$id",c::readAsset,modifier)
@@ -674,7 +681,7 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
         profiles.forEach {a->
             val active=when(editor.category){"视觉模型"->a.id==editor.vision?.id;"NAI 生图"->a.id==c.naiId;else->a.id==c.llmId}
             Column(Modifier.fillMaxWidth().background(Panel).padding(10.dp)) {
-                Text("${a.alias} · ${a.model}${if(active)" · ✓ 当前生效" else " · 未选用"}")
+                Text("${a.alias}${if(a.service=="NAI")" · NAI账户" else " · ${a.model}"}${if(active)" · ✓ 当前生效" else " · 未选用"}")
                 Row(horizontalArrangement=Arrangement.spacedBy(8.dp)) {
                     StudioAction("编辑配置",enabled=!c.busy){editor.open(a,editor.category=="视觉模型")}
                     if(!active)StudioAction(if(editor.category=="视觉模型")"启用此视觉模型" else if(editor.category=="NAI 生图")"选用此 NAI 账户" else "设为默认语言模型",enabled=!c.busy&&(editor.category!="视觉模型"||editor.language!=null)&&(a.service=="NAI"||modelPurpose(a.model).supportsChatSelection)){if(editor.category=="视觉模型")c.chooseVision(a.id) else c.chooseAccount(a.service,a.id)}
@@ -691,7 +698,8 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
         if(showDraft) {
         Text("${if(d.existing==null)"新建" else "编辑"}${if(editor.visionEditing)"视觉模型" else if(d.service=="NAI")"NAI账户" else "语言模型"}配置 · 编辑不改变当前选择")
         OutlinedTextField(d.alias,{value->editor.edit{it.copy(alias=value)}},label={Text("档案名称")},enabled=!c.busy,modifier=Modifier.fillMaxWidth())
-        OutlinedTextField(d.endpoint,{value->editor.edit{it.copy(endpoint=value)}},label={Text("HTTPS API 地址")},enabled=d.service=="LLM"&&!c.busy,modifier=Modifier.fillMaxWidth())
+        if(d.service=="LLM")OutlinedTextField(d.endpoint,{value->editor.edit{it.copy(endpoint=value)}},label={Text("HTTPS API 地址")},enabled=!c.busy,modifier=Modifier.fillMaxWidth())
+        else Text("NovelAI 官方服务 · 固定接口")
         if(d.service=="LLM")StudioChips("API Key 来源",listOf(false,true),d.useGlobalKey,{if(it)"使用共用凭据" else "独立配置"}){value->editor.edit{it.copy(useGlobalKey=value,key="")}}
         if(!d.useGlobalKey)OutlinedTextField(d.key,{value->editor.edit{it.copy(key=value)}},label={Text(if(d.existing?.secretRef!=null&&d.existing.secretRef!=SecretVault.GLOBAL_LLM_REF)"新凭据（留空保留已有）"else"API 凭据")},visualTransformation=PasswordVisualTransformation(),enabled=!c.busy,modifier=Modifier.fillMaxWidth())
         else Text(if(editor.globalConfigured)"使用本工作区共用默认凭据" else "尚未配置默认凭据；可先保存档案，调用前需配置")
@@ -716,7 +724,8 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
                 }
             }
         }
-        OutlinedTextField(d.model,{value->editor.edit{it.copy(model=value)}},label={Text("模型 ID")},enabled=!c.busy,modifier=Modifier.fillMaxWidth())
+        if(d.service=="LLM")OutlinedTextField(d.model,{value->editor.edit{it.copy(model=value)}},label={Text("模型 ID")},enabled=!c.busy,modifier=Modifier.fillMaxWidth())
+        else Text("此处保存 NAI 账户与凭据。当前生图模型：${c.draft.selectedModel.displayName}，请在创作的生成设置中选择。")
         if(d.service=="LLM") {
             Text("模型用途按名称提示，未知型号需核对服务商；视觉模型须支持图片输入和对话。")
             if(!modelPurpose(d.model).supportsChatSelection)StatusText("${modelPurpose(d.model).label}；请更换模型，不能保存为设计或视觉模型。")
@@ -730,11 +739,11 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
         }
         Row(horizontalArrangement=Arrangement.spacedBy(8.dp)) {
             StudioAction("保存配置",enabled=!c.busy&&editor.canSave){editor.save(false)}
-            StudioAction(if(editor.visionEditing)"保存并启用视觉模型" else "保存并设为当前模型",enabled=!c.busy&&editor.canSave&&(!editor.visionEditing||editor.language!=null),style=StudioActionStyle.PRIMARY){editor.save()}
+            StudioAction(if(editor.visionEditing)"保存并启用视觉模型" else if(d.service=="NAI")"保存并选用此账户" else "保存并设为当前模型",enabled=!c.busy&&editor.canSave&&(!editor.visionEditing||editor.language!=null),style=StudioActionStyle.PRIMARY){editor.save()}
         }
         Text(if(editor.dirty)"有未保存修改" else if(d.existing!=null)"已保存" else "凭据保存在本机受保护存储")
         if(editor.dirty)StudioAction("放弃修改",enabled=!c.busy){editor.discard()}
-        if(!editor.dirty && d.existing!=null)StudioAction(if(editor.visionEditing)"启用为当前视觉模型" else "设为当前模型",enabled=!c.busy&&(!editor.visionEditing||editor.language!=null)){if(editor.visionEditing)c.chooseVision(d.existing.id) else c.chooseAccount(d.service,d.existing.id)}
+        if(!editor.dirty && d.existing!=null)StudioAction(if(editor.visionEditing)"启用为当前视觉模型" else if(d.service=="NAI")"选用此账户" else "设为当前模型",enabled=!c.busy&&(!editor.visionEditing||editor.language!=null)){if(editor.visionEditing)c.chooseVision(d.existing.id) else c.chooseAccount(d.service,d.existing.id)}
         }
         StudioAction("返回创作"){c.view="创作"}
     }

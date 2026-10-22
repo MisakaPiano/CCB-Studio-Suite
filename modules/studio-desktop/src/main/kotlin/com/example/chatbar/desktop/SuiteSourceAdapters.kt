@@ -50,7 +50,8 @@ internal class DesktopNovelAiInfrastructure(root:Path) {
     val tags=DesktopNovelAiTagCatalog(assets)
     private val dictionary=NovelAiPromptWordDictionary.fromSource(DesktopNovelAiDictionary(assets))
     val suggestions=NovelAiTagSuggestionService(tags,dictionary,scope)
-    val translations=NovelAiPromptTranslationService(dictionary,tags)
+    var translations by mutableStateOf(NovelAiPromptTranslationService(dictionary,tags));private set
+    fun refreshTranslations(){translations=NovelAiPromptTranslationService(dictionary,tags)}
     private val tokens=NovelAiPromptTokenCounter(::open)
     private val codex by lazy {NovelAiCodexCatalogParser(Json{ignoreUnknownKeys=true}).parse(open(NOVEL_AI_CODEX_ASSET_PATH).bufferedReader().use{it.readText()}).also {check(it.fatalError==null && it.errors.isEmpty())}}
     fun designer(transport:NovelAiTextTransport,understanding:com.example.chatbar.domain.chat.ImageUnderstandingService?=null)=NovelAiPromptDesigner(transport,

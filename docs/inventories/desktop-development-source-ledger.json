@@ -7231,11 +7231,13 @@
         }
       ],
       "uiLabels": [],
-      "implementationStatus": "SOURCE_PRESENT_UNVERIFIED",
+      "implementationStatus": "IMPLEMENTED_REQUIRES_HUMAN_REVIEW",
       "suiteTargets": [
         "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiCatalog.kt"
       ],
-      "evidence": [],
+      "evidence": [
+        "docs/audits/UX_NAI_SETTINGS.md"
+      ],
       "humanAcceptance": "NOT_SIGNED_OFF_FOR_WHOLE_SOURCE_UNIT",
       "sourceKind": "desktop-development"
     },
@@ -7336,9 +7338,13 @@
         }
       ],
       "uiLabels": [],
-      "implementationStatus": "NOT_MAPPED",
-      "suiteTargets": [],
-      "evidence": [],
+      "implementationStatus": "IMPLEMENTED_REQUIRES_HUMAN_REVIEW",
+      "suiteTargets": [
+        "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiCatalogUpdate.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_NAI_SETTINGS.md"
+      ],
       "humanAcceptance": "NOT_SIGNED_OFF_FOR_WHOLE_SOURCE_UNIT",
       "sourceKind": "desktop-development"
     },
@@ -19324,9 +19330,13 @@
         }
       ],
       "uiLabels": [],
-      "implementationStatus": "NOT_MAPPED",
-      "suiteTargets": [],
-      "evidence": [],
+      "implementationStatus": "IMPLEMENTED_REQUIRES_HUMAN_REVIEW",
+      "suiteTargets": [
+        "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiRankedIndexBuilder.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_NAI_SETTINGS.md"
+      ],
       "humanAcceptance": "NOT_SIGNED_OFF_FOR_WHOLE_SOURCE_UNIT",
       "sourceKind": "desktop-development"
     },
@@ -21317,9 +21327,13 @@
         }
       ],
       "uiLabels": [],
-      "implementationStatus": "NOT_MAPPED",
-      "suiteTargets": [],
-      "evidence": [],
+      "implementationStatus": "IMPLEMENTED_REQUIRES_HUMAN_REVIEW",
+      "suiteTargets": [
+        "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/update/SharedDanbooruCatalogUpdateChecker.kt"
+      ],
+      "evidence": [
+        "docs/audits/UX_NAI_SETTINGS.md"
+      ],
       "humanAcceptance": "NOT_SIGNED_OFF_FOR_WHOLE_SOURCE_UNIT",
       "sourceKind": "desktop-development"
     },

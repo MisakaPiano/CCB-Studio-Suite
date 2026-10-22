@@ -10,6 +10,7 @@ SEEDS = ['domain/prompt/NovelAiPromptAuthority.kt', 'domain/image/NovelAiPromptD
          'domain/image/PrivacyPngEncoder.kt', 'domain/image/ImageMetadataStripper.kt',
          'domain/chat/OpenAiChatRequestSerializer.kt', 'domain/chat/OpenAiCompletionResponsePolicy.kt',
          'domain/image/NovelAiTagLookup.kt', 'domain/image/NovelAiCatalogQueries.kt',
+         'domain/update/SharedDanbooruCatalogUpdateChecker.kt', 'domain/image/NovelAiRankedIndexBuilder.kt',
          'domain/image/NovelAiTagSuggestionService.kt', 'domain/image/NovelAiPromptWordDictionary.kt',
          'domain/image/NovelAiPromptTranslation.kt', 'domain/image/NovelAiPromptTokenCounter.kt',
          'domain/image/RankedTagCompletion.kt', 'domain/image/NovelAiVibeEncodingCore.kt',

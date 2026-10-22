@@ -36,6 +36,8 @@ actions=json.loads((ROOT/'docs/ux/ACTION_IMPLEMENTATION.json').read_text(encodin
 
 def mapping(path):
     name=Path(path).name
+    if name in ['SharedDanbooruCatalogUpdateChecker.kt','NovelAiRankedIndexBuilder.kt','DesktopNovelAiCatalogUpdate.kt','DesktopNovelAiCatalog.kt'] and name in suite_by_name:
+        return 'IMPLEMENTED_REQUIRES_HUMAN_REVIEW',[suite_by_name[name]],['docs/audits/UX_NAI_SETTINGS.md']
     if name in suite_by_name:return 'SOURCE_PRESENT_UNVERIFIED',[suite_by_name[name]],[]
     groups=[
       ('NovelAiStudio|StudioControls|StudioCharacters|StudioPrompt|StudioHistory|DesignConversation|NovelAiGuidance|NovelAiImage', ['StudioApplication.kt','StudioVision.kt'],['UX_R1A_WORKBENCH','UX_ROLE_WORKFLOW','UX_CREATION_CONTROLS']),
