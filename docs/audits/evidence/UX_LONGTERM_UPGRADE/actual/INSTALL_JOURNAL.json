@@ -1,0 +1,18 @@
+{
+  "status": "INSTALLED_NOT_STARTED",
+  "target": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\longterm-real-102-103\\applications\\103-bebc78c6f36f",
+  "stage": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\longterm-real-102-103\\applications\\103-bebc78c6f36f.3cbc412122ab40a7804a4b993cb8cd83.installing",
+  "expected": {
+    "product": "ccb-studio-suite",
+    "platform": "windows-x86_64",
+    "channel": "preview",
+    "version": 103,
+    "sourceSha": "bebc78c6f36f3c026c362b48a335cc5a7b28f0d8"
+  },
+  "dataModified": false,
+  "verification": {
+    "files": 547,
+    "bytes": 251092053,
+    "manifestSha256": "fe1f5f5714f07add91b1535c2300371f7dc3fc6af56e54f914fdcc1bb12ed38f"
+  }
+}

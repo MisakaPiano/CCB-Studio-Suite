@@ -1,5 +1,17 @@
 # CCBdesktop 参考：Windows 安装与 GitHub 应用内升级
 
+## 长期渠道补充验证（2026-10-22）
+
+已完成持久签名根的 **102→103 真实GitHub应用内下载、安装重启、资料核验和再次检查最新版本**，并验证发布目标后的自动续签工作流。以下100/101记录作为历史证据保留，其“一次性测试密钥”限制仅适用于旧渠道。
+
+- [固定实现 bebc78c](https://github.com/MisakaPiano/CCB-Studio-Suite/tree/bebc78c6f36f3c026c362b48a335cc5a7b28f0d8)，[102测试包](https://github.com/MisakaPiano/CCB-Studio-Suite-Releases/releases/tag/v0.0.0-preview.102)、[103测试包](https://github.com/MisakaPiano/CCB-Studio-Suite-Releases/releases/tag/v0.0.0-preview.103)。应用镜像仍来自源码未变的3bea16b；未另称桌面重新构建。
+- [长期元数据固定提交](https://github.com/MisakaPiano/CCB-Studio-Suite-Releases/tree/9cf9c2197abd8598d09a40124581e9a9f94f4f74/preview/windows-x86_64/metadata)、[已成功的续签运行](https://github.com/MisakaPiano/CCB-Studio-Suite-Releases/actions/runs/39769472899)。每日计划已部署，当前证据为手动触发同一工作流，自然定时尚未到时验证。
+- root/targets 私钥本机保护并有两条加密恢复路径；GitHub仅保管snapshot/timestamp在线密钥。备份下载校验和恢复码恢复通过，不提供任何密钥/恢复码给参考项目。
+- A/B各547文件完整核验，10条合成资产和整体状态快照一致，原备份未变；用户截图确认103最新。一项缺失凭据仍缺失，没有据此声称真实凭据验证完成。
+- 本轮44项更新运行时测试实际通过。102由本地安装器安装后，公开下载件逐字节一致；103为应用真实下载并安装。两份包各167322788字节。
+
+详见 [完整实际记录](../audits/UX_LONGTERM_UPGRADE.md)和[签名维护说明](LONG_TERM_SIGNING_OPERATIONS.md)。更新链路已验证，不等于整体日常版验收或Windows Authenticode签名完成。下一步是按首个日常使用版清单补齐产品门槛，不能直接将这两份合成测试包推荐给真实资料。
+
 验证日期：2026-10-22。结论：**真实公开 GitHub 下载 → 安装 → 应用内升级 → 保存退出 → 新版启动 → 资料核验 → 再次检查最新版本已跑通**。对象是隔离合成工作区的 `0.0.0-preview.100 → 0.0.0-preview.101`，不是日常正式版本验收。
 
 ## 可核对的来源

@@ -1,0 +1,52 @@
+{
+  "repository": "MisakaPiano/CCB-Studio-Suite-Releases",
+  "metadataBase": "5059fb2412eb9eecaed65b50190ccd0939966e2f",
+  "installers": [
+    {
+      "tag": "v0.0.0-preview.102",
+      "asset": "CCB-Studio-Suite-longterm-test-102.exe",
+      "bytes": 167322788,
+      "sha256": "2ba6fe873fc0a44a7d498f85e12438f10e2bfe96b2f8d85a3694c0b45d516416"
+    },
+    {
+      "tag": "v0.0.0-preview.103",
+      "asset": "CCB-Studio-Suite-longterm-test-103.exe",
+      "bytes": 167322788,
+      "sha256": "cd354d0abfca8d76e58a3d7edd768468e7024eb3f2fea17412b0a291bce891fc"
+    }
+  ],
+  "metadata": [
+    {
+      "path": "preview/windows-x86_64/metadata/targets.json",
+      "sha256": "3891de6261faaa005e3e600e06c82ccef14d66090658934d9ee06c5baadb7d1b"
+    },
+    {
+      "path": "preview/windows-x86_64/metadata/2.targets.json",
+      "sha256": "3891de6261faaa005e3e600e06c82ccef14d66090658934d9ee06c5baadb7d1b"
+    },
+    {
+      "path": "preview/windows-x86_64/metadata/snapshot.json",
+      "sha256": "3048748830414a3da07e3943c88b1465fa558c0102757650b9938e723f13f044"
+    },
+    {
+      "path": "preview/windows-x86_64/metadata/3.snapshot.json",
+      "sha256": "3048748830414a3da07e3943c88b1465fa558c0102757650b9938e723f13f044"
+    },
+    {
+      "path": "preview/windows-x86_64/metadata/timestamp.json",
+      "sha256": "3a0a2304db876fb8b5fa5fafb959837c9ee0616f0a9938c08b1a86b972d327ff"
+    }
+  ],
+  "sidecars": [
+    {
+      "asset": "TEST_RELEASE_NOTES.md",
+      "bytes": 810,
+      "sha256": "a6f5617bf15298c210cb5c890c276737c9b58c311c5e9ebf20c67e32a134c59e"
+    },
+    {
+      "asset": "THIRD_PARTY_NOTICES.zip",
+      "bytes": 193529,
+      "sha256": "80bd89d85f10360cda08098fa310ea395ec86db8173dd55b28a2bc2bd21bccbb"
+    }
+  ]
+}

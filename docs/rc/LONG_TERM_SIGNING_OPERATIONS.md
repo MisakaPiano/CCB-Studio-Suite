@@ -27,4 +27,4 @@ GitHub Secrets 仅保存 snapshot/timestamp 两把在线密钥。root/targets �
 
 ## 当前发布边界
 
-正式根放在独立 `long-term-metadata` 分支，targets 目前为空，没有日常版安装包。原一次性测试 `update-metadata` 分支保持不变。下一步是将新根固定到新的引导安装包，再做完整升级验证；不能把已丢弃旧测试私钥的测试版直接当成正式信任链。产品仍为 PRODUCT_HOLD / NOT RC。
+正式根放在独立 `long-term-metadata` 分支。2026-10-22 用户进一步授权102/103两个隔离升级测试包，targets现已指向103；这两份包固定长期根，但仍不是日常版。原一次性测试 `update-metadata` 分支保持不变。实际升级进展见 [102→103记录](../audits/UX_LONGTERM_UPGRADE.md)；不能把已丢弃旧测试私钥的100/101版直接当成正式信任链。产品仍为 PRODUCT_HOLD / NOT RC。

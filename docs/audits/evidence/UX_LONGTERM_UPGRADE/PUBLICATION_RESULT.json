@@ -1,0 +1,59 @@
+{
+  "repository": "MisakaPiano/CCB-Studio-Suite-Releases",
+  "releases": [
+    {
+      "id": 420626853,
+      "tag": "v0.0.0-preview.102",
+      "url": "https://github.com/MisakaPiano/CCB-Studio-Suite-Releases/releases/tag/v0.0.0-preview.102",
+      "assets": [
+        {
+          "id": 665619446,
+          "name": "CCB-Studio-Suite-longterm-test-102.exe",
+          "sha256": "2ba6fe873fc0a44a7d498f85e12438f10e2bfe96b2f8d85a3694c0b45d516416",
+          "url": "https://github.com/MisakaPiano/CCB-Studio-Suite-Releases/releases/download/v0.0.0-preview.102/CCB-Studio-Suite-longterm-test-102.exe"
+        },
+        {
+          "id": 665620067,
+          "name": "TEST_RELEASE_NOTES.md",
+          "sha256": "a6f5617bf15298c210cb5c890c276737c9b58c311c5e9ebf20c67e32a134c59e",
+          "url": "https://github.com/MisakaPiano/CCB-Studio-Suite-Releases/releases/download/v0.0.0-preview.102/TEST_RELEASE_NOTES.md"
+        },
+        {
+          "id": 665620124,
+          "name": "THIRD_PARTY_NOTICES.zip",
+          "sha256": "80bd89d85f10360cda08098fa310ea395ec86db8173dd55b28a2bc2bd21bccbb",
+          "url": "https://github.com/MisakaPiano/CCB-Studio-Suite-Releases/releases/download/v0.0.0-preview.102/THIRD_PARTY_NOTICES.zip"
+        }
+      ]
+    },
+    {
+      "id": 420627156,
+      "tag": "v0.0.0-preview.103",
+      "url": "https://github.com/MisakaPiano/CCB-Studio-Suite-Releases/releases/tag/v0.0.0-preview.103",
+      "assets": [
+        {
+          "id": 665620280,
+          "name": "CCB-Studio-Suite-longterm-test-103.exe",
+          "sha256": "cd354d0abfca8d76e58a3d7edd768468e7024eb3f2fea17412b0a291bce891fc",
+          "url": "https://github.com/MisakaPiano/CCB-Studio-Suite-Releases/releases/download/v0.0.0-preview.103/CCB-Studio-Suite-longterm-test-103.exe"
+        },
+        {
+          "id": 665620770,
+          "name": "TEST_RELEASE_NOTES.md",
+          "sha256": "a6f5617bf15298c210cb5c890c276737c9b58c311c5e9ebf20c67e32a134c59e",
+          "url": "https://github.com/MisakaPiano/CCB-Studio-Suite-Releases/releases/download/v0.0.0-preview.103/TEST_RELEASE_NOTES.md"
+        },
+        {
+          "id": 665620849,
+          "name": "THIRD_PARTY_NOTICES.zip",
+          "sha256": "80bd89d85f10360cda08098fa310ea395ec86db8173dd55b28a2bc2bd21bccbb",
+          "url": "https://github.com/MisakaPiano/CCB-Studio-Suite-Releases/releases/download/v0.0.0-preview.103/THIRD_PARTY_NOTICES.zip"
+        }
+      ]
+    }
+  ],
+  "status": "PUBLISHED_API_VERIFIED",
+  "metadataCommit": "f8584ac37eadd0fc315b6a5dab9a3129204cc2c1",
+  "sourceVisibilityUnchanged": true,
+  "endToEnd": "NOT_YET_TESTED"
+}

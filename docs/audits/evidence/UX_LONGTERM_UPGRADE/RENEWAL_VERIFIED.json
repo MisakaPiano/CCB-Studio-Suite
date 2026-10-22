@@ -1,0 +1,24 @@
+{
+  "status": "REMOTE_SIGNATURE_CHAIN_VERIFIED",
+  "metadataCommit": "9cf9c2197abd8598d09a40124581e9a9f94f4f74",
+  "rootSha256": "408008d80aeb2dd3844325d74f09da9d248733e220dd88c08cc6299c4a24cc7a",
+  "rootExpires": "2027-10-22T10:47:53+00:00",
+  "roles": {
+    "targets": {
+      "version": 2,
+      "expires": "2027-01-20T11:12:41+00:00"
+    },
+    "snapshot": {
+      "version": 4,
+      "expires": "2026-11-05T11:18:01+00:00"
+    },
+    "timestamp": {
+      "version": 4,
+      "expires": "2026-10-29T11:18:01+00:00"
+    }
+  },
+  "targetsUnchanged": true,
+  "installableTargets": 1,
+  "oldTestChannelCommit": "f2ab4c5a5cecaf458e875d565062bfdf99b6dea4",
+  "restoreCli": "AST parsed; underlying recovery executed; CLI not interactively tested"
+}
