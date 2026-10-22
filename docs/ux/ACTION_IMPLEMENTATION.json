@@ -12,7 +12,8 @@
         "WorkbenchWorkflowTest.accountsDesignApplyGenerateGalleryAndRestart",
         "WorkbenchWorkflowTest.measuredSuiteNavigationSurvivesResizeAndUnsentInput",
         "ModelAccountsTest (list/select/save/reopen; exact executions in UX_MODEL_ACCOUNTS)",
-        "VisionCredentialsTest (global/independent credentials; exact executions in UX_VISION_CREDENTIALS)"
+        "VisionCredentialsTest (global/independent credentials; exact executions in UX_VISION_CREDENTIALS)",
+        "AccountRolesTest (three active summaries, independent visual selection, stale editor protection and restart; UX_ACCOUNT_ROLES)"
       ],
       "guiEvidence": [
         "docs/audits/evidence/UX_R1A_WORKBENCH/compose-scenes (actual Compose tree; offscreen; loopback)",

@@ -1,0 +1,122 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ModelAccountsTest",
+    "name": "unsavedAccountPreventsCloseAndInvalidSaveKeepsDraft",
+    "seconds": "0.915",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ModelAccountsTest",
+    "name": "errorsNeverExposeProviderBodyAndRedirectNeverForwardsCredential",
+    "seconds": "0.073",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ModelAccountsTest",
+    "name": "editedEndpointInvalidatesPendingResponseAndManualModelRemains",
+    "seconds": "0.734",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ModelAccountsTest",
+    "name": "discoverySelectionSaveAndReopenUseRealUi",
+    "seconds": "7.862",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ModelPurposeTest",
+    "name": "conservativeHintsDoNotCertifyUnknownModels",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ModelPurposeTest",
+    "name": "legacyWrongPurposeFailsBeforeBudgetVaultAndNetwork",
+    "seconds": "0.097",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ModelPurposeTest",
+    "name": "manualEmbeddingCannotSaveOrWriteCredentials",
+    "seconds": "0.325",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ReverseWorkflowTest",
+    "name": "missingVisionFailsBeforeAnyPaidAttempt",
+    "seconds": "1.092",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ReverseWorkflowTest",
+    "name": "linkedVisionUsesAuthorityDescriptionAndNeverLeaksKeyToSnapshot",
+    "seconds": "1.136",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ReverseWorkflowTest",
+    "name": "directVisionRequiresApplyAndSurvivesRestart",
+    "seconds": "0.957",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.VisionCredentialsTest",
+    "name": "independentVisionAndGlobalRotationReachActualVisionTransport",
+    "seconds": "1.492",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.VisionCredentialsTest",
+    "name": "missingGlobalFailsBeforeNetworkAndDoesNotInheritForNai",
+    "seconds": "0.2",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "roleEditingReorderDisableAndDeleteReachRequestAndSurviveReopen",
+    "seconds": "6.168",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "creationFooterAndImageSummaryAdaptWithoutLosingDraftOrSelection",
+    "seconds": "2.596",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "accountRefreshAndNewSelectionNeverReuseAnotherAccountsQuota",
+    "seconds": "3.172",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "continuousGenerationCompletesRemainderStopsAndRetainsPartialResultsWithoutReplay",
+    "seconds": "5.776",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "editedAssetIsSelectableAcrossGuidanceAndEditorAndSurvivesRestart",
+    "seconds": "4.221",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "measuredSuiteNavigationSurvivesResizeAndUnsentInput",
+    "seconds": "2.848",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "continuedEditingRetainsExistingAssetsAndCredentials",
+    "seconds": "1.101",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "accountsDesignApplyGenerateGalleryAndRestart",
+    "seconds": "11.444",
+    "status": "PASS"
+  }
+]

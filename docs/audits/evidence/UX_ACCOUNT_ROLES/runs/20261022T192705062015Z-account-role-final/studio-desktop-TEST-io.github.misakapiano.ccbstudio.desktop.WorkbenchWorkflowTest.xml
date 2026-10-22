@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-10-22T19:27:49.120Z" hostname="DD1" time="52.642">
+  <properties/>
+  <testcase name="roleEditingReorderDisableAndDeleteReachRequestAndSurviveReopen" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="10.243"/>
+  <testcase name="creationFooterAndImageSummaryAdaptWithoutLosingDraftOrSelection" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="4.763"/>
+  <testcase name="accountRefreshAndNewSelectionNeverReuseAnotherAccountsQuota" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="3.396"/>
+  <testcase name="continuousGenerationCompletesRemainderStopsAndRetainsPartialResultsWithoutReplay" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="7.377"/>
+  <testcase name="editedAssetIsSelectableAcrossGuidanceAndEditorAndSurvivesRestart" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="5.545"/>
+  <testcase name="measuredSuiteNavigationSurvivesResizeAndUnsentInput" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="3.157"/>
+  <testcase name="continuedEditingRetainsExistingAssetsAndCredentials" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="1.674"/>
+  <testcase name="accountsDesignApplyGenerateGalleryAndRestart" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="16.486"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

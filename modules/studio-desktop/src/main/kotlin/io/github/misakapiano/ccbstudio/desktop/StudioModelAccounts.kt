@@ -55,6 +55,11 @@ internal data class ModelAccountDraft(
 }
 
 internal class ModelAccountsController(private val c:WorkbenchController) {
+    var category by mutableStateOf("语言模型")
+    var visionEditing by mutableStateOf(false);private set
+    val language get()=c.state.accounts.firstOrNull{it.id==c.llmId&&it.service=="LLM"}
+    val vision get()=language?.let{a->if(a.isMultimodal)a else c.state.accounts.firstOrNull{it.id==a.visionAccountId&&it.isMultimodal}}
+    val nai get()=c.state.accounts.firstOrNull{it.id==c.naiId&&it.service=="NAI"}
     var draft by mutableStateOf(c.state.accounts.firstOrNull{it.id==c.llmId}?.let{ModelAccountDraft.from(it)}?:ModelAccountDraft());private set
     private var baseline=draft
     var globalKey by mutableStateOf("")
@@ -64,7 +69,7 @@ internal class ModelAccountsController(private val c:WorkbenchController) {
     fun saveGlobal() {
         if(c.busy||c.maintenance||globalKey.isBlank())return
         val value=globalKey;invalidate()
-        c.run("保存共用默认 API Key") {
+        c.run("保存共用 API Key") {
             val bytes=value.trim().toByteArray()
             try{c.vault.putGlobal(bytes)}finally{bytes.fill(0)}
             withContext(c.scope.coroutineContext.minusKey(Job)){globalKey="";globalConfigured=true}
@@ -72,8 +77,19 @@ internal class ModelAccountsController(private val c:WorkbenchController) {
     }
     fun newVision() {
         if(c.busy||c.maintenance)return
-        val action={load(null);draft=draft.copy(multimodal=true,useGlobalKey=true);baseline=draft}
+        val action={load(null,true);draft=draft.copy(multimodal=true,useGlobalKey=true);baseline=draft}
         if(dirty)pending=action else action()
+    }
+    fun newNai() {
+        if(c.busy||c.maintenance)return
+        val action={load(null);category="NAI 生图";draft=draft.copy(service="NAI",endpoint="https://image.novelai.net",model=com.example.chatbar.domain.image.NovelAiImageModel.V4_5_FULL.apiId);baseline=draft}
+        if(dirty)pending=action else action()
+    }
+    fun syncSavedProfile() {
+        if(dirty)return
+        val old=draft.existing?:return
+        val latest=c.state.accounts.firstOrNull{it.id==old.id}?:return
+        if(latest!=old){invalidate();draft=ModelAccountDraft.from(latest);baseline=draft}
     }
     var ids by mutableStateOf(emptyList<String>());private set
     var searching by mutableStateOf(false);private set
@@ -89,11 +105,11 @@ internal class ModelAccountsController(private val c:WorkbenchController) {
         draft=next
     }
     private fun invalidate(){generation++;job?.cancel();job=null;ids=emptyList();searching=false;error=null;query=""}
-    private fun load(a:AccountProfile?){invalidate();draft=a?.let{ModelAccountDraft.from(it)}?:ModelAccountDraft();baseline=draft}
-    fun open(a:AccountProfile?){if(c.busy||c.maintenance)return;if(dirty)pending={load(a)} else load(a)}
+    private fun load(a:AccountProfile?,asVision:Boolean=false){invalidate();visionEditing=asVision;category=if(asVision)"视觉模型" else if(a?.service=="NAI")"NAI 生图" else "语言模型";draft=a?.let{ModelAccountDraft.from(it)}?:ModelAccountDraft(multimodal=asVision,useGlobalKey=asVision);baseline=draft}
+    fun open(a:AccountProfile?,asVision:Boolean=false){if(c.busy||c.maintenance)return;if(dirty)pending={load(a,asVision)} else load(a,asVision)}
     fun discardAndContinue(){val action=pending;pending=null;if(action!=null){globalKey="";action()}}
     fun continueEditing(){pending=null}
-    fun discard(){if(!c.busy&&!c.maintenance){globalKey="";load(draft.existing)}}
+    fun discard(){if(!c.busy&&!c.maintenance){globalKey="";load(draft.existing,visionEditing)}}
     fun select(id:String){if(id in ids&&modelPurpose(id).supportsChatSelection)edit{it.copy(model=id)}}
     fun cancel(){invalidate()}
     fun discover() {
@@ -113,7 +129,7 @@ internal class ModelAccountsController(private val c:WorkbenchController) {
     fun save(selectAfterSave:Boolean=true) {
         if(c.busy||c.maintenance)return
         val input=draft;invalidate()
-        c.saveAccount(input.existing,input.alias,input.service,input.endpoint,input.model,input.key,input.multimodal,input.visionId,input.useGlobalKey,selectAfterSave){saved->
+        c.saveAccount(input.existing,input.alias,input.service,input.endpoint,input.model,input.key,input.multimodal,input.visionId,input.useGlobalKey,selectAfterSave&&!visionEditing,selectAfterSave&&visionEditing){saved->
             draft=ModelAccountDraft.from(saved);baseline=draft
         }
     }

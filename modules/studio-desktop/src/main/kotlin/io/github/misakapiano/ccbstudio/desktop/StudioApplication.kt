@@ -254,7 +254,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
             try {pending?.cancelAndJoin();flush();withContext(Dispatchers.IO){body()};message=operationNotice?:if(problem==null)"$label · 已完成" else "$label · 有未完成项，请查看回执"}
             catch(e:CancellationException){message="已停止；已提交结果保留";throw e}
             catch(e:Exception){problem="${if(e is DataProblem)e.status else e.javaClass.simpleName}：操作未完成，未自动重发。已有资料保留。";message="操作未完成"}
-            finally {try{state=workspace.state;assets=visibleAssets()}catch(e:Exception){problem="工作区需要恢复，已保留现有文件；请停止写入并检查"};busy=false}
+            finally {try{state=workspace.state;modelAccounts.syncSavedProfile();assets=visibleAssets()}catch(e:Exception){problem="工作区需要恢复，已保留现有文件；请停止写入并检查"};busy=false}
         }
     }
     fun design()=run("AI 设计") {
@@ -304,7 +304,15 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
             if(naiId==account.id){usage=result;usageAt=System.currentTimeMillis()}
         }
     }
-    fun saveAccount(existing:AccountProfile?,alias:String,service:String,endpoint:String,model:String,key:String,isMultimodal:Boolean=false,visionAccountId:String?=null,useGlobalKey:Boolean=false,selectAfterSave:Boolean=true,onSaved:(AccountProfile)->Unit={})=run("保存账户") {
+    private fun activateVision(id:String?) {
+        val primary=workspace.state.accounts.singleOrNull{it.id==llmId&&it.service=="LLM"}?:error("请先设置默认语言模型")
+        val target=id?.let{ref->workspace.state.accounts.single{it.id==ref&&it.service=="LLM"&&it.isMultimodal}.also{requireChatModelPurpose(it.model)}}
+        val updated=primary.copy(isMultimodal=target?.id==primary.id,visionAccountId=target?.id?.takeUnless{it==primary.id})
+        workspace.save(workspace.state.copy(accounts=workspace.state.accounts.map{if(it.id==primary.id)updated else it}))
+    }
+    fun chooseVision(id:String?)=run("设置视觉模型"){workspace.operation{activateVision(id)}}
+    fun saveAccount(existing:AccountProfile?,alias:String,service:String,endpoint:String,model:String,key:String,isMultimodal:Boolean=false,visionAccountId:String?=null,useGlobalKey:Boolean=false,selectAfterSave:Boolean=true,activateAsVision:Boolean=false,onSaved:(AccountProfile)->Unit={})=run("保存账户") {
+        if(activateAsVision)require(workspace.state.accounts.any{it.id==llmId&&it.service=="LLM"}){"请先设置默认语言模型"}
         if(service=="LLM")requireChatModelPurpose(model)
         AccountProfile(id=existing?.id?:newId(),alias=alias.trim(),service=service,provider=if(service=="NAI")"NOVELAI" else "OPENAI_COMPATIBLE",endpoint=endpoint.trim().trimEnd('/'),model=model.trim(),isMultimodal=isMultimodal,visionAccountId=visionAccountId).validate()
         require(!useGlobalKey || service=="LLM")
@@ -312,6 +320,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
         require(ref!=null){"请填写独立凭据，或选择使用共用默认 API Key"}
         val a=AccountProfile(id=existing?.id?:newId(),alias=alias.trim(),service=service,provider=if(service=="NAI")"NOVELAI" else "OPENAI_COMPATIBLE",endpoint=endpoint.trim().trimEnd('/'),model=model.trim(),secretRef=ref,isMultimodal=service=="LLM"&&isMultimodal,visionAccountId=visionAccountId.takeIf{service=="LLM"&&!isMultimodal})
         a.validate();workspace.operation{workspace.save(workspace.state.copy(accounts=workspace.state.accounts.filterNot{it.id==a.id}+a))}
+        if(activateAsVision)workspace.operation{activateVision(a.id)}
         if(selectAfterSave) {
             if(service=="LLM")llmId=a.id else {naiId=a.id;usage=null;usageAt=null}
             session.update{it.copy(llmAccountId=llmId,naiAccountId=naiId)}
@@ -650,21 +659,40 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
     DisposableEffect(editor){onDispose{editor.cancel()}}
     Column(Modifier.fillMaxSize().padding(24.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(10.dp)) {
         Text("账户与模型",fontSize=22.sp)
+        Text("默认语言模型：${editor.language?.let{"${it.alias} · ${it.model}"}?:"未设置"}")
+        Text("当前视觉模型：${editor.vision?.let{"${it.alias} · ${it.model}"}?:"未启用"}${if(editor.language?.isMultimodal==true)"（语言模型直接识图）" else if(editor.vision!=null)"（独立识图，供当前语言模型使用）" else ""}")
+        Text("NAI 生图：${editor.nai?.let{"${it.alias} · ${c.draft.selectedModel.displayName}"}?:"未设置账户"}")
         var showGlobal by remember{mutableStateOf(false)}
-        StudioAction(if(showGlobal)"收起共用默认 API Key" else "共用默认 API Key · ${if(editor.globalConfigured)"已配置" else "未配置"}"){showGlobal=!showGlobal}
+        StudioAction(if(showGlobal)"收起共用凭据" else "共用 API Key · ${if(editor.globalConfigured)"已配置" else "未配置"}"){showGlobal=!showGlobal}
         if(showGlobal) {
             Text("仅供选择“使用默认凭据”的文本和视觉模型使用；接口地址仍分别设置。")
-            OutlinedTextField(editor.globalKey,{editor.globalKey=it},label={Text("设置或替换共用默认 API Key")},visualTransformation=PasswordVisualTransformation(),enabled=!c.busy,modifier=Modifier.fillMaxWidth())
-            StudioAction("保存共用默认 API Key",enabled=!c.busy&&editor.globalKey.isNotBlank()){editor.saveGlobal()}
+            OutlinedTextField(editor.globalKey,{editor.globalKey=it},label={Text("设置或替换共用 API Key")},visualTransformation=PasswordVisualTransformation(),enabled=!c.busy,modifier=Modifier.fillMaxWidth())
+            StudioAction("保存共用凭据",enabled=!c.busy&&editor.globalKey.isNotBlank()){editor.saveGlobal()}
         }
-        c.state.accounts.forEach {a->StudioAction("${a.alias} · ${a.service} · ${a.model}",enabled=!c.busy){editor.open(a)}}
-        StudioAction("新建档案",enabled=!c.busy){editor.open(null)}
-        StudioAction("新建视觉模型",enabled=!c.busy){editor.newVision()}
-        Text(if(d.existing==null)"新建档案" else "编辑已保存档案")
-        StudioChips("服务",listOf("LLM","NAI"),d.service,{it}){value->editor.edit{it.copy(service=value,endpoint=if(value=="NAI")"https://image.novelai.net" else "https://api.siliconflow.cn/v1",model=if(value=="NAI")NovelAiImageModel.V4_5_FULL.apiId else "",multimodal=false,visionId=null,useGlobalKey=false,key="")}}
+        StudioChips("配置分类",listOf("语言模型","视觉模型","NAI 生图"),editor.category,{it}){editor.category=it}
+        val profiles=c.state.accounts.filter{a->when(editor.category){"NAI 生图"->a.service=="NAI";"视觉模型"->a.service=="LLM"&&a.isMultimodal;else->a.service=="LLM"}}
+        profiles.forEach {a->
+            val active=when(editor.category){"视觉模型"->a.id==editor.vision?.id;"NAI 生图"->a.id==c.naiId;else->a.id==c.llmId}
+            Column(Modifier.fillMaxWidth().background(Panel).padding(10.dp)) {
+                Text("${a.alias} · ${a.model}${if(active)" · ✓ 当前生效" else " · 未选用"}")
+                Row(horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+                    StudioAction("编辑配置",enabled=!c.busy){editor.open(a,editor.category=="视觉模型")}
+                    if(!active)StudioAction(if(editor.category=="视觉模型")"启用此视觉模型" else if(editor.category=="NAI 生图")"选用此 NAI 账户" else "设为默认语言模型",enabled=!c.busy&&(editor.category!="视觉模型"||editor.language!=null)&&(a.service=="NAI"||modelPurpose(a.model).supportsChatSelection)){if(editor.category=="视觉模型")c.chooseVision(a.id) else c.chooseAccount(a.service,a.id)}
+                }
+            }
+        }
+        if(profiles.isEmpty())Text("尚无${editor.category}配置")
+        if(editor.category=="视觉模型") {
+            Text("独立配置图片理解模型；启用后关联到默认语言模型。切换语言模型时，顶部显示该语言模型实际使用的视觉配置。",fontSize=12.sp,color=Quiet)
+            StudioAction("新建视觉模型",enabled=!c.busy){editor.newVision()}
+            if(editor.vision!=null)StudioAction("停用当前视觉模型",enabled=!c.busy){c.chooseVision(null)}
+        } else StudioAction("新建档案",enabled=!c.busy){if(editor.category=="NAI 生图")editor.newNai() else editor.open(null)}
+        val showDraft=when(editor.category){"视觉模型"->editor.visionEditing;"NAI 生图"->d.service=="NAI";else->d.service=="LLM"&&!editor.visionEditing}
+        if(showDraft) {
+        Text("${if(d.existing==null)"新建" else "编辑"}${if(editor.visionEditing)"视觉模型" else if(d.service=="NAI")"NAI账户" else "语言模型"}配置 · 编辑不改变当前选择")
         OutlinedTextField(d.alias,{value->editor.edit{it.copy(alias=value)}},label={Text("档案名称")},enabled=!c.busy,modifier=Modifier.fillMaxWidth())
         OutlinedTextField(d.endpoint,{value->editor.edit{it.copy(endpoint=value)}},label={Text("HTTPS API 地址")},enabled=d.service=="LLM"&&!c.busy,modifier=Modifier.fillMaxWidth())
-        if(d.service=="LLM")StudioChips("API Key 来源",listOf(false,true),d.useGlobalKey,{if(it)"使用默认凭据" else "独立配置"}){value->editor.edit{it.copy(useGlobalKey=value,key="")}}
+        if(d.service=="LLM")StudioChips("API Key 来源",listOf(false,true),d.useGlobalKey,{if(it)"使用共用凭据" else "独立配置"}){value->editor.edit{it.copy(useGlobalKey=value,key="")}}
         if(!d.useGlobalKey)OutlinedTextField(d.key,{value->editor.edit{it.copy(key=value)}},label={Text(if(d.existing?.secretRef!=null&&d.existing.secretRef!=SecretVault.GLOBAL_LLM_REF)"新凭据（留空保留已有）"else"API 凭据")},visualTransformation=PasswordVisualTransformation(),enabled=!c.busy,modifier=Modifier.fillMaxWidth())
         else Text(if(editor.globalConfigured)"使用本工作区共用默认凭据" else "尚未配置默认凭据；可先保存档案，调用前需配置")
         if(d.service=="LLM") {
@@ -692,7 +720,7 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
         if(d.service=="LLM") {
             Text("模型用途按名称提示，未知型号需核对服务商；视觉模型须支持图片输入和对话。")
             if(!modelPurpose(d.model).supportsChatSelection)StatusText("${modelPurpose(d.model).label}；请更换模型，不能保存为设计或视觉模型。")
-            StudioSwitch("当前模型直接识图",d.multimodal){editor.edit{it.copy(multimodal=!it.multimodal,visionId=null)}}
+            if(!editor.visionEditing)StudioSwitch("此语言模型直接识图",d.multimodal){editor.edit{it.copy(multimodal=!it.multimodal,visionId=null)}}
             if(!d.multimodal) {
                 val vision=c.state.accounts.filter{it.service=="LLM"&&it.isMultimodal&&it.id!=d.existing?.id&&modelPurpose(it.model).supportsChatSelection}
                 CompactChoice("使用独立视觉模型",vision,vision.firstOrNull{it.id==d.visionId},{it.alias}){value->editor.edit{it.copy(visionId=value.id)}}
@@ -702,11 +730,12 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
         }
         Row(horizontalArrangement=Arrangement.spacedBy(8.dp)) {
             StudioAction("保存配置",enabled=!c.busy&&editor.canSave){editor.save(false)}
-            StudioAction("保存并设为当前模型",enabled=!c.busy&&editor.canSave,style=StudioActionStyle.PRIMARY){editor.save()}
+            StudioAction(if(editor.visionEditing)"保存并启用视觉模型" else "保存并设为当前模型",enabled=!c.busy&&editor.canSave&&(!editor.visionEditing||editor.language!=null),style=StudioActionStyle.PRIMARY){editor.save()}
         }
         Text(if(editor.dirty)"有未保存修改" else if(d.existing!=null)"已保存" else "凭据保存在本机受保护存储")
         if(editor.dirty)StudioAction("放弃修改",enabled=!c.busy){editor.discard()}
-        if(!editor.dirty && d.existing!=null)StudioAction("设为当前模型",enabled=!c.busy){c.chooseAccount(d.service,d.existing.id)}
+        if(!editor.dirty && d.existing!=null)StudioAction(if(editor.visionEditing)"启用为当前视觉模型" else "设为当前模型",enabled=!c.busy&&(!editor.visionEditing||editor.language!=null)){if(editor.visionEditing)c.chooseVision(d.existing.id) else c.chooseAccount(d.service,d.existing.id)}
+        }
         StudioAction("返回创作"){c.view="创作"}
     }
     if(editor.pending!=null) AlertDialog(onDismissRequest={editor.continueEditing()},title={Text("保留当前修改？")},text={Text("当前档案尚未保存。切换会放弃这些修改。")},confirmButton={TextButton(onClick={editor.discardAndContinue()}){Text("放弃修改并切换")}},dismissButton={TextButton(onClick={editor.continueEditing()}){Text("继续编辑")}})

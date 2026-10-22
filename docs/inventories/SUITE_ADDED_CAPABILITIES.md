@@ -9,7 +9,7 @@
 |SUITE-003|多收集目录、变更版本、重新授权|IMPLEMENTED_HUMAN_PENDING|modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/LibraryDirectoryMonitor.kt<br>docs/audits/UX_DAILY_USE_READINESS.md|
 |SUITE-004|独立Prompt资产与多来源参照|IMPLEMENTED_HUMAN_PENDING|modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/LibraryRepository.kt<br>docs/audits/UX_DAILY_USE_READINESS.md|
 |SUITE-005|多图Recipe比较、角色展示位置对齐、字段摘取|IMPLEMENTED_HUMAN_PENDING|modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/PromptReferenceBoard.kt<br>docs/audits/UX_DAILY_USE_READINESS.md|
-|SUITE-006|LLM/NAI多档案、列表筛选、保存与选用|IMPLEMENTED_HUMAN_SCOPED_PASS|modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioModelAccounts.kt<br>docs/audits/UX_MODEL_ACCOUNTS.md|
+|SUITE-006|语言/视觉/NAI分类、生效状态、列表与默认选择|IMPLEMENTED_CONFIGURATION_HUMAN_PASS_NEW_LAYOUT_PENDING|modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioModelAccounts.kt<br>docs/audits/UX_ACCOUNT_ROLES.md|
 |SUITE-007|独立视觉模型与共用默认凭据|IMPLEMENTED_CONFIGURATION_HUMAN_PASS_ACTUAL_VISION_PENDING|modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioModelAccounts.kt<br>docs/audits/UX_VISION_CREDENTIALS.md|
 |SUITE-008|模型用途提示与不兼容用途拦截|IMPLEMENTED_AUTO_HUMAN_SCOPED_PASS|modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/ModelPurpose.kt<br>docs/audits/UX_MODEL_PURPOSE.md|
 |SUITE-009|生成任务不确定状态与禁止盲目重发|IMPLEMENTED_HUMAN_PENDING|modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/CreationSession.kt<br>docs/audits/UX_DAILY_USE_READINESS.md|
