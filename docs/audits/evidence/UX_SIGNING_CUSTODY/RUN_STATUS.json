@@ -1,0 +1,143 @@
+{
+  "workflows": [
+    {
+      "id": 392776915,
+      "state": "active",
+      "path": ".github/workflows/renew-long-term.yml"
+    }
+  ],
+  "runs": [
+    {
+      "id": 39767014921,
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/MisakaPiano/CCB-Studio-Suite-Releases/actions/runs/39767014921",
+      "headSha": "7069716381671f1cdb29f2049de3adfd8ffbafa8"
+    },
+    {
+      "id": 39766738685,
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/MisakaPiano/CCB-Studio-Suite-Releases/actions/runs/39766738685",
+      "headSha": "a569ef79ae219c69bca076f55b82ce9a36fd213d"
+    }
+  ],
+  "jobs": [
+    {
+      "id": 119784897117,
+      "run_id": 39767014921,
+      "workflow_name": "Renew long-term update metadata",
+      "head_branch": "main",
+      "run_url": "https://api.github.com/repos/MisakaPiano/CCB-Studio-Suite-Releases/actions/runs/39767014921",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOVTVNM88AAAAb47x6XQ",
+      "head_sha": "7069716381671f1cdb29f2049de3adfd8ffbafa8",
+      "url": "https://api.github.com/repos/MisakaPiano/CCB-Studio-Suite-Releases/actions/jobs/119784897117",
+      "html_url": "https://github.com/MisakaPiano/CCB-Studio-Suite-Releases/actions/runs/39767014921/job/119784897117",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-22T10:57:59Z",
+      "started_at": "2026-10-22T10:58:01Z",
+      "completed_at": "2026-10-22T10:58:28Z",
+      "name": "renew",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-22T10:58:02Z",
+          "completed_at": "2026-10-22T10:58:03Z"
+        },
+        {
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-22T10:58:03Z",
+          "completed_at": "2026-10-22T10:58:09Z"
+        },
+        {
+          "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-22T10:58:09Z",
+          "completed_at": "2026-10-22T10:58:10Z"
+        },
+        {
+          "name": "Install hash-locked signing dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-22T10:58:10Z",
+          "completed_at": "2026-10-22T10:58:17Z"
+        },
+        {
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-22T10:58:17Z",
+          "completed_at": "2026-10-22T10:58:19Z"
+        },
+        {
+          "name": "Renew only snapshot and timestamp",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-22T10:58:19Z",
+          "completed_at": "2026-10-22T10:58:20Z"
+        },
+        {
+          "name": "Publish verified renewal without force",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-22T10:58:20Z",
+          "completed_at": "2026-10-22T10:58:22Z"
+        },
+        {
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-22T10:58:22Z",
+          "completed_at": "2026-10-22T10:58:24Z"
+        },
+        {
+          "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-22T10:58:24Z",
+          "completed_at": "2026-10-22T10:58:24Z"
+        },
+        {
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-10-22T10:58:24Z",
+          "completed_at": "2026-10-22T10:58:26Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-10-22T10:58:26Z",
+          "completed_at": "2026-10-22T10:58:26Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/MisakaPiano/CCB-Studio-Suite-Releases/check-runs/119784897117",
+      "labels": [
+        "windows-latest"
+      ],
+      "runner_id": 1000000002,
+      "runner_name": "GitHub Actions 1000000002",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

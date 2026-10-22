@@ -6,11 +6,21 @@ from studio_update import execute, exclusive, UpdateRejected
 from release_repository import prepare,current
 from test_github import GitHubTests
 from prepare_release import signer_from_encrypted_pem
+from renew_channel import renew
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 from cryptography.hazmat.primitives.serialization import Encoding,PrivateFormat,BestAvailableEncryption,NoEncryption
 
 
 class RepositoryTests(unittest.TestCase):
+    def test_maintenance_adapter_rejects_offline_keys_and_preserves_target(self):
+        self.prepare(target=self.target)
+        before,files=current(self.store)
+        with self.assertRaises(ValueError):
+            renew(self.store,self.root,self.fixture.repository,self.signers)
+        result=renew(self.store,self.root,self.fixture.repository,{r:self.signers[r] for r in ('snapshot','timestamp')})
+        self.assertGreater(result['timestampVersion'],before['timestampVersion'])
+        self.assertEqual(current(self.store)[1]['targets.json'],files['targets.json'])
+
     def test_encrypted_signing_input_and_password_failure(self):
         key=Ed25519PrivateKey.generate() # Synthetic; private bytes never written to disk.
         encoded=key.private_bytes(Encoding.PEM,PrivateFormat.PKCS8,BestAvailableEncryption(b'synthetic-test-password'))
