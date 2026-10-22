@@ -1,0 +1,18 @@
+{
+  "status": "INSTALLED_NOT_STARTED",
+  "target": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\release-migration\\real-103-104\\applications\\104-b5c44c67b1f8",
+  "stage": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\release-migration\\real-103-104\\applications\\104-b5c44c67b1f8.bd021a760f3c4cd7ba089081e8701ed6.installing",
+  "expected": {
+    "product": "ccb-studio-suite",
+    "platform": "windows-x86_64",
+    "channel": "preview",
+    "version": 104,
+    "sourceSha": "b5c44c67b1f842f512c44d0da73eded45695cc19"
+  },
+  "dataModified": false,
+  "verification": {
+    "files": 547,
+    "bytes": 251092026,
+    "manifestSha256": "6601ba157f784f5830345a6e82e84897b0ff25d3320c24be8df9358592334b6f"
+  }
+}

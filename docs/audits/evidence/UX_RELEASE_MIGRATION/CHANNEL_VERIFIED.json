@@ -1,0 +1,71 @@
+{
+  "channels": {
+    "MisakaPiano/CCB-Studio-Suite": {
+      "commit": "aae7b23415ef5ad5959dd7cb0cc8abb31bf09f26",
+      "rootSha256": "408008d80aeb2dd3844325d74f09da9d248733e220dd88c08cc6299c4a24cc7a",
+      "targetsSha256": "dfdb67533de2222c6a63b826f844d97935eb201b10c98c91be0b360c7567a6b3",
+      "versions": {
+        "targets": 3,
+        "snapshot": 7,
+        "timestamp": 7
+      },
+      "runs": [
+        {
+          "id": 39824206682,
+          "status": "completed",
+          "conclusion": "success",
+          "event": "workflow_dispatch",
+          "url": "https://github.com/MisakaPiano/CCB-Studio-Suite/actions/runs/39824206682"
+        }
+      ]
+    },
+    "MisakaPiano/CCB-Studio-Suite-Releases": {
+      "commit": "7c672b72105e51d670526ed52d859bef33169ee3",
+      "rootSha256": "408008d80aeb2dd3844325d74f09da9d248733e220dd88c08cc6299c4a24cc7a",
+      "targetsSha256": "3fe0febf8cd8a1e8369207d5d02f18a9be7f63bd72b1ed54ed496d715131b24f",
+      "versions": {
+        "targets": 3,
+        "snapshot": 7,
+        "timestamp": 7
+      },
+      "runs": [
+        {
+          "id": 39824210494,
+          "status": "completed",
+          "conclusion": "success",
+          "event": "workflow_dispatch",
+          "url": "https://github.com/MisakaPiano/CCB-Studio-Suite-Releases/actions/runs/39824210494"
+        },
+        {
+          "id": 39782382904,
+          "status": "completed",
+          "conclusion": "success",
+          "event": "workflow_dispatch",
+          "url": "https://github.com/MisakaPiano/CCB-Studio-Suite-Releases/actions/runs/39782382904"
+        },
+        {
+          "id": 39769472899,
+          "status": "completed",
+          "conclusion": "success",
+          "event": "workflow_dispatch",
+          "url": "https://github.com/MisakaPiano/CCB-Studio-Suite-Releases/actions/runs/39769472899"
+        },
+        {
+          "id": 39767014921,
+          "status": "completed",
+          "conclusion": "success",
+          "event": "workflow_dispatch",
+          "url": "https://github.com/MisakaPiano/CCB-Studio-Suite-Releases/actions/runs/39767014921"
+        },
+        {
+          "id": 39766738685,
+          "status": "completed",
+          "conclusion": "failure",
+          "event": "push",
+          "url": "https://github.com/MisakaPiano/CCB-Studio-Suite-Releases/actions/runs/39766738685"
+        }
+      ]
+    }
+  },
+  "historicalAssetsUnchanged": true
+}

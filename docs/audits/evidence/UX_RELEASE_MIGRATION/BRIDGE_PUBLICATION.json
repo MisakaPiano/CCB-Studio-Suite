@@ -1,0 +1,58 @@
+{
+  "status": "BRIDGE_PUBLISHED_BOTH_CHANNELS",
+  "releases": {
+    "MisakaPiano/CCB-Studio-Suite": {
+      "url": "https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/untagged-3ecb83834a8683e58021",
+      "assets": {
+        "CCB-Studio-Suite-migration-test-104.exe": {
+          "bytes": 167322788,
+          "sha256": "1a68695144fdc1a775dd1be4061c00d80953572289019312c68fca0cc6a2ebe4"
+        },
+        "TEST_RELEASE_NOTES.md": {
+          "bytes": 753,
+          "sha256": "1b349b865c55714d2c283bd6a5136da8dbcfa9a1218fd73388aa770d1397ca4a"
+        },
+        "THIRD_PARTY_NOTICES.zip": {
+          "bytes": 193529,
+          "sha256": "80bd89d85f10360cda08098fa310ea395ec86db8173dd55b28a2bc2bd21bccbb"
+        }
+      }
+    },
+    "MisakaPiano/CCB-Studio-Suite-Releases": {
+      "url": "https://github.com/MisakaPiano/CCB-Studio-Suite-Releases/releases/tag/untagged-878b45db6158a5e545ae",
+      "assets": {
+        "CCB-Studio-Suite-migration-test-104.exe": {
+          "bytes": 167322788,
+          "sha256": "1a68695144fdc1a775dd1be4061c00d80953572289019312c68fca0cc6a2ebe4"
+        },
+        "TEST_RELEASE_NOTES.md": {
+          "bytes": 753,
+          "sha256": "1b349b865c55714d2c283bd6a5136da8dbcfa9a1218fd73388aa770d1397ca4a"
+        },
+        "THIRD_PARTY_NOTICES.zip": {
+          "bytes": 193529,
+          "sha256": "80bd89d85f10360cda08098fa310ea395ec86db8173dd55b28a2bc2bd21bccbb"
+        }
+      }
+    }
+  },
+  "metadata": {
+    "MisakaPiano/CCB-Studio-Suite": {
+      "commit": "db95b703cc953c4defe5ae27a5a981e50eeb417c",
+      "versions": {
+        "targets": 3,
+        "snapshot": 6,
+        "timestamp": 6
+      }
+    },
+    "MisakaPiano/CCB-Studio-Suite-Releases": {
+      "commit": "0adbd61df7fad7cdf374422c2d04bf37ce7d2605",
+      "versions": {
+        "targets": 3,
+        "snapshot": 6,
+        "timestamp": 6
+      }
+    }
+  },
+  "renewalDispatched": true
+}

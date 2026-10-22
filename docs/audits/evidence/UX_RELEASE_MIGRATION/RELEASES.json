@@ -1,0 +1,120 @@
+{
+  "status": "COPIED_ALL_ASSETS_VERIFIED_OLD_RETAINED",
+  "source": "MisakaPiano/CCB-Studio-Suite-Releases",
+  "destination": "MisakaPiano/CCB-Studio-Suite",
+  "releases": [
+    {
+      "tag": "v0.0.0-preview.100",
+      "sourceSha": "271eef55fcd7d3421f3cd93eb227f8d54889e78d",
+      "url": "https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.100",
+      "assets": [
+        {
+          "name": "CCB-Studio-Suite-channel-test-100.exe",
+          "bytes": 167322647,
+          "sha256": "947bb931851671292e4a414d42cdfdf6da4aed5e20e8e7dcd804334a9c2564c1",
+          "sourceAssetId": 665481832,
+          "destinationAssetId": 666565397
+        },
+        {
+          "name": "TEST_RELEASE_NOTES.md",
+          "bytes": 1116,
+          "sha256": "a9d4e728956b21ea1a38ab6439feb11a3ac1ad16bed53c1225f3bad07e633262",
+          "sourceAssetId": 665482286,
+          "destinationAssetId": 666565891
+        },
+        {
+          "name": "THIRD_PARTY_NOTICES.zip",
+          "bytes": 193529,
+          "sha256": "80bd89d85f10360cda08098fa310ea395ec86db8173dd55b28a2bc2bd21bccbb",
+          "sourceAssetId": 665482334,
+          "destinationAssetId": 666565917
+        }
+      ]
+    },
+    {
+      "tag": "v0.0.0-preview.101",
+      "sourceSha": "271eef55fcd7d3421f3cd93eb227f8d54889e78d",
+      "url": "https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.101",
+      "assets": [
+        {
+          "name": "CCB-Studio-Suite-channel-test-101.exe",
+          "bytes": 167322654,
+          "sha256": "94f041c85aed935c11e2bc2eb1df5879d45e460f289380e01559df5861017a28",
+          "sourceAssetId": 665482458,
+          "destinationAssetId": 666566215
+        },
+        {
+          "name": "TEST_RELEASE_NOTES.md",
+          "bytes": 1116,
+          "sha256": "a9d4e728956b21ea1a38ab6439feb11a3ac1ad16bed53c1225f3bad07e633262",
+          "sourceAssetId": 665482863,
+          "destinationAssetId": 666566819
+        },
+        {
+          "name": "THIRD_PARTY_NOTICES.zip",
+          "bytes": 193529,
+          "sha256": "80bd89d85f10360cda08098fa310ea395ec86db8173dd55b28a2bc2bd21bccbb",
+          "sourceAssetId": 665482908,
+          "destinationAssetId": 666566869
+        }
+      ]
+    },
+    {
+      "tag": "v0.0.0-preview.102",
+      "sourceSha": "bebc78c6f36f3c026c362b48a335cc5a7b28f0d8",
+      "url": "https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.102",
+      "assets": [
+        {
+          "name": "CCB-Studio-Suite-longterm-test-102.exe",
+          "bytes": 167322788,
+          "sha256": "2ba6fe873fc0a44a7d498f85e12438f10e2bfe96b2f8d85a3694c0b45d516416",
+          "sourceAssetId": 665619446,
+          "destinationAssetId": 666567214
+        },
+        {
+          "name": "TEST_RELEASE_NOTES.md",
+          "bytes": 810,
+          "sha256": "a6f5617bf15298c210cb5c890c276737c9b58c311c5e9ebf20c67e32a134c59e",
+          "sourceAssetId": 665620067,
+          "destinationAssetId": 666567874
+        },
+        {
+          "name": "THIRD_PARTY_NOTICES.zip",
+          "bytes": 193529,
+          "sha256": "80bd89d85f10360cda08098fa310ea395ec86db8173dd55b28a2bc2bd21bccbb",
+          "sourceAssetId": 665620124,
+          "destinationAssetId": 666567928
+        }
+      ]
+    },
+    {
+      "tag": "v0.0.0-preview.103",
+      "sourceSha": "bebc78c6f36f3c026c362b48a335cc5a7b28f0d8",
+      "url": "https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.103",
+      "assets": [
+        {
+          "name": "CCB-Studio-Suite-longterm-test-103.exe",
+          "bytes": 167322788,
+          "sha256": "cd354d0abfca8d76e58a3d7edd768468e7024eb3f2fea17412b0a291bce891fc",
+          "sourceAssetId": 665620280,
+          "destinationAssetId": 666568269
+        },
+        {
+          "name": "TEST_RELEASE_NOTES.md",
+          "bytes": 810,
+          "sha256": "a6f5617bf15298c210cb5c890c276737c9b58c311c5e9ebf20c67e32a134c59e",
+          "sourceAssetId": 665620770,
+          "destinationAssetId": 666568758
+        },
+        {
+          "name": "THIRD_PARTY_NOTICES.zip",
+          "bytes": 193529,
+          "sha256": "80bd89d85f10360cda08098fa310ea395ec86db8173dd55b28a2bc2bd21bccbb",
+          "sourceAssetId": 665620849,
+          "destinationAssetId": 666568804
+        }
+      ]
+    }
+  ],
+  "oldAssetsRetained": true
+}

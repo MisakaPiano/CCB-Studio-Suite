@@ -1,0 +1,39 @@
+{
+  "status": "CHANNEL_AND_WORKER_DEPLOYED",
+  "branches": {
+    "update-metadata": {
+      "sourceCommit": "f2ab4c5a5cecaf458e875d565062bfdf99b6dea4",
+      "destinationCommit": "576fe112dbc98d97c3a9df0442e86c021bfd83ea",
+      "files": {
+        "preview/windows-x86_64/metadata/1.root.json": "d58d61ec67ef259df562f8b73f2d38f85cb9b21b05898ff7076d334e04230195",
+        "preview/windows-x86_64/metadata/1.snapshot.json": "2adf0bb1386cb3e97c229f327ba854894f186d5f3062be7f886c14a3d424a22e",
+        "preview/windows-x86_64/metadata/1.targets.json": "53527753cfad0262f0c387ff4967922519f1ef158e8121a0f90658256a28dc60",
+        "preview/windows-x86_64/metadata/2.snapshot.json": "cc4e45b8cd04be59774df676c67f57b28ed517de93b496e390d86667af9496fd",
+        "preview/windows-x86_64/metadata/2.targets.json": "d81413ead9d2535b3a9b4383672e9c8f5d179afc1055693070a2bac09b722216",
+        "preview/windows-x86_64/metadata/snapshot.json": "cc4e45b8cd04be59774df676c67f57b28ed517de93b496e390d86667af9496fd",
+        "preview/windows-x86_64/metadata/targets.json": "d81413ead9d2535b3a9b4383672e9c8f5d179afc1055693070a2bac09b722216",
+        "preview/windows-x86_64/metadata/timestamp.json": "f4d0e098fe4559fc609131794ccdc7602eb7ffea0566110b829112a5dfea52f3"
+      }
+    },
+    "long-term-metadata": {
+      "sourceCommit": "cab57129ef10c28025fe923067d29108625f3c77",
+      "destinationCommit": "993751c108510ab2462eec67a94c6fe9c347d437",
+      "files": {
+        "preview/windows-x86_64/metadata/1.root.json": "408008d80aeb2dd3844325d74f09da9d248733e220dd88c08cc6299c4a24cc7a",
+        "preview/windows-x86_64/metadata/1.snapshot.json": "b8ab5b801d3c449726a018ecea28c77fea7953951aac14b4d0a664a9defa2c94",
+        "preview/windows-x86_64/metadata/1.targets.json": "bc2203844efc7591ca2d4e52c7019f6496822cd41cef68a370a520e2507982a4",
+        "preview/windows-x86_64/metadata/2.snapshot.json": "5027662ca9244c60b93840a18bfc518566f82d434f78c5c1e6c3805099b52af2",
+        "preview/windows-x86_64/metadata/2.targets.json": "3891de6261faaa005e3e600e06c82ccef14d66090658934d9ee06c5baadb7d1b",
+        "preview/windows-x86_64/metadata/3.snapshot.json": "3048748830414a3da07e3943c88b1465fa558c0102757650b9938e723f13f044",
+        "preview/windows-x86_64/metadata/4.snapshot.json": "1ccb4dc52e3140c2b23ba60d1e1e0544a16c0c5f53143f44a67055391746e882",
+        "preview/windows-x86_64/metadata/5.snapshot.json": "56608402fec723783805ae07c22b693a197a190f82053fc788c58bf46c779254",
+        "preview/windows-x86_64/metadata/snapshot.json": "56608402fec723783805ae07c22b693a197a190f82053fc788c58bf46c779254",
+        "preview/windows-x86_64/metadata/targets.json": "3891de6261faaa005e3e600e06c82ccef14d66090658934d9ee06c5baadb7d1b",
+        "preview/windows-x86_64/metadata/timestamp.json": "81ad7e659973c5c80c218716ec7372eed1b8df4075a6aa59445db59af0f37b93"
+      }
+    }
+  },
+  "workflowCommit": "e6cae5fdc6975fa7d6eda46f57be8cc5683d4c89",
+  "legacyWorkerRetained": true,
+  "rootOrTargetsKeysUploaded": false
+}

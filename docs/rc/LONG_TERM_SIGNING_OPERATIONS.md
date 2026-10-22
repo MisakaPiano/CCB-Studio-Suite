@@ -1,5 +1,9 @@
 # 长期签名、备份与续签
 
+## 2026-10-23发行入口迁移
+
+主入口改为[项目Releases](https://github.com/MisakaPiano/CCB-Studio-Suite/releases)，[项目续签](https://github.com/MisakaPiano/CCB-Studio-Suite/actions/workflows/renew-long-term.yml)和旧仓库续签同时保留，均已手动触发成功。旧102/103通过旧渠道104桥接包进入项目渠道；旧渠道可固定104，但仍需持续在线维护及离线targets续签。两端targets现到期2027-01-20 UTC，至少1月13日前维护。密钥/Drive备份身份未变，未再次导出root/targets。详细证据与保留规则见[迁移记录](../audits/UX_RELEASE_MIGRATION.md)。以下102/103状态为历史记录。
+
 2026-10-22：正式四角色签名密钥、两条加密恢复路径和 GitHub 续签任务已部署。此处的签名用于应用更新元数据，不是 Windows Authenticode 证书。
 
 ## 保管与恢复

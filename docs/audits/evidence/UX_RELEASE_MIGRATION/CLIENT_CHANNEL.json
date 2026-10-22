@@ -1,0 +1,50 @@
+{
+  "oldInstalledConfig": {
+    "format": 1,
+    "product": "ccb-studio-suite",
+    "platform": "windows-x86_64",
+    "version": 103,
+    "reader": 3,
+    "sourceSha": "bebc78c6f36f3c026c362b48a335cc5a7b28f0d8",
+    "metadataUrl": "https://raw.githubusercontent.com/MisakaPiano/CCB-Studio-Suite-Releases/long-term-metadata/preview/windows-x86_64/metadata/",
+    "targetsUrl": "https://github.com/MisakaPiano/CCB-Studio-Suite-Releases/releases/download/",
+    "rootSha256": "408008d80aeb2dd3844325d74f09da9d248733e220dd88c08cc6299c4a24cc7a",
+    "channel": "preview",
+    "displayVersion": "0.0.0-preview.103",
+    "githubRepository": "MisakaPiano/CCB-Studio-Suite-Releases",
+    "metadataBranch": "long-term-metadata",
+    "internalTest": false
+  },
+  "newInstalledConfig": {
+    "format": 1,
+    "product": "ccb-studio-suite",
+    "platform": "windows-x86_64",
+    "version": 104,
+    "reader": 3,
+    "sourceSha": "b5c44c67b1f842f512c44d0da73eded45695cc19",
+    "metadataUrl": "https://raw.githubusercontent.com/MisakaPiano/CCB-Studio-Suite/long-term-metadata/preview/windows-x86_64/metadata/",
+    "targetsUrl": "https://github.com/MisakaPiano/CCB-Studio-Suite/releases/download/",
+    "rootSha256": "408008d80aeb2dd3844325d74f09da9d248733e220dd88c08cc6299c4a24cc7a",
+    "channel": "preview",
+    "displayVersion": "0.0.0-preview.104",
+    "githubRepository": "MisakaPiano/CCB-Studio-Suite",
+    "metadataBranch": "long-term-metadata",
+    "internalTest": false
+  },
+  "newInstalledClientResult": {
+    "status": "UP_TO_DATE",
+    "version": 104,
+    "displayVersion": "0.0.0-preview.104",
+    "channel": "preview",
+    "notes": "Release migration test. Synthetic workspace only; not a daily-use release.",
+    "sourceSha": "b5c44c67b1f842f512c44d0da73eded45695cc19",
+    "bytes": 167322788,
+    "installedBytes": 251092026,
+    "sha256": "1a68695144fdc1a775dd1be4061c00d80953572289019312c68fca0cc6a2ebe4",
+    "minimumReader": 2,
+    "maximumReader": 3,
+    "dataVersion": 3
+  },
+  "userConfirmed": "Restarted and 104 up-to-date",
+  "noInstalledConfigEdited": true
+}
