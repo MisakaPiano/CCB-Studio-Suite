@@ -6,7 +6,7 @@
 |---|---|---|
 |[官方图片](CCB_IMAGE_CAPABILITIES.md)|官方979cb505958dffb1b6d64a8de657434f198ffa96|全部生产Kotlin384个单元，4028个函数声明、713个文字标签；207个图片关联候选列入可读表。完整JSON保留其他文件，便于查漏|
 |[Desktop全部](CCBDESKTOP_CAPABILITIES.md)|集成5ef95428421f7c693b010ac88f51d470804ab07a；开发参考c4098e08bec84372911a5a8bc38c2cfa72f98978|desktopApp/sharedCore全范围337/406个单元，含104个新增或变更单元；开发文件删除另列，不导入整个分支|
-|[Suite扩展](SUITE_ADDED_CAPABILITIES.md)|Suite实际模块及需求/审计|31项平台/图库/工程/交付/运维/跨端扩展，关联原75项来源动作；新增可视封面库及来源目录分组/滚动条，保留原生待验；目录暂停恢复/合成小目录同步已限定人工通过，Android/Server尚未实现|
+|[Suite扩展](SUITE_ADDED_CAPABILITIES.md)|Suite实际模块及需求/审计|31项平台/图库/工程/交付/运维/跨端扩展，关联原75项来源动作；可视封面库布局/两套管理及重开、目录分组/滚动条与此前暂停恢复/合成小同步已限定人工通过；独立预览/交付及多Prompt组仍待验，Android/Server尚未实现|
 
 JSON给出稳定单元ID、来源blob和SHA-256、每个匹配函数/文字标签的行号、Suite目标和证据。生成器仅通过`ls-tree`和`cat-file --batch`读取固定Git对象；没有checkout/fetch、构建Desktop、读取其私人资料或更改任何refs。
 

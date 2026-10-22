@@ -150,8 +150,8 @@ features=[
  ('AI设计独立可调窗口和共享未发送输入','StudioApplication.kt','UX_NAI_BACKGROUND','IMPLEMENTED_AUTO_WINDOW_HUMAN_SCOPED_PASS'),
  ('单一生图模型、动态费用和单机本地停止','NaiSettings.kt','UX_NAI_BACKGROUND','IMPLEMENTED_AUTO_MODEL_AND_COST_LAYOUT_HUMAN_SCOPED_PASS'),
  ('图片查看器悬浮翻页、右键及直达编辑/APNG','StudioAssetViewer.kt','UX_NAI_BACKGROUND','IMPLEMENTED_AUTO_VIEWER_ENTRY_HUMAN_SCOPED_PASS_APNG_DELIVERY_PENDING'),
- ('可视多套封面库、独立管理窗口、默认恢复与自动预览','DisguiseCoverManager.kt','UX_COVER_LIBRARY_GALLERY','IMPLEMENTED_VISUAL_LIBRARY_AUTO_PREVIEW_HUMAN_PENDING'),
- ('图库来源目录折叠、层级偏好及可见滚动条','GalleryHistory.kt','UX_COVER_LIBRARY_GALLERY','IMPLEMENTED_DIRECTORY_GROUPING_HUMAN_PENDING')]
+ ('可视多套封面库、独立管理窗口、默认恢复与自动预览','DisguiseCoverManager.kt','UX_COVER_LIBRARY_GALLERY','IMPLEMENTED_COVER_LIBRARY_HUMAN_SCOPED_PASS_PREVIEW_AND_DELIVERY_PENDING'),
+ ('图库来源目录折叠、层级偏好及可见滚动条','GalleryHistory.kt','UX_COVER_LIBRARY_GALLERY','IMPLEMENTED_DIRECTORY_GROUPING_AND_SCROLLBARS_HUMAN_SCOPED_PASS')]
 rows=[]
 for i,(label,target,audit,status) in enumerate(features,1):
     if target.endswith('.kt'):

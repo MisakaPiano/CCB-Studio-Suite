@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-23",
+  "timezone": "Asia/Tokyo",
+  "source": "Explicit replies to the two scoped questions in this chat; no private screenshots, pictures, prompts or credentials retained",
+  "reviewedCommit": "5563a3a1663e1faa8b5732d5a87774cb04ce565b",
+  "reviewedBuildEvidence": "20261022T225447776099Z-directory-label-readability",
+  "reviewedPackage": "PACKAGE_FILES.json",
+  "startup": "Start-gallery-cover-library-review.lnk with --pause-collections",
+  "userReplies": [
+    "目录分组清楚，滚动条正常",
+    "布局符合预期，两套管理和重开保留正常"
+  ],
+  "accepted": [
+    "Gallery directory grouping is clear",
+    "Gallery image-list and detail scrollbars work",
+    "Independent visual cover library layout meets the user's expectation",
+    "Two-cover management including the requested switching, renaming and default restoration checks is normal",
+    "Two-cover collection and choice remain after closing and reopening the reviewed package"
+  ],
+  "notAcceptedByTheseReplies": [
+    "Original large directory scan or long-running collection stop/drain",
+    "Dedicated latest-image thumbnail and automatic preview interaction group",
+    "APNG batch export, clipboard and actual receiver compatibility",
+    "Complete or byte-exact recovery of all user assets",
+    "Dedicated multi-source Prompt comparison",
+    "Complete editing/export/restore or real AI design/apply/generate/provenance workflow",
+    "Invitation release candidate"
+  ]
+}

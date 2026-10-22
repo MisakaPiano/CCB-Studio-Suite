@@ -311,7 +311,7 @@
     {
       "id": "SUITE-030",
       "capability": "可视多套封面库、独立管理窗口、默认恢复与自动预览",
-      "implementationStatus": "IMPLEMENTED_VISUAL_LIBRARY_AUTO_PREVIEW_HUMAN_PENDING",
+      "implementationStatus": "IMPLEMENTED_COVER_LIBRARY_HUMAN_SCOPED_PASS_PREVIEW_AND_DELIVERY_PENDING",
       "suiteTargets": [
         "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/DisguiseCoverManager.kt"
       ],
@@ -322,7 +322,7 @@
     {
       "id": "SUITE-031",
       "capability": "图库来源目录折叠、层级偏好及可见滚动条",
-      "implementationStatus": "IMPLEMENTED_DIRECTORY_GROUPING_HUMAN_PENDING",
+      "implementationStatus": "IMPLEMENTED_DIRECTORY_GROUPING_AND_SCROLLBARS_HUMAN_SCOPED_PASS",
       "suiteTargets": [
         "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/GalleryHistory.kt"
       ],
