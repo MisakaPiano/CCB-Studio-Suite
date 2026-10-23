@@ -126,8 +126,8 @@ private val queueRasterDispatcher=Dispatchers.IO.limitedParallelism(1)
         StudioAction("移动到指定序号",!c.busy&&!c.maintenance&&e.selectedPages.isNotEmpty()){requestMove(e.selectedPages)}
     }
     if(contextId!=null&&!dragging)Popup(popupPositionProvider=QueuePopupPosition(contextPosition,0),onDismissRequest={contextId=null},properties=PopupProperties(focusable=true)){
-        Surface(elevation=8.dp){Column {DropdownMenuItem(onClick={requestMove(setOf(contextId!!))}){Text("移动此页到指定序号")}
-            DropdownMenuItem(onClick={requestMove(e.selectedPages)}){Text("移动已选 ${e.selectedPages.size} 页到指定序号")}}}
+        Surface(elevation=8.dp){Column {StudioMenuItem(onClick={requestMove(setOf(contextId!!))}){Text("移动此页到指定序号")}
+            StudioMenuItem(onClick={requestMove(e.selectedPages)}){Text("移动已选 ${e.selectedPages.size} 页到指定序号")}}}
     }
     val hovered=document.pages.firstOrNull{it.id==hoverId}
     if(hovered!=null&&!dragging&&contextId==null&&moveRequest==null&&!c.busy&&!c.maintenance)

@@ -49,8 +49,8 @@ internal fun animationNavigation(a:GalleryAnimationController,event:KeyEvent):Bo
     var open by remember{mutableStateOf(false)}
     Box {
         LibraryAction(label,enabled&&items.isNotEmpty(),expanded=open,accessibilityLabel="$label ▾"){open=!open}
-        DropdownMenu(open,{open=false}) {
-            items.forEach{item->DropdownMenuItem(enabled=enabled,onClick={open=false;item.onClick()}){Text(item.label)}}
+        StudioMenu(open,{open=false}) {
+            items.forEach{item->StudioMenuItem(enabled=enabled,onClick={open=false;item.onClick()}){Text(item.label)}}
         }
     }
 }
@@ -86,7 +86,7 @@ internal fun animationNavigation(a:GalleryAnimationController,event:KeyEvent):Bo
             }
             Box {
                 LibraryAction("说明",style=StudioActionStyle.TERTIARY){information=!information}
-                DropdownMenu(information,{information=false}) {
+                StudioMenu(information,{information=false}) {
                     Text("原件保留。静止显示封面，主动播放才显示内容；伪装不是加密或隐私清除。\n静态图片 / GIF 可伪装；已有 APNG 先还原，动态 WebP 不静默转成静态。\n拖入或粘贴可追加本批；目录只导入本层，最多1000张。\n右键只复制处理后的文件，保留动画；不会复制来源原图。",Modifier.width(350.dp).padding(12.dp),style=MaterialTheme.typography.caption)
                 }
             }

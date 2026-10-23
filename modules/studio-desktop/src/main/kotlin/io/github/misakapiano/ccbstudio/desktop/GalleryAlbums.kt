@@ -22,7 +22,7 @@ internal data class GalleryScope(val ids:Set<String>?=null,val label:String="全
     var open by remember{mutableStateOf(false)}
     Box {
         LibraryAction((if(label.isBlank())""else"$label · ")+text(current)+" ▾"){open=true}
-        DropdownMenu(open,{open=false}) {options.forEach{item->DropdownMenuItem(onClick={open=false;choose(item)}){Text((if(item==current)"✓ "else"")+text(item))}}}
+        StudioMenu(open,{open=false}) {options.forEach{item->StudioMenuItem(onClick={open=false;choose(item)}){Text((if(item==current)"✓ "else"")+text(item))}}}
     }
 }
 
@@ -63,11 +63,10 @@ internal data class GalleryScope(val ids:Set<String>?=null,val label:String="全
         LibraryAction("",g.canGoBack,icon=Lucide.ArrowLeft,accessibilityLabel="后退"){g.goBack();onNavigate()}
         LibraryAction("",g.canGoForward,icon=Lucide.ArrowRight,accessibilityLabel="前进"){g.goForward();onNavigate()}
         LibraryAction("",g.depth>0,icon=Lucide.ArrowUp,accessibilityLabel="返回上层相册"){g.back();onNavigate()}
-        if(g.namespace.isBlank())LibraryAction("",icon=Lucide.Folders,style=StudioActionStyle.TERTIARY,accessibilityLabel="展开或收起组织树"){g.treeOpen=!g.treeOpen}
         Box {
             var path by remember{mutableStateOf(false)}
             TextButton(onClick={path=true},modifier=Modifier.widthIn(max=140.dp)){Text(g.scope.label.lineSequence().first()+" ▾",maxLines=1,overflow=TextOverflow.Ellipsis,style=MaterialTheme.typography.caption)}
-            DropdownMenu(path,{path=false}){g.levels.forEachIndexed{index,level->DropdownMenuItem(onClick={path=false;g.goLevel(index);onNavigate()}){Text((if(index==g.depth)"✓ "else"")+level.label.lineSequence().first())}}}
+            StudioMenu(path,{path=false}){g.levels.forEachIndexed{index,level->StudioMenuItem(onClick={path=false;g.goLevel(index);onNavigate()}){Text((if(index==g.depth)"✓ "else"")+level.label.lineSequence().first())}}}
         }
         LibraryChoice("",(listOf("all","directory","imported","generated","processed","unknown")+if(g.namespace=="archive")listOf("other")else emptyList()),g.source,::librarySourceLabel){g.source=it;g.anchor=null}
         LibraryToggle("相册",g.fold.enabled){fold(!g.fold.enabled,g.fold.type)}

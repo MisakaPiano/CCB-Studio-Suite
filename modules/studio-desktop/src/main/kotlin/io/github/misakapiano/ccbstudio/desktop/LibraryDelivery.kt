@@ -40,6 +40,6 @@ internal fun startLibraryExport(c:WorkbenchController,ids:List<String>) {
     var open by remember{mutableStateOf(false)}
     Box {
         LibraryAction("操作说明",style=StudioActionStyle.TERTIARY){open=true}
-        DropdownMenu(open,{open=false}){Text("图片单击选择，双击看大图；相册整卡单击进入。\nCtrl 切换选择，Shift 连选，空白处拖动框选。\n拖到下方工具处理整组；Esc 取消拖动。\nCtrl+C 复制原始文件；Delete 可逆移入回收站。\nCtrl+Z / Ctrl+Y 撤销与重做；输入框先处理文字。\n标签相册剪切/粘贴只移动标签归属，不移动外部文件。",Modifier.width(390.dp).padding(12.dp))}
+        StudioMenu(open,{open=false}){Text("图片单击选择，双击看大图；相册整卡单击进入。\nCtrl 切换选择，Shift 连选，空白处拖动框选。\n拖到下方工具处理整组；Esc 取消拖动。\nCtrl+C 复制原始文件；Delete 可逆移入回收站。\nCtrl+Z / Ctrl+Y 撤销与重做；输入框先处理文字。\n标签相册剪切/粘贴只移动标签归属，不移动外部文件。",Modifier.width(390.dp).padding(12.dp))}
     }
 }

@@ -47,7 +47,7 @@ import java.time.*
     var yearInput by remember(month){mutableStateOf(month.year.toString())}
     Box {
         LibraryAction("",icon=Lucide.CalendarDays,style=StudioActionStyle.TERTIARY,accessibilityLabel="日历 ▾"){open=true}
-        DropdownMenu(open,{open=false}) {
+        StudioMenu(open,{open=false}) {
             Column(Modifier.width(300.dp).padding(8.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
                 Row(verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(4.dp)) {
                     LibraryAction("‹",accessibilityLabel="日历上月"){month=month.minusMonths(1)}

@@ -19,3 +19,17 @@
 尚待：最终原生宽度/拖放回归、冻结提交后的相关回归及实际安装构建、签名发布和旧客户端实际更新验证。未完成前不宣称113可用，不把自动测试当用户验收。
 
 最终开发界面回归：20261023T203154927339Z-gallery-organization-113-ui3，13项实际执行PASS，零失败/跳过，源码稳定。真实指针拖动使树宽增加，收起与上方导航重新展开正常；目录/来源相册、框选/多选、固定拖放载荷、剪切复制、回收站筛选恢复、取消排水均回归。实际渲染图modules/studio-desktop/build/gallery-organization-113/native-gallery.png已对照现有截图检查，原有八工具及筛选/Prompt区域保留。
+
+## 冻结回归与发行完成
+
+应用/组装`c0bb2a2d76ea2ce1cdc67b64f59ff98bcdfa46e3`，59项实际冻结执行全部PASS，0失败/错误/跳过，源码稳定，实际构建createDistributable完成；证据`.local/windows-preview/evidence/20261023T203453504278Z-gallery-organization-113-final-regression`。冻结后无产品源码变更。代码已推送到原feature/windows-rc-continuous分支。
+
+[Preview113](https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.113)及原签名渠道已发布，元数据`c694721f18cba2c381d50aa835adb965143f9286`，角色版本{'targets': 12, 'snapshot': 18, 'timestamp': 18}；根与main不变。安装器168620660字节，SHA256 `cb9110e2d363bdbccf394cd702ab28803533600b7ae515296ed4f2b887f4381f`。550安装文件核验、重复安装拒绝且文件不变；100项实际许可条目随包核验。第一次安装校验因未配置现有tuf依赖路径而未执行，使用已有受验证运行时依赖后通过，未下载新依赖。
+
+107未改运行时实际公开检查/下载113，原装107 helper完成新目录安装与测试固定入口；实际113原生首帧B回执资料快照一致，113再查已是最新。10份旧合成资料与550旧程序文件保留。仅A父进程身份/排水为明确已关闭合成父进程替身，日常真人点击更新未代签；原生升级确认不等于新界面人工签收。发布后CDN短暂返回112，保留检查记录，确认113后才继续下载核验。详见`.local/windows-rc/gallery-organization-113/LIVE_UPDATE.json`、`NATIVE_STARTUP_CHECK.json`、`publication/PUBLICATION_RESULT.json`。
+
+本轮原生独立探针已在B回执验证后核对PID/完整路径关闭；无可用普通主窗口时仅终止该合成测试进程，不冒充优雅退出测试。日常安装、用户资料和凭据未改，真实生图0。Prompt对比及独立批次管理/重试新概念继续待接入，未包含在本次图库发布。下一步从日常固定入口的更新页安装113，正常使用观察图库新组织；不要求重导入或真实生图。
+
+## 2026-10-24 Preview114 布局与菜单纠正进行中
+
+用户拒绝113组织树布局偏差；技术回归通过不等于样式验收。按原demo补常驻批次/虚拟相册根、自定义组织分区、选中背景及新建图标，使用丰富合成资料核对实际渲染。最新要求：收起/展开统一置于分割线，悬浮方向提示，保留拖宽；逐页自查下拉字体并统一按钮/菜单字号。原入口/原件/来源保留，Prompt对比PENDING。114未发布。

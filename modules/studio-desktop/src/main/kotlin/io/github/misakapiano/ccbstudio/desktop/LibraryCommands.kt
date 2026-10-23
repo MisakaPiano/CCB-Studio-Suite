@@ -112,8 +112,8 @@ internal fun runGalleryTool(c:WorkbenchController,tool:String,ids:List<String>) 
         LibraryAction("回收站 ${c.library.archived.size}",icon=Lucide.ArchiveRestore,accessibilityLabel="资产回收站"){c.library.tab="回收站";c.view="资产管理"}
         Box {
             LibraryAction("自定义",style=StudioActionStyle.TERTIARY,icon=Lucide.SlidersHorizontal,accessibilityLabel="工具布局"){custom=true}
-            DropdownMenu(custom,{custom=false}) {
-                listOf(true to "小磁贴",false to "紧凑按钮").forEach{(tiles,label)->DropdownMenuItem(onClick={custom=false;save(setting.copy(tiles=tiles))}){
+            StudioMenu(custom,{custom=false}) {
+                listOf(true to "小磁贴",false to "紧凑按钮").forEach{(tiles,label)->StudioMenuItem(onClick={custom=false;save(setting.copy(tiles=tiles))}){
                     RadioButton(setting.tiles==tiles,null,Modifier.size(22.dp),colors=RadioButtonDefaults.colors(selectedColor=Gold));Text(label,Modifier.padding(start=6.dp))
                 }}
                 Divider(color=LibraryLine)
@@ -122,7 +122,7 @@ internal fun runGalleryTool(c:WorkbenchController,tool:String,ids:List<String>) 
                     Text(tool.label,Modifier.width(180.dp))
                     TextButton(enabled=i>0&&!c.busy,onClick={val moved=order.map{it.id}.toMutableList();moved.add(i-1,moved.removeAt(i));save(setting.copy(order=moved))}){Text("上移")}
                 }}
-                DropdownMenuItem(onClick={save(GalleryToolSettings())}){Text("恢复默认布局")}
+                StudioMenuItem(onClick={save(GalleryToolSettings())}){Text("恢复默认布局")}
             }
         }
     }

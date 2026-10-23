@@ -130,15 +130,15 @@ private class ChromeRecorder(private val chrome:DesktopWindowChrome) {
         if(!compact){Spacer(Modifier.width(8.dp));Divider(Modifier.height(20.dp).width(1.dp),color=Border);Spacer(Modifier.width(8.dp));IconAction("撤销 Ctrl+Z","undo",!c.busy&&c.project?.undo?.isNotEmpty()==true){c.undo()};IconAction("重做 Ctrl+Y","redo",!c.busy&&c.project?.redo?.isNotEmpty()==true){c.undo(true)}}
         Box {
             IconAction("备份与工作区","more",!c.busy){menu=true}
-            DropdownMenu(menu,{menu=false}) {
-                DropdownMenuItem(onClick={menu=false;c.run("备份图库与工程"){c.popup=c.workspace.backup().toString()}}){Text("备份图库与工程")}
-                DropdownMenuItem(onClick={menu=false;c.restoreBackup()}){Text("恢复备份到新目录")}
-                DropdownMenuItem(onClick={menu=false;c.popup=c.workspace.root.toString()}){Text("查看数据位置")}
+            StudioMenu(menu,{menu=false}) {
+                StudioMenuItem(onClick={menu=false;c.run("备份图库与工程"){c.popup=c.workspace.backup().toString()}}){Text("备份图库与工程")}
+                StudioMenuItem(onClick={menu=false;c.restoreBackup()}){Text("恢复备份到新目录")}
+                StudioMenuItem(onClick={menu=false;c.popup=c.workspace.root.toString()}){Text("查看数据位置")}
             }
         }
         if(!compact)Box {
             Button(onClick={exportMenu=true},enabled=!c.busy&&c.project!=null,shape=RoundedCornerShape(7.dp),elevation=ButtonDefaults.elevation(0.dp,0.dp),contentPadding=PaddingValues(horizontal=14.dp,vertical=7.dp)) {Glyph("export",Ink,Modifier.size(14.dp));Spacer(Modifier.width(7.dp));Text("导出",fontSize=12.sp)}
-            DropdownMenu(exportMenu,{exportMenu=false}){listOf("PRIVACY" to "隐私渲染 PNG","NORMAL" to "普通渲染 + Recipe","ORIGINAL" to "原始图片 · 保留字节").forEach {(mode,label)->DropdownMenuItem(onClick={exportMenu=false;c.export(mode)}){Text(label)}}}
+            StudioMenu(exportMenu,{exportMenu=false}){listOf("PRIVACY" to "隐私渲染 PNG","NORMAL" to "普通渲染 + Recipe","ORIGINAL" to "原始图片 · 保留字节").forEach {(mode,label)->StudioMenuItem(onClick={exportMenu=false;c.export(mode)}){Text(label)}}}
         }
     }
 }
@@ -341,7 +341,7 @@ private val thumbnailDispatcher=Dispatchers.IO.limitedParallelism(1)
 @Composable private fun ProfilePicker(service:String,accounts:List<AccountProfile>,selected:String,choose:(String)->Unit) {
     var expanded by remember {mutableStateOf(false)}
     Box {OutlinedButton(onClick={expanded=true},modifier=Modifier.fillMaxWidth()){Text(accounts.firstOrNull{it.id==selected}?.let{"${it.alias} · ${it.provider}"}?:service,fontSize=11.sp)}
-        DropdownMenu(expanded,{expanded=false}){accounts.filter{it.service==service}.forEach{a->DropdownMenuItem(onClick={choose(a.id);expanded=false}){Text("${a.alias} · ${a.provider} / ${a.model}")}}}}
+        StudioMenu(expanded,{expanded=false}){accounts.filter{it.service==service}.forEach{a->StudioMenuItem(onClick={choose(a.id);expanded=false}){Text("${a.alias} · ${a.provider} / ${a.model}")}}}}
 }
 @Composable private fun AccountDialog(c:StudioController) {
     var alias by remember {mutableStateOf("")};var service by remember {mutableStateOf("LLM")}

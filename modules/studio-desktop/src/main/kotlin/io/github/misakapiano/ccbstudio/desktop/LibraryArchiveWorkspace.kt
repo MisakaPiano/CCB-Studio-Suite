@@ -81,7 +81,7 @@ import kotlinx.coroutines.*
             Box {
                 var info by remember{mutableStateOf(false)}
                 LibraryAction("说明",style=StudioActionStyle.TERTIARY){info=true}
-                DropdownMenu(info,{info=false}){Text("原件、工程引用与外部目录保留。\n此处不执行永久删除。\n日期为有记录的添加/生成日期；未知不补默认值。",Modifier.width(360.dp).padding(12.dp))}
+                StudioMenu(info,{info=false}){Text("原件、工程引用与外部目录保留。\n此处不执行永久删除。\n日期为有记录的添加/生成日期；未知不补默认值。",Modifier.width(360.dp).padding(12.dp))}
             }
             StudioCompactField("查找回收站文件名、别名或标签",g.query,{g.query=it},Modifier.width(270.dp))
             LibraryChoice("类型",listOf("all","image","prompt","document"),g.assetType,{when(it){"image"->"图片";"prompt"->"Prompt";"document"->"文档";else->"全部"}}){g.assetType=it}

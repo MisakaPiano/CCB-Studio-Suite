@@ -44,8 +44,8 @@ import io.github.misakapiano.ccbstudio.core.*
             LibraryAction("＋",style=StudioActionStyle.TERTIARY,accessibilityLabel="添加输入标签"){submit()}
             LibraryAction("",icon=Lucide.Tags,style=StudioActionStyle.TERTIARY,accessibilityLabel="浏览已有标签"){prediction=false;browse=true}
         })
-        DropdownMenu(prediction && candidates.isNotEmpty(),{prediction=false},properties=PopupProperties(focusable=false)) {
-            candidates.forEach{tag->DropdownMenuItem(onClick={add(listOf(tag));text="";prediction=false}){Text("$tag   ${index.counts[tag]}")}}
+        StudioMenu(prediction && candidates.isNotEmpty(),{prediction=false},properties=PopupProperties(focusable=false)) {
+            candidates.forEach{tag->StudioMenuItem(onClick={add(listOf(tag));text="";prediction=false}){Text("$tag   ${index.counts[tag]}")}}
         }
     }
     if(browse)DialogWindow(onCloseRequest={browse=false},title="已有标签",state=rememberDialogState(width=620.dp,height=600.dp)) {
@@ -86,9 +86,9 @@ import io.github.misakapiano.ccbstudio.core.*
         Box {
             var selected by remember{mutableStateOf(false)}
             if(g.filterTags.isNotEmpty())LibraryAction("已选 ${g.filterTags.size}",style=StudioActionStyle.TERTIARY){selected=true}
-            DropdownMenu(selected,{selected=false}) {
-                g.filterTags.forEach{tag->DropdownMenuItem(onClick={g.filterTags=g.filterTags-tag}){Text("$tag   ×",Modifier.widthIn(max=280.dp))}}
-                DropdownMenuItem(onClick={g.filterTags=emptyList();selected=false}){Text("清空筛选标签")}
+            StudioMenu(selected,{selected=false}) {
+                g.filterTags.forEach{tag->StudioMenuItem(onClick={g.filterTags=g.filterTags-tag}){Text("$tag   ×",Modifier.widthIn(max=280.dp))}}
+                StudioMenuItem(onClick={g.filterTags=emptyList();selected=false}){Text("清空筛选标签")}
             }
         }
         LibraryTagInput(index,g.filterTags,{g.filterTags=(g.filterTags+it).distinct()},Modifier.width(185.dp))

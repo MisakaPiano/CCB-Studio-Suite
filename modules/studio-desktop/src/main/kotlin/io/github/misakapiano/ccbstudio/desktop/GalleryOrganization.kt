@@ -1,8 +1,13 @@
-@file:OptIn(androidx.compose.ui.ExperimentalComposeUiApi::class)
+@file:OptIn(androidx.compose.ui.ExperimentalComposeUiApi::class,androidx.compose.foundation.ExperimentalFoundationApi::class)
 package io.github.misakapiano.ccbstudio.desktop
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.gestures.detectDragGestures
+import androidx.compose.foundation.interaction.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -22,46 +27,70 @@ internal fun organizationNavigate(c:WorkbenchController,kind:String,id:String?,l
 }
 internal fun removeGalleryAlbumMembers(c:WorkbenchController){val id=c.gallery.organizationId?:return;val selected=c.selection.toSet();c.library.changeAlbums{list->list.map{if(it.id==id)it.copy(images=it.images-selected)else it}}}
 
+@Composable private fun OrganizationRow(label:String,icon:ImageVector,selected:Boolean=false,indent:Int=0,onClick:()->Unit) {
+    Row(Modifier.fillMaxWidth().padding(start=(indent*12).dp).heightIn(min=30.dp)
+        .background(if(selected)LibrarySelected else Color.Transparent,RoundedCornerShape(4.dp))
+        .semantics{this.selected=selected}.clickable(role=Role.Button,onClick=onClick).padding(horizontal=7.dp,vertical=6.dp),
+        verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(5.dp)) {
+        Icon(icon,null,Modifier.size(16.dp));Text(label,maxLines=1,overflow=TextOverflow.Ellipsis)
+    }
+}
 @Composable internal fun GalleryOrganizationTree(c:WorkbenchController,p:GalleryHistoryProjection,drag:LibraryDragState,offset:()->Offset) {
     val g=c.gallery
-    if(!g.treeOpen)return
     val albums=c.library.state?.virtualAlbums.orEmpty();val all=c.assets.map{it.request().id().toString()}.toSet()-c.library.archived
+    if(g.treeOpen)Column(Modifier.width(g.treeWidth.dp).fillMaxHeight().padding(horizontal=6.dp).semantics{contentDescription="图库组织树"}) {
+        Row(Modifier.fillMaxWidth().padding(top=6.dp),verticalAlignment=Alignment.CenterVertically) {
+            Text("组织",Modifier.weight(1f))
+            Box(Modifier.background(LibrarySelected,RoundedCornerShape(5.dp))){LibraryAction("",icon=Lucide.FolderPlus,style=StudioActionStyle.TERTIARY,accessibilityLabel="新建虚拟相册"){g.organizationDialog="new"}}
+        }
+        Column(Modifier.weight(1f).verticalScroll(rememberScrollState())) {
+            OrganizationRow("全部资产 · ${all.size}",Lucide.Images,g.organizationKind=="all"&&g.depth==0){organizationNavigate(c,"all",null,"全部资产",all)}
+            Text("生成来源",color=LibraryMuted,modifier=Modifier.padding(start=6.dp,top=14.dp,bottom=4.dp))
+            OrganizationRow("批次",Lucide.Layers,g.organizationKind=="batches"){organizationNavigate(c,"batches",null,"批次",p.batchOrigins.keys)}
+            p.batchOrigins.entries.groupBy{it.value.batchId}.forEach{(batch,entries)->
+                val name=entries.first().value.batchName.ifBlank{c.state.batch.takeIf{it.id==batch}?.name?:"批次 ${batch.take(8)}"}
+                OrganizationRow(name,Lucide.Layers,g.organizationKind=="batch"&&g.organizationId==batch,1){organizationOpen(c,OrganizationFolder("batch",batch,name,entries.map{it.key}.toSet()),p)}
+                if(g.organizationKind=="batch"&&g.organizationId==batch||g.organizationKind=="group"&&entries.any{it.value.groupId==g.organizationId})entries.groupBy{it.value.groupId}.forEach{(group,images)->
+                    OrganizationRow(images.first().value.groupName,Lucide.Images,g.organizationKind=="group"&&g.organizationId==group,2){organizationOpen(c,OrganizationFolder("group",group,images.first().value.groupName,images.map{it.key}.toSet()),p)}
+                }
+            }
+            Text("自定义组织",color=LibraryMuted,modifier=Modifier.padding(start=6.dp,top=14.dp,bottom=4.dp))
+            OrganizationRow("虚拟相册",Lucide.Layers,g.organizationKind=="albums"){organizationNavigate(c,"albums",null,"虚拟相册",albums.flatMap{it.images}.toSet())}
+            OrganizationAlbums(c,albums,null,1,drag,offset)
+            Text("虚拟组织\n原图保留原位",color=LibraryMuted,modifier=Modifier.padding(start=6.dp,top=20.dp,bottom=12.dp))
+        }
+    }
+    GalleryOrganizationDivider(g)
+}
+
+/** One persistent divider owns both resizing and folding. The handle remains when folded. */
+@Composable private fun GalleryOrganizationDivider(g:GalleryViewState) {
     val density=androidx.compose.ui.platform.LocalDensity.current
-    Column(Modifier.width(g.treeWidth.dp).fillMaxHeight().verticalScroll(rememberScrollState()).padding(6.dp).semantics{contentDescription="图库组织树"}) {
-        Row {Text("组织",Modifier.weight(1f));LibraryAction("收起",accessibilityLabel="收起组织树"){g.treeOpen=false}}
-        LibraryAction("全部资产",icon=Lucide.Images,style=StudioActionStyle.TERTIARY){organizationNavigate(c,"all",null,"全部资产",all)}
-        Text("生成来源",color=LibraryMuted,modifier=Modifier.padding(top=14.dp))
-        p.batchOrigins.entries.groupBy{it.value.batchId}.forEach{(batch,entries)->
-            val name=entries.first().value.batchName.ifBlank{c.state.batch.takeIf{it.id==batch}?.name?:"批次 ${batch.take(8)}"}
-            LibraryAction(name,icon=Lucide.Layers,style=StudioActionStyle.TERTIARY){organizationNavigate(c,"batch",batch,name,entries.map{it.key}.toSet())}
-            entries.groupBy{it.value.groupId}.forEach{(group,images)->
-                Box(Modifier.padding(start=12.dp)){LibraryAction(images.first().value.groupName,style=StudioActionStyle.TERTIARY){
-                    organizationNavigate(c,"group",group,images.first().value.groupName,images.map{it.key}.toSet())
-                    g.levels=g.levels.take(1)+GalleryScope(entries.map{it.key}.toSet(),name,identity="org:batch:$batch")+g.scope
-                }}
+    val interaction=remember{MutableInteractionSource()};val hover by interaction.collectIsHoveredAsState()
+    val label=if(g.treeOpen)"收起组织树"else"展开组织树"
+    Box(Modifier.width(14.dp).fillMaxHeight().hoverable(interaction).semantics{contentDescription="组织树分割线"}
+        .pointerInput(g.treeOpen){detectDragGestures{change,delta->
+            change.consume();if(g.treeOpen)g.treeWidth=(g.treeWidth+with(density){delta.x.toDp().value}).coerceIn(130f,320f)
+        }}) {
+        Box(Modifier.fillMaxSize().pointerHoverIcon(PointerIcon(java.awt.Cursor(java.awt.Cursor.E_RESIZE_CURSOR)))
+            .semantics{contentDescription="调整组织树宽度"})
+        Box(Modifier.align(Alignment.Center).width(1.dp).fillMaxHeight().background(LibraryLine))
+        TooltipArea(tooltip={Surface(color=LibraryPanel){Text(label,Modifier.padding(8.dp))}},modifier=Modifier.align(Alignment.Center)) {
+            Box(Modifier.width(14.dp).height(52.dp).background(if(hover||!g.treeOpen)LibraryPanel else LibraryBackground,RoundedCornerShape(4.dp))
+                .semantics{contentDescription=label;stateDescription=if(g.treeOpen)"已展开"else"已收起"}
+                .clickable(role=Role.Button){g.treeOpen=!g.treeOpen},contentAlignment=Alignment.Center) {
+                if(hover||!g.treeOpen)Icon(if(g.treeOpen)Lucide.ChevronLeft else Lucide.ChevronRight,null,Modifier.size(14.dp),tint=Gold)
             }
         }
-        LibraryAction("虚拟相册",icon=Lucide.Folders,style=StudioActionStyle.TERTIARY){organizationNavigate(c,"albums",null,"虚拟相册",albums.flatMap{it.images}.toSet())}
-        LibraryAction("新建相册"){g.organizationDialog="new"}
-        OrganizationAlbums(c,albums,null,0,drag,offset)
-    }
-    Box(Modifier.width(8.dp).fillMaxHeight().pointerHoverIcon(PointerIcon(java.awt.Cursor(java.awt.Cursor.E_RESIZE_CURSOR))).semantics{contentDescription="调整组织树宽度"}
-        .pointerInput(Unit){detectDragGestures{change,delta->change.consume();g.treeWidth=(g.treeWidth+with(density){delta.x.toDp().value}).coerceIn(130f,320f)}}) {
-        Box(Modifier.align(Alignment.Center).width(1.dp).fillMaxHeight().background(LibraryLine))
     }
 }
 @Composable private fun OrganizationAlbums(c:WorkbenchController,albums:List<VirtualAlbum>,parent:String?,depth:Int,drag:LibraryDragState,offset:()->Offset) {
     albums.filter{it.parent==parent}.forEach{album->
         val target="加入相册：${album.name} (${album.id.take(4)})"
-        Box(Modifier.padding(start=(depth*10).dp).fillMaxWidth().libraryTarget(drag,target,{ids->c.library.changeAlbums{VirtualAlbums.associate(it,ids.toSet(),setOf(album.id))}},offset,!c.busy)
-            .background(if(drag.activeTarget==target)LibrarySelected else androidx.compose.ui.graphics.Color.Transparent)) {
-            ContextMenuArea(items={listOf(ContextMenuItem("相册名称与上级…"){organizationNavigate(c,"album",album.id,album.name,VirtualAlbums.members(albums,album.id));c.gallery.organizationDialog="edit"},ContextMenuItem("移除相册…"){organizationNavigate(c,"album",album.id,album.name,VirtualAlbums.members(albums,album.id));c.gallery.organizationDialog="remove"})}) {
-                LibraryAction(album.name,icon=Lucide.Folder,style=StudioActionStyle.TERTIARY){
-                    organizationNavigate(c,"album",album.id,album.name,VirtualAlbums.members(albums,album.id))
-                    val path=mutableListOf<VirtualAlbum>();var a:VirtualAlbum?=album
-                    while(a!=null){path.add(0,a);a=albums.find{it.id==a?.parent}}
-                    c.gallery.levels=c.gallery.levels.take(1)+path.map{GalleryScope(VirtualAlbums.members(albums,it.id),it.name,identity="org:album:${it.id}")}
-                }
+        Box(Modifier.fillMaxWidth().libraryTarget(drag,target,{ids->c.library.changeAlbums{VirtualAlbums.associate(it,ids.toSet(),setOf(album.id))}},offset,!c.busy)
+            .background(if(drag.activeTarget==target)LibrarySelected else Color.Transparent)) {
+            ContextMenuArea(items={listOf(ContextMenuItem("相册名称与上级…"){organizationOpen(c,OrganizationFolder("album",album.id,album.name,VirtualAlbums.members(albums,album.id)),GalleryHistoryProjection(emptyList(),emptyMap()));c.gallery.organizationDialog="edit"},ContextMenuItem("移除相册…"){organizationNavigate(c,"album",album.id,album.name,VirtualAlbums.members(albums,album.id));c.gallery.organizationDialog="remove"})}) {
+                OrganizationRow(album.name,Lucide.Folder,c.gallery.organizationKind=="album"&&c.gallery.organizationId==album.id,depth){organizationOpen(c,OrganizationFolder("album",album.id,album.name,VirtualAlbums.members(albums,album.id)),GalleryHistoryProjection(emptyList(),emptyMap()))}
             }
         }
         OrganizationAlbums(c,albums,album.id,depth+1,drag,offset)
@@ -114,6 +143,7 @@ internal data class OrganizationFolder(val kind:String,val id:String,val label:S
     },label)
 }
 internal fun organizationFolders(g:GalleryViewState,albums:List<VirtualAlbum>,p:GalleryHistoryProjection):List<OrganizationFolder> = when(g.organizationKind){
+    "batches"->p.batchOrigins.entries.groupBy{it.value.batchId}.map{(id,entries)->OrganizationFolder("batch",id,entries.first().value.batchName.ifBlank{"批次 ${id.take(8)}"},entries.map{it.key}.toSet())}
     "batch"->p.batchOrigins.filterValues{it.batchId==g.organizationId}.entries.groupBy{it.value.groupId}.map{(id,entries)->OrganizationFolder("group",id,entries.first().value.groupName,entries.map{it.key}.toSet())}
     "album","albums"->albums.filter{it.parent==(if(g.organizationKind=="album")g.organizationId else null)}.map{OrganizationFolder("album",it.id,it.name,VirtualAlbums.members(albums,it.id))}
     else->emptyList()
@@ -123,8 +153,10 @@ internal fun organizationOpen(c:WorkbenchController,f:OrganizationFolder,p:Galle
     if(f.kind=="album"){
         val albums=c.library.state?.virtualAlbums.orEmpty();val path=mutableListOf<VirtualAlbum>();var a=albums.find{it.id==f.id}
         while(a!=null){path.add(0,a);a=albums.find{it.id==a?.parent}}
-        c.gallery.levels=c.gallery.levels.take(1)+path.map{GalleryScope(VirtualAlbums.members(albums,it.id),it.name,identity="org:album:${it.id}")}
+        c.gallery.levels=c.gallery.levels.take(1)+GalleryScope(albums.flatMap{it.images}.toSet(),"虚拟相册",identity="org:albums:")+path.map{GalleryScope(VirtualAlbums.members(albums,it.id),it.name,identity="org:album:${it.id}")}
+    }else if(f.kind=="batch") {
+        c.gallery.levels=c.gallery.levels.take(1)+GalleryScope(p.batchOrigins.keys,"批次",identity="org:batches:")+c.gallery.scope
     }else if(f.kind=="group")p.batchOrigins.values.firstOrNull{it.groupId==f.id}?.let{o->
-        c.gallery.levels=c.gallery.levels.take(1)+GalleryScope(p.batchOrigins.filterValues{it.batchId==o.batchId}.keys,o.batchName.ifBlank{"批次 ${o.batchId.take(8)}"},identity="org:batch:${o.batchId}")+c.gallery.scope
+        c.gallery.levels=c.gallery.levels.take(1)+GalleryScope(p.batchOrigins.keys,"批次",identity="org:batches:")+GalleryScope(p.batchOrigins.filterValues{it.batchId==o.batchId}.keys,o.batchName.ifBlank{"批次 ${o.batchId.take(8)}"},identity="org:batch:${o.batchId}")+c.gallery.scope
     }
 }

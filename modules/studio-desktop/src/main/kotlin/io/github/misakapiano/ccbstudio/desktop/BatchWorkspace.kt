@@ -78,7 +78,7 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
 }
 @Composable private fun BatchMenu(label:String,enabled:Boolean=true,items:List<Pair<String,()->Unit>>,icon:androidx.compose.ui.graphics.vector.ImageVector?=null) {
     var open by remember{mutableStateOf(false)}
-    Box{LibraryAction("$label ▾",enabled,expanded=open,icon=icon){open=true};DropdownMenu(open,{open=false}){items.forEach{(text,action)->DropdownMenuItem({open=false;action()}){Text(text)}}}}
+    Box{LibraryAction("$label ▾",enabled,expanded=open,icon=icon){open=true};StudioMenu(open,{open=false}){items.forEach{(text,action)->StudioMenuItem({open=false;action()}){Text(text)}}}}
 }
 
 @Composable internal fun BatchWorkspace(c:WorkbenchController,detached:Boolean=false) {
@@ -164,7 +164,7 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
         }
         Row(Modifier.fillMaxWidth().padding(12.dp).horizontalScroll(rememberScrollState()),horizontalArrangement=Arrangement.spacedBy(8.dp),verticalAlignment=Alignment.CenterVertically){
             var addOpen by remember{mutableStateOf(false)}
-            Box{LibraryToolTile("添加分组","添加批次分组",DesktopAppIcons.Add,b.editing,false){addOpen=true};DropdownMenu(addOpen,{addOpen=false}){addItems.forEach{(label,action)->DropdownMenuItem({addOpen=false;action()}){Text(label)}}}}
+            Box{LibraryToolTile("添加分组","添加批次分组",DesktopAppIcons.Add,b.editing,false){addOpen=true};StudioMenu(addOpen,{addOpen=false}){addItems.forEach{(label,action)->StudioMenuItem({addOpen=false;action()}){Text(label)}}}}
             LibraryToolTile("编辑参数","编辑当前批次参数",DesktopAppIcons.Settings,group!=null&&!s.running,false){edit=group}
             LibraryToolTile("复制所选","复制所选分组",DesktopAppIcons.Copy,b.editing&&b.selected.isNotEmpty(),false){b.duplicate()}
             LibraryToolTile("移出批次","移出未开始的分组",DesktopAppIcons.Delete,b.editing&&b.selected.isNotEmpty()&&s.groups.none{it.id in b.selected&&it.started},false){b.remove()}

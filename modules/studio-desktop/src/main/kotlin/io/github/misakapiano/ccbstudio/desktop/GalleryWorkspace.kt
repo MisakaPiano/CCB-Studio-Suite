@@ -30,7 +30,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
     val organizationKind get()=scope.identity.takeIf{it.startsWith("org:")}?.split(":")?.getOrNull(1)?:"all"
     val organizationId get()=scope.identity.takeIf{it.startsWith("org:")}?.split(":")?.getOrNull(2)
     var treeOpen by mutableStateOf(true)
-    var treeWidth by mutableStateOf(170f)
+    var treeWidth by mutableStateOf(160f)
     var organizationDialog by mutableStateOf<String?>(null)
     var importProgress by mutableStateOf("")
     var importStartedNanos:Long=0
@@ -125,6 +125,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
     val organizationIds=remember(organization,g.organizationKind,g.organizationId,projection){when(g.organizationKind){
         "albums"->organization.flatMap{it.images}.toSet()
         "album"->g.organizationId?.takeIf{id->organization.any{it.id==id}}?.let{VirtualAlbums.members(organization,it)}?:emptySet()
+        "batches"->projection.batchOrigins.keys
         "batch"->projection.batchOrigins.filterValues{it.batchId==g.organizationId}.keys
         "group"->projection.batchOrigins.filterValues{it.groupId==g.organizationId}.keys
         else->null
@@ -144,10 +145,11 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
     val orderedSelection=remember(visibleIds,allIds,activeIds,c.selection){orderedLibrarySelection(visibleIds,allIds,activeIds,c.selection)}
     val orgFolders=remember(organization,g.organizationKind,g.organizationId,projection){organizationFolders(g,organization,projection)}
     val folderPairs=orgFolders.mapNotNull{folder->(folder.ids intersect visibleSet).takeIf{it.isNotEmpty()}?.let{folder.album(it) to folder}}
-    val folderByKey=folderPairs.associate{it.first.key to it.second}
+    // Sorting can change the cover (and hence album.key); every member retains its folder identity.
+    val folderByKey=folderPairs.flatMap{(album,folder)->album.images.map{it.key to folder}}.toMap()
     val albums=remember(organization,g.organizationKind,g.organizationId,orgFolders,visibleIds,projection,g.fold,g.directoryFold,g.tagFold,g.sort,c.assets,c.library.state?.folders,labels){
         val leafIds=when(g.organizationKind){
-            "batch","albums"->emptyList()
+            "batches","batch","albums"->emptyList()
             "album"->visibleIds.filter{it in organization.find{it.id==g.organizationId}?.images.orEmpty()}
             else->visibleIds
         }
@@ -289,7 +291,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
                         AssetImage(c,c.current,Modifier.fillMaxWidth().height(180.dp))
                         allById[c.current]?.let{a->
                             val album=albums.firstOrNull{it.images.any{image->image.image.path==c.current}}
-                            val grouped=g.fold.enabled&&album!=null&&(album.images.size>1||g.tagFold||g.directoryFold&&album.label!="来源目录未记录")
+                            val grouped=album!=null&&(folderByKey.containsKey(album.key)||g.fold.enabled&&(album.images.size>1||g.tagFold||g.directoryFold&&album.label!="来源目录未记录"))
                             Text(if(grouped)album!!.label.lineSequence().first()else labels[c.current]?.alias?.ifBlank{a.request().name()}?:a.request().name())
                             if(grouped)Text("相册 · ${album!!.images.size} 张",color=LibraryMuted)
                             Text("来源：${librarySourceLabel(sources[c.current]?:"unknown")}",color=LibraryMuted)
@@ -312,20 +314,20 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
                 Box {
                     var menu by remember{mutableStateOf(false)}
                     LibraryAction("操作",icon=DesktopAppIcons.More){menu=true}
-                    DropdownMenu(menu,{menu=false}) {
-                        DropdownMenuItem(onClick={menu=false;g.organizationDialog="new"}){Text("新建虚拟相册…")}
-                        DropdownMenuItem(enabled=orderedSelection.isNotEmpty(),onClick={menu=false;g.organizationDialog="join"}){Text("加入虚拟相册…")}
+                    StudioMenu(menu,{menu=false}) {
+                        StudioMenuItem(onClick={menu=false;g.organizationDialog="new"}){Text("新建虚拟相册…")}
+                        StudioMenuItem(enabled=orderedSelection.isNotEmpty(),onClick={menu=false;g.organizationDialog="join"}){Text("加入虚拟相册…")}
                         if(g.organizationKind=="album") {
-                            DropdownMenuItem(onClick={menu=false;g.organizationDialog="edit"}){Text("相册名称与上级…")}
-                            DropdownMenuItem(enabled=orderedSelection.isNotEmpty(),onClick={menu=false;g.organizationDialog="moveImages"}){Text("调整相册归属…")}
-                            DropdownMenuItem(enabled=orderedSelection.isNotEmpty(),onClick={menu=false;removeGalleryAlbumMembers(c)}){Text("移出本相册（保留原件）")}
-                            DropdownMenuItem(onClick={menu=false;g.organizationDialog="remove"}){Text("移除相册…")}
+                            StudioMenuItem(onClick={menu=false;g.organizationDialog="edit"}){Text("相册名称与上级…")}
+                            StudioMenuItem(enabled=orderedSelection.isNotEmpty(),onClick={menu=false;g.organizationDialog="moveImages"}){Text("调整相册归属…")}
+                            StudioMenuItem(enabled=orderedSelection.isNotEmpty(),onClick={menu=false;removeGalleryAlbumMembers(c)}){Text("移出本相册（保留原件）")}
+                            StudioMenuItem(onClick={menu=false;g.organizationDialog="remove"}){Text("移除相册…")}
                         }
 
-                        DropdownMenuItem(enabled=orderedSelection.isNotEmpty(),onClick={menu=false;copyLibrarySelection(c,orderedSelection)}){Text("复制所选原始文件  Ctrl+C")}
-                        DropdownMenuItem(enabled=orderedSelection.isNotEmpty()&&g.scope.tag!=null,onClick={menu=false;cut()}){Text("剪切标签归属  Ctrl+X")}
-                        DropdownMenuItem(onClick={menu=false;pasteLibrarySelection(c)}){Text("粘贴  Ctrl+V")}
-                        DropdownMenuItem(onClick={menu=false;c.library.tab="目录入口";c.view="资产管理"}){Text("管理收集与导入目录")}
+                        StudioMenuItem(enabled=orderedSelection.isNotEmpty(),onClick={menu=false;copyLibrarySelection(c,orderedSelection)}){Text("复制所选原始文件  Ctrl+C")}
+                        StudioMenuItem(enabled=orderedSelection.isNotEmpty()&&g.scope.tag!=null,onClick={menu=false;cut()}){Text("剪切标签归属  Ctrl+X")}
+                        StudioMenuItem(onClick={menu=false;pasteLibrarySelection(c)}){Text("粘贴  Ctrl+V")}
+                        StudioMenuItem(onClick={menu=false;c.library.tab="目录入口";c.view="资产管理"}){Text("管理收集与导入目录")}
                     }
                 }
                 Spacer(Modifier.weight(1f))
@@ -352,7 +354,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
     var open by remember{mutableStateOf(false)}
     Box {
         LibraryAction("导入结果 ${g.imports.count{it.assetId!=null}} / ${g.imports.size}",style=StudioActionStyle.TERTIARY){open=true}
-        DropdownMenu(open,{open=false}) {
+        StudioMenu(open,{open=false}) {
             Column(Modifier.width(420.dp).heightIn(max=280.dp).verticalScroll(rememberScrollState()).padding(8.dp)) {
                 g.importDurationMs?.let{Text("用时 ${"%.1f".format(it/1000.0)} 秒")}
                 g.imports.forEach{Text("${it.name} · ${it.status}",style=MaterialTheme.typography.caption)}
@@ -364,7 +366,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
 @Composable private fun GalleryImportHelp(c:WorkbenchController) {
     var open by remember{mutableStateOf(false)}
     Box {LibraryAction("?",style=StudioActionStyle.TERTIARY,accessibilityLabel="导入说明"){open=true}
-        DropdownMenu(open,{open=false}){Text("拖入文件或 Ctrl+V 粘贴；PNG/JPEG/WebP/GIF/BMP。\n每文件最多32MiB、12582912像素。\n动图预览首帧，原文件保留。\n目录入口同步会入库保留原件，外部文件不变。",Modifier.width(350.dp).padding(12.dp))}
+        StudioMenu(open,{open=false}){Text("拖入文件或 Ctrl+V 粘贴；PNG/JPEG/WebP/GIF/BMP。\n每文件最多32MiB、12582912像素。\n动图预览首帧，原文件保留。\n目录入口同步会入库保留原件，外部文件不变。",Modifier.width(350.dp).padding(12.dp))}
     }
 }
 @Composable private fun GalleryGuidanceDialog(c:WorkbenchController,ids:List<String>,close:()->Unit) {
@@ -381,9 +383,9 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
     var open by remember{mutableStateOf(false)}
     Box {
         LibraryAction("导入图片 ▾",!c.busy,accessibilityLabel="导入图片"){open=true}
-        DropdownMenu(open,{open=false}) {
-            DropdownMenuItem(enabled=!c.busy,onClick={open=false;c.importImages()}){Text("导入图片文件")}
-            DropdownMenuItem(enabled=!c.busy,onClick={open=false;c.importImageDirectory()}){Text("导入目录（本层）")}
+        StudioMenu(open,{open=false}) {
+            StudioMenuItem(enabled=!c.busy,onClick={open=false;c.importImages()}){Text("导入图片文件")}
+            StudioMenuItem(enabled=!c.busy,onClick={open=false;c.importImageDirectory()}){Text("导入目录（本层）")}
         }
     }
 }

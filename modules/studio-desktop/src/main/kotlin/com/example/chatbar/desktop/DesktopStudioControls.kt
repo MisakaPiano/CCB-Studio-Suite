@@ -137,7 +137,7 @@ internal fun <T> CompactChoice(label: String, options: List<T>, selected: T?, te
                 }.focusable().padding(4.dp), state = list) {
                 itemsIndexed(options) { i, item ->
                     Box(Modifier.fillMaxWidth().background(if (i == index) DesktopBootstrapColors.accent else Color.Transparent)
-                        .clickable { choose(item); open = false }.padding(8.dp)) { StatusText("${if (item == selected) "✓ " else ""}${text(item)}") }
+                        .clickable { choose(item); open = false }.padding(8.dp)) { BasicText("${if (item == selected) "✓ " else ""}${text(item)}",style=TextStyle(color=DesktopBootstrapColors.foreground,fontSize=13.sp)) }
                 }
             }
         }
