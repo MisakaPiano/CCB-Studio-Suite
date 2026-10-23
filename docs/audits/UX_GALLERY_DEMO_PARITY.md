@@ -48,3 +48,7 @@
 固定包与最终回归身份在本记录末尾及配套证据填写。邀请105 candidate-1仍保留为旧330源码安装验证，因视觉被拒不作为本轮待发布候选；之后需从最终通过源码重建。
 
 最终demo-parity-final-repair：桌面12项实际通过，0失败/错误/跳过，74.027秒，sourceStable=true，构建成功；同命令核心5项因上一轮已执行通过而UP-TO-DATE，不冒充重新执行。新增来源分类验证六类资产（含剪贴板、处理、生成和未知），无网络。21项轮次与12项有重叠，不累加为独立总数。原始运行、失败及生产合成截图保存在`evidence/UX_GALLERY_DEMO_PARITY`。113份权威文件对固定5ef9542逐字节仍PASS。
+
+## 新固定本地包
+
+源码`e4697230dbb05aa5e9dd7a3d752eb48533726020`；构建身份核验11.949秒、源码稳定，全部UP-TO-DATE、0项新执行测试（COMMAND_SUCCESS）。220个程序文件逐项大小/SHA核对，`PACKAGE_FILES.json`保留完整清单。新快捷方式：`H:/CCB-Studio-Suite/.local/windows-rc/gallery-demo-parity-review/Start-gallery-demo-parity-review.lnk`；使用新生成的独立合成资料，22活动图片/回收站3项，暂停自动收集，未覆盖旧330测试包或用户资料。新视觉人工仍NOT TESTED，只请复核这次样式/入口，无需重跑已通过的全部交互。
