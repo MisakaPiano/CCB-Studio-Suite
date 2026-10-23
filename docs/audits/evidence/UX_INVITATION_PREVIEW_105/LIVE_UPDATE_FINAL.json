@@ -1,0 +1,59 @@
+{
+  "status": "PASS",
+  "scope": "Actual public signed 104-to-105 check/download/fresh install/current-version check; no native app restart",
+  "sourceSha": "a416a820955a720181cb97c33131a3c4890bb786",
+  "installerSha256": "afee8e329636e7ab1e71013c38e397295a377962fc9a060385ed67641901e336",
+  "download": {
+    "status": "DOWNLOADED_VERIFIED",
+    "version": 105,
+    "displayVersion": "0.0.0-preview.105",
+    "channel": "preview",
+    "notes": "Invited experimental Preview: image generation and gallery; supplementary editor/manual checks deferred. See release notes.",
+    "sourceSha": "a416a820955a720181cb97c33131a3c4890bb786",
+    "bytes": 168194459,
+    "installedBytes": 252015320,
+    "sha256": "afee8e329636e7ab1e71013c38e397295a377962fc9a060385ed67641901e336",
+    "minimumReader": 2,
+    "maximumReader": 3,
+    "dataVersion": 3,
+    "installer": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\invitation-105\\update-smoke-final\\cache\\downloads\\962c3fac-670a-4ce5-a3f3-7100647b82bd\\studio-installer.exe"
+  },
+  "installation": {
+    "status": "INSTALLED_NOT_STARTED",
+    "target": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\release-migration\\real-103-104\\applications\\105-a416a820955a",
+    "stage": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\release-migration\\real-103-104\\applications\\105-a416a820955a.d83a5e0fcc44493b9916e43c592891f5.installing",
+    "expected": {
+      "product": "ccb-studio-suite",
+      "platform": "windows-x86_64",
+      "channel": "preview",
+      "version": 105,
+      "sourceSha": "a416a820955a720181cb97c33131a3c4890bb786"
+    },
+    "dataModified": false,
+    "verification": {
+      "files": 547,
+      "bytes": 252015320,
+      "manifestSha256": "c96b6df407c6f8eb063359c716e005f3b6d5057ec33e308e9d8d1ca1a7fbeef7"
+    }
+  },
+  "currentCheck": {
+    "status": "UP_TO_DATE",
+    "version": 105,
+    "displayVersion": "0.0.0-preview.105",
+    "channel": "preview",
+    "notes": "Invited experimental Preview: image generation and gallery; supplementary editor/manual checks deferred. See release notes.",
+    "sourceSha": "a416a820955a720181cb97c33131a3c4890bb786",
+    "bytes": 168194459,
+    "installedBytes": 252015320,
+    "sha256": "afee8e329636e7ab1e71013c38e397295a377962fc9a060385ed67641901e336",
+    "minimumReader": 2,
+    "maximumReader": 3,
+    "dataVersion": 3
+  },
+  "syntheticWorkspaceFilesUnchanged": 249,
+  "oldInstallationFilesUnchanged": 550,
+  "native105Restart": "NOT TESTED",
+  "previousNative103to104": "See existing user acceptance, not rerun",
+  "realProviderCalls": 0,
+  "privateDataRead": false
+}

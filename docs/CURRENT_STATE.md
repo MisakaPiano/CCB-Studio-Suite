@@ -1,3 +1,7 @@
+## 2026-10-23 本地105已接入原配置，清理进行中
+
+用户已授权本机key/数据接入；固定入口`.local/installed/Launch-CCB-Studio.lnk`沿用原真实workspace/runtime，受保护凭据可读、文档/密文未变，无服务调用或明文导出。实际104→105公开下载/新目录安装/105当前检查已通过。初次两处临时产物已清理；80项进一步旧二进制清单约15.30GiB被自动审批要求精确授权，答复前未删除。见[接入与清理记录](audits/UX_LOCAL_PROFILE_AND_CLEANUP.md)。活动路径记录`.local/ACTIVE_STUDIO_INSTALLATION.json`，不得误清理。
+
 ## 2026-10-23 Preview 105 已发布
 
 状态 **INVITED_PREVIEW_PUBLISHED / NOT RC**。[邀请Preview105](https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.105)与现有签名更新渠道已上线。组装源码a416a82（应用6755068），57项最终合成回归、547文件新目录安装/拒绝覆盖通过；公开完整安装器流式下载及105已是最新检查通过。额外104→105本地分段下载/安装演练初次因磁盘空间保护停止，未验不记通过，清理本轮两处临时产物待用户答复。用户明确附加编辑/排版等人工后置，不再安排当前电脑操作；Prompt新设计PENDING。见[实际发布与证据](audits/UX_INVITATION_PREVIEW_105.md)。main、Desktop/upstream、旧桥接渠道未改，私人资料未读。

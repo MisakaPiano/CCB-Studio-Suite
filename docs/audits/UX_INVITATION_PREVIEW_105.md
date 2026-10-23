@@ -20,5 +20,6 @@
 - 更新根保持408008d80aeb2dd3844325d74f09da9d248733e220dd88c08cc6299c4a24cc7a，项目long-term-metadata提交c3e368307088f5c18acc1779a7ee2097a047a8db，targets4/snapshot9/timestamp9。只在安装器公开且核验后切目标，全部元数据签名/散列链和提交字节回读匹配。main及旧渠道未改。[发布结果](evidence/UX_INVITATION_PREVIEW_105/PUBLICATION_RESULT.json)。
 - 发布后实际104检查已验证签名目录与105身份，但首次完整下载/安装尝试因H盘仅约174MiB被空间保护拒绝，未下载或动用户资料。此失败保留为[初次证据](evidence/UX_INVITATION_PREVIEW_105/LIVE_UPDATE_INITIAL.json)，不能记为下载/原生升级通过。正在处理本轮临时产物空间；结果另追加。
 - 随后执行不暂存文件的低磁盘只读校验：实际沿安装信任根认证公开目录，再完整流式读取168194459字节安装器并核对SHA256，14.448秒；安装105检查返回UP_TO_DATE。[流式证据](evidence/UX_INVITATION_PREVIEW_105/LIVE_STREAM_FINAL.json)。此项证明真实公开下载字节和当前版本检查，不绕过产品空间保护，也不代签磁盘暂存/104→105原生重启。清理candidate-2/payload及本轮update-smoke-final已向用户提出，未答前保留。
+- 用户随后批准清理并要求迁移保存key/数据。清理后实际104→105公开下载、散列、新目录安装及当前版本检查全部通过，249个合成资料文件和550个旧程序文件原字节保持；[结果](evidence/UX_INVITATION_PREVIEW_105/LIVE_UPDATE_FINAL.json)覆盖首次空间阻断，但不代签原生105重启。固定105已接入既有工作区与受保护凭据，[本地接入/进一步空间清理](UX_LOCAL_PROFILE_AND_CLEANUP.md)单列。
 
 附加编辑/排版/交付/恢复连贯人工、当前APNG快捷键接收端及完整多来源比较人工均为未验，按用户明确范围后置，不阻断本次实验Preview。既有通过回执保留，不重复发新小包要求用户重测。不同于完整日常版/RC，PRODUCT_HOLD不作为已发布状态的代称。

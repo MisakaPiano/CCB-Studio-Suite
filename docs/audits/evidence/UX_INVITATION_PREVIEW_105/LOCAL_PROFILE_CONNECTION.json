@@ -1,0 +1,11 @@
+{
+  "status": "PASS_WITH_SCOPE",
+  "authorization": "User explicitly approved scoped temporary cleanup and local saved-key/data migration",
+  "method": "Managed Preview105 reuses exact prior workspace/runtime under same Windows user; stable updater-compatible shortcut created",
+  "protectedCredentialsReadable": true,
+  "configurationAndCiphertextBytesUnchanged": true,
+  "plaintextExported": false,
+  "privateDataPublished": false,
+  "providerCalls": 0,
+  "native105ProfileLaunch": "NOT TESTED; user away from PC"
+}
