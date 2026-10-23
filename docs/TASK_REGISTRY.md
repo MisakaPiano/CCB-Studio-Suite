@@ -403,3 +403,7 @@ Latest Project correction rescinds generalized source-rights / missing-SDK STOP.
 实现209b5252e06ea55b6cdf970da131b330a407e882已推送，两个Drive附件原字节回读一致。[完整Project回执](rc/PREVIEW_PROJECT_REVIEW.md)登记实际测试、失败、Git闭包修复和未测项；[集中验收清单](rc/PREVIEW_REVIEW_ITEMS.md)。状态PREVIEW_GATE_WITH_GAPS，停止等待统一真人review，不自动进入CP4。
 
 首轮真人验收未通过：[反馈及源码定位](rc/PREVIEW_USER_REVIEW_1.md)。保留旧自动化结果，未把缺失功能或未知效果标成PASS；没有新构建/真实请求/新包。
+
+## 本机批量生图提案（待设计确认）
+
+用户要求108完成后评估每分钟、定时休息、错误暂停待手动确认、多组横纵方roll。已完成[可行性与入口提案](rc/BATCH_GENERATION_PROPOSAL.md)，DESIGN_REVIEW；只核对源码与官方文档，未实施/调用。Prompt新工作台继续PENDING；下一步可交互概念确认。
