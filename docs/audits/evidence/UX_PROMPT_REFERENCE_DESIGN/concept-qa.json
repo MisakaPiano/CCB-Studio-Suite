@@ -1,0 +1,67 @@
+{
+  "status": "PASS",
+  "scope": "interactive concept only; no production UI or real providers",
+  "checks": [
+    "three source types without draft overwrite",
+    "excerpt across fields",
+    "apply cancel and confirm/undo",
+    "actual role drag without changing original order",
+    "unknown request distinction",
+    "difference-only",
+    "source removal and deduplicated re-add",
+    "standalone text direct entry",
+    "excerpt saved into concept source pool",
+    "both layouts at three widths"
+  ],
+  "widths": [
+    {
+      "layout": "bottom",
+      "width": 1024,
+      "w": 990,
+      "scroll": 990,
+      "root": 992,
+      "view": 992
+    },
+    {
+      "layout": "bottom",
+      "width": 736,
+      "w": 702,
+      "scroll": 702,
+      "root": 704,
+      "view": 704
+    },
+    {
+      "layout": "bottom",
+      "width": 320,
+      "w": 286,
+      "scroll": 286,
+      "root": 288,
+      "view": 288
+    },
+    {
+      "layout": "right",
+      "width": 1024,
+      "w": 990,
+      "scroll": 990,
+      "root": 992,
+      "view": 992
+    },
+    {
+      "layout": "right",
+      "width": 736,
+      "w": 702,
+      "scroll": 702,
+      "root": 704,
+      "view": 704
+    },
+    {
+      "layout": "right",
+      "width": 320,
+      "w": 286,
+      "scroll": 286,
+      "root": 288,
+      "view": 288
+    }
+  ],
+  "errors": []
+}
