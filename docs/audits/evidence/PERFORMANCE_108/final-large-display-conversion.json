@@ -1,0 +1,19 @@
+{
+    "syntheticOnly": true,
+    "source": "24 conversions of a2048x3072PNG",
+    "scope": "display conversion; not full UI latency or RSS",
+    "measurements": [
+        {
+            "version": 107,
+            "wallMs": 3462.2905,
+            "threadCpuMs": 3328.125,
+            "allocatedBytes": 480634176
+        },
+        {
+            "version": 108,
+            "wallMs": 2488.7797,
+            "threadCpuMs": 2453.125,
+            "allocatedBytes": 308777448
+        }
+    ]
+}
