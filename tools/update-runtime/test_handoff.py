@@ -30,6 +30,28 @@ class HandoffTests(unittest.TestCase):
         receipt.write_text(json.dumps(dict(status='INSTALLING',nonce=plan['nonce'])))
         self.assertEqual(perform(path),1);self.assertEqual(json.loads(receipt.read_text())['status'],'FAILED_RETAINED')
 
+    def test_independent_root_stable_launcher_advances_twice_without_changing_data(self):
+        independent=self.path/'independent-preview';independent.mkdir()
+        data=independent/'data/workspace';runtime=independent/'data/runtime'
+        data.mkdir(parents=True);runtime.mkdir(parents=True)
+        (data/'retained.bin').write_bytes(b'synthetic workspace retained across updates')
+        (runtime/'settings.json').write_text('{"synthetic":true}')
+        baseline={p:p.read_bytes() for p in (data/'retained.bin',runtime/'settings.json')}
+        stable=None
+        for version in (105,106,107):
+            final=independent/f'{version}-synthetic';final.mkdir()
+            (final/'CCBStudioSuitePreview.exe').write_bytes(b'not executable; shortcut only')
+            link=create_launcher(final,data,runtime)
+            if stable is not None:self.assertEqual(link,stable)
+            stable=link
+            self.assertEqual(link,independent/'Launch-CCB-Studio.lnk')
+            command="[Console]::OutputEncoding=[Text.UTF8Encoding]::new();$s=New-Object -ComObject WScript.Shell;$l=$s.CreateShortcut('"+str(link).replace("'","''")+"');@{target=$l.TargetPath;args=$l.Arguments}|ConvertTo-Json -Compress"
+            result=subprocess.run(['powershell.exe','-NoProfile','-NonInteractive','-EncodedCommand',base64.b64encode(command.encode('utf-16-le')).decode()],capture_output=True,creationflags=subprocess.CREATE_NO_WINDOW,check=True)
+            value=json.loads(result.stdout.decode('utf-8-sig'))
+            self.assertEqual(Path(value['target']),final/'CCBStudioSuitePreview.exe')
+            self.assertEqual(value['args'],subprocess.list2cmdline(['--studio-root',str(data),'--runtime-root',str(runtime)]))
+            self.assertEqual(baseline,{p:p.read_bytes() for p in baseline})
+
     def test_migration_destination_is_fresh_sibling_and_bound_to_confirmed_versions(self):
         source=self.path/'data';source.mkdir();identity=Installed(1,2,'internal','','',b'')
         nonce='a'*64;target=source.with_name('data-format3-'+nonce[:12])

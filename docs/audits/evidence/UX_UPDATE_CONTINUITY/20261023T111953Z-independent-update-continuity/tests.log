@@ -1,0 +1,234 @@
+test_authenticated_output_format_is_explicit_and_unknown_or_downgrade_rejected (test_client.ClientTests.test_authenticated_output_format_is_explicit_and_unknown_or_downgrade_rejected) ... ok
+test_changed_download_has_no_success_receipt (test_client.ClientTests.test_changed_download_has_no_success_receipt) ... ok
+test_check_then_verified_download_no_install (test_client.ClientTests.test_check_then_verified_download_no_install) ... ok
+test_current_version_requires_exact_identity_and_never_downloads (test_client.ClientTests.test_current_version_requires_exact_identity_and_never_downloads) ... ok
+test_disconnect_preserves_metadata_for_retry (test_client.ClientTests.test_disconnect_preserves_metadata_for_retry) ... ok
+test_http_is_allowed_only_for_explicit_internal_literal_loopback (test_client.ClientTests.test_http_is_allowed_only_for_explicit_internal_literal_loopback) ... ok
+test_installed_root_hash_and_endpoint_are_required (test_client.ClientTests.test_installed_root_hash_and_endpoint_are_required) ... ok
+test_installer_validation_still_rejects_equal_version (test_client.ClientTests.test_installer_validation_still_rejects_equal_version) ... ok
+test_low_space_no_download_or_completion (test_client.ClientTests.test_low_space_no_download_or_completion) ... ok
+test_other_process_cannot_enter_same_cache (test_client.ClientTests.test_other_process_cannot_enter_same_cache) ... ok
+test_progress_counts_actual_target_bytes_and_success_only_after_commit (test_client.ClientTests.test_progress_counts_actual_target_bytes_and_success_only_after_commit) ... ok
+test_wrong_identity_version_and_reader_block_before_download (test_client.ClientTests.test_wrong_identity_version_and_reader_block_before_download) ... ok
+test_corrupt_and_interrupted_download_retained_then_retry (test_github.GitHubTests.test_corrupt_and_interrupted_download_retained_then_retry) ... ok
+test_installed_repository_cannot_override_endpoint (test_github.GitHubTests.test_installed_repository_cannot_override_endpoint) ... ok
+test_long_term_branch_pinned_and_old_channel_cannot_be_substituted (test_github.GitHubTests.test_long_term_branch_pinned_and_old_channel_cannot_be_substituted) ... ok
+test_metadata_redirect_and_http_failures_do_not_complete (test_github.GitHubTests.test_metadata_redirect_and_http_failures_do_not_complete) ... ok
+test_no_target_before_authorization_and_hash_prefixed_target_supported (test_github.GitHubTests.test_no_target_before_authorization_and_hash_prefixed_target_supported) ... ok
+test_preview_build_profile_rejects_mixed_channel_and_endpoints (test_github.GitHubTests.test_preview_build_profile_rejects_mixed_channel_and_endpoints) ... ok
+test_redirect_host_downgrade_and_loop_blocked (test_github.GitHubTests.test_redirect_host_downgrade_and_loop_blocked) ... ok
+test_signed_preview_download_and_handoff_reinspection_share_transport (test_github.GitHubTests.test_signed_preview_download_and_handoff_reinspection_share_transport) ... ok
+test_unsigned_target_cannot_authorize_payload (test_github.GitHubTests.test_unsigned_target_cannot_authorize_payload) ... ok
+test_untrusted_location_and_wrong_channel_never_fetch_asset (test_github.GitHubTests.test_untrusted_location_and_wrong_channel_never_fetch_asset) ... ok
+test_download_stays_immutable_during_executor (test_install.InstallTests.test_download_stays_immutable_during_executor) ... ok
+test_existing_version_and_data_overlap_refuse_before_install (test_install.InstallTests.test_existing_version_and_data_overlap_refuse_before_install) ... ok
+test_independent_install_parent_may_contain_data_without_treating_it_as_program (test_install.InstallTests.test_independent_install_parent_may_contain_data_without_treating_it_as_program) ... ok
+test_installer_failure_retains_partial_without_publish (test_install.InstallTests.test_installer_failure_retains_partial_without_publish) ... ok
+test_insufficient_space_has_no_install_stage (test_install.InstallTests.test_insufficient_space_has_no_install_stage) ... ok
+test_manifest_wrong_identity_hash_or_unknown_file_is_rejected (test_install.InstallTests.test_manifest_wrong_identity_hash_or_unknown_file_is_rejected) ... ok
+test_success_is_installed_not_started_and_preserves_sources (test_install.InstallTests.test_success_is_installed_not_started_and_preserves_sources) ... ok
+test_tampered_executable_is_never_executed (test_install.InstallTests.test_tampered_executable_is_never_executed) ... ok
+test_independent_root_stable_launcher_advances_twice_without_changing_data (test_handoff.HandoffTests.test_independent_root_stable_launcher_advances_twice_without_changing_data) ... ok
+test_migration_destination_is_fresh_sibling_and_bound_to_confirmed_versions (test_handoff.HandoffTests.test_migration_destination_is_fresh_sibling_and_bound_to_confirmed_versions) ... ok
+test_parent_handle_binds_actual_process_image (test_handoff.HandoffTests.test_parent_handle_binds_actual_process_image) ... ok
+test_terminal_handoff_replay_does_not_reinstall_or_replace_receipt (test_handoff.HandoffTests.test_terminal_handoff_replay_does_not_reinstall_or_replace_receipt) ... ok
+test_unicode_shortcut_keeps_explicit_roots_without_execution (test_handoff.HandoffTests.test_unicode_shortcut_keeps_explicit_roots_without_execution) ... ok
+test_dry_run_and_failed_signing_leave_committed_state_unchanged (test_repository.RepositoryTests.test_dry_run_and_failed_signing_leave_committed_state_unchanged) ... ok
+test_durable_two_versions_and_online_renewal_without_offline_signer (test_repository.RepositoryTests.test_durable_two_versions_and_online_renewal_without_offline_signer) ... ok
+test_encrypted_signing_input_and_password_failure (test_repository.RepositoryTests.test_encrypted_signing_input_and_password_failure) ... ok
+test_expired_timestamp_recovers_after_renewal (test_repository.RepositoryTests.test_expired_timestamp_recovers_after_renewal) ... ok
+test_maintenance_adapter_rejects_offline_keys_and_preserves_target (test_repository.RepositoryTests.test_maintenance_adapter_rejects_offline_keys_and_preserves_target) ... ok
+test_offline_target_renewal_required_before_expiry (test_repository.RepositoryTests.test_offline_target_renewal_required_before_expiry) ... ok
+test_reused_release_and_tampered_generation_rejected (test_repository.RepositoryTests.test_reused_release_and_tampered_generation_rejected) ... ok
+test_root_rotation_needs_both_signatures_and_preserves_chain (test_repository.RepositoryTests.test_root_rotation_needs_both_signatures_and_preserves_chain) ... ok
+test_expired_online_metadata_renews_empty_channel_and_rejects_bad_trust (test_maintenance.MaintenanceTests.test_expired_online_metadata_renews_empty_channel_and_rejects_bad_trust) ... ERROR
+test_inconsistent_versioned_metadata_is_rejected_without_writes (test_maintenance.MaintenanceTests.test_inconsistent_versioned_metadata_is_rejected_without_writes) ... 
+  test_inconsistent_versioned_metadata_is_rejected_without_writes (test_maintenance.MaintenanceTests.test_inconsistent_versioned_metadata_is_rejected_without_writes) (role='targets', missing=False) ... ERROR
+  test_inconsistent_versioned_metadata_is_rejected_without_writes (test_maintenance.MaintenanceTests.test_inconsistent_versioned_metadata_is_rejected_without_writes) (role='targets', missing=True) ... ERROR
+  test_inconsistent_versioned_metadata_is_rejected_without_writes (test_maintenance.MaintenanceTests.test_inconsistent_versioned_metadata_is_rejected_without_writes) (role='snapshot', missing=False) ... ERROR
+  test_inconsistent_versioned_metadata_is_rejected_without_writes (test_maintenance.MaintenanceTests.test_inconsistent_versioned_metadata_is_rejected_without_writes) (role='snapshot', missing=True) ... ERROR
+
+======================================================================
+ERROR: test_expired_online_metadata_renews_empty_channel_and_rejects_bad_trust (test_maintenance.MaintenanceTests.test_expired_online_metadata_renews_empty_channel_and_rejects_bad_trust)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_maintenance.py", line 18, in test_expired_online_metadata_renews_empty_channel_and_rejects_bad_trust
+    f=Path(d);(f/'1.root.json').write_text(b['root']);(f/'targets.json').write_bytes(t.to_bytes());(f/'snapshot.json').write_bytes(s.to_bytes());(f/'timestamp.json').write_bytes(ts.to_bytes())
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "pathlib\_local.py", line 555, in write_text
+  File "pathlib\_abc.py", line 651, in write_text
+  File "pathlib\_local.py", line 537, in open
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\1\\AppData\\Local\\Temp\\tmpt_d40sry\\1.root.json'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 369, in walk
+PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\1\\AppData\\Local\\Temp\\tmpt_d40sry'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_maintenance.py", line 17, in test_expired_online_metadata_renews_empty_channel_and_rejects_bad_trust
+    with tempfile.TemporaryDirectory() as d:
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "tempfile.py", line 952, in __exit__
+  File "tempfile.py", line 956, in cleanup
+  File "tempfile.py", line 936, in _rmtree
+  File "shutil.py", line 790, in rmtree
+  File "shutil.py", line 613, in _rmtree_unsafe
+  File "<frozen os>", line 372, in walk
+  File "shutil.py", line 611, in onerror
+  File "tempfile.py", line 908, in onexc
+  File "tempfile.py", line 283, in _resetperms
+  File "tempfile.py", line 272, in _dont_follow_symlinks
+PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\1\\AppData\\Local\\Temp\\tmpt_d40sry'
+
+======================================================================
+ERROR: test_inconsistent_versioned_metadata_is_rejected_without_writes (test_maintenance.MaintenanceTests.test_inconsistent_versioned_metadata_is_rejected_without_writes) (role='targets', missing=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_maintenance.py", line 39, in test_inconsistent_versioned_metadata_is_rejected_without_writes
+    f=Path(d);(f/'1.root.json').write_text(b['root'])
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "pathlib\_local.py", line 555, in write_text
+  File "pathlib\_abc.py", line 651, in write_text
+  File "pathlib\_local.py", line 537, in open
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\1\\AppData\\Local\\Temp\\tmpwaym0wx1\\1.root.json'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 369, in walk
+PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\1\\AppData\\Local\\Temp\\tmpwaym0wx1'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_maintenance.py", line 38, in test_inconsistent_versioned_metadata_is_rejected_without_writes
+    with self.subTest(role=role,missing=missing),tempfile.TemporaryDirectory() as d:
+                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "tempfile.py", line 952, in __exit__
+  File "tempfile.py", line 956, in cleanup
+  File "tempfile.py", line 936, in _rmtree
+  File "shutil.py", line 790, in rmtree
+  File "shutil.py", line 613, in _rmtree_unsafe
+  File "<frozen os>", line 372, in walk
+  File "shutil.py", line 611, in onerror
+  File "tempfile.py", line 908, in onexc
+  File "tempfile.py", line 283, in _resetperms
+  File "tempfile.py", line 272, in _dont_follow_symlinks
+PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\1\\AppData\\Local\\Temp\\tmpwaym0wx1'
+
+======================================================================
+ERROR: test_inconsistent_versioned_metadata_is_rejected_without_writes (test_maintenance.MaintenanceTests.test_inconsistent_versioned_metadata_is_rejected_without_writes) (role='targets', missing=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_maintenance.py", line 39, in test_inconsistent_versioned_metadata_is_rejected_without_writes
+    f=Path(d);(f/'1.root.json').write_text(b['root'])
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "pathlib\_local.py", line 555, in write_text
+  File "pathlib\_abc.py", line 651, in write_text
+  File "pathlib\_local.py", line 537, in open
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\1\\AppData\\Local\\Temp\\tmpkqqh35to\\1.root.json'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 369, in walk
+PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\1\\AppData\\Local\\Temp\\tmpkqqh35to'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_maintenance.py", line 38, in test_inconsistent_versioned_metadata_is_rejected_without_writes
+    with self.subTest(role=role,missing=missing),tempfile.TemporaryDirectory() as d:
+                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "tempfile.py", line 952, in __exit__
+  File "tempfile.py", line 956, in cleanup
+  File "tempfile.py", line 936, in _rmtree
+  File "shutil.py", line 790, in rmtree
+  File "shutil.py", line 613, in _rmtree_unsafe
+  File "<frozen os>", line 372, in walk
+  File "shutil.py", line 611, in onerror
+  File "tempfile.py", line 908, in onexc
+  File "tempfile.py", line 283, in _resetperms
+  File "tempfile.py", line 272, in _dont_follow_symlinks
+PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\1\\AppData\\Local\\Temp\\tmpkqqh35to'
+
+======================================================================
+ERROR: test_inconsistent_versioned_metadata_is_rejected_without_writes (test_maintenance.MaintenanceTests.test_inconsistent_versioned_metadata_is_rejected_without_writes) (role='snapshot', missing=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_maintenance.py", line 39, in test_inconsistent_versioned_metadata_is_rejected_without_writes
+    f=Path(d);(f/'1.root.json').write_text(b['root'])
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "pathlib\_local.py", line 555, in write_text
+  File "pathlib\_abc.py", line 651, in write_text
+  File "pathlib\_local.py", line 537, in open
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\1\\AppData\\Local\\Temp\\tmpc7hd_p5i\\1.root.json'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 369, in walk
+PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\1\\AppData\\Local\\Temp\\tmpc7hd_p5i'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_maintenance.py", line 38, in test_inconsistent_versioned_metadata_is_rejected_without_writes
+    with self.subTest(role=role,missing=missing),tempfile.TemporaryDirectory() as d:
+                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "tempfile.py", line 952, in __exit__
+  File "tempfile.py", line 956, in cleanup
+  File "tempfile.py", line 936, in _rmtree
+  File "shutil.py", line 790, in rmtree
+  File "shutil.py", line 613, in _rmtree_unsafe
+  File "<frozen os>", line 372, in walk
+  File "shutil.py", line 611, in onerror
+  File "tempfile.py", line 908, in onexc
+  File "tempfile.py", line 283, in _resetperms
+  File "tempfile.py", line 272, in _dont_follow_symlinks
+PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\1\\AppData\\Local\\Temp\\tmpc7hd_p5i'
+
+======================================================================
+ERROR: test_inconsistent_versioned_metadata_is_rejected_without_writes (test_maintenance.MaintenanceTests.test_inconsistent_versioned_metadata_is_rejected_without_writes) (role='snapshot', missing=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_maintenance.py", line 39, in test_inconsistent_versioned_metadata_is_rejected_without_writes
+    f=Path(d);(f/'1.root.json').write_text(b['root'])
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "pathlib\_local.py", line 555, in write_text
+  File "pathlib\_abc.py", line 651, in write_text
+  File "pathlib\_local.py", line 537, in open
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\1\\AppData\\Local\\Temp\\tmpp99sinej\\1.root.json'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 369, in walk
+PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\1\\AppData\\Local\\Temp\\tmpp99sinej'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_maintenance.py", line 38, in test_inconsistent_versioned_metadata_is_rejected_without_writes
+    with self.subTest(role=role,missing=missing),tempfile.TemporaryDirectory() as d:
+                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "tempfile.py", line 952, in __exit__
+  File "tempfile.py", line 956, in cleanup
+  File "tempfile.py", line 936, in _rmtree
+  File "shutil.py", line 790, in rmtree
+  File "shutil.py", line 613, in _rmtree_unsafe
+  File "<frozen os>", line 372, in walk
+  File "shutil.py", line 611, in onerror
+  File "tempfile.py", line 908, in onexc
+  File "tempfile.py", line 283, in _resetperms
+  File "tempfile.py", line 272, in _dont_follow_symlinks
+PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\1\\AppData\\Local\\Temp\\tmpp99sinej'
+
+----------------------------------------------------------------------
+Ran 45 tests in 26.833s
+
+FAILED (errors=5)

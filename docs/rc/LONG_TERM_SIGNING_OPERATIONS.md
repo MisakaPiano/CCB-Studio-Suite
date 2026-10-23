@@ -1,5 +1,9 @@
 # 长期签名、备份与续签
 
+## 2026-10-23 独立105安装的持续更新复核
+
+邀请105已发布，独立安装自带运行时实际检查通过。已核对在线部署来源并执行[续签run39945483509](https://github.com/MisakaPiano/CCB-Studio-Suite/actions/runs/39945483509)，targets4原字节不变，snapshot/timestamp前进到10，独立客户端实际接受新目录。当前targets到期2027-01-21，root仍到期2027-10-22；建议保留2027-01-13前离线维护的缓冲安排。下文初次部署的版本/未验状态属历史，当前事实见[持续更新记录](../audits/UX_UPDATE_CONTINUITY.md)和[后续发布约束](PREVIEW_UPDATE_CONTINUITY.md)。既有日常定时任务不变，无新密钥或私钥上传。
+
 ## 2026-10-23发行入口迁移
 
 2026-10-23追加只读核验：项目续签run39926210958，event=`schedule`，status=`completed`，conclusion=`success`。自然定时触发已有一次实际证据；下文“尚未到时”属于初次部署时历史状态，不再代表项目当前状态。跨机恢复仍未测，targets/root离线维护责任不变。

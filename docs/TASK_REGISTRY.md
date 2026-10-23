@@ -1,3 +1,7 @@
+## 2026-10-23 独立安装的持续更新已核验
+
+105自带更新运行时实际连接项目签名渠道，续签run39945483509成功且保持105目标原字节，独立客户端接受targets4/snapshot10/timestamp10。最终45项回归通过，连续两次合成换版的固定入口/资料参数保持；已安装547文件重新核验通过。只有测试/运维记录变更，无新应用包、无真实创作调用。后续从现有固定入口使用、在应用内更新；下一份实际发行时补105→新版本原生重启，不冒充已通过。见[证据](audits/UX_UPDATE_CONTINUITY.md)与[持续发布约束](rc/PREVIEW_UPDATE_CONTINUITY.md)。
+
 ## 2026-10-23 独立105安装与清理完成
 
 80项已获精确批准并删除，实际回收15.34GiB。用户随后要求使用版移出源码仓库，当前入口为`H:/CCB-Studio-Suite-Preview/Launch-CCB-Studio.lnk`：独立版本程序、data/workspace与data/runtime已配置，5016资料文件复制/散列匹配、加密凭据可读，547程序文件核验通过；原资料保留为备份，仓库旧入口retired。`.local/ACTIVE_STUDIO_INSTALLATION.json`已更新，禁止误清理其活动路径及备份字段。迁移后H盘约14.79GiB可用，未调用真实服务、未上传私人资料/凭据，原生界面启动未测。见[实际接入与清理记录](audits/UX_LOCAL_PROFILE_AND_CLEANUP.md)。

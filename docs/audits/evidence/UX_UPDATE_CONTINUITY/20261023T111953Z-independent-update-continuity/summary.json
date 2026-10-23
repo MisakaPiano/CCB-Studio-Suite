@@ -1,0 +1,20 @@
+{
+  "status": "FAILED",
+  "tests": 45,
+  "failures": 0,
+  "errors": 5,
+  "skipped": 0,
+  "seconds": 26.834,
+  "sourceStable": true,
+  "baseCommit": "5dd18b75794c3b0d0872920f1920f1c06179b68d",
+  "runtimeUnderTest": "Exact four modules from installed independent105",
+  "runtimeModules": {
+    "studio_update": "10b9719f4ad777847d25bc159727fe8cd1954cdafdee6f24e955c8b52e65211a",
+    "apply_update": "9d87523638ea7728ee71e194cb40fc7b10860b493f8196696c66e31de55534bf",
+    "install_ops": "3faf7342ecb50d054a21354402e45077570eef689a363c94425dabe987f2b0f4",
+    "github_transport": "93c0e136239b111948c169224d101045a2d22c80324b52d59838c70381b73c0d"
+  },
+  "syntheticOnly": true,
+  "native105To106": "NOT TESTED; no new version published",
+  "realProviderCalls": 0
+}

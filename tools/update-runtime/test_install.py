@@ -33,6 +33,19 @@ class InstallTests(unittest.TestCase):
         final,journal,record=self.install();self.assertTrue(final.exists());self.assertFalse(Path(record['stage']).exists())
         self.assertEqual(json.loads(journal.read_text())['status'],'INSTALLED_NOT_STARTED');self.retained()
 
+    def test_independent_install_parent_may_contain_data_without_treating_it_as_program(self):
+        self.old=self.path/'independent-preview/old';self.old.mkdir(parents=True)
+        (self.old/'retain.txt').write_bytes(b'old installation retained')
+        self.data=self.old.parent/'data/workspace';self.data.mkdir(parents=True)
+        (self.data/'original.bin').write_bytes(b'unique original')
+        runtime=self.old.parent/'data/runtime';runtime.mkdir(parents=True)
+        (runtime/'settings.json').write_bytes(b'synthetic runtime configuration')
+        final,journal,record=self.install()
+        self.assertEqual(final.parent,self.old.parent)
+        self.assertFalse(final.is_relative_to(self.data))
+        self.assertEqual((runtime/'settings.json').read_bytes(),b'synthetic runtime configuration')
+        self.assertEqual(record['status'],'INSTALLED_NOT_STARTED');self.retained()
+
     def test_tampered_executable_is_never_executed(self):
         self.exe.write_bytes(b'tampered');called=[]
         with self.assertRaises(Exception):self.install(lambda *_:called.append(True))

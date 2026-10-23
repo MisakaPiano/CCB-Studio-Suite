@@ -111,9 +111,9 @@ class ClientTests(unittest.TestCase):
         source=Path(__file__).parent
         code="import sys;from pathlib import Path;sys.path.insert(0,sys.argv[1]);from studio_update import exclusive;\nwith exclusive(Path(sys.argv[2])): print('ACQUIRED')"
         with exclusive(self.path):
-            result=subprocess.run([sys.executable,'-c',code,str(source),str(self.path)],capture_output=True,text=True)
+            result=subprocess.run([sys.executable,'-B','-c',code,str(source),str(self.path)],capture_output=True,text=True)
             self.assertNotEqual(result.returncode,0);self.assertNotIn('ACQUIRED',result.stdout)
-        result=subprocess.run([sys.executable,'-c',code,str(source),str(self.path)],capture_output=True,text=True)
+        result=subprocess.run([sys.executable,'-B','-c',code,str(source),str(self.path)],capture_output=True,text=True)
         self.assertEqual(result.returncode,0);self.assertIn('ACQUIRED',result.stdout)
 
     def test_installed_root_hash_and_endpoint_are_required(self):

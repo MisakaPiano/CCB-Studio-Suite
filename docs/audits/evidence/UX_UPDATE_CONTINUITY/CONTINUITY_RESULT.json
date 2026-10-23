@@ -1,0 +1,57 @@
+{
+  "status": "PASS_WITH_SCOPE",
+  "installedVersion": 105,
+  "sourceSha": "a416a820955a720181cb97c33131a3c4890bb786",
+  "installation": {
+    "files": 547,
+    "bytes": 252015320,
+    "manifestSha256": "c96b6df407c6f8eb063359c716e005f3b6d5057ec33e308e9d8d1ca1a7fbeef7"
+  },
+  "updaterSelfContained": true,
+  "metadataVersionsAccepted": {
+    "targets": 4,
+    "snapshot": 10,
+    "timestamp": 10
+  },
+  "previewRepository": "MisakaPiano/CCB-Studio-Suite",
+  "metadataBranch": "long-term-metadata",
+  "stableLauncher": "H:\\CCB-Studio-Suite-Preview\\Launch-CCB-Studio.lnk",
+  "ordinaryRuntimeAndCredentialsNotModified": true,
+  "updaterMetadataCacheUpdated": true,
+  "realProviderCalls": 0,
+  "native105To106": "NOT TESTED; next actual release not published",
+  "regressionAttempts": [
+    {
+      "run": "20261023T111953Z-independent-update-continuity",
+      "status": "FAILED",
+      "tests": 45,
+      "failures": 0,
+      "errors": 5,
+      "skipped": 0
+    },
+    {
+      "run": "20261023T112214Z-independent-update-continuity",
+      "status": "FAILED",
+      "tests": 45,
+      "failures": 0,
+      "errors": 5,
+      "skipped": 0
+    },
+    {
+      "run": "20261023T112324Z-independent-update-continuity",
+      "status": "PASS",
+      "tests": 45,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "run": "20261023T112707Z-independent-update-continuity",
+      "status": "PASS",
+      "tests": 45,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "conclusion": "success",
+  "id": 39945483509,
+  "url": "https://github.com/MisakaPiano/CCB-Studio-Suite/actions/runs/39945483509",
+  "event": "workflow_dispatch",
+  "targetPreserved": true,
+  "before": {
+    "head": "c3e368307088f5c18acc1779a7ee2097a047a8db",
+    "targetVersion": 105,
+    "targetsSha256": "ee8c3d422af853d4e3b19ab86b60b03bb4320134ac6d56badffd47e25caac7af",
+    "versions": {
+      "targets": 4,
+      "snapshot": 9,
+      "timestamp": 9
+    },
+    "expires": {
+      "targets": "2027-01-21T09:33:22+00:00",
+      "snapshot": "2026-11-06T09:33:22+00:00",
+      "timestamp": "2026-10-30T09:33:22+00:00"
+    },
+    "rootExpires": "2027-10-22T10:47:53+00:00"
+  },
+  "after": {
+    "head": "7c3f255555517573aa1fb25aa721cb3d8f417003",
+    "targetVersion": 105,
+    "targetsSha256": "ee8c3d422af853d4e3b19ab86b60b03bb4320134ac6d56badffd47e25caac7af",
+    "versions": {
+      "targets": 4,
+      "snapshot": 10,
+      "timestamp": 10
+    },
+    "expires": {
+      "targets": "2027-01-21T09:33:22+00:00",
+      "snapshot": "2026-11-06T11:21:52+00:00",
+      "timestamp": "2026-10-30T11:21:52+00:00"
+    },
+    "rootExpires": "2027-10-22T10:47:53+00:00"
+  }
+}
