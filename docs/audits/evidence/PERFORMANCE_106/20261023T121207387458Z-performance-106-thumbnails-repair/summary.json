@@ -1,0 +1,28 @@
+{
+  "phase": "performance-106-thumbnails-repair",
+  "startedUtc": "2026-10-23T12:12:07.952052+00:00",
+  "seconds": 21.63,
+  "exitCode": 0,
+  "tests": 5,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:test",
+    "--tests",
+    "*StaticThumbnailTest"
+  ],
+  "baseCommit": "87c35dd003fa2ecab02f7f1c58597d6bbe7dfc15",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

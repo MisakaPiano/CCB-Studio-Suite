@@ -228,7 +228,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
                                     .onPointerEvent(PointerEventType.Press){event->ctrl=event.keyboardModifiers.isCtrlPressed;shift=event.keyboardModifiers.isShiftPressed;if(event.buttons.isSecondaryPressed){if(!selected)c.selection=albumIds.toSet();c.current=id;focus.requestFocus()}}
                                     .combinedClickable(onClick={choose()},onDoubleClick={if(grouped)enter()else{c.current=id;g.preview(visibleIds,id)}})) {
                                     Box(Modifier.fillMaxWidth().height(115.dp).semantics{contentDescription=if(grouped)"图库相册 $id"else"图库图片 $id"}) {
-                                        AssetImage(c,id,Modifier.fillMaxSize())
+                                        GalleryStaticThumbnail(c,id,Modifier.fillMaxSize())
                                         if(grouped)Box(Modifier.fillMaxWidth().height(4.dp).background(Gold).align(Alignment.TopCenter))
                                         if(grouped)Text("${album.images.size} 张",Modifier.align(Alignment.TopEnd).background(Panel).padding(4.dp))
                                     }

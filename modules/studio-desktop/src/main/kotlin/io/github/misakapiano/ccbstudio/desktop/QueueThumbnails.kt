@@ -10,19 +10,10 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
 
-/** Static, bounded queue thumbnails: no per-card animation players or full-result cache. */
+/** Queue and gallery share the same bounded static derivatives. */
 internal object QueueThumbnailLoader {
-    private val permits=Semaphore(2)
-    suspend fun load(c:WorkbenchController,id:String):ImageBitmap=permits.withPermit {
-        withContext(Dispatchers.IO){
-            currentCoroutineContext().ensureActive()
-            val image=DesktopImageEditing.decode(c.workspace.bytes(id),longestSide=128)
-            try{image.toComposeImageBitmap()}finally{image.flush()}
-        }
-    }
+    suspend fun load(c:WorkbenchController,id:String):ImageBitmap=c.thumbnails.load(id)
 }
 @Composable internal fun QueueStaticThumbnail(c:WorkbenchController,id:String,modifier:Modifier=Modifier) {
-    val bitmap by produceState<ImageBitmap?>(null,id){try{value=QueueThumbnailLoader.load(c,id)}catch(e:CancellationException){throw e}catch(e:Exception){value=null}}
-    Box(modifier,contentAlignment=Alignment.Center){bitmap?.let{Image(it,"队列静态缩略图",Modifier.fillMaxSize())}?:TextPlaceholder()}
+    GalleryStaticThumbnail(c,id,modifier)
 }
-@Composable private fun TextPlaceholder(){androidx.compose.material.Text("…",color=Quiet)}

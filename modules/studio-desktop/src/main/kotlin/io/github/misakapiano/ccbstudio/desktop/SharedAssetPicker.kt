@@ -28,7 +28,7 @@ import com.example.chatbar.desktop.*
                         .clickable{selected=if(multiple){if(id in selected)selected-id else selected+id}else setOf(id)}
                         .semantics{contentDescription="选用资产 $id";this.selected=id in selected}) {
                         val labels=c.library.labels(id)
-                        AssetImage(c,id,Modifier.fillMaxWidth().height(100.dp));Text(labels.alias.ifBlank{a.request().name()},maxLines=2)
+                        GalleryStaticThumbnail(c,id,Modifier.fillMaxWidth().height(100.dp));Text(labels.alias.ifBlank{a.request().name()},maxLines=2)
                         if(labels.tags.isNotEmpty())Text(labels.tags.joinToString(" · "),maxLines=2,style=MaterialTheme.typography.caption)
                     }
                 }

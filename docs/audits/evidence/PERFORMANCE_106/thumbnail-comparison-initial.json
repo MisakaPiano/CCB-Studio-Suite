@@ -1,0 +1,41 @@
+{
+    "syntheticOnly": true,
+    "images": 24,
+    "format": "PNG",
+    "sourceWidth": 1536,
+    "sourceHeight": 2048,
+    "eachEncodedBytes": 370985,
+    "java": "17.0.20.1",
+    "os": "Windows 10",
+    "processors": 2,
+    "heapLimitBytes": 268435456,
+    "warmAdditionalReads": 0,
+    "measurements": [
+        {
+            "phase": "old-static-decoder-1600-cold",
+            "wallMs": 1714,
+            "processCpuMs": 2828,
+            "retainedDecodedPixelsBytes": 75497472,
+            "processRss": "NOT MEASURED",
+            "scope": "derivative decode/cache only, not full UI latency"
+        },
+        {
+            "phase": "new-static-256-cold",
+            "wallMs": 270,
+            "processCpuMs": 546,
+            "retainedDecodedPixelsBytes": 4718592,
+            "processRss": "NOT MEASURED",
+            "scope": "derivative decode/cache only, not full UI latency"
+        },
+        {
+            "phase": "new-static-256-warm-10-visits",
+            "wallMs": 0,
+            "processCpuMs": 0,
+            "retainedDecodedPixelsBytes": 4718592,
+            "processRss": "NOT MEASURED",
+            "scope": "derivative decode/cache only, not full UI latency"
+        }
+    ],
+    "humanAcceptance": "NOT TESTED",
+    "largePrivateCorpus": "NOT TESTED"
+}

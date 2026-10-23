@@ -1,0 +1,32 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StaticThumbnailTest",
+    "name": "syntheticTwentyFourCardResourceComparison",
+    "seconds": "2.497",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StaticThumbnailTest",
+    "name": "concurrentCardsShareDecodeAndCacheWhileBudgetEvictsLeastRecentlyUsed",
+    "seconds": "0.07",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StaticThumbnailTest",
+    "name": "cancellationDrainsDecodersDoesNotCacheFailuresAndCanResume",
+    "seconds": "0.063",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StaticThumbnailTest",
+    "name": "unsubscribingLastCardCancelsQueuedWorkAndFallbackRasterIsBounded",
+    "seconds": "0.036",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StaticThumbnailTest",
+    "name": "animatedSourcesUseStaticCoverAndNeverRewriteSourceBytes",
+    "seconds": "0.431",
+    "status": "PASS"
+  }
+]

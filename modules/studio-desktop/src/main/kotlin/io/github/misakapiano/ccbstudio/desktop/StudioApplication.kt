@@ -31,6 +31,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     val runtimeRoot:Path=budgetRoot.parent
     val backups by lazy{LibraryBackupController(this)}
     val gallery = GalleryViewState()
+    val thumbnails=StaticThumbnailStore(scope,workspace::bytes)
     val library by lazy{LibraryController(this)}
     val updater=StudioUpdateController(scope,budgetRoot.parent.resolve("updates"))
     var maintenance by mutableStateOf(false);private set
@@ -405,14 +406,14 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     }
     suspend fun enterMaintenance() {
         if(modelAccounts.dirty)throw DataProblem("ACCOUNT_DRAFT_UNSAVED","账户档案尚未保存，请在账户页保存或放弃修改后再关闭/更新")
-        maintenance=true;message="正在停止接收新操作并保存、排水…"
+        maintenance=true;thumbnails.pauseAndDrain();message="正在停止接收新操作并保存、排水…"
         modelAccounts.cancel()
         naiSettings.cancelAndDrain()
         animation.cancelAndDrain()
         library.cancelAndDrain()
         active?.cancelAndJoin();pending?.cancelAndJoin();editor.drain();flush()
     }
-    fun resumeAfterPreflightFailure() {workspace.state;check(active?.isActive!=true);maintenance=false;message="更新未开始安装；工作区仍可继续使用"}
+    fun resumeAfterPreflightFailure() {workspace.state;check(active?.isActive!=true);thumbnails.resume();maintenance=false;message="更新未开始安装；工作区仍可继续使用"}
     suspend fun close() {updater.closeAndDrain();enterMaintenance();infrastructure.closeAndDrain();withContext(Dispatchers.IO){workspace.close()};http.dispatcher.executorService.shutdown();http.connectionPool.evictAll()}
 }
 

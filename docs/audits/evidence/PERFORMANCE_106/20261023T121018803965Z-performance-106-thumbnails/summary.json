@@ -1,0 +1,28 @@
+{
+  "phase": "performance-106-thumbnails",
+  "startedUtc": "2026-10-23T12:10:26.397236+00:00",
+  "seconds": 71.899,
+  "exitCode": 1,
+  "tests": 1,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "FAILED",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:test",
+    "--tests",
+    "*StaticThumbnailTest"
+  ],
+  "baseCommit": "87c35dd003fa2ecab02f7f1c58597d6bbe7dfc15",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

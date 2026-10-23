@@ -108,7 +108,7 @@ import kotlinx.coroutines.*
                                 .onPointerEvent(PointerEventType.Press){ctrl=it.keyboardModifiers.isCtrlPressed;shift=it.keyboardModifiers.isShiftPressed}
                                 .combinedClickable(onClick={choose()},onDoubleClick={if(grouped)choose()else if(id in images)g.preview(ids.filter{it in images},id)})) {
                                 Box(Modifier.size(64.dp).semantics{contentDescription="回收站资产 $id"}) {
-                                    if(id in images)AssetImage(c,id,Modifier.fillMaxSize())else Text(if(a.request().project().decodeToString()==LibraryRepository.PROMPT)"Prompt"else"文档",Modifier.align(Alignment.Center))
+                                    if(id in images)GalleryStaticThumbnail(c,id,Modifier.fillMaxSize())else Text(if(a.request().project().decodeToString()==LibraryRepository.PROMPT)"Prompt"else"文档",Modifier.align(Alignment.Center))
                                     if(grouped)Text("${album.images.size} 项",Modifier.align(Alignment.TopEnd).background(Panel))
                                 }
                                 Column(Modifier.weight(1f).padding(start=10.dp),verticalArrangement=Arrangement.spacedBy(3.dp)) {
