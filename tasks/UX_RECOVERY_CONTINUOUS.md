@@ -1,5 +1,9 @@
 # UX恢复连续实施授权
 
+### 2026-10-23 导入/队列新包回执与明确推送许可
+
+用户对fe9e821固定包确认导入明显改善、阶段和用时清楚，队列及指定布局正常；只签收题目所列范围。随后直接答复“允许推送到上述现有分支”，批准将fe9e821对应Suite源码、文档与合成证据推到https://github.com/MisakaPiano/CCB-Studio-Suite的feature/windows-rc-continuous；排除私人图片/Prompt/凭据，不合并main、不发布Release。详见docs/audits/evidence/UX_IMPORT_QUEUE_LAYOUT/HUMAN_ACCEPTANCE.json。性能长期专项和重点多Prompt待验继续保留。
+
 ### 2026-10-23 找回反馈后的导入性能与队列/布局
 
 用户确认从本聊天找回的旧反馈原文，并明确要求优先查清24图导入十分钟、同时完善布局与队列功能，需要人工测试时通知；允许其他页面类似组织问题一并优化。范围包括合成基线/改后性能对照、可恢复入库/目录副本、队列多选及移除、常用复制按功能/对象组织、明确展开标记、左上返回、紧凑搜索与日历。仍仅Suite/合成验证/新本地包，不读私人图库/凭据、不调用真实服务、不改Desktop、不发布新Release；见docs/audits/UX_IMPORT_QUEUE_LAYOUT.md。

@@ -45,4 +45,10 @@
 
 新包`.local/windows-rc/import-queue-layout-review/application`220个文件逐项大小/SHA与最终构建相同，modules/tools完全匹配最后source-before。快捷方式`Start-import-queue-layout-review.lnk`目标/工作目录/旧测试资料参数/`--pause-collections`已回读；旧包保留，没有启动第二实例、读取/复制用户workspace/runtime或重扫原大目录。inputs复用已知合成album-A/album-B、24图apng-batch及两张封面；另有空paste-receiver/exports。
 
-下一动作：正常关闭旧窗口后用新快捷方式，仅导入合成apng-batch一次，记录总用时/阶段反馈/切页响应；随后检验勾选多项、子集复制、移除不删图库、常用复制直达/分区、图库日历与长搜索窗口。此前两组基础PASS保留，不重做真实生成或原大目录。新功能与PERF-001真实库速度仍HUMAN_PENDING，PRODUCT_HOLD / NOT RC。
+## 固定包限定人工回执（2026-10-23）
+
+用户对fe9e821包两组检查分别回复“明显改善，阶段和用时清楚”“队列和这些布局都正常”。本轮导入改善与阶段/计数/用时反馈、所选处理文件复制到指定接收目录、移除所选保留图库原件、常用复制直达/展开分区、左上返回/紧凑搜索及独立长搜索、日历和深色右键限定通过。见evidence/UX_IMPORT_QUEUE_LAYOUT/HUMAN_ACCEPTANCE.json。用户未提供精确人工耗时，不把合成8729ms当作人工结果，也不把未单独要求的停止/重开/其他接收端算入本轮签收。前文人工待验说明保留为交包时历史状态，以本节为该指定检查组最新状态。
+
+用户另明确批准将fe9e821及对应Suite源码/文档/合成证据推送到现有MisakaPiano/CCB-Studio-Suite的feature/windows-rc-continuous；不含私人资料，不合并main、不发布Release。
+
+下一动作：按重点独立清单准备多来源Prompt比较验收；性能专项继续建立PERF-002/003/007基线。本回执不关闭长期专项，不重扫原大目录、不调用真实服务；完整交付/恢复等未验项保持，PRODUCT_HOLD / NOT RC。

@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-23",
+  "timezone": "Asia/Tokyo",
+  "reviewedCommit": "fe9e8219b4547817a500df6ef633a1b43c651ae8",
+  "reviewedPackage": "PACKAGE_FILES.json",
+  "reviewedBuildEvidence": "20261023T014856925977Z-import-queue-compact-final",
+  "source": "Explicit replies in this chat to the fixed import-queue-layout-review package checks",
+  "userReplies": [
+    "明显改善，阶段和用时清楚",
+    "队列和这些布局都正常"
+  ],
+  "accepted": [
+    "Synthetic 24-image manual import visibly improved; stage/count and total duration feedback clear",
+    "Selected queue results copy to the supplied paste receiver; selected removal affects tool queue only and preserves gallery originals",
+    "Direct copy actions and marked expanding sections; gallery top-left back and compact top-right search with expanded window",
+    "Calendar and dark context menu in the specified package checks"
+  ],
+  "limits": [
+    "No numeric manual import duration supplied; synthetic automated timings remain separate",
+    "No full-application responsiveness or CPU/memory/disk baseline acceptance",
+    "Original large-directory collection remains paused; no bulk scan or full integrity acceptance",
+    "No all-receiver APNG compatibility, full editing/delivery/restore chain or dedicated multi-source Prompt comparison acceptance",
+    "No actual AI design/apply/generate provenance chain or invitation RC acceptance"
+  ],
+  "pushAuthorization": {
+    "repository": "https://github.com/MisakaPiano/CCB-Studio-Suite",
+    "branch": "feature/windows-rc-continuous",
+    "commit": "fe9e8219b4547817a500df6ef633a1b43c651ae8",
+    "userReply": "允许推送到上述现有分支",
+    "scope": "Suite source, documentation and synthetic evidence; excludes private images, prompts and credentials; no main merge or Release"
+  }
+}

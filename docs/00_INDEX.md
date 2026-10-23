@@ -1,6 +1,6 @@
 ## 2026-10-23 导入性能、队列与紧凑页面新包
 
-用户已限定确认aaf98b4包两组pass；另报3图约1分钟/24图约10分钟及布局/队列问题，现已处理并保留原回执。合成80旧图+24新图基线39.919秒，首次优化10.610秒、最终8.729秒；不外推真实库。存储/核心42项及最终桌面20项各轮限定证据见[记录](audits/UX_IMPORT_QUEUE_LAYOUT.md)。新包`.local/windows-rc/import-queue-layout-review/Start-import-queue-layout-review.lnk`220文件核验，继续暂停收集；新队列多选/子集复制/移除、日历/长搜索与真实导入速度待人工。性能资源专项独立维护PERF-001–007，多Prompt重点仍单列，PRODUCT_HOLD / NOT RC。
+用户已限定确认aaf98b4包两组pass；另报3图约1分钟/24图约10分钟及布局/队列问题，现已处理并保留原回执。合成80旧图+24新图基线39.919秒，首次优化10.610秒、最终8.729秒；不外推真实库。存储/核心42项及最终桌面20项各轮限定证据见[记录](audits/UX_IMPORT_QUEUE_LAYOUT.md)。新包`.local/windows-rc/import-queue-layout-review/Start-import-queue-layout-review.lnk`220文件核验，继续暂停收集；用户已对fe9e821新包回复“明显改善，阶段和用时清楚”“队列和这些布局都正常”，限定签收导入改善/阶段反馈及队列/本轮布局，见[回执](audits/evidence/UX_IMPORT_QUEUE_LAYOUT/HUMAN_ACCEPTANCE.json)；未提供人工精确耗时，不外推全程序资源或大库。性能资源专项独立维护PERF-001–007，多Prompt重点仍单列，PRODUCT_HOLD / NOT RC。
 
 ## 2026-10-23 长期性能与资源专项
 
