@@ -1,3 +1,7 @@
+## 2026-10-24 日常安装目录已改名为 App
+
+用户明确授权清理旧App并将Preview改名。旧`H:/CCB-Studio-Suite-App`为0.1.0测试程序，280文件全部符合打包清单（无额外资料），删除123851480字节；原Preview已改名到该路径。新固定入口`H:/CCB-Studio-Suite-App/Launch-CCB-Studio.lnk`，现指111；7362份资料/凭据/程序等文件逐字节散列不变，仅更新根快捷方式/README/活动记录。`.local/ACTIVE_STUDIO_INSTALLATION.json`及新根活动记录已修正，**新App是活动安装，禁止再按旧包清理**。实际新路径111签名检查可发现112，未下载/安装/启动日常UI。见[本机迁移记录](audits/UX_LOCAL_PROFILE_AND_CLEANUP.md)。后续从新入口正常使用并更新；历史交接回执原字节保留。
+
 ## 2026-10-24 Preview112：批次历史与安全停止已发布
 
 [112更新](https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.112)已签入原更新渠道，应用/组装acf71fc已推送。40项冻结实际回归通过；暂停和结束均保留已发送请求的响应，暂停可继续、结束不可直接继续。新增独立多步撤销/重做、完整底部工具对应右键入口及键盘导航。550文件安装、实际107合成资料→112原生交接回执/测试固定入口、公开下载和112已是最新检查通过；父进程排水在探针中为明确替身，日常真人更新及新原生交互未代签。见[实现/证据](audits/UX_BATCH_HISTORY_112.md)。429整批手动恢复和冷却保留，Prompt继续PENDING，无真实生成，日常安装未自动切换。
