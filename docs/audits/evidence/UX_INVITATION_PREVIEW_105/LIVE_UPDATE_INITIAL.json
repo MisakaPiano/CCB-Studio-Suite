@@ -1,0 +1,14 @@
+{
+  "status": "BLOCKED_BY_DISK_SPACE_NOT_CRYPTOGRAPHY",
+  "targetVersion": 105,
+  "signatureAndTargetIdentity": "PASS",
+  "stageDownload": "NOT EXECUTED: disk-space guard rejected before payload download",
+  "fresh105Install": "PASS: see INSTALLER_SMOKE.json",
+  "native104to105": "NOT TESTED",
+  "remainingSpaceMiB": {
+    "H": 174,
+    "C": 560
+  },
+  "privateDataRead": false,
+  "existingWorkspaceModified": false
+}

@@ -1,3 +1,7 @@
+## 2026-10-23 Preview 105 已发布
+
+状态 **INVITED_PREVIEW_PUBLISHED / NOT RC**。[邀请Preview105](https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.105)与现有签名更新渠道已上线。组装源码a416a82（应用6755068），57项最终合成回归、547文件新目录安装/拒绝覆盖通过；公开完整安装器流式下载及105已是最新检查通过。额外104→105本地分段下载/安装演练初次因磁盘空间保护停止，未验不记通过，清理本轮两处临时产物待用户答复。用户明确附加编辑/排版等人工后置，不再安排当前电脑操作；Prompt新设计PENDING。见[实际发布与证据](audits/UX_INVITATION_PREVIEW_105.md)。main、Desktop/upstream、旧桥接渠道未改，私人资料未读。
+
 ## 2026-10-23 邀请 Preview 优先收尾
 
 用户要求多来源 Prompt 工作台设计先 **PENDING / 邀请后续做**，本轮优先完成邀请 Preview；既有功能保留，不代签完整比较专项。用户补充确认 AI 设计→应用→生图已试过，正常重开后图片、Prompt/模型/参数保留。用户随后明确离开电脑期间不再人工，以生图/图库为核心尽快发布实验Preview；编辑交付/恢复等附加人工后置为已知待验。当前剩余最新安装/更新自动验证及发行材料，见[Preview 收尾范围](rc/INVITATION_PREVIEW_105.md)。此前已通过图库/标签/磁贴等项目不重测；未发布前仍为 PRODUCT_HOLD / NOT RC。

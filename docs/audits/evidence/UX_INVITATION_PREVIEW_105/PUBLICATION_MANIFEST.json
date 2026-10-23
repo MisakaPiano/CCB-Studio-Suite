@@ -1,0 +1,51 @@
+{
+  "status": "READY_NOT_PUBLISHED",
+  "sourceSha": "a416a820955a720181cb97c33131a3c4890bb786",
+  "installer": {
+    "task": "UX-R4",
+    "status": "BUILT",
+    "sourceSha": "a416a820955a720181cb97c33131a3c4890bb786",
+    "appBuildSourceSha": "67550683936c5e644eb4958cb0e167495f22c649",
+    "version": 105,
+    "channel": "preview",
+    "displayVersion": "0.0.0-preview.105",
+    "compiler": "NSIS3.13",
+    "exitCode": 0,
+    "files": 547,
+    "installed": "NOT TESTED",
+    "bytes": 168194459,
+    "sha256": "afee8e329636e7ab1e71013c38e397295a377962fc9a060385ed67641901e336"
+  },
+  "installation": {
+    "status": "PASS",
+    "version": 105,
+    "source": "a416a820955a720181cb97c33131a3c4890bb786",
+    "appBuildSource": "67550683936c5e644eb4958cb0e167495f22c649",
+    "installerSha256": "afee8e329636e7ab1e71013c38e397295a377962fc9a060385ed67641901e336",
+    "installation": {
+      "files": 547,
+      "bytes": 252015320,
+      "manifestSha256": "c96b6df407c6f8eb063359c716e005f3b6d5057ec33e308e9d8d1ca1a7fbeef7"
+    },
+    "actualInstalledFileCount": 550,
+    "existingDirectoryRejected": 17,
+    "existingFilesUnchanged": true,
+    "nativeUserAcceptance": "NOT TESTED",
+    "publicRelease": "NOT PUBLISHED"
+  },
+  "noticesEntries": 100,
+  "assets": {
+    "CCB-Studio-Suite-0.0.0-preview.105-windows-x64.exe": {
+      "bytes": 168194459,
+      "sha256": "afee8e329636e7ab1e71013c38e397295a377962fc9a060385ed67641901e336"
+    },
+    "RELEASE_NOTES.md": {
+      "bytes": 3907,
+      "sha256": "88104f7337cc0d02d82152fe192fc8d25a59b1522c07640b7c34222b44047acf"
+    },
+    "THIRD_PARTY_NOTICES.zip": {
+      "bytes": 184287,
+      "sha256": "7310c0dc2de9588c360329b27a81691483d30c36a7e15adfdf55fd15ca1dbe9c"
+    }
+  }
+}

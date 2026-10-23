@@ -1,6 +1,8 @@
 # 0.0.0-preview.105 邀请 Preview 收尾
 
-状态：准备中，尚未发布。Windows x86_64 小范围邀请测试，不是稳定版或完整日常版。
+状态：**INVITED_PREVIEW_PUBLISHED / NOT RC**。[Preview 105 已发布](https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.105)，Windows x86_64 小范围邀请测试，不是稳定版或完整日常版。
+
+组装源码a416a820955a720181cb97c33131a3c4890bb786，应用构建67550683936c5e644eb4958cb0e167495f22c649。57项最终自动回归、547文件新目录安装与拒绝覆盖已通过；安装器168194459字节，SHA256为afee8e329636e7ab1e71013c38e397295a377962fc9a060385ed67641901e336。现有long-term-metadata已签名指向105，main及旧桥接渠道未变。[实际证据](../audits/UX_INVITATION_PREVIEW_105.md)。
 
 **最新用户范围决定：** 用户即将离开电脑，明确要求短时间不安排人工测试；以生图和图库管理为核心，其他附加功能可以先发布后逐步修复，重点保证发布后持续更新。因此下列编辑/排版等连贯人工步骤后置为已知待验，不再阻断本次实验邀请 Preview。自动资料安全、安装及更新链核验仍完成，不能将后置项目记为通过。
 
