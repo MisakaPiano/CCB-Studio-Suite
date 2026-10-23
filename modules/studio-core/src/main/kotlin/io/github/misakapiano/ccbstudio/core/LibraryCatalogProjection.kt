@@ -1,0 +1,41 @@
+package io.github.misakapiano.ccbstudio.core
+
+import com.example.chatbar.domain.image.*
+import com.example.chatbar.ui.imageprompt.*
+import io.github.misakapiano.ccbstudio.assets.AssetStore
+import kotlinx.serialization.json.*
+import java.time.*
+
+/** Metadata-only projection. Unknown dates remain unknown; no filesystem lookup or guessed defaults. */
+fun libraryRecordedTimes(assets:List<AssetStore.Asset>,jobs:List<JobRecord>):Map<String,Long> {
+    val imported=assets.mapNotNull{a->runCatching {
+        if(a.request().recipe().size>16384)return@runCatching null
+        val receipt=Json.parseToJsonElement(a.request().recipe().decodeToString()).jsonObject
+        if(receipt["kind"]?.jsonPrimitive?.content!="image-ingress" || receipt["version"]?.jsonPrimitive?.intOrNull!=1)return@runCatching null
+        a.request().id().toString() to requireNotNull(receipt["createdAt"]?.jsonPrimitive?.longOrNull)
+    }.getOrNull()}.toMap()
+    return imported+jobs.flatMap{job->(job.results+job.composedResults).map{it to job.createdAt}}.toMap()
+}
+fun libraryDateMatches(timestamp:Long?,date:String):Boolean {
+    val filter=galleryDateFilter(date)?:return true
+    timestamp?:return false
+    val (year,month,day)=NovelAiHistoryFilterPolicy.dateParts(timestamp)
+    return year==filter.year && when(filter.granularity){
+        NovelAiHistoryDateGranularity.YEAR->true
+        NovelAiHistoryDateGranularity.MONTH->month==filter.month
+        NovelAiHistoryDateGranularity.DAY->month==filter.month&&day==filter.day
+    }
+}
+fun libraryRecordedDay(timestamp:Long?)=timestamp?.let{Instant.ofEpochMilli(it).atZone(ZoneId.systemDefault()).toLocalDate().toString()}.orEmpty()
+
+fun galleryTagAlbums(ids:List<String>,labels:Map<String,AssetLabels>):List<NovelAiHistoryAlbum> {
+    val groups=linkedMapOf<String,MutableList<NovelAiHistoryImageItem>>()
+    ids.distinct().forEach{id->
+        labels[id]?.tags.orEmpty().ifEmpty{listOf("")}.forEach{tag->
+            val image=NovelAiGenerationHistoryImage(path=id)
+            val item=NovelAiHistoryImageItem(NovelAiGenerationHistoryEntry(id="tag:${sha256(tag.toByteArray())}:$id",images=listOf(image)),image,0)
+            groups.getOrPut(tag){mutableListOf()}.add(item)
+        }
+    }
+    return groups.map{(tag,images)->NovelAiHistoryAlbum(images,tag.ifEmpty{"未标记（无标签）"})}
+}

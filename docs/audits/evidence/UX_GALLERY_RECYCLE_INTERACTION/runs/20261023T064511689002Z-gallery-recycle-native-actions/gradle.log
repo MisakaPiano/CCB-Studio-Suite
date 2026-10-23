@@ -1,0 +1,77 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :asset-library:compileJava UP-TO-DATE
+> Task :image-authority:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :image-authority:compileKotlin UP-TO-DATE
+> Task :image-authority:compileJava NO-SOURCE
+> Task :studio-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-core:compileKotlin UP-TO-DATE
+> Task :studio-core:compileJava NO-SOURCE
+> Task :studio-core:processResources UP-TO-DATE
+> Task :studio-core:classes UP-TO-DATE
+> Task :studio-core:jar UP-TO-DATE
+> Task :studio-desktop:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-desktop:convertXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:copyNonXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:prepareComposeResourcesTaskForMain NO-SOURCE
+> Task :studio-desktop:generateResourceAccessorsForMain SKIPPED
+> Task :studio-desktop:generateActualResourceCollectorsForMain SKIPPED
+> Task :studio-desktop:generateComposeResClass SKIPPED
+> Task :studio-desktop:compileKotlin
+> Task :studio-desktop:compileJava NO-SOURCE
+> Task :studio-desktop:assembleMainResources UP-TO-DATE
+> Task :studio-desktop:processResources UP-TO-DATE
+> Task :studio-desktop:classes UP-TO-DATE
+> Task :studio-desktop:jar
+> Task :asset-library:processResources NO-SOURCE
+> Task :asset-library:classes UP-TO-DATE
+> Task :asset-library:jar UP-TO-DATE
+> Task :image-authority:processResources NO-SOURCE
+> Task :image-authority:classes UP-TO-DATE
+> Task :image-authority:jar UP-TO-DATE
+> Task :studio-desktop:convertXmlValueResourcesForTest NO-SOURCE
+> Task :studio-desktop:copyNonXmlValueResourcesForTest NO-SOURCE
+> Task :studio-desktop:prepareComposeResourcesTaskForTest NO-SOURCE
+> Task :studio-desktop:generateResourceAccessorsForTest SKIPPED
+
+> Task :studio-desktop:compileTestKotlin
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryAlbumWorkflowTest.kt:85:112 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Pair<List<String>, Int>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryAlbumWorkflowTest.kt:85:146 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Pair<List<String>, Int>'.
+
+> Task :studio-desktop:compileTestJava NO-SOURCE
+> Task :studio-desktop:assembleTestResources UP-TO-DATE
+> Task :studio-desktop:processTestResources UP-TO-DATE
+> Task :studio-desktop:testClasses UP-TO-DATE
+
+> Task :studio-desktop:test
+
+GalleryAlbumWorkflowTest > directoryChoiceHasVisibleScrollbarsAndKeepsFolderSelectionSeparate PASSED
+
+GalleryAlbumWorkflowTest > sourceAlbumsNavigateSelectFilterAndPersistDepthPreferencesWithoutChangingRecipes PASSED
+
+GalleryAnimationTest > actualWorkspacePreviewRestoreBatchCopyAndReopenPreserveOriginals FAILED
+    java.util.NoSuchElementException at GalleryAnimationTest.kt:233
+
+LibraryInteractionWorkflowTest > pickerKeepsMultiSelectionAcrossSearchAndDoesNotApplyUntilConfirm PASSED
+
+LibraryInteractionWorkflowTest > queueCtrlShiftSelectionDefaultCheckboxOffAndUndoDoesNotDeleteOriginals PASSED
+
+LibraryInteractionWorkflowTest > gallerySingleSelectTagAlbumsHistoryAndFixedDragPayload PASSED
+
+LibraryInteractionWorkflowTest > archiveSharesFiltersRestoresOnlyFixedFilteredIdsAndSupportsUndo PASSED
+
+7 tests completed, 1 failed
+
+> Task :studio-desktop:test FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':studio-desktop:test'.
+> There were failing tests. See the report at: file:///H:/CCB-Studio-Suite/modules/studio-desktop/build/reports/tests/test/index.html
+
+* Try:
+> Run with --scan to generate a Build Scan (Powered by Develocity).
+
+BUILD FAILED in 57s
+15 actionable tasks: 4 executed, 11 up-to-date

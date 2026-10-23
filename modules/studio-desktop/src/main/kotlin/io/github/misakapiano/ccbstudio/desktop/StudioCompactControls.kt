@@ -14,20 +14,17 @@ import androidx.compose.ui.window.*
 import com.example.chatbar.desktop.*
 import java.time.*
 
-@Composable internal fun StudioCompactField(label:String,value:String,onValue:(String)->Unit,modifier:Modifier=Modifier,singleLine:Boolean=true) {
+@Composable internal fun StudioCompactField(label:String,value:String,onValue:(String)->Unit,modifier:Modifier=Modifier,singleLine:Boolean=true,trailing:@Composable ()->Unit={}) {
     BasicTextField(value,onValue,modifier.heightIn(min=32.dp).border(1.dp,DesktopBootstrapColors.border,RoundedCornerShape(6.dp))
         .background(Ink,RoundedCornerShape(6.dp)).padding(horizontal=8.dp,vertical=7.dp).semantics{contentDescription=label},
         singleLine=singleLine,textStyle=TextStyle(color=DesktopBootstrapColors.foreground,fontSize=13.sp),
-        cursorBrush=androidx.compose.ui.graphics.SolidColor(Gold),decorationBox={input->Box{if(value.isBlank())Text(if(label.startsWith("日期"))"日期 · YYYY-MM-DD"else label,color=Quiet,fontSize=13.sp,maxLines=1,overflow=androidx.compose.ui.text.style.TextOverflow.Ellipsis);input()}})
+        cursorBrush=androidx.compose.ui.graphics.SolidColor(Gold),decorationBox={input->Row(verticalAlignment=Alignment.CenterVertically){Box(Modifier.weight(1f)){if(value.isBlank())Text(if(label.startsWith("日期"))"日期 · YYYY-MM-DD"else label,color=Quiet,fontSize=13.sp,maxLines=1,overflow=androidx.compose.ui.text.style.TextOverflow.Ellipsis);input()};trailing()}})
 }
 
 @Composable internal fun GallerySearch(c:WorkbenchController,modifier:Modifier=Modifier) {
     val g=c.gallery;var expanded by remember{mutableStateOf(false)}
     fun change(value:String){g.query=value;c.selection=emptySet();g.anchor=null}
-    Row(modifier,verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(4.dp)) {
-        StudioCompactField("查找文件名或历史 Prompt",g.query,::change,Modifier.weight(1f))
-        StudioAction("↗",accessibilityLabel="展开搜索"){expanded=true}
-    }
+    StudioCompactField("查找文件名或历史 Prompt",g.query,::change,modifier,trailing={StudioAction("↗",style=StudioActionStyle.TERTIARY,accessibilityLabel="展开搜索"){expanded=true}})
     if(expanded)DialogWindow(onCloseRequest={expanded=false},title="展开搜索",state=rememberDialogState(width=760.dp,height=420.dp)) {
         Surface(color=Ink,contentColor=DesktopBootstrapColors.foreground) {
             GalleryLongSearchContent(g.query,::change){expanded=false}
@@ -43,12 +40,12 @@ import java.time.*
     }
 }
 
-@Composable internal fun GalleryCalendar(value:String,onPick:(String)->Unit) {
+@Composable internal fun GalleryCalendar(value:String,label:String="▦",onPick:(String)->Unit) {
     var open by remember{mutableStateOf(false)}
     var month by remember{mutableStateOf(runCatching{YearMonth.from(LocalDate.parse(value))}.getOrDefault(YearMonth.now()))}
     var yearInput by remember(month){mutableStateOf(month.year.toString())}
     Box {
-        StudioAction("日历 ▾"){open=true}
+        StudioAction(label,style=StudioActionStyle.TERTIARY,accessibilityLabel="日历 ▾"){open=true}
         DropdownMenu(open,{open=false}) {
             Column(Modifier.width(300.dp).padding(8.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
                 Row(verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(4.dp)) {

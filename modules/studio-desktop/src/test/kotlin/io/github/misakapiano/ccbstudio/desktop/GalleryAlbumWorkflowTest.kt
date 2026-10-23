@@ -27,12 +27,12 @@ class GalleryAlbumWorkflowTest {
         suspend fun idle(){c.active?.join();assertNull(c.problem);scene.frames()}
         try {
             withTimeout(10000){while(c.gallery.foldPreferences==null)scene.frames()}
-            scene.click("▸ 筛选与分组");scene.click("折叠方式 · 完整 ▾");scene.click("目录");idle();scene.click("折叠为相册");idle()
+            scene.click("完整 ▾");scene.click("目录");idle();scene.click("相册");idle()
             assertTrue(c.gallery.directoryFold);assertTrue(c.gallery.fold.enabled)
             assertTrue(scene.nodes().any{it.matches("图库图片滚动条")});assertTrue(scene.nodes().any{it.matches("图片详情滚动条")})
             val album=scene.nodes().first{it.config.getOrNull(SemanticsProperties.ContentDescription)?.any{d->d.startsWith("图库相册 ")}==true}
             val id=album.config[SemanticsProperties.ContentDescription].first().removePrefix("图库相册 ")
-            scene.click("选择图库图片 $id");assertEquals(ids.toSet(),c.selection)
+            scene.click("勾选模式");scene.click("选择图库图片 $id");scene.click("勾选模式");assertEquals(ids.toSet(),c.selection)
             scene.shot("directory-scrollbars");scene.click("图库相册 $id");assertEquals(1,c.gallery.depth);assertFalse(c.gallery.directoryFold)
             scene.click("返回上层相册");assertTrue(c.gallery.directoryFold)
             assertTrue(c.state.jobs.isEmpty());ids.forEach{assertContentEquals(bytes,w.bytes(it))}
@@ -47,6 +47,11 @@ class GalleryAlbumWorkflowTest {
     }
     private fun SemanticsNode.matches(text:String)=config.getOrNull(SemanticsProperties.Text)?.any{it.text==text}==true || config.getOrNull(SemanticsProperties.ContentDescription)?.contains(text)==true
     private suspend fun ImageComposeScene.click(text:String){val n=nodes().first{it.matches(text)&&it.config.getOrNull(SemanticsActions.OnClick)!=null};assertTrue(n.config[SemanticsActions.OnClick].action!!.invoke());frames()}
+    private suspend fun ImageComposeScene.doubleClick(text:String){
+        val center=nodes().first{it.matches(text)&&it.config.getOrNull(SemanticsActions.OnClick)!=null}.boundsInRoot.center
+        repeat(2){sendPointerEvent(androidx.compose.ui.input.pointer.PointerEventType.Press,center,button=androidx.compose.ui.input.pointer.PointerButton.Primary);render(System.nanoTime()).close();yield();sendPointerEvent(androidx.compose.ui.input.pointer.PointerEventType.Release,center,button=androidx.compose.ui.input.pointer.PointerButton.Primary);render(System.nanoTime()).close();yield();delay(45)}
+        frames()
+    }
     private suspend fun ImageComposeScene.field(label:String,value:String){val n=nodes().first{it.config.getOrNull(SemanticsActions.SetText)!=null&&(it.matches(label)||it.children.any{it.matches(label)})};n.config[SemanticsActions.SetText].action!!.invoke(AnnotatedString(value));frames()}
     private fun ImageComposeScene.shot(name:String){val path=Path.of("build/gallery-albums/$name.png");Files.createDirectories(path.parent);render(System.nanoTime()).use{it.encodeToData()!!.use{Files.write(path,it.bytes)}}}
     @Test fun sourceAlbumsNavigateSelectFilterAndPersistDepthPreferencesWithoutChangingRecipes()=runBlocking(awt){
@@ -66,18 +71,18 @@ class GalleryAlbumWorkflowTest {
         suspend fun until(check:()->Boolean){withTimeout(20000){while(!check())scene.frames()};scene.frames()}
         suspend fun idle(){until{!c.busy};assertNull(c.problem)}
         try {
-            until{c.gallery.foldPreferences!=null};scene.click("▸ 筛选与分组");scene.click("折叠方式 · 完整 ▾");scene.click("基础");idle()
-            scene.click("折叠为相册");idle()
+            until{c.gallery.foldPreferences!=null};scene.click("完整 ▾");scene.click("基础");idle()
+            scene.click("相册");idle()
             until{scene.nodes().any{it.config.getOrNull(SemanticsProperties.ContentDescription)?.any{d->d.startsWith("图库相册 ")}==true}}
             val cover=scene.nodes().first{it.config.getOrNull(SemanticsProperties.ContentDescription)?.any{d->d.startsWith("图库相册 ")}==true}.config[SemanticsProperties.ContentDescription].first().removePrefix("图库相册 ")
-            scene.click("选择图库图片 $cover");assertEquals(ids.take(2).toSet(),c.selection)
+            scene.click("勾选模式");scene.click("选择图库图片 $cover");scene.click("勾选模式");assertEquals(ids.take(2).toSet(),c.selection)
             scene.shot("source-folded-album");scene.click("图库相册 $cover");assertEquals(1,c.gallery.depth);assertTrue(c.selection.isEmpty());assertFalse(c.gallery.fold.enabled)
             scene.click("全选");assertEquals(ids.take(2).toSet(),c.selection)
-            scene.click("折叠方式 · 完整 ▾");scene.click("日");idle();scene.click("折叠为相册");idle()
+            scene.click("完整 ▾");scene.click("日");idle();scene.click("相册");idle()
             scene.click("返回上层相册");assertEquals(0,c.gallery.depth);assertEquals(NovelAiHistoryFoldType.BASE,c.gallery.fold.type)
             scene.field("日期（YYYY / YYYY-MM / YYYY-MM-DD）","2026-02-30");scene.click("应用日期");assertEquals("",c.gallery.date);assertNotNull(c.gallery.historyProblem)
             scene.field("日期（YYYY / YYYY-MM / YYYY-MM-DD）","2026-01");scene.click("应用日期");scene.click("全选");assertEquals(ids.toSet(),c.selection)
-            scene.click("清除日期");scene.click("图库图片 $unknown");assertEquals(unknown,preview!!.first[preview!!.second]);assertEquals(4,preview!!.first.size)
+            scene.click("清除日期");scene.doubleClick("图库图片 $unknown");assertEquals(unknown,preview!!.first[preview!!.second]);assertEquals(4,preview!!.first.size)
             assertEquals(before,c.draft);assertEquals(jobs,w.state.jobs);(ids+unknown).forEach{assertContentEquals(bytes,w.bytes(it))}
             scene.shot("source-folding-controls")
         }finally{scene.close();c.close();scope.cancel();w.close()}

@@ -60,12 +60,12 @@ internal fun galleryTransfer(transfer:Transferable,paste:Boolean):GalleryIngress
 }
 
 @OptIn(androidx.compose.ui.ExperimentalComposeUiApi::class)
-@Composable internal fun Modifier.galleryIngress(c:WorkbenchController,animation:Boolean=false):Modifier {
+@Composable internal fun Modifier.galleryIngress(c:WorkbenchController,animation:Boolean=false,handlePaste:Boolean=true):Modifier {
     val enabled=!c.busy
     val target=remember(c,enabled,animation){object:DragAndDropTarget{
         override fun onDrop(event:DragAndDropEvent):Boolean=if(!enabled)false else if(animation)c.animation.receive(event.awtTransferable,false)else c.receiveTransfer(event.awtTransferable,false)
     }}
     return dragAndDropTarget(shouldStartDragAndDrop={enabled},target=target).onPreviewKeyEvent{event->
-        if(enabled && event.type==KeyEventType.KeyDown && event.isCtrlPressed && event.key==Key.V){if(animation)c.animation.paste()else c.pasteImages()}else false
+        if(handlePaste && enabled && event.type==KeyEventType.KeyDown && event.isCtrlPressed && event.key==Key.V){if(animation)c.animation.paste()else c.pasteImages()}else false
     }
 }

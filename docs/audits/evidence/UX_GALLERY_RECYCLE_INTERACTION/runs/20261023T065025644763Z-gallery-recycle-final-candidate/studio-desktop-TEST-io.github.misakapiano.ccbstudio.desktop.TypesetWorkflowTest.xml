@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" tests="16" skipped="0" failures="1" errors="0" timestamp="2026-10-23T06:53:51.700Z" hostname="DD1" time="72.616">
+  <properties/>
+  <testcase name="newTextAutomaticallyContinuesStyleAcrossPagesAndRestartWithoutCopyingContent" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="6.683"/>
+  <testcase name="namedProjectLiveVerticalEditingHistoryAndRestart" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="8.824"/>
+  <testcase name="functionalAndInlineColorsPreviewExportAndReopenWithoutSilentFallback" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="3.011"/>
+  <testcase name="pointerDrawnMasksChangeEffectSaveUndoAndReopen" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="6.677"/>
+  <testcase name="unreadablePreviewExplainsFontFailureAndOriginalRemainsViewable" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="0.8"/>
+  <testcase name="storyCustomControlsSelectedAndAllStylesPreserveCaptionsAndUndoAsOneBatch" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="9.122"/>
+  <testcase name="webpPreviewExportAndOriginalReopen" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="2.918"/>
+  <testcase name="continuousMaskDefaultsRespectPerPageSettings" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="1.356"/>
+  <testcase name="fourCategoryPreviewCopiesCompleteFileDeckWithoutSystemClipboard" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="7.744"/>
+  <testcase name="durableDefaultFontLoadsOnFirstTextPreviewWithColdCache" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="3.07"/>
+  <testcase name="fullPreviewKeyboardAndExportDeckKeepEditorStateAndFitNarrowWindow" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="3.408"/>
+  <testcase name="maximumQueueWidthCannotStarveCanvasAndSurvivesReopen" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="1.996"/>
+  <testcase name="exportShowsRealPageProgressStopsWithoutPublishingAndRetriesExplicitly" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="2.434">
+    <failure message="java.lang.AssertionError: actual value is not null expected null, but was:&lt;工作区需要恢复，已保留现有文件；请停止写入并检查&gt;" type="java.lang.AssertionError">java.lang.AssertionError: actual value is not null expected null, but was:&lt;工作区需要恢复，已保留现有文件；请停止写入并检查&gt;
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotNull(Assert.java:756)
+	at org.junit.Assert.assertNull(Assert.java:738)
+	at kotlin.test.junit.JUnitAsserter.assertNull(JUnitSupport.kt:52)
+	at kotlin.test.AssertionsKt__AssertionsKt.assertNull(Assertions.kt:161)
+	at kotlin.test.AssertionsKt.assertNull(Unknown Source)
+	at kotlin.test.AssertionsKt__AssertionsKt.assertNull$default(Assertions.kt:160)
+	at kotlin.test.AssertionsKt.assertNull$default(Unknown Source)
+	at io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest$exportShowsRealPageProgressStopsWithoutPublishingAndRetriesExplicitly$1.invokeSuspend(TypesetWorkflowTest.kt:64)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+</failure>
+  </testcase>
+  <testcase name="storyCaptionPresetPreviewExportAndRestart" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="4.966"/>
+  <testcase name="sourceExchangePreviewConfirmExportAndReopen" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="3.19"/>
+  <testcase name="queueControlSelectionDragOrderNumberingAndRestart" classname="io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest" time="6.417"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

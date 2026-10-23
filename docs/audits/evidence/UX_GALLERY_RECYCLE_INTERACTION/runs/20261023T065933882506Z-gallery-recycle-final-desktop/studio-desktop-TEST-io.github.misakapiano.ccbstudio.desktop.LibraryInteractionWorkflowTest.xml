@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-10-23T07:01:07.586Z" hostname="DD1" time="15.482">
+  <properties/>
+  <testcase name="pickerKeepsMultiSelectionAcrossSearchAndDoesNotApplyUntilConfirm" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="0.477"/>
+  <testcase name="manyLongTagChipsScrollToLatestAndRemainRemovable" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="0.205"/>
+  <testcase name="queueCtrlShiftSelectionDefaultCheckboxOffAndUndoDoesNotDeleteOriginals" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="2.024"/>
+  <testcase name="gallerySingleSelectTagAlbumsHistoryAndFixedDragPayload" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="5.19"/>
+  <testcase name="clipboardCopyAndCutUseFixedIdentitiesAndPreserveUnrelatedLabels" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="1.605"/>
+  <testcase name="archiveSharesFiltersRestoresOnlyFixedFilteredIdsAndSupportsUndo" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="5.086"/>
+  <testcase name="cancellingOperationsDrainsCatalogWithoutFalseRecoveryAndAllowsNextWrite" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="0.895"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

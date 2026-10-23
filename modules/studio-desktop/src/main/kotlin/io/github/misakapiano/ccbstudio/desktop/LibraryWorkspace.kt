@@ -14,6 +14,16 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
 
 internal class LibraryController(private val c:WorkbenchController) {
+    val archiveView=GalleryViewState("archive","回收站")
+    var archiveSelection by mutableStateOf<Set<String>>(emptySet())
+    private data class Edit(val label:String,val undo:()->Unit,val redo:()->Unit)
+    private var undoEdits by mutableStateOf<List<Edit>>(emptyList())
+    private var redoEdits by mutableStateOf<List<Edit>>(emptyList())
+    val canUndo get()=undoEdits.isNotEmpty() && !c.busy
+    val canRedo get()=redoEdits.isNotEmpty() && !c.busy
+    private fun rememberEdit(edit:Edit){undoEdits=(undoEdits+edit).takeLast(100);redoEdits=emptyList()}
+    fun undo(){val edit=undoEdits.lastOrNull()?:return;c.run("撤销 ${edit.label}"){edit.undo();refresh();undoEdits=undoEdits.dropLast(1);redoEdits=redoEdits+edit}}
+    fun redo(){val edit=redoEdits.lastOrNull()?:return;c.run("重做 ${edit.label}"){edit.redo();refresh();redoEdits=redoEdits.dropLast(1);undoEdits=undoEdits+edit}}
     var tab by mutableStateOf("Prompt 资产")
     val repository=LibraryRepository(c.workspace)
     var state by mutableStateOf<LibraryState?>(null);private set
@@ -68,11 +78,24 @@ internal class LibraryController(private val c:WorkbenchController) {
         prompts=all.filterNot{it.request().id().toString() in archived}
     }.onFailure{error="资产管理记录读取失败，原件保留，管理写入已停止：${it.javaClass.simpleName}";state=null;archiveError=error;archived=emptySet();prompts=emptyList()}}
     fun changeArchive(ids:Set<String>,archived:Boolean)=c.run(if(archived)"移入资产回收站"else"恢复资产"){
-        archive.change(ids,archived);refresh()
-        if(archived)c.selection=c.selection-ids
+        val changed=if(archived)ids-archive.ids()else ids.intersect(archive.ids())
+        if(changed.isNotEmpty())archive.change(changed,archived);refresh()
+        if(changed.isNotEmpty()) {
+            fun change(expected:Boolean,to:Boolean){val current=archive.ids();require(changed.all{(it in current)==expected}){"回收站状态已改变，请刷新后重试"};archive.change(changed,to)}
+            rememberEdit(Edit(if(archived)"移入回收站"else"恢复资产",{change(archived,!archived)},{change(!archived,archived)}))
+        }
+        if(archived){c.selection=c.selection-ids;if(c.current in ids)c.current=c.assets.firstOrNull{it.request().id().toString() !in this.archived}?.request()?.id()?.toString()}
+        else archiveSelection=archiveSelection-ids
     }
     fun labels(id:String)=state?.labels?.get(id)?:AssetLabels()
-    fun saveLabels(id:String,alias:String,tags:String)=c.run("保存资产别名与标签"){repository.label(id,alias,tags.split(',', '，'));refresh()}
+    fun saveLabels(id:String,alias:String,tags:String)=changeLabels(setOf(id)){AssetLabels(alias.trim(),tags.split(',', '，').map{it.trim()}.filter{it.isNotEmpty()}.distinct())}
+    fun changeLabels(ids:Set<String>,onSaved:()->Unit={},transform:(AssetLabels)->AssetLabels)=c.run("保存资产标签") {
+        val old=repository.load().labels
+        val before=ids.associateWith{old[it]};val after=ids.associateWith{transform(old[it]?:AssetLabels())}
+        repository.changeLabels(before,after);refresh()
+        if(before!=after)rememberEdit(Edit("资产标签",{repository.changeLabels(after,before)},{repository.changeLabels(before,after)}))
+        onSaved()
+    }
     fun savePrompt(text:String,name:String,previous:String?=null)=c.run("保存独立 Prompt 资产"){repository.savePrompt(text,name,"manual",previous);refresh()}
     fun savePromptReference(text:String,name:String,previous:String?=null)=c.run("保存独立 Prompt 参照"){
         val board=PromptReferences(repository)
@@ -96,17 +119,20 @@ internal class LibraryController(private val c:WorkbenchController) {
 
 @Composable internal fun AssetLabelEditor(c:WorkbenchController,id:String) {
     c.library.error?.let{Text(it,color=MaterialTheme.colors.error);return}
-    val label=c.library.labels(id);var alias by remember(id,label){mutableStateOf(label.alias)};var tags by remember(id,label){mutableStateOf(label.tags.joinToString(", "))}
+    val label=c.library.labels(id);var alias by remember(id,label){mutableStateOf(label.alias)};var tags by remember(id,label){mutableStateOf(label.tags)}
+    val index=remember(c.assets,c.library.state){LibraryTagIndex(c.assets.map{it.request().id().toString()}.filter{it !in c.library.archived},c.library.state?.labels.orEmpty())}
     StudioDisclosure("别名与标签") {
         OutlinedTextField(alias,{alias=it.take(200)},label={Text("资产别名")},modifier=Modifier.fillMaxWidth())
-        OutlinedTextField(tags,{tags=it},label={Text("标签（逗号分隔，可多个）")},modifier=Modifier.fillMaxWidth())
-        StudioAction("保存资产分类",!c.busy && c.library.state!=null){c.library.saveLabels(id,alias,tags)}
+        LibraryTagChips(tags,index.counts,{tags=tags-it},Modifier.fillMaxWidth())
+        LibraryTagInput(index,tags,{tags=(tags+it).distinct()},Modifier.fillMaxWidth(),allowNew=true)
+        StudioAction("保存资产分类",!c.busy && c.library.state!=null && tags.size<=32){c.library.changeLabels(setOf(id)){AssetLabels(alias.trim(),tags)}}
     }
 }
 
 @Composable internal fun LibraryWorkspace(c:WorkbenchController) {
     val library=c.library
     var tab by library::tab
+    if(tab=="回收站"){LibraryArchiveWorkspace(c);return}
     var selected by remember{mutableStateOf<String?>(null)};var name by remember{mutableStateOf("")};var text by remember{mutableStateOf("")}
     var query by remember{mutableStateOf("")};var category by remember{mutableStateOf("images")};var recursive by remember{mutableStateOf(false)}
     Column(Modifier.fillMaxSize().padding(16.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(8.dp)) {

@@ -37,16 +37,16 @@ class GallerySortingWorkflowTest {
         suspend fun open(ids:List<String>){val node=nodes().first{it.config.getOrNull(SemanticsProperties.ContentDescription)?.any{label->label.startsWith("图库相册 ")&&label.removePrefix("图库相册 ") in ids}==true};node.config[SemanticsActions.OnClick].action!!.invoke();frames()}
         var keyA="";var keyB=""
         try {
-            frames();click("▸ 筛选与分组");assertTrue(nodes().any{it.matches("折叠为相册")});assertEquals(1,reads)
-            val saving=CompletableDeferred<Unit>();c.run("测试保存等待"){saving.await()};frames();assertTrue(c.busy);assertTrue(nodes().any{it.matches("折叠方式 · 完整 ▾")});saving.complete(Unit);idle()
+            frames();assertTrue(nodes().any{it.matches("相册")});assertEquals(1,reads)
+            val saving=CompletableDeferred<Unit>();c.run("测试保存等待"){saving.await()};frames();assertTrue(c.busy);assertTrue(nodes().any{it.matches("完整 ▾")});saving.complete(Unit);idle()
             release.complete(Unit);withTimeout(10000){while(c.gallery.historyCache==null)frames()}
-            click("折叠方式 · 完整 ▾");click("目录");idle();click("折叠为相册");idle()
-            open(first);keyA=c.gallery.scope.identity;click("本相册默认排序 · 添加时间 ▾");click("文件名");idle();click("降序 ↓");idle()
+            click("完整 ▾");click("目录");idle();click("相册");idle()
+            open(first);keyA=c.gallery.scope.identity;click("添加时间 ▾");click("文件名");idle();click("降序 ↓");idle()
             assertEquals(GallerySort(GallerySortField.NAME,false),c.gallery.sort);click("返回上层相册")
-            open(second);keyB=c.gallery.scope.identity;assertNotEquals(keyA,keyB);click("本相册默认排序 · 添加时间 ▾");click("文件类型");idle();click("返回上层相册")
+            open(second);keyB=c.gallery.scope.identity;assertNotEquals(keyA,keyB);click("添加时间 ▾");click("文件类型");idle();click("返回上层相册")
             open(first);assertEquals(GallerySort(GallerySortField.NAME,false),c.gallery.sort);click("返回上层相册")
             mounted=false;frames();mounted=true;frames();assertEquals(1,reads,"Unchanged gallery re-entry must reuse verified history")
-            click("▸ 筛选与分组");frames()
+            frames()
             val shot=Path.of("build/gallery-sorting/sort-controls.png");Files.createDirectories(shot.parent);scene.render().use{it.encodeToData()!!.use{Files.write(shot,it.bytes)}}
             assertTrue(w.state.jobs.isEmpty());(first+second).forEach{assertContentEquals(bytes,w.bytes(it))}
         }finally{release.complete(Unit);scene.close();c.close();scope.cancel()}

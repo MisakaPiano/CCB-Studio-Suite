@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-23T06:52:55.816Z" hostname="DD1" time="22.654">
+  <properties/>
+  <testcase name="pickerKeepsMultiSelectionAcrossSearchAndDoesNotApplyUntilConfirm" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="0.482"/>
+  <testcase name="queueCtrlShiftSelectionDefaultCheckboxOffAndUndoDoesNotDeleteOriginals" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="1.325"/>
+  <testcase name="gallerySingleSelectTagAlbumsHistoryAndFixedDragPayload" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="4.185"/>
+  <testcase name="clipboardCopyAndCutUseFixedIdentitiesAndPreserveUnrelatedLabels" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="1.512"/>
+  <testcase name="archiveSharesFiltersRestoresOnlyFixedFilteredIdsAndSupportsUndo" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="15.15"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

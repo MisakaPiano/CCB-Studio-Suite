@@ -59,6 +59,15 @@ class LibraryRepository(private val workspace:StudioWorkspace) {
         next
     }
     fun label(id:String,alias:String,tags:List<String>)=update { s->workspace.assets.read(UUID.fromString(id)).require();s.copy(labels=s.labels+(id to AssetLabels(alias.trim(),tags.map{it.trim()}.filter{it.isNotEmpty()}.distinct()))) }
+    /** One revision for a batch; optimistic identity checks prevent undo from replacing later edits. */
+    fun changeLabels(expected:Map<String,AssetLabels?>,replacement:Map<String,AssetLabels?>)=update { s->
+        require(expected.isNotEmpty() && expected.keys==replacement.keys && expected.size<=20000)
+        require(expected.all{(id,value)->s.labels[id]==value}){"标签已被其他操作修改，请刷新后重试"}
+        replacement.keys.forEach{workspace.assets.read(UUID.fromString(it)).require()}
+        val next=s.labels.toMutableMap()
+        replacement.forEach{(id,value)->if(value==null)next.remove(id)else next[id]=value}
+        s.copy(labels=next)
+    }
     fun prompts()=workspace.operation{workspace.assets.catalogProject(PROMPT.toByteArray())}
     fun prompt(id:String):PromptAsset=workspace.operation {
         val a=workspace.assets.read(UUID.fromString(id)).require();require(a.request().project().decodeToString()==PROMPT)

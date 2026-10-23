@@ -266,7 +266,14 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
             try {pending?.cancelAndJoin();flush();withContext(Dispatchers.IO){body()};message=operationNotice?:if(problem==null)"$label · 已完成" else "$label · 有未完成项，请查看回执"}
             catch(e:CancellationException){message="已停止；已提交结果保留";throw e}
             catch(e:Exception){problem="${if(e is DataProblem)e.status else e.javaClass.simpleName}：操作未完成，未自动重发。已有资料保留。";message="操作未完成"}
-            finally {try{withContext(NonCancellable+Dispatchers.IO){state=workspace.state;assets=visibleAssets()};modelAccounts.syncSavedProfile()}catch(e:Exception){problem="工作区需要恢复，已保留现有文件；请停止写入并检查"};if(label=="导入图片"&&gallery.importStartedNanos>0){gallery.importDurationMs=(System.nanoTime()-gallery.importStartedNanos)/1000000;gallery.importStartedNanos=0};activeOperation="";busy=false}
+            finally {withContext(NonCancellable){
+                // Keep the caller context active when IO returns: an intentional cancellation is
+                // not a failed catalog read and must not be reported as workspace corruption.
+                try{withContext(Dispatchers.IO){state=workspace.state;assets=visibleAssets()};modelAccounts.syncSavedProfile()}
+                catch(e:Exception){problem="工作区需要恢复，已保留现有文件；请停止写入并检查"}
+                if(label=="导入图片"&&gallery.importStartedNanos>0){gallery.importDurationMs=(System.nanoTime()-gallery.importStartedNanos)/1000000;gallery.importStartedNanos=0}
+                activeOperation="";busy=false
+            }}
         }
     }
     fun design()=run("AI 设计") {

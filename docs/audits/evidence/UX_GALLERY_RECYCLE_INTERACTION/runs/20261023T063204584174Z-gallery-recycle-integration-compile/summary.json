@@ -1,0 +1,28 @@
+{
+  "phase": "gallery-recycle-integration-compile",
+  "startedUtc": "2026-10-23T06:32:12.296580+00:00",
+  "seconds": 46.517,
+  "exitCode": 1,
+  "tests": 0,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "FAILED",
+  "testEvidence": "NOT TESTED (build only or failed before execution)",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:compileKotlin",
+    ":studio-core:compileTestKotlin",
+    ":studio-desktop:compileTestKotlin"
+  ],
+  "baseCommit": "71758279ba0e528d5c9e341408ed70d9ea9443e4",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

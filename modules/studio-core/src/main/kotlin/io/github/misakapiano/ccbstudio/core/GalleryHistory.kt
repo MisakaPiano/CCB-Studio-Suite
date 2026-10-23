@@ -81,15 +81,16 @@ fun galleryDateFilter(text:String):NovelAiHistoryDateFilter? {
     }
 }
 
-class GalleryFoldPreferences(private val library:LibraryRepository) {
+class GalleryFoldPreferences(private val library:LibraryRepository,private val namespace:String="") {
+    private fun key(value:String)=if(namespace.isEmpty())value else "$namespace.$value"
     fun directoryDepths(state:LibraryState=library.load()):Set<Int> {
-        val raw=state.preferences["galleryDirectoryFoldDepths"]?:return emptySet()
+        val raw=state.preferences[key("galleryDirectoryFoldDepths")]?:return emptySet()
         val values=documentJson.decodeFromString<List<Int>>(raw)
         require(values.size<=32 && values.all{it in 0..31} && values.distinct().size==values.size)
         return values.toSet()
     }
     fun load(state:LibraryState=library.load()):Map<Int,NovelAiHistoryFoldPreference> {
-        val raw=state.preferences["historyFoldPreferences"]?:return emptyMap()
+        val raw=state.preferences[key("historyFoldPreferences")]?:return emptyMap()
         val values=documentJson.decodeFromString<List<NovelAiHistoryFoldPreference>>(raw)
         require(values.size<=32 && values.all{it.depth in 0..31} && values.distinctBy{it.depth}.size==values.size)
         return values.associateBy{it.depth}
@@ -97,6 +98,6 @@ class GalleryFoldPreferences(private val library:LibraryRepository) {
     fun save(value:NovelAiHistoryFoldPreference,directory:Boolean=false) {
         require(value.depth in 0..31)
         library.update{state->val values=load(state)+(value.depth to value);val directories=if(directory)directoryDepths(state)+value.depth else directoryDepths(state)-value.depth
-            state.copy(preferences=state.preferences+("historyFoldPreferences" to documentJson.encodeToString(values.values.sortedBy{it.depth}))+("galleryDirectoryFoldDepths" to documentJson.encodeToString(directories.sorted())))}
+            state.copy(preferences=state.preferences+(key("historyFoldPreferences") to documentJson.encodeToString(values.values.sortedBy{it.depth}))+(key("galleryDirectoryFoldDepths") to documentJson.encodeToString(directories.sorted())))}
     }
 }

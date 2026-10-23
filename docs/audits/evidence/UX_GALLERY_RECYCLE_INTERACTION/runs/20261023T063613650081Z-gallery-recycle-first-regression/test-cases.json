@@ -1,0 +1,62 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.AssetArchiveTest",
+    "name": "interruptedSnapshotIsNotPublishedAndRetryRestores",
+    "seconds": "2.848",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.AssetArchiveTest",
+    "name": "unchangedCollectionDoesNotResurrectArchivedAsset",
+    "seconds": "2.316",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.AssetArchiveTest",
+    "name": "futureAndCorruptArchiveBlocksChangesButPreservesOriginals",
+    "seconds": "2.607",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.AssetArchiveTest",
+    "name": "imagePromptAndBookRestoreWithReferencesLabelsAndOriginalBytes",
+    "seconds": "10.568",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.AssetArchiveTest",
+    "name": "futureSnapshotIsRecognizedBeforeDecodingFields",
+    "seconds": "0.862",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryInteractionTest",
+    "name": "multiTagAlbumsHaveUniqueKeysAndUnknownDatesStayUnknown",
+    "seconds": "0.015",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryInteractionTest",
+    "name": "rangeSelectionUsesVisibleOrderAndExplicitModifiers",
+    "seconds": "0.0",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryInteractionTest",
+    "name": "galleryAndArchiveFoldPreferencesRemainIndependent",
+    "seconds": "0.724",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryInteractionTest",
+    "name": "batchLabelsOneRevisionUndoConflictIsAtomicAndReopenPreservesBytes",
+    "seconds": "2.094",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryInteractionTest",
+    "name": "tagPredictionCountsUniqueScopedAssetsAndFiltersExactLabels",
+    "seconds": "0.005",
+    "status": "PASS"
+  }
+]

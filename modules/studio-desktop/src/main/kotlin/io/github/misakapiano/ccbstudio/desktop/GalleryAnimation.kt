@@ -87,6 +87,23 @@ internal class GalleryAnimationController(private val c:WorkbenchController,priv
     var queueSelection by mutableStateOf<Set<String>>(emptySet());private set
     var itemStatus by mutableStateOf<Map<String,String>>(emptyMap());private set
     private var queueAnchor:String?=null
+    var checkboxMode by mutableStateOf(false)
+    private data class QueueState(val ids:List<String>,val selected:Set<String>,val index:Int)
+    private var undoQueue by mutableStateOf<List<QueueState>>(emptyList())
+    private var redoQueue by mutableStateOf<List<QueueState>>(emptyList())
+    val canUndo get()=undoQueue.isNotEmpty()&&!c.busy
+    val canRedo get()=redoQueue.isNotEmpty()&&!c.busy
+    private fun snapshot()=QueueState(ids.orEmpty().toList(),queueSelection.toSet(),index)
+    private fun checkpoint(){undoQueue=(undoQueue+snapshot()).takeLast(50);redoQueue=emptyList()}
+    private fun restore(value:QueueState){ids=value.ids;queueSelection=value.selected;index=value.index;queueAnchor=null;itemStatus=emptyMap();invalidate();requestPreview()}
+    fun undo(){if(canUndo){val prior=undoQueue.last();redoQueue=redoQueue+snapshot();undoQueue=undoQueue.dropLast(1);restore(prior)}}
+    fun redo(){if(canRedo){val next=redoQueue.last();undoQueue=undoQueue+snapshot();redoQueue=redoQueue.dropLast(1);restore(next)}}
+    fun selectQueueItem(id:String,ctrl:Boolean=false,shift:Boolean=false) {
+        if(c.busy||c.maintenance)return
+        val order=ids.orEmpty();queueSelection=selectLibraryRange(order,queueSelection,id,queueAnchor,ctrl||checkboxMode,shift)
+        if(!shift)queueAnchor=id
+        order.indexOf(id).takeIf{it>=0}?.let(::selectIndex)
+    }
     fun toggleQueue(id:String,range:Boolean=false){
         if(c.busy||c.maintenance||id !in ids.orEmpty())return
         val values=ids.orEmpty();val anchor=values.indexOf(queueAnchor);val at=values.indexOf(id)
@@ -96,6 +113,7 @@ internal class GalleryAnimationController(private val c:WorkbenchController,priv
     fun selectQueue(all:Boolean){if(!c.busy&&!c.maintenance)queueSelection=if(all)ids.orEmpty().toSet()else emptySet()}
     fun removeQueue(selected:Set<String> = queueSelection){
         if(c.busy||c.maintenance||selected.isEmpty())return
+        checkpoint()
         val current=ids?.getOrNull(index);val remaining=ids.orEmpty().filterNot{it in selected}
         ids=remaining;queueSelection=queueSelection-selected;itemStatus=itemStatus-selected
         index=remaining.indexOf(current).takeIf{it>=0}?:index.coerceAtMost(remaining.lastIndex).coerceAtLeast(0)
@@ -114,7 +132,7 @@ internal class GalleryAnimationController(private val c:WorkbenchController,priv
     init {reloadCovers()}
     fun reloadCovers(){runCatching{covers.load()}.onSuccess{coverState=it;coverError=null}.onFailure{coverState=null;coverError="封面配置读取失败，暂停伪装处理；原配置和原件保留"}}
     private fun invalidate(){previewSource?.takeIf{itemStatus[it]=="正在预览"}?.let{itemStatus=itemStatus+(it to "等待预览")};previewEpoch.incrementAndGet();previewTask?.cancel();preview=null;previewBusy=false;readyOutput=null;error=null;completed=null;progress=0;progressTotal=0;playResult=false}
-    fun open(selected:List<String>){require(selected.size<=1000);ids=selected.distinct();queueSelection=emptySet();itemStatus=emptyMap();index=ids.orEmpty().lastIndex.coerceAtLeast(0);invalidate();requestPreview()}
+    fun open(selected:List<String>){require(selected.size<=1000);undoQueue=emptyList();redoQueue=emptyList();ids=selected.distinct();queueSelection=emptySet();itemStatus=emptyMap();index=ids.orEmpty().lastIndex.coerceAtLeast(0);invalidate();requestPreview()}
     @Synchronized fun close(){ids=null;coverManagerOpen=false;invalidate();previewJobs.forEach{it.cancel()};previewBusy=false}
     suspend fun cancelAndDrain(){val jobs=synchronized(this){previewEpoch.incrementAndGet();previewJobs.toList().also{tasks->tasks.forEach{it.cancel()}}};jobs.joinAll();previewBusy=false}
     suspend fun awaitPreview(){previewTask?.join()}
@@ -137,6 +155,7 @@ internal class GalleryAnimationController(private val c:WorkbenchController,priv
         val previous=ids?:return
         c.importIngress(input,expandDirectories=true,maxImages=1000-previous.size){added->
             val combined=(previous+added).distinct();require(combined.size<=1000){"批次最多1000张，已导入原件保留在图库"}
+            checkpoint()
             ids=combined;index=combined.lastIndex;invalidate();requestPreview()
         }
     }

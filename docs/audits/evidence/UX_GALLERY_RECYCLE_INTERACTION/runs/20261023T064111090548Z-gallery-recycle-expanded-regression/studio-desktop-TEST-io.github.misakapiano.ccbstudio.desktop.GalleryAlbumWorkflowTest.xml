@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.GalleryAlbumWorkflowTest" tests="2" skipped="0" failures="1" errors="0" timestamp="2026-10-23T06:41:44.169Z" hostname="DD1" time="12.733">
+  <properties/>
+  <testcase name="directoryChoiceHasVisibleScrollbarsAndKeepsFolderSelectionSeparate" classname="io.github.misakapiano.ccbstudio.desktop.GalleryAlbumWorkflowTest" time="4.59"/>
+  <testcase name="sourceAlbumsNavigateSelectFilterAndPersistDepthPreferencesWithoutChangingRecipes" classname="io.github.misakapiano.ccbstudio.desktop.GalleryAlbumWorkflowTest" time="8.143">
+    <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
+	at io.github.misakapiano.ccbstudio.desktop.GalleryAlbumWorkflowTest$sourceAlbumsNavigateSelectFilterAndPersistDepthPreferencesWithoutChangingRecipes$1.invokeSuspend(GalleryAlbumWorkflowTest.kt:85)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

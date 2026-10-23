@@ -47,10 +47,10 @@ internal fun animationNavigation(a:GalleryAnimationController,event:KeyEvent):Bo
 
 @Composable private fun AnimationActions(label:String,enabled:Boolean=true,items:List<ContextMenuItem>) {
     var open by remember{mutableStateOf(false)}
-    Column(Modifier.widthIn(max=390.dp)) {
+    Box {
         StudioAction(label,enabled&&items.isNotEmpty(),expanded=open,accessibilityLabel="$label ▾"){open=!open}
-        if(open)Surface(color=Panel,border=BorderStroke(1.dp,DesktopBootstrapColors.border)) {
-            StudioActions {items.forEach{item->StudioAction(item.label,enabled){item.onClick()}}}
+        DropdownMenu(open,{open=false}) {
+            items.forEach{item->DropdownMenuItem(enabled=enabled,onClick={open=false;item.onClick()}){Text(item.label)}}
         }
     }
 }
@@ -64,7 +64,15 @@ internal fun animationNavigation(a:GalleryAnimationController,event:KeyEvent):Bo
     var information by remember{mutableStateOf(false)}
     val canProcess=ids.isNotEmpty()&&!c.busy&&(a.mode=="restore"||a.coverState!=null)
     Column(Modifier.fillMaxSize().galleryIngress(c,animation=true).focusRequester(focus)
-        .onPreviewKeyEvent{if(it.type==KeyEventType.KeyDown&&it.isCtrlPressed&&it.key==Key.A){a.selectQueue(true);true}else if(it.type==KeyEventType.KeyDown&&it.key==Key.Delete&&a.queueSelection.isNotEmpty()){a.removeQueue();true}else animationNavigation(a,it)}.focusable().padding(10.dp),verticalArrangement=Arrangement.spacedBy(5.dp)) {
+        .onKeyEvent{if(it.type!=KeyEventType.KeyDown)false else when {
+            it.isCtrlPressed&&it.key==Key.A->{a.selectQueue(true);true}
+            it.isCtrlPressed&&it.key==Key.Z->{if(it.isShiftPressed)a.redo()else a.undo();true}
+            it.isCtrlPressed&&it.key==Key.Y->{a.redo();true}
+            it.isCtrlPressed&&it.key==Key.C->{if(a.queueSelection.isNotEmpty())a.export(true,selectedOnly=true)else if(a.outputReady)a.currentFile(true);true}
+            it.key==Key.Escape->{a.selectQueue(false);true}
+            it.key==Key.Delete&&a.queueSelection.isNotEmpty()->{a.removeQueue();true}
+            else->animationNavigation(a,it)
+        }}.focusable().padding(10.dp),verticalArrangement=Arrangement.spacedBy(5.dp)) {
         StudioActions {
             StudioAction("返回图库",!c.busy){a.close()}
             StudioAction("生成伪装 APNG",!c.busy,selected=a.mode=="disguise"){a.selectMode("disguise")}
@@ -115,7 +123,10 @@ internal fun animationNavigation(a:GalleryAnimationController,event:KeyEvent):Bo
         }
         StudioActions {
             Text("队列 ${ids.size} 项 · 已选 ${a.queueSelection.size}",style=MaterialTheme.typography.caption)
+            StudioSwitch("勾选模式",a.checkboxMode){a.checkboxMode=!a.checkboxMode}
             StudioAction("全选",!c.busy){a.selectQueue(true)};StudioAction("全不选",!c.busy){a.selectQueue(false)}
+            StudioAction("反选",!c.busy){val before=a.queueSelection.toSet();a.selectQueue(false);ids.filter{it !in before}.forEach{a.toggleQueue(it)}}
+            StudioAction("撤销",a.canUndo){a.undo()};StudioAction("重做",a.canRedo){a.redo()}
             StudioAction("移除所选（保留原件）",!c.busy&&a.queueSelection.isNotEmpty()){a.removeQueue()}
             StudioAction("导出所选处理文件",canProcess&&a.queueSelection.isNotEmpty()){a.export(selectedOnly=true)}
         }
@@ -144,7 +155,7 @@ internal fun animationNavigation(a:GalleryAnimationController,event:KeyEvent):Bo
                 Column(Modifier.width(132.dp).border(if(index==a.index)2.dp else 1.dp,if(index==a.index)Gold else if(id in a.queueSelection)androidx.compose.ui.graphics.Color(0xff39c9b1)else Quiet).padding(3.dp)) {
                     var range by remember{mutableStateOf(false)};var control by remember{mutableStateOf(false)}
                     Box(Modifier.fillMaxWidth().height(62.dp).onPointerEvent(PointerEventType.Press){range=it.keyboardModifiers.isShiftPressed;control=it.keyboardModifiers.isCtrlPressed}
-                        .semantics{selected=index==a.index;contentDescription="选择结果缩略图 ${index+1}"}.clickable{onFocus();if(control||range)a.toggleQueue(id,range)else a.selectIndex(index)}) {
+                        .semantics{selected=index==a.index;contentDescription="选择结果缩略图 ${index+1}"}.clickable{onFocus();a.selectQueueItem(id,control,range)}) {
                         if(a.mode=="disguise"&&a.coverState!=null)Box(Modifier.fillMaxSize().background(Panel),contentAlignment=Alignment.Center) {
                             if(selectedCover==null)Image(StudioBrand.painter,"默认封面示意",Modifier.fillMaxSize(.4f))
                             else sharedCover?.let{Image(it,"自定义封面示意",Modifier.fillMaxSize())}?:Text("封面读取中",style=MaterialTheme.typography.caption)
@@ -152,7 +163,7 @@ internal fun animationNavigation(a:GalleryAnimationController,event:KeyEvent):Bo
                         if(id in a.queueSelection)Text("✓",Modifier.align(Alignment.TopEnd).background(Gold).padding(horizontal=4.dp),color=Ink)
                     }
                     Row(verticalAlignment=Alignment.CenterVertically) {
-                        Checkbox(id in a.queueSelection,{a.toggleQueue(id,range)},enabled=!c.busy,colors=CheckboxDefaults.colors(checkedColor=Gold,checkmarkColor=Ink,uncheckedColor=Quiet),modifier=Modifier.size(24.dp).semantics{contentDescription="选择队列项目 $id"})
+                        if(a.checkboxMode)Checkbox(id in a.queueSelection,{a.toggleQueue(id,range)},enabled=!c.busy,colors=CheckboxDefaults.colors(checkedColor=Gold,checkmarkColor=Ink,uncheckedColor=Quiet),modifier=Modifier.size(24.dp).semantics{contentDescription="选择队列项目 $id"})
                         Text(c.assets.firstOrNull{it.request().id().toString()==id}?.request()?.name()?:"第 ${index+1} 项",maxLines=1,overflow=TextOverflow.Ellipsis,style=MaterialTheme.typography.caption)
                     }
                     Text(a.itemStatus[id]?:if(a.mode=="disguise")"封面示意 · 待处理"else"待处理",maxLines=1,style=MaterialTheme.typography.caption,color=Quiet)

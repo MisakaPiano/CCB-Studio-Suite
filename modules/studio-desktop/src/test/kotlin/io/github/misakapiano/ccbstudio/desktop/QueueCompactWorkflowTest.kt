@@ -30,7 +30,7 @@ class QueueCompactWorkflowTest {
         fun shot(name:String){val p=Path.of("build/queue-compact/$name.png");Files.createDirectories(p.parent);scene.render(System.nanoTime()).use{it.encodeToData()!!.use{Files.write(p,it.bytes)}}}
         try {
             c.animation.awaitPreview();frames()
-            click("选择队列项目 ${ids.last()}");assertEquals(setOf(ids.last()),c.animation.queueSelection)
+            click("勾选模式");click("选择队列项目 ${ids.last()}");assertEquals(setOf(ids.last()),c.animation.queueSelection)
             c.animation.toggleQueue(ids[21],range=true);assertEquals(ids.takeLast(3).toSet(),c.animation.queueSelection)
             c.animation.selectIndex(0);c.animation.awaitPreview();assertEquals(3,c.animation.queueSelection.size)
             var copied=emptyList<Path>();c.animation.copyFiles={copied=it};c.animation.export(true,selectedOnly=true);c.active!!.join();assertNull(c.problem)
@@ -40,7 +40,7 @@ class QueueCompactWorkflowTest {
             click("移除所选（保留原件）");c.animation.awaitPreview();assertEquals(ids.dropLast(3),c.animation.ids);assertTrue(c.animation.queueSelection.isEmpty())
             click("全选");assertEquals(21,c.animation.queueSelection.size);click("全不选");assertTrue(c.animation.queueSelection.isEmpty())
             c.animation.selectQueue(true);c.animation.removeQueue();frames();assertTrue(c.animation.ids!!.isEmpty());assertFalse(c.animation.previewBusy);assertEquals(0,c.animation.progress)
-            click("返回图库");frames();click("▸ 筛选与分组");click("日历 ▾");click("今天");assertEquals(java.time.LocalDate.now().toString(),c.gallery.date)
+            click("返回图库");frames();click("日历 ▾");click("今天");assertEquals(java.time.LocalDate.now().toString(),c.gallery.date)
             click("清除日期");assertEquals("",c.gallery.date);shot("gallery-calendar-layout")
             assertTrue(nodes().any{it.config.getOrNull(SemanticsProperties.ContentDescription)?.contains("展开搜索")==true})
             // Render the exact dialog content separately; this scene does not own native Window semantics.
