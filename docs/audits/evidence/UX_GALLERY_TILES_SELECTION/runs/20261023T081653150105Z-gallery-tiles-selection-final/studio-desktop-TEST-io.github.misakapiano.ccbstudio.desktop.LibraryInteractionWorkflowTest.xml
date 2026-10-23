@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-10-23T08:17:26.492Z" hostname="DD1" time="35.624">
+  <properties/>
+  <testcase name="demoDensityRetainsToolsAndOriginalExportPublishesIndependentBatch" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="12.117"/>
+  <testcase name="pickerKeepsMultiSelectionAcrossSearchAndDoesNotApplyUntilConfirm" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="0.525"/>
+  <testcase name="sourceFiltersUseStoredReceiptsAndNeverGuessMissingProvenance" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="1.685"/>
+  <testcase name="manyLongTagChipsScrollToLatestAndRemainRemovable" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="0.228"/>
+  <testcase name="queueCtrlShiftSelectionDefaultCheckboxOffAndUndoDoesNotDeleteOriginals" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="1.479"/>
+  <testcase name="importMenuTilesAndSelectionModesHaveDistinctRealActions" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="6.333"/>
+  <testcase name="gallerySingleSelectTagAlbumsHistoryAndFixedDragPayload" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="5.3"/>
+  <testcase name="clipboardCopyAndCutUseFixedIdentitiesAndPreserveUnrelatedLabels" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="1.553"/>
+  <testcase name="archiveSharesFiltersRestoresOnlyFixedFilteredIdsAndSupportsUndo" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="5.411"/>
+  <testcase name="cancellingOperationsDrainsCatalogWithoutFalseRecoveryAndAllowsNextWrite" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="0.993"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

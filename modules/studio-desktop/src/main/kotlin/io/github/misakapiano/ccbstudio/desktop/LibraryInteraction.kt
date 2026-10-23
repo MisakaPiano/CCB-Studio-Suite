@@ -44,6 +44,11 @@ internal class LibraryDragState {
     fun cancel(){origin=null;dragging=emptyList();marquee=null;activeTarget=null;source=null}
 }
 
+/** Keep the thumbnail's grab point at the pointer; constrain using the measured preview only. */
+internal fun libraryDragPreviewPosition(pointer:Offset,preview:androidx.compose.ui.unit.IntSize,container:androidx.compose.ui.unit.IntSize,hotspot:Offset):Offset = Offset(
+    (pointer.x-hotspot.x).coerceIn(0f,(container.width-preview.width).coerceAtLeast(0).toFloat()),
+    (pointer.y-hotspot.y).coerceIn(0f,(container.height-preview.height).coerceAtLeast(0).toFloat()))
+
 /** A single root gesture owns threshold, fixed payload and marquee; no image IO during pointer moves. */
 internal fun Modifier.libraryDrag(d:LibraryDragState,selected:()->Set<String>,select:(Set<String>)->Unit,order:()->List<String>,onFocus:()->Unit={}):Modifier =
     onPointerEvent(PointerEventType.Press,PointerEventPass.Initial){e->
@@ -70,7 +75,8 @@ internal fun Modifier.libraryDrag(d:LibraryDragState,selected:()->Set<String>,se
         e.changes.forEach{it.consume()}
     }.onPointerEvent(PointerEventType.Release,PointerEventPass.Initial){e->
         if(d.origin==null)return@onPointerEvent
-        val ids=d.dragging;val target=d.activeTarget?.let{d.targets[it]?.second}
+        val ids=d.dragging;val point=e.changes.firstOrNull()?.position?:d.position
+        val target=d.targets.values.firstOrNull{it.first.contains(point)}?.second
         if(ids.isNotEmpty()||d.marquee!=null)e.changes.forEach{it.consume()}
         else if(d.source==null&&!d.ctrl&&!d.shift)select(emptySet())
         d.cancel();if(ids.isNotEmpty())target?.invoke(ids)
@@ -78,4 +84,9 @@ internal fun Modifier.libraryDrag(d:LibraryDragState,selected:()->Set<String>,se
 private infix fun <T> Set<T>.symmetricDifference(other:Set<T>)=(this-other)+(other-this)
 
 internal fun Modifier.libraryCardBounds(d:LibraryDragState,key:String,ids:List<String>,rootOffset:()->Offset)=onGloballyPositioned{layout->val r=layout.boundsInRoot();d.cards[key]=r.translate(-rootOffset()) to ids}
-internal fun Modifier.libraryTarget(d:LibraryDragState,label:String,action:(List<String>)->Unit,rootOffset:()->Offset)=onGloballyPositioned{layout->d.targets[label]=layout.boundsInRoot().translate(-rootOffset()) to action}
+@Composable internal fun Modifier.libraryTarget(d:LibraryDragState,label:String,action:(List<String>)->Unit,rootOffset:()->Offset,enabled:Boolean=true):Modifier {
+    var bounds by remember(d,label){mutableStateOf<Rect?>(null)}
+    SideEffect {val rect=bounds;if(enabled&&rect!=null)d.targets[label]=rect to action else d.targets.remove(label)}
+    DisposableEffect(d,label){onDispose{d.targets.remove(label)}}
+    return onGloballyPositioned{layout->bounds=layout.boundsInRoot().translate(-rootOffset())}
+}

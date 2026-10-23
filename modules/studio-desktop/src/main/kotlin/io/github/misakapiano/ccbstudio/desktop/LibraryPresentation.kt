@@ -61,6 +61,26 @@ internal val LibrarySelected=Color(0xff233e5e)
     }
 }
 
+/** A tile is one focusable/clickable surface, including its icon and empty padding. */
+@Composable internal fun LibraryToolTile(label:String,description:String,icon:ImageVector,enabled:Boolean,dropHovered:Boolean,onClick:()->Unit) {
+    val interaction=remember{MutableInteractionSource()};val hovered by interaction.collectIsHoveredAsState();val focused by interaction.collectIsFocusedAsState()
+    val shape=RoundedCornerShape(6.dp)
+    Column(Modifier.size(90.dp,62.dp).alpha(if(enabled)1f else .4f)
+        .background(if(dropHovered||hovered)LibrarySelected else LibraryPanel,shape)
+        .border(if(dropHovered)2.dp else 1.dp,if(dropHovered||focused)Gold else LibraryLine,shape)
+        .semantics{contentDescription=description;stateDescription="磁贴"}
+        .hoverable(interaction).clickable(enabled=enabled,interactionSource=interaction,indication=null,role=Role.Button,onClick=onClick)
+        .padding(5.dp),horizontalAlignment=Alignment.CenterHorizontally,verticalArrangement=Arrangement.Center) {
+        Icon(icon,null,Modifier.size(20.dp));Spacer(Modifier.height(3.dp))
+        Text(label,fontSize=12.sp,lineHeight=15.sp,maxLines=2,textAlign=androidx.compose.ui.text.style.TextAlign.Center)
+    }
+}
+
+@Composable internal fun LibrarySelectionCheckbox(selected:Boolean,onSelected:(Boolean)->Unit,modifier:Modifier=Modifier,enabled:Boolean=true) {
+    Checkbox(selected,onSelected,modifier.size(24.dp),enabled=enabled,
+        colors=CheckboxDefaults.colors(checkedColor=Gold,checkmarkColor=Ink,uncheckedColor=LibraryMuted))
+}
+
 @Composable internal fun LibraryBand(panel:Boolean=false,content:@Composable RowScope.()->Unit) {
     Row(Modifier.fillMaxWidth().background(if(panel)LibraryPanel else LibraryBackground).drawBehind{drawLine(LibraryLine,Offset.Zero,Offset(size.width,0f));drawLine(LibraryLine,Offset(0f,size.height),Offset(size.width,size.height))}.padding(horizontal=12.dp,vertical=7.dp),
         verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(6.dp),content=content)

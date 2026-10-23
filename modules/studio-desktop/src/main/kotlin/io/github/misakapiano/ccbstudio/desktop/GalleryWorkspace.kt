@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.grid.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.zIndex
 import androidx.compose.ui.focus.*
 import androidx.compose.ui.geometry.*
 import androidx.compose.ui.layout.*
@@ -33,6 +34,8 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
     var historyCache:Pair<GalleryHistoryIdentity,GalleryHistoryProjection>?=null
     var historyReadOverride:(suspend ()->GalleryHistoryProjection)?=null
     var pasteContents:()->java.awt.datatransfer.Transferable?={java.awt.Toolkit.getDefaultToolkit().systemClipboard.getContents(null)}
+    var chooseImportFiles:()->List<java.nio.file.Path> = {StudioFileDialogs.openMany("导入图片",listOf("png","apng","jpg","jpeg","webp","gif","bmp"))}
+    var chooseImportDirectory:()->java.nio.file.Path?={StudioFileDialogs.folder("导入目录本层图片（不含子目录）")}
     var imports by mutableStateOf<List<GalleryImportResult>>(emptyList())
     var copyText:(String)->Unit={java.awt.Toolkit.getDefaultToolkit().systemClipboard.setContents(java.awt.datatransfer.StringSelection(it),null)}
     var query by mutableStateOf("");var source by mutableStateOf("all");var date by mutableStateOf("")
@@ -166,7 +169,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
         Column(Modifier.fillMaxSize().galleryIngress(c,handlePaste=false)) {
             Row(Modifier.fillMaxWidth().padding(horizontal=12.dp,vertical=7.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(6.dp)) {
                 LibraryAction("返回创作"){c.view="创作"}
-                LibraryAction("导入图片",!c.busy){c.importImages()}
+                GalleryImportMenu(c)
                 LibraryAction("粘贴图片",!c.busy){pasteLibrarySelection(c)}
                 GalleryImportReceipt(c)
                 Spacer(Modifier.weight(1f))
@@ -221,17 +224,16 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
                                     if(c.library.canRedo)add(ContextMenuItem("重做"){c.library.redo()})
                                 }
                             }}) {
-                                Column(Modifier.libraryCardBounds(drag,album.key,albumIds){rootOffset}.background(if(selected)LibrarySelected else androidx.compose.ui.graphics.Color.Transparent,androidx.compose.foundation.shape.RoundedCornerShape(5.dp)).border(1.dp,if(selected)Gold else androidx.compose.ui.graphics.Color.Transparent,androidx.compose.foundation.shape.RoundedCornerShape(5.dp)).padding(5.dp)
+                                Column(Modifier.libraryCardBounds(drag,album.key,albumIds){rootOffset}.semantics{this.selected=selected}.background(if(selected)LibrarySelected else androidx.compose.ui.graphics.Color.Transparent,androidx.compose.foundation.shape.RoundedCornerShape(5.dp)).border(1.dp,if(selected)Gold else androidx.compose.ui.graphics.Color.Transparent,androidx.compose.foundation.shape.RoundedCornerShape(5.dp)).padding(5.dp)
                                     .onPointerEvent(PointerEventType.Press){event->ctrl=event.keyboardModifiers.isCtrlPressed;shift=event.keyboardModifiers.isShiftPressed;if(event.buttons.isSecondaryPressed){if(!selected)c.selection=albumIds.toSet();c.current=id;focus.requestFocus()}}
                                     .combinedClickable(onClick={choose()},onDoubleClick={if(grouped)enter()else{c.current=id;g.preview(visibleIds,id)}})) {
                                     Box(Modifier.fillMaxWidth().height(115.dp).semantics{contentDescription=if(grouped)"图库相册 $id"else"图库图片 $id"}) {
                                         AssetImage(c,id,Modifier.fillMaxSize())
                                         if(grouped)Box(Modifier.fillMaxWidth().height(4.dp).background(Gold).align(Alignment.TopCenter))
                                         if(grouped)Text("${album.images.size} 张",Modifier.align(Alignment.TopEnd).background(Panel).padding(4.dp))
-                                        if(selected&&!g.checkboxMode)Text("✓",Modifier.align(Alignment.TopStart).background(Gold).padding(3.dp),color=Ink)
                                     }
                                     Row(verticalAlignment=Alignment.CenterVertically) {
-                                        if(g.checkboxMode)Checkbox(selected,{val old=g.checkboxMode;g.checkboxMode=true;choose();g.checkboxMode=old},Modifier.size(28.dp).semantics{contentDescription="选择图库图片 $id"})
+                                        if(g.checkboxMode)LibrarySelectionCheckbox(selected,{choose()},Modifier.semantics{contentDescription="选择图库图片 $id"})
                                         Text(if(grouped)album.label.lineSequence().first()else labels[id]?.alias?.takeIf{it.isNotBlank()}?:a.request().name(),Modifier.fillMaxWidth(),textAlign=androidx.compose.ui.text.style.TextAlign.Center,maxLines=1,overflow=TextOverflow.Ellipsis)
                                     }
                                     if(grouped)Text("相册",Modifier.fillMaxWidth(),color=LibraryMuted,textAlign=androidx.compose.ui.text.style.TextAlign.Center,style=MaterialTheme.typography.caption)
@@ -287,7 +289,9 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
         }
         val density=androidx.compose.ui.platform.LocalDensity.current
         drag.marquee?.let{rect->Box(Modifier.offset(with(density){rect.left.toDp()},with(density){rect.top.toDp()}).size(with(density){rect.width.toDp()},with(density){rect.height.toDp()}).background(Gold.copy(alpha=.15f)).border(1.dp,Gold))}
-        if(drag.dragging.isNotEmpty())Surface(Modifier.offset(with(density){(drag.position.x+14).coerceIn(0f,(rootSize.width-240*density.density).coerceAtLeast(0f)).toDp()},with(density){(drag.position.y+16).coerceIn(0f,(rootSize.height-90*density.density).coerceAtLeast(0f)).toDp()}).width(220.dp),color=Panel,elevation=8.dp) {
+        var dragPreviewSize by remember{mutableStateOf(androidx.compose.ui.unit.IntSize.Zero)}
+        val previewPosition=libraryDragPreviewPosition(drag.position,dragPreviewSize,rootSize,Offset(25*density.density,25*density.density))
+        if(drag.dragging.isNotEmpty())Surface(Modifier.zIndex(10f).offset{androidx.compose.ui.unit.IntOffset(previewPosition.x.toInt(),previewPosition.y.toInt())}.width(180.dp).onSizeChanged{dragPreviewSize=it}.semantics{contentDescription="拖动预览 ${drag.dragging.size} 项"},color=Panel,elevation=8.dp) {
             Row(Modifier.padding(8.dp),verticalAlignment=Alignment.CenterVertically) {
                 drag.dragging.take(3).forEach{QueueStaticThumbnail(c,it,Modifier.size(34.dp))}
                 Text("${drag.dragging.size} 项\n${drag.activeTarget?:"拖到下方工具"}",style=MaterialTheme.typography.caption)
@@ -325,4 +329,15 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
     }},confirmButton={Column {
         com.example.chatbar.domain.image.NovelAiImageUseTarget.entries.forEach{target->TextButton(enabled=!c.busy,onClick={c.useImage(current,target);close()}){Text(target.displayName)}}
     }},dismissButton={TextButton(onClick=close){Text("取消")}})
+}
+
+@Composable internal fun GalleryImportMenu(c:WorkbenchController) {
+    var open by remember{mutableStateOf(false)}
+    Box {
+        LibraryAction("导入图片 ▾",!c.busy,accessibilityLabel="导入图片"){open=true}
+        DropdownMenu(open,{open=false}) {
+            DropdownMenuItem(enabled=!c.busy,onClick={open=false;c.importImages()}){Text("导入图片文件")}
+            DropdownMenuItem(enabled=!c.busy,onClick={open=false;c.importImageDirectory()}){Text("导入目录（本层）")}
+        }
+    }
 }

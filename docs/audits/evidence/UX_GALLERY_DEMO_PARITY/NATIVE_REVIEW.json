@@ -1,0 +1,14 @@
+{
+  "source": "e4697230dbb05aa5e9dd7a3d752eb48533726020",
+  "package": "gallery-demo-parity-review",
+  "answer": "仍有明显差距，我会指出",
+  "status": "REJECTED",
+  "followup": [
+    "Only buttons instead of whole tiles",
+    "Drag ghost stops before reaching tool buttons",
+    "Missing image/directory import dropdown",
+    "Duplicate/text ticks in gallery and APNG; ordinary selection should use border/overlay and checkbox mode one standard checkbox"
+  ],
+  "previousFunctionalPassesPreservedWithScope": true,
+  "userScreenshotsCopied": false
+}

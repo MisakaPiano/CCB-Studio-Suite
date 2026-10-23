@@ -1,0 +1,33 @@
+{
+  "phase": "gallery-tiles-selection-first",
+  "startedUtc": "2026-10-23T08:12:47.153792+00:00",
+  "seconds": 149.506,
+  "exitCode": 1,
+  "tests": 13,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "FAILED",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:test",
+    "--tests",
+    "*LibraryInteractionWorkflowTest",
+    "--tests",
+    "*QueueCompactWorkflowTest",
+    "--tests",
+    "*GalleryIngressTest",
+    ":studio-desktop:createDistributable"
+  ],
+  "baseCommit": "d53194cb0cda5baf59e4fea93b24227a5af23c53",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

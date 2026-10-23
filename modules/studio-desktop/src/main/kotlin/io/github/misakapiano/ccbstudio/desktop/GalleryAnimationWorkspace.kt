@@ -156,7 +156,7 @@ internal fun animationNavigation(a:GalleryAnimationController,event:KeyEvent):Bo
             if(delta!=0f){scope.launch{scroll.scrollBy(delta*48)};event.changes.forEach{it.consume()}}
         },state=scroll,horizontalArrangement=Arrangement.spacedBy(6.dp)) {
             itemsIndexed(ids,key={_,id->id}){index,id->ContextMenuArea(items={animationMenu(c,id)}) {
-                Column(Modifier.width(132.dp).border(if(index==a.index)2.dp else 1.dp,if(index==a.index)Gold else if(id in a.queueSelection)androidx.compose.ui.graphics.Color(0xff39c9b1)else Quiet).padding(3.dp)) {
+                Column(Modifier.width(132.dp).background(if(id in a.queueSelection)LibrarySelected else androidx.compose.ui.graphics.Color.Transparent).border(if(id in a.queueSelection||index==a.index)2.dp else 1.dp,if(id in a.queueSelection||index==a.index)Gold else LibraryLine).padding(3.dp)) {
                     var range by remember{mutableStateOf(false)};var control by remember{mutableStateOf(false)}
                     Box(Modifier.fillMaxWidth().height(62.dp).onPointerEvent(PointerEventType.Press){range=it.keyboardModifiers.isShiftPressed;control=it.keyboardModifiers.isCtrlPressed}
                         .semantics{selected=index==a.index;contentDescription="选择结果缩略图 ${index+1}"}.clickable{onFocus();a.selectQueueItem(id,control,range)}) {
@@ -164,10 +164,9 @@ internal fun animationNavigation(a:GalleryAnimationController,event:KeyEvent):Bo
                             if(selectedCover==null)Image(StudioBrand.painter,"默认封面示意",Modifier.fillMaxSize(.4f))
                             else sharedCover?.let{Image(it,"自定义封面示意",Modifier.fillMaxSize())}?:Text("封面读取中",style=MaterialTheme.typography.caption)
                         }else QueueStaticThumbnail(c,id,Modifier.fillMaxSize())
-                        if(id in a.queueSelection)Text("✓",Modifier.align(Alignment.TopEnd).background(Gold).padding(horizontal=4.dp),color=Ink)
                     }
                     Row(verticalAlignment=Alignment.CenterVertically) {
-                        if(a.checkboxMode)Checkbox(id in a.queueSelection,{a.toggleQueue(id,range)},enabled=!c.busy,colors=CheckboxDefaults.colors(checkedColor=Gold,checkmarkColor=Ink,uncheckedColor=Quiet),modifier=Modifier.size(24.dp).semantics{contentDescription="选择队列项目 $id"})
+                        if(a.checkboxMode)LibrarySelectionCheckbox(id in a.queueSelection,{a.toggleQueue(id,range)},enabled=!c.busy,modifier=Modifier.semantics{contentDescription="选择队列项目 $id"})
                         Text(c.assets.firstOrNull{it.request().id().toString()==id}?.request()?.name()?:"第 ${index+1} 项",maxLines=1,overflow=TextOverflow.Ellipsis,style=MaterialTheme.typography.caption)
                     }
                     Text(a.itemStatus[id]?:if(a.mode=="disguise")"封面示意 · 待处理"else"待处理",maxLines=1,style=MaterialTheme.typography.caption,color=Quiet)

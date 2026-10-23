@@ -112,7 +112,7 @@ import kotlinx.coroutines.*
                                     if(grouped)Text("${album.images.size} 项",Modifier.align(Alignment.TopEnd).background(Panel))
                                 }
                                 Column(Modifier.weight(1f).padding(start=10.dp),verticalArrangement=Arrangement.spacedBy(3.dp)) {
-                                Row(verticalAlignment=Alignment.CenterVertically){if(g.checkboxMode)Checkbox(selected,{choose()});Text(if(grouped)album.label.lineSequence().first()else labels[id]?.alias?.ifBlank{a.request().name()}?:a.request().name(),maxLines=2,overflow=TextOverflow.Ellipsis)}
+                                Row(verticalAlignment=Alignment.CenterVertically){if(g.checkboxMode)LibrarySelectionCheckbox(selected,{choose()});Text(if(grouped)album.label.lineSequence().first()else labels[id]?.alias?.ifBlank{a.request().name()}?:a.request().name(),maxLines=2,overflow=TextOverflow.Ellipsis)}
                                 Text(libraryRecordedDay(times[id]).ifBlank{"日期未记录"},style=MaterialTheme.typography.caption)
                                 Text((if(id in images)"图片 · ${librarySourceLabel(sources[id]?:"unknown")}"else if(a.request().project().decodeToString()==LibraryRepository.PROMPT)"Prompt"else"文档")+" · "+labels[id]?.tags.orEmpty().joinToString(" · "),color=LibraryMuted,maxLines=1,overflow=TextOverflow.Ellipsis)
                                 }

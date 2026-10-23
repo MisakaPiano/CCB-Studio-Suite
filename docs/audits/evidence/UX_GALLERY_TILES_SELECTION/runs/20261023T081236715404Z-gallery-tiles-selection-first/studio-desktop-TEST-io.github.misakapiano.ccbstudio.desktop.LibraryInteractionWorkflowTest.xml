@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" tests="10" skipped="0" failures="1" errors="0" timestamp="2026-10-23T08:14:16.993Z" hostname="DD1" time="33.422">
+  <properties/>
+  <testcase name="demoDensityRetainsToolsAndOriginalExportPublishesIndependentBatch" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="8.051"/>
+  <testcase name="pickerKeepsMultiSelectionAcrossSearchAndDoesNotApplyUntilConfirm" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="0.517"/>
+  <testcase name="sourceFiltersUseStoredReceiptsAndNeverGuessMissingProvenance" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="1.958"/>
+  <testcase name="manyLongTagChipsScrollToLatestAndRemainRemovable" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="0.221"/>
+  <testcase name="queueCtrlShiftSelectionDefaultCheckboxOffAndUndoDoesNotDeleteOriginals" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="1.52"/>
+  <testcase name="importMenuTilesAndSelectionModesHaveDistinctRealActions" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="3.872">
+    <failure message="java.lang.AssertionError: SerializationException：操作未完成，未自动重发。已有资料保留。 expected null, but was:&lt;SerializationException：操作未完成，未自动重发。已有资料保留。&gt;" type="java.lang.AssertionError">java.lang.AssertionError: SerializationException：操作未完成，未自动重发。已有资料保留。 expected null, but was:&lt;SerializationException：操作未完成，未自动重发。已有资料保留。&gt;
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotNull(Assert.java:756)
+	at org.junit.Assert.assertNull(Assert.java:738)
+	at kotlin.test.junit.JUnitAsserter.assertNull(JUnitSupport.kt:52)
+	at kotlin.test.AssertionsKt__AssertionsKt.assertNull(Assertions.kt:161)
+	at kotlin.test.AssertionsKt.assertNull(Unknown Source)
+	at io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest.idle(LibraryInteractionWorkflowTest.kt:29)
+	at io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest.access$idle(LibraryInteractionWorkflowTest.kt:20)
+	at io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest$importMenuTilesAndSelectionModesHaveDistinctRealActions$1.invokeSuspend(LibraryInteractionWorkflowTest.kt:212)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+</failure>
+  </testcase>
+  <testcase name="gallerySingleSelectTagAlbumsHistoryAndFixedDragPayload" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="5.933"/>
+  <testcase name="clipboardCopyAndCutUseFixedIdentitiesAndPreserveUnrelatedLabels" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="3.118"/>
+  <testcase name="archiveSharesFiltersRestoresOnlyFixedFilteredIdsAndSupportsUndo" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="7.135"/>
+  <testcase name="cancellingOperationsDrainsCatalogWithoutFalseRecoveryAndAllowsNextWrite" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="1.097"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

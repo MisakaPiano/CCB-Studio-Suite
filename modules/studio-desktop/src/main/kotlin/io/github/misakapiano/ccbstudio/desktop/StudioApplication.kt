@@ -347,8 +347,13 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
         withContext(scope.coroutineContext.minusKey(Job)){onSaved(a)}
     }
     fun importImages() {
-        val files=StudioFileDialogs.openMany("导入图片",listOf("png","jpg","jpeg","webp","gif"))
+        if(busy||maintenance)return
+        val files=gallery.chooseImportFiles()
         if(files.isNotEmpty())importIngress(GalleryIngress(files=files))
+    }
+    fun importImageDirectory() {
+        if(busy||maintenance)return
+        gallery.chooseImportDirectory()?.let{importIngress(GalleryIngress(files=listOf(it),channel="gallery-directory-dialog"),expandDirectories=true)}
     }
     fun pasteImages():Boolean=try{if(busy)false else gallery.pasteContents()?.let{receiveTransfer(it,true)}?:false}catch(e:Exception){problem="剪贴板读取失败；现有资料未改变";true}
     fun receiveTransfer(transfer:java.awt.datatransfer.Transferable,paste:Boolean):Boolean=try {

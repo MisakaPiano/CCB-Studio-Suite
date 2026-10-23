@@ -78,6 +78,8 @@ class LibraryInteractionWorkflowTest {
             val to=scene.node("APNG伪装 / 还原").boundsInRoot.center
             scene.sendPointerEvent(PointerEventType.Press,from,button=PointerButton.Primary)
             for(i in 1..10){scene.sendPointerEvent(PointerEventType.Move,from+(to-from)*(i/10f),button=PointerButton.Primary);scene.frames()}
+            val ghost=scene.nodes().first{it.matches("拖动预览 4 项")}.boundsInRoot
+            assertTrue(ghost.contains(to),"The grabbed thumbnail must reach the actual tool, not stop at a fixed bottom margin")
             scene.shot("gallery-drag-tools")
             scene.sendPointerEvent(PointerEventType.Release,to,button=PointerButton.Primary);scene.frames()
             assertEquals(ids.toSet(),c.animation.ids!!.toSet());assertEquals(4,c.animation.ids!!.size)
@@ -188,5 +190,44 @@ class LibraryInteractionWorkflowTest {
             a.removeQueue();assertEquals(listOf(ids[3]),a.ids);a.undo();assertEquals(ids,a.ids);a.redo();assertEquals(listOf(ids[3]),a.ids)
             a.open(ids.take(2));assertFalse(a.canUndo);ids.forEach{assertContentEquals(bytes,w.bytes(it))}
         }finally{c.close();scope.cancel()}
+    }
+
+    @Test fun importMenuTilesAndSelectionModesHaveDistinctRealActions()=runBlocking(awt) {
+        val r=root();val w=StudioWorkspace.openStudio(r.resolve("workspace"));val bytes=EditorRenderer.synthetic(48,48)
+        val folder=Files.createDirectories(r.resolve("input"));Files.write(folder.resolve("directory.png"),bytes)
+        Files.createDirectory(folder.resolve("child"));Files.write(folder.resolve("child/excluded.png"),bytes)
+        val input=Files.write(r.resolve("file.png"),bytes)
+        val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(r.resolve("runtime")),r.resolve("budget"),admissionOverride=RequestAdmission{error("No HTTP")},pauseCollectionsOnStart=true)
+        c.view="图库";c.gallery.chooseImportFiles={listOf(input)};c.gallery.chooseImportDirectory={folder}
+        val scene=ImageComposeScene(1320,880,coroutineContext=awt){MaterialTheme{Workbench(c,DesktopWindowChrome{},false)}}
+        try {
+            scene.frames();scene.click("导入图片");assertTrue(scene.nodes().any{it.matches("导入目录（本层）")});scene.shot("import-files-directory-menu")
+            scene.click("导入图片文件");c.idle();scene.frames();assertEquals(1,c.assets.size)
+            scene.click("导入图片");scene.click("导入目录（本层）");c.idle();scene.frames();assertEquals(2,c.assets.size)
+            assertTrue(c.assets.none{it.request().name()=="excluded.png"})
+            val ids=c.assets.map{it.request().id().toString()};c.selection=ids.toSet();scene.frames()
+            assertTrue(scene.nodes().none{it.matches("✓")});assertTrue(scene.nodes().none{it.matches("选择图库图片 ${ids[0]}")})
+            val tile=scene.node("APNG伪装 / 还原");assertEquals("磁贴",tile.config[SemanticsProperties.StateDescription]);assertTrue(tile.boundsInRoot.height>=60)
+            scene.shot("gallery-normal-selection-tiles")
+            scene.click("勾选模式");assertEquals(1,scene.nodes().count{it.matches("选择图库图片 ${ids[0]}")})
+            assertTrue(scene.nodes().none{it.matches("✓")});scene.shot("gallery-checkbox-selection")
+            scene.click("工具布局");scene.click("紧凑按钮");c.idle();scene.frames();assertTrue(scene.node("APNG伪装 / 还原").boundsInRoot.height<45)
+            scene.click("工具布局");scene.click("小磁贴");c.idle();scene.frames();assertEquals("磁贴",scene.node("APNG伪装 / 还原").config[SemanticsProperties.StateDescription])
+            // Click the tile's icon/padding region with actual pointer events, not its text action.
+            val corner=scene.node("APNG伪装 / 还原").boundsInRoot.topLeft+Offset(5f,5f)
+            scene.sendPointerEvent(PointerEventType.Press,corner,button=PointerButton.Primary);scene.sendPointerEvent(PointerEventType.Release,corner,button=PointerButton.Primary);scene.frames()
+            assertEquals(ids.toSet(),c.animation.ids!!.toSet())
+            c.animation.selectQueueItem(ids[0]);scene.frames();assertTrue(scene.nodes().none{it.matches("✓")});assertTrue(scene.nodes().none{it.matches("选择队列项目 ${ids[0]}")})
+            scene.shot("queue-normal-selection")
+            c.animation.checkboxMode=true;scene.frames();assertEquals(1,scene.nodes().count{it.matches("选择队列项目 ${ids[0]}")});assertTrue(scene.nodes().none{it.matches("✓")});scene.shot("queue-checkbox-selection")
+            ids.forEach{assertContentEquals(bytes,w.bytes(it))}
+            assertTrue(LibraryRepository(w).load().preferences.getValue("galleryTools").contains("\"tiles\":true"))
+            val saved=LibraryRepository(w).load().preferences.getValue("galleryTools")
+            assertTrue(io.github.misakapiano.ccbstudio.core.documentJson.decodeFromString<GalleryToolSettings>(saved).tiles)
+        }finally{scene.close();c.close();scope.cancel()}
+        StudioWorkspace.openStudio(r.resolve("workspace")).use{again->
+            val saved=LibraryRepository(again).load().preferences.getValue("galleryTools")
+            assertTrue(io.github.misakapiano.ccbstudio.core.documentJson.decodeFromString<GalleryToolSettings>(saved).tiles)
+        }
     }
 }

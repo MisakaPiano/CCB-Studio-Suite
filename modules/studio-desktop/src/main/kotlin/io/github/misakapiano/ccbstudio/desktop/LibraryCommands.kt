@@ -65,7 +65,6 @@ private val galleryTools get()=listOf(
     GalleryTool("guide","选中图片用于引导",DesktopAppIcons.ImageAdd),
     GalleryTool("metadata","参数与来源",DesktopAppIcons.Data),
     GalleryTool("export","导出所选原始文件",Lucide.FolderOutput))
-@Serializable private data class GalleryToolSettings(val version:Int=1,val order:List<String> = emptyList(),val hidden:Set<String> = emptySet(),val tiles:Boolean=false)
 
 internal fun runGalleryTool(c:WorkbenchController,tool:String,ids:List<String>) {
     if(c.busy||c.maintenance)return
@@ -101,11 +100,10 @@ internal fun runGalleryTool(c:WorkbenchController,tool:String,ids:List<String>) 
             val display=when(tool.id){"edit"->"进入编辑";"prompt"->"Prompt 参照";"apng"->"APNG 伪装 / 还原";"tags"->"编辑标签";"compare"->"比较";"guide"->"图像引导";"export"->"导出";else->"参数与来源"}
             val hovered=drag.activeTarget==tool.label
             val valid=(!c.busy&&(selected.isNotEmpty()||tool.id=="apng")&&(tool.id!="compare"||selected.size==2))
-            Box(Modifier.libraryTarget(drag,tool.label,{ids->runGalleryTool(c,tool.id,ids)},rootOffset)
+            Box(Modifier.libraryTarget(drag,tool.label,{ids->runGalleryTool(c,tool.id,ids)},rootOffset,valid)
                 .background(if(hovered)DesktopBootstrapColors.accent else androidx.compose.ui.graphics.Color.Transparent)) {
-                if(setting.tiles)Column(Modifier.padding(4.dp).widthIn(min=95.dp),horizontalAlignment=Alignment.CenterHorizontally) {
-                    Icon(tool.icon,null,Modifier.size(20.dp));LibraryAction(display,valid,selected=hovered,icon=null,accessibilityLabel=tool.label){runGalleryTool(c,tool.id,selected)}
-                }else LibraryAction(display,valid,selected=hovered,icon=tool.icon,accessibilityLabel=tool.label){runGalleryTool(c,tool.id,selected)}
+                if(setting.tiles)LibraryToolTile(display,tool.label,tool.icon,valid,hovered){runGalleryTool(c,tool.id,selected)}
+                else LibraryAction(display,valid,selected=hovered,icon=tool.icon,accessibilityLabel=tool.label){runGalleryTool(c,tool.id,selected)}
             }
             DisposableEffect(tool.id){onDispose{drag.targets.remove(tool.label)}}
         }}
@@ -115,7 +113,10 @@ internal fun runGalleryTool(c:WorkbenchController,tool:String,ids:List<String>) 
         Box {
             LibraryAction("自定义",style=StudioActionStyle.TERTIARY,icon=Lucide.SlidersHorizontal,accessibilityLabel="工具布局"){custom=true}
             DropdownMenu(custom,{custom=false}) {
-                DropdownMenuItem(onClick={save(setting.copy(tiles=!setting.tiles))}){Text(if(setting.tiles)"✓ 磁贴样式"else"磁贴样式")}
+                listOf(true to "小磁贴",false to "紧凑按钮").forEach{(tiles,label)->DropdownMenuItem(onClick={custom=false;save(setting.copy(tiles=tiles))}){
+                    RadioButton(setting.tiles==tiles,null,Modifier.size(22.dp),colors=RadioButtonDefaults.colors(selectedColor=Gold));Text(label,Modifier.padding(start=6.dp))
+                }}
+                Divider(color=LibraryLine)
                 order.forEachIndexed{i,tool->Row(verticalAlignment=Alignment.CenterVertically) {
                     Checkbox(tool.id !in setting.hidden,{value->save(setting.copy(hidden=if(value)setting.hidden-tool.id else setting.hidden+tool.id))})
                     Text(tool.label,Modifier.width(180.dp))
