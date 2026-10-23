@@ -1,3 +1,11 @@
+## 2026-10-23 导入性能、队列与紧凑页面新包
+
+用户已限定确认aaf98b4包两组pass；另报3图约1分钟/24图约10分钟及布局/队列问题，现已处理并保留原回执。合成80旧图+24新图基线39.919秒，首次优化10.610秒、最终8.729秒；不外推真实库。存储/核心42项及最终桌面20项各轮限定证据见[记录](audits/UX_IMPORT_QUEUE_LAYOUT.md)。新包`.local/windows-rc/import-queue-layout-review/Start-import-queue-layout-review.lnk`220文件核验，继续暂停收集；新队列多选/子集复制/移除、日历/长搜索与真实导入速度待人工。性能资源专项独立维护PERF-001–007，多Prompt重点仍单列，PRODUCT_HOLD / NOT RC。
+
+## 2026-10-23 性能与资源长期专项
+
+[PERFORMANCE_RESOURCE_PROGRAM](../tasks/PERFORMANCE_RESOURCE_PROGRAM.md)由用户明确要求建立，PERF-001导入进行中，002–007覆盖启动/切页/搜索/预览/交付/收集及CPU/内存/磁盘，逐项记录基线/改后/验证边界。当前仍在UX恢复连续合同内先完成已授权导入与布局/队列修复。
+
 ## 2026-10-23 相册排序与紧凑APNG工作台
 
 已补常驻折叠控件、未变生成记录缓存、根及每相册独立自然排序，APNG紧凑分类工具栏、本页文件/目录本层/拖放/粘贴及结果专用右键。相关25项回归、最后边界2项（有重叠）通过；220文件新包`.local/windows-rc/gallery-sort-apng-review/Start-gallery-sort-apng-review.lnk`逐项核验，继续暂停目录收集。合成输入album-A/album-B/apng-batch便于直接测试。见[实现与证据](audits/UX_GALLERY_SORT_COMPACT_APNG.md)，新增原生交互待验；此前已通过项保留，重点多Prompt仍单列。三类表33项扩展，Desktop转交报告更新；PRODUCT_HOLD / NOT RC。

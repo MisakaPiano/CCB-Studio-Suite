@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.assets.AssetProjectCatalogTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-23T01:43:56.518Z" hostname="DD1" time="0.648">
+  <properties/>
+  <testcase name="projectCatalogVerifiesSelectedPayloadsAndAllRecordEnvelopesWithoutClaimingFullIntegrity" classname="io.github.misakapiano.ccbstudio.assets.AssetProjectCatalogTest" time="0.607"/>
+  <testcase name="unknownRecordIsNotHiddenByProjectFiltering" classname="io.github.misakapiano.ccbstudio.assets.AssetProjectCatalogTest" time="0.041"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

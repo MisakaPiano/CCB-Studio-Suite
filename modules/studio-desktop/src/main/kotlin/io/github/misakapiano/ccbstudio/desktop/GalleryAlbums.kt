@@ -36,28 +36,26 @@ internal data class GalleryScope(val ids:Set<String>?=null,val label:String="全
         c.run("保存相册默认排序") {GallerySortPreferences(c.library.repository).save(identity,value);g.sortPreferences=g.sortPreferences.orEmpty()+(identity to value);c.library.refresh();g.anchor=null}
     }
     var dateInput by remember(g.depth,g.scope.ids,g.date){mutableStateOf(g.date)}
-        if(g.depth>0)StudioAction("返回上层相册",!c.busy){g.back();c.selection=emptySet();g.anchor=null}
     StudioDisclosure("筛选与分组") {
-        CompactChoice("来源",listOf("all","generated","imported"),g.source,{when(it){"generated"->"生成历史";"imported"->"导入/副本";else->"全部来源"}}){g.source=it;c.selection=emptySet();g.anchor=null}
     StudioActions {
-        StatusText("${g.scope.label} · 第 ${g.depth+1} 层")
+        CompactChoice("来源",listOf("all","generated","imported"),g.source,{when(it){"generated"->"生成历史";"imported"->"导入/副本";else->"全部来源"}}){g.source=it;c.selection=emptySet();g.anchor=null}
+        Text("第 ${g.depth+1} 层",style=MaterialTheme.typography.caption)
         StudioSwitch("折叠为相册",g.fold.enabled){fold(!g.fold.enabled,g.fold.type)}
         CompactChoice("折叠方式",NovelAiHistoryFoldType.entries.map{it.label}+"目录",if(g.directoryFold)"目录"else g.fold.type.label,{it}){label->
             fold(g.fold.enabled,NovelAiHistoryFoldType.entries.firstOrNull{it.label==label}?:g.fold.type,label=="目录")
         }
         if(g.foldPreferences==null)StatusText("正在读取相册偏好…")
-    }
-    StudioActions {
         CompactChoice(if(g.depth==0)"默认排序"else"本相册默认排序",GallerySortField.entries,g.sort.field,{it.label}){sort(g.sort.copy(field=it))}
         StudioAction(if(g.sort.descending)"降序 ↓"else"升序 ↑",!c.busy&&g.sortPreferences!=null){sort(g.sort.copy(descending=!g.sort.descending))}
         if(g.depth>0)StatusText("仅记住当前相册")
     }
-    Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
-        OutlinedTextField(dateInput,{dateInput=it},label={Text("日期（YYYY / YYYY-MM / YYYY-MM-DD）")},modifier=Modifier.weight(1f))
+    StudioActions {
+        StudioCompactField("日期（YYYY / YYYY-MM / YYYY-MM-DD）",dateInput,{dateInput=it},Modifier.width(240.dp))
+        GalleryCalendar(dateInput){picked->dateInput=picked;g.date=picked;g.historyProblem=null;c.selection=emptySet();g.anchor=null}
         StudioAction("应用日期"){runCatching{galleryDateFilter(dateInput)}.onSuccess{g.date=dateInput.trim();g.historyProblem=null;c.selection=emptySet();g.anchor=null}.onFailure{g.historyProblem="日期无效，请使用年、年月或年月日"}}
         StudioAction("清除日期"){g.date="";dateInput="";g.historyProblem=null;c.selection=emptySet();g.anchor=null}
     }
-    }
     if(g.fold.enabled)Text(if(g.directoryFold)"按已记录的来源目录分组；未记录目录的图片单独显示，不扫描外部目录。"else g.fold.type.description,style=MaterialTheme.typography.caption)
+    }
     g.historyProblem?.let{Text(it,color=MaterialTheme.colors.error)}
 }

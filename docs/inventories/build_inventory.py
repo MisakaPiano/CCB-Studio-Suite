@@ -152,8 +152,9 @@ features=[
  ('图片查看器悬浮翻页、右键及直达编辑/APNG','StudioAssetViewer.kt','UX_NAI_BACKGROUND','IMPLEMENTED_AUTO_VIEWER_ENTRY_HUMAN_SCOPED_PASS_APNG_DELIVERY_PENDING'),
  ('可视多套封面库、独立管理窗口、默认恢复与自动预览','DisguiseCoverManager.kt','UX_COVER_LIBRARY_GALLERY','IMPLEMENTED_COVER_LIBRARY_HUMAN_SCOPED_PASS_PREVIEW_AND_DELIVERY_PENDING'),
  ('图库来源目录折叠、层级偏好及可见滚动条','GalleryHistory.kt','UX_COVER_LIBRARY_GALLERY','IMPLEMENTED_DIRECTORY_GROUPING_AND_SCROLLBARS_HUMAN_SCOPED_PASS'),
- ('常驻分组控件、未变记录缓存及每相册独立自然排序','GallerySorting.kt','UX_GALLERY_SORT_COMPACT_APNG','IMPLEMENTED_AUTO_NEW_SORTING_HUMAN_PENDING'),
- ('紧凑APNG工作台、本页多来源输入与结果专用右键','GalleryAnimationWorkspace.kt','UX_GALLERY_SORT_COMPACT_APNG','IMPLEMENTED_AUTO_NEW_INTAKE_AND_RESULT_OPERATIONS_HUMAN_PENDING')]
+ ('常驻分组/缓存、每相册排序及紧凑检索/日历','StudioCompactControls.kt','UX_IMPORT_QUEUE_LAYOUT','IMPLEMENTED_SORTING_HUMAN_SCOPED_PASS_NEW_SEARCH_CALENDAR_PENDING'),
+ ('APNG多选队列、本页输入/结果专用右键与紧凑分区','GalleryAnimationWorkspace.kt','UX_IMPORT_QUEUE_LAYOUT','IMPLEMENTED_BASE_INTAKE_COPY_HUMAN_SCOPED_PASS_NEW_QUEUE_PENDING'),
+ ('批次入库与目录副本检查点、阶段进度和用时','LibraryRepository.kt','UX_IMPORT_QUEUE_LAYOUT','IMPLEMENTED_SYNTHETIC_PERFORMANCE_COMPARISON_HUMAN_PENDING')]
 rows=[]
 for i,(label,target,audit,status) in enumerate(features,1):
     if target.endswith('.kt'):

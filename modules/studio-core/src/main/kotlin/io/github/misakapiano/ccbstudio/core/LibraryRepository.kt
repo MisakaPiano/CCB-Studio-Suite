@@ -25,7 +25,7 @@ data class FolderScanProgress(val completed:Int,val total:Int)
  * Headers form a checked append chain. A failed/incomplete write never replaces the last revision. */
 class LibraryRepository(private val workspace:StudioWorkspace) {
     companion object {const val TAG="CCB_LIBRARY_STATE_V1";const val PROMPT="CCB_PROMPT_ASSET_V1"}
-    private fun records()=workspace.catalog().filter{it.request().project().decodeToString()==TAG}.map { a->
+    private fun records()=workspace.assets.catalogProject(TAG.toByteArray()).map { a->
         val h=documentJson.decodeFromString<LibraryRevision>(a.request().recipe().decodeToString())
         if(h.version!=1)throw DataProblem("UNSUPPORTED_VERSION","Library metadata version retained")
         a to h
@@ -33,9 +33,12 @@ class LibraryRepository(private val workspace:StudioWorkspace) {
         require(h.sequence==i.toLong()+1 && h.previous==records.getOrNull(i-1)?.first?.request()?.id()?.toString()){"Library history has a missing or conflicting revision; retained"}
     }}
     fun load():LibraryState=workspace.operation {
-        val latest=records().lastOrNull()?.first?:return@operation LibraryState()
+        loadRecords(records())
+    }
+    private fun loadRecords(records:List<Pair<AssetStore.Asset,LibraryRevision>>):LibraryState {
+        val latest=records.lastOrNull()?.first?:return LibraryState()
         val state=documentJson.decodeFromString<LibraryState>(workspace.bytes(latest.request().id().toString()).decodeToString(throwOnInvalidSequence=true))
-        validate(state);state
+        validate(state);return state
     }
     private fun validate(s:LibraryState) {
         if(s.version!=1)throw DataProblem("UNSUPPORTED_VERSION","Library state version retained")
@@ -47,7 +50,7 @@ class LibraryRepository(private val workspace:StudioWorkspace) {
         s.preferences["collectionBindings"]?.let{raw->val map=documentJson.decodeFromString<Map<String,String>>(raw);require(map.size<=100);map.forEach{(id,path)->UUID.fromString(id);require(path.length<=4096)}}
     }
     fun update(transform:(LibraryState)->LibraryState):LibraryState=workspace.operation {
-        val records=records();val old=load();val next=transform(old);validate(next)
+        val records=records();val old=loadRecords(records);val next=transform(old);validate(next)
         if(next==old)return@operation old
         val bytes=documentJson.encodeToString(next).toByteArray();require(bytes.size<=4*1024*1024){"Library metadata limit reached; existing data retained"}
         val previous=records.lastOrNull()?.first?.request()?.id()
@@ -56,7 +59,7 @@ class LibraryRepository(private val workspace:StudioWorkspace) {
         next
     }
     fun label(id:String,alias:String,tags:List<String>)=update { s->workspace.assets.read(UUID.fromString(id)).require();s.copy(labels=s.labels+(id to AssetLabels(alias.trim(),tags.map{it.trim()}.filter{it.isNotEmpty()}.distinct()))) }
-    fun prompts()=workspace.catalog().filter{it.request().project().decodeToString()==PROMPT}
+    fun prompts()=workspace.operation{workspace.assets.catalogProject(PROMPT.toByteArray())}
     fun prompt(id:String):PromptAsset=workspace.operation {
         val a=workspace.assets.read(UUID.fromString(id)).require();require(a.request().project().decodeToString()==PROMPT)
         documentJson.decodeFromString<PromptAsset>(workspace.bytes(id).decodeToString(throwOnInvalidSequence=true)).also{if(it.version!=1)throw DataProblem("UNSUPPORTED_VERSION","Prompt version retained")}
@@ -108,22 +111,38 @@ class LibraryRepository(private val workspace:StudioWorkspace) {
     }
     /** A visible intake copy is secondary to the already-committed original. Never overwrites a file.
      * The pending observation makes crash/partial-copy status explicit and keeps scans idempotent. */
-    fun retainIngress(id:String):Path=workspace.operation {
-        val asset=workspace.assets.read(UUID.fromString(id)).require()
+    fun retainIngress(id:String):Path=retainIngressBatch(listOf(id)).single()
+    /** Two durable metadata checkpoints for an explicit batch; verified original commits precede
+     * this secondary intake copy. Interrupted copies remain COPY_PENDING and never overwrite. */
+    fun retainIngressBatch(ids:List<String>,checkCancelled:()->Unit={},progress:(Int,Int)->Unit={_,_->}):List<Path> {
+        require(ids.isNotEmpty() && ids.size<=1000 && ids.distinct().size==ids.size)
+        checkCancelled()
         val base=workspace.root.resolveSibling(workspace.root.fileName.toString()+"-collections").resolve("imports");safePath(base);Files.createDirectories(base)
-        if(load().folders.none{it.category=="imports" && Path.of(it.path)==base})addFolder(base,"imports",false)
-        val folder=load().folders.first{it.category=="imports" && Path.of(it.path)==base}
-        val safeName=asset.request().name().replace(Regex("[<>:\"/\\\\|?*\\p{Cntrl}]"),"_").takeLast(160).ifBlank{"image.png"}
-        val destination=base.resolve("$id-$safeName");safePath(destination)
-        val key=folder.id+":"+destination.fileName
-        val observation=FolderObservation(id,asset.sha256(),asset.size(),"COPY_PENDING")
-        update{it.copy(observations=it.observations+(key to observation))}
-        if(Files.exists(destination,LinkOption.NOFOLLOW_LINKS)) {
-            require(Files.isRegularFile(destination,LinkOption.NOFOLLOW_LINKS) && sha256(readBounded(destination,32*1024*1024))==asset.sha256()){"Intake destination exists with different content; retained both source and destination"}
-        }else writeNewForced(destination,workspace.bytes(id))
-        require(Files.size(destination)==asset.size() && sha256(readBounded(destination,32*1024*1024))==asset.sha256())
-        update{it.copy(observations=it.observations+(key to observation.copy(status="PRESENT")))}
-        destination
+        var state=load()
+        if(state.folders.none{it.category=="imports" && Path.of(it.path)==base}){addFolder(base,"imports",false);state=load()}
+        val folder=state.folders.first{it.category=="imports" && Path.of(it.path)==base}
+        val planned=ids.map{id->
+            checkCancelled()
+            val asset=workspace.operation{workspace.assets.read(UUID.fromString(id)).require()}
+            val safeName=asset.request().name().replace(Regex("[<>:\"/\\\\|?*\\p{Cntrl}]"),"_").takeLast(160).ifBlank{"image.png"}
+            val destination=base.resolve("$id-$safeName");safePath(destination)
+            Triple(asset,destination,folder.id+":"+destination.fileName)
+        }
+        val pending=planned.associate{(asset,_,key)->key to FolderObservation(asset.request().id().toString(),asset.sha256(),asset.size(),"COPY_PENDING")}
+        update{it.copy(observations=it.observations+pending)}
+        val completed=linkedMapOf<String,FolderObservation>();val outputs=mutableListOf<Path>()
+        try {
+            progress(0,planned.size)
+            for((asset,destination,key) in planned) {
+                checkCancelled()
+                if(Files.exists(destination,LinkOption.NOFOLLOW_LINKS)) {
+                    require(Files.isRegularFile(destination,LinkOption.NOFOLLOW_LINKS) && sha256(readBounded(destination,32*1024*1024))==asset.sha256()){"Intake destination exists with different content; retained"}
+                }else writeNewForced(destination,workspace.bytes(asset.request().id().toString()))
+                require(Files.size(destination)==asset.size() && sha256(readBounded(destination,32*1024*1024))==asset.sha256())
+                completed[key]=pending.getValue(key).copy(status="PRESENT");outputs.add(destination);progress(outputs.size,planned.size)
+            }
+        }finally{if(completed.isNotEmpty())update{it.copy(observations=it.observations+completed)}}
+        return outputs
     }
     /** External IO and progress callbacks must never own the workspace monitor. Commits remain
      * serialized and cancellation is checked between files, after any durable commit settles. */

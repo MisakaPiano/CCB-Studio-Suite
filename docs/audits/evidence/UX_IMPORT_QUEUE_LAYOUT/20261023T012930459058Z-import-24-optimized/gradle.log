@@ -1,0 +1,163 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :asset-library:compileJava
+> Task :asset-library:processResources NO-SOURCE
+> Task :asset-library:classes
+> Task :asset-library:jar
+> Task :asset-library:compileTestJava
+> Task :asset-library:processTestResources NO-SOURCE
+> Task :asset-library:testClasses
+
+> Task :asset-library:test
+
+AssetBackupTest > D07_snapshotRestoresOriginalsDocumentsAndPendingInputButExcludesSecrets PASSED
+
+AssetBackupTest > D07_interruptedRestoreBlocksNormalOpenAndResumesWithoutReplacingContent PASSED
+
+AssetBackupTest > D07_interruptedBackupIsNotACompleteBackupAndSourceStaysUsable PASSED
+
+AssetBackupTest > D07_badBackupIsRejectedBeforeDestinationAndCannotOverwritePopulatedRoot PASSED
+
+AssetBackupTest > D07_restorePartialCopyRemainsRecoverableAndChangedTargetIsNotOverwritten PASSED
+
+AssetMaintenanceTest > CP1_reconciliationSurvivesRealChildTerminationAtEveryBoundary STANDARD_OUT
+    RECONCILIATION_CRASH MAINTENANCE_INTENT verified
+    RECONCILIATION_CRASH MAINTENANCE_MOVED verified
+    RECONCILIATION_CRASH MAINTENANCE_COMPLETE verified
+
+AssetMaintenanceTest > CP1_reconciliationSurvivesRealChildTerminationAtEveryBoundary PASSED
+
+AssetMaintenanceTest > CP1_futureOrAlteredMaintenanceIntentIsNeverReplacedByDefaults PASSED
+
+AssetMaintenanceTest > CP1_pendingInspectionRecoveryAndReconciliationPreserveEveryByteAndBackup PASSED
+
+AssetMaintenanceTest > CP1_unknownCorruptFutureAndStaleCandidatesCannotBeDiscarded PASSED
+
+AssetSafetyTest > R1_01_normalEmptyAndCommittedCatalogsStillRebuild PASSED
+
+AssetSafetyTest > R1_02_interruptedRegisteredBackupNeverReportsSuccessAndRetainsLockUntilSettled PASSED
+
+AssetSafetyTest > R1_02_registeredBackupCompletesDuringDrainWithVerifiedMarker PASSED
+
+AssetSafetyTest > R1_01_unknownNamesAndDirectoriesCannotBecomeACompleteCatalog PASSED
+
+AssetSafetyTest > R1_01_damagedUnsupportedAndUnreadableEntriesRetainTheirClassification PASSED
+
+AssetSafetyTest > R1_01_actualInterruptedRecordPublicationRemainsVisibleAfterRecoveryAndRestart PASSED
+
+AssetStoreTest > D05_actualWindowsJunctionIsRefusedWithoutWritingThroughIt PASSED
+
+AssetStoreTest > D05_foreignRootsTraversalAndRedirectedPathsAreRefused PASSED
+
+AssetStoreTest > D03_indexWriteFailureReturnsCommittedReceiptAndRecovers PASSED
+
+AssetStoreTest > D03_actualProcessTerminationAtEveryCommitBoundary STANDARD_OUT
+    PROCESS_CRASH INTENT verified
+    PROCESS_CRASH BYTES verified
+    PROCESS_CRASH SEALED verified
+    PROCESS_CRASH ASSET verified
+    PROCESS_CRASH RECORD verified
+    PROCESS_CRASH INDEX verified
+    PROCESS_CRASH COMPLETE verified
+
+AssetStoreTest > D03_actualProcessTerminationAtEveryCommitBoundary PASSED
+
+AssetStoreTest > D04_noncanonicalRecordNameCannotMasqueradeAsAnotherRecord PASSED
+
+AssetStoreTest > D06_scaleOneHundredAndThousandAndStreamingAreBounded STANDARD_OUT
+    SCALE 1 verified
+    SCALE 100 verified
+    SCALE 1000 verified
+    SCALE_AND_STREAM elapsedMs=340350
+
+AssetStoreTest > D06_scaleOneHundredAndThousandAndStreamingAreBounded PASSED
+
+AssetStoreTest > D02_replayDedupNameCollisionAndConflictingId PASSED
+
+AssetStoreTest > D04_missingReferencedOriginalAndMalformedIntentAreCorruptNotEmptyDefaults PASSED
+
+AssetStoreTest > D04_truncatedInputAndInjectedDiskFullRetainPendingBytes PASSED
+
+AssetStoreTest > D05_drainTimeoutRetainsLockAndRefusesNewWrites PASSED
+
+AssetStoreTest > D01_independentJvmReadsExactSyntheticPng PASSED
+
+AssetStoreTest > D04_missingCorruptReadErrorAndUnknownVersionAreDistinct PASSED
+
+AssetStoreTest > D05_otherProcessCannotAcquireThenCanAcquireAfterExit PASSED
+
+AssetStoreTest > D01_rawBytesOpaqueDocumentsAndDerivedAssetsSurviveRestart PASSED
+
+AssetStoreTest > D04_corruptIndexRebuildPreservesEvidenceAndUniqueOriginal PASSED
+
+AssetStoreTest > D02_concurrentSubmissionsPreserveEachAssociation PASSED
+
+> Task :image-authority:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :image-authority:compileKotlin UP-TO-DATE
+> Task :image-authority:compileJava NO-SOURCE
+> Task :studio-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-core:compileKotlin
+> Task :studio-core:compileJava NO-SOURCE
+> Task :studio-core:processResources UP-TO-DATE
+> Task :studio-core:classes UP-TO-DATE
+> Task :studio-core:jar
+> Task :image-authority:processResources NO-SOURCE
+> Task :image-authority:classes UP-TO-DATE
+> Task :image-authority:jar UP-TO-DATE
+> Task :studio-core:compileTestKotlin
+> Task :studio-core:compileTestJava NO-SOURCE
+> Task :studio-core:processTestResources UP-TO-DATE
+> Task :studio-core:testClasses UP-TO-DATE
+
+> Task :studio-core:test
+
+LibraryCollectionTest > progressReleasesWorkspaceAndCancellationCheckpointsOnlyCompletedFiles PASSED
+
+LibraryCollectionTest > restoringAtIdenticalPathStillRequiresLocalCollectionReauthorization PASSED
+
+LibraryCollectionTest > rescanAdoptsOldCommittedImageWithoutObservationAndDoesNotImportItAgain PASSED
+
+LibraryCollectionTest > discoveringNewSubtreeKeepsOtherRegisteredRootLiveDuringConcurrentWrite PASSED
+
+LibraryCollectionTest > watchCreatesVersionsAndRestoreRequiresExplicitReconnection PASSED
+
+LibraryCollectionTest > intakeCopyIsIdempotentPreservesOriginalAndNeverReplacesModifiedDestination PASSED
+
+LibraryRepositoryTest > damagedOrFutureManagementRecordsDoNotResetMetadataOrHideOriginals PASSED
+
+LibraryRepositoryTest > directoriesVersionAndMissingSourcesKeepAssetsLabelsPromptsAndBackup PASSED
+
+LibraryRepositoryTest > promptEditsPreserveEarlierVersionAndRejectDataRootAsIngress PASSED
+
+LibraryRepositoryTest > referencesExcludeWhitespaceAlignRolesWithoutMutatingOriginalAndRestore PASSED
+
+SharedAssetsTest > exportReturnsToSharedLibraryWithExactBytesAndReopenProvenance PASSED
+
+> Task :studio-desktop:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-desktop:convertXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:copyNonXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:prepareComposeResourcesTaskForMain NO-SOURCE
+> Task :studio-desktop:generateResourceAccessorsForMain SKIPPED
+> Task :studio-desktop:generateActualResourceCollectorsForMain SKIPPED
+> Task :studio-desktop:generateComposeResClass SKIPPED
+
+> Task :studio-desktop:compileKotlin
+e: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt:381:29 Suspension functions can only be called within coroutine body.
+
+> Task :studio-desktop:compileKotlin FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':studio-desktop:compileKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.btapi.BuildToolsApiCompilationWork
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to generate a Build Scan (Powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 7m 31s
+13 actionable tasks: 9 executed, 4 up-to-date

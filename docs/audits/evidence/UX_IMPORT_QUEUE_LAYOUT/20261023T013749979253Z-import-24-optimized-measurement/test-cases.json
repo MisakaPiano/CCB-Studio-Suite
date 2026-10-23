@@ -1,0 +1,68 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.AnimationIntakeTest",
+    "name": "emptyToolAcceptsFileDialogAndDroppedDirectoryAndRefusesWorkspaceOutput",
+    "seconds": "3.366",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.AnimationIntakeTest",
+    "name": "currentToolIntakeNavigationAndOutputOnlyClipboardNeverFallBackToOriginal",
+    "seconds": "6.783",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryIngressTest",
+    "name": "filesWinOverRasterAndTextPasteRemainsText",
+    "seconds": "0.003",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryIngressTest",
+    "name": "guiPasteBatchReportsFailuresRetainsExactOriginalAndRasterProvenanceAfterRestart",
+    "seconds": "4.269",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ImportPerformanceTest",
+    "name": "twentyFourImportsIntoPopulatedLibraryRetainOriginalsAndReportElapsed",
+    "seconds": "33.96",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest",
+    "name": "recoveryStartupPausesWatchersWithoutChangingRegistrationsAndAllowsExplicitSingleScan",
+    "seconds": "2.556",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest",
+    "name": "cancelledCollectionCannotBeReplacedUntilItsBlockedIoHasDrained",
+    "seconds": "0.508",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest",
+    "name": "queuedRemovedRegistrationIsIgnoredAndUncertainMetadataStopsAutomaticRetries",
+    "seconds": "1.458",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest",
+    "name": "galleryAndDraftEditingRemainResponsiveWhileBackgroundWriterOwnsWorkspace",
+    "seconds": "0.317",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest",
+    "name": "workbenchAutomaticallyCollectsImagesAndPromptVersionsAndDrainsForMaintenance",
+    "seconds": "9.723",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryCollectionWorkflowTest",
+    "name": "unreadableLocalRegistrationStopsMonitoringWithoutHidingAssetLabels",
+    "seconds": "1.438",
+    "status": "PASS"
+  }
+]

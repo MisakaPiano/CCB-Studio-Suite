@@ -266,7 +266,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
             try {pending?.cancelAndJoin();flush();withContext(Dispatchers.IO){body()};message=operationNotice?:if(problem==null)"$label · 已完成" else "$label · 有未完成项，请查看回执"}
             catch(e:CancellationException){message="已停止；已提交结果保留";throw e}
             catch(e:Exception){problem="${if(e is DataProblem)e.status else e.javaClass.simpleName}：操作未完成，未自动重发。已有资料保留。";message="操作未完成"}
-            finally {try{withContext(NonCancellable+Dispatchers.IO){state=workspace.state;assets=visibleAssets()};modelAccounts.syncSavedProfile()}catch(e:Exception){problem="工作区需要恢复，已保留现有文件；请停止写入并检查"};activeOperation="";busy=false}
+            finally {try{withContext(NonCancellable+Dispatchers.IO){state=workspace.state;assets=visibleAssets()};modelAccounts.syncSavedProfile()}catch(e:Exception){problem="工作区需要恢复，已保留现有文件；请停止写入并检查"};if(label=="导入图片"&&gallery.importStartedNanos>0){gallery.importDurationMs=(System.nanoTime()-gallery.importStartedNanos)/1000000;gallery.importStartedNanos=0};activeOperation="";busy=false}
         }
     }
     fun design()=run("AI 设计") {
@@ -350,6 +350,10 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     fun importIngress(input:GalleryIngress,expandDirectories:Boolean=false,maxImages:Int=1000,onAccepted:(List<String>)->Unit={})=run("导入图片") {
         require(input.files.size<=1000 && (input.files.isNotEmpty() xor (input.raster!=null)))
         val accepted=mutableListOf<String>()
+        val timings=linkedMapOf<String,Long>()
+        fun <T> measure(stage:String,body:()->T):T {val start=System.nanoTime();try{return body()}finally{timings[stage]=(timings[stage]?:0)+(System.nanoTime()-start)/1000000;gallery.importTimings=timings.toMap()}}
+        gallery.importStartedNanos=System.nanoTime();gallery.importDurationMs=null
+        gallery.importProgress="正在整理导入列表…"
         val files=if(expandDirectories)animationIngressFiles(input.files)else input.files
         require(files.size.coerceAtLeast(if(input.raster!=null)1 else 0)<=maxImages){"当前批次最多1000张，请先移除部分项目"}
         if(files.isEmpty()&&input.raster==null){problem="所选目录本层没有支持的图片，未添加；不包含子目录";return@run}
@@ -358,27 +362,32 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
         try {
             for((index,entry) in entries.withIndex()){
                 currentCoroutineContext().ensureActive()
+                gallery.importProgress="读取并入库 ${index+1} / ${entries.size}"
                 val prepared=try {
-                    val bytes=entry.second?.let{readBounded(it,EditorRenderer.MAX_BYTES)}?:requireNotNull(input.raster)
-                    EditorRenderer.decode(bytes).flush()
+                    val bytes=measure("read"){entry.second?.let{readBounded(it,EditorRenderer.MAX_BYTES)}?:requireNotNull(input.raster)}
+                    measure("validate"){EditorRenderer.decode(bytes).flush()}
                     Result.success(bytes)
                 }catch(e:CancellationException){throw e}catch(e:Exception){Result.failure<ByteArray>(e)}
                 val result=if(prepared.isSuccess){
                     val receipt=buildJsonObject{put("kind","image-ingress");put("version",1);put("source",if(entry.second==null)"clipboard-raster" else "file");put("channel",input.channel);entry.second?.let{put("sourcePath",it.toAbsolutePath().normalize().toString())};put("createdAt",System.currentTimeMillis())}.toString()
                     // A storage/commit failure stops the batch; never keep writing after uncertain persistence.
-                    val id=try{workspace.importImage(entry.first,prepared.getOrThrow(),receipt)}catch(e:Exception){
+                    val id=try{measure("commit"){workspace.importImage(entry.first,prepared.getOrThrow(),receipt)}}catch(e:Exception){
                         gallery.imports=gallery.imports.toMutableList().also{it[index]=GalleryImportResult(entry.first,"STORAGE_ERROR · 状态待检查，批次停止")};throw e
                     };accepted+=id;current=id;selection=accepted.toSet()
-                    try {library.repository.retainIngress(id);library.refresh()}catch(e:Exception){
-                        gallery.imports=gallery.imports.toMutableList().also{it[index]=GalleryImportResult(entry.first,"ORIGINAL_RETAINED · 导入目录副本未完成，批次停止",id)};throw e
-                    }
-                    GalleryImportResult(entry.first,if(entry.second==null)"IMPORTED_RASTER（新编码PNG，无原始文件字节）" else "IMPORTED_ORIGINAL",id)
+                    GalleryImportResult(entry.first,"ORIGINAL_RETAINED · 目录副本待完成",id)
                 }else{val e=prepared.exceptionOrNull()!!;GalleryImportResult(entry.first,"FAILED · ${if(e is DataProblem)e.status else e.javaClass.simpleName}")}
                 gallery.imports=gallery.imports.toMutableList().also{it[index]=result}
             }
+            val context=currentCoroutineContext()
+            if(accepted.isNotEmpty())measure("intake-copy") {
+                library.repository.retainIngressBatch(accepted,{context.ensureActive()},{done,total->gallery.importProgress="保存目录副本 $done / $total"})
+                gallery.imports=gallery.imports.map{if(it.assetId!=null)it.copy(status=if(input.raster!=null)"IMPORTED_RASTER（新编码PNG，无原始文件字节）"else"IMPORTED_ORIGINAL")else it}
+            }
         }finally{
             gallery.imports=gallery.imports.map{if(it.status=="WAITING")it.copy(status="NOT_IMPORTED · 已停止")else it}
-            if(gallery.imports.any{it.assetId==null})problem="部分文件未导入；查看逐项结果。已成功原件保留。"
+            gallery.importProgress="导入结束 · ${accepted.size} / ${entries.size} 原件已入库"
+            if(gallery.imports.any{it.assetId==null||it.status.startsWith("ORIGINAL_RETAINED")})problem="部分文件或目录副本未完成；查看逐项结果。已提交原件保留。"
+            withContext(NonCancellable+Dispatchers.IO){measure("refresh"){library.refresh()}}
             if(accepted.isNotEmpty()){onAccepted(accepted.toList());view="图库"}
         }
     }
@@ -464,6 +473,9 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
     fun publish(){chrome.updateLayout(DesktopChromeLayout(width,height,title,buttons.values.toList(),captions.toMap(),icon))}
 }
 @Composable internal fun Workbench(c:WorkbenchController,chrome:DesktopWindowChrome,closing:Boolean) {
+    CompositionLocalProvider(androidx.compose.foundation.LocalContextMenuRepresentation provides androidx.compose.foundation.DarkDefaultContextMenuRepresentation){WorkbenchContent(c,chrome,closing)}
+}
+@Composable private fun WorkbenchContent(c:WorkbenchController,chrome:DesktopWindowChrome,closing:Boolean) {
     LibrarySynchronization(c)
     AssetArchiveConfirmation(c)
     Surface(color=Ink,contentColor=DesktopBootstrapColors.foreground,modifier=Modifier.onPreviewKeyEvent{event->
@@ -537,7 +549,7 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
             StudioAction("图像引导",icon=DesktopAppIcons.Star){c.section="图像引导"}
             StudioAction(if(c.busy&&c.activeOperation=="导入图片")"停止导入图片" else "导入图片",!c.busy||c.activeOperation=="导入图片",icon=DesktopAppIcons.ImageAdd){if(c.busy)c.active?.cancel()else c.importImages()}
             StudioAction("历史图库",icon=DesktopAppIcons.History){c.view="图库"}
-            StudioAction("创作设置"){showSettings=true}
+            StudioAction("创作设置",expanded=showSettings){showSettings=true}
         }
         Spacer(Modifier.height(12.dp))
         if(c.section=="图像引导") {
@@ -711,7 +723,7 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
         Text("当前视觉模型：${editor.vision?.let{"${it.alias} · ${it.model}"}?:"未启用"}${if(editor.language?.isMultimodal==true)"（语言模型直接识图）" else if(editor.vision!=null)"（独立识图，供当前语言模型使用）" else ""}")
         Text("NAI 生图：${editor.nai?.let{"${it.alias} · ${c.draft.selectedModel.displayName}"}?:"未设置账户"}")
         var showGlobal by remember{mutableStateOf(false)}
-        StudioAction(if(showGlobal)"收起共用凭据" else "共用 API Key · ${if(editor.globalConfigured)"已配置" else "未配置"}"){showGlobal=!showGlobal}
+        StudioAction(if(showGlobal)"收起共用凭据" else "共用 API Key · ${if(editor.globalConfigured)"已配置" else "未配置"}",expanded=showGlobal){showGlobal=!showGlobal}
         if(showGlobal) {
             Text("仅供选择“使用默认凭据”的文本和视觉模型使用；接口地址仍分别设置。")
             OutlinedTextField(editor.globalKey,{editor.globalKey=it},label={Text("设置或替换共用 API Key")},visualTransformation=PasswordVisualTransformation(),enabled=!c.busy,modifier=Modifier.fillMaxWidth())

@@ -21,6 +21,10 @@ import kotlinx.serialization.json.*
 
 internal data class GalleryHistoryIdentity(val assets:List<Pair<String,String>>,val jobs:List<JobRecord>)
 internal class GalleryViewState {
+    var importProgress by mutableStateOf("")
+    var importStartedNanos:Long=0
+    var importDurationMs by mutableStateOf<Long?>(null)
+    var importTimings by mutableStateOf<Map<String,Long>>(emptyMap())
     var historyCache:Pair<GalleryHistoryIdentity,GalleryHistoryProjection>?=null
     var historyReadOverride:(suspend ()->GalleryHistoryProjection)?=null
     var pasteContents:()->java.awt.datatransfer.Transferable?={java.awt.Toolkit.getDefaultToolkit().systemClipboard.getContents(null)}
@@ -111,18 +115,24 @@ internal class GalleryViewState {
         if(!range)g.anchor=album.key.takeIf{album.images.all{it.image.path in c.selection}}
     }
     Column(Modifier.fillMaxSize().galleryIngress(c).padding(12.dp),verticalArrangement=Arrangement.spacedBy(8.dp)){
-        StudioActions{StudioAction("导入图片",!c.busy){c.importImages()};StudioAction("粘贴图片",!c.busy){if(!c.pasteImages())c.problem="剪贴板没有图片或文件列表；文字请粘贴到输入框"};StudioAction("返回创作"){c.view="创作"}}
+        Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(6.dp),verticalAlignment=Alignment.CenterVertically) {
+            StudioAction(if(g.depth>0)"返回上层相册"else"返回创作",!c.busy){if(g.depth>0){g.back();c.selection=emptySet();g.anchor=null}else c.view="创作"}
+            Text(g.scope.label.lineSequence().first(),Modifier.widthIn(max=140.dp),maxLines=1,overflow=TextOverflow.Ellipsis,style=MaterialTheme.typography.caption)
+            StudioAction("导入图片",!c.busy){c.importImages()}
+            StudioAction("粘贴图片",!c.busy){if(!c.pasteImages())c.problem="剪贴板没有图片或文件列表；文字请粘贴到输入框"}
+            Spacer(Modifier.weight(1f))
+            GallerySearch(c,Modifier.width(380.dp))
+        }
         c.library.archiveError?.let{Text(it,color=MaterialTheme.colors.error)}
-        if(c.busy&&c.activeOperation=="导入图片")StudioAction("停止导入图片"){c.active?.cancel()}
+        if(c.busy&&c.activeOperation=="导入图片")StudioActions{StatusText(g.importProgress);StudioAction("停止导入图片"){c.active?.cancel()}}
         SharedDocumentAssets(c)
         if(g.imports.isNotEmpty()){
             var show by remember{mutableStateOf(false)}
-            StudioAction("导入结果 ${g.imports.count{it.assetId!=null}} / ${g.imports.size}"){show=!show}
-            if(show)Column(Modifier.fillMaxWidth().heightIn(max=140.dp).verticalScroll(rememberScrollState())){g.imports.forEach{Text("${it.name} · ${it.status}",style=MaterialTheme.typography.caption)}}
-        }
-        Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)){
-            OutlinedTextField(g.query,{g.query=it;c.selection=emptySet();g.anchor=null},label={Text("查找文件名或历史 Prompt")},modifier=Modifier.weight(1f))
-
+            StudioActions{StudioAction("导入结果 ${g.imports.count{it.assetId!=null}} / ${g.imports.size}",expanded=show){show=!show};g.importDurationMs?.let{Text("用时 ${"%.1f".format(it/1000.0)} 秒",style=MaterialTheme.typography.caption)}}
+            if(show)Column(Modifier.fillMaxWidth().heightIn(max=90.dp).verticalScroll(rememberScrollState())){
+                g.imports.forEach{Text("${it.name} · ${it.status}",style=MaterialTheme.typography.caption)}
+                Text("分阶段用时(ms)：${g.importTimings}",style=MaterialTheme.typography.caption)
+            }
         }
         GalleryAlbumControls(c)
         if(history==null)StatusText("正在核验生成记录，图片原件可查看…")
@@ -176,9 +186,9 @@ internal class GalleryViewState {
             StatusText("${c.selection.size} 项已选 · ${c.selection.count{id->visible.none{it.request().id().toString()==id}}} 项在筛选外")
             StudioAction("比较 2 张",c.selection.size==2){g.compare=c.assets.filter{it.request().id().toString() in c.selection}.map{it.request().id().toString()}}
             StudioAction("所选图片建立编辑工程",c.selection.isNotEmpty() && !c.busy){c.view="编辑"}
-            StudioAction("图片工具",selected=toolsOpen){toolsOpen=!toolsOpen}
+            StudioAction("图片工具",expanded=toolsOpen){toolsOpen=!toolsOpen}
         }
-        if(toolsOpen)Column(Modifier.fillMaxWidth().heightIn(max=200.dp).verticalScroll(rememberScrollState())) {
+        if(toolsOpen)Column(Modifier.fillMaxWidth().border(1.dp,DesktopBootstrapColors.border).padding(6.dp).heightIn(max=150.dp).verticalScroll(rememberScrollState())) {
             StudioActions {
             StudioAction("所选图片多 Prompt 参照",c.selection.isNotEmpty()&&!c.busy){c.run("建立图片参照"){
                 val results=c.assets.filter{it.request().id().toString() in c.selection}.map{a->runCatching{saveImagePrompt(c,a.request().id().toString(),true)}}

@@ -86,7 +86,7 @@ class GalleryAnimationTest {
         suspend fun click(label:String){
             if(nodes().none{it.config.getOrNull(SemanticsProperties.ContentDescription)?.contains(label)==true&&it.config.getOrNull(SemanticsActions.OnClick)!=null}) {
                 val menu=if(label in setOf("选择目录并导出全部","复制全部处理文件"))"整批处理 ▾"else"当前结果 ▾"
-                nodes().first{it.config.getOrNull(SemanticsProperties.Text)?.any{t->t.text==menu}==true&&it.config.getOrNull(SemanticsActions.OnClick)!=null}.config[SemanticsActions.OnClick].action!!.invoke();frames()
+                nodes().first{(it.config.getOrNull(SemanticsProperties.Text)?.any{t->t.text==menu}==true||it.config.getOrNull(SemanticsProperties.ContentDescription)?.contains(menu)==true)&&it.config.getOrNull(SemanticsActions.OnClick)!=null}.config[SemanticsActions.OnClick].action!!.invoke();frames()
             }
             assertTrue(nodes().first{(it.config.getOrNull(SemanticsProperties.ContentDescription)?.contains(label)==true||it.config.getOrNull(SemanticsProperties.Text)?.any{t->t.text==label}==true)&&it.config.getOrNull(SemanticsActions.OnClick)!=null}.config[SemanticsActions.OnClick].action!!.invoke());frames()}
         suspend fun idle(){c.active?.join();c.animation.awaitPreview();assertNull(c.problem,c.problem);frames()}
@@ -144,9 +144,9 @@ class GalleryAnimationTest {
             return scene.semanticsOwners.flatMap{walk(it.rootSemanticsNode)}
         }
         suspend fun click(text:String){
-            if(text in setOf("选择目录并导出全部","复制全部处理文件","保存当前副本到图库")) {
+            if(text in setOf("选择目录并导出全部","复制全部处理文件","保存当前副本到图库")&&nodes().none{it.config.getOrNull(SemanticsProperties.Text)?.any{t->t.text==text}==true&&it.config.getOrNull(SemanticsActions.OnClick)!=null}) {
                 val menu=if(text=="保存当前副本到图库")"当前结果 ▾"else"整批处理 ▾"
-                nodes().first{it.config.getOrNull(SemanticsProperties.Text)?.any{t->t.text==menu}==true&&it.config.getOrNull(SemanticsActions.OnClick)!=null}.config[SemanticsActions.OnClick].action!!.invoke();frames()
+                nodes().first{(it.config.getOrNull(SemanticsProperties.Text)?.any{t->t.text==menu}==true||it.config.getOrNull(SemanticsProperties.ContentDescription)?.contains(menu)==true)&&it.config.getOrNull(SemanticsActions.OnClick)!=null}.config[SemanticsActions.OnClick].action!!.invoke();frames()
             }
             val n=nodes().first{it.config.getOrNull(SemanticsProperties.Text)?.any{t->t.text==text}==true&&it.config.getOrNull(SemanticsActions.OnClick)!=null};assertTrue(n.config[SemanticsActions.OnClick].action!!.invoke());frames()}
         var restored=""

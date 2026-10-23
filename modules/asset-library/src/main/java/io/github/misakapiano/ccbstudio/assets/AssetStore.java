@@ -229,8 +229,18 @@ public final class AssetStore implements AutoCloseable {
     }
     public ReadResult<Asset> readIndex(UUID id) throws IOException { return operation(() -> indexInternal(id)); }
     public List<Asset> catalog() throws IOException { return operation(this::catalogInternal); }
+    /** Select committed metadata by project, verifying every relationship envelope/identity and
+     * every selected payload. This is not a whole-store payload integrity audit; catalog/backup
+     * retain that stronger contract. No mutable index is trusted for project selection. */
+    public List<Asset> catalogProject(byte[] project) throws IOException {
+        byte[] wanted = Objects.requireNonNull(project).clone();
+        return operation(() -> catalogInternal(wanted));
+    }
     // Only inside an admitted operation; backup must retain its original lifetime registration.
     List<Asset> catalogInternal() throws IOException {
+        return catalogInternal(null);
+    }
+    private List<Asset> catalogInternal(byte[] project) throws IOException {
         if (!Thread.holdsLock(serial)) throw new IllegalStateException("Catalog requires an admitted serialized operation");
         List<Asset> result = new ArrayList<>();
         for (Path record : StoreIO.entries(root.resolve("records"), "*")) {
@@ -245,7 +255,12 @@ public final class AssetStore implements AutoCloseable {
             }
             if (!name.endsWith(".rec")) throw new StoreException("CORRUPT", "Unknown record entry retained: " + name);
             UUID id = canonicalRecordId(name.substring(0, name.length() - ".rec".length()));
-            result.add(readInternal(id).require());
+            if (project == null) result.add(readInternal(id).require());
+            else {
+                Asset candidate = decodeAssetFile(record, "asset").require();
+                if (!candidate.request().id().equals(id)) throw new StoreException("CORRUPT", "Record filename/identity mismatch");
+                if (Arrays.equals(candidate.request().project(), project)) result.add(readInternal(id).require());
+            }
         }
         return List.copyOf(result);
     }

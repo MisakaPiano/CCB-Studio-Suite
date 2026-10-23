@@ -78,11 +78,29 @@ internal class GalleryAnimationController(private val c:WorkbenchController,priv
     private var previewTask:Job?=null
     private val previewJobs=java.util.concurrent.ConcurrentHashMap.newKeySet<Job>()
     private val previewEpoch=java.util.concurrent.atomic.AtomicLong()
+    private var previewSource:String?=null
     private var readyOutput:AnimationOutputSnapshot?=null
     val outputGeneration get()=previewEpoch.get()
     val outputReady get()=readyOutput?.let{it.epoch==previewEpoch.get()&&it.source==ids?.getOrNull(index)&&it.mode==mode}==true&&!previewBusy
     internal var previewTransform:suspend (ByteArray,String,ByteArray?)->ByteArray=::animationTransform
     var chooseCoverFile:()->Path?={StudioFileDialogs.open("选择静态伪装封面",listOf("png","jpg","jpeg","webp","bmp"))}
+    var queueSelection by mutableStateOf<Set<String>>(emptySet());private set
+    var itemStatus by mutableStateOf<Map<String,String>>(emptyMap());private set
+    private var queueAnchor:String?=null
+    fun toggleQueue(id:String,range:Boolean=false){
+        if(c.busy||c.maintenance||id !in ids.orEmpty())return
+        val values=ids.orEmpty();val anchor=values.indexOf(queueAnchor);val at=values.indexOf(id)
+        queueSelection=if(range&&anchor>=0)queueSelection+values.subList(minOf(anchor,at),maxOf(anchor,at)+1)else if(id in queueSelection)queueSelection-id else queueSelection+id
+        queueAnchor=id
+    }
+    fun selectQueue(all:Boolean){if(!c.busy&&!c.maintenance)queueSelection=if(all)ids.orEmpty().toSet()else emptySet()}
+    fun removeQueue(selected:Set<String> = queueSelection){
+        if(c.busy||c.maintenance||selected.isEmpty())return
+        val current=ids?.getOrNull(index);val remaining=ids.orEmpty().filterNot{it in selected}
+        ids=remaining;queueSelection=queueSelection-selected;itemStatus=itemStatus-selected
+        index=remaining.indexOf(current).takeIf{it>=0}?:index.coerceAtMost(remaining.lastIndex).coerceAtLeast(0)
+        invalidate();requestPreview()
+    }
     var ids by mutableStateOf<List<String>?>(null)
     var mode by mutableStateOf("disguise");private set
     var index by mutableStateOf(0);private set
@@ -90,17 +108,18 @@ internal class GalleryAnimationController(private val c:WorkbenchController,priv
     var error by mutableStateOf<String?>(null);private set
     var completed by mutableStateOf<Path?>(null);private set
     var progress by mutableStateOf(0);private set
+    var progressTotal by mutableStateOf(0);private set
     var copyFiles:(List<Path>)->Unit=ExportClipboard::copy
     var chooseDirectory:()->Path?={StudioFileDialogs.folder("选择APNG输出目录（新建独立文件夹）")}
     init {reloadCovers()}
     fun reloadCovers(){runCatching{covers.load()}.onSuccess{coverState=it;coverError=null}.onFailure{coverState=null;coverError="封面配置读取失败，暂停伪装处理；原配置和原件保留"}}
-    private fun invalidate(){previewEpoch.incrementAndGet();previewTask?.cancel();preview=null;readyOutput=null;error=null;completed=null;playResult=false}
-    fun open(selected:List<String>){require(selected.size<=1000);ids=selected.distinct();index=ids.orEmpty().lastIndex.coerceAtLeast(0);invalidate();requestPreview()}
+    private fun invalidate(){previewSource?.takeIf{itemStatus[it]=="正在预览"}?.let{itemStatus=itemStatus+(it to "等待预览")};previewEpoch.incrementAndGet();previewTask?.cancel();preview=null;previewBusy=false;readyOutput=null;error=null;completed=null;progress=0;progressTotal=0;playResult=false}
+    fun open(selected:List<String>){require(selected.size<=1000);ids=selected.distinct();queueSelection=emptySet();itemStatus=emptyMap();index=ids.orEmpty().lastIndex.coerceAtLeast(0);invalidate();requestPreview()}
     @Synchronized fun close(){ids=null;coverManagerOpen=false;invalidate();previewJobs.forEach{it.cancel()};previewBusy=false}
     suspend fun cancelAndDrain(){val jobs=synchronized(this){previewEpoch.incrementAndGet();previewJobs.toList().also{tasks->tasks.forEach{it.cancel()}}};jobs.joinAll();previewBusy=false}
     suspend fun awaitPreview(){previewTask?.join()}
     fun cancelPreview(){previewTask?.cancel()}
-    fun selectMode(value:String){check(!c.busy);require(value in setOf("disguise","restore"));mode=value;invalidate();requestPreview()}
+    fun selectMode(value:String){check(!c.busy);itemStatus=emptyMap();require(value in setOf("disguise","restore"));mode=value;invalidate();requestPreview()}
     fun selectIndex(value:Int){if(c.busy||c.maintenance||ids.isNullOrEmpty())return;val next=value.coerceIn(0,ids.orEmpty().lastIndex);if(next==index)return;index=next;invalidate();requestPreview()}
     fun page(delta:Int)=selectIndex(index+delta)
     fun playback(value:Boolean){playResult=value}
@@ -121,9 +140,9 @@ internal class GalleryAnimationController(private val c:WorkbenchController,priv
             ids=combined;index=combined.lastIndex;invalidate();requestPreview()
         }
     }
-    fun removeCurrent(){if(c.busy||c.maintenance)return;val remaining=ids.orEmpty().filterIndexed{i,_->i!=index};ids=remaining;index=index.coerceAtMost(remaining.lastIndex).coerceAtLeast(0);invalidate();requestPreview()}
-    fun selectCover(id:String?)=c.run("选择伪装封面"){covers.select(id);reloadCovers();invalidate();requestPreview()}
-    fun removeCover(id:String)=c.run("移除伪装封面配置"){covers.remove(id);reloadCovers();invalidate();requestPreview()}
+    fun removeCurrent(){ids?.getOrNull(index)?.let{removeQueue(setOf(it))}}
+    fun selectCover(id:String?)=c.run("选择伪装封面"){covers.select(id);reloadCovers();itemStatus=emptyMap();invalidate();requestPreview()}
+    fun removeCover(id:String)=c.run("移除伪装封面配置"){covers.remove(id);reloadCovers();itemStatus=emptyMap();invalidate();requestPreview()}
     fun renameCover(id:String,name:String)=c.run("重命名伪装封面"){covers.rename(id,name);reloadCovers()}
     fun addCover(name:String,choose:()->Path?=chooseCoverFile) {
         if(c.busy||c.maintenance)return
@@ -134,7 +153,7 @@ internal class GalleryAnimationController(private val c:WorkbenchController,priv
             if(ImageFormats.format(bytes)=="webp")org.jetbrains.skia.Data.makeFromBytes(bytes).use{data->org.jetbrains.skia.Codec.makeFromData(data).use{require(it.frameCount<=1){"封面需要静态图片"}}}
             DesktopImageEditing.decode(bytes).flush()
             covers.add(name.ifBlank{path.fileName.toString().substringBeforeLast('.')}.take(100),path.fileName.toString(),bytes)
-            reloadCovers();invalidate();requestPreview()
+            reloadCovers();itemStatus=emptyMap();invalidate();requestPreview()
         }
     }
     private fun selectedCover():AnimationCoverSnapshot? {
@@ -146,7 +165,7 @@ internal class GalleryAnimationController(private val c:WorkbenchController,priv
         if(c.maintenance)return
         val source=ids?.getOrNull(index)?:return
         val selectedMode=mode;val epoch=previewEpoch.incrementAndGet();previewTask?.cancel()
-        preview=null;readyOutput=null;error=null;previewBusy=true;playResult=false
+        previewSource=source;itemStatus=itemStatus+(source to "正在预览");preview=null;readyOutput=null;error=null;previewBusy=true;playResult=false
         val task=c.scope.launch(start=CoroutineStart.UNDISPATCHED) {
             try {
                 delay(120)
@@ -155,9 +174,9 @@ internal class GalleryAnimationController(private val c:WorkbenchController,priv
                     AnimationOutputSnapshot(epoch,source,selectedMode,previewTransform(input.first,selectedMode,input.second?.bytes),input.second)
                 }
                 ensureActive()
-                if(previewEpoch.get()==epoch){readyOutput=output;preview=output.bytes;playResult=false}
-            }catch(e:CancellationException){if(previewEpoch.get()==epoch)error="预览已停止，可重新预览";throw e}
-            catch(e:Exception){if(previewEpoch.get()==epoch)error="预览未完成 · ${e.javaClass.simpleName}；原件未变，可重新预览"}
+                if(previewEpoch.get()==epoch){itemStatus=itemStatus+(source to "已预览");readyOutput=output;preview=output.bytes;playResult=false}
+            }catch(e:CancellationException){if(previewEpoch.get()==epoch){itemStatus=itemStatus+(source to "已停止");error="预览已停止，可重新预览"};throw e}
+            catch(e:Exception){if(previewEpoch.get()==epoch){itemStatus=itemStatus+(source to "预览失败");error="预览未完成 · ${e.javaClass.simpleName}；原件未变，可重新预览"}}
             finally{previewJobs.remove(currentCoroutineContext().job);if(previewEpoch.get()==epoch)previewBusy=false}
         }
         previewTask=task;previewJobs.add(task);task.invokeOnCompletion{previewJobs.remove(task)}
@@ -187,16 +206,18 @@ internal class GalleryAnimationController(private val c:WorkbenchController,priv
             }
         }
     }
-    fun export(copy:Boolean=false){
-        if(c.busy)return
+    fun export(copy:Boolean=false,selectedOnly:Boolean=false){
+        if(c.busy||c.maintenance)return
+        val batch=ids.orEmpty().filter{!selectedOnly||it in queueSelection}.toList()
+        if(batch.isEmpty())return
         val destination=try{if(copy)Files.createDirectories(temp)else chooseDirectory()?:return}catch(e:Exception){c.problem="输出目录无法使用，未写入文件";return}
         c.run(if(copy)"复制APNG文件批次"else"导出APNG文件批次"){
-            completed=null;progress=0;error=null
+            completed=null;progress=0;progressTotal=batch.size;error=null
             try{c.workspace.beginTask().use{
-                val output=exportAnimationDeck(c,requireNotNull(ids),mode,destination,{progress=it},cover=if(mode=="disguise")selectedCover()else null);completed=output
+                val output=exportAnimationDeck(c,batch,mode,destination,{progress=it},cover=if(mode=="disguise")selectedCover()else null);completed=output
+                itemStatus=itemStatus+batch.associateWith{"已导出"}
                 if(copy)copyFiles(Files.list(output).use{stream->stream.filter{it.fileName.toString().endsWith(".png")}.sorted().toList()})
             }}catch(e:CancellationException){throw e}catch(e:Exception){error="未完成 · ${e.javaClass.simpleName}；已有输出保留，未自动重试";throw e}
         }
     }
 }
-

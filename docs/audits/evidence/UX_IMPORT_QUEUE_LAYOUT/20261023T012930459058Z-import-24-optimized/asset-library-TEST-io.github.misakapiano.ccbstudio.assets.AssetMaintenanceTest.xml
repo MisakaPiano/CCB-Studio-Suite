@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.assets.AssetMaintenanceTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-23T01:29:46.813Z" hostname="DD1" time="5.036">
+  <properties/>
+  <testcase name="CP1_reconciliationSurvivesRealChildTerminationAtEveryBoundary" classname="io.github.misakapiano.ccbstudio.assets.AssetMaintenanceTest" time="2.585"/>
+  <testcase name="CP1_futureOrAlteredMaintenanceIntentIsNeverReplacedByDefaults" classname="io.github.misakapiano.ccbstudio.assets.AssetMaintenanceTest" time="0.565"/>
+  <testcase name="CP1_pendingInspectionRecoveryAndReconciliationPreserveEveryByteAndBackup" classname="io.github.misakapiano.ccbstudio.assets.AssetMaintenanceTest" time="1.517"/>
+  <testcase name="CP1_unknownCorruptFutureAndStaleCandidatesCannotBeDiscarded" classname="io.github.misakapiano.ccbstudio.assets.AssetMaintenanceTest" time="0.369"/>
+  <system-out><![CDATA[RECONCILIATION_CRASH MAINTENANCE_INTENT verified
+RECONCILIATION_CRASH MAINTENANCE_MOVED verified
+RECONCILIATION_CRASH MAINTENANCE_COMPLETE verified
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

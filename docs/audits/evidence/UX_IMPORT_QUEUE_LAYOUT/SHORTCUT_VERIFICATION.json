@@ -1,0 +1,10 @@
+{
+  "shortcut": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\import-queue-layout-review\\Start-import-queue-layout-review.lnk",
+  "target": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\import-queue-layout-review\\application\\CCBStudioSuitePreview.exe",
+  "workingDirectory": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\import-queue-layout-review\\application",
+  "arguments": "--studio-root \"H:\\CCB-Studio-Suite\\.local\\windows-rc\\model-accounts-review\\workspace\" --runtime-root \"H:\\CCB-Studio-Suite\\.local\\windows-rc\\model-accounts-review\\runtime\" --pause-collections",
+  "targetExists": true,
+  "pauseCollections": true,
+  "applicationLaunched": false,
+  "userDataReadOrCopied": false
+}
