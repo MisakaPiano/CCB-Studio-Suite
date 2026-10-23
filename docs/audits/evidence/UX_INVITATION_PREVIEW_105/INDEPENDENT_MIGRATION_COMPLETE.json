@@ -1,0 +1,23 @@
+{
+  "status": "PASS_WITH_SCOPE",
+  "independentRoot": "H:\\CCB-Studio-Suite-Preview",
+  "programVersion": 105,
+  "sourceSha": "a416a820955a720181cb97c33131a3c4890bb786",
+  "installation": {
+    "files": 547,
+    "bytes": 252015320,
+    "manifestSha256": "c96b6df407c6f8eb063359c716e005f3b6d5057ec33e308e9d8d1ca1a7fbeef7"
+  },
+  "workspaceFilesVerified": 4992,
+  "runtimeFilesVerified": 24,
+  "copiedBytes": 1014949128,
+  "copiedCredentialsReadable": true,
+  "sourceDataRetained": true,
+  "stableShortcutReadback": "PASS (PowerShell WScript.Shell)",
+  "updaterStableLauncherLocation": "H:\\CCB-Studio-Suite-Preview\\Launch-CCB-Studio.lnk",
+  "matchesStableShortcut": true,
+  "plaintextExported": false,
+  "providerCalls": 0,
+  "native105ProfileLaunch": "NOT TESTED",
+  "freeGiBAfterMigration": 14.79
+}

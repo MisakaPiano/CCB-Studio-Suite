@@ -1,0 +1,494 @@
+{
+  "Status": "PASS",
+  "Authorization": "User explicitly approved deleting all 80 targets in CLEANUP_REVIEW.md",
+  "Targets": [
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\delivery\\209b5252e06e\\CCBStudioSuite_209b5252e06e_raw-evidence.zip",
+      "Kind": "file",
+      "Bytes": 560219,
+      "Files": 1
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\delivery\\209b5252e06e\\CCBStudioSuite_209b5252e06e_windows-x64-preview.zip",
+      "Kind": "file",
+      "Bytes": 61399607,
+      "Files": 1
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\delivery\\209b5252e06e\\evidence-drive-readback.zip",
+      "Kind": "file",
+      "Bytes": 560219,
+      "Files": 1
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\delivery\\209b5252e06e\\package-drive-readback.zip",
+      "Kind": "file",
+      "Bytes": 61399607,
+      "Files": 1
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-applications-1\\1-b8a91533e583",
+      "Kind": "directory",
+      "Bytes": 250406186,
+      "Files": 549
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-applications-2\\1-1a013737d085",
+      "Kind": "directory",
+      "Bytes": 250406195,
+      "Files": 549
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-applications-2\\2-1a013737d085",
+      "Kind": "directory",
+      "Bytes": 250406191,
+      "Files": 549
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-applications-3\\3-251dc3495099",
+      "Kind": "directory",
+      "Bytes": 251084307,
+      "Files": 549
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-applications-3\\4-0ae42d9b5e6d",
+      "Kind": "directory",
+      "Bytes": 251102407,
+      "Files": 549
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-applications-4\\5-893ae61fb0de",
+      "Kind": "directory",
+      "Bytes": 251170153,
+      "Files": 549
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-applications-5\\7-08733d5dcc97",
+      "Kind": "directory",
+      "Bytes": 251219328,
+      "Files": 549
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-applications-5\\8-08733d5dcc97",
+      "Kind": "directory",
+      "Bytes": 251219336,
+      "Files": 549
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-applications-6\\10-fc1d2b5cd2e7",
+      "Kind": "directory",
+      "Bytes": 251222584,
+      "Files": 549
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-applications-6\\9-fc1d2b5cd2e7",
+      "Kind": "directory",
+      "Bytes": 251222579,
+      "Files": 549
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-a-1\\payload",
+      "Kind": "directory",
+      "Bytes": 250357253,
+      "Files": 547
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-a-1\\studio-installer.exe",
+      "Kind": "file",
+      "Bytes": 166534728,
+      "Files": 1
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-a-2\\payload",
+      "Kind": "directory",
+      "Bytes": 250357255,
+      "Files": 547
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-a-2\\studio-installer.exe",
+      "Kind": "file",
+      "Bytes": 166534777,
+      "Files": 1
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-a-3\\payload",
+      "Kind": "directory",
+      "Bytes": 251035366,
+      "Files": 547
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-a-3\\studio-installer.exe",
+      "Kind": "file",
+      "Bytes": 167179366,
+      "Files": 1
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-a-4\\payload",
+      "Kind": "directory",
+      "Bytes": 251121218,
+      "Files": 547
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-a-4\\studio-installer.exe",
+      "Kind": "file",
+      "Bytes": 167259091,
+      "Files": 1
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-a-5\\payload",
+      "Kind": "directory",
+      "Bytes": 251170396,
+      "Files": 547
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-a-5\\studio-installer.exe",
+      "Kind": "file",
+      "Bytes": 167303853,
+      "Files": 1
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-a-6\\payload",
+      "Kind": "directory",
+      "Bytes": 251173640,
+      "Files": 547
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-a-6\\studio-installer.exe",
+      "Kind": "file",
+      "Bytes": 167306802,
+      "Files": 1
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-b-1\\payload",
+      "Kind": "directory",
+      "Bytes": 250357253,
+      "Files": 547
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-b-1\\studio-installer.exe",
+      "Kind": "file",
+      "Bytes": 166534747,
+      "Files": 1
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-b-2\\payload",
+      "Kind": "directory",
+      "Bytes": 250357253,
+      "Files": 547
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-b-2\\studio-installer.exe",
+      "Kind": "file",
+      "Bytes": 166534740,
+      "Files": 1
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-b-3\\payload",
+      "Kind": "directory",
+      "Bytes": 251053477,
+      "Files": 547
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-b-3\\studio-installer.exe",
+      "Kind": "file",
+      "Bytes": 167196555,
+      "Files": 1
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-b-4\\payload",
+      "Kind": "directory",
+      "Bytes": 251121220,
+      "Files": 547
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-b-4\\studio-installer.exe",
+      "Kind": "file",
+      "Bytes": 167259114,
+      "Files": 1
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-b-5\\payload",
+      "Kind": "directory",
+      "Bytes": 251170398,
+      "Files": 547
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-b-5\\studio-installer.exe",
+      "Kind": "file",
+      "Bytes": 167303848,
+      "Files": 1
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-b-6\\payload",
+      "Kind": "directory",
+      "Bytes": 251173641,
+      "Files": 547
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-b-6\\studio-installer.exe",
+      "Kind": "file",
+      "Bytes": 167306813,
+      "Files": 1
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\account-roles-review\\application",
+      "Kind": "directory",
+      "Bytes": 213569698,
+      "Files": 220
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\apng-covers-review\\application",
+      "Kind": "directory",
+      "Bytes": 213761637,
+      "Files": 220
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\apng-covers-review\\application-auto",
+      "Kind": "directory",
+      "Bytes": 213772955,
+      "Files": 220
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\delivery\\CP1_9d3035b98ade_raw-evidence.zip",
+      "Kind": "file",
+      "Bytes": 23673,
+      "Files": 1
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\delivery\\drive-readback.zip",
+      "Kind": "file",
+      "Bytes": 23673,
+      "Files": 1
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\fixed-eleven-applications\\11-a50f4282012b",
+      "Kind": "directory",
+      "Bytes": 251223760,
+      "Files": 549
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\fixed-eleven-build\\payload",
+      "Kind": "directory",
+      "Bytes": 251174825,
+      "Files": 547
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\fixed-eleven-build\\studio-installer.exe",
+      "Kind": "file",
+      "Bytes": 167308030,
+      "Files": 1
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\fixed-twelve-3bea16b-build\\payload",
+      "Kind": "directory",
+      "Bytes": 251186781,
+      "Files": 547
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\fixed-twelve-3bea16b-build\\studio-installer.exe",
+      "Kind": "file",
+      "Bytes": 167320552,
+      "Files": 1
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\fixed-twelve-applications\\12-3bea16b7405d",
+      "Kind": "directory",
+      "Bytes": 251235716,
+      "Files": 549
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\gallery-cover-library-review\\application",
+      "Kind": "directory",
+      "Bytes": 213856549,
+      "Files": 220
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\gallery-demo-parity-review\\application",
+      "Kind": "directory",
+      "Bytes": 214408897,
+      "Files": 220
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\gallery-recycle-interaction-review\\application",
+      "Kind": "directory",
+      "Bytes": 214364699,
+      "Files": 220
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\gallery-sort-apng-review\\application",
+      "Kind": "directory",
+      "Bytes": 213959772,
+      "Files": 220
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\gallery-tiles-selection-review\\application",
+      "Kind": "directory",
+      "Bytes": 214426370,
+      "Files": 220
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\github-ab-apps\\100-A",
+      "Kind": "directory",
+      "Bytes": 251241718,
+      "Files": 550
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\github-ab-apps\\101-271eef55fcd7",
+      "Kind": "directory",
+      "Bytes": 251241718,
+      "Files": 550
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\github-ab-prepared\\build-100\\payload",
+      "Kind": "directory",
+      "Bytes": 251192756,
+      "Files": 548
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\github-ab-prepared\\build-100\\studio-installer.exe",
+      "Kind": "file",
+      "Bytes": 167322647,
+      "Files": 1
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\github-ab-prepared\\build-101\\payload",
+      "Kind": "directory",
+      "Bytes": 251192756,
+      "Files": 548
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\github-ab-prepared\\build-101\\studio-installer.exe",
+      "Kind": "file",
+      "Bytes": 167322654,
+      "Files": 1
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\github-fixture-apps\\100-test",
+      "Kind": "directory",
+      "Bytes": 252324340,
+      "Files": 668
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\github-fixture-apps\\100-test-retry",
+      "Kind": "directory",
+      "Bytes": 251241697,
+      "Files": 550
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\github-preview-fixture-build\\payload",
+      "Kind": "directory",
+      "Bytes": 251192733,
+      "Files": 548
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\github-preview-fixture-build\\studio-installer.exe",
+      "Kind": "file",
+      "Bytes": 167322649,
+      "Files": 1
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\import-queue-layout-review\\application",
+      "Kind": "directory",
+      "Bytes": 214032007,
+      "Files": 220
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\invitation-105\\candidate-1\\payload",
+      "Kind": "directory",
+      "Bytes": 252054780,
+      "Files": 548
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\invitation-105\\candidate-1\\studio-installer.exe",
+      "Kind": "file",
+      "Bytes": 168134887,
+      "Files": 1
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\invitation-105\\smoke-105",
+      "Kind": "directory",
+      "Bytes": 252103733,
+      "Files": 550
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\library-recovery-review\\application",
+      "Kind": "directory",
+      "Bytes": 213801052,
+      "Files": 220
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\longterm-ab\\build-102\\payload",
+      "Kind": "directory",
+      "Bytes": 251193184,
+      "Files": 548
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\longterm-ab\\build-102\\studio-installer.exe",
+      "Kind": "file",
+      "Bytes": 167322788,
+      "Files": 1
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\longterm-ab\\build-103\\payload",
+      "Kind": "directory",
+      "Bytes": 251193184,
+      "Files": 548
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\longterm-ab\\build-103\\studio-installer.exe",
+      "Kind": "file",
+      "Bytes": 167322788,
+      "Files": 1
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\model-accounts-review\\application",
+      "Kind": "directory",
+      "Bytes": 213542183,
+      "Files": 220
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\model-purpose-review\\application",
+      "Kind": "directory",
+      "Bytes": 213559812,
+      "Files": 220
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\nai-settings-review\\application",
+      "Kind": "directory",
+      "Bytes": 213664786,
+      "Files": 220
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\release-migration\\real-103-104\\applications\\105-a416a820955a",
+      "Kind": "directory",
+      "Bytes": 252165408,
+      "Files": 550
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\studio-usability-review\\application",
+      "Kind": "directory",
+      "Bytes": 213714687,
+      "Files": 220
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\studio-usability-review\\application-final",
+      "Kind": "directory",
+      "Bytes": 213715379,
+      "Files": 220
+    },
+    {
+      "Path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\vision-accounts-review\\application",
+      "Kind": "directory",
+      "Bytes": 213553260,
+      "Files": 220
+    }
+  ],
+  "RemovedTargets": 80,
+  "BeforeFreeBytes": 420335616,
+  "AfterFreeBytes": 16895737856,
+  "MeasuredFreeIncreaseBytes": 16475402240,
+  "UserWorkspaceDeleted": false,
+  "SigningKeysDeleted": false,
+  "ActiveProgramRetained": true,
+  "DependencyCachesRetained": true
+}

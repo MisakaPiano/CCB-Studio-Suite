@@ -1,6 +1,6 @@
-## 2026-10-23 本地105已接入原配置，清理进行中
+## 2026-10-23 独立105安装与清理完成
 
-用户已授权本机key/数据接入；固定入口`.local/installed/Launch-CCB-Studio.lnk`沿用原真实workspace/runtime，受保护凭据可读、文档/密文未变，无服务调用或明文导出。实际104→105公开下载/新目录安装/105当前检查已通过。初次两处临时产物已清理；80项进一步旧二进制清单约15.30GiB被自动审批要求精确授权，答复前未删除。见[接入与清理记录](audits/UX_LOCAL_PROFILE_AND_CLEANUP.md)。活动路径记录`.local/ACTIVE_STUDIO_INSTALLATION.json`，不得误清理。
+80项已获精确批准并删除，实际回收15.34GiB。用户随后要求使用版移出源码仓库，当前入口为`H:/CCB-Studio-Suite-Preview/Launch-CCB-Studio.lnk`：独立版本程序、data/workspace与data/runtime已配置，5016资料文件复制/散列匹配、加密凭据可读，547程序文件核验通过；原资料保留为备份，仓库旧入口retired。`.local/ACTIVE_STUDIO_INSTALLATION.json`已更新，禁止误清理其活动路径及备份字段。迁移后H盘约14.79GiB可用，未调用真实服务、未上传私人资料/凭据，原生界面启动未测。见[实际接入与清理记录](audits/UX_LOCAL_PROFILE_AND_CLEANUP.md)。
 
 ## 2026-10-23 Preview 105 已发布
 
