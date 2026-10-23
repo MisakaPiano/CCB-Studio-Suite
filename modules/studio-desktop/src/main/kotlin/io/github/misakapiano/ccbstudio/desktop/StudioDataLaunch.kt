@@ -52,6 +52,7 @@ internal fun studioStartupFailureText(error:Exception):String {
     val detail=when(status){
         "UNSUPPORTED_VERSION"->"此工作区的资料格式不受当前版本支持。请使用支持该格式的版本打开；不要删除或重置资料目录。"
         "UPDATE_DATA_VERSION_MISMATCH"->"工作区的资料格式与本次更新确认的格式不一致，已停止更新启动。请保留原目录，使用原版本核查后再重新检查更新。"
+        "UPDATE_SNAPSHOT_MISMATCH"->"新版启动时未能确认资料与凭据完整，已停止切换。请从原入口继续使用旧版并保留更新记录；不要反复安装同一版本。"
         "MIGRATION_DESTINATION_EXISTS"->"升级副本目录已经存在，未覆盖。请直接打开已有副本，或选择另一个全新目录。"
         "MIGRATION_CANCELLED"->"已取消资料格式升级。原目录保留，可继续使用原版本。"
         "IN_USE"->"另一个窗口或进程正在使用此工作区。请正常关闭占用它的窗口后再试。"

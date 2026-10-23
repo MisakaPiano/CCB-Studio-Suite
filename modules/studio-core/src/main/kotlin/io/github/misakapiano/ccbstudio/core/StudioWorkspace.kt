@@ -24,6 +24,8 @@ class StudioWorkspace private constructor(val root:Path,private val owner:FileCh
     }
     val state:StudioState @Synchronized get() {checkOpen();return journal.state}
     val creationRevision:String? @Synchronized get() {checkOpen();return journal.creationRevision}
+    val committedStateBody:String @Synchronized get() {checkOpen();return requireNotNull(journal.committedBody)}
+    @Synchronized fun committedStateBodyForVersion(version:Int):String {checkOpen();return journal.committedBodyForVersion(version)}
     @Synchronized fun <T> operation(body:()->T):T {checkOpen();return body()}
     private fun checkOpen() {check(!closed && !poisoned) { "Workspace closed or requires recovery; reopen after inspection" }}
     @Synchronized fun save(next:StudioState) {

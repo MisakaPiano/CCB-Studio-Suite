@@ -9,9 +9,14 @@ import java.nio.channels.FileChannel
 import java.security.SecureRandom
 
 /** Fingerprints only. Plain credentials never enter the handoff or log. */
-internal fun updateSnapshot(workspace:StudioWorkspace,sourceVersion:Int=workspace.state.version):JsonObject=buildJsonObject {
+internal fun updateSnapshot(workspace:StudioWorkspace,sourceVersion:Int=workspace.state.version,legacy:Boolean=false):JsonObject=buildJsonObject {
     require(sourceVersion in 1..workspace.state.version)
-    put("stateSha256",sha256(documentJson.encodeToString(workspace.state.copy(version=sourceVersion)).toByteArray()))
+    // Hash the authenticated committed representation, not defaults introduced by this reader.
+    // Old handoffs used serialization; for a same-format, drained workspace its persisted body
+    // is exactly the old writer's serialization. Assets and credentials remain fully compared.
+    val body=if(sourceVersion==workspace.state.version)workspace.committedStateBody else workspace.committedStateBodyForVersion(sourceVersion)
+    put("stateSha256",sha256(body.toByteArray()))
+    if(!legacy)put("stateEncoding","COMMITTED_STATE_V1")
     put("assets",buildJsonArray {
         workspace.catalog().sortedBy{it.request().id().toString()}.forEach {asset->
             val request=asset.request();val id=request.id().toString()
@@ -126,8 +131,10 @@ internal fun verifyUpdatedWorkspace(workspace:StudioWorkspace,planPath:Path):Jso
     val sourceVersion=plan["sourceDataVersion"]?.jsonPrimitive?.int?:workspace.state.version
     val targetVersion=plan["targetDataVersion"]?.jsonPrimitive?.int?:sourceVersion
     require(workspace.state.version==targetVersion && config["reader"]?.jsonPrimitive?.int==targetVersion){"资料格式与程序身份不匹配"}
-    val snapshot=updateSnapshot(workspace,sourceVersion)
-    require(snapshot==plan["snapshot"]){"更新后资料或凭据验证不一致；已保留旧程序与现有资料"}
+    val expected=plan["snapshot"]!!.jsonObject
+    require(expected["stateEncoding"]==null || expected["stateEncoding"]?.jsonPrimitive?.content=="COMMITTED_STATE_V1"){"未知更新快照格式"}
+    val snapshot=updateSnapshot(workspace,sourceVersion,legacy=expected["stateEncoding"]==null)
+    if(snapshot!=expected)throw DataProblem("UPDATE_SNAPSHOT_MISMATCH","更新后资料或凭据验证不一致；已保留旧程序与现有资料")
     return buildJsonObject{put("nonce",plan["nonce"]!!);put("version",config["version"]!!);put("sourceSha",config["sourceSha"]!!);put("snapshot",snapshot)
         put("dataRoot",workspace.root.toString());put("dataVersion",workspace.state.version);put("actualStateSha256",sha256(documentJson.encodeToString(workspace.state).toByteArray()))}
 }

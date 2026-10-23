@@ -85,7 +85,7 @@ class BatchQueue(private val workspace:StudioWorkspace,private val random:(Int)-
     fun replaceGroups(groups:List<BatchGroup>)=update {s->
         require(!s.running && s.error==null){"请先处理暂停原因"}
         s.groups.filter{it.started}.forEach{old->require(groups.any{it==old}){"已开始分组保留，请复制为新分组"}}
-        s.copy(groups=groups,mode="PAUSED")
+        s.copy(id=s.id.ifBlank{newId()},groups=groups,mode="PAUSED")
     }
     fun resume(now:Long,retry:Boolean=false,skip:Boolean=false)=update {s->
         require(!s.running && (s.mode!="ENDED"||s.error!=null) && s.accountId!=null && s.total>0)

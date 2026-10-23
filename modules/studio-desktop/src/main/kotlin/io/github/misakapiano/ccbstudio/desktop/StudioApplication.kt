@@ -461,7 +461,7 @@ internal fun launchStudio(args:Array<String>) {
     }
     val updateVerified=try{updatePlan?.let{verifyUpdatedWorkspace(workspace,it)}}catch(e:Exception){
         if(updatePlan!=null && updatePlan.toAbsolutePath().normalize().startsWith(runtime.toAbsolutePath().normalize().resolve("updates/handoffs")))runCatching{writeUpdateJson(updatePlan.parent.resolve("B_FAILED.json"),buildJsonObject{put("status","FAILED");put("reason",if(e is DataProblem)e.status else e.javaClass.simpleName)})}
-        workspace.close();javax.swing.JOptionPane.showMessageDialog(null,"更新后的程序或资料验证未通过；已有程序和资料保留。","CCB Studio Suite",javax.swing.JOptionPane.ERROR_MESSAGE);return
+        workspace.close();javax.swing.JOptionPane.showMessageDialog(null,studioStartupFailureText(e),"CCB Studio Suite",javax.swing.JOptionPane.ERROR_MESSAGE);return
     }
     application {
         val scope=rememberCoroutineScope();val c=remember{WorkbenchController(workspace,scope,DesktopNovelAiInfrastructure(runtime.resolve("catalog")),runtime.resolve("request-budget"),pauseCollectionsOnStart="--pause-collections" in args)}

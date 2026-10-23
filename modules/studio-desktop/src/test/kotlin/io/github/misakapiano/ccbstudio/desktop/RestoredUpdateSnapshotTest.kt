@@ -43,7 +43,7 @@ class RestoredUpdateSnapshotTest {
                 assertEquals(before,verifyUpdatedWorkspace(w,plan)["snapshot"])
                 // Keep the ciphertext outside its expected slot to simulate loss without deleting it.
                 Files.move(w.root.resolve("secrets/$ref.dpapi"),w.root.resolve("retained-ciphertext"))
-                assertFailsWith<IllegalArgumentException>{verifyUpdatedWorkspace(w,plan)}
+                assertEquals("UPDATE_SNAPSHOT_MISMATCH",assertFailsWith<DataProblem>{verifyUpdatedWorkspace(w,plan)}.status)
                 assertTrue(Files.isRegularFile(w.root.resolve("retained-ciphertext")))
             }
         }
@@ -62,13 +62,49 @@ class RestoredUpdateSnapshotTest {
         }
     }
 
-    private fun withPlan(w:StudioWorkspace,snapshot:JsonObject,action:(Path)->Unit) {
+    @Test fun preBatchWriterSnapshotVerifiesWithoutHashingNewReaderDefaults() {
+        val r=root()
+        StudioWorkspace.openStudio(r).use{w->w.importImage("synthetic.png",EditorRenderer.synthetic(32,32))}
+        val file=Files.list(r.resolve("documents")).use{it.sorted().toList().last()}
+        val envelope=Json.parseToJsonElement(Files.readString(file)).jsonObject
+        val oldBody=JsonObject(Json.parseToJsonElement(envelope["body"]!!.jsonPrimitive.content).jsonObject.filterKeys{it!="batch"}).toString()
+        Files.writeString(file,JsonObject(envelope+mapOf("body" to JsonPrimitive(oldBody),"sha256" to JsonPrimitive(sha256(oldBody.toByteArray())))).toString())
+        var first:StudioState?=null
+        repeat(2){StudioWorkspace.openStudio(r).use{w->
+            if(first==null)first=w.state else assertEquals(first,w.state,"Absent new fields must not generate a different batch identity on every read")
+            assertFalse(oldBody.contains("\"batch\""))
+            val expected=JsonObject(updateSnapshot(w).filterKeys{it!="stateEncoding"}+mapOf("stateSha256" to JsonPrimitive(sha256(oldBody.toByteArray()))))
+            withPlan(w,expected){plan->assertEquals(expected,verifyUpdatedWorkspace(w,plan)["snapshot"])}
+            val falseSnapshot=JsonObject(expected+mapOf("stateSha256" to JsonPrimitive("0".repeat(64))))
+            withPlan(w,falseSnapshot){plan->assertEquals("UPDATE_SNAPSHOT_MISMATCH",assertFailsWith<DataProblem>{verifyUpdatedWorkspace(w,plan)}.status)}
+        }}
+    }
+
+    @Test fun formatCopyUsesAuthenticatedSourceCommitAndRejectsLaterChanges() {
+        val source=root();Files.createDirectories(source);Files.createFile(source.resolve(".owner.lock"))
+        Files.writeString(source.resolve("preview-root.txt"),"CCBStudioSuite/WindowsStudio/v2")
+        io.github.misakapiano.ccbstudio.assets.AssetStore.open(source.resolve("assets")).close()
+        val old=StateJournal(source.resolve("documents"));old.commit(StudioState(version=2))
+        val destination=root();StudioFormatMigration.copyVersionTwo(source,destination)
+        StudioWorkspace.openStudio(destination).use{w->
+            for(legacy in listOf(false,true)) {
+                val snapshot=updateSnapshot(w,2,legacy)
+                assertEquals(sha256(requireNotNull(old.committedBody).toByteArray()),snapshot["stateSha256"]!!.jsonPrimitive.content)
+                withPlan(w,snapshot,2){plan->assertEquals(snapshot,verifyUpdatedWorkspace(w,plan)["snapshot"])}
+            }
+            w.save(w.state.copy(accounts=listOf(account(newId()))))
+            assertEquals("UPDATE_SNAPSHOT_MISMATCH",assertFailsWith<DataProblem>{updateSnapshot(w,2)}.status)
+        }
+    }
+
+    private fun withPlan(w:StudioWorkspace,snapshot:JsonObject,sourceVersion:Int=w.state.version,action:(Path)->Unit) {
         val installed=Files.createDirectories(root());val cache=Files.createDirectories(root())
         val config=buildJsonObject{put("version",9);put("sourceSha","a".repeat(40));put("reader",w.state.version)}
         writeUpdateJson(installed.resolve("update-config.json"),config)
         val path=Files.createDirectories(cache.resolve("handoffs/fixture")).resolve("plan.json")
         writeUpdateJson(path,buildJsonObject {
             put("format",1);put("nonce","b".repeat(64));put("cache",cache.toString());put("dataRoot",w.root.toString())
+            put("sourceDataVersion",sourceVersion);put("targetDataVersion",w.state.version)
             put("approved",config);put("snapshot",snapshot)
         })
         val previous=System.getProperty("jpackage.app-path")

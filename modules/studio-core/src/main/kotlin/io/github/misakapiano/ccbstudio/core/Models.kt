@@ -80,7 +80,7 @@ fun sha256(bytes: ByteArray): String = MessageDigest.getInstance("SHA-256").dige
     val typesetProjects:List<TypesetProject> = emptyList(),
     val typesetFonts:List<TypesetFontResource> = emptyList(),
     val typesetPreferences:TypesetPreferences=TypesetPreferences(),
-    val batch:BatchState=BatchState(),
+    val batch:BatchState=BatchState(id=""),
 ) {
     fun validate() {
         if(version !in 1..3) throw DataProblem("UNSUPPORTED_VERSION", "Studio document version $version retained")

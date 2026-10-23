@@ -15,6 +15,14 @@ class StateJournal(private val directory: Path, private val fault:(String)->Unit
     private var sequence=0L
     private var previous=""
     var state=StudioState(); private set
+    var committedBody:String?=null; private set
+    private val versionBodies=mutableMapOf<Int,String>()
+    fun committedBodyForVersion(version:Int):String {
+        val body=versionBodies[version]?:throw DataProblem("UPDATE_SNAPSHOT_MISMATCH","Missing source-format commit")
+        if(documentJson.decodeFromString<StudioState>(body).copy(version=state.version)!=state)
+            throw DataProblem("UPDATE_SNAPSHOT_MISMATCH","Source-format state differs beyond migration version")
+        return body
+    }
     /** Read projection only; the on-disk envelope and commit algorithm remain unchanged. */
     var creationRevision:String?=null; private set
     init {
@@ -35,7 +43,7 @@ class StateJournal(private val directory: Path, private val fault:(String)->Unit
                 catch(ex:Exception) { throw DataProblem("CORRUPT","Document fields retained",ex) }
             sequence=e.sequence; previous=sha256(bytes)
             if(next.creation!=state.creation)creationRevision=previous.takeIf{next.creation!=null}
-            state=next
+            state=next;committedBody=e.body;versionBodies[next.version]=e.body
         }
     }
     private fun encode(next:StudioState):ByteArray {
@@ -55,7 +63,8 @@ class StateJournal(private val directory: Path, private val fault:(String)->Unit
         // Durable file + atomic publication; no claim of arbitrary power-loss directory durability.
         sequence++;previous=sha256(bytes)
         if(next.creation!=state.creation)creationRevision=previous.takeIf{next.creation!=null}
-        state=next;fault("DOCUMENT_COMMITTED")
+        state=next;committedBody=documentJson.decodeFromString<Envelope>(bytes.decodeToString()).body
+        versionBodies[next.version]=requireNotNull(committedBody);fault("DOCUMENT_COMMITTED")
     }
 }
 
