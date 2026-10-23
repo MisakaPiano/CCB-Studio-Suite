@@ -27,25 +27,29 @@ import kotlinx.coroutines.*
     val contents by produceState<Result<List<io.github.misakapiano.ccbstudio.assets.AssetStore.Asset>>?>(null,l.archived){
         value=withContext(Dispatchers.IO){runCatching{l.archive.manageable().filter{it.request().id().toString() in l.archived}}}
     }
-    val assets=contents?.getOrNull().orEmpty().filter{it.request().id().toString() in l.archived};val labels=l.state?.labels.orEmpty()
+    val assets=remember(contents,l.archived){contents?.getOrNull().orEmpty().filter{it.request().id().toString() in l.archived}};val labels=l.state?.labels.orEmpty()
+    val byId=remember(assets){assets.associateBy{it.request().id().toString()}}
     val images=remember(assets){SharedAssets.images(assets).map{it.request().id().toString()}.toSet()}
     val times=remember(assets,c.state.jobs){libraryRecordedTimes(assets,c.state.jobs)}
     val generated=remember(c.state.jobs){c.state.jobs.flatMap{it.results+it.composedResults}.toSet()}
     val sources=remember(assets,c.state.jobs){librarySources(assets,c.state.jobs)}
     val index=remember(assets,labels){LibraryTagIndex(assets.map{it.request().id().toString()},labels)}
+    val matchesDate=remember(g.date){libraryDatePredicate(g.date)}
     val visible=remember(assets,g.query,g.filterTags,g.anyTag,g.date,g.source,g.scope,g.sort,g.assetType,labels,times,sources){
-        sortGalleryAssets(assets,g.sort,times,labels.mapValues{it.value.alias}).filter{a->
+        val filtered=assets.filter{a->
             val id=a.request().id().toString();val label=labels[id]?:AssetLabels()
             val type=when(a.request().project().decodeToString()){LibraryRepository.PROMPT->"prompt";SharedAssets.DOCUMENT->"document";else->"image"}
             val source=if(type=="image")sources[id]?:"unknown"else"other"
             (g.scope.ids?.contains(id)!=false)&&(g.source=="all"||g.source==source)&&(g.assetType=="all"||g.assetType==type)&&
                 (a.request().name().contains(g.query,true)||label.alias.contains(g.query,true)||label.tags.any{it.contains(g.query,true)})&&
-                matchesLibraryTags(label.tags,g.filterTags,g.anyTag)&&runCatching{libraryDateMatches(times[id],g.date)}.getOrDefault(false)
+                matchesLibraryTags(label.tags,g.filterTags,g.anyTag)&&matchesDate(times[id])
         }
+        sortGalleryAssets(filtered,g.sort,times,labels.mapValues{it.value.alias})
     }
-    val ids=visible.map{it.request().id().toString()}
+    val ids=remember(visible){visible.map{it.request().id().toString()}}
+    val visibleSet=remember(ids){ids.toSet()}
     val history by produceState<GalleryHistoryProjection?>(null,c.state.jobs,c.assets){value=withContext(Dispatchers.IO){runCatching{readGalleryHistory(c.workspace)}.getOrNull()}}
-    val albums=remember(ids,history,g.fold,g.directoryFold,g.tagFold,labels,l.state?.folders){
+    val albums=remember(ids,assets,history,g.fold,g.directoryFold,g.tagFold,labels,l.state?.folders){
         when {
             g.fold.enabled&&g.tagFold->galleryTagAlbums(ids,labels)
             g.fold.enabled&&g.directoryFold->galleryDirectoryAlbums(ids,assets,l.state?.folders.orEmpty())
@@ -92,7 +96,7 @@ import kotlinx.coroutines.*
             Box(Modifier.fillMaxSize()) {
                 LazyColumn(Modifier.fillMaxSize().padding(horizontal=12.dp,vertical=10.dp),state=scroll,verticalArrangement=Arrangement.spacedBy(6.dp)) {
                     items(albums,key={it.key}){album->
-                        val id=album.cover.image.path;val a=visible.first{it.request().id().toString()==id};val selected=album.images.all{it.image.path in l.archiveSelection}
+                        val id=album.cover.image.path;val a=byId.getValue(id);val selected=album.images.all{it.image.path in l.archiveSelection}
                         val grouped=g.fold.enabled&&(album.images.size>1 || g.tagFold || (g.directoryFold&&album.label!="来源目录未记录"))
                         var ctrl by remember{mutableStateOf(false)};var shift by remember{mutableStateOf(false)}
                         fun choose(){
@@ -127,7 +131,7 @@ import kotlinx.coroutines.*
             val scroll=rememberScrollState()
             LaunchedEffect(ids){if(current !in ids)current=ids.firstOrNull()}
             Column(Modifier.fillMaxSize().padding(horizontal=12.dp,vertical=14.dp).verticalScroll(scroll),verticalArrangement=Arrangement.spacedBy(8.dp)) {
-                val a=assets.firstOrNull{it.request().id().toString()==current}
+                val a=byId[current]
                 if(a==null)Text("选择资产查看详情",color=Quiet)else {
                     val id=a.request().id().toString()
                     if(id in images)AssetImage(c,id,Modifier.fillMaxWidth().height(180.dp))
@@ -141,7 +145,7 @@ import kotlinx.coroutines.*
         LibraryBand {
             LibraryToggle("勾选模式",g.checkboxMode){g.checkboxMode=!g.checkboxMode}
             LibraryAction("全选",style=StudioActionStyle.TERTIARY){l.archiveSelection=ids.toSet()};LibraryAction("反选",style=StudioActionStyle.TERTIARY){l.archiveSelection=(l.archiveSelection-ids.toSet())+(ids.toSet()-l.archiveSelection)};LibraryAction("清空",accessibilityLabel="清空选择"){l.archiveSelection=emptySet()}
-            Text("已选 ${l.archiveSelection.size} · 筛选外 ${l.archiveSelection.count{it !in ids}}",style=MaterialTheme.typography.caption)
+            Text("已选 ${l.archiveSelection.size} · 筛选外 ${l.archiveSelection.count{it !in visibleSet}}",style=MaterialTheme.typography.caption)
             LibraryAction("",l.canUndo,icon=DesktopAppIcons.Undo,style=StudioActionStyle.TERTIARY,accessibilityLabel="撤销"){l.undo()};LibraryAction("",l.canRedo,icon=DesktopAppIcons.Redo,style=StudioActionStyle.TERTIARY,accessibilityLabel="重做"){l.redo()}
             Spacer(Modifier.weight(1f))
             LibraryAction("恢复所选",l.archiveSelection.isNotEmpty()&&!c.busy){restore=l.archiveSelection.toSet()}

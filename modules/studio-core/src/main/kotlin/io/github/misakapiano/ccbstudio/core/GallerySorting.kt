@@ -46,9 +46,10 @@ class GallerySortPreferences(private val library:LibraryRepository) {
 }
 
 /** Natural numeric name order; stable ID tie-break keeps paging and range selection deterministic. */
-fun galleryNaturalCompare(a:String,b:String):Int {
-    val left=Regex("\\d+|\\D+").findAll(a.lowercase(Locale.ROOT)).map{it.value}.toList()
-    val right=Regex("\\d+|\\D+").findAll(b.lowercase(Locale.ROOT)).map{it.value}.toList()
+private val naturalParts=Regex("\\d+|\\D+")
+private fun naturalKey(value:String)=naturalParts.findAll(value.lowercase(Locale.ROOT)).map{it.value}.toList()
+fun galleryNaturalCompare(a:String,b:String):Int=compareNaturalKeys(naturalKey(a),naturalKey(b))
+private fun compareNaturalKeys(left:List<String>,right:List<String>):Int {
     for(i in 0 until minOf(left.size,right.size)) {
         val x=left[i];val y=right[i]
         val compared=if(x.first().isDigit()&&y.first().isDigit()) {
@@ -59,15 +60,23 @@ fun galleryNaturalCompare(a:String,b:String):Int {
     }
     return left.size.compareTo(right.size)
 }
-fun sortGalleryAssets(assets:List<AssetStore.Asset>,sort:GallerySort,added:Map<String,Long>,names:Map<String,String> = emptyMap()):List<AssetStore.Asset> = assets.sortedWith { a,b->
-    val x=a.request().id().toString();val y=b.request().id().toString()
-    fun name(v:AssetStore.Asset)=names[v.request().id().toString()]?.takeIf{it.isNotBlank()}?:v.request().name()
+fun sortGalleryAssets(assets:List<AssetStore.Asset>,sort:GallerySort,added:Map<String,Long>,names:Map<String,String> = emptyMap()):List<AssetStore.Asset> {
+    // Invocation-local metadata only: no retained corpus, image reads or stale alias keys.
+    class Key(val asset:AssetStore.Asset) {
+        val id=asset.request().id().toString()
+        val name by lazy(LazyThreadSafetyMode.NONE){naturalKey(names[id]?.takeIf{it.isNotBlank()}?:asset.request().name())}
+        val type=if(sort.field==GallerySortField.TYPE)asset.request().name().substringAfterLast('.',"").lowercase(Locale.ROOT)else ""
+    }
+    val keys=assets.map{Key(it)}
+    return keys.sortedWith { a,b->
+    val x=a.id;val y=b.id
     val result=when(sort.field) {
         GallerySortField.ADDED->(added[x]?:Long.MIN_VALUE).compareTo(added[y]?:Long.MIN_VALUE)
-        GallerySortField.NAME->galleryNaturalCompare(name(a),name(b))
-        GallerySortField.SIZE->a.size().compareTo(b.size())
-        GallerySortField.TYPE->a.request().name().substringAfterLast('.',"").lowercase(Locale.ROOT).compareTo(b.request().name().substringAfterLast('.',"").lowercase(Locale.ROOT))
+        GallerySortField.NAME->compareNaturalKeys(a.name,b.name)
+        GallerySortField.SIZE->a.asset.size().compareTo(b.asset.size())
+        GallerySortField.TYPE->a.type.compareTo(b.type)
     }
     val primary=if(sort.descending)-result else result
-    primary.takeIf{it!=0}?:galleryNaturalCompare(name(a),name(b)).takeIf{it!=0}?:x.compareTo(y)
+    primary.takeIf{it!=0}?:compareNaturalKeys(a.name,b.name).takeIf{it!=0}?:x.compareTo(y)
+    }.map{it.asset}
 }

@@ -1,0 +1,58 @@
+{
+    "syntheticOnly": true,
+    "assets": 10000,
+    "scope": "in-memory metadata calculations; excludes disk validation, UI frames and process RSS",
+    "java": "17.0.20.1",
+    "heapLimitBytes": 268435456,
+    "measurements": [
+        {
+            "phase": "106-name-sort",
+            "wallMs": 433.6014,
+            "threadCpuMs": 406.25,
+            "allocatedBytes": 582261256
+        },
+        {
+            "phase": "107-name-sort",
+            "wallMs": 38.2594,
+            "threadCpuMs": 31.25,
+            "allocatedBytes": 19680336
+        },
+        {
+            "phase": "106-search-sort",
+            "wallMs": 201.7629,
+            "threadCpuMs": 187.5,
+            "allocatedBytes": 572138968
+        },
+        {
+            "phase": "107-search-sort",
+            "wallMs": 1.5676,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 9752
+        },
+        {
+            "phase": "106-selection",
+            "wallMs": 118.5007,
+            "threadCpuMs": 125.0,
+            "allocatedBytes": 978272
+        },
+        {
+            "phase": "107-selection",
+            "wallMs": 3.531,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 306312
+        },
+        {
+            "phase": "106-tag-fold",
+            "wallMs": 675.1881,
+            "threadCpuMs": 625.0,
+            "allocatedBytes": 650567648
+        },
+        {
+            "phase": "107-tag-fold",
+            "wallMs": 30.2353,
+            "threadCpuMs": 15.625,
+            "allocatedBytes": 32140312
+        }
+    ],
+    "humanAcceptance": "NOT TESTED"
+}

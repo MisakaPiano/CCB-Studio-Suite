@@ -1,0 +1,38 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.GalleryPerformanceTest",
+    "name": "preparedDatesAndLinearSelectionPreserveFilterAndOutsideSelectionSemantics",
+    "seconds": "0.058",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.GalleryPerformanceTest",
+    "name": "tenThousandMetadataBenchmarkWithEquivalentResults",
+    "seconds": "1.962",
+    "status": "FAILED"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.GalleryPerformanceTest",
+    "name": "everySortKeepsLegacyOrderingIncludingAliasesTiesAndLongNumbers",
+    "seconds": "0.102",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.GalleryPerformanceTest",
+    "name": "tagGroupingRetainsExactKeysOrderCountsAndUntaggedItems",
+    "seconds": "0.017",
+    "status": "FAILED"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.GallerySortingTest",
+    "name": "futureSortMetadataRefusesOverwriteAndCachedFoldDecodingDoesNotReadRepository",
+    "seconds": "0.615",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.GallerySortingTest",
+    "name": "naturalOrderIndependentAlbumsAndNewArrivalsKeepPreferencesAcrossReopen",
+    "seconds": "2.822",
+    "status": "PASS"
+  }
+]

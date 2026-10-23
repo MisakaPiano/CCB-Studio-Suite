@@ -98,7 +98,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
     val focus=remember{FocusRequester()};var focused by remember{mutableStateOf(false)}
     LaunchedEffect(Unit){focus.requestFocus()}
     val drag=remember{LibraryDragState()};var rootOffset by remember{mutableStateOf(Offset.Zero)};var rootSize by remember{mutableStateOf(androidx.compose.ui.unit.IntSize.Zero)}
-    val historyIdentity=GalleryHistoryIdentity(c.assets.map{it.request().id().toString() to it.sha256()},c.state.jobs)
+    val historyIdentity=remember(c.assets,c.state.jobs){GalleryHistoryIdentity(c.assets.map{it.request().id().toString() to it.sha256()},c.state.jobs)}
     val cached=g.historyCache?.takeIf{it.first==historyIdentity}?.second
     val history by produceState<Result<GalleryHistoryProjection>?>(cached?.let{Result.success(it)},historyIdentity) {
         if(cached!=null){value=Result.success(cached);return@produceState};value=null
@@ -109,19 +109,24 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
     val times=remember(c.assets,c.state.jobs){libraryRecordedTimes(c.assets,c.state.jobs)}
     val generated=remember(c.state.jobs){c.state.jobs.flatMap{it.results+it.composedResults}.toSet()}
     val sources=remember(c.assets,c.state.jobs){librarySources(c.assets,c.state.jobs)}
-    val activeIds=remember(c.assets,c.library.archived){c.assets.map{it.request().id().toString()}.filter{it !in c.library.archived}}
+    val allById=remember(c.assets){c.assets.associateBy{it.request().id().toString()}}
+    val allIds=remember(allById){allById.keys.toList()}
+    val activeIds=remember(allIds,c.library.archived){allIds.filter{it !in c.library.archived}.toSet()}
     val tagIndex=remember(activeIds,labels){LibraryTagIndex(activeIds,labels)}
+    val matchesDate=remember(g.date){libraryDatePredicate(g.date)}
     val promptMatches=remember(projection,g.query){NovelAiHistoryFilterPolicy.filter(projection.entries,g.query,null).map{it.image.path}.toSet()}
     val visible=remember(c.assets,c.library.archived,g.query,g.filterTags,g.anyTag,g.date,g.source,g.scope,g.sort,labels,times,promptMatches,sources){
-        sortGalleryAssets(c.assets,g.sort,times,labels.mapValues{it.value.alias}).filter{a->
+        val filtered=c.assets.filter{a->
             val id=a.request().id().toString();val label=labels[id]?:AssetLabels()
             id !in c.library.archived&&(g.source=="all"||sources[id]==g.source)&&g.scope.ids?.contains(id)!=false&&
-                runCatching{libraryDateMatches(times[id],g.date)}.getOrDefault(false)&&matchesLibraryTags(label.tags,g.filterTags,g.anyTag)&&
+                matchesDate(times[id])&&matchesLibraryTags(label.tags,g.filterTags,g.anyTag)&&
                 (a.request().name().contains(g.query,true)||label.alias.contains(g.query,true)||label.tags.any{it.contains(g.query,true)}||id in promptMatches)
         }
+        sortGalleryAssets(filtered,g.sort,times,labels.mapValues{it.value.alias})
     }
-    val visibleIds=visible.map{it.request().id().toString()}
-    val orderedSelection=(visibleIds+c.assets.map{it.request().id().toString()}).distinct().filter{it in c.selection&&it in activeIds}
+    val visibleIds=remember(visible){visible.map{it.request().id().toString()}}
+    val visibleSet=remember(visibleIds){visibleIds.toSet()}
+    val orderedSelection=remember(visibleIds,allIds,activeIds,c.selection){orderedLibrarySelection(visibleIds,allIds,activeIds,c.selection)}
     val albums=remember(visibleIds,projection,g.fold,g.directoryFold,g.tagFold,g.sort,c.assets,c.library.state?.folders,labels){
         val grouped=when {
             g.fold.enabled&&g.tagFold->galleryTagAlbums(visibleIds,labels)
@@ -131,7 +136,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
         val order=visibleIds.withIndex().associate{it.value to it.index}
         val arranged=grouped.map{NovelAiHistoryAlbum(it.images.sortedBy{image->order.getValue(image.image.path)},it.label)}
         if(g.sort.field==GallerySortField.NAME&&g.fold.enabled)arranged.sortedWith { a,b->
-            fun name(album:NovelAiHistoryAlbum)=album.label.takeIf{it.isNotBlank()}?:visible.first{it.request().id().toString()==album.cover.image.path}.request().name()
+            fun name(album:NovelAiHistoryAlbum)=album.label.takeIf{it.isNotBlank()}?:allById.getValue(album.cover.image.path).request().name()
             val compared=galleryNaturalCompare(name(a),name(b));(if(g.sort.descending)-compared else compared).takeIf{it!=0}?:a.key.compareTo(b.key)
         }else arranged
     }
@@ -251,7 +256,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
                 Box(Modifier.fillMaxSize()) {
                     Column(Modifier.fillMaxSize().padding(start=10.dp,top=14.dp,end=12.dp).verticalScroll(scroll),verticalArrangement=Arrangement.spacedBy(8.dp)) {
                         AssetImage(c,c.current,Modifier.fillMaxWidth().height(180.dp))
-                        c.assets.firstOrNull{it.request().id().toString()==c.current}?.let{a->
+                        allById[c.current]?.let{a->
                             val album=albums.firstOrNull{it.images.any{image->image.image.path==c.current}}
                             val grouped=g.fold.enabled&&album!=null&&(album.images.size>1||g.tagFold||g.directoryFold&&album.label!="来源目录未记录")
                             Text(if(grouped)album!!.label.lineSequence().first()else labels[c.current]?.alias?.ifBlank{a.request().name()}?:a.request().name())
@@ -269,7 +274,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
                 Text("${visibleIds.size} 项 · 已选 ${c.selection.size}",style=MaterialTheme.typography.caption)
                 LibraryToggle("勾选模式",g.checkboxMode){g.checkboxMode=!g.checkboxMode}
                 LibraryAction("全选",style=StudioActionStyle.TERTIARY){c.selection=visibleIds.toSet()};LibraryAction("反选",style=StudioActionStyle.TERTIARY){c.selection=(c.selection-visibleIds.toSet())+(visibleIds.toSet()-c.selection)};LibraryAction("清空",accessibilityLabel="清空选择"){c.selection=emptySet()}
-                if(c.selection.any{it !in visibleIds})Text("筛选外 ${c.selection.count{it !in visibleIds}}",style=MaterialTheme.typography.caption)
+                if(c.selection.any{it !in visibleSet})Text("筛选外 ${c.selection.count{it !in visibleSet}}",style=MaterialTheme.typography.caption)
                 LibraryAction("",c.library.canUndo,icon=DesktopAppIcons.Undo,style=StudioActionStyle.TERTIARY,accessibilityLabel="撤销"){c.library.undo()};LibraryAction("",c.library.canRedo,icon=DesktopAppIcons.Redo,style=StudioActionStyle.TERTIARY,accessibilityLabel="重做"){c.library.redo()}
                 LibraryAction("",c.selection.isNotEmpty()&&!c.busy&&c.library.error==null&&c.library.archiveError==null,icon=DesktopAppIcons.Delete,style=StudioActionStyle.TERTIARY,accessibilityLabel="所选资产移入回收站"){remove()}
                 Box {

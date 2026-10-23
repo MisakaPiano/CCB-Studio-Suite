@@ -18,6 +18,16 @@ fun libraryRecordedTimes(assets:List<AssetStore.Asset>,jobs:List<JobRecord>):Map
 }
 fun libraryDateMatches(timestamp:Long?,date:String):Boolean {
     val filter=galleryDateFilter(date)?:return true
+    return libraryDateMatchesFilter(timestamp,filter)
+}
+/** Parse once per filter change; invalid input continues to match no assets in the UI. */
+fun libraryDatePredicate(date:String):(Long?)->Boolean {
+    val parsed=runCatching{galleryDateFilter(date)}
+    if(parsed.isFailure)return {false}
+    val filter=parsed.getOrNull()?:return {true}
+    return {libraryDateMatchesFilter(it,filter)}
+}
+private fun libraryDateMatchesFilter(timestamp:Long?,filter:NovelAiHistoryDateFilter):Boolean {
     timestamp?:return false
     val (year,month,day)=NovelAiHistoryFilterPolicy.dateParts(timestamp)
     return year==filter.year && when(filter.granularity){
@@ -30,12 +40,23 @@ fun libraryRecordedDay(timestamp:Long?)=timestamp?.let{Instant.ofEpochMilli(it).
 
 fun galleryTagAlbums(ids:List<String>,labels:Map<String,AssetLabels>):List<NovelAiHistoryAlbum> {
     val groups=linkedMapOf<String,MutableList<NovelAiHistoryImageItem>>()
+    val tagHashes=mutableMapOf<String,String>()
     ids.distinct().forEach{id->
         labels[id]?.tags.orEmpty().ifEmpty{listOf("")}.forEach{tag->
             val image=NovelAiGenerationHistoryImage(path=id)
-            val item=NovelAiHistoryImageItem(NovelAiGenerationHistoryEntry(id="tag:${sha256(tag.toByteArray())}:$id",images=listOf(image)),image,0)
+            val hash=tagHashes.getOrPut(tag){sha256(tag.toByteArray())}
+            val item=NovelAiHistoryImageItem(NovelAiGenerationHistoryEntry(id="tag:$hash:$id",images=listOf(image)),image,0)
             groups.getOrPut(tag){mutableListOf()}.add(item)
         }
     }
     return groups.map{(tag,images)->NovelAiHistoryAlbum(images,tag.ifEmpty{"未标记（无标签）"})}
+}
+
+/** Visible order first, then selections outside the filter, excluding archived assets. */
+fun orderedLibrarySelection(visibleIds:List<String>,allIds:List<String>,activeIds:Set<String>,selected:Set<String>):List<String> {
+    if(selected.isEmpty())return emptyList()
+    val ordered=linkedSetOf<String>()
+    visibleIds.forEach{if(it in selected&&it in activeIds)ordered.add(it)}
+    allIds.forEach{if(it in selected&&it in activeIds)ordered.add(it)}
+    return ordered.toList()
 }
