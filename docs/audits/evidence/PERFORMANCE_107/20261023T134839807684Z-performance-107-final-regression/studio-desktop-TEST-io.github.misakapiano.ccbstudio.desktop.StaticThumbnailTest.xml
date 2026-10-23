@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.StaticThumbnailTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-23T13:52:01.808Z" hostname="DD1" time="2.272">
+  <properties/>
+  <testcase name="syntheticTwentyFourCardResourceComparison" classname="io.github.misakapiano.ccbstudio.desktop.StaticThumbnailTest" time="1.787"/>
+  <testcase name="concurrentCardsShareDecodeAndCacheWhileBudgetEvictsLeastRecentlyUsed" classname="io.github.misakapiano.ccbstudio.desktop.StaticThumbnailTest" time="0.079"/>
+  <testcase name="cancellationDrainsDecodersDoesNotCacheFailuresAndCanResume" classname="io.github.misakapiano.ccbstudio.desktop.StaticThumbnailTest" time="0.073"/>
+  <testcase name="unsubscribingLastCardCancelsQueuedWorkAndFallbackRasterIsBounded" classname="io.github.misakapiano.ccbstudio.desktop.StaticThumbnailTest" time="0.038"/>
+  <testcase name="animatedSourcesUseStaticCoverAndNeverRewriteSourceBytes" classname="io.github.misakapiano.ccbstudio.desktop.StaticThumbnailTest" time="0.295"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

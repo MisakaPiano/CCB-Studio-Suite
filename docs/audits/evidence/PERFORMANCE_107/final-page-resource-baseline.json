@@ -1,0 +1,95 @@
+{
+    "syntheticOnly": true,
+    "images": 48,
+    "providerCalls": 0,
+    "window": "offscreen ImageComposeScene 1320x880",
+    "nativeStartupAndRss": "NOT MEASURED; heap/process CPU are of isolated Gradle test JVM",
+    "measurements": [
+        {
+            "phase": "workspace-controller-open",
+            "wallMs": 60.7841,
+            "processCpuMs": 78.125,
+            "heapUsedBytes": 42527624,
+            "liveThreads": 25
+        },
+        {
+            "phase": "first-gallery-ready",
+            "wallMs": 189.7928,
+            "processCpuMs": 343.75,
+            "heapUsedBytes": 75033480,
+            "liveThreads": 26
+        },
+        {
+            "phase": "idle-gallery-3-seconds",
+            "wallMs": 3001.2881,
+            "processCpuMs": 0.0,
+            "heapUsedBytes": 75033480,
+            "liveThreads": 26
+        },
+        {
+            "phase": "page-cycle-0",
+            "wallMs": 196.8244,
+            "processCpuMs": 593.75,
+            "heapUsedBytes": 93907840,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-1",
+            "wallMs": 112.0146,
+            "processCpuMs": 406.25,
+            "heapUsedBytes": 105442176,
+            "liveThreads": 30
+        },
+        {
+            "phase": "page-cycle-2",
+            "wallMs": 118.0886,
+            "processCpuMs": 375.0,
+            "heapUsedBytes": 38781960,
+            "liveThreads": 31
+        },
+        {
+            "phase": "page-cycle-3",
+            "wallMs": 108.1244,
+            "processCpuMs": 265.625,
+            "heapUsedBytes": 49267720,
+            "liveThreads": 31
+        },
+        {
+            "phase": "page-cycle-4",
+            "wallMs": 106.8388,
+            "processCpuMs": 218.75,
+            "heapUsedBytes": 59753480,
+            "liveThreads": 31
+        },
+        {
+            "phase": "page-cycle-5",
+            "wallMs": 109.4844,
+            "processCpuMs": 312.5,
+            "heapUsedBytes": 70239240,
+            "liveThreads": 31
+        },
+        {
+            "phase": "maintenance-drain",
+            "wallMs": 59.0672,
+            "processCpuMs": 109.375,
+            "heapUsedBytes": 75482120,
+            "liveThreads": 31
+        },
+        {
+            "phase": "resume-gallery",
+            "wallMs": 43.454,
+            "processCpuMs": 31.25,
+            "heapUsedBytes": 75482120,
+            "liveThreads": 31
+        },
+        {
+            "phase": "close-drain",
+            "wallMs": 51.0828,
+            "processCpuMs": 78.125,
+            "heapUsedBytes": 81773576,
+            "liveThreads": 31
+        }
+    ],
+    "remainingThumbnailTasks": 0,
+    "retainedPixelsAfterClose": 0
+}

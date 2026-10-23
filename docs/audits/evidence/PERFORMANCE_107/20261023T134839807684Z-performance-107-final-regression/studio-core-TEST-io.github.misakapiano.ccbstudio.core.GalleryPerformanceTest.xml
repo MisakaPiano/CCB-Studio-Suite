@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.GalleryPerformanceTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-23T13:49:05.222Z" hostname="DD1" time="1.706">
+  <properties/>
+  <testcase name="preparedDatesAndLinearSelectionPreserveFilterAndOutsideSelectionSemantics" classname="io.github.misakapiano.ccbstudio.core.GalleryPerformanceTest" time="0.007"/>
+  <testcase name="tenThousandMetadataBenchmarkWithEquivalentResults" classname="io.github.misakapiano.ccbstudio.core.GalleryPerformanceTest" time="1.57"/>
+  <testcase name="everySortKeepsLegacyOrderingIncludingAliasesTiesAndLongNumbers" classname="io.github.misakapiano.ccbstudio.core.GalleryPerformanceTest" time="0.125"/>
+  <testcase name="tagGroupingRetainsExactKeysOrderCountsAndUntaggedItems" classname="io.github.misakapiano.ccbstudio.core.GalleryPerformanceTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
