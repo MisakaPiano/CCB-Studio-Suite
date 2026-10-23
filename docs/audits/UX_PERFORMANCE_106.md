@@ -1,6 +1,6 @@
 # Preview 106 性能与资源优化
 
-2026-10-23，用户要求自动验证后通过既有渠道发布修复，Prompt设计保持PENDING；暂不安排人工操作。当前状态：首轮5项、最终52项实际自动回归PASS，正式应用映像已构建，准备冻结106并发布。
+2026-10-23，用户要求自动验证后通过既有渠道发布修复，Prompt设计保持PENDING；暂不安排人工操作。当前状态：Preview106已发布并接入既有签名渠道，首轮5项、最终52项实际自动回归PASS；105实际公开下载/新目录安装/106当前检查PASS。原生一键重启未测，不安排当前人工操作。
 
 ## 问题和改动
 
@@ -21,3 +21,15 @@ Temurin17.0.20.1，Windows报告Windows10，测试JVM限制2逻辑处理器/256M
 后续：运行受影响图库/动画/资产/更新回归，冻结106安装器，发布后用105实际验证公开签名渠道发现、下载和新目录安装；自动回归不代替原生用户验收。
 
 最终回归：源码e08429e7ed57bb822d4680ba0e552ff649fecaa8，52 tests、0 failures/errors/skipped，175.231秒，sourceStable=true；createDistributable实际完成。覆盖图库选择/目录/标签/排序/动画/导入、回收站、备份、收集取消排水、更新进度与恢复后凭据快照。最终同场景旧冷1353ms/CPU1640ms、新冷253ms/CPU484ms，保留像素仍72→4.5MiB，暖十次0额外读取，波动原样保留，不选择性覆盖首轮。
+
+## 实际发行与更新
+
+[Preview106](https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.106)已发布。应用源码e08429e7ed57bb822d4680ba0e552ff649fecaa8，固定组装/标签839205b8499f9a5c68cd8ef96785efbb991ce7cb；安装器168206116字节，SHA256 `7bdf66de5dbf1da572fffbe3a3a9521fd5b565fb74e86239e0d58e0e6e44680f`。547随包文件新目录安装核验通过，同目录重复安装返回17且已有文件不变；许可从实际payload重新提取/核对，100条notice归档。
+
+沿用原公开信任根408008d80aeb2dd3844325d74f09da9d248733e220dd88c08cc6299c4a24cc7a与既有本机受托管密钥；目标5/snapshot11/timestamp11，元数据提交7932f34c5b608f9b2b75b503c30dcfe050845109。先上传并核验GitHub公开安装器digest/bytes及说明许可，再更新签名目标，未覆盖105/tag、未改main、未改旧桥接渠道或Desktop。
+
+使用已安装105程序的精确拷贝（仅程序，无用户资料），实际运行其随包Python及四个更新模块，公开网络发现106、完整下载校验、新目录安装及106 UP_TO_DATE全部PASS；247个合成资料文件、550旧安装文件不变。用户的独立安装 `H:/CCB-Studio-Suite-Preview`、原件、账户和密钥未被此次性能演练改动；现有固定入口仍105，之后从应用“更新”获取106，不另复制人工评审包。
+
+原生UI演练：仅启动本轮新建的隔离合成105实例（24图，无账户、收集暂停）。computer-use两次捕获分别报 `FrameArrived timed out: timed out waiting on channel`、`window capture timed out: timed out waiting on channel`。按技能恢复规则重选窗口后重试一次，仍失败则停止UI操作；校验PID/精确exe路径后仅结束本轮合成进程，保留演练资料。未假称原生一键保存/重启通过，未要求离开电脑的用户操作。实际CLI安装通过不代签该UI验收。详见[原始发布/安装/公开更新回执](evidence/PERFORMANCE_106/release)。
+
+本轮主要文件：`StaticThumbnails.kt`、`QueueThumbnails.kt`、`GalleryWorkspace.kt`、`LibraryArchiveWorkspace.kt`、`SharedAssetPicker.kt`、`StudioApplication.kt`与`StaticThumbnailTest.kt`；专项/任务记录同步。下一具体性能项：使用合成大库建立PERF003搜索/排序/分组的规模基线，并继续补PERF002/007实际启动和进程资源采样；Prompt新设计PENDING，当前原生更新交互未验单独保留。

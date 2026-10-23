@@ -1,0 +1,60 @@
+{
+  "status": "PASS",
+  "scope": "Exact shipped105 runtime, actual public signed105-to106 check/download/fresh install/current check; not UI restart",
+  "sourceSha": "839205b8499f9a5c68cd8ef96785efbb991ce7cb",
+  "appSourceSha": "e08429e7ed57bb822d4680ba0e552ff649fecaa8",
+  "installerSha256": "7bdf66de5dbf1da572fffbe3a3a9521fd5b565fb74e86239e0d58e0e6e44680f",
+  "download": {
+    "status": "DOWNLOADED_VERIFIED",
+    "version": 106,
+    "displayVersion": "0.0.0-preview.106",
+    "channel": "preview",
+    "notes": "Performance update: bounded static gallery thumbnails, shared 8 MiB cache, cancellation/drain; Prompt redesign remains pending. See release notes.",
+    "sourceSha": "839205b8499f9a5c68cd8ef96785efbb991ce7cb",
+    "bytes": 168206116,
+    "installedBytes": 252027459,
+    "sha256": "7bdf66de5dbf1da572fffbe3a3a9521fd5b565fb74e86239e0d58e0e6e44680f",
+    "minimumReader": 2,
+    "maximumReader": 3,
+    "dataVersion": 3,
+    "installer": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\p106-native\\data\\runtime\\updates\\downloads\\bd1cc2c9-3fef-4710-8d7c-aa44fd0c9c1b\\studio-installer.exe"
+  },
+  "installation": {
+    "status": "INSTALLED_NOT_STARTED",
+    "target": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\p106-native\\apps\\106-839205b8499f",
+    "stage": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\p106-native\\apps\\106-839205b8499f.844723a2a121428abf6111b0b3e3da4e.installing",
+    "expected": {
+      "product": "ccb-studio-suite",
+      "platform": "windows-x86_64",
+      "channel": "preview",
+      "version": 106,
+      "sourceSha": "839205b8499f9a5c68cd8ef96785efbb991ce7cb"
+    },
+    "dataModified": false,
+    "verification": {
+      "files": 547,
+      "bytes": 252027459,
+      "manifestSha256": "91ce7b15d6bc3a2b10100b7132d0433ea9e73b53c5525b7214984719442cb92a"
+    }
+  },
+  "currentCheck": {
+    "status": "UP_TO_DATE",
+    "version": 106,
+    "displayVersion": "0.0.0-preview.106",
+    "channel": "preview",
+    "notes": "Performance update: bounded static gallery thumbnails, shared 8 MiB cache, cancellation/drain; Prompt redesign remains pending. See release notes.",
+    "sourceSha": "839205b8499f9a5c68cd8ef96785efbb991ce7cb",
+    "bytes": 168206116,
+    "installedBytes": 252027459,
+    "sha256": "7bdf66de5dbf1da572fffbe3a3a9521fd5b565fb74e86239e0d58e0e6e44680f",
+    "minimumReader": 2,
+    "maximumReader": 3,
+    "dataVersion": 3
+  },
+  "syntheticWorkspaceFilesUnchanged": 247,
+  "oldInstallationFilesUnchanged": 550,
+  "current105UserInstallationModified": false,
+  "native105To106Restart": "NOT TESTED; two computer-use capture failures: FrameArrived timed out, window capture timed out; stopped only synthetic review process",
+  "realProviderCalls": 0,
+  "privateDataRead": false
+}
