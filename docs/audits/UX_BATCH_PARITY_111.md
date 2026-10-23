@@ -11,3 +11,14 @@
 C盘已按用户授权清理538个超过七天且对应进程不在的旧Gradle诊断日志，共368627391字节（351.55MiB），逐文件路径/时间/散列再次核对后删除。没有删除依赖缓存、注册表/锁、源码、运行时、图片、账户或凭据。精确本地清单 `.local/c-old-gradle-logs-cleanup.json`，结果 `.local/c-old-gradle-logs-cleanup-result.json`；可用空间约85.5→438.3MiB（受其他进程影响）。不归属Suite的旧日志不声称由本次Suite构建产生。
 
 Prompt对比PENDING；真实服务调用0，日常安装与资料不自动修改。自动化不代签新视觉或实际日常更新。
+
+## 最终发行与实际验证
+
+- 应用/组装 `1c9385afc38cfab8a7549cdb5287ccba3fdd4560`，已推送现有功能分支。最终37项本轮实际执行全部通过，0失败/错误/跳过，输入源码稳定；`.local/windows-preview/evidence/20261023T171328725969Z-batch-parity-111-final-regression`。生产渲染图在 `modules/studio-desktop/build/ux-r1a-workbench/`。
+- [Preview111](https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.111) 已公开预发布并签入原根/渠道，元数据 `fa011b33fb853b6ee4d56a21f64daef8c0b35240`，targets10/snapshot16/timestamp16；main未改。安装器168518531字节，SHA256 `d20ab5390227f9dbbf054e81a7b1f390fca6019eeba6b0b12578e1fc7e344a1b`。
+- 550文件新目录安装逐项验证，重复安装返回17、原文件不变。实际107打包JAR生成的10份合成资料由111打包JAR及真实原生启动校验接受，首帧后的B_VERIFIED与原快照相同。原生探针不是视觉/正常关闭验收，完成后只结束该隔离进程。
+- 实际107未改更新运行时经公开原地址下载111，使用正常系统临时目录；107已打包helper执行111安装、B原生回执、固定测试快捷方式，111实际检查UP_TO_DATE。10份合成资料、550份旧程序文件不变。仅A父进程身份与排水使用明确已退出的合成替身；日常安装/真人更新仍NOT TESTED。`.local/windows-rc/batch-parity-111/LIVE_UPDATE.json`。
+- 实际111客户端→实际捆绑Python→1MiB合成临时文件写入/清理，确认位于H盘本次缓存temp、系统环境未改，网络调用0；`TEMP_PLACEMENT_CHECK.json`。首次沙箱执行被Windows临时目录ACL拒绝，保留日志，普通权限隔离复验通过；第一次安装校验误用了不带TUF的工具Python，未执行安装即失败，改用捆绑运行时后通过。
+- 发布初期原更新地址缓存仍返回签名110，首次下载的110未安装且未当作111通过；保留其VERIFIED回执，等原地址传播后再完成111核验。没有绕过签名/回滚保护或改用户更新地址。
+
+下一步：用户从日常固定入口检查111并按提示保存/更新/重启，只需确认运行版本与批次样式；不要求重新导入或真实生成。新视觉仍待用户反馈，Prompt对比保持PENDING。
