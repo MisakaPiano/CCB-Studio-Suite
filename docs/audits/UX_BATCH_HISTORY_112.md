@@ -13,3 +13,15 @@
 已结束批次不能通过撤销或直接编辑复活；出现429后结束也不能直接恢复，归档新建仍需冷却期结束且人工操作。异常取消恢复使用已记录结果/429码及Retry-After，不能把已知429降为可跳过的未知错误。
 
 首轮5项执行通过但运行期有追加源码，不作为冻结通过。第二轮4通过、1旧取消等待夹具因额度缓存未再次触发订阅请求而超时；旧普通取消方案随后被用户明确替代，保留失败，不作PASS。新慢响应测试将验证结束后仍保存响应及不发第二条。
+
+## 冻结验证与发行
+
+应用/组装 `acf71fc1acb24b82d8f4ed8ef311908c30686862`，40项实际执行全部通过，0失败/错误/跳过，源码稳定；证据 `.local/windows-preview/evidence/20261023T175139296704Z-batch-history-112-final-regression`。增加慢响应真实管线替代目的地址测试，点击结束后继续接收保存1张合成PNG、不发第二条；历史多次撤销/重做、分叉、无变化、准确Seed/ID、键盘和共用菜单均经过实际Compose测试。
+
+第三次开发运行因新增JUnit方法最后表达式返回异常对象而非Unit，初始化失败，已修正；没有当成产品通过或沿用为最终测试。最终冻结之后没有再修改源码。渲染图 `modules/studio-desktop/build/ux-r1a-workbench/batch-history-undo-redo.png`、`batch-ended-result-retained.png`。
+
+[Preview112](https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.112)已公开预发布，签名渠道元数据 `b3b4dc6d0b002f2799918adc38565f42c3069df0`，版本 {'targets': 11, 'snapshot': 17, 'timestamp': 17}，既有根与main未改。安装器168536062字节，SHA256 `8a5f15576049ed6d23145b14365742330cf08b89470367c56c48e46e2d9cadb0`。
+
+550安装文件逐项验证，重复安装拒绝且文件不变。107未改运行时经原公开渠道实际下载112，107旧合成资料由112原生首帧B回执校验匹配，原装107 helper完成新目录安装与测试固定入口，112再查UP_TO_DATE；10份合成资料与550旧程序文件保持。仅A父进程身份/排水替换为已关闭合成父进程，正常用户点击更新不冒称已验。详见 `.local/windows-rc/batch-history-112/LIVE_UPDATE.json`、`NATIVE_STARTUP_CHECK.json` 与发行目录。
+
+日常安装/用户资料未修改，真实服务调用0；原生右键实际鼠标交互与日常使用仍待反馈，不以合成菜单/快捷键断言代签。下一步从日常固定入口检查112，正常使用观察本轮交互；不要求重导入或真实生图。Prompt对比PENDING。
