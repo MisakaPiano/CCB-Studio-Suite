@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "type": "LIMITED_HUMAN_ACCEPTANCE",
+  "version": "0.0.0-preview.107",
+  "previousDailyVersion": "NOT_RECORDED",
+  "userReply": "更新重启正常，资料保留",
+  "scope": [
+    "日常应用内更新并正常重启",
+    "图库与原来参数保留",
+    "重启后107与可信更新源一致"
+  ],
+  "screenshotObserved": [
+    "当前版本0.0.0-preview.107，已是最新版本",
+    "更新完成：新版程序、资料与凭据状态已验证",
+    "创作草稿已保存"
+  ],
+  "limits": [
+    "不代签新版本真实AI/生图调用",
+    "不代签性能改善的人工测量",
+    "不代签长期内存或全部附加功能"
+  ],
+  "originalScreenshotCommitted": false,
+  "codeChanged": false
+}
