@@ -11,7 +11,7 @@ import java.util.UUID
 @Serializable data class AssetLabels(val alias:String="",val tags:List<String> = emptyList())
 @Serializable data class LibraryFolder(val id:String=newId(),val path:String,val category:String,val recursive:Boolean=false)
 @Serializable data class FolderObservation(val assetId:String,val sha256:String,val size:Long,val status:String="PRESENT")
-@Serializable data class LibraryState(val version:Int=1,val labels:Map<String,AssetLabels> = emptyMap(),val folders:List<LibraryFolder> = emptyList(),val observations:Map<String,FolderObservation> = emptyMap(),val preferences:Map<String,String> = emptyMap())
+@Serializable data class LibraryState(val version:Int=1,val labels:Map<String,AssetLabels> = emptyMap(),val folders:List<LibraryFolder> = emptyList(),val observations:Map<String,FolderObservation> = emptyMap(),val preferences:Map<String,String> = emptyMap(),val virtualAlbums:List<VirtualAlbum> = emptyList())
 @Serializable private data class LibraryRevision(val version:Int=1,val sequence:Long,val previous:String?)
 @Serializable data class PromptSection(val id:String=newId(),val label:String,val text:String,val roleId:String?=null,val attributes:Map<String,String> = emptyMap())
 /** Snapshot of the read projection; the original image/receipt remain independently retained. */
@@ -41,6 +41,7 @@ class LibraryRepository(private val workspace:StudioWorkspace) {
         validate(state);return state
     }
     private fun validate(s:LibraryState) {
+        VirtualAlbums.validate(s.virtualAlbums)
         if(s.version!=1)throw DataProblem("UNSUPPORTED_VERSION","Library state version retained")
         require(s.labels.size<=20000 && s.folders.size<=100 && s.observations.size<=20000 && s.preferences.size<=100)
         s.labels.forEach{(id,l)->UUID.fromString(id);require(l.alias.length<=200 && l.tags.size<=32 && l.tags.all{it.isNotBlank() && it.length<=64} && l.tags.distinct().size==l.tags.size)}

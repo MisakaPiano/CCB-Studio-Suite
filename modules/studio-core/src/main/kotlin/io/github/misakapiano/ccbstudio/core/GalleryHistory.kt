@@ -8,7 +8,7 @@ import io.github.misakapiano.ccbstudio.assets.AssetStore
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.*
 
-data class GalleryHistoryProjection(val entries:List<NovelAiGenerationHistoryEntry>,val unavailable:Map<String,String>)
+data class GalleryHistoryProjection(val entries:List<NovelAiGenerationHistoryEntry>,val unavailable:Map<String,String>,val batchOrigins:Map<String,BatchResultOrigin> = emptyMap())
 
 /** Uses admitted provenance only; grouping never opens or scans the external directories. */
 fun galleryDirectoryAlbums(ids:List<String>,assets:List<AssetStore.Asset>,folders:List<LibraryFolder>):List<NovelAiHistoryAlbum> {
@@ -52,7 +52,7 @@ fun galleryAlbums(ids:List<String>,history:GalleryHistoryProjection,type:NovelAi
 /** Verified receipt projection only. Unreadable receipts never become empty, matchable recipes. */
 fun readGalleryHistory(workspace:StudioWorkspace):GalleryHistoryProjection=workspace.operation {
     val assets=SharedAssets.images(workspace).associateBy{it.request().id().toString()}
-    val entries=mutableListOf<NovelAiGenerationHistoryEntry>();val unavailable=mutableMapOf<String,String>()
+    val origins=mutableMapOf<String,BatchResultOrigin>();val entries=mutableListOf<NovelAiGenerationHistoryEntry>();val unavailable=mutableMapOf<String,String>()
     workspace.state.jobs.forEach { job->
         val ids=(job.results+job.composedResults).filter{it in assets}.distinct()
         if(ids.isNotEmpty())try {
@@ -65,10 +65,11 @@ fun readGalleryHistory(workspace:StudioWorkspace):GalleryHistoryProjection=works
                 require(index>=0){"Missing parent for composed history image"}
                 NovelAiGenerationHistoryImage(id,receipt.recipe.settings.seed+index)
             }
+            receipt.batchOrigin?.let{origin->ids.forEach{origins[it]=origin}}
             entries+=NovelAiGenerationHistoryEntry(job.id,images,receipt.recipe,job.createdAt)
         }catch(e:Exception){ids.forEach{unavailable[it]=e.javaClass.simpleName}}
     }
-    GalleryHistoryProjection(entries,unavailable)
+    GalleryHistoryProjection(entries,unavailable,origins)
 }
 
 /** Exact Desktop date input grammar; java.time validates calendar values before filtering. */

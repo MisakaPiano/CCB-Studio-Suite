@@ -63,6 +63,7 @@ internal data class GalleryScope(val ids:Set<String>?=null,val label:String="全
         LibraryAction("",g.canGoBack,icon=Lucide.ArrowLeft,accessibilityLabel="后退"){g.goBack();onNavigate()}
         LibraryAction("",g.canGoForward,icon=Lucide.ArrowRight,accessibilityLabel="前进"){g.goForward();onNavigate()}
         LibraryAction("",g.depth>0,icon=Lucide.ArrowUp,accessibilityLabel="返回上层相册"){g.back();onNavigate()}
+        if(g.namespace.isBlank())LibraryAction("",icon=Lucide.Folders,style=StudioActionStyle.TERTIARY,accessibilityLabel="展开或收起组织树"){g.treeOpen=!g.treeOpen}
         Box {
             var path by remember{mutableStateOf(false)}
             TextButton(onClick={path=true},modifier=Modifier.widthIn(max=140.dp)){Text(g.scope.label.lineSequence().first()+" ▾",maxLines=1,overflow=TextOverflow.Ellipsis,style=MaterialTheme.typography.caption)}

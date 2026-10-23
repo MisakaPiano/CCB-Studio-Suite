@@ -27,6 +27,11 @@ import kotlinx.serialization.json.*
 
 internal data class GalleryHistoryIdentity(val assets:List<Pair<String,String>>,val jobs:List<JobRecord>)
 internal class GalleryViewState(val namespace:String="",rootLabel:String="全部资产") {
+    val organizationKind get()=scope.identity.takeIf{it.startsWith("org:")}?.split(":")?.getOrNull(1)?:"all"
+    val organizationId get()=scope.identity.takeIf{it.startsWith("org:")}?.split(":")?.getOrNull(2)
+    var treeOpen by mutableStateOf(true)
+    var treeWidth by mutableStateOf(170f)
+    var organizationDialog by mutableStateOf<String?>(null)
     var importProgress by mutableStateOf("")
     var importStartedNanos:Long=0
     var importDurationMs by mutableStateOf<Long?>(null)
@@ -116,10 +121,19 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
     val tagIndex=remember(activeIds,labels){LibraryTagIndex(activeIds,labels)}
     val matchesDate=remember(g.date){libraryDatePredicate(g.date)}
     val promptMatches=remember(projection,g.query){NovelAiHistoryFilterPolicy.filter(projection.entries,g.query,null).map{it.image.path}.toSet()}
-    val visible=remember(c.assets,c.library.archived,g.query,g.filterTags,g.anyTag,g.date,g.source,g.scope,g.sort,labels,times,promptMatches,sources){
+    val organization=c.library.state?.virtualAlbums.orEmpty()
+    val organizationIds=remember(organization,g.organizationKind,g.organizationId,projection){when(g.organizationKind){
+        "albums"->organization.flatMap{it.images}.toSet()
+        "album"->g.organizationId?.takeIf{id->organization.any{it.id==id}}?.let{VirtualAlbums.members(organization,it)}?:emptySet()
+        "batch"->projection.batchOrigins.filterValues{it.batchId==g.organizationId}.keys
+        "group"->projection.batchOrigins.filterValues{it.groupId==g.organizationId}.keys
+        else->null
+    }}
+    GalleryOrganizationDialog(c)
+    val visible=remember(organizationIds,c.assets,c.library.archived,g.query,g.filterTags,g.anyTag,g.date,g.source,g.scope,g.sort,labels,times,promptMatches,sources){
         val filtered=c.assets.filter{a->
             val id=a.request().id().toString();val label=labels[id]?:AssetLabels()
-            id !in c.library.archived&&(g.source=="all"||sources[id]==g.source)&&g.scope.ids?.contains(id)!=false&&
+            organizationIds?.contains(id)!=false&&id !in c.library.archived&&(g.source=="all"||sources[id]==g.source)&&(g.organizationKind!="all"||g.scope.ids?.contains(id)!=false)&&
                 matchesDate(times[id])&&matchesLibraryTags(label.tags,g.filterTags,g.anyTag)&&
                 (a.request().name().contains(g.query,true)||label.alias.contains(g.query,true)||label.tags.any{it.contains(g.query,true)}||id in promptMatches)
         }
@@ -128,11 +142,19 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
     val visibleIds=remember(visible){visible.map{it.request().id().toString()}}
     val visibleSet=remember(visibleIds){visibleIds.toSet()}
     val orderedSelection=remember(visibleIds,allIds,activeIds,c.selection){orderedLibrarySelection(visibleIds,allIds,activeIds,c.selection)}
-    val albums=remember(visibleIds,projection,g.fold,g.directoryFold,g.tagFold,g.sort,c.assets,c.library.state?.folders,labels){
-        val grouped=when {
-            g.fold.enabled&&g.tagFold->galleryTagAlbums(visibleIds,labels)
-            g.fold.enabled&&g.directoryFold->galleryDirectoryAlbums(visibleIds,c.assets,c.library.state?.folders.orEmpty())
-            else->galleryAlbums(visibleIds,projection,g.fold.type.takeIf{g.fold.enabled})
+    val orgFolders=remember(organization,g.organizationKind,g.organizationId,projection){organizationFolders(g,organization,projection)}
+    val folderPairs=orgFolders.mapNotNull{folder->(folder.ids intersect visibleSet).takeIf{it.isNotEmpty()}?.let{folder.album(it) to folder}}
+    val folderByKey=folderPairs.associate{it.first.key to it.second}
+    val albums=remember(organization,g.organizationKind,g.organizationId,orgFolders,visibleIds,projection,g.fold,g.directoryFold,g.tagFold,g.sort,c.assets,c.library.state?.folders,labels){
+        val leafIds=when(g.organizationKind){
+            "batch","albums"->emptyList()
+            "album"->visibleIds.filter{it in organization.find{it.id==g.organizationId}?.images.orEmpty()}
+            else->visibleIds
+        }
+        val grouped=folderPairs.map{it.first}+when {
+            g.fold.enabled&&g.tagFold->galleryTagAlbums(leafIds,labels)
+            g.fold.enabled&&g.directoryFold->galleryDirectoryAlbums(leafIds,c.assets,c.library.state?.folders.orEmpty())
+            else->galleryAlbums(leafIds,projection,g.fold.type.takeIf{g.fold.enabled})
         }
         val order=visibleIds.withIndex().associate{it.value to it.index}
         val arranged=grouped.map{NovelAiHistoryAlbum(it.images.sortedBy{image->order.getValue(image.image.path)},it.label)}
@@ -188,9 +210,12 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
             SharedDocumentAssets(c)
             GalleryAlbumControls(c)
             LibraryTagFilter(c,g,tagIndex,visibleIds.size)
+            Divider(color=LibraryLine,thickness=1.dp)
             if(history==null)StatusText("正在核验生成记录，图片原件可查看…")
             else if(history!!.isFailure)StatusText("生成记录不可读取，分组暂不可用；原件保留")
             else if(projection.unavailable.isNotEmpty())StatusText("${projection.unavailable.size} 张图片的生成记录不可核验，单独显示；原件保留")
+            Row(Modifier.weight(1f).fillMaxWidth()) {
+            GalleryOrganizationTree(c,projection,drag,{rootOffset})
             LibrarySplitPane(g,Modifier.weight(1f),main={
                 val scroll=rememberLazyGridState()
                 val scopeIdentity=g.scope.identity
@@ -204,12 +229,15 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
                 }
                 Box(Modifier.fillMaxSize().onGloballyPositioned{drag.grid=it.boundsInRoot().translate(-rootOffset)}) {
                     LazyVerticalGrid(GridCells.Adaptive(145.dp),Modifier.fillMaxSize().padding(start=12.dp,top=14.dp,end=12.dp,bottom=12.dp),state=scroll,horizontalArrangement=Arrangement.spacedBy(8.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
+                        items(orgFolders.filter{it.ids.isEmpty()},key={"empty-org:${it.id}"}){folder->
+                            Column(Modifier.fillMaxWidth().height(160.dp).background(LibraryPanel).clickable{organizationOpen(c,folder,projection)}.padding(12.dp)) {Text(folder.label);Text("空相册 · 点击进入",color=LibraryMuted)}
+                        }
                         items(albums,key={it.key}){album->
                             val id=album.cover.image.path;val a=byId.getValue(id);val albumIds=album.images.map{it.image.path}.distinct()
                             val selected=albumIds.all{it in c.selection}
-                            val grouped=g.fold.enabled&&(album.images.size>1||g.tagFold||(g.directoryFold&&album.label!="来源目录未记录"))
+                            val grouped=folderByKey.containsKey(album.key)||g.fold.enabled&&(album.images.size>1||g.tagFold||(g.directoryFold&&album.label!="来源目录未记录"))
                             var ctrl by remember{mutableStateOf(false)};var shift by remember{mutableStateOf(false)}
-                            fun enter(){g.enter(album,if(g.tagFold)sha256((g.scope.identity+"tag:"+album.label).toByteArray())else galleryAlbumIdentity(g.scope.identity,album,g.fold.type,g.directoryFold,c.assets));c.selection=emptySet();g.anchor=null}
+                            fun enter(){val folder=folderByKey[album.key];if(folder!=null){organizationOpen(c,folder,projection);return};g.enter(album,if(g.tagFold)sha256((g.scope.identity+"tag:"+album.label).toByteArray())else galleryAlbumIdentity(g.scope.identity,album,g.fold.type,g.directoryFold,c.assets));c.selection=emptySet();g.anchor=null}
                             fun choose(){
                                 if(grouped&&!ctrl&&!shift&&!g.checkboxMode)enter()
                                 else if(grouped){if(shift)select(id,ctrl,true)else c.selection=if(selected)c.selection-albumIds.toSet()else c.selection+albumIds;c.current=id;focus.requestFocus()}
@@ -218,6 +246,8 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
                             DisposableEffect(album.key){onDispose{drag.cards.remove(album.key)}}
                             ContextMenuArea(items={buildList {
                                 if(!c.busy){
+                                    add(ContextMenuItem("加入虚拟相册…"){g.organizationDialog="join"})
+                                    if(g.organizationKind=="album") {add(ContextMenuItem("调整相册归属…"){g.organizationDialog="moveImages"});add(ContextMenuItem("移出本相册"){removeGalleryAlbumMembers(c)})}
                                     add(ContextMenuItem("进入编辑"){runGalleryTool(c,"edit",c.assets.map{it.request().id().toString()}.filter{it in c.selection})})
                                     add(ContextMenuItem("编辑标签"){g.tagEditor=c.selection.toSet()})
                                     add(ContextMenuItem("导出所选原始文件"){startLibraryExport(c,c.assets.map{it.request().id().toString()}.filter{it in c.selection})})
@@ -250,7 +280,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
                         }
                     }
                     VerticalScrollbar(rememberScrollbarAdapter(scroll),Modifier.align(Alignment.CenterEnd).fillMaxHeight().semantics{contentDescription="图库图片滚动条"},style=studioVisibleScrollbarStyle())
-                    if(visibleIds.isEmpty())Text("没有符合当前筛选的图片",Modifier.align(Alignment.Center),color=Quiet)
+                    if(visibleIds.isEmpty()&&orgFolders.none{it.ids.isEmpty()})Text("没有符合当前筛选的图片",Modifier.align(Alignment.Center),color=Quiet)
                 }
             },detail={
                 val scroll=rememberScrollState()
@@ -266,11 +296,12 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
                             Text("保存：资产库保留原件",color=LibraryMuted)
                             StudioDisclosure("文件详情"){Text("${a.size()} bytes · SHA-256 ${a.sha256()}",style=MaterialTheme.typography.caption)}
                         }
-                        c.current?.let{ImagePromptPreview(c,it);AssetLabelEditor(c,it)}
+                        c.current?.let{ImagePromptPreview(c,it);GalleryOrganizationSource(c,it,projection);AssetLabelEditor(c,it)}
                     }
                     VerticalScrollbar(rememberScrollbarAdapter(scroll),Modifier.align(Alignment.CenterEnd).fillMaxHeight().semantics{contentDescription="图片详情滚动条"},style=studioVisibleScrollbarStyle())
                 }
             })
+            }
             LibraryBand {
                 Text("${visibleIds.size} 项 · 已选 ${c.selection.size}",style=MaterialTheme.typography.caption)
                 LibraryToggle("勾选模式",g.checkboxMode){g.checkboxMode=!g.checkboxMode}
@@ -282,6 +313,15 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
                     var menu by remember{mutableStateOf(false)}
                     LibraryAction("操作",icon=DesktopAppIcons.More){menu=true}
                     DropdownMenu(menu,{menu=false}) {
+                        DropdownMenuItem(onClick={menu=false;g.organizationDialog="new"}){Text("新建虚拟相册…")}
+                        DropdownMenuItem(enabled=orderedSelection.isNotEmpty(),onClick={menu=false;g.organizationDialog="join"}){Text("加入虚拟相册…")}
+                        if(g.organizationKind=="album") {
+                            DropdownMenuItem(onClick={menu=false;g.organizationDialog="edit"}){Text("相册名称与上级…")}
+                            DropdownMenuItem(enabled=orderedSelection.isNotEmpty(),onClick={menu=false;g.organizationDialog="moveImages"}){Text("调整相册归属…")}
+                            DropdownMenuItem(enabled=orderedSelection.isNotEmpty(),onClick={menu=false;removeGalleryAlbumMembers(c)}){Text("移出本相册（保留原件）")}
+                            DropdownMenuItem(onClick={menu=false;g.organizationDialog="remove"}){Text("移除相册…")}
+                        }
+
                         DropdownMenuItem(enabled=orderedSelection.isNotEmpty(),onClick={menu=false;copyLibrarySelection(c,orderedSelection)}){Text("复制所选原始文件  Ctrl+C")}
                         DropdownMenuItem(enabled=orderedSelection.isNotEmpty()&&g.scope.tag!=null,onClick={menu=false;cut()}){Text("剪切标签归属  Ctrl+X")}
                         DropdownMenuItem(onClick={menu=false;pasteLibrarySelection(c)}){Text("粘贴  Ctrl+V")}

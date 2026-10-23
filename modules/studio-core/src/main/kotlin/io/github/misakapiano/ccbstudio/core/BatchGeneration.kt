@@ -55,7 +55,7 @@ fun NovelAiStudioDraft.withSlot(slot:BatchSlot)=withActiveSettings(activeSetting
     }
 }
 @Serializable data class BatchResultOrigin(val batchId:String,val groupId:String,val groupName:String,val slotId:String,
-    val direction:String,val round:Int,val seed:Long)
+    val direction:String,val round:Int,val seed:Long,val batchName:String="")
 data class BatchDispatch(val group:BatchGroup,val slot:BatchSlot,val jobId:String,val origin:BatchResultOrigin)
 
 /** All transitions commit before becoming visible. No timer writes, request construction or automatic retries here. */
@@ -126,7 +126,7 @@ class BatchQueue(private val workspace:StudioWorkspace,private val random:(Int)-
         val jobId=newId()
         update{it.slot(slotId){item->item.copy(status="RUNNING",attempts=item.attempts+jobId)}.copy(mode="RUNNING",lastStartedAt=now,
             nextRequestAt=now+(s.policy.intervalSeconds+random(s.policy.intervalJitterSeconds+1))*1000L,reservedAnlas=it.reservedAnlas+cost)}
-        return BatchDispatch(group,slot,jobId,BatchResultOrigin(s.id,group.id,group.name,slot.id,slot.direction.label,slot.round,slot.seed))
+        return BatchDispatch(group,slot,jobId,BatchResultOrigin(s.id,group.id,group.name,slot.id,slot.direction.label,slot.round,slot.seed,s.name))
     }
     fun complete(slotId:String,results:List<String>)=update {s->
         require(results.size==1 && s.groups.flatMap{it.slots}.single{it.id==slotId}.status=="RUNNING")

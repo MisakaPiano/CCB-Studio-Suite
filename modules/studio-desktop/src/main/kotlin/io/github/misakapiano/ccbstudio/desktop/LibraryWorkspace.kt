@@ -87,6 +87,12 @@ internal class LibraryController(private val c:WorkbenchController) {
         if(archived){c.selection=c.selection-ids;if(c.current in ids)c.current=c.assets.firstOrNull{it.request().id().toString() !in this.archived}?.request()?.id()?.toString()}
         else archiveSelection=archiveSelection-ids
     }
+    fun changeAlbums(onSaved:()->Unit={},transform:(List<VirtualAlbum>)->List<VirtualAlbum>)=c.run("调整虚拟相册") {
+        val before=repository.load().virtualAlbums;val after=transform(before);VirtualAlbums.validate(after)
+        fun write(expected:List<VirtualAlbum>,next:List<VirtualAlbum>){repository.update{require(it.virtualAlbums==expected){"相册已被其他操作修改"};it.copy(virtualAlbums=next)}}
+        write(before,after);refresh()
+        if(before!=after)rememberEdit(Edit("虚拟相册",{write(after,before)},{write(before,after)}));onSaved()
+    }
     fun labels(id:String)=state?.labels?.get(id)?:AssetLabels()
     fun saveLabels(id:String,alias:String,tags:String)=changeLabels(setOf(id)){AssetLabels(alias.trim(),tags.split(',', '，').map{it.trim()}.filter{it.isNotEmpty()}.distinct())}
     fun changeLabels(ids:Set<String>,onSaved:()->Unit={},transform:(AssetLabels)->AssetLabels)=c.run("保存资产标签") {
