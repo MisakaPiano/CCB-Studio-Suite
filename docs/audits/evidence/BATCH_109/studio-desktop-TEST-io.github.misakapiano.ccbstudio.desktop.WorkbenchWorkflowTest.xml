@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-23T16:09:34.257Z" hostname="DD1" time="24.45">
+  <properties/>
+  <testcase name="batchUsesRealPipelineCaptures429AndPersistsOriginWithoutAnyAutomaticRetry" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="2.879"/>
+  <testcase name="creationFooterAndImageSummaryAdaptWithoutLosingDraftOrSelection" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="3.25"/>
+  <testcase name="batchPauseDuringQuotaAndSavedResultFailureNeverResubmit" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="1.773"/>
+  <testcase name="batchWorkbenchMatchesApprovedGroupsPreviewTilesAndSelection" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="3.225"/>
+  <testcase name="accountsDesignApplyGenerateGalleryAndRestart" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="13.322"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

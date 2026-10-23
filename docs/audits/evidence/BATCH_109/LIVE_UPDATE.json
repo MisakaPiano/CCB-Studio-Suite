@@ -1,0 +1,60 @@
+{
+  "status": "PASS",
+  "scope": "Exact shipped108 runtime, actual public signed108-to109 check/download/fresh install/current check; not UI restart",
+  "sourceSha": "2093ae5cb8581d8583e2abd422958c3133f041dc",
+  "appSourceSha": "2093ae5cb8581d8583e2abd422958c3133f041dc",
+  "installerSha256": "b6ec692211a4ecea677adc144d794aadde5efec00eebe12b301f50950d8d2fcd",
+  "download": {
+    "status": "DOWNLOADED_VERIFIED",
+    "version": 109,
+    "displayVersion": "0.0.0-preview.109",
+    "channel": "preview",
+    "notes": "Batch generation workbench: frozen groups, serial requests, persisted randomized pacing/rest, whole-batch 429 pause with manual recovery, immutable result provenance. Startup update check and persistent update badge. Prompt comparison remains pending.",
+    "sourceSha": "2093ae5cb8581d8583e2abd422958c3133f041dc",
+    "bytes": 168509255,
+    "installedBytes": 252346233,
+    "sha256": "b6ec692211a4ecea677adc144d794aadde5efec00eebe12b301f50950d8d2fcd",
+    "minimumReader": 2,
+    "maximumReader": 3,
+    "dataVersion": 3,
+    "installer": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\p106-native\\data\\runtime\\updates\\downloads\\cad6769b-3963-43eb-8131-34ea656a5513\\studio-installer.exe"
+  },
+  "installation": {
+    "status": "INSTALLED_NOT_STARTED",
+    "target": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\batch-109\\109-2093ae5cb858",
+    "stage": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\batch-109\\109-2093ae5cb858.29735fd6e911431fa7e9c746630ce6f3.installing",
+    "expected": {
+      "product": "ccb-studio-suite",
+      "platform": "windows-x86_64",
+      "channel": "preview",
+      "version": 109,
+      "sourceSha": "2093ae5cb8581d8583e2abd422958c3133f041dc"
+    },
+    "dataModified": false,
+    "verification": {
+      "files": 547,
+      "bytes": 252346233,
+      "manifestSha256": "6db4b154926f43a6437e0962db27b400ee301c69530538ca90219f958d458ea9"
+    }
+  },
+  "currentCheck": {
+    "status": "UP_TO_DATE",
+    "version": 109,
+    "displayVersion": "0.0.0-preview.109",
+    "channel": "preview",
+    "notes": "Batch generation workbench: frozen groups, serial requests, persisted randomized pacing/rest, whole-batch 429 pause with manual recovery, immutable result provenance. Startup update check and persistent update badge. Prompt comparison remains pending.",
+    "sourceSha": "2093ae5cb8581d8583e2abd422958c3133f041dc",
+    "bytes": 168509255,
+    "installedBytes": 252346233,
+    "sha256": "b6ec692211a4ecea677adc144d794aadde5efec00eebe12b301f50950d8d2fcd",
+    "minimumReader": 2,
+    "maximumReader": 3,
+    "dataVersion": 3
+  },
+  "syntheticWorkspaceFilesUnchanged": 247,
+  "oldInstallationFilesUnchanged": 550,
+  "dailyUserInstallationModified": false,
+  "nativeUpdateRestart": "NOT TESTED; CLI signed download and installation only",
+  "realProviderCalls": 0,
+  "privateDataRead": false
+}

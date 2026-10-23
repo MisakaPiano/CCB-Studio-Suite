@@ -1,0 +1,68 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest",
+    "name": "cancellationDrainsOwnedOperationAndRejectsNewWork",
+    "seconds": "0.123",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest",
+    "name": "actualUpdateScreenRequiresDownloadConfirmationAndDoesNotClaimInstall",
+    "seconds": "3.098",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest",
+    "name": "realByteProgressHasSeparateVerificationAndRejectsImpossibleCounts",
+    "seconds": "0.002",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest",
+    "name": "startupCheckRunsOnceKeepsBadgeAfterDismissAndOfflineUntilCurrentConfirmed",
+    "seconds": "0.004",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest",
+    "name": "unconfiguredRuntimeFailsWithoutLaunchingProcess",
+    "seconds": "0.004",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest",
+    "name": "currentVersionIsSuccessAndFailureClearsStaleInstallCandidate",
+    "seconds": "0.006",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "batchUsesRealPipelineCaptures429AndPersistsOriginWithoutAnyAutomaticRetry",
+    "seconds": "2.879",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "creationFooterAndImageSummaryAdaptWithoutLosingDraftOrSelection",
+    "seconds": "3.25",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "batchPauseDuringQuotaAndSavedResultFailureNeverResubmit",
+    "seconds": "1.773",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "batchWorkbenchMatchesApprovedGroupsPreviewTilesAndSelection",
+    "seconds": "3.225",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest",
+    "name": "accountsDesignApplyGenerateGalleryAndRestart",
+    "seconds": "13.322",
+    "status": "PASS"
+  }
+]

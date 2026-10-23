@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-10-23T15:53:58.057Z" hostname="DD1" time="11.702">
+  <properties/>
+  <testcase name="waitingCancellationRetainsLockAndDoesNotSend" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.498"/>
+  <testcase name="normalTransportUsesAuthorityEnvelopeAndCannotAcceptPartialStream" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.202"/>
+  <testcase name="httpErrorsNeverPersistProviderBodyOrRetry" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.04"/>
+  <testcase name="largeGuidanceReceiptKeepsExactWireAndSurvivesBackup" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="3.597"/>
+  <testcase name="composedResultIsDerivedAndRawResponseSurvivesRestart" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.77"/>
+  <testcase name="documentLimitPreflightDoesNotPoisonReadableWorkspace" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.192"/>
+  <testcase name="requestPayloadChunksRestoreAndDetectAlteredDescriptors" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="2.969"/>
+  <testcase name="interruptedDesignIsNotReplayedOnOpen" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.158"/>
+  <testcase name="partialGenerationRetainsOriginalAndFullReceiptOnFailure" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.477"/>
+  <testcase name="compositingFailurePreservesUniqueRawFinal" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="0.37"/>
+  <testcase name="designCandidateRequiresApplyBranchesAndSurvivesRestart" classname="io.github.misakapiano.ccbstudio.core.CreationRuntimeTest" time="2.427"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

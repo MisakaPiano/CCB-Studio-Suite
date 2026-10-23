@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "coverageTests": 37,
+  "freshFinalTests": 11,
+  "reusedCoreTests": 26,
+  "reuseReason": "Unchanged core/authority/build-input hashes; Gradle core test UP-TO-DATE, not a new execution",
+  "coreEvidence": "20261023T155323557522Z-batch-full-regression",
+  "finalEvidence": "20261023T160908517454Z-batch-109-final-regression",
+  "comparedInputFiles": 255,
+  "sourceSha": "2093ae5cb8581d8583e2abd422958c3133f041dc"
+}
