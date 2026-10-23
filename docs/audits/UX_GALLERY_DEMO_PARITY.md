@@ -71,3 +71,7 @@
 最终15项实际通过、0失败/错误/跳过、104.442秒、sourceStable=true，createDistributable成功。实际菜单选择文件及目录本层入库（子目录排除）、普通/勾选无重复文本对勾、两种工具样式切换保存、关闭重开保留、磁贴留白处指针点击、整组真实拖放且跟手图覆盖实际目标指针、原件字节保留均有验证。继续覆盖回收站恢复、复制交付、APNG队列、原有导入和取消。原失败保留于`evidence/UX_GALLERY_TILES_SELECTION/runs`；生产组件合成截图也保存，不能代替用户手感/样式签收。
 
 新固定源码`59e2fe8991fb18c97c14624df686a33af6ff5410`；220程序文件逐项大小/SHA核验。快捷方式`H:/CCB-Studio-Suite/.local/windows-rc/gallery-tiles-selection-review/Start-gallery-tiles-selection-review.lnk`，独立原始合成夹具（并非复制用户已使用的测试资料根），自动收集暂停。固定构建只核验源码/产物、0项新测试，不将UP-TO-DATE称为重新执行通过。新包手感/样式人工NOT TESTED。
+
+## 59e2fe8四项限定人工通过
+
+用户回复“这四项正常，手感和显示符合要求”。只签收本次磁贴整面点击/投放、跟手预览、文件/目录导入入口、图库/APNG普通与勾选两类显示。保留此前图库/标签/回收站通过；不将这组代替多Prompt、APNG快捷交付接收端及最终邀请安装验收。下一步按用户既定要求先做多来源Prompt设计确认。

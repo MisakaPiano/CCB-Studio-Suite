@@ -1,0 +1,20 @@
+{
+  "source": "59e2fe8991fb18c97c14624df686a33af6ff5410",
+  "package": "gallery-tiles-selection-review",
+  "answer": "这四项正常，手感和显示符合要求",
+  "status": "PASS_WITH_SCOPE",
+  "scope": [
+    "Whole clickable/drop tool tiles",
+    "Pointer-following preview reaches targets",
+    "Image/file-directory dropdown entry",
+    "Gallery and APNG normal selection border/fill, checkbox mode one standard checkbox"
+  ],
+  "notCovered": [
+    "Full multi-source Prompt comparison",
+    "New APNG keyboard processed-file receiving workflow previously NOT TESTED",
+    "Full editor delivery and restore",
+    "Final invited installer or release"
+  ],
+  "syntheticOnly": true,
+  "pauseCollections": true
+}
