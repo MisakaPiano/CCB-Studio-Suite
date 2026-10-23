@@ -48,6 +48,8 @@ class LibraryInteractionWorkflowTest {
             c.library.archiveView.filterTags=emptyList();c.library.archiveView.assetType="prompt";scene.frames()
             assertTrue(scene.nodes().any{it.matches("回收站资产 $prompt")});assertFalse(scene.nodes().any{it.matches("回收站资产 $b")})
             scene.shot("archive-mixed-type")
+            scene.click("资产管理 · 回收站 ▾");scene.click("Prompt 资产");assertEquals("Prompt 资产",c.library.tab)
+            assertTrue(scene.nodes().any{it.matches("新建 Prompt 资产")})
             assertContentEquals(bytes,w.bytes(a));assertContentEquals(bytes,w.bytes(b));assertEquals("synthetic words",repo.prompt(prompt).text)
         }finally{scene.close();c.close();scope.cancel()}
     }
@@ -132,6 +134,49 @@ class LibraryInteractionWorkflowTest {
             pasteLibrarySelection(c);assertEquals(listOf("保留","新相册"),repo.load().labels.getValue(id).tags)
             assertContentEquals(bytes,w.bytes(id));assertEquals("alias",repo.load().labels.getValue(id).alias)
         }finally{c.close();scope.cancel()}
+    }
+    @Test fun demoDensityRetainsToolsAndOriginalExportPublishesIndependentBatch()=runBlocking(awt) {
+        val r=root();val w=StudioWorkspace.openStudio(r.resolve("workspace"));val bytes=EditorRenderer.synthetic(64,64)
+        val ids=(1..24).map{w.importImage("image$it.png",bytes,"""{"kind":"image-ingress","version":1,"source":"file","createdAt":1792710000000,"sourcePath":"H:/synthetic/image$it.png"}""")}
+        val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(r.resolve("runtime")),r.resolve("budget"),admissionOverride=RequestAdmission{error("No HTTP")},pauseCollectionsOnStart=true)
+        c.view="图库";c.current=ids.first();c.selection=ids.take(3).toSet()
+        val target=Files.createDirectories(r.resolve("delivery"));Files.writeString(target.resolve("keep.txt"),"existing")
+        c.gallery.chooseExportDirectory={target}
+        try {
+            for(width in listOf(1320,1024)) {
+                val scene=ImageComposeScene(width,880,coroutineContext=awt){MaterialTheme{Workbench(c,DesktopWindowChrome{},false)}}
+                try {
+                    withTimeout(10000){while(c.gallery.foldPreferences==null)scene.frames()};scene.frames()
+                    assertTrue(scene.node("添加筛选标签").boundsInRoot.top<205)
+                    assertTrue(scene.node("导出所选原始文件").boundsInRoot.right<=width)
+                    assertTrue(scene.node("资产回收站").boundsInRoot.right<=width)
+                    assertTrue(scene.nodes().any{it.matches("操作说明")});assertEquals(250f,c.gallery.detailWidth)
+                    scene.shot("demo-gallery-$width")
+                    if(width==1320){scene.click("导出所选原始文件");c.idle();scene.frames()}
+                }finally{scene.close()}
+            }
+            val batch=Files.list(target).use{stream->stream.filter{Files.isDirectory(it)}.toList()}.single()
+            assertTrue(Files.exists(batch.resolve("COMPLETE.json")))
+            val exported=Files.list(batch).use{stream->stream.filter{it.fileName.toString().endsWith(".png")}.toList()}
+            assertEquals(3,exported.size);exported.forEach{assertContentEquals(bytes,Files.readAllBytes(it))}
+            assertEquals("existing",Files.readString(target.resolve("keep.txt")));ids.forEach{assertContentEquals(bytes,w.bytes(it))}
+            assertEquals(setOf("imported"),librarySources(c.assets,c.state.jobs).values.toSet())
+        }finally{c.close();scope.cancel()}
+    }
+    @Test fun sourceFiltersUseStoredReceiptsAndNeverGuessMissingProvenance() {
+        val r=root();StudioWorkspace.openStudio(r.resolve("workspace")).use{w->
+            val bytes=EditorRenderer.synthetic(32,32)
+            fun source(kind:String)=w.importImage("$kind.png",bytes,"""{"kind":"image-ingress","version":1,"source":"$kind"}""")
+            val file=source("file");val folder=source("managed-folder");val clipboard=source("clipboard-raster")
+            val unknown=w.importImage("legacy.png",bytes);val processed=w.importDerived("processed.png",bytes,file)
+            val generated=w.importImage("generated.png",bytes)
+            val account=AccountProfile(alias="Synthetic only",service="NAI",provider="SYNTHETIC",model="fixture")
+            val job=JobRecord(account=account,recipe="{}",state="COMPLETE",results=listOf(generated))
+            val sources=librarySources(SharedAssets.images(w),listOf(job))
+            assertEquals("imported",sources[file]);assertEquals("directory",sources[folder]);assertEquals("imported",sources[clipboard])
+            assertEquals("unknown",sources[unknown]);assertEquals("processed",sources[processed]);assertEquals("generated",sources[generated])
+            assertContentEquals(bytes,w.bytes(file));assertContentEquals(bytes,w.bytes(processed))
+        }
     }
     @Test fun queueCtrlShiftSelectionDefaultCheckboxOffAndUndoDoesNotDeleteOriginals()=runBlocking(awt) {
         val r=root();val w=StudioWorkspace.openStudio(r.resolve("workspace"));val bytes=EditorRenderer.synthetic(48,48);val ids=(1..5).map{w.importImage("$it.png",bytes)}

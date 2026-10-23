@@ -20,11 +20,11 @@ import com.example.chatbar.desktop.*
         if(maxWidth<700.dp)main()else Row(Modifier.fillMaxSize()) {
             Box(Modifier.weight(1f).fillMaxHeight()){main()}
             Box(Modifier.width(10.dp).fillMaxHeight().pointerHoverIcon(PointerIcon(java.awt.Cursor(java.awt.Cursor.E_RESIZE_CURSOR)))
-                .semantics{contentDescription="调整图片详情宽度"}.pointerInput(availableWidth){detectDragGestures{change,delta->change.consume();g.detailWidth=(g.detailWidth-with(density){delta.x.toDp().value}).coerceIn(220f,availableWidth.value*.6f)}}
-                .combinedClickable(onClick={},onDoubleClick={g.detailWidth=340f})) {
-                Box(Modifier.align(Alignment.Center).width(2.dp).fillMaxHeight().background(DesktopBootstrapColors.border))
+                .semantics{contentDescription="调整图片详情宽度"}.pointerInput(availableWidth){detectDragGestures{change,delta->change.consume();g.detailWidth=(g.detailWidth-with(density){delta.x.toDp().value}).coerceIn(190f,availableWidth.value*.6f)}}
+                .combinedClickable(onClick={},onDoubleClick={g.detailWidth=250f})) {
+                Box(Modifier.align(Alignment.Center).width(1.dp).fillMaxHeight().background(LibraryLine))
             }
-            Box(Modifier.width(g.detailWidth.coerceIn(220f,availableWidth.value*.6f).dp).fillMaxHeight()){detail()}
+            Box(Modifier.width(g.detailWidth.coerceIn(190f,availableWidth.value*.6f).dp).fillMaxHeight()){detail()}
         }
     }
 }

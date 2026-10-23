@@ -1,6 +1,8 @@
+@file:OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
 package io.github.misakapiano.ccbstudio.desktop
 
 import androidx.compose.foundation.*
+import com.composables.icons.lucide.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -61,7 +63,8 @@ private val galleryTools get()=listOf(
     GalleryTool("tags","编辑标签",DesktopAppIcons.Star),
     GalleryTool("compare","比较 2 张",DesktopAppIcons.Square),
     GalleryTool("guide","选中图片用于引导",DesktopAppIcons.ImageAdd),
-    GalleryTool("metadata","参数与来源",DesktopAppIcons.Data))
+    GalleryTool("metadata","参数与来源",DesktopAppIcons.Data),
+    GalleryTool("export","导出所选原始文件",Lucide.FolderOutput))
 @Serializable private data class GalleryToolSettings(val version:Int=1,val order:List<String> = emptyList(),val hidden:Set<String> = emptySet(),val tiles:Boolean=false)
 
 internal fun runGalleryTool(c:WorkbenchController,tool:String,ids:List<String>) {
@@ -81,6 +84,7 @@ internal fun runGalleryTool(c:WorkbenchController,tool:String,ids:List<String>) 
         "compare"->if(fixed.size==2)c.gallery.compare=fixed
         "metadata"->c.gallery.metadata=fixed.first()
         "guide"->c.gallery.guidanceSelection=fixed
+        "export"->startLibraryExport(c,fixed)
     }
 }
 
@@ -91,24 +95,25 @@ internal fun runGalleryTool(c:WorkbenchController,tool:String,ids:List<String>) 
     val setting=loaded.getOrDefault(GalleryToolSettings())
     val tools=galleryTools;val order=(setting.order+tools.map{it.id}).distinct().mapNotNull{id->tools.firstOrNull{it.id==id}}
     fun save(next:GalleryToolSettings){if(loaded.isFailure){c.problem="工具布局记录不可读取，原配置保留";return};c.run("保存图库工具布局"){c.library.repository.update{it.copy(preferences=it.preferences+("galleryTools" to documentJson.encodeToString(next)))};c.library.refresh()}}
-    StudioActions {
+    LibraryBand {
+        FlowRow(Modifier.weight(1f),horizontalArrangement=Arrangement.spacedBy(6.dp),verticalArrangement=Arrangement.spacedBy(4.dp)) {
         order.filter{it.id !in setting.hidden}.forEach{tool->key(tool.id){
-            val display=when(tool.id){"edit"->"进入编辑";"prompt"->"Prompt 参照";"apng"->"APNG 伪装 / 还原";"tags"->"编辑标签";"compare"->"比较";"guide"->"图像引导";else->"参数与来源"}
+            val display=when(tool.id){"edit"->"进入编辑";"prompt"->"Prompt 参照";"apng"->"APNG 伪装 / 还原";"tags"->"编辑标签";"compare"->"比较";"guide"->"图像引导";"export"->"导出";else->"参数与来源"}
             val hovered=drag.activeTarget==tool.label
             val valid=(!c.busy&&(selected.isNotEmpty()||tool.id=="apng")&&(tool.id!="compare"||selected.size==2))
             Box(Modifier.libraryTarget(drag,tool.label,{ids->runGalleryTool(c,tool.id,ids)},rootOffset)
                 .background(if(hovered)DesktopBootstrapColors.accent else androidx.compose.ui.graphics.Color.Transparent)) {
                 if(setting.tiles)Column(Modifier.padding(4.dp).widthIn(min=95.dp),horizontalAlignment=Alignment.CenterHorizontally) {
-                    Icon(tool.icon,null,Modifier.size(20.dp));StudioAction(display,valid,selected=hovered,icon=null,accessibilityLabel=tool.label){runGalleryTool(c,tool.id,selected)}
-                }else StudioAction(display,valid,selected=hovered,icon=tool.icon,accessibilityLabel=tool.label){runGalleryTool(c,tool.id,selected)}
+                    Icon(tool.icon,null,Modifier.size(20.dp));LibraryAction(display,valid,selected=hovered,icon=null,accessibilityLabel=tool.label){runGalleryTool(c,tool.id,selected)}
+                }else LibraryAction(display,valid,selected=hovered,icon=tool.icon,accessibilityLabel=tool.label){runGalleryTool(c,tool.id,selected)}
             }
             DisposableEffect(tool.id){onDispose{drag.targets.remove(tool.label)}}
         }}
-        Spacer(Modifier.weight(1f))
+        }
         // Fixed entry cannot be hidden, reordered into a destructive action, or used as a delete drop target.
-        StudioAction("资产回收站",icon=DesktopAppIcons.Delete){c.library.tab="回收站";c.view="资产管理"}
+        LibraryAction("回收站 ${c.library.archived.size}",icon=Lucide.ArchiveRestore,accessibilityLabel="资产回收站"){c.library.tab="回收站";c.view="资产管理"}
         Box {
-            StudioAction("工具布局",icon=DesktopAppIcons.Settings){custom=true}
+            LibraryAction("自定义",style=StudioActionStyle.TERTIARY,icon=Lucide.SlidersHorizontal,accessibilityLabel="工具布局"){custom=true}
             DropdownMenu(custom,{custom=false}) {
                 DropdownMenuItem(onClick={save(setting.copy(tiles=!setting.tiles))}){Text(if(setting.tiles)"✓ 磁贴样式"else"磁贴样式")}
                 order.forEachIndexed{i,tool->Row(verticalAlignment=Alignment.CenterVertically) {

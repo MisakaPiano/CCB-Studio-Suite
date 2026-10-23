@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-10-23T07:37:35.254Z" hostname="DD1" time="27.021">
+  <properties/>
+  <testcase name="demoDensityRetainsToolsAndOriginalExportPublishesIndependentBatch" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="8.35"/>
+  <testcase name="pickerKeepsMultiSelectionAcrossSearchAndDoesNotApplyUntilConfirm" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="0.486"/>
+  <testcase name="sourceFiltersUseStoredReceiptsAndNeverGuessMissingProvenance" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="2.53"/>
+  <testcase name="manyLongTagChipsScrollToLatestAndRemainRemovable" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="0.217"/>
+  <testcase name="queueCtrlShiftSelectionDefaultCheckboxOffAndUndoDoesNotDeleteOriginals" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="1.579"/>
+  <testcase name="gallerySingleSelectTagAlbumsHistoryAndFixedDragPayload" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="5.53"/>
+  <testcase name="clipboardCopyAndCutUseFixedIdentitiesAndPreserveUnrelatedLabels" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="1.981"/>
+  <testcase name="archiveSharesFiltersRestoresOnlyFixedFilteredIdsAndSupportsUndo" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="5.414"/>
+  <testcase name="cancellingOperationsDrainsCatalogWithoutFalseRecoveryAndAllowsNextWrite" classname="io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest" time="0.933"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,56 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.AssetArchiveWorkflowTest",
+    "name": "confirmCancelRestoreAndAliasTagChoicesPreserveExistingProject",
+    "seconds": "8.18",
+    "status": "FAILED"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.AssetArchiveWorkflowTest",
+    "name": "archiveMetadataFailureShowsOriginalsAndDisablesMutation",
+    "seconds": "0.951",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest",
+    "name": "pickerKeepsMultiSelectionAcrossSearchAndDoesNotApplyUntilConfirm",
+    "seconds": "0.69",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest",
+    "name": "manyLongTagChipsScrollToLatestAndRemainRemovable",
+    "seconds": "0.256",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest",
+    "name": "queueCtrlShiftSelectionDefaultCheckboxOffAndUndoDoesNotDeleteOriginals",
+    "seconds": "1.428",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest",
+    "name": "gallerySingleSelectTagAlbumsHistoryAndFixedDragPayload",
+    "seconds": "7.912",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest",
+    "name": "clipboardCopyAndCutUseFixedIdentitiesAndPreserveUnrelatedLabels",
+    "seconds": "1.791",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest",
+    "name": "archiveSharesFiltersRestoresOnlyFixedFilteredIdsAndSupportsUndo",
+    "seconds": "5.312",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest",
+    "name": "cancellingOperationsDrainsCatalogWithoutFalseRecoveryAndAllowsNextWrite",
+    "seconds": "0.857",
+    "status": "PASS"
+  }
+]

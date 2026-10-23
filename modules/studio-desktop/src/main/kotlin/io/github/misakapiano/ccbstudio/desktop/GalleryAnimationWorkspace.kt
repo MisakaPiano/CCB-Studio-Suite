@@ -48,7 +48,7 @@ internal fun animationNavigation(a:GalleryAnimationController,event:KeyEvent):Bo
 @Composable private fun AnimationActions(label:String,enabled:Boolean=true,items:List<ContextMenuItem>) {
     var open by remember{mutableStateOf(false)}
     Box {
-        StudioAction(label,enabled&&items.isNotEmpty(),expanded=open,accessibilityLabel="$label ▾"){open=!open}
+        LibraryAction(label,enabled&&items.isNotEmpty(),expanded=open,accessibilityLabel="$label ▾"){open=!open}
         DropdownMenu(open,{open=false}) {
             items.forEach{item->DropdownMenuItem(enabled=enabled,onClick={open=false;item.onClick()}){Text(item.label)}}
         }
@@ -63,6 +63,7 @@ internal fun animationNavigation(a:GalleryAnimationController,event:KeyEvent):Bo
     var showSource by remember{mutableStateOf(true)}
     var information by remember{mutableStateOf(false)}
     val canProcess=ids.isNotEmpty()&&!c.busy&&(a.mode=="restore"||a.coverState!=null)
+    LibraryPresentation {
     Column(Modifier.fillMaxSize().galleryIngress(c,animation=true).focusRequester(focus)
         .onKeyEvent{if(it.type!=KeyEventType.KeyDown)false else when {
             it.isCtrlPressed&&it.key==Key.A->{a.selectQueue(true);true}
@@ -74,34 +75,36 @@ internal fun animationNavigation(a:GalleryAnimationController,event:KeyEvent):Bo
             else->animationNavigation(a,it)
         }}.focusable().padding(10.dp),verticalArrangement=Arrangement.spacedBy(5.dp)) {
         StudioActions {
-            StudioAction("返回图库",!c.busy){a.close()}
-            StudioAction("生成伪装 APNG",!c.busy,selected=a.mode=="disguise"){a.selectMode("disguise")}
-            StudioAction("还原伪装 APNG",!c.busy,selected=a.mode=="restore"){a.selectMode("restore")}
+            LibraryAction("返回图库",!c.busy){a.close()}
+            LibraryAction("伪装",!c.busy,selected=a.mode=="disguise",accessibilityLabel="生成伪装 APNG"){a.selectMode("disguise")}
+            LibraryAction("还原",!c.busy,selected=a.mode=="restore",accessibilityLabel="还原伪装 APNG"){a.selectMode("restore")}
             if(a.mode=="disguise") {
                 val selected=a.coverState?.covers?.firstOrNull{it.id==a.coverState?.selected}
                 CoverThumbnail(c,selected,Modifier.size(32.dp).clickable{a.openCoverManager()})
                 Text(selected?.name?:"CCB 默认封面",Modifier.widthIn(max=160.dp),maxLines=1,overflow=TextOverflow.Ellipsis,style=MaterialTheme.typography.caption)
-                StudioAction("更换封面",!c.busy,expanded=a.coverManagerOpen){a.openCoverManager()}
+                LibraryAction("更换封面",!c.busy,expanded=a.coverManagerOpen){a.openCoverManager()}
             }
             Box {
-                StudioAction("说明",expanded=information){information=!information}
-                if(information)Surface(color=Panel,border=BorderStroke(1.dp,DesktopBootstrapColors.border)) {
+                LibraryAction("说明",style=StudioActionStyle.TERTIARY){information=!information}
+                DropdownMenu(information,{information=false}) {
                     Text("原件保留。静止显示封面，主动播放才显示内容；伪装不是加密或隐私清除。\n静态图片 / GIF 可伪装；已有 APNG 先还原，动态 WebP 不静默转成静态。\n拖入或粘贴可追加本批；目录只导入本层，最多1000张。\n右键只复制处理后的文件，保留动画；不会复制来源原图。",Modifier.width(350.dp).padding(12.dp),style=MaterialTheme.typography.caption)
                 }
             }
         }
         StudioActions {
-            StudioAction("复制当前处理文件",!c.busy&&a.outputReady){a.currentFile(true)}
-            StudioAction("复制全部处理文件",canProcess){a.export(true)}
-            if(a.queueSelection.isNotEmpty())StudioAction("复制所选处理文件",canProcess){a.export(true,selectedOnly=true)}
             AnimationActions("添加",!c.busy,listOf(ContextMenuItem("添加图片",a::addFiles),ContextMenuItem("添加目录（本层）",a::addDirectory),ContextMenuItem("粘贴图片"){if(!a.paste())c.problem="剪贴板没有图片或文件列表"}))
+            LibraryAction("复制当前处理文件",!c.busy&&a.outputReady){a.currentFile(true)}
+            LibraryAction("复制全部处理文件",canProcess){a.export(true)}
+            LibraryAction("复制所选处理文件",canProcess&&a.queueSelection.isNotEmpty()){a.export(true,selectedOnly=true)}
+
             AnimationActions("当前结果",!c.busy&&ids.isNotEmpty(),animationMenu(c).filter{it.label in setOf("复制当前处理文件","另存当前处理文件","保存当前副本到图库","重新预览","从本批移除（保留原件）")})
             AnimationActions("整批处理",canProcess,listOf(ContextMenuItem("选择目录并导出全部"){a.export()},ContextMenuItem("复制全部处理文件"){a.export(true)}))
-            StudioAction(if(showSource)"隐藏来源对照"else"显示来源对照"){showSource=!showSource}
+            Spacer(Modifier.weight(1f))
+            LibraryToggle("来源对照",showSource){showSource=!showSource}
             Text("${if(id==null)0 else a.index+1} / ${ids.size} · ← → 翻页 · 点击大图下一张 · 右键操作",style=MaterialTheme.typography.caption,color=Quiet)
             if(c.busy&&c.activeOperation=="导入图片")Text(c.gallery.importProgress,style=MaterialTheme.typography.caption)
-            if(a.previewBusy){CircularProgressIndicator(Modifier.size(16.dp),strokeWidth=2.dp);StudioAction("停止预览"){a.cancelPreview()}}
-            if(c.busy&&c.activeOperation in setOf("导入图片","保存APNG工具副本到图库","复制APNG文件批次","导出APNG文件批次","复制当前处理文件","另存当前处理文件"))StudioAction("停止当前处理"){c.active?.cancel()}
+            if(a.previewBusy){CircularProgressIndicator(Modifier.size(16.dp),strokeWidth=2.dp);LibraryAction("停止预览"){a.cancelPreview()}}
+            if(c.busy&&c.activeOperation in setOf("导入图片","保存APNG工具副本到图库","复制APNG文件批次","导出APNG文件批次","复制当前处理文件","另存当前处理文件"))LibraryAction("停止当前处理"){c.active?.cancel()}
         }
         Row(Modifier.weight(1f).fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(10.dp)) {
             if(showSource)Column(Modifier.weight(1f).fillMaxHeight()) {
@@ -111,7 +114,7 @@ internal fun animationNavigation(a:GalleryAnimationController,event:KeyEvent):Bo
             Column(Modifier.weight(1f).fillMaxHeight()) {
                 Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.SpaceBetween) {
                     Text(if(a.mode=="disguise")"伪装后的封面预览"else"还原结果预览",style=MaterialTheme.typography.caption)
-                    StudioSwitch("播放原内容（查看动画）",a.playResult){a.playback(!a.playResult)}
+                    LibraryToggle("播放原内容（查看动画）",a.playResult){a.playback(!a.playResult)}
                 }
                 ContextMenuArea(items={animationMenu(c)}) {
                     AnimationImageRegion(a,Modifier.fillMaxSize(),onClick={focus.requestFocus();a.page(1)}) {
@@ -123,17 +126,18 @@ internal fun animationNavigation(a:GalleryAnimationController,event:KeyEvent):Bo
         }
         StudioActions {
             Text("队列 ${ids.size} 项 · 已选 ${a.queueSelection.size}",style=MaterialTheme.typography.caption)
-            StudioSwitch("勾选模式",a.checkboxMode){a.checkboxMode=!a.checkboxMode}
-            StudioAction("全选",!c.busy){a.selectQueue(true)};StudioAction("全不选",!c.busy){a.selectQueue(false)}
-            StudioAction("反选",!c.busy){val before=a.queueSelection.toSet();a.selectQueue(false);ids.filter{it !in before}.forEach{a.toggleQueue(it)}}
-            StudioAction("撤销",a.canUndo){a.undo()};StudioAction("重做",a.canRedo){a.redo()}
-            StudioAction("移除所选（保留原件）",!c.busy&&a.queueSelection.isNotEmpty()){a.removeQueue()}
-            StudioAction("导出所选处理文件",canProcess&&a.queueSelection.isNotEmpty()){a.export(selectedOnly=true)}
+            LibraryToggle("勾选模式",a.checkboxMode){a.checkboxMode=!a.checkboxMode}
+            LibraryAction("全选",!c.busy){a.selectQueue(true)};LibraryAction("全不选",!c.busy){a.selectQueue(false)}
+            LibraryAction("反选",!c.busy){val before=a.queueSelection.toSet();a.selectQueue(false);ids.filter{it !in before}.forEach{a.toggleQueue(it)}}
+            LibraryAction("撤销",a.canUndo){a.undo()};LibraryAction("重做",a.canRedo){a.redo()}
+            LibraryAction("移除所选（保留原件）",!c.busy&&a.queueSelection.isNotEmpty()){a.removeQueue()}
+            LibraryAction("导出所选处理文件",canProcess&&a.queueSelection.isNotEmpty()){a.export(selectedOnly=true)}
         }
         AnimationFilmstrip(c){focus.requestFocus()}
-        a.coverError?.let{Text(it,color=MaterialTheme.colors.error);StudioAction("重新读取封面配置",!c.busy){a.reloadCovers()}}
+        a.coverError?.let{Text(it,color=MaterialTheme.colors.error);LibraryAction("重新读取封面配置",!c.busy){a.reloadCovers()}}
         a.error?.let{Text(it,color=MaterialTheme.colors.error)}
         if(a.progress>0||a.completed!=null)Text("批次已写 ${a.progress} / ${a.progressTotal}"+(a.completed?.let{" · 已完成：$it"}?:" · 完成前请等待；已有输出保留"),maxLines=1,overflow=TextOverflow.Ellipsis,style=MaterialTheme.typography.caption)
+    }
     }
 }
 
@@ -179,8 +183,8 @@ internal fun animationNavigation(a:GalleryAnimationController,event:KeyEvent):Bo
     Box(modifier.hoverable(interaction).clickable(onClick=onClick).semantics{contentDescription="APNG处理结果区域"},contentAlignment=Alignment.Center) {
         content()
         if(hovered&&a.ids.orEmpty().size>1) {
-            if(a.index>0)Box(Modifier.align(Alignment.CenterStart).background(Panel.copy(alpha=.9f))){StudioAction("上一张",accessibilityLabel="悬浮上一张",icon=DesktopAppIcons.Previous){a.page(-1)}}
-            if(a.index<a.ids.orEmpty().lastIndex)Box(Modifier.align(Alignment.CenterEnd).background(Panel.copy(alpha=.9f))){StudioAction("下一张",accessibilityLabel="悬浮下一张",icon=DesktopAppIcons.Next){a.page(1)}}
+            if(a.index>0)Box(Modifier.align(Alignment.CenterStart).background(Panel.copy(alpha=.9f))){LibraryAction("上一张",accessibilityLabel="悬浮上一张",icon=DesktopAppIcons.Previous){a.page(-1)}}
+            if(a.index<a.ids.orEmpty().lastIndex)Box(Modifier.align(Alignment.CenterEnd).background(Panel.copy(alpha=.9f))){LibraryAction("下一张",accessibilityLabel="悬浮下一张",icon=DesktopAppIcons.Next){a.page(1)}}
         }
     }
 }

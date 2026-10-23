@@ -2,6 +2,7 @@ package io.github.misakapiano.ccbstudio.core
 
 /** Management labels are independent of original Prompt tags. Counts use unique assets in scope. */
 class LibraryTagIndex(ids:Collection<String>,labels:Map<String,AssetLabels>) {
+    val assetCount=ids.toSet().size
     val counts:Map<String,Int> = ids.toSet().flatMap{labels[it]?.tags.orEmpty().distinct()}.groupingBy{it}.eachCount()
     fun suggestions(text:String):List<String> = counts.keys.filter{it.contains(text.trim(),ignoreCase=true)}
         .sortedWith { a,b->

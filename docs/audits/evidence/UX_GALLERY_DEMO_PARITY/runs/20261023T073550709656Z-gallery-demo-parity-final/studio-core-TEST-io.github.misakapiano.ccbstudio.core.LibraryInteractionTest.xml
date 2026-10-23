@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.LibraryInteractionTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-23T07:36:03.979Z" hostname="DD1" time="3.143">
+  <properties/>
+  <testcase name="multiTagAlbumsHaveUniqueKeysAndUnknownDatesStayUnknown" classname="io.github.misakapiano.ccbstudio.core.LibraryInteractionTest" time="0.085"/>
+  <testcase name="rangeSelectionUsesVisibleOrderAndExplicitModifiers" classname="io.github.misakapiano.ccbstudio.core.LibraryInteractionTest" time="0.001"/>
+  <testcase name="galleryAndArchiveFoldPreferencesRemainIndependent" classname="io.github.misakapiano.ccbstudio.core.LibraryInteractionTest" time="0.763"/>
+  <testcase name="batchLabelsOneRevisionUndoConflictIsAtomicAndReopenPreservesBytes" classname="io.github.misakapiano.ccbstudio.core.LibraryInteractionTest" time="2.286"/>
+  <testcase name="tagPredictionCountsUniqueScopedAssetsAndFiltersExactLabels" classname="io.github.misakapiano.ccbstudio.core.LibraryInteractionTest" time="0.008"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

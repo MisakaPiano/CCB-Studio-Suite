@@ -3,7 +3,8 @@ package io.github.misakapiano.ccbstudio.desktop
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.grid.*
+import androidx.compose.foundation.lazy.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
@@ -30,12 +31,13 @@ import kotlinx.coroutines.*
     val images=remember(assets){SharedAssets.images(assets).map{it.request().id().toString()}.toSet()}
     val times=remember(assets,c.state.jobs){libraryRecordedTimes(assets,c.state.jobs)}
     val generated=remember(c.state.jobs){c.state.jobs.flatMap{it.results+it.composedResults}.toSet()}
+    val sources=remember(assets,c.state.jobs){librarySources(assets,c.state.jobs)}
     val index=remember(assets,labels){LibraryTagIndex(assets.map{it.request().id().toString()},labels)}
-    val visible=remember(assets,g.query,g.filterTags,g.anyTag,g.date,g.source,g.scope,g.sort,g.assetType,labels,times){
+    val visible=remember(assets,g.query,g.filterTags,g.anyTag,g.date,g.source,g.scope,g.sort,g.assetType,labels,times,sources){
         sortGalleryAssets(assets,g.sort,times,labels.mapValues{it.value.alias}).filter{a->
             val id=a.request().id().toString();val label=labels[id]?:AssetLabels()
             val type=when(a.request().project().decodeToString()){LibraryRepository.PROMPT->"prompt";SharedAssets.DOCUMENT->"document";else->"image"}
-            val source=if(id in generated)"generated"else if(type=="image")"imported"else"other"
+            val source=if(type=="image")sources[id]?:"unknown"else"other"
             (g.scope.ids?.contains(id)!=false)&&(g.source=="all"||g.source==source)&&(g.assetType=="all"||g.assetType==type)&&
                 (a.request().name().contains(g.query,true)||label.alias.contains(g.query,true)||label.tags.any{it.contains(g.query,true)})&&
                 matchesLibraryTags(label.tags,g.filterTags,g.anyTag)&&runCatching{libraryDateMatches(times[id],g.date)}.getOrDefault(false)
@@ -65,29 +67,30 @@ import kotlinx.coroutines.*
     g.viewing?.let{(ordered,at)->StudioAssetViewer(c,ordered,at){g.viewing=null}}
     g.tagEditor?.let{selected->BatchTagDialog(c,selected){g.tagEditor=null}}
     restore?.let{fixed->AlertDialog(onDismissRequest={restore=null},title={Text("恢复 ${fixed.size} 项资产？")},text={Text("恢复本次选定的资产。其他回收站项目保持原状。")},confirmButton={TextButton(enabled=!c.busy,onClick={l.changeArchive(fixed,false);restore=null}){Text("确认恢复")}},dismissButton={TextButton(onClick={restore=null}){Text("取消")}})}
-    Column(Modifier.fillMaxSize().padding(12.dp).focusRequester(focus).onFocusChanged{focused=it.isFocused}.onKeyEvent(::undoKey).focusable(),verticalArrangement=Arrangement.spacedBy(7.dp)) {
-        Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(6.dp)) {
-            StudioAction("返回图库"){c.view="图库"};Text("回收站 · ${assets.size} 项")
+    LibraryPresentation {
+    Column(Modifier.fillMaxSize().focusRequester(focus).onFocusChanged{focused=it.isFocused}.onKeyEvent(::undoKey).focusable(),verticalArrangement=Arrangement.spacedBy(0.dp)) {
+        Row(Modifier.fillMaxWidth().padding(horizontal=12.dp,vertical=7.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(6.dp)) {
+            LibraryAction("返回图库"){c.view="图库"}
+            LibraryChoice("资产管理",listOf("Prompt 资产","多 Prompt 参照","目录入口","回收站","备份与恢复"),l.tab,{it}){l.tab=it}
+            Text("${assets.size} 项")
             Spacer(Modifier.weight(1f))
             Box {
                 var info by remember{mutableStateOf(false)}
-                StudioAction("说明",style=StudioActionStyle.TERTIARY){info=true}
+                LibraryAction("说明",style=StudioActionStyle.TERTIARY){info=true}
                 DropdownMenu(info,{info=false}){Text("原件、工程引用与外部目录保留。\n此处不执行永久删除。\n日期为有记录的添加/生成日期；未知不补默认值。",Modifier.width(360.dp).padding(12.dp))}
             }
-            StudioCompactField("查找回收站文件名、别名或标签",g.query,{g.query=it},Modifier.width(340.dp))
+            StudioCompactField("查找回收站文件名、别名或标签",g.query,{g.query=it},Modifier.width(270.dp))
+            LibraryChoice("类型",listOf("all","image","prompt","document"),g.assetType,{when(it){"image"->"图片";"prompt"->"Prompt";"document"->"文档";else->"全部"}}){g.assetType=it}
         }
-        if(l.archiveError!=null){Text(l.archiveError!!,color=MaterialTheme.colors.error);StudioAction("重读回收站"){l.refresh()};return@Column}
+        if(l.archiveError!=null){Text(l.archiveError!!,color=MaterialTheme.colors.error);LibraryAction("重读回收站"){l.refresh()};return@Column}
         if(contents?.isFailure==true){Text("回收站目录不可读取，原件保留",color=MaterialTheme.colors.error);return@Column}
         GalleryAlbumControls(c,g){l.archiveSelection=emptySet()}
-        Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(4.dp)) {
-            LibraryChoice("类型",listOf("all","image","prompt","document"),g.assetType,{when(it){"image"->"图片";"prompt"->"Prompt";"document"->"文档";else->"全部"}}){g.assetType=it}
-            Box(Modifier.weight(1f)){LibraryTagFilter(c,g,index,ids.size)}
-        }
+        LibraryTagFilter(c,g,index,ids.size)
         if(contents==null)Text("正在读取回收站…")
         LibrarySplitPane(g,Modifier.weight(1f),main={
-            val scroll=rememberLazyGridState()
+            val scroll=rememberLazyListState()
             Box(Modifier.fillMaxSize()) {
-                LazyVerticalGrid(GridCells.Adaptive(155.dp),Modifier.fillMaxSize().padding(end=16.dp),state=scroll,horizontalArrangement=Arrangement.spacedBy(8.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
+                LazyColumn(Modifier.fillMaxSize().padding(horizontal=12.dp,vertical=10.dp),state=scroll,verticalArrangement=Arrangement.spacedBy(6.dp)) {
                     items(albums,key={it.key}){album->
                         val id=album.cover.image.path;val a=visible.first{it.request().id().toString()==id};val selected=album.images.all{it.image.path in l.archiveSelection}
                         val grouped=g.fold.enabled&&(album.images.size>1 || g.tagFold || (g.directoryFold&&album.label!="来源目录未记录"))
@@ -101,16 +104,18 @@ import kotlinx.coroutines.*
                             if(id !in l.archiveSelection)l.archiveSelection=album.images.map{it.image.path}.toSet()
                             listOf(ContextMenuItem("恢复所选资产"){restore=l.archiveSelection.toSet()},ContextMenuItem("编辑标签"){g.tagEditor=l.archiveSelection.toSet()})
                         }) {
-                            Column(Modifier.border(if(selected)2.dp else 1.dp,if(selected)Gold else Quiet).padding(6.dp)
+                            Row(Modifier.fillMaxWidth().background(if(selected)LibrarySelected else androidx.compose.ui.graphics.Color.Transparent,RoundedCornerShape(5.dp)).border(1.dp,if(selected)Gold else androidx.compose.ui.graphics.Color.Transparent,RoundedCornerShape(5.dp)).padding(6.dp)
                                 .onPointerEvent(PointerEventType.Press){ctrl=it.keyboardModifiers.isCtrlPressed;shift=it.keyboardModifiers.isShiftPressed}
                                 .combinedClickable(onClick={choose()},onDoubleClick={if(grouped)choose()else if(id in images)g.preview(ids.filter{it in images},id)})) {
-                                Box(Modifier.fillMaxWidth().height(130.dp).semantics{contentDescription="回收站资产 $id"}) {
+                                Box(Modifier.size(64.dp).semantics{contentDescription="回收站资产 $id"}) {
                                     if(id in images)AssetImage(c,id,Modifier.fillMaxSize())else Text(if(a.request().project().decodeToString()==LibraryRepository.PROMPT)"Prompt"else"文档",Modifier.align(Alignment.Center))
                                     if(grouped)Text("${album.images.size} 项",Modifier.align(Alignment.TopEnd).background(Panel))
                                 }
+                                Column(Modifier.weight(1f).padding(start=10.dp),verticalArrangement=Arrangement.spacedBy(3.dp)) {
                                 Row(verticalAlignment=Alignment.CenterVertically){if(g.checkboxMode)Checkbox(selected,{choose()});Text(if(grouped)album.label.lineSequence().first()else labels[id]?.alias?.ifBlank{a.request().name()}?:a.request().name(),maxLines=2,overflow=TextOverflow.Ellipsis)}
                                 Text(libraryRecordedDay(times[id]).ifBlank{"日期未记录"},style=MaterialTheme.typography.caption)
-                                if(!grouped)StudioAction("恢复资产 ${id.take(8)}",!c.busy){l.changeArchive(setOf(id),false)}
+                                Text((if(id in images)"图片 · ${librarySourceLabel(sources[id]?:"unknown")}"else if(a.request().project().decodeToString()==LibraryRepository.PROMPT)"Prompt"else"文档")+" · "+labels[id]?.tags.orEmpty().joinToString(" · "),color=LibraryMuted,maxLines=1,overflow=TextOverflow.Ellipsis)
+                                }
                             }
                         }
                     }
@@ -120,25 +125,28 @@ import kotlinx.coroutines.*
             }
         },detail={
             val scroll=rememberScrollState()
-            Column(Modifier.fillMaxSize().verticalScroll(scroll),verticalArrangement=Arrangement.spacedBy(8.dp)) {
+            LaunchedEffect(ids){if(current !in ids)current=ids.firstOrNull()}
+            Column(Modifier.fillMaxSize().padding(horizontal=12.dp,vertical=14.dp).verticalScroll(scroll),verticalArrangement=Arrangement.spacedBy(8.dp)) {
                 val a=assets.firstOrNull{it.request().id().toString()==current}
                 if(a==null)Text("选择资产查看详情",color=Quiet)else {
                     val id=a.request().id().toString()
-                    if(id in images)AssetImage(c,id,Modifier.fillMaxWidth().height(240.dp))
+                    if(id in images)AssetImage(c,id,Modifier.fillMaxWidth().height(180.dp))
                     Text(labels[id]?.alias?.ifBlank{a.request().name()}?:a.request().name())
                     Text("${a.size()} bytes",style=MaterialTheme.typography.caption)
                     Text(labels[id]?.tags.orEmpty().joinToString(" · "))
-                    StudioAction("恢复当前资产",!c.busy){l.changeArchive(setOf(id),false)}
+                    LibraryAction("恢复此项",!c.busy,accessibilityLabel="恢复资产 ${id.take(8)}"){l.changeArchive(setOf(id),false)}
                 }
             }
         })
-        StudioActions {
-            StudioSwitch("勾选模式",g.checkboxMode){g.checkboxMode=!g.checkboxMode}
-            StudioAction("全选"){l.archiveSelection=ids.toSet()};StudioAction("反选"){l.archiveSelection=(l.archiveSelection-ids.toSet())+(ids.toSet()-l.archiveSelection)};StudioAction("清空选择"){l.archiveSelection=emptySet()}
+        LibraryBand {
+            LibraryToggle("勾选模式",g.checkboxMode){g.checkboxMode=!g.checkboxMode}
+            LibraryAction("全选",style=StudioActionStyle.TERTIARY){l.archiveSelection=ids.toSet()};LibraryAction("反选",style=StudioActionStyle.TERTIARY){l.archiveSelection=(l.archiveSelection-ids.toSet())+(ids.toSet()-l.archiveSelection)};LibraryAction("清空",accessibilityLabel="清空选择"){l.archiveSelection=emptySet()}
             Text("已选 ${l.archiveSelection.size} · 筛选外 ${l.archiveSelection.count{it !in ids}}",style=MaterialTheme.typography.caption)
-            StudioAction("撤销",l.canUndo){l.undo()};StudioAction("重做",l.canRedo){l.redo()}
-            StudioAction("恢复所选",l.archiveSelection.isNotEmpty()&&!c.busy){restore=l.archiveSelection.toSet()}
-            StudioAction("恢复当前筛选 ${ids.size} 项",ids.isNotEmpty()&&!c.busy){restore=ids.toSet()}
+            LibraryAction("",l.canUndo,icon=DesktopAppIcons.Undo,style=StudioActionStyle.TERTIARY,accessibilityLabel="撤销"){l.undo()};LibraryAction("",l.canRedo,icon=DesktopAppIcons.Redo,style=StudioActionStyle.TERTIARY,accessibilityLabel="重做"){l.redo()}
+            Spacer(Modifier.weight(1f))
+            LibraryAction("恢复所选",l.archiveSelection.isNotEmpty()&&!c.busy){restore=l.archiveSelection.toSet()}
+            LibraryAction("恢复当前筛选 ${ids.size} 项",ids.isNotEmpty()&&!c.busy){restore=ids.toSet()}
         }
+    }
     }
 }

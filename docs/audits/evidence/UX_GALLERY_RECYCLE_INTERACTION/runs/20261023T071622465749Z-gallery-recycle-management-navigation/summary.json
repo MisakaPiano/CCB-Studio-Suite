@@ -1,0 +1,31 @@
+{
+  "phase": "gallery-recycle-management-navigation",
+  "startedUtc": "2026-10-23T07:16:27.966064+00:00",
+  "seconds": 98.466,
+  "exitCode": 0,
+  "tests": 9,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:test",
+    "--tests",
+    "*LibraryInteractionWorkflowTest",
+    "--tests",
+    "*AssetArchiveWorkflowTest",
+    ":studio-desktop:createDistributable"
+  ],
+  "baseCommit": "330cee35a4d8f593ff8b975eaf2a741480eb8cbb",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryInteractionTest",
+    "name": "multiTagAlbumsHaveUniqueKeysAndUnknownDatesStayUnknown",
+    "seconds": "0.085",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryInteractionTest",
+    "name": "rangeSelectionUsesVisibleOrderAndExplicitModifiers",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryInteractionTest",
+    "name": "galleryAndArchiveFoldPreferencesRemainIndependent",
+    "seconds": "0.763",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryInteractionTest",
+    "name": "batchLabelsOneRevisionUndoConflictIsAtomicAndReopenPreservesBytes",
+    "seconds": "2.286",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryInteractionTest",
+    "name": "tagPredictionCountsUniqueScopedAssetsAndFiltersExactLabels",
+    "seconds": "0.008",
+    "status": "PASS"
+  }
+]

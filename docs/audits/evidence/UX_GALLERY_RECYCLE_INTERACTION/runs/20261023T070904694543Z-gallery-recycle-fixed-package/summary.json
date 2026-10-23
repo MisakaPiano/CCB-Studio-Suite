@@ -1,0 +1,26 @@
+{
+  "phase": "gallery-recycle-fixed-package",
+  "startedUtc": "2026-10-23T07:09:05.267169+00:00",
+  "seconds": 9.91,
+  "exitCode": 0,
+  "tests": 0,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "COMMAND_SUCCESS",
+  "testEvidence": "NOT TESTED (build only or failed before execution)",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:createDistributable"
+  ],
+  "baseCommit": "330cee35a4d8f593ff8b975eaf2a741480eb8cbb",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

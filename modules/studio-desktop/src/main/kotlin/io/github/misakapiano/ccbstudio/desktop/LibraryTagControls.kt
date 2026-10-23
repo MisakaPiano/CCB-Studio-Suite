@@ -2,6 +2,8 @@
 package io.github.misakapiano.ccbstudio.desktop
 
 import androidx.compose.foundation.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import com.composables.icons.lucide.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
 import androidx.compose.material.*
@@ -21,10 +23,10 @@ import io.github.misakapiano.ccbstudio.core.*
     Column(modifier) {
     LazyRow(Modifier.fillMaxWidth().heightIn(min=32.dp),state=scroll,horizontalArrangement=Arrangement.spacedBy(4.dp),verticalAlignment=Alignment.CenterVertically) {
         items(tags,key={it}){tag->TooltipArea(tooltip={Surface{Text(tag,Modifier.padding(8.dp))}}) {
-            Row(Modifier.background(Panel).border(1.dp,DesktopBootstrapColors.border).padding(start=7.dp),verticalAlignment=Alignment.CenterVertically) {
+            Row(Modifier.background(LibrarySelected,RoundedCornerShape(4.dp)).padding(start=7.dp),verticalAlignment=Alignment.CenterVertically) {
                 Text(tag,Modifier.widthIn(max=140.dp),maxLines=1,overflow=TextOverflow.Ellipsis)
-                counts[tag]?.let{Text(" $it",style=MaterialTheme.typography.caption)}
-                StudioAction("×",accessibilityLabel="移除标签 $tag"){remove(tag)}
+                counts[tag]?.let{Text(" · $it",style=MaterialTheme.typography.caption)}
+                LibraryAction("×",style=StudioActionStyle.TERTIARY,accessibilityLabel="移除标签 $tag"){remove(tag)}
             }
         }}
     }
@@ -39,8 +41,8 @@ import io.github.misakapiano.ccbstudio.core.*
     val candidates=remember(text,index,selected){index.suggestions(text).filter{it !in selected}.take(8)}
     Box(modifier) {
         StudioCompactField(if(allowNew)"输入或检索标签"else"添加筛选标签",text,{text=it.take(64);prediction=it.isNotBlank()},Modifier.fillMaxWidth().onKeyEvent{if(it.type==KeyEventType.KeyDown&&it.key==Key.Enter){submit();true}else false},trailing={
-            StudioAction("＋",style=StudioActionStyle.TERTIARY,accessibilityLabel="添加输入标签"){submit()}
-            StudioAction("⌕",style=StudioActionStyle.TERTIARY,accessibilityLabel="浏览已有标签"){prediction=false;browse=true}
+            LibraryAction("＋",style=StudioActionStyle.TERTIARY,accessibilityLabel="添加输入标签"){submit()}
+            LibraryAction("",icon=Lucide.Tags,style=StudioActionStyle.TERTIARY,accessibilityLabel="浏览已有标签"){prediction=false;browse=true}
         })
         DropdownMenu(prediction && candidates.isNotEmpty(),{prediction=false},properties=PopupProperties(focusable=false)) {
             candidates.forEach{tag->DropdownMenuItem(onClick={add(listOf(tag));text="";prediction=false}){Text("$tag   ${index.counts[tag]}")}}
@@ -57,8 +59,8 @@ import io.github.misakapiano.ccbstudio.core.*
     Column(Modifier.fillMaxSize().padding(16.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
         StudioCompactField("检索已有标签",query,{query=it},Modifier.fillMaxWidth())
         Row(horizontalArrangement=Arrangement.spacedBy(8.dp)) {
-            StudioAction("选择检索结果"){pending=pending+tags.filter{it !in already}}
-            StudioAction("清空待添加"){pending=emptySet()}
+            LibraryAction("选择检索结果"){pending=pending+tags.filter{it !in already}}
+            LibraryAction("清空待添加"){pending=emptySet()}
             Text("待添加 ${pending.size}")
         }
         val state=rememberLazyListState()
@@ -73,24 +75,25 @@ import io.github.misakapiano.ccbstudio.core.*
             VerticalScrollbar(rememberScrollbarAdapter(state),Modifier.align(Alignment.CenterEnd).fillMaxHeight())
         }
         if(tags.isEmpty())Text("没有匹配的标签")
-        StudioActions{StudioAction("取消",onClick=cancel);StudioAction("添加所选标签",pending.isNotEmpty()){apply(index.suggestions("").filter{it in pending})}}
+        StudioActions{LibraryAction("取消",onClick=cancel);LibraryAction("添加所选标签",pending.isNotEmpty()){apply(index.suggestions("").filter{it in pending})}}
     }
 }
 
 @Composable internal fun LibraryTagFilter(c:WorkbenchController,g:GalleryViewState,index:LibraryTagIndex,resultCount:Int) {
-    Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(6.dp)) {
+    Row(Modifier.fillMaxWidth().padding(horizontal=12.dp,vertical=7.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(6.dp)) {
+        Text("标签",color=LibraryMuted)
         LibraryTagChips(g.filterTags,index.counts,{g.filterTags=g.filterTags-it},Modifier.weight(1f))
         Box {
             var selected by remember{mutableStateOf(false)}
-            StudioAction("已选 ${g.filterTags.size}",g.filterTags.isNotEmpty(),style=StudioActionStyle.TERTIARY){selected=true}
+            if(g.filterTags.isNotEmpty())LibraryAction("已选 ${g.filterTags.size}",style=StudioActionStyle.TERTIARY){selected=true}
             DropdownMenu(selected,{selected=false}) {
                 g.filterTags.forEach{tag->DropdownMenuItem(onClick={g.filterTags=g.filterTags-tag}){Text("$tag   ×",Modifier.widthIn(max=280.dp))}}
                 DropdownMenuItem(onClick={g.filterTags=emptyList();selected=false}){Text("清空筛选标签")}
             }
         }
-        LibraryTagInput(index,g.filterTags,{g.filterTags=(g.filterTags+it).distinct()},Modifier.width(280.dp))
-        LibraryChoice("",listOf(false,true),g.anyTag,{if(it)"任一标签"else"全部标签"}){g.anyTag=it}
-        Text("$resultCount 项",style=MaterialTheme.typography.caption)
+        LibraryTagInput(index,g.filterTags,{g.filterTags=(g.filterTags+it).distinct()},Modifier.width(185.dp))
+        LibraryChoice("",listOf(false,true),g.anyTag,{if(it)"包含任一"else"同时包含"}){g.anyTag=it}
+        Text("匹配 $resultCount / 全库 ${index.assetCount} 项",style=MaterialTheme.typography.caption)
     }
 }
 
@@ -109,12 +112,12 @@ import io.github.misakapiano.ccbstudio.core.*
                 LibraryTagInput(index,pending,{pending=(pending+it).distinct()},Modifier.fillMaxWidth(),allowNew=true)
                 Text("原有标签 · 点击标记移除")
                 Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),horizontalArrangement=Arrangement.spacedBy(4.dp)) {
-                    existing.forEach{tag->StudioAction((if(tag in remove)"− "else"")+tag,selected=tag in remove){remove=if(tag in remove)remove-tag else remove+tag}}
+                    existing.forEach{tag->LibraryAction((if(tag in remove)"− "else"")+tag,selected=tag in remove){remove=if(tag in remove)remove-tag else remove+tag}}
                 }
                 Text("每项最多 32 个标签，每个最多 64 字。",style=MaterialTheme.typography.caption)
                 Spacer(Modifier.weight(1f))
                 if(tooMany)Text("部分资产将超过 32 个标签，请先减少待添加标签。",color=MaterialTheme.colors.error)
-                StudioActions{StudioAction("取消",onClick=close);StudioAction("保存标签",!c.busy&&!tooMany&&(pending.isNotEmpty()||remove.isNotEmpty())){
+                StudioActions{LibraryAction("取消",onClick=close);LibraryAction("保存标签",!c.busy&&!tooMany&&(pending.isNotEmpty()||remove.isNotEmpty())){
                     c.library.changeLabels(ids){it.copy(tags=((it.tags-remove.toSet())+pending).distinct())};close()
                 }}
             }

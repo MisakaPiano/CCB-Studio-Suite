@@ -1,0 +1,27 @@
+{
+  "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\gallery-recycle-interaction-review\\Start-gallery-recycle-interaction-review.lnk",
+  "source": "330cee35a4d8f593ff8b975eaf2a741480eb8cbb",
+  "syntheticWorkspace": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\gallery-recycle-interaction-review\\workspace",
+  "pauseCollections": true,
+  "manualQuestions": "Gallery selection/drag/navigation; tags/archive/filter/undo/reopen; APNG floating menus/queue/processed clipboard",
+  "humanAcceptance": "PARTIAL_PASS_WITH_VISUAL_REJECTION",
+  "privateWorkspaceCopied": false,
+  "replies": [
+    {
+      "scope": "Gallery selection/drag/navigation",
+      "answer": "这些交互正常",
+      "status": "PASS_WITH_SCOPE"
+    },
+    {
+      "scope": "Tags/archive/filter/undo/reopen",
+      "answer": "标签、恢复和重开正常",
+      "status": "PASS_WITH_SCOPE"
+    },
+    {
+      "scope": "APNG floating menus/queue/processed clipboard",
+      "answer": "暂未测试",
+      "status": "NOT TESTED"
+    }
+  ],
+  "visualAcceptance": "REJECTED: user subsequently reports divergence from approved demo and missing controls; earlier functional replies do not cover visual approval"
+}

@@ -1,0 +1,128 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.AssetArchiveWorkflowTest",
+    "name": "confirmCancelRestoreAndAliasTagChoicesPreserveExistingProject",
+    "seconds": "8.913",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.AssetArchiveWorkflowTest",
+    "name": "archiveMetadataFailureShowsOriginalsAndDisablesMutation",
+    "seconds": "1.157",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAlbumWorkflowTest",
+    "name": "directoryChoiceHasVisibleScrollbarsAndKeepsFolderSelectionSeparate",
+    "seconds": "4.928",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAlbumWorkflowTest",
+    "name": "sourceAlbumsNavigateSelectFilterAndPersistDepthPreferencesWithoutChangingRecipes",
+    "seconds": "9.266",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "selectingMultipleCoverPresetsResetsPlaybackAndPreviewAndControlsExports",
+    "seconds": "5.984",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "animatedGifRetainsTwoFrameColorsTimingAndLoopAfterDisguiseRestore",
+    "seconds": "0.141",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "automaticPreviewRejectsSupersededWorkAndShutdownDrainsIt",
+    "seconds": "1.077",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "thumbnailStripStartsAtLatestAndSelectingAnOlderImageUpdatesPreviewAutomatically",
+    "seconds": "7.9",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "actualWorkspacePreviewRestoreBatchCopyAndReopenPreserveOriginals",
+    "seconds": "4.541",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "failedBatchKeepsUnpublishedEvidenceAndNeverOverwritesPriorOutput",
+    "seconds": "0.569",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryAnimationTest",
+    "name": "staticDisguisePreviewIsTheChosenCoverAndPlaybackKeepsTheContent",
+    "seconds": "0.127",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GallerySortingWorkflowTest",
+    "name": "controlsStayVisibleWhileHistoryLoadsAndSameDepthAlbumsRememberDifferentSorts",
+    "seconds": "6.64",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest",
+    "name": "demoDensityRetainsToolsAndOriginalExportPublishesIndependentBatch",
+    "seconds": "9.889",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest",
+    "name": "pickerKeepsMultiSelectionAcrossSearchAndDoesNotApplyUntilConfirm",
+    "seconds": "0.48",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest",
+    "name": "manyLongTagChipsScrollToLatestAndRemainRemovable",
+    "seconds": "0.203",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest",
+    "name": "queueCtrlShiftSelectionDefaultCheckboxOffAndUndoDoesNotDeleteOriginals",
+    "seconds": "1.433",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest",
+    "name": "gallerySingleSelectTagAlbumsHistoryAndFixedDragPayload",
+    "seconds": "4.869",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest",
+    "name": "clipboardCopyAndCutUseFixedIdentitiesAndPreserveUnrelatedLabels",
+    "seconds": "1.758",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest",
+    "name": "archiveSharesFiltersRestoresOnlyFixedFilteredIdsAndSupportsUndo",
+    "seconds": "5.285",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.LibraryInteractionWorkflowTest",
+    "name": "cancellingOperationsDrainsCatalogWithoutFalseRecoveryAndAllowsNextWrite",
+    "seconds": "0.807",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.QueueCompactWorkflowTest",
+    "name": "queueSelectionRemovalAndSubsetCopyKeepOriginalsAndCompactCalendarWorks",
+    "seconds": "10.669",
+    "status": "PASS"
+  }
+]

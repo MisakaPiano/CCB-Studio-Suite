@@ -44,11 +44,12 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
     var tagFoldDepths by mutableStateOf<Set<Int>>(emptySet())
     val tagFold get()=depth in tagFoldDepths
     var checkboxMode by mutableStateOf(false)
-    var detailWidth by mutableStateOf(340f)
+    var detailWidth by mutableStateOf(250f)
     val scrollPositions=mutableMapOf<String,Pair<Int,Int>>()
     var assetType by mutableStateOf("all")
     var tagEditor by mutableStateOf<Set<String>?>(null)
     var clipboard:LibraryClipboard?=null
+    var chooseExportDirectory:()->java.nio.file.Path?={StudioFileDialogs.folder("导出所选原始文件（新建独立文件夹）")}
     var copyFiles:(List<java.nio.file.Path>)->Unit=ExportClipboard::copy
     var writeTransferable:(java.awt.datatransfer.Transferable)->Unit={java.awt.Toolkit.getDefaultToolkit().systemClipboard.setContents(it,null)}
     var guidanceSelection by mutableStateOf<List<String>?>(null)
@@ -104,13 +105,14 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
     val projection=history?.getOrNull()?:GalleryHistoryProjection(emptyList(),emptyMap())
     val times=remember(c.assets,c.state.jobs){libraryRecordedTimes(c.assets,c.state.jobs)}
     val generated=remember(c.state.jobs){c.state.jobs.flatMap{it.results+it.composedResults}.toSet()}
+    val sources=remember(c.assets,c.state.jobs){librarySources(c.assets,c.state.jobs)}
     val activeIds=remember(c.assets,c.library.archived){c.assets.map{it.request().id().toString()}.filter{it !in c.library.archived}}
     val tagIndex=remember(activeIds,labels){LibraryTagIndex(activeIds,labels)}
     val promptMatches=remember(projection,g.query){NovelAiHistoryFilterPolicy.filter(projection.entries,g.query,null).map{it.image.path}.toSet()}
-    val visible=remember(c.assets,c.library.archived,g.query,g.filterTags,g.anyTag,g.date,g.source,g.scope,g.sort,labels,times,promptMatches){
+    val visible=remember(c.assets,c.library.archived,g.query,g.filterTags,g.anyTag,g.date,g.source,g.scope,g.sort,labels,times,promptMatches,sources){
         sortGalleryAssets(c.assets,g.sort,times,labels.mapValues{it.value.alias}).filter{a->
             val id=a.request().id().toString();val label=labels[id]?:AssetLabels()
-            id !in c.library.archived&&(g.source=="all"||(g.source=="generated")== (id in generated))&&g.scope.ids?.contains(id)!=false&&
+            id !in c.library.archived&&(g.source=="all"||sources[id]==g.source)&&g.scope.ids?.contains(id)!=false&&
                 runCatching{libraryDateMatches(times[id],g.date)}.getOrDefault(false)&&matchesLibraryTags(label.tags,g.filterTags,g.anyTag)&&
                 (a.request().name().contains(g.query,true)||label.alias.contains(g.query,true)||label.tags.any{it.contains(g.query,true)}||id in promptMatches)
         }
@@ -158,21 +160,22 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
         }
     }
     val byId=remember(visible){visible.associateBy{it.request().id().toString()}}
+    LibraryPresentation {
     Box(Modifier.fillMaxSize().onGloballyPositioned{rootOffset=it.positionInRoot()}.onSizeChanged{rootSize=it}.libraryDrag(drag,{c.selection},{c.selection=it},{visibleIds},{focus.requestFocus()})
         .focusRequester(focus).onFocusChanged{focused=it.isFocused}.onKeyEvent(::commands).focusable()) {
-        Column(Modifier.fillMaxSize().galleryIngress(c,handlePaste=false).padding(10.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
-            Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(4.dp)) {
-                StudioAction("返回创作"){c.view="创作"}
-                StudioAction("导入图片",!c.busy){c.importImages()}
-                StudioAction("粘贴图片",!c.busy){pasteLibrarySelection(c)}
+        Column(Modifier.fillMaxSize().galleryIngress(c,handlePaste=false)) {
+            Row(Modifier.fillMaxWidth().padding(horizontal=12.dp,vertical=7.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(6.dp)) {
+                LibraryAction("返回创作"){c.view="创作"}
+                LibraryAction("导入图片",!c.busy){c.importImages()}
+                LibraryAction("粘贴图片",!c.busy){pasteLibrarySelection(c)}
                 GalleryImportReceipt(c)
                 Spacer(Modifier.weight(1f))
+                GallerySearch(c,Modifier.width(270.dp))
                 GalleryImportHelp(c)
-                GallerySearch(c,Modifier.width(350.dp))
             }
             c.library.archiveError?.let{Text(it,color=MaterialTheme.colors.error)}
-            if(c.busy&&c.activeOperation=="导入图片")StudioActions{StatusText(g.importProgress);StudioAction("停止导入图片"){c.active?.cancel()}}
-            if(c.busy&&c.activeOperation=="复制所选原始文件")StudioAction("停止复制所选原始文件"){c.active?.cancel()}
+            if(c.busy&&c.activeOperation=="导入图片")StudioActions{StatusText(g.importProgress);LibraryAction("停止导入图片"){c.active?.cancel()}}
+            if(c.busy&&c.activeOperation=="复制所选原始文件")LibraryAction("停止复制所选原始文件"){c.active?.cancel()}
             SharedDocumentAssets(c)
             GalleryAlbumControls(c)
             LibraryTagFilter(c,g,tagIndex,visibleIds.size)
@@ -191,7 +194,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
                     }
                 }
                 Box(Modifier.fillMaxSize().onGloballyPositioned{drag.grid=it.boundsInRoot().translate(-rootOffset)}) {
-                    LazyVerticalGrid(GridCells.Adaptive(150.dp),Modifier.fillMaxSize().padding(end=16.dp),state=scroll,horizontalArrangement=Arrangement.spacedBy(8.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
+                    LazyVerticalGrid(GridCells.Adaptive(145.dp),Modifier.fillMaxSize().padding(start=12.dp,top=14.dp,end=12.dp,bottom=12.dp),state=scroll,horizontalArrangement=Arrangement.spacedBy(8.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
                         items(albums,key={it.key}){album->
                             val id=album.cover.image.path;val a=byId.getValue(id);val albumIds=album.images.map{it.image.path}.distinct()
                             val selected=albumIds.all{it in c.selection}
@@ -208,6 +211,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
                                 if(!c.busy){
                                     add(ContextMenuItem("进入编辑"){runGalleryTool(c,"edit",c.assets.map{it.request().id().toString()}.filter{it in c.selection})})
                                     add(ContextMenuItem("编辑标签"){g.tagEditor=c.selection.toSet()})
+                                    add(ContextMenuItem("导出所选原始文件"){startLibraryExport(c,c.assets.map{it.request().id().toString()}.filter{it in c.selection})})
                                     add(ContextMenuItem("复制所选原始文件"){copyLibrarySelection(c,c.assets.map{it.request().id().toString()}.filter{it in c.selection})})
                                     g.scope.tag?.let{tag->add(ContextMenuItem("剪切标签归属"){copyLibrarySelection(c,c.assets.map{it.request().id().toString()}.filter{it in c.selection},tag)})}
                                     add(ContextMenuItem("粘贴"){pasteLibrarySelection(c)})
@@ -217,18 +221,20 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
                                     if(c.library.canRedo)add(ContextMenuItem("重做"){c.library.redo()})
                                 }
                             }}) {
-                                Column(Modifier.libraryCardBounds(drag,album.key,albumIds){rootOffset}.border(if(selected)2.dp else 1.dp,if(selected)Gold else Quiet).padding(6.dp)
+                                Column(Modifier.libraryCardBounds(drag,album.key,albumIds){rootOffset}.background(if(selected)LibrarySelected else androidx.compose.ui.graphics.Color.Transparent,androidx.compose.foundation.shape.RoundedCornerShape(5.dp)).border(1.dp,if(selected)Gold else androidx.compose.ui.graphics.Color.Transparent,androidx.compose.foundation.shape.RoundedCornerShape(5.dp)).padding(5.dp)
                                     .onPointerEvent(PointerEventType.Press){event->ctrl=event.keyboardModifiers.isCtrlPressed;shift=event.keyboardModifiers.isShiftPressed;if(event.buttons.isSecondaryPressed){if(!selected)c.selection=albumIds.toSet();c.current=id;focus.requestFocus()}}
                                     .combinedClickable(onClick={choose()},onDoubleClick={if(grouped)enter()else{c.current=id;g.preview(visibleIds,id)}})) {
-                                    Box(Modifier.fillMaxWidth().height(135.dp).semantics{contentDescription=if(grouped)"图库相册 $id"else"图库图片 $id"}) {
+                                    Box(Modifier.fillMaxWidth().height(115.dp).semantics{contentDescription=if(grouped)"图库相册 $id"else"图库图片 $id"}) {
                                         AssetImage(c,id,Modifier.fillMaxSize())
+                                        if(grouped)Box(Modifier.fillMaxWidth().height(4.dp).background(Gold).align(Alignment.TopCenter))
                                         if(grouped)Text("${album.images.size} 张",Modifier.align(Alignment.TopEnd).background(Panel).padding(4.dp))
                                         if(selected&&!g.checkboxMode)Text("✓",Modifier.align(Alignment.TopStart).background(Gold).padding(3.dp),color=Ink)
                                     }
                                     Row(verticalAlignment=Alignment.CenterVertically) {
                                         if(g.checkboxMode)Checkbox(selected,{val old=g.checkboxMode;g.checkboxMode=true;choose();g.checkboxMode=old},Modifier.size(28.dp).semantics{contentDescription="选择图库图片 $id"})
-                                        Text(if(grouped)album.label.lineSequence().first()else labels[id]?.alias?.takeIf{it.isNotBlank()}?:a.request().name(),maxLines=2,overflow=TextOverflow.Ellipsis)
+                                        Text(if(grouped)album.label.lineSequence().first()else labels[id]?.alias?.takeIf{it.isNotBlank()}?:a.request().name(),Modifier.fillMaxWidth(),textAlign=androidx.compose.ui.text.style.TextAlign.Center,maxLines=1,overflow=TextOverflow.Ellipsis)
                                     }
+                                    if(grouped)Text("相册",Modifier.fillMaxWidth(),color=LibraryMuted,textAlign=androidx.compose.ui.text.style.TextAlign.Center,style=MaterialTheme.typography.caption)
                                     labels[id]?.tags?.takeIf{it.isNotEmpty()}?.let{Text(it.joinToString(" · "),maxLines=1,overflow=TextOverflow.Ellipsis,style=MaterialTheme.typography.caption)}
                                     Text(libraryRecordedDay(times[id]).ifBlank{"日期未记录"},style=MaterialTheme.typography.caption)
                                 }
@@ -241,23 +247,32 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
             },detail={
                 val scroll=rememberScrollState()
                 Box(Modifier.fillMaxSize()) {
-                    Column(Modifier.fillMaxSize().padding(end=16.dp).verticalScroll(scroll),verticalArrangement=Arrangement.spacedBy(8.dp)) {
-                        AssetImage(c,c.current,Modifier.fillMaxWidth().height(240.dp))
-                        c.assets.firstOrNull{it.request().id().toString()==c.current}?.let{a->Text(labels[c.current]?.alias?.ifBlank{a.request().name()}?:a.request().name());StudioDisclosure("文件详情"){Text("${a.size()} bytes · SHA-256 ${a.sha256()}",style=MaterialTheme.typography.caption)}}
+                    Column(Modifier.fillMaxSize().padding(start=10.dp,top=14.dp,end=12.dp).verticalScroll(scroll),verticalArrangement=Arrangement.spacedBy(8.dp)) {
+                        AssetImage(c,c.current,Modifier.fillMaxWidth().height(180.dp))
+                        c.assets.firstOrNull{it.request().id().toString()==c.current}?.let{a->
+                            val album=albums.firstOrNull{it.images.any{image->image.image.path==c.current}}
+                            val grouped=g.fold.enabled&&album!=null&&(album.images.size>1||g.tagFold||g.directoryFold&&album.label!="来源目录未记录")
+                            Text(if(grouped)album!!.label.lineSequence().first()else labels[c.current]?.alias?.ifBlank{a.request().name()}?:a.request().name())
+                            if(grouped)Text("相册 · ${album!!.images.size} 张",color=LibraryMuted)
+                            Text("来源：${librarySourceLabel(sources[c.current]?:"unknown")}",color=LibraryMuted)
+                            Text("保存：资产库保留原件",color=LibraryMuted)
+                            StudioDisclosure("文件详情"){Text("${a.size()} bytes · SHA-256 ${a.sha256()}",style=MaterialTheme.typography.caption)}
+                        }
                         c.current?.let{ImagePromptPreview(c,it);AssetLabelEditor(c,it)}
                     }
                     VerticalScrollbar(rememberScrollbarAdapter(scroll),Modifier.align(Alignment.CenterEnd).fillMaxHeight().semantics{contentDescription="图片详情滚动条"},style=studioVisibleScrollbarStyle())
                 }
             })
-            StudioActions {
-                StudioSwitch("勾选模式",g.checkboxMode){g.checkboxMode=!g.checkboxMode}
-                StudioAction("全选"){c.selection=visibleIds.toSet()};StudioAction("反选"){c.selection=(c.selection-visibleIds.toSet())+(visibleIds.toSet()-c.selection)};StudioAction("清空选择"){c.selection=emptySet()}
-                Text("已选 ${c.selection.size} · 筛选外 ${c.selection.count{it !in visibleIds}}",style=MaterialTheme.typography.caption)
-                StudioAction("撤销",c.library.canUndo){c.library.undo()};StudioAction("重做",c.library.canRedo){c.library.redo()}
-                StudioAction("所选资产移入回收站",c.selection.isNotEmpty()&&!c.busy&&c.library.error==null&&c.library.archiveError==null,icon=DesktopAppIcons.Delete){remove()}
+            LibraryBand {
+                Text("${visibleIds.size} 项 · 已选 ${c.selection.size}",style=MaterialTheme.typography.caption)
+                LibraryToggle("勾选模式",g.checkboxMode){g.checkboxMode=!g.checkboxMode}
+                LibraryAction("全选",style=StudioActionStyle.TERTIARY){c.selection=visibleIds.toSet()};LibraryAction("反选",style=StudioActionStyle.TERTIARY){c.selection=(c.selection-visibleIds.toSet())+(visibleIds.toSet()-c.selection)};LibraryAction("清空",accessibilityLabel="清空选择"){c.selection=emptySet()}
+                if(c.selection.any{it !in visibleIds})Text("筛选外 ${c.selection.count{it !in visibleIds}}",style=MaterialTheme.typography.caption)
+                LibraryAction("",c.library.canUndo,icon=DesktopAppIcons.Undo,style=StudioActionStyle.TERTIARY,accessibilityLabel="撤销"){c.library.undo()};LibraryAction("",c.library.canRedo,icon=DesktopAppIcons.Redo,style=StudioActionStyle.TERTIARY,accessibilityLabel="重做"){c.library.redo()}
+                LibraryAction("",c.selection.isNotEmpty()&&!c.busy&&c.library.error==null&&c.library.archiveError==null,icon=DesktopAppIcons.Delete,style=StudioActionStyle.TERTIARY,accessibilityLabel="所选资产移入回收站"){remove()}
                 Box {
                     var menu by remember{mutableStateOf(false)}
-                    StudioAction("操作",icon=DesktopAppIcons.More){menu=true}
+                    LibraryAction("操作",icon=DesktopAppIcons.More){menu=true}
                     DropdownMenu(menu,{menu=false}) {
                         DropdownMenuItem(enabled=orderedSelection.isNotEmpty(),onClick={menu=false;copyLibrarySelection(c,orderedSelection)}){Text("复制所选原始文件  Ctrl+C")}
                         DropdownMenuItem(enabled=orderedSelection.isNotEmpty()&&g.scope.tag!=null,onClick={menu=false;cut()}){Text("剪切标签归属  Ctrl+X")}
@@ -265,6 +280,8 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
                         DropdownMenuItem(onClick={menu=false;c.library.tab="目录入口";c.view="资产管理"}){Text("管理收集与导入目录")}
                     }
                 }
+                Spacer(Modifier.weight(1f))
+                LibraryInteractionHelp()
             }
             GalleryTools(c,drag,{rootOffset},orderedSelection)
         }
@@ -277,13 +294,14 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
             }
         }
     }
+    }
 }
 
 @Composable private fun GalleryImportReceipt(c:WorkbenchController) {
     val g=c.gallery;if(g.imports.isEmpty())return
     var open by remember{mutableStateOf(false)}
     Box {
-        StudioAction("导入结果 ${g.imports.count{it.assetId!=null}} / ${g.imports.size}",style=StudioActionStyle.TERTIARY){open=true}
+        LibraryAction("导入结果 ${g.imports.count{it.assetId!=null}} / ${g.imports.size}",style=StudioActionStyle.TERTIARY){open=true}
         DropdownMenu(open,{open=false}) {
             Column(Modifier.width(420.dp).heightIn(max=280.dp).verticalScroll(rememberScrollState()).padding(8.dp)) {
                 g.importDurationMs?.let{Text("用时 ${"%.1f".format(it/1000.0)} 秒")}
@@ -295,7 +313,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
 }
 @Composable private fun GalleryImportHelp(c:WorkbenchController) {
     var open by remember{mutableStateOf(false)}
-    Box {StudioAction("导入说明",style=StudioActionStyle.TERTIARY){open=true}
+    Box {LibraryAction("?",style=StudioActionStyle.TERTIARY,accessibilityLabel="导入说明"){open=true}
         DropdownMenu(open,{open=false}){Text("拖入文件或 Ctrl+V 粘贴；PNG/JPEG/WebP/GIF/BMP。\n每文件最多32MiB、12582912像素。\n动图预览首帧，原文件保留。\n目录入口同步会入库保留原件，外部文件不变。",Modifier.width(350.dp).padding(12.dp))}
     }
 }
