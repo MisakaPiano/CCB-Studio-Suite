@@ -1,3 +1,7 @@
+## 2026-10-23 Preview107 大图库性能更新已发布
+
+[107更新](https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.107)已接入原签名渠道。62项最终回归、106实际公开下载/安装107及当前版本检查PASS；代码9abc967/组装5907779均已推送。万项合成元数据：名称排序407→39ms，搜索243→3ms，多选107→4ms，标签585→13ms；非整UI结论。实际107合成资料暖空闲30秒CPU78ms、工作集约350MiB，正常关闭退出；截图超时不冒充视觉通过。日常安装不强制更换，用户已回到电脑，已请求简短应用内更新重启确认。Prompt继续PENDING，性能专项继续。见[完整范围与证据](audits/UX_PERFORMANCE_107.md)。
+
 ## 2026-10-23 Preview106 性能更新已发布
 
 [106更新](https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.106)已上线并签入既有渠道。图库/回收站卡片及资产选用器改用静态256px缩略图，与队列共用8MiB像素LRU、双解码并发和取消排水；24张合成PNG保留像素72→4.5MiB、冷解码1.35–1.71s→0.25–0.27s，非整机RSS结论。52项最终回归、105实际公开下载/新目录安装和106当前检查PASS。日常独立105入口未改，可在应用“更新”获取106；原生一键重启因自动窗口捕获超时仍未验，当前不安排用户电脑操作。Prompt保持PENDING，长期性能专项继续。代码e08429e/组装839205b，见[实际证据](audits/UX_PERFORMANCE_106.md)。

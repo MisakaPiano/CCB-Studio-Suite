@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "version": 107,
+  "source": "5907779fad12cd3c2bfd3f22f1e6a0215ebe8be3",
+  "appBuildSource": "9abc9675685c8f5e087493778ebf8e0ce4dd2a30",
+  "installerSha256": "39cdf625eb6db8ad23889367eabe202e4727bfce11aaa2a780f31ce436ecf43d",
+  "installation": {
+    "files": 547,
+    "bytes": 252032902,
+    "manifestSha256": "1161f0d64383f9f276af1db70d0ebe5dc73a9fa8cf71743b9c0ff8251aed0454"
+  },
+  "actualInstalledFileCount": 550,
+  "existingDirectoryRejected": 17,
+  "existingFilesUnchanged": true,
+  "nativeUserAcceptance": "NOT TESTED",
+  "publicRelease": "NOT PUBLISHED"
+}

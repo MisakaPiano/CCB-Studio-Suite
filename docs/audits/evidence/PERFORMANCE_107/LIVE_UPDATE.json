@@ -1,0 +1,60 @@
+{
+  "status": "PASS",
+  "scope": "Exact shipped106 runtime, actual public signed106-to107 check/download/fresh install/current check; not UI restart",
+  "sourceSha": "5907779fad12cd3c2bfd3f22f1e6a0215ebe8be3",
+  "appSourceSha": "9abc9675685c8f5e087493778ebf8e0ce4dd2a30",
+  "installerSha256": "39cdf625eb6db8ad23889367eabe202e4727bfce11aaa2a780f31ce436ecf43d",
+  "download": {
+    "status": "DOWNLOADED_VERIFIED",
+    "version": 107,
+    "displayVersion": "0.0.0-preview.107",
+    "channel": "preview",
+    "notes": "Performance update: faster large-gallery search, sorting, tag albums and multi-selection; page resource baselines and drain regression. Prompt redesign remains pending.",
+    "sourceSha": "5907779fad12cd3c2bfd3f22f1e6a0215ebe8be3",
+    "bytes": 168211614,
+    "installedBytes": 252032902,
+    "sha256": "39cdf625eb6db8ad23889367eabe202e4727bfce11aaa2a780f31ce436ecf43d",
+    "minimumReader": 2,
+    "maximumReader": 3,
+    "dataVersion": 3,
+    "installer": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\p106-native\\data\\runtime\\updates\\downloads\\9528b889-0565-4fad-9b7e-6f32c3c16335\\studio-installer.exe"
+  },
+  "installation": {
+    "status": "INSTALLED_NOT_STARTED",
+    "target": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\p106-native\\apps\\107-5907779fad12",
+    "stage": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\p106-native\\apps\\107-5907779fad12.ad2bf90cdc20449ba5b794d9d4de3199.installing",
+    "expected": {
+      "product": "ccb-studio-suite",
+      "platform": "windows-x86_64",
+      "channel": "preview",
+      "version": 107,
+      "sourceSha": "5907779fad12cd3c2bfd3f22f1e6a0215ebe8be3"
+    },
+    "dataModified": false,
+    "verification": {
+      "files": 547,
+      "bytes": 252032902,
+      "manifestSha256": "1161f0d64383f9f276af1db70d0ebe5dc73a9fa8cf71743b9c0ff8251aed0454"
+    }
+  },
+  "currentCheck": {
+    "status": "UP_TO_DATE",
+    "version": 107,
+    "displayVersion": "0.0.0-preview.107",
+    "channel": "preview",
+    "notes": "Performance update: faster large-gallery search, sorting, tag albums and multi-selection; page resource baselines and drain regression. Prompt redesign remains pending.",
+    "sourceSha": "5907779fad12cd3c2bfd3f22f1e6a0215ebe8be3",
+    "bytes": 168211614,
+    "installedBytes": 252032902,
+    "sha256": "39cdf625eb6db8ad23889367eabe202e4727bfce11aaa2a780f31ce436ecf43d",
+    "minimumReader": 2,
+    "maximumReader": 3,
+    "dataVersion": 3
+  },
+  "syntheticWorkspaceFilesUnchanged": 247,
+  "oldInstallationFilesUnchanged": 550,
+  "dailyUserInstallationModified": false,
+  "nativeUpdateRestart": "NOT TESTED; CLI signed download and installation only",
+  "realProviderCalls": 0,
+  "privateDataRead": false
+}
