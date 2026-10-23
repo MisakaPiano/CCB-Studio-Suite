@@ -220,7 +220,7 @@ internal fun StudioGenerationModelChoice(draft: NovelAiStudioDraft, edit: ((Nove
 }
 
 @Composable
-internal fun StudioGenerationSettings(draft: NovelAiStudioDraft, edit: ((NovelAiStudioDraft) -> NovelAiStudioDraft) -> Unit) {
+internal fun StudioGenerationSettings(draft: NovelAiStudioDraft, edit: ((NovelAiStudioDraft) -> NovelAiStudioDraft) -> Unit,modeControls:(@Composable ()->Unit)?=null) {
     val s = draft.activeSettings
     fun change(transform: (NovelAiGenerationSettings) -> NovelAiGenerationSettings) = edit { it.withActiveSettings(transform(it.activeSettings)) }
     var customSize by remember { mutableStateOf(false) }
@@ -244,10 +244,12 @@ internal fun StudioGenerationSettings(draft: NovelAiStudioDraft, edit: ((NovelAi
     StudioDisclosure("高级设置", studioAdvancedSummary(s)) {
         StudioAdvancedSettings(s, ::change)
     }
+    if(modeControls!=null)modeControls()else {
     StudioSwitch("连续生成", draft.continuousModeEnabled) { edit { it.copy(continuousModeEnabled = !it.continuousModeEnabled) } }
     if (draft.continuousModeEnabled) Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         StatusText("目标图片数")
         StudioNumericInput("目标图片数", draft.continuousTargetCount.toString(), Modifier.width(80.dp)) { raw -> raw.toIntOrNull()?.takeIf { it > 0 }?.let { value -> edit { it.copy(continuousTargetCount = value) } } }
+    }
     }
     s.validationError(draft.characters.size)?.let { StatusText(it, DesktopBootstrapColors.warning) }
     }

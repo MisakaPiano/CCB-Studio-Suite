@@ -55,8 +55,9 @@ internal fun readImagePrompt(c:WorkbenchController,id:String):ImagePromptReading
         val parameters=RecipeComparison.inspect(raw).fields.filter{(key,value)->
             value.kind !in setOf("object","array") && (key.startsWith("/settings/") || key.startsWith("/imageGuidance/") || key=="/naturalLanguageMode")
         }.mapValues{it.value.value}+mapOf("实际 Seed" to origin.seed.toString(),"图片尺寸" to recipe.settings.imageSize().let{"${it.width}×${it.height}"},"AI 设计关联" to designLabel)+if(origin.derived)mapOf("来源图片" to origin.sourceId)else emptyMap()
+        val batchParameters=receipt.batchOrigin?.let{mapOf("批次分组" to it.groupName,"批次方向 / 轮次" to "${it.direction} / ${it.round}","批次编号" to it.batchId)}.orEmpty()
         val status=if(receipt.wireSha256.isNotBlank())if(origin.derived)"VERIFIED_SOURCE_HISTORY"else"VERIFIED_HISTORY"else"HISTORY_WITHOUT_REQUEST_HASH"
-        return@operation ImagePromptReading(status,sections,PromptImageContext(id,asset.sha256(),status,parameters,raw,receipt.wireSha256.takeIf{it.isNotBlank()}),sourceNotice+"读取保存的生成 Recipe；${if(receipt.wireSha256.isNotBlank())"请求摘要已核验"else"旧请求没有校验摘要"}。AI 设计：$designLabel；无明确记录时不推断关联。")
+        return@operation ImagePromptReading(status,sections,PromptImageContext(id,asset.sha256(),status,parameters+batchParameters,raw,receipt.wireSha256.takeIf{it.isNotBlank()}),sourceNotice+"读取保存的生成 Recipe；${if(receipt.wireSha256.isNotBlank())"请求摘要已核验"else"旧请求没有校验摘要"}。AI 设计：$designLabel；无明确记录时不推断关联。")
     }
     val read=c.metadataFile(origin.sourceId,::inspectMetadata);val m=read.metadata
     val parameters=linkedMapOf<String,String>()

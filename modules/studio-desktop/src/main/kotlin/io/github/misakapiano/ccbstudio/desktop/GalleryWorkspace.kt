@@ -64,6 +64,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
     private fun snapshot()=Visit(levels,query,date,source,filterTags,anyTag,assetType)
     private fun restore(v:Visit){levels=v.levels;query=v.query;date=v.date;source=v.source;filterTags=v.tags;anyTag=v.anyTag;assetType=v.type;anchor=null}
     private fun record(){previous=(previous+snapshot()).takeLast(100);next=emptyList()}
+    fun enterBatch(ids:Set<String>,label:String,identity:String){record();levels=listOf(levels.first(),GalleryScope(ids=ids,label=label,identity=identity));query="";date="";source="all";filterTags=emptyList();anchor=null}
     fun goBack(){previous.lastOrNull()?.let{v->next=next+snapshot();previous=previous.dropLast(1);restore(v)}}
     fun goForward(){next.lastOrNull()?.let{v->previous=previous+snapshot();next=next.dropLast(1);restore(v)}}
     val depth get()=levels.lastIndex

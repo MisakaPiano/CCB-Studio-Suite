@@ -20,10 +20,11 @@ fun imageOrigin(workspace:StudioWorkspace,imageId:String):ImageOrigin=workspace.
         val job=jobs.singleOrNull()
         if(job!=null) {
             require(composedJob==null || composedJob.id==job.id){"Composed image parent belongs to a different generation"}
-            if(Json.parseToJsonElement(job.recipe).jsonObject["kind"]!=null)
+            val raw=job.receipt(workspace)
+            if(Json.parseToJsonElement(raw).jsonObject["kind"]!=null)
                 return@operation ImageOrigin(imageId,current,chain.toList(),null,null,null)
             if(current in job.results) {
-                val receipt=documentJson.decodeFromString<GenerationReceipt>(job.recipe)
+                val receipt=documentJson.decodeFromString<GenerationReceipt>(raw)
                 receipt.expandedRequest(workspace)
                 return@operation ImageOrigin(imageId,current,chain.toList(),job,receipt,receipt.recipe.settings.seed+job.results.indexOf(current))
             }

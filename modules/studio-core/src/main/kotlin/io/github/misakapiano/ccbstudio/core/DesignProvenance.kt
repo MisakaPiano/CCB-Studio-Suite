@@ -69,9 +69,10 @@ class DesignProvenance(private val workspace:StudioWorkspace) {
     /** A separate asset links the existing exact request receipt; its schema is not rewritten. */
     fun linkGeneration(job:JobRecord,application:DesignApplicationRef)=workspace.operation {
         read(application)
-        val receipt=documentJson.decodeFromString<GenerationReceipt>(job.recipe);receipt.expandedRequest(workspace)
+        val raw=job.receipt(workspace)
+        val receipt=documentJson.decodeFromString<GenerationReceipt>(raw);receipt.expandedRequest(workspace)
         require(receipt.wireSha256.isNotBlank())
-        val link=GenerationDesignLink(jobId=job.id,jobRecipeSha256=sha256(job.recipe.toByteArray()),wireSha256=receipt.wireSha256,application=application)
+        val link=GenerationDesignLink(jobId=job.id,jobRecipeSha256=sha256(raw.toByteArray()),wireSha256=receipt.wireSha256,application=application)
         val id=UUID.nameUUIDFromBytes((GENERATION+":"+job.id).toByteArray())
         workspace.assets.put(AssetStore.Request(id,"generation-design-link.json",AssetStore.Kind.DERIVED,UUID.fromString(application.assetId),job.id.toByteArray(),GENERATION.toByteArray()),ByteArrayInputStream(documentJson.encodeToString(link).toByteArray()))
     }
@@ -84,8 +85,9 @@ class DesignProvenance(private val workspace:StudioWorkspace) {
         val raw=documentJson.parseToJsonElement(workspace.bytes(asset.request().id().toString()).decodeToString(throwOnInvalidSequence=true))
         if(raw.jsonObject["version"]?.jsonPrimitive?.intOrNull!=1)throw DataProblem("UNSUPPORTED_VERSION","Generation provenance version retained")
         val link=documentJson.decodeFromJsonElement<GenerationDesignLink>(raw)
-        val receipt=documentJson.decodeFromString<GenerationReceipt>(job.recipe);receipt.expandedRequest(workspace)
-        require(link.jobId==job.id&&link.jobRecipeSha256==sha256(job.recipe.toByteArray())&&link.wireSha256==receipt.wireSha256&&asset.request().parentId().toString()==link.application.assetId){"Generation provenance identity mismatch"}
+        val recipeText=job.receipt(workspace)
+        val receipt=documentJson.decodeFromString<GenerationReceipt>(recipeText);receipt.expandedRequest(workspace)
+        require(link.jobId==job.id&&link.jobRecipeSha256==sha256(recipeText.toByteArray())&&link.wireSha256==receipt.wireSha256&&asset.request().parentId().toString()==link.application.assetId){"Generation provenance identity mismatch"}
         read(link.application)
     }
     /** Commit the existing state normally, then bind provenance to that exact committed revision.

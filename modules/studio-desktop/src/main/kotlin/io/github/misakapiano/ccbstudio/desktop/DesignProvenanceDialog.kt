@@ -20,7 +20,7 @@ private data class DesignReading(val application:DesignApplicationSnapshot,val s
             val origin=imageOrigin(c.workspace,imageId)
             val job=origin.job?:return@operation null
             val application=DesignProvenance(c.workspace).forGeneration(job)?:return@operation null
-            val receipt=documentJson.decodeFromString<GenerationReceipt>(job.recipe)
+            val receipt=documentJson.decodeFromString<GenerationReceipt>(job.receipt(c.workspace))
             DesignReading(application,DesignPromptSnapshot.of(receipt.recipe),receipt.wireSha256,origin.sourceId.takeIf{origin.derived})
         }}}
     }

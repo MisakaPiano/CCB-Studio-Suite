@@ -15,6 +15,17 @@ import kotlin.test.*
 class StudioUpdateTest {
     private val awt=object:CoroutineDispatcher(){override fun dispatch(context:CoroutineContext,block:Runnable)=SwingUtilities.invokeLater(block)}
     private fun root()=Path.of(System.getProperty("preview.test.root"),java.util.UUID.randomUUID().toString())
+    @Test fun startupCheckRunsOnceKeepsBadgeAfterDismissAndOfflineUntilCurrentConfirmed()=runBlocking(awt) {
+        val scope=CoroutineScope(SupervisorJob()+awt);val cache=root();val calls=mutableListOf<Boolean>();var status="AVAILABLE"
+        val invoke:suspend(Boolean)->JsonObject={download->calls+=download;buildJsonObject{put("status",status);put("displayVersion","0.0.0-preview.synthetic")}}
+        val c=StudioUpdateController(scope,cache,invoke)
+        c.checkOnStartup();c.job!!.join();assertEquals(listOf(false),calls);assertTrue(c.showStartupNotice);assertNotNull(c.pendingVersion)
+        c.dismissStartupNotice();assertFalse(c.showStartupNotice);assertNotNull(c.pendingVersion);c.checkOnStartup();assertEquals(1,calls.size)
+        c.closeAndDrain();status="FAILED"
+        val next=StudioUpdateController(scope,cache,invoke);next.checkOnStartup();next.job!!.join();assertNotNull(next.pendingVersion);assertFalse(next.showStartupNotice)
+        status="UP_TO_DATE";next.check();next.job!!.join();assertNull(next.pendingVersion);assertFalse(Files.exists(cache.resolve("pending-notice.txt")))
+        assertTrue(calls.none{it});next.closeAndDrain();scope.cancel()
+    }
     @Test fun actualUpdateScreenRequiresDownloadConfirmationAndDoesNotClaimInstall()=runBlocking {
         val scope=CoroutineScope(SupervisorJob()+awt);val calls=mutableListOf<Boolean>();var installs=0
         val controller=StudioUpdateController(scope,root()){download->calls+=download;buildJsonObject {

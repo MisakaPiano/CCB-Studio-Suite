@@ -53,6 +53,87 @@ class WorkbenchWorkflowTest {
     }
     private fun frame(png:ByteArray):ByteArray{val p=MessagePack.newDefaultBufferPacker();p.packMapHeader(2);p.packString("event_type");p.packString("final");p.packString("image");p.packBinaryHeader(png.size);p.writePayload(png);p.close();val b=p.toByteArray();return ByteBuffer.allocate(4+b.size).putInt(b.size).put(b).array()}
 
+    @Test fun batchWorkbenchMatchesApprovedGroupsPreviewTilesAndSelection()=runBlocking(awt) {
+        val w=StudioWorkspace.openStudio(root());val scope=CoroutineScope(SupervisorJob()+awt)
+        val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{},pauseCollectionsOnStart=true)
+        val preview=w.importImage("synthetic-batch-result.png",EditorRenderer.synthetic(640,768),"synthetic preview fixture")
+        val groups=List(20){i->BatchGroup.create("风景构图 ${i+1}",NovelAiStudioDraft(basePrompt="landscape, synthetic sample $i"),BatchController.defaultDirections(c.draft)).let{g->if(i==3)g.copy(slots=g.slots.mapIndexed{n,slot->if(n<2)slot.copy(status="DONE",results=listOf(preview))else slot})else g}}
+        c.batch.queue.replaceGroups(groups);c.batch.queue.configure("fixture",BatchPolicy());c.batch.refresh();c.batch.open();c.batch.select(groups[3].id)
+        val scene=ImageComposeScene(1320,820,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){BatchWorkspace(c)}}
+        try {
+            scene.frames();scene.shot("batch-workbench-1320")
+            assertTrue(scene.nodes().any{it.matches("添加批次分组")&&it.config.getOrNull(SemanticsProperties.StateDescription)=="磁贴"})
+            assertEquals(0,scene.nodes().count{it.config.getOrNull(SemanticsProperties.ContentDescription)?.any{d->d.startsWith("选择批次")}==true})
+            c.batch.select(groups[4].id,true);c.batch.select(groups[6].id,shift=true);assertEquals(setOf(groups[3].id,groups[4].id,groups[5].id,groups[6].id),c.batch.selected)
+            c.batch.reorder(c.batch.selected,groups[0].id);withTimeout(5000){while(c.batch.changing)delay(10)};scene.frames();assertEquals(groups[3].id,c.batch.state.groups.first().id)
+            scene.click("勾选模式");assertTrue(c.batch.checkMode);scene.shot("batch-workbench-check-mode")
+            scene.click("编辑当前批次参数");scene.shot("batch-workbench-editor");scene.click("关闭")
+            scene.click("开始 / 继续");assertTrue(scene.nodes().any{it.matches("开始批次？")});scene.click("取消");assertEquals("PAUSED",c.batch.state.mode)
+            scene.constraints=Constraints.fixed(960,720);scene.frames();scene.shot("batch-workbench-960")
+            c.batch.queue.fail(BatchFailure("429","429：整批暂停，等待手动确认",notBefore=System.currentTimeMillis()+120000));c.batch.refresh();scene.frames();scene.shot("batch-workbench-429")
+            assertTrue(scene.nodes().none{it.matches("跳过并继续")});assertTrue(scene.nodes().first{it.matches("确认重试")}.config.contains(SemanticsProperties.Disabled))
+        }finally{scene.close();c.close();scope.cancel()}
+    }
+
+    @Test fun batchUsesRealPipelineCaptures429AndPersistsOriginWithoutAnyAutomaticRetry()=runBlocking(awt) {
+        val requests=CopyOnWriteArrayList<String>();var code=429
+        val server=HttpServer.create(InetSocketAddress("127.0.0.1",0),0)
+        server.createContext("/"){e->requests+=e.requestURI.path
+            val subscription=e.requestURI.path.contains("subscription")
+            val bytes=if(subscription)"{\"tier\":3,\"active\":true,\"trainingStepsLeft\":100,\"usage\":{\"percent\":80,\"isNegative\":false}}".toByteArray()else if(code==200)frame(EditorRenderer.synthetic(64,64))else "PRIVATE_ERROR_BODY".toByteArray()
+            if(!subscription&&code==429)e.responseHeaders.add("Retry-After","120")
+            e.sendResponseHeaders(if(subscription)200 else code,bytes.size.toLong());e.responseBody.use{it.write(bytes)}
+        };server.start()
+        val client=studioHttpClient().newBuilder().addInterceptor{chain->chain.proceed(chain.request().newBuilder().url("http://127.0.0.1:${server.address.port}${chain.request().url.encodedPath}").removeHeader("Authorization").build())}.build()
+        val r=root();val w=StudioWorkspace.openStudio(r);val scope=CoroutineScope(SupervisorJob()+awt)
+        val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),client,RequestAdmission{},true)
+        try {
+            c.saveAccount(null,"Fixture NAI","NAI","https://image.novelai.net",NovelAiImageModel.V4_5_FULL.apiId,"LOCAL_TEST_ONLY");c.idle()
+            c.edit{it.copy(basePrompt="landscape, synthetic batch")};c.flush();c.batch.addCurrent();withTimeout(5000){while(c.batch.changing)delay(10)}
+            c.batch.start();withTimeout(10000){while(c.batch.state.mode!="ERROR")delay(20)}
+            assertEquals("429",c.batch.state.error!!.code);assertTrue(c.batch.state.error!!.notBefore>System.currentTimeMillis());delay(400)
+            assertEquals(1,requests.count{!it.contains("subscription")});assertFalse(w.state.jobs.single().detail.contains("PRIVATE_ERROR_BODY"))
+            assertEquals("429",w.state.jobs.single().failureCode);assertFails{c.batch.queue.resume(System.currentTimeMillis(),skip=true)}
+            // Advance only fixture scheduling, then explicitly acknowledge. No provider retry is automatic.
+            w.operation{w.save(w.state.copy(batch=w.state.batch.copy(lastStartedAt=0,nextRequestAt=0,error=w.state.batch.error!!.copy(notBefore=0))))};c.batch.refresh();code=200;c.batch.start(retry=true)
+            withTimeout(10000){while(c.batch.state.completed!=1)delay(20)};c.batch.pause();withTimeout(5000){while(c.batch.changing)delay(10)}
+            assertEquals(2,requests.count{!it.contains("subscription")});val job=w.state.jobs.last();assertNotNull(job.receiptRef);assertEquals("",job.recipe)
+            val origin=imageOrigin(w,job.results.single());assertNotNull(origin.receipt!!.batchOrigin);assertEquals(1,origin.receipt!!.recipe.settings.count)
+            assertEquals("landscape, synthetic batch",c.draft.basePrompt);assertEquals(1,readGalleryHistory(w).entries.size)
+            assertEquals(c.batch.state.groups.first().name,readImagePrompt(c,job.results.single()).context.parameters["批次分组"])
+            assertFalse(job.receipt(w).contains("LOCAL_TEST_ONLY"));c.batch.refresh()
+        }finally{c.close();scope.cancel();server.stop(0)}
+        StudioWorkspace.openStudio(r).use{again->assertEquals(1,again.state.batch.completed);assertFalse(again.state.batch.running);assertEquals(1,readGalleryHistory(again).entries.size)}
+    }
+
+    @Test fun batchPauseDuringQuotaAndSavedResultFailureNeverResubmit()=runBlocking(awt) {
+        val quotaEntered=java.util.concurrent.CountDownLatch(1);val releaseQuota=java.util.concurrent.CountDownLatch(1)
+        val calls=java.util.concurrent.atomic.AtomicInteger();var hold=true
+        val server=HttpServer.create(InetSocketAddress("127.0.0.1",0),0)
+        server.createContext("/"){e->
+            val quota=e.requestURI.path.contains("subscription")
+            val bytes=if(quota){if(hold){quotaEntered.countDown();releaseQuota.await(10,java.util.concurrent.TimeUnit.SECONDS)};"{\"tier\":3,\"active\":true,\"trainingStepsLeft\":100,\"usage\":{\"percent\":80,\"isNegative\":false}}".toByteArray()}
+            else {calls.incrementAndGet();val p=MessagePack.newDefaultBufferPacker();p.packMapHeader(2);p.packString("event_type");p.packString("error");p.packString("message");p.packString("synthetic late error");p.close();val error=p.toByteArray();frame(EditorRenderer.synthetic(64,64))+ByteBuffer.allocate(4+error.size).putInt(error.size).put(error).array()}
+            e.sendResponseHeaders(200,bytes.size.toLong());e.responseBody.use{it.write(bytes)}
+        };server.start()
+        val client=studioHttpClient().newBuilder().addInterceptor{chain->chain.proceed(chain.request().newBuilder().url("http://127.0.0.1:${server.address.port}${chain.request().url.encodedPath}").removeHeader("Authorization").build())}.build()
+        val w=StudioWorkspace.openStudio(root());val scope=CoroutineScope(SupervisorJob()+awt)
+        val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),client,RequestAdmission{},true)
+        try {
+            c.saveAccount(null,"Fixture NAI","NAI","https://image.novelai.net",NovelAiImageModel.V4_5_FULL.apiId,"LOCAL_TEST_ONLY");c.idle()
+            c.edit{it.copy(basePrompt="synthetic batch pause")};c.flush();c.batch.addCurrent();withTimeout(5000){while(c.batch.changing)delay(10)}
+            c.batch.start();withTimeout(10000){while(quotaEntered.count>0)delay(20)}
+            c.batch.pause();withTimeout(5000){while(c.batch.changing)delay(10)};releaseQuota.countDown()
+            withTimeout(10000){while(c.busy)delay(20)};delay(100)
+            assertEquals("PAUSED",c.batch.state.mode);assertNull(c.batch.state.error);assertEquals(0,calls.get())
+            hold=false;c.batch.start();withTimeout(10000){while(c.batch.state.mode!="ERROR")delay(20)}
+            assertEquals(1,calls.get());assertEquals(1,c.batch.state.completed);assertNull(c.batch.state.error!!.slotId)
+            assertEquals(1,w.state.jobs.single().results.size);assertEquals("DONE",c.batch.state.groups.first().slots.first().status)
+            c.batch.start(retry=true);delay(300);c.batch.pause();withTimeout(5000){while(c.batch.changing)delay(10)}
+            assertEquals(1,calls.get());assertEquals(1,c.batch.state.completed)
+        }finally{releaseQuota.countDown();c.close();scope.cancel();server.stop(0)}
+    }
+
     @Test fun accountsDesignApplyGenerateGalleryAndRestart()=runBlocking(awt){
         val r=root();val png=EditorRenderer.synthetic(96,96);val requests=CopyOnWriteArrayList<String>();var designRequests=0
         val server=HttpServer.create(InetSocketAddress("127.0.0.1",0),0)
@@ -84,7 +165,7 @@ class WorkbenchWorkflowTest {
             assertNotNull(DesignProvenance(w).current())
             scene.field("基础 Prompt","quiet room, window, warm light")
             scene.generateClick();c.idle();scene.frames();assertEquals(1,c.assets.size);asset=c.current!!;assertContentEquals(png,w.bytes(asset));scene.shot("generated-original")
-            scene.click("图库");scene.click("全选");assertEquals(setOf(asset),c.selection);scene.click("反选");assertTrue(c.selection.isEmpty());scene.click("全选");scene.click("全不选");assertTrue(c.selection.isEmpty())
+            scene.click("图库");scene.click("全选");assertEquals(setOf(asset),c.selection);scene.click("反选");assertTrue(c.selection.isEmpty());scene.click("全选");scene.click("清空选择");assertTrue(c.selection.isEmpty())
             withTimeout(30000){while(scene.nodes().none{it.matches("查看 AI 设计过程")})scene.frames()}
             assertEquals("已核验 · 应用后有修改",readImagePrompt(c,asset).context.parameters["AI 设计关联"])
             scene.click("查看 AI 设计过程")

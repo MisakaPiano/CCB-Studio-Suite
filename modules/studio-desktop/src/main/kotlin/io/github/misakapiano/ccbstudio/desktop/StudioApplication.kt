@@ -39,6 +39,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     var requestClose:(()->Unit)?=null
     val animation=GalleryAnimationController(this,budgetRoot.parent.resolve("apng-exports"))
     val editor by lazy {TypesetEditorController(this)}
+    val batch by lazy {BatchController(this)}
     val vault=SecretVault(workspace.root.resolve("secrets"))
     val modelAccounts by lazy{ModelAccountsController(this)}
     val naiSettings by lazy{NaiSettingsController(this)}
@@ -135,6 +136,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     }
     fun postProcess(parent:String,bytes:ByteArray,tab:NovelAiPostProcessTab,source:NovelAiEnhanceSource?,options:NovelAiEnhanceOptions,
         onComplete:(ByteArray)->Unit,onStatus:(String)->Unit)=run(tab.label) {
+        if(batch.state.running)throw DataProblem("BATCH_ACTIVE","请先暂停批次，再使用图像处理")
         val account=state.accounts.single{it.id==naiId && it.service=="NAI"}
         workspace.beginTask().use {
             var job=JobRecord(account=account,recipe="",state="QUEUED",detail="POSTPROCESS:${tab.name}")
@@ -297,7 +299,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
         message="已保留原记录；检查后发送重试分支"
     }
     fun undo(redo:Boolean=false)=run(if(redo)"重做草稿" else "撤销草稿") {session.undo(redo);draft=workspace.state.creation!!.draft}
-    fun generate()=run("NovelAI 生成") {
+    fun generate(){if(batch.state.running){problem="批次正在运行，请先暂停批次再手动生成";return};run("NovelAI 生成") {
         val account=state.accounts.single{it.id==naiId && it.service=="NAI"}.copy(model=draft.selectedModel.apiId)
         require(draft.basePrompt.isNotBlank())
         val requested=draft
@@ -315,6 +317,34 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
             },designApplication=designApplication)
             check(result.state=="COMPLETED")
         }
+    }
+    }
+    suspend fun executeBatch(queue:BatchQueue,group:BatchGroup,slot:BatchSlot,onPhase:(String)->Unit) {
+        check(!busy && !maintenance && !library.collectionBusy)
+        busy=true;activeOperation="批量生图"
+        try {
+            pending?.cancelAndJoin();flush()
+            withContext(Dispatchers.IO) {
+                val account=workspace.state.accounts.singleOrNull{it.id==queue.state.accountId&&it.service=="NAI"}
+                    ?.copy(model=group.draft.selectedModel.apiId)?:throw DataProblem("ACCOUNT","请选择有效的 NAI 账户")
+                val status=GenerationStatusInterceptor()
+                val client=http.newBuilder().addInterceptor(status).retryOnConnectionFailure(false).build()
+                val token=vault.use(requireNotNull(account.secretRef)){it.decodeToString()}
+                val latest=try{NovelAiAccountService(client).fetchCancellable(token)}catch(e:CancellationException){throw e}catch(e:Exception){throw(status.failure.get()?:DataProblem("QUOTA","额度无法确认，整批已暂停"))}
+                if(naiId==account.id){usage=latest;usageAt=System.currentTimeMillis()}
+                if(!queue.state.running)return@withContext
+                val draft=group.draft.withSlot(slot)
+                val cost=NovelAiImageCostEstimator.estimate(draft.activeSettings,latest,draft.imageGuidance)
+                if(cost.anlas>queue.state.policy.anlasLimit-queue.state.reservedAnlas || cost.anlas>latest.anlas)
+                    throw DataProblem("BUDGET","免费额度不足或达到批次 Anlas 上限；没有发送生图请求")
+                val dispatch=queue.begin(slot.id,System.currentTimeMillis(),cost.anlas)
+                batch.refresh();onPhase("正在生成 · ${group.name} · ${slot.direction.label} ${slot.round}")
+                val job=StudioGenerator(workspace,vault,admission,http).generate(account,draft,
+                    designApplication=group.designApplication,jobId=dispatch.jobId,batchOrigin=dispatch.origin,
+                    onResult={id->current=id;assets=visibleAssets();if(batch.follow)batch.current=group.id},onRequestStart={queue.submitted(System.currentTimeMillis());batch.refresh()})
+                queue.complete(slot.id,job.results)
+            }
+        }finally{withContext(NonCancellable){withContext(Dispatchers.IO){state=workspace.state;assets=visibleAssets()};activeOperation="";busy=false}}
     }
     fun refreshUsage()=run("刷新账户额度") {
         val account=state.accounts.single{it.id==naiId && it.service=="NAI"}
@@ -407,6 +437,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     suspend fun enterMaintenance() {
         if(modelAccounts.dirty)throw DataProblem("ACCOUNT_DRAFT_UNSAVED","账户档案尚未保存，请在账户页保存或放弃修改后再关闭/更新")
         maintenance=true;thumbnails.pauseAndDrain();message="正在停止接收新操作并保存、排水…"
+        batch.drain()
         modelAccounts.cancel()
         naiSettings.cancelAndDrain()
         animation.cancelAndDrain()
@@ -437,6 +468,7 @@ internal fun launchStudio(args:Array<String>) {
         var closing by remember{mutableStateOf(false)}
         fun close(){if(!closing){closing=true;scope.launch{try{c.close();exitApplication()}catch(e:Exception){closing=false;c.problem=if(e is DataProblem && e.status=="ACCOUNT_DRAFT_UNSAVED")"账户档案尚未保存，请在账户页保存或放弃修改后再关闭" else "保存或排水尚未完成，窗口保持打开"}}}}
         c.requestClose=::close
+        LaunchedEffect(Unit){withFrameNanos{};c.updater.checkOnStartup()}
         c.installUpdate={if(!closing){closing=true;scope.launch{
             var handoff:Path?=null
             var teardownStarted=false
@@ -476,6 +508,11 @@ internal fun launchStudio(args:Array<String>) {
             }
         }
         DisguiseCoverManagerWindow(c)
+        if(c.batch.detached)Window(onCloseRequest={c.batch.detached=false;c.batch.shown=true},title="CCB Studio Suite · 批量生图",icon=StudioBrand.painter,
+            resizable=true,state=rememberWindowState(width=1180.dp,height=820.dp)) {
+            SideEffect{window.minimumSize=java.awt.Dimension(800,600)}
+            MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel,onPrimary=Ink,onSurface=DesktopBootstrapColors.foreground)) {BatchWorkspace(c,true)}
+        }
     }
 }
 
@@ -503,7 +540,7 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
         Row(Modifier.fillMaxWidth().height(44.dp).background(Panel).onGloballyPositioned{r.title=r.rect(it);r.publish()},verticalAlignment=Alignment.CenterVertically) {
             Box(Modifier.width(40.dp).fillMaxHeight().onGloballyPositioned{r.icon=r.rect(it);r.publish()},contentAlignment=Alignment.Center){Image(StudioBrand.painter,"CCB 蓝色 logo",Modifier.size(24.dp))}
             if(showBrand)Text("Studio Suite",Modifier.width(120.dp),fontSize=14.sp)
-            studioRoutes.forEach {label -> StudioRouteButton(label,c.view==label,compact,Modifier.onGloballyPositioned{r.buttons[label]=r.rect(it);r.publish()}){c.view=label} }
+            studioRoutes.forEach {label -> StudioRouteButton(label,c.view==label,compact,Modifier.onGloballyPositioned{r.buttons[label]=r.rect(it);r.publish()},pending=label=="更新"&&c.updater.pendingVersion!=null){c.view=label;if(label=="更新")c.updater.dismissStartupNotice()} }
             Spacer(Modifier.weight(1f))
             listOf(ChromeHit.MINIMIZE,ChromeHit.MAXIMIZE,ChromeHit.CLOSE).forEach {hit ->
                 StudioCaptionButton(hit,native,compact,Modifier.onGloballyPositioned{r.captions[hit]=r.rect(it);r.publish()},chrome::command)
@@ -523,10 +560,14 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
     }
     if(c.maintenance)AlertDialog(onDismissRequest={},title={Text("正在维护")},text={Text("正在保存、排水或交接更新。现有资料锁保持到操作完成；请等待，不会强制终止写入。")},confirmButton={if(!closing && c.requestClose!=null)TextButton(onClick={c.requestClose?.invoke()}){Text("再次尝试安全退出")}})
     c.problem?.let {AlertDialog(onDismissRequest={c.problem=null},title={Text("操作回执")},text={SelectionContainer{Text(it)}},confirmButton={TextButton(onClick={c.problem=null}){Text("关闭")}})}
+    if(c.updater.showStartupNotice && !c.busy && !c.batch.state.running && !c.maintenance && c.problem==null)
+        AlertDialog(onDismissRequest=c.updater::dismissStartupNotice,title={Text("发现新版本")},text={Text("${c.updater.pendingVersion} 已可用。可以现在查看更新，或稍后通过顶部带提示的“更新”入口处理。")},
+            confirmButton={TextButton(onClick={c.updater.dismissStartupNotice();c.view="更新"}){Text("查看更新")}},dismissButton={TextButton(onClick=c.updater::dismissStartupNotice){Text("稍后")}})
     }
 }
 
 @Composable private fun CreationWorkspace(c:WorkbenchController) {
+    if(c.batch.shown && !c.batch.detached){BatchWorkspace(c);return}
     val translated=c.state.creation!!.translatedTags
     var paste by remember{mutableStateOf<String?>(null)}
     var clear by remember{mutableStateOf(false)}
@@ -591,13 +632,16 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
             }
             DesktopStudioCharacters(c.draft,c.infrastructure,translated,c::edit)
             StudioDisclosure("生成设置",initiallyOpen=true) {
-                StudioGenerationSettings(c.draft,c::edit)
+                StudioGenerationSettings(c.draft,c::edit,modeControls={BatchCreationEntry(c)})
             }
         }
     },footer={
+        Column {
+        if(c.batch.state.total>0)StudioAction("批次 · ${batchStatus(c.batch.state)} · ${c.batch.state.completed}/${c.batch.state.total}"){c.batch.open()}
         DesktopStudioFooter(tokens,!c.busy && c.state.creation!!.undo.isNotEmpty(),!c.busy && c.state.creation!!.redo.isNotEmpty(),
-            if(generating)"停止生图" else naiGenerateLabel(false,c.naiId!=null,cost,c.usage!=null,c.draft.continuousModeEnabled),generating||(!c.busy&&c.naiId!=null&&cost!=null),
+            if(generating)"停止生图" else naiGenerateLabel(false,c.naiId!=null,cost,c.usage!=null,c.draft.continuousModeEnabled),generating||(!c.busy&&!c.batch.state.running&&c.naiId!=null&&cost!=null),
             {c.undo()},{c.undo(true)},{if(generating)c.active?.cancel() else if(!c.busy)c.generate()})
+        }
     },preview={rail -> ResultPreview(c,rail)})
     if(showSettings)NaiSettingsDialog(c){showSettings=false}
     paste?.let{text->AlertDialog(onDismissRequest={paste=null},title={Text("确认粘贴覆盖")},text={SelectionContainer{Text(text,Modifier.heightIn(max=400.dp).verticalScroll(rememberScrollState()))}},confirmButton={TextButton(onClick={c.pastePrompt(text);paste=null}){Text("确认覆盖，可撤销")}},dismissButton={TextButton(onClick={paste=null}){Text("取消")}})}

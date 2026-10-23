@@ -56,7 +56,7 @@ import com.example.chatbar.desktop.*
 internal val studioRoutes=listOf("创作","AI 设计","图库","编辑","资产管理","账户","更新")
 
 @OptIn(ExperimentalFoundationApi::class)
-@Composable internal fun StudioRouteButton(label:String,selected:Boolean,compact:Boolean,modifier:Modifier=Modifier,onClick:()->Unit) {
+@Composable internal fun StudioRouteButton(label:String,selected:Boolean,compact:Boolean,modifier:Modifier=Modifier,pending:Boolean=false,onClick:()->Unit) {
     val icon=when(label){"创作"->DesktopAppIcons.Star;"AI 设计"->DesktopAppIcons.Chat;"图库"->DesktopAppIcons.ImageAdd;"编辑"->DesktopAppIcons.Edit;"资产管理"->DesktopAppIcons.Data;"账户"->DesktopAppIcons.Settings;else->DesktopAppIcons.Refresh}
     TooltipArea(tooltip={Surface(shape=RoundedCornerShape(5.dp)){Text(label,Modifier.padding(8.dp))}}) {
         Row(modifier.width(if(compact)36.dp else 88.dp).height(36.dp)
@@ -66,6 +66,7 @@ internal val studioRoutes=listOf("创作","AI 设计","图库","编辑","资产�
             val ink=if(selected)Gold else Quiet
             Icon(icon,null,Modifier.size(17.dp),tint=ink)
             if(!compact){Spacer(Modifier.width(6.dp));Text(label,fontSize=13.sp,color=ink,maxLines=1)}
+            if(pending)Box(Modifier.padding(start=3.dp).size(6.dp).background(Gold,RoundedCornerShape(3.dp)).semantics{contentDescription="有待更新版本"})
         }
     }
 }

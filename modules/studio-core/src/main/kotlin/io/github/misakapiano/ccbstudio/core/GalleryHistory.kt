@@ -56,8 +56,9 @@ fun readGalleryHistory(workspace:StudioWorkspace):GalleryHistoryProjection=works
     workspace.state.jobs.forEach { job->
         val ids=(job.results+job.composedResults).filter{it in assets}.distinct()
         if(ids.isNotEmpty())try {
-            if(Json.parseToJsonElement(job.recipe).jsonObject["kind"]!=null)return@forEach
-            val receipt=documentJson.decodeFromString<GenerationReceipt>(job.recipe)
+            val raw=job.receipt(workspace)
+            if(Json.parseToJsonElement(raw).jsonObject["kind"]!=null)return@forEach
+            val receipt=documentJson.decodeFromString<GenerationReceipt>(raw)
             receipt.expandedRequest(workspace)
             val images=ids.map{id->
                 val index=job.results.indexOf(id).takeIf{it>=0}?:job.results.indexOf(assets.getValue(id).request().parentId()?.toString())

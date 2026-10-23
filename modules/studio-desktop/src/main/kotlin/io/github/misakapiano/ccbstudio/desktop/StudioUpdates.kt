@@ -15,6 +15,8 @@ import com.example.chatbar.desktop.StudioAction
 import kotlinx.coroutines.*
 import kotlinx.serialization.json.*
 import java.nio.file.Path
+import java.nio.file.Files
+import java.nio.file.StandardCopyOption
 
 internal class StudioUpdateController(private val scope:CoroutineScope,cache:Path,
     private val invoke:(suspend(Boolean)->JsonObject)? = null) {
@@ -25,6 +27,28 @@ internal class StudioUpdateController(private val scope:CoroutineScope,cache:Pat
     var busy by mutableStateOf(false);private set
     var job:Job?=null;private set
     private var closed=false
+    private var startupChecked=false
+    var pendingVersion by mutableStateOf<String?>(null);private set
+    var showStartupNotice by mutableStateOf(false);private set
+    fun dismissStartupNotice(){showStartupNotice=false}
+    fun checkOnStartup() {
+        if(startupChecked||closed)return
+        startupChecked=true
+        // Development/test hosts do not contact an update service implicitly.
+        if(invoke==null && System.getProperty("jpackage.app-path")==null)return
+        val hint=updateCache.resolve("pending-notice.txt")
+        pendingVersion=runCatching{if(Files.isRegularFile(hint)&&Files.size(hint)<=160)Files.readString(hint).takeIf{it.isNotBlank()}else null}.getOrNull()
+        check(startup=true)
+    }
+    private suspend fun rememberPending(version:String?)=withContext(Dispatchers.IO) {
+        Files.createDirectories(updateCache)
+        val hint=updateCache.resolve("pending-notice.txt")
+        if(version==null)Files.deleteIfExists(hint)else {
+            val staged=updateCache.resolve("pending-notice-${java.util.UUID.randomUUID()}.tmp")
+            Files.writeString(staged,version.take(160))
+            Files.move(staged,hint,StandardCopyOption.ATOMIC_MOVE,StandardCopyOption.REPLACE_EXISTING)
+        }
+    }
     internal fun receiveProgress(value:JsonObject) {
         val phase=value["phase"]?.jsonPrimitive?.content
         require(phase in setOf("CHECKING","DOWNLOADING","VERIFYING","DOWNLOADED_VERIFIED")){"未知更新进度"}
@@ -38,7 +62,7 @@ internal class StudioUpdateController(private val scope:CoroutineScope,cache:Pat
         progress=value
         message=when(phase){"CHECKING"->"正在检查签名、版本和渠道…";"DOWNLOADING"->"正在下载安装包…";else->"正在校验安装包，请稍候…"}
     }
-    fun check(download:Boolean=false) {
+    fun check(download:Boolean=false,startup:Boolean=false) {
         if(busy||closed)return
         result=null;progress=null
         busy=true;message=if(download)"正在下载并验证…" else "正在检查签名、版本和渠道…"
@@ -54,6 +78,10 @@ internal class StudioUpdateController(private val scope:CoroutineScope,cache:Pat
                     "DOWNLOADED_VERIFIED"->"下载完成，安全校验已通过"
                     "UP_TO_DATE"->"已是最新版本"
                     else->"更新未完成：${result?.get("reason")?.jsonPrimitive?.content?:"未知回执"}"
+                }
+                when(result?.get("status")?.jsonPrimitive?.content){
+                    "AVAILABLE","DOWNLOADED_VERIFIED"->{pendingVersion=result?.get("displayVersion")?.jsonPrimitive?.content?:"新版";rememberPending(pendingVersion);if(startup)showStartupNotice=true}
+                    "UP_TO_DATE"->{pendingVersion=null;showStartupNotice=false;rememberPending(null)}
                 }
             } catch(e:CancellationException){message="已取消；当前安装和资料未替换";throw e}
             catch(e:Exception){message="更新未完成：${e.message?.take(240)?:e.javaClass.simpleName}"}
