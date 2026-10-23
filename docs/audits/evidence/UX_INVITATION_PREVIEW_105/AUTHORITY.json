@@ -1,0 +1,798 @@
+{
+  "status": "PASS",
+  "referenceCommit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+  "files": [
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/local/JsonFileStorage.kt",
+      "sourceSha256": "02c13bb8d2adae07e1409dd4cc98aee764a0e04755efce333cdc5aeaa2ea97a9",
+      "workingSha256": "02c13bb8d2adae07e1409dd4cc98aee764a0e04755efce333cdc5aeaa2ea97a9",
+      "expected": "02c13bb8d2adae07e1409dd4cc98aee764a0e04755efce333cdc5aeaa2ea97a9",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/local/entity/AppSettings.kt",
+      "sourceSha256": "2825f2b758e1f72c8757e89794a80c1e0e672f7ac059d32289623a59930993b4",
+      "workingSha256": "2825f2b758e1f72c8757e89794a80c1e0e672f7ac059d32289623a59930993b4",
+      "expected": "2825f2b758e1f72c8757e89794a80c1e0e672f7ac059d32289623a59930993b4",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/local/entity/CharacterCard.kt",
+      "sourceSha256": "dbfbf05c9fc144067290e5c509c241f6887260d875ab60c32ed9d9a23c7978f5",
+      "workingSha256": "dbfbf05c9fc144067290e5c509c241f6887260d875ab60c32ed9d9a23c7978f5",
+      "expected": "dbfbf05c9fc144067290e5c509c241f6887260d875ab60c32ed9d9a23c7978f5",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/local/entity/ChatMessage.kt",
+      "sourceSha256": "f45ebffdc991f07fa5c085b48795d72e56433d97fd5717b97ab6d0efdbcacf9b",
+      "workingSha256": "f45ebffdc991f07fa5c085b48795d72e56433d97fd5717b97ab6d0efdbcacf9b",
+      "expected": "f45ebffdc991f07fa5c085b48795d72e56433d97fd5717b97ab6d0efdbcacf9b",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/local/entity/FishAudioVoiceBinding.kt",
+      "sourceSha256": "9b50b62b62778590974d1ef73b04d88ec033528f51a587e851e868eba5c50e65",
+      "workingSha256": "9b50b62b62778590974d1ef73b04d88ec033528f51a587e851e868eba5c50e65",
+      "expected": "9b50b62b62778590974d1ef73b04d88ec033528f51a587e851e868eba5c50e65",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/local/entity/FormatCard.kt",
+      "sourceSha256": "bf0fad6054cc6d58be18b309050593e08c8b9fb8945b64cd10c9df767acf7d76",
+      "workingSha256": "bf0fad6054cc6d58be18b309050593e08c8b9fb8945b64cd10c9df767acf7d76",
+      "expected": "bf0fad6054cc6d58be18b309050593e08c8b9fb8945b64cd10c9df767acf7d76",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/local/entity/FormatPromptPosition.kt",
+      "sourceSha256": "9b4052f7d0f01c81befcce65ae56a3c96454c11acf53a8247801b938b688f1de",
+      "workingSha256": "9b4052f7d0f01c81befcce65ae56a3c96454c11acf53a8247801b938b688f1de",
+      "expected": "9b4052f7d0f01c81befcce65ae56a3c96454c11acf53a8247801b938b688f1de",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/local/entity/ModelConfig.kt",
+      "sourceSha256": "1d410c94d486d2bdcb04b178cbaf3d5c0d683f97c91285185598e0d659aa444b",
+      "workingSha256": "1d410c94d486d2bdcb04b178cbaf3d5c0d683f97c91285185598e0d659aa444b",
+      "expected": "1d410c94d486d2bdcb04b178cbaf3d5c0d683f97c91285185598e0d659aa444b",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/local/entity/PlayerSetting.kt",
+      "sourceSha256": "c6f72da807a7ad66cc3fc8afd93c35dec3ba2b825cf7025ed34aa278d4c33231",
+      "workingSha256": "c6f72da807a7ad66cc3fc8afd93c35dec3ba2b825cf7025ed34aa278d4c33231",
+      "expected": "c6f72da807a7ad66cc3fc8afd93c35dec3ba2b825cf7025ed34aa278d4c33231",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/local/entity/PresetModelCatalog.kt",
+      "sourceSha256": "3de336e051955e99fec9229d1d9bce65133b6bdcc6543755a78d508fdb4a803a",
+      "workingSha256": "3de336e051955e99fec9229d1d9bce65133b6bdcc6543755a78d508fdb4a803a",
+      "expected": "3de336e051955e99fec9229d1d9bce65133b6bdcc6543755a78d508fdb4a803a",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/local/entity/SpeakerTagRenameTask.kt",
+      "sourceSha256": "266c0d678f76503d4bfb90d32be1d7e89dbf04c3d419772b0dd900a9e62d61f9",
+      "workingSha256": "266c0d678f76503d4bfb90d32be1d7e89dbf04c3d419772b0dd900a9e62d61f9",
+      "expected": "266c0d678f76503d4bfb90d32be1d7e89dbf04c3d419772b0dd900a9e62d61f9",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/local/entity/WorldBook.kt",
+      "sourceSha256": "99a93cc3a2572912e35704cbfd2b591a4000fafce409b34a218f19aea6a1b045",
+      "workingSha256": "99a93cc3a2572912e35704cbfd2b591a4000fafce409b34a218f19aea6a1b045",
+      "expected": "99a93cc3a2572912e35704cbfd2b591a4000fafce409b34a218f19aea6a1b045",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/operation/AppDataOperationGate.kt",
+      "sourceSha256": "d0c08c13152d1af5a1e7c125489e93bc94c738aadbd6445ec330d0ea3fa5d8e1",
+      "workingSha256": "d0c08c13152d1af5a1e7c125489e93bc94c738aadbd6445ec330d0ea3fa5d8e1",
+      "expected": "d0c08c13152d1af5a1e7c125489e93bc94c738aadbd6445ec330d0ea3fa5d8e1",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/repository/CredentialPersistencePolicy.kt",
+      "sourceSha256": "0a0d62f12f349059df3865ab2d1baf4a33f571ac00ac7896c181c690ef5ee4f1",
+      "workingSha256": "0a0d62f12f349059df3865ab2d1baf4a33f571ac00ac7896c181c690ef5ee4f1",
+      "expected": "0a0d62f12f349059df3865ab2d1baf4a33f571ac00ac7896c181c690ef5ee4f1",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/repository/ModelRepository.kt",
+      "sourceSha256": "74e4a250eb0b4bb5d94d204d43e99b32b3ff043caf763b0a5a34c5e3c8bb8f60",
+      "workingSha256": "74e4a250eb0b4bb5d94d204d43e99b32b3ff043caf763b0a5a34c5e3c8bb8f60",
+      "expected": "74e4a250eb0b4bb5d94d204d43e99b32b3ff043caf763b0a5a34c5e3c8bb8f60",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/repository/ModelStorageKeyPolicy.kt",
+      "sourceSha256": "01050ecb88684065acc29d2b34af3fcc493101d5fc5f0d4cfb6e222af253ffec",
+      "workingSha256": "01050ecb88684065acc29d2b34af3fcc493101d5fc5f0d4cfb6e222af253ffec",
+      "expected": "01050ecb88684065acc29d2b34af3fcc493101d5fc5f0d4cfb6e222af253ffec",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/repository/SettingsDraftMerge.kt",
+      "sourceSha256": "25ba5c87d368c647a4703d17d9822dc61c78f745c8ab8bc26cde4fcc6b5b4ee0",
+      "workingSha256": "25ba5c87d368c647a4703d17d9822dc61c78f745c8ab8bc26cde4fcc6b5b4ee0",
+      "expected": "25ba5c87d368c647a4703d17d9822dc61c78f745c8ab8bc26cde4fcc6b5b4ee0",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/data/repository/SettingsRepository.kt",
+      "sourceSha256": "bfd3881265988c70aefd96863f7909086c654b2bd6721cefaa2d7f6af9f94d56",
+      "workingSha256": "bfd3881265988c70aefd96863f7909086c654b2bd6721cefaa2d7f6af9f94d56",
+      "expected": "bfd3881265988c70aefd96863f7909086c654b2bd6721cefaa2d7f6af9f94d56",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/ProxyAwareClient.kt",
+      "sourceSha256": "23ccc973c67bf474141682c321129bcd5c046cddfb31c04ba0b2b838d19d2876",
+      "workingSha256": "23ccc973c67bf474141682c321129bcd5c046cddfb31c04ba0b2b838d19d2876",
+      "expected": "23ccc973c67bf474141682c321129bcd5c046cddfb31c04ba0b2b838d19d2876",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/appearance/ThemeColor.kt",
+      "sourceSha256": "5c758a51571538fa8fc3192def551fff993b434c99258cd7d882cbacffe502fc",
+      "workingSha256": "5c758a51571538fa8fc3192def551fff993b434c99258cd7d882cbacffe502fc",
+      "expected": "5c758a51571538fa8fc3192def551fff993b434c99258cd7d882cbacffe502fc",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/card/AiJsonOutputExtractor.kt",
+      "sourceSha256": "99f7deb690c0eaed77ba13413b40f6ee3ef27caf5dab4eba5ed1914fe30117d9",
+      "workingSha256": "99f7deb690c0eaed77ba13413b40f6ee3ef27caf5dab4eba5ed1914fe30117d9",
+      "expected": "99f7deb690c0eaed77ba13413b40f6ee3ef27caf5dab4eba5ed1914fe30117d9",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/card/CardTransferModels.kt",
+      "sourceSha256": "5cd8343d45c6f1574534f2511c1a147a3e69b5e49556a3dba33ba905b0749984",
+      "workingSha256": "5cd8343d45c6f1574534f2511c1a147a3e69b5e49556a3dba33ba905b0749984",
+      "expected": "5cd8343d45c6f1574534f2511c1a147a3e69b5e49556a3dba33ba905b0749984",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/card/CharacterPlaceholderPolicy.kt",
+      "sourceSha256": "1f1670ac6db465f0352db5603abfe476f01993ca9727381452279c5cb970fe23",
+      "workingSha256": "1f1670ac6db465f0352db5603abfe476f01993ca9727381452279c5cb970fe23",
+      "expected": "1f1670ac6db465f0352db5603abfe476f01993ca9727381452279c5cb970fe23",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/card/FormatCardUserToolValidator.kt",
+      "sourceSha256": "e40fd208d8e492d17f7a8688c9967d129cb928b019a11fa242cde6ca8d48830c",
+      "workingSha256": "e40fd208d8e492d17f7a8688c9967d129cb928b019a11fa242cde6ca8d48830c",
+      "expected": "e40fd208d8e492d17f7a8688c9967d129cb928b019a11fa242cde6ca8d48830c",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/card/ModelTemplateTransferService.kt",
+      "sourceSha256": "50d836f4646fc3d03eec573ec63edf92a305ad53ba2c5e0dd45faf20dab13e5f",
+      "workingSha256": "50d836f4646fc3d03eec573ec63edf92a305ad53ba2c5e0dd45faf20dab13e5f",
+      "expected": "50d836f4646fc3d03eec573ec63edf92a305ad53ba2c5e0dd45faf20dab13e5f",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/card/NamePolicy.kt",
+      "sourceSha256": "09b838387634fc1a66a8a874d7764de1e63b76ce26e20cd5f21ca544b05dd772",
+      "workingSha256": "09b838387634fc1a66a8a874d7764de1e63b76ce26e20cd5f21ca544b05dd772",
+      "expected": "09b838387634fc1a66a8a874d7764de1e63b76ce26e20cd5f21ca544b05dd772",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/card/PngTextChunks.kt",
+      "sourceSha256": "d4975b699e4c5c0440858c8480328e38cd68fb68a7e88d4c868e2687f8299cde",
+      "workingSha256": "d4975b699e4c5c0440858c8480328e38cd68fb68a7e88d4c868e2687f8299cde",
+      "expected": "d4975b699e4c5c0440858c8480328e38cd68fb68a7e88d4c868e2687f8299cde",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/ChatApiMessage.kt",
+      "sourceSha256": "eb4b391674ea17fde49f253b4746aa733881819e0f350a39aeb012c179ad843f",
+      "workingSha256": "eb4b391674ea17fde49f253b4746aa733881819e0f350a39aeb012c179ad843f",
+      "expected": "eb4b391674ea17fde49f253b4746aa733881819e0f350a39aeb012c179ad843f",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/CleartextHttpChatTemplatePolicy.kt",
+      "sourceSha256": "d636ce1009fbf4a5b3e444f2d0ad0c0ee90b05b6b26faa4b896fa240d8f65cc5",
+      "workingSha256": "d636ce1009fbf4a5b3e444f2d0ad0c0ee90b05b6b26faa4b896fa240d8f65cc5",
+      "expected": "d636ce1009fbf4a5b3e444f2d0ad0c0ee90b05b6b26faa4b896fa240d8f65cc5",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/ImageDescriptionRequestPolicy.kt",
+      "sourceSha256": "8869e8f800d7ac5b3468bd59b4152a221731b23c8901db36e6a27597a80c3059",
+      "workingSha256": "8869e8f800d7ac5b3468bd59b4152a221731b23c8901db36e6a27597a80c3059",
+      "expected": "8869e8f800d7ac5b3468bd59b4152a221731b23c8901db36e6a27597a80c3059",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/ImageUnderstandingService.kt",
+      "sourceSha256": "dca77daa46adab18a19c8186e5a3930378e85ef9e96b5c608d108d331e18ccbf",
+      "workingSha256": "dca77daa46adab18a19c8186e5a3930378e85ef9e96b5c608d108d331e18ccbf",
+      "expected": "dca77daa46adab18a19c8186e5a3930378e85ef9e96b5c608d108d331e18ccbf",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/ModelRequestException.kt",
+      "sourceSha256": "5eaf1d84aeafb567458fd86285963653cadbc3f3fb4197c690810c4be031c356",
+      "workingSha256": "5eaf1d84aeafb567458fd86285963653cadbc3f3fb4197c690810c4be031c356",
+      "expected": "5eaf1d84aeafb567458fd86285963653cadbc3f3fb4197c690810c4be031c356",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/OpenAiChatRequestSerializer.kt",
+      "sourceSha256": "0a4c8ef320c7c9cb32df7b306d6db6de6802e0e18908808cd7de097c54974298",
+      "workingSha256": "0a4c8ef320c7c9cb32df7b306d6db6de6802e0e18908808cd7de097c54974298",
+      "expected": "0a4c8ef320c7c9cb32df7b306d6db6de6802e0e18908808cd7de097c54974298",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/OpenAiCompletionResponsePolicy.kt",
+      "sourceSha256": "75a8333599873d890b9692a378168893f030f0e71571a20c5105191bd034ed30",
+      "workingSha256": "75a8333599873d890b9692a378168893f030f0e71571a20c5105191bd034ed30",
+      "expected": "75a8333599873d890b9692a378168893f030f0e71571a20c5105191bd034ed30",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/OpenAiSseParser.kt",
+      "sourceSha256": "204f8ce51051416c5550b0b34dc83ed0a71a091ae92125b1c513ea8ae0c45aad",
+      "workingSha256": "204f8ce51051416c5550b0b34dc83ed0a71a091ae92125b1c513ea8ae0c45aad",
+      "expected": "204f8ce51051416c5550b0b34dc83ed0a71a091ae92125b1c513ea8ae0c45aad",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/PlaceholderRenderer.kt",
+      "sourceSha256": "a42a6c182e6e8245df00f1b732ef1cfebfa744a00e401ab1ab7c0776b596f9e6",
+      "workingSha256": "a42a6c182e6e8245df00f1b732ef1cfebfa744a00e401ab1ab7c0776b596f9e6",
+      "expected": "a42a6c182e6e8245df00f1b732ef1cfebfa744a00e401ab1ab7c0776b596f9e6",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/StreamEvent.kt",
+      "sourceSha256": "4cd452e6a32cc2f71b79c3f8ff125b7ddbf0d3767532f9b64f7f0ba74aaab754",
+      "workingSha256": "4cd452e6a32cc2f71b79c3f8ff125b7ddbf0d3767532f9b64f7f0ba74aaab754",
+      "expected": "4cd452e6a32cc2f71b79c3f8ff125b7ddbf0d3767532f9b64f7f0ba74aaab754",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/chat/ThinkingRequestPolicy.kt",
+      "sourceSha256": "5a7ff0131c76607342a77fd9a38524998d1a371075f49a1e0f014ee552be2147",
+      "workingSha256": "5a7ff0131c76607342a77fd9a38524998d1a371075f49a1e0f014ee552be2147",
+      "expected": "5a7ff0131c76607342a77fd9a38524998d1a371075f49a1e0f014ee552be2147",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/ApngDisguiseCodec.kt",
+      "sourceSha256": "534e75d95dc27b9fe163eabd1ebadf1fc2fd6eac6490beaf0ccb0f216ea1006f",
+      "workingSha256": "534e75d95dc27b9fe163eabd1ebadf1fc2fd6eac6490beaf0ccb0f216ea1006f",
+      "expected": "534e75d95dc27b9fe163eabd1ebadf1fc2fd6eac6490beaf0ccb0f216ea1006f",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/DanbooruQueryNormalization.kt",
+      "sourceSha256": "26f902dba40ca4271093e3d580bd53dc3c895e341075da910d202ee4b9d04716",
+      "workingSha256": "26f902dba40ca4271093e3d580bd53dc3c895e341075da910d202ee4b9d04716",
+      "expected": "26f902dba40ca4271093e3d580bd53dc3c895e341075da910d202ee4b9d04716",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/ImageCanvasHistory.kt",
+      "sourceSha256": "19afd9cc63b6d1b3a4128004295ef509aa10585f2cc180bf54f111705a839254",
+      "workingSha256": "19afd9cc63b6d1b3a4128004295ef509aa10585f2cc180bf54f111705a839254",
+      "expected": "19afd9cc63b6d1b3a4128004295ef509aa10585f2cc180bf54f111705a839254",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/ImageCropMath.kt",
+      "sourceSha256": "7e35440173ece17c473fdedd0e47f1f6380073664a62ac7d9a066ed2749aca28",
+      "workingSha256": "7e35440173ece17c473fdedd0e47f1f6380073664a62ac7d9a066ed2749aca28",
+      "expected": "7e35440173ece17c473fdedd0e47f1f6380073664a62ac7d9a066ed2749aca28",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/ImageMetadataStripper.kt",
+      "sourceSha256": "7aba6565f746e18a51333e5e814fb766c0aa05f5c194e758eb816cd7019c4e1a",
+      "workingSha256": "7aba6565f746e18a51333e5e814fb766c0aa05f5c194e758eb816cd7019c4e1a",
+      "expected": "7aba6565f746e18a51333e5e814fb766c0aa05f5c194e758eb816cd7019c4e1a",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiAccountService.kt",
+      "sourceSha256": "8a71d800456e244fc4dc3c5fdf26a8fe04de7ae84ccc426c6ecb42c5ec269a06",
+      "workingSha256": "8a71d800456e244fc4dc3c5fdf26a8fe04de7ae84ccc426c6ecb42c5ec269a06",
+      "expected": "8a71d800456e244fc4dc3c5fdf26a8fe04de7ae84ccc426c6ecb42c5ec269a06",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiBatchPolicy.kt",
+      "sourceSha256": "3cdf0e9a1303ebbfc6e95a7e2728c3b7022a660706506c11ce5fcccebb07dd75",
+      "workingSha256": "3cdf0e9a1303ebbfc6e95a7e2728c3b7022a660706506c11ce5fcccebb07dd75",
+      "expected": "3cdf0e9a1303ebbfc6e95a7e2728c3b7022a660706506c11ce5fcccebb07dd75",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiCatalogQueries.kt",
+      "sourceSha256": "6bfa4a9db9bd5dd7d6b4872f9ad448320476abe228c7a1a39340d95dea5e2c1e",
+      "workingSha256": "6bfa4a9db9bd5dd7d6b4872f9ad448320476abe228c7a1a39340d95dea5e2c1e",
+      "expected": "6bfa4a9db9bd5dd7d6b4872f9ad448320476abe228c7a1a39340d95dea5e2c1e",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiCatalogSource.kt",
+      "sourceSha256": "4b1a54079e3f478dc36647d2153ad013e51c9a3066639c4787c5433bd2a99f7c",
+      "workingSha256": "4b1a54079e3f478dc36647d2153ad013e51c9a3066639c4787c5433bd2a99f7c",
+      "expected": "4b1a54079e3f478dc36647d2153ad013e51c9a3066639c4787c5433bd2a99f7c",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiCatalogValidation.kt",
+      "sourceSha256": "567891df59aad6a2705226cb569c000fde5158cdd9246abba16384c2c0289d36",
+      "workingSha256": "567891df59aad6a2705226cb569c000fde5158cdd9246abba16384c2c0289d36",
+      "expected": "567891df59aad6a2705226cb569c000fde5158cdd9246abba16384c2c0289d36",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiCharacterPositionPolicy.kt",
+      "sourceSha256": "73f2379703a45b65d186126a062ad5ca0b331a79f0cb229ac85688bb86a83527",
+      "workingSha256": "73f2379703a45b65d186126a062ad5ca0b331a79f0cb229ac85688bb86a83527",
+      "expected": "73f2379703a45b65d186126a062ad5ca0b331a79f0cb229ac85688bb86a83527",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiCodexCatalog.kt",
+      "sourceSha256": "362eae9b1c2e442c27d38f68defcd042a099278a1d813f8dd6c483b129b8cb11",
+      "workingSha256": "362eae9b1c2e442c27d38f68defcd042a099278a1d813f8dd6c483b129b8cb11",
+      "expected": "362eae9b1c2e442c27d38f68defcd042a099278a1d813f8dd6c483b129b8cb11",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiDesignConversationModels.kt",
+      "sourceSha256": "f0b492cb683f1aba3080cf56de7be9c89c80649b737d309b27a91833115aa57e",
+      "workingSha256": "f0b492cb683f1aba3080cf56de7be9c89c80649b737d309b27a91833115aa57e",
+      "expected": "f0b492cb683f1aba3080cf56de7be9c89c80649b737d309b27a91833115aa57e",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiFocusedInpaintPlanner.kt",
+      "sourceSha256": "28de2228442fc30d5242216c307f513d2cba9d03cf6b96a47d3c59f04a3ac6b6",
+      "workingSha256": "28de2228442fc30d5242216c307f513d2cba9d03cf6b96a47d3c59f04a3ac6b6",
+      "expected": "28de2228442fc30d5242216c307f513d2cba9d03cf6b96a47d3c59f04a3ac6b6",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiFocusedMaskPixels.kt",
+      "sourceSha256": "b81383c1dfd0a6961d0c143bcc10a8d0ad3943ab862f295159a37a6c86a63b61",
+      "workingSha256": "b81383c1dfd0a6961d0c143bcc10a8d0ad3943ab862f295159a37a6c86a63b61",
+      "expected": "b81383c1dfd0a6961d0c143bcc10a8d0ad3943ab862f295159a37a6c86a63b61",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiImageGuidance.kt",
+      "sourceSha256": "0c87a8de97279acde9103e883a2ecfe0c459d786508811007b641c76cb84aac5",
+      "workingSha256": "0c87a8de97279acde9103e883a2ecfe0c459d786508811007b641c76cb84aac5",
+      "expected": "0c87a8de97279acde9103e883a2ecfe0c459d786508811007b641c76cb84aac5",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiImageModel.kt",
+      "sourceSha256": "f98b0fa9875e4eb6456f5e4db90d36090eaa8c4099f76383465fd3ca743a9a1e",
+      "workingSha256": "f98b0fa9875e4eb6456f5e4db90d36090eaa8c4099f76383465fd3ca743a9a1e",
+      "expected": "f98b0fa9875e4eb6456f5e4db90d36090eaa8c4099f76383465fd3ca743a9a1e",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiImageModelResolution.kt",
+      "sourceSha256": "433b5d33955cf4e0238f79eea4cb9fa77c6b7bfc51c68262671ee5bca9926fa1",
+      "workingSha256": "433b5d33955cf4e0238f79eea4cb9fa77c6b7bfc51c68262671ee5bca9926fa1",
+      "expected": "433b5d33955cf4e0238f79eea4cb9fa77c6b7bfc51c68262671ee5bca9926fa1",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiImagePostProcessing.kt",
+      "sourceSha256": "67ccca4d501aa1a88b6a3d31449faeeef8d8751409680443f2743c19846e7b0a",
+      "workingSha256": "67ccca4d501aa1a88b6a3d31449faeeef8d8751409680443f2743c19846e7b0a",
+      "expected": "67ccca4d501aa1a88b6a3d31449faeeef8d8751409680443f2743c19846e7b0a",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiImageRegeneration.kt",
+      "sourceSha256": "11b43aadd652f036272ea218ad86db04d418bc3dd02e80cca2e058bc040b53b0",
+      "workingSha256": "11b43aadd652f036272ea218ad86db04d418bc3dd02e80cca2e058bc040b53b0",
+      "expected": "11b43aadd652f036272ea218ad86db04d418bc3dd02e80cca2e058bc040b53b0",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiImageService.kt",
+      "sourceSha256": "0f5f6a64a3fce6395cda32b33e44b8c1b957d8c02fc998f5235bb5d4970cc02c",
+      "workingSha256": "0f5f6a64a3fce6395cda32b33e44b8c1b957d8c02fc998f5235bb5d4970cc02c",
+      "expected": "0f5f6a64a3fce6395cda32b33e44b8c1b957d8c02fc998f5235bb5d4970cc02c",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiImageSizePolicy.kt",
+      "sourceSha256": "3094f7f995d2bb3df6cd16427fddbf38ac915f63c86bd634b864f35d68c2a3eb",
+      "workingSha256": "3094f7f995d2bb3df6cd16427fddbf38ac915f63c86bd634b864f35d68c2a3eb",
+      "expected": "3094f7f995d2bb3df6cd16427fddbf38ac915f63c86bd634b864f35d68c2a3eb",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiInpaintPixelPolicy.kt",
+      "sourceSha256": "e3f0003196b493d5cd6209e75479df81027e7093d61226ad43b6b393226b046d",
+      "workingSha256": "e3f0003196b493d5cd6209e75479df81027e7093d61226ad43b6b393226b046d",
+      "expected": "e3f0003196b493d5cd6209e75479df81027e7093d61226ad43b6b393226b046d",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiPixelResampler.kt",
+      "sourceSha256": "2342482d87ba898c39933e9578f04aa4c67df23ed50369414550a081d75cb492",
+      "workingSha256": "2342482d87ba898c39933e9578f04aa4c67df23ed50369414550a081d75cb492",
+      "expected": "2342482d87ba898c39933e9578f04aa4c67df23ed50369414550a081d75cb492",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiPngMetadataReader.kt",
+      "sourceSha256": "e905d6608d351e7d21b5583770410e0a40372128f7d3a78957b53baa1865fedd",
+      "workingSha256": "e905d6608d351e7d21b5583770410e0a40372128f7d3a78957b53baa1865fedd",
+      "expected": "e905d6608d351e7d21b5583770410e0a40372128f7d3a78957b53baa1865fedd",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiPromptDesigner.kt",
+      "sourceSha256": "4d3efa37bfeef23a4a192daf3d6a02239e9803d2ca407dec3d6af35b7e6fb661",
+      "workingSha256": "4d3efa37bfeef23a4a192daf3d6a02239e9803d2ca407dec3d6af35b7e6fb661",
+      "expected": "4d3efa37bfeef23a4a192daf3d6a02239e9803d2ca407dec3d6af35b7e6fb661",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiPromptPlan.kt",
+      "sourceSha256": "227df729a08a4fefca4efa8425c06c1709b60d6f550663974c3f1f82c043a15b",
+      "workingSha256": "227df729a08a4fefca4efa8425c06c1709b60d6f550663974c3f1f82c043a15b",
+      "expected": "227df729a08a4fefca4efa8425c06c1709b60d6f550663974c3f1f82c043a15b",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiPromptPostProcessor.kt",
+      "sourceSha256": "ce384181a98688bac26a28e6d9ee73ffe423740b267651891512a53a33f50b3d",
+      "workingSha256": "ce384181a98688bac26a28e6d9ee73ffe423740b267651891512a53a33f50b3d",
+      "expected": "ce384181a98688bac26a28e6d9ee73ffe423740b267651891512a53a33f50b3d",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiPromptTokenCounter.kt",
+      "sourceSha256": "caf09f6b7355a702ec7b81f9bb122dc58d0d651034ea4a23a7f7c63d90db6790",
+      "workingSha256": "caf09f6b7355a702ec7b81f9bb122dc58d0d651034ea4a23a7f7c63d90db6790",
+      "expected": "caf09f6b7355a702ec7b81f9bb122dc58d0d651034ea4a23a7f7c63d90db6790",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiPromptTranslation.kt",
+      "sourceSha256": "28a8b1adf9b656e2e073405a8f0295e834f7633f6fe0b7fb6182d1e730baff5a",
+      "workingSha256": "28a8b1adf9b656e2e073405a8f0295e834f7633f6fe0b7fb6182d1e730baff5a",
+      "expected": "28a8b1adf9b656e2e073405a8f0295e834f7633f6fe0b7fb6182d1e730baff5a",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiPromptWordDictionary.kt",
+      "sourceSha256": "9d2da602d96fb4b38d0bbf5241ee71541a65f9c3ca171d40858e32d6352c58ea",
+      "workingSha256": "9d2da602d96fb4b38d0bbf5241ee71541a65f9c3ca171d40858e32d6352c58ea",
+      "expected": "9d2da602d96fb4b38d0bbf5241ee71541a65f9c3ca171d40858e32d6352c58ea",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiRankedIndexBuilder.kt",
+      "sourceSha256": "58df6ea205e587c49b9e3e68fd6478d9f714fe3f4981cb755b508b3d934e64fe",
+      "workingSha256": "58df6ea205e587c49b9e3e68fd6478d9f714fe3f4981cb755b508b3d934e64fe",
+      "expected": "58df6ea205e587c49b9e3e68fd6478d9f714fe3f4981cb755b508b3d934e64fe",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiSqlDatabase.kt",
+      "sourceSha256": "f9bf39721aedf0a410174ead4cadbfa0659efe30ddf2d5c245950fe02b9929e1",
+      "workingSha256": "f9bf39721aedf0a410174ead4cadbfa0659efe30ddf2d5c245950fe02b9929e1",
+      "expected": "f9bf39721aedf0a410174ead4cadbfa0659efe30ddf2d5c245950fe02b9929e1",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiStreamFrameDecoder.kt",
+      "sourceSha256": "e877856acca3f584e238cd6e1a6c962110c28731f01e8e6c00e76d6c55beff73",
+      "workingSha256": "e877856acca3f584e238cd6e1a6c962110c28731f01e8e6c00e76d6c55beff73",
+      "expected": "e877856acca3f584e238cd6e1a6c962110c28731f01e8e6c00e76d6c55beff73",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiStudioImageImport.kt",
+      "sourceSha256": "b5b74888eaed0cfc277da6489b203b392c299687f95a8844af5c92398f041987",
+      "workingSha256": "b5b74888eaed0cfc277da6489b203b392c299687f95a8844af5c92398f041987",
+      "expected": "b5b74888eaed0cfc277da6489b203b392c299687f95a8844af5c92398f041987",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiStudioModels.kt",
+      "sourceSha256": "be02ded92c5a9116c398fb0ccb26857ef33452c535820ed68d9cf48846088a34",
+      "workingSha256": "be02ded92c5a9116c398fb0ccb26857ef33452c535820ed68d9cf48846088a34",
+      "expected": "be02ded92c5a9116c398fb0ccb26857ef33452c535820ed68d9cf48846088a34",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiStudioPromptClipboard.kt",
+      "sourceSha256": "e0d08109f223ef5e426db3e471468b01561dd8c515ea48b2c3d3639c83491f8d",
+      "workingSha256": "e0d08109f223ef5e426db3e471468b01561dd8c515ea48b2c3d3639c83491f8d",
+      "expected": "e0d08109f223ef5e426db3e471468b01561dd8c515ea48b2c3d3639c83491f8d",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiStudioSizePolicy.kt",
+      "sourceSha256": "11b36080ab8f85f9f2dc3d5b60199ecc9724569891e458c3c205fc52886d5b98",
+      "workingSha256": "11b36080ab8f85f9f2dc3d5b60199ecc9724569891e458c3c205fc52886d5b98",
+      "expected": "11b36080ab8f85f9f2dc3d5b60199ecc9724569891e458c3c205fc52886d5b98",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiTagCompletion.kt",
+      "sourceSha256": "6a1257d2a1148bf780c7f4e3968eda20b21800cd8cdbb17f0fe5ff460e63adf8",
+      "workingSha256": "6a1257d2a1148bf780c7f4e3968eda20b21800cd8cdbb17f0fe5ff460e63adf8",
+      "expected": "6a1257d2a1148bf780c7f4e3968eda20b21800cd8cdbb17f0fe5ff460e63adf8",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiTagLookup.kt",
+      "sourceSha256": "d18b765b424cd394ee5ff97f3f8799435cdc399c97d75e63cf972259a4711f82",
+      "workingSha256": "d18b765b424cd394ee5ff97f3f8799435cdc399c97d75e63cf972259a4711f82",
+      "expected": "d18b765b424cd394ee5ff97f3f8799435cdc399c97d75e63cf972259a4711f82",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiTagResearchService.kt",
+      "sourceSha256": "a24206ae6c26f32bb739b45d32e4dba239afb21eec0e78bb9309071ed5f2795c",
+      "workingSha256": "a24206ae6c26f32bb739b45d32e4dba239afb21eec0e78bb9309071ed5f2795c",
+      "expected": "a24206ae6c26f32bb739b45d32e4dba239afb21eec0e78bb9309071ed5f2795c",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiTagSuggestionService.kt",
+      "sourceSha256": "d8413e144074fac613e9bb48761a3983fcbb5aa0fb2f3b3de831950a670fb72b",
+      "workingSha256": "d8413e144074fac613e9bb48761a3983fcbb5aa0fb2f3b3de831950a670fb72b",
+      "expected": "d8413e144074fac613e9bb48761a3983fcbb5aa0fb2f3b3de831950a670fb72b",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiTextTransport.kt",
+      "sourceSha256": "b2e7a6c178bdbe47e30469d722e6e8f88ff9484c64721cc9ceeee3da368f45a1",
+      "workingSha256": "b2e7a6c178bdbe47e30469d722e6e8f88ff9484c64721cc9ceeee3da368f45a1",
+      "expected": "b2e7a6c178bdbe47e30469d722e6e8f88ff9484c64721cc9ceeee3da368f45a1",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiUpscaleService.kt",
+      "sourceSha256": "e8d72b75e38346f8975351170679895008434ffd0783928db4f2cf9592648645",
+      "workingSha256": "e8d72b75e38346f8975351170679895008434ffd0783928db4f2cf9592648645",
+      "expected": "e8d72b75e38346f8975351170679895008434ffd0783928db4f2cf9592648645",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiV5TextPromptPolicy.kt",
+      "sourceSha256": "7342d9abc2b9dda908365e93d45eb36a3e0e458fe08df0c133f9bef3f6a6c794",
+      "workingSha256": "7342d9abc2b9dda908365e93d45eb36a3e0e458fe08df0c133f9bef3f6a6c794",
+      "expected": "7342d9abc2b9dda908365e93d45eb36a3e0e458fe08df0c133f9bef3f6a6c794",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiVibeEncodingCore.kt",
+      "sourceSha256": "77e7efb004691ef673c27ae1106e2a6e54b13b1d596af5eba71b7bda3f14b95c",
+      "workingSha256": "77e7efb004691ef673c27ae1106e2a6e54b13b1d596af5eba71b7bda3f14b95c",
+      "expected": "77e7efb004691ef673c27ae1106e2a6e54b13b1d596af5eba71b7bda3f14b95c",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/PrivacyPngEncoder.kt",
+      "sourceSha256": "9b1acae327d5a787017d33d42afebc81d72f5df848f41e49eb60daa0a50eb276",
+      "workingSha256": "9b1acae327d5a787017d33d42afebc81d72f5df848f41e49eb60daa0a50eb276",
+      "expected": "9b1acae327d5a787017d33d42afebc81d72f5df848f41e49eb60daa0a50eb276",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/ProcessedImageModels.kt",
+      "sourceSha256": "24c9f8a4eaef70d217253c2e79a83473bb5684558ff4e831db1eb7beb3dad161",
+      "workingSha256": "24c9f8a4eaef70d217253c2e79a83473bb5684558ff4e831db1eb7beb3dad161",
+      "expected": "24c9f8a4eaef70d217253c2e79a83473bb5684558ff4e831db1eb7beb3dad161",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/RankedTagCompletion.kt",
+      "sourceSha256": "36d3712a3a5f28af58455fc6890f996df1df3f9e6975cf657c9a8270c65ab025",
+      "workingSha256": "36d3712a3a5f28af58455fc6890f996df1df3f9e6975cf657c9a8270c65ab025",
+      "expected": "36d3712a3a5f28af58455fc6890f996df1df3f9e6975cf657c9a8270c65ab025",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/StealthAlphaMetadata.kt",
+      "sourceSha256": "9931c84dd6f49acc9affe33839517bf85b20d80b347230b9b976ccc84718ceb1",
+      "workingSha256": "9931c84dd6f49acc9affe33839517bf85b20d80b347230b9b976ccc84718ceb1",
+      "expected": "9931c84dd6f49acc9affe33839517bf85b20d80b347230b9b976ccc84718ceb1",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/model/EffectiveModelResolver.kt",
+      "sourceSha256": "9ae7743bac0b92341ebdbe5b83fd94654af0cfe71b817a9e5ded0161003abf21",
+      "workingSha256": "9ae7743bac0b92341ebdbe5b83fd94654af0cfe71b817a9e5ded0161003abf21",
+      "expected": "9ae7743bac0b92341ebdbe5b83fd94654af0cfe71b817a9e5ded0161003abf21",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/model/PresetModelCatalogSource.kt",
+      "sourceSha256": "c1007ddb9211869add5763d93e7e829eceb28126565e25677713b4c83f66e702",
+      "workingSha256": "c1007ddb9211869add5763d93e7e829eceb28126565e25677713b4c83f66e702",
+      "expected": "c1007ddb9211869add5763d93e7e829eceb28126565e25677713b4c83f66e702",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/model/PresetModelPolicy.kt",
+      "sourceSha256": "c33b2e167f2d6d84a26a2de5c109728b3773c7551fd337dab8ab41b06d14136e",
+      "workingSha256": "c33b2e167f2d6d84a26a2de5c109728b3773c7551fd337dab8ab41b06d14136e",
+      "expected": "c33b2e167f2d6d84a26a2de5c109728b3773c7551fd337dab8ab41b06d14136e",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/prompt/AiTaskFailurePolicy.kt",
+      "sourceSha256": "8b41e3aaf07edb0c0db9249d89aacac3994cb3aafd3b6260ff2a0e8e29b849ec",
+      "workingSha256": "8b41e3aaf07edb0c0db9249d89aacac3994cb3aafd3b6260ff2a0e8e29b849ec",
+      "expected": "8b41e3aaf07edb0c0db9249d89aacac3994cb3aafd3b6260ff2a0e8e29b849ec",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/prompt/AuxiliaryPromptAuthority.kt",
+      "sourceSha256": "4ab4d1c0dde2f71f5b99723dbaf35894a23f4168e47f93326bfa70f2a7583554",
+      "workingSha256": "4ab4d1c0dde2f71f5b99723dbaf35894a23f4168e47f93326bfa70f2a7583554",
+      "expected": "4ab4d1c0dde2f71f5b99723dbaf35894a23f4168e47f93326bfa70f2a7583554",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/prompt/CharacterNaiPromptDefaults.kt",
+      "sourceSha256": "b54be396079c946274b18c41815ccee6f9a355183690648cd2afefe24f224563",
+      "workingSha256": "b54be396079c946274b18c41815ccee6f9a355183690648cd2afefe24f224563",
+      "expected": "b54be396079c946274b18c41815ccee6f9a355183690648cd2afefe24f224563",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/prompt/NovelAiPromptAuthority.kt",
+      "sourceSha256": "a0e0057dfec51b89eb8c92d2891865a5f865d6add2860c0f0b7fadbc9aef01da",
+      "workingSha256": "a0e0057dfec51b89eb8c92d2891865a5f865d6add2860c0f0b7fadbc9aef01da",
+      "expected": "a0e0057dfec51b89eb8c92d2891865a5f865d6add2860c0f0b7fadbc9aef01da",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/update/SharedDanbooruCatalogUpdateChecker.kt",
+      "sourceSha256": "a9608c905754529784e9a82427911b2bb5937fbbbabe76db7546d2ebeb2981ab",
+      "workingSha256": "a9608c905754529784e9a82427911b2bb5937fbbbabe76db7546d2ebeb2981ab",
+      "expected": "a9608c905754529784e9a82427911b2bb5937fbbbabe76db7546d2ebeb2981ab",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiCharacterEnabledTest.kt",
+      "sourceSha256": "62ba5b3279c86928f0851c02d4ae88a6dc672c4f54b9061b743537c193cfc6ca",
+      "workingSha256": "62ba5b3279c86928f0851c02d4ae88a6dc672c4f54b9061b743537c193cfc6ca",
+      "expected": "62ba5b3279c86928f0851c02d4ae88a6dc672c4f54b9061b743537c193cfc6ca",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiCharacterPositionTest.kt",
+      "sourceSha256": "b0da630f3d094a0cefa1ff9da3925e065216f42fa205621433b99db33531365e",
+      "workingSha256": "b0da630f3d094a0cefa1ff9da3925e065216f42fa205621433b99db33531365e",
+      "expected": "b0da630f3d094a0cefa1ff9da3925e065216f42fa205621433b99db33531365e",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiDesignerTransportTest.kt",
+      "sourceSha256": "3b00b66d0bbd96663da9951be8f1c00554b1cc1d7a86f39396ea3e63cb3f6319",
+      "workingSha256": "3b00b66d0bbd96663da9951be8f1c00554b1cc1d7a86f39396ea3e63cb3f6319",
+      "expected": "3b00b66d0bbd96663da9951be8f1c00554b1cc1d7a86f39396ea3e63cb3f6319",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiImageGuidanceTest.kt",
+      "sourceSha256": "b1ea40fddbdbad6b1e172d7f260a5d91d600eeb73376677928bb46138f3a0b33",
+      "workingSha256": "b1ea40fddbdbad6b1e172d7f260a5d91d600eeb73376677928bb46138f3a0b33",
+      "expected": "b1ea40fddbdbad6b1e172d7f260a5d91d600eeb73376677928bb46138f3a0b33",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiImageModelResolutionTest.kt",
+      "sourceSha256": "4803ae144ae2ab63a17f4d88456ab8552ce7be4436430a59da11a60485471a7d",
+      "workingSha256": "4803ae144ae2ab63a17f4d88456ab8552ce7be4436430a59da11a60485471a7d",
+      "expected": "4803ae144ae2ab63a17f4d88456ab8552ce7be4436430a59da11a60485471a7d",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiImageRetryTest.kt",
+      "sourceSha256": "537834c974c8958c2e4e4ea981f7225f3d444bae052b46555765592e41d8bba4",
+      "workingSha256": "537834c974c8958c2e4e4ea981f7225f3d444bae052b46555765592e41d8bba4",
+      "expected": "537834c974c8958c2e4e4ea981f7225f3d444bae052b46555765592e41d8bba4",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiPngMetadataReaderTest.kt",
+      "sourceSha256": "7c222be55d620de1b3091f5f4c57206f130eda2826f30c805f7a198b897cf81d",
+      "workingSha256": "7c222be55d620de1b3091f5f4c57206f130eda2826f30c805f7a198b897cf81d",
+      "expected": "7c222be55d620de1b3091f5f4c57206f130eda2826f30c805f7a198b897cf81d",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiPromptPostProcessorTest.kt",
+      "sourceSha256": "c511bf297a1d7eeb4863aa53f7c8e28c7b805395a8bcb1ea3cd2b87789e13c00",
+      "workingSha256": "c511bf297a1d7eeb4863aa53f7c8e28c7b805395a8bcb1ea3cd2b87789e13c00",
+      "expected": "c511bf297a1d7eeb4863aa53f7c8e28c7b805395a8bcb1ea3cd2b87789e13c00",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiStudioCustomSizeTest.kt",
+      "sourceSha256": "bb61fdb5a45348afcf9388c81a3c85ea012cfa1696b3320040a3acceb9da45ae",
+      "workingSha256": "bb61fdb5a45348afcf9388c81a3c85ea012cfa1696b3320040a3acceb9da45ae",
+      "expected": "bb61fdb5a45348afcf9388c81a3c85ea012cfa1696b3320040a3acceb9da45ae",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiStudioRequestTest.kt",
+      "sourceSha256": "30e3f174afaa1a61bb8d95316b463ef23ad774cbf0c3b7e92f4ca92df068fa5b",
+      "workingSha256": "30e3f174afaa1a61bb8d95316b463ef23ad774cbf0c3b7e92f4ca92df068fa5b",
+      "expected": "30e3f174afaa1a61bb8d95316b463ef23ad774cbf0c3b7e92f4ca92df068fa5b",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiTagCompletionTest.kt",
+      "sourceSha256": "cea09cb11a1cfd86a7e7de12d94e5097b5b3ca4ad81971916dc396efc4dfd5a8",
+      "workingSha256": "cea09cb11a1cfd86a7e7de12d94e5097b5b3ca4ad81971916dc396efc4dfd5a8",
+      "expected": "cea09cb11a1cfd86a7e7de12d94e5097b5b3ca4ad81971916dc396efc4dfd5a8",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiTagResearchServiceTest.kt",
+      "sourceSha256": "a8a5db39c7def550e620385f43e601ff50af58b86132f69b8df1c90204da52bb",
+      "workingSha256": "a8a5db39c7def550e620385f43e601ff50af58b86132f69b8df1c90204da52bb",
+      "expected": "a8a5db39c7def550e620385f43e601ff50af58b86132f69b8df1c90204da52bb",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiTagSuggestionServiceTest.kt",
+      "sourceSha256": "5085333325a9a6955fa981298961a0c7bcac6a2a297f912ed4fefd4b42eb94f2",
+      "workingSha256": "5085333325a9a6955fa981298961a0c7bcac6a2a297f912ed4fefd4b42eb94f2",
+      "expected": "5085333325a9a6955fa981298961a0c7bcac6a2a297f912ed4fefd4b42eb94f2",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiV5TextPromptPolicyTest.kt",
+      "sourceSha256": "7a116d477594827c489a1e7ae12f6d35ef56a1d6b7fff7fe3b69dcaaed0e2adc",
+      "workingSha256": "7a116d477594827c489a1e7ae12f6d35ef56a1d6b7fff7fe3b69dcaaed0e2adc",
+      "expected": "7a116d477594827c489a1e7ae12f6d35ef56a1d6b7fff7fe3b69dcaaed0e2adc",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/PrivacyPngEncoderTest.kt",
+      "sourceSha256": "0939d35bb0e253c376b6dce59783e0896d133d6c14f7e54ef236e0387ddbf693",
+      "workingSha256": "0939d35bb0e253c376b6dce59783e0896d133d6c14f7e54ef236e0387ddbf693",
+      "expected": "0939d35bb0e253c376b6dce59783e0896d133d6c14f7e54ef236e0387ddbf693",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/StealthAlphaMetadataTest.kt",
+      "sourceSha256": "952b50fbb5ef87d1fb566e6c22acf86e4b166f64c096b67fe7343d5d86d90cce",
+      "workingSha256": "952b50fbb5ef87d1fb566e6c22acf86e4b166f64c096b67fe7343d5d86d90cce",
+      "expected": "952b50fbb5ef87d1fb566e6c22acf86e4b166f64c096b67fe7343d5d86d90cce",
+      "status": "PASS"
+    },
+    {
+      "path": "modules/image-authority/src/test/resources/fixtures/novelai_v45_precise_payload.json",
+      "sourceSha256": "b23fb790408e96dcf428b954ba6588125bce5a1737dcb8c059f15a62bd6874db",
+      "workingSha256": "b23fb790408e96dcf428b954ba6588125bce5a1737dcb8c059f15a62bd6874db",
+      "expected": "b23fb790408e96dcf428b954ba6588125bce5a1737dcb8c059f15a62bd6874db",
+      "status": "PASS"
+    }
+  ],
+  "referenceModified": false
+}

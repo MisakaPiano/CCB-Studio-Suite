@@ -1,0 +1,19 @@
+{
+  "status": "PASS_WITH_SCOPE",
+  "reportedExistingBuild": "unspecified user-operated existing Suite test package",
+  "answers": [
+    "AI 设计→应用→生图 我已经试过了",
+    "重开后图片和参数都保留"
+  ],
+  "scope": [
+    "AI design to apply to actual image generation",
+    "Image and saved Prompt/model/generation parameters persist after restart"
+  ],
+  "notCovered": [
+    "All providers or actual billing accuracy",
+    "Guaranteed AI design backlink for every image",
+    "Complete edited delivery and restore human workflow"
+  ],
+  "agentProviderCalls": 0,
+  "privateDataRead": false
+}

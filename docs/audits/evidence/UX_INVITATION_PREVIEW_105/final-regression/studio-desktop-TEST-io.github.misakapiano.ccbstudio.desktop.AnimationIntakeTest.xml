@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.AnimationIntakeTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-23T09:22:07.730Z" hostname="DD1" time="16.04">
+  <properties/>
+  <testcase name="emptyToolAcceptsFileDialogAndDroppedDirectoryAndRefusesWorkspaceOutput" classname="io.github.misakapiano.ccbstudio.desktop.AnimationIntakeTest" time="7.137"/>
+  <testcase name="currentToolIntakeNavigationAndOutputOnlyClipboardNeverFallBackToOriginal" classname="io.github.misakapiano.ccbstudio.desktop.AnimationIntakeTest" time="8.903"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

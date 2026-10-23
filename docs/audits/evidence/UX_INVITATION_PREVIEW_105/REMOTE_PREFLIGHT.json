@@ -1,0 +1,48 @@
+{
+  "releases": [
+    {
+      "tag": "v0.0.0-preview.104",
+      "draft": false,
+      "prerelease": true,
+      "url": "https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.104"
+    },
+    {
+      "tag": "v0.0.0-preview.103",
+      "draft": false,
+      "prerelease": true,
+      "url": "https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.103"
+    },
+    {
+      "tag": "v0.0.0-preview.102",
+      "draft": false,
+      "prerelease": true,
+      "url": "https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.102"
+    },
+    {
+      "tag": "v0.0.0-preview.101",
+      "draft": false,
+      "prerelease": true,
+      "url": "https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.101"
+    },
+    {
+      "tag": "v0.0.0-preview.100",
+      "draft": false,
+      "prerelease": true,
+      "url": "https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.100"
+    }
+  ],
+  "renewalRuns": [
+    {
+      "id": 39926210958,
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 39824206682,
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

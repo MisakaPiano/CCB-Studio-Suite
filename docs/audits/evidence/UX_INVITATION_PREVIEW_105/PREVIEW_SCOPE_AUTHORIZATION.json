@@ -1,0 +1,17 @@
+{
+  "status": "EXPLICIT_USER_SCOPE_OVERRIDE",
+  "request": "Publish invited experimental Preview now with image generation and gallery as core; defer supplementary manual checks while user away from PC; support continuous updates.",
+  "deferredNotPassed": [
+    "Supplementary editor and storybook delivery/restore manual checks",
+    "Current APNG keyboard receiving workflow",
+    "New Prompt comparison design and full comparison manual acceptance"
+  ],
+  "retainedGates": [
+    "Installer manifest and existing-destination protection",
+    "Signed update metadata and source identity",
+    "Original preservation and executed synthetic regressions"
+  ],
+  "publicationAuthorized": true,
+  "mainMergeAuthorized": false,
+  "realCallsAuthorized": false
+}
