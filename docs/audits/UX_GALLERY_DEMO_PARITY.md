@@ -69,3 +69,5 @@
 首轮13项/1失败复现切换磁贴保存时的SerializationException：偏好数据类曾放在未启用序列化编译器的desktop模块，导致没有生成serializer。将同一偏好结构移到已有序列化插件的core模块，保留version1与已存按钮/顺序/显隐配置；不通过忽略错误或重置用户配置修复。
 
 最终15项实际通过、0失败/错误/跳过、104.442秒、sourceStable=true，createDistributable成功。实际菜单选择文件及目录本层入库（子目录排除）、普通/勾选无重复文本对勾、两种工具样式切换保存、关闭重开保留、磁贴留白处指针点击、整组真实拖放且跟手图覆盖实际目标指针、原件字节保留均有验证。继续覆盖回收站恢复、复制交付、APNG队列、原有导入和取消。原失败保留于`evidence/UX_GALLERY_TILES_SELECTION/runs`；生产组件合成截图也保存，不能代替用户手感/样式签收。
+
+新固定源码`59e2fe8991fb18c97c14624df686a33af6ff5410`；220程序文件逐项大小/SHA核验。快捷方式`H:/CCB-Studio-Suite/.local/windows-rc/gallery-tiles-selection-review/Start-gallery-tiles-selection-review.lnk`，独立原始合成夹具（并非复制用户已使用的测试资料根），自动收集暂停。固定构建只核验源码/产物、0项新测试，不将UP-TO-DATE称为重新执行通过。新包手感/样式人工NOT TESTED。
