@@ -1,0 +1,31 @@
+{
+  "status": "PUBLISHED_AUTO_VERIFIED_HUMAN_STYLE_NOT_TESTED",
+  "sourceSha": "f59b0c25a2eb9d28ad2392d53e8cce1a95857a99",
+  "installerBytes": 168633807,
+  "installerSha256": "82464978a84decaada263459374450251ec21f070e33047e3f6647395aef9971",
+  "release": "https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.114",
+  "metadataCommit": "7504ac1f78535f847c5efa356054be1be54cac74",
+  "metadataVersions": {
+    "targets": 13,
+    "snapshot": 19,
+    "timestamp": 19
+  },
+  "rootSha256": "408008d80aeb2dd3844325d74f09da9d248733e220dd88c08cc6299c4a24cc7a",
+  "tests": 73,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "testEvidence": ".local/windows-preview/evidence/20261023T210910441011Z-gallery-layout-114-final-regression",
+  "menuSourceFiles": 22,
+  "installedFiles": 550,
+  "oldProgramFilesRetained": 550,
+  "oldSyntheticDataFilesRetained": 10,
+  "nativeSnapshotMatched": true,
+  "parentProcessAndDrain": "Explicit closed synthetic parent substitute; NOT TESTED in actual parent process",
+  "humanUpdate": "NOT TESTED",
+  "humanStyleAcceptance": "NOT TESTED; 113 prior layout rejected",
+  "dailyDataModified": false,
+  "realProviderCalls": 0,
+  "promptComparison": "PENDING"
+}

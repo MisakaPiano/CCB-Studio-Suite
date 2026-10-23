@@ -1,0 +1,446 @@
+{
+  "status": "SOURCE_AUDIT_PASS",
+  "scope": "All owned Kotlin UI menu call sites; Material menu primitives only in shared StudioMenu, custom CompactChoice explicitly 13sp. Runtime page screenshots/test results separate.",
+  "files": [
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioControls.kt",
+      "uses": [
+        {
+          "line": 114,
+          "control": "CompactChoice"
+        },
+        {
+          "line": 217,
+          "control": "CompactChoice"
+        },
+        {
+          "line": 266,
+          "control": "CompactChoice"
+        }
+      ]
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioWorkspace.kt",
+      "uses": [
+        {
+          "line": 115,
+          "control": "CompactChoice"
+        }
+      ]
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/BatchWorkspace.kt",
+      "uses": [
+        {
+          "line": 81,
+          "control": "StudioMenu"
+        },
+        {
+          "line": 81,
+          "control": "StudioMenuItem"
+        },
+        {
+          "line": 167,
+          "control": "StudioMenu"
+        },
+        {
+          "line": 167,
+          "control": "StudioMenuItem"
+        },
+        {
+          "line": 285,
+          "control": "CompactChoice"
+        }
+      ]
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryAlbums.kt",
+      "uses": [
+        {
+          "line": 25,
+          "control": "StudioMenu"
+        },
+        {
+          "line": 25,
+          "control": "StudioMenuItem"
+        },
+        {
+          "line": 69,
+          "control": "StudioMenu"
+        },
+        {
+          "line": 69,
+          "control": "StudioMenuItem"
+        }
+      ]
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryAnimationWorkspace.kt",
+      "uses": [
+        {
+          "line": 52,
+          "control": "StudioMenu"
+        },
+        {
+          "line": 53,
+          "control": "StudioMenuItem"
+        },
+        {
+          "line": 89,
+          "control": "StudioMenu"
+        }
+      ]
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryWorkspace.kt",
+      "uses": [
+        {
+          "line": 317,
+          "control": "StudioMenu"
+        },
+        {
+          "line": 318,
+          "control": "StudioMenuItem"
+        },
+        {
+          "line": 319,
+          "control": "StudioMenuItem"
+        },
+        {
+          "line": 321,
+          "control": "StudioMenuItem"
+        },
+        {
+          "line": 322,
+          "control": "StudioMenuItem"
+        },
+        {
+          "line": 323,
+          "control": "StudioMenuItem"
+        },
+        {
+          "line": 324,
+          "control": "StudioMenuItem"
+        },
+        {
+          "line": 327,
+          "control": "StudioMenuItem"
+        },
+        {
+          "line": 328,
+          "control": "StudioMenuItem"
+        },
+        {
+          "line": 329,
+          "control": "StudioMenuItem"
+        },
+        {
+          "line": 330,
+          "control": "StudioMenuItem"
+        },
+        {
+          "line": 357,
+          "control": "StudioMenu"
+        },
+        {
+          "line": 369,
+          "control": "StudioMenu"
+        },
+        {
+          "line": 386,
+          "control": "StudioMenu"
+        },
+        {
+          "line": 387,
+          "control": "StudioMenuItem"
+        },
+        {
+          "line": 388,
+          "control": "StudioMenuItem"
+        }
+      ]
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GuidanceWorkspace.kt",
+      "uses": [
+        {
+          "line": 25,
+          "control": "CompactChoice"
+        },
+        {
+          "line": 26,
+          "control": "CompactChoice"
+        },
+        {
+          "line": 45,
+          "control": "CompactChoice"
+        }
+      ]
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/ImageCardChoice.kt",
+      "uses": [
+        {
+          "line": 24,
+          "control": "CompactChoice"
+        }
+      ]
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/LibraryArchiveWorkspace.kt",
+      "uses": [
+        {
+          "line": 84,
+          "control": "StudioMenu"
+        }
+      ]
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/LibraryCommands.kt",
+      "uses": [
+        {
+          "line": 115,
+          "control": "StudioMenu"
+        },
+        {
+          "line": 116,
+          "control": "StudioMenuItem"
+        },
+        {
+          "line": 125,
+          "control": "StudioMenuItem"
+        }
+      ]
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/LibraryDelivery.kt",
+      "uses": [
+        {
+          "line": 43,
+          "control": "StudioMenu"
+        }
+      ]
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/LibraryTagControls.kt",
+      "uses": [
+        {
+          "line": 47,
+          "control": "StudioMenu"
+        },
+        {
+          "line": 48,
+          "control": "StudioMenuItem"
+        },
+        {
+          "line": 89,
+          "control": "StudioMenu"
+        },
+        {
+          "line": 90,
+          "control": "StudioMenuItem"
+        },
+        {
+          "line": 91,
+          "control": "StudioMenuItem"
+        }
+      ]
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/LibraryWorkspace.kt",
+      "uses": [
+        {
+          "line": 187,
+          "control": "CompactChoice"
+        }
+      ]
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/MetadataWorkspace.kt",
+      "uses": [
+        {
+          "line": 82,
+          "control": "CompactChoice"
+        }
+      ]
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt",
+      "uses": [
+        {
+          "line": 652,
+          "control": "CompactChoice"
+        },
+        {
+          "line": 720,
+          "control": "CompactChoice"
+        },
+        {
+          "line": 843,
+          "control": "CompactChoice"
+        }
+      ]
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioCompactControls.kt",
+      "uses": [
+        {
+          "line": 50,
+          "control": "StudioMenu"
+        },
+        {
+          "line": 55,
+          "control": "CompactChoice"
+        }
+      ]
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioMenu.kt",
+      "uses": [
+        {
+          "line": 12,
+          "control": "StudioMenu"
+        },
+        {
+          "line": 19,
+          "control": "StudioMenuItem"
+        }
+      ]
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetExportDialog.kt",
+      "uses": [
+        {
+          "line": 34,
+          "control": "CompactChoice"
+        },
+        {
+          "line": 36,
+          "control": "CompactChoice"
+        },
+        {
+          "line": 38,
+          "control": "CompactChoice"
+        },
+        {
+          "line": 80,
+          "control": "CompactChoice"
+        },
+        {
+          "line": 81,
+          "control": "CompactChoice"
+        }
+      ]
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetPresets.kt",
+      "uses": [
+        {
+          "line": 20,
+          "control": "CompactChoice"
+        },
+        {
+          "line": 29,
+          "control": "CompactChoice"
+        },
+        {
+          "line": 38,
+          "control": "CompactChoice"
+        },
+        {
+          "line": 46,
+          "control": "CompactChoice"
+        }
+      ]
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetQueueWorkspace.kt",
+      "uses": [
+        {
+          "line": 129,
+          "control": "StudioMenuItem"
+        },
+        {
+          "line": 130,
+          "control": "StudioMenuItem"
+        }
+      ]
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetWorkspace.kt",
+      "uses": [
+        {
+          "line": 43,
+          "control": "CompactChoice"
+        },
+        {
+          "line": 253,
+          "control": "CompactChoice"
+        },
+        {
+          "line": 261,
+          "control": "CompactChoice"
+        },
+        {
+          "line": 262,
+          "control": "CompactChoice"
+        },
+        {
+          "line": 276,
+          "control": "CompactChoice"
+        },
+        {
+          "line": 285,
+          "control": "CompactChoice"
+        },
+        {
+          "line": 327,
+          "control": "CompactChoice"
+        },
+        {
+          "line": 329,
+          "control": "CompactChoice"
+        }
+      ]
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/WorkspaceUi.kt",
+      "uses": [
+        {
+          "line": 133,
+          "control": "StudioMenu"
+        },
+        {
+          "line": 134,
+          "control": "StudioMenuItem"
+        },
+        {
+          "line": 135,
+          "control": "StudioMenuItem"
+        },
+        {
+          "line": 136,
+          "control": "StudioMenuItem"
+        },
+        {
+          "line": 141,
+          "control": "StudioMenu"
+        },
+        {
+          "line": 141,
+          "control": "StudioMenuItem"
+        },
+        {
+          "line": 344,
+          "control": "StudioMenu"
+        },
+        {
+          "line": 344,
+          "control": "StudioMenuItem"
+        }
+      ]
+    }
+  ],
+  "sourceFiles": 22,
+  "realProviderCalls": 0
+}
