@@ -39,7 +39,7 @@ fun NovelAiStudioDraft.withSlot(slot:BatchSlot)=withActiveSettings(activeSetting
 @Serializable data class BatchState(val id:String=newId(),val name:String="批量生图",val accountId:String?=null,
     val groups:List<BatchGroup> = emptyList(),val policy:BatchPolicy=BatchPolicy(),val mode:String="PAUSED",
     val error:BatchFailure?=null,val lastStartedAt:Long=0,val runStartedAt:Long=0,val restUntil:Long=0,
-    val reservedAnlas:Int=0,val pauseRequested:Boolean=false,val nextRequestAt:Long=0,val archives:List<BatchArchive> = emptyList()) {
+    val reservedAnlas:Int=0,val pauseRequested:Boolean=false,val nextRequestAt:Long=0,val archives:List<BatchArchive> = emptyList(),val endRequested:Boolean=false) {
     val total get()=groups.sumOf{it.slots.size}
     val completed get()=groups.sumOf{g->g.slots.count{it.status=="DONE"}}
     val skipped get()=groups.sumOf{g->g.slots.count{it.status=="SKIPPED"}}
@@ -78,29 +78,29 @@ class BatchQueue(private val workspace:StudioWorkspace,private val random:(Int)-
                     result=result.slot(slot.id){it.copy(status="FAILED")}.copy(mode="ERROR",error=BatchFailure(code,
                         if(code=="429")"429：整批暂停，等待手动确认" else "上次请求结果未确认；重试可能再次计费",slot.id,job?.retryNotBefore?:0,code!="429"))
                 }
-            };result
+            };if(s.endRequested&&result.error==null)result.copy(mode="ENDED",endRequested=false)else result.copy(endRequested=false)
         }
     }
     fun configure(accountId:String?,policy:BatchPolicy)=update{require(!it.running);it.copy(accountId=accountId,policy=policy)}
     fun replaceGroups(groups:List<BatchGroup>)=update {s->
-        require(!s.running && s.error==null){"请先处理暂停原因"}
+        require(!s.running && s.error==null && s.mode!="ENDED"){"请先处理暂停原因；已结束批次需新建"}
         s.groups.filter{it.started}.forEach{old->require(groups.any{it==old}){"已开始分组保留，请复制为新分组"}}
         s.copy(id=s.id.ifBlank{newId()},groups=groups,mode="PAUSED")
     }
     fun resume(now:Long,retry:Boolean=false,skip:Boolean=false)=update {s->
-        require(!s.running && (s.mode!="ENDED"||s.error!=null) && s.accountId!=null && s.total>0)
+        require(!s.running && s.mode!="ENDED" && s.accountId!=null && s.total>0)
         val failure=s.error
         require(failure==null || retry || skip){"错误需要手动确认"}
         require(now>=(failure?.notBefore?:0)){"尚在服务端冷却期"}
         require(!skip || failure?.code!="429"){"429 不允许跳过继续"}
         var next=s
         failure?.slotId?.let{id->next=next.slot(id){it.copy(status=if(skip)"SKIPPED" else "READY")}}
-        next.copy(mode="WAITING",error=null,pauseRequested=false,runStartedAt=now)
+        next.copy(mode="WAITING",error=null,pauseRequested=false,endRequested=false,runStartedAt=now)
     }
     fun pause()=update{if(it.mode=="RUNNING")it.copy(pauseRequested=true)else if(it.running)it.copy(mode="PAUSED",pauseRequested=false)else it}
-    fun end()=update{require(!it.running);it.copy(mode="ENDED")}
+    fun end()=update{if(it.mode=="RUNNING")it.copy(pauseRequested=true,endRequested=true)else it.copy(mode="ENDED",pauseRequested=false,endRequested=false)}
     fun newBatch()=update {s->
-        require(!s.running && s.error==null){"请先暂停并处理错误；429 不能通过新建批次绕过"}
+        require(!s.running && (s.error==null || s.mode=="ENDED"&&System.currentTimeMillis()>=s.error.notBefore)){"请先结束并等待冷却；429 不能通过新建批次绕过"}
         if(s.total==0)s else {
             val bytes=documentJson.encodeToString(s.copy(archives=emptyList())).toByteArray()
             require(bytes.size<=1024*1024)
@@ -131,11 +131,11 @@ class BatchQueue(private val workspace:StudioWorkspace,private val random:(Int)-
     fun complete(slotId:String,results:List<String>)=update {s->
         require(results.size==1 && s.groups.flatMap{it.slots}.single{it.id==slotId}.status=="RUNNING")
         val next=s.slot(slotId){it.copy(status="DONE",results=results)}
-        next.copy(mode=if(next.completed+next.skipped==next.total)"DONE" else if(s.pauseRequested)"PAUSED" else "WAITING",pauseRequested=false)
+        next.copy(mode=if(s.endRequested)"ENDED" else if(next.completed+next.skipped==next.total)"DONE" else if(s.pauseRequested)"PAUSED" else "WAITING",pauseRequested=false,endRequested=false)
     }
     fun submitted(now:Long)=update{s->require(s.mode=="RUNNING");s.copy(lastStartedAt=now,nextRequestAt=now+(s.nextRequestAt-s.lastStartedAt).coerceAtLeast(s.policy.intervalSeconds*1000L))}
     fun fail(failure:BatchFailure)=update {s->
         val next=failure.slotId?.let{id->s.slot(id){it.copy(status="FAILED")}}?:s
-        next.copy(mode="ERROR",error=failure,pauseRequested=false)
+        next.copy(mode="ERROR",error=failure,pauseRequested=false,endRequested=false)
     }
 }

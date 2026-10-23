@@ -11,6 +11,8 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.geometry.*
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.key.*
 import androidx.compose.ui.input.pointer.*
@@ -74,33 +76,58 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
         Text("次 · 每次 1 张")
     }}
 }
-@Composable private fun BatchMenu(label:String,enabled:Boolean=true,items:List<Pair<String,()->Unit>>) {
+@Composable private fun BatchMenu(label:String,enabled:Boolean=true,items:List<Pair<String,()->Unit>>,icon:androidx.compose.ui.graphics.vector.ImageVector?=null) {
     var open by remember{mutableStateOf(false)}
-    Box{LibraryAction("$label ▾",enabled,expanded=open){open=true};DropdownMenu(open,{open=false}){items.forEach{(text,action)->DropdownMenuItem({open=false;action()}){Text(text)}}}}
+    Box{LibraryAction("$label ▾",enabled,expanded=open,icon=icon){open=true};DropdownMenu(open,{open=false}){items.forEach{(text,action)->DropdownMenuItem({open=false;action()}){Text(text)}}}}
 }
 
 @Composable internal fun BatchWorkspace(c:WorkbenchController,detached:Boolean=false) {
     val b=c.batch;val s=b.state
     var settings by remember{mutableStateOf(false)};var edit by remember{mutableStateOf<BatchGroup?>(null)}
     var blank by remember{mutableStateOf(false)};var source by remember{mutableStateOf<String?>(null)}
+    var contextAdd by remember{mutableStateOf(false)}
     var confirm by remember{mutableStateOf<String?>(null)};var logs by remember{mutableStateOf(false)}
     var now by remember{mutableStateOf(System.currentTimeMillis())}
     LaunchedEffect(s.mode,s.error){while(true){now=System.currentTimeMillis();delay(1000)}}
     val group=s.groups.firstOrNull{it.id==b.current}?:s.groups.firstOrNull()
     val addItems=listOf("当前创作参数" to {b.addCurrent()},"Prompt 资产" to {source="prompt"},"图片参数与来源" to {source="image"},"空白分组" to {blank=true},"归档当前并新建批次" to {confirm="new"})
+    val canRemove=b.editing&&b.selected.isNotEmpty()&&s.groups.none{it.id in b.selected&&it.started}
+    fun commands()=buildList<Pair<String,()->Unit>> {
+        if(b.editing)add("添加分组…" to {contextAdd=true})
+        if(b.canUndo)add("撤销 · Ctrl+Z" to {b.undo()})
+        if(b.canRedo)add("重做 · Ctrl+Y / Ctrl+Shift+Z" to {b.redo()})
+        if(group!=null)add("编辑参数 · Enter" to {edit=group})
+        if(b.editing&&b.selected.isNotEmpty())add("复制所选 · Ctrl+D" to {b.duplicate()})
+        if(canRemove)add("移出批次 · Delete" to {b.remove()})
+        if(s.completed>0)add("本批结果" to {b.results()})
+        add("全选 · Ctrl+A" to {b.selected=s.groups.map{it.id}.toSet()})
+        add("清空选择 · Esc" to {b.selected=emptySet()})
+    }
     LibraryPresentation {
-    Column(Modifier.fillMaxSize().semantics{contentDescription="批量生图工作台"}) {
+    ContextMenuArea(items={commands().map{(label,action)->ContextMenuItem(label,action)}}) {
+    Column(Modifier.fillMaxSize().semantics{contentDescription="批量生图工作台"}.onKeyEvent {event->
+        if(event.type!=KeyEventType.KeyDown)false else when {
+            event.isCtrlPressed&&event.key==Key.Z->{if(event.isShiftPressed)b.redo()else b.undo();true}
+            event.isCtrlPressed&&event.key==Key.Y->{b.redo();true}
+            event.isCtrlPressed&&event.key==Key.A->{b.selected=s.groups.map{it.id}.toSet();true}
+            event.isCtrlPressed&&event.key==Key.D->{if(b.editing)b.duplicate();true}
+            event.key==Key.Delete->{if(canRemove)b.remove();true}
+            event.key==Key.Escape->{b.selected=emptySet();true}
+            else->false
+        }
+    }) {
         LibraryBand {
             LibraryAction("返回创作"){b.shown=false;if(detached)b.detached=false}
             Text(s.name,maxLines=1)
             Text(c.state.accounts.firstOrNull{it.id==s.accountId}?.alias?:"未选账户",color=LibraryMuted)
             Spacer(Modifier.weight(1f))
             LibraryAction(if(detached)"返回主窗口"else"独立窗口"){b.detached=!detached;b.shown=detached}
-            LibraryAction(if(s.running)"暂停批次"else"开始 / 继续",!b.changing&&s.total>0&&s.mode !in setOf("ERROR","DONE","ENDED")) {if(s.running)b.pause()else confirm="start"}
-            BatchMenu("停止",items=listOf("完成当前后暂停" to {b.pause()},"立即中止当前请求" to {confirm="cancel"},"结束批次" to {confirm="end"}))
+            LibraryAction(if(s.running)"暂停"else if(s.groups.any{it.started})"继续"else"开始",!b.changing&&s.total>0&&s.mode !in setOf("ERROR","DONE","ENDED"),icon=if(s.running)DesktopAppIcons.Pause else DesktopAppIcons.Send) {if(s.running)b.pause()else confirm="start"}
+            BatchMenu("停止设置",items=listOf("完成当前后暂停" to {b.pause()},"归档并新建批次…" to {confirm="new"},"异常处理：取消等待…" to {confirm="cancel"}),icon=DesktopAppIcons.Settings)
+            LibraryAction("结束批次",s.total>0&&s.mode !in setOf("DONE","ENDED")&&!s.endRequested,icon=DesktopAppIcons.Stop){confirm="end"}
         }
         LibraryBand(true){
-            Text(batchStatus(s),color=Gold);Text("${s.completed} / ${s.total} 张")
+            Text(if(s.endRequested)"当前完成后结束"else batchStatus(s),color=Gold);Text("${s.completed} / ${s.total} 张")
             LinearProgressIndicator(if(s.total==0)0f else s.completed.toFloat()/s.total,Modifier.weight(1f).height(5.dp),color=Gold,backgroundColor=LibraryLine)
             val until=if(s.mode=="RESTING")s.restUntil else s.nextRequestAt
             Text(if(s.running && s.mode!="RUNNING")"${b.phase} · ${((until-now).coerceAtLeast(0)+999)/1000} 秒"else b.phase.ifBlank{"等待手动操作"},fontSize=12.sp,color=LibraryMuted)
@@ -108,8 +135,8 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
         }
         s.error?.let{error->Row(Modifier.fillMaxWidth().background(Color(0xff34291d)).padding(horizontal=12.dp,vertical=8.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(8.dp)) {
             Column(Modifier.weight(1f)){Text(error.message,color=Color(0xffedbb7c));Text("${error.code}${if(error.notBefore>now)" · 冷却剩余 ${(error.notBefore-now+999)/1000} 秒"else" · 等待手动确认"}",fontSize=12.sp)}
-            LibraryAction("确认重试",now>=error.notBefore&&!b.changing){confirm="retry"}
-            if(error.code!="429")LibraryAction("跳过并继续",!b.changing){confirm="skip"}
+            LibraryAction("确认重试",s.mode!="ENDED"&&now>=error.notBefore&&!b.changing){confirm="retry"}
+            if(error.code!="429")LibraryAction("跳过并继续",s.mode!="ENDED"&&!b.changing){confirm="skip"}
             LibraryAction("结束批次",!b.changing){confirm="end"}
         }}
         BoxWithConstraints(Modifier.weight(1f).fillMaxWidth()) {
@@ -143,26 +170,31 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
             LibraryToolTile("移出批次","移出未开始的分组",DesktopAppIcons.Delete,b.editing&&b.selected.isNotEmpty()&&s.groups.none{it.id in b.selected&&it.started},false){b.remove()}
             LibraryToolTile("本批结果","查看本批次入库结果",DesktopAppIcons.Data,s.completed>0,false){b.results()}
             LibraryAction("撤销",b.canUndo,icon=DesktopAppIcons.Undo){b.undo()}
+            LibraryAction("重做",b.canRedo,icon=DesktopAppIcons.Redo){b.redo()}
+            BatchMenu("操作",items=commands())
             Spacer(Modifier.weight(1f));Text("参数快照已保留\n原草稿不受影响",color=LibraryMuted,fontSize=12.sp)
         }
     }
     }
+    }
     if(settings)BatchSettings(c){settings=false}
+    if(contextAdd)BatchDialog("添加分组",{contextAdd=false}){addItems.forEach{(label,action)->LibraryAction(label){contextAdd=false;action()}}}
     if(blank||edit!=null)BatchGroupEditor(c,edit){blank=false;edit=null}
     source?.let{kind->BatchSourcePicker(c,kind){source=null}}
     if(logs)BatchDialog("批次记录",{logs=false}){Text("${s.name} · ${s.completed} 完成 · ${s.skipped} 跳过 · ${s.total} 总计\n预计额度预留 ${s.reservedAnlas} Anlas（含未确认尝试）");s.groups.forEach{g->Text(g.name);g.slots.filter{it.attempts.isNotEmpty()||it.status=="SKIPPED"}.forEach{Text("${it.direction.label} ${it.round} · ${it.status} · Seed ${it.seed} · ${it.results.size} 张已入库",fontSize=12.sp)}};s.archives.forEach{a->Text("已归档 · ${a.name} · ${a.completed}/${a.total} 张；原件与请求来源仍在图库",color=LibraryMuted)}}
     confirm?.let{action->AlertDialog(onDismissRequest={confirm=null},title={Text(when(action){"retry"->"手动确认恢复批次";"skip"->"跳过当前并继续？";"cancel"->"立即中止请求？";"end"->"结束批次？";"new"->"归档并新建批次？";else->"开始批次？"})},text={Text(when(action){
         "retry"->if(s.error?.uncertain==true)"上次结果未确认，重试可能再次计费。已有结果不会删除。"else"将重新检查额度并重试；再次收到 429 会再次整批暂停。"
         "cancel"->"本地中止不代表服务端取消；结果将标为未确认，之后不会自动重发。"
-        "end"->"请先暂停。结束后保留已入库结果和本批记录。"
+        "end"->"已发送的请求继续接收并保存，之后不再发送下一条。结束后不能直接继续此批次；图片和记录保留，未完成分组可复制到新批次。"
         "new"->"归档当前队列和参数，建立空白批次。已入库结果及其来源保留；未完成项不会自动转入新批次。"
         "skip"->"当前项记为跳过，再继续剩余任务；不会删除已收到的原件。"
         else->"${s.groups.size} 组，共 ${s.total-s.completed-s.skipped} 次待请求，每次 1 张。间隔 ${s.policy.intervalSeconds}–${s.policy.intervalSeconds+s.policy.intervalJitterSeconds} 秒。${if(s.policy.anlasLimit==0)"仅免费/体力，预计需要扣费时暂停。"else"允许预计 Anlas 总上限 ${s.policy.anlasLimit}。"} 发生错误整批暂停，等待人工确认。"
-    })},confirmButton={TextButton(onClick={when(action){"retry"->b.start(retry=true);"skip"->b.start(skip=true);"cancel"->b.cancel();"end"->b.end();"new"->b.newBatch();else->b.start()};confirm=null},enabled=action!="end"||!s.running){Text("确认")}},dismissButton={TextButton({confirm=null}){Text("取消")}})}
+    })},confirmButton={TextButton(onClick={when(action){"retry"->b.start(retry=true);"skip"->b.start(skip=true);"cancel"->b.cancel();"end"->b.end();"new"->b.newBatch();else->b.start()};confirm=null},enabled=!b.changing){Text("确认")}},dismissButton={TextButton({confirm=null}){Text("取消")}})}
 }
 
 @Composable private fun BatchGroupList(c:WorkbenchController,modifier:Modifier,onEdit:(BatchGroup)->Unit) {
     val b=c.batch;val groups=b.state.groups;val scroll=rememberLazyListState()
+    val focus=remember{FocusRequester()}
     val bounds=remember{mutableMapOf<String,Rect>()};var root by remember{mutableStateOf(Offset.Zero)};var height by remember{mutableStateOf(0)}
     var dragged by remember{mutableStateOf(setOf<String>())};var point by remember{mutableStateOf(Offset.Zero)};var target by remember{mutableStateOf<String?>(null)}
     LaunchedEffect(dragged.isNotEmpty()) {while(dragged.isNotEmpty()){
@@ -170,7 +202,17 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
         if(delta!=0f){scroll.scrollBy(delta);target=bounds.entries.firstOrNull{it.key !in dragged&&it.value.contains(point+root)}?.key}
         delay(16)
     }}
-    Box(modifier.fillMaxWidth().onGloballyPositioned{root=it.positionInRoot();height=it.size.height}) {
+    Box(modifier.fillMaxWidth().semantics{contentDescription="批次分组列表"}.focusRequester(focus).onKeyEvent{event->
+        if(event.type!=KeyEventType.KeyDown)false else when(event.key){
+            Key.DirectionUp->{b.navigate(-1,event.isShiftPressed);true}
+            Key.DirectionDown->{b.navigate(1,event.isShiftPressed);true}
+            Key.MoveHome->{b.navigate(-groups.size,event.isShiftPressed);true}
+            Key.MoveEnd->{b.navigate(groups.size,event.isShiftPressed);true}
+            Key.Enter->{groups.firstOrNull{it.id==b.current}?.let(onEdit);true}
+            else->false
+        }
+    }.focusable().onGloballyPositioned{root=it.positionInRoot();height=it.size.height}) {
+        LaunchedEffect(b.current){groups.indexOfFirst{it.id==b.current}.takeIf{it>=0}?.let{scroll.animateScrollToItem(it)}}
         LazyColumn(Modifier.fillMaxSize().padding(8.dp),state=scroll,verticalArrangement=Arrangement.spacedBy(6.dp)){
             itemsIndexed(groups,key={_,g->g.id}){index,g->
                 val selected=g.id in b.selected;var ctrl by remember{mutableStateOf(false)};var shift by remember{mutableStateOf(false)}
@@ -179,7 +221,7 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
                     .background(if(selected)LibrarySelected else LibraryPanel,RoundedCornerShape(6.dp))
                     .border(if(target==g.id)2.dp else 1.dp,if(selected||target==g.id)Gold else Color.Transparent,RoundedCornerShape(6.dp))
                     .semantics{contentDescription="批次分组 ${g.name}";this.selected=selected}
-                    .onPointerEvent(PointerEventType.Press){ctrl=it.keyboardModifiers.isCtrlPressed;shift=it.keyboardModifiers.isShiftPressed}
+                    .onPointerEvent(PointerEventType.Press){ctrl=it.keyboardModifiers.isCtrlPressed;shift=it.keyboardModifiers.isShiftPressed;focus.requestFocus();if(it.buttons.isSecondaryPressed&&g.id !in b.selected)b.select(g.id)}
                     .pointerInput(g.id,b.editing,b.selected){if(b.editing)detectDragGestures(onDragStart={p->dragged=if(g.id in b.selected)b.selected else setOf(g.id);point=(bounds[g.id]?.topLeft?:Offset.Zero)+p-root},onDragCancel={dragged=emptySet();target=null},onDragEnd={target?.let{b.reorder(dragged,it)};dragged=emptySet();target=null}){change,delta->change.consume();point+=delta;target=bounds.entries.firstOrNull{it.key !in dragged&&it.value.contains(point+root)}?.key}}
                     .combinedClickable(onClick={b.select(g.id,ctrl,shift)},onDoubleClick={onEdit(g)}).padding(10.dp),horizontalArrangement=Arrangement.spacedBy(10.dp),verticalAlignment=Alignment.CenterVertically){
                     if(b.checkMode)LibrarySelectionCheckbox(selected,{b.select(g.id,true)})else Text("%02d".format(index+1),color=LibraryMuted,modifier=Modifier.width(27.dp))
@@ -271,7 +313,7 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
         StudioDisclosure("生成参数",initiallyOpen=false){StudioAdvancedSettings(draft.activeSettings){draft=draft.withActiveSettings(it(draft.activeSettings))}}
         BatchDirectionInputs(dirs){dirs=it};LibraryToggle("三种尺寸共用每轮 Seed",shared){shared=!shared}
         error?.let{Text(it,color=Color(0xffedbb7c))}
-        LibraryAction(if(locked)"保存为新分组"else"保存分组",b.editing){runCatching{BatchGroup.create(name,draft,dirs,shared,existing?.designApplication)}.onSuccess{g->if(existing!=null&&!locked)b.replace(g.copy(id=existing.id))else b.action{b.queue.replaceGroups(b.queue.state.groups+g);if(b.queue.state.accountId==null)b.queue.configure(c.naiId,b.queue.state.policy);b.current=g.id;b.selected=setOf(g.id)};onClose()}.onFailure{error=it.message}}
+        LibraryAction(if(locked)"保存为新分组"else"保存分组",b.editing){runCatching{BatchGroup.create(name,draft,dirs,shared,existing?.designApplication)}.onSuccess{g->if(existing!=null&&!locked)b.replace(g.copy(id=existing.id))else b.addGroup(g);onClose()}.onFailure{error=it.message}}
     }
 }
 

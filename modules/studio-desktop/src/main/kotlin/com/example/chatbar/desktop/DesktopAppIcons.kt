@@ -25,6 +25,7 @@ import com.composables.icons.lucide.ArrowUpToLine
 import com.composables.icons.lucide.ArrowDownToLine
 import com.composables.icons.lucide.SendHorizontal
 import com.composables.icons.lucide.Square
+import com.composables.icons.lucide.Pause
 import com.composables.icons.lucide.Maximize
 import com.composables.icons.lucide.Undo2
 import com.composables.icons.lucide.Redo2
@@ -61,6 +62,7 @@ internal object DesktopAppIcons {
     val JumpBottom: ImageVector get() = Lucide.ArrowDownToLine
     val Send: ImageVector get() = Lucide.SendHorizontal
     val Stop: ImageVector get() = Lucide.Square
+    val Pause: ImageVector get() = Lucide.Pause
     val ExpandComposer: ImageVector get() = Lucide.Maximize
     val Undo: ImageVector get() = Lucide.Undo2
     val Redo: ImageVector get() = Lucide.Redo2

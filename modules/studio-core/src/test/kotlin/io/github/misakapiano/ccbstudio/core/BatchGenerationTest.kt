@@ -10,6 +10,20 @@ class BatchGenerationTest {
     private fun fixture():StudioWorkspace=StudioWorkspace.openStudio(Files.createTempDirectory("studio-batch-test-"))
     private fun group(n:Int=4)=BatchGroup.create("合成风景",NovelAiStudioDraft(basePrompt="landscape"),listOf(BatchDirection("横",1216,832,n),BatchDirection("纵",832,1216,n),BatchDirection("方",1024,1024,n)))
     private fun ready(w:StudioWorkspace,n:Int=4):BatchQueue=BatchQueue(w).also{it.replaceGroups(listOf(group(n)));it.configure("synthetic-account",BatchPolicy())}
+    @Test fun pauseAndEndBothKeepInflightResultButOnlyPauseCanResume()=fixture().use{w->
+        val q=ready(w);val t=System.currentTimeMillis();q.resume(t)
+        val first=q.begin(q.next(t)!!.second.id,t,0);q.pause();assertEquals("RUNNING",q.state.mode)
+        q.complete(first.slot.id,listOf(newId()));assertEquals("PAUSED",q.state.mode)
+        q.resume(t+120000);val second=q.begin(q.next(t+120000)!!.second.id,t+120000,0)
+        q.end();assertEquals("RUNNING",q.state.mode);assertTrue(q.state.endRequested);assertNull(q.next(t+999999))
+        val result=newId();q.complete(second.slot.id,listOf(result));assertEquals("ENDED",q.state.mode)
+        assertEquals(listOf(result),q.state.groups.flatMap{it.slots}.single{it.id==second.slot.id}.results)
+        assertFails{q.resume(t+999999)};assertFails{q.replaceGroups(q.state.groups)}
+        q.newBatch();assertTrue(q.state.groups.isEmpty())
+        q.replaceGroups(listOf(group()));q.configure("a",BatchPolicy());q.resume(t+240000)
+        q.begin(q.next(t+240000)!!.second.id,t+240000,0);q.end();q.fail(BatchFailure("429","fixture",notBefore=t+120000))
+        assertEquals("ERROR",q.state.mode);q.end();assertFails{q.resume(t+999999,retry=true)};assertFails{q.newBatch()};Unit
+    }
     @Test fun rateLimitLocksWholeBatchAcrossRestartUntilExplicitResume() {
         val w=fixture();val root=w.root;val q=ready(w);val now=1_000_000L
         q.resume(now);val slot=q.next(now)!!.second;val dispatch=q.begin(slot.id,now,0)

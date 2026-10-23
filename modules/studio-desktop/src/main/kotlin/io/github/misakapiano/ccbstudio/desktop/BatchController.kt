@@ -21,9 +21,13 @@ internal class BatchController(private val c:WorkbenchController) {
     var directions by mutableStateOf(defaultDirections(c.draft))
     private var runner:Job?=null
     private var editJob:Job?=null
-    private var undo:List<BatchGroup>?=null
-    val canUndo get()=undo!=null && !state.running && state.error==null
-    val editing get()=!state.running && state.error==null && !changing
+    private data class Edit(val groups:List<BatchGroup>,val selected:Set<String>,val current:String?)
+    private data class Change(val before:Edit,val after:Edit)
+    private var past by mutableStateOf(emptyList<Change>())
+    private var future by mutableStateOf(emptyList<Change>())
+    val canUndo get()=editing && past.lastOrNull()?.after?.groups==state.groups
+    val canRedo get()=editing && future.lastOrNull()?.before?.groups==state.groups
+    val editing get()=!state.running && state.mode!="ENDED" && state.error==null && !changing
     init{queue.recover();state=queue.state}
     fun refresh(){state=queue.state}
     fun open(){shown=true;c.view="创作"}
@@ -32,23 +36,32 @@ internal class BatchController(private val c:WorkbenchController) {
         changing=true
         editJob=c.scope.launch {try{withContext(Dispatchers.IO){body()};refresh()}catch(e:Exception){c.problem=e.message?.take(180)?:"批次操作未完成"}finally{changing=false}}
     }
-    fun add(draft:NovelAiStudioDraft=c.draft,name:String="分组 ${state.groups.size+1}",lineage:DesignApplicationRef?=null)=action {
+    private fun snapshot()=Edit(queue.state.groups,selected,current)
+    private fun editGroups(body:()->Unit) {if(!editing)return;action {
+        val before=snapshot();body();val after=snapshot()
+        if(before.groups!=after.groups){past=(past+Change(before,after)).takeLast(50);future=emptyList()}
+    }}
+    private fun restore(edit:Edit){queue.replaceGroups(edit.groups);selected=edit.selected.intersect(edit.groups.map{it.id}.toSet());current=edit.current?.takeIf{id->edit.groups.any{it.id==id}}?:edit.groups.firstOrNull()?.id}
+    fun addGroup(group:BatchGroup)=editGroups{queue.replaceGroups(queue.state.groups+group);if(queue.state.accountId==null)queue.configure(c.naiId,queue.state.policy);current=group.id;selected=setOf(group.id)}
+    fun add(draft:NovelAiStudioDraft=c.draft,name:String="分组 ${state.groups.size+1}",lineage:DesignApplicationRef?=null)=editGroups {
         val group=BatchGroup.create(name,draft,directions,designApplication=lineage)
-        undo=queue.state.groups;queue.replaceGroups(queue.state.groups+group)
+        queue.replaceGroups(queue.state.groups+group)
         if(queue.state.accountId==null)queue.configure(c.naiId,queue.state.policy)
         current=group.id;selected=setOf(group.id)
     }
     fun addCurrent()=add(lineage=DesignProvenance(c.workspace).current())
-    fun replace(group:BatchGroup)=action{undo=queue.state.groups;queue.replaceGroups(queue.state.groups.map{if(it.id==group.id)group else it})}
-    fun remove()=action{undo=queue.state.groups;queue.replaceGroups(queue.state.groups.filterNot{it.id in selected})}
-    fun duplicate()=action {
+    fun replace(group:BatchGroup)=editGroups{queue.replaceGroups(queue.state.groups.map{if(it.id==group.id)group else it})}
+    fun remove()=editGroups{queue.replaceGroups(queue.state.groups.filterNot{it.id in selected});selected=emptySet();current=queue.state.groups.firstOrNull()?.id}
+    fun duplicate()=editGroups {
         val copies=queue.state.groups.filter{it.id in selected}.map{g->g.copy(id=newId(),name=(g.name+" 副本").take(100),slots=g.slots.map{it.copy(id=newId(),status="READY",attempts=emptyList(),results=emptyList(),seed=kotlin.random.Random.nextLong(NovelAiGenerationSettings.MAX_SEED+1))})}
-        undo=queue.state.groups;queue.replaceGroups(queue.state.groups+copies);selected=copies.map{it.id}.toSet();current=copies.firstOrNull()?.id?:current
+        queue.replaceGroups(queue.state.groups+copies);selected=copies.map{it.id}.toSet();current=copies.firstOrNull()?.id?:current
     }
-    fun reorder(ids:Set<String>,before:String)=action {
-        val groups=queue.state.groups;if(before !in ids){val rest=groups.filterNot{it.id in ids}.toMutableList();val index=rest.indexOfFirst{it.id==before};if(index>=0){rest.addAll(index,groups.filter{it.id in ids});undo=groups;queue.replaceGroups(rest)}}
+    fun reorder(ids:Set<String>,before:String)=editGroups {
+        val groups=queue.state.groups;if(before !in ids){val rest=groups.filterNot{it.id in ids}.toMutableList();val index=rest.indexOfFirst{it.id==before};if(index>=0){rest.addAll(index,groups.filter{it.id in ids});queue.replaceGroups(rest)}}
     }
-    fun undo()=action{undo?.let{prior->val old=queue.state.groups;queue.replaceGroups(prior);undo=old}}
+    fun undo(){if(canUndo)action{val change=past.last();restore(change.before);past=past.dropLast(1);future=(future+change).takeLast(50)}}
+    fun redo(){if(canRedo)action{val change=future.last();restore(change.after);future=future.dropLast(1);past=(past+change).takeLast(50)}}
+    fun navigate(delta:Int,extend:Boolean=false){val ids=state.groups.map{it.id};if(ids.isNotEmpty())select(ids[(ids.indexOf(current).coerceAtLeast(0)+delta).coerceIn(0,ids.lastIndex)],shift=extend)}
     fun configure(account:String?,policy:BatchPolicy)=action{queue.configure(account,policy)}
     fun select(id:String,ctrl:Boolean=false,shift:Boolean=false) {
         val ids=state.groups.map{it.id};val anchor=ids.indexOf(current);val target=ids.indexOf(id)
@@ -58,7 +71,7 @@ internal class BatchController(private val c:WorkbenchController) {
         if(runner?.isActive==true || changing || c.maintenance)return
         runner=c.scope.launch {
             try {
-                withContext(Dispatchers.IO){queue.resume(System.currentTimeMillis(),retry,skip)};refresh()
+                withContext(Dispatchers.IO){queue.resume(System.currentTimeMillis(),retry,skip)};past=emptyList();future=emptyList();refresh()
                 while(queue.state.running && !c.maintenance){
                     if(c.busy || c.library.collectionBusy){phase="等待当前操作完成";delay(250);continue}
                     val next=withContext(Dispatchers.IO){queue.next(System.currentTimeMillis())};refresh()
@@ -77,19 +90,16 @@ internal class BatchController(private val c:WorkbenchController) {
                             running?.id?.takeIf{saved.size!=1},failure?.notBefore?:0,saved.size!=1&&(failure?.uncertain?: (running!=null))))}
                     };refresh()
                 }
-            }catch(e:CancellationException){withContext(NonCancellable+Dispatchers.IO){
-                val running=queue.state.groups.flatMap{it.slots}.firstOrNull{it.status=="RUNNING"}
-                if(running!=null)queue.fail(BatchFailure("UNCERTAIN","请求已中止，服务端结果未确认；不会自动重发",running.id,uncertain=true))else queue.pause()
-            };refresh()}
+            }catch(e:CancellationException){withContext(NonCancellable+Dispatchers.IO){queue.recover();queue.pause()};refresh()}
             catch(e:Exception){c.problem="批次已停止：${e.message?.take(160)}；已有结果保留";runCatching{refresh()}}
             finally{phase=""}
         }
     }
     fun pause()=action{queue.pause()}
     fun cancel(){runner?.cancel()}
-    fun end()=action{queue.end()}
+    fun end()=action{queue.end();past=emptyList();future=emptyList()}
     suspend fun drain(){editJob?.join();runner?.cancelAndJoin();withContext(Dispatchers.IO){queue.pause()};refresh()}
-    fun newBatch()=action{queue.newBatch();undo=null;selected=emptySet();current=null}
+    fun newBatch()=action{queue.newBatch();past=emptyList();future=emptyList();selected=emptySet();current=null}
     fun results(){val ids=state.groups.flatMap{g->g.slots.flatMap{it.results}}.toSet();c.gallery.enterBatch(ids,state.name,"batch:${state.id}");c.selection=emptySet();c.current=ids.lastOrNull();c.view="图库";shown=false}
     companion object {
         fun defaultDirections(draft:NovelAiStudioDraft)=listOf("横" to NovelAiAspectRatio.LANDSCAPE,"纵" to NovelAiAspectRatio.PORTRAIT,"方" to NovelAiAspectRatio.SQUARE).map{(label,aspect)->

@@ -6,6 +6,7 @@ import androidx.compose.material.darkColors
 import androidx.compose.foundation.layout.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.input.key.*
 import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.semantics.*
 import androidx.compose.ui.text.AnnotatedString
@@ -56,6 +57,41 @@ class WorkbenchWorkflowTest {
     }
     private fun frame(png:ByteArray):ByteArray{val p=MessagePack.newDefaultBufferPacker();p.packMapHeader(2);p.packString("event_type");p.packString("final");p.packString("image");p.packBinaryHeader(png.size);p.writePayload(png);p.close();val b=p.toByteArray();return ByteBuffer.allocate(4+b.size).putInt(b.size).put(b).array()}
 
+    @Test fun batchHistoryIsMultistepWithRedoBranchAndSharedKeyboardMenuActions()=runBlocking(awt) {
+        val w=StudioWorkspace.openStudio(root());val scope=CoroutineScope(SupervisorJob()+awt)
+        val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{error("History must not generate")},pauseCollectionsOnStart=true)
+        val b=c.batch
+        suspend fun done(){withTimeout(5000){while(b.changing)delay(10)};assertNull(c.problem)}
+        suspend fun add(name:String){b.add(NovelAiStudioDraft(basePrompt="synthetic $name"),name);done()}
+        val scene=ImageComposeScene(1320,820,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){BatchWorkspace(c)}}
+        try {
+            add("A");add("B");val both=b.state.groups
+            b.remove();done();assertEquals(listOf("A"),b.state.groups.map{it.name})
+            b.undo();done();assertEquals(both,b.state.groups)
+            b.undo();done();assertEquals(listOf("A"),b.state.groups.map{it.name})
+            b.undo();done();assertTrue(b.state.groups.isEmpty());assertFalse(b.canUndo)
+            b.undo();done();assertTrue(b.state.groups.isEmpty())
+            b.redo();done();b.redo();done();assertEquals(both,b.state.groups,"Redo must preserve exact seeds and IDs")
+            b.redo();done();assertEquals(listOf("A"),b.state.groups.map{it.name});assertFalse(b.canRedo)
+            b.undo();done();add("C");assertFalse(b.canRedo)
+            val branch=b.state.groups;b.reorder(emptySet(),branch.first().id);done();assertTrue(b.canUndo)
+            b.undo();done();assertEquals(both,b.state.groups,"No-op must not add an undo step")
+            scene.frames();scene.click("操作 ▾");assertTrue(scene.nodes().any{it.matches("添加分组…")});scene.click("重做 · Ctrl+Y / Ctrl+Shift+Z");done();assertEquals(branch,b.state.groups)
+            scene.click("操作 ▾");scene.click("添加分组…");assertTrue(scene.nodes().any{it.matches("Prompt 资产")});scene.click("关闭")
+            // Focus the actual list, then exercise bubbling keyboard shortcuts.
+            scene.nodes().first{it.matches("批次分组列表")}.config[SemanticsActions.RequestFocus].action!!.invoke();scene.frames()
+            fun key(k:Key,ctrl:Boolean=false,shift:Boolean=false){scene.sendKeyEvent(KeyEvent(k,KeyEventType.KeyDown,isCtrlPressed=ctrl,isShiftPressed=shift));scene.sendKeyEvent(KeyEvent(k,KeyEventType.KeyUp,isCtrlPressed=ctrl,isShiftPressed=shift))}
+            key(Key.Z,true);done();scene.frames();assertEquals(both,b.state.groups)
+            key(Key.Z,true,true);done();scene.frames();assertEquals(branch,b.state.groups)
+            key(Key.MoveHome);scene.frames();assertEquals(branch.first().id,b.current)
+            key(Key.DirectionDown,shift=true);scene.frames();assertEquals(2,b.selected.size)
+            scene.shot("batch-history-undo-redo")
+            b.queue.fail(BatchFailure("429","fixture"));b.refresh();assertFalse(b.canUndo);assertFalse(b.canRedo)
+            val blocked=b.state;b.undo();b.redo();done();assertEquals(blocked,b.state)
+            assertTrue(c.state.jobs.isEmpty())
+        }finally{scene.close();c.close();scope.cancel()}
+    }
+
     @Test fun batchCreationEntryKeepsRulesAndWorkbenchWithoutSubmitting()=runBlocking(awt) {
         val w=StudioWorkspace.openStudio(root());val scope=CoroutineScope(SupervisorJob()+awt)
         val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{error("UI must not generate")},pauseCollectionsOnStart=true)
@@ -97,7 +133,8 @@ class WorkbenchWorkflowTest {
             c.batch.reorder(c.batch.selected,groups[0].id);withTimeout(5000){while(c.batch.changing)delay(10)};scene.frames();assertEquals(groups[3].id,c.batch.state.groups.first().id)
             scene.click("勾选模式");assertTrue(c.batch.checkMode);scene.shot("batch-workbench-check-mode")
             scene.click("编辑当前批次参数");scene.shot("batch-workbench-editor");scene.click("关闭")
-            scene.click("开始 / 继续");assertTrue(scene.nodes().any{it.matches("开始批次？")});scene.click("取消");assertEquals("PAUSED",c.batch.state.mode)
+            scene.click("开始");assertTrue(scene.nodes().any{it.matches("开始批次？")});scene.click("取消");assertEquals("PAUSED",c.batch.state.mode)
+            scene.click("停止设置 ▾");assertTrue(scene.nodes().any{it.matches("异常处理：取消等待…")});assertTrue(scene.nodes().none{it.matches("立即中止当前请求")});scene.click("完成当前后暂停");withTimeout(5000){while(c.batch.changing)delay(10)}
             scene.constraints=Constraints.fixed(960,720);scene.frames();scene.shot("batch-workbench-960")
             c.batch.queue.fail(BatchFailure("429","429：整批暂停，等待手动确认",notBefore=System.currentTimeMillis()+120000));c.batch.refresh();scene.frames();scene.shot("batch-workbench-429")
             assertTrue(scene.nodes().none{it.matches("跳过并继续")});assertTrue(scene.nodes().first{it.matches("确认重试")}.config.contains(SemanticsProperties.Disabled))
@@ -133,6 +170,31 @@ class WorkbenchWorkflowTest {
             assertFalse(job.receipt(w).contains("LOCAL_TEST_ONLY"));c.batch.refresh()
         }finally{c.close();scope.cancel();server.stop(0)}
         StudioWorkspace.openStudio(r).use{again->assertEquals(1,again.state.batch.completed);assertFalse(again.state.batch.running);assertEquals(1,readGalleryHistory(again).entries.size)}
+    }
+
+    @Test fun batchEndReceivesInflightImageAndNeverSendsNextRequest()=runBlocking(awt) {
+        val entered=java.util.concurrent.CountDownLatch(1);val release=java.util.concurrent.CountDownLatch(1);var requests=0
+        val server=HttpServer.create(InetSocketAddress("127.0.0.1",0),0)
+        server.createContext("/"){e->val quota=e.requestURI.path.contains("subscription")
+            val bytes=if(quota)"{\"tier\":3,\"active\":true,\"trainingStepsLeft\":100,\"usage\":{\"percent\":80,\"isNegative\":false}}".toByteArray()else{requests++;entered.countDown();release.await(15,java.util.concurrent.TimeUnit.SECONDS);frame(EditorRenderer.synthetic(64,64))}
+            e.sendResponseHeaders(200,bytes.size.toLong());e.responseBody.use{it.write(bytes)}
+        };server.start()
+        val client=studioHttpClient().newBuilder().addInterceptor{chain->chain.proceed(chain.request().newBuilder().url("http://127.0.0.1:${server.address.port}${chain.request().url.encodedPath}").removeHeader("Authorization").build())}.build()
+        val w=StudioWorkspace.openStudio(root());val scope=CoroutineScope(SupervisorJob()+awt)
+        val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),client,RequestAdmission{},true)
+        val scene=ImageComposeScene(1320,820,coroutineContext=awt){MaterialTheme{BatchWorkspace(c)}}
+        try {
+            c.saveAccount(null,"Fixture","NAI","https://image.novelai.net",NovelAiImageModel.V4_5_FULL.apiId,"LOCAL_TEST_ONLY");c.idle()
+            c.edit{it.copy(basePrompt="synthetic graceful end")};c.batch.addCurrent();withTimeout(5000){while(c.batch.changing)delay(10)}
+            c.batch.start();withTimeout(10000){while(entered.count>0)delay(20)};scene.frames()
+            assertTrue(scene.nodes().any{it.matches("暂停")});assertTrue(scene.nodes().none{it.matches("立即停止")})
+            scene.click("结束批次");scene.click("确认");withTimeout(5000){while(c.batch.changing)delay(10)}
+            assertTrue(c.batch.state.endRequested);assertEquals(0,c.batch.state.completed)
+            release.countDown();withTimeout(10000){while(c.batch.state.mode!="ENDED")delay(20)}
+            assertEquals(1,c.batch.state.completed);assertEquals(1,requests);assertEquals(1,c.assets.size)
+            assertFails{c.batch.queue.resume(System.currentTimeMillis()+999999)};assertFalse(c.batch.canUndo)
+            scene.frames();scene.shot("batch-ended-result-retained")
+        }finally{release.countDown();scene.close();c.close();scope.cancel();server.stop(0)}
     }
 
     @Test fun batchPauseDuringQuotaAndSavedResultFailureNeverResubmit()=runBlocking(awt) {
