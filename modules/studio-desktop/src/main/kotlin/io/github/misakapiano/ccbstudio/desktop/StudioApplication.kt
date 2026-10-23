@@ -636,12 +636,10 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
             }
         }
     },footer={
-        Column {
-        if(c.batch.state.total>0)StudioAction("批次 · ${batchStatus(c.batch.state)} · ${c.batch.state.completed}/${c.batch.state.total}"){c.batch.open()}
         DesktopStudioFooter(tokens,!c.busy && c.state.creation!!.undo.isNotEmpty(),!c.busy && c.state.creation!!.redo.isNotEmpty(),
             if(generating)"停止生图" else naiGenerateLabel(false,c.naiId!=null,cost,c.usage!=null,c.draft.continuousModeEnabled),generating||(!c.busy&&!c.batch.state.running&&c.naiId!=null&&cost!=null),
-            {c.undo()},{c.undo(true)},{if(generating)c.active?.cancel() else if(!c.busy)c.generate()})
-        }
+            {c.undo()},{c.undo(true)},{if(generating)c.active?.cancel() else if(!c.busy)c.generate()},
+            batchStatus=if(c.batch.state.total>0)({LibraryAction("批次 · ${c.batch.state.completed}/${c.batch.state.total}",icon=DesktopAppIcons.DetailsOpen,accessibilityLabel="打开批次工作台 · ${batchStatus(c.batch.state)}"){c.batch.open()}})else null)
     },preview={rail -> ResultPreview(c,rail)})
     if(showSettings)NaiSettingsDialog(c){showSettings=false}
     paste?.let{text->AlertDialog(onDismissRequest={paste=null},title={Text("确认粘贴覆盖")},text={SelectionContainer{Text(text,Modifier.heightIn(max=400.dp).verticalScroll(rememberScrollState()))}},confirmButton={TextButton(onClick={c.pastePrompt(text);paste=null}){Text("确认覆盖，可撤销")}},dismissButton={TextButton(onClick={paste=null}){Text("取消")}})}

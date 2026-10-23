@@ -28,16 +28,23 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
 
 @Composable internal fun BatchCreationEntry(c:WorkbenchController) {
     val b=c.batch;var adjust by remember{mutableStateOf(false)}
-    StudioActions{listOf("单次","连续生成","批量任务").forEachIndexed{i,label->
-        LibraryAction(label,selected=if(i==2)b.batchMode else !b.batchMode&&(c.draft.continuousModeEnabled==(i==1)),icon=null){b.batchMode=i==2;c.edit{it.copy(continuousModeEnabled=i==1)}}
-    }}
-    if(b.batchMode){StudioActions{
-        StatusText(b.directions.joinToString(" · "){"${it.label} ${it.repeats} 次"}+" · 共 ${b.directions.sumOf{it.repeats}} 张")
-        StudioAction("调整"){adjust=true}
-        StudioAction("当前参数加入批次",b.editing&&!c.busy&&c.draft.basePrompt.isNotBlank()){b.addCurrent()}
-        StudioAction("工作台 ${b.state.groups.size} 组"){b.open()}
-    };StatusText("加入仅保存参数；进入工作台后手动开始")}
-    else if(c.draft.continuousModeEnabled)Row(verticalAlignment=Alignment.CenterVertically){StatusText("目标图片数");StudioNumericInput("目标图片数",c.draft.continuousTargetCount.toString(),Modifier.width(90.dp)){it.toIntOrNull()?.takeIf{it>0}?.let{n->c.edit{it.copy(continuousTargetCount=n)}}}}
+    Column(Modifier.fillMaxWidth().border(1.dp,if(b.batchMode)Gold else LibraryLine,RoundedCornerShape(5.dp)).padding(5.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
+        Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(3.dp)) {
+            Text("生成方式",fontSize=12.sp,color=LibraryMuted)
+            listOf("单次","连续生成","批量任务").forEachIndexed{i,label->
+                val active=if(i==2)b.batchMode else !b.batchMode&&(c.draft.continuousModeEnabled==(i==1))
+                Text(label,Modifier.background(if(active)Gold else Color.Transparent,RoundedCornerShape(4.dp)).clickable{b.batchMode=i==2;c.edit{it.copy(continuousModeEnabled=i==1)}}.padding(horizontal=8.dp,vertical=6.dp),fontSize=12.sp,color=if(active)Ink else LibraryText)
+            }
+            Spacer(Modifier.weight(1f))
+            LibraryAction("工作台 ${b.state.groups.size}",icon=DesktopAppIcons.DetailsOpen,style=StudioActionStyle.GHOST){b.open()}
+        }
+        if(b.batchMode)BoxWithConstraints(Modifier.fillMaxWidth()) {
+            @Composable fun rules(){Row(verticalAlignment=Alignment.CenterVertically){Text(b.directions.joinToString(" / "){"${it.label}${it.repeats}"}+" 次 · ${b.directions.sumOf{it.repeats}} 张",fontSize=12.sp,color=Gold);LibraryAction("调整",icon=DesktopAppIcons.Settings,style=StudioActionStyle.GHOST){adjust=true}}}
+            @Composable fun add(){LibraryAction("当前参数加入批次",b.editing&&!c.busy&&c.draft.basePrompt.isNotBlank(),selected=true,icon=DesktopAppIcons.Add,accessibilityLabel="当前参数加入批次，仅保存快照，不启动生成"){b.addCurrent()}}
+            if(maxWidth>=470.dp)Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically){rules();Spacer(Modifier.weight(1f));add()}
+            else FlowRow(horizontalArrangement=Arrangement.spacedBy(6.dp),verticalArrangement=Arrangement.spacedBy(4.dp)){rules();add()}
+        } else if(c.draft.continuousModeEnabled)Row(verticalAlignment=Alignment.CenterVertically){StatusText("目标图片数");StudioNumericInput("目标图片数",c.draft.continuousTargetCount.toString(),Modifier.width(90.dp)){it.toIntOrNull()?.takeIf{it>0}?.let{n->c.edit{it.copy(continuousTargetCount=n)}}}}
+    }
     if(adjust)BatchDialog("横纵方规则",{adjust=false}) {
         var dirs by remember{mutableStateOf(b.directions)}
         BatchDirectionInputs(dirs){dirs=it}
@@ -85,8 +92,9 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
     Column(Modifier.fillMaxSize().semantics{contentDescription="批量生图工作台"}) {
         LibraryBand {
             LibraryAction("返回创作"){b.shown=false;if(detached)b.detached=false}
-            Text(s.name,Modifier.weight(1f),maxLines=1)
+            Text(s.name,maxLines=1)
             Text(c.state.accounts.firstOrNull{it.id==s.accountId}?.alias?:"未选账户",color=LibraryMuted)
+            Spacer(Modifier.weight(1f))
             LibraryAction(if(detached)"返回主窗口"else"独立窗口"){b.detached=!detached;b.shown=detached}
             LibraryAction(if(s.running)"暂停批次"else"开始 / 继续",!b.changing&&s.total>0&&s.mode !in setOf("ERROR","DONE","ENDED")) {if(s.running)b.pause()else confirm="start"}
             BatchMenu("停止",items=listOf("完成当前后暂停" to {b.pause()},"立即中止当前请求" to {confirm="cancel"},"结束批次" to {confirm="end"}))
@@ -98,10 +106,11 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
             Text(if(s.running && s.mode!="RUNNING")"${b.phase} · ${((until-now).coerceAtLeast(0)+999)/1000} 秒"else b.phase.ifBlank{"等待手动操作"},fontSize=12.sp,color=LibraryMuted)
             LibraryAction("记录"){logs=true}
         }
-        s.error?.let{error->LibraryBand {
+        s.error?.let{error->Row(Modifier.fillMaxWidth().background(Color(0xff34291d)).padding(horizontal=12.dp,vertical=8.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(8.dp)) {
             Column(Modifier.weight(1f)){Text(error.message,color=Color(0xffedbb7c));Text("${error.code}${if(error.notBefore>now)" · 冷却剩余 ${(error.notBefore-now+999)/1000} 秒"else" · 等待手动确认"}",fontSize=12.sp)}
             LibraryAction("确认重试",now>=error.notBefore&&!b.changing){confirm="retry"}
             if(error.code!="429")LibraryAction("跳过并继续",!b.changing){confirm="skip"}
+            LibraryAction("结束批次",!b.changing){confirm="end"}
         }}
         BoxWithConstraints(Modifier.weight(1f).fillMaxWidth()) {
             val width=maxWidth
@@ -134,7 +143,7 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
             LibraryToolTile("移出批次","移出未开始的分组",DesktopAppIcons.Delete,b.editing&&b.selected.isNotEmpty()&&s.groups.none{it.id in b.selected&&it.started},false){b.remove()}
             LibraryToolTile("本批结果","查看本批次入库结果",DesktopAppIcons.Data,s.completed>0,false){b.results()}
             LibraryAction("撤销",b.canUndo,icon=DesktopAppIcons.Undo){b.undo()}
-            Text("参数快照已保留\n原草稿不受影响",color=LibraryMuted,fontSize=12.sp)
+            Spacer(Modifier.weight(1f));Text("参数快照已保留\n原草稿不受影响",color=LibraryMuted,fontSize=12.sp)
         }
     }
     }
@@ -174,8 +183,14 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
                     .pointerInput(g.id,b.editing,b.selected){if(b.editing)detectDragGestures(onDragStart={p->dragged=if(g.id in b.selected)b.selected else setOf(g.id);point=(bounds[g.id]?.topLeft?:Offset.Zero)+p-root},onDragCancel={dragged=emptySet();target=null},onDragEnd={target?.let{b.reorder(dragged,it)};dragged=emptySet();target=null}){change,delta->change.consume();point+=delta;target=bounds.entries.firstOrNull{it.key !in dragged&&it.value.contains(point+root)}?.key}}
                     .combinedClickable(onClick={b.select(g.id,ctrl,shift)},onDoubleClick={onEdit(g)}).padding(10.dp),horizontalArrangement=Arrangement.spacedBy(10.dp),verticalAlignment=Alignment.CenterVertically){
                     if(b.checkMode)LibrarySelectionCheckbox(selected,{b.select(g.id,true)})else Text("%02d".format(index+1),color=LibraryMuted,modifier=Modifier.width(27.dp))
-                    Column(Modifier.weight(1f)){Text(g.name,maxLines=1,overflow=TextOverflow.Ellipsis);Text(g.slots.groupBy{it.direction.label}.entries.joinToString(" · "){(label,slots)->"$label ${slots.count{it.status=="DONE"}}/${slots.size}"},color=LibraryMuted,fontSize=12.sp);Text("${g.draft.selectedModel.displayName} · ${g.draft.activeSettings.steps} Steps",color=LibraryMuted,fontSize=12.sp)}
-                    Text(when{g.slots.any{it.status=="FAILED"}->"已暂停";g.slots.any{it.status=="RUNNING"}->"生成中";g.slots.all{it.status in setOf("DONE","SKIPPED")}->"已完成";else->"待生成"},color=if(g.slots.any{it.status=="FAILED"})Color(0xffedbb7c)else LibraryMuted,fontSize=12.sp)
+                    Column(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(6.dp)){
+                        Text(g.name,maxLines=1,overflow=TextOverflow.Ellipsis)
+                        FlowRow(horizontalArrangement=Arrangement.spacedBy(10.dp),verticalArrangement=Arrangement.spacedBy(3.dp)) {g.slots.groupBy{it.direction.label}.forEach{(label,slots)->
+                            val done=slots.count{it.status=="DONE"}
+                            Row(verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(4.dp)) {Text("$label $done/${slots.size}",color=LibraryMuted,fontSize=12.sp);LinearProgressIndicator(done.toFloat()/slots.size,Modifier.width(26.dp).height(3.dp).semantics{contentDescription="${g.name} $label 进度"},color=Gold,backgroundColor=LibraryLine)}
+                        }}
+                    }
+                    Column(horizontalAlignment=Alignment.End){Text("${g.slots.count{it.status=="DONE"}}/${g.slots.size}");Text(when{g.slots.any{it.status=="FAILED"}->"等待处理";g.slots.any{it.status=="RUNNING"}->"生成中";g.slots.all{it.status in setOf("DONE","SKIPPED")}->"已完成";else->"待继续"},color=if(g.slots.any{it.status=="FAILED"})Color(0xffedbb7c)else LibraryMuted,fontSize=12.sp)}
                 }
             }
         }
@@ -186,21 +201,39 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
 }
 
 @Composable private fun BatchResults(c:WorkbenchController,group:BatchGroup?,modifier:Modifier) {
-    val b=c.batch;val ids=group?.slots?.flatMap{it.results}.orEmpty();var index by remember(group?.id){mutableStateOf(0)}
-    val strip=rememberLazyListState()
-    LaunchedEffect(ids.size,b.follow){if(b.follow&&ids.isNotEmpty()){index=ids.lastIndex;strip.animateScrollToItem(index)}}
-    fun move(delta:Int){if(ids.isNotEmpty()){b.follow=false;index=(index+delta).coerceIn(0,ids.lastIndex)}}
-    Column(modifier.onPreviewKeyEvent{if(it.type==KeyEventType.KeyDown&&(it.key==Key.DirectionLeft||it.key==Key.DirectionRight)){move(if(it.key==Key.DirectionLeft)-1 else 1);true}else false}.focusable()){
+    val b=c.batch;val slots=group?.slots.orEmpty();var index by remember(group?.id){mutableStateOf(0)}
+    val scroll=rememberScrollState();val completed=slots.count{it.status=="DONE"}
+    LaunchedEffect(group?.id,completed,b.follow){if(b.follow){index=slots.indexOfLast{it.results.isNotEmpty()}.coerceAtLeast(0)}}
+    fun move(delta:Int){if(slots.isNotEmpty()){b.follow=false;index=(index+delta).coerceIn(0,slots.lastIndex)}}
+    val selected=slots.getOrNull(index.coerceAtMost((slots.size-1).coerceAtLeast(0)))
+    fun status(slot:BatchSlot)=when(slot.status){"DONE"->"已完成";"RUNNING"->"生成中";"FAILED"->"等待处理";"SKIPPED"->"已跳过";else->"待生成"}
+    BoxWithConstraints(modifier.onPreviewKeyEvent{if(it.type==KeyEventType.KeyDown&&(it.key==Key.DirectionLeft||it.key==Key.DirectionRight)){move(if(it.key==Key.DirectionLeft)-1 else 1);true}else false}.focusable()){
+        val previewHeight=(maxHeight*.48f).coerceIn(160.dp,300.dp)
+        Column(Modifier.fillMaxSize().padding(end=12.dp).verticalScroll(scroll)) {
         var hover by remember{mutableStateOf(false)}
-        Box(Modifier.weight(1f).fillMaxWidth().background(LibraryPanel).onPointerEvent(PointerEventType.Enter){hover=true}.onPointerEvent(PointerEventType.Exit){hover=false}.clickable{move(1)}){
-            if(ids.isEmpty())Text("结果逐张保存后显示在这里",Modifier.align(Alignment.Center),color=LibraryMuted)else AssetImage(c,ids[index.coerceIn(0,ids.lastIndex)],Modifier.fillMaxSize())
-            if(hover&&ids.size>1){Box(Modifier.align(Alignment.CenterStart)){LibraryAction("‹",index>0){move(-1)}};Box(Modifier.align(Alignment.CenterEnd)){LibraryAction("›",index<ids.lastIndex){move(1)}}}
+        Box(Modifier.height(previewHeight).fillMaxWidth().background(LibraryPanel,RoundedCornerShape(5.dp)).onPointerEvent(PointerEventType.Enter){hover=true}.onPointerEvent(PointerEventType.Exit){hover=false}.clickable{move(1)}){
+            val asset=selected?.results?.firstOrNull()
+            if(asset==null)Text(if(selected==null)"选择分组查看任务"else status(selected),Modifier.align(Alignment.Center),color=LibraryMuted)else AssetImage(c,asset,Modifier.fillMaxSize())
+            selected?.let{slot->Text("${slot.direction.label} ${slot.round} · ${slot.direction.width}×${slot.direction.height} · ${status(slot)}",Modifier.align(Alignment.BottomStart).padding(6.dp).background(LibraryBackground.copy(alpha=.9f),RoundedCornerShape(4.dp)).padding(5.dp),fontSize=12.sp)}
+            if(hover&&slots.size>1){Box(Modifier.align(Alignment.CenterStart)){LibraryAction("‹",index>0){move(-1)}};Box(Modifier.align(Alignment.CenterEnd)){LibraryAction("›",index<slots.lastIndex){move(1)}}}
         }
-        Row(Modifier.fillMaxWidth().padding(vertical=6.dp),verticalAlignment=Alignment.CenterVertically){Text("本组结果 ${ids.size}",Modifier.weight(1f));LibraryToggle("跟随最新",b.follow){b.follow=!b.follow}}
-        Box(Modifier.height(85.dp).fillMaxWidth()){
-            LazyRow(state=strip,horizontalArrangement=Arrangement.spacedBy(5.dp),modifier=Modifier.fillMaxWidth().height(70.dp)){itemsIndexed(ids,key={i,id->"$i:$id"}){i,id->Box(Modifier.size(64.dp).border(if(i==index)2.dp else 1.dp,if(i==index)Gold else LibraryLine).clickable{b.follow=false;index=i}){QueueStaticThumbnail(c,id,Modifier.fillMaxSize())}}}
-            HorizontalScrollbar(rememberScrollbarAdapter(strip),Modifier.fillMaxWidth().align(Alignment.BottomCenter),style=studioVisibleScrollbarStyle())
+        Row(Modifier.fillMaxWidth().padding(vertical=6.dp),verticalAlignment=Alignment.CenterVertically){Text("本组 $completed/${slots.size} 张",Modifier.weight(1f));LibraryToggle("跟随最新",b.follow){b.follow=!b.follow}}
+        // The complete, bounded plan is visible before generation; thumbnails only decode
+        // saved assets. Placeholders never masquerade as completed or copyable results.
+        slots.withIndex().toList().chunked(4).forEach {row->
+            Row(Modifier.fillMaxWidth().padding(bottom=5.dp),horizontalArrangement=Arrangement.spacedBy(5.dp)){
+                row.forEach{(i,slot)->Column(Modifier.weight(1f).height(72.dp).border(if(i==index)2.dp else 1.dp,if(i==index)Gold else LibraryLine,RoundedCornerShape(4.dp))
+                    .semantics{contentDescription="批次位置 ${slot.direction.label} ${slot.round}";stateDescription=status(slot);this.selected=i==index}
+                    .clickable{b.follow=false;index=i}.padding(4.dp),horizontalAlignment=Alignment.CenterHorizontally){
+                    Box(Modifier.weight(1f).fillMaxWidth().background(LibraryPanel)) {slot.results.firstOrNull()?.let{id->QueueStaticThumbnail(c,id,Modifier.fillMaxSize())}}
+                    Text("${slot.direction.label} ${slot.round}",fontSize=11.sp,maxLines=1,color=LibraryMuted)
+                }}
+                repeat(4-row.size){Spacer(Modifier.weight(1f))}
+            }
         }
+        Text("参数快照 · 每次 1 张",Modifier.padding(vertical=6.dp),color=LibraryMuted,fontSize=12.sp)
+        }
+        VerticalScrollbar(rememberScrollbarAdapter(scroll),Modifier.align(Alignment.CenterEnd).fillMaxHeight(),style=studioVisibleScrollbarStyle())
     }
 }
 

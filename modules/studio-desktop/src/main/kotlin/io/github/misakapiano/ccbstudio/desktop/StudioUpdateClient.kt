@@ -21,7 +21,11 @@ internal class StudioUpdateClient(private val installed:Path,private val cache:P
         val progress=operation.resolve("progress.json")
         val args=mutableListOf(python.toString(),"-B",script.toString(),"--package",installed.toString(),"--cache",cache.toString(),"--progress",progress.toString())
         if(download)args.add("--download")
-        val process=ProcessBuilder(args).directory(installed.toFile()).redirectOutput(output.toFile()).redirectError(error.toFile()).start()
+        // TUF stages verified downloads in Python's temporary directory. Keep those bytes
+        // on the cache volume whose free space we check, rather than the system drive.
+        val temporary=Files.createDirectory(operation.resolve("temp")).toAbsolutePath().normalize().toString()
+        val process=ProcessBuilder(args).apply{environment()["TEMP"]=temporary;environment()["TMP"]=temporary}
+            .directory(installed.toFile()).redirectOutput(output.toFile()).redirectError(error.toFile()).start()
         try {
             withTimeout(Duration.ofMinutes(if(download)30 else 2).toMillis()) {
                 while(process.isAlive) {

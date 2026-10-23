@@ -3,6 +3,9 @@ package io.github.misakapiano.ccbstudio.desktop
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.semantics.*
 import androidx.compose.ui.text.AnnotatedString
@@ -53,6 +56,27 @@ class WorkbenchWorkflowTest {
     }
     private fun frame(png:ByteArray):ByteArray{val p=MessagePack.newDefaultBufferPacker();p.packMapHeader(2);p.packString("event_type");p.packString("final");p.packString("image");p.packBinaryHeader(png.size);p.writePayload(png);p.close();val b=p.toByteArray();return ByteBuffer.allocate(4+b.size).putInt(b.size).put(b).array()}
 
+    @Test fun batchCreationEntryKeepsRulesAndWorkbenchWithoutSubmitting()=runBlocking(awt) {
+        val w=StudioWorkspace.openStudio(root());val scope=CoroutineScope(SupervisorJob()+awt)
+        val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{error("UI must not generate")},pauseCollectionsOnStart=true)
+        c.edit{it.copy(basePrompt="synthetic batch entry")}
+        val scene=ImageComposeScene(660,180,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){LibraryPresentation{Column(Modifier.fillMaxSize().padding(12.dp)){BatchCreationEntry(c)}}}}
+        try {
+            scene.frames();scene.click("批量任务");assertTrue(c.batch.batchMode)
+            for(width in listOf(660,440)) {
+                scene.constraints=Constraints.fixed(width,180);scene.frames();scene.shot("batch-creation-entry-$width")
+                val add=scene.nodes().first{it.matches("当前参数加入批次，仅保存快照，不启动生成")}.boundsInRoot
+                val workbench=scene.nodes().first{it.matches("工作台 0")}.boundsInRoot
+                assertTrue(add.left>=0&&add.right<=width&&add.bottom<=180,"add $width: $add")
+                assertTrue(workbench.left>=0&&workbench.right<=width,"workbench $width: $workbench")
+                assertTrue(scene.nodes().any{it.matches("生成方式")})
+            }
+            scene.click("当前参数加入批次，仅保存快照，不启动生成");withTimeout(5000){while(c.batch.changing)delay(10)};scene.frames()
+            assertEquals(12,c.batch.state.total);assertEquals("PAUSED",c.batch.state.mode);assertTrue(c.state.jobs.isEmpty())
+            scene.click("工作台 1");assertTrue(c.batch.shown);assertEquals("synthetic batch entry",c.draft.basePrompt)
+        }finally{scene.close();c.close();scope.cancel()}
+    }
+
     @Test fun batchWorkbenchMatchesApprovedGroupsPreviewTilesAndSelection()=runBlocking(awt) {
         val w=StudioWorkspace.openStudio(root());val scope=CoroutineScope(SupervisorJob()+awt)
         val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{},pauseCollectionsOnStart=true)
@@ -62,6 +86,11 @@ class WorkbenchWorkflowTest {
         val scene=ImageComposeScene(1320,820,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){BatchWorkspace(c)}}
         try {
             scene.frames();scene.shot("batch-workbench-1320")
+            assertEquals(12,scene.nodes().count{it.config.getOrNull(SemanticsProperties.ContentDescription)?.any{d->d.startsWith("批次位置 ")}==true})
+            assertTrue(scene.nodes().any{it.matches("本组 2/12 张")})
+            scene.click("批次位置 方 4");assertFalse(c.batch.follow)
+            assertTrue(scene.nodes().any{it.matches("批次位置 方 4")&&it.config.getOrNull(SemanticsProperties.Selected)==true})
+            assertEquals(0,c.state.jobs.size,"Browsing planned slots must not generate")
             assertTrue(scene.nodes().any{it.matches("添加批次分组")&&it.config.getOrNull(SemanticsProperties.StateDescription)=="磁贴"})
             assertEquals(0,scene.nodes().count{it.config.getOrNull(SemanticsProperties.ContentDescription)?.any{d->d.startsWith("选择批次")}==true})
             c.batch.select(groups[4].id,true);c.batch.select(groups[6].id,shift=true);assertEquals(setOf(groups[3].id,groups[4].id,groups[5].id,groups[6].id),c.batch.selected)
@@ -359,6 +388,7 @@ class WorkbenchWorkflowTest {
         val scope=CoroutineScope(SupervisorJob()+awt)
         val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
         c.current=asset;c.edit{it.copy(basePrompt="保留的布局测试草稿")}
+        c.batch.queue.replaceGroups(listOf(BatchGroup.create("布局批次",c.draft,BatchController.defaultDirections(c.draft))));c.batch.refresh()
         val scene=ImageComposeScene(1240,720,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
         try {
             for(width in listOf(1240,900,640,480,1240)) {
@@ -367,6 +397,8 @@ class WorkbenchWorkflowTest {
                 val editor=scene.nodes().first{it.matches("Studio Prompt 编辑区")}.boundsInRoot
                 assertTrue(footer.height in 48f..125f,"footer at $width: $footer")
                 assertTrue(editor.height>250f,"editor at $width: $editor")
+                val batch=scene.nodes().first{it.matches("打开批次工作台 · 待开始 / 已暂停")}.boundsInRoot
+                assertTrue(batch.left>=footer.left&&batch.right<=footer.right&&batch.bottom<=footer.bottom,"batch footer at $width: $batch in $footer")
                 val action=scene.nodes().first{it.matches("撤销上次载入/重置")}.boundsInRoot
                 assertTrue(action.width>=48f && action.height>=48f)
                 assertEquals(width<900,scene.nodes().any{it.matches("Studio 当前图片摘要")})

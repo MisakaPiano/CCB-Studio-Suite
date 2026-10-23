@@ -15,6 +15,7 @@ internal fun DesktopStudioFooter(
     usage: NovelAiPromptTokenUsage?, undoEnabled: Boolean, redoEnabled: Boolean,
     generateLabel: String, generateEnabled: Boolean,
     onUndo: () -> Unit, onRedo: () -> Unit, onGenerate: () -> Unit,
+    batchStatus: (@Composable () -> Unit)? = null,
 ) {
     @Composable fun tokens(modifier: Modifier) {
         Column(modifier.semantics { contentDescription = "Studio Tokens" }) {
@@ -30,12 +31,13 @@ internal fun DesktopStudioFooter(
     }
     BoxWithConstraints(Modifier.fillMaxWidth()) {
         val availableWidth = maxWidth
-        if (availableWidth >= 380.dp) {
+        if (availableWidth >= if(batchStatus==null)380.dp else 540.dp) {
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(2.dp)) {
-                tokens(Modifier.width(minOf(availableWidth * .42f, 220.dp)))
+                tokens(Modifier.width(minOf(availableWidth * (if(batchStatus==null).42f else .30f), 220.dp)))
                 undoRedo()
                 Spacer(Modifier.weight(1f))
+                batchStatus?.invoke()
                 Box(Modifier.widthIn(max = availableWidth * .38f)) {
                     BootstrapButton(generateLabel, enabled = generateEnabled, onClick = onGenerate)
                 }
@@ -47,6 +49,7 @@ internal fun DesktopStudioFooter(
                 Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                     undoRedo()
                     Spacer(Modifier.weight(1f))
+                    batchStatus?.invoke()
                     Box(Modifier.widthIn(max = availableWidth - 100.dp)) {
                         BootstrapButton(generateLabel, enabled = generateEnabled, onClick = onGenerate)
                     }
