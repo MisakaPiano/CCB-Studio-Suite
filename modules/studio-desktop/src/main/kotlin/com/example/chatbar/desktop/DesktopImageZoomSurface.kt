@@ -25,18 +25,15 @@ internal fun DesktopImageZoomSurface(reference: String, read: (String) -> ByteAr
     resetRevision: Int = 0, onOpenViewer: (() -> Unit)? = null) {
     var transform by remember(reference, resetRevision) { mutableStateOf(DesktopViewerTransform()) }
     var size by remember { mutableStateOf(androidx.compose.ui.unit.IntSize.Zero) }
-    val dimensions by produceState<Pair<Int, Int>?>(null, reference) {
-        value = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) { runCatching {
-            org.jetbrains.skia.Data.makeFromBytes(read(reference)).use { data -> org.jetbrains.skia.Codec.makeFromData(data).use { it.width to it.height } }
-        }.getOrNull() }
-    }
+    // Reuse the dimensions of the displayed, orientation-correct image; no second asset read.
+    var dimensions by remember(reference) { mutableStateOf<androidx.compose.ui.unit.IntSize?>(null) }
     val latest by rememberUpdatedState(transform)
     val openViewer by rememberUpdatedState(onOpenViewer)
     Box(modifier.clipToBounds().onSizeChanged { size = it }
         .pointerInput(reference, dimensions) { detectTapGestures(onDoubleTap = { position ->
             val open = openViewer
             if (open != null) open() else {
-                val native = dimensions?.let { minOf(size.width.toFloat() / it.first, size.height.toFloat() / it.second) }
+                val native = dimensions?.let { minOf(size.width.toFloat() / it.width, size.height.toFloat() / it.height) }
                 transform = if (latest.zoom > 1f) DesktopViewerTransform() else latest.zoomAt(
                     native?.takeIf { it > 0f && it < 1f }?.let { 1f / it } ?: 2f, position - Offset(size.width / 2f, size.height / 2f))
             }
@@ -54,6 +51,6 @@ internal fun DesktopImageZoomSurface(reference: String, read: (String) -> ByteAr
         } } }) {
         DesktopOwnedImage(reference, read, Modifier.fillMaxSize().graphicsLayer {
             scaleX = transform.zoom; scaleY = transform.zoom; translationX = transform.pan.x; translationY = transform.pan.y
-        })
+        },onDimensions={dimensions=it})
     }
 }

@@ -21,14 +21,17 @@ internal suspend fun playDesktopApng(bytes: ByteArray, maxPlays: Int? = null,
         var loops = 0
         do {
             val canvas = BufferedImage(sequence.width, sequence.height, BufferedImage.TYPE_INT_ARGB)
+            try {
             sequence.controls.forEachIndexed { index, control ->
                 currentCoroutineContext().ensureActive()
                 val previous = if (control.disposeOperation == 2) canvas.pixels() else null
                 val frame = DesktopImageEditing.decode(sequence.readFramePng(index))
+                try {
                 canvas.createGraphics().let { graphics -> try {
                     graphics.composite = if (control.blendOperation == 0) AlphaComposite.Src else AlphaComposite.SrcOver
                     graphics.drawImage(frame, control.xOffset, control.yOffset, null)
                 } finally { graphics.dispose() } }
+                } finally { frame.flush() }
                 val denominator = control.delayDenominator.takeIf { it != 0 } ?: 100
                 onFrame(canvas, (control.delayNumerator * 1000L / denominator).coerceAtLeast(10))
                 when (control.disposeOperation) {
@@ -39,6 +42,7 @@ internal suspend fun playDesktopApng(bytes: ByteArray, maxPlays: Int? = null,
                     2 -> canvas.setRGB(0, 0, canvas.width, canvas.height, requireNotNull(previous), 0, canvas.width)
                 }
             }
+            } finally { canvas.flush() }
             loops++
         } while ((maxPlays == null || loops < maxPlays) && (sequence.playCount == 0 || loops < sequence.playCount))
         true

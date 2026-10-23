@@ -1,0 +1,128 @@
+{
+    "syntheticOnly": true,
+    "cyclesPerVersion": 60,
+    "scope": "offscreen1000x800 production zoom surface, testJVM process resources, same JVM legacy first; explicitGC only at stated unmounted checkpoints",
+    "measurements": [
+        {
+            "version": 107,
+            "phase": "warm",
+            "reads": 2,
+            "heapUsed": 35971584,
+            "threads": 19,
+            "process": {
+                "WorkingSet64": 166854656,
+                "PrivateMemorySize64": 202153984,
+                "HandleCount": 533
+            }
+        },
+        {
+            "version": 107,
+            "phase": "unmounted-20",
+            "reads": 80,
+            "heapUsed": 9244064,
+            "threads": 20,
+            "process": {
+                "WorkingSet64": 146014208,
+                "PrivateMemorySize64": 165511168,
+                "HandleCount": 541
+            }
+        },
+        {
+            "version": 107,
+            "phase": "unmounted-40",
+            "reads": 160,
+            "heapUsed": 9254592,
+            "threads": 20,
+            "process": {
+                "WorkingSet64": 150736896,
+                "PrivateMemorySize64": 170364928,
+                "HandleCount": 541
+            }
+        },
+        {
+            "version": 107,
+            "phase": "unmounted-60",
+            "reads": 240,
+            "heapUsed": 9274600,
+            "threads": 20,
+            "process": {
+                "WorkingSet64": 150011904,
+                "PrivateMemorySize64": 168509440,
+                "HandleCount": 541
+            }
+        },
+        {
+            "version": 107,
+            "phase": "closed",
+            "reads": 242,
+            "heapUsed": 9290392,
+            "threads": 20,
+            "process": {
+                "WorkingSet64": 150335488,
+                "PrivateMemorySize64": 169021440,
+                "HandleCount": 543
+            }
+        },
+        {
+            "version": 108,
+            "phase": "warm",
+            "reads": 1,
+            "heapUsed": 27246248,
+            "threads": 20,
+            "process": {
+                "WorkingSet64": 195833856,
+                "PrivateMemorySize64": 227237888,
+                "HandleCount": 543
+            }
+        },
+        {
+            "version": 108,
+            "phase": "unmounted-20",
+            "reads": 40,
+            "heapUsed": 9376048,
+            "threads": 20,
+            "process": {
+                "WorkingSet64": 153698304,
+                "PrivateMemorySize64": 171724800,
+                "HandleCount": 543
+            }
+        },
+        {
+            "version": 108,
+            "phase": "unmounted-40",
+            "reads": 80,
+            "heapUsed": 9383208,
+            "threads": 18,
+            "process": {
+                "WorkingSet64": 157999104,
+                "PrivateMemorySize64": 175386624,
+                "HandleCount": 533
+            }
+        },
+        {
+            "version": 108,
+            "phase": "unmounted-60",
+            "reads": 120,
+            "heapUsed": 9386192,
+            "threads": 18,
+            "process": {
+                "WorkingSet64": 156569600,
+                "PrivateMemorySize64": 175394816,
+                "HandleCount": 533
+            }
+        },
+        {
+            "version": 108,
+            "phase": "closed",
+            "reads": 121,
+            "heapUsed": 9388488,
+            "threads": 18,
+            "process": {
+                "WorkingSet64": 159358976,
+                "PrivateMemorySize64": 177438720,
+                "HandleCount": 533
+            }
+        }
+    ],
+    "unboundedLeakConclusion": "NOT CLAIMED; bounded two-minute scenario only"
+}

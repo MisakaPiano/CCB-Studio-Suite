@@ -1,0 +1,481 @@
+{
+    "syntheticOnly": true,
+    "images": 48,
+    "pageCycles": 60,
+    "providerCalls": 0,
+    "window": "offscreen ImageComposeScene 1320x880",
+    "nativeStartupAndRss": "NOT MEASURED; heap/process CPU are of isolated Gradle test JVM",
+    "measurements": [
+        {
+            "phase": "workspace-controller-open",
+            "wallMs": 65.8364,
+            "processCpuMs": 93.75,
+            "heapUsedBytes": 52658120,
+            "liveThreads": 21
+        },
+        {
+            "phase": "first-gallery-ready",
+            "wallMs": 205.2609,
+            "processCpuMs": 390.625,
+            "heapUsedBytes": 43958504,
+            "liveThreads": 29
+        },
+        {
+            "phase": "idle-gallery-3-seconds",
+            "wallMs": 3004.6465,
+            "processCpuMs": 78.125,
+            "heapUsedBytes": 45007080,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-0",
+            "wallMs": 1276.1444,
+            "processCpuMs": 734.375,
+            "heapUsedBytes": 32078136,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-1",
+            "wallMs": 1124.3763,
+            "processCpuMs": 343.75,
+            "heapUsedBytes": 46758200,
+            "liveThreads": 28
+        },
+        {
+            "phase": "page-cycle-2",
+            "wallMs": 1119.0338,
+            "processCpuMs": 484.375,
+            "heapUsedBytes": 29040632,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-3",
+            "wallMs": 1116.0699,
+            "processCpuMs": 390.625,
+            "heapUsedBytes": 44769272,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-4",
+            "wallMs": 1133.1832,
+            "processCpuMs": 359.375,
+            "heapUsedBytes": 29371712,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-5",
+            "wallMs": 1120.5822,
+            "processCpuMs": 515.625,
+            "heapUsedBytes": 44051776,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-6",
+            "wallMs": 1148.8951,
+            "processCpuMs": 390.625,
+            "heapUsedBytes": 28451296,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-7",
+            "wallMs": 1119.5156,
+            "processCpuMs": 453.125,
+            "heapUsedBytes": 43131360,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-8",
+            "wallMs": 1133.0246,
+            "processCpuMs": 375.0,
+            "heapUsedBytes": 57811424,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-9",
+            "wallMs": 1118.6227,
+            "processCpuMs": 328.125,
+            "heapUsedBytes": 40237000,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-10",
+            "wallMs": 1112.9023,
+            "processCpuMs": 375.0,
+            "heapUsedBytes": 53868488,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-11",
+            "wallMs": 1116.6324,
+            "processCpuMs": 375.0,
+            "heapUsedBytes": 37210056,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-12",
+            "wallMs": 1103.0895,
+            "processCpuMs": 437.5,
+            "heapUsedBytes": 45598664,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-13",
+            "wallMs": 1118.7204,
+            "processCpuMs": 359.375,
+            "heapUsedBytes": 29692968,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-14",
+            "wallMs": 1117.591,
+            "processCpuMs": 390.625,
+            "heapUsedBytes": 42275880,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-15",
+            "wallMs": 1106.0136,
+            "processCpuMs": 265.625,
+            "heapUsedBytes": 55907368,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-16",
+            "wallMs": 1102.8614,
+            "processCpuMs": 406.25,
+            "heapUsedBytes": 37299144,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-17",
+            "wallMs": 1112.8813,
+            "processCpuMs": 171.875,
+            "heapUsedBytes": 46736328,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-18",
+            "wallMs": 1112.2299,
+            "processCpuMs": 281.25,
+            "heapUsedBytes": 58270664,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-19",
+            "wallMs": 1118.3855,
+            "processCpuMs": 296.875,
+            "heapUsedBytes": 40867560,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-20",
+            "wallMs": 1112.7594,
+            "processCpuMs": 250.0,
+            "heapUsedBytes": 53450472,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-21",
+            "wallMs": 1119.2813,
+            "processCpuMs": 265.625,
+            "heapUsedBytes": 35929240,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-22",
+            "wallMs": 1107.5457,
+            "processCpuMs": 312.5,
+            "heapUsedBytes": 48512144,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-23",
+            "wallMs": 1111.3322,
+            "processCpuMs": 234.375,
+            "heapUsedBytes": 30593736,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-24",
+            "wallMs": 1104.0464,
+            "processCpuMs": 187.5,
+            "heapUsedBytes": 43176648,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-25",
+            "wallMs": 1099.8406,
+            "processCpuMs": 250.0,
+            "heapUsedBytes": 56808136,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-26",
+            "wallMs": 1105.1754,
+            "processCpuMs": 234.375,
+            "heapUsedBytes": 39657408,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-27",
+            "wallMs": 1103.8595,
+            "processCpuMs": 250.0,
+            "heapUsedBytes": 53288896,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-28",
+            "wallMs": 1103.8496,
+            "processCpuMs": 187.5,
+            "heapUsedBytes": 35876440,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-29",
+            "wallMs": 1105.4489,
+            "processCpuMs": 328.125,
+            "heapUsedBytes": 49507928,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-30",
+            "wallMs": 1104.9354,
+            "processCpuMs": 281.25,
+            "heapUsedBytes": 30798824,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-31",
+            "wallMs": 1099.9338,
+            "processCpuMs": 312.5,
+            "heapUsedBytes": 44430312,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-32",
+            "wallMs": 1106.2493,
+            "processCpuMs": 328.125,
+            "heapUsedBytes": 53867496,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-33",
+            "wallMs": 1115.1878,
+            "processCpuMs": 265.625,
+            "heapUsedBytes": 35988904,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-34",
+            "wallMs": 1086.3898,
+            "processCpuMs": 171.875,
+            "heapUsedBytes": 46474656,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-35",
+            "wallMs": 1086.5469,
+            "processCpuMs": 125.0,
+            "heapUsedBytes": 29307272,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-36",
+            "wallMs": 1089.7824,
+            "processCpuMs": 218.75,
+            "heapUsedBytes": 40841608,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-37",
+            "wallMs": 1096.6053,
+            "processCpuMs": 359.375,
+            "heapUsedBytes": 53424520,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-38",
+            "wallMs": 1086.8556,
+            "processCpuMs": 234.375,
+            "heapUsedBytes": 34210296,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-39",
+            "wallMs": 1099.9157,
+            "processCpuMs": 187.5,
+            "heapUsedBytes": 46793208,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-40",
+            "wallMs": 1090.0278,
+            "processCpuMs": 187.5,
+            "heapUsedBytes": 29162824,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-41",
+            "wallMs": 1122.8848,
+            "processCpuMs": 281.25,
+            "heapUsedBytes": 44891464,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-42",
+            "wallMs": 1089.4694,
+            "processCpuMs": 187.5,
+            "heapUsedBytes": 57474376,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-43",
+            "wallMs": 1102.3405,
+            "processCpuMs": 156.25,
+            "heapUsedBytes": 40329120,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-44",
+            "wallMs": 1100.4782,
+            "processCpuMs": 250.0,
+            "heapUsedBytes": 52912032,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-45",
+            "wallMs": 1086.6854,
+            "processCpuMs": 156.25,
+            "heapUsedBytes": 36378680,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-46",
+            "wallMs": 1107.5739,
+            "processCpuMs": 187.5,
+            "heapUsedBytes": 50010168,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-47",
+            "wallMs": 1102.3818,
+            "processCpuMs": 359.375,
+            "heapUsedBytes": 31231112,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-48",
+            "wallMs": 1087.7179,
+            "processCpuMs": 250.0,
+            "heapUsedBytes": 43814024,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-49",
+            "wallMs": 1084.9995,
+            "processCpuMs": 296.875,
+            "heapUsedBytes": 56396936,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-50",
+            "wallMs": 1089.2808,
+            "processCpuMs": 296.875,
+            "heapUsedBytes": 37994496,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-51",
+            "wallMs": 1087.4788,
+            "processCpuMs": 140.625,
+            "heapUsedBytes": 49528832,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-52",
+            "wallMs": 1101.4101,
+            "processCpuMs": 125.0,
+            "heapUsedBytes": 31298976,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-53",
+            "wallMs": 1086.5272,
+            "processCpuMs": 171.875,
+            "heapUsedBytes": 43881888,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-54",
+            "wallMs": 1085.9382,
+            "processCpuMs": 187.5,
+            "heapUsedBytes": 56464800,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-55",
+            "wallMs": 1101.6771,
+            "processCpuMs": 140.625,
+            "heapUsedBytes": 36910440,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-56",
+            "wallMs": 1092.5802,
+            "processCpuMs": 187.5,
+            "heapUsedBytes": 50541928,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-57",
+            "wallMs": 1097.1896,
+            "processCpuMs": 109.375,
+            "heapUsedBytes": 31533632,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-58",
+            "wallMs": 1091.641,
+            "processCpuMs": 203.125,
+            "heapUsedBytes": 43067968,
+            "liveThreads": 29
+        },
+        {
+            "phase": "page-cycle-59",
+            "wallMs": 1087.6542,
+            "processCpuMs": 156.25,
+            "heapUsedBytes": 55650872,
+            "liveThreads": 28
+        },
+        {
+            "phase": "maintenance-drain",
+            "wallMs": 65.0208,
+            "processCpuMs": 62.5,
+            "heapUsedBytes": 29272104,
+            "liveThreads": 29
+        },
+        {
+            "phase": "resume-gallery",
+            "wallMs": 30.4135,
+            "processCpuMs": 31.25,
+            "heapUsedBytes": 30320680,
+            "liveThreads": 29
+        },
+        {
+            "phase": "post-cycles-explicit-gc",
+            "wallMs": 538.9687,
+            "processCpuMs": 78.125,
+            "heapUsedBytes": 25335320,
+            "liveThreads": 29
+        },
+        {
+            "phase": "close-drain",
+            "wallMs": 59.4757,
+            "processCpuMs": 109.375,
+            "heapUsedBytes": 29529624,
+            "liveThreads": 29
+        }
+    ],
+    "remainingThumbnailTasks": 0,
+    "retainedPixelsAfterClose": 0
+}

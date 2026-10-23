@@ -50,6 +50,15 @@ internal fun DesktopOwnedImage(reference: String, read: (String) -> ByteArray,
     modifier: Modifier = Modifier, crop: Boolean = false, onDimensions: ((IntSize) -> Unit)? = null,
     minimumDisplayWidthPx: Int? = null,
     displayTargetForSource: ((IntSize) -> IntSize)? = null) {
+    // Each source owns its display state. A slow/failed next image must never retain the old image.
+    key(reference, minimumDisplayWidthPx, displayTargetForSource) {
+        DesktopOwnedImageContent(reference,read,modifier,crop,onDimensions,minimumDisplayWidthPx,displayTargetForSource)
+    }
+}
+
+@Composable private fun DesktopOwnedImageContent(reference:String,read:(String)->ByteArray,
+    modifier:Modifier,crop:Boolean,onDimensions:((IntSize)->Unit)?,minimumDisplayWidthPx:Int?,
+    displayTargetForSource:((IntSize)->IntSize)?) {
     var error by remember(reference) { mutableStateOf<String?>(null) }
     val displayed by produceState<DesktopDisplayedImage?>(null, reference, minimumDisplayWidthPx, displayTargetForSource) {
         try {
@@ -60,11 +69,12 @@ internal fun DesktopOwnedImage(reference: String, read: (String) -> ByteArray,
                     value = DesktopDisplayedImage(desktopDisplayBitmap(frame, minimumDisplayWidthPx),
                         IntSize(frame.width, frame.height)); delay(duration)
                 }) return@withContext
+                var animated=false
                 org.jetbrains.skia.Data.makeFromBytes(bytes).use { data ->
                     org.jetbrains.skia.Codec.makeFromData(data).use { codec ->
                         require(codec.width.toLong() * codec.height <= DesktopImageEditing.MAX_PIXELS)
-                        if (codec.frameCount <= 1) value = desktopDisplayBitmap(bytes, minimumDisplayWidthPx, displayTargetForSource)
-                        else org.jetbrains.skia.Bitmap().use { frame ->
+                        if (codec.frameCount > 1) org.jetbrains.skia.Bitmap().use { frame ->
+                            animated=true
                             check(frame.allocPixels(codec.imageInfo))
                             var loops = 0
                             do {
@@ -79,6 +89,12 @@ internal fun DesktopOwnedImage(reference: String, read: (String) -> ByteArray,
                             } while (codec.repetitionCount < 0 || loops <= codec.repetitionCount)
                         }
                     }
+                }
+                if(!animated) {
+                    currentCoroutineContext().ensureActive()
+                    val result=desktopDisplayBitmap(bytes,minimumDisplayWidthPx,displayTargetForSource)
+                    currentCoroutineContext().ensureActive()
+                    value=result
                 }
             }
         }
@@ -95,9 +111,9 @@ internal fun DesktopOwnedImage(reference: String, read: (String) -> ByteArray,
     }
 }
 
-private data class DesktopDisplayedImage(val bitmap: ImageBitmap, val sourceDimensions: IntSize)
+internal data class DesktopDisplayedImage(val bitmap: ImageBitmap, val sourceDimensions: IntSize)
 
-private fun desktopDisplayBitmap(bytes: ByteArray, minimumDisplayWidthPx: Int?,
+internal fun desktopDisplayBitmap(bytes: ByteArray, minimumDisplayWidthPx: Int?,
     displayTargetForSource: ((IntSize) -> IntSize)?): DesktopDisplayedImage {
     var source: IntSize? = null
     val decoded = DesktopImageEditing.decode(bytes, longestSide = 1600,
@@ -106,10 +122,12 @@ private fun desktopDisplayBitmap(bytes: ByteArray, minimumDisplayWidthPx: Int?,
         displayTargetForSource = displayTargetForSource?.let { target ->
             { width, height -> target(IntSize(width, height)).let { it.width to it.height } }
         })
-    val orientedSource = requireNotNull(source)
-    val target = displayTargetForSource?.invoke(orientedSource)
-    return DesktopDisplayedImage(if (target == null) desktopDisplayBitmap(decoded, minimumDisplayWidthPx)
-        else desktopDisplayBitmap(decoded, target), orientedSource)
+    return try {
+        val orientedSource = requireNotNull(source)
+        val target = displayTargetForSource?.invoke(orientedSource)
+        DesktopDisplayedImage(if (target == null) desktopDisplayBitmap(decoded, minimumDisplayWidthPx)
+            else desktopDisplayBitmap(decoded, target), orientedSource)
+    } finally { decoded.flush() }
 }
 
 private fun desktopDisplayBitmap(original: java.awt.image.BufferedImage, target: IntSize): ImageBitmap {
@@ -117,20 +135,43 @@ private fun desktopDisplayBitmap(original: java.awt.image.BufferedImage, target:
         target.height.toDouble() / original.height)
     val width = (original.width * ratio).roundToInt().coerceAtLeast(1)
     val height = (original.height * ratio).roundToInt().coerceAtLeast(1)
+    if(width==original.width && height==original.height)return desktopRasterBitmap(original)
     val small = java.awt.image.BufferedImage(width, height, java.awt.image.BufferedImage.TYPE_INT_ARGB)
+    try {
     small.createGraphics().let { graphics -> try {
         graphics.setRenderingHint(java.awt.RenderingHints.KEY_INTERPOLATION,
             java.awt.RenderingHints.VALUE_INTERPOLATION_BICUBIC)
         graphics.drawImage(original, 0, 0, width, height, null)
     } finally { graphics.dispose() } }
-    return org.jetbrains.skia.Image.makeFromEncoded(DesktopImageEditing.png(small)).toComposeImageBitmap()
+    return desktopRasterBitmap(small)
+    } finally { small.flush() }
+}
+
+// Bulk row conversion avoids BufferedImage's per-pixel temporary objects on byte-backed rasters.
+// getRGB normalizes color space and unpremultiplies alpha without modifying the source pixels.
+private fun desktopRasterBitmap(source: java.awt.image.BufferedImage): ImageBitmap {
+    val pixels = ByteArray(Math.multiplyExact(Math.multiplyExact(source.width, source.height), 4))
+    val row = IntArray(source.width)
+    var offset = 0
+    for (y in 0 until source.height) {
+        source.getRGB(0, y, source.width, 1, row, 0, source.width)
+        for (argb in row) {
+            pixels[offset++] = (argb ushr 16).toByte()
+            pixels[offset++] = (argb ushr 8).toByte()
+            pixels[offset++] = argb.toByte()
+            pixels[offset++] = (argb ushr 24).toByte()
+        }
+    }
+    return org.jetbrains.skia.Image.makeRaster(
+        org.jetbrains.skia.ImageInfo(source.width, source.height,
+            org.jetbrains.skia.ColorType.RGBA_8888, org.jetbrains.skia.ColorAlphaType.UNPREMUL),
+        pixels, source.width * 4).toComposeImageBitmap()
 }
 
 private fun desktopDisplayBitmap(original: java.awt.image.BufferedImage, minimumDisplayWidthPx: Int?): ImageBitmap {
     val ratio = minOf(1.0, maxOf(1600.0 / maxOf(original.width, original.height),
         (minimumDisplayWidthPx ?: 0).toDouble() / original.width))
-    val small = DesktopImageEditing.crop(original, DesktopImageTransform(),
-        (original.width * ratio).toInt().coerceAtLeast(1), (original.height * ratio).toInt().coerceAtLeast(1))
-    return org.jetbrains.skia.Image.makeFromEncoded(DesktopImageEditing.png(small)).toComposeImageBitmap()
+    return desktopDisplayBitmap(original,IntSize((original.width*ratio).toInt().coerceAtLeast(1),
+        (original.height*ratio).toInt().coerceAtLeast(1)))
 }
 
