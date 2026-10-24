@@ -1,0 +1,123 @@
+{
+  "run": "H:\\CCB-Studio-Suite\\.local\\native-perf-20261025\\run-45bf00b6",
+  "results": {
+    "process-cold": {
+      "startup": {
+        "status": "PASS",
+        "pid": 49340,
+        "exitCode": 0,
+        "seconds": 26.174963400000706,
+        "samples": 260,
+        "peaks": {
+          "workingSetBytes": 599150592,
+          "privateBytes": 836530176,
+          "heapUsedBytes": 144504832
+        },
+        "firstDrawFromParentMs": 4038.58154296875,
+        "normalExitConfirmed": true,
+        "resourceRelease": "OS process exited, controller thumbnail requests/pixels zero; OS/global graphics cache not measured",
+        "desktopAfter": []
+      },
+      "workspaceOpenStageMs": 676.5811,
+      "controllerOpenStageMs": 485.29629999999986,
+      "firstGalleryReadyMs": 631.317501,
+      "galleryCyclesMs": [
+        102.4665,
+        83.9098,
+        78.833899,
+        69.320099,
+        65.5841,
+        57.6052
+      ],
+      "galleryCycleMedianMs": 74.076999,
+      "creationIdle": {
+        "wallMs": 5028.5749,
+        "cpuMs": 578.125,
+        "processIoReadBytes": 469680,
+        "processIoWriteBytes": 232
+      },
+      "galleryIdle": {
+        "wallMs": 10014.059601,
+        "cpuMs": 593.75,
+        "processIoReadBytes": 16397,
+        "processIoWriteBytes": 466
+      },
+      "sampledProcessIoLast": {
+        "readOps": 35614,
+        "writeOps": 12877,
+        "otherOps": 46109,
+        "readBytes": 162032885,
+        "writeBytes": 75823734,
+        "otherBytes": 1240384
+      },
+      "frames": 21,
+      "closedThumbnailCounts": {
+        "pending": 0,
+        "retainedBytes": 0
+      },
+      "totalProcessCpuMs": 14484.375
+    },
+    "warm-reopen": {
+      "startup": {
+        "status": "PASS",
+        "pid": 48516,
+        "exitCode": 0,
+        "seconds": 24.53698750003241,
+        "samples": 244,
+        "peaks": {
+          "workingSetBytes": 579522560,
+          "privateBytes": 817037312,
+          "heapUsedBytes": 143877136
+        },
+        "firstDrawFromParentMs": 3308.8173828125,
+        "normalExitConfirmed": true,
+        "resourceRelease": "OS process exited, controller thumbnail requests/pixels zero; OS/global graphics cache not measured",
+        "desktopAfter": []
+      },
+      "workspaceOpenStageMs": 588.3901999999999,
+      "controllerOpenStageMs": 572.0452000000001,
+      "firstGalleryReadyMs": 604.7601,
+      "galleryCyclesMs": [
+        96.5708,
+        84.9756,
+        75.3286,
+        70.1021,
+        61.8205,
+        59.8508
+      ],
+      "galleryCycleMedianMs": 72.71535,
+      "creationIdle": {
+        "wallMs": 5015.228099,
+        "cpuMs": 656.25,
+        "processIoReadBytes": 794779,
+        "processIoWriteBytes": 235
+      },
+      "galleryIdle": {
+        "wallMs": 10003.427899999999,
+        "cpuMs": 781.25,
+        "processIoReadBytes": 16397,
+        "processIoWriteBytes": 0
+      },
+      "sampledProcessIoLast": {
+        "readOps": 34297,
+        "writeOps": 9212,
+        "otherOps": 45920,
+        "readBytes": 131183994,
+        "writeBytes": 10873353,
+        "otherBytes": 1226468
+      },
+      "frames": 21,
+      "closedThumbnailCounts": {
+        "pending": 0,
+        "retainedBytes": 0
+      },
+      "totalProcessCpuMs": 13734.375
+    }
+  },
+  "notes": [
+    "Workspace open stage includes initial brand setup; controller stage includes application composition bootstrap, not exclusive method profiling",
+    "Window readiness joins completed native content draw and showing state; gallery includes two explicit test-only frame barriers; 20ms readiness polling",
+    "Sampled process IO is not physical disk activity; snapshots are ~100ms apart; heap peak is max event sample, not a continuous JVM peak",
+    "Two sessions are not statistical population or long-duration leak validation; OS file caches not flushed; packaged launcher and full Main startup not measured"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "phase": "native-perf-diagnostics-inputs-20261025",
+  "startedUtc": "2026-10-24T19:04:33.640915+00:00",
+  "seconds": 16.661,
+  "exitCode": 0,
+  "tests": 0,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "COMMAND_SUCCESS",
+  "testEvidence": "NOT TESTED (build only or failed before execution)",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:nativePerformanceInputs"
+  ],
+  "baseCommit": "0a6237f7e88eaed459b06227cde6467da50008b8",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

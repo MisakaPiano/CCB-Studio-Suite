@@ -1,0 +1,20 @@
+{
+  "source": "4ec1979754b80068c7fc3ea68b1ecdaa43df5fa8",
+  "startingCommit": "7c42606fae002aca7cdd8aedbb713b462574ccd9",
+  "productionKotlinAndUpdateRuntimeUnchanged": true,
+  "probe": {
+    "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/NativePerformanceProbe.kt",
+    "gitSha256": "ebb6e1e96aae56ce584d6642bc1acfbc76549cf87bd6311bac7358cdc5b5a11f",
+    "executedSourceDiskSha256": "ebb6e1e96aae56ce584d6642bc1acfbc76549cf87bd6311bac7358cdc5b5a11f"
+  },
+  "runtimeInputsAllUnchangedAfterNativePair": true,
+  "canonicalRun": "run-45bf00b6",
+  "nativeSessionsPassed": 2,
+  "junitTestsExecuted": 0,
+  "packagingAndPackageStartup": "NOT TESTED; test classes plus native Window host only",
+  "independentReview": "NOT REQUESTED; no new payload authorization",
+  "q09": "FAILED/UNKNOWN unchanged",
+  "assetAndEditorHuman": "USER_NOT_TESTED",
+  "promptAnd115Human": "PENDING",
+  "product": "PRODUCT_HOLD / NOT RC"
+}

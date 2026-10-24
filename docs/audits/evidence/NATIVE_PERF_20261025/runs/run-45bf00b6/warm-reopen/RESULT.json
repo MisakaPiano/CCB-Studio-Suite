@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "pid": 48516,
+  "exitCode": 0,
+  "seconds": 24.53698750003241,
+  "samples": 244,
+  "peaks": {
+    "workingSetBytes": 579522560,
+    "privateBytes": 817037312,
+    "heapUsedBytes": 143877136
+  },
+  "firstDrawFromParentMs": 3308.8173828125,
+  "normalExitConfirmed": true,
+  "resourceRelease": "OS process exited, controller thumbnail requests/pixels zero; OS/global graphics cache not measured",
+  "desktopAfter": []
+}

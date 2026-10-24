@@ -1,3 +1,7 @@
+## 2026-10-25 PERF-002/007原生宿主最小基线
+
+见[独立小段报告](audits/NATIVE_PERFORMANCE_BASELINE_20261025.md)：测试源码4ec1979，两次原生Window会话与短期CPU/工作集/堆/逻辑IO/退出记录，失败及观测修正完整保留。没有产品代码修改、打包/发版或新交审；完整包启动、OS冷缓存/物理IO/长期资源仍未测，不代签用户或全专项验收。旧PERF-003独立结论与q09/人工/PENDING边界保留。
+
 ## 2026-10-25 PERF-003 Project限定独立通过
 
 已实际读取[Project完整结论及读取边界](audits/PERF003_PROJECT_ACCEPTANCE_20261025.md)：固定98666fb/13ae2d10，9方法证据独立核验，PERF-003 / PASS_WITH_SCOPE，无新增行为返工；不外推用户/新包/整页/长期资源验收，不自动启动其他PERF或发版。用户防护干扰诊断补充仅记录于现有合同，具体360影响UNKNOWN，未作安全变更。原失败、q09、USER_NOT_TESTED及各PENDING保持。

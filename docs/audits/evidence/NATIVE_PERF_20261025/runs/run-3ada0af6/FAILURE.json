@@ -1,0 +1,18 @@
+{
+  "status": "FAILED_OR_INCOMPLETE",
+  "source": "effffba8db3e435e621e970e2b09696b061587f4",
+  "startedUtc": "2026-10-24T19:02:48.304330+00:00",
+  "failedUtc": "2026-10-24T19:03:38.305648+00:00",
+  "error": "AssertionError()",
+  "fixture": "H:\\CCB-Studio-Suite\\.local\\disposable\\native-perf-c9fc9d4553064fb19bbbb3f9bfd1d91c",
+  "attempts": [
+    {
+      "kind": "prepare",
+      "exitCode": 0,
+      "seconds": 13.756967400026042
+    }
+  ],
+  "cause": "UNKNOWN unless exact error/log demonstrates source; not automatically protection software",
+  "originalInputsRetained": true,
+  "forcedTermination": false
+}

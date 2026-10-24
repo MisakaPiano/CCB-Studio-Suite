@@ -1,0 +1,19 @@
+{
+  "status": "FAILED_OR_INCOMPLETE",
+  "source": "1f1bea3cb173d979095c8f6fb684c9a832ce2d6f",
+  "startedUtc": "2026-10-24T19:09:47.855539+00:00",
+  "failedUtc": "2026-10-24T19:10:45.815764+00:00",
+  "error": "AssertionError('Native process failed; see exact process.log, do not assume protection interference')",
+  "fixture": "H:\\CCB-Studio-Suite\\.local\\disposable\\native-perf-796b4cad982c45b0aa5ea11b9506804c",
+  "attempts": [
+    {
+      "kind": "prepare",
+      "exitCode": 0,
+      "seconds": 13.494744799972977
+    }
+  ],
+  "nativeExitCode": 1,
+  "cause": "UNKNOWN unless exact error/log demonstrates source; not automatically protection software",
+  "originalInputsRetained": true,
+  "forcedTermination": false
+}

@@ -1,0 +1,17 @@
+{
+  "os": "Windows 10 Pro 19045 x64",
+  "java": "17.0.20.1",
+  "testHeapLimitBytes": 536870912,
+  "activeProcessors": 2,
+  "window": "1320x880 at recorded scale 1.0",
+  "seed": "48 synthetic 832x1216 PNG originals, unique asset IDs; no real user account/files",
+  "nativeHost": "Production Workbench and Controller in real Compose Window; no shipped launcher/update bootstrap/default-entrypoint code",
+  "sampling": "GetProcessTimes / GetProcessMemoryInfo / GetProcessIoCounters / handles every ~100ms; heap and threads at event checkpoints",
+  "frameDefinition": "completed native content draw AND Window showing; gallery includes initial+settled confirmation frames, 20ms polling; no DWM presentation timestamp",
+  "cold": "New process first launch after seed, not disk-cold; OS caches unflushed/unknown",
+  "duration": "Two ~25-second sessions; not hour-level",
+  "ambient": "One busy attempt deferred; native final before/after snapshots no Desktop launchers; cached test compilation overlap with later Desktop build is not a quiet-machine guarantee",
+  "security": "No prevention/OS access-denied event observed; protection impact unknown, no changes to security settings",
+  "network": "HTTP interceptor/admission reject sends; startup updater not invoked",
+  "sourceCodeChanges": "Only a test probe, its test input-export Gradle task, and task docs"
+}
