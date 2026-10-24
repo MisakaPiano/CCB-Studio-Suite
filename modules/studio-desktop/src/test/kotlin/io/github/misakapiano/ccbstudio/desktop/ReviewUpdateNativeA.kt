@@ -45,8 +45,10 @@ object ReviewUpdateNativeA {
         try {
             val ref=c.vault.put("SYNTHETIC_NATIVE_UPDATE_CREDENTIAL_ONLY".toByteArray())
             val account=AccountProfile(alias="Synthetic update account",service="NAI",provider="NOVELAI",endpoint="https://image.novelai.net",model="fixture",secretRef=ref)
+            val editedRef=c.vault.put("SYNTHETIC_EDITED_NATIVE_UPDATE_CREDENTIAL_ONLY".toByteArray())
+            val edited=account.copy(alias="Synthetic edited account",secretRef=editedRef)
             val original=w.importImage("synthetic-original.png",EditorRenderer.synthetic(48,48),"synthetic retained recipe")
-            w.save(w.state.copy(accounts=listOf(account)))
+            w.save(w.state.copy(accounts=listOf(edited),batch=w.state.batch.copy(accountId=account.id,accountSnapshot=account)))
             withContext(awt){c.updater.check(true);c.updater.job!!.join()}
             check(c.updater.result?.get("status")?.jsonPrimitive?.content=="DOWNLOADED_VERIFIED"){c.updater.message}
             withContext(awt){c.chooseAccount("NAI",account.id);c.edit{it.copy(basePrompt="synthetic update fixture",continuousModeEnabled=true,continuousTargetCount=3)};c.generate()}
@@ -57,7 +59,8 @@ object ReviewUpdateNativeA {
             writeUpdateJson(out.resolve("A_DRAIN_WAITING.json"),buildJsonObject{put("pid",ProcessHandle.current().pid());put("command",ProcessHandle.current().info().command().orElse("unknown"));put("gateClosed",true);put("responseStillPending",true);put("generationSends",sends.get())})
             release.countDown();withTimeout(15000){drain.await()}
             check(sends.get()==1);check(w.state.jobs.single().state=="COMPLETED");check(w.bytes(w.state.jobs.single().results.single()).contentEquals(png))
-            val before=updateSnapshot(w);check(before["credentials"]!!.jsonArray.single().jsonObject["sha256"]!=null)
+            val before=updateSnapshot(w);val credentials=before["credentials"]!!.jsonArray
+            check(credentials.size==2&&credentials.all{it.jsonObject["sha256"]!=null})
             val plan=prepareUpdateHandoff(c,runtime)
             writeUpdateJson(out.resolve("A_HANDOFF_READY.json"),buildJsonObject{put("plan",plan.toString());put("parentPid",ProcessHandle.current().pid());put("generationSends",sends.get());put("snapshot",before);put("originalId",original);put("drain", "PRODUCTION_WORKBENCH_COMPLETED")})
             withContext(awt){c.close()}

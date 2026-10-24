@@ -26,6 +26,23 @@ class ReviewBoundaryTest {
         }
         StudioWorkspace.openStudio(r).use{assertEquals(original,BatchQueue(it).dispatchAccount())}
     }
+    @Test fun policyOnlySavePreservesFrozenCredentialWhileExplicitAccountChangeAndLegacyEnrollmentWork() {
+        val r=root();lateinit var original:AccountProfile;val changedPolicy=BatchPolicy(intervalSeconds=90)
+        StudioWorkspace.openStudio(r).use{w->
+            original=AccountProfile(alias="queued A",service="NAI",provider="NOVELAI",endpoint="https://image.novelai.net",model="fixture",secretRef=newId())
+            w.save(w.state.copy(accounts=listOf(original)));val q=BatchQueue(w);q.replaceGroups(listOf(group()));q.configure(original.id,BatchPolicy())
+            val edited=original.copy(alias="current B",secretRef=newId())
+            w.save(w.state.copy(accounts=listOf(edited)));q.configure(original.id,changedPolicy)
+            assertEquals(original,q.dispatchAccount());assertEquals(changedPolicy,q.state.policy)
+        }
+        StudioWorkspace.openStudio(r).use{w->
+            val q=BatchQueue(w);assertEquals(original,q.dispatchAccount());assertEquals(changedPolicy,q.state.policy)
+            val second=original.copy(id=newId(),alias="explicit C",secretRef=newId());w.save(w.state.copy(accounts=w.state.accounts+second))
+            q.configure(second.id,changedPolicy);assertEquals(second,q.dispatchAccount())
+            w.save(w.state.copy(batch=q.state.copy(accountSnapshot=null)))
+            q.configure(second.id,BatchPolicy());assertEquals(second,q.dispatchAccount())
+        }
+    }
     @Test fun closeCancelsOnlyPendingAdmissionAndReopenRequiresExplicitAction()=runBlocking {
         val gate=GenerationSendGate();val entered=CompletableDeferred<Unit>();var sends=0
         val waiting=async{assertFailsWith<GenerationNotSent>{gate.await(RequestAdmission{entered.complete(Unit);awaitCancellation()})}}

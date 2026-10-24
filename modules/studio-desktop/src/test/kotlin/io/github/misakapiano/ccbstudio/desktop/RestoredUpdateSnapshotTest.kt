@@ -48,6 +48,24 @@ class RestoredUpdateSnapshotTest {
             }
         }
     }
+    @Test fun frozenAndEditedAccountCredentialsBothVerifyAndMissingFrozenCredentialRejectsB() {
+        StudioWorkspace.openStudio(root()).use{w->
+            val vault=SecretVault(w.root.resolve("secrets"))
+            val a=vault.put("synthetic queued A".toByteArray());val b=vault.put("synthetic edited B".toByteArray())
+            val frozen=AccountProfile(alias="queued",service="NAI",provider="NOVELAI",endpoint="https://image.novelai.net",model="fixture",secretRef=a)
+            val edited=frozen.copy(alias="edited",secretRef=b)
+            w.save(w.state.copy(accounts=listOf(edited),batch=w.state.batch.copy(accountId=frozen.id,accountSnapshot=frozen)))
+            val before=updateSnapshot(w);val credentials=before["credentials"]!!.jsonArray.map{it.jsonObject}
+            assertEquals(setOf(a,b),credentials.map{it["ref"]!!.jsonPrimitive.content}.toSet())
+            assertTrue(credentials.all{it["sha256"]!=null})
+            withPlan(w,before){plan->
+                assertEquals(before,verifyUpdatedWorkspace(w,plan)["snapshot"])
+                Files.move(w.root.resolve("secrets/$a.dpapi"),w.root.resolve("retained-frozen-ciphertext"))
+                assertEquals("UPDATE_SNAPSHOT_MISMATCH",assertFailsWith<DataProblem>{verifyUpdatedWorkspace(w,plan)}.status)
+                assertContentEquals("synthetic edited B".toByteArray(),vault.use(b){it.copyOf()})
+            }
+        }
+    }
 
     @Test fun unreadableOrCorruptCredentialCannotBeTreatedAsMissing() {
         StudioWorkspace.openStudio(root()).use { w ->

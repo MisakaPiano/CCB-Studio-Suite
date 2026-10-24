@@ -81,7 +81,12 @@ class BatchQueue(private val workspace:StudioWorkspace,private val random:(Int)-
             };if(s.endRequested&&result.error==null)result.copy(mode="ENDED",endRequested=false)else result.copy(endRequested=false)
         }
     }
-    fun configure(accountId:String?,policy:BatchPolicy)=update{require(!it.running);it.copy(accountId=accountId,accountSnapshot=workspace.state.accounts.find{a->a.id==accountId&&a.service=="NAI"},policy=policy)}
+    fun configure(accountId:String?,policy:BatchPolicy)=update{s->
+        require(!s.running)
+        val account=if(accountId==s.accountId&&s.accountSnapshot!=null)s.accountSnapshot
+            else workspace.state.accounts.find{a->a.id==accountId&&a.service=="NAI"}
+        s.copy(accountId=accountId,accountSnapshot=account,policy=policy)
+    }
     fun dispatchAccount():AccountProfile=workspace.operation {
         val s=state
         s.accountSnapshot?:workspace.state.accounts.singleOrNull{it.id==s.accountId&&it.service=="NAI"}

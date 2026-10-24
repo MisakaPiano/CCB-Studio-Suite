@@ -21,7 +21,19 @@ def data_destination(plan,source,identity,custom):
         if destination!=expected or destination.exists():raise UpdateRejected('Fresh confirmed migration destination required')
     return destination
 
-def create_launcher(final,data,runtime):
+def read_entrypoint(root):
+    path=no_reparse(root/'launch-current.json')
+    if not path.exists():return None
+    if path.stat().st_size>16384:raise UpdateRejected('Oversized default entrypoint')
+    value=json.loads(path.read_text(encoding='utf-8'))
+    if value.get('format')!=1 or type(value.get('version')) is not int:raise UpdateRejected('Invalid default entrypoint')
+    for key in ('installed','data','runtime'):
+        if not isinstance(value.get(key),str) or not Path(value[key]).is_absolute():raise UpdateRejected('Invalid default entrypoint root')
+        no_reparse(Path(value[key]))
+    return value
+
+
+def create_launcher(final,data,runtime,expected_current=None,expected_absent=False,migration_source=None):
     # Same byte-range lock as the native app's entrypoint registration. A delayed
     # older writer must recheck the descriptor under this lock before committing.
     import msvcrt
@@ -29,11 +41,27 @@ def create_launcher(final,data,runtime):
     with lock.open('a+b') as stream:
         if stream.seek(0,2)==0:stream.write(b'0');stream.flush()
         stream.seek(0);msvcrt.locking(stream.fileno(),msvcrt.LK_NBLCK,1)
-        try:return _create_launcher_locked(final,data,runtime)
+        try:return _create_launcher_locked(final,data,runtime,expected_current,expected_absent,migration_source)
         finally:stream.seek(0);msvcrt.locking(stream.fileno(),msvcrt.LK_UNLCK,1)
 
-def _create_launcher_locked(final,data,runtime):
+def _create_launcher_locked(final,data,runtime,expected_current=None,expected_absent=False,migration_source=None):
     """Windows Shell Link preserves Unicode paths without batch parsing/codepage rules."""
+    final=no_reparse(final);data=no_reparse(data);runtime=no_reparse(runtime)
+    current=read_entrypoint(final.parent)
+    if expected_absent and current is not None or expected_current is not None and current!=expected_current:
+        raise UpdateRejected('Default entrypoint changed during update')
+    config_path=no_reparse(final/'update-config.json')
+    config=json.loads(config_path.read_text(encoding='utf-8')) if config_path.exists() else None
+    if current is not None:
+        if config is None or type(config.get('version')) is not int or config['version']<current['version']:
+            raise UpdateRejected('Default entrypoint cannot move to an older program')
+        same_data=no_reparse(Path(current['data']))==data
+        migration=(migration_source is not None and expected_current is not None
+            and no_reparse(Path(current['data']))==no_reparse(migration_source))
+        if (not same_data and not migration) or no_reparse(Path(current['runtime']))!=runtime:
+            raise UpdateRejected('Secondary workspace cannot replace the default entrypoint')
+        if config['version']==current['version'] and (no_reparse(Path(current['installed']))!=final or not same_data):
+            raise UpdateRejected('Same-version entrypoint identity changed')
     launcher=final.parent/'Launch-CCB-Studio.lnk'
     bundled=final/'updater/CCBStudioLauncher.exe'
     if bundled.is_file():
@@ -42,7 +70,7 @@ def _create_launcher_locked(final,data,runtime):
         if not stable.exists() or stable.read_bytes()!=body:
             temporary=stable.with_suffix('.'+uuid.uuid4().hex+'.tmp')
             temporary.write_bytes(body);os.replace(temporary,stable)
-        config=json.loads((final/'update-config.json').read_text(encoding='utf-8'))
+        if config is None:raise UpdateRejected('Missing installed program configuration')
         atomic_json(no_reparse(final.parent/'launch-current.json'),dict(format=1,version=config['version'],installed=str(final),data=str(data),runtime=str(runtime),exeSha256=hashlib.sha256((final/'CCBStudioSuitePreview.exe').read_bytes()).hexdigest()))
         result=subprocess.run([str(stable),'--shortcut',str(launcher)],creationflags=subprocess.CREATE_NO_WINDOW)
         if result.returncode:raise UpdateRejected('Could not create stable application shortcut')
@@ -109,6 +137,9 @@ def _perform(plan_path):
     try:
         parent=ParentProcess(plan['parentPid'],installed/'CCBStudioSuitePreview.exe')
         identity=Installed.load(installed)
+        entrypoint_before=read_entrypoint(installed.parent)
+        if entrypoint_before is not None and (entrypoint_before['version']!=identity.version or any(no_reparse(Path(entrypoint_before[k]))!=v for k,v in [('installed',installed),('data',data),('runtime',runtime)])):
+            raise UpdateRejected('Handoff is not the active default workspace')
         with exclusive(cache):
             updater,observed=create_updater(identity,cache/'metadata',cache/'downloads')
             target,custom=inspect(updater,identity)
@@ -147,7 +178,8 @@ def _perform(plan_path):
             if Path(verified.get('dataRoot',str(data))).absolute()!=destination or verified.get('dataVersion',identity.reader)!=custom.get('data_version',identity.reader):
                 raise UpdateRejected('B data destination/format mismatch')
             # A stable launcher is committed only after B verifies the actual workspace.
-            launcher=create_launcher(final,destination,runtime)
+            launcher=create_launcher(final,destination,runtime,expected_current=entrypoint_before,
+                expected_absent=entrypoint_before is None,migration_source=data if destination!=data else None)
             update('COMPLETE',verification='B_PROGRAM_DATA_AND_CREDENTIAL_SNAPSHOT_MATCH',launcher=str(launcher),dataRoot=str(destination),sourceDataRoot=str(data))
     except Exception as error:
         update('FAILED_RETAINED',reason=str(error) if isinstance(error,UpdateRejected) else type(error).__name__)

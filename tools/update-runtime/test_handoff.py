@@ -1,4 +1,5 @@
 import base64,json,os,subprocess,sys,uuid,unittest
+from unittest.mock import patch
 from pathlib import Path
 from apply_update import ParentProcess,create_launcher,perform,data_destination
 from studio_update import UpdateRejected,Installed
@@ -63,3 +64,40 @@ class HandoffTests(unittest.TestCase):
         target.mkdir()
         with self.assertRaises(UpdateRejected):data_destination(plan,source,identity,{'data_version':3})
         self.assertEqual(data_destination({'nonce':nonce},source,identity,{}),source)
+
+    def test_locked_launcher_rejects_delayed_older_or_foreign_root_before_any_write(self):
+        root=self.path/'launcher-cas';root.mkdir();data=self.path/'data';runtime=self.path/'runtime'
+        data.mkdir();runtime.mkdir()
+        final=root/'2-test';(final/'updater').mkdir(parents=True)
+        (final/'updater/CCBStudioLauncher.exe').write_bytes(b'unexecuted synthetic launcher')
+        (final/'CCBStudioSuitePreview.exe').write_bytes(b'unexecuted synthetic program')
+        (final/'update-config.json').write_text('{"version":2}')
+        stable=root/'CCBStudioLauncher.exe';link=root/'Launch-CCB-Studio.lnk';descriptor=root/'launch-current.json'
+        stable.write_bytes(b'original launcher');link.write_bytes(b'original shortcut')
+        def value(version,installed):return dict(format=1,version=version,installed=str(installed),data=str(data),runtime=str(runtime))
+        for current,target_data,target_runtime,options in [
+            (value(3,root/'3-test'),data,runtime,{}),
+            (value(2,final),self.path/'restored',runtime,{}),
+            (value(2,final),data,self.path/'other-runtime',{}),
+            (value(3,root/'3-test'),data,runtime,dict(expected_current=value(1,root/'1-test'))),
+            (value(2,final),data,runtime,dict(expected_absent=True)),
+        ]:
+            descriptor.write_text(json.dumps(current));before={p:p.read_bytes() for p in (stable,link,descriptor)}
+            with patch('apply_update.subprocess.run') as execute:
+                with self.assertRaises(UpdateRejected):create_launcher(final,target_data,target_runtime,**options)
+                execute.assert_not_called()
+            self.assertEqual(before,{p:p.read_bytes() for p in before})
+
+    def test_locked_launcher_accepts_newer_same_profile_and_only_explicit_migration(self):
+        root=self.path/'launcher-upgrade';root.mkdir();data=self.path/'data';runtime=self.path/'runtime';data.mkdir();runtime.mkdir()
+        first=dict(format=1,version=1,installed=str(root/'1-test'),data=str(data),runtime=str(runtime))
+        descriptor=root/'launch-current.json';descriptor.write_text(json.dumps(first))
+        for version,destination,migration in [(2,data,None),(3,self.path/'data-format3-confirmed',data)]:
+            final=root/f'{version}-test';(final/'updater').mkdir(parents=True)
+            (final/'updater/CCBStudioLauncher.exe').write_bytes(b'unexecuted synthetic launcher')
+            (final/'CCBStudioSuitePreview.exe').write_bytes(b'unexecuted synthetic program')
+            (final/'update-config.json').write_text(json.dumps(dict(version=version)))
+            expected=json.loads(descriptor.read_text())
+            with patch('apply_update.subprocess.run',return_value=subprocess.CompletedProcess([],0)):
+                create_launcher(final,destination,runtime,expected_current=expected,migration_source=migration)
+            after=json.loads(descriptor.read_text());self.assertEqual(after['version'],version);self.assertEqual(Path(after['data']),destination)

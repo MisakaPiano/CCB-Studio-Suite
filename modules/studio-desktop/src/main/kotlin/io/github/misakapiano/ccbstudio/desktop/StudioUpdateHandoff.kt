@@ -32,7 +32,7 @@ internal fun updateSnapshot(workspace:StudioWorkspace,sourceVersion:Int=workspac
     })
     val vault=SecretVault(workspace.root.resolve("secrets"))
     put("credentials",buildJsonArray {
-        workspace.state.accounts.mapNotNull{it.secretRef}.distinct().sorted().forEach{ref->
+        (workspace.state.accounts+listOfNotNull(workspace.state.batch.accountSnapshot)).mapNotNull{it.secretRef}.distinct().sorted().forEach{ref->
             add(buildJsonObject {
                 put("ref",ref)
                 try {put("sha256",vault.use(ref){sha256(it)})}

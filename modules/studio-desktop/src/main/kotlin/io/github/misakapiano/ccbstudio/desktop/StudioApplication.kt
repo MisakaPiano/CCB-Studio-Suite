@@ -80,9 +80,14 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     private val guidanceRoot=budgetRoot.parent.resolve("guidance")
     private val metadataRoot=budgetRoot.parent.resolve("metadata-snapshots")
     private val modelRoot=budgetRoot.parent.resolve("model-snapshots")
+    private val guidanceHttp by lazy {http.newBuilder().retryOnConnectionFailure(false).apply {
+        // Same local acceptance point as image generation. Do not hold the gate
+        // while receiving an accepted response: maintenance must drain it.
+        interceptors().add(0,okhttp3.Interceptor{chain->generationSends.submit{};chain.proceed(chain.request())})
+    }.build()}
     private fun guidanceFor(account:AccountProfile?)=DesktopNovelAiGuidance(guidanceRoot,::readAsset,{
         vault.use(requireNotNull(account?.secretRef)){it.decodeToString()}
-    },admission,http)
+    },RequestAdmission{generationSends.await(admission)},guidanceHttp)
     fun visibleAssets():List<AssetStore.Asset> {
         val catalog=workspace.catalog()
         documentAssets=catalog.filter{it.request().project().decodeToString()==SharedAssets.DOCUMENT}

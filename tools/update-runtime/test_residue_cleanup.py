@@ -134,4 +134,56 @@ class ResidueCleanupTests(unittest.TestCase):
         with self.assertRaises(ValueError):self.mature()
         self.assertTrue((self.old/'retired.dll').exists())
 
+    def complete_target(self,old,new,expected,nonce='d'*64):
+        journal=self.cache/('install-'+str(expected['version'])+'.json')
+        atomic_json(journal,dict(target=str(new),expected=expected,verification=verify_install(new,expected)))
+        folder=self.cache/'handoffs'/nonce[:8];folder.mkdir(exist_ok=True)
+        atomic_json(folder/'plan.json',dict(format=1,nonce=nonce,installed=str(old),cache=str(self.cache),approved=dict(**expected,sha256=self.installer_hash)))
+        atomic_json(folder/'result.json',dict(status='COMPLETE',nonce=nonce,installed=str(new),installJournal=str(journal),verification='B_PROGRAM_DATA_AND_CREDENTIAL_SNAPSHOT_MATCH'))
+        atomic_json(self.root/'launch-current.json',dict(installed=str(new),data=str(self.data),runtime=str(self.runtime)))
+
+    def test_first_current_adoption_never_claims_replaced_generated_uninstaller(self):
+        for receipt in (self.cache/'cleanup/owned').glob('*.json'):
+            if json.loads(receipt.read_text())['base']==self.current.name:receipt.rename(self.base/'retained-current-receipt.json')
+        replaced=b'unknown replacement without install-time ownership proof'.ljust(81,b'!')
+        (self.current/'Uninstall.exe').write_bytes(replaced)
+        self.cleanup() # First B startup adopts only the pinned manifest, not this uninstaller.
+        previous=self.current;self.current,self.current_id=self.program(3,'c')
+        self.complete_target(previous,self.current,self.current_id)
+        self.cleanup()
+        self.assertFalse((previous/'app/main.jar').exists())
+        self.assertEqual((previous/'Uninstall.exe').read_bytes(),replaced)
+
+    def test_verified_next_target_survives_old_success_and_pending_handoff_until_its_own_complete(self):
+        downloads=self.cache/'downloads';downloads.mkdir();directory=downloads/str(uuid.uuid4());directory.mkdir()
+        candidate,expected=self.program(3,'c')
+        (directory/'studio-installer.exe').write_bytes(b'synthetic verified installer')
+        atomic_json(directory/'VERIFIED.json',dict(version=3,sourceSha=expected['sourceSha'],sha256=self.installer_hash))
+        enroll_download(self.cache,self.root,directory,expected,self.installer_hash,True,self.now)
+        self.cleanup();self.assertTrue((directory/'studio-installer.exe').exists())
+        folder=self.cache/'handoffs/pending-c';folder.mkdir()
+        plan=dict(format=1,nonce='e'*64,installed=str(self.current),cache=str(self.cache),approved=dict(**expected,sha256=self.installer_hash,installer=str(directory/'studio-installer.exe')))
+        atomic_json(folder/'plan.json',plan);atomic_json(folder/'result.json',dict(status='READY_TO_DRAIN'))
+        self.cleanup();self.assertTrue((directory/'studio-installer.exe').exists())
+        previous=self.current;self.current=candidate;self.current_id=expected
+        self.complete_target(previous,candidate,expected)
+        self.cleanup();self.assertTrue(directory.exists(),'A nonterminal handoff still references this exact installer')
+        atomic_json(folder/'result.json',dict(status='FAILED_RETAINED'))
+        self.cleanup();self.assertFalse(directory.exists())
+
+    def test_same_target_version_with_different_installer_digest_does_not_release_download(self):
+        directory=self.cache/'downloads'/str(uuid.uuid4());directory.mkdir(parents=True)
+        (directory/'studio-installer.exe').write_bytes(b'different synthetic target')
+        digest=hashlib.sha256((directory/'studio-installer.exe').read_bytes()).hexdigest()
+        enroll_download(self.cache,self.root,directory,self.current_id,digest,True,self.now)
+        self.cleanup();self.assertTrue((directory/'studio-installer.exe').exists())
+
+    def test_fresh_failed_download_is_not_released_by_an_older_completion(self):
+        directory=self.cache/'downloads'/(str(uuid.uuid4())+'.incomplete');directory.mkdir(parents=True)
+        (directory/'studio-installer.exe').write_bytes(b'partial future target')
+        future=dict(self.current_id,version=3,sourceSha='c'*40)
+        later=(self.cache/'install-current.json').stat().st_mtime+100
+        enroll_download(self.cache,self.root,directory,future,self.installer_hash,False,later)
+        self.cleanup();self.assertTrue(directory.exists())
+
 if __name__=='__main__':unittest.main(verbosity=2)

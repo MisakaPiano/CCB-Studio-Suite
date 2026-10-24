@@ -19,6 +19,33 @@ import kotlin.test.*
 class ReviewDispatchTest {
     private val awt=object:CoroutineDispatcher(){override fun dispatch(context:CoroutineContext,block:Runnable)=SwingUtilities.invokeLater(block)}
     private fun root()=Path.of(System.getProperty("preview.test.root"),newId())
+    @Test fun maintenanceDrainsFirstVibeEncodingKeepsItsCacheAndNeverSendsSecondEncoding()=runBlocking {
+        for(close in listOf(false,true)) {
+            val r=root();val w=StudioWorkspace.openStudio(r);val entered=CompletableDeferred<Unit>();val release=CountDownLatch(1)
+            val encodings=AtomicInteger();val generations=AtomicInteger()
+            val http=studioHttpClient().newBuilder().addInterceptor{chain->
+                if(chain.request().url.encodedPath.endsWith("encode-vibe")) {
+                    encodings.incrementAndGet();entered.complete(Unit);check(release.await(15,TimeUnit.SECONDS))
+                }else generations.incrementAndGet()
+                Response.Builder().request(chain.request()).protocol(Protocol.HTTP_1_1).code(200).message("synthetic").body(byteArrayOf(7,8,9).toResponseBody()).build()
+            }.build()
+            val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(r),r.resolve("runtime/budget"),http,RequestAdmission{},true)
+            try {
+                val account=AccountProfile(alias="synthetic",service="NAI",provider="NOVELAI",endpoint="https://image.novelai.net",model="fixture",secretRef=c.vault.put("synthetic vibe credential".toByteArray()))
+                w.save(w.state.copy(accounts=listOf(account)))
+                val refs=listOf(40,42).map{size->c.assetRef(w.importImage("synthetic-$size.png",EditorRenderer.synthetic(size,size)))}
+                withContext(awt){c.chooseAccount("NAI",account.id);c.edit{it.copy(basePrompt="fixture",imageGuidance=NovelAiImageGuidanceDraft(referenceMode=NovelAiReferenceMode.VIBE,vibes=refs.map{ref->NovelAiVibeReferenceDraft(asset=ref)}))};c.generate()}
+                withTimeout(10000){entered.await()};val drain=scope.async{if(close)c.close()else c.enterMaintenance()}
+                withTimeout(5000){while(!c.maintenance)delay(10)}
+                assertNull(withTimeoutOrNull(100){drain.await();true});release.countDown();withTimeout(10000){drain.await()}
+                assertEquals(1,encodings.get());assertEquals(0,generations.get())
+                val cache=c.runtimeRoot.resolve("guidance/auxiliary/novelai/vibe-cache")
+                assertEquals(1,Files.list(cache).use{paths->paths.filter{it.fileName.toString().endsWith(".vibe")}.count()}.toInt())
+                if(!close)withContext(awt){c.close()}
+                StudioWorkspace.openStudio(r).use{again->assertTrue(again.state.jobs.isEmpty());assertEquals(2,SharedAssets.images(again.catalog()).size)}
+            }finally{release.countDown();runCatching{withContext(awt){c.close()}};scope.cancel()}
+        }
+    }
     private fun frame(png:ByteArray):ByteArray {
         val payload=java.io.ByteArrayOutputStream().also{out->
             out.write(0x82);for(text in listOf("event_type","final","image")){out.write(0xa0+text.length);out.write(text.toByteArray())}

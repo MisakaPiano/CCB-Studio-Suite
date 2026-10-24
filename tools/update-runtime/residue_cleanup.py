@@ -108,9 +108,9 @@ def event(cache,kind,**fields):
 
 def completed_updates(cache,install_root):
     """Keep handoff proof in place. Return bounded identity projections, never log snapshots."""
-    completed=[];blocked=set()
+    completed=[];blocked=set();pending_downloads=set()
     folders=cache/'handoffs'
-    if not folders.exists():return completed,blocked
+    if not folders.exists():return completed,blocked,pending_downloads
     paths=sorted(folders.iterdir())
     if len(paths)>MAX_RECEIPTS:raise UpdateRejected('Handoff inspection bound reached; retained')
     for folder in paths:
@@ -125,6 +125,11 @@ def completed_updates(cache,install_root):
         if old.parent!=install_root or (new is not None and new.parent!=install_root):continue
         if result.get('status')!='COMPLETE' or result.get('nonce')!=plan.get('nonce') or result.get('verification')!='B_PROGRAM_DATA_AND_CREDENTIAL_SNAPSHOT_MATCH':
             if result.get('status')!='FAILED_RETAINED':
+                installer=plan.get('approved',{}).get('installer')
+                if installer:
+                    # A prepared handoff still owns its exact approved download, even
+                    # when another target has completed successfully in this cache.
+                    pending_downloads.add(no_reparse(Path(installer)).parent)
                 blocked.add(old.name)
                 if new:blocked.add(new.name)
                 approved=plan.get('approved',{})
@@ -136,7 +141,7 @@ def completed_updates(cache,install_root):
         if Path(installed.get('target','')).absolute()!=new or installed.get('expected',{}).get('sourceSha')!=approved.get('sourceSha') or installed.get('expected',{}).get('version')!=approved.get('version'):
             raise UpdateRejected('Cleanup completion identity mismatch')
         completed.append(dict(old=old.name,new=new.name,approved=approved,journal=journal,installation=installed,nonce=plan['nonce']))
-    return completed,blocked
+    return completed,blocked,pending_downloads
 
 def run(package,cache,data,runtime,startup_token=None,now=None,after_delete=lambda _:None):
     now=time.time() if now is None else now
@@ -148,7 +153,7 @@ def run(package,cache,data,runtime,startup_token=None,now=None,after_delete=lamb
         return dict(status='RETAINED_SECONDARY_WORKSPACE',removed=0)
     protections=protected_paths(root,data,runtime)
     with exclusive(cache):
-        completed,blocked=completed_updates(cache,root)
+        completed,blocked,pending_downloads=completed_updates(cache,root)
         current=[c for c in completed if c['new']==package.name]
         if not current:return dict(status='RETAINED_NO_COMPLETE_HANDOFF',removed=0)
         folder=no_reparse(cache/'cleanup');folder.mkdir(exist_ok=True)
@@ -166,7 +171,7 @@ def run(package,cache,data,runtime,startup_token=None,now=None,after_delete=lamb
         if not any(read_json(p).get('area')=='program' and read_json(p).get('base')==package.name for p in paths):
             c=current[-1];expected=c['installation']['expected'];check=verify_install(package,expected)
             if check['manifestSha256']!=c['installation'].get('verification',{}).get('manifestSha256'):raise UpdateRejected('Current manifest differs from verified install')
-            receipt=enroll_program(cache,root,package,expected,c['approved']['sha256'],c['journal'],now)
+            receipt=enroll_program(cache,root,package,expected,c['approved']['sha256'],c['journal'],now,pinned_manifest=check['manifestSha256'])
             if receipt:paths.append(receipt)
         # Retire only the active predecessor of THIS successful update. Older historical
         # directories are never enrolled by enumeration. This also supports an old A helper.
@@ -201,10 +206,16 @@ def run(package,cache,data,runtime,startup_token=None,now=None,after_delete=lamb
             proof=receipt['proof']
             if proof.get('kind') not in ('VERIFIED_INSTALLER_OUTPUT','VERIFIED_PRIOR_INSTALLATION','TUF_VERIFIED_DOWNLOAD','OWNED_DOWNLOAD_FAILURE'):raise UpdateRejected('Unsupported ownership proof')
             if not re.fullmatch('[0-9a-f]{64}',proof.get('installerSha256','')):raise UpdateRejected('Missing source proof')
-            matching=[c for c in completed if c['approved'].get('sourceSha')==expected['sourceSha'] and c['approved'].get('version')==expected['version']]
-            if area=='download' and not matching:
-                # A failed owned download can retire only after another successful update.
-                if now-receipt['createdAt']<FAILED_SECONDS:continue
+            matching=[c for c in completed if all(c['installation']['expected'].get(k)==expected[k] for k in ('product','platform','channel','sourceSha','version')) and c['approved'].get('sha256')==proof['installerSha256']]
+            if area=='download':
+                if base in pending_downloads:continue
+                # Verified candidates awaiting installation are not failed output.
+                # Only completion of that exact target releases them.
+                if proof['kind']=='TUF_VERIFIED_DOWNLOAD' and not matching:continue
+                if proof['kind']=='OWNED_DOWNLOAD_FAILURE' and not matching:
+                    # A different success must be newer than the failed attempt;
+                    # an old A->B completion must not collect a fresh C attempt.
+                    if not any(c['journal'].stat().st_mtime>=receipt['createdAt'] for c in completed):continue
             if area=='program' and not any(c['old']==version_name or name.endswith('.installing') for c in completed):continue
             resource=state['resources'].setdefault(path.stem,dict(retiredAt=now))
             failed=name.endswith('.installing') or proof.get('kind')=='OWNED_DOWNLOAD_FAILURE'
