@@ -33,7 +33,7 @@ object NativePerformanceProbe {
             return
         }
         val out=Path.of(args[2]);Files.createDirectories(out)
-        val start=System.nanoTime();val events=out.resolve("events.jsonl");val frames=AtomicLong();val lastDraw=AtomicLong();val galleryDraw=AtomicLong()
+        val start=System.nanoTime();val events=out.resolve("events.jsonl");val frames=AtomicLong();val drawCallbacks=AtomicLong();val lastDraw=AtomicLong();val galleryDraw=AtomicLong()
         val epoch=System.currentTimeMillis();val runtime=ManagementFactory.getRuntimeMXBean()
         fun note(phase:String,extra:JsonObject=buildJsonObject{}) {
             val value=buildJsonObject {
@@ -64,12 +64,14 @@ object NativePerformanceProbe {
                 val chrome=rememberDesktopWindowChrome(window,::close);SideEffect{chrome.appearance(true)}
                 MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel,onPrimary=Ink,onSurface=DesktopBootstrapColors.foreground)) {
                     Box(Modifier.fillMaxSize().drawWithContent {
+                        drawCallbacks.incrementAndGet()
                         drawContent()
                         if(window.isShowing){frames.incrementAndGet();lastDraw.set(System.nanoTime())
                             if(c.view=="图库"&&c.gallery.historyCache!=null&&c.gallery.foldPreferences!=null&&c.thumbnails.pendingCount==0&&c.thumbnails.retainedBytes>0)galleryDraw.set(System.nanoTime())}
                     }) {Workbench(c,chrome,closing)}
                 }
                 LaunchedEffect(Unit) {
+                    note("native-window-state",buildJsonObject{put("showing",window.isShowing);put("visible",window.isVisible);put("displayable",window.isDisplayable);put("width",window.width);put("height",window.height);put("drawCallbacks",drawCallbacks.get())})
                     try {
                         withTimeout(30000){while(frames.get()==0L)delay(20)}
                         note("first-native-draw",buildJsonObject{put("showing",window.isShowing);put("width",window.width);put("height",window.height);put("screenScaleX",window.graphicsConfiguration.defaultTransform.scaleX)})
@@ -85,7 +87,7 @@ object NativePerformanceProbe {
                         check(c.problem==null){c.problem.orEmpty()};check(c.thumbnails.retainedBytes<=8L*1024*1024)
                         expected.forEach{(id,hash)->check(sha256(w.bytes(id))==hash.jsonPrimitive.content)}
                         note("originals-verified",buildJsonObject{put("images",expected.size);put("providerCalls",0)})
-                    }catch(e:Throwable){failure=e;note("FAILED",buildJsonObject{put("error",e.toString());put("causeAttribution","UNKNOWN unless error itself identifies a cause")})}
+                    }catch(e:Throwable){failure=e;note("FAILED",buildJsonObject{put("error",e.toString());put("showing",window.isShowing);put("visible",window.isVisible);put("displayable",window.isDisplayable);put("width",window.width);put("height",window.height);put("drawCallbacks",drawCallbacks.get());put("causeAttribution","UNKNOWN unless error itself identifies a cause")})}
                     finally{note("close-requested");close()}
                 }
             }
