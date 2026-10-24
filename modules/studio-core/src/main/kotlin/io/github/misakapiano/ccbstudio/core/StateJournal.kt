@@ -82,14 +82,33 @@ fun safePath(path:Path) {
 fun readBounded(path:Path,max:Int):ByteArray {
     safePath(path)
     try {
-        Files.newInputStream(path,NOFOLLOW_LINKS).use {
-            val bytes=it.readNBytes(max+1)
-            if(bytes.size>max) throw DataProblem("CORRUPT","File exceeds budget; retained")
-            return bytes
+        FileChannel.open(path,StandardOpenOption.READ,NOFOLLOW_LINKS).use {channel->
+            // Size of this open handle is an allocation hint, never an integrity/budget decision.
+            return readBoundedInput(java.nio.channels.Channels.newInputStream(channel),max,channel.size())
         }
     } catch(e:NoSuchFileException) { throw DataProblem("MISSING","Required file missing",e) }
     catch(e:DataProblem) { throw e }
     catch(e:java.io.IOException) { throw DataProblem("READ_ERROR","File unreadable; retained",e) }
+}
+/** Same max+1 sentinel/EOF contract as readNBytes, without a second full array for stable files.
+ * The caller owns the input. A stale size hint may shrink/grow; actual reads enforce the budget. */
+internal fun readBoundedInput(input:java.io.InputStream,max:Int,sizeHint:Long):ByteArray {
+    val sentinelLimit=max+1
+    require(sentinelLimit>=0) // Preserve readNBytes' rejection of negative/overflowed lengths.
+    val capacity=sizeHint.coerceIn(0L,sentinelLimit.toLong()).toInt()
+    val initial=ByteArray(capacity);val count=input.readNBytes(initial,0,capacity)
+    if(count>max)throw DataProblem("CORRUPT","File exceeds budget; retained")
+    if(count<capacity)return initial.copyOf(count)
+    val extra=input.read()
+    if(extra<0)return initial
+    if(count>=max)throw DataProblem("CORRUPT","File exceeds budget; retained")
+    // Source grew after the hint. Consume at most the remaining budget plus its sentinel.
+    val tail=input.readNBytes(max-count)
+    val total=count+1+tail.size
+    if(total>max)throw DataProblem("CORRUPT","File exceeds budget; retained")
+    return ByteArray(total).also {result->
+        initial.copyInto(result,0,0,count);result[count]=extra.toByte();tail.copyInto(result,count+1)
+    }
 }
 fun writeNewForced(path:Path,bytes:ByteArray) {
     safePath(path)
