@@ -1,3 +1,7 @@
+## 2026-10-24 下载入口与阶段独立复审交接（文档完成）
+
+主库main README提交8107754、旧发行库main README提交e47d47a，醒目入口指向实际最新Preview115及全部版本，明确Assets安装器与实验限制。公开页面/链接回读通过；Releases区块开启，旧release/tag/附件、两库元数据分支及工作流未改，无新版本或自动化。阶段交接冻结ff145d0/115/安装器SHA，最后可核实Project审查为678caf1创作工程限定PASS，非全项目验收；115用户试用结果PENDING。见[阶段交接](../handoff/PROJECT_PHASE_REVIEW_20261024.md)及[本轮实际变更](audits/PUBLISH_ENTRY_PROJECT_HANDOFF_20261024.md)。
+
 ## 2026-10-24 Preview115 批次组织、当前会话与固定入口已发布
 
 [115更新](https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.115)已签入原渠道，源码/组装ff145d0。46项冻结回归与13项安装/交接检查实际PASS；551文件安装/拒绝覆盖、公开107→115原生B回执及115已是最新检查通过。手动当前批次重开保留、命名归档清空，双类型时间戳与Project/Chapter归属，Explorer折叠树、常驻把手和紧凑菜单接入。更新页可创建桌面/开始菜单固定入口，旧任务栏图标需取消并重固定一次；实际任务栏人工验收待用户反馈。父进程排水为明确替身，日常资料不自动切换，无真实生成。两次精确授权清理共1515880979字节，H盘约776.5MB可用，安装包/基线/证据保留。Prompt对比PENDING。见[实际证据](audits/UX_ORGANIZATION_SESSION_115.md)。

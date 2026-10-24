@@ -1,0 +1,85 @@
+{
+  "status": "PASS",
+  "repositories": {
+    "CCB-Studio-Suite": {
+      "defaultBranch": "main",
+      "readmeCommit": "810775488b9ecc298b5295dde4e7d04e8fa20b22",
+      "filesChanged": [
+        "README.md"
+      ],
+      "tagsUnchanged": true,
+      "releasesAndAssetsUnchanged": true,
+      "protectedBranchesUnchanged": {
+        "refs/heads/feature/a1-001-asset-durability": "3c17b4c9038d821efef726b1dc84c90c87855c39",
+        "refs/heads/feature/a1-001-r1-safety": "27dbd5d578f364afb529fc33944386c0c107f0da",
+        "refs/heads/long-term-metadata": "60c527f55ced1f8a8e897ce957b49a66c9f83f53",
+        "refs/heads/update-metadata": "576fe112dbc98d97c3a9df0442e86c021bfd83ea"
+      },
+      "defaultReadmeReadBack": "PASS"
+    },
+    "CCB-Studio-Suite-Releases": {
+      "defaultBranch": "main",
+      "readmeCommit": "e47d47abf5e77a94f9c0c7f71695cc0ad6b35eeb",
+      "filesChanged": [
+        "README.md"
+      ],
+      "tagsUnchanged": true,
+      "releasesAndAssetsUnchanged": true,
+      "protectedBranchesUnchanged": {
+        "refs/heads/long-term-metadata": "7f3cc7d84d7145fc4c79eae712da792d1f503df0",
+        "refs/heads/update-metadata": "f2ab4c5a5cecaf458e875d565062bfdf99b6dea4"
+      },
+      "defaultReadmeReadBack": "PASS"
+    }
+  },
+  "pages": {
+    "main": {
+      "url": "https://github.com/MisakaPiano/CCB-Studio-Suite",
+      "status": 200,
+      "expectedTextFound": true,
+      "sha256": "b846aab295d1770c9e59fd5d6fd1ace9eb50016a40957b4c9b9496a2b1d07f0e"
+    },
+    "legacy": {
+      "url": "https://github.com/MisakaPiano/CCB-Studio-Suite-Releases",
+      "status": 200,
+      "expectedTextFound": true,
+      "sha256": "effc4686646bd297e6771ca35deb42b8597b526c539e56fd41efc891626f7795"
+    },
+    "release-list": {
+      "url": "https://github.com/MisakaPiano/CCB-Studio-Suite/releases",
+      "status": 200,
+      "expectedTextFound": true,
+      "sha256": "21d3d43d1506d50c17e1c200065e6a1ae1dcc444555f61d557da26c0e7ec55f6"
+    },
+    "release115": {
+      "url": "https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.115",
+      "status": 200,
+      "expectedTextFound": true,
+      "sha256": "d2998e42a2a0ecc7334c9aa756da9085eee33fee28254f79c66ed4e710e36ea7"
+    },
+    "handoff": {
+      "url": "https://github.com/MisakaPiano/CCB-Studio-Suite/blob/ef6a784/handoff/PROJECT_PHASE_REVIEW_20261024.md",
+      "status": 200,
+      "expectedTextFound": true,
+      "sha256": "0b6a316b14be6cd92340518c8f348c16cd4f74a7b9e65674ca7b7a19427f2883"
+    },
+    "flow": {
+      "url": "https://github.com/MisakaPiano/CCB-Studio-Suite/blob/ef6a784/docs/rc/PREVIEW_UPDATE_CONTINUITY.md",
+      "status": 200,
+      "expectedTextFound": true,
+      "sha256": "b579e35ac7b49fd7c28c458fc5d857e3bb0b65e2969b219d8d04a5a6d088e368"
+    }
+  },
+  "releasesSection": {
+    "enabled": true,
+    "observed": {
+      "releaseCount": 16,
+      "tagCount": 16
+    },
+    "settingModified": false
+  },
+  "rawArchiveReadBack": "PASS",
+  "noProductTestRerun": true,
+  "noReleaseOrMetadataMutation": true,
+  "newAutomation": false
+}

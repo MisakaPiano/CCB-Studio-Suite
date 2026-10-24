@@ -1,0 +1,32 @@
+{
+  "status": "TWO_README_COMMITS_PUSHED_AND_READ_BACK",
+  "scope": "README-only commits on two explicitly authorized default branches",
+  "repositories": {
+    "CCB-Studio-Suite": {
+      "branch": "main",
+      "before": "36abfd8c11d0360a443e33e6ead84b78685b7541",
+      "commit": "810775488b9ecc298b5295dde4e7d04e8fa20b22",
+      "commitUrl": "https://github.com/MisakaPiano/CCB-Studio-Suite/commit/810775488b9ecc298b5295dde4e7d04e8fa20b22",
+      "files": [
+        "README.md"
+      ],
+      "readmeBlob": "ebe8998977ec366d639cf50625a3f3d0333d7a0d",
+      "readmeSha256": "8fb72460d41efeeb13416c35ee53a5b78575651114bbe363ffef50beb262b1d2",
+      "bytes": 3724,
+      "readBack": "PASS"
+    },
+    "CCB-Studio-Suite-Releases": {
+      "branch": "main",
+      "before": "9df0b957c4f5dd64f11475f34e07fa0bcb1a7e93",
+      "commit": "e47d47abf5e77a94f9c0c7f71695cc0ad6b35eeb",
+      "commitUrl": "https://github.com/MisakaPiano/CCB-Studio-Suite-Releases/commit/e47d47abf5e77a94f9c0c7f71695cc0ad6b35eeb",
+      "files": [
+        "README.md"
+      ],
+      "readmeBlob": "369ba5a92714a5a92981bc390a3045d91fd35e1e",
+      "readmeSha256": "414d7e2e8ef5a82300de3f5ae569b6179ca2988cb813a2487e546e51d0df212f",
+      "bytes": 2300,
+      "readBack": "PASS"
+    }
+  }
+}

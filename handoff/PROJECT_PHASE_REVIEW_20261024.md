@@ -120,3 +120,11 @@
 请以第1节限定基线为起点，独立核对第2节固定对象及之后95次提交的关键变化；优先选择发布更新链、资料/凭据、备份恢复、批次停止、目录采集和资源边界。分别判断：可采信证据、所需补测、真实缺陷、仍属规划或人工待验的事项，以及实验邀请范围能否继续。不要把执行者自检当作独立PASS，也不要因已有公开Preview就倒推完整RC已验收。
 
 用户正在验证115，新的反馈到达前保持PENDING。请由原Project给出自己的限定阶段结论及下一阶段条件；若材料不足，明确UNKNOWN及所需证据。本交接不自动授权实现新功能、真实服务调用、改用户资料、签名/更新链变更或新发版。
+
+## 10. 下载入口实际落地回执
+
+- 主库默认main：[810775488b9ecc298b5295dde4e7d04e8fa20b22](https://github.com/MisakaPiano/CCB-Studio-Suite/commit/810775488b9ecc298b5295dde4e7d04e8fa20b22)，仅README.md。
+- 旧库默认main：[e47d47abf5e77a94f9c0c7f71695cc0ad6b35eeb](https://github.com/MisakaPiano/CCB-Studio-Suite-Releases/commit/e47d47abf5e77a94f9c0c7f71695cc0ad6b35eeb)，仅README.md；旧正文原字节作为后缀保留。
+- 两个公开首页、主库发布列表、115发布页、交接及发布流程页面均返回200并包含预期内容；精确README正文/API散列回读通过。Releases区块仍16条，Pre-release标记未改。
+- 两库tag、release ID/状态/附件digest全部与修改前一致，long-term-metadata及update-metadata分支SHA未变。既有续签仅schedule/workflow_dispatch触发，README提交不触发它；没有新增自动化或改动工作流。
+- [远端文档提交](../docs/audits/evidence/PROJECT_PHASE_20261024/REMOTE_DOCUMENT_COMMITS.json)、[公开页面及不变量核验](../docs/audits/evidence/PROJECT_PHASE_20261024/PUBLIC_DOCUMENT_VERIFICATION.json)、[本轮审计](../docs/audits/PUBLISH_ENTRY_PROJECT_HANDOFF_20261024.md)。这些是文档操作检查，不是新的产品回归或Project裁决。
