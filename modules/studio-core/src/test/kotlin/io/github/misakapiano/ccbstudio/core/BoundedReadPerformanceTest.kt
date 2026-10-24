@@ -3,6 +3,7 @@ package io.github.misakapiano.ccbstudio.core
 import kotlinx.serialization.json.*
 import java.lang.management.ManagementFactory
 import java.nio.file.*
+import java.nio.file.LinkOption.NOFOLLOW_LINKS
 import java.security.MessageDigest
 import kotlin.test.*
 
