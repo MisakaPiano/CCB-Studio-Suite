@@ -10,6 +10,7 @@ import io.github.misakapiano.ccbstudio.core.*
 import kotlinx.coroutines.*
 import kotlinx.serialization.json.*
 import java.io.OutputStream
+import java.io.BufferedOutputStream
 import java.nio.channels.Channels
 import java.nio.channels.FileChannel
 import java.nio.file.*
@@ -32,7 +33,9 @@ internal suspend fun exportLibraryOriginals(workspace:StudioWorkspace,ids:List<S
         safePath(target)
         val context=currentCoroutineContext();val digest=MessageDigest.getInstance("SHA-256");var count=0L
         FileChannel.open(target,StandardOpenOption.CREATE_NEW,StandardOpenOption.WRITE,LinkOption.NOFOLLOW_LINKS).use{channel->
-            val output=Channels.newOutputStream(channel)
+            // Coalesce the store's 64KiB chunks without scaling allocation with asset size.
+            // Flush only after verified transfer; failures retain an unpublished partial file.
+            val output=BufferedOutputStream(Channels.newOutputStream(channel),256*1024)
             val checked=object:OutputStream() {
                 override fun write(bytes:ByteArray,offset:Int,length:Int) {
                     context.ensureActive();output.write(bytes,offset,length);digest.update(bytes,offset,length);count+=length
@@ -44,7 +47,7 @@ internal suspend fun exportLibraryOriginals(workspace:StudioWorkspace,ids:List<S
             // Keep the existing admitted workspace/store export and its full checksum checks.
             // Hash/count exactly the bytes written for the receipt, without whole-file arrays.
             workspace.operation{workspace.assets.export(java.util.UUID.fromString(id),checked)}
-            context.ensureActive();channel.force(true)
+            context.ensureActive();output.flush();channel.force(true)
         }
         buildJsonObject{put("file",file);put("sourceId",id);put("sha256",java.util.HexFormat.of().formatHex(digest.digest()));put("bytes",count)}
     }
