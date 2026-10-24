@@ -39,3 +39,10 @@ tasks.test {
     providers.gradleProperty("updateFixtureRoot").orNull?.let { systemProperty("preview.update.fixture", it) }
     testLogging { events("passed","failed","skipped") }
 }
+
+// Separate test-only driver for an isolated native A process; never in the shipped JAR.
+tasks.register<Jar>("reviewUpdateProbeJar") {
+    dependsOn("testClasses")
+    from(sourceSets.test.get().output)
+    archiveClassifier.set("review-update-probe")
+}
