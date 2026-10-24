@@ -165,6 +165,10 @@ class ResidueCleanupTests(unittest.TestCase):
         plan=dict(format=1,nonce='e'*64,installed=str(self.current),cache=str(self.cache),approved=dict(**expected,sha256=self.installer_hash,installer=str(directory/'studio-installer.exe')))
         atomic_json(folder/'plan.json',plan);atomic_json(folder/'result.json',dict(status='READY_TO_DRAIN'))
         self.cleanup();self.assertTrue((directory/'studio-installer.exe').exists())
+        # Even a retained nondefault source in this cache may reference the same
+        # download. Collect references before limiting program-root retirement.
+        plan['installed']=str(self.base/'external-program/fixture');atomic_json(folder/'plan.json',plan)
+        self.cleanup();self.assertTrue((directory/'studio-installer.exe').exists())
         previous=self.current;self.current=candidate;self.current_id=expected
         self.complete_target(previous,candidate,expected)
         self.cleanup();self.assertTrue(directory.exists(),'A nonterminal handoff still references this exact installer')
@@ -185,5 +189,11 @@ class ResidueCleanupTests(unittest.TestCase):
         later=(self.cache/'install-current.json').stat().st_mtime+100
         enroll_download(self.cache,self.root,directory,future,self.installer_hash,False,later)
         self.cleanup();self.assertTrue(directory.exists())
+
+    def test_fresh_failed_extraction_waits_for_a_later_completion(self):
+        stage=self.root/('3-'+'c'*12+'.'+uuid.uuid4().hex+'.installing');full,expected=self.program(3,'c');os.rename(full,stage)
+        later=(self.folder/'result.json').stat().st_mtime+100
+        enroll_program(self.cache,self.root,stage,expected,self.installer_hash,self.cache/'failed.json',later)
+        self.cleanup();self.assertTrue((stage/'app/main.jar').exists())
 
 if __name__=='__main__':unittest.main(verbosity=2)

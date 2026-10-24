@@ -29,7 +29,7 @@ class ReviewDispatchTest {
                 }else generations.incrementAndGet()
                 Response.Builder().request(chain.request()).protocol(Protocol.HTTP_1_1).code(200).message("synthetic").body(byteArrayOf(7,8,9).toResponseBody()).build()
             }.build()
-            val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(r),r.resolve("runtime/budget"),http,RequestAdmission{},true)
+            val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(r),root().resolve("budget"),http,RequestAdmission{},true)
             try {
                 val account=AccountProfile(alias="synthetic",service="NAI",provider="NOVELAI",endpoint="https://image.novelai.net",model="fixture",secretRef=c.vault.put("synthetic vibe credential".toByteArray()))
                 w.save(w.state.copy(accounts=listOf(account)))
@@ -72,7 +72,7 @@ class ReviewDispatchTest {
                 if(chain.request().url.encodedPath.contains("generate"))calls.incrementAndGet()
                 Response.Builder().request(chain.request()).protocol(Protocol.HTTP_1_1).code(200).message("synthetic").body("{\"trainingStepsLeft\":1000,\"tier\":3,\"active\":true}".toResponseBody()).build()
             }.build()
-            val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(r),r.resolve("runtime/budget"),http,RequestAdmission{waiting.complete(Unit);release.await()},true)
+            val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(r),root().resolve("budget"),http,RequestAdmission{waiting.complete(Unit);release.await()},true)
             try {
                 val account=AccountProfile(alias="synthetic",service="NAI",provider="NOVELAI",endpoint="https://image.novelai.net",model="fixture",secretRef=c.vault.put("synthetic queue credential".toByteArray()))
                 w.save(w.state.copy(accounts=listOf(account)));val q=c.batch.queue;q.replaceGroups(listOf(BatchGroup.create("fixture",NovelAiStudioDraft(basePrompt="fixture"),listOf(BatchDirection("横",1216,832,2)))));q.configure(account.id,BatchPolicy());val now=System.currentTimeMillis();q.resume(now)
@@ -90,7 +90,7 @@ class ReviewDispatchTest {
             }else "{\"trainingStepsLeft\":1000,\"tier\":3,\"active\":true}".toByteArray()
             Response.Builder().request(chain.request()).protocol(Protocol.HTTP_1_1).code(200).message("synthetic").body(bytes.toResponseBody()).build()
         }.build()
-        val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(r),r.resolve("runtime/budget"),http,RequestAdmission{},true)
+        val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(r),root().resolve("budget"),http,RequestAdmission{},true)
         try {
             val account=AccountProfile(alias="synthetic",service="NAI",provider="NOVELAI",endpoint="https://image.novelai.net",model="fixture",secretRef=c.vault.put("synthetic batch credential".toByteArray()))
             w.save(w.state.copy(accounts=listOf(account)));val q=c.batch.queue;q.replaceGroups(listOf(BatchGroup.create("fixture",NovelAiStudioDraft(basePrompt="fixture"),listOf(BatchDirection("横",1216,832,2)))));q.configure(account.id,BatchPolicy())
@@ -107,7 +107,7 @@ class ReviewDispatchTest {
                 calls.incrementAndGet();entered.complete(Unit);check(release.await(15,TimeUnit.SECONDS))
                 Response.Builder().request(chain.request()).protocol(Protocol.HTTP_1_1).code(200).message("synthetic").body(frame(png).toResponseBody()).build()
             }.build()
-            val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(r),r.resolve("runtime/budget"),http,RequestAdmission{},true)
+            val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(r),root().resolve("budget"),http,RequestAdmission{},true)
             try {
                 val account=AccountProfile(alias="synthetic",service="NAI",provider="NOVELAI",endpoint="https://image.novelai.net",model="fixture",secretRef=c.vault.put("synthetic drain credential".toByteArray()))
                 w.save(w.state.copy(accounts=listOf(account)));withContext(awt){c.chooseAccount("NAI",account.id);c.edit{it.copy(basePrompt="fixture",continuousModeEnabled=true,continuousTargetCount=3)};c.generate()}

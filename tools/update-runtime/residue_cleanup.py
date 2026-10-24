@@ -121,15 +121,13 @@ def completed_updates(cache,install_root):
         plan=read_json(plan_path);result=read_json(result_path) if result_path.exists() else {}
         if plan.get('format')!=1 or not re.fullmatch('[0-9a-f]{64}',plan.get('nonce','')):raise UpdateRejected('Invalid handoff identity')
         if Path(plan.get('cache','')).absolute()!=cache:raise UpdateRejected('Cleanup handoff cache mismatch')
+        if result.get('status') not in ('COMPLETE','FAILED_RETAINED'):
+            installer=plan.get('approved',{}).get('installer')
+            if installer:pending_downloads.add(no_reparse(Path(installer)).parent)
         old=no_reparse(plan['installed']);new=no_reparse(result['installed']) if result.get('installed') else None
         if old.parent!=install_root or (new is not None and new.parent!=install_root):continue
         if result.get('status')!='COMPLETE' or result.get('nonce')!=plan.get('nonce') or result.get('verification')!='B_PROGRAM_DATA_AND_CREDENTIAL_SNAPSHOT_MATCH':
             if result.get('status')!='FAILED_RETAINED':
-                installer=plan.get('approved',{}).get('installer')
-                if installer:
-                    # A prepared handoff still owns its exact approved download, even
-                    # when another target has completed successfully in this cache.
-                    pending_downloads.add(no_reparse(Path(installer)).parent)
                 blocked.add(old.name)
                 if new:blocked.add(new.name)
                 approved=plan.get('approved',{})
@@ -140,7 +138,7 @@ def completed_updates(cache,install_root):
         installed=read_json(journal)
         if Path(installed.get('target','')).absolute()!=new or installed.get('expected',{}).get('sourceSha')!=approved.get('sourceSha') or installed.get('expected',{}).get('version')!=approved.get('version'):
             raise UpdateRejected('Cleanup completion identity mismatch')
-        completed.append(dict(old=old.name,new=new.name,approved=approved,journal=journal,installation=installed,nonce=plan['nonce']))
+        completed.append(dict(old=old.name,new=new.name,approved=approved,journal=journal,installation=installed,nonce=plan['nonce'],completedAt=result_path.stat().st_mtime))
     return completed,blocked,pending_downloads
 
 def run(package,cache,data,runtime,startup_token=None,now=None,after_delete=lambda _:None):
@@ -215,10 +213,11 @@ def run(package,cache,data,runtime,startup_token=None,now=None,after_delete=lamb
                 if proof['kind']=='OWNED_DOWNLOAD_FAILURE' and not matching:
                     # A different success must be newer than the failed attempt;
                     # an old A->B completion must not collect a fresh C attempt.
-                    if not any(c['journal'].stat().st_mtime>=receipt['createdAt'] for c in completed):continue
+                    if not any(c['completedAt']>=receipt['createdAt'] for c in completed):continue
             if area=='program' and not any(c['old']==version_name or name.endswith('.installing') for c in completed):continue
             resource=state['resources'].setdefault(path.stem,dict(retiredAt=now))
             failed=name.endswith('.installing') or proof.get('kind')=='OWNED_DOWNLOAD_FAILURE'
+            if failed and not any(c['completedAt']>=receipt['createdAt'] for c in completed):continue
             if failed and now-receipt['createdAt']<FAILED_SECONDS:continue
             atomic_json(state_path,state) # Persist retirement before the first deletion.
             if not base.exists():continue

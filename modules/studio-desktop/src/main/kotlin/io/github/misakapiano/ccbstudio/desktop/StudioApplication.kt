@@ -447,7 +447,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     }
     suspend fun enterMaintenance() {
         if(modelAccounts.dirty)throw DataProblem("ACCOUNT_DRAFT_UNSAVED","账户档案尚未保存，请在账户页保存或放弃修改后再关闭/更新")
-        maintenance=true;generationSends.close();message="正在停止接收新操作并保存、排水…"
+        generationSends.close();maintenance=true;message="正在停止接收新操作并保存、排水…"
         thumbnails.pauseAndDrain()
         batch.drain()
         modelAccounts.cancel()
