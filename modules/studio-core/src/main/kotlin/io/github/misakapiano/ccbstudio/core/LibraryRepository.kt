@@ -209,18 +209,20 @@ class LibraryRepository(private val workspace:StudioWorkspace,private val fault:
         try {for(path in candidates) {
             checkCancelled()
             val key=folder.id+":"+root.relativize(path);seen+=key
-            val bytes=try {
+            val (bytes,hash)=try {
                 safePath(path);val before=Files.readAttributes(path,java.nio.file.attribute.BasicFileAttributes::class.java,LinkOption.NOFOLLOW_LINKS)
                 val bytes=readBounded(path,if(folder.category=="prompts")1024*1024 else 32*1024*1024)
                 val after=Files.readAttributes(path,java.nio.file.attribute.BasicFileAttributes::class.java,LinkOption.NOFOLLOW_LINKS)
                 require(before.size()==after.size() && before.lastModifiedTime()==after.lastModifiedTime() && before.fileKey()==after.fileKey()){"File changed during read; retry after writing finishes"}
-                if(observations[key]?.sha256!=sha256(bytes)) {
+                // Both decisions concern this same immutable input snapshot; retain its full SHA.
+                val hash=sha256(bytes)
+                if(observations[key]?.sha256!=hash) {
                     if(folder.category=="prompts")require(bytes.decodeToString(throwOnInvalidSequence=true).isNotBlank())else EditorRenderer.decode(bytes).flush()
                 }
-                bytes
+                bytes to hash
             }catch(e:Exception){observations[key]?.let{observations[key]=it.copy(status="READ_ERROR")};result+=FolderScanResult(path.toString(),"READ_ERROR: "+e.javaClass.simpleName);completed++;progress(FolderScanProgress(completed,candidates.size));continue}
             // After validation, a persistence failure aborts the scan instead of retrying later files.
-            val hash=sha256(bytes);val old=observations[key]
+            val old=observations[key]
                 if(old?.sha256==hash){observations[key]=old.copy(status="PRESENT");result+=FolderScanResult(path.toString(),"UNCHANGED",old.assetId);completed++;progress(FolderScanProgress(completed,candidates.size));continue}
                 checkCancelled()
                 committing=true
