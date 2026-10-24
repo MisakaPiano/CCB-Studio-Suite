@@ -33,7 +33,7 @@ object NativePerformanceProbe {
             return
         }
         val out=Path.of(args[2]);Files.createDirectories(out)
-        val start=System.nanoTime();val events=out.resolve("events.jsonl");val frames=AtomicLong();val drawCallbacks=AtomicLong();val lastDraw=AtomicLong();val galleryDraw=AtomicLong()
+        val start=System.nanoTime();val events=out.resolve("events.jsonl");val frames=AtomicLong();val drawCallbacks=AtomicLong();val firstDraw=AtomicLong();val lastDraw=AtomicLong();val galleryDraw=AtomicLong()
         val epoch=System.currentTimeMillis();val runtime=ManagementFactory.getRuntimeMXBean()
         fun note(phase:String,extra:JsonObject=buildJsonObject{}) {
             val value=buildJsonObject {
@@ -51,7 +51,7 @@ object NativePerformanceProbe {
         val w=StudioWorkspace.openStudio(data);note("workspace-opened")
         val expected=Json.parseToJsonElement(Files.readString(root.resolve("originals.json"))).jsonObject
         var failure:Throwable?=null
-        application {
+        application(exitProcessOnExit=false) {
             val scope=rememberCoroutineScope()
             val http=remember{studioHttpClient().newBuilder().addInterceptor{error("Native resource probe forbids all HTTP")}.build()}
             val c=remember {WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root.resolve("runtime/catalog")),root.resolve("runtime/budget"),http,
@@ -66,15 +66,17 @@ object NativePerformanceProbe {
                     Box(Modifier.fillMaxSize().drawWithContent {
                         drawCallbacks.incrementAndGet()
                         drawContent()
-                        if(window.isShowing){frames.incrementAndGet();lastDraw.set(System.nanoTime())
-                            if(c.view=="图库"&&c.gallery.historyCache!=null&&c.gallery.foldPreferences!=null&&c.thumbnails.pendingCount==0&&c.thumbnails.retainedBytes>0)galleryDraw.set(System.nanoTime())}
+                        // Compose prepares its first native surface before showing the Window.
+                        // Verify both completed draw and showing state; don't require simultaneous callbacks.
+                        val now=System.nanoTime();frames.incrementAndGet();firstDraw.compareAndSet(0,now);lastDraw.set(now)
+                        if(window.isShowing&&c.view=="图库"&&c.gallery.historyCache!=null&&c.gallery.foldPreferences!=null&&c.thumbnails.pendingCount==0&&c.thumbnails.retainedBytes>0)galleryDraw.set(now)
                     }) {Workbench(c,chrome,closing)}
                 }
                 LaunchedEffect(Unit) {
                     note("native-window-state",buildJsonObject{put("showing",window.isShowing);put("visible",window.isVisible);put("displayable",window.isDisplayable);put("width",window.width);put("height",window.height);put("drawCallbacks",drawCallbacks.get())})
                     try {
-                        withTimeout(30000){while(frames.get()==0L)delay(20)}
-                        note("first-native-draw",buildJsonObject{put("showing",window.isShowing);put("width",window.width);put("height",window.height);put("screenScaleX",window.graphicsConfiguration.defaultTransform.scaleX)})
+                        withTimeout(30000){while(!window.isShowing||frames.get()==0L)delay(20)}
+                        note("first-native-draw",buildJsonObject{put("showing",window.isShowing);put("firstContentDrawMs",(firstDraw.get()-start)/1e6);put("predicate","completed native draw AND Window showing; Windows compositor presentation not measured");put("width",window.width);put("height",window.height);put("screenScaleX",window.graphicsConfiguration.defaultTransform.scaleX)})
                         delay(5000);note("creation-idle-5s")
                         suspend fun gallery(phase:String) {
                             val begin=System.nanoTime();galleryDraw.set(0);c.view="图库"
