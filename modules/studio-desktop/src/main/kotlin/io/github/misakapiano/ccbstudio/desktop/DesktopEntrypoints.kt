@@ -21,12 +21,21 @@ internal object DesktopEntrypoints {
         check(p.waitFor(20,TimeUnit.SECONDS)&&p.exitValue()==0){"Windows入口设置未完成"}
     }
     /** This is called only after B completes handoff, or during an ordinary verified installation launch. */
-    fun ensure(data:Path,runtime:Path) {
+    @Synchronized fun ensure(data:Path,runtime:Path):Boolean {
+        if(!ownsDefault(data,runtime))return false
+        val lockPath=installed().parent.resolve("entrypoints.lock");safePath(lockPath)
+        java.nio.channels.FileChannel.open(lockPath,StandardOpenOption.CREATE,StandardOpenOption.WRITE,LinkOption.NOFOLLOW_LINKS).use{channel->
+            val lock=channel.tryLock(0,1,false)?:throw DataProblem("ENTRYPOINT_BUSY","固定入口正在更新，请稍后重试")
+            lock.use{return ensureLocked(data,runtime)}
+        }
+    }
+    private fun ensureLocked(data:Path,runtime:Path):Boolean {
         val app=installed();val root=app.parent;safePath(root);safePath(stable())
         val manifest=Json.parseToJsonElement(Files.readString(app.resolve("INSTALL_MANIFEST.json"))).jsonObject
         val config=Json.parseToJsonElement(Files.readString(app.resolve("update-config.json"))).jsonObject
         val descriptor=root.resolve("launch-current.json")
         if(Files.exists(descriptor)){safePath(descriptor);require(Files.size(descriptor)<16384);val old=Json.parseToJsonElement(Files.readString(descriptor)).jsonObject
+            if(!defaultMatches(old,data,runtime))return false
             require((old["version"]?.jsonPrimitive?.int?:0)<=(config["version"]?.jsonPrimitive?.int?:0)){"较新版本已有固定入口，请从原入口启动"}}
         fun verified(path:String):ByteArray {
             val entry=manifest["files"]!!.jsonArray.single{it.jsonObject["path"]!!.jsonPrimitive.content==path}.jsonObject
@@ -37,10 +46,17 @@ internal object DesktopEntrypoints {
         // Avoid replacing a currently executing stable launcher when its content is identical.
         if(!Files.exists(stable())||!Files.readAllBytes(stable()).contentEquals(launcher))atomic(stable(),launcher)
         atomic(descriptor,buildJsonObject{put("format",1);put("version",config["version"]!!);put("installed",app.toString());put("data",data.toAbsolutePath().normalize().toString());put("runtime",runtime.toAbsolutePath().normalize().toString());put("exeSha256",sha256(exe))}.toString().toByteArray())
-        execute("--shortcut",root.resolve("Launch-CCB-Studio.lnk").toString())
+        execute("--shortcut",root.resolve("Launch-CCB-Studio.lnk").toString());return true
+    }
+    internal fun defaultMatches(descriptor:JsonObject,data:Path,runtime:Path):Boolean =
+        listOf("data" to data,"runtime" to runtime).all{(key,path)->descriptor[key]?.jsonPrimitive?.content?.let{Path.of(it).toAbsolutePath().normalize()==path.toAbsolutePath().normalize()}==true}
+
+    fun ownsDefault(data:Path,runtime:Path):Boolean {
+        val descriptor=installed().parent.resolve("launch-current.json");safePath(descriptor)
+        return !Files.exists(descriptor)||defaultMatches(Json.parseToJsonElement(readBounded(descriptor,16384).decodeToString()).jsonObject,data,runtime)
     }
     fun create(kind:String,data:Path,runtime:Path):String {
-        ensure(data,runtime)
+        require(ensure(data,runtime)){"此窗口为独立工作区，默认入口仍指向原工作区"}
         // Known Folder lookup honors redirected desktop and roaming Start Menu paths.
         val special=if(kind=="desktop")"DesktopDirectory"else"Programs"
         val p=ProcessBuilder("powershell.exe","-NoProfile","-NonInteractive","-Command","[Console]::OutputEncoding=[Text.Encoding]::UTF8;[Environment]::GetFolderPath([Environment+SpecialFolder]::$special)").start()

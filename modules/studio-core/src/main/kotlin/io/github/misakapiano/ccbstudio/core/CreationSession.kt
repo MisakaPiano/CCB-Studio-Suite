@@ -102,24 +102,33 @@ class StudioGenerator(private val workspace:StudioWorkspace,private val vault:Se
         requestSize:NovelAiImageSize=draft.activeSettings.imageSize(),
         compose:((ByteArray)->ByteArray)?=null,
         onIntermediate:(ByteArray)->Unit={},onResult:(String)->Unit={},designApplication:DesignApplicationRef?=null,
-        jobId:String=newId(),batchOrigin:BatchResultOrigin?=null,onRequestStart:()->Unit={},manualBatchId:String?=null):JobRecord {
+        jobId:String=newId(),batchOrigin:BatchResultOrigin?=null,onRequestStart:()->Unit={},manualBatchId:String?=null,sendGate:GenerationSendGate=GenerationSendGate()):JobRecord {
         require(workspace.studioMode);account.validate();require(account.service=="NAI" && account.provider=="NOVELAI")
         require(guidance.action==draft.imageGuidance.action) {"Guidance must be prepared before generation"}
         require(draft.imageGuidance.effectiveReferenceMode(draft.selectedModel)==NovelAiReferenceMode.NONE || guidance!=NovelAiPreparedImageGuidance.NONE)
         val initial=draft.activeSettings;require(initial.validationError(draft.activeCharacters.size)==null)
         val settings=if(initial.seedMode==NovelAiSeedMode.RANDOM) initial.copy(seed=kotlin.random.Random.nextLong(initial.maxAllowedBaseSeed+1)) else initial
         val status=GenerationStatusInterceptor()
-        val plan=draft.toPromptPlan(); val service=NovelAiImageService(client.newBuilder().addInterceptor(status).retryOnConnectionFailure(false).build(),safeErrorsOnly=true)
+        val sendFailure=java.util.concurrent.atomic.AtomicReference<GenerationNotSent?>()
+        var markSent:()->Unit={}
+        val transport=client.newBuilder().addInterceptor(status).retryOnConnectionFailure(false).apply {
+            interceptors().add(0,okhttp3.Interceptor{chain->
+                try {sendGate.submit{workspace.operation{markSent()}}}
+                catch(e:GenerationNotSent){sendFailure.set(e);throw e}
+                chain.proceed(chain.request())
+            })
+        }.build()
+        val plan=draft.toPromptPlan(); val service=NovelAiImageService(transport,safeErrorsOnly=true)
         val wire=service.buildRequestBody(plan,requestSize,settings,guidance)
         workspace.beginTask().use {
             val retained=RequestEvidence(workspace,draft.imageGuidance.baseImage?.id ?: draft.imageGuidance.preciseReference.asset?.id ?: draft.imageGuidance.vibes.firstOrNull()?.asset?.id)
             val savedRequest=retained.retainRequest(Json.parseToJsonElement(wire))
             val savedVibes=draft.imageGuidance.vibes.filter{it.encodedVibe!=null}.associate{it.id to retained.retainText(it.encodedVibe!!)}
             val snapshot=draft.toRecipe(settings).let{it.copy(imageGuidance=it.imageGuidance.copy(vibes=it.imageGuidance.vibes.map{v->v.copy(encodedVibe=null)}))}
-            manualBatchId?.let{require(batchOrigin==null && workspace.state.generationOrganization.currentManual==it)}
+            manualBatchId?.let{require(batchOrigin==null);GenerationOrganizations(workspace).requireManualCapacity(it,settings.count*(if(compose==null)1 else 2))}
             val recipe=documentJson.encodeToString(GenerationReceipt(recipe=snapshot,account=account,request=savedRequest,wireSha256=sha256(wire.toByteArray()),vibePayloads=savedVibes,batchOrigin=batchOrigin,manualBatchId=manualBatchId))
             require(recipe.toByteArray().size<=1024*1024){"Receipt exceeds descriptor budget; request not sent"}
-            val receiptRef=if(batchOrigin!=null){val bytes=recipe.toByteArray();JobReceiptRef(workspace.requestPayload(bytes,null),sha256(bytes))}else null
+            val receiptRef=if(batchOrigin!=null||manualBatchId!=null){val bytes=recipe.toByteArray();JobReceiptRef(workspace.requestPayload(bytes,null),sha256(bytes))}else null
             var job=JobRecord(id=jobId,account=account,recipe=if(receiptRef==null)recipe else "",state="QUEUED",receiptRef=receiptRef,manualBatchId=manualBatchId)
             require(workspace.state.jobs.none{it.id==jobId})
             designApplication?.let{DesignProvenance(workspace).linkGeneration(job,it)}
@@ -127,13 +136,13 @@ class StudioGenerator(private val workspace:StudioWorkspace,private val vault:Se
             fun save()=workspace.operation {workspace.save(workspace.state.copy(jobs=workspace.state.jobs.map {if(it.id==job.id)job else it}))}
             try {
                 val token=withContext(Dispatchers.IO){vault.use(requireNotNull(account.secretRef)){it.decodeToString()}}
-                admission.await("NAI")
-                currentCoroutineContext().ensureActive();job=job.copy(state="RUNNING");save()
-                onRequestStart()
+                sendGate.await(admission)
+                currentCoroutineContext().ensureActive()
+                markSent={onRequestStart();job=job.copy(state="RUNNING");save()}
                 service.generate(token,plan,requestSize,settings,guidance,maxRateLimitRetries=0).collect { event ->
                     when(event) {
                         is NovelAiImageEvent.Intermediate -> onIntermediate(event.image)
-                        is NovelAiImageEvent.Error -> throw (status.failure.get()?:GenerationFailure("UNCERTAIN",uncertain=true))
+                        is NovelAiImageEvent.Error -> throw (sendFailure.get()?:status.failure.get()?:GenerationFailure("UNCERTAIN",uncertain=true))
                         is NovelAiImageEvent.Final -> {
                             val id=workspace.importImage("NovelAI-${job.id}-${job.results.size+1}.png",event.image,recipe)
                             job=job.copy(results=job.results+id);save()
@@ -148,7 +157,7 @@ class StudioGenerator(private val workspace:StudioWorkspace,private val vault:Se
                 require(job.results.size==settings.count) { "Incomplete image batch retained" }
                 job=job.copy(state="COMPLETED");save();return job
             } catch(e:Exception) {
-                job=job.copy(state=if(e is CancellationException) "CANCELLED" else "FAILED",
+                job=job.copy(state=if(e is GenerationNotSent) "NOT_SENT" else if(e is CancellationException) "CANCELLED" else "FAILED",
                     detail="未自动重发；已收到的原件保留，可从图库查找",failureCode=(e as? GenerationFailure)?.code,
                     retryNotBefore=(e as? GenerationFailure)?.notBefore?:0)
                 withContext(NonCancellable){save()};throw e

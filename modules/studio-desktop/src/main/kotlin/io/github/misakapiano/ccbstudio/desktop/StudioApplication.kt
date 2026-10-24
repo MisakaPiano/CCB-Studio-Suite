@@ -26,7 +26,7 @@ import kotlinx.serialization.json.*
 import java.nio.file.*
 
 internal class WorkbenchController(val workspace:StudioWorkspace,val scope:CoroutineScope,val infrastructure:DesktopNovelAiInfrastructure,budgetRoot:Path,
-    val http:okhttp3.OkHttpClient=studioHttpClient(),admissionOverride:RequestAdmission?=null,val pauseCollectionsOnStart:Boolean=false) {
+    val http:okhttp3.OkHttpClient=studioHttpClient(),admissionOverride:RequestAdmission?=null,val pauseCollectionsOnStart:Boolean=false,val allowDefaultEntrypoint:Boolean=true) {
     val session=CreationSession(workspace)
     val runtimeRoot:Path=budgetRoot.parent
     val backups by lazy{LibraryBackupController(this)}
@@ -42,6 +42,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     val batch by lazy {BatchController(this)}
     val generations by lazy {GenerationManagement(this)}
     val vault=SecretVault(workspace.root.resolve("secrets"))
+    val generationSends=GenerationSendGate()
     val modelAccounts by lazy{ModelAccountsController(this)}
     val naiSettings by lazy{NaiSettingsController(this)}
     var state by mutableStateOf(workspace.state);private set
@@ -268,6 +269,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
         busy=true;activeOperation=label;message=label;problem=null;operationNotice=null
         active=scope.launch(start=CoroutineStart.UNDISPATCHED) {
             try {pending?.cancelAndJoin();flush();withContext(Dispatchers.IO){body()};message=operationNotice?:if(problem==null)"$label · 已完成" else "$label · 有未完成项，请查看回执"}
+            catch(e:GenerationNotSent){message="已停止发送；已提交结果保留"}
             catch(e:CancellationException){message="已停止；已提交结果保留";throw e}
             catch(e:Exception){problem="${if(e is DataProblem)e.status else e.javaClass.simpleName}：操作未完成，未自动重发。已有资料保留。";message="操作未完成"}
             finally {withContext(NonCancellable){
@@ -309,14 +311,15 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
         val launch=requested.copy(imageGuidance=prepared.retainedGuidance)
         val total=if(launch.continuousModeEnabled)launch.continuousTargetCount else launch.activeSettings.count
         val manual=generations.repository.ensureManual()
+        generations.repository.requireManualCapacity(manual.id,total*(if(launch.imageGuidance.action==NovelAiGenerationAction.INPAINT)2 else 1))
         intermediate=null
         var completed=0
-        while(completed<total) {
+        while(completed<total && generationSends.open) {
             currentCoroutineContext().ensureActive()
             val batch=launch.withActiveSettings(launch.activeSettings.copy(count=minOf(launch.activeSettings.count,total-completed)))
             val result=StudioGenerator(workspace,vault,admission,http).generate(account,batch,prepared.guidance,prepared.requestSize,if(launch.imageGuidance.action==NovelAiGenerationAction.INPAINT)prepared.compose else null,onIntermediate={intermediate=it},onResult={id->
                 intermediate=null;current=id;state=workspace.state;assets=visibleAssets();message="已保存 ${++completed}/$total 张"
-            },designApplication=designApplication,manualBatchId=manual.id)
+            },designApplication=designApplication,manualBatchId=manual.id,sendGate=generationSends)
             check(result.state=="COMPLETED")
         }
     }
@@ -327,23 +330,23 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
         try {
             pending?.cancelAndJoin();flush()
             withContext(Dispatchers.IO) {
-                val account=workspace.state.accounts.singleOrNull{it.id==queue.state.accountId&&it.service=="NAI"}
-                    ?.copy(model=group.draft.selectedModel.apiId)?:throw DataProblem("ACCOUNT","请选择有效的 NAI 账户")
+                val account=queue.dispatchAccount().copy(model=group.draft.selectedModel.apiId)
                 val status=GenerationStatusInterceptor()
                 val client=http.newBuilder().addInterceptor(status).retryOnConnectionFailure(false).build()
                 val token=vault.use(requireNotNull(account.secretRef)){it.decodeToString()}
                 val latest=try{NovelAiAccountService(client).fetchCancellable(token)}catch(e:CancellationException){throw e}catch(e:Exception){throw(status.failure.get()?:DataProblem("QUOTA","额度无法确认，整批已暂停"))}
                 if(naiId==account.id){usage=latest;usageAt=System.currentTimeMillis()}
-                if(!queue.state.running)return@withContext
+                if(!queue.state.running || !generationSends.open)return@withContext
                 val draft=group.draft.withSlot(slot)
                 val cost=NovelAiImageCostEstimator.estimate(draft.activeSettings,latest,draft.imageGuidance)
                 if(cost.anlas>queue.state.policy.anlasLimit-queue.state.reservedAnlas || cost.anlas>latest.anlas)
                     throw DataProblem("BUDGET","免费额度不足或达到批次 Anlas 上限；没有发送生图请求")
                 val dispatch=queue.begin(slot.id,System.currentTimeMillis(),cost.anlas)
                 batch.refresh();onPhase("正在生成 · ${group.name} · ${slot.direction.label} ${slot.round}")
-                val job=StudioGenerator(workspace,vault,admission,http).generate(account,draft,
+                val job=try {StudioGenerator(workspace,vault,admission,http).generate(account,draft,
                     designApplication=group.designApplication,jobId=dispatch.jobId,batchOrigin=dispatch.origin,
-                    onResult={id->current=id;assets=visibleAssets();if(batch.follow)batch.current=group.id},onRequestStart={queue.submitted(System.currentTimeMillis());batch.refresh()})
+                    onResult={id->current=id;assets=visibleAssets();if(batch.follow)batch.current=group.id},onRequestStart={queue.submitted(System.currentTimeMillis());batch.refresh()},sendGate=generationSends)}
+                catch(e:GenerationNotSent){queue.withdrawUnsent(slot.id,cost.anlas);return@withContext}
                 queue.complete(slot.id,job.results)
             }
         }finally{withContext(NonCancellable){withContext(Dispatchers.IO){state=workspace.state;assets=visibleAssets()};activeOperation="";busy=false}}
@@ -438,16 +441,17 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     }
     suspend fun enterMaintenance() {
         if(modelAccounts.dirty)throw DataProblem("ACCOUNT_DRAFT_UNSAVED","账户档案尚未保存，请在账户页保存或放弃修改后再关闭/更新")
-        maintenance=true;thumbnails.pauseAndDrain();message="正在停止接收新操作并保存、排水…"
+        maintenance=true;generationSends.close();message="正在停止接收新操作并保存、排水…"
+        thumbnails.pauseAndDrain()
         batch.drain()
         modelAccounts.cancel()
         naiSettings.cancelAndDrain()
         animation.cancelAndDrain()
         library.cancelAndDrain()
-        active?.cancelAndJoin();pending?.cancelAndJoin();editor.drain();flush()
+        if(activeOperation=="NovelAI 生成")active?.join()else active?.cancelAndJoin();pending?.cancelAndJoin();editor.drain();flush()
     }
-    fun resumeAfterPreflightFailure() {workspace.state;check(active?.isActive!=true);thumbnails.resume();maintenance=false;message="更新未开始安装；工作区仍可继续使用"}
-    suspend fun close() {updater.closeAndDrain();enterMaintenance();infrastructure.closeAndDrain();withContext(Dispatchers.IO){workspace.close()};http.dispatcher.executorService.shutdown();http.connectionPool.evictAll()}
+    fun resumeAfterPreflightFailure() {workspace.state;check(active?.isActive!=true);thumbnails.resume();generationSends.reopen();maintenance=false;message="更新未开始安装；工作区仍可继续使用"}
+    suspend fun close() {enterMaintenance();updater.closeAndDrain();infrastructure.closeAndDrain();withContext(Dispatchers.IO){workspace.close()};http.dispatcher.executorService.shutdown();http.connectionPool.evictAll()}
 }
 
 internal fun launchStudio(args:Array<String>) {
@@ -467,12 +471,12 @@ internal fun launchStudio(args:Array<String>) {
         workspace.close();javax.swing.JOptionPane.showMessageDialog(null,studioStartupFailureText(e),"CCB Studio Suite",javax.swing.JOptionPane.ERROR_MESSAGE);return
     }
     application {
-        val scope=rememberCoroutineScope();val c=remember{WorkbenchController(workspace,scope,DesktopNovelAiInfrastructure(runtime.resolve("catalog")),runtime.resolve("request-budget"),pauseCollectionsOnStart="--pause-collections" in args)}
+        val scope=rememberCoroutineScope();val c=remember{WorkbenchController(workspace,scope,DesktopNovelAiInfrastructure(runtime.resolve("catalog")),runtime.resolve("request-budget"),pauseCollectionsOnStart="--pause-collections" in args,allowDefaultEntrypoint="--secondary-workspace" !in args)}
         var closing by remember{mutableStateOf(false)}
         fun close(){if(!closing){closing=true;scope.launch{try{c.close();exitApplication()}catch(e:Exception){closing=false;c.problem=if(e is DataProblem && e.status=="ACCOUNT_DRAFT_UNSAVED")"账户档案尚未保存，请在账户页保存或放弃修改后再关闭" else "保存或排水尚未完成，窗口保持打开"}}}}
         c.requestClose=::close
         LaunchedEffect(Unit){withFrameNanos{};c.updater.checkOnStartup()}
-        if(updatePlan==null&&System.getProperty("jpackage.app-path")!=null)LaunchedEffect(Unit){
+        if(updatePlan==null&&"--secondary-workspace" !in args&&System.getProperty("jpackage.app-path")!=null)LaunchedEffect(Unit){
             runCatching{withContext(Dispatchers.IO){DesktopEntrypoints.ensure(workspace.root,runtime)}}.onFailure{c.message="程序已启动；固定入口尚未准备：${it.message?.take(120)}"}
         }
         c.installUpdate={if(!closing){closing=true;scope.launch{
@@ -502,7 +506,7 @@ internal fun launchStudio(args:Array<String>) {
             if(completed==null)c.problem="更新交接超时，尚不能确认完成；现有资料和旧程序均保留"
         }
         Window(onCloseRequest=::close,title="CCB Studio Suite · 工作台",undecorated=DesktopWindowChrome.isWindows,icon=StudioBrand.painter,state=rememberWindowState(width=1320.dp,height=880.dp)) {
-            LaunchedEffect(window){withFrameNanos{};if(System.getProperty("jpackage.app-path")!=null)runCatching{withContext(Dispatchers.IO){DesktopEntrypoints.configureWindow(window)}}.onFailure{c.message="任务栏入口设置未完成，可在更新页重新创建入口"}}
+            LaunchedEffect(window){withFrameNanos{};if(c.allowDefaultEntrypoint&&System.getProperty("jpackage.app-path")!=null&&DesktopEntrypoints.ownsDefault(workspace.root,runtime))runCatching{withContext(Dispatchers.IO){DesktopEntrypoints.configureWindow(window)}}.onFailure{c.message="任务栏入口设置未完成，可在更新页重新创建入口"}}
             DisposableEffect(window){StudioFileDialogs.attach(window){c.problem=it};onDispose{StudioFileDialogs.detach(window)}}
             val chrome=rememberDesktopWindowChrome(window,::close);SideEffect{chrome.appearance(true)}
             MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel,onPrimary=Ink,onSurface=Color(0xffe6edf3))) {Workbench(c,chrome,closing)}
@@ -559,7 +563,7 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
             Text(c.library.automaticNotice,Modifier.weight(1f),fontSize=12.sp)
             TextButton(onClick={c.library.stopCollection()}){Text("停止目录收集")}
         }
-        Box(Modifier.weight(1f).fillMaxWidth()) {when(c.view){"AI 设计"->if(c.designDetached)Column(Modifier.padding(20.dp)){Text("AI 设计已在独立窗口打开");StudioAction("切回主窗口编辑",onClick=c::reattachDesign)}else DesignWorkspace(c);"图库"->GalleryWorkspace(c);"编辑"->TypesetWorkspace(c);"资产管理"->LibraryWorkspace(c);"账户"->AccountsWorkspace(c);"更新"->UpdateWorkspace(c.updater,c.workspace.root.toString(),onShortcut={kind->c.run("创建程序入口"){val path=DesktopEntrypoints.create(kind,c.workspace.root,c.runtimeRoot);c.operationNotice="已创建入口：$path；右键可固定到任务栏"}},onInstall=c.installUpdate);else->CreationWorkspace(c)}}
+        Box(Modifier.weight(1f).fillMaxWidth()) {when(c.view){"AI 设计"->if(c.designDetached)Column(Modifier.padding(20.dp)){Text("AI 设计已在独立窗口打开");StudioAction("切回主窗口编辑",onClick=c::reattachDesign)}else DesignWorkspace(c);"图库"->GalleryWorkspace(c);"编辑"->TypesetWorkspace(c);"资产管理"->LibraryWorkspace(c);"账户"->AccountsWorkspace(c);"更新"->UpdateWorkspace(c.updater,c.workspace.root.toString(),onShortcut={kind->c.run("创建程序入口"){require(c.allowDefaultEntrypoint){"恢复副本不会更改默认入口"};val path=DesktopEntrypoints.create(kind,c.workspace.root,c.runtimeRoot);c.operationNotice="已创建入口：$path；右键可固定到任务栏"}},onInstall=c.installUpdate);else->CreationWorkspace(c)}}
         Row(Modifier.fillMaxWidth().padding(8.dp),verticalAlignment=Alignment.CenterVertically) {
             Text(if(closing)"正在保存并排水…"else c.message,Modifier.weight(1f),fontSize=12.sp,color=Quiet)
             Text(if(c.saved)"创作草稿已保存" else "创作草稿保存中…",fontSize=12.sp)

@@ -26,7 +26,12 @@ import java.util.UUID
 
 /** Batch aliases/placement are mutable organization. Receipts and image bytes are never rewritten. */
 class GenerationOrganizations(private val w:StudioWorkspace) {
+    companion object {const val MANUAL_IMAGE_LIMIT=1000}
     val state get()=w.state.generationOrganization
+    fun requireManualCapacity(id:String,additional:Int)=w.operation {
+        require(state.currentManual==id)
+        require(additional>=0 && manualImages().size+additional<=MANUAL_IMAGE_LIMIT){"当前手动批次最多1000张（含合成结果），请先命名并归档；没有发送请求"}
+    }
     fun change(expected:GenerationOrganization,next:GenerationOrganization)=w.operation {require(state==expected){"组织记录已改变，请刷新"};next.validate();w.save(w.state.copy(generationOrganization=next))}
     fun addFolder(folder:GenerationFolder)=w.operation{val s=state;change(s,s.copy(folders=s.folders+folder))}
     fun ensureManual():GenerationBatch=w.operation {
@@ -36,7 +41,7 @@ class GenerationOrganizations(private val w:StudioWorkspace) {
     fun archiveManual(id:String,alias:String,parent:String?)=w.operation {
         val s=state;require(s.currentManual==id && manualImages().isNotEmpty())
         require(w.state.jobs.none{it.manualBatchId==id&&it.state in setOf("QUEUED","RUNNING")}){"请等待当前生成完成"}
-        change(s,s.copy(currentManual=null,batches=s.batches.map{if(it.id==id)it.copy(alias=alias.trim(),parent=parent,archivedAt=System.currentTimeMillis(),groups=listOf(GenerationBatchGroup(id,"手动生成",manualImages())))else it}))
+        change(s,s.copy(currentManual=null,batches=s.batches.map{if(it.id==id)it.copy(alias=alias.trim(),parent=parent,archivedAt=System.currentTimeMillis(),groups=manualImages().chunked(MANUAL_IMAGE_LIMIT).mapIndexed{index,images->GenerationBatchGroup(if(index==0)id else newId(),if(index==0)"手动生成"else"手动生成 ${index+1}",images)})else it}))
     }
     fun archiveAutomatic(alias:String,parent:String?)=w.operation {
         val s=state;val batch=w.state.batch;require(batch.total>0)

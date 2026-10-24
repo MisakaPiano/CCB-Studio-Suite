@@ -79,6 +79,7 @@ internal class BatchController(private val c:WorkbenchController) {
                     phase="正在确认额度"
                     try{c.executeBatch(queue,next.first,next.second){phase=it}}
                     catch(e:CancellationException){throw e}
+                    catch(e:GenerationNotSent){/* Pause/end won the atomic reservation; no request was sent. */}
                     catch(e:Exception){
                         val running=queue.state.groups.flatMap{it.slots}.firstOrNull{it.status=="RUNNING"}
                         val failure=e as? GenerationFailure
@@ -98,7 +99,7 @@ internal class BatchController(private val c:WorkbenchController) {
     fun pause()=action{queue.pause()}
     fun cancel(){runner?.cancel()}
     fun end()=action{queue.end();past=emptyList();future=emptyList()}
-    suspend fun drain(){editJob?.join();runner?.cancelAndJoin();withContext(Dispatchers.IO){queue.pause()};refresh()}
+    suspend fun drain(){withContext(Dispatchers.IO){queue.pause()};editJob?.join();runner?.join();refresh()}
     fun newBatch()=action{queue.newBatch();past=emptyList();future=emptyList();selected=emptySet();current=null}
     fun resetAfterArchive(){refresh();past=emptyList();future=emptyList();selected=emptySet();current=null}
     fun results(){val ids=state.groups.flatMap{g->g.slots.flatMap{it.results}}.toSet();c.gallery.enterBatch(ids,state.name,"batch:${state.id}");c.selection=emptySet();c.current=ids.lastOrNull();c.view="图库";shown=false}

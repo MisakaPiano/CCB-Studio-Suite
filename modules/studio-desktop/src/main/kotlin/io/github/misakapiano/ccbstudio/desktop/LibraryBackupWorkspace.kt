@@ -20,7 +20,7 @@ internal class LibraryBackupController(private val c:WorkbenchController,
         val executable=System.getProperty("jpackage.app-path")?.let(Path::of)
             ?:throw DataProblem("INSTALLED_APP_REQUIRED","请使用安装版打开另一个工作区")
         require(Files.isRegularFile(executable))
-        ProcessBuilder(executable.toString(),"--studio-root",root.toString(),"--runtime-root",c.runtimeRoot.toString()).directory(executable.parent.toFile()).start()
+        ProcessBuilder(executable.toString(),"--studio-root",root.toString(),"--runtime-root",root.resolveSibling(root.fileName.toString()+"-runtime").toString(),"--secondary-workspace").directory(executable.parent.toFile()).start()
         Unit
     }) {
     var backup by mutableStateOf<Path?>(null);private set

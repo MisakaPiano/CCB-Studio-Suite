@@ -23,7 +23,7 @@ data class FolderScanProgress(val completed:Int,val total:Int)
 
 /** Metadata and prompt revisions use the same transactional asset core and backup path.
  * Headers form a checked append chain. A failed/incomplete write never replaces the last revision. */
-class LibraryRepository(private val workspace:StudioWorkspace) {
+class LibraryRepository(private val workspace:StudioWorkspace,private val fault:(String)->Unit={}) {
     companion object {const val TAG="CCB_LIBRARY_STATE_V1";const val PROMPT="CCB_PROMPT_ASSET_V1"}
     private fun records()=workspace.assets.catalogProject(TAG.toByteArray()).map { a->
         val h=documentJson.decodeFromString<LibraryRevision>(a.request().recipe().decodeToString())
@@ -84,6 +84,7 @@ class LibraryRepository(private val workspace:StudioWorkspace) {
         val id=UUID.randomUUID();val bytes=documentJson.encodeToString(PromptAsset(text=text,origin=origin,sections=sections.filter{it.text.isNotBlank()},image=image)).toByteArray()
         require(bytes.size<=4*1024*1024){"Prompt snapshot limit exceeded; original retained"}
         workspace.assets.put(AssetStore.Request(id,"prompt.txt",if(previous==null)AssetStore.Kind.ORIGINAL else AssetStore.Kind.DERIVED,previous?.let(UUID::fromString),byteArrayOf(),PROMPT.toByteArray()),ByteArrayInputStream(bytes))
+        fault("PROMPT_ASSET_COMMITTED")
         val oldTags=previous?.let{management.labels[it]?.tags}.orEmpty();label(id.toString(),alias,oldTags);id.toString()
     }
     fun addFolder(path:Path,category:String,recursive:Boolean):LibraryState {
@@ -189,6 +190,12 @@ class LibraryRepository(private val workspace:StudioWorkspace) {
                 else null
             }.getOrNull()
         }.toMap()
+        // Prompt origin + parent + exact UTF-8 source hash also recover the old writer's
+        // asset-before-label/observation window. Ambiguity is retained and never imported again.
+        val retainedPrompts=if(folder.category!="prompts")emptyMap()else prompts().mapNotNull{a->
+            val prompt=prompt(a.request().id().toString());val prefix="folder:${folder.id}:"
+            if(prompt.origin.startsWith(prefix))Triple(prompt.origin.removePrefix(prefix),sha256(prompt.text.toByteArray()),a.request().parentId()?.toString().orEmpty()) to a.request().id().toString() else null
+        }.groupBy({it.first},{it.second})
         val observations=state.observations.toMutableMap();val seen=mutableSetOf<String>();val result=excluded
         var completed=0;var persisted=observations.toMap();var persistenceFailed=false;var committing=false
         fun checkpoint() {
@@ -216,12 +223,20 @@ class LibraryRepository(private val workspace:StudioWorkspace) {
                 if(old?.sha256==hash){observations[key]=old.copy(status="PRESENT");result+=FolderScanResult(path.toString(),"UNCHANGED",old.assetId);completed++;progress(FolderScanProgress(completed,candidates.size));continue}
                 checkCancelled()
                 committing=true
-                val id=if(folder.category=="prompts")savePrompt(bytes.decodeToString(throwOnInvalidSequence=true),old?.assetId?.let{state.labels[it]?.alias}?.takeIf{it.isNotBlank()}?:path.fileName.toString(),"folder:${folder.id}:${root.relativize(path)}",old?.assetId)
+                val id=if(folder.category=="prompts") {
+                    val matches=retainedPrompts[Triple(root.relativize(path).toString(),hash,old?.assetId.orEmpty())].orEmpty()
+                    if(matches.size>1)throw DataProblem("RECOVERY_REQUIRED","Multiple committed Prompt versions retained; inspect before continuing")
+                    val alias=old?.assetId?.let{state.labels[it]?.alias}?.takeIf{it.isNotBlank()}?:path.fileName.toString()
+                    matches.singleOrNull()?.also{id->
+                        if(load().labels[id]==null)label(id,alias,old?.assetId?.let{state.labels[it]?.tags}.orEmpty())
+                    }?:savePrompt(bytes.decodeToString(throwOnInvalidSequence=true),alias,"folder:${folder.id}:${root.relativize(path)}",old?.assetId)
+                }
                     else retained[Triple(root.relativize(path).toString(),hash,old?.assetId.orEmpty())]?:workspace.importImage(path.fileName.toString(),bytes,kotlinx.serialization.json.buildJsonObject{
                         put("kind",kotlinx.serialization.json.JsonPrimitive("image-ingress"));put("version",kotlinx.serialization.json.JsonPrimitive(1));put("createdAt",kotlinx.serialization.json.JsonPrimitive(System.currentTimeMillis()))
                         put("source",kotlinx.serialization.json.JsonPrimitive("managed-folder"));put("folderId",kotlinx.serialization.json.JsonPrimitive(folder.id));put("relativePath",kotlinx.serialization.json.JsonPrimitive(root.relativize(path).toString()));put("previousAssetId",kotlinx.serialization.json.JsonPrimitive(old?.assetId.orEmpty()))
                     }.toString())
                 if(folder.category!="prompts" && old!=null)state.labels[old.assetId]?.let{label(id,it.alias,it.tags)}
+                fault("COLLECTION_ASSET_COMMITTED")
                 observations[key]=FolderObservation(id,hash,bytes.size.toLong());result+=FolderScanResult(path.toString(),if(old==null)"IMPORTED"else"NEW_VERSION",id)
                 committing=false
                 completed++;if(completed%32==0)checkpoint()

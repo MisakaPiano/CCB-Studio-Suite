@@ -39,13 +39,13 @@ fun NovelAiStudioDraft.withSlot(slot:BatchSlot)=withActiveSettings(activeSetting
 @Serializable data class BatchState(val id:String=newId(),val name:String="批量生图",val accountId:String?=null,
     val groups:List<BatchGroup> = emptyList(),val policy:BatchPolicy=BatchPolicy(),val mode:String="PAUSED",
     val error:BatchFailure?=null,val lastStartedAt:Long=0,val runStartedAt:Long=0,val restUntil:Long=0,
-    val reservedAnlas:Int=0,val pauseRequested:Boolean=false,val nextRequestAt:Long=0,val archives:List<BatchArchive> = emptyList(),val endRequested:Boolean=false,val createdAt:Long=0) {
+    val reservedAnlas:Int=0,val pauseRequested:Boolean=false,val nextRequestAt:Long=0,val archives:List<BatchArchive> = emptyList(),val endRequested:Boolean=false,val createdAt:Long=0,val accountSnapshot:AccountProfile?=null) {
     val total get()=groups.sumOf{it.slots.size}
     val completed get()=groups.sumOf{g->g.slots.count{it.status=="DONE"}}
     val skipped get()=groups.sumOf{g->g.slots.count{it.status=="SKIPPED"}}
     val running get()=mode in setOf("RUNNING","WAITING","RESTING")
     fun validate(){
-        policy.validate();require(groups.size<=40 && total<=1000 && name.length in 1..100 && reservedAnlas>=0 && archives.size<=1000)
+        accountSnapshot?.let{it.validate();require(it.id==accountId&&it.service=="NAI")};policy.validate();require(groups.size<=40 && total<=1000 && name.length in 1..100 && reservedAnlas>=0 && archives.size<=1000)
         require(groups.map{it.id}.distinct().size==groups.size)
         val slots=groups.flatMap{it.slots};require(slots.map{it.id}.distinct().size==slots.size)
         require(slots.count{it.status=="RUNNING"}<=1)
@@ -81,7 +81,12 @@ class BatchQueue(private val workspace:StudioWorkspace,private val random:(Int)-
             };if(s.endRequested&&result.error==null)result.copy(mode="ENDED",endRequested=false)else result.copy(endRequested=false)
         }
     }
-    fun configure(accountId:String?,policy:BatchPolicy)=update{require(!it.running);it.copy(accountId=accountId,policy=policy)}
+    fun configure(accountId:String?,policy:BatchPolicy)=update{require(!it.running);it.copy(accountId=accountId,accountSnapshot=workspace.state.accounts.find{a->a.id==accountId&&a.service=="NAI"},policy=policy)}
+    fun dispatchAccount():AccountProfile=workspace.operation {
+        val s=state
+        s.accountSnapshot?:workspace.state.accounts.singleOrNull{it.id==s.accountId&&it.service=="NAI"}
+            ?.also{account->update{it.copy(accountSnapshot=account)}}?:throw DataProblem("ACCOUNT","请选择有效的 NAI 账户")
+    }
     fun ensureCreatedAt(){if(state.groups.isNotEmpty()&&state.createdAt==0L)update{s->s.copy(createdAt=workspace.state.jobs.filter{job->s.groups.any{g->g.slots.any{job.id in it.attempts}}}.minOfOrNull{it.createdAt}?:System.currentTimeMillis())}}
     fun replaceGroups(groups:List<BatchGroup>)=update {s->
         require(!s.running && s.error==null && s.mode!="ENDED"){"请先处理暂停原因；已结束批次需新建"}
@@ -108,35 +113,40 @@ class BatchQueue(private val workspace:StudioWorkspace,private val random:(Int)-
             val bytes=documentJson.encodeToString(s.copy(archives=emptyList())).toByteArray()
             require(bytes.size<=1024*1024)
             val ref=JobReceiptRef(workspace.requestPayload(bytes,null),sha256(bytes))
-            BatchState(accountId=s.accountId,policy=s.policy,archives=s.archives+BatchArchive(alias,s.total,s.completed,ref),lastStartedAt=s.lastStartedAt,nextRequestAt=s.nextRequestAt,restUntil=s.restUntil)
+            BatchState(accountId=s.accountId,accountSnapshot=s.accountSnapshot,policy=s.policy,archives=s.archives+BatchArchive(alias,s.total,s.completed,ref),lastStartedAt=s.lastStartedAt,nextRequestAt=s.nextRequestAt,restUntil=s.restUntil)
         }
     }
-    fun next(now:Long):Pair<BatchGroup,BatchSlot>? {
-        val s=state;if(!s.running || s.mode=="RUNNING")return null
-        if(now<s.lastStartedAt){fail(BatchFailure("CLOCK","系统时钟倒退，检查时间后手动继续"));return null}
-        if(s.restUntil>now || now<maxOf(s.nextRequestAt,s.lastStartedAt+s.policy.intervalSeconds*1000L))return null
-        if(s.restUntil>0){update{it.copy(mode="WAITING",restUntil=0,runStartedAt=now)};return null}
-        if(now-s.runStartedAt>=s.policy.runMinutes*60000L){update{it.copy(mode="RESTING",restUntil=now+(s.policy.restMinutes+random(s.policy.restJitterMinutes+1))*60000L)};return null}
+    fun next(now:Long):Pair<BatchGroup,BatchSlot>? =workspace.operation {
+        val s=state;if(!s.running || s.mode=="RUNNING")return@operation null
+        if(now<s.lastStartedAt){fail(BatchFailure("CLOCK","系统时钟倒退，检查时间后手动继续"));return@operation null}
+        if(s.restUntil>now || now<maxOf(s.nextRequestAt,s.lastStartedAt+s.policy.intervalSeconds*1000L))return@operation null
+        if(s.restUntil>0){update{it.copy(mode="WAITING",restUntil=0,runStartedAt=now)};return@operation null}
+        if(now-s.runStartedAt>=s.policy.runMinutes*60000L){update{it.copy(mode="RESTING",restUntil=now+(s.policy.restMinutes+random(s.policy.restJitterMinutes+1))*60000L)};return@operation null}
         val candidates=s.groups.mapNotNull{g->g.slots.firstOrNull{it.status=="READY"}?.let{g to it}}
         val next=if(s.policy.roundRobin)candidates.minByOrNull{(g,_)->g.slots.count{it.status in setOf("DONE","SKIPPED")}}else candidates.firstOrNull()
         if(next==null)update{it.copy(mode="DONE")}
-        return next
+        next
     }
-    fun begin(slotId:String,now:Long,cost:Int):BatchDispatch {
-        val s=state;require(s.running && s.mode!="RUNNING" && s.error==null && now>=maxOf(s.nextRequestAt,s.lastStartedAt+s.policy.intervalSeconds*1000L))
+    fun begin(slotId:String,now:Long,cost:Int):BatchDispatch =workspace.operation {
+        val s=state;if(!s.running || s.pauseRequested || s.endRequested)throw GenerationNotSent();require(s.mode!="RUNNING" && s.error==null && now>=maxOf(s.nextRequestAt,s.lastStartedAt+s.policy.intervalSeconds*1000L))
         require(cost>=0 && cost<=s.policy.anlasLimit-s.reservedAnlas){"批次 Anlas 上限不足"}
         val group=s.groups.single{g->g.slots.any{it.id==slotId}};val slot=group.slots.single{it.id==slotId};require(slot.status=="READY")
         val jobId=newId()
         update{it.slot(slotId){item->item.copy(status="RUNNING",attempts=item.attempts+jobId)}.copy(mode="RUNNING",lastStartedAt=now,
             nextRequestAt=now+(s.policy.intervalSeconds+random(s.policy.intervalJitterSeconds+1))*1000L,reservedAnlas=it.reservedAnlas+cost)}
-        return BatchDispatch(group,slot,jobId,BatchResultOrigin(s.id,group.id,group.name,slot.id,slot.direction.label,slot.round,slot.seed,s.name))
+        BatchDispatch(group,slot,jobId,BatchResultOrigin(s.id,group.id,group.name,slot.id,slot.direction.label,slot.round,slot.seed,s.name))
     }
     fun complete(slotId:String,results:List<String>)=update {s->
         require(results.size==1 && s.groups.flatMap{it.slots}.single{it.id==slotId}.status=="RUNNING")
         val next=s.slot(slotId){it.copy(status="DONE",results=results)}
         next.copy(mode=if(s.endRequested)"ENDED" else if(next.completed+next.skipped==next.total)"DONE" else if(s.pauseRequested)"PAUSED" else "WAITING",pauseRequested=false,endRequested=false)
     }
-    fun submitted(now:Long)=update{s->require(s.mode=="RUNNING");s.copy(lastStartedAt=now,nextRequestAt=now+(s.nextRequestAt-s.lastStartedAt).coerceAtLeast(s.policy.intervalSeconds*1000L))}
+    fun withdrawUnsent(slotId:String,cost:Int)=update{s->
+        val slot=s.groups.flatMap{it.slots}.single{it.id==slotId}
+        require(slot.status=="RUNNING")
+        s.slot(slotId){it.copy(status="READY")}.copy(mode=if(s.endRequested)"ENDED"else"PAUSED",pauseRequested=false,endRequested=false,reservedAnlas=(s.reservedAnlas-cost).coerceAtLeast(0))
+    }
+    fun submitted(now:Long)=update{s->if(s.mode!="RUNNING"||s.pauseRequested||s.endRequested)throw GenerationNotSent();s.copy(lastStartedAt=now,nextRequestAt=now+(s.nextRequestAt-s.lastStartedAt).coerceAtLeast(s.policy.intervalSeconds*1000L))}
     fun fail(failure:BatchFailure)=update {s->
         val next=failure.slotId?.let{id->s.slot(id){it.copy(status="FAILED")}}?:s
         next.copy(mode="ERROR",error=failure,pauseRequested=false,endRequested=false)

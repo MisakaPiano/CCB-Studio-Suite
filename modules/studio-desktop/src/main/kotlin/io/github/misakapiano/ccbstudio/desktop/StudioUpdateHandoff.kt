@@ -60,6 +60,7 @@ internal fun writeUpdateJson(path:Path,value:JsonObject) {
 
 internal suspend fun prepareUpdateHandoff(c:WorkbenchController,runtime:Path):Path=withContext(Dispatchers.IO) {
     val installed=System.getProperty("jpackage.app-path")?.let{Path.of(it).parent}?:error("更新需要安装版本")
+    require(c.allowDefaultEntrypoint&&DesktopEntrypoints.ownsDefault(c.workspace.root,runtime)){"此窗口为独立工作区；请从默认入口更新程序，恢复副本不会接管默认入口"}
     val approved=c.updater.result?:error("尚未下载候选")
     require(approved["status"]?.jsonPrimitive?.content=="DOWNLOADED_VERIFIED"){"安装前必须完成验证下载"}
     val cache=runtime.resolve("updates").toAbsolutePath().normalize()
