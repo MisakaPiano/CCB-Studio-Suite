@@ -1,0 +1,10 @@
+{
+  "status": "FAILED_OR_DEFERRED",
+  "source": "8a757a6121c219dd942358d25c7a3707bc1fa8db",
+  "utc": "2026-10-24T20:04:50.590066+00:00",
+  "error": "RuntimeError('DEFERRED_DESKTOP_BUSY: no new diagnostic JVM launched at this boundary')",
+  "fixture": null,
+  "attempts": [],
+  "forcedTermination": false,
+  "cause": "UNKNOWN unless retained error/log demonstrates cause"
+}

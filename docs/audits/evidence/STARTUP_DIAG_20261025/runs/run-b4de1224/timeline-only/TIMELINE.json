@@ -1,0 +1,93 @@
+{
+  "source": "8a757a6121c219dd942358d25c7a3707bc1fa8db",
+  "profiled": false,
+  "processStartToMainMs": 223.901123046875,
+  "processStartToReadyMs": 4346.901123046875,
+  "firstContentDrawFromProbeMs": 3713.1496,
+  "stages": [
+    {
+      "start": "main-enter",
+      "end": "brand-start",
+      "wallMs": 19.221699,
+      "processCpuMs": 31.25
+    },
+    {
+      "start": "brand-start",
+      "end": "brand-ready",
+      "wallMs": 562.197601,
+      "processCpuMs": 515.625
+    },
+    {
+      "start": "brand-ready",
+      "end": "workspace-open-start",
+      "wallMs": 0.9597989999999754,
+      "processCpuMs": 0.0
+    },
+    {
+      "start": "workspace-open-start",
+      "end": "workspace-opened",
+      "wallMs": 122.31010000000003,
+      "processCpuMs": 265.625
+    },
+    {
+      "start": "workspace-opened",
+      "end": "application-first-composition",
+      "wallMs": 173.254501,
+      "processCpuMs": 390.625
+    },
+    {
+      "start": "application-first-composition",
+      "end": "http-construction-start",
+      "wallMs": 3.9246990000000324,
+      "processCpuMs": 0.0
+    },
+    {
+      "start": "http-construction-start",
+      "end": "http-construction-ready",
+      "wallMs": 142.2065009999999,
+      "processCpuMs": 343.75
+    },
+    {
+      "start": "http-construction-ready",
+      "end": "controller-construction-start",
+      "wallMs": 0.6657000000000153,
+      "processCpuMs": 0.0
+    },
+    {
+      "start": "controller-construction-start",
+      "end": "controller-opened",
+      "wallMs": 171.46080000000006,
+      "processCpuMs": 328.125
+    },
+    {
+      "start": "controller-opened",
+      "end": "window-call-start",
+      "wallMs": 3.1818989999999303,
+      "processCpuMs": 0.0
+    },
+    {
+      "start": "window-call-start",
+      "end": "native-window-first-composition",
+      "wallMs": 1625.8933010000003,
+      "processCpuMs": 1906.25
+    },
+    {
+      "start": "native-window-first-composition",
+      "end": "workbench-call-start",
+      "wallMs": 45.115999999999985,
+      "processCpuMs": 93.75
+    },
+    {
+      "start": "workbench-call-start",
+      "end": "workbench-first-composition-committed",
+      "wallMs": 188.5890999999997,
+      "processCpuMs": 328.125
+    }
+  ],
+  "limits": [
+    "Parent-to-main includes JVM/test class loading/management instrumentation and (profiled only) JFR bootstrap, not pure JVM initialization",
+    "Phase note file IO and management reads perturb timing; process CPU includes background/JIT threads",
+    "Composition commit is not raster/DWM presentation; first completed content draw is separate",
+    "No cold OS cache or pre/post product comparison; one session per observation mode"
+  ]
+}

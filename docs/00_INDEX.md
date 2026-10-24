@@ -1,3 +1,7 @@
+## 2026-10-25 启动阶段诊断与原基线独立限定通过
+
+[Project基线接受回执](audits/NATIVE_BASELINE_PROJECT_ACCEPTANCE_20261025.md)固定4ec1979/3cd2dab，补一份PNG/显式帧限制，不改原证据。新[阶段启动诊断](audits/STARTUP_PHASE_DIAGNOSTIC_20261025.md)固定8a757a6，2个独立startup会话、1次编译/0 JUnit，主要定位Window与首次绘制区间，尚无产品根因/改动；失败/推迟保留。新诊断未交审、不打包发布，原用户待验/失败/PENDING及PRODUCT_HOLD保持。
+
 ## 2026-10-25 PERF-002/007原生宿主最小基线
 
 见[独立小段报告](audits/NATIVE_PERFORMANCE_BASELINE_20261025.md)：测试源码4ec1979，两次原生Window会话与短期CPU/工作集/堆/逻辑IO/退出记录，失败及观测修正完整保留。没有产品代码修改、打包/发版或新交审；完整包启动、OS冷缓存/物理IO/长期资源仍未测，不代签用户或全专项验收。旧PERF-003独立结论与q09/人工/PENDING边界保留。

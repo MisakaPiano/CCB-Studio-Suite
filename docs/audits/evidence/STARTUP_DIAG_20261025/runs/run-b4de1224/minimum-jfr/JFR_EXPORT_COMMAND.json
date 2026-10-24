@@ -1,0 +1,10 @@
+[
+  "C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.20.101-hotspot\\bin\\jfr.exe",
+  "print",
+  "--json",
+  "--stack-depth",
+  "48",
+  "--events",
+  "jdk.ExecutionSample,jdk.NativeMethodSample,jdk.ClassLoad,jdk.Compilation,jdk.GarbageCollection",
+  "H:\\CCB-Studio-Suite\\.local\\startup-diagnostic-20261025\\run-b4de1224\\minimum-jfr\\startup.jfr"
+]

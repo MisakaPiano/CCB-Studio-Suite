@@ -1,0 +1,10 @@
+{
+  "pids": [
+    41388,
+    23356
+  ],
+  "alive": [],
+  "command": "@(Get-CimInstance Win32_Process -Filter \"Name='java.exe'\" | Where-Object { $_.ProcessId -in 41388,23356 } | Select-Object ProcessId) | ConvertTo-Json -Compress",
+  "checkedAfterRecordedNormalExit": true,
+  "forcedTermination": false
+}

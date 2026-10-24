@@ -1,0 +1,28 @@
+{
+  "source": "8a757a6121c219dd942358d25c7a3707bc1fa8db",
+  "probeSourceIntroduced": "80125d4601355a6f7f22feea98924c6e0c2031be",
+  "driverNewlineCorrection": "8a757a6121c219dd942358d25c7a3707bc1fa8db",
+  "startingCommit": "6add1274e5cbfbfbe48391b677330464b6dfee16",
+  "productionSourceUnchanged": true,
+  "buildBaseCommit": "6add1274e5cbfbfbe48391b677330464b6dfee16",
+  "buildInputsDirtyAtBuild": true,
+  "buildInputExplanation": "Build preceded source commit. Full before hash map retained; stable throughout compilation. Executed Kotlin probe bytes exactly equal fixed source; only Python driver newline comparison corrected after build, not compiled Kotlin/JAR inputs.",
+  "probeSha256": "c405780a72201109612c89c9fb1bef2c17a27d080227653f23cfff57ea7df47b",
+  "runtimeFileCount": 1728,
+  "runtimeInputsRechecked": true,
+  "canonicalRun": "run-b4de1224",
+  "measuredStartupSessions": 2,
+  "junitExecuted": 0,
+  "packageBuilt": false,
+  "independentReview": "NOT REQUESTED; new diagnostic payload not sent",
+  "oldBaselineZipSha256": "02f92fa93d385eb29d760816d7540b38f048354edb714d8fc1217d2d98cd5714",
+  "oldBaselineEvidenceUnchanged": true,
+  "normalExitCodes": [
+    0,
+    0
+  ],
+  "q09": "FAILED/UNKNOWN unchanged",
+  "assetAndEditorHuman": "USER_NOT_TESTED",
+  "promptAnd115Human": "PENDING",
+  "product": "PRODUCT_HOLD / NOT RC"
+}

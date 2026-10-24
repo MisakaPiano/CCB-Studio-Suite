@@ -1,3 +1,11 @@
+## 2026-10-25 启动阶段隔离诊断完成（未改产品/未发布）
+
+固定测试/工具8a757a6，[阶段报告及原始证据](audits/STARTUP_PHASE_DIAGNOSTIC_20261025.md)：一次编译COMMAND_SUCCESS/0 JUnit，两次独立startup会话正常退出0，窗口就绪4.35/3.59秒；主要区间在Window创建与首次绘制，样本不足以确定产品方法根因，没有生产优化或改善结论。初次入口失败、CRLF身份检查失败及Desktop繁忙推迟分别保留；旧基线原字节不改、不重跑。新诊断未交Project；既有4ec1979/3cd2dab PASS_WITH_SCOPE已登记。全Main/打包/冷缓存/长期资源未验，q09、人工、115/Prompt及PRODUCT_HOLD / NOT RC保持。下一最小定位仍限测试宿主的图标/AWT/Skiko与首次布局栅格边界，超出生产接线/权限须另报。
+
+## 2026-10-25 原生基线独立限定通过，接续启动阶段诊断（历史起点）
+
+[Project原裁定](audits/NATIVE_BASELINE_PROJECT_ACCEPTANCE_20261025.md)已直接读到，4ec1979/3cd2dab为NATIVE BASELINE PASS_WITH_SCOPE，无定向返工；补充48ID但1内容SHA及显式确认帧限制，旧输入不改、不重跑基线。按用户已有连续性能授权，现只做隔离测试宿主启动阶段时间线/最小采样，定位JVM/Compose/图形初始化，不改产品或新增交审。具体方案见[性能合同](../tasks/PERFORMANCE_RESOURCE_PROGRAM.md)。旧失败、q09/人工/115/Prompt未验和PRODUCT_HOLD / NOT RC保持。
+
 ## 2026-10-25 PERF-002/007最小原生宿主基线完成（未发版）
 
 固定测量4ec1979/证据3cd2dab已按用户本次明确授权单次交原Project；页面回读确认新请求实际出现，固定版本/RAW散列一致，[交审回执](../handoff/NATIVE_PERF_PROJECT_REVIEW_DISPATCH_20261025.md)。Studio已接收、Project已收到、独立结果PENDING三者分列；未改固定输入、未发新版本。仅在本测量范围处理具体反馈。

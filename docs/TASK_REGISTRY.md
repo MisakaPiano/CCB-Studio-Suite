@@ -1,3 +1,19 @@
+## 2026-10-25 PERF-002/007：原基线限定通过及启动诊断完成
+
+[原Project裁定](audits/NATIVE_BASELINE_PROJECT_ACCEPTANCE_20261025.md)接受4ec1979/3cd2dab的NATIVE BASELINE PASS_WITH_SCOPE，新增48ID但1内容SHA、显式确认帧限制；无需返工或重跑，旧证据保持。接续已有性能授权的[启动诊断](audits/STARTUP_PHASE_DIAGNOSTIC_20261025.md)以8a757a6固定：2次独立startup会话PASS、1次编译COMMAND_SUCCESS/0 JUnit，未改生产/打包/发布。定位至Window创建/首次绘制区间，具体方法因果未定，不关闭PERF-002/007整体；初次调用/身份失败与繁忙推迟保留。新诊断未发送Project，独立审查NOT REQUESTED。用户待办登记不取消此前已授权进行中工作；资产/编辑未验、115/Prompt各PENDING、q09及PRODUCT_HOLD / NOT RC不变。
+
+## 2026-10-25 待办去重复核（该次仅登记）
+
+本次用户所列五项已在下方“用户待办登记”和现有合同中登记，沿用原编号，不新建任务或实施合同；本条只确认登记与最新状态，不中断、更改或回退当前进行中的修改，也不触发新测量、测试或代码修改。
+
+- 顺序：既有复审修复收尾 → 既有性能专项PERF-001～PERF-007（承接原基线，具体后续范围在收尾后确认）→ 后续需求另定范围。既有已获授权的进行中工作保持原范围，本消息不追加执行权限。
+- UX-RECOVERY / W2–W4：资产管理界面、编辑界面均保持USER_NOT_TESTED；实现、自动通过或历史局部人工回执均不能代替两界面的用户实际验收。
+- UX-ASSET-FS-001：沿用[既有需求](../tasks/UX_RECOVERY_CONTINUOUS.md#2026-10-25-后续需求登记仅记录不启动)，PLANNED / NOT STARTED；本地文件/文件夹直接管理、批量重命名/复制/移动/删除，以及移出图库、回收站、永久删除原文件的区别均保留。
+- UX-EDITOR-GAP-001：WAITING_FOR_USER_EDITOR_TEST；到用户测试图片编辑工具时再对照已登记的unified-image-tool地址盘点并确定整合范围，现在不浏览盘点或整合。
+- REVIEW_FIXES_AND_UPDATE_CLEANUP_20261024：更新残留清理和Desktop参考报告继续沿用[原合同](../tasks/REVIEW_FIXES_AND_UPDATE_CLEANUP_20261024.md)；按[最新已登记Project结论](audits/PROJECT_DOWNLOAD_TERMINAL_CLOSURE_20261025.md)，f6598d3/54a5ba26仅下载终态P2源码限定关闭，安装包集成/原生运行仍未验证，旧内部包不含修复；报告存在不等于所有问题完成，不重复开工。下方较早PENDING表述保留历史时点。
+
+本次仅改此任务清单；无新测试、代码、发版、日常安装更新、删除或Desktop开发。115体验和Prompt对比分别PENDING，旧失败、用户否决和其他未验证项保持。
+
 ## 2026-10-25 PERF-002/007最小原生资源基线（独立小段）
 
 用户明确批准4ec1979/3cd2dab工程材料交原“阶段复审结论”，已单次发送并在原页面核对新请求实际落地；[回执](../handoff/NATIVE_PERF_PROJECT_REVIEW_DISPATCH_20261025.md)。状态REQUEST_VISIBLE / REVIEW_PENDING，非独立通过。固定源码/原始证据不改，反馈仅限本测量范围，不启动其他PERF/功能/发布；此前NOT REQUESTED是授权前历史状态。

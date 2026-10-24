@@ -1,0 +1,26 @@
+{
+  "phase": "startup-diag-inputs-20261025",
+  "startedUtc": "2026-10-24T20:02:55.525679+00:00",
+  "seconds": 30.686,
+  "exitCode": 0,
+  "tests": 0,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "COMMAND_SUCCESS",
+  "testEvidence": "NOT TESTED (build only or failed before execution)",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:nativePerformanceInputs"
+  ],
+  "baseCommit": "6add1274e5cbfbfbe48391b677330464b6dfee16",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

@@ -1,0 +1,13 @@
+{
+  "kind": "PRE_DRIVER_IMPORT_FAILURE",
+  "source": "80125d4601355a6f7f22feea98924c6e0c2031be",
+  "utc": null,
+  "timeLimit": "Exact UTC was not captured by this initial shell invocation; do not invent it. Before run-42ad01c3 at 2026-10-24T20:04:19Z.",
+  "command": "& .local/windows-rc/updater-runtime-115/python.exe -B tools/Run-StartupDiagnostic.py",
+  "toolChunkId": "d355d4",
+  "exitCode": 1,
+  "output": "Traceback (most recent call last):\n  File \"H:\\CCB-Studio-Suite\\tools\\Run-StartupDiagnostic.py\", line 9, in <module>\n    import workspace_artifacts as artifacts\nModuleNotFoundError: No module named 'workspace_artifacts'\n",
+  "jvmLaunched": false,
+  "fixtureCreated": false,
+  "resolution": "Embedded Python isolated mode omits script directory from sys.path. Use the retained explicit sys.path plus runpy wrapper. No product or safety checks changed."
+}
