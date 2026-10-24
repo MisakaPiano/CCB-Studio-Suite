@@ -1,0 +1,14 @@
+[
+  {
+    "run": "red",
+    "suite": "io.github.misakapiano.ccbstudio.core.BoundedReadPerformanceTest",
+    "method": "measuredStableFileReadAllocationAndExactBytes",
+    "message": "java.lang.AssertionError: Stable read must allocate one input-sized array with bounded overhead"
+  },
+  {
+    "run": "diagnostic",
+    "suite": "io.github.misakapiano.ccbstudio.core.BoundedReadPerformanceTest",
+    "method": "measuredStableFileReadAllocationAndExactBytes",
+    "message": "java.lang.AssertionError: Stable read allocation=4081288,source=3145728 exceeds one input-sized array with bounded overhead"
+  }
+]

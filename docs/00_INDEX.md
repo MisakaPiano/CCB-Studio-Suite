@@ -1,3 +1,7 @@
+## 2026-10-25 PERF-001/005公共读取有界分配
+
+[27e5621报告/完整原始执行](audits/PERF001005_BOUNDED_READ_20261025.md)：最终17唯一方法PASS，12MiB同JVM读分配25.32→12.59MB；大小只是提示，动态上限/EOF/错误分类与完整性保持，底层请求64KiB。两次记录口径失败保留，阈值未放宽；[复审仅准备](../handoff/PERF001005_BOUNDED_READ_REVIEW_READY_20261025.md)。非RSS/全平台/人工或包验，无外发/发布，继续已有资产bytes基线、Desktop优先。
+
 ## 2026-10-25 PERF-006目录输入摘要复用
 
 [cb819b4报告与原始执行](audits/PERF006_COLLECTION_HASH_20261025.md)：同一输入完整SHA计算2→1，最终5唯一方法PASS、Prompt中断幂等保持；仅新建合成目录显式扫描，自动采集暂停。内存数组仍随源大小增长，Desktop期间活动重叠UNKNOWN，不称整库/RSS/用户或包验；[复审仅准备](../handoff/PERF006_COLLECTION_HASH_REVIEW_READY_20261025.md)，无外发/发布，旧边界保持。

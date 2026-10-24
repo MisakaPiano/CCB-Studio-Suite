@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.CollectionHashPerformanceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-24T23:26:54.199Z" hostname="DD1" time="6.665">
+  <properties/>
+  <testcase name="measuredUnchangedScanAllocationAndIdentity" classname="io.github.misakapiano.ccbstudio.core.CollectionHashPerformanceTest" time="6.665"/>
+  <system-out><![CDATA[COLLECTION_HASH_ALLOCATION=[{"payloadBytes":3145728,"files":2,"round":0,"wallMs":40.5534,"cpuMs":46.875,"allocatedBytes":7683936},{"payloadBytes":3145728,"files":2,"round":1,"wallMs":40.7988,"cpuMs":31.25,"allocatedBytes":7683888},{"payloadBytes":3145728,"files":2,"round":2,"wallMs":42.1901,"cpuMs":46.875,"allocatedBytes":7680096},{"payloadBytes":12582912,"files":2,"round":0,"wallMs":123.7999,"cpuMs":125.0,"allocatedBytes":26555408},{"payloadBytes":12582912,"files":2,"round":1,"wallMs":122.6987,"cpuMs":109.375,"allocatedBytes":26555408},{"payloadBytes":12582912,"files":2,"round":2,"wallMs":122.3326,"cpuMs":109.375,"allocatedBytes":26555408}]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

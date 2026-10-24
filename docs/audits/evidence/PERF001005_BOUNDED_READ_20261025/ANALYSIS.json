@@ -1,0 +1,197 @@
+{
+  "medians": {
+    "measurementFix": [
+      {
+        "payloadBytes": 3145728,
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 4.0942,
+          "cpuMs": 7.8125,
+          "allocatedBytes": 6345260.0
+        }
+      },
+      {
+        "payloadBytes": 3145728,
+        "kind": "current",
+        "medians": {
+          "wallMs": 2.0686999999999998,
+          "cpuMs": 0.0,
+          "allocatedBytes": 3156920.0
+        }
+      },
+      {
+        "payloadBytes": 12582912,
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 14.404599999999999,
+          "cpuMs": 15.625,
+          "allocatedBytes": 25318248.0
+        }
+      },
+      {
+        "payloadBytes": 12582912,
+        "kind": "current",
+        "medians": {
+          "wallMs": 6.196,
+          "cpuMs": 0.0,
+          "allocatedBytes": 12594104.0
+        }
+      }
+    ],
+    "final": [
+      {
+        "payloadBytes": 3145728,
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 3.2430000000000003,
+          "cpuMs": 0.0,
+          "allocatedBytes": 6345184.0
+        }
+      },
+      {
+        "payloadBytes": 3145728,
+        "kind": "current",
+        "medians": {
+          "wallMs": 1.4474,
+          "cpuMs": 0.0,
+          "allocatedBytes": 3156920.0
+        }
+      },
+      {
+        "payloadBytes": 12582912,
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 15.629950000000001,
+          "cpuMs": 15.625,
+          "allocatedBytes": 25318184.0
+        }
+      },
+      {
+        "payloadBytes": 12582912,
+        "kind": "current",
+        "medians": {
+          "wallMs": 5.86755,
+          "cpuMs": 0.0,
+          "allocatedBytes": 12594104.0
+        }
+      }
+    ]
+  },
+  "counts": {
+    "baseline": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "8dc3133f7538cc4422a02fe4f9b66406b8c743df",
+      "seconds": 24.35,
+      "startedUtc": "2026-10-24T23:04:48.524666+00:00"
+    },
+    "red": {
+      "tests": 15,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "a07edb41db2e72dc70d30697c94766f0ad746293",
+      "seconds": 56.254,
+      "startedUtc": "2026-10-24T23:07:05.536456+00:00"
+    },
+    "diagnostic": {
+      "tests": 1,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "69e15e73f840b00b3d0fbf5509f2f2cc60ae1092",
+      "seconds": 15.328,
+      "startedUtc": "2026-10-24T23:10:19.817909+00:00"
+    },
+    "measurementFix": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "4395656f6cecbb6addb0785e42d14940ef91d9bf",
+      "seconds": 16.138,
+      "startedUtc": "2026-10-24T23:13:20.284501+00:00"
+    },
+    "final": {
+      "tests": 17,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "27e562186b0980de5fa5cbb8e975d9153a1ba13d",
+      "seconds": 67.694,
+      "startedUtc": "2026-10-24T23:26:14.303224+00:00"
+    }
+  },
+  "finalUniqueMethods": 17,
+  "failuresRetained": [
+    {
+      "run": "red",
+      "suite": "io.github.misakapiano.ccbstudio.core.BoundedReadPerformanceTest",
+      "method": "measuredStableFileReadAllocationAndExactBytes",
+      "message": "java.lang.AssertionError: Stable read must allocate one input-sized array with bounded overhead"
+    },
+    {
+      "run": "diagnostic",
+      "suite": "io.github.misakapiano.ccbstudio.core.BoundedReadPerformanceTest",
+      "method": "measuredStableFileReadAllocationAndExactBytes",
+      "message": "java.lang.AssertionError: Stable read allocation=4081288,source=3145728 exceeds one input-sized array with bounded overhead"
+    }
+  ],
+  "cleanup": [
+    {
+      "run": "baseline",
+      "root": "H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-a2a983d7b6be47e180934fb3faafdab6",
+      "status": "COMPLETE",
+      "removed": 2,
+      "bytesFreed": 15728640,
+      "retained": [],
+      "sourceManifestSha256": "b41deff8360d3df8e686ce60f9bdfd0c1aa195c877ede3c622ef64e5d8e0d822"
+    },
+    {
+      "run": "red",
+      "root": "H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-66eb77ba6b114f6d9bd0dd6b663f1565",
+      "status": "RETAINED_FAILED_FIXTURES",
+      "removed": 0
+    },
+    {
+      "run": "diagnostic",
+      "root": "H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-61c109d6650a4440abb8e3df1a868ed7",
+      "status": "RETAINED_FAILED_FIXTURES",
+      "removed": 0
+    },
+    {
+      "run": "measurementFix",
+      "root": "H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-cf25ff140b994734841393e735de2b2a",
+      "status": "COMPLETE",
+      "removed": 2,
+      "bytesFreed": 15728640,
+      "retained": [],
+      "sourceManifestSha256": "913cad5c88fc0f53a6f2b7d95aff0c6094bc878abb6db3420eb94edf703366d3"
+    },
+    {
+      "run": "final",
+      "root": "H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-5dae872fdd1f469ca7a3af6b58d41a8e",
+      "status": "COMPLETE",
+      "removed": 356,
+      "bytesFreed": 255451985,
+      "retained": [],
+      "sourceManifestSha256": "31af5fd0274226503d153a1f5836015c3d5ebe9bbe25f0f43380bf3e5947ecfd"
+    }
+  ],
+  "limits": [
+    "Earlier actual baseline includes JSON recording in allocation counter; not used for causal before/after numbers",
+    "Final same-JVM alternating4 legacy/current rounds samples counter before JSON assembly; same256KiB overhead threshold retained",
+    "Correcting the test alone passes without production changes; final separately caps64KiB native read requests; finer JSON initialization/recording allocation attribution UNKNOWN,not blamed on Desktop/security",
+    "Stale size/growing/shrinking scenarios use deterministic synthetic InputStreams,not certification of all filesystem races",
+    "NOFOLLOW/safePath and error mapping retained; no new privileged symlink/junction creation",
+    "CPU timer may return0 for sub-tick reads; not zero CPU or system-wide savings",
+    "Different runs/Desktop overlap not quiet-host or RSS/UI/package acceptance"
+  ]
+}

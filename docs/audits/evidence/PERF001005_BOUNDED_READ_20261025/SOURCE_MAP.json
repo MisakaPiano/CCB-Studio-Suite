@@ -1,0 +1,37 @@
+{
+  "source": "27e562186b0980de5fa5cbb8e975d9153a1ba13d",
+  "productionSource": "27e562186b0980de5fa5cbb8e975d9153a1ba13d",
+  "earlierProductionCandidate": "ad2b9c0a6b31c2a405221538012c525077604d89",
+  "baseline": "8dc3133f7538cc4422a02fe4f9b66406b8c743df",
+  "identities": [
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StateJournal.kt",
+      "testInputSha256": "53261fe758f897d502f7c92a4a4641b0d225bf4106d5378c1f7c3305f738dc09",
+      "gitSha256": "53261fe758f897d502f7c92a4a4641b0d225bf4106d5378c1f7c3305f738dc09"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/BoundedReadPerformanceTest.kt",
+      "testInputSha256": "588008049066bccf9d9a1d69d2e40ac8865afe2350e0dd245e5c2f3946985a15",
+      "gitSha256": "368724920d1c6e12f0a4a7f4ae65196b0cf1f34f7e40222758c21dfbb9cd118e"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/ExportClipboardBoundedReadTest.kt",
+      "testInputSha256": "089d0a1d0fdd9e9233215537878022374a0189123c6fd7c6c08825625c8ff4b8",
+      "gitSha256": "089d0a1d0fdd9e9233215537878022374a0189123c6fd7c6c08825625c8ff4b8"
+    },
+    {
+      "path": "tools/Run-PreviewChecks.py",
+      "testInputSha256": "45f0f681f68b83c67c5a04607dfea09ecea742bcfd2f5f4ee31e3162901e9e23",
+      "gitSha256": "d8dec9e6bcc417c59cc9d3dd32b79fd4519c16b86adbf582798b2d707c4935b4"
+    }
+  ],
+  "productionSameAcrossRedAndMeasurementFix": true,
+  "finalAdds64KiBReadRequestBound": true,
+  "legacyFixedBodyMatches": true,
+  "journalAndWriterOutsideReaderUnchanged": true,
+  "finalUniqueMethods": 17,
+  "earlierExecutionsNotAdded": true,
+  "release": "NONE",
+  "independentReview": "NOT REQUESTED",
+  "humanAndPackage": "NOT TESTED"
+}

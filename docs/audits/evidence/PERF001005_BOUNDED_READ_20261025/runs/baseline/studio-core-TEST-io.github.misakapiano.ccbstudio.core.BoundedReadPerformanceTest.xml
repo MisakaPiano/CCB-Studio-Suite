@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.BoundedReadPerformanceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-24T23:05:11.216Z" hostname="DD1" time="0.426">
+  <properties/>
+  <testcase name="measuredStableFileReadAllocationAndExactBytes" classname="io.github.misakapiano.ccbstudio.core.BoundedReadPerformanceTest" time="0.426"/>
+  <system-out><![CDATA[BOUNDED_READ_ALLOCATION=[{"payloadBytes":3145728,"round":0,"wallMs":13.7829,"cpuMs":15.625,"allocatedBytes":7218808},{"payloadBytes":3145728,"round":1,"wallMs":5.4604,"cpuMs":15.625,"allocatedBytes":6345848},{"payloadBytes":3145728,"round":2,"wallMs":2.8265,"cpuMs":0.0,"allocatedBytes":6345848},{"payloadBytes":3145728,"round":3,"wallMs":3.406,"cpuMs":0.0,"allocatedBytes":6345848},{"payloadBytes":12582912,"round":0,"wallMs":10.7915,"cpuMs":0.0,"allocatedBytes":25318976},{"payloadBytes":12582912,"round":1,"wallMs":12.8894,"cpuMs":15.625,"allocatedBytes":25318976},{"payloadBytes":12582912,"round":2,"wallMs":15.9712,"cpuMs":15.625,"allocatedBytes":25318848},{"payloadBytes":12582912,"round":3,"wallMs":15.5299,"cpuMs":15.625,"allocatedBytes":25318848}]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

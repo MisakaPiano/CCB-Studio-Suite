@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.BoundedReadPerformanceTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-24T23:26:53.665Z" hostname="DD1" time="0.527">
+  <properties/>
+  <testcase name="boundedReadRequestsCannotCreateOriginalSizedNativeBufferAndZeroReadKeepsBytes" classname="io.github.misakapiano.ccbstudio.core.BoundedReadPerformanceTest" time="0.006"/>
+  <testcase name="measuredStableFileReadAllocationAndExactBytes" classname="io.github.misakapiano.ccbstudio.core.BoundedReadPerformanceTest" time="0.498"/>
+  <testcase name="exactFileBudgetsBoundariesAndMissingOrUnreadableErrorsRemainCompatible" classname="io.github.misakapiano.ccbstudio.core.BoundedReadPerformanceTest" time="0.014"/>
+  <testcase name="ioFailureAfterInitialOrGrowthReadReturnsNoPartialResultAndKeepsException" classname="io.github.misakapiano.ccbstudio.core.BoundedReadPerformanceTest" time="0.001"/>
+  <testcase name="staleSizeHintsNeverReplaceActualEofOrDynamicBudgetAndMatchLegacyStreamBytes" classname="io.github.misakapiano.ccbstudio.core.BoundedReadPerformanceTest" time="0.007"/>
+  <system-out><![CDATA[BOUNDED_READ_SAMPLE={"payloadBytes":3145728,"kind":"legacy","round":0,"wallMs":4.1538,"cpuMs":0.0,"allocatedBytes":6345336}
+BOUNDED_READ_SAMPLE={"payloadBytes":3145728,"kind":"current","round":0,"wallMs":2.0143,"cpuMs":0.0,"allocatedBytes":3156920}
+BOUNDED_READ_SAMPLE={"payloadBytes":3145728,"kind":"current","round":1,"wallMs":1.9934,"cpuMs":0.0,"allocatedBytes":3156920}
+BOUNDED_READ_SAMPLE={"payloadBytes":3145728,"kind":"legacy","round":1,"wallMs":4.4813,"cpuMs":0.0,"allocatedBytes":6345184}
+BOUNDED_READ_SAMPLE={"payloadBytes":3145728,"kind":"legacy","round":2,"wallMs":2.3322,"cpuMs":0.0,"allocatedBytes":6345184}
+BOUNDED_READ_SAMPLE={"payloadBytes":3145728,"kind":"current","round":2,"wallMs":0.9014,"cpuMs":0.0,"allocatedBytes":3156920}
+BOUNDED_READ_SAMPLE={"payloadBytes":3145728,"kind":"current","round":3,"wallMs":0.8532,"cpuMs":0.0,"allocatedBytes":3156920}
+BOUNDED_READ_SAMPLE={"payloadBytes":3145728,"kind":"legacy","round":3,"wallMs":2.0408,"cpuMs":0.0,"allocatedBytes":6345184}
+BOUNDED_READ_SAMPLE={"payloadBytes":12582912,"kind":"legacy","round":0,"wallMs":15.4763,"cpuMs":15.625,"allocatedBytes":25318312}
+BOUNDED_READ_SAMPLE={"payloadBytes":12582912,"kind":"current","round":0,"wallMs":7.5367,"cpuMs":15.625,"allocatedBytes":12594104}
+BOUNDED_READ_SAMPLE={"payloadBytes":12582912,"kind":"current","round":1,"wallMs":7.4763,"cpuMs":0.0,"allocatedBytes":12594104}
+BOUNDED_READ_SAMPLE={"payloadBytes":12582912,"kind":"legacy","round":1,"wallMs":15.7836,"cpuMs":15.625,"allocatedBytes":25318184}
+BOUNDED_READ_SAMPLE={"payloadBytes":12582912,"kind":"legacy","round":2,"wallMs":18.2003,"cpuMs":15.625,"allocatedBytes":25318184}
+BOUNDED_READ_SAMPLE={"payloadBytes":12582912,"kind":"current","round":2,"wallMs":4.0466,"cpuMs":0.0,"allocatedBytes":12594104}
+BOUNDED_READ_SAMPLE={"payloadBytes":12582912,"kind":"current","round":3,"wallMs":4.2588,"cpuMs":0.0,"allocatedBytes":12594104}
+BOUNDED_READ_SAMPLE={"payloadBytes":12582912,"kind":"legacy","round":3,"wallMs":9.0644,"cpuMs":0.0,"allocatedBytes":25318184}
+BOUNDED_READ_ALLOCATION=[{"payloadBytes":3145728,"kind":"legacy","round":0,"wallMs":4.1538,"cpuMs":0.0,"allocatedBytes":6345336},{"payloadBytes":3145728,"kind":"current","round":0,"wallMs":2.0143,"cpuMs":0.0,"allocatedBytes":3156920},{"payloadBytes":3145728,"kind":"current","round":1,"wallMs":1.9934,"cpuMs":0.0,"allocatedBytes":3156920},{"payloadBytes":3145728,"kind":"legacy","round":1,"wallMs":4.4813,"cpuMs":0.0,"allocatedBytes":6345184},{"payloadBytes":3145728,"kind":"legacy","round":2,"wallMs":2.3322,"cpuMs":0.0,"allocatedBytes":6345184},{"payloadBytes":3145728,"kind":"current","round":2,"wallMs":0.9014,"cpuMs":0.0,"allocatedBytes":3156920},{"payloadBytes":3145728,"kind":"current","round":3,"wallMs":0.8532,"cpuMs":0.0,"allocatedBytes":3156920},{"payloadBytes":3145728,"kind":"legacy","round":3,"wallMs":2.0408,"cpuMs":0.0,"allocatedBytes":6345184},{"payloadBytes":12582912,"kind":"legacy","round":0,"wallMs":15.4763,"cpuMs":15.625,"allocatedBytes":25318312},{"payloadBytes":12582912,"kind":"current","round":0,"wallMs":7.5367,"cpuMs":15.625,"allocatedBytes":12594104},{"payloadBytes":12582912,"kind":"current","round":1,"wallMs":7.4763,"cpuMs":0.0,"allocatedBytes":12594104},{"payloadBytes":12582912,"kind":"legacy","round":1,"wallMs":15.7836,"cpuMs":15.625,"allocatedBytes":25318184},{"payloadBytes":12582912,"kind":"legacy","round":2,"wallMs":18.2003,"cpuMs":15.625,"allocatedBytes":25318184},{"payloadBytes":12582912,"kind":"current","round":2,"wallMs":4.0466,"cpuMs":0.0,"allocatedBytes":12594104},{"payloadBytes":12582912,"kind":"current","round":3,"wallMs":4.2588,"cpuMs":0.0,"allocatedBytes":12594104},{"payloadBytes":12582912,"kind":"legacy","round":3,"wallMs":9.0644,"cpuMs":0.0,"allocatedBytes":25318184}]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

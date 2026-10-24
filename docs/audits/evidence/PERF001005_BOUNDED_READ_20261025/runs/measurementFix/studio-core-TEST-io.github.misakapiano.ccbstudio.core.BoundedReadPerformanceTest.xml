@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.BoundedReadPerformanceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-24T23:13:34.644Z" hostname="DD1" time="0.654">
+  <properties/>
+  <testcase name="measuredStableFileReadAllocationAndExactBytes" classname="io.github.misakapiano.ccbstudio.core.BoundedReadPerformanceTest" time="0.654"/>
+  <system-out><![CDATA[BOUNDED_READ_SAMPLE={"payloadBytes":3145728,"kind":"legacy","round":0,"wallMs":5.3708,"cpuMs":0.0,"allocatedBytes":6345336}
+BOUNDED_READ_SAMPLE={"payloadBytes":3145728,"kind":"current","round":0,"wallMs":2.4835,"cpuMs":0.0,"allocatedBytes":3156920}
+BOUNDED_READ_SAMPLE={"payloadBytes":3145728,"kind":"current","round":1,"wallMs":2.1427,"cpuMs":0.0,"allocatedBytes":3156920}
+BOUNDED_READ_SAMPLE={"payloadBytes":3145728,"kind":"legacy","round":1,"wallMs":4.7949,"cpuMs":0.0,"allocatedBytes":6345552}
+BOUNDED_READ_SAMPLE={"payloadBytes":3145728,"kind":"legacy","round":2,"wallMs":2.7469,"cpuMs":15.625,"allocatedBytes":6345184}
+BOUNDED_READ_SAMPLE={"payloadBytes":3145728,"kind":"current","round":2,"wallMs":1.4754,"cpuMs":0.0,"allocatedBytes":3158408}
+BOUNDED_READ_SAMPLE={"payloadBytes":3145728,"kind":"current","round":3,"wallMs":1.9947,"cpuMs":0.0,"allocatedBytes":3156920}
+BOUNDED_READ_SAMPLE={"payloadBytes":3145728,"kind":"legacy","round":3,"wallMs":3.3935,"cpuMs":15.625,"allocatedBytes":6345184}
+BOUNDED_READ_SAMPLE={"payloadBytes":12582912,"kind":"legacy","round":0,"wallMs":10.5067,"cpuMs":0.0,"allocatedBytes":25318312}
+BOUNDED_READ_SAMPLE={"payloadBytes":12582912,"kind":"current","round":0,"wallMs":4.454,"cpuMs":0.0,"allocatedBytes":12594104}
+BOUNDED_READ_SAMPLE={"payloadBytes":12582912,"kind":"current","round":1,"wallMs":4.283,"cpuMs":0.0,"allocatedBytes":12594104}
+BOUNDED_READ_SAMPLE={"payloadBytes":12582912,"kind":"legacy","round":1,"wallMs":13.1648,"cpuMs":15.625,"allocatedBytes":25318312}
+BOUNDED_READ_SAMPLE={"payloadBytes":12582912,"kind":"legacy","round":2,"wallMs":15.6444,"cpuMs":15.625,"allocatedBytes":25318184}
+BOUNDED_READ_SAMPLE={"payloadBytes":12582912,"kind":"current","round":2,"wallMs":8.2961,"cpuMs":0.0,"allocatedBytes":12594104}
+BOUNDED_READ_SAMPLE={"payloadBytes":12582912,"kind":"current","round":3,"wallMs":7.938,"cpuMs":0.0,"allocatedBytes":12594104}
+BOUNDED_READ_SAMPLE={"payloadBytes":12582912,"kind":"legacy","round":3,"wallMs":16.3572,"cpuMs":15.625,"allocatedBytes":25318184}
+BOUNDED_READ_ALLOCATION=[{"payloadBytes":3145728,"kind":"legacy","round":0,"wallMs":5.3708,"cpuMs":0.0,"allocatedBytes":6345336},{"payloadBytes":3145728,"kind":"current","round":0,"wallMs":2.4835,"cpuMs":0.0,"allocatedBytes":3156920},{"payloadBytes":3145728,"kind":"current","round":1,"wallMs":2.1427,"cpuMs":0.0,"allocatedBytes":3156920},{"payloadBytes":3145728,"kind":"legacy","round":1,"wallMs":4.7949,"cpuMs":0.0,"allocatedBytes":6345552},{"payloadBytes":3145728,"kind":"legacy","round":2,"wallMs":2.7469,"cpuMs":15.625,"allocatedBytes":6345184},{"payloadBytes":3145728,"kind":"current","round":2,"wallMs":1.4754,"cpuMs":0.0,"allocatedBytes":3158408},{"payloadBytes":3145728,"kind":"current","round":3,"wallMs":1.9947,"cpuMs":0.0,"allocatedBytes":3156920},{"payloadBytes":3145728,"kind":"legacy","round":3,"wallMs":3.3935,"cpuMs":15.625,"allocatedBytes":6345184},{"payloadBytes":12582912,"kind":"legacy","round":0,"wallMs":10.5067,"cpuMs":0.0,"allocatedBytes":25318312},{"payloadBytes":12582912,"kind":"current","round":0,"wallMs":4.454,"cpuMs":0.0,"allocatedBytes":12594104},{"payloadBytes":12582912,"kind":"current","round":1,"wallMs":4.283,"cpuMs":0.0,"allocatedBytes":12594104},{"payloadBytes":12582912,"kind":"legacy","round":1,"wallMs":13.1648,"cpuMs":15.625,"allocatedBytes":25318312},{"payloadBytes":12582912,"kind":"legacy","round":2,"wallMs":15.6444,"cpuMs":15.625,"allocatedBytes":25318184},{"payloadBytes":12582912,"kind":"current","round":2,"wallMs":8.2961,"cpuMs":0.0,"allocatedBytes":12594104},{"payloadBytes":12582912,"kind":"current","round":3,"wallMs":7.938,"cpuMs":0.0,"allocatedBytes":12594104},{"payloadBytes":12582912,"kind":"legacy","round":3,"wallMs":16.3572,"cpuMs":15.625,"allocatedBytes":25318184}]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

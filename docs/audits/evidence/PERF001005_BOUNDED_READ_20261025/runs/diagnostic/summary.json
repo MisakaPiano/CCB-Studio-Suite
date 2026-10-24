@@ -1,0 +1,31 @@
+{
+  "phase": "perf001005-bounded-read-allocation-diagnostic-20261025",
+  "startedUtc": "2026-10-24T23:10:19.817909+00:00",
+  "seconds": 15.328,
+  "exitCode": 1,
+  "tests": 1,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "FAILED",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--priority",
+    "low",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    "-PpreviewTestRoot=H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-61c109d6650a4440abb8e3df1a868ed7\\payload",
+    ":studio-core:test",
+    "--tests",
+    "*BoundedReadPerformanceTest.measuredStableFileReadAllocationAndExactBytes"
+  ],
+  "baseCommit": "69e15e73f840b00b3d0fbf5509f2f2cc60ae1092",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}
