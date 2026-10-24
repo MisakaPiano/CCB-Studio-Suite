@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.WorkspaceBytesPerformanceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-24T23:30:57.910Z" hostname="DD1" time="2.637">
+  <properties/>
+  <testcase name="measuredVerifiedAssetBytesAllocationAndExactBytes" classname="io.github.misakapiano.ccbstudio.core.WorkspaceBytesPerformanceTest" time="2.637"/>
+  <system-out><![CDATA[WORKSPACE_BYTES_ALLOCATION=[{"payloadBytes":3145728,"round":0,"wallMs":21.4531,"cpuMs":15.625,"allocatedBytes":11649560},{"payloadBytes":3145728,"round":1,"wallMs":21.0425,"cpuMs":31.25,"allocatedBytes":11649408},{"payloadBytes":3145728,"round":2,"wallMs":20.4145,"cpuMs":15.625,"allocatedBytes":11649408},{"payloadBytes":3145728,"round":3,"wallMs":20.5684,"cpuMs":15.625,"allocatedBytes":11649776},{"payloadBytes":12582912,"round":0,"wallMs":71.6697,"cpuMs":62.5,"allocatedBytes":46252400},{"payloadBytes":12582912,"round":1,"wallMs":72.4927,"cpuMs":78.125,"allocatedBytes":46252400},{"payloadBytes":12582912,"round":2,"wallMs":67.7549,"cpuMs":62.5,"allocatedBytes":46252400},{"payloadBytes":12582912,"round":3,"wallMs":68.8735,"cpuMs":62.5,"allocatedBytes":46252400}]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

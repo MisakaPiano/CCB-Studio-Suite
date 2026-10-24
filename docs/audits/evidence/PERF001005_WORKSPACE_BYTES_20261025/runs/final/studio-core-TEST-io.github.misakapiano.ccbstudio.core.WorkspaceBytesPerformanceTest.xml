@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.WorkspaceBytesPerformanceTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-24T23:32:15.344Z" hostname="DD1" time="5.822">
+  <properties/>
+  <testcase name="measuredVerifiedAssetBytesAllocationAndExactBytes" classname="io.github.misakapiano.ccbstudio.core.WorkspaceBytesPerformanceTest" time="1.834"/>
+  <testcase name="reusedInputBlocksMixedWritesOffsetsAndBadRangesKeepByteOwnership" classname="io.github.misakapiano.ccbstudio.core.WorkspaceBytesPerformanceTest" time="0.01"/>
+  <testcase name="byteBoundariesReturnIndependentBuffersWithoutChangingStoreOrState" classname="io.github.misakapiano.ccbstudio.core.WorkspaceBytesPerformanceTest" time="3.602"/>
+  <testcase name="corruptVerifiedSourceCannotReturnPartialBytesOrReplaceSourceAndRecord" classname="io.github.misakapiano.ccbstudio.core.WorkspaceBytesPerformanceTest" time="0.376"/>
+  <system-out><![CDATA[WORKSPACE_BYTES_ALLOCATION=[{"payloadBytes":3145728,"round":0,"wallMs":17.7465,"cpuMs":15.625,"allocatedBytes":6469760},{"payloadBytes":3145728,"round":1,"wallMs":17.3472,"cpuMs":15.625,"allocatedBytes":6469608},{"payloadBytes":3145728,"round":2,"wallMs":19.1233,"cpuMs":15.625,"allocatedBytes":6469608},{"payloadBytes":3145728,"round":3,"wallMs":14.9827,"cpuMs":15.625,"allocatedBytes":6469608},{"payloadBytes":12582912,"round":0,"wallMs":62.4945,"cpuMs":62.5,"allocatedBytes":25348712},{"payloadBytes":12582912,"round":1,"wallMs":62.3156,"cpuMs":62.5,"allocatedBytes":25348712},{"payloadBytes":12582912,"round":2,"wallMs":62.3419,"cpuMs":62.5,"allocatedBytes":25348712},{"payloadBytes":12582912,"round":3,"wallMs":62.3118,"cpuMs":62.5,"allocatedBytes":25348712}]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

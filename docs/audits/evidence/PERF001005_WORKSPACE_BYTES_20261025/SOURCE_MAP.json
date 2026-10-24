@@ -1,0 +1,87 @@
+{
+  "sources": {
+    "baseline": "b6abdc92d5b47f256e84e4c3da0695b5be3a6e03",
+    "final": "66ed23c44357b10de198eb2a488475b472b6ac81"
+  },
+  "identities": [
+    {
+      "run": "baseline",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioWorkspace.kt",
+      "testInputSha256": "eccf6a446666f8c1689216d5e7bd2fbf5f8b8001583180d9ff786c11068d36f3",
+      "gitSha256": "579cadc6f19b22ce97d537c7304ee102789b5b92071550f5c8f6c504f69f8162"
+    },
+    {
+      "run": "baseline",
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/WorkspaceBytesPerformanceTest.kt",
+      "testInputSha256": "f34f83c2937974d772266b30e4750ae6bf07fdab3516a20693cc8d4082e1f51e",
+      "gitSha256": "f34f83c2937974d772266b30e4750ae6bf07fdab3516a20693cc8d4082e1f51e"
+    },
+    {
+      "run": "baseline",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/OriginalFileCopy.kt",
+      "testInputSha256": "84f027e7f56d7f08a0cd0a018861b62fd12ec225d667827529750a0d59acb37e",
+      "gitSha256": "84f027e7f56d7f08a0cd0a018861b62fd12ec225d667827529750a0d59acb37e"
+    },
+    {
+      "run": "baseline",
+      "path": "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetStore.java",
+      "testInputSha256": "c59c3f5b4fc00e42c20a6df51cd867364c8db3a42e0eeaf1daf7915c69e37850",
+      "gitSha256": "c59c3f5b4fc00e42c20a6df51cd867364c8db3a42e0eeaf1daf7915c69e37850"
+    },
+    {
+      "run": "baseline",
+      "path": "tools/Run-PreviewChecks.py",
+      "testInputSha256": "45f0f681f68b83c67c5a04607dfea09ecea742bcfd2f5f4ee31e3162901e9e23",
+      "gitSha256": "d8dec9e6bcc417c59cc9d3dd32b79fd4519c16b86adbf582798b2d707c4935b4"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioWorkspace.kt",
+      "testInputSha256": "7ed798617ef2cffe26f671b30900313c8c8ea4925098ca66bf5dc5751b087c2c",
+      "gitSha256": "c85672bb2cc9bc73121ac3ee49c3f9d4e3a28a87f511f93b38a8cce40a67cd52"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/WorkspaceBytesPerformanceTest.kt",
+      "testInputSha256": "e35cf0d269926588989b547b16955748b2d13987fb7284d28d68c69f0b8c20c2",
+      "gitSha256": "0413900edcf722b02bf640244614caba6a02cf6092b163520550286e8ff327cf"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/OriginalFileCopy.kt",
+      "testInputSha256": "84f027e7f56d7f08a0cd0a018861b62fd12ec225d667827529750a0d59acb37e",
+      "gitSha256": "84f027e7f56d7f08a0cd0a018861b62fd12ec225d667827529750a0d59acb37e"
+    },
+    {
+      "run": "final",
+      "path": "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetStore.java",
+      "testInputSha256": "c59c3f5b4fc00e42c20a6df51cd867364c8db3a42e0eeaf1daf7915c69e37850",
+      "gitSha256": "c59c3f5b4fc00e42c20a6df51cd867364c8db3a42e0eeaf1daf7915c69e37850"
+    },
+    {
+      "run": "final",
+      "path": "tools/Run-PreviewChecks.py",
+      "testInputSha256": "45f0f681f68b83c67c5a04607dfea09ecea742bcfd2f5f4ee31e3162901e9e23",
+      "gitSha256": "d8dec9e6bcc417c59cc9d3dd32b79fd4519c16b86adbf582798b2d707c4935b4"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/AssetBytesBuffer.kt",
+      "testInputSha256": "82144ec3b135dcff04e3672299dd5fdfa95932f4304e08d776506a725828eec3",
+      "gitSha256": "82144ec3b135dcff04e3672299dd5fdfa95932f4304e08d776506a725828eec3"
+    }
+  ],
+  "unchangedPaths": [
+    "modules/asset-library",
+    "modules/image-authority",
+    "modules/studio-desktop",
+    "tools",
+    "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/OriginalFileCopy.kt"
+  ],
+  "finalUniqueMethods": 7,
+  "baselineNotAddedAgain": true,
+  "productionChange": "StudioWorkspace.bytes collector only; same assets.export inside same workspace operation and lock; fixed owned blocks copied before store buffer reuse",
+  "release": "NONE",
+  "independentReview": "NOT REQUESTED",
+  "humanAndPackage": "NOT TESTED"
+}

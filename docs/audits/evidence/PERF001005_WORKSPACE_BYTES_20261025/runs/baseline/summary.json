@@ -1,0 +1,31 @@
+{
+  "phase": "perf001005-workspace-bytes-baseline-20261025",
+  "startedUtc": "2026-10-24T23:30:34.490508+00:00",
+  "seconds": 27.439,
+  "exitCode": 0,
+  "tests": 1,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--priority",
+    "low",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    "-PpreviewTestRoot=H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-772cf34df3ee444ea5e79a97f869b4f9\\payload",
+    ":studio-core:test",
+    "--tests",
+    "*WorkspaceBytesPerformanceTest.measuredVerifiedAssetBytesAllocationAndExactBytes"
+  ],
+  "baseCommit": "b6abdc92d5b47f256e84e4c3da0695b5be3a6e03",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

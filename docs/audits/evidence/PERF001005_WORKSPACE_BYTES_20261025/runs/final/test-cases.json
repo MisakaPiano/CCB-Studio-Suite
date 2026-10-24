@@ -1,0 +1,44 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryRepositoryTest",
+    "name": "directoriesVersionAndMissingSourcesKeepAssetsLabelsPromptsAndBackup",
+    "seconds": "12.465",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.ReviewBoundaryTest",
+    "name": "promptInterruptionsReuseAssetAndRestoreLabelsAndObservationAcrossReopen",
+    "seconds": "5.47",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "originalProjectUndoRedoAndRestart",
+    "seconds": "0.744",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.WorkspaceBytesPerformanceTest",
+    "name": "measuredVerifiedAssetBytesAllocationAndExactBytes",
+    "seconds": "1.834",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.WorkspaceBytesPerformanceTest",
+    "name": "reusedInputBlocksMixedWritesOffsetsAndBadRangesKeepByteOwnership",
+    "seconds": "0.01",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.WorkspaceBytesPerformanceTest",
+    "name": "byteBoundariesReturnIndependentBuffersWithoutChangingStoreOrState",
+    "seconds": "3.602",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.WorkspaceBytesPerformanceTest",
+    "name": "corruptVerifiedSourceCannotReturnPartialBytesOrReplaceSourceAndRecord",
+    "seconds": "0.376",
+    "status": "PASS"
+  }
+]

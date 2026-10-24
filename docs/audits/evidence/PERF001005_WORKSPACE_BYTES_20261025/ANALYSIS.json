@@ -1,0 +1,60 @@
+{
+  "medians": {
+    "baseline": {
+      "3145728": {
+        "wallMs": 20.80545,
+        "cpuMs": 15.625,
+        "allocatedBytes": 11649484.0
+      },
+      "12582912": {
+        "wallMs": 70.2716,
+        "cpuMs": 62.5,
+        "allocatedBytes": 46252400.0
+      }
+    },
+    "final": {
+      "3145728": {
+        "wallMs": 17.54685,
+        "cpuMs": 15.625,
+        "allocatedBytes": 6469608.0
+      },
+      "12582912": {
+        "wallMs": 62.32875,
+        "cpuMs": 62.5,
+        "allocatedBytes": 25348712.0
+      }
+    }
+  },
+  "counts": {
+    "baseline": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "b6abdc92d5b47f256e84e4c3da0695b5be3a6e03",
+      "seconds": 27.439,
+      "startedUtc": "2026-10-24T23:30:34.490508+00:00"
+    },
+    "final": {
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "66ed23c44357b10de198eb2a488475b472b6ac81",
+      "seconds": 47.403,
+      "startedUtc": "2026-10-24T23:31:34.751779+00:00"
+    }
+  },
+  "finalUniqueMethods": 7,
+  "cleanupFiles": 476,
+  "cleanupBytes": 64300767,
+  "limits": [
+    "Separate JVMs and real file write/force; no causal latency or RSS improvement claim",
+    "Both runs Gradle low priority,single worker,2 processors,256MiB test heap",
+    "Owner checks before launch found no Desktop Java,not continuous quiet proof",
+    "3/12MiB opaque synthetic binary fixtures,not image decode/UI or real content diversity",
+    "API still returns complete encoded bytes and keeps workspace/store serialization; no new cancellation/decoder/format behavior or global cache"
+  ]
+}

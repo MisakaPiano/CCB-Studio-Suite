@@ -1,3 +1,7 @@
+## 2026-10-25 PERF-001/005完整资产字节返回分配
+
+[66ed23c报告/原始执行](audits/PERF001005_WORKSPACE_BYTES_20261025.md)：最终7唯一方法PASS，12MiB完整返回分配46.25→25.35MB；原源验证/锁/排水、返回数组独立性保持，只改内存收集。非RSS/UI/普遍提速/人工或包验；[复审仅准备](../handoff/PERF001005_WORKSPACE_BYTES_REVIEW_READY_20261025.md)。无新发布/外发，持续低风险元数据冗余核对、Desktop优先，旧失败/未验保持。
+
 ## 2026-10-25 PERF-001/005公共读取有界分配
 
 [27e5621报告/完整原始执行](audits/PERF001005_BOUNDED_READ_20261025.md)：最终17唯一方法PASS，12MiB同JVM读分配25.32→12.59MB；大小只是提示，动态上限/EOF/错误分类与完整性保持，底层请求64KiB。两次记录口径失败保留，阈值未放宽；[复审仅准备](../handoff/PERF001005_BOUNDED_READ_REVIEW_READY_20261025.md)。非RSS/全平台/人工或包验，无外发/发布，继续已有资产bytes基线、Desktop优先。
