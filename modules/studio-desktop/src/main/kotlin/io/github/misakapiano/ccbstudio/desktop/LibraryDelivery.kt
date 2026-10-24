@@ -26,7 +26,7 @@ internal suspend fun exportLibraryOriginals(workspace:StudioWorkspace,ids:List<S
         val filename=asset.request().name().replace(Regex("[\\\\/:*?\"<>|\\p{Cntrl}]"),"_").takeLast(160).ifBlank{"image.png"}
         val file="${(i+1).toString().padStart(4,'0')}-$filename";val target=stage.resolve(file)
         val context=currentCoroutineContext();val copied=copyVerifiedOriginal(workspace,id,target){context.ensureActive()}
-        buildJsonObject{put("file",file);put("sourceId",id);put("sha256",copied.sha256);put("bytes",copied.size)}
+        buildJsonObject{put("file",file);put("sourceId",id);put("sha256",requireNotNull(copied.sha256));put("bytes",copied.size)}
     }
     currentCoroutineContext().ensureActive()
     writeNewForced(stage.resolve("COMPLETE.json"),buildJsonObject{put("version",1);put("kind","originals");put("files",JsonArray(files))}.toString().toByteArray())

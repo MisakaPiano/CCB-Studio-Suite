@@ -12,7 +12,9 @@ def hashes():
  return {f.relative_to(root).as_posix():hashlib.sha256(f.read_bytes()).hexdigest() for f in sorted(files)}
 before=hashes();(out/'source-before.json').write_text(json.dumps(before,indent=2))
 gradles=list((Path.home()/'.gradle/wrapper/dists/gradle-9.1.0-bin').glob('*/gradle-9.1.0/bin/gradle.bat'));assert len(gradles)==1
-args=[str(gradles[0]),'--no-daemon','--max-workers=1','--console=plain','-Pkotlin.compiler.execution.strategy=in-process']
+# Per-invocation Gradle scheduling, including its children; yield CPU to Desktop/user work.
+# Gradle 9.1 --help was checked locally: normal|low, no global OS/security setting change.
+args=[str(gradles[0]),'--no-daemon','--priority','low','--max-workers=1','--console=plain','-Pkotlin.compiler.execution.strategy=in-process']
 if not a.online: args+=['--offline']
 args+=['--write-verification-metadata','sha256','--write-locks'] if a.bootstrap_locks else ['--dependency-verification=strict']
 # Only this runner's fresh synthetic test roots are disposable. Existing test,

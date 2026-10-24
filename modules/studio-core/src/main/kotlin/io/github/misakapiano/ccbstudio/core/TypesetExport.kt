@@ -51,7 +51,7 @@ object TypesetExport {
                         val pending=if(variant=="original")directory.resolve(".$number.original.pending")else null
                         // Original delivery needs a signature, not a second whole encoded image.
                         // Rendered variants keep the existing full decode/metadata pipeline.
-                        val original=if(pending!=null)copyVerifiedOriginal(workspace,page.assetId,pending).prefix else workspace.bytes(page.assetId)
+                        val original=if(pending!=null)copyVerifiedOriginal(workspace,page.assetId,pending,receiptDigest=false).prefix else workspace.bytes(page.assetId)
                         val format=if(request.format=="source")ImageFormats.format(original).takeIf{it in setOf("png","jpeg","webp")}?:"png"else request.format
                         val extension=if(variant=="original")ImageFormats.extension(original)else if(format=="jpeg")"jpg"else format
                         val file=directory.resolve("$number.$extension")

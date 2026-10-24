@@ -107,6 +107,10 @@ class TypesetOriginalPerformanceTest {
                 assertContentEquals(bytes,Files.readAllBytes(target))
                 assertFailsWith<FileAlreadyExistsException>{copyVerifiedOriginal(w,id.toString(),target)}
                 assertContentEquals(bytes,Files.readAllBytes(target));assertEquals(sha256(bytes),w.assets.read(id).require().sha256())
+                val checkedLater=base.resolve("copy-destination-verified-$size.bin")
+                val withoutExtraReceipt=copyVerifiedOriginal(w,id.toString(),checkedLater,receiptDigest=false)
+                assertNull(withoutExtraReceipt.sha256);assertContentEquals(result.prefix,withoutExtraReceipt.prefix)
+                assertEquals(sha256(bytes),fingerprintFile(checkedLater).sha256);assertEquals(size.toLong(),withoutExtraReceipt.size)
             }
         }
     }
