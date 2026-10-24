@@ -14,6 +14,7 @@ import kotlinx.serialization.json.*
 import java.lang.management.ManagementFactory
 import java.nio.file.*
 import java.time.Instant
+import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicLong
 
 /** Test entry point only. Native Window/Workbench, not an offscreen or shipped launcher. */
@@ -47,23 +48,29 @@ object NativePerformanceProbe {
             Files.writeString(events,value.toString()+"\n",StandardOpenOption.CREATE,StandardOpenOption.APPEND)
         }
         note("main-enter",buildJsonObject{put("java",System.getProperty("java.version"));put("mainEpochMillis",epoch);put("launchKind","test-only-native-workbench-host")})
+        note("brand-start")
         StudioBrand.configureDefaultWindows()
+        note("brand-ready");note("workspace-open-start")
         val w=StudioWorkspace.openStudio(data);note("workspace-opened")
         val expected=Json.parseToJsonElement(Files.readString(root.resolve("originals.json"))).jsonObject
         var failure:Throwable?=null
         application(exitProcessOnExit=false) {
+            remember{note("application-first-composition");Unit}
             val scope=rememberCoroutineScope()
-            val http=remember{studioHttpClient().newBuilder().addInterceptor{error("Native resource probe forbids all HTTP")}.build()}
-            val c=remember {WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root.resolve("runtime/catalog")),root.resolve("runtime/budget"),http,
+            val http=remember{note("http-construction-start");studioHttpClient().newBuilder().addInterceptor{error("Native resource probe forbids all HTTP")}.build().also{note("http-construction-ready")}}
+            val c=remember {note("controller-construction-start");WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root.resolve("runtime/catalog")),root.resolve("runtime/budget"),http,
                 admissionOverride=RequestAdmission{error("No provider requests")},pauseCollectionsOnStart=true,allowDefaultEntrypoint=false).also{note("controller-opened")}}
             var closing by remember{mutableStateOf(false)}
             var renderEpoch by remember{mutableLongStateOf(0)}
             fun close(){if(!closing){closing=true;scope.launch{try{c.close();note("controller-closed",buildJsonObject{put("pendingThumbnails",c.thumbnails.pendingCount);put("retainedThumbnailBytes",c.thumbnails.retainedBytes)})}catch(e:Throwable){failure=e;note("close-failed",buildJsonObject{put("error",e.toString())})}finally{exitApplication()}}}}
             c.requestClose=::close
+            remember{note("window-call-start");Unit}
             Window(onCloseRequest=::close,title="Studio PERF-002/007 · ${out.fileName}",undecorated=DesktopWindowChrome.isWindows,
                 icon=StudioBrand.painter,state=rememberWindowState(width=1320.dp,height=880.dp)) {
+                remember{note("native-window-first-composition");Unit}
                 val chrome=rememberDesktopWindowChrome(window,::close);SideEffect{chrome.appearance(true)}
                 val requestedEpoch=renderEpoch
+                val firstCompositionCommitted=remember{AtomicBoolean(false)}
                 MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel,onPrimary=Ink,onSurface=DesktopBootstrapColors.foreground)) {
                     Box(Modifier.fillMaxSize().drawWithContent {
                         drawCallbacks.incrementAndGet()
@@ -71,13 +78,20 @@ object NativePerformanceProbe {
                         // Compose prepares its first native surface before showing the Window.
                         // Verify both completed draw and showing state; don't require simultaneous callbacks.
                         val now=System.nanoTime();frames.incrementAndGet();firstDraw.compareAndSet(0,now);lastDraw.set(now);drawnEpoch.set(requestedEpoch)
-                    }) {Workbench(c,chrome,closing)}
+                    }) {
+                        remember{note("workbench-call-start");Unit}
+                        Workbench(c,chrome,closing)
+                        SideEffect{if(firstCompositionCommitted.compareAndSet(false,true))note("workbench-first-composition-committed")}
+                    }
                 }
                 LaunchedEffect(Unit) {
                     note("native-window-state",buildJsonObject{put("showing",window.isShowing);put("visible",window.isVisible);put("displayable",window.isDisplayable);put("width",window.width);put("height",window.height);put("drawCallbacks",drawCallbacks.get())})
                     try {
                         withTimeout(30000){while(!window.isShowing||frames.get()==0L)delay(20)}
                         note("first-native-draw",buildJsonObject{put("showing",window.isShowing);put("firstContentDrawMs",(firstDraw.get()-start)/1e6);put("predicate","completed native draw AND Window showing; Windows compositor presentation not measured");put("width",window.width);put("height",window.height);put("screenScaleX",window.graphicsConfiguration.defaultTransform.scaleX)})
+                        if(args[0]=="startup") {
+                            delay(2000);note("startup-diagnostic-settled")
+                        }else{
                         delay(5000);note("creation-idle-5s")
                         suspend fun confirmFrame() {
                             // Native rendering may retain the parent display list while children redraw.
@@ -94,6 +108,7 @@ object NativePerformanceProbe {
                         gallery("first-gallery-ready")
                         delay(10000);note("gallery-idle-10s")
                         repeat(6){cycle->c.view="创作";confirmFrame();delay(150);gallery("gallery-cycle-$cycle");delay(150)}
+                        }
                         check(c.problem==null){c.problem.orEmpty()};check(c.thumbnails.retainedBytes<=8L*1024*1024)
                         expected.forEach{(id,hash)->check(sha256(w.bytes(id))==hash.jsonPrimitive.content)}
                         note("originals-verified",buildJsonObject{put("images",expected.size);put("providerCalls",0)})
