@@ -1,5 +1,7 @@
 ## 2026-10-25 PERF-002/007最小原生资源基线（独立小段）
 
+用户明确批准4ec1979/3cd2dab工程材料交原“阶段复审结论”，已单次发送并在原页面核对新请求实际落地；[回执](../handoff/NATIVE_PERF_PROJECT_REVIEW_DISPATCH_20261025.md)。状态REQUEST_VISIBLE / REVIEW_PENDING，非独立通过。固定源码/原始证据不改，反馈仅限本测量范围，不启动其他PERF/功能/发布；此前NOT REQUESTED是授权前历史状态。
+
 承接已有继续性能授权，沿用原编号，不重测已独立通过的PERF-003。测试源码4ec1979及[本段原始证据/边界](audits/NATIVE_PERFORMANCE_BASELINE_20261025.md)：最终两个原生测试宿主会话达标，三次观测失败/一次Desktop繁忙推迟保留；0 JUnit新执行，不累加内部帧/往返或旧测试。生产源码未改，不做未经剖析的优化；打包启动/OS冷缓存/物理IO/长期资源未测。人工NOT TESTED、独立审查NOT REQUESTED，不关闭整个002/007，不自动发新审查或发布；其他原未验状态保持。
 
 ## 2026-10-25 PERF-003独立限定通过（无新开发）
