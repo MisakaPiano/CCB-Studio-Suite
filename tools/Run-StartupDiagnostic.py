@@ -48,8 +48,10 @@ try:
         inputs.extend(dict(path=str(f),bytes=f.stat().st_size,sha256=sha(f)) for f in files)
     write(OUT/'RUNTIME_INPUTS.json',dict(source=SOURCE,java=java,javaSha256=sha(Path(java)),jfrSha256=sha(jfr),classpath=classpath,files=inputs,installerBuilt=False))
     tracked=['modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/NativePerformanceProbe.kt','tools/Run-StartupDiagnostic.py','tools/startup-minimal.jfc','tools/workspace_artifacts.py','modules/studio-desktop/build.gradle.kts']
-    write(OUT/'SOURCE_INPUTS.json',[dict(path=p,sha256=sha(ROOT/p),gitSha256=hashlib.sha256(subprocess.check_output(['git','show',SOURCE+':'+p],cwd=ROOT)).hexdigest()) for p in tracked])
-    assert all(x['sha256']==x['gitSha256'] for x in json.loads((OUT/'SOURCE_INPUTS.json').read_text()))
+    write(OUT/'SOURCE_INPUTS.json',[dict(path=p,sha256=sha(ROOT/p),lfTextSha256=hashlib.sha256((ROOT/p).read_bytes().replace(b'\r\n',b'\n')).hexdigest(),gitSha256=hashlib.sha256(subprocess.check_output(['git','show',SOURCE+':'+p],cwd=ROOT)).hexdigest()) for p in tracked])
+    # The existing Gradle text checkout uses CRLF while Git stores LF. Preserve raw
+    # hashes and permit only that known text representation, never binary drift.
+    assert all(x['sha256']==x['gitSha256'] or (x['path']=='modules/studio-desktop/build.gradle.kts' and x['lfTextSha256']==x['gitSha256']) for x in json.loads((OUT/'SOURCE_INPUTS.json').read_text()))
     def command(mode,out=None,profile=False):
         cmd=[java,'-Xmx512m','-XX:ActiveProcessorCount=2','-Djava.io.tmpdir='+str(PAY/'tmp'),'-Duser.home='+str(PAY/'home')]
         if profile:cmd.append('-XX:StartFlightRecording=settings='+str(settings)+',filename='+str(out/'startup.jfr')+',disk=true,maxsize=32m,dumponexit=true')
