@@ -82,17 +82,27 @@ class StudioWorkspace private constructor(val root:Path,private val owner:FileCh
         val dir=root.resolve("exports").resolve(newId());Files.createDirectories(dir)
         val receipts=mutableListOf<String>()
         pages.forEachIndexed {i,page ->
+            if(mode=="ORIGINAL") {
+                // Keep this older entry's naming/receipt rules; only replace whole-file buffering.
+                val pending=dir.resolve(".%03d-%s.original.pending".format(i+1,page.assetId))
+                val copied=copyVerifiedOriginal(this,page.assetId,pending)
+                assets.read(UUID.fromString(page.assetId)).require() // Preserve the existing post-transfer verification.
+                val extension=if(copied.prefix[0].toInt() and 255==255)"jpg" else "png"
+                val name="%03d-%s.%s".format(i+1,page.assetId,extension)
+                Files.move(pending,dir.resolve(name),StandardCopyOption.ATOMIC_MOVE)
+                receipts+="$name ${copied.size} ${requireNotNull(copied.sha256)}"
+                return@forEachIndexed
+            }
             val original=bytes(page.assetId)
             val record=assets.read(UUID.fromString(page.assetId)).require()
-            val output=if(mode=="ORIGINAL") original else {
+            val output=run {
                 val rendered=EditorRenderer.render(original,page.layers)
                 try {EditorRenderer.encode(rendered,mode=="PRIVACY",documentJson.encodeToString(page)+"\n"+record.request().recipe().decodeToString())} finally {rendered.image.flush()}
             }
-            val extension=if(mode=="ORIGINAL" && original[0].toInt() and 255==255)"jpg" else "png"
-            val name="%03d-%s.%s".format(i+1,page.assetId,extension)
+            val name="%03d-%s.png".format(i+1,page.assetId)
             val pending=dir.resolve(".$name.pending");writeNewForced(pending,output)
             Files.move(pending,dir.resolve(name),StandardCopyOption.ATOMIC_MOVE)
-            if(mode!="ORIGINAL") assets.put(AssetStore.Request(UUID.randomUUID(),name,AssetStore.Kind.DERIVED,UUID.fromString(page.assetId),if(mode=="PRIVACY")byteArrayOf() else record.request().recipe(),byteArrayOf()),ByteArrayInputStream(output))
+            assets.put(AssetStore.Request(UUID.randomUUID(),name,AssetStore.Kind.DERIVED,UUID.fromString(page.assetId),if(mode=="PRIVACY")byteArrayOf() else record.request().recipe(),byteArrayOf()),ByteArrayInputStream(output))
             receipts+="$name ${output.size} ${sha256(output)}"
         }
         writeNewForced(dir.resolve("COMPLETE.txt"),("CCB Studio Suite $mode\n"+receipts.joinToString("\n")).toByteArray())
