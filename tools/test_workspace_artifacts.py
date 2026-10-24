@@ -63,3 +63,11 @@ class WorkspaceArtifactTests(unittest.TestCase):
         self.seal()
         with self.assertRaises(ValueError):self.seal()
 
+    def test_java_created_deep_fixture_paths_are_inventoried_and_removed(self):
+        deep=self.payload/('long-'+('x'*70))/('nested-'+('y'*70))/('asset-'+('z'*70)+'.blob')
+        w.io_path(deep.parent).mkdir(parents=True)
+        w.io_path(deep).write_bytes(b'long synthetic path')
+        self.assertGreater(len(str(deep)),300);self.seal()
+        self.assertEqual(w.cleanup(self.folder)['status'],'COMPLETE')
+        self.assertFalse(w.io_path(deep).exists())
+

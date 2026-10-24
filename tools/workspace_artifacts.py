@@ -8,30 +8,42 @@ files and failed-run fixtures are retained. All removals use Windows handle guar
 import argparse,gzip,hashlib,json,os,re,sys,time,uuid
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parent/'update-runtime'))
-from owned_files import relative,delete_matching,prune_empty
+from owned_files import relative,delete_matching,prune_empty,io_path
 
 ROOT=Path(__file__).resolve().parents[1]
 
 def safe(path):
     path=Path(os.path.abspath(path))
     for p in [path,*path.parents]:
-        if p.is_symlink() or (p.exists() and p.is_junction()):raise ValueError('Reparse path refused')
+        physical=io_path(p)
+        if physical.is_symlink() or (physical.exists() and physical.is_junction()):raise ValueError('Reparse path refused')
     return path
 
 def digest(path):
-    with safe(path).open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
+    with io_path(safe(path)).open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
 
 def atomic(path,data):
     path=safe(path);stage=path.with_name(path.name+'.'+uuid.uuid4().hex+'.tmp')
-    with stage.open('xb') as f:f.write(data);f.flush();os.fsync(f.fileno())
-    os.replace(stage,path)
+    with io_path(stage).open('xb') as f:f.write(data);f.flush();os.fsync(f.fileno())
+    os.replace(io_path(stage),io_path(path))
 
 def write(path,value):atomic(path,(json.dumps(value,ensure_ascii=True,indent=2)+'\n').encode())
 
 def read(path,limit=1024*1024):
     path=safe(path)
-    if path.stat().st_size>limit:raise ValueError('Artifact record oversized')
-    return json.loads(path.read_text(encoding='utf-8-sig'))
+    if io_path(path).stat().st_size>limit:raise ValueError('Artifact record oversized')
+    return json.loads(io_path(path).read_text(encoding='utf-8-sig'))
+
+def walk(payload):
+    stack=[payload]
+    while stack:
+        here=safe(stack.pop())
+        with os.scandir(io_path(here)) as entries:
+            for entry in entries:
+                p=safe(here/entry.name)
+                if entry.is_dir(follow_symlinks=False):yield p,True;stack.append(p)
+                elif entry.is_file(follow_symlinks=False):yield p,False
+                else:raise ValueError('Unknown filesystem entry retained')
 
 def create(task):
     if not re.fullmatch('[a-zA-Z0-9_-]{1,64}',task):raise ValueError('Invalid task label')
@@ -68,13 +80,11 @@ def seal(folder,evidence_files,status='PASS'):
         if p.is_relative_to(folder) or not p.is_relative_to(ROOT/'.local'):raise ValueError('Evidence must be retained separately in Suite .local')
         proofs.append(dict(path=str(p),bytes=p.stat().st_size,sha256=digest(p)))
     if not proofs:raise ValueError('No retained evidence')
-    for here,subdirs,names in os.walk(payload,followlinks=False):
-        safe(here)
-        for name in subdirs:safe(Path(here)/name);dirs.append((Path(here)/name).relative_to(payload).as_posix())
-        for name in names:
-            p=safe(Path(here)/name);size=p.stat().st_size;total+=size
-            if len(items)>=200000 or total>8*1024**3:raise ValueError('Disposable inventory bound exceeded; retained')
-            items.append(dict(path=p.relative_to(payload).as_posix(),bytes=size,sha256=digest(p)))
+    for p,is_dir in walk(payload):
+        if is_dir:dirs.append(p.relative_to(payload).as_posix());continue
+        size=io_path(p).stat().st_size;total+=size
+        if len(items)>=200000 or total>8*1024**3:raise ValueError('Disposable inventory bound exceeded; retained')
+        items.append(dict(path=p.relative_to(payload).as_posix(),bytes=size,sha256=digest(p)))
     manifest=dict(format=1,nonce=record['nonce'],root=str(folder),status=status,files=items,directories=dirs,evidence=proofs,totalBytes=total)
     atomic(folder/'MANIFEST.json.gz',gzip.compress(json.dumps(manifest,ensure_ascii=True).encode(),mtime=0))
     write(folder/'SEALED.json',dict(format=1,status=status,manifestSha256=digest(folder/'MANIFEST.json.gz'),files=len(items),bytes=total))
@@ -102,7 +112,7 @@ def cleanup(folder):
     write(folder/'CLEANUP.json',dict(status='IN_PROGRESS',sourceManifestSha256=sealed['manifestSha256']))
     for item in items:
         p=safe(payload.joinpath(*relative(item['path'])))
-        if not p.exists():continue
+        if not io_path(p).exists():continue
         try:status=delete_matching(p,item)
         except (OSError,ValueError) as e:status='RETRY_'+type(e).__name__
         if status=='REMOVED':removed+=1;freed+=item['bytes']
@@ -110,11 +120,10 @@ def cleanup(folder):
     # Empty directories are explicitly inventoried, and removal is still nonrecursive.
     prune_empty(payload,items,dirs)
     if payload.exists():
-        for here,subdirs,names in os.walk(payload,followlinks=False):
-            safe(here)
-            for name in names:
-                p=safe(Path(here)/name);key=p.relative_to(payload).as_posix()
-                if key.casefold() not in seen:retained.append(dict(path=key,status='RETAIN_UNKNOWN'))
+        for p,is_dir in walk(payload):
+            if is_dir:continue
+            key=p.relative_to(payload).as_posix()
+            if key.casefold() not in seen:retained.append(dict(path=key,status='RETAIN_UNKNOWN'))
     result=dict(status='COMPLETE' if not retained else 'DEFERRED_OR_UNKNOWN_RETAINED',removed=removed,bytesFreed=freed,retained=retained,sourceManifestSha256=sealed['manifestSha256'])
     write(folder/'CLEANUP.json',result);return result
 

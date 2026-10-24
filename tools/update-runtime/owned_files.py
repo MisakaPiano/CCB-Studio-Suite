@@ -6,6 +6,12 @@ from pathlib import Path, PurePosixPath
 from ctypes import wintypes
 import ctypes, hashlib, msvcrt, os, re
 
+def io_path(path):
+    """Use extended Win32 paths for IO; keep normal absolute paths in identities."""
+    value=os.path.abspath(path)
+    if os.name=='nt' and not value.startswith('\\\\?\\'):
+        value='\\\\?\\UNC\\'+value[2:] if value.startswith('\\\\') else '\\\\?\\'+value
+    return Path(value)
 def relative(name):
     if not isinstance(name,str) or len(name)>1024:raise ValueError('Invalid owned filename')
     p=PurePosixPath(name)
@@ -31,7 +37,7 @@ def held(path, delete=False):
     k=kernel_api()
     # Open the reparse point itself; deny concurrent write/delete/rename, including
     # replacing a parent junction between validation and disposition of the file.
-    handle=k.CreateFileW(str(path),0x80000000|(0x10000 if delete else 0),1,None,3,0x02200000,None)
+    handle=k.CreateFileW(str(io_path(path)),0x80000000|(0x10000 if delete else 0),1,None,3,0x02200000,None)
     if handle==ctypes.c_void_p(-1).value:raise ctypes.WinError(ctypes.get_last_error())
     try:
         info=FileInfo()
@@ -69,7 +75,7 @@ def prune_empty(base,files,extra_dirs=()):
         p=base.joinpath(*relative(item['path'])).parent
         while p!=base:dirs.add(p);p=p.parent
     for directory in sorted(dirs,key=lambda p:len(p.parts),reverse=True):
-        if not directory.exists():continue
+        if not io_path(directory).exists():continue
         try:
             with held_parents(directory),held(directory,True) as (k,handle,info):
                 if not info.attributes&0x10:raise ValueError('Owned directory changed type')
