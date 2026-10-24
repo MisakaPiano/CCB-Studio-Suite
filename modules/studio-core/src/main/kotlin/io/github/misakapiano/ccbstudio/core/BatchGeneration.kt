@@ -39,7 +39,7 @@ fun NovelAiStudioDraft.withSlot(slot:BatchSlot)=withActiveSettings(activeSetting
 @Serializable data class BatchState(val id:String=newId(),val name:String="批量生图",val accountId:String?=null,
     val groups:List<BatchGroup> = emptyList(),val policy:BatchPolicy=BatchPolicy(),val mode:String="PAUSED",
     val error:BatchFailure?=null,val lastStartedAt:Long=0,val runStartedAt:Long=0,val restUntil:Long=0,
-    val reservedAnlas:Int=0,val pauseRequested:Boolean=false,val nextRequestAt:Long=0,val archives:List<BatchArchive> = emptyList(),val endRequested:Boolean=false) {
+    val reservedAnlas:Int=0,val pauseRequested:Boolean=false,val nextRequestAt:Long=0,val archives:List<BatchArchive> = emptyList(),val endRequested:Boolean=false,val createdAt:Long=0) {
     val total get()=groups.sumOf{it.slots.size}
     val completed get()=groups.sumOf{g->g.slots.count{it.status=="DONE"}}
     val skipped get()=groups.sumOf{g->g.slots.count{it.status=="SKIPPED"}}
@@ -82,10 +82,11 @@ class BatchQueue(private val workspace:StudioWorkspace,private val random:(Int)-
         }
     }
     fun configure(accountId:String?,policy:BatchPolicy)=update{require(!it.running);it.copy(accountId=accountId,policy=policy)}
+    fun ensureCreatedAt(){if(state.groups.isNotEmpty()&&state.createdAt==0L)update{s->s.copy(createdAt=workspace.state.jobs.filter{job->s.groups.any{g->g.slots.any{job.id in it.attempts}}}.minOfOrNull{it.createdAt}?:System.currentTimeMillis())}}
     fun replaceGroups(groups:List<BatchGroup>)=update {s->
         require(!s.running && s.error==null && s.mode!="ENDED"){"请先处理暂停原因；已结束批次需新建"}
         s.groups.filter{it.started}.forEach{old->require(groups.any{it==old}){"已开始分组保留，请复制为新分组"}}
-        s.copy(id=s.id.ifBlank{newId()},groups=groups,mode="PAUSED")
+        s.copy(id=s.id.ifBlank{newId()},groups=groups,mode="PAUSED",createdAt=s.createdAt.takeIf{it>0}?:System.currentTimeMillis())
     }
     fun resume(now:Long,retry:Boolean=false,skip:Boolean=false)=update {s->
         require(!s.running && s.mode!="ENDED" && s.accountId!=null && s.total>0)
@@ -99,13 +100,15 @@ class BatchQueue(private val workspace:StudioWorkspace,private val random:(Int)-
     }
     fun pause()=update{if(it.mode=="RUNNING")it.copy(pauseRequested=true)else if(it.running)it.copy(mode="PAUSED",pauseRequested=false)else it}
     fun end()=update{if(it.mode=="RUNNING")it.copy(pauseRequested=true,endRequested=true)else it.copy(mode="ENDED",pauseRequested=false,endRequested=false)}
-    fun newBatch()=update {s->
+    fun newBatch()=update {archivedNext(it.name)}
+    internal fun archivedNext(alias:String):BatchState {
+        val s=state
         require(!s.running && (s.error==null || s.mode=="ENDED"&&System.currentTimeMillis()>=s.error.notBefore)){"请先结束并等待冷却；429 不能通过新建批次绕过"}
-        if(s.total==0)s else {
+        return if(s.total==0)s else {
             val bytes=documentJson.encodeToString(s.copy(archives=emptyList())).toByteArray()
             require(bytes.size<=1024*1024)
             val ref=JobReceiptRef(workspace.requestPayload(bytes,null),sha256(bytes))
-            BatchState(accountId=s.accountId,policy=s.policy,archives=s.archives+BatchArchive(s.name,s.total,s.completed,ref),lastStartedAt=s.lastStartedAt,nextRequestAt=s.nextRequestAt,restUntil=s.restUntil)
+            BatchState(accountId=s.accountId,policy=s.policy,archives=s.archives+BatchArchive(alias,s.total,s.completed,ref),lastStartedAt=s.lastStartedAt,nextRequestAt=s.nextRequestAt,restUntil=s.restUntil)
         }
     }
     fun next(now:Long):Pair<BatchGroup,BatchSlot>? {

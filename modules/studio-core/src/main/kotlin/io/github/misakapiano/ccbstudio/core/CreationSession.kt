@@ -93,7 +93,7 @@ class CreationSession(private val workspace: StudioWorkspace) {
 
 @Serializable data class GenerationReceipt(val version:Int=3,val authoritySha:String=AUTHORITY_SHA,
     val recipe:NovelAiGenerationRecipe,val account:AccountProfile,val request:JsonElement,
-    val wireSha256:String="",val vibePayloads:Map<String,JsonElement> = emptyMap(),val batchOrigin:BatchResultOrigin?=null)
+    val wireSha256:String="",val vibePayloads:Map<String,JsonElement> = emptyMap(),val batchOrigin:BatchResultOrigin?=null,val manualBatchId:String?=null)
 
 class StudioGenerator(private val workspace:StudioWorkspace,private val vault:SecretVault,
     private val admission:RequestAdmission,private val client:OkHttpClient=studioHttpClient()) {
@@ -102,7 +102,7 @@ class StudioGenerator(private val workspace:StudioWorkspace,private val vault:Se
         requestSize:NovelAiImageSize=draft.activeSettings.imageSize(),
         compose:((ByteArray)->ByteArray)?=null,
         onIntermediate:(ByteArray)->Unit={},onResult:(String)->Unit={},designApplication:DesignApplicationRef?=null,
-        jobId:String=newId(),batchOrigin:BatchResultOrigin?=null,onRequestStart:()->Unit={}):JobRecord {
+        jobId:String=newId(),batchOrigin:BatchResultOrigin?=null,onRequestStart:()->Unit={},manualBatchId:String?=null):JobRecord {
         require(workspace.studioMode);account.validate();require(account.service=="NAI" && account.provider=="NOVELAI")
         require(guidance.action==draft.imageGuidance.action) {"Guidance must be prepared before generation"}
         require(draft.imageGuidance.effectiveReferenceMode(draft.selectedModel)==NovelAiReferenceMode.NONE || guidance!=NovelAiPreparedImageGuidance.NONE)
@@ -116,10 +116,11 @@ class StudioGenerator(private val workspace:StudioWorkspace,private val vault:Se
             val savedRequest=retained.retainRequest(Json.parseToJsonElement(wire))
             val savedVibes=draft.imageGuidance.vibes.filter{it.encodedVibe!=null}.associate{it.id to retained.retainText(it.encodedVibe!!)}
             val snapshot=draft.toRecipe(settings).let{it.copy(imageGuidance=it.imageGuidance.copy(vibes=it.imageGuidance.vibes.map{v->v.copy(encodedVibe=null)}))}
-            val recipe=documentJson.encodeToString(GenerationReceipt(recipe=snapshot,account=account,request=savedRequest,wireSha256=sha256(wire.toByteArray()),vibePayloads=savedVibes,batchOrigin=batchOrigin))
+            manualBatchId?.let{require(batchOrigin==null && workspace.state.generationOrganization.currentManual==it)}
+            val recipe=documentJson.encodeToString(GenerationReceipt(recipe=snapshot,account=account,request=savedRequest,wireSha256=sha256(wire.toByteArray()),vibePayloads=savedVibes,batchOrigin=batchOrigin,manualBatchId=manualBatchId))
             require(recipe.toByteArray().size<=1024*1024){"Receipt exceeds descriptor budget; request not sent"}
             val receiptRef=if(batchOrigin!=null){val bytes=recipe.toByteArray();JobReceiptRef(workspace.requestPayload(bytes,null),sha256(bytes))}else null
-            var job=JobRecord(id=jobId,account=account,recipe=if(receiptRef==null)recipe else "",state="QUEUED",receiptRef=receiptRef)
+            var job=JobRecord(id=jobId,account=account,recipe=if(receiptRef==null)recipe else "",state="QUEUED",receiptRef=receiptRef,manualBatchId=manualBatchId)
             require(workspace.state.jobs.none{it.id==jobId})
             designApplication?.let{DesignProvenance(workspace).linkGeneration(job,it)}
             workspace.operation {workspace.save(workspace.state.copy(jobs=workspace.state.jobs+job))}

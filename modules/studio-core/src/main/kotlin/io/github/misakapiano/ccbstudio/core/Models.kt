@@ -68,7 +68,7 @@ fun sha256(bytes: ByteArray): String = MessageDigest.getInstance("SHA-256").dige
     val account: AccountProfile, val exchanges: List<String>, val createdAt: Long = System.currentTimeMillis())
 @Serializable data class JobRecord(val id: String = newId(), val account: AccountProfile, val recipe: String,
     val state: String, val results: List<String> = emptyList(), val detail: String = "", val createdAt: Long = System.currentTimeMillis(),
-    val composedResults: List<String> = emptyList(),val failureCode:String?=null,val retryNotBefore:Long=0,val receiptRef:JobReceiptRef?=null)
+    val composedResults: List<String> = emptyList(),val failureCode:String?=null,val retryNotBefore:Long=0,val receiptRef:JobReceiptRef?=null,val manualBatchId:String?=null)
 @Serializable data class StudioState(
     val version: Int = 1,
     val accounts: List<AccountProfile> = emptyList(),
@@ -81,6 +81,7 @@ fun sha256(bytes: ByteArray): String = MessageDigest.getInstance("SHA-256").dige
     val typesetFonts:List<TypesetFontResource> = emptyList(),
     val typesetPreferences:TypesetPreferences=TypesetPreferences(),
     val batch:BatchState=BatchState(id=""),
+    val generationOrganization:GenerationOrganization=GenerationOrganization(),
 ) {
     fun validate() {
         if(version !in 1..3) throw DataProblem("UNSUPPORTED_VERSION", "Studio document version $version retained")
@@ -95,6 +96,8 @@ fun sha256(bytes: ByteArray): String = MessageDigest.getInstance("SHA-256").dige
         typesetFonts.forEach{it.validate()}
         typesetPreferences.validate()
         batch.validate()
+        generationOrganization.validate()
+        jobs.mapNotNull{it.manualBatchId}.forEach{ id->require(generationOrganization.batches.any{it.id==id&&it.kind=="manual"}) }
         require(projects.map { it.id }.distinct().size == projects.size)
         projects.forEach { p ->
             UUID.fromString(p.id); require(p.name.length in 1..100)

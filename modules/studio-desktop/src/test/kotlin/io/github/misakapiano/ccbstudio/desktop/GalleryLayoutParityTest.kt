@@ -67,15 +67,16 @@ class GalleryLayoutParityTest {
         try {
             withTimeout(15000){while(c.gallery.foldPreferences==null||c.library.state==null||c.gallery.historyCache==null){frames()}}
             assertEquals(20,readGalleryHistory(w).batchOrigins.size)
-            listOf("全部资产 · 20","生成来源","批次","自定义组织","虚拟相册","满意作品","封面候选","待精修","新建虚拟相册").forEach{label->assertTrue(nodes().any{matches(it,label)},label)}
+            listOf("全部资产 · 20","生成来源","批次","自定义组织","虚拟相册","项目与章节","新建组织").forEach{label->assertTrue(nodes().any{matches(it,label)},label)}
             assertFalse(nodes().any{matches(it,"收起")||matches(it,"展开或收起组织树")})
+            assertTrue(c.gallery.expandedOrganizations.isEmpty());click("展开批次");click("展开自动批次");click("展开虚拟相册");click("展开满意作品");
             click("批次");assertEquals(2,organizationFolders(c.gallery,c.library.state!!.virtualAlbums,readGalleryHistory(w)).size)
             assertTrue(nodes().any{matches(it,"12 张")});assertTrue(nodes().any{matches(it,"8 张")});snapshot("batch-root")
             val card=nodes().first{it.config.getOrNull(SemanticsProperties.ContentDescription)?.any{t->t.startsWith("图库相册 ")}==true}.boundsInRoot.center
             scene.sendPointerEvent(PointerEventType.Press,card,button=PointerButton.Primary);frames();scene.sendPointerEvent(PointerEventType.Release,card,button=PointerButton.Primary)
             withTimeout(3000){while(c.gallery.organizationKind=="batches")frames()};assertEquals("batch",c.gallery.organizationKind,"中央卡片也必须进入批次，不能退化成普通图片")
             click("批次")
-            click("风景构图");assertEquals("batch",c.gallery.organizationKind);assertTrue(nodes().any{matches(it,"湖畔晨光")});snapshot("batch-groups")
+            nodes().first{n->n.config.getOrNull(SemanticsProperties.Text)?.any{it.text.startsWith("风景构图")}==true&&n.config.getOrNull(SemanticsActions.OnClick)!=null}.config[SemanticsActions.OnClick].action!!.invoke();frames();assertEquals("batch",c.gallery.organizationKind);assertTrue(nodes().any{matches(it,"湖畔晨光")});snapshot("batch-groups")
             click("满意作品");assertEquals("album",c.gallery.organizationKind);snapshot("virtual-album")
             val divider=nodes().first{matches(it,"组织树分割线")}.boundsInRoot
             scene.sendPointerEvent(PointerEventType.Move,divider.center);frames();snapshot("divider-hover")
@@ -83,7 +84,10 @@ class GalleryLayoutParityTest {
             scene.sendPointerEvent(PointerEventType.Press,divider.center,button=PointerButton.Primary);scene.sendPointerEvent(PointerEventType.Release,divider.center,button=PointerButton.Primary);frames();assertFalse(c.gallery.treeOpen)
             val reopen=nodes().first{matches(it,"展开组织树")}.boundsInRoot.center
             scene.sendPointerEvent(PointerEventType.Press,reopen,button=PointerButton.Primary);scene.sendPointerEvent(PointerEventType.Release,reopen,button=PointerButton.Primary);frames();assertTrue(c.gallery.treeOpen);assertEquals("album",c.gallery.organizationKind)
-            click("全部来源 ▾");assertEquals(13f,size("✓ 全部来源"));assertEquals(13f,size("目录收集"));snapshot("source-menu");dismiss()
+            click("全部来源 ▾");assertEquals(13f,size("✓ 全部来源"));assertEquals(13f,size("目录收集"))
+            val menuItem=nodes().first{matches(it,"目录收集")&&it.config.getOrNull(SemanticsActions.OnClick)!=null}
+            assertTrue(menuItem.boundsInRoot.height<=36f,"单行菜单必须使用桌面紧凑行距，而非48dp触摸行高")
+            snapshot("source-menu");dismiss()
             click("同时包含 ▾");assertEquals(13f,size("包含任一"));snapshot("tag-mode-menu");dismiss()
             click("操作");assertEquals(13f,size("新建虚拟相册…"));snapshot("operations-menu");dismiss()
             click("导入图片");assertEquals(13f,size("导入目录（本层）"));snapshot("import-menu");dismiss()

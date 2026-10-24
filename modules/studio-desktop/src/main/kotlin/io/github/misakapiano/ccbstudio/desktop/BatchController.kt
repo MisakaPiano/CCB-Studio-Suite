@@ -28,7 +28,7 @@ internal class BatchController(private val c:WorkbenchController) {
     val canUndo get()=editing && past.lastOrNull()?.after?.groups==state.groups
     val canRedo get()=editing && future.lastOrNull()?.before?.groups==state.groups
     val editing get()=!state.running && state.mode!="ENDED" && state.error==null && !changing
-    init{queue.recover();state=queue.state}
+    init{queue.recover();queue.ensureCreatedAt();state=queue.state}
     fun refresh(){state=queue.state}
     fun open(){shown=true;c.view="创作"}
     fun action(body:()->Unit) {
@@ -100,6 +100,7 @@ internal class BatchController(private val c:WorkbenchController) {
     fun end()=action{queue.end();past=emptyList();future=emptyList()}
     suspend fun drain(){editJob?.join();runner?.cancelAndJoin();withContext(Dispatchers.IO){queue.pause()};refresh()}
     fun newBatch()=action{queue.newBatch();past=emptyList();future=emptyList();selected=emptySet();current=null}
+    fun resetAfterArchive(){refresh();past=emptyList();future=emptyList();selected=emptySet();current=null}
     fun results(){val ids=state.groups.flatMap{g->g.slots.flatMap{it.results}}.toSet();c.gallery.enterBatch(ids,state.name,"batch:${state.id}");c.selection=emptySet();c.current=ids.lastOrNull();c.view="图库";shown=false}
     companion object {
         fun defaultDirections(draft:NovelAiStudioDraft)=listOf("横" to NovelAiAspectRatio.LANDSCAPE,"纵" to NovelAiAspectRatio.PORTRAIT,"方" to NovelAiAspectRatio.SQUARE).map{(label,aspect)->

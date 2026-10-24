@@ -49,7 +49,7 @@ class GalleryOrganizationWorkflowTest {
             assertEquals(listOf(id),c.library.repository.load().virtualAlbums.single().images)
             c.library.undo();idle();assertTrue(c.library.repository.load().virtualAlbums.single().images.isEmpty())
             c.library.redo();idle();assertEquals(listOf(id),c.library.repository.load().virtualAlbums.single().images)
-            click("精选");assertEquals("album",c.gallery.organizationKind)
+            click("展开虚拟相册");click("精选");assertEquals("album",c.gallery.organizationKind)
             click("收起组织树");assertFalse(c.gallery.treeOpen);click("展开组织树");assertTrue(c.gallery.treeOpen)
             c.gallery.treeWidth=240f;frames();assertTrue(nodes().any{matches(it,"图库组织树")})
             val path=Path.of("build/gallery-organization-113/native-gallery.png");Files.createDirectories(path.parent);scene.render(System.nanoTime()).use{it.encodeToData()!!.use{Files.write(path,it.bytes)}}

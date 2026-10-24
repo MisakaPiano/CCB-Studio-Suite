@@ -40,6 +40,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     val animation=GalleryAnimationController(this,budgetRoot.parent.resolve("apng-exports"))
     val editor by lazy {TypesetEditorController(this)}
     val batch by lazy {BatchController(this)}
+    val generations by lazy {GenerationManagement(this)}
     val vault=SecretVault(workspace.root.resolve("secrets"))
     val modelAccounts by lazy{ModelAccountsController(this)}
     val naiSettings by lazy{NaiSettingsController(this)}
@@ -60,7 +61,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     var intermediate by mutableStateOf<ByteArray?>(null);private set
     var usage by mutableStateOf<NovelAiAccountUsage?>(null);private set
     var usageAt by mutableStateOf<Long?>(null);private set
-    var current by mutableStateOf(state.jobs.lastOrNull()?.let{it.composedResults.lastOrNull()?:it.results.lastOrNull()})
+    var current by mutableStateOf(GenerationOrganizations(workspace).manualImages().lastOrNull())
     var selection by mutableStateOf(setOf<String>())
     var documentAssets by mutableStateOf(emptyList<AssetStore.Asset>());private set
     var assets by mutableStateOf(visibleAssets());private set
@@ -307,14 +308,15 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
         val prepared=workspace.beginTask().use{guidanceFor(account).prepare(requested)}
         val launch=requested.copy(imageGuidance=prepared.retainedGuidance)
         val total=if(launch.continuousModeEnabled)launch.continuousTargetCount else launch.activeSettings.count
+        val manual=generations.repository.ensureManual()
         intermediate=null
         var completed=0
         while(completed<total) {
             currentCoroutineContext().ensureActive()
             val batch=launch.withActiveSettings(launch.activeSettings.copy(count=minOf(launch.activeSettings.count,total-completed)))
             val result=StudioGenerator(workspace,vault,admission,http).generate(account,batch,prepared.guidance,prepared.requestSize,if(launch.imageGuidance.action==NovelAiGenerationAction.INPAINT)prepared.compose else null,onIntermediate={intermediate=it},onResult={id->
-                intermediate=null;current=id;assets=visibleAssets();message="已保存 ${++completed}/$total 张"
-            },designApplication=designApplication)
+                intermediate=null;current=id;state=workspace.state;assets=visibleAssets();message="已保存 ${++completed}/$total 张"
+            },designApplication=designApplication,manualBatchId=manual.id)
             check(result.state=="COMPLETED")
         }
     }
@@ -449,6 +451,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
 }
 
 internal fun launchStudio(args:Array<String>) {
+    DesktopEntrypoints.initialize()
     fun option(name:String)=args.indexOf(name).takeIf{it>=0}?.let{args.getOrNull(it+1)}
     StudioBrand.configureDefaultWindows()
     val home=Paths.get(System.getenv("LOCALAPPDATA"),"CCBStudioSuite")
@@ -469,6 +472,9 @@ internal fun launchStudio(args:Array<String>) {
         fun close(){if(!closing){closing=true;scope.launch{try{c.close();exitApplication()}catch(e:Exception){closing=false;c.problem=if(e is DataProblem && e.status=="ACCOUNT_DRAFT_UNSAVED")"账户档案尚未保存，请在账户页保存或放弃修改后再关闭" else "保存或排水尚未完成，窗口保持打开"}}}}
         c.requestClose=::close
         LaunchedEffect(Unit){withFrameNanos{};c.updater.checkOnStartup()}
+        if(updatePlan==null&&System.getProperty("jpackage.app-path")!=null)LaunchedEffect(Unit){
+            runCatching{withContext(Dispatchers.IO){DesktopEntrypoints.ensure(workspace.root,runtime)}}.onFailure{c.message="程序已启动；固定入口尚未准备：${it.message?.take(120)}"}
+        }
         c.installUpdate={if(!closing){closing=true;scope.launch{
             var handoff:Path?=null
             var teardownStarted=false
@@ -488,7 +494,7 @@ internal fun launchStudio(args:Array<String>) {
                 while(true) {
                     val status=withContext(Dispatchers.IO){val p=updatePlan.parent.resolve("result.json");if(Files.exists(p))Json.parseToJsonElement(Files.readString(p)).jsonObject else null}
                     when(status?.get("status")?.jsonPrimitive?.content){
-                        "COMPLETE"->{c.message="更新完成：新版程序、资料与凭据状态已验证$credentialNotice";return@withTimeoutOrNull true}
+                        "COMPLETE"->{runCatching{withContext(Dispatchers.IO){DesktopEntrypoints.ensure(workspace.root,runtime)}}.onFailure{c.problem="更新已完成，但固定入口准备未完成；可在更新页重新创建入口"};c.message="更新完成：新版程序、资料与凭据状态已验证$credentialNotice";return@withTimeoutOrNull true}
                         "FAILED_RETAINED"->{c.problem="更新交接未完成；现有资料和旧程序均保留";return@withTimeoutOrNull false}
                     };delay(200)
                 }
@@ -496,6 +502,7 @@ internal fun launchStudio(args:Array<String>) {
             if(completed==null)c.problem="更新交接超时，尚不能确认完成；现有资料和旧程序均保留"
         }
         Window(onCloseRequest=::close,title="CCB Studio Suite · 工作台",undecorated=DesktopWindowChrome.isWindows,icon=StudioBrand.painter,state=rememberWindowState(width=1320.dp,height=880.dp)) {
+            LaunchedEffect(window){withFrameNanos{};if(System.getProperty("jpackage.app-path")!=null)runCatching{withContext(Dispatchers.IO){DesktopEntrypoints.configureWindow(window)}}.onFailure{c.message="任务栏入口设置未完成，可在更新页重新创建入口"}}
             DisposableEffect(window){StudioFileDialogs.attach(window){c.problem=it};onDispose{StudioFileDialogs.detach(window)}}
             val chrome=rememberDesktopWindowChrome(window,::close);SideEffect{chrome.appearance(true)}
             MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel,onPrimary=Ink,onSurface=Color(0xffe6edf3))) {Workbench(c,chrome,closing)}
@@ -511,7 +518,7 @@ internal fun launchStudio(args:Array<String>) {
         if(c.batch.detached)Window(onCloseRequest={c.batch.detached=false;c.batch.shown=true},title="CCB Studio Suite · 批量生图",icon=StudioBrand.painter,
             resizable=true,state=rememberWindowState(width=1180.dp,height=820.dp)) {
             SideEffect{window.minimumSize=java.awt.Dimension(800,600)}
-            MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel,onPrimary=Ink,onSurface=DesktopBootstrapColors.foreground)) {BatchWorkspace(c,true)}
+            MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel,onPrimary=Ink,onSurface=DesktopBootstrapColors.foreground)) {GenerationManagementDialogs(c,true);BatchWorkspace(c,true)}
         }
     }
 }
@@ -528,6 +535,7 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
 @Composable private fun WorkbenchContent(c:WorkbenchController,chrome:DesktopWindowChrome,closing:Boolean) {
     LibrarySynchronization(c)
     AssetArchiveConfirmation(c)
+    GenerationManagementDialogs(c)
     Surface(color=Ink,contentColor=DesktopBootstrapColors.foreground,modifier=Modifier.onPreviewKeyEvent{event->
         if(!c.maintenance && event.type==KeyEventType.KeyDown && event.isCtrlPressed && event.isShiftPressed && event.key==Key.U){c.view="更新";true}else false
     }) {
@@ -551,7 +559,7 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
             Text(c.library.automaticNotice,Modifier.weight(1f),fontSize=12.sp)
             TextButton(onClick={c.library.stopCollection()}){Text("停止目录收集")}
         }
-        Box(Modifier.weight(1f).fillMaxWidth()) {when(c.view){"AI 设计"->if(c.designDetached)Column(Modifier.padding(20.dp)){Text("AI 设计已在独立窗口打开");StudioAction("切回主窗口编辑",onClick=c::reattachDesign)}else DesignWorkspace(c);"图库"->GalleryWorkspace(c);"编辑"->TypesetWorkspace(c);"资产管理"->LibraryWorkspace(c);"账户"->AccountsWorkspace(c);"更新"->UpdateWorkspace(c.updater,c.workspace.root.toString(),c.installUpdate);else->CreationWorkspace(c)}}
+        Box(Modifier.weight(1f).fillMaxWidth()) {when(c.view){"AI 设计"->if(c.designDetached)Column(Modifier.padding(20.dp)){Text("AI 设计已在独立窗口打开");StudioAction("切回主窗口编辑",onClick=c::reattachDesign)}else DesignWorkspace(c);"图库"->GalleryWorkspace(c);"编辑"->TypesetWorkspace(c);"资产管理"->LibraryWorkspace(c);"账户"->AccountsWorkspace(c);"更新"->UpdateWorkspace(c.updater,c.workspace.root.toString(),onShortcut={kind->c.run("创建程序入口"){val path=DesktopEntrypoints.create(kind,c.workspace.root,c.runtimeRoot);c.operationNotice="已创建入口：$path；右键可固定到任务栏"}},onInstall=c.installUpdate);else->CreationWorkspace(c)}}
         Row(Modifier.fillMaxWidth().padding(8.dp),verticalAlignment=Alignment.CenterVertically) {
             Text(if(closing)"正在保存并排水…"else c.message,Modifier.weight(1f),fontSize=12.sp,color=Quiet)
             Text(if(c.saved)"创作草稿已保存" else "创作草稿保存中…",fontSize=12.sp)
@@ -663,10 +671,16 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
     var viewing by remember{mutableStateOf<List<String>?>(null)}
     var initial by remember{mutableStateOf(0)}
     val scope=rememberCoroutineScope()
-    val available=c.assets.filterNot{it.request().id().toString() in c.library.archived}
+    val manualIds=GenerationOrganizations(c.workspace).manualImages().toSet()
+    val available=c.assets.filter{it.request().id().toString() in manualIds && it.request().id().toString() !in c.library.archived}
     fun viewerIds(id:String)=(available.map{it.request().id().toString()}+id).distinct()
     val interim by produceState<ImageBitmap?>(null,c.intermediate){value=withContext(Dispatchers.IO){c.intermediate?.let{bytes->runCatching{val decoded=EditorRenderer.decode(bytes);try{decoded.toComposeImageBitmap()}finally{decoded.flush()}}.getOrNull()}}}
     Column(Modifier.fillMaxSize()) {
+        Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically){
+            Text(c.state.generationOrganization.batches.find{it.id==c.state.generationOrganization.currentManual}?.title?:"当前手动批次",Modifier.weight(1f),maxLines=1)
+            StudioAction("保存并归档",manualIds.isNotEmpty()&&!c.busy&&!c.batch.state.running){c.generations.openArchive("manual")}
+            StudioAction("历史批次"){c.generations.openHistory()}
+        }
         if(!rail)c.current?.let{id->StudioActions{
             StudioAction("图像工具",!c.busy){scope.launch{toolImage=id to withContext(Dispatchers.IO){c.workspace.bytes(id)}}}
             StudioAction("用于图像引导",!c.busy){c.section="图像引导"}
@@ -682,7 +696,7 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
         val preview:(String)->Unit={path->viewing=viewerIds(path.removePrefix("asset:"));initial=viewing!!.indexOf(path.removePrefix("asset:")).coerceAtLeast(0)}
         if(rail)Box(Modifier.weight(1f)){StudioVerticalFilmstrip(paths,selected,c::readAsset,onPreview=preview,onSelect=select)}
         else StudioFilmstrip(paths,selected,c::readAsset,onPreview=preview,onSelect=select)
-        StatusText("${c.assets.size} 份原件 · 原始字节保全")
+        StatusText("本次手动生成 ${available.size} 张 · 原始字节保全")
     }
     toolImage?.let{(id,bytes)->DesktopImageToolsDialog(bytes,c.picker,{toolImage=null},onProcessedImage={c.saveToolCopy(id,it)})}
     viewing?.let{ids->StudioAssetViewer(c,ids,initial){viewing=null}}

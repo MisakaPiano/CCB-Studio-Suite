@@ -93,6 +93,11 @@ internal class LibraryController(private val c:WorkbenchController) {
         write(before,after);refresh()
         if(before!=after)rememberEdit(Edit("虚拟相册",{write(after,before)},{write(before,after)}));onSaved()
     }
+    fun changeOrganization(onSaved:()->Unit={},transform:(GenerationOrganization)->GenerationOrganization)=c.run("调整项目与批次组织") {
+        val repo=GenerationOrganizations(c.workspace);val before=repo.state;val after=transform(before);repo.change(before,after)
+        if(before!=after)rememberEdit(Edit("项目与批次组织",{repo.change(after,before)},{repo.change(before,after)}))
+        onSaved()
+    }
     fun labels(id:String)=state?.labels?.get(id)?:AssetLabels()
     fun saveLabels(id:String,alias:String,tags:String)=changeLabels(setOf(id)){AssetLabels(alias.trim(),tags.split(',', '，').map{it.trim()}.filter{it.isNotEmpty()}.distinct())}
     fun changeLabels(ids:Set<String>,onSaved:()->Unit={},transform:(AssetLabels)->AssetLabels)=c.run("保存资产标签") {

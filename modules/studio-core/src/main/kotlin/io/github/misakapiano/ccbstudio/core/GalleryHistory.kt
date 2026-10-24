@@ -66,6 +66,8 @@ fun readGalleryHistory(workspace:StudioWorkspace):GalleryHistoryProjection=works
                 NovelAiGenerationHistoryImage(id,receipt.recipe.settings.seed+index)
             }
             receipt.batchOrigin?.let{origin->ids.forEach{origins[it]=origin}}
+            receipt.manualBatchId?.let{batch->require(batch==job.manualBatchId);ids.forEach{id->
+                val image=images.single{it.path==id};origins[id]=BatchResultOrigin(batch,batch,"手动生成",job.id,"手动",1,image.seed,"手动批次")}}
             entries+=NovelAiGenerationHistoryEntry(job.id,images,receipt.recipe,job.createdAt)
         }catch(e:Exception){ids.forEach{unavailable[it]=e.javaClass.simpleName}}
     }

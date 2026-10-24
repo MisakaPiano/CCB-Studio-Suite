@@ -91,7 +91,7 @@ internal class StudioUpdateController(private val scope:CoroutineScope,cache:Pat
     suspend fun closeAndDrain(){closed=true;job?.cancelAndJoin()}
 }
 
-@Composable internal fun UpdateWorkspace(c:StudioUpdateController,workspacePath:String?=null,onInstall:(()->Unit)?=null) {
+@Composable internal fun UpdateWorkspace(c:StudioUpdateController,workspacePath:String?=null,onShortcut:((String)->Unit)?=null,onInstall:(()->Unit)?=null) {
     var confirm by remember{mutableStateOf(false)}
     val runningVersion=remember{runCatching {
         val app=Path.of(requireNotNull(System.getProperty("jpackage.app-path"))).parent
@@ -112,6 +112,10 @@ internal class StudioUpdateController(private val scope:CoroutineScope,cache:Pat
         Text("应用更新",style=MaterialTheme.typography.h5)
         Text("当前运行版本：$runningVersion")
         workspacePath?.let{Text("当前工作区：$it",color=Quiet)}
+        if(onShortcut!=null){Row(horizontalArrangement=Arrangement.spacedBy(8.dp)){
+            StudioAction("创建桌面快捷方式",!c.busy){onShortcut("desktop")}
+            StudioAction("添加到开始菜单",!c.busy){onShortcut("start")}
+        };Text("入口随更新保持有效。右键桌面或开始菜单中的 CCB Studio Suite，可选择固定到任务栏或开始菜单。以前固定的旧版本图标请取消，再从新入口固定一次，以后更新无需重做。",color=Quiet)}
         Text("更新签名与安装身份由随包固定的信任根验证；资料与下载缓存分别保存。")
         Text("F5 检查 · Ctrl+D 确认下载 · Ctrl+Shift+I 打开安装确认",color=Quiet)
         StudioAction("检查更新",!c.busy){c.check()}

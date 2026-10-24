@@ -27,7 +27,7 @@ class StudioUpdateTest {
         assertTrue(calls.none{it});next.closeAndDrain();scope.cancel()
     }
     @Test fun actualUpdateScreenRequiresDownloadConfirmationAndDoesNotClaimInstall()=runBlocking {
-        val scope=CoroutineScope(SupervisorJob()+awt);val calls=mutableListOf<Boolean>();var installs=0
+        val scope=CoroutineScope(SupervisorJob()+awt);val calls=mutableListOf<Boolean>();var installs=0;val shortcuts=mutableListOf<String>()
         val controller=StudioUpdateController(scope,root()){download->calls+=download;buildJsonObject {
             put("status",if(download)"DOWNLOADED_VERIFIED" else "AVAILABLE");put("displayVersion","0.2.0-internal");put("channel","internal");put("notes","合成回执：不执行安装");put("sourceSha","a".repeat(40));put("bytes",1234)
         }}
@@ -35,7 +35,7 @@ class StudioUpdateTest {
             val scene=ImageComposeScene(900,700,coroutineContext=coroutineContext)
             try {
                 scene.setContent {MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)) {
-                    Surface(color=Ink,contentColor=com.example.chatbar.desktop.DesktopBootstrapColors.foreground){UpdateWorkspace(controller,"synthetic-restored-workspace"){installs++}}
+                    Surface(color=Ink,contentColor=com.example.chatbar.desktop.DesktopBootstrapColors.foreground){UpdateWorkspace(controller,"synthetic-restored-workspace",onShortcut={shortcuts+=it}){installs++}}
                 }}
                 suspend fun frames(){repeat(4){scene.render().close();delay(30)}}
                 fun nodes():List<SemanticsNode>{
@@ -43,7 +43,8 @@ class StudioUpdateTest {
                     return scene.semanticsOwners.flatMap{walk(it.rootSemanticsNode)}
                 }
                 suspend fun click(text:String){nodes().first{it.config.getOrNull(SemanticsProperties.Text)?.any{t->t.text==text}==true && it.config.getOrNull(SemanticsActions.OnClick)!=null}.config[SemanticsActions.OnClick].action!!.invoke();frames();controller.job?.join();frames()}
-                frames();assertTrue(calls.isEmpty());scene.sendKeyEvent(KeyEvent(Key.F5,KeyEventType.KeyDown));scene.sendKeyEvent(KeyEvent(Key.F5,KeyEventType.KeyUp));frames();controller.job?.join();frames();assertEquals(listOf(false),calls)
+                frames();click("创建桌面快捷方式");click("添加到开始菜单");assertEquals(listOf("desktop","start"),shortcuts);assertEquals(0,installs)
+                assertTrue(calls.isEmpty());scene.sendKeyEvent(KeyEvent(Key.F5,KeyEventType.KeyDown));scene.sendKeyEvent(KeyEvent(Key.F5,KeyEventType.KeyUp));frames();controller.job?.join();frames();assertEquals(listOf(false),calls)
                 assertTrue(controller.message.contains("尚未下载或安装"));scene.sendKeyEvent(KeyEvent(Key.D,KeyEventType.KeyDown,isCtrlPressed=true));scene.sendKeyEvent(KeyEvent(Key.D,KeyEventType.KeyUp,isCtrlPressed=true));frames();controller.job?.join();frames();assertEquals(listOf(false,true),calls)
                 assertEquals("下载完成，安全校验已通过",controller.message)
                 assertTrue(nodes().any{it.config.getOrNull(SemanticsProperties.Text)?.any{t->t.text.contains("目前尚未安装")}==true})

@@ -2,7 +2,7 @@
 
 No old-binary/data rollback, forced writer termination, public trust changes or keys.
 """
-import argparse,base64,ctypes,json,os,re,subprocess,time,uuid
+import argparse,base64,ctypes,json,os,re,subprocess,time,uuid,hashlib
 from ctypes import wintypes
 from pathlib import Path
 from studio_update import Installed,UpdateRejected,exclusive,inspect,create_updater,authorize_download
@@ -24,6 +24,18 @@ def data_destination(plan,source,identity,custom):
 def create_launcher(final,data,runtime):
     """Windows Shell Link preserves Unicode paths without batch parsing/codepage rules."""
     launcher=final.parent/'Launch-CCB-Studio.lnk'
+    bundled=final/'updater/CCBStudioLauncher.exe'
+    if bundled.is_file():
+        stable=no_reparse(final.parent/'CCBStudioLauncher.exe')
+        body=bundled.read_bytes()
+        if not stable.exists() or stable.read_bytes()!=body:
+            temporary=stable.with_suffix('.'+uuid.uuid4().hex+'.tmp')
+            temporary.write_bytes(body);os.replace(temporary,stable)
+        config=json.loads((final/'update-config.json').read_text(encoding='utf-8'))
+        atomic_json(no_reparse(final.parent/'launch-current.json'),dict(format=1,version=config['version'],installed=str(final),data=str(data),runtime=str(runtime),exeSha256=hashlib.sha256((final/'CCBStudioSuitePreview.exe').read_bytes()).hexdigest()))
+        result=subprocess.run([str(stable),'--shortcut',str(launcher)],creationflags=subprocess.CREATE_NO_WINDOW)
+        if result.returncode:raise UpdateRejected('Could not create stable application shortcut')
+        return launcher
     temporary=launcher.with_name(launcher.stem+'.'+uuid.uuid4().hex+'.tmp.lnk')
     def literal(value):
         value=str(value)

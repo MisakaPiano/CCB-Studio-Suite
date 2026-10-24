@@ -29,6 +29,7 @@ internal data class GalleryHistoryIdentity(val assets:List<Pair<String,String>>,
 internal class GalleryViewState(val namespace:String="",rootLabel:String="全部资产") {
     val organizationKind get()=scope.identity.takeIf{it.startsWith("org:")}?.split(":")?.getOrNull(1)?:"all"
     val organizationId get()=scope.identity.takeIf{it.startsWith("org:")}?.split(":")?.getOrNull(2)
+    var expandedOrganizations by mutableStateOf(emptySet<String>())
     var treeOpen by mutableStateOf(true)
     var treeWidth by mutableStateOf(160f)
     var organizationDialog by mutableStateOf<String?>(null)
@@ -122,11 +123,14 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
     val matchesDate=remember(g.date){libraryDatePredicate(g.date)}
     val promptMatches=remember(projection,g.query){NovelAiHistoryFilterPolicy.filter(projection.entries,g.query,null).map{it.image.path}.toSet()}
     val organization=c.library.state?.virtualAlbums.orEmpty()
-    val organizationIds=remember(organization,g.organizationKind,g.organizationId,projection){when(g.organizationKind){
+    val organizationIds=remember(c.state.generationOrganization,organization,g.organizationKind,g.organizationId,projection){when(g.organizationKind){
         "albums"->organization.flatMap{it.images}.toSet()
         "album"->g.organizationId?.takeIf{id->organization.any{it.id==id}}?.let{VirtualAlbums.members(organization,it)}?:emptySet()
+        "organizations","folder"->c.state.generationOrganization.batches.filter{it.archivedAt!=null&&(g.organizationKind=="organizations"||it.parent in c.state.generationOrganization.descendants(g.organizationId!!))}.flatMap{generationBatchImages(c.state.generationOrganization,it.id,projection)}.toSet()
+        "fold","members"->g.scope.ids
+        "type"->projection.batchOrigins.filterValues{o->(c.state.generationOrganization.batches.find{it.id==o.batchId}?.kind?:"auto")==g.organizationId}.keys
         "batches"->projection.batchOrigins.keys
-        "batch"->projection.batchOrigins.filterValues{it.batchId==g.organizationId}.keys
+        "batch"->generationBatchImages(c.state.generationOrganization,g.organizationId!!,projection)
         "group"->projection.batchOrigins.filterValues{it.groupId==g.organizationId}.keys
         else->null
     }}
@@ -143,13 +147,13 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
     val visibleIds=remember(visible){visible.map{it.request().id().toString()}}
     val visibleSet=remember(visibleIds){visibleIds.toSet()}
     val orderedSelection=remember(visibleIds,allIds,activeIds,c.selection){orderedLibrarySelection(visibleIds,allIds,activeIds,c.selection)}
-    val orgFolders=remember(organization,g.organizationKind,g.organizationId,projection){organizationFolders(g,organization,projection)}
+    val orgFolders=remember(c.state.generationOrganization,organization,g.organizationKind,g.organizationId,projection){organizationFolders(g,organization,projection,c.state.generationOrganization)}
     val folderPairs=orgFolders.mapNotNull{folder->(folder.ids intersect visibleSet).takeIf{it.isNotEmpty()}?.let{folder.album(it) to folder}}
     // Sorting can change the cover (and hence album.key); every member retains its folder identity.
     val folderByKey=folderPairs.flatMap{(album,folder)->album.images.map{it.key to folder}}.toMap()
     val albums=remember(organization,g.organizationKind,g.organizationId,orgFolders,visibleIds,projection,g.fold,g.directoryFold,g.tagFold,g.sort,c.assets,c.library.state?.folders,labels){
         val leafIds=when(g.organizationKind){
-            "batches","batch","albums"->emptyList()
+            "batches","type","batch","albums","organizations","folder"->emptyList()
             "album"->visibleIds.filter{it in organization.find{it.id==g.organizationId}?.images.orEmpty()}
             else->visibleIds
         }

@@ -2,6 +2,7 @@
 package io.github.misakapiano.ccbstudio.desktop
 
 import androidx.compose.foundation.*
+import com.composables.icons.lucide.Play
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.layout.*
@@ -78,7 +79,7 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
 }
 @Composable private fun BatchMenu(label:String,enabled:Boolean=true,items:List<Pair<String,()->Unit>>,icon:androidx.compose.ui.graphics.vector.ImageVector?=null) {
     var open by remember{mutableStateOf(false)}
-    Box{LibraryAction("$label ▾",enabled,expanded=open,icon=icon){open=true};StudioMenu(open,{open=false}){items.forEach{(text,action)->StudioMenuItem({open=false;action()}){Text(text)}}}}
+    Box{LibraryAction("$label ▾",enabled,icon=icon){open=true};StudioMenu(open,{open=false}){items.forEach{(text,action)->StudioMenuItem({open=false;action()}){Text(text)}}}}
 }
 
 @Composable internal fun BatchWorkspace(c:WorkbenchController,detached:Boolean=false) {
@@ -90,7 +91,7 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
     var now by remember{mutableStateOf(System.currentTimeMillis())}
     LaunchedEffect(s.mode,s.error){while(true){now=System.currentTimeMillis();delay(1000)}}
     val group=s.groups.firstOrNull{it.id==b.current}?:s.groups.firstOrNull()
-    val addItems=listOf("当前创作参数" to {b.addCurrent()},"Prompt 资产" to {source="prompt"},"图片参数与来源" to {source="image"},"空白分组" to {blank=true},"归档当前并新建批次" to {confirm="new"})
+    val addItems=listOf("当前创作参数" to {b.addCurrent()},"Prompt 资产" to {source="prompt"},"图片参数与来源" to {source="image"},"空白分组" to {blank=true})
     val canRemove=b.editing&&b.selected.isNotEmpty()&&s.groups.none{it.id in b.selected&&it.started}
     fun commands()=buildList<Pair<String,()->Unit>> {
         if(b.editing)add("添加分组…" to {contextAdd=true})
@@ -118,12 +119,13 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
     }) {
         LibraryBand {
             LibraryAction("返回创作"){b.shown=false;if(detached)b.detached=false}
-            Text(s.name,maxLines=1)
+            Text(s.name+(s.createdAt.takeIf{it>0}?.let{" · "+GenerationBatch(s.id,"auto",s.name,it).title.substringAfterLast(" · ")}.orEmpty()),maxLines=1)
+            BatchMenu("批次管理",items=listOf("保存并归档…" to {c.generations.openArchive("auto",detached)},"历史批次…" to {c.generations.openHistory(detached)},"管理项目与章节…" to {c.generations.newFolder(detached=detached)}),icon=DesktopAppIcons.History)
             Text(c.state.accounts.firstOrNull{it.id==s.accountId}?.alias?:"未选账户",color=LibraryMuted)
             Spacer(Modifier.weight(1f))
             LibraryAction(if(detached)"返回主窗口"else"独立窗口"){b.detached=!detached;b.shown=detached}
-            LibraryAction(if(s.running)"暂停"else if(s.groups.any{it.started})"继续"else"开始",!b.changing&&s.total>0&&s.mode !in setOf("ERROR","DONE","ENDED"),icon=if(s.running)DesktopAppIcons.Pause else DesktopAppIcons.Send) {if(s.running)b.pause()else confirm="start"}
-            BatchMenu("停止设置",items=listOf("完成当前后暂停" to {b.pause()},"归档并新建批次…" to {confirm="new"},"异常处理：取消等待…" to {confirm="cancel"}),icon=DesktopAppIcons.Settings)
+            LibraryAction(if(s.running)"暂停"else if(s.groups.any{it.started})"继续"else"开始",!b.changing&&s.total>0&&s.mode !in setOf("ERROR","DONE","ENDED"),icon=if(s.running)DesktopAppIcons.Pause else com.composables.icons.lucide.Lucide.Play) {if(s.running)b.pause()else confirm="start"}
+            LibraryAction("运行设置",icon=DesktopAppIcons.Settings){settings=true}
             LibraryAction("结束批次",s.total>0&&s.mode !in setOf("DONE","ENDED")&&!s.endRequested,icon=DesktopAppIcons.Stop){confirm="end"}
         }
         LibraryBand(true){
@@ -177,7 +179,7 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
     }
     }
     }
-    if(settings)BatchSettings(c){settings=false}
+    if(settings)BatchSettings(c,onCancelWait={settings=false;confirm="cancel"}){settings=false}
     if(contextAdd)BatchDialog("添加分组",{contextAdd=false}){addItems.forEach{(label,action)->LibraryAction(label){contextAdd=false;action()}}}
     if(blank||edit!=null)BatchGroupEditor(c,edit){blank=false;edit=null}
     source?.let{kind->BatchSourcePicker(c,kind){source=null}}
@@ -279,7 +281,7 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
     }
 }
 
-@Composable private fun BatchSettings(c:WorkbenchController,onClose:()->Unit) {
+@Composable private fun BatchSettings(c:WorkbenchController,onCancelWait:()->Unit={},onClose:()->Unit) {
     val b=c.batch;var p by remember{mutableStateOf(b.state.policy)};var account by remember{mutableStateOf(b.state.accountId?:c.naiId)}
     BatchDialog("节奏、账户与额度",onClose){
         CompactChoice("NAI 账户",c.state.accounts.filter{it.service=="NAI"},c.state.accounts.firstOrNull{it.id==account},{it.alias}){account=it.id}
@@ -292,7 +294,7 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
         LibraryToggle("轮询各组",p.roundRobin){p=p.copy(roundRobin=!p.roundRobin)}
         number("Anlas 总上限（0 = 仅免费）",p.anlasLimit,0..100000){p=p.copy(anlasLimit=it)}()
         Text("每次请求前确认额度；未知结果的预计消耗仍计入上限。等待期间不自动重试错误，429 必须手动确认。",color=LibraryMuted)
-        LibraryAction("保存设置",!b.state.running&&account!=null){b.configure(account,p);onClose()}
+        LibraryAction("保存设置",!b.state.running&&account!=null){b.configure(account,p);onClose()};LibraryAction("异常处理：取消等待…",b.state.mode=="RUNNING",onClick=onCancelWait)
     }
 }
 

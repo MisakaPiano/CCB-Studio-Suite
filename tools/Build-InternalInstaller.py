@@ -3,7 +3,7 @@
 Internal by default; explicit preview profile supported. Never publishes a release.
 Payloads never include data roots. Existing destinations are rejected, not overlaid.
 """
-import argparse,hashlib,json,re,shutil,subprocess
+import argparse,hashlib,json,re,shutil,subprocess,os
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -44,18 +44,18 @@ def release_identity(version,metadata_url,targets_url,profile=None):
         raise ValueError('Preview endpoints must match pinned GitHub repository')
     return dict(profile,internalTest=False)
 
-def build(app,runtime,bootstrap,destination,version,metadata_url,targets_url,build_evidence,profile=None):
+def build(app,runtime,bootstrap,destination,version,metadata_url,targets_url,build_evidence,profile=None,consume_app_image=False):
     identity=release_identity(version,metadata_url,targets_url,profile)
     destination=destination.resolve()
     if not destination.is_relative_to(ROOT/'.local') or destination.exists():raise ValueError('New Suite-local destination required')
     summary=json.loads((build_evidence/'summary.json').read_text(encoding='utf-8'))
     if summary['exitCode']!=0 or not summary['sourceStable'] or ':studio-desktop:createDistributable' not in summary['arguments']:raise ValueError('No verified actual app build')
     source=json.loads((build_evidence/'source-before.json').read_text(encoding='utf-8'))
-    if any(digest(ROOT/p)!=h for p,h in source.items() if p.startswith('modules/')):raise ValueError('Application sources changed since build')
+    if any(digest(ROOT/p)!=h for p,h in source.items() if p.startswith(('modules/','tools/windows-launcher/'))):raise ValueError('Application or native launcher sources changed since build')
     app_sha=summary['baseCommit']
     sha=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
     # The app image can be reused after an updater-only change; record both origins.
-    tracked=subprocess.check_output(['git','diff','HEAD','--name-only','--','modules','tools/update-runtime','tools/Build-InternalInstaller.py','tools/Prepare-UpdaterRuntime.py'],cwd=ROOT,text=True)
+    tracked=subprocess.check_output(['git','diff','HEAD','--name-only','--','modules','tools/update-runtime','tools/windows-launcher','tools/Build-InternalInstaller.py','tools/Prepare-UpdaterRuntime.py'],cwd=ROOT,text=True)
     if tracked.strip():raise ValueError('Commit package inputs before building a fixed installer')
     if not re.fullmatch('[0-9a-f]{40}',sha) or version<1:raise ValueError('Invalid identity')
     if not (app/'CCBStudioSuitePreview.exe').is_file():raise ValueError('Actual app launcher missing')
@@ -66,8 +66,19 @@ def build(app,runtime,bootstrap,destination,version,metadata_url,targets_url,bui
     for name in ['studio_update.py','github_transport.py','apply_update.py','install_ops.py']:
         if digest(runtime/'lib'/name)!=digest(ROOT/'tools/update-runtime'/name):raise ValueError('Runtime source is stale: '+name)
     destination.mkdir(parents=True)
-    payload=destination/'payload';shutil.copytree(app,payload)
+    payload=destination/'payload'
+    if consume_app_image:
+        expected=ROOT/'modules/studio-desktop/build/compose/binaries/main/app/CCBStudioSuitePreview'
+        if app.resolve()!=expected.resolve() or app.is_symlink() or app.is_junction():raise ValueError('Only the exact Suite-owned disposable build image may be consumed')
+        # Same-workspace directory move avoids retaining a redundant full runtime on small disks.
+        shutil.move(str(app),str(payload))
+    else:shutil.copytree(app,payload)
     shutil.copytree(runtime,payload/'updater',ignore=shutil.ignore_patterns('__pycache__'))
+    compiler=Path(os.environ.get('WINDIR','C:/Windows'))/'Microsoft.NET/Framework64/v4.0.30319/csc.exe'
+    subprocess.run([str(compiler),'/nologo','/target:winexe','/platform:x64','/optimize+',
+        '/reference:System.Windows.Forms.dll','/reference:System.Web.Extensions.dll',
+        '/win32icon:'+str(ROOT/'modules/studio-desktop/src/main/resources/brand/ccb-blue.ico'),
+        '/out:'+str(payload/'updater/CCBStudioLauncher.exe'),str(ROOT/'tools/windows-launcher/Launcher.cs')],check=True)
     shutil.copy2(bootstrap,payload/'update-root.json')
     config=dict(format=1,product='ccb-studio-suite',platform='windows-x86_64',version=version,reader=3,sourceSha=sha,metadataUrl=metadata_url,targetsUrl=targets_url,rootSha256=digest(bootstrap),**identity)
     (payload/'update-config.json').write_text(json.dumps(config,indent=2)+'\n',encoding='utf-8')
@@ -131,5 +142,6 @@ if __name__=='__main__':
     for name in ['app','runtime','bootstrap','destination','build-evidence']:p.add_argument('--'+name,required=True,type=Path)
     p.add_argument('--version',required=True,type=int);p.add_argument('--metadata-url',required=True);p.add_argument('--targets-url',required=True)
     p.add_argument('--release-profile',type=Path,help='Explicit preview JSON profile; omission keeps internal channel')
+    p.add_argument('--consume-app-image',action='store_true',help='Move only the exact disposable Suite build image into candidate payload instead of duplicating it')
     a=p.parse_args();build(a.app,a.runtime,a.bootstrap,a.destination,a.version,a.metadata_url,a.targets_url,a.build_evidence,
-                          json.loads(a.release_profile.read_text(encoding='utf-8')) if a.release_profile else None)
+                          json.loads(a.release_profile.read_text(encoding='utf-8')) if a.release_profile else None,a.consume_app_image)

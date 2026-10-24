@@ -134,7 +134,7 @@ class WorkbenchWorkflowTest {
             scene.click("勾选模式");assertTrue(c.batch.checkMode);scene.shot("batch-workbench-check-mode")
             scene.click("编辑当前批次参数");scene.shot("batch-workbench-editor");scene.click("关闭")
             scene.click("开始");assertTrue(scene.nodes().any{it.matches("开始批次？")});scene.click("取消");assertEquals("PAUSED",c.batch.state.mode)
-            scene.click("停止设置 ▾");assertTrue(scene.nodes().any{it.matches("异常处理：取消等待…")});assertTrue(scene.nodes().none{it.matches("立即中止当前请求")});scene.click("完成当前后暂停");withTimeout(5000){while(c.batch.changing)delay(10)}
+            scene.click("运行设置");assertTrue(scene.nodes().any{it.matches("异常处理：取消等待…")});assertTrue(scene.nodes().none{it.matches("完成当前后暂停")||it.matches("立即中止当前请求")});scene.click("关闭")
             scene.constraints=Constraints.fixed(960,720);scene.frames();scene.shot("batch-workbench-960")
             c.batch.queue.fail(BatchFailure("429","429：整批暂停，等待手动确认",notBefore=System.currentTimeMillis()+120000));c.batch.refresh();scene.frames();scene.shot("batch-workbench-429")
             assertTrue(scene.nodes().none{it.matches("跳过并继续")});assertTrue(scene.nodes().first{it.matches("确认重试")}.config.contains(SemanticsProperties.Disabled))
