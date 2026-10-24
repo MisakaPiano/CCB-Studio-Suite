@@ -1,3 +1,7 @@
+## 2026-10-25 PERF-003 Project限定独立通过
+
+已实际读取[Project完整结论及读取边界](audits/PERF003_PROJECT_ACCEPTANCE_20261025.md)：固定98666fb/13ae2d10，9方法证据独立核验，PERF-003 / PASS_WITH_SCOPE，无新增行为返工；不外推用户/新包/整页/长期资源验收，不自动启动其他PERF或发版。用户防护干扰诊断补充仅记录于现有合同，具体360影响UNKNOWN，未作安全变更。原失败、q09、USER_NOT_TESTED及各PENDING保持。
+
 ## 2026-10-25 PERF-003批次投影优化（源码/自动检查完成，未发布）
 
 固定实现98666fb，最终9个唯一定向方法PASS；1万张/1000批次四轮交替对照中位数125.6→7.9ms（含索引构建），复用1.9ms，仅元数据计算，不外推整页/RSS。见[实现/基线/限制](audits/PERF_ORGANIZATION_20261025.md)和[原始证据](audits/evidence/PERF_ORGANIZATION_20261025/SOURCE_MAP.json)。性能独立复审PENDING，不打包/发版。前一下载清理P2已获源码限定关闭；资产/编辑USER_NOT_TESTED、q09 FAILED/UNKNOWN、115体验/Prompt比较PENDING及PRODUCT_HOLD / NOT RC保留。

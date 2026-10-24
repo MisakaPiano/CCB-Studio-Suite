@@ -1,3 +1,7 @@
+## 2026-10-25 PERF-003独立限定通过；仅记录诊断背景
+
+已通过原Project页面直接读取[PERF-003 / PASS_WITH_SCOPE回执](audits/PERF003_PROJECT_ACCEPTANCE_20261025.md)，消息02f76540-cb05-417b-b1eb-2e49902dece9，固定98666fb/13ae2d10和9方法记录获独立核验，无新增行为返工。会话工具仅给占位、实际正文由只读页面取得，未重发审查。只更新记录，不重测/启动其他PERF/发版；包集成/真人未验、整页/长期资源UNKNOWN。用户曾允许360弹窗的程序/目标/影响未知，不能据此解释旧失败；诊断补充见现有合同，未改防护/系统设置。q09 FAILED/根因UNKNOWN、资产/编辑USER_NOT_TESTED、115体验/Prompt比较PENDING及PRODUCT_HOLD / NOT RC保持。以下为历史状态。
+
 ## 2026-10-25 PERF-003批次组织投影定向完成，未打包/发布
 
 本次固定源码98666fb/证据13ae2d10已按用户明确批准向原Project单次交审，回读确认新请求`79954397-d2c3-4453-bc8e-1d9741a9ae40`正文完全一致；[交审回执](../handoff/PERF003_PROJECT_REVIEW_DISPATCH_20261025.md)。独立结果仍PENDING，旧固定输入不改，不将收到请求当通过；仅在本性能范围处理反馈，不扩展/发版。
