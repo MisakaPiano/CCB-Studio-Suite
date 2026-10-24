@@ -1,0 +1,29 @@
+{
+  "phase": "perf005-export-baseline-20261025",
+  "startedUtc": "2026-10-24T21:43:40.362395+00:00",
+  "seconds": 34.425,
+  "exitCode": 0,
+  "tests": 1,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    "-PpreviewTestRoot=H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-81ba7f2ac0b146909a37f2acefd481cc\\payload",
+    ":studio-desktop:test",
+    "--tests",
+    "*OriginalExportPerformanceTest.baselineOriginalsExportAllocation"
+  ],
+  "baseCommit": "829c2397c47fc5ab1145949669907b1a64aca7f0",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

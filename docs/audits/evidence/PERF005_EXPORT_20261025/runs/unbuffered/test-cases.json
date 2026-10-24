@@ -1,0 +1,32 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.OriginalExportPerformanceTest",
+    "name": "duplicateSelectionAndNamesProduceIdenticalReceiptsWithoutMovingOriginals",
+    "seconds": "1.026",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.OriginalExportPerformanceTest",
+    "name": "corruptLaterOriginalRetainsPartialBatchWithoutCompleteMarker",
+    "seconds": "0.752",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.OriginalExportPerformanceTest",
+    "name": "cancellationAfterOpeningOutputDoesNotPublishPartialBatch",
+    "seconds": "0.426",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.OriginalExportPerformanceTest",
+    "name": "pairedOriginalExportPreservesBytesWithBoundedAllocation",
+    "seconds": "7.465",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.OriginalExportPerformanceTest",
+    "name": "invalidDestinationAndAlreadyCancelledJobLeaveOriginalsUntouched",
+    "seconds": "0.405",
+    "status": "PASS"
+  }
+]

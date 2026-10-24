@@ -1,0 +1,31 @@
+{
+  "source": "accdc59e851164ee82870297a0bfc0e626ec55c3",
+  "baselineSource": "829c2397c47fc5ab1145949669907b1a64aca7f0",
+  "firstStreamedSource": "4339ed189cc9dbb42fb4982657bf7c2d55fcd89a",
+  "fixedLegacyOrigin": "f5b008ecf55ed2f6c9248a3fd3412baca6528d54",
+  "legacyBodyExactExceptWorkspaceReference": true,
+  "identities": [
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/LibraryDelivery.kt",
+      "diskSha256": "d9d068a8604756251c929e500cc299b24e6aa01d869b32a4ffe71bbb39b735da",
+      "gitSha256": "d4b48d1f36329e95be0e50f1d7f3466e5c73a4dbc12fa7a6737c2a984ded1237",
+      "gitBlob": "8f4051d023e395c55d87ff33b082e62105288c79",
+      "textRepresentation": "CRLF checkout / LF Git"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/OriginalExportPerformanceTest.kt",
+      "diskSha256": "94b9a5215b61a77c8053978533885ac8dda3b34bf3c337205d0fbae6caa93974",
+      "gitSha256": "94b9a5215b61a77c8053978533885ac8dda3b34bf3c337205d0fbae6caa93974",
+      "gitBlob": "01f04769ac93db82277d0362c057672be0241c3d",
+      "textRepresentation": "exact"
+    }
+  ],
+  "compiledInputsRecorded": "source-before maps plus sourceStable actual runner result for each run; baseline compiled class bytes were not separately archived",
+  "finalUniqueMethods": 5,
+  "baselineMethodsSeparately": 1,
+  "intermediateRepeatedMethodsNotAccumulated": true,
+  "packageBuilt": false,
+  "independentReview": "NOT REQUESTED; prepare only, new payload requires specific authorization",
+  "userAcceptance": "NOT TESTED",
+  "oldFailuresAndPendingUnchanged": true
+}

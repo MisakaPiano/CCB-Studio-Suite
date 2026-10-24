@@ -1,0 +1,110 @@
+{
+  "medians": {
+    "baseline": {
+      "3145728": {
+        "legacy": {
+          "wallMs": 136.73385000000002,
+          "cpuMs": 46.875,
+          "allocatedBytes": 11848432.0
+        }
+      },
+      "12582912": {
+        "legacy": {
+          "wallMs": 333.20705,
+          "cpuMs": 132.8125,
+          "allocatedBytes": 46437296.0
+        }
+      }
+    },
+    "unbuffered": {
+      "3145728": {
+        "legacy": {
+          "wallMs": 157.44625000000002,
+          "cpuMs": 46.875,
+          "allocatedBytes": 11836320.0
+        },
+        "streamed": {
+          "wallMs": 161.61575,
+          "cpuMs": 39.0625,
+          "allocatedBytes": 343784.0
+        }
+      },
+      "12582912": {
+        "legacy": {
+          "wallMs": 345.8068,
+          "cpuMs": 125.0,
+          "allocatedBytes": 46438816.0
+        },
+        "streamed": {
+          "wallMs": 380.09855,
+          "cpuMs": 117.1875,
+          "allocatedBytes": 343848.0
+        }
+      }
+    },
+    "final": {
+      "3145728": {
+        "legacy": {
+          "wallMs": 144.60765,
+          "cpuMs": 31.25,
+          "allocatedBytes": 11836320.0
+        },
+        "streamed": {
+          "wallMs": 149.13655,
+          "cpuMs": 31.25,
+          "allocatedBytes": 605992.0
+        }
+      },
+      "12582912": {
+        "legacy": {
+          "wallMs": 351.22429999999997,
+          "cpuMs": 125.0,
+          "allocatedBytes": 46438816.0
+        },
+        "streamed": {
+          "wallMs": 369.74455,
+          "cpuMs": 109.375,
+          "allocatedBytes": 606056.0
+        }
+      }
+    }
+  },
+  "counts": {
+    "baseline": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "baseCommit": "829c2397c47fc5ab1145949669907b1a64aca7f0",
+      "sourceStable": true
+    },
+    "unbuffered": {
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "baseCommit": "4339ed189cc9dbb42fb4982657bf7c2d55fcd89a",
+      "sourceStable": true
+    },
+    "final": {
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "baseCommit": "accdc59e851164ee82870297a0bfc0e626ec55c3",
+      "sourceStable": true
+    }
+  },
+  "finalUniqueMethods": 5,
+  "baselineMethodsSeparately": 1,
+  "unbufferedMethodsNotAddedAgain": true,
+  "cleanupFiles": 289,
+  "cleanupBytes": 460470302,
+  "limits": [
+    "Current measured thread allocations, not retained heap/RSS; CPU is coarse process-host granularity",
+    "Small synthetic PNGs with 3/12MiB opaque ancillary payloads; not user images or actual UI workflow",
+    "Final latency is not claimed faster; all slower/outlier rounds retained",
+    "Desktop Java ownership checked at launch/selected boundaries, not continuously quiet OS; no other project interruption",
+    "No packaged/native/user/backup/clipboard or independent acceptance in this segment"
+  ]
+}

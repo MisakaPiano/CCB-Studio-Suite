@@ -1,0 +1,11 @@
+# Execution ledger
+
+829c239 baseline: 1 executed method PASS; frozen old production export body exactly preserved in test apart from workspace parameter reference. 3/12MiB valid 16x16 PNGs with a synthetic private ancillary chunk, 64KiB generation buffer. No user media or new service. One warmup plus two measured baseline rounds per size.
+4339ed1 unbuffered stream: 5 executed methods PASS. Allocation dropped strongly but wall time not improved; record retained. Fixed 256KiB coalescing selected from this actual IO cost, not deleting slower results.
+accdc59 final buffered stream: same 5 unique methods PASS, zero failure/error/skip; alternating old/new order over 4 measured pairs per size after one warmup each. Do not add baseline or intermediate/repeated method execution into 11 or count pairs/assertions separately. Baseline 1 and final 5 are listed separately.
+
+Methods cover byte-identical receipts/names/dedup/order, originals/sentinel protection, corrupt later original retaining unpublished partial stage, deterministic cancellation after output opens while waiting for workspace admission, cancellation/unsafe workspace destination, and bounded allocation. Simulated corruption/expected cancellation are assertions inside passing tests, not unexpected failed runs. No GUI/manual, native clipboard, package or full backup acceptance.
+
+All 3 runs used existing OWNER isolation and retained raw JUnit/log/input maps before cleanup. Successful fixtures only retired; old evidence/failure fixtures/day-to-day installation untouched. Single worker/256MiB/2 active processors, Desktop Java launcher check before starting and at selected observations; not continuous whole-machine silence. No Desktop process/directory changed or message sent. JVM timing/CPU and write/force fluctuations do not establish end-to-end UI speedup. Thread allocation difference is the demonstrated result, not RSS savings.
+
+Read-only source setup had one nonexistent WorkbenchController.kt lookup and Windows rg wildcard-path errors; corrected by directory/-g searches. They did not start tests or alter product/safety settings and are not attributed to security software. No unexpected compiled/test failure occurred in this segment. No new ZIP-access retry, old accepted baseline rerun, paid API/private data/suspended scan, product permission or release.

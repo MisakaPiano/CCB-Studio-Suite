@@ -1,3 +1,7 @@
+## 2026-10-25 PERF-005原件导出有界分配增量
+
+[实现/实测/限制](audits/PERF005_ORIGINAL_EXPORT_20261025.md)：accdc59，最终5个唯一方法PASS，12MiB线程分配46.44→0.606MB；墙钟略慢，非提速/RSS/用户验收。基线与重复轮次分列，原件/校验/取消及完成规则保留；[复审仅准备](../handoff/PERF005_EXPORT_REVIEW_READY_20261025.md)，未外发或发布。持续PERF-005低负载定位，Desktop优先，原未验边界保持。
+
 ## 2026-10-25 启动诊断独立限定接受与归档边界
 
 [完整Project接受记录](audits/STARTUP_DIAG_PROJECT_ACCEPTANCE_20261025.md)：8a757a6/31d3853 PASS_WITH_SCOPE，无生产返工；44原生样本/169类加载在阶段窗口外的限制保留。同一ZIP补充已单次送达，Project受容器DNS限制仍NOT VERIFIED — TOOL_ACCESS_LIMIT，交付侧只1次公开读取通过，不冒充独立签收。不改原包或新交全审，停止在文档/归档收尾；后续完整签收途径另定，不启动新诊断/开发/发布，PERF整项和原人工/包验边界保持。
