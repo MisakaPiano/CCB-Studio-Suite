@@ -1,0 +1,74 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetExportTest",
+    "name": "missingFontBlocksRenderingButOriginalDeliveryRemainsAvailable",
+    "seconds": "2.23",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetExportTest",
+    "name": "fourVariantsOriginalBytesJpegAndFailurePublication",
+    "seconds": "4.803",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetOriginalPerformanceTest",
+    "name": "sharedCopyKeepsPrefixAndTailAcrossBufferBoundariesAndRefusesExistingTarget",
+    "seconds": "3.68",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetOriginalPerformanceTest",
+    "name": "measuredOriginalBatchAllocation",
+    "seconds": "6.746",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetOriginalPerformanceTest",
+    "name": "originalSignatureDispatchPreservesOpaqueBytesAndIgnoresMisleadingNames",
+    "seconds": "4.569",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetOriginalPerformanceTest",
+    "name": "sharedCopyDoesNotHoldWorkspaceMonitorDuringBlockedOutput",
+    "seconds": "0.597",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetOriginalPerformanceTest",
+    "name": "existingOriginalFilenameCannotBeOverwrittenDuringStaging",
+    "seconds": "0.681",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.OriginalExportPerformanceTest",
+    "name": "duplicateSelectionAndNamesProduceIdenticalReceiptsWithoutMovingOriginals",
+    "seconds": "1.199",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.OriginalExportPerformanceTest",
+    "name": "corruptLaterOriginalRetainsPartialBatchWithoutCompleteMarker",
+    "seconds": "1.1",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.OriginalExportPerformanceTest",
+    "name": "cancellationAfterOpeningOutputDoesNotPublishPartialBatch",
+    "seconds": "0.564",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.OriginalExportPerformanceTest",
+    "name": "pairedOriginalExportPreservesBytesWithBoundedAllocation",
+    "seconds": "7.27",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.OriginalExportPerformanceTest",
+    "name": "invalidDestinationAndAlreadyCancelledJobLeaveOriginalsUntouched",
+    "seconds": "0.483",
+    "status": "PASS"
+  }
+]

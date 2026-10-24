@@ -1,3 +1,7 @@
+## 2026-10-25 PERF-005共享复制与排版原图增量
+
+[报告/原始证据](audits/PERF005_SHARED_ORIGINAL_COPY_20261025.md)：5bfa51d，最终12唯一方法PASS，新锁反例1 FAIL保留。12MiB排版/图库线程分配约0.795/0.606MB，非提速/RSS/人工/包验；[新复审仅准备](../handoff/PERF005_SHARED_COPY_REVIEW_READY_20261025.md)。按21:35/22:07持续授权接续受管副本基线，Desktop优先，未发新材料或发布，旧接受和未验保持。
+
 ## 2026-10-25 PERF-005原件导出有界分配增量
 
 [实现/实测/限制](audits/PERF005_ORIGINAL_EXPORT_20261025.md)：accdc59，最终5个唯一方法PASS，12MiB线程分配46.44→0.606MB；墙钟略慢，非提速/RSS/用户验收。基线与重复轮次分列，原件/校验/取消及完成规则保留；[复审仅准备](../handoff/PERF005_EXPORT_REVIEW_READY_20261025.md)，未外发或发布。持续PERF-005低负载定位，Desktop优先，原未验边界保持。

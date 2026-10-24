@@ -1,0 +1,161 @@
+{
+  "counts": {
+    "typeset-baseline": {
+      "status": "PASS",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "d8eb0cb5570c2265f7e81230bb1cec534acd019f"
+    },
+    "shared-first": {
+      "status": "PASS",
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "72b1c2987583efa2797813b9dad8bd02e8793c30"
+    },
+    "lock-red": {
+      "status": "FAILED",
+      "tests": 1,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "3d935c349c09a114f6a57c0753b7f5779fdfe955"
+    },
+    "final": {
+      "status": "PASS",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "5bfa51df9fdc632902cd329212d0b2fdaf9ba379"
+    }
+  },
+  "medians": {
+    "typeset-baseline": {
+      "typeset": {
+        "3145728": {
+          "observed": {
+            "wallMs": 254.6555,
+            "cpuMs": 46.875,
+            "allocatedBytes": 11980112
+          }
+        },
+        "12582912": {
+          "observed": {
+            "wallMs": 541.9613,
+            "cpuMs": 140.625,
+            "allocatedBytes": 46585240
+          }
+        }
+      }
+    },
+    "shared-first": {
+      "typeset": {
+        "3145728": {
+          "observed": {
+            "wallMs": 205.587,
+            "cpuMs": 46.875,
+            "allocatedBytes": 794896
+          }
+        },
+        "12582912": {
+          "observed": {
+            "wallMs": 385.6538,
+            "cpuMs": 140.625,
+            "allocatedBytes": 795000
+          }
+        }
+      },
+      "gallery": {
+        "3145728": {
+          "legacy": {
+            "wallMs": 135.763,
+            "cpuMs": 39.0625,
+            "allocatedBytes": 11836320.0
+          },
+          "streamed": {
+            "wallMs": 172.55555,
+            "cpuMs": 31.25,
+            "allocatedBytes": 606128.0
+          }
+        },
+        "12582912": {
+          "legacy": {
+            "wallMs": 322.51324999999997,
+            "cpuMs": 125.0,
+            "allocatedBytes": 46438816.0
+          },
+          "streamed": {
+            "wallMs": 359.1843,
+            "cpuMs": 109.375,
+            "allocatedBytes": 606192.0
+          }
+        }
+      }
+    },
+    "lock-red": {},
+    "final": {
+      "typeset": {
+        "3145728": {
+          "observed": {
+            "wallMs": 194.04,
+            "cpuMs": 62.5,
+            "allocatedBytes": 795080
+          }
+        },
+        "12582912": {
+          "observed": {
+            "wallMs": 623.8406,
+            "cpuMs": 156.25,
+            "allocatedBytes": 795184
+          }
+        }
+      },
+      "gallery": {
+        "3145728": {
+          "legacy": {
+            "wallMs": 171.53795,
+            "cpuMs": 39.0625,
+            "allocatedBytes": 11835568.0
+          },
+          "streamed": {
+            "wallMs": 164.02285,
+            "cpuMs": 39.0625,
+            "allocatedBytes": 605976.0
+          }
+        },
+        "12582912": {
+          "legacy": {
+            "wallMs": 306.88295,
+            "cpuMs": 140.625,
+            "allocatedBytes": 46438672.0
+          },
+          "streamed": {
+            "wallMs": 371.76065,
+            "cpuMs": 125.0,
+            "allocatedBytes": 606040.0
+          }
+        }
+      }
+    }
+  },
+  "finalUniqueMethods": 12,
+  "repeatedPriorMethodsNotAccumulated": true,
+  "retainedFailureRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-fa3783a5ad8d4f1a93bb700498e35cd8",
+  "cleanupFiles": 1025,
+  "cleanupBytes": 669130360,
+  "limits": [
+    "Typeset before/after are distinct executed JVMs, not a same-JVM latency improvement proof",
+    "Gallery measurements alternate actual old and current pipeline within final JVM; no end-to-end UI/RSS claim",
+    "Blocking-read regression stalls a synthetic writer checkpoint, not real slow hardware; TypesetExport existing outer serialization stays unchanged",
+    "A Desktop Java PID53124/parent11548 was observed at a later boundary, creation time not retained and measurement overlap UNKNOWN; keep all timing/outliers and do not claim a quiet host",
+    "No true credentials/private media/paused directory/native clipboard/package or independent user acceptance"
+  ]
+}

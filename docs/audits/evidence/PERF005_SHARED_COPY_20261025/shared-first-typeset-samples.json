@@ -1,0 +1,44 @@
+[
+  {
+    "payloadBytes": 3145728,
+    "round": 0,
+    "wallMs": 176.2911,
+    "cpuMs": 46.875,
+    "allocatedBytes": 859504
+  },
+  {
+    "payloadBytes": 3145728,
+    "round": 1,
+    "wallMs": 319.846,
+    "cpuMs": 62.5,
+    "allocatedBytes": 794896
+  },
+  {
+    "payloadBytes": 3145728,
+    "round": 2,
+    "wallMs": 205.587,
+    "cpuMs": 46.875,
+    "allocatedBytes": 794896
+  },
+  {
+    "payloadBytes": 12582912,
+    "round": 0,
+    "wallMs": 385.6538,
+    "cpuMs": 140.625,
+    "allocatedBytes": 795000
+  },
+  {
+    "payloadBytes": 12582912,
+    "round": 1,
+    "wallMs": 505.3187,
+    "cpuMs": 125.0,
+    "allocatedBytes": 795128
+  },
+  {
+    "payloadBytes": 12582912,
+    "round": 2,
+    "wallMs": 374.7512,
+    "cpuMs": 140.625,
+    "allocatedBytes": 795000
+  }
+]

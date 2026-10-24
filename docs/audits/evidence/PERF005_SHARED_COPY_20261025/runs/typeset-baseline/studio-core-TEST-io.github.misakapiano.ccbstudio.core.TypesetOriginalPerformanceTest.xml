@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.TypesetOriginalPerformanceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-24T21:59:46.489Z" hostname="DD1" time="6.617">
+  <properties/>
+  <testcase name="measuredOriginalBatchAllocation" classname="io.github.misakapiano.ccbstudio.core.TypesetOriginalPerformanceTest" time="6.617"/>
+  <system-out><![CDATA[TYPESET_ORIGINAL_ALLOCATION=[{"payloadBytes":3145728,"round":0,"wallMs":578.5642,"cpuMs":46.875,"allocatedBytes":12045416},{"payloadBytes":3145728,"round":1,"wallMs":254.1303,"cpuMs":46.875,"allocatedBytes":11980112},{"payloadBytes":3145728,"round":2,"wallMs":254.6555,"cpuMs":15.625,"allocatedBytes":11980112},{"payloadBytes":12582912,"round":0,"wallMs":541.9613,"cpuMs":156.25,"allocatedBytes":46583776},{"payloadBytes":12582912,"round":1,"wallMs":686.1965,"cpuMs":125.0,"allocatedBytes":46585792},{"payloadBytes":12582912,"round":2,"wallMs":487.4476,"cpuMs":140.625,"allocatedBytes":46585240}]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

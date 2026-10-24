@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.TypesetOriginalPerformanceTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-24T22:13:12.309Z" hostname="DD1" time="16.273">
+  <properties/>
+  <testcase name="sharedCopyKeepsPrefixAndTailAcrossBufferBoundariesAndRefusesExistingTarget" classname="io.github.misakapiano.ccbstudio.core.TypesetOriginalPerformanceTest" time="3.68"/>
+  <testcase name="measuredOriginalBatchAllocation" classname="io.github.misakapiano.ccbstudio.core.TypesetOriginalPerformanceTest" time="6.746"/>
+  <testcase name="originalSignatureDispatchPreservesOpaqueBytesAndIgnoresMisleadingNames" classname="io.github.misakapiano.ccbstudio.core.TypesetOriginalPerformanceTest" time="4.569"/>
+  <testcase name="sharedCopyDoesNotHoldWorkspaceMonitorDuringBlockedOutput" classname="io.github.misakapiano.ccbstudio.core.TypesetOriginalPerformanceTest" time="0.597"/>
+  <testcase name="existingOriginalFilenameCannotBeOverwrittenDuringStaging" classname="io.github.misakapiano.ccbstudio.core.TypesetOriginalPerformanceTest" time="0.681"/>
+  <system-out><![CDATA[TYPESET_ORIGINAL_ALLOCATION=[{"payloadBytes":3145728,"round":0,"wallMs":194.04,"cpuMs":78.125,"allocatedBytes":857608},{"payloadBytes":3145728,"round":1,"wallMs":515.258,"cpuMs":31.25,"allocatedBytes":795080},{"payloadBytes":3145728,"round":2,"wallMs":193.3926,"cpuMs":62.5,"allocatedBytes":795080},{"payloadBytes":12582912,"round":0,"wallMs":808.6746,"cpuMs":156.25,"allocatedBytes":795184},{"payloadBytes":12582912,"round":1,"wallMs":433.3717,"cpuMs":140.625,"allocatedBytes":796640},{"payloadBytes":12582912,"round":2,"wallMs":623.8406,"cpuMs":187.5,"allocatedBytes":795184}]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

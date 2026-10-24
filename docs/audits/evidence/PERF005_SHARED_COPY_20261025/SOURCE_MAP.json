@@ -1,0 +1,47 @@
+{
+  "source": "5bfa51df9fdc632902cd329212d0b2fdaf9ba379",
+  "typesetBaselineSource": "d8eb0cb5570c2265f7e81230bb1cec534acd019f",
+  "sharedFirst": "72b1c2987583efa2797813b9dad8bd02e8793c30",
+  "lockRedSource": "3d935c349c09a114f6a57c0753b7f5779fdfe955",
+  "identities": [
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/OriginalFileCopy.kt",
+      "diskSha256": "905db050fa61e5e9e1e2d6bc6807f13761200fac3079ef0e52d268e4ca6c36e3",
+      "gitSha256": "905db050fa61e5e9e1e2d6bc6807f13761200fac3079ef0e52d268e4ca6c36e3",
+      "textRepresentation": "exact"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetExport.kt",
+      "diskSha256": "663e4a9e88a9531468d92df63eb28765e10cbb18dd4fc958f78ad0e9cffd4041",
+      "gitSha256": "e8803e6ff28379ea878408b9883b40d22d0c34ddd58b9efead3665da6d5d15c8",
+      "textRepresentation": "CRLF checkout / LF Git"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TypesetOriginalPerformanceTest.kt",
+      "diskSha256": "cecd8523701278313ae6dc769a941d2d1479e297f398bd9b79cc164f054832c0",
+      "gitSha256": "cecd8523701278313ae6dc769a941d2d1479e297f398bd9b79cc164f054832c0",
+      "textRepresentation": "exact"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/LibraryDelivery.kt",
+      "diskSha256": "09f10f1a8a4cab26eec3dd2d75d16d019bf4450f5bb35904e33b30576aa184a3",
+      "gitSha256": "207f340f4f18e243b54889c384159ab9f5144ba576a676aa2a5a3ca3ad529b12",
+      "textRepresentation": "CRLF checkout / LF Git"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/OriginalExportPerformanceTest.kt",
+      "diskSha256": "94b9a5215b61a77c8053978533885ac8dda3b34bf3c337205d0fbae6caa93974",
+      "gitSha256": "94b9a5215b61a77c8053978533885ac8dda3b34bf3c337205d0fbae6caa93974",
+      "textRepresentation": "exact"
+    }
+  ],
+  "finalUniqueMethods": 12,
+  "redFailures": 1,
+  "earlierSuccessfulMethodsNotAddedAgain": true,
+  "formatSchemaAndStoreAdmissionUnchanged": true,
+  "packageBuilt": false,
+  "independentReview": "NOT REQUESTED; new payload authorization required",
+  "assetAndEditorHuman": "USER_NOT_TESTED",
+  "q09": "FAILED / cause UNKNOWN unchanged",
+  "promptAnd115": "PENDING"
+}
