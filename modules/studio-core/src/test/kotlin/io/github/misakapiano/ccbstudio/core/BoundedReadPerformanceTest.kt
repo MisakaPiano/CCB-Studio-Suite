@@ -6,6 +6,19 @@ import java.nio.file.*
 import java.security.MessageDigest
 import kotlin.test.*
 
+private fun legacyBoundedRead(path:Path,max:Int):ByteArray {
+    safePath(path)
+    try {
+        Files.newInputStream(path,NOFOLLOW_LINKS).use {
+            val bytes=it.readNBytes(max+1)
+            if(bytes.size>max) throw DataProblem("CORRUPT","File exceeds budget; retained")
+            return bytes
+        }
+    } catch(e:NoSuchFileException) { throw DataProblem("MISSING","Required file missing",e) }
+    catch(e:DataProblem) { throw e }
+    catch(e:java.io.IOException) { throw DataProblem("READ_ERROR","File unreadable; retained",e) }
+}
+
 class BoundedReadPerformanceTest {
     private fun root()=Files.createDirectories(Path.of(System.getProperty("preview.test.root"),newId()))
     @Test fun measuredStableFileReadAllocationAndExactBytes() {
@@ -16,13 +29,20 @@ class BoundedReadPerformanceTest {
             Files.newOutputStream(path,StandardOpenOption.CREATE_NEW).use{out->val block=ByteArray(65536){(it*37+11).toByte()};var remaining=size
                 while(remaining>0){val n=minOf(remaining,block.size);out.write(block,0,n);md.update(block,0,n);remaining-=n}}
             val expected=java.util.HexFormat.of().formatHex(md.digest())
-            assertEquals(expected,sha256(readBounded(path,32*1024*1024)))
+            assertEquals(expected,sha256(readBounded(path,32*1024*1024)));assertEquals(expected,sha256(legacyBoundedRead(path,32*1024*1024)))
             repeat(4){round->
-                val thread=Thread.currentThread().id;val allocated=bean.getThreadAllocatedBytes(thread);val cpu=bean.currentThreadCpuTime;val start=System.nanoTime()
-                val bytes=readBounded(path,32*1024*1024)
-                val row=buildJsonObject{put("payloadBytes",size);put("round",round);put("wallMs",(System.nanoTime()-start)/1e6);put("cpuMs",(bean.currentThreadCpuTime-cpu)/1e6);put("allocatedBytes",bean.getThreadAllocatedBytes(thread)-allocated)}
-                println("BOUNDED_READ_SAMPLE="+row)
-                assertEquals(size,bytes.size);assertEquals(expected,sha256(bytes));assertEquals(size.toLong(),Files.size(path));assertTrue(row.getValue("allocatedBytes").jsonPrimitive.long<size+256L*1024,"Stable read allocation=${row.getValue("allocatedBytes")},source=$size exceeds one input-sized array with bounded overhead");rows+=row
+                for(kind in if(round%2==0)listOf("legacy","current")else listOf("current","legacy")) {
+                    val thread=Thread.currentThread().id;val allocated=bean.getThreadAllocatedBytes(thread);val cpu=bean.currentThreadCpuTime;val start=System.nanoTime()
+                    val bytes=if(kind=="legacy")legacyBoundedRead(path,32*1024*1024)else readBounded(path,32*1024*1024)
+                    // Sample the operation before creating any JSON/diagnostic output.
+                    val elapsed=(System.nanoTime()-start)/1e6;val cpuMs=(bean.currentThreadCpuTime-cpu)/1e6;val allocatedBytes=bean.getThreadAllocatedBytes(thread)-allocated
+                    val row=buildJsonObject{put("payloadBytes",size);put("kind",kind);put("round",round);put("wallMs",elapsed);put("cpuMs",cpuMs);put("allocatedBytes",allocatedBytes)}
+                    println("BOUNDED_READ_SAMPLE="+row)
+                    assertEquals(size,bytes.size);assertEquals(expected,sha256(bytes));assertEquals(size.toLong(),Files.size(path))
+                    assertTrue(allocatedBytes>=size,"Allocation instrumentation must include the returned byte array")
+                    if(kind=="current")assertTrue(allocatedBytes<size+256L*1024,"Stable read allocation=$allocatedBytes,source=$size exceeds one input-sized array with bounded overhead")
+                    rows+=row
+                }
             }
         }
         println("BOUNDED_READ_ALLOCATION="+JsonArray(rows))
