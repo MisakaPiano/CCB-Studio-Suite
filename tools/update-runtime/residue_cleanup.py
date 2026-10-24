@@ -106,6 +106,34 @@ def event(cache,kind,**fields):
     with log.open('a',encoding='utf-8') as stream:
         stream.write(json.dumps(dict(at=time.time(),event=kind,**fields),ensure_ascii=True)+'\n');stream.flush();os.fsync(stream.fileno())
 
+def verified_completion(plan,result,cache):
+    """Validate a terminal proof before any program-root eligibility filtering.
+    Old target directories may already be retired; use the pinned install record,
+    not a scan of another workspace. Unprovable completion keeps its reference.
+    """
+    try:
+        if (result.get('status')!='COMPLETE' or result.get('nonce')!=plan['nonce']
+            or result.get('verification')!='B_PROGRAM_DATA_AND_CREDENTIAL_SNAPSHOT_MATCH'):return None
+        for value in (plan['installed'],result['installed'],result['installJournal']):
+            if not isinstance(value,str) or not Path(value).is_absolute():return None
+        old=no_reparse(plan['installed']);new=no_reparse(result['installed']);journal=no_reparse(result['installJournal'])
+        if journal.parent!=cache or new.parent!=old.parent:return None
+        installed=read_json(journal);expected=identity(installed['expected']);approved=plan['approved']
+        if installed.get('status','INSTALLED_NOT_STARTED')!='INSTALLED_NOT_STARTED':return None
+        if type(approved['version']) is not int or any(approved.get(k)!=expected[k] for k in ('version','sourceSha','channel')):return None
+        if any(k in approved and approved[k]!=expected[k] for k in ('product','platform')):return None
+        if not re.fullmatch('[0-9a-f]{64}',approved.get('sha256','')):return None
+        target=installed['target']
+        if not isinstance(target,str) or not Path(target).is_absolute() or no_reparse(target)!=new:return None
+        if new.name!=str(expected['version'])+'-'+expected['sourceSha'][:12]:return None
+        check=installed['verification']
+        if (not re.fullmatch('[0-9a-f]{64}',check.get('manifestSha256',''))
+            or any(type(check.get(k)) is not int or check[k]<1 for k in ('files','bytes'))):return None
+        return dict(journal=journal,installation=installed)
+    except (OSError,ValueError,KeyError,TypeError,AttributeError):
+        return None
+
+
 def completed_updates(cache,install_root):
     """Keep handoff proof in place. Return bounded identity projections, never log snapshots."""
     completed=[];blocked=set();pending_downloads=set()
@@ -121,25 +149,21 @@ def completed_updates(cache,install_root):
         plan=read_json(plan_path);result=read_json(result_path) if result_path.exists() else {}
         if plan.get('format')!=1 or not re.fullmatch('[0-9a-f]{64}',plan.get('nonce','')):raise UpdateRejected('Invalid handoff identity')
         if Path(plan.get('cache','')).absolute()!=cache:raise UpdateRejected('Cleanup handoff cache mismatch')
-        verified_complete=(result.get('status')=='COMPLETE' and result.get('nonce')==plan.get('nonce') and result.get('verification')=='B_PROGRAM_DATA_AND_CREDENTIAL_SNAPSHOT_MATCH')
-        if not verified_complete and result.get('status')!='FAILED_RETAINED':
+        completion=verified_completion(plan,result,cache)
+        verified_failed=result.get('status')=='FAILED_RETAINED' and result.get('nonce')==plan['nonce']
+        if completion is None and not verified_failed:
             installer=plan.get('approved',{}).get('installer')
             if installer:pending_downloads.add(no_reparse(Path(installer)).parent)
         old=no_reparse(plan['installed']);new=no_reparse(result['installed']) if result.get('installed') else None
         if old.parent!=install_root or (new is not None and new.parent!=install_root):continue
-        if not verified_complete:
-            if result.get('status')!='FAILED_RETAINED':
+        if completion is None:
+            if not verified_failed:
                 blocked.add(old.name)
                 if new:blocked.add(new.name)
                 approved=plan.get('approved',{})
                 if 'version' in approved and 'sourceSha' in approved:blocked.add(str(approved['version'])+'-'+approved['sourceSha'][:12])
             continue
-        approved=plan['approved'];journal=no_reparse(result['installJournal'])
-        if journal.parent!=cache:raise UpdateRejected('Cleanup journal outside cache')
-        installed=read_json(journal)
-        if Path(installed.get('target','')).absolute()!=new or installed.get('expected',{}).get('sourceSha')!=approved.get('sourceSha') or installed.get('expected',{}).get('version')!=approved.get('version'):
-            raise UpdateRejected('Cleanup completion identity mismatch')
-        completed.append(dict(old=old.name,new=new.name,approved=approved,journal=journal,installation=installed,nonce=plan['nonce'],completedAt=result_path.stat().st_mtime))
+        completed.append(dict(old=old.name,new=new.name,approved=plan['approved'],**completion,nonce=plan['nonce'],completedAt=result_path.stat().st_mtime))
     return completed,blocked,pending_downloads
 
 def run(package,cache,data,runtime,startup_token=None,now=None,after_delete=lambda _:None):

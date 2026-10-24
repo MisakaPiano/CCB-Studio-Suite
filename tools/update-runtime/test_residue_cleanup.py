@@ -1,5 +1,5 @@
 """All deletion targets are fresh synthetic fixtures, never the user's installation."""
-import ctypes, hashlib, json, os, subprocess, unittest, uuid
+import ctypes, hashlib, json, os, shutil, subprocess, unittest, uuid
 from unittest.mock import patch
 from pathlib import Path
 from install_ops import atomic_json, immutable_file, verify_install
@@ -174,8 +174,70 @@ class ResidueCleanupTests(unittest.TestCase):
         self.cleanup();self.assertTrue(directory.exists(),'A nonterminal handoff still references this exact installer')
         atomic_json(folder/'result.json',dict(status='COMPLETE')) # Not a verified terminal receipt.
         self.cleanup();self.assertTrue(directory.exists(),'An incomplete completion record cannot release its reference')
-        atomic_json(folder/'result.json',dict(status='FAILED_RETAINED'))
+        atomic_json(folder/'result.json',dict(status='FAILED_RETAINED',nonce=plan['nonce']))
         self.cleanup();self.assertFalse(directory.exists())
+
+    def referenced_download(self):
+        directory=self.cache/'downloads'/str(uuid.uuid4());directory.mkdir(parents=True)
+        file=directory/'studio-installer.exe';file.write_bytes(b'synthetic verified installer')
+        self.assertEqual(hashlib.sha256(file.read_bytes()).hexdigest(),self.installer_hash)
+        atomic_json(directory/'VERIFIED.json',dict(**self.current_id,sha256=self.installer_hash))
+        enroll_download(self.cache,self.root,directory,self.current_id,self.installer_hash,True,self.now)
+        foreign=self.base/'nondefault-programs'/uuid.uuid4().hex;foreign.mkdir(parents=True)
+        new=foreign/self.current.name;shutil.copytree(self.current,new)
+        journal=self.cache/('install-reference-'+uuid.uuid4().hex+'.json')
+        atomic_json(journal,dict(status='INSTALLED_NOT_STARTED',target=str(new),expected=self.current_id,verification=verify_install(new,self.current_id)))
+        folder=self.cache/'handoffs'/uuid.uuid4().hex;folder.mkdir()
+        plan=dict(format=1,nonce='e'*64,installed=str(foreign/'1-aaaaaaaaaaaa'),cache=str(self.cache),approved=dict(**self.current_id,sha256=self.installer_hash,installer=str(file)))
+        result=dict(status='COMPLETE',nonce=plan['nonce'],verification='B_PROGRAM_DATA_AND_CREDENTIAL_SNAPSHOT_MATCH',installed=str(new),installJournal=str(journal))
+        atomic_json(folder/'plan.json',plan);atomic_json(folder/'result.json',result)
+        return directory,folder,plan,result,journal
+
+    def assert_reference_retained(self,directory):
+        self.cleanup()
+        self.assertTrue((directory/'studio-installer.exe').is_file(),'Unverified terminal reference must retain its installer')
+        self.assertEqual((directory/'studio-installer.exe').read_bytes(),b'synthetic verified installer')
+        self.assertTrue((directory/'VERIFIED.json').is_file())
+        self.assertEqual((self.data/'original.bin').read_bytes(),b'unique synthetic data')
+
+    def test_cross_root_complete_markers_without_installed_or_journal_keep_download(self):
+        for missing in ('installed','installJournal'):
+            with self.subTest(missing=missing):
+                directory,folder,plan,result,journal=self.referenced_download();result.pop(missing)
+                atomic_json(folder/'result.json',result);self.assert_reference_retained(directory)
+
+    def test_cross_root_complete_with_nonexistent_journal_keeps_download(self):
+        directory,folder,plan,result,journal=self.referenced_download()
+        absent=self.cache/('absent-'+uuid.uuid4().hex+'.json');self.assertFalse(absent.exists())
+        result['installJournal']=str(absent);atomic_json(folder/'result.json',result)
+        self.assert_reference_retained(directory)
+
+    def test_cross_root_failed_receipt_with_wrong_or_missing_nonce_keeps_download(self):
+        for nonce in ('0'*64,None):
+            with self.subTest(nonce=nonce):
+                directory,folder,plan,result,journal=self.referenced_download()
+                failed=dict(status='FAILED_RETAINED')
+                if nonce is not None:failed['nonce']=nonce
+                atomic_json(folder/'result.json',failed);self.assert_reference_retained(directory)
+
+    def test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference(self):
+        for mismatch in ('target','version','sourceSha','channel','product','platform','verification','status'):
+            with self.subTest(mismatch=mismatch):
+                directory,folder,plan,result,journal=self.referenced_download();value=json.loads(journal.read_text())
+                if mismatch=='target':value['target']=str(self.current)
+                elif mismatch=='verification':value['verification']={}
+                elif mismatch=='status':value['status']='FAILED_RETAINED'
+                else:value['expected'][mismatch]={'version':3,'sourceSha':'f'*40,'channel':'preview','product':'other-product','platform':'other-platform'}[mismatch]
+                atomic_json(journal,value);self.assert_reference_retained(directory)
+
+    def test_cross_root_valid_complete_and_matching_failed_nonce_release_download_immediately(self):
+        for status in ('COMPLETE','FAILED_RETAINED'):
+            with self.subTest(status=status):
+                directory,folder,plan,result,journal=self.referenced_download()
+                if status=='FAILED_RETAINED':result=dict(status=status,nonce=plan['nonce'])
+                atomic_json(folder/'result.json',result);self.cleanup()
+                self.assertFalse(directory.exists());self.assertEqual((self.data/'original.bin').read_bytes(),b'unique synthetic data')
+                self.assertEqual(self.cleanup()['removed'],0,'Repeat cleanup remains safe')
 
     def test_same_target_version_with_different_installer_digest_does_not_release_download(self):
         directory=self.cache/'downloads'/str(uuid.uuid4());directory.mkdir(parents=True)
