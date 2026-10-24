@@ -29,7 +29,10 @@ fun copyVerifiedOriginal(workspace:StudioWorkspace,id:String,target:Path,checkCa
                 if(prefixSize<prefix.size)prefix[prefixSize++]=value.toByte()
             }
         }
-        workspace.operation{workspace.assets.export(UUID.fromString(id),checked)}
+        // Check workspace admission briefly. AssetStore.export owns its serialized operation
+        // and drain registration; a slow destination must not monopolize workspace state reads.
+        val store=workspace.operation{workspace.assets}
+        store.export(UUID.fromString(id),checked)
         // Never flush a failed/unverified transfer; keep its private partial for inspection.
         checkCancelled();output.flush();channel.force(true)
     }
