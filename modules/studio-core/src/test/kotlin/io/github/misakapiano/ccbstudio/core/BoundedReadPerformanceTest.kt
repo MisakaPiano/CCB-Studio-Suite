@@ -21,7 +21,8 @@ class BoundedReadPerformanceTest {
                 val thread=Thread.currentThread().id;val allocated=bean.getThreadAllocatedBytes(thread);val cpu=bean.currentThreadCpuTime;val start=System.nanoTime()
                 val bytes=readBounded(path,32*1024*1024)
                 val row=buildJsonObject{put("payloadBytes",size);put("round",round);put("wallMs",(System.nanoTime()-start)/1e6);put("cpuMs",(bean.currentThreadCpuTime-cpu)/1e6);put("allocatedBytes",bean.getThreadAllocatedBytes(thread)-allocated)}
-                assertEquals(size,bytes.size);assertEquals(expected,sha256(bytes));assertEquals(size.toLong(),Files.size(path));assertTrue(row.getValue("allocatedBytes").jsonPrimitive.long<size+256L*1024,"Stable read must allocate one input-sized array with bounded overhead");rows+=row
+                println("BOUNDED_READ_SAMPLE="+row)
+                assertEquals(size,bytes.size);assertEquals(expected,sha256(bytes));assertEquals(size.toLong(),Files.size(path));assertTrue(row.getValue("allocatedBytes").jsonPrimitive.long<size+256L*1024,"Stable read allocation=${row.getValue("allocatedBytes")},source=$size exceeds one input-sized array with bounded overhead");rows+=row
             }
         }
         println("BOUNDED_READ_ALLOCATION="+JsonArray(rows))
