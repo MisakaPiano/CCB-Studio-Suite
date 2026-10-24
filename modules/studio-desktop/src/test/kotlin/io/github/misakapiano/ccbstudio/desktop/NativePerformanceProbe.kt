@@ -33,7 +33,7 @@ object NativePerformanceProbe {
             return
         }
         val out=Path.of(args[2]);Files.createDirectories(out)
-        val start=System.nanoTime();val events=out.resolve("events.jsonl");val frames=AtomicLong();val drawCallbacks=AtomicLong();val firstDraw=AtomicLong();val lastDraw=AtomicLong();val galleryDraw=AtomicLong()
+        val start=System.nanoTime();val events=out.resolve("events.jsonl");val frames=AtomicLong();val drawCallbacks=AtomicLong();val firstDraw=AtomicLong();val lastDraw=AtomicLong();val drawnEpoch=AtomicLong(-1)
         val epoch=System.currentTimeMillis();val runtime=ManagementFactory.getRuntimeMXBean()
         fun note(phase:String,extra:JsonObject=buildJsonObject{}) {
             val value=buildJsonObject {
@@ -57,19 +57,20 @@ object NativePerformanceProbe {
             val c=remember {WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root.resolve("runtime/catalog")),root.resolve("runtime/budget"),http,
                 admissionOverride=RequestAdmission{error("No provider requests")},pauseCollectionsOnStart=true,allowDefaultEntrypoint=false).also{note("controller-opened")}}
             var closing by remember{mutableStateOf(false)}
+            var renderEpoch by remember{mutableLongStateOf(0)}
             fun close(){if(!closing){closing=true;scope.launch{try{c.close();note("controller-closed",buildJsonObject{put("pendingThumbnails",c.thumbnails.pendingCount);put("retainedThumbnailBytes",c.thumbnails.retainedBytes)})}catch(e:Throwable){failure=e;note("close-failed",buildJsonObject{put("error",e.toString())})}finally{exitApplication()}}}}
             c.requestClose=::close
             Window(onCloseRequest=::close,title="Studio PERF-002/007 · ${out.fileName}",undecorated=DesktopWindowChrome.isWindows,
                 icon=StudioBrand.painter,state=rememberWindowState(width=1320.dp,height=880.dp)) {
                 val chrome=rememberDesktopWindowChrome(window,::close);SideEffect{chrome.appearance(true)}
+                val requestedEpoch=renderEpoch
                 MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel,onPrimary=Ink,onSurface=DesktopBootstrapColors.foreground)) {
                     Box(Modifier.fillMaxSize().drawWithContent {
                         drawCallbacks.incrementAndGet()
                         drawContent()
                         // Compose prepares its first native surface before showing the Window.
                         // Verify both completed draw and showing state; don't require simultaneous callbacks.
-                        val now=System.nanoTime();frames.incrementAndGet();firstDraw.compareAndSet(0,now);lastDraw.set(now)
-                        if(window.isShowing&&c.view=="图库"&&c.gallery.historyCache!=null&&c.gallery.foldPreferences!=null&&c.thumbnails.pendingCount==0&&c.thumbnails.retainedBytes>0)galleryDraw.set(now)
+                        val now=System.nanoTime();frames.incrementAndGet();firstDraw.compareAndSet(0,now);lastDraw.set(now);drawnEpoch.set(requestedEpoch)
                     }) {Workbench(c,chrome,closing)}
                 }
                 LaunchedEffect(Unit) {
@@ -78,14 +79,21 @@ object NativePerformanceProbe {
                         withTimeout(30000){while(!window.isShowing||frames.get()==0L)delay(20)}
                         note("first-native-draw",buildJsonObject{put("showing",window.isShowing);put("firstContentDrawMs",(firstDraw.get()-start)/1e6);put("predicate","completed native draw AND Window showing; Windows compositor presentation not measured");put("width",window.width);put("height",window.height);put("screenScaleX",window.graphicsConfiguration.defaultTransform.scaleX)})
                         delay(5000);note("creation-idle-5s")
+                        suspend fun confirmFrame() {
+                            // Native rendering may retain the parent display list while children redraw.
+                            // Change a test-only draw input once per barrier, not an idle animation loop.
+                            val wanted=++renderEpoch
+                            withTimeout(30000){while(!window.isShowing||drawnEpoch.get()<wanted)delay(20)}
+                        }
                         suspend fun gallery(phase:String) {
-                            val begin=System.nanoTime();galleryDraw.set(0);c.view="图库"
-                            withTimeout(30000){while(galleryDraw.get()<begin)delay(20)}
-                            note(phase,buildJsonObject{put("readyMs",(galleryDraw.get()-begin)/1e6);put("pendingThumbnails",c.thumbnails.pendingCount);put("retainedThumbnailBytes",c.thumbnails.retainedBytes);put("historyLoaded",c.gallery.historyCache!=null)})
+                            val begin=System.nanoTime();c.view="图库";confirmFrame()
+                            withTimeout(30000){while(c.gallery.historyCache==null||c.gallery.foldPreferences==null||c.thumbnails.pendingCount!=0||c.thumbnails.retainedBytes==0L)delay(20)}
+                            confirmFrame()
+                            note(phase,buildJsonObject{put("readyMs",(lastDraw.get()-begin)/1e6);put("confirmedDrawEpoch",drawnEpoch.get());put("pendingThumbnails",c.thumbnails.pendingCount);put("retainedThumbnailBytes",c.thumbnails.retainedBytes);put("historyLoaded",c.gallery.historyCache!=null);put("predicate","view frame, metadata+thumbnail readiness, explicit confirmation frame; not compositor timestamp")})
                         }
                         gallery("first-gallery-ready")
                         delay(10000);note("gallery-idle-10s")
-                        repeat(6){cycle->val begin=System.nanoTime();c.view="创作";withTimeout(30000){while(lastDraw.get()<begin)delay(20)};delay(150);gallery("gallery-cycle-$cycle");delay(150)}
+                        repeat(6){cycle->c.view="创作";confirmFrame();delay(150);gallery("gallery-cycle-$cycle");delay(150)}
                         check(c.problem==null){c.problem.orEmpty()};check(c.thumbnails.retainedBytes<=8L*1024*1024)
                         expected.forEach{(id,hash)->check(sha256(w.bytes(id))==hash.jsonPrimitive.content)}
                         note("originals-verified",buildJsonObject{put("images",expected.size);put("providerCalls",0)})
