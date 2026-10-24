@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.EditorOriginalPerformanceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-24T22:51:28.680Z" hostname="DD1" time="4.77">
+  <properties/>
+  <testcase name="measuredOriginalEditorExportAllocation" classname="io.github.misakapiano.ccbstudio.core.EditorOriginalPerformanceTest" time="4.77"/>
+  <system-out><![CDATA[EDITOR_ORIGINAL_ALLOCATION=[{"payloadBytes":3145728,"round":0,"wallMs":137.1316,"cpuMs":46.875,"allocatedBytes":12177592},{"payloadBytes":3145728,"round":1,"wallMs":142.8397,"cpuMs":62.5,"allocatedBytes":11829160},{"payloadBytes":3145728,"round":2,"wallMs":132.8384,"cpuMs":31.25,"allocatedBytes":11829528},{"payloadBytes":12582912,"round":0,"wallMs":408.5098,"cpuMs":140.625,"allocatedBytes":46432216},{"payloadBytes":12582912,"round":1,"wallMs":328.7786,"cpuMs":140.625,"allocatedBytes":46432216},{"payloadBytes":12582912,"round":2,"wallMs":403.0126,"cpuMs":140.625,"allocatedBytes":46433816}]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

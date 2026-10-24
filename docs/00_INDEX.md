@@ -1,3 +1,7 @@
+## 2026-10-25 PERF-005编辑原件导出增量
+
+[5a91e99实现/原始执行](audits/PERF005_EDITOR_ORIGINAL_20261025.md)：最终5唯一方法PASS，12MiB线程分配46.43→0.604MB，墙钟403→406ms，非提速/RSS/编辑人工或包验。旧命名/顺序/回执/源验证与分类保持；[复审仅准备](../handoff/PERF005_EDITOR_ORIGINAL_REVIEW_READY_20261025.md)。无新包/发布，旧失败/用户未验保持，持续低风险源码定位、Desktop优先。
+
 ## 2026-10-25 PERF-001/005复制回执增量
 
 [ec75083实现/证据](audits/PERF001005_RECEIPT_DIGEST_20261025.md)：最终16唯一方法PASS，排版/受管省去未使用的新摘要，旧源与目标全量验证不减。低优先级运行、Desktop尾段活动重叠UNKNOWN，非提速/RSS/用户或包验；[复审仅准备](../handoff/PERF001005_RECEIPT_REVIEW_READY_20261025.md)。继续既有编辑原件导出基线，资源让行，不外发/发布。

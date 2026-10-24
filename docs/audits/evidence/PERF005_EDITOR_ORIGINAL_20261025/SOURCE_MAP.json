@@ -1,0 +1,81 @@
+{
+  "sources": {
+    "baseline": "a04d452f86c4fb568aabcad6826e62b02608ae90",
+    "final": "5a91e999adab7d458dd7d1c6e7e2e4f444d0c892"
+  },
+  "identities": [
+    {
+      "run": "baseline",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioWorkspace.kt",
+      "testInputSha256": "f1367ab4ff6bf3f4cba6c105dde6eff4a2a1b236f57a316fa356d6e553cf775e",
+      "gitSha256": "beccd30f5d9e09bf37ed2d91360eca219a623d499e1779f17c82422034902159"
+    },
+    {
+      "run": "baseline",
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/EditorOriginalPerformanceTest.kt",
+      "testInputSha256": "8cc7384d5d7b36bb52f33d660d605177d04f0691f84284a1eeb0ba04e77f0fca",
+      "gitSha256": "8cc7384d5d7b36bb52f33d660d605177d04f0691f84284a1eeb0ba04e77f0fca"
+    },
+    {
+      "run": "baseline",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/OriginalFileCopy.kt",
+      "testInputSha256": "84f027e7f56d7f08a0cd0a018861b62fd12ec225d667827529750a0d59acb37e",
+      "gitSha256": "84f027e7f56d7f08a0cd0a018861b62fd12ec225d667827529750a0d59acb37e"
+    },
+    {
+      "run": "baseline",
+      "path": "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetStore.java",
+      "testInputSha256": "c59c3f5b4fc00e42c20a6df51cd867364c8db3a42e0eeaf1daf7915c69e37850",
+      "gitSha256": "c59c3f5b4fc00e42c20a6df51cd867364c8db3a42e0eeaf1daf7915c69e37850"
+    },
+    {
+      "run": "baseline",
+      "path": "tools/Run-PreviewChecks.py",
+      "testInputSha256": "45f0f681f68b83c67c5a04607dfea09ecea742bcfd2f5f4ee31e3162901e9e23",
+      "gitSha256": "d8dec9e6bcc417c59cc9d3dd32b79fd4519c16b86adbf582798b2d707c4935b4"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioWorkspace.kt",
+      "testInputSha256": "eccf6a446666f8c1689216d5e7bd2fbf5f8b8001583180d9ff786c11068d36f3",
+      "gitSha256": "579cadc6f19b22ce97d537c7304ee102789b5b92071550f5c8f6c504f69f8162"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/EditorOriginalPerformanceTest.kt",
+      "testInputSha256": "0b952814e0e0bc2d9d6498d0dd29e29c64eab180d48cafe9ce40538e212d0e73",
+      "gitSha256": "fbde1ea23c03b940d0b92b151b841eab4fb4980a2e10879e2efccecd4d125f90"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/OriginalFileCopy.kt",
+      "testInputSha256": "84f027e7f56d7f08a0cd0a018861b62fd12ec225d667827529750a0d59acb37e",
+      "gitSha256": "84f027e7f56d7f08a0cd0a018861b62fd12ec225d667827529750a0d59acb37e"
+    },
+    {
+      "run": "final",
+      "path": "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetStore.java",
+      "testInputSha256": "c59c3f5b4fc00e42c20a6df51cd867364c8db3a42e0eeaf1daf7915c69e37850",
+      "gitSha256": "c59c3f5b4fc00e42c20a6df51cd867364c8db3a42e0eeaf1daf7915c69e37850"
+    },
+    {
+      "run": "final",
+      "path": "tools/Run-PreviewChecks.py",
+      "testInputSha256": "45f0f681f68b83c67c5a04607dfea09ecea742bcfd2f5f4ee31e3162901e9e23",
+      "gitSha256": "d8dec9e6bcc417c59cc9d3dd32b79fd4519c16b86adbf582798b2d707c4935b4"
+    }
+  ],
+  "unchangedPaths": [
+    "modules/asset-library",
+    "modules/image-authority",
+    "modules/studio-desktop",
+    "tools",
+    "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/OriginalFileCopy.kt"
+  ],
+  "finalUniqueMethods": 5,
+  "baselineNotAddedAgain": true,
+  "productionChange": "StudioWorkspace.export ORIGINAL branch only, existing rendered branch equivalent after ORIGINAL early return",
+  "release": "NONE",
+  "independentReview": "NOT REQUESTED",
+  "humanAndPackage": "NOT TESTED"
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.EditorOriginalPerformanceTest",
+    "name": "originalNamingOrderDuplicatesLayersAndReceiptRemainCompatible",
+    "seconds": "1.754",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.EditorOriginalPerformanceTest",
+    "name": "measuredOriginalEditorExportAllocation",
+    "seconds": "3.933",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.EditorOriginalPerformanceTest",
+    "name": "invalidExportSelectionDoesNotTouchExistingUnknownContentOrProject",
+    "seconds": "0.365",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.EditorOriginalPerformanceTest",
+    "name": "laterCorruptSourceRetainsEarlierOutputWithoutCompletionOrSourceReplacement",
+    "seconds": "0.779",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "batchOrderUndoAndExportCategoriesAreNonDestructive",
+    "seconds": "3.837",
+    "status": "PASS"
+  }
+]

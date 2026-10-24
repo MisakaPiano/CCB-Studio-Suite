@@ -1,0 +1,31 @@
+{
+  "phase": "perf005-editor-original-baseline-20261025",
+  "startedUtc": "2026-10-24T22:51:07.370970+00:00",
+  "seconds": 27.265,
+  "exitCode": 0,
+  "tests": 1,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--priority",
+    "low",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    "-PpreviewTestRoot=H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-19e3a2369e6a4bd8886eb882f5bbfdb9\\payload",
+    ":studio-core:test",
+    "--tests",
+    "*EditorOriginalPerformanceTest.measuredOriginalEditorExportAllocation"
+  ],
+  "baseCommit": "a04d452f86c4fb568aabcad6826e62b02608ae90",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

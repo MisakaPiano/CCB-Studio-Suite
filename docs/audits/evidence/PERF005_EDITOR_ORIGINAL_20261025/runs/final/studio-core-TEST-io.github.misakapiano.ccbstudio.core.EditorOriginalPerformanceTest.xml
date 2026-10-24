@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.EditorOriginalPerformanceTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-24T22:52:50.159Z" hostname="DD1" time="6.833">
+  <properties/>
+  <testcase name="originalNamingOrderDuplicatesLayersAndReceiptRemainCompatible" classname="io.github.misakapiano.ccbstudio.core.EditorOriginalPerformanceTest" time="1.754"/>
+  <testcase name="measuredOriginalEditorExportAllocation" classname="io.github.misakapiano.ccbstudio.core.EditorOriginalPerformanceTest" time="3.933"/>
+  <testcase name="invalidExportSelectionDoesNotTouchExistingUnknownContentOrProject" classname="io.github.misakapiano.ccbstudio.core.EditorOriginalPerformanceTest" time="0.365"/>
+  <testcase name="laterCorruptSourceRetainsEarlierOutputWithoutCompletionOrSourceReplacement" classname="io.github.misakapiano.ccbstudio.core.EditorOriginalPerformanceTest" time="0.779"/>
+  <system-out><![CDATA[EDITOR_ORIGINAL_ALLOCATION=[{"payloadBytes":3145728,"round":0,"wallMs":204.0076,"cpuMs":46.875,"allocatedBytes":966208},{"payloadBytes":3145728,"round":1,"wallMs":249.2786,"cpuMs":46.875,"allocatedBytes":603544},{"payloadBytes":3145728,"round":2,"wallMs":192.2864,"cpuMs":31.25,"allocatedBytes":603544},{"payloadBytes":12582912,"round":0,"wallMs":405.8885,"cpuMs":125.0,"allocatedBytes":603560},{"payloadBytes":12582912,"round":1,"wallMs":362.123,"cpuMs":109.375,"allocatedBytes":603560},{"payloadBytes":12582912,"round":2,"wallMs":454.113,"cpuMs":125.0,"allocatedBytes":604664}]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

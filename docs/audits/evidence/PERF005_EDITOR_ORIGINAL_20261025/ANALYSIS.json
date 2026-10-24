@@ -1,0 +1,60 @@
+{
+  "medians": {
+    "baseline": {
+      "3145728": {
+        "wallMs": 137.1316,
+        "cpuMs": 46.875,
+        "allocatedBytes": 11829528
+      },
+      "12582912": {
+        "wallMs": 403.0126,
+        "cpuMs": 140.625,
+        "allocatedBytes": 46432216
+      }
+    },
+    "final": {
+      "3145728": {
+        "wallMs": 204.0076,
+        "cpuMs": 46.875,
+        "allocatedBytes": 603544
+      },
+      "12582912": {
+        "wallMs": 405.8885,
+        "cpuMs": 125.0,
+        "allocatedBytes": 603560
+      }
+    }
+  },
+  "counts": {
+    "baseline": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "a04d452f86c4fb568aabcad6826e62b02608ae90",
+      "seconds": 27.265,
+      "startedUtc": "2026-10-24T22:51:07.370970+00:00"
+    },
+    "final": {
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "5a91e999adab7d458dd7d1c6e7e2e4f444d0c892",
+      "seconds": 33.522,
+      "startedUtc": "2026-10-24T22:52:28.347861+00:00"
+    }
+  },
+  "finalUniqueMethods": 5,
+  "cleanupFiles": 230,
+  "cleanupBytes": 188957584,
+  "limits": [
+    "Separate JVMs and real file write/force; no causal latency or RSS improvement claim",
+    "Both runs Gradle low priority,single worker,2 processors,256MiB test heap",
+    "Owner checks before launch found no Desktop Java,not continuous quiet proof",
+    "16x16 valid PNG with synthetic ancillary bytes,not real image diversity",
+    "Existing synchronous editor export remains workspace-serialized with no new cancellation API; no general UI responsiveness claim"
+  ]
+}
