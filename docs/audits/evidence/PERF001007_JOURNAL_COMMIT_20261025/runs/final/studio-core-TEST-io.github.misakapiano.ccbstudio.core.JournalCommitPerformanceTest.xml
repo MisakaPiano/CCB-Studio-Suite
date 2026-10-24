@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.JournalCommitPerformanceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-24T23:45:31.096Z" hostname="DD1" time="1.747">
+  <properties/>
+  <testcase name="unicodeAndUnpairedSurrogateBodyAndSnapshotGuardsMatchActualPersistedBytes" classname="io.github.misakapiano.ccbstudio.core.JournalCommitPerformanceTest" time="1.048"/>
+  <testcase name="measuredActualSaveAllocationAndPersistedBodyIdentity" classname="io.github.misakapiano.ccbstudio.core.JournalCommitPerformanceTest" time="0.616"/>
+  <testcase name="sourceVersionBodyRemainsExactAcrossVersionOnlyCommitReopenAndLaterChange" classname="io.github.misakapiano.ccbstudio.core.JournalCommitPerformanceTest" time="0.083"/>
+  <system-out><![CDATA[JOURNAL_UNICODE_CASES=[{"caseIndex":0,"encodedBodyContainsSurrogate":false,"hashValid":true,"persistedEqualsInMemoryState":true},{"caseIndex":1,"encodedBodyContainsSurrogate":false,"hashValid":true,"persistedEqualsInMemoryState":true},{"caseIndex":2,"encodedBodyContainsSurrogate":false,"hashValid":true,"persistedEqualsInMemoryState":true},{"caseIndex":3,"encodedBodyContainsSurrogate":true,"hashValid":true,"persistedEqualsInMemoryState":true},{"caseIndex":4,"encodedBodyContainsSurrogate":true,"hashValid":true,"persistedEqualsInMemoryState":false},{"caseIndex":5,"encodedBodyContainsSurrogate":true,"hashValid":true,"persistedEqualsInMemoryState":false}]
+JOURNAL_COMMIT_ALLOCATION=[{"payloadBytes":65536,"round":0,"wallMs":20.9562,"cpuMs":0.0,"allocatedBytes":2056800},{"payloadBytes":65536,"round":1,"wallMs":35.4128,"cpuMs":0.0,"allocatedBytes":2056968},{"payloadBytes":65536,"round":2,"wallMs":27.09,"cpuMs":0.0,"allocatedBytes":2056648},{"payloadBytes":65536,"round":3,"wallMs":23.3118,"cpuMs":0.0,"allocatedBytes":2056648},{"payloadBytes":262144,"round":0,"wallMs":43.8234,"cpuMs":15.625,"allocatedBytes":7561672},{"payloadBytes":262144,"round":1,"wallMs":42.8194,"cpuMs":15.625,"allocatedBytes":7561672},{"payloadBytes":262144,"round":2,"wallMs":34.8255,"cpuMs":0.0,"allocatedBytes":7561672},{"payloadBytes":262144,"round":3,"wallMs":22.3837,"cpuMs":0.0,"allocatedBytes":7561672}]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

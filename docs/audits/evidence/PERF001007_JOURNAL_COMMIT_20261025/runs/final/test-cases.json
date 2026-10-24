@@ -1,0 +1,74 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CreationRuntimeTest",
+    "name": "documentLimitPreflightDoesNotPoisonReadableWorkspace",
+    "seconds": "0.457",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.DesignProvenanceTest",
+    "name": "interruptionAfterDraftCommitCannotPromoteOrphanApplicationToVerifiedOrigin",
+    "seconds": "1.027",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.JournalCommitPerformanceTest",
+    "name": "unicodeAndUnpairedSurrogateBodyAndSnapshotGuardsMatchActualPersistedBytes",
+    "seconds": "1.048",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.JournalCommitPerformanceTest",
+    "name": "measuredActualSaveAllocationAndPersistedBodyIdentity",
+    "seconds": "0.616",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.JournalCommitPerformanceTest",
+    "name": "sourceVersionBodyRemainsExactAcrossVersionOnlyCommitReopenAndLaterChange",
+    "seconds": "0.083",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "completeChainRejectsDeletedRevisionAndUnknownEntry",
+    "seconds": "0.121",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "stagedUnknownCorruptAndFutureDocumentsNeverDefault",
+    "seconds": "0.218",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioFormatMigrationTest",
+    "name": "copyPreservesOriginalBytesHistoryAndEncryptedBlobsAndCanBackupRestore",
+    "seconds": "1.988",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioRestoreTest",
+    "name": "completeSnapshotRestoresOriginalProjectUndoAndSecretReferenceOnly",
+    "seconds": "1.676",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioRestoreTest",
+    "name": "interruptedRestoreRetainsStagingAndCanRetryIntoFreshRoot",
+    "seconds": "0.746",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioRestoreTest",
+    "name": "corruptIncompleteAndUnknownSnapshotsNeverPublishOrOverwrite",
+    "seconds": "0.689",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.WorkspaceProcessTest",
+    "name": "abruptStagedAndCommittedDocumentCrashesPreserveOriginals",
+    "seconds": "1.504",
+    "status": "PASS"
+  }
+]

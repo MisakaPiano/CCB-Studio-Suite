@@ -1,3 +1,7 @@
+## 2026-10-25 PERF-001/007提交后内容复用
+
+[6dfadc0报告/原始执行](audits/PERF001007_JOURNAL_COMMIT_20261025.md)：最终12唯一方法PASS，256KiB ASCII保存分配11.53→7.56MB；预检/实际提交均完整编码验证，代理字符走旧解析、旧UTF-8及快照边界保持。非RSS/UI/人工/包验；[复审仅准备](../handoff/PERF001007_JOURNAL_REVIEW_READY_20261025.md)。继续底层增量后目录/副本集成观测、不重跑旧接受基线，Desktop优先，无发布/外发。
+
 ## 2026-10-25 PERF-001/005完整资产字节返回分配
 
 [66ed23c报告/原始执行](audits/PERF001005_WORKSPACE_BYTES_20261025.md)：最终7唯一方法PASS，12MiB完整返回分配46.25→25.35MB；原源验证/锁/排水、返回数组独立性保持，只改内存收集。非RSS/UI/普遍提速/人工或包验；[复审仅准备](../handoff/PERF001005_WORKSPACE_BYTES_REVIEW_READY_20261025.md)。无新发布/外发，持续低风险元数据冗余核对、Desktop优先，旧失败/未验保持。

@@ -1,0 +1,62 @@
+{
+  "medians": {
+    "baseline": {
+      "65536": {
+        "wallMs": 28.3122,
+        "cpuMs": 0.0,
+        "allocatedBytes": 3078436.0
+      },
+      "262144": {
+        "wallMs": 42.11945,
+        "cpuMs": 15.625,
+        "allocatedBytes": 11533336.0
+      }
+    },
+    "final": {
+      "65536": {
+        "wallMs": 25.2009,
+        "cpuMs": 0.0,
+        "allocatedBytes": 2056724.0
+      },
+      "262144": {
+        "wallMs": 38.82245,
+        "cpuMs": 7.8125,
+        "allocatedBytes": 7561672.0
+      }
+    }
+  },
+  "counts": {
+    "baseline": {
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "6966bc0ed80b312bea7a93efb76646fd590a645b",
+      "seconds": 16.825,
+      "startedUtc": "2026-10-24T23:43:11.516490+00:00"
+    },
+    "final": {
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "6dfadc02f544ce5394cf4e628f410ca695939a3d",
+      "seconds": 29.75,
+      "startedUtc": "2026-10-24T23:45:11.152741+00:00"
+    }
+  },
+  "finalUniqueMethods": 12,
+  "cleanupFiles": 317,
+  "cleanupBytes": 3921670,
+  "limits": [
+    "Two independent JVMs; prior test/warmup/JSON pooling/JIT/GC/filesystem scheduling not a causal latency or RSS comparison",
+    "ASCII synthetic job-detail64/256KiB inputs,one warmup+4 actual workspace.save calls per size,counters before JSON/digest/output",
+    "Any surrogate-bearing encoded body uses original envelope decode; emoji/unpaired high/low branches exercised; no uniform performance improvement claim",
+    "Historical unpaired surrogate normalization leaves persisted state different from live state; snapshot mismatch guard retained,not fixed/hidden",
+    "Full capacity preflight/actual encode,validation,stored envelope,chain/hash/fault/poison behavior retained",
+    "Controlled own process halt73 probes test crash boundaries; no unrelated process killed",
+    "Desktop launch owner checks,not continuous quiet host proof; no GUI/package/user/independent acceptance"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "phase": "perf001007-journal-commit-baseline-20261025",
+  "startedUtc": "2026-10-24T23:43:11.516490+00:00",
+  "seconds": 16.825,
+  "exitCode": 0,
+  "tests": 2,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--priority",
+    "low",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    "-PpreviewTestRoot=H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-23f0ad7b9a7d46b1829b2d25bd1a0c48\\payload",
+    ":studio-core:test",
+    "--tests",
+    "*JournalCommitPerformanceTest"
+  ],
+  "baseCommit": "6966bc0ed80b312bea7a93efb76646fd590a645b",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

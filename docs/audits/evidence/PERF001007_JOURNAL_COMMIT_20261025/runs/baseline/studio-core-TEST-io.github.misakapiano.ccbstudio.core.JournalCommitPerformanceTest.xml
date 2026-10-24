@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.JournalCommitPerformanceTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-24T23:43:25.463Z" hostname="DD1" time="1.786">
+  <properties/>
+  <testcase name="unicodeAndUnpairedSurrogateBodyAndSnapshotGuardsMatchActualPersistedBytes" classname="io.github.misakapiano.ccbstudio.core.JournalCommitPerformanceTest" time="1.05"/>
+  <testcase name="measuredActualSaveAllocationAndPersistedBodyIdentity" classname="io.github.misakapiano.ccbstudio.core.JournalCommitPerformanceTest" time="0.736"/>
+  <system-out><![CDATA[JOURNAL_COMMIT_ALLOCATION=[{"payloadBytes":65536,"round":0,"wallMs":27.0636,"cpuMs":0.0,"allocatedBytes":3078528},{"payloadBytes":65536,"round":1,"wallMs":30.9453,"cpuMs":0.0,"allocatedBytes":3078376},{"payloadBytes":65536,"round":2,"wallMs":29.5608,"cpuMs":0.0,"allocatedBytes":3078376},{"payloadBytes":65536,"round":3,"wallMs":23.3678,"cpuMs":0.0,"allocatedBytes":3078496},{"payloadBytes":262144,"round":0,"wallMs":27.5972,"cpuMs":15.625,"allocatedBytes":11533336},{"payloadBytes":262144,"round":1,"wallMs":41.8851,"cpuMs":15.625,"allocatedBytes":11533336},{"payloadBytes":262144,"round":2,"wallMs":42.3538,"cpuMs":15.625,"allocatedBytes":11533336},{"payloadBytes":262144,"round":3,"wallMs":45.1718,"cpuMs":15.625,"allocatedBytes":11533576}]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

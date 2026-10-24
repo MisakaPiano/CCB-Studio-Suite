@@ -1,0 +1,38 @@
+[
+  {
+    "caseIndex": 0,
+    "encodedBodyContainsSurrogate": false,
+    "hashValid": true,
+    "persistedEqualsInMemoryState": true
+  },
+  {
+    "caseIndex": 1,
+    "encodedBodyContainsSurrogate": false,
+    "hashValid": true,
+    "persistedEqualsInMemoryState": true
+  },
+  {
+    "caseIndex": 2,
+    "encodedBodyContainsSurrogate": false,
+    "hashValid": true,
+    "persistedEqualsInMemoryState": true
+  },
+  {
+    "caseIndex": 3,
+    "encodedBodyContainsSurrogate": true,
+    "hashValid": true,
+    "persistedEqualsInMemoryState": true
+  },
+  {
+    "caseIndex": 4,
+    "encodedBodyContainsSurrogate": true,
+    "hashValid": true,
+    "persistedEqualsInMemoryState": false
+  },
+  {
+    "caseIndex": 5,
+    "encodedBodyContainsSurrogate": true,
+    "hashValid": true,
+    "persistedEqualsInMemoryState": false
+  }
+]
