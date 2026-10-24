@@ -35,7 +35,9 @@ compose.desktop {
 
 tasks.test {
     useJUnit(); maxParallelForks=1; maxHeapSize="256m"; jvmArgs("-XX:ActiveProcessorCount=2")
-    systemProperty("preview.test.root", rootProject.file(".local/windows-preview/desktop-tests").absolutePath)
+    val isolated = providers.gradleProperty("previewTestRoot").orNull
+    systemProperty("preview.test.root", isolated?.let { "$it/desktop" } ?: rootProject.file(".local/windows-preview/desktop-tests").absolutePath)
+    isolated?.let { systemProperty("java.io.tmpdir", "$it/desktop-tmp") }
     providers.gradleProperty("updateFixtureRoot").orNull?.let { systemProperty("preview.update.fixture", it) }
     testLogging { events("passed","failed","skipped") }
 }

@@ -6,7 +6,7 @@ ROOT=Path(__file__).resolve().parents[2]
 
 class HandoffTests(unittest.TestCase):
     def setUp(self):
-        base=ROOT/'.local/windows-rc/handoff-fixtures';base.mkdir(exist_ok=True)
+        base=Path(os.environ.get('CCB_SYNTHETIC_TEST_ROOT',ROOT/'.local/windows-rc'))/'handoff-fixtures';base.mkdir(exist_ok=True)
         self.path=base/uuid.uuid4().hex;self.path.mkdir()
     def test_parent_handle_binds_actual_process_image(self):
         parent=ParentProcess(os.getpid(),Path(sys.executable))

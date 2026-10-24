@@ -11,7 +11,7 @@ from dataclasses import replace
 
 class ClientTests(unittest.TestCase):
     def setUp(self):
-        base=ROOT/'.local/windows-rc/runtime-client-fixtures';base.mkdir(exist_ok=True)
+        base=Path(os.environ.get('CCB_SYNTHETIC_TEST_ROOT',ROOT/'.local/windows-rc'))/'runtime-client-fixtures';base.mkdir(exist_ok=True)
         self.path=base/uuid.uuid4().hex;self.path.mkdir();self.repo=Repository()
         self.identity=Installed(1,2,'internal','https://updates.invalid/metadata/','https://updates.invalid/targets/',self.repo.bootstrap)
         self.publish()

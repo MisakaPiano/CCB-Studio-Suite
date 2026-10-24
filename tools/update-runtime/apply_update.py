@@ -154,6 +154,15 @@ def _perform(plan_path):
         return 1
     finally:
         if parent:parent.close()
+    # This is outside the update transaction: cleanup cannot turn COMPLETE into FAILED.
+    # Use B's runtime so A's program can be retired after this helper exits.
+    try:
+        cleanup=final/'updater/lib/residue_cleanup.py'
+        if cleanup.is_file():
+            log=no_reparse(cache/'cleanup');log.mkdir(exist_ok=True)
+            with (log/'post-update-process.log').open('ab') as output:
+                subprocess.Popen([str(final/'updater/pythonw.exe'),'-B',str(cleanup),'--package',str(final),'--cache',str(cache),'--data',str(destination),'--runtime',str(runtime)],stdout=output,stderr=subprocess.STDOUT,creationflags=subprocess.CREATE_NO_WINDOW)
+    except Exception:pass # B startup and later ordinary launches retry from retained receipts.
     return 0
 
 if __name__=='__main__':

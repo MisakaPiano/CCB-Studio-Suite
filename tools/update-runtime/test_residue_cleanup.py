@@ -8,7 +8,7 @@ ROOT=Path(__file__).resolve().parents[2]
 
 class ResidueCleanupTests(unittest.TestCase):
     def setUp(self):
-        self.base=ROOT/'.local/windows-rc/residue-cleanup-fixtures'/uuid.uuid4().hex
+        self.base=Path(os.environ.get('CCB_SYNTHETIC_TEST_ROOT',ROOT/'.local/windows-rc'))/'residue-cleanup-fixtures'/uuid.uuid4().hex[:8]
         self.root=self.base/'programs';self.root.mkdir(parents=True)
         self.data=self.base/'data';self.data.mkdir();(self.data/'original.bin').write_bytes(b'unique synthetic data')
         self.runtime=self.base/'runtime';self.cache=self.runtime/'updates';self.cache.mkdir(parents=True)
@@ -39,9 +39,8 @@ class ResidueCleanupTests(unittest.TestCase):
     def mature(self):
         self.cleanup(start=self.starts[0]);self.cleanup(start=self.starts[1]);return self.cleanup(ROLLBACK_SECONDS+1)
 
-    def test_success_retains_rollback_for_seven_days_and_two_distinct_cold_starts(self):
-        self.cleanup();self.cleanup(ROLLBACK_SECONDS+1,start=self.starts[0]);self.cleanup(ROLLBACK_SECONDS+1,start=self.starts[0]);self.assertTrue((self.old/'retired.dll').exists())
-        result=self.cleanup(ROLLBACK_SECONDS+2,start=self.starts[1]);self.assertGreater(result['removed'],0);self.assertFalse(self.old.exists());self.assertTrue((self.current/'retired.dll').exists())
+    def test_success_retires_immediately_without_seven_days_or_extra_cold_starts(self):
+        result=self.cleanup();self.assertGreater(result['removed'],0);self.assertFalse(self.old.exists());self.assertTrue((self.current/'retired.dll').exists())
         self.assertEqual((self.data/'original.bin').read_bytes(),b'unique synthetic data');self.assertTrue((self.folder/'result.json').is_file())
 
     def test_obsolete_manifest_members_removed_unknown_modified_files_and_plugin_tree_retained(self):
@@ -53,6 +52,15 @@ class ResidueCleanupTests(unittest.TestCase):
 
     def test_legacy_manifest_alone_never_grants_automatic_deletion(self):
         legacy,_=self.program(0+3,'c');before=(legacy/'app/main.jar').read_bytes();self.mature();self.assertEqual((legacy/'app/main.jar').read_bytes(),before)
+
+    def test_only_just_superseded_active_program_can_adopt_a_pinned_old_install_record(self):
+        os.rename(self.old_receipt,self.base/'retained-original-ownership.json')
+        journal=self.cache/'install-prior.json';atomic_json(journal,dict(target=str(self.old),expected=self.old_id,verification=verify_install(self.old,self.old_id)))
+        folder=self.cache/'handoffs/prior';folder.mkdir()
+        atomic_json(folder/'plan.json',dict(format=1,nonce='c'*64,installed=str(self.root/'0-synthetic'),cache=str(self.cache),approved=dict(**self.old_id,sha256=self.installer_hash)))
+        atomic_json(folder/'result.json',dict(status='COMPLETE',nonce='c'*64,installed=str(self.old),installJournal=str(journal),verification='B_PROGRAM_DATA_AND_CREDENTIAL_SNAPSHOT_MATCH'))
+        (self.old/'unknown.txt').write_bytes(b'not owned')
+        self.cleanup();self.assertFalse((self.old/'app/main.jar').exists());self.assertEqual((self.old/'unknown.txt').read_bytes(),b'not owned')
 
     def test_incomplete_or_failed_handoff_never_releases_fallback_or_download(self):
         for status in ('STARTING_B','FAILED_RETAINED'):
@@ -68,21 +76,20 @@ class ResidueCleanupTests(unittest.TestCase):
         self.cleanup();self.assertFalse(directory.exists())
         partial=downloads/(str(uuid.uuid4())+'.incomplete');partial.mkdir();(partial/'studio-installer.exe').write_bytes(b'owned partial copy');(partial/'unknown.bin').write_bytes(b'unknown')
         enroll_download(self.cache,self.root,partial,self.current_id,self.installer_hash,False,self.now)
-        self.cleanup();self.assertTrue((partial/'studio-installer.exe').exists());self.cleanup(FAILED_SECONDS+1)
+        self.cleanup()
         self.assertFalse((partial/'studio-installer.exe').exists());self.assertEqual((partial/'unknown.bin').read_bytes(),b'unknown')
 
-    def test_partial_owned_extraction_waits_thirty_days_and_a_successful_new_program(self):
+    def test_partial_owned_extraction_retires_after_a_successful_new_program_without_a_timer(self):
         stage=self.root/('3-'+'c'*12+'.'+uuid.uuid4().hex+'.installing');full,expected=self.program(3,'c');os.rename(full,stage)
         enroll_program(self.cache,self.root,stage,expected,self.installer_hash,self.cache/'install-failed.json',self.now)
-        self.cleanup(start=self.starts[0]);self.cleanup(start=self.starts[1]);self.cleanup(ROLLBACK_SECONDS+1);self.assertTrue(stage.exists())
-        self.cleanup(FAILED_SECONDS+1);self.assertFalse(stage.exists())
+        self.cleanup();self.assertFalse(stage.exists())
 
     def test_registered_program_and_backup_protection_override_retirement(self):
         atomic_json(self.root/'ACTIVE_INSTALLATION.json',dict(doNotCleanReferencedDirectories=True,program=str(self.old),retainedBackupWorkspace=str(self.data)))
         self.mature();self.assertTrue((self.old/'app/main.jar').exists());self.assertEqual((self.data/'original.bin').read_bytes(),b'unique synthetic data')
 
     def test_file_in_use_defers_whole_program_then_retries_without_changing_update_result(self):
-        self.cleanup(start=self.starts[0]);self.cleanup(start=self.starts[1]);result=(self.folder/'result.json').read_bytes()
+        result=(self.folder/'result.json').read_bytes()
         with immutable_file(self.old/'CCBStudioSuitePreview.exe'):
             value=self.cleanup(ROLLBACK_SECONDS+1);self.assertEqual(value['status'],'DEFERRED');self.assertTrue((self.old/'app/main.jar').exists())
         self.cleanup(ROLLBACK_SECONDS+2);self.assertFalse(self.old.exists());self.assertEqual((self.folder/'result.json').read_bytes(),result)
@@ -95,7 +102,6 @@ class ResidueCleanupTests(unittest.TestCase):
         self.cleanup(ROLLBACK_SECONDS+2);self.assertFalse(p.exists());self.assertEqual(json.loads((self.folder/'result.json').read_text())['status'],'COMPLETE')
 
     def test_interrupted_cleanup_replays_safely_and_repeated_cleanup_is_idempotent(self):
-        self.cleanup(start=self.starts[0]);self.cleanup(start=self.starts[1])
         def interrupt(_):raise SystemExit('synthetic interruption after one removal')
         with self.assertRaises(SystemExit):self.cleanup(ROLLBACK_SECONDS+1,after_delete=interrupt)
         self.cleanup(ROLLBACK_SECONDS+2);self.assertFalse(self.old.exists());self.assertEqual(self.cleanup(ROLLBACK_SECONDS+3)['removed'],0)
@@ -110,8 +116,10 @@ class ResidueCleanupTests(unittest.TestCase):
         outside=self.base/'outside';outside.mkdir();(outside/'main.jar').write_bytes(b'outside retained')
         proc=subprocess.run(['cmd.exe','/d','/c','mklink','/J',str(self.old/'app'),str(outside)],capture_output=True)
         self.assertEqual(proc.returncode,0,proc.stdout+proc.stderr)
-        with self.assertRaises(ValueError):self.mature()
-        self.assertEqual((outside/'main.jar').read_bytes(),b'outside retained');self.assertTrue((moved/'main.jar').exists())
+        try:
+            with self.assertRaises(ValueError):self.mature()
+            self.assertEqual((outside/'main.jar').read_bytes(),b'outside retained');self.assertTrue((moved/'main.jar').exists())
+        finally:os.rmdir(self.old/'app') # exact newly-created synthetic junction only
 
     def test_secondary_workspace_and_invalid_protection_record_fail_closed(self):
         other=self.base/'restored';other.mkdir();self.assertEqual(run(self.current,self.cache,other,self.runtime)['status'],'RETAINED_SECONDARY_WORKSPACE')

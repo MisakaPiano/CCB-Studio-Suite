@@ -17,7 +17,9 @@ dependencyLocking { lockAllConfigurations() }
 tasks.test {
     useJUnit(); maxParallelForks = 1; maxHeapSize = "256m"
     jvmArgs("-XX:ActiveProcessorCount=2")
-    systemProperty("preview.test.root", rootProject.file(".local/windows-preview/tests").absolutePath)
+    val isolated = providers.gradleProperty("previewTestRoot").orNull
+    systemProperty("preview.test.root", isolated?.let { "$it/core" } ?: rootProject.file(".local/windows-preview/tests").absolutePath)
+    isolated?.let { systemProperty("java.io.tmpdir", "$it/core-tmp") }
     testLogging { events("passed", "failed", "skipped") }
 }
 tasks.register<JavaExec>("liveProbe") {
