@@ -7,7 +7,12 @@ import java.lang.management.ManagementFactory
 import java.nio.file.*
 import java.security.MessageDigest
 import java.util.UUID
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicInteger
+import java.util.concurrent.atomic.AtomicReference
 import java.util.zip.CRC32
+import kotlin.concurrent.thread
 import kotlin.test.*
 
 class TypesetOriginalPerformanceTest {
@@ -103,6 +108,29 @@ class TypesetOriginalPerformanceTest {
                 assertFailsWith<FileAlreadyExistsException>{copyVerifiedOriginal(w,id.toString(),target)}
                 assertContentEquals(bytes,Files.readAllBytes(target));assertEquals(sha256(bytes),w.assets.read(id).require().sha256())
             }
+        }
+    }
+
+    @Test fun sharedCopyDoesNotHoldWorkspaceMonitorDuringBlockedOutput() {
+        val base=root()
+        StudioWorkspace.openStudio(base.resolve("workspace")).use{w->
+            val bytes=ByteArray(256*1024){(it*13).toByte()};val id=UUID.randomUUID()
+            bytes.inputStream().use{w.assets.put(AssetStore.Request(id,"opaque.bin",AssetStore.Kind.ORIGINAL,null,byteArrayOf(),byteArrayOf()),it)}
+            val entered=CountDownLatch(1);val release=CountDownLatch(1);val stateRead=CountDownLatch(1)
+            val calls=AtomicInteger();val problem=AtomicReference<Throwable?>();val target=base.resolve("blocked.bin")
+            val writer=thread(name="Synthetic-shared-copy"){
+                try{copyVerifiedOriginal(w,id.toString(),target){
+                    if(calls.incrementAndGet()==2){entered.countDown();check(release.await(10,TimeUnit.SECONDS))}
+                }}catch(error:Throwable){problem.set(error)}
+            }
+            var reader:Thread?=null
+            try {
+                assertTrue(entered.await(10,TimeUnit.SECONDS))
+                reader=thread(name="Synthetic-workspace-read"){try{w.state}finally{stateRead.countDown()}}
+                assertTrue(stateRead.await(2,TimeUnit.SECONDS),"A blocked output must not monopolize the workspace monitor")
+            }finally{release.countDown();writer.join(10000);reader?.join(10000)}
+            assertFalse(writer.isAlive);assertFalse(reader?.isAlive==true);assertNull(problem.get())
+            assertEquals(sha256(bytes),digest(target));assertEquals(sha256(bytes),w.assets.read(id).require().sha256())
         }
     }
 }
