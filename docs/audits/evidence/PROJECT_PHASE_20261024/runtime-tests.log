@@ -1,0 +1,18 @@
+test_independent_root_stable_launcher_advances_twice_without_changing_data (test_handoff.HandoffTests.test_independent_root_stable_launcher_advances_twice_without_changing_data) ... ok
+test_migration_destination_is_fresh_sibling_and_bound_to_confirmed_versions (test_handoff.HandoffTests.test_migration_destination_is_fresh_sibling_and_bound_to_confirmed_versions) ... ok
+test_parent_handle_binds_actual_process_image (test_handoff.HandoffTests.test_parent_handle_binds_actual_process_image) ... ok
+test_terminal_handoff_replay_does_not_reinstall_or_replace_receipt (test_handoff.HandoffTests.test_terminal_handoff_replay_does_not_reinstall_or_replace_receipt) ... ok
+test_unicode_shortcut_keeps_explicit_roots_without_execution (test_handoff.HandoffTests.test_unicode_shortcut_keeps_explicit_roots_without_execution) ... ok
+test_download_stays_immutable_during_executor (test_install.InstallTests.test_download_stays_immutable_during_executor) ... ok
+test_existing_version_and_data_overlap_refuse_before_install (test_install.InstallTests.test_existing_version_and_data_overlap_refuse_before_install) ... ok
+test_independent_install_parent_may_contain_data_without_treating_it_as_program (test_install.InstallTests.test_independent_install_parent_may_contain_data_without_treating_it_as_program) ... ok
+test_installer_failure_retains_partial_without_publish (test_install.InstallTests.test_installer_failure_retains_partial_without_publish) ... ok
+test_insufficient_space_has_no_install_stage (test_install.InstallTests.test_insufficient_space_has_no_install_stage) ... ok
+test_manifest_wrong_identity_hash_or_unknown_file_is_rejected (test_install.InstallTests.test_manifest_wrong_identity_hash_or_unknown_file_is_rejected) ... ok
+test_success_is_installed_not_started_and_preserves_sources (test_install.InstallTests.test_success_is_installed_not_started_and_preserves_sources) ... ok
+test_tampered_executable_is_never_executed (test_install.InstallTests.test_tampered_executable_is_never_executed) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 19.351s
+
+OK

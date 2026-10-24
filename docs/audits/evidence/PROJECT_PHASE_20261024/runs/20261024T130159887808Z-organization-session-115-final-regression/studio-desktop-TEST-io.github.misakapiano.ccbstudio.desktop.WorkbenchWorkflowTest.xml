@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2026-10-24T13:03:40.311Z" hostname="DD1" time="61.04">
+  <properties/>
+  <testcase name="batchUsesRealPipelineCaptures429AndPersistsOriginWithoutAnyAutomaticRetry" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="4.207"/>
+  <testcase name="batchCreationEntryKeepsRulesAndWorkbenchWithoutSubmitting" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="2.402"/>
+  <testcase name="roleEditingReorderDisableAndDeleteReachRequestAndSurviveReopen" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="7.299"/>
+  <testcase name="creationFooterAndImageSummaryAdaptWithoutLosingDraftOrSelection" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="2.973"/>
+  <testcase name="accountRefreshAndNewSelectionNeverReuseAnotherAccountsQuota" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="3.313"/>
+  <testcase name="continuousGenerationCompletesRemainderStopsAndRetainsPartialResultsWithoutReplay" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="6.12"/>
+  <testcase name="batchPauseDuringQuotaAndSavedResultFailureNeverResubmit" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="1.837"/>
+  <testcase name="batchHistoryIsMultistepWithRedoBranchAndSharedKeyboardMenuActions" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="3.758"/>
+  <testcase name="batchWorkbenchMatchesApprovedGroupsPreviewTilesAndSelection" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="3.969"/>
+  <testcase name="editedAssetIsSelectableAcrossGuidanceAndEditorAndSurvivesRestart" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="4.474"/>
+  <testcase name="batchEndReceivesInflightImageAndNeverSendsNextRequest" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="2.383"/>
+  <testcase name="measuredSuiteNavigationSurvivesResizeAndUnsentInput" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="2.97"/>
+  <testcase name="continuedEditingRetainsExistingAssetsAndCredentials" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="1.131"/>
+  <testcase name="accountsDesignApplyGenerateGalleryAndRestart" classname="io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest" time="14.204"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

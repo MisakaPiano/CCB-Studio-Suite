@@ -1,0 +1,216 @@
+{
+  "scope": "Whitelisted synthetic-only run text/XML/JSON; no workspace, picture, credentials, key or recovery material copied",
+  "files": [
+    {
+      "path": "runs/20261024T115635536423Z-organization-session-compile/summary.json",
+      "bytes": 865,
+      "sha256": "4a071b1d442c1c5898c7919cb1380d7840a953ea3ee47caaf7a592e7531e3213",
+      "source": ".local/windows-preview/evidence/20261024T115635536423Z-organization-session-compile/summary.json"
+    },
+    {
+      "path": "runs/20261024T115635536423Z-organization-session-compile/gradle.log",
+      "bytes": 7060,
+      "sha256": "7b1cbef94c29e499bdea776bcd08ea0b22d5c6cb304e6362fed7b8a73af89a1f",
+      "source": ".local/windows-preview/evidence/20261024T115635536423Z-organization-session-compile/gradle.log"
+    },
+    {
+      "path": "runs/20261024T120336495036Z-organization-session-first-regression/summary.json",
+      "bytes": 1124,
+      "sha256": "66ce2fae3326490e11a7c61282881aa696dc15d3c323fdc510012c2db692ee57",
+      "source": ".local/windows-preview/evidence/20261024T120336495036Z-organization-session-first-regression/summary.json"
+    },
+    {
+      "path": "runs/20261024T120336495036Z-organization-session-first-regression/gradle.log",
+      "bytes": 19772,
+      "sha256": "11466173427bbdfe525b9a75dc2d2656753ef0c569503f50170c382edd62f400",
+      "source": ".local/windows-preview/evidence/20261024T120336495036Z-organization-session-first-regression/gradle.log"
+    },
+    {
+      "path": "runs/20261024T121338755714Z-organization-session-targeted/summary.json",
+      "bytes": 1129,
+      "sha256": "a96926b787f53110e4eb7ec074d8b85c592d7d6cef8728167cdad167b6417a04",
+      "source": ".local/windows-preview/evidence/20261024T121338755714Z-organization-session-targeted/summary.json"
+    },
+    {
+      "path": "runs/20261024T121338755714Z-organization-session-targeted/gradle.log",
+      "bytes": 10320,
+      "sha256": "b923205c6a8726612a0372385cf5c1bef7eea63ec5c98ca818205242e9d29a1a",
+      "source": ".local/windows-preview/evidence/20261024T121338755714Z-organization-session-targeted/gradle.log"
+    },
+    {
+      "path": "runs/20261024T122005021341Z-organization-session-ui-polish/summary.json",
+      "bytes": 1128,
+      "sha256": "bf4b01f14f9806c6cd2e0adb28e8d853bd4e87a386c60df9161f87f936e6a1ca",
+      "source": ".local/windows-preview/evidence/20261024T122005021341Z-organization-session-ui-polish/summary.json"
+    },
+    {
+      "path": "runs/20261024T122005021341Z-organization-session-ui-polish/gradle.log",
+      "bytes": 9198,
+      "sha256": "7197cf5a7cb14b2f3c4e7ce475216657c9b8bf09fa384f801ee59d771ba07cc1",
+      "source": ".local/windows-preview/evidence/20261024T122005021341Z-organization-session-ui-polish/gradle.log"
+    },
+    {
+      "path": "runs/20261024T123112296523Z-organization-session-update-repair/summary.json",
+      "bytes": 872,
+      "sha256": "a90c96575defd1e272b2ba5ec94d6a67dcc28f1ab83c1fd53d6df6b3daa5bbab",
+      "source": ".local/windows-preview/evidence/20261024T123112296523Z-organization-session-update-repair/summary.json"
+    },
+    {
+      "path": "runs/20261024T123112296523Z-organization-session-update-repair/gradle.log",
+      "bytes": 8519,
+      "sha256": "70fdf1d2742c5035c8775f8b561b41afb22a800c68da92abc18ab403e3d1345d",
+      "source": ".local/windows-preview/evidence/20261024T123112296523Z-organization-session-update-repair/gradle.log"
+    },
+    {
+      "path": "runs/20261024T124015546131Z-organization-session-inline/gradle.log",
+      "bytes": 7760,
+      "sha256": "7152ca19129c70725e843b15f035249ac064dcb20a6075122f04f60edda29676",
+      "source": ".local/windows-preview/evidence/20261024T124015546131Z-organization-session-inline/gradle.log"
+    },
+    {
+      "path": "runs/20261024T125115578207Z-organization-session-inline-retry/summary.json",
+      "bytes": 1035,
+      "sha256": "8016f02f9974934b307aab28bc7fe35920a5419d8cf01ce65cfe0a52893b4f5e",
+      "source": ".local/windows-preview/evidence/20261024T125115578207Z-organization-session-inline-retry/summary.json"
+    },
+    {
+      "path": "runs/20261024T125115578207Z-organization-session-inline-retry/gradle.log",
+      "bytes": 3741,
+      "sha256": "0c08db174bbeeba4b4e8f129310885381a6572331d82830bd29be04abbb70fa3",
+      "source": ".local/windows-preview/evidence/20261024T125115578207Z-organization-session-inline-retry/gradle.log"
+    },
+    {
+      "path": "runs/20261024T125409576127Z-organization-session-dialogs/summary.json",
+      "bytes": 1073,
+      "sha256": "d8047bf0d32e7bc8e3f1c448dec3b7fe16ff19ca2b9bb0993d9a5c9636d04836",
+      "source": ".local/windows-preview/evidence/20261024T125409576127Z-organization-session-dialogs/summary.json"
+    },
+    {
+      "path": "runs/20261024T125409576127Z-organization-session-dialogs/gradle.log",
+      "bytes": 4693,
+      "sha256": "5c978cd3e481dbdd4611f4b2fea7e9f945344b941f3d276a940107a41eb44c10",
+      "source": ".local/windows-preview/evidence/20261024T125409576127Z-organization-session-dialogs/gradle.log"
+    },
+    {
+      "path": "runs/20261024T125623375390Z-organization-session-dialogs-repair/summary.json",
+      "bytes": 995,
+      "sha256": "d11fdb675844dca4497b8ec999986a584c27f21c5f3818d09d84b6fa2e37426d",
+      "source": ".local/windows-preview/evidence/20261024T125623375390Z-organization-session-dialogs-repair/summary.json"
+    },
+    {
+      "path": "runs/20261024T125623375390Z-organization-session-dialogs-repair/gradle.log",
+      "bytes": 6534,
+      "sha256": "c21e4e04ebe8fef7b1249c82512e2751e1e8c5a54b0b6a4f19078f4c6b5b65d4",
+      "source": ".local/windows-preview/evidence/20261024T125623375390Z-organization-session-dialogs-repair/gradle.log"
+    },
+    {
+      "path": "runs/20261024T125822835355Z-organization-session-115-final-regression/summary.json",
+      "bytes": 1475,
+      "sha256": "4aa2069d3dd9841e042da16f91effdbdbf30d317032b1a8a2208d4ad8c23bd46",
+      "source": ".local/windows-preview/evidence/20261024T125822835355Z-organization-session-115-final-regression/summary.json"
+    },
+    {
+      "path": "runs/20261024T125822835355Z-organization-session-115-final-regression/gradle.log",
+      "bytes": 7527,
+      "sha256": "ec6e6ee276baf9adcd1c139c397301891c5cc71a60d8e54b7d9340148d3393e7",
+      "source": ".local/windows-preview/evidence/20261024T125822835355Z-organization-session-115-final-regression/gradle.log"
+    },
+    {
+      "path": "runs/20261024T130159887808Z-organization-session-115-final-regression/summary.json",
+      "bytes": 1473,
+      "sha256": "6b2eb1557cdb3d98b6eba9fafeb6177231cc6567bee8a5b7987e44bb764d92da",
+      "source": ".local/windows-preview/evidence/20261024T130159887808Z-organization-session-115-final-regression/summary.json"
+    },
+    {
+      "path": "runs/20261024T130159887808Z-organization-session-115-final-regression/gradle.log",
+      "bytes": 11316,
+      "sha256": "2790a19fbb1f6f403d2d019e0197fd6b42dd41bdb62b7de5677807e75058b3f5",
+      "source": ".local/windows-preview/evidence/20261024T130159887808Z-organization-session-115-final-regression/gradle.log"
+    },
+    {
+      "path": "runs/20261024T130159887808Z-organization-session-115-final-regression/source-before.json",
+      "bytes": 73165,
+      "sha256": "f548eca40f100e0cf12130d866e7f823697e27a96a384a0b02421d4920d77aa5",
+      "source": ".local/windows-preview/evidence/20261024T130159887808Z-organization-session-115-final-regression/source-before.json"
+    },
+    {
+      "path": "runs/20261024T130159887808Z-organization-session-115-final-regression/test-cases.json",
+      "bytes": 9831,
+      "sha256": "89de69617f5a5bea1f1de003b9e6c955e1f336e0bdca5cc8639dbcf8bed89e49",
+      "source": ".local/windows-preview/evidence/20261024T130159887808Z-organization-session-115-final-regression/test-cases.json"
+    },
+    {
+      "path": "runs/20261024T130159887808Z-organization-session-115-final-regression/studio-core-TEST-io.github.misakapiano.ccbstudio.core.BatchGenerationTest.xml",
+      "bytes": 1625,
+      "sha256": "c66c8810782c79efe1048acab832060245e415368aacfaeb9c18ead5ce0938c4",
+      "source": ".local/windows-preview/evidence/20261024T130159887808Z-organization-session-115-final-regression/studio-core-TEST-io.github.misakapiano.ccbstudio.core.BatchGenerationTest.xml"
+    },
+    {
+      "path": "runs/20261024T130159887808Z-organization-session-115-final-regression/studio-core-TEST-io.github.misakapiano.ccbstudio.core.GenerationOrganizationTest.xml",
+      "bytes": 1197,
+      "sha256": "a3a5eb876c2552cb711c706936df8990186126f20d0862475de157d8e1c19402",
+      "source": ".local/windows-preview/evidence/20261024T130159887808Z-organization-session-115-final-regression/studio-core-TEST-io.github.misakapiano.ccbstudio.core.GenerationOrganizationTest.xml"
+    },
+    {
+      "path": "runs/20261024T130159887808Z-organization-session-115-final-regression/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GalleryAlbumWorkflowTest.xml",
+      "bytes": 722,
+      "sha256": "4430a57edde86091520e2fc5ab51557ad6d2c9df586d8aadf4c6839a5024fe92",
+      "source": ".local/windows-preview/evidence/20261024T130159887808Z-organization-session-115-final-regression/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GalleryAlbumWorkflowTest.xml"
+    },
+    {
+      "path": "runs/20261024T130159887808Z-organization-session-115-final-regression/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GalleryLayoutParityTest.xml",
+      "bytes": 525,
+      "sha256": "bbe466e902fea4ce57a4200174520a1dbade4626652036a8962134acfaf9cd7a",
+      "source": ".local/windows-preview/evidence/20261024T130159887808Z-organization-session-115-final-regression/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GalleryLayoutParityTest.xml"
+    },
+    {
+      "path": "runs/20261024T130159887808Z-organization-session-115-final-regression/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GalleryOrganizationWorkflowTest.xml",
+      "bytes": 537,
+      "sha256": "556fc4af6b3072cad30687bd1bbc33a19e2762516a065b5326371bc9a5f41a5a",
+      "source": ".local/windows-preview/evidence/20261024T130159887808Z-organization-session-115-final-regression/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GalleryOrganizationWorkflowTest.xml"
+    },
+    {
+      "path": "runs/20261024T130159887808Z-organization-session-115-final-regression/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GallerySortingWorkflowTest.xml",
+      "bytes": 544,
+      "sha256": "9392d638731f003c2559f6600e1050a3f1cb53420f952db667353bf610daf848",
+      "source": ".local/windows-preview/evidence/20261024T130159887808Z-organization-session-115-final-regression/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GallerySortingWorkflowTest.xml"
+    },
+    {
+      "path": "runs/20261024T130159887808Z-organization-session-115-final-regression/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GalleryWorkflowTest.xml",
+      "bytes": 513,
+      "sha256": "1c083d7b9e13a7b83a99125f1c98a392efbf2d399fdb0b8ed4b0b37c02f0dd3a",
+      "source": ".local/windows-preview/evidence/20261024T130159887808Z-organization-session-115-final-regression/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GalleryWorkflowTest.xml"
+    },
+    {
+      "path": "runs/20261024T130159887808Z-organization-session-115-final-regression/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GenerationManagementWorkflowTest.xml",
+      "bytes": 700,
+      "sha256": "367899c61eb12fa45e515747ca95a811c8607fc7ffd71afb6fa89c1cd282ca32",
+      "source": ".local/windows-preview/evidence/20261024T130159887808Z-organization-session-115-final-regression/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.GenerationManagementWorkflowTest.xml"
+    },
+    {
+      "path": "runs/20261024T130159887808Z-organization-session-115-final-regression/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.RestoredUpdateSnapshotTest.xml",
+      "bytes": 1221,
+      "sha256": "7365d03c86f7fc0494112a9733cd83e6a1cd8752d5afc07c428700bc7b043081",
+      "source": ".local/windows-preview/evidence/20261024T130159887808Z-organization-session-115-final-regression/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.RestoredUpdateSnapshotTest.xml"
+    },
+    {
+      "path": "runs/20261024T130159887808Z-organization-session-115-final-regression/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest.xml",
+      "bytes": 1333,
+      "sha256": "add6e0b8df93745d445dcfc5d23fdae8bcf17df074d8b605144cfbf6e4e1c75a",
+      "source": ".local/windows-preview/evidence/20261024T130159887808Z-organization-session-115-final-regression/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioUpdateTest.xml"
+    },
+    {
+      "path": "runs/20261024T130159887808Z-organization-session-115-final-regression/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest.xml",
+      "bytes": 2722,
+      "sha256": "a0af61e74a5277e881589aba2d4fe2372e6dba83f0458853da596b0513c2f542",
+      "source": ".local/windows-preview/evidence/20261024T130159887808Z-organization-session-115-final-regression/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.WorkbenchWorkflowTest.xml"
+    },
+    {
+      "path": "runtime-tests.log",
+      "bytes": 2127,
+      "sha256": "618b2da8fa9b568c791317df5e3a81897fedf0bc053a3e8a7a44f48f240e8dd2",
+      "source": ".local/windows-rc/organization-session-115/runtime-tests.log"
+    }
+  ],
+  "byteEvidence": "Exact original bytes are in RAW_EVIDENCE.zip. Readable Git text derivatives normalize CRLF/LF and trim trailing whitespace; their Git blob digest is not the original run digest."
+}

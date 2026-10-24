@@ -1,0 +1,47 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+> Task :asset-library:compileJava UP-TO-DATE
+> Task :image-authority:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :image-authority:compileKotlin UP-TO-DATE
+> Task :image-authority:compileJava NO-SOURCE
+> Task :studio-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-core:compileKotlin
+
+The message received from the daemon indicates that the daemon has disappeared.
+Build request sent: Build{id=f789420a-ae59-4859-b829-d8648c0476e8, currentDir=H:\CCB-Studio-Suite}
+Attempting to read last messages from the daemon log...
+Daemon pid: 46560
+  log file: H:\CCB-Studio-Suite\.local\windows-preview\gradle-home\daemon\9.1.0\daemon-46560.out.log
+----- Last 20 lines from daemon log file - daemon-46560.out.log -----
+2026-10-24T20:57:04.790+0900 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Starting executing command: Build{id=f789420a-ae59-4859-b829-d8648c0476e8, currentDir=H:\CCB-Studio-Suite} with connection: socket connection from /127.0.0.1:53044 to /127.0.0.1:53045.
+2026-10-24T20:57:04.794+0900 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: started DaemonCommandExecution[command = Build{id=f789420a-ae59-4859-b829-d8648c0476e8, currentDir=H:\CCB-Studio-Suite}, connection = DefaultDaemonConnection: socket connection from /127.0.0.1:53044 to /127.0.0.1:53045] after 0.0027333333333333333 minutes of idle
+2026-10-24T20:57:04.794+0900 [INFO] [org.gradle.launcher.daemon.server.DaemonRegistryUpdater] Marking the daemon as busy, address: [b90c03c0-2c57-477a-b2ea-900da00e6ec4 port:53044, addresses:[localhost/127.0.0.1]]
+2026-10-24T20:57:04.794+0900 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Marking busy by address: [b90c03c0-2c57-477a-b2ea-900da00e6ec4 port:53044, addresses:[localhost/127.0.0.1]]
+2026-10-24T20:57:04.795+0900 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+2026-10-24T20:57:04.796+0900 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-10-24T20:57:04.796+0900 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-10-24T20:57:04.797+0900 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] resetting idle timer
+2026-10-24T20:57:04.797+0900 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] daemon is running. Sleeping until state changes.
+2026-10-24T20:57:04.798+0900 [INFO] [org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy] Daemon is about to start building Build{id=f789420a-ae59-4859-b829-d8648c0476e8, currentDir=H:\CCB-Studio-Suite}. Dispatching build started information...
+2026-10-24T20:57:04.798+0900 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 22: dispatching org.gradle.launcher.daemon.protocol.BuildStarted@43594ccb
+2026-10-24T20:57:04.799+0900 [DEBUG] [org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment] Configuring env variables: [PATH, USERDOMAIN_ROAMINGPROFILE, BROWSER_USE_ACCESS_VERIFYING_IDENTITY, PROCESSOR_LEVEL, SYSTEMDRIVE, GIT_PAGER, ALLUSERSPROFILE, CODEX_MCP_NODE_PATH, CODEX_SHELL, PROCESSOR_ARCHITECTURE, DRIVERDATA, =ExitCode, GH_PAGER, PROGRAMFILES, CODEX_CLI_PATH, CODEX_APP_TOOLS_PIPE_PATH, COLORTERM, PSMODULEPATH, PROGRAMDATA, CHOCOLATEYLASTPATHUPDATE, DIRNAME, USERNAME, CODEX_TASK_WORKSPACE_VERIFYING_IDENTITY, CODEX_INTERNAL_ORIGINATOR_OVERRIDE, ONEDRIVE, APP_HOME, CODEX_SAGE_BACKFILL_TRACKER_TAB_REUSE, CODEX_SANDBOX_NETWORK_DISABLED, DEFAULT_JVM_OPTS, PATHEXT, SHELL, PAGER, ONEDRIVECONSUMER, CODEX_PERMISSION_PROFILE, CODEX_WINDOWS_SANDBOX_PACKAGE_FAMILY, WINDIR, LOG_FORMAT, HOMEPATH, LC_ALL, PROCESSOR_IDENTIFIER, PUBLIC, ZSH_TMUX_AUTOSTARTED, LC_CTYPE, CODEX_SESSION_ID, LOCALAPPDATA, COMMONPROGRAMFILES(X86), USERDOMAIN, LOGONSERVER, PROMPT, RUST_LOG, PROGRAMFILES(X86), TERM, LANG, APPDATA, GRADLE_USER_HOME, CODEX_APPLY_PATCH_PRESERVE_LINE_ENDINGS, PROGRAMW6432, SYSTEMROOT, CHOCOLATEYINSTALL, JAVA_EXE, CODEX_THREAD_ID, CUDA_PATH_V11_7, NO_COLOR, NVTOOLSEXT_PATH, CODEX_CI, DISABLE_AUTO_UPDATE, OLLAMA_MODELS, OS, COMMONPROGRAMW6432, COMPUTERNAME, COMMONPROGRAMFILES, COMSPEC, CODEX_TOOL_CALL_ID, CUDA_PATH, PROCESSOR_REVISION, =H:, APP_BASE_NAME, ZSH_TMUX_AUTOSTART, TEMP, HOMEDRIVE, USERPROFILE, TMP, CODEX_TECTONIC_PATH, CODEX_VERSION, NUMBER_OF_PROCESSORS, 123PAN]
+2026-10-24T20:57:04.825+0900 [DEBUG] [org.gradle.launcher.daemon.server.exec.LogToClient] About to start relaying all logs to the client via the connection.
+2026-10-24T20:57:04.825+0900 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] The client will now receive all logging from the daemon (pid: 46560). The daemon log file: H:\CCB-Studio-Suite\.local\windows-preview\gradle-home\daemon\9.1.0\daemon-46560.out.log
+2026-10-24T20:57:04.826+0900 [DEBUG] [org.gradle.launcher.daemon.server.exec.RequestStopIfSingleUsedDaemon] Requesting daemon stop after processing Build{id=f789420a-ae59-4859-b829-d8648c0476e8, currentDir=H:\CCB-Studio-Suite}
+2026-10-24T20:57:04.827+0900 [LIFECYCLE] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon will be stopped at the end of the build
+2026-10-24T20:57:04.827+0900 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Stop as soon as idle requested. The daemon is busy
+2026-10-24T20:57:04.827+0900 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] daemon stop has been requested. Sleeping until state changes.
+2026-10-24T20:57:04.831+0900 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has started executing the build.
+2026-10-24T20:57:04.831+0900 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] Executing build with daemon context: DefaultDaemonContext[uid=f47638ab-a7aa-42f4-8a9e-a15d0fb7a097,javaHome=C:\Program Files\Eclipse Adoptium\jdk-17.0.20.101-hotspot,javaVersion=17,javaVendor=Eclipse Adoptium,daemonRegistryDir=H:\CCB-Studio-Suite\.local\windows-preview\gradle-home\daemon,pid=46560,idleTimeout=120000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-XX:MaxMetaspaceSize=384m,-XX:ActiveProcessorCount=2,-Xmx512m,-Dfile.encoding=GBK,-Duser.country=CN,-Duser.language=zh,-Duser.variant]----- End of the daemon log -----
+
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Gradle build daemon disappeared unexpectedly (it may have been killed or may have crashed)
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to generate a Build Scan (Powered by Develocity).
+> Get more help at https://help.gradle.org.

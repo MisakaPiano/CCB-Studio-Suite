@@ -1,0 +1,30 @@
+{
+  "type": "EXTERNAL_PROJECT_REVIEW_RECORD_VERIFIED",
+  "source": "https://github.com/MisakaPiano/CCB-Studio-Suite/issues/4#issuecomment-6319270550",
+  "commentId": 6319270550,
+  "author": "MisakaPiano",
+  "createdUtc": "2026-10-21T15:04:26Z",
+  "updatedUtc": "2026-10-21T15:04:26Z",
+  "bodySha256": "b0ccd491e91751561071e3ef0d1f3584b3ca5076c25a8c55f73c6488619f9c51",
+  "sourceCommit": "678caf1ab1e8e9611e19a35e8d7c2f27d11b074f",
+  "conclusion": "UX_CREATION_LAYOUT_CHECKPOINT: PASS_WITH_SCOPE; PRODUCT_HOLD / NOT RC",
+  "scope": "Creation-page engineering correction only; no final product/RC acceptance",
+  "origin": "Read back public GitHub Project review record; original Project conversation not read",
+  "laterExternalProjectRecordFound": false,
+  "search": {
+    "issueNumbers": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "allIssueCount": 4,
+    "commentCounts": {
+      "1": 3,
+      "2": 6,
+      "3": 3,
+      "4": 3
+    }
+  },
+  "body": "## Project 限定审查 — UX Creation Layout checkpoint / `PRODUCT_HOLD / NOT RC`\n\n**结论：`UX_CREATION_LAYOUT_CHECKPOINT: PASS_WITH_SCOPE`（仅创作页工程修正）；产品总体继续 `PRODUCT_HOLD / NOT RC`，先前用户 `USER_REVIEW_FAILED` 不因自动化回归而自动转为真人 PASS。** 本评论不批准最终 RC、合并 main、发行或覆盖未完成的完整来源功能。\n\n### 固定源码与实际审查\n- 本次 GitHub 固定提交 `678caf1ab1e8e9611e19a35e8d7c2f27d11b074f`，远程 `feature/windows-rc-continuous` HEAD 已现场核对一致；`main` 仍 `6d3d2b22651f9744807925f74c6941f681bbef02`。相对本轮精确基准 `1f2b5fea605772443108367ed1556efcbfad89a3` 是 **ahead 1 commit / behind 0**，变更限定创作页、呈现组件、测试和审计/状态文件。Windows 本地工作树 clean 来自交付者说明，Project 未独立读本机。\n- 已读 [修正报告](https://github.com/MisakaPiano/CCB-Studio-Suite/blob/678caf1ab1e8e9611e19a35e8d7c2f27d11b074f/docs/audits/UX_CREATION_LAYOUT.md)、[来源映射](https://github.com/MisakaPiano/CCB-Studio-Suite/blob/678caf1ab1e8e9611e19a35e8d7c2f27d11b074f/docs/audits/UX_CREATION_LAYOUT_SOURCES.json)、真实 Suite `StudioApplication.kt` 创作页及新增 `DesktopStudioFooter`、`DesktopWorkspaceControls`、`DesktopStudioResultControls`、`WorkbenchWorkflowTest`。依据 Desktop **`37c67c724fe21107d7eaff0306439481c6f2bf07`** 的已锁定文件核对；两个直接继承组件 **LF/CRLF 换行规范化后内容一致**，但 Git blob SHA 不同，故不得称两个 Git blob 原始字节完全相同；其余 filmstrip/token/viewer 函数是定向适配，并非整个 DesktopStudioOutput 的原样复用。该来源注释仅需以后准确区分原字节与文本规范化，不阻塞工程继续。\n- 创作页重新接回账户、Prompt 分段/角色、生成参数、固定 token/撤销/重做/生成栏及横/竖图像缩略条；窄窗为88dp当前图片摘要而非屏幕消失。实际 Compose 场景测试覆盖 `1240→900→640→480→1240`、固定生成栏与点击目标尺寸、草稿/图片选择不丢失、撤销重做、关闭重开。Git 四张 `creation-layout-*.png` 为**离屏渲染**，Project 已查看其中 1240/640/480；不代表原生窗口及真人交互/视觉验收。\n\n### 本轮测试证据边界\n- 首轮 compile **FAILED，0 tests executed**：遗漏 `desktopViewerEntry`；保留原日志。\n- 修正后 **5/5 定向 PASS**；新增布局测试 **1/1 PASS**。\n- 最终 `:studio-desktop:test` **17 suites / 64 actual JUnit cases / 0 failures / 0 errors / 0 skipped**，执行记录 100.289s，严格离线依赖/单worker；本 Project 已独立读取并汇总17份 XML，和 `test-cases.json` / summary一致。由 Codex 在 Windows 执行，不宣称 Project 重新构建或做真人鼠标验收。此前64中包含新增1项，不应重复加总为65。\n- 本次**无真实付费 API 请求**；并非本轮的完整权威core/图库/编辑器跨模块重验收。\n\n### UX-R4 既有 A→B 与本轮的严格分离\n- 已读 [UX_R4_ACTUAL_AB.md](https://github.com/MisakaPiano/CCB-Studio-Suite/blob/678caf1ab1e8e9611e19a35e8d7c2f27d11b074f/docs/audits/UX_R4_ACTUAL_AB.md) 和 `DOWNLOAD_VERIFIED.json`、`NATIVE_INPUT.json`、NSIS安装回执及更新后合成根资产/测试凭据指纹回执。它们支持 **旧基准 `1a013737d08579bc413d2dbf4da20e18cb523c99` 下的一次实际正常 A→B 应用内下载安装、B启动/再次开启与测试数据、DPAPI测试凭据保全**；不是单纯 TUF 合成lab。\n- 当前 `678caf1` 相对该 A→B 基准 **ahead 2 commits**。此前正常成功不得自动签为新代码/最终固定包 A→B PASS；不覆盖坏签名/包、取消/断网/磁盘、安装失败/B启动失败、迁移中断等完整故障矩阵。A/B 此次 data reader均为2，**没有发生数据格式迁移**，迁移保全仍 NOT TESTED。原生截图失败保留 `ENVIRONMENT_UNAVAILABLE`，offscreen 更新后写回测试不冒称真实 B 原生键鼠输入。\n\n### 当前正确任务边界\n- **认可的只有本次创作页工程修正**；仍须按 Issue #4 完整来源功能继承矩阵继续核对交互闭环（从用户动作→可见结果→保存→重启），而不是只验证按钮名、布局、离屏 draw count。\n- 继续完成未覆盖的创作/真实账户和 Provider、编辑与图库实际用户流程、源 TypeSet Forge 1.1 完整功能与四类导出等已批准范围；适用成熟源码尽量直接继承，不复制第二套 Prompt/NAI request/fallback。未测真人体验为 `NOT TESTED`，已确定功能缺口不能当 PASS。\n- 继续完善 CP4 完整故障更新验证及最终**固定构建**的 A→B、数据/凭据保全，再集中真人审查。任何仍未完成的自动化门槛不能被 UI 修正或此前更新正常成功绕过；Preview/RC/Release 产品级许可分开。\n- 用户已允许按合同连续推进常规工程 Slice；**本次审查不新开并行执行者、不自动启动 Codex、不修改 Desktop/官方、不合并或发布**。保留历史 FAILED、NOT TESTED、旧成功和真实审查范围。\n\n**下一步：原单一执行者从该已推送 checkpoint 继续修正完整工作流/编辑图库/更新故障覆盖；仍保持 `PRODUCT_HOLD / NOT RC`，暂不请求 Project 最终 RC 批准。**"
+}

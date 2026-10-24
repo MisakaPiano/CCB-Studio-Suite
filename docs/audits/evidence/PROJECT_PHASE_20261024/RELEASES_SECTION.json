@@ -1,0 +1,12 @@
+{
+  "url": "https://github.com/MisakaPiano/CCB-Studio-Suite",
+  "enabled": true,
+  "method": "Public HTML embedded payload.sidebarAbout.sections.releases plus actual h2 Releases heading",
+  "observed": {
+    "releaseCount": 16,
+    "tagCount": 16
+  },
+  "htmlSha256": "aa5b7290cbdeba6ce5fb8fab7751fb4cff23c01a936c2a748bfe8b502c3b69d5",
+  "cardVisual": "NOT TESTED; initial public HTML contains client-rendered skeleton",
+  "preReleaseStatusChanged": false
+}
