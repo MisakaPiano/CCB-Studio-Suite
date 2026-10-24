@@ -1,3 +1,17 @@
+## 2026-10-25 用户待办登记：不启动实施，不改变当前收尾
+
+本次仅更新记录。执行顺序为**当前复审修复收尾 → 性能专项范围确认 → 后续开发**；用户人工测试按其时间安排，不因本次登记启动。原有任务沿用，新增编号仅用于此前未单列的两项需求，不建立重复任务合同。
+
+|顺序/编号|沿用位置与登记内容|状态/启动条件|
+|---|---|---|
+|0 · REVIEW_FIXES_AND_UPDATE_CLEANUP_20261024（现有合同文件名）|[六项修复与清理合同](../tasks/REVIEW_FIXES_AND_UPDATE_CLEANUP_20261024.md)，含更新残留/工作区所属产物清理，以及现有[Desktop技术参考报告](../handoff/DESKTOP_UPDATE_TECHNICAL_HANDOFF_20261025.md)|当前继续；Project已限定关闭四项残余并接受冻结凭据补证，下载终态P2以f6598d3修复、24项定向通过，**该修复独立复审PENDING**。旧内部包不含此修复；报告已写但不能视为问题全关闭，不重复开工|
+|1 · PERF-001～PERF-007（既有）|[性能与资源专项](../tasks/PERFORMANCE_RESOURCE_PROGRAM.md)，承接既有待办及106/107/108等基线|下一项开发仍为性能优化；本轮收尾后再确认具体范围。本消息不启动测量、测试、代码修改，也不重复基线|
+|用户安排 · UX-RECOVERY / W2–W4（既有）|[连续合同](../tasks/UX_RECOVERY_CONTINUOUS.md)及[人工清单](rc/DAILY_USE_MANUAL_CHECKLIST.md)：资产管理界面、编辑界面|两界面均**USER_NOT_TESTED / 用户尚未实际验证**；历史图库局部确认保留其原范围，不能外推为资产管理或编辑页验收。实现/自动通过不替代人工|
+|后续待排 · UX-ASSET-FS-001（既有UX-RECOVERY新增需求子项）|[连续合同中的后续登记](../tasks/UX_RECOVERY_CONTINUOUS.md#2026-10-25-后续需求登记仅记录不启动)|PLANNED / NOT STARTED：直接管理本地文件与文件夹，批量重命名/复制/移动/删除；各类资产支持真正删除，含本地文件。明确区分移出图库、进入回收站、永久删除原文件；无当前文件操作授权|
+|用户测试时触发 · UX-EDITOR-GAP-001（既有UX-RECOVERY新增对照子项）|同上连续合同；用户指定参考为[unified-image-tool](https://github.com/duxingz/unified-image-tool)|WAITING_FOR_USER_EDITOR_TEST：用户测试图片编辑工具时再对照盘点缺失功能、确定整合范围；现在不浏览盘点、不整合，不提前认定缺失/已兼容|
+
+115命名归档/组织树/任务栏体验与Prompt对比继续分别PENDING；q09旧失败及用户否决保留，PRODUCT_HOLD / NOT RC不变。本次不发版、不更新日常安装、不删除文件、不启动Desktop开发。
+
 ## 2026-10-25 Project剩余下载终态P2：源码修复，未重打包
 
 Project对134dd47限定关闭四个残余并接受旧凭据快照补证，下载引用终态仍有P2。现以f6598d39298c06ec5644a131e484e814f77b6f45修复，24个唯一清理回归通过（不累加重复轮次），待此项复审。**没有重打包，原2484858内部EXE不包含这次修复。**公开115不变，无UI/真实服务/日常资料或新历史目录清理。q09仍FAILED且根因UNKNOWN；115体验、Prompt对比继续PENDING，PRODUCT_HOLD / NOT RC保持。见[修复/源码包边界与原始证据](audits/DOWNLOAD_TERMINAL_FIX_20261025.md)。
