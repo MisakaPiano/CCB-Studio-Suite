@@ -1,4 +1,8 @@
-## 2026-10-25 后续顺序登记（仅记录）
+## 2026-10-25 Project源码P2限定关闭，接续性能基线
+
+已实际读取[Project原结论](audits/PROJECT_DOWNLOAD_TERMINAL_CLOSURE_20261025.md)：下载终态P2在f6598d3/证据54a5ba26下CLOSED_WITH_SCOPE，接受24项定向记录；旧内部包与公开115不含修复，包集成未验。13条失败记录严格为12个subtest和1个顶层断言，旧原始证据不改、不重测。最新用户经原协调会话授权继续性能，承接[PERF-003](../tasks/PERFORMANCE_RESOURCE_PROGRAM.md)批次组织投影的合成基线与有证据的定向优化，独立提交，不发版。资产/编辑USER_NOT_TESTED、q09 FAILED/UNKNOWN、115体验和Prompt比较PENDING及PRODUCT_HOLD / NOT RC保持。
+
+## 2026-10-25 后续顺序登记（历史：仅记录）
 
 继续当前六项复审/更新清理收尾与下载终态P2定向复审；Desktop参考报告沿用现有任务，未关闭问题不标完成。下一项开发仍是既有PERF-001～007性能专项，收尾后先确认范围，现在不启动测量/测试/修改。资产管理、编辑界面均USER_NOT_TESTED，原图库局部回执不扩张为整页验收。后续本地文件/文件夹管理与真正删除记UX-ASSET-FS-001；编辑工具参考对照记UX-EDITOR-GAP-001，等用户测试时再盘点和定整合范围。详情及编号见[任务登记](TASK_REGISTRY.md)和[连续合同](../tasks/UX_RECOVERY_CONTINUOUS.md)。本消息仅文档，不发版/更新日常安装/删除/启动Desktop；115体验、Prompt对比继续PENDING。
 

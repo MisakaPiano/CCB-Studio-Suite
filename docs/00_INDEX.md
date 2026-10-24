@@ -1,3 +1,7 @@
+## 2026-10-25 Project下载清理源码P2限定关闭；接续性能专项
+
+已读[Project原始关闭回执](audits/PROJECT_DOWNLOAD_TERMINAL_CLOSURE_20261025.md)，仅f6598d3源码/54a5ba26证据的P2 CLOSED_WITH_SCOPE，旧包不含修复、包集成未验。用户后续授权继续[性能专项](../tasks/PERFORMANCE_RESOURCE_PROGRAM.md)，本轮先PERF-003合成批次投影基线及有证据的定向优化，不发布。资产/编辑USER_NOT_TESTED、q09 FAILED/UNKNOWN、115体验与Prompt比较PENDING及PRODUCT_HOLD / NOT RC保持。以下为历史时间线。
+
 ## 2026-10-25 Project剩余下载终态P2：源码修复，未重打包
 
 Project对134dd47限定关闭四个残余并接受旧凭据快照补证，下载引用终态仍有P2。现以f6598d39298c06ec5644a131e484e814f77b6f45修复，24个唯一清理回归通过（不累加重复轮次），待此项复审。**没有重打包，原2484858内部EXE不包含这次修复。**公开115不变，无UI/真实服务/日常资料或新历史目录清理。q09仍FAILED且根因UNKNOWN；115体验、Prompt对比继续PENDING，PRODUCT_HOLD / NOT RC保持。见[修复/源码包边界与原始证据](audits/DOWNLOAD_TERMINAL_FIX_20261025.md)。
