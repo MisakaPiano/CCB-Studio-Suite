@@ -7,7 +7,6 @@ import java.nio.channels.FileChannel
 import java.nio.channels.FileLock
 import java.nio.file.LinkOption.NOFOLLOW_LINKS
 import java.io.ByteArrayInputStream
-import java.io.ByteArrayOutputStream
 import java.time.Duration
 import java.util.UUID
 
@@ -42,7 +41,7 @@ class StudioWorkspace private constructor(val root:Path,private val owner:FileCh
         id.toString()
     }
     @Synchronized fun bytes(id:String):ByteArray = operation {
-        ByteArrayOutputStream().also {assets.export(UUID.fromString(id),it)}.toByteArray()
+        AssetBytesBuffer().also {assets.export(UUID.fromString(id),it)}.bytes()
     }
     @Synchronized fun importDerived(name:String,bytes:ByteArray,parentId:String,recipe:String=""):String = operation {
         EditorRenderer.decode(bytes).flush()
