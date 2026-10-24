@@ -123,14 +123,15 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
     val matchesDate=remember(g.date){libraryDatePredicate(g.date)}
     val promptMatches=remember(projection,g.query){NovelAiHistoryFilterPolicy.filter(projection.entries,g.query,null).map{it.image.path}.toSet()}
     val organization=c.library.state?.virtualAlbums.orEmpty()
+    val batchIndex=remember(c.state.generationOrganization,projection){GalleryBatchIndex(c.state.generationOrganization,projection)}
     val organizationIds=remember(c.state.generationOrganization,organization,g.organizationKind,g.organizationId,projection){when(g.organizationKind){
         "albums"->organization.flatMap{it.images}.toSet()
         "album"->g.organizationId?.takeIf{id->organization.any{it.id==id}}?.let{VirtualAlbums.members(organization,it)}?:emptySet()
-        "organizations","folder"->c.state.generationOrganization.batches.filter{it.archivedAt!=null&&(g.organizationKind=="organizations"||it.parent in c.state.generationOrganization.descendants(g.organizationId!!))}.flatMap{generationBatchImages(c.state.generationOrganization,it.id,projection)}.toSet()
+        "organizations","folder"->c.state.generationOrganization.batches.filter{it.archivedAt!=null&&(g.organizationKind=="organizations"||it.parent in c.state.generationOrganization.descendants(g.organizationId!!))}.flatMap{batchIndex.images(it.id)}.toSet()
         "fold","members"->g.scope.ids
-        "type"->projection.batchOrigins.filterValues{o->(c.state.generationOrganization.batches.find{it.id==o.batchId}?.kind?:"auto")==g.organizationId}.keys
+        "type"->projection.batchOrigins.filterValues{o->batchIndex.kind(o.batchId)==g.organizationId}.keys
         "batches"->projection.batchOrigins.keys
-        "batch"->generationBatchImages(c.state.generationOrganization,g.organizationId!!,projection)
+        "batch"->batchIndex.images(g.organizationId!!)
         "group"->projection.batchOrigins.filterValues{it.groupId==g.organizationId}.keys
         else->null
     }}
@@ -147,7 +148,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
     val visibleIds=remember(visible){visible.map{it.request().id().toString()}}
     val visibleSet=remember(visibleIds){visibleIds.toSet()}
     val orderedSelection=remember(visibleIds,allIds,activeIds,c.selection){orderedLibrarySelection(visibleIds,allIds,activeIds,c.selection)}
-    val orgFolders=remember(c.state.generationOrganization,organization,g.organizationKind,g.organizationId,projection){organizationFolders(g,organization,projection,c.state.generationOrganization)}
+    val orgFolders=remember(c.state.generationOrganization,organization,g.organizationKind,g.organizationId,projection){organizationFolders(g,organization,projection,c.state.generationOrganization,batchIndex)}
     val folderPairs=orgFolders.mapNotNull{folder->(folder.ids intersect visibleSet).takeIf{it.isNotEmpty()}?.let{folder.album(it) to folder}}
     // Sorting can change the cover (and hence album.key); every member retains its folder identity.
     val folderByKey=folderPairs.flatMap{(album,folder)->album.images.map{it.key to folder}}.toMap()
@@ -221,7 +222,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
             else if(history!!.isFailure)StatusText("生成记录不可读取，分组暂不可用；原件保留")
             else if(projection.unavailable.isNotEmpty())StatusText("${projection.unavailable.size} 张图片的生成记录不可核验，单独显示；原件保留")
             Row(Modifier.weight(1f).fillMaxWidth()) {
-            GalleryOrganizationTree(c,projection,drag,{rootOffset})
+            GalleryOrganizationTree(c,projection,drag,{rootOffset},batchIndex)
             LibrarySplitPane(g,Modifier.weight(1f),main={
                 val scroll=rememberLazyGridState()
                 val scopeIdentity=g.scope.identity

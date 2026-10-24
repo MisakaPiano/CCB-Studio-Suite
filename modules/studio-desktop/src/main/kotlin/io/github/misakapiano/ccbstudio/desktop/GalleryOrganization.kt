@@ -54,7 +54,7 @@ internal fun removeGalleryAlbumMembers(c:WorkbenchController){val id=c.gallery.o
     if(children&&expanded)content()
     }
 }
-@Composable internal fun GalleryOrganizationTree(c:WorkbenchController,p:GalleryHistoryProjection,drag:LibraryDragState,offset:()->Offset) {
+@Composable internal fun GalleryOrganizationTree(c:WorkbenchController,p:GalleryHistoryProjection,drag:LibraryDragState,offset:()->Offset,batchIndex:GalleryBatchIndex) {
     val g=c.gallery;val albums=c.library.state?.virtualAlbums.orEmpty();val org=c.state.generationOrganization
     val all=c.assets.map{it.request().id().toString()}.toSet()-c.library.archived
     if(g.treeOpen)Column(Modifier.width(g.treeWidth.dp).fillMaxHeight().padding(horizontal=6.dp).semantics{contentDescription="图库组织树"}) {
@@ -76,14 +76,14 @@ internal fun removeGalleryAlbumMembers(c:WorkbenchController){val id=c.gallery.o
             }
             Text("生成来源",color=LibraryMuted,modifier=Modifier.padding(start=6.dp,top=14.dp,bottom=4.dp))
             OrganizationBranch(g,"batches","批次",Lucide.Layers,g.organizationKind=="batches",onClick={organizationNavigate(c,"batches",null,"批次",p.batchOrigins.keys)}){
-                listOf("manual","auto").forEach{kind->val batchIds=(p.batchOrigins.values.map{it.batchId}+org.batches.map{it.id}).distinct().filter{id->(org.batches.find{it.id==id}?.kind?:"auto")==kind};val entries=batchIds.flatMap{generationBatchImages(org,it,p)}.toSet()
+                listOf("manual","auto").forEach{kind->val batchIds=batchIndex.ids.filter{batchIndex.kind(it)==kind};val entries=batchIds.flatMap{batchIndex.images(it)}.toSet()
                     OrganizationBranch(g,"type:$kind",if(kind=="manual")"手动批次"else"自动批次",Lucide.Layers,g.organizationKind=="type"&&g.organizationId==kind,1,batchIds.isNotEmpty(),{organizationNavigate(c,"type",kind,if(kind=="manual")"手动批次"else"自动批次",entries)}){
-                        batchIds.forEach{id->OrganizationBatchBranch(c,p,id,p.batchOrigins.filterValues{it.batchId==id},2,"source")}
+                        batchIds.forEach{id->OrganizationBatchBranch(c,p,id,batchIndex.origins(id),2,"source",batchIndex)}
                     }
                 }
             }
             Text("自定义组织",color=LibraryMuted,modifier=Modifier.padding(start=6.dp,top=14.dp,bottom=4.dp))
-            OrganizationBranch(g,"organizations","项目与章节",Lucide.Folders,g.organizationKind=="organizations",onClick={organizationNavigate(c,"organizations",null,"项目与章节",org.batches.filter{it.archivedAt!=null}.flatMap{b->generationBatchImages(org,b.id,p)}.toSet())}){OrganizationFolders(c,p,null,1)}
+            OrganizationBranch(g,"organizations","项目与章节",Lucide.Folders,g.organizationKind=="organizations",onClick={organizationNavigate(c,"organizations",null,"项目与章节",org.batches.filter{it.archivedAt!=null}.flatMap{b->batchIndex.images(b.id)}.toSet())}){OrganizationFolders(c,p,null,1,batchIndex)}
             OrganizationBranch(g,"albums","虚拟相册",Lucide.Layers,g.organizationKind=="albums",onClick={organizationNavigate(c,"albums",null,"虚拟相册",albums.flatMap{it.images}.toSet())}){OrganizationAlbums(c,albums,null,1,drag,offset)}
             Text("虚拟组织\n原图保留原位",color=LibraryMuted,modifier=Modifier.padding(start=6.dp,top=20.dp,bottom=12.dp))
         }
@@ -92,21 +92,21 @@ internal fun removeGalleryAlbumMembers(c:WorkbenchController){val id=c.gallery.o
     }
     GalleryOrganizationDivider(g)
 }
-@Composable private fun OrganizationBatchBranch(c:WorkbenchController,p:GalleryHistoryProjection,id:String,images:Map<String,BatchResultOrigin>,depth:Int,key:String){
-    val g=c.gallery;val name=c.generations.batch(id,p)?.title?:images.values.firstOrNull()?.batchName.orEmpty().ifBlank{"批次 ${id.take(8)}"}
-    OrganizationBranch(g,"$key:$id",name,Lucide.Layers,g.organizationKind=="batch"&&g.organizationId==id,depth,images.isNotEmpty()||c.state.generationOrganization.batches.find{it.id==id}?.groups?.isNotEmpty()==true,{organizationOpen(c,OrganizationFolder("batch",id,name,generationBatchImages(c.state.generationOrganization,id,p)),p)}){
-        val managed=c.state.generationOrganization.batches.find{it.id==id}?.groups.orEmpty()
+@Composable private fun OrganizationBatchBranch(c:WorkbenchController,p:GalleryHistoryProjection,id:String,images:Map<String,BatchResultOrigin>,depth:Int,key:String,batchIndex:GalleryBatchIndex){
+    val g=c.gallery;val name=batchIndex.batches[id]?.title?:c.generations.batch(id,p)?.title?:images.values.firstOrNull()?.batchName.orEmpty().ifBlank{"批次 ${id.take(8)}"}
+    OrganizationBranch(g,"$key:$id",name,Lucide.Layers,g.organizationKind=="batch"&&g.organizationId==id,depth,images.isNotEmpty()||batchIndex.batches[id]?.groups?.isNotEmpty()==true,{organizationOpen(c,OrganizationFolder("batch",id,name,batchIndex.images(id)),p)}){
+        val managed=batchIndex.batches[id]?.groups.orEmpty()
         managed.forEach{group->OrganizationBranch(g,"members:${group.id}",group.name,Lucide.Images,g.organizationKind=="members"&&g.organizationId==group.id,depth+1,false,{organizationOpen(c,OrganizationFolder("members",group.id,group.name,group.images.toSet()),p)})}
         if(managed.isEmpty())images.entries.groupBy{it.value.groupId}.forEach{(group,entries)->val label=entries.first().value.groupName
             OrganizationBranch(g,"group:$group",label,Lucide.Images,g.organizationKind=="group"&&g.organizationId==group,depth+1,false,{organizationOpen(c,OrganizationFolder("group",group,label,entries.map{it.key}.toSet()),p)})}
     }
 }
-@Composable private fun OrganizationFolders(c:WorkbenchController,p:GalleryHistoryProjection,parent:String?,depth:Int){
+@Composable private fun OrganizationFolders(c:WorkbenchController,p:GalleryHistoryProjection,parent:String?,depth:Int,batchIndex:GalleryBatchIndex){
     val org=c.state.generationOrganization
-    org.folders.filter{it.parent==parent}.forEach{f->val ids=org.batches.filter{it.parent in org.descendants(f.id)}.flatMap{generationBatchImages(org,it.id,p)}.toSet()
-        OrganizationBranch(c.gallery,"folder:${f.id}",f.name,if(f.kind=="chapter")Lucide.BookOpen else Lucide.Folder,c.gallery.organizationKind=="folder"&&c.gallery.organizationId==f.id,depth,org.folders.any{it.parent==f.id}||org.batches.any{it.parent==f.id},{organizationOpen(c,OrganizationFolder("folder",f.id,f.name,ids),p)}){OrganizationFolders(c,p,f.id,depth+1)}
+    org.folders.filter{it.parent==parent}.forEach{f->val ids=org.batches.filter{it.parent in org.descendants(f.id)}.flatMap{batchIndex.images(it.id)}.toSet()
+        OrganizationBranch(c.gallery,"folder:${f.id}",f.name,if(f.kind=="chapter")Lucide.BookOpen else Lucide.Folder,c.gallery.organizationKind=="folder"&&c.gallery.organizationId==f.id,depth,org.folders.any{it.parent==f.id}||org.batches.any{it.parent==f.id},{organizationOpen(c,OrganizationFolder("folder",f.id,f.name,ids),p)}){OrganizationFolders(c,p,f.id,depth+1,batchIndex)}
     }
-    org.batches.filter{it.parent==parent&&it.archivedAt!=null}.forEach{b->OrganizationBatchBranch(c,p,b.id,p.batchOrigins.filterValues{it.batchId==b.id},depth,"placed")}
+    org.batches.filter{it.parent==parent&&it.archivedAt!=null}.forEach{b->OrganizationBatchBranch(c,p,b.id,batchIndex.origins(b.id),depth,"placed",batchIndex)}
 }
 
 /** One persistent divider owns both resizing and folding. The handle remains when folded. */
@@ -187,10 +187,10 @@ internal data class OrganizationFolder(val kind:String,val id:String,val label:S
         NovelAiHistoryImageItem(NovelAiGenerationHistoryEntry(id="org:$kind:$id:$imageId",images=listOf(image)),image,0)
     },label)
 }
-internal fun organizationFolders(g:GalleryViewState,albums:List<VirtualAlbum>,p:GalleryHistoryProjection,org:GenerationOrganization=GenerationOrganization()):List<OrganizationFolder> = when(g.organizationKind){
-    "organizations","folder"->{val parent=g.organizationId.takeIf{g.organizationKind=="folder"};org.folders.filter{it.parent==parent}.map{f->OrganizationFolder("folder",f.id,f.name,org.batches.filter{it.parent in org.descendants(f.id)}.flatMap{generationBatchImages(org,it.id,p)}.toSet())}+org.batches.filter{it.parent==parent&&it.archivedAt!=null}.map{b->OrganizationFolder("batch",b.id,b.title,generationBatchImages(org,b.id,p))}}
-    "batches","type"->(p.batchOrigins.values.map{it.batchId}+org.batches.map{it.id}).distinct().filter{id->g.organizationKind!="type"||(org.batches.find{it.id==id}?.kind?:"auto")==g.organizationId}.map{id->OrganizationFolder("batch",id,org.batches.find{it.id==id}?.title?:p.batchOrigins.values.first{it.batchId==id}.batchName.ifBlank{"批次 ${id.take(8)}"},generationBatchImages(org,id,p))}
-    "batch"->org.batches.find{it.id==g.organizationId}?.groups?.takeIf{it.isNotEmpty()}?.map{OrganizationFolder("members",it.id,it.name,it.images.toSet())}?:p.batchOrigins.filterValues{it.batchId==g.organizationId}.entries.groupBy{it.value.groupId}.map{(id,entries)->OrganizationFolder("group",id,entries.first().value.groupName,entries.map{it.key}.toSet())}
+internal fun organizationFolders(g:GalleryViewState,albums:List<VirtualAlbum>,p:GalleryHistoryProjection,org:GenerationOrganization=GenerationOrganization(),batchIndex:GalleryBatchIndex=GalleryBatchIndex(org,p)):List<OrganizationFolder> = when(g.organizationKind){
+    "organizations","folder"->{val parent=g.organizationId.takeIf{g.organizationKind=="folder"};org.folders.filter{it.parent==parent}.map{f->OrganizationFolder("folder",f.id,f.name,org.batches.filter{it.parent in org.descendants(f.id)}.flatMap{batchIndex.images(it.id)}.toSet())}+org.batches.filter{it.parent==parent&&it.archivedAt!=null}.map{b->OrganizationFolder("batch",b.id,b.title,batchIndex.images(b.id))}}
+    "batches","type"->batchIndex.ids.filter{id->g.organizationKind!="type"||batchIndex.kind(id)==g.organizationId}.map{id->OrganizationFolder("batch",id,batchIndex.title(id),batchIndex.images(id))}
+    "batch"->batchIndex.batches[g.organizationId]?.groups?.takeIf{it.isNotEmpty()}?.map{OrganizationFolder("members",it.id,it.name,it.images.toSet())}?:batchIndex.origins(g.organizationId.orEmpty()).entries.groupBy{it.value.groupId}.map{(id,entries)->OrganizationFolder("group",id,entries.first().value.groupName,entries.map{it.key}.toSet())}
     "album","albums"->albums.filter{it.parent==(if(g.organizationKind=="album")g.organizationId else null)}.map{OrganizationFolder("album",it.id,it.name,VirtualAlbums.members(albums,it.id))}
     else->emptyList()
 }
