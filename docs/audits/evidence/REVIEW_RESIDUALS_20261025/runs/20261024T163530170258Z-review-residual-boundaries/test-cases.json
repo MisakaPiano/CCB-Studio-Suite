@@ -1,0 +1,122 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.ReviewBoundaryTest",
+    "name": "queuedAccountSnapshotSurvivesEditingAndReopening",
+    "seconds": "0.793",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.ReviewBoundaryTest",
+    "name": "manualCapacityRejectsNewWorkBeforeSendAndLegacyOverflowStillArchivesWithoutLoss",
+    "seconds": "0.277",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.ReviewBoundaryTest",
+    "name": "promptInterruptionsReuseAssetAndRestoreLabelsAndObservationAcrossReopen",
+    "seconds": "6.811",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.ReviewBoundaryTest",
+    "name": "closeCancelsOnlyPendingAdmissionAndReopenRequiresExplicitAction",
+    "seconds": "0.17",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.ReviewBoundaryTest",
+    "name": "policyOnlySavePreservesFrozenCredentialWhileExplicitAccountChangeAndLegacyEnrollmentWork",
+    "seconds": "0.424",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.ReviewBoundaryTest",
+    "name": "pauseOrEndWinsBeforeAtomicReservationAndBeforeTransportAdmission",
+    "seconds": "0.844",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GuidanceSafetyTest",
+    "name": "q09CanvasRotateUndoMaskResetApplyAndReopen",
+    "seconds": "11.58",
+    "status": "FAILED"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GuidanceSafetyTest",
+    "name": "vibeMissUsesBudgetOnceAndCachedEncodingMakesNoRequest",
+    "seconds": "0.482",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GuidanceSafetyTest",
+    "name": "focusedPreparationUsesAuthorityPixelsAndKeepsRawFinalSeparate",
+    "seconds": "0.807",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.RestoredUpdateSnapshotTest",
+    "name": "preBatchWriterSnapshotVerifiesWithoutHashingNewReaderDefaults",
+    "seconds": "3.781",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.RestoredUpdateSnapshotTest",
+    "name": "previouslyReadableCredentialCannotDisappearDuringUpdate",
+    "seconds": "1.16",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.RestoredUpdateSnapshotTest",
+    "name": "unreadableOrCorruptCredentialCannotBeTreatedAsMissing",
+    "seconds": "0.407",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.RestoredUpdateSnapshotTest",
+    "name": "formatCopyUsesAuthenticatedSourceCommitAndRejectsLaterChanges",
+    "seconds": "1.221",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.RestoredUpdateSnapshotTest",
+    "name": "restoredWorkspaceCanBeVerifiedWithoutRecreatingExcludedCredential",
+    "seconds": "4.409",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.RestoredUpdateSnapshotTest",
+    "name": "frozenAndEditedAccountCredentialsBothVerifyAndMissingFrozenCredentialRejectsB",
+    "seconds": "0.549",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ReviewDispatchTest",
+    "name": "closeAndUpdateDrainKeepSlowInflightResultAndNeverSendTheNextManualRequest",
+    "seconds": "3.735",
+    "status": "FAILED"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ReviewDispatchTest",
+    "name": "pauseAndEndDuringAdmissionSendZeroGenerationRequests",
+    "seconds": "5.042",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ReviewDispatchTest",
+    "name": "restoredWorkspaceCannotChangeStableDefaultBytesOrShortcuts",
+    "seconds": "0.167",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ReviewDispatchTest",
+    "name": "maintenanceDrainsFirstVibeEncodingKeepsItsCacheAndNeverSendsSecondEncoding",
+    "seconds": "6.24",
+    "status": "FAILED"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ReviewDispatchTest",
+    "name": "batchMaintenanceDrainsRealRunnerAndKeepsOnlyInflightSlot",
+    "seconds": "6.046",
+    "status": "PASS"
+  }
+]

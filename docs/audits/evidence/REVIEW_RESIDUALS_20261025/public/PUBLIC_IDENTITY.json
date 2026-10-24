@@ -1,0 +1,59 @@
+{
+  "observedUtc": "2026-10-24T16:38:32.578905+00:00",
+  "metadataCommit": "60c527f55ced1f8a8e897ce957b49a66c9f83f53",
+  "files": [
+    {
+      "path": "1.root.json",
+      "bytes": 1567,
+      "sha256": "408008d80aeb2dd3844325d74f09da9d248733e220dd88c08cc6299c4a24cc7a"
+    },
+    {
+      "path": "targets.json",
+      "bytes": 1157,
+      "sha256": "de57bae4cbbda3ede3b7e3a17b2079b91cdf5bf12bb4d158af1321e35f5c342a"
+    },
+    {
+      "path": "snapshot.json",
+      "bytes": 470,
+      "sha256": "65d6fe6c05259d3b895588c092a9c2f5f40dfe8d6787369b778ea7fe7b522ea3"
+    },
+    {
+      "path": "timestamp.json",
+      "bytes": 471,
+      "sha256": "efed5ec7d20d69230ac2a373811b0e164b1dac9071a502551a38e98f8735f79c"
+    }
+  ],
+  "publicTarget": {
+    "length": 168890283,
+    "hashes": {
+      "sha256": "356e749bd346af4a1d419a0d8b48b1e27d2314e6fce5763fa0933917247862dc"
+    },
+    "custom": {
+      "channel": "preview",
+      "data_version": 3,
+      "displayVersion": "0.0.0-preview.115",
+      "github": {
+        "asset": "CCB-Studio-Suite-0.0.0-preview.115-windows-x64.exe",
+        "tag": "v0.0.0-preview.115"
+      },
+      "installedBytes": 252745526,
+      "maximum_reader": 3,
+      "minimum_reader": 2,
+      "notes": "Persistent current manual generation session; timestamped manual and automatic batch naming and archives, Project/Chapter organization, compact menus, Explorer-style tree and stable Windows desktop/Start/taskbar entry. Original image bytes and provenance retained. Prompt comparison remains pending.",
+      "platform": "windows-x86_64",
+      "product": "ccb-studio-suite",
+      "sourceSha": "ff145d051bae286ab3e27cadd41195f8bd4c4e18",
+      "version": 115
+    }
+  },
+  "signatureAndLengthHashLinks": "PASS",
+  "installerDownloadedAgain": false,
+  "rootMatchesInstalled115": true,
+  "metadataExpiry": {
+    "root": "2027-10-22T10:47:53+00:00",
+    "targets": "2027-01-22T13:09:32+00:00",
+    "snapshot": "2026-11-07T13:09:32+00:00",
+    "timestamp": "2026-10-31T13:09:32+00:00"
+  },
+  "noPublicationOrMutation": true
+}

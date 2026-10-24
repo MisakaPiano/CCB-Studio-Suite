@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.ReviewBoundaryTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-24T16:37:39.368Z" hostname="DD1" time="9.319">
+  <properties/>
+  <testcase name="queuedAccountSnapshotSurvivesEditingAndReopening" classname="io.github.misakapiano.ccbstudio.core.ReviewBoundaryTest" time="0.793"/>
+  <testcase name="manualCapacityRejectsNewWorkBeforeSendAndLegacyOverflowStillArchivesWithoutLoss" classname="io.github.misakapiano.ccbstudio.core.ReviewBoundaryTest" time="0.277"/>
+  <testcase name="promptInterruptionsReuseAssetAndRestoreLabelsAndObservationAcrossReopen" classname="io.github.misakapiano.ccbstudio.core.ReviewBoundaryTest" time="6.811"/>
+  <testcase name="closeCancelsOnlyPendingAdmissionAndReopenRequiresExplicitAction" classname="io.github.misakapiano.ccbstudio.core.ReviewBoundaryTest" time="0.17"/>
+  <testcase name="policyOnlySavePreservesFrozenCredentialWhileExplicitAccountChangeAndLegacyEnrollmentWork" classname="io.github.misakapiano.ccbstudio.core.ReviewBoundaryTest" time="0.424"/>
+  <testcase name="pauseOrEndWinsBeforeAtomicReservationAndBeforeTransportAdmission" classname="io.github.misakapiano.ccbstudio.core.ReviewBoundaryTest" time="0.844"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

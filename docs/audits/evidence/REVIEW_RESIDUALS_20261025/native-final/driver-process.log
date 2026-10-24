@@ -1,0 +1,29 @@
+A_STARTED 46348
+A_NORMAL_EXIT
+B_COMPLETE H:\CCB-Studio-Suite\.local\disposable\ab-29994ec8302b4beaaa04f022ef5f6692\payload\review-update-native\programs\2-248485824e1d
+[]
+[]
+{
+  "status": "PASS",
+  "sourceSha": "248485824e1d6d2201ceedf7d14ff66e251d344d",
+  "dailyInstallationModified": false,
+  "realProviderCalls": 0,
+  "normalHumanGuiUpdate": "NOT TESTED",
+  "scope": "Real native A with test-only driver invokes production Workbench drain, prepareUpdateHandoff and close; literal loopback TUF; real native B first-frame verification",
+  "aPid": 45404,
+  "launcherShimPid": 46348,
+  "aExitCode": 0,
+  "aDrain": "PRODUCTION_WORKBENCH_WAITED_FOR_SLOW_RESPONSE",
+  "aParent": "REAL_WINDOWS_IMAGE_BOUND_HANDLE",
+  "bVerification": "PROGRAM_DATA_AND_CREDENTIALS_MATCH",
+  "credentials": 2,
+  "generationSends": 1,
+  "assets": 3,
+  "installerSha256": "2dc31cb8badfe4ed5cb02c8a99523d81dc05f65a874aeb49ac3299048f701238",
+  "installerBytes": 168926729,
+  "bClose": "VISIBLE_MAIN_WINDOW_CLOSED_NORMALLY",
+  "ownedCleanup": "IMMEDIATE_COMPLETE_NO_WAIT_DAYS",
+  "aInputMap": "A_INPUT_MAP.json",
+  "release": "NOT_PUBLISHED",
+  "testEvidenceWriteRetries": []
+}

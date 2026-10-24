@@ -1,3 +1,9 @@
+## 2026-10-25 复审残余返工、已授权清理与Desktop参考交接
+
+固定源码248485824e1d6d2201ceedf7d14ff66e251d344d，应用构建59283a0，408项应用输入一致；最终18 JVM/56 Python定向通过，原生A→B双合成DPAPI凭据/3资产、COMPLETE后完整清理和B正常关闭通过，内部包未发布。首轮JVM/原生失败及额外画布q09失败保留，后者未扩大UI范围。用户直接授权的20根历史残留清理完成，回收8506611341字节（7.92GiB），保护111/当前115、备份、固定基线与原审查证据；未知归属未动。
+
+新源码独立复审PENDING，115体验与Prompt比较分别PENDING，PRODUCT_HOLD / NOT RC保持。见[Project定向交接](../handoff/PROJECT_REVIEW_RESIDUALS_20261025.md)、[Desktop技术参考](../handoff/DESKTOP_UPDATE_TECHNICAL_HANDOFF_20261025.md)、[人工清理回执](audits/HISTORICAL_CLEANUP_EXECUTED_20261025.md)。Desktop仅固定对象只读比较，没有修改、启动开发或发布；公开最新仍Preview115。
+
 ## 2026-10-25 高优先级：六项复审修复、更新与工作区所属残留清理
 
 [任务合同](../tasks/REVIEW_FIXES_AND_UPDATE_CLEANUP_20261024.md)已完成定向实现与隔离自动验证，固定源码da2ae81；新[独立复审交接](../handoff/PROJECT_SIX_FIXES_CLEANUP_20261025.md)待Project判断。38 JVM与49 Python通过，实际原生链COMPLETE；最终驱动写证据FAILED与8项只读事后断言PASS分列，不冒充115真人完整更新。历史目录仅列清单，未获具体授权不删除；无新发布或日常资料写入。115体验与Prompt对比继续分别PENDING。

@@ -1,0 +1,20 @@
+{
+  "canonicalJvm": "runs/20261024T164151200964Z-review-residual-final",
+  "jvmUnique": 18,
+  "canonicalPython": "runs/runtime-20261024T165010681550Z",
+  "pythonUnique": 56,
+  "canonicalNative": "native-final",
+  "nativeUniqueScenario": 1,
+  "doNotSumRepeatedRuns": true,
+  "firstJvm": {
+    "tests": 20,
+    "failures": 3,
+    "status": "FAILED",
+    "unclosedOutOfScope": "GuidanceSafetyTest.q09CanvasRotateUndoMaskResetApplyAndReopen"
+  },
+  "firstNative": "FAILED_WINERROR32_RETAINED",
+  "oldEvidenceUnchanged": "1d2f4ff93dc4b7b68f6f60be403f4cf0dcd319f0",
+  "human115": "PENDING",
+  "promptComparison": "PENDING",
+  "independentReview": "PENDING"
+}

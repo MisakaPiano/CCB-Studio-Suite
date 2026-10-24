@@ -1,0 +1,123 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :asset-library:compileJava UP-TO-DATE
+> Task :image-authority:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :image-authority:compileKotlin UP-TO-DATE
+> Task :image-authority:compileJava NO-SOURCE
+> Task :studio-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-core:compileKotlin UP-TO-DATE
+> Task :studio-core:compileJava NO-SOURCE
+> Task :studio-core:processResources UP-TO-DATE
+> Task :studio-core:classes UP-TO-DATE
+> Task :studio-core:jar UP-TO-DATE
+> Task :asset-library:processResources NO-SOURCE
+> Task :asset-library:classes UP-TO-DATE
+> Task :asset-library:jar UP-TO-DATE
+> Task :image-authority:processResources NO-SOURCE
+> Task :image-authority:classes UP-TO-DATE
+> Task :image-authority:jar UP-TO-DATE
+> Task :studio-core:compileTestKotlin UP-TO-DATE
+> Task :studio-core:compileTestJava NO-SOURCE
+> Task :studio-core:processTestResources UP-TO-DATE
+> Task :studio-core:testClasses UP-TO-DATE
+
+> Task :studio-core:test
+
+ReviewBoundaryTest > queuedAccountSnapshotSurvivesEditingAndReopening PASSED
+
+ReviewBoundaryTest > manualCapacityRejectsNewWorkBeforeSendAndLegacyOverflowStillArchivesWithoutLoss PASSED
+
+ReviewBoundaryTest > promptInterruptionsReuseAssetAndRestoreLabelsAndObservationAcrossReopen PASSED
+
+ReviewBoundaryTest > closeCancelsOnlyPendingAdmissionAndReopenRequiresExplicitAction PASSED
+
+ReviewBoundaryTest > policyOnlySavePreservesFrozenCredentialWhileExplicitAccountChangeAndLegacyEnrollmentWork PASSED
+
+ReviewBoundaryTest > pauseOrEndWinsBeforeAtomicReservationAndBeforeTransportAdmission PASSED
+
+> Task :studio-desktop:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-desktop:convertXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:copyNonXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:prepareComposeResourcesTaskForMain NO-SOURCE
+> Task :studio-desktop:generateResourceAccessorsForMain SKIPPED
+> Task :studio-desktop:generateActualResourceCollectorsForMain SKIPPED
+> Task :studio-desktop:generateComposeResClass SKIPPED
+> Task :studio-desktop:compileKotlin
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioPromptField.kt:158:74 Unnecessary safe call on a non-null receiver of type 'NovelAiActiveTagFragment'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioPromptField.kt:166:135 Unnecessary safe call on a non-null receiver of type 'NovelAiActiveTagFragment'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioPromptField.kt:177:97 Unnecessary safe call on a non-null receiver of type 'NovelAiActiveTagFragment'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryOrganization.kt:201:85 Unnecessary safe call on a non-null receiver of type 'GenerationFolder'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryOrganization.kt:205:60 Unnecessary safe call on a non-null receiver of type 'VirtualAlbum'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryWorkspace.kt:299:50 Unnecessary non-null assertion (!!) on a non-null receiver of type 'NovelAiHistoryAlbum'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryWorkspace.kt:300:58 Unnecessary non-null assertion (!!) on a non-null receiver of type 'NovelAiHistoryAlbum'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetQueueWorkspace.kt:142:72 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Double'.
+
+> Task :studio-desktop:compileJava NO-SOURCE
+> Task :studio-desktop:assembleMainResources UP-TO-DATE
+> Task :studio-desktop:processResources UP-TO-DATE
+> Task :studio-desktop:classes UP-TO-DATE
+> Task :studio-desktop:jar
+> Task :studio-desktop:convertXmlValueResourcesForTest NO-SOURCE
+> Task :studio-desktop:copyNonXmlValueResourcesForTest NO-SOURCE
+> Task :studio-desktop:prepareComposeResourcesTaskForTest NO-SOURCE
+> Task :studio-desktop:generateResourceAccessorsForTest SKIPPED
+> Task :studio-desktop:compileTestKotlin
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/com/example/chatbar/desktop/DesktopStudioPresentationTest.kt:216:36 Unnecessary non-null assertion (!!) on a non-null receiver of type 'TextLayoutResult'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryAlbumWorkflowTest.kt:85:112 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Pair<List<String>, Int>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryAlbumWorkflowTest.kt:85:146 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Pair<List<String>, Int>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GuidanceSafetyTest.kt:39:226 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Triple<ByteArray, ByteArray?, NovelAiFocusedInpaintRegion>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GuidanceSafetyTest.kt:40:90 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Triple<ByteArray, ByteArray?, NovelAiFocusedInpaintRegion>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GuidanceSafetyTest.kt:40:206 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Triple<ByteArray, ByteArray?, NovelAiFocusedInpaintRegion>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GuidanceSafetyTest.kt:46:148 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Triple<ByteArray, ByteArray?, NovelAiFocusedInpaintRegion>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GuidanceSafetyTest.kt:47:98 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Triple<ByteArray, ByteArray?, NovelAiFocusedInpaintRegion>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GuidanceSafetyTest.kt:47:166 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Triple<ByteArray, ByteArray?, NovelAiFocusedInpaintRegion>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GuidanceSafetyTest.kt:49:55 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Triple<ByteArray, ByteArray?, NovelAiFocusedInpaintRegion>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GuidanceSafetyTest.kt:49:71 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Triple<ByteArray, ByteArray?, NovelAiFocusedInpaintRegion>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/ModelAccountsTest.kt:62:301 'fun create(contentType: MediaType?, content: String): ResponseBody' is deprecated. Moved to extension function. Put the 'content' argument first to fix Java.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/ModelAccountsTest.kt:71:230 'fun create(contentType: MediaType?, content: String): ResponseBody' is deprecated. Moved to extension function. Put the 'content' argument first to fix Java.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/PromptReferenceWorkflowTest.kt:106:57 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Path'.
+
+> Task :studio-desktop:compileTestJava NO-SOURCE
+> Task :studio-desktop:assembleTestResources UP-TO-DATE
+> Task :studio-desktop:processTestResources UP-TO-DATE
+> Task :studio-desktop:testClasses UP-TO-DATE
+> Task :studio-desktop:reviewUpdateProbeJar
+
+> Task :studio-desktop:test
+
+GuidanceSafetyTest > vibeMissUsesBudgetOnceAndCachedEncodingMakesNoRequest PASSED
+
+ReviewDispatchTest > closeAndUpdateDrainKeepSlowInflightResultAndNeverSendTheNextManualRequest PASSED
+
+ReviewDispatchTest > pauseAndEndDuringAdmissionSendZeroGenerationRequests PASSED
+
+ReviewDispatchTest > restoredWorkspaceCannotChangeStableDefaultBytesOrShortcuts PASSED
+
+ReviewDispatchTest > maintenanceDrainsFirstVibeEncodingKeepsItsCacheAndNeverSendsSecondEncoding PASSED
+
+ReviewDispatchTest > batchMaintenanceDrainsRealRunnerAndKeepsOnlyInflightSlot PASSED
+
+RestoredUpdateSnapshotTest > preBatchWriterSnapshotVerifiesWithoutHashingNewReaderDefaults PASSED
+
+RestoredUpdateSnapshotTest > previouslyReadableCredentialCannotDisappearDuringUpdate PASSED
+
+RestoredUpdateSnapshotTest > unreadableOrCorruptCredentialCannotBeTreatedAsMissing PASSED
+
+RestoredUpdateSnapshotTest > formatCopyUsesAuthenticatedSourceCommitAndRejectsLaterChanges PASSED
+
+RestoredUpdateSnapshotTest > restoredWorkspaceCanBeVerifiedWithoutRecreatingExcludedCredential PASSED
+
+RestoredUpdateSnapshotTest > frozenAndEditedAccountCredentialsBothVerifyAndMissingFrozenCredentialRejectsB PASSED
+
+> Task :downloadWix SKIPPED
+> Task :unzipWix UP-TO-DATE
+> Task :studio-desktop:checkRuntime UP-TO-DATE
+> Task :studio-desktop:createRuntimeImage UP-TO-DATE
+> Task :studio-desktop:prepareAppResources NO-SOURCE
+> Task :studio-desktop:unpackDefaultComposeDesktopJvmApplicationResources UP-TO-DATE
+> Task :studio-desktop:createDistributable
+The distribution is written to H:\CCB-Studio-Suite\modules\studio-desktop\build\compose\binaries\main\app
+
+BUILD SUCCESSFUL in 7m 3s
+24 actionable tasks: 7 executed, 17 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.1.0/userguide/configuration_cache_enabling.html

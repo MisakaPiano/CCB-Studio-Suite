@@ -1,0 +1,75 @@
+{
+  "commit": "8d1f46af89a201e5918e79cd0b31a69485f19287",
+  "method": "Read-only fixed git object reads, no checkout/fetch/refs/index/build/data changes",
+  "workingTree": "DIRTY_BY_OTHER_EXECUTOR; not treated as frozen source",
+  "files": [
+    {
+      "path": "app/desktopApp/build.gradle.kts",
+      "gitObjectSha256": "2755965b9cd96ef4f23ab4edd8db2bbee599b02a1b8b6e6474ee713ad6533b07",
+      "bytes": 5422
+    },
+    {
+      "path": "tools/desktop/interop/prepreview/Build-Package.ps1",
+      "gitObjectSha256": "6eb18ce0c4820f65ed9b99fc945a15b7fbaaf4b406b1f9aa419d68d8eaac5ef5",
+      "bytes": 1522
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopUpdateChecker.kt",
+      "gitObjectSha256": "e4aa3f326ce410861c67d1a350be30006aef293ad46c1fcb27669d8f1271a7a2",
+      "bytes": 7983
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopUpdatePanel.kt",
+      "gitObjectSha256": "e8ce73d8de443308acc5c2ad68ac6e42236660d43d2b0b21023ec407ea469e8f",
+      "bytes": 3095
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopDataDirectory.kt",
+      "gitObjectSha256": "9d309e58d3026945cc79ea560cd6b00bbd2949762780a7e5f88afb650982c2d6",
+      "bytes": 11679
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopDataRootSelection.kt",
+      "gitObjectSha256": "b822811bf5090ff5bf80e58b093fd18f5ef8bddb84efc7b261be92629e1a45fd",
+      "bytes": 11181
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopPortableRoot.kt",
+      "gitObjectSha256": "fe27bf98633321d5f8f2f56b96ec913d8ecb2db4ff37979fc12a3332fc19647f",
+      "bytes": 15864
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopDataRootOwnership.kt",
+      "gitObjectSha256": "ad21e753563835129a4313c02125841f41c332ff2b9db0d482179743875e2f87",
+      "bytes": 13744
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopDataRootSwitchController.kt",
+      "gitObjectSha256": "54fc3c0adac392d90fc0bb3fd0cedbcb00f5683b13d2eb52922492b3c0b0f781",
+      "bytes": 10518
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/security/WindowsSecretRootResolver.kt",
+      "gitObjectSha256": "c3170408c56b367a2f62cb6052c0682661fb390e0039aa3d3c8a872045184d49",
+      "bytes": 2545
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/security/WindowsSecretStore.kt",
+      "gitObjectSha256": "68f83df55fa3280ab258c2587f922c4ff3286d3b313d16d013c1243c8b100fa8",
+      "bytes": 9307
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/security/WindowsDpapiSecretProtector.kt",
+      "gitObjectSha256": "8986343c9193acb570f5adae4ce58572b14b6a8d16671504a858dab241c1c0a4",
+      "bytes": 2069
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/backup/DesktopBackupPolicy.kt",
+      "gitObjectSha256": "786b1e62d86dc0086e5a4ad91d84102aab304053cb3bb765ac3ee068b841e603",
+      "bytes": 10654
+    }
+  ],
+  "currentHead": "8d1f46af89a201e5918e79cd0b31a69485f19287",
+  "workingTreePathStatus": " M app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopAutomaticChatImages.kt\n M app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopChatImageRegeneration.kt\n M app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopNovelAiStudioController.kt\n M app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/backup/DesktopBackupPolicy.kt\n M app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/backup/DesktopBackupReadOnlyInspector.kt\n M app/sharedCore/src/main/kotlin/com/example/chatbar/data/local/entity/CharacterCard.kt\n M app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/NovelAiImageService.kt\n M app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/NovelAiStudioModels.kt\n M tools/desktop/interop/lr4/src/Official147EntityWire.kt\n?? .codex-remote-attachments/\n?? CCB_DESKTOP_STANDARD_CONVERSATION_HANDOFF.md\n?? app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/backup/DesktopFullBackupSource.kt\n?? app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/backup/DesktopOfficialBackupEntitySchema.kt\n?? app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/backup/StrictBackupZipReader.kt\n?? app/desktopApp/src/test/kotlin/com/example/chatbar/desktop/backup/DesktopFullBackupSourceTest.kt\n?? app/desktopApp/src/test/kotlin/com/example/chatbar/desktop/backup/DesktopOfficialEntityRoundTripTest.kt\n?? app/sharedCore/src/main/kotlin/com/example/chatbar/domain/image/NovelAiCharacterImageSettings.kt\n",
+  "desktopTestsRun": false
+}

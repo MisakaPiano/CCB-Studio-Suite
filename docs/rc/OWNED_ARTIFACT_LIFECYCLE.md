@@ -23,4 +23,8 @@
 - 原`tools/update-runtime/run_tests.py`也接入新根；临时目录不再持续追加在旧固定测试根。
 - 安装包/原生更新等大产物须在新任务开始时创建独立根，复制唯一需要保留的包及原始证据到外部并核验后再封存清理；不能自动删除固定复审包、依赖缓存或失败现场。
 
-历史目录清单另交付准确路径、大小、归属及保留影响；本轮只读，不删除。特别保护`.local/ACTIVE_STUDIO_INSTALLATION.json`引用的`model-accounts-review/workspace`和`runtime`、107/114/115基线、已冻结Project复审包及原始失败证据。测试和自检通过均不等于Project验收或115人工体验确认；Prompt对比继续PENDING。
+历史目录初查阶段仅只读，后续用户已直接授权准确清单的清理；实际20根回执见`docs/audits/HISTORICAL_CLEANUP_EXECUTED_20261025.md`，不把该授权推广到归属不明目录。特别保护`.local/ACTIVE_STUDIO_INSTALLATION.json`引用的`model-accounts-review/workspace`和`runtime`、107/114/115基线、已冻结Project复审包及原始失败证据。测试和自检通过均不等于Project验收或115人工体验确认；Prompt对比继续PENDING。
+
+## Project返工后的补充（2484858，未发布）
+
+当前B首次接管也必须使用旧安装记录固定manifest；无安装时字节证明的生成卸载器保留。已验证待安装下载只由同目标/包散列的COMPLETE释放，未验证为终态的交接引用始终优先保护；较新失败下载和解包等待后续成功，不能用历史成功追溯释放。入口helper在共享锁内做期望旧描述符、版本、根归属的条件提交。18 JVM/56 Python及双DPAPI合成凭据原生演练通过，新源码独立复审待定；详见`handoff/PROJECT_REVIEW_RESIDUALS_20261025.md`，旧失败不覆盖。

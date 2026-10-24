@@ -1,0 +1,55 @@
+{
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 21,
+      "sha256": "d52819fcfcc346c0c10a630c519d3045b4f9297e92f2de18338775c687c37b25"
+    },
+    {
+      "path": "cleanup.py",
+      "bytes": 13796,
+      "sha256": "aed18a94b5c53405b6f0223b78b91858c88f2cb56694cf41b10d2a32d21e6080"
+    },
+    {
+      "path": "LOG_VERIFICATION.json",
+      "bytes": 220,
+      "sha256": "4f97980c5dad750ee4036b92f8681495dbfd705158e95e6a4b798054c416bbee"
+    },
+    {
+      "path": "PLAN.json.gz",
+      "bytes": 7056848,
+      "sha256": "6af42f66a7dcb47656c0fa8f6baf178cbf5d02cf7edad695a11383c0f2babac2"
+    },
+    {
+      "path": "PLAN_SUMMARY.json",
+      "bytes": 4285,
+      "sha256": "bd7542d2fdf92255dafe673c4dc4ff6d31bd7f800f7861501dd61472408dfdaf"
+    },
+    {
+      "path": "post-cleanup.py",
+      "bytes": 4768,
+      "sha256": "fb8b80588e7ad5a77492ab2f53d739a9c4ef5152116c6082d89958463c6fdfd8"
+    },
+    {
+      "path": "POSTCHECK.json",
+      "bytes": 3252,
+      "sha256": "0dc3b40aef507a730ee09e927f9e9fd68158741d897fd6a1e2eefded267d873f"
+    },
+    {
+      "path": "REMOVALS.jsonl.gz",
+      "bytes": 4113184,
+      "sha256": "673d3c36e0c99b4d53cc2f1db65f895558d3b5dfa10ae19009994eec3566caee"
+    },
+    {
+      "path": "RESULT.json",
+      "bytes": 150115,
+      "sha256": "4603fe002a8ef98269d1a228e46620a6d237c9f8c5c045d34b28a60195e6c057"
+    },
+    {
+      "path": "validate-helper.py",
+      "bytes": 506,
+      "sha256": "78384a360bc90ba837e585d9d6c84c076e42855eff918a715013b1504a53630c"
+    }
+  ],
+  "privateData": "No user assets, private prompts, credential blobs, keys, tokens or recovery codes"
+}

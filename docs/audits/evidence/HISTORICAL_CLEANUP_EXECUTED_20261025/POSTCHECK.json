@@ -1,0 +1,83 @@
+{
+  "status": "PASS",
+  "filesRemoved": 236530,
+  "bytesFreed": 8506611341,
+  "gibFreed": 7.922399175353348,
+  "roots": 20,
+  "deferred": 0,
+  "retainedEntryExistenceChecks": 1086,
+  "protectedAnchors": [
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\launch-current.json",
+      "bytes": 265,
+      "sha256": "783eb43528a486ff97a08a7581108fc2bd7add8cc2d1464f3e8effdcd84b5df2"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\ACTIVE_INSTALLATION.json",
+      "bytes": 602,
+      "sha256": "53d8161c465516742a8af86350fb7c5ae51440e453badfaadc8a25f404011695"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\CCBStudioLauncher.exe",
+      "bytes": 115712,
+      "sha256": "bd7471da1b63b5c6d030076bcab63ceb4ebeb67d78e4a1facf7f53e584e6d0a3"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\Launch-CCB-Studio.lnk",
+      "bytes": 1264,
+      "sha256": "ec0089a81834126051ed136c3f05af962592f046b30659d593e8eb5c64ba8421"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\MIGRATION_COMPLETE.json",
+      "bytes": 824,
+      "sha256": "c9a5f31e9ab014b8a5839339f2dc3e48c77677d055eb7d85e21715e442330c13"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\MIGRATION_DATA_VERIFIED.json",
+      "bytes": 441,
+      "sha256": "13e8bb2f259abacb8cebd416e7f16503df4aee2d02749f4e2bb6024c345cd65d"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\115-ff145d051bae\\INSTALL_MANIFEST.json",
+      "bytes": 101300,
+      "sha256": "5d1e91090d4bd941b80582245c215e98f525bcf9ea9e2d3b9842b4d47e288d49"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\115-ff145d051bae\\update-config.json",
+      "bytes": 682,
+      "sha256": "d7b8fdc2c579424e01133119ceb33917a12ed5f8a23e4bba46c61690113fb923"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\115-ff145d051bae\\CCBStudioSuitePreview.exe",
+      "bytes": 525312,
+      "sha256": "494f137e9fa8cb07b7f1d19ed6cc3e6dfac4afd3df16397390d30f1aee58541f"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\ACTIVE_STUDIO_INSTALLATION.json",
+      "bytes": 602,
+      "sha256": "53d8161c465516742a8af86350fb7c5ae51440e453badfaadc8a25f404011695"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\docs\\audits\\evidence\\PROJECT_PHASE_20261024\\RAW_EVIDENCE.zip",
+      "bytes": 73548,
+      "sha256": "dd2da2bcc76c47b6f0b9d4688e30cb2ea99314dd536e271f709a8223b1a9136a"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\docs\\audits\\evidence\\REVIEW_FIXES_CLEANUP_20261025\\RAW_EVIDENCE.zip",
+      "bytes": 1049247,
+      "sha256": "e14b0d97ec722aac9f31d903f6012625eb97c4a5e5bb215401e58de741f00e0e"
+    }
+  ],
+  "dailyCurrentVersion": 115,
+  "dailyProgramVerification": {
+    "files": 548,
+    "bytes": 252745526,
+    "manifestSha256": "5d1e91090d4bd941b80582245c215e98f525bcf9ea9e2d3b9842b4d47e288d49"
+  },
+  "protected111AndBackupsAndBaselinesPresent": true,
+  "userDataOrPrivateCredentialContentsRead": false,
+  "preservationScope": "Excluded all protected roots and backup/evidence subtrees; no full private-data byte inventory or credential read",
+  "automatedUpdaterUsedForDailyCleanup": false,
+  "recycleBinCleared": false,
+  "helperSha256": "aed18a94b5c53405b6f0223b78b91858c88f2cb56694cf41b10d2a32d21e6080"
+}

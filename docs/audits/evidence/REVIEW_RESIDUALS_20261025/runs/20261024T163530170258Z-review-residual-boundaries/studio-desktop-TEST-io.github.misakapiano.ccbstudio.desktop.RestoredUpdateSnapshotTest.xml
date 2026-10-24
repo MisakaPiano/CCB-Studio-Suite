@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.RestoredUpdateSnapshotTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-24T16:39:24.430Z" hostname="DD1" time="11.527">
+  <properties/>
+  <testcase name="preBatchWriterSnapshotVerifiesWithoutHashingNewReaderDefaults" classname="io.github.misakapiano.ccbstudio.desktop.RestoredUpdateSnapshotTest" time="3.781"/>
+  <testcase name="previouslyReadableCredentialCannotDisappearDuringUpdate" classname="io.github.misakapiano.ccbstudio.desktop.RestoredUpdateSnapshotTest" time="1.16"/>
+  <testcase name="unreadableOrCorruptCredentialCannotBeTreatedAsMissing" classname="io.github.misakapiano.ccbstudio.desktop.RestoredUpdateSnapshotTest" time="0.407"/>
+  <testcase name="formatCopyUsesAuthenticatedSourceCommitAndRejectsLaterChanges" classname="io.github.misakapiano.ccbstudio.desktop.RestoredUpdateSnapshotTest" time="1.221"/>
+  <testcase name="restoredWorkspaceCanBeVerifiedWithoutRecreatingExcludedCredential" classname="io.github.misakapiano.ccbstudio.desktop.RestoredUpdateSnapshotTest" time="4.409"/>
+  <testcase name="frozenAndEditedAccountCredentialsBothVerifyAndMissingFrozenCredentialRejectsB" classname="io.github.misakapiano.ccbstudio.desktop.RestoredUpdateSnapshotTest" time="0.549"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

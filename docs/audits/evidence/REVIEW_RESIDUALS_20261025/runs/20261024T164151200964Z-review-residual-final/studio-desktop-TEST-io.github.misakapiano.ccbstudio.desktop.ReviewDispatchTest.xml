@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.ReviewDispatchTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-24T16:47:24.705Z" hostname="DD1" time="22.448">
+  <properties/>
+  <testcase name="closeAndUpdateDrainKeepSlowInflightResultAndNeverSendTheNextManualRequest" classname="io.github.misakapiano.ccbstudio.desktop.ReviewDispatchTest" time="7.063"/>
+  <testcase name="pauseAndEndDuringAdmissionSendZeroGenerationRequests" classname="io.github.misakapiano.ccbstudio.desktop.ReviewDispatchTest" time="4.444"/>
+  <testcase name="restoredWorkspaceCannotChangeStableDefaultBytesOrShortcuts" classname="io.github.misakapiano.ccbstudio.desktop.ReviewDispatchTest" time="0.009"/>
+  <testcase name="maintenanceDrainsFirstVibeEncodingKeepsItsCacheAndNeverSendsSecondEncoding" classname="io.github.misakapiano.ccbstudio.desktop.ReviewDispatchTest" time="7.168"/>
+  <testcase name="batchMaintenanceDrainsRealRunnerAndKeepsOnlyInflightSlot" classname="io.github.misakapiano.ccbstudio.desktop.ReviewDispatchTest" time="3.764"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
