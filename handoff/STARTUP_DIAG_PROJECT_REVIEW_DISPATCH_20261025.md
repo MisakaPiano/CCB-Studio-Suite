@@ -1,5 +1,7 @@
 # 启动阶段诊断：原Project限定交审回执
 
+后续只读核对：**复审已开始，完整裁定仍PENDING。**原页面已显示助手消息`dace7591-239a-4eb0-982d-e918bc23c6c0`的明确范围说明、核验进度和部分审查正文；开头接受方法/阶段并复算两轮时间，强调不是提速对照。页面持续提示等待完整答复，一次只读重载后正文仍只到该对照边界说明，故不据部分文字登记PASS或宣称无残余。见[进度及读取边界](evidence/STARTUP_DIAG_PROJECT_REVIEW_20261025/PROGRESS.json)。下方“尚未确认开始”保留初次送达时点；发送始终只有一次。
+
 2026-10-25 Asia/Tokyo。用户于2026-10-24 20:20:30 UTC对固定8a757a6源码、31d3853报告/合成证据及原Project目标明确回复“同意”。本次只发送这些工程材料，不扩大为任意外发或全项目复审。
 
 1. **Studio承接：YES。**核对Suite根、feature/windows-rc-continuous@31d38532b48e7a94e182f14a90bfbc955d44095b，index/worktree干净。源码完整身份8a757a6121c219dd942358d25c7a3707bc1fa8db、报告/证据31d38532b48e7a94e182f14a90bfbc955d44095b、原始ZIP 1,233,904字节/SHA-256 `a5eb28eb597763a306e558e006270ab9e8b58c3e6aa66929af1bbdba4a7fb99f`重新核对。

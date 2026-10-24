@@ -1,6 +1,6 @@
 ## 2026-10-25 启动诊断已限定交审
 
-[本次交审回执](../handoff/STARTUP_DIAG_PROJECT_REVIEW_DISPATCH_20261025.md)：用户批准固定8a757a6/31d3853后仅发送一次；原Project请求645bfece实际落地，完整回读一致。Studio承接/Project收到YES，独立开始尚未确认、结果PENDING；固定证据不改，不重开旧接受范围或发布。
+[本次交审回执](../handoff/STARTUP_DIAG_PROJECT_REVIEW_DISPATCH_20261025.md)：用户批准固定8a757a6/31d3853后仅发送一次；原Project请求645bfece实际落地，完整回读一致。Studio承接/Project收到YES；实际读到审查进度及部分正文，独立复审已开始、完整结果PENDING，不把部分接受当完整通过。固定证据不改，不重开旧接受范围或发布。
 
 ## 2026-10-25 启动阶段诊断与原基线独立限定通过
 
