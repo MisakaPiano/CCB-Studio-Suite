@@ -1,0 +1,32 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.CollectionHashPerformanceTest",
+    "name": "measuredUnchangedScanAllocationAndIdentity",
+    "seconds": "8.821",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryCollectionTest",
+    "name": "progressReleasesWorkspaceAndCancellationCheckpointsOnlyCompletedFiles",
+    "seconds": "2.339",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryCollectionTest",
+    "name": "rescanAdoptsOldCommittedImageWithoutObservationAndDoesNotImportItAgain",
+    "seconds": "1.216",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryRepositoryTest",
+    "name": "directoriesVersionAndMissingSourcesKeepAssetsLabelsPromptsAndBackup",
+    "seconds": "12.564",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.ReviewBoundaryTest",
+    "name": "promptInterruptionsReuseAssetAndRestoreLabelsAndObservationAcrossReopen",
+    "seconds": "19.909",
+    "status": "PASS"
+  }
+]

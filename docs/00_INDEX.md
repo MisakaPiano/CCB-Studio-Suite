@@ -1,3 +1,7 @@
+## 2026-10-25 PERF-006目录输入摘要复用
+
+[cb819b4报告与原始执行](audits/PERF006_COLLECTION_HASH_20261025.md)：同一输入完整SHA计算2→1，最终5唯一方法PASS、Prompt中断幂等保持；仅新建合成目录显式扫描，自动采集暂停。内存数组仍随源大小增长，Desktop期间活动重叠UNKNOWN，不称整库/RSS/用户或包验；[复审仅准备](../handoff/PERF006_COLLECTION_HASH_REVIEW_READY_20261025.md)，无外发/发布，旧边界保持。
+
 ## 2026-10-25 PERF-005编辑原件导出增量
 
 [5a91e99实现/原始执行](audits/PERF005_EDITOR_ORIGINAL_20261025.md)：最终5唯一方法PASS，12MiB线程分配46.43→0.604MB，墙钟403→406ms，非提速/RSS/编辑人工或包验。旧命名/顺序/回执/源验证与分类保持；[复审仅准备](../handoff/PERF005_EDITOR_ORIGINAL_REVIEW_READY_20261025.md)。无新包/发布，旧失败/用户未验保持，持续低风险源码定位、Desktop优先。

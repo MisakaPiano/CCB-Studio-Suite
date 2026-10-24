@@ -1,0 +1,31 @@
+{
+  "phase": "perf006-collection-hash-baseline-20261025",
+  "startedUtc": "2026-10-24T22:58:25.539733+00:00",
+  "seconds": 34.98,
+  "exitCode": 0,
+  "tests": 1,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--priority",
+    "low",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    "-PpreviewTestRoot=H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-364690b4a7ef4993b105e465d6a8deb5\\payload",
+    ":studio-core:test",
+    "--tests",
+    "*CollectionHashPerformanceTest.measuredUnchangedScanAllocationAndIdentity"
+  ],
+  "baseCommit": "225318f7284599840874397383225b75fe45b6db",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

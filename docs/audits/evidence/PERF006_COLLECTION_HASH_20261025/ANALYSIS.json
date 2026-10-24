@@ -1,0 +1,60 @@
+{
+  "medians": {
+    "baseline": {
+      "3145728": {
+        "wallMs": 62.8708,
+        "cpuMs": 62.5,
+        "allocatedBytes": 14108272
+      },
+      "12582912": {
+        "wallMs": 182.3212,
+        "cpuMs": 187.5,
+        "allocatedBytes": 52055024
+      }
+    },
+    "final": {
+      "3145728": {
+        "wallMs": 50.3163,
+        "cpuMs": 46.875,
+        "allocatedBytes": 14061168
+      },
+      "12582912": {
+        "wallMs": 138.64,
+        "cpuMs": 140.625,
+        "allocatedBytes": 52008544
+      }
+    }
+  },
+  "counts": {
+    "baseline": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "225318f7284599840874397383225b75fe45b6db",
+      "seconds": 34.98,
+      "startedUtc": "2026-10-24T22:58:25.539733+00:00"
+    },
+    "final": {
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "cb819b4d81183ddda7e374f77abbfc141f57e663",
+      "seconds": 80.603,
+      "startedUtc": "2026-10-24T23:00:03.431634+00:00"
+    }
+  },
+  "finalUniqueMethods": 5,
+  "cleanupFiles": 565,
+  "cleanupBytes": 126078663,
+  "limits": [
+    "Separate JVMs and real file write/force; no causal latency or RSS improvement claim",
+    "Both runs Gradle low priority,single worker,2 processors,256MiB test heap",
+    "Owner checks before launch found no Desktop Java,not continuous quiet proof",
+    "Two different16x16 valid PNGs with3/12MiB private ancillary payload per file,not real image/scale diversity",
+    "Two files per payload size,unchanged explicit synthetic scan; automatic collections stay paused,no watcher/user scan started"
+  ]
+}
