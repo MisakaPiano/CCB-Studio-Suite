@@ -147,9 +147,10 @@ class LibraryRepository(private val workspace:StudioWorkspace,private val fault:
             for((asset,destination,key) in planned) {
                 checkCancelled()
                 if(Files.exists(destination,LinkOption.NOFOLLOW_LINKS)) {
-                    require(Files.isRegularFile(destination,LinkOption.NOFOLLOW_LINKS) && sha256(readBounded(destination,32*1024*1024))==asset.sha256()){"Intake destination exists with different content; retained"}
-                }else writeNewForced(destination,workspace.bytes(asset.request().id().toString()))
-                require(Files.size(destination)==asset.size() && sha256(readBounded(destination,32*1024*1024))==asset.sha256())
+                    require(Files.isRegularFile(destination,LinkOption.NOFOLLOW_LINKS) && fingerprintFile(destination,32L*1024*1024).sha256==asset.sha256()){"Intake destination exists with different content; retained"}
+                }else copyVerifiedOriginal(workspace,asset.request().id().toString(),destination,checkCancelled)
+                val verified=fingerprintFile(destination,32L*1024*1024)
+                require(verified.size==asset.size() && verified.sha256==asset.sha256())
                 completed[key]=pending.getValue(key).copy(status="PRESENT");outputs.add(destination);progress(outputs.size,planned.size)
             }
         }finally{if(completed.isNotEmpty())update{it.copy(observations=it.observations+completed)}}

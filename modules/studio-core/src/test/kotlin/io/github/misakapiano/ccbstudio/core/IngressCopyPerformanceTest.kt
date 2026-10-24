@@ -47,6 +47,39 @@ class IngressCopyPerformanceTest {
                 assertTrue(repository.automaticFolders().isEmpty(),"Fixture collection stays paused; no scan was started")
             }
         }
+        val bySize=rows.groupBy{it.getValue("payloadBytes").jsonPrimitive.int}
+        for(round in 0..2) {
+            val small=bySize.getValue(3*1024*1024).single{it.getValue("round").jsonPrimitive.int==round}.getValue("allocatedBytes").jsonPrimitive.long
+            val large=bySize.getValue(12*1024*1024).single{it.getValue("round").jsonPrimitive.int==round}.getValue("allocatedBytes").jsonPrimitive.long
+            assertTrue(large-small<2L*1024*1024,"Encoded original growth must not add whole-file buffers; metadata cost is separate")
+        }
         println("INGRESS_COPY_ALLOCATION="+JsonArray(rows))
+    }
+
+    @Test fun modifiedIntakeRemainsPendingWithoutReplacingItOrOriginal() {
+        val base=root()
+        StudioWorkspace.openStudio(base.resolve("workspace")).use{w->
+            val repo=LibraryRepository(w);repo.pauseCollections(true);val bytes=EditorRenderer.synthetic(16,16);val id=w.importImage("source.png",bytes)
+            val output=repo.retainIngress(id);Files.writeString(output,"unknown-keep",StandardOpenOption.TRUNCATE_EXISTING)
+            assertFailsWith<IllegalArgumentException>{repo.retainIngress(id)}
+            assertEquals("unknown-keep",Files.readString(output));assertContentEquals(bytes,w.bytes(id))
+            assertEquals("COPY_PENDING",repo.load().observations.values.single{it.assetId==id}.status)
+            assertTrue(repo.automaticFolders().isEmpty())
+        }
+    }
+
+    @Test fun existing32MiBCopyBudgetStillRejectsAndRetainsOversizeSecondaryFile() {
+        val base=root();val input=base.resolve("oversize.bin");val block=ByteArray(65536){(it*29).toByte()}
+        Files.newOutputStream(input,StandardOpenOption.CREATE_NEW).use{out->repeat(512){out.write(block)};out.write(11)}
+        val expected=digest(input)
+        StudioWorkspace.openStudio(base.resolve("workspace")).use{w->
+            val id=UUID.randomUUID();Files.newInputStream(input).use{w.assets.put(AssetStore.Request(id,"opaque.bin",AssetStore.Kind.ORIGINAL,null,byteArrayOf(),SharedAssets.DOCUMENT.toByteArray()),it)}
+            val repo=LibraryRepository(w);repo.pauseCollections(true)
+            assertEquals("CORRUPT",assertFailsWith<DataProblem>{repo.retainIngress(id.toString())}.status)
+            val state=repo.load();assertEquals("COPY_PENDING",state.observations.values.single().status)
+            val secondary=Path.of(state.folders.single{it.category=="imports"}.path).resolve("$id-opaque.bin")
+            assertEquals(32L*1024*1024+1,Files.size(secondary));assertEquals(expected,digest(secondary));assertEquals(expected,w.assets.read(id).require().sha256())
+            assertTrue(repo.automaticFolders().isEmpty())
+        }
     }
 }
