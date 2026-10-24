@@ -123,7 +123,7 @@ class ProgressFetcher(FetcherInterface):
         if self.total is not None:
             self.report({'phase':'VERIFYING','received':received,'total':self.total})
 
-def execute(installed:Installed,cache:Path,download=False,fetcher=None,disk_usage=shutil.disk_usage,progress=None):
+def execute(installed:Installed,cache:Path,download=False,fetcher=None,disk_usage=shutil.disk_usage,progress=None,install_root=None):
     report=progress or (lambda value:None)
     report({'phase':'CHECKING'})
     with exclusive(cache):
@@ -145,7 +145,14 @@ def execute(installed:Installed,cache:Path,download=False,fetcher=None,disk_usag
             file=stage/'studio-installer.exe'
             observed.total=target.length
             report({'phase':'DOWNLOADING','received':0,'total':target.length,'bytesPerSecond':0})
-            updater.download_target(target,filepath=str(file))
+            try:updater.download_target(target,filepath=str(file))
+            except Exception:
+                if install_root is not None:
+                    try:
+                        from residue_cleanup import enroll_download
+                        enroll_download(cache,install_root,stage,custom,target.hashes['sha256'],False)
+                    except Exception:pass # Failure evidence/unknown output stays retained.
+                raise
             # Commit completion only after upstream byte verification and durable local write.
             with file.open('rb+') as stream:os.fsync(stream.fileno())
             with file.open('rb') as stream:target.verify_length_and_hashes(stream)
@@ -154,6 +161,12 @@ def execute(installed:Installed,cache:Path,download=False,fetcher=None,disk_usag
                 json.dump(result,stream,indent=2);stream.flush();os.fsync(stream.fileno())
             final=stage.with_suffix('');os.rename(stage,final)
             result.update(status='DOWNLOADED_VERIFIED',installer=str((final/file.name).resolve()))
+            if install_root is not None:
+                try:
+                    from residue_cleanup import enroll_download
+                    enroll_download(cache,install_root,final,custom,target.hashes['sha256'],True)
+                except Exception as cleanup_error:
+                    result['cleanupDeferred']=type(cleanup_error).__name__
             report({'phase':'DOWNLOADED_VERIFIED','received':target.length,'total':target.length})
         return result
 
@@ -172,7 +185,7 @@ def main():
             def progress(value):
                 temporary=path.with_suffix('.tmp')
                 temporary.write_text(json.dumps(value),encoding='utf-8');os.replace(temporary,path)
-        result=execute(Installed.load(package),cache,args.download,progress=progress)
+        result=execute(Installed.load(package),cache,args.download,progress=progress,install_root=package.parent)
     except Exception as error:
         # No URLs, arbitrary server text, local credentials or traceback in product output.
         result={'status':'FAILED','reason':str(error) if isinstance(error,UpdateRejected) else type(error).__name__}

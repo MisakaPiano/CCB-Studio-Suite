@@ -91,7 +91,7 @@ class BatchQueue(private val workspace:StudioWorkspace,private val random:(Int)-
     fun replaceGroups(groups:List<BatchGroup>)=update {s->
         require(!s.running && s.error==null && s.mode!="ENDED"){"请先处理暂停原因；已结束批次需新建"}
         s.groups.filter{it.started}.forEach{old->require(groups.any{it==old}){"已开始分组保留，请复制为新分组"}}
-        s.copy(id=s.id.ifBlank{newId()},groups=groups,mode="PAUSED",createdAt=s.createdAt.takeIf{it>0}?:System.currentTimeMillis())
+        s.copy(id=s.id.ifBlank{newId()},groups=groups,accountSnapshot=if(s.total==0)workspace.state.accounts.find{a->a.id==s.accountId&&a.service=="NAI"}else s.accountSnapshot,mode="PAUSED",createdAt=s.createdAt.takeIf{it>0}?:System.currentTimeMillis())
     }
     fun resume(now:Long,retry:Boolean=false,skip:Boolean=false)=update {s->
         require(!s.running && s.mode!="ENDED" && s.accountId!=null && s.total>0)
@@ -113,7 +113,7 @@ class BatchQueue(private val workspace:StudioWorkspace,private val random:(Int)-
             val bytes=documentJson.encodeToString(s.copy(archives=emptyList())).toByteArray()
             require(bytes.size<=1024*1024)
             val ref=JobReceiptRef(workspace.requestPayload(bytes,null),sha256(bytes))
-            BatchState(accountId=s.accountId,accountSnapshot=s.accountSnapshot,policy=s.policy,archives=s.archives+BatchArchive(alias,s.total,s.completed,ref),lastStartedAt=s.lastStartedAt,nextRequestAt=s.nextRequestAt,restUntil=s.restUntil)
+            BatchState(accountId=s.accountId,policy=s.policy,archives=s.archives+BatchArchive(alias,s.total,s.completed,ref),lastStartedAt=s.lastStartedAt,nextRequestAt=s.nextRequestAt,restUntil=s.restUntil)
         }
     }
     fun next(now:Long):Pair<BatchGroup,BatchSlot>? =workspace.operation {

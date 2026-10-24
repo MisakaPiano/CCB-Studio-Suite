@@ -63,7 +63,7 @@ def build(app,runtime,bootstrap,destination,version,metadata_url,targets_url,bui
     for item in receipt['files']:
         p=runtime/item['path']
         if p.stat().st_size!=item['bytes'] or digest(p)!=item['sha256']:raise ValueError('Runtime changed: '+item['path'])
-    for name in ['studio_update.py','github_transport.py','apply_update.py','install_ops.py']:
+    for name in ['studio_update.py','github_transport.py','apply_update.py','install_ops.py','residue_cleanup.py']:
         if digest(runtime/'lib'/name)!=digest(ROOT/'tools/update-runtime'/name):raise ValueError('Runtime source is stale: '+name)
     destination.mkdir(parents=True)
     payload=destination/'payload'

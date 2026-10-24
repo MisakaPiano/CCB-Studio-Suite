@@ -83,10 +83,24 @@ def install_candidate(installer,target,custom,installed,cache,data_root,run=None
             if run is None:
                 code=subprocess.run([str(installer),'/S','/D='+str(stage)],creationflags=subprocess.CREATE_NO_WINDOW).returncode
             else:code=run(installer,stage)
+            # Record only output owned by this authenticated execution. Cleanup failure
+            # is diagnostic and must not change installation success/failure.
+            ownership=None
+            try:
+                from residue_cleanup import enroll_program
+                stream.seek(0);installer_sha256=hashlib.file_digest(stream,'sha256').hexdigest()
+                ownership=enroll_program(cache,installed.parent,stage,expected,installer_sha256,journal)
+                if ownership:record['cleanupOwnership']=str(ownership);atomic_json(journal,record)
+            except Exception as cleanup_error:
+                record['cleanupDeferred']=type(cleanup_error).__name__;atomic_json(journal,record)
             if code!=0:raise UpdateRejected('Installer failed with exit code '+str(code))
         record['verification']=verify_install(stage,expected)
         if record['verification']['bytes']>custom['installedBytes']:raise UpdateRejected('Installed size exceeds authenticated budget')
         os.rename(stage,final)
+        try:
+            from residue_cleanup import move_program_receipt
+            move_program_receipt(ownership,final)
+        except Exception as cleanup_error:record['cleanupDeferred']=type(cleanup_error).__name__
         record['status']='INSTALLED_NOT_STARTED';atomic_json(journal,record)
         return final,journal,record
     except Exception as error:

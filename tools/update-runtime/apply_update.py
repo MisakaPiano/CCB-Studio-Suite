@@ -22,6 +22,17 @@ def data_destination(plan,source,identity,custom):
     return destination
 
 def create_launcher(final,data,runtime):
+    # Same byte-range lock as the native app's entrypoint registration. A delayed
+    # older writer must recheck the descriptor under this lock before committing.
+    import msvcrt
+    lock=no_reparse(final.parent/'entrypoints.lock')
+    with lock.open('a+b') as stream:
+        if stream.seek(0,2)==0:stream.write(b'0');stream.flush()
+        stream.seek(0);msvcrt.locking(stream.fileno(),msvcrt.LK_NBLCK,1)
+        try:return _create_launcher_locked(final,data,runtime)
+        finally:stream.seek(0);msvcrt.locking(stream.fileno(),msvcrt.LK_UNLCK,1)
+
+def _create_launcher_locked(final,data,runtime):
     """Windows Shell Link preserves Unicode paths without batch parsing/codepage rules."""
     launcher=final.parent/'Launch-CCB-Studio.lnk'
     bundled=final/'updater/CCBStudioLauncher.exe'

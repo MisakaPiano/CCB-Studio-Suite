@@ -43,6 +43,7 @@ def build(destination, sources):
     shutil.copyfile(ROOT/'tools/update-runtime/github_transport.py',destination/'lib/github_transport.py')
     shutil.copyfile(ROOT/'tools/update-runtime/install_ops.py',destination/'lib/install_ops.py')
     shutil.copyfile(ROOT/'tools/update-runtime/apply_update.py',destination/'lib/apply_update.py')
+    shutil.copyfile(ROOT/'tools/update-runtime/residue_cleanup.py',destination/'lib/residue_cleanup.py')
     receipt={'task':'UX-R4','status':'ASSEMBLED_NOT_APPLICATION_UPDATE_VALIDATED','artifacts':artifacts,
              'systemEnvironmentChanged':False,'networkDownloads':0,'files':[]}
     for p in sorted(destination.rglob('*')):

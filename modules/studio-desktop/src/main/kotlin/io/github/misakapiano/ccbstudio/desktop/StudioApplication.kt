@@ -307,11 +307,12 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
         require(draft.basePrompt.isNotBlank())
         val requested=draft
         val designApplication=DesignProvenance(workspace).current()
+        val manual=generations.repository.ensureManual()
+        val requestedTotal=if(requested.continuousModeEnabled)requested.continuousTargetCount else requested.activeSettings.count
+        generations.repository.requireManualCapacity(manual.id,requestedTotal*(if(requested.imageGuidance.action==NovelAiGenerationAction.INPAINT)2 else 1))
         val prepared=workspace.beginTask().use{guidanceFor(account).prepare(requested)}
         val launch=requested.copy(imageGuidance=prepared.retainedGuidance)
         val total=if(launch.continuousModeEnabled)launch.continuousTargetCount else launch.activeSettings.count
-        val manual=generations.repository.ensureManual()
-        generations.repository.requireManualCapacity(manual.id,total*(if(launch.imageGuidance.action==NovelAiGenerationAction.INPAINT)2 else 1))
         intermediate=null
         var completed=0
         while(completed<total && generationSends.open) {
@@ -477,7 +478,7 @@ internal fun launchStudio(args:Array<String>) {
         c.requestClose=::close
         LaunchedEffect(Unit){withFrameNanos{};c.updater.checkOnStartup()}
         if(updatePlan==null&&"--secondary-workspace" !in args&&System.getProperty("jpackage.app-path")!=null)LaunchedEffect(Unit){
-            runCatching{withContext(Dispatchers.IO){DesktopEntrypoints.ensure(workspace.root,runtime)}}.onFailure{c.message="程序已启动；固定入口尚未准备：${it.message?.take(120)}"}
+            runCatching{withContext(Dispatchers.IO){DesktopEntrypoints.ensure(workspace.root,runtime)}}.onSuccess{primary->if(primary)StudioResidueCleanup.run(workspace.root,runtime,true)}.onFailure{c.message="程序已启动；固定入口尚未准备：${it.message?.take(120)}"}
         }
         c.installUpdate={if(!closing){closing=true;scope.launch{
             var handoff:Path?=null
@@ -498,7 +499,7 @@ internal fun launchStudio(args:Array<String>) {
                 while(true) {
                     val status=withContext(Dispatchers.IO){val p=updatePlan.parent.resolve("result.json");if(Files.exists(p))Json.parseToJsonElement(Files.readString(p)).jsonObject else null}
                     when(status?.get("status")?.jsonPrimitive?.content){
-                        "COMPLETE"->{runCatching{withContext(Dispatchers.IO){DesktopEntrypoints.ensure(workspace.root,runtime)}}.onFailure{c.problem="更新已完成，但固定入口准备未完成；可在更新页重新创建入口"};c.message="更新完成：新版程序、资料与凭据状态已验证$credentialNotice";return@withTimeoutOrNull true}
+                        "COMPLETE"->{runCatching{withContext(Dispatchers.IO){DesktopEntrypoints.ensure(workspace.root,runtime)}}.onFailure{c.problem="更新已完成，但固定入口准备未完成；可在更新页重新创建入口"};c.message="更新完成：新版程序、资料与凭据状态已验证$credentialNotice";if(c.allowDefaultEntrypoint)StudioResidueCleanup.run(workspace.root,runtime,false);return@withTimeoutOrNull true}
                         "FAILED_RETAINED"->{c.problem="更新交接未完成；现有资料和旧程序均保留";return@withTimeoutOrNull false}
                     };delay(200)
                 }
