@@ -48,3 +48,14 @@ tasks.register<Jar>("reviewUpdateProbeJar") {
     from(sourceSets.test.get().output)
     archiveClassifier.set("review-update-probe")
 }
+
+// Test-only native measurement host. No installer or distributable is created.
+tasks.register("nativePerformanceInputs") {
+    dependsOn("testClasses")
+    doLast {
+        val launcher=javaToolchains.launcherFor {languageVersion.set(JavaLanguageVersion.of(17))}.get()
+        val target=layout.buildDirectory.file("native-performance-20261025/inputs.txt").get().asFile
+        target.parentFile.mkdirs()
+        target.writeText(launcher.executablePath.asFile.absolutePath+"\n"+sourceSets.test.get().runtimeClasspath.asPath+"\n")
+    }
+}
