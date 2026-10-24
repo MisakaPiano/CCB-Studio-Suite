@@ -1,0 +1,87 @@
+{
+  "mode": "baseline",
+  "status": "FAILED",
+  "tests": 5,
+  "casePass": 1,
+  "caseFail": 4,
+  "failures": 13,
+  "errors": 0,
+  "skipped": 0,
+  "subcases": [
+    {
+      "name": "test_residue_cleanup.ResidueCleanupTests.test_cross_root_complete_markers_without_installed_or_journal_keep_download (missing='installed')",
+      "status": "FAILED"
+    },
+    {
+      "name": "test_residue_cleanup.ResidueCleanupTests.test_cross_root_complete_markers_without_installed_or_journal_keep_download (missing='installJournal')",
+      "status": "FAILED"
+    },
+    {
+      "name": "test_residue_cleanup.ResidueCleanupTests.test_cross_root_failed_receipt_with_wrong_or_missing_nonce_keeps_download (nonce='0000000000000000000000000000000000000000000000000000000000000000')",
+      "status": "FAILED"
+    },
+    {
+      "name": "test_residue_cleanup.ResidueCleanupTests.test_cross_root_failed_receipt_with_wrong_or_missing_nonce_keeps_download (nonce=None)",
+      "status": "FAILED"
+    },
+    {
+      "name": "test_residue_cleanup.ResidueCleanupTests.test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference (mismatch='target')",
+      "status": "FAILED"
+    },
+    {
+      "name": "test_residue_cleanup.ResidueCleanupTests.test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference (mismatch='version')",
+      "status": "FAILED"
+    },
+    {
+      "name": "test_residue_cleanup.ResidueCleanupTests.test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference (mismatch='sourceSha')",
+      "status": "FAILED"
+    },
+    {
+      "name": "test_residue_cleanup.ResidueCleanupTests.test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference (mismatch='channel')",
+      "status": "FAILED"
+    },
+    {
+      "name": "test_residue_cleanup.ResidueCleanupTests.test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference (mismatch='product')",
+      "status": "FAILED"
+    },
+    {
+      "name": "test_residue_cleanup.ResidueCleanupTests.test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference (mismatch='platform')",
+      "status": "FAILED"
+    },
+    {
+      "name": "test_residue_cleanup.ResidueCleanupTests.test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference (mismatch='verification')",
+      "status": "FAILED"
+    },
+    {
+      "name": "test_residue_cleanup.ResidueCleanupTests.test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference (mismatch='status')",
+      "status": "FAILED"
+    },
+    {
+      "name": "test_residue_cleanup.ResidueCleanupTests.test_cross_root_valid_complete_and_matching_failed_nonce_release_download_immediately (status='COMPLETE')",
+      "status": "PASS"
+    },
+    {
+      "name": "test_residue_cleanup.ResidueCleanupTests.test_cross_root_valid_complete_and_matching_failed_nonce_release_download_immediately (status='FAILED_RETAINED')",
+      "status": "PASS"
+    }
+  ],
+  "sourceStable": true,
+  "sourceHashes": {
+    "tools/update-runtime/residue_cleanup.py": "9d5489aad459bd9a738bda01b892e52b2db9420b42d78c3d4a4abc8ebbae15a5",
+    "tools/update-runtime/test_residue_cleanup.py": "287bcb3fbf1239fb74c8447981e04146859614b5f43e4f0c7ab964a3555aeaf5",
+    "tools/update-runtime/owned_files.py": "d67f7ce0ffefa2dc6d2f1413f224383666800cc0892ae9e7a9dfe282d352a452",
+    "tools/update-runtime/install_ops.py": "f1d4ddd4f1bc7033ff8653e34851243e93c6df92c7ba69e70137f627ca46c17e",
+    "tools/update-runtime/studio_update.py": "6cd4e3ad33adfc0d820ee6dcec1ea7cd8e26555ed359c03b1b9488e4da67885f"
+  },
+  "baseCommit": "134dd47ae86a4ab5dbef579b61e19458dece2579",
+  "command": [
+    "verified-updater-python",
+    "-B",
+    ".local/review-terminal-20261025/run-focused.py",
+    "baseline"
+  ],
+  "windowsLockAndDeletionPrimitives": "ACTUAL",
+  "realProviderCalls": 0,
+  "dailyInstallationModified": false,
+  "packagesBuilt": 0
+}

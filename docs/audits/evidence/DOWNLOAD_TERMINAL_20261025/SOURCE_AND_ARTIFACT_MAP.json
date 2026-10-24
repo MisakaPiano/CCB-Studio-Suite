@@ -1,0 +1,44 @@
+{
+  "sourceCommit": "f6598d39298c06ec5644a131e484e814f77b6f45",
+  "sourceBase": "248485824e1d6d2201ceedf7d14ff66e251d344d",
+  "priorDelivery": "134dd47ae86a4ab5dbef579b61e19458dece2579",
+  "canonicalRun": "runs/final-20261024T173217359714Z",
+  "uniqueTests": 24,
+  "newTestMethods": 5,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "repeatedRunsNotAdded": true,
+  "baselineReproduction": {
+    "path": "runs/baseline-20261024T172942525701Z",
+    "methods": 5,
+    "failedMethods": 4,
+    "failedSubcases": 13,
+    "status": "FAILED_PRESERVED"
+  },
+  "productionFilesChanged": [
+    "tools/update-runtime/residue_cleanup.py"
+  ],
+  "oldArchivesUnchanged": {
+    "PROJECT_PHASE_20261024": "dd2da2bcc76c47b6f0b9d4688e30cb2ea99314dd536e271f709a8223b1a9136a",
+    "REVIEW_FIXES_CLEANUP_20261025": "e14b0d97ec722aac9f31d903f6012625eb97c4a5e5bb215401e58de741f00e0e",
+    "REVIEW_RESIDUALS_20261025": "17f075dbcf801e18842ebe685cc0e0fe9baadf8aaf6511e035d0d7e10dcf320f"
+  },
+  "newInstaller": null,
+  "repackaged": false,
+  "oldInstaller": {
+    "source": "248485824e1d6d2201ceedf7d14ff66e251d344d",
+    "bytes": 168926729,
+    "sha256": "2dc31cb8badfe4ed5cb02c8a99523d81dc05f65a874aeb49ac3299048f701238",
+    "localPath": "H:\\CCB-Studio-Suite\\.local\\review-fixes-cleanup-20261024\\delivery\\CCB-Studio-Suite-review-2484858-windows-x64.exe",
+    "containsThisFix": false
+  },
+  "appBuildCommitUnchanged": "59283a0315d182cd745c9c03c6fe3b802bf8114c",
+  "jvmOrNativeRerun": false,
+  "publicReleaseUnchanged": "v0.0.0-preview.115",
+  "independentReview": "PENDING",
+  "q09": "FAILED_ROOT_CAUSE_UNKNOWN",
+  "human115": "PENDING",
+  "promptComparison": "PENDING",
+  "dailyInstallationOrHistoricalDirectoriesModified": false
+}

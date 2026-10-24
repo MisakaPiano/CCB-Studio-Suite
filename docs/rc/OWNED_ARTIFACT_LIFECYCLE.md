@@ -1,5 +1,7 @@
 # 安装与测试产物生命周期（下一版实现，未发布）
 
+最新补充：Project指出的跨根下载引用终态缺口在f6598d3源码修复，24项清理回归通过，独立复审待定；未重打包，2484858内部EXE不含该补充。完整COMPLETE/journal身份验证和FAILED nonce绑定必须先于程序根筛选；不能证明终态的引用保留。见`docs/audits/DOWNLOAD_TERMINAL_FIX_20261025.md`。
+
 范围合同：`tasks/REVIEW_FIXES_AND_UPDATE_CLEANUP_20261024.md`。用户已否决最初的7天/两次启动保留方案：**既有流程确认COMPLETE后立即退役所属程序和缓存**。不是清理整个H盘；不改115公开包或日常安装。本实现仍待Project独立复审。
 
 ## 更新后

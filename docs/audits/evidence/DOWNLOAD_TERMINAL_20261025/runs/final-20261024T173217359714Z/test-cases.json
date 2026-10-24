@@ -1,0 +1,170 @@
+[
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_access_denied_keeps_file_for_next_run_and_update_stays_complete",
+    "status": "PASS",
+    "seconds": 0.7685509000439197,
+    "dataSentinelRetained": true,
+    "fixtureRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\terminal-test-6ae6dd3460354300a27cc3dee8ff624e\\payload\\residue-cleanup-fixtures\\3e39bb1f"
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_cross_root_complete_markers_without_installed_or_journal_keep_download",
+    "status": "PASS",
+    "seconds": 1.2006775999907404,
+    "dataSentinelRetained": true,
+    "fixtureRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\terminal-test-6ae6dd3460354300a27cc3dee8ff624e\\payload\\residue-cleanup-fixtures\\52ff5441"
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_cross_root_complete_with_nonexistent_journal_keeps_download",
+    "status": "PASS",
+    "seconds": 0.7503395000239834,
+    "dataSentinelRetained": true,
+    "fixtureRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\terminal-test-6ae6dd3460354300a27cc3dee8ff624e\\payload\\residue-cleanup-fixtures\\573c99b0"
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_cross_root_failed_receipt_with_wrong_or_missing_nonce_keeps_download",
+    "status": "PASS",
+    "seconds": 1.2502388999564573,
+    "dataSentinelRetained": true,
+    "fixtureRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\terminal-test-6ae6dd3460354300a27cc3dee8ff624e\\payload\\residue-cleanup-fixtures\\b7ca65d2"
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference",
+    "status": "PASS",
+    "seconds": 5.401266500004567,
+    "dataSentinelRetained": true,
+    "fixtureRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\terminal-test-6ae6dd3460354300a27cc3dee8ff624e\\payload\\residue-cleanup-fixtures\\556c95e3"
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_cross_root_valid_complete_and_matching_failed_nonce_release_download_immediately",
+    "status": "PASS",
+    "seconds": 3.218328199989628,
+    "dataSentinelRetained": true,
+    "fixtureRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\terminal-test-6ae6dd3460354300a27cc3dee8ff624e\\payload\\residue-cleanup-fixtures\\8afc54ec"
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_file_in_use_defers_whole_program_then_retries_without_changing_update_result",
+    "status": "PASS",
+    "seconds": 1.1687173999962397,
+    "dataSentinelRetained": true,
+    "fixtureRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\terminal-test-6ae6dd3460354300a27cc3dee8ff624e\\payload\\residue-cleanup-fixtures\\657ebc64"
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_first_current_adoption_never_claims_replaced_generated_uninstaller",
+    "status": "PASS",
+    "seconds": 1.3244729000143707,
+    "dataSentinelRetained": true,
+    "fixtureRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\terminal-test-6ae6dd3460354300a27cc3dee8ff624e\\payload\\residue-cleanup-fixtures\\99db71a2"
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_fresh_failed_download_is_not_released_by_an_older_completion",
+    "status": "PASS",
+    "seconds": 0.5168969999649562,
+    "dataSentinelRetained": true,
+    "fixtureRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\terminal-test-6ae6dd3460354300a27cc3dee8ff624e\\payload\\residue-cleanup-fixtures\\34906e6d"
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_fresh_failed_extraction_waits_for_a_later_completion",
+    "status": "PASS",
+    "seconds": 0.5418847000109963,
+    "dataSentinelRetained": true,
+    "fixtureRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\terminal-test-6ae6dd3460354300a27cc3dee8ff624e\\payload\\residue-cleanup-fixtures\\5f5b7fbb"
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_incomplete_or_failed_handoff_never_releases_fallback_or_download",
+    "status": "PASS",
+    "seconds": 0.4092518000397831,
+    "dataSentinelRetained": true,
+    "fixtureRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\terminal-test-6ae6dd3460354300a27cc3dee8ff624e\\payload\\residue-cleanup-fixtures\\f3311664"
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_interrupted_cleanup_replays_safely_and_repeated_cleanup_is_idempotent",
+    "status": "PASS",
+    "seconds": 0.6912355999811552,
+    "dataSentinelRetained": true,
+    "fixtureRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\terminal-test-6ae6dd3460354300a27cc3dee8ff624e\\payload\\residue-cleanup-fixtures\\fda73e3c"
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_legacy_manifest_alone_never_grants_automatic_deletion",
+    "status": "PASS",
+    "seconds": 0.7343738999916241,
+    "dataSentinelRetained": true,
+    "fixtureRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\terminal-test-6ae6dd3460354300a27cc3dee8ff624e\\payload\\residue-cleanup-fixtures\\e7af5613"
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_normal_readonly_shipped_launcher_is_deleted_by_its_verified_handle",
+    "status": "PASS",
+    "seconds": 0.4628225000342354,
+    "dataSentinelRetained": true,
+    "fixtureRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\terminal-test-6ae6dd3460354300a27cc3dee8ff624e\\payload\\residue-cleanup-fixtures\\ef5d7d4b"
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_obsolete_manifest_members_removed_unknown_modified_files_and_plugin_tree_retained",
+    "status": "PASS",
+    "seconds": 0.8850236000143923,
+    "dataSentinelRetained": true,
+    "fixtureRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\terminal-test-6ae6dd3460354300a27cc3dee8ff624e\\payload\\residue-cleanup-fixtures\\cb8c47fd"
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_only_just_superseded_active_program_can_adopt_a_pinned_old_install_record",
+    "status": "PASS",
+    "seconds": 0.6982462999876589,
+    "dataSentinelRetained": true,
+    "fixtureRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\terminal-test-6ae6dd3460354300a27cc3dee8ff624e\\payload\\residue-cleanup-fixtures\\56cc7757"
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_partial_owned_extraction_retires_after_a_successful_new_program_without_a_timer",
+    "status": "PASS",
+    "seconds": 0.6997735000331886,
+    "dataSentinelRetained": true,
+    "fixtureRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\terminal-test-6ae6dd3460354300a27cc3dee8ff624e\\payload\\residue-cleanup-fixtures\\2761e64a"
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_registered_program_and_backup_protection_override_retirement",
+    "status": "PASS",
+    "seconds": 0.7256229000049643,
+    "dataSentinelRetained": true,
+    "fixtureRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\terminal-test-6ae6dd3460354300a27cc3dee8ff624e\\payload\\residue-cleanup-fixtures\\c13932b2"
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_same_target_version_with_different_installer_digest_does_not_release_download",
+    "status": "PASS",
+    "seconds": 0.6328040999942459,
+    "dataSentinelRetained": true,
+    "fixtureRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\terminal-test-6ae6dd3460354300a27cc3dee8ff624e\\payload\\residue-cleanup-fixtures\\89fda5f2"
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_secondary_workspace_and_invalid_protection_record_fail_closed",
+    "status": "PASS",
+    "seconds": 0.4190179000142962,
+    "dataSentinelRetained": true,
+    "fixtureRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\terminal-test-6ae6dd3460354300a27cc3dee8ff624e\\payload\\residue-cleanup-fixtures\\5f2dd69c"
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_success_retires_immediately_without_seven_days_or_extra_cold_starts",
+    "status": "PASS",
+    "seconds": 0.5491100000217557,
+    "dataSentinelRetained": true,
+    "fixtureRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\terminal-test-6ae6dd3460354300a27cc3dee8ff624e\\payload\\residue-cleanup-fixtures\\2fe6f52c"
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_successful_download_retired_only_after_complete_while_incomplete_output_is_bounded_and_known",
+    "status": "PASS",
+    "seconds": 1.123779600020498,
+    "dataSentinelRetained": true,
+    "fixtureRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\terminal-test-6ae6dd3460354300a27cc3dee8ff624e\\payload\\residue-cleanup-fixtures\\0c1d0d8b"
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_traversal_and_junction_refuse_any_outside_deletion",
+    "status": "PASS",
+    "seconds": 0.6951023999718018,
+    "dataSentinelRetained": true,
+    "fixtureRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\terminal-test-6ae6dd3460354300a27cc3dee8ff624e\\payload\\residue-cleanup-fixtures\\6bf500d9"
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_verified_next_target_survives_old_success_and_pending_handoff_until_its_own_complete",
+    "status": "PASS",
+    "seconds": 2.2781030000187457,
+    "dataSentinelRetained": true,
+    "fixtureRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\terminal-test-6ae6dd3460354300a27cc3dee8ff624e\\payload\\residue-cleanup-fixtures\\3e9bdd6b"
+  }
+]

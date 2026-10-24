@@ -1,0 +1,37 @@
+{
+  "sourceCommit": "f6598d39298c06ec5644a131e484e814f77b6f45",
+  "inputs": [
+    {
+      "path": "tools/update-runtime/residue_cleanup.py",
+      "testedWorktreeSha256": "e8e12e94beeb52c5bd5134c91e21f4e11341b33ff44359e196621748d1babeeb",
+      "gitSha256": "0268aec9438f401d36954a2e386779e5813d3e1b1c105fd6a5db1f760fb9c07c",
+      "relationship": "CRLF_LF_ONLY"
+    },
+    {
+      "path": "tools/update-runtime/test_residue_cleanup.py",
+      "testedWorktreeSha256": "131eab1f85d760cc6223b5921d02753d85397bca635cb2e0ebb1cd15dccda795",
+      "gitSha256": "609ed31d85285cab6470a9dfc4319058f5d1921a234292c843b037ca19bae228",
+      "relationship": "CRLF_LF_ONLY"
+    },
+    {
+      "path": "tools/update-runtime/owned_files.py",
+      "testedWorktreeSha256": "d67f7ce0ffefa2dc6d2f1413f224383666800cc0892ae9e7a9dfe282d352a452",
+      "gitSha256": "d51da0bb13c6cbd095d73ff40db82eed008ce34c8b1f74478efb2eb985b1bed4",
+      "relationship": "CRLF_LF_ONLY"
+    },
+    {
+      "path": "tools/update-runtime/install_ops.py",
+      "testedWorktreeSha256": "f1d4ddd4f1bc7033ff8653e34851243e93c6df92c7ba69e70137f627ca46c17e",
+      "gitSha256": "da3f8e215086fb0a414fbd9d5eb43c57b5f823775908d1a7b92428835a6fb0fd",
+      "relationship": "CRLF_LF_ONLY"
+    },
+    {
+      "path": "tools/update-runtime/studio_update.py",
+      "testedWorktreeSha256": "6cd4e3ad33adfc0d820ee6dcec1ea7cd8e26555ed359c03b1b9488e4da67885f",
+      "gitSha256": "448a8ce4e66a0f6a5ee1421734d0c8460aa573ffed77678bf1f81b64a23f509a",
+      "relationship": "CRLF_LF_ONLY"
+    }
+  ],
+  "appFilesChanged": false,
+  "packageBuilt": false
+}

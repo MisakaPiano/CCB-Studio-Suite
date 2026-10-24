@@ -1,0 +1,178 @@
+test_cross_root_complete_markers_without_installed_or_journal_keep_download (test_residue_cleanup.ResidueCleanupTests.test_cross_root_complete_markers_without_installed_or_journal_keep_download) ... 
+  test_cross_root_complete_markers_without_installed_or_journal_keep_download (test_residue_cleanup.ResidueCleanupTests.test_cross_root_complete_markers_without_installed_or_journal_keep_download) (missing='installed') ... FAIL
+  test_cross_root_complete_markers_without_installed_or_journal_keep_download (test_residue_cleanup.ResidueCleanupTests.test_cross_root_complete_markers_without_installed_or_journal_keep_download) (missing='installJournal') ... FAIL
+test_cross_root_complete_with_nonexistent_journal_keeps_download (test_residue_cleanup.ResidueCleanupTests.test_cross_root_complete_with_nonexistent_journal_keeps_download) ... FAIL
+test_cross_root_failed_receipt_with_wrong_or_missing_nonce_keeps_download (test_residue_cleanup.ResidueCleanupTests.test_cross_root_failed_receipt_with_wrong_or_missing_nonce_keeps_download) ... 
+  test_cross_root_failed_receipt_with_wrong_or_missing_nonce_keeps_download (test_residue_cleanup.ResidueCleanupTests.test_cross_root_failed_receipt_with_wrong_or_missing_nonce_keeps_download) (nonce='0000000000000000000000000000000000000000000000000000000000000000') ... FAIL
+  test_cross_root_failed_receipt_with_wrong_or_missing_nonce_keeps_download (test_residue_cleanup.ResidueCleanupTests.test_cross_root_failed_receipt_with_wrong_or_missing_nonce_keeps_download) (nonce=None) ... FAIL
+test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference (test_residue_cleanup.ResidueCleanupTests.test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference) ... 
+  test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference (test_residue_cleanup.ResidueCleanupTests.test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference) (mismatch='target') ... FAIL
+  test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference (test_residue_cleanup.ResidueCleanupTests.test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference) (mismatch='version') ... FAIL
+  test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference (test_residue_cleanup.ResidueCleanupTests.test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference) (mismatch='sourceSha') ... FAIL
+  test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference (test_residue_cleanup.ResidueCleanupTests.test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference) (mismatch='channel') ... FAIL
+  test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference (test_residue_cleanup.ResidueCleanupTests.test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference) (mismatch='product') ... FAIL
+  test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference (test_residue_cleanup.ResidueCleanupTests.test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference) (mismatch='platform') ... FAIL
+  test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference (test_residue_cleanup.ResidueCleanupTests.test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference) (mismatch='verification') ... FAIL
+  test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference (test_residue_cleanup.ResidueCleanupTests.test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference) (mismatch='status') ... FAIL
+test_cross_root_valid_complete_and_matching_failed_nonce_release_download_immediately (test_residue_cleanup.ResidueCleanupTests.test_cross_root_valid_complete_and_matching_failed_nonce_release_download_immediately) ... ok
+
+======================================================================
+FAIL: test_cross_root_complete_markers_without_installed_or_journal_keep_download (test_residue_cleanup.ResidueCleanupTests.test_cross_root_complete_markers_without_installed_or_journal_keep_download) (missing='installed')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 207, in test_cross_root_complete_markers_without_installed_or_journal_keep_download
+    atomic_json(folder/'result.json',result);self.assert_reference_retained(directory)
+                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 198, in assert_reference_retained
+    self.assertTrue((directory/'studio-installer.exe').is_file(),'Unverified terminal reference must retain its installer')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Unverified terminal reference must retain its installer
+
+======================================================================
+FAIL: test_cross_root_complete_markers_without_installed_or_journal_keep_download (test_residue_cleanup.ResidueCleanupTests.test_cross_root_complete_markers_without_installed_or_journal_keep_download) (missing='installJournal')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 207, in test_cross_root_complete_markers_without_installed_or_journal_keep_download
+    atomic_json(folder/'result.json',result);self.assert_reference_retained(directory)
+                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 198, in assert_reference_retained
+    self.assertTrue((directory/'studio-installer.exe').is_file(),'Unverified terminal reference must retain its installer')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Unverified terminal reference must retain its installer
+
+======================================================================
+FAIL: test_cross_root_complete_with_nonexistent_journal_keeps_download (test_residue_cleanup.ResidueCleanupTests.test_cross_root_complete_with_nonexistent_journal_keeps_download)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 213, in test_cross_root_complete_with_nonexistent_journal_keeps_download
+    self.assert_reference_retained(directory)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 198, in assert_reference_retained
+    self.assertTrue((directory/'studio-installer.exe').is_file(),'Unverified terminal reference must retain its installer')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Unverified terminal reference must retain its installer
+
+======================================================================
+FAIL: test_cross_root_failed_receipt_with_wrong_or_missing_nonce_keeps_download (test_residue_cleanup.ResidueCleanupTests.test_cross_root_failed_receipt_with_wrong_or_missing_nonce_keeps_download) (nonce='0000000000000000000000000000000000000000000000000000000000000000')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 221, in test_cross_root_failed_receipt_with_wrong_or_missing_nonce_keeps_download
+    atomic_json(folder/'result.json',failed);self.assert_reference_retained(directory)
+                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 198, in assert_reference_retained
+    self.assertTrue((directory/'studio-installer.exe').is_file(),'Unverified terminal reference must retain its installer')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Unverified terminal reference must retain its installer
+
+======================================================================
+FAIL: test_cross_root_failed_receipt_with_wrong_or_missing_nonce_keeps_download (test_residue_cleanup.ResidueCleanupTests.test_cross_root_failed_receipt_with_wrong_or_missing_nonce_keeps_download) (nonce=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 221, in test_cross_root_failed_receipt_with_wrong_or_missing_nonce_keeps_download
+    atomic_json(folder/'result.json',failed);self.assert_reference_retained(directory)
+                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 198, in assert_reference_retained
+    self.assertTrue((directory/'studio-installer.exe').is_file(),'Unverified terminal reference must retain its installer')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Unverified terminal reference must retain its installer
+
+======================================================================
+FAIL: test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference (test_residue_cleanup.ResidueCleanupTests.test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference) (mismatch='target')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 231, in test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference
+    atomic_json(journal,value);self.assert_reference_retained(directory)
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 198, in assert_reference_retained
+    self.assertTrue((directory/'studio-installer.exe').is_file(),'Unverified terminal reference must retain its installer')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Unverified terminal reference must retain its installer
+
+======================================================================
+FAIL: test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference (test_residue_cleanup.ResidueCleanupTests.test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference) (mismatch='version')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 231, in test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference
+    atomic_json(journal,value);self.assert_reference_retained(directory)
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 198, in assert_reference_retained
+    self.assertTrue((directory/'studio-installer.exe').is_file(),'Unverified terminal reference must retain its installer')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Unverified terminal reference must retain its installer
+
+======================================================================
+FAIL: test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference (test_residue_cleanup.ResidueCleanupTests.test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference) (mismatch='sourceSha')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 231, in test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference
+    atomic_json(journal,value);self.assert_reference_retained(directory)
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 198, in assert_reference_retained
+    self.assertTrue((directory/'studio-installer.exe').is_file(),'Unverified terminal reference must retain its installer')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Unverified terminal reference must retain its installer
+
+======================================================================
+FAIL: test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference (test_residue_cleanup.ResidueCleanupTests.test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference) (mismatch='channel')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 231, in test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference
+    atomic_json(journal,value);self.assert_reference_retained(directory)
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 198, in assert_reference_retained
+    self.assertTrue((directory/'studio-installer.exe').is_file(),'Unverified terminal reference must retain its installer')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Unverified terminal reference must retain its installer
+
+======================================================================
+FAIL: test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference (test_residue_cleanup.ResidueCleanupTests.test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference) (mismatch='product')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 231, in test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference
+    atomic_json(journal,value);self.assert_reference_retained(directory)
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 198, in assert_reference_retained
+    self.assertTrue((directory/'studio-installer.exe').is_file(),'Unverified terminal reference must retain its installer')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Unverified terminal reference must retain its installer
+
+======================================================================
+FAIL: test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference (test_residue_cleanup.ResidueCleanupTests.test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference) (mismatch='platform')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 231, in test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference
+    atomic_json(journal,value);self.assert_reference_retained(directory)
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 198, in assert_reference_retained
+    self.assertTrue((directory/'studio-installer.exe').is_file(),'Unverified terminal reference must retain its installer')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Unverified terminal reference must retain its installer
+
+======================================================================
+FAIL: test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference (test_residue_cleanup.ResidueCleanupTests.test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference) (mismatch='verification')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 231, in test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference
+    atomic_json(journal,value);self.assert_reference_retained(directory)
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 198, in assert_reference_retained
+    self.assertTrue((directory/'studio-installer.exe').is_file(),'Unverified terminal reference must retain its installer')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Unverified terminal reference must retain its installer
+
+======================================================================
+FAIL: test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference (test_residue_cleanup.ResidueCleanupTests.test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference) (mismatch='status')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 231, in test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference
+    atomic_json(journal,value);self.assert_reference_retained(directory)
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 198, in assert_reference_retained
+    self.assertTrue((directory/'studio-installer.exe').is_file(),'Unverified terminal reference must retain its installer')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Unverified terminal reference must retain its installer
+
+----------------------------------------------------------------------
+Ran 5 tests in 14.562s
+
+FAILED (failures=13)
