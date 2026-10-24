@@ -121,12 +121,13 @@ def completed_updates(cache,install_root):
         plan=read_json(plan_path);result=read_json(result_path) if result_path.exists() else {}
         if plan.get('format')!=1 or not re.fullmatch('[0-9a-f]{64}',plan.get('nonce','')):raise UpdateRejected('Invalid handoff identity')
         if Path(plan.get('cache','')).absolute()!=cache:raise UpdateRejected('Cleanup handoff cache mismatch')
-        if result.get('status') not in ('COMPLETE','FAILED_RETAINED'):
+        verified_complete=(result.get('status')=='COMPLETE' and result.get('nonce')==plan.get('nonce') and result.get('verification')=='B_PROGRAM_DATA_AND_CREDENTIAL_SNAPSHOT_MATCH')
+        if not verified_complete and result.get('status')!='FAILED_RETAINED':
             installer=plan.get('approved',{}).get('installer')
             if installer:pending_downloads.add(no_reparse(Path(installer)).parent)
         old=no_reparse(plan['installed']);new=no_reparse(result['installed']) if result.get('installed') else None
         if old.parent!=install_root or (new is not None and new.parent!=install_root):continue
-        if result.get('status')!='COMPLETE' or result.get('nonce')!=plan.get('nonce') or result.get('verification')!='B_PROGRAM_DATA_AND_CREDENTIAL_SNAPSHOT_MATCH':
+        if not verified_complete:
             if result.get('status')!='FAILED_RETAINED':
                 blocked.add(old.name)
                 if new:blocked.add(new.name)

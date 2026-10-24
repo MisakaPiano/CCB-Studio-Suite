@@ -172,6 +172,8 @@ class ResidueCleanupTests(unittest.TestCase):
         previous=self.current;self.current=candidate;self.current_id=expected
         self.complete_target(previous,candidate,expected)
         self.cleanup();self.assertTrue(directory.exists(),'A nonterminal handoff still references this exact installer')
+        atomic_json(folder/'result.json',dict(status='COMPLETE')) # Not a verified terminal receipt.
+        self.cleanup();self.assertTrue(directory.exists(),'An incomplete completion record cannot release its reference')
         atomic_json(folder/'result.json',dict(status='FAILED_RETAINED'))
         self.cleanup();self.assertFalse(directory.exists())
 
