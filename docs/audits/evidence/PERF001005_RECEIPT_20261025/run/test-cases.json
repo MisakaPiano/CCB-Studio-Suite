@@ -1,0 +1,98 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.IngressCopyPerformanceTest",
+    "name": "measuredManagedCopyAllocationAndReplay",
+    "seconds": "26.743",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.IngressCopyPerformanceTest",
+    "name": "existing32MiBCopyBudgetStillRejectsAndRetainsOversizeSecondaryFile",
+    "seconds": "5.548",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.IngressCopyPerformanceTest",
+    "name": "modifiedIntakeRemainsPendingWithoutReplacingItOrOriginal",
+    "seconds": "3.239",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryIngressBatchTest",
+    "name": "batchUsesBoundedRevisionsAndCancelledCopiesRemainRecoverable",
+    "seconds": "11.713",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetExportTest",
+    "name": "missingFontBlocksRenderingButOriginalDeliveryRemainsAvailable",
+    "seconds": "3.219",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetExportTest",
+    "name": "fourVariantsOriginalBytesJpegAndFailurePublication",
+    "seconds": "5.156",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetOriginalPerformanceTest",
+    "name": "sharedCopyKeepsPrefixAndTailAcrossBufferBoundariesAndRefusesExistingTarget",
+    "seconds": "3.082",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetOriginalPerformanceTest",
+    "name": "measuredOriginalBatchAllocation",
+    "seconds": "5.176",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetOriginalPerformanceTest",
+    "name": "originalSignatureDispatchPreservesOpaqueBytesAndIgnoresMisleadingNames",
+    "seconds": "4.62",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetOriginalPerformanceTest",
+    "name": "sharedCopyDoesNotHoldWorkspaceMonitorDuringBlockedOutput",
+    "seconds": "0.409",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetOriginalPerformanceTest",
+    "name": "existingOriginalFilenameCannotBeOverwrittenDuringStaging",
+    "seconds": "0.757",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.OriginalExportPerformanceTest",
+    "name": "duplicateSelectionAndNamesProduceIdenticalReceiptsWithoutMovingOriginals",
+    "seconds": "1.161",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.OriginalExportPerformanceTest",
+    "name": "corruptLaterOriginalRetainsPartialBatchWithoutCompleteMarker",
+    "seconds": "0.627",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.OriginalExportPerformanceTest",
+    "name": "cancellationAfterOpeningOutputDoesNotPublishPartialBatch",
+    "seconds": "0.679",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.OriginalExportPerformanceTest",
+    "name": "pairedOriginalExportPreservesBytesWithBoundedAllocation",
+    "seconds": "7.94",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.OriginalExportPerformanceTest",
+    "name": "invalidDestinationAndAlreadyCancelledJobLeaveOriginalsUntouched",
+    "seconds": "0.45",
+    "status": "PASS"
+  }
+]

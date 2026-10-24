@@ -1,0 +1,99 @@
+{
+  "medians": {
+    "TypesetOriginalPerformanceTest": [
+      {
+        "payloadBytes": 3145728,
+        "kind": "current",
+        "medians": {
+          "wallMs": 225.3019,
+          "cpuMs": 31.25,
+          "allocatedBytes": 777432
+        }
+      },
+      {
+        "payloadBytes": 12582912,
+        "kind": "current",
+        "medians": {
+          "wallMs": 422.8084,
+          "cpuMs": 125.0,
+          "allocatedBytes": 773952
+        }
+      }
+    ],
+    "IngressCopyPerformanceTest": [
+      {
+        "payloadBytes": 3145728,
+        "kind": "current",
+        "medians": {
+          "wallMs": 892.648,
+          "cpuMs": 125.0,
+          "allocatedBytes": 6380312
+        }
+      },
+      {
+        "payloadBytes": 12582912,
+        "kind": "current",
+        "medians": {
+          "wallMs": 1354.216,
+          "cpuMs": 218.75,
+          "allocatedBytes": 6389424
+        }
+      }
+    ],
+    "OriginalExportPerformanceTest": [
+      {
+        "payloadBytes": 3145728,
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 133.7868,
+          "cpuMs": 31.25,
+          "allocatedBytes": 11835712.0
+        }
+      },
+      {
+        "payloadBytes": 3145728,
+        "kind": "streamed",
+        "medians": {
+          "wallMs": 160.8288,
+          "cpuMs": 39.0625,
+          "allocatedBytes": 606120.0
+        }
+      },
+      {
+        "payloadBytes": 12582912,
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 381.2645,
+          "cpuMs": 117.1875,
+          "allocatedBytes": 46438936.0
+        }
+      },
+      {
+        "payloadBytes": 12582912,
+        "kind": "streamed",
+        "medians": {
+          "wallMs": 403.74055,
+          "cpuMs": 132.8125,
+          "allocatedBytes": 606184.0
+        }
+      }
+    ]
+  },
+  "finalUniqueMethods": 16,
+  "cleanup": {
+    "root": "H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-2a68c1e9ab094637a7806bd01364c88b",
+    "status": "COMPLETE",
+    "removed": 991,
+    "bytesFreed": 530866644,
+    "retained": [],
+    "sourceManifestSha256": "38c484ae560769f97bf21ce41dcd593eec2da9c32f3c363ffbbfaa809d3c0847"
+  },
+  "scheduling": "Gradle9.1 --priority low, single worker,2 processors,256MiB test heap",
+  "comparisonLimits": [
+    "Current3/12MiB allocation, not RSS or complete UI latency",
+    "Separate JVMs from earlier intake/typeset baseline; low priority first applied here, not a causal latency comparison",
+    "Gallery legacy/current4 alternating rounds in same JVM; retain every raw sample",
+    "No continuous Desktop quiet lease; process ownership checked only before launch",
+    "Old RED lock failure and q09 failure remain in their immutable earlier evidence"
+  ]
+}

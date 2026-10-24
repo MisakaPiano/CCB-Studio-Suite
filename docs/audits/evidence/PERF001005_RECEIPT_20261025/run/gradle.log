@@ -1,0 +1,97 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :asset-library:compileJava UP-TO-DATE
+> Task :image-authority:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :image-authority:compileKotlin UP-TO-DATE
+> Task :image-authority:compileJava NO-SOURCE
+> Task :studio-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-core:compileKotlin
+> Task :studio-core:compileJava NO-SOURCE
+> Task :studio-core:processResources UP-TO-DATE
+> Task :studio-core:classes UP-TO-DATE
+> Task :studio-core:jar
+> Task :asset-library:processResources NO-SOURCE
+> Task :asset-library:classes UP-TO-DATE
+> Task :asset-library:jar UP-TO-DATE
+> Task :image-authority:processResources NO-SOURCE
+> Task :image-authority:classes UP-TO-DATE
+> Task :image-authority:jar UP-TO-DATE
+
+> Task :studio-core:compileTestKotlin
+w: file:///H:/CCB-Studio-Suite/modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TypesetOriginalPerformanceTest.kt:136:59 Unnecessary safe call on a non-null receiver of type 'Thread'.
+
+> Task :studio-core:compileTestJava NO-SOURCE
+> Task :studio-core:processTestResources UP-TO-DATE
+> Task :studio-core:testClasses UP-TO-DATE
+> Task :studio-core:test
+
+IngressCopyPerformanceTest > measuredManagedCopyAllocationAndReplay PASSED
+
+IngressCopyPerformanceTest > existing32MiBCopyBudgetStillRejectsAndRetainsOversizeSecondaryFile PASSED
+
+IngressCopyPerformanceTest > modifiedIntakeRemainsPendingWithoutReplacingItOrOriginal PASSED
+
+LibraryIngressBatchTest > batchUsesBoundedRevisionsAndCancelledCopiesRemainRecoverable PASSED
+
+TypesetExportTest > missingFontBlocksRenderingButOriginalDeliveryRemainsAvailable PASSED
+
+TypesetExportTest > fourVariantsOriginalBytesJpegAndFailurePublication PASSED
+
+TypesetOriginalPerformanceTest > sharedCopyKeepsPrefixAndTailAcrossBufferBoundariesAndRefusesExistingTarget PASSED
+
+TypesetOriginalPerformanceTest > measuredOriginalBatchAllocation PASSED
+
+TypesetOriginalPerformanceTest > originalSignatureDispatchPreservesOpaqueBytesAndIgnoresMisleadingNames PASSED
+
+TypesetOriginalPerformanceTest > sharedCopyDoesNotHoldWorkspaceMonitorDuringBlockedOutput PASSED
+
+TypesetOriginalPerformanceTest > existingOriginalFilenameCannotBeOverwrittenDuringStaging PASSED
+
+> Task :studio-desktop:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-desktop:convertXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:copyNonXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:prepareComposeResourcesTaskForMain NO-SOURCE
+> Task :studio-desktop:generateResourceAccessorsForMain SKIPPED
+> Task :studio-desktop:generateActualResourceCollectorsForMain SKIPPED
+> Task :studio-desktop:generateComposeResClass SKIPPED
+
+> Task :studio-desktop:compileKotlin
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryOrganization.kt:201:85 Unnecessary safe call on a non-null receiver of type 'GenerationFolder'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryOrganization.kt:205:60 Unnecessary safe call on a non-null receiver of type 'VirtualAlbum'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryWorkspace.kt:300:50 Unnecessary non-null assertion (!!) on a non-null receiver of type 'NovelAiHistoryAlbum'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryWorkspace.kt:301:58 Unnecessary non-null assertion (!!) on a non-null receiver of type 'NovelAiHistoryAlbum'.
+
+> Task :studio-desktop:compileJava NO-SOURCE
+> Task :studio-desktop:assembleMainResources UP-TO-DATE
+> Task :studio-desktop:processResources UP-TO-DATE
+> Task :studio-desktop:classes UP-TO-DATE
+> Task :studio-desktop:jar
+> Task :studio-desktop:convertXmlValueResourcesForTest NO-SOURCE
+> Task :studio-desktop:copyNonXmlValueResourcesForTest NO-SOURCE
+> Task :studio-desktop:prepareComposeResourcesTaskForTest NO-SOURCE
+> Task :studio-desktop:generateResourceAccessorsForTest SKIPPED
+
+> Task :studio-desktop:compileTestKotlin
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryAlbumWorkflowTest.kt:85:112 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Pair<List<String>, Int>'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryAlbumWorkflowTest.kt:85:146 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Pair<List<String>, Int>'.
+
+> Task :studio-desktop:compileTestJava NO-SOURCE
+> Task :studio-desktop:assembleTestResources UP-TO-DATE
+> Task :studio-desktop:processTestResources UP-TO-DATE
+> Task :studio-desktop:testClasses UP-TO-DATE
+
+> Task :studio-desktop:test
+
+OriginalExportPerformanceTest > duplicateSelectionAndNamesProduceIdenticalReceiptsWithoutMovingOriginals PASSED
+
+OriginalExportPerformanceTest > corruptLaterOriginalRetainsPartialBatchWithoutCompleteMarker PASSED
+
+OriginalExportPerformanceTest > cancellationAfterOpeningOutputDoesNotPublishPartialBatch PASSED
+
+OriginalExportPerformanceTest > pairedOriginalExportPreservesBytesWithBoundedAllocation PASSED
+
+OriginalExportPerformanceTest > invalidDestinationAndAlreadyCancelledJobLeaveOriginalsUntouched PASSED
+
+BUILD SUCCESSFUL in 3m 5s
+18 actionable tasks: 8 executed, 10 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.1.0/userguide/configuration_cache_enabling.html

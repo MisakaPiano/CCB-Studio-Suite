@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.IngressCopyPerformanceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-24T22:46:31.899Z" hostname="DD1" time="35.53">
+  <properties/>
+  <testcase name="measuredManagedCopyAllocationAndReplay" classname="io.github.misakapiano.ccbstudio.core.IngressCopyPerformanceTest" time="26.743"/>
+  <testcase name="existing32MiBCopyBudgetStillRejectsAndRetainsOversizeSecondaryFile" classname="io.github.misakapiano.ccbstudio.core.IngressCopyPerformanceTest" time="5.548"/>
+  <testcase name="modifiedIntakeRemainsPendingWithoutReplacingItOrOriginal" classname="io.github.misakapiano.ccbstudio.core.IngressCopyPerformanceTest" time="3.239"/>
+  <system-out><![CDATA[INGRESS_COPY_ALLOCATION=[{"payloadBytes":3145728,"round":0,"wallMs":892.648,"cpuMs":125.0,"allocatedBytes":5806304},{"payloadBytes":3145728,"round":1,"wallMs":1084.0165,"cpuMs":109.375,"allocatedBytes":6380312},{"payloadBytes":3145728,"round":2,"wallMs":842.2795,"cpuMs":140.625,"allocatedBytes":7297472},{"payloadBytes":12582912,"round":0,"wallMs":1095.449,"cpuMs":234.375,"allocatedBytes":5472256},{"payloadBytes":12582912,"round":1,"wallMs":2903.3331,"cpuMs":187.5,"allocatedBytes":6389424},{"payloadBytes":12582912,"round":2,"wallMs":1354.216,"cpuMs":218.75,"allocatedBytes":7305792}]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

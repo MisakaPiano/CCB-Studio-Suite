@@ -1,0 +1,95 @@
+{
+  "format": 1,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19,
+      "sha256": "3e5e82fc72e044ea9af807a2030b73dbb94800d2cd1775302063b2eee761ba1e"
+    },
+    {
+      "path": "ANALYSIS.json",
+      "bytes": 2781,
+      "sha256": "f4f307a5d7a15cb7cc7c12ff4ccfe44c367f9e016500b6d81f486538db653320"
+    },
+    {
+      "path": "ATTEMPTS_AND_LIMITS.md",
+      "bytes": 2608,
+      "sha256": "ca6fed9398aef72517982b591da03201939ef8923cadfd29e4d3ac1c81590c9d"
+    },
+    {
+      "path": "collect.py",
+      "bytes": 7140,
+      "sha256": "580c01653d61c51bc4cc336f8541becafa34354b4387cb08dab728de06c3b7b4"
+    },
+    {
+      "path": "IngressCopyPerformanceTest-samples.json",
+      "bytes": 826,
+      "sha256": "ec9cd1089fe1887f6d75ac86e7a6eaeb282ba8173d4c9f469b1970e18c303439"
+    },
+    {
+      "path": "OriginalExportPerformanceTest-samples.json",
+      "bytes": 2571,
+      "sha256": "60f9d348b54f874fe67b5b6b7aaa4725eb26accacdab32a6b500e70d80b0c147"
+    },
+    {
+      "path": "run/fixture-cleanup.json",
+      "bytes": 293,
+      "sha256": "5438a7406f792f61ca9186b92c21857d8e37ef7549780e80d872a6cd739d88a3"
+    },
+    {
+      "path": "run/gradle.log",
+      "bytes": 5898,
+      "sha256": "9bf503b7461b7634f2c07a3ddca5e5593b378c9ae480c4b99258e98a7737f7f5"
+    },
+    {
+      "path": "run/source-before.json",
+      "bytes": 76224,
+      "sha256": "522074bcb79201cb3cb0b875263364e1689379221eecd77008bceb37b780f4e3"
+    },
+    {
+      "path": "run/studio-core-TEST-io.github.misakapiano.ccbstudio.core.IngressCopyPerformanceTest.xml",
+      "bytes": 1435,
+      "sha256": "9c5efefe6f229f572ccce588fb74762571426c2afad759a8c42537df361b7ae5"
+    },
+    {
+      "path": "run/studio-core-TEST-io.github.misakapiano.ccbstudio.core.LibraryIngressBatchTest.xml",
+      "bytes": 516,
+      "sha256": "2b7ab162bf12b072bd829b69b93e3ce24ae201936b75c75b3ad8c36a86d6b1b9"
+    },
+    {
+      "path": "run/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetExportTest.xml",
+      "bytes": 656,
+      "sha256": "a3e865373f7e3d83474a6c573854aebdd771cc16fa81c9029f15528723cd4241"
+    },
+    {
+      "path": "run/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetOriginalPerformanceTest.xml",
+      "bytes": 1800,
+      "sha256": "df1af5c808897cdbe8918aea3cd78fcad49b07f1bcfa3301c35ebe60c205af0d"
+    },
+    {
+      "path": "run/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.OriginalExportPerformanceTest.xml",
+      "bytes": 3041,
+      "sha256": "c16e58fc5922a7a929481f3adaa62e40f08e494d9f8fdac9fdf0777a0ccf5594"
+    },
+    {
+      "path": "run/summary.json",
+      "bytes": 1906,
+      "sha256": "75970e7a6f9192a79663b9be02cc578e1a2c0ae3dfa09b498eb3590004e3c464"
+    },
+    {
+      "path": "run/test-cases.json",
+      "bytes": 3453,
+      "sha256": "0082156a0d63f0f3cc4826f875b2e920fe1c61951a617cd308b44baed5163659"
+    },
+    {
+      "path": "SOURCE_MAP.json",
+      "bytes": 2551,
+      "sha256": "a69b031e58b5bcb929a53fbb7baf77f80160276a2a69111b37f4f09183fe9f99"
+    },
+    {
+      "path": "TypesetOriginalPerformanceTest-samples.json",
+      "bytes": 813,
+      "sha256": "34209daa961083e1d79e3c71562087b769aec30bc498f707fe0fe561e14b3f92"
+    }
+  ]
+}

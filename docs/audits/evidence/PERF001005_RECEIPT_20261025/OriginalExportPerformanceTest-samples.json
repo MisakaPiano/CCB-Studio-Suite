@@ -1,0 +1,130 @@
+[
+  {
+    "payloadBytes": 3145728,
+    "round": 0,
+    "kind": "legacy",
+    "wallMs": 487.1768,
+    "cpuMs": 31.25,
+    "allocatedBytes": 11847864
+  },
+  {
+    "payloadBytes": 3145728,
+    "round": 0,
+    "kind": "streamed",
+    "wallMs": 150.7888,
+    "cpuMs": 46.875,
+    "allocatedBytes": 606120
+  },
+  {
+    "payloadBytes": 3145728,
+    "round": 1,
+    "kind": "streamed",
+    "wallMs": 151.5526,
+    "cpuMs": 46.875,
+    "allocatedBytes": 606120
+  },
+  {
+    "payloadBytes": 3145728,
+    "round": 1,
+    "kind": "legacy",
+    "wallMs": 132.7759,
+    "cpuMs": 46.875,
+    "allocatedBytes": 11835712
+  },
+  {
+    "payloadBytes": 3145728,
+    "round": 2,
+    "kind": "legacy",
+    "wallMs": 134.7977,
+    "cpuMs": 31.25,
+    "allocatedBytes": 11835712
+  },
+  {
+    "payloadBytes": 3145728,
+    "round": 2,
+    "kind": "streamed",
+    "wallMs": 170.105,
+    "cpuMs": 31.25,
+    "allocatedBytes": 606120
+  },
+  {
+    "payloadBytes": 3145728,
+    "round": 3,
+    "kind": "streamed",
+    "wallMs": 192.8902,
+    "cpuMs": 31.25,
+    "allocatedBytes": 606120
+  },
+  {
+    "payloadBytes": 3145728,
+    "round": 3,
+    "kind": "legacy",
+    "wallMs": 132.7629,
+    "cpuMs": 31.25,
+    "allocatedBytes": 11835712
+  },
+  {
+    "payloadBytes": 12582912,
+    "round": 0,
+    "kind": "legacy",
+    "wallMs": 375.0429,
+    "cpuMs": 140.625,
+    "allocatedBytes": 46439976
+  },
+  {
+    "payloadBytes": 12582912,
+    "round": 0,
+    "kind": "streamed",
+    "wallMs": 439.4416,
+    "cpuMs": 125.0,
+    "allocatedBytes": 606184
+  },
+  {
+    "payloadBytes": 12582912,
+    "round": 1,
+    "kind": "streamed",
+    "wallMs": 464.8082,
+    "cpuMs": 140.625,
+    "allocatedBytes": 606184
+  },
+  {
+    "payloadBytes": 12582912,
+    "round": 1,
+    "kind": "legacy",
+    "wallMs": 315.2236,
+    "cpuMs": 125.0,
+    "allocatedBytes": 46438816
+  },
+  {
+    "payloadBytes": 12582912,
+    "round": 2,
+    "kind": "legacy",
+    "wallMs": 387.4861,
+    "cpuMs": 109.375,
+    "allocatedBytes": 46438816
+  },
+  {
+    "payloadBytes": 12582912,
+    "round": 2,
+    "kind": "streamed",
+    "wallMs": 368.0395,
+    "cpuMs": 140.625,
+    "allocatedBytes": 606184
+  },
+  {
+    "payloadBytes": 12582912,
+    "round": 3,
+    "kind": "streamed",
+    "wallMs": 348.2868,
+    "cpuMs": 109.375,
+    "allocatedBytes": 606184
+  },
+  {
+    "payloadBytes": 12582912,
+    "round": 3,
+    "kind": "legacy",
+    "wallMs": 440.2919,
+    "cpuMs": 109.375,
+    "allocatedBytes": 46439056
+  }
+]
