@@ -1,6 +1,7 @@
 package io.github.misakapiano.ccbstudio.core
 
 import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.*
 import java.lang.management.ManagementFactory
 import java.nio.file.*
@@ -34,16 +35,30 @@ class JournalCommitPerformanceTest {
         println("JOURNAL_COMMIT_ALLOCATION="+JsonArray(rows))
     }
     @Test fun unicodeAndUnpairedSurrogateBodyAndSnapshotGuardsMatchActualPersistedBytes() {
+        val cases=mutableListOf<JsonObject>()
         for(value in listOf("ASCII", "中文", "quote\\\"\t\n", "emoji-\uD83C\uDF19", "lone-high-\uD800", "lone-low-\uDFFF")) {
             val data=root();var persisted:StudioState?=null;var validHash=false
             StudioWorkspace.openStudio(data).use{w->
-                w.save(next(w,value));val (actual,hash)=body(data);persisted=documentJson.decodeFromString<StudioState>(actual);validHash=hash==sha256(actual.toByteArray())
+                val requested=next(w,value);val hasSurrogate=documentJson.encodeToString(requested).any{it.code in 0xD800..0xDFFF}
+                w.save(requested);val (actual,hash)=body(data);persisted=documentJson.decodeFromString<StudioState>(actual);validHash=hash==sha256(actual.toByteArray())
                 assertEquals(actual,w.committedStateBody,"In-memory committed body must represent actual UTF-8 bytes, including historical replacement/escaping behavior")
                 if(persisted==w.state)assertEquals(actual,w.committedStateBodyForVersion(3))
                 else assertEquals("UPDATE_SNAPSHOT_MISMATCH",assertFailsWith<DataProblem>{w.committedStateBodyForVersion(3)}.status)
+                cases+=buildJsonObject{put("caseIndex",cases.size);put("encodedBodyContainsSurrogate",hasSurrogate);put("hashValid",validHash);put("persistedEqualsInMemoryState",persisted==w.state)}
             }
             if(validHash)StudioWorkspace.openStudio(data).use{assertEquals(persisted,it.state)}
             else assertEquals("CORRUPT",assertFailsWith<DataProblem>{StudioWorkspace.openStudio(data)}.status)
         }
+        println("JOURNAL_UNICODE_CASES="+JsonArray(cases))
+    }
+    @Test fun sourceVersionBodyRemainsExactAcrossVersionOnlyCommitReopenAndLaterChange() {
+        val data=root();val directory=data.resolve("documents");val old=StudioState(version=2,creation=CreationState())
+        val journal=StateJournal(directory);journal.commit(old);val original=journal.committedBody!!
+        journal.commit(old.copy(version=3));val current=journal.committedBody!!
+        assertEquals(original,journal.committedBodyForVersion(2));assertEquals(current,journal.committedBodyForVersion(3));assertEquals(current,body(data).first)
+        val reopened=StateJournal(directory);assertEquals(original,reopened.committedBodyForVersion(2));assertEquals(current,reopened.committedBodyForVersion(3))
+        val changed=reopened.state.copy(accounts=listOf(AccountProfile(alias="synthetic changed",service="NAI",provider="SYNTHETIC",model="fixture")))
+        reopened.commit(changed);assertEquals("UPDATE_SNAPSHOT_MISMATCH",assertFailsWith<DataProblem>{reopened.committedBodyForVersion(2)}.status)
+        assertEquals(body(data).first,reopened.committedBodyForVersion(3))
     }
 }

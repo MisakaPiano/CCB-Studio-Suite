@@ -46,16 +46,19 @@ class StateJournal(private val directory: Path, private val fault:(String)->Unit
             state=next;committedBody=e.body;versionBodies[next.version]=e.body
         }
     }
-    private fun encode(next:StudioState):ByteArray {
+    private data class EncodedState(val bytes:ByteArray,val reusableBody:String?)
+    private fun encode(next:StudioState):EncodedState {
         next.validate()
         val body=documentJson.encodeToString(next)
         val bytes=documentJson.encodeToString(Envelope(sequence=sequence+1,previous=previous,body=body,sha256=sha256(body.toByteArray()))).toByteArray()
         if(bytes.size>4*1024*1024)throw DataProblem("DOCUMENT_LIMIT","Document budget reached; prior revisions retained")
-        return bytes
+        // UTF-8 may replace unpaired UTF-16 surrogates. Keep the old envelope decode for
+        // any surrogate-bearing body (including valid pairs) rather than changing that behavior.
+        return EncodedState(bytes,body.takeUnless{value->value.any{it.code in 0xD800..0xDFFF}})
     }
     fun requireCapacity(next:StudioState) {encode(next)}
     fun commit(next:StudioState) {
-        val bytes=encode(next)
+        val encoded=encode(next);val bytes=encoded.bytes
         val id=newId(); val pending=directory.resolve(".pending-$id")
         val target=directory.resolve("%012d-%s.json".format(sequence+1,id))
         writeNewForced(pending,bytes);fault("DOCUMENT_STAGED")
@@ -63,7 +66,7 @@ class StateJournal(private val directory: Path, private val fault:(String)->Unit
         // Durable file + atomic publication; no claim of arbitrary power-loss directory durability.
         sequence++;previous=sha256(bytes)
         if(next.creation!=state.creation)creationRevision=previous.takeIf{next.creation!=null}
-        state=next;committedBody=documentJson.decodeFromString<Envelope>(bytes.decodeToString()).body
+        state=next;committedBody=encoded.reusableBody?:documentJson.decodeFromString<Envelope>(bytes.decodeToString()).body
         versionBodies[next.version]=requireNotNull(committedBody);fault("DOCUMENT_COMMITTED")
     }
 }
