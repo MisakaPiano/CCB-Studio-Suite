@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Shipped107 runtime public signed download using normal system temporary directory; shipped107 helper with explicitly already-closed synthetic parent stub; actual install, native115 B acknowledgement and stable shortcut publication",
+  "parentProcessAndDrain": "NOT TESTED in this probe",
+  "normalUserUpdate": "NOT TESTED",
+  "targetSourceSha": "ff145d051bae286ab3e27cadd41195f8bd4c4e18",
+  "installerSha256": "356e749bd346af4a1d419a0d8b48b1e27d2314e6fce5763fa0933917247862dc",
+  "snapshotMatched": true,
+  "sourceFilesRetained": 10,
+  "oldProgramFilesUnchanged": 550,
+  "helperResult": {
+    "status": "COMPLETE",
+    "nonce": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+    "dataModifiedByInstaller": false,
+    "installed": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\performance-107\\115-ff145d051bae",
+    "installJournal": "C:\\Users\\1\\AppData\\Local\\Temp\\ccb-suite-organization-115-ff145d051bae\\updates\\install-81fe8d1dd1274cc692049ee62b150b1e.json",
+    "verification": "B_PROGRAM_DATA_AND_CREDENTIAL_SNAPSHOT_MATCH",
+    "launcher": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\performance-107\\Launch-CCB-Studio.lnk",
+    "dataRoot": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\organization-session-115\\live-data",
+    "sourceDataRoot": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\organization-session-115\\live-data"
+  },
+  "childPids": [
+    21968
+  ],
+  "syntheticOnly": true,
+  "realProviderCalls": 0,
+  "dailyInstallationModified": false,
+  "currentCheck": {
+    "status": "UP_TO_DATE",
+    "version": 115,
+    "displayVersion": "0.0.0-preview.115",
+    "channel": "preview",
+    "notes": "Persistent current manual generation session; timestamped manual and automatic batch naming and archives, Project/Chapter organization, compact menus, Explorer-style tree and stable Windows desktop/Start/taskbar entry. Original image bytes and provenance retained. Prompt comparison remains pending.",
+    "sourceSha": "ff145d051bae286ab3e27cadd41195f8bd4c4e18",
+    "bytes": 168890283,
+    "installedBytes": 252745526,
+    "sha256": "356e749bd346af4a1d419a0d8b48b1e27d2314e6fce5763fa0933917247862dc",
+    "minimumReader": 2,
+    "maximumReader": 3,
+    "dataVersion": 3
+  },
+  "stableSelection": {
+    "format": 1,
+    "version": 115,
+    "installed": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\performance-107\\115-ff145d051bae",
+    "data": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\organization-session-115\\live-data",
+    "runtime": "C:\\Users\\1\\AppData\\Local\\Temp\\ccb-suite-organization-115-ff145d051bae",
+    "exeSha256": "494f137e9fa8cb07b7f1d19ed6cc3e6dfac4afd3df16397390d30f1aee58541f"
+  }
+}

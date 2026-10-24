@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "scope": "Real107 jars synthetic workspace -> packaged115 verification -> actual115 native process B_VERIFIED after first Compose frame",
+  "targetSourceSha": "ff145d051bae286ab3e27cadd41195f8bd4c4e18",
+  "snapshotMatched": true,
+  "sourceVersion": 107,
+  "targetVersion": 115,
+  "dataVersion": 3,
+  "syntheticOnly": true,
+  "originalFixtureFilesUnchanged": 10,
+  "nativeWindowObserved": false,
+  "normalUserUpdate": "NOT TESTED",
+  "fullHelperCompletion": "NOT TESTED before publication",
+  "realProviderCalls": 0,
+  "dailyInstallationModified": false
+}

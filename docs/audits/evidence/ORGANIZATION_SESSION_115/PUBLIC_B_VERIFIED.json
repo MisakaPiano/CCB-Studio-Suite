@@ -1,0 +1,24 @@
+{
+  "nonce": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+  "version": 115,
+  "sourceSha": "ff145d051bae286ab3e27cadd41195f8bd4c4e18",
+  "snapshot": {
+    "stateSha256": "fab6d11e2bcf62263de0cbee7924677e689b52e31ee3cba33c3a94eceedadecb",
+    "assets": [
+      {
+        "id": "b670c67d-e654-4332-91a1-1704eaa2dc01",
+        "sha256": "bf5bf29cc4d73ace410d864346185b777b760d7a5297176d7c2dc4679adb2fbf",
+        "size": 503,
+        "kind": "ORIGINAL",
+        "parent": null,
+        "nameSha256": "bf70ea8fd61be26047cbda0106d0c04199a1041930551f89a5134f1373597e83",
+        "recipeSha256": "75a13c230d4e854fcb7e5b613c8d0be2bbfe1e2488cdf37c68ffee922e73de87",
+        "projectSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "credentials": []
+  },
+  "dataRoot": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\organization-session-115\\live-data",
+  "dataVersion": 3,
+  "actualStateSha256": "daa057b4c522111652fe0feb151835d2bdee7a119f2916b1783a90a3d8b537a3"
+}

@@ -1,0 +1,27 @@
+{
+  "scope": "Synthetic marker executables and hidden owned native window; actual user taskbar pin not tested",
+  "tamperRejected": true,
+  "shortcut": {
+    "target": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\entrypoint-115-273d3fee046b4e6c992be8a15d3e9474\\组织与空格 App\\CCBStudioLauncher.exe",
+    "appId": "MisakaPiano.CCBStudioSuite.Preview"
+  },
+  "desktopOrStartMenuChanged": false,
+  "versions": [
+    {
+      "selected": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\entrypoint-115-273d3fee046b4e6c992be8a15d3e9474\\组织与空格 App\\version-114",
+      "version": 114,
+      "profilePathsPreserved": true
+    },
+    {
+      "selected": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\entrypoint-115-273d3fee046b4e6c992be8a15d3e9474\\组织与空格 App\\version-115",
+      "version": 115,
+      "profilePathsPreserved": true
+    }
+  ],
+  "window": {
+    "appId": "MisakaPiano.CCBStudioSuite.Preview",
+    "command": "\"H:\\CCB-Studio-Suite\\.local\\windows-rc\\entrypoint-115-273d3fee046b4e6c992be8a15d3e9474\\组织与空格 App\\CCBStudioLauncher.exe\"",
+    "icon": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\entrypoint-115-273d3fee046b4e6c992be8a15d3e9474\\组织与空格 App\\CCBStudioLauncher.exe,0"
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,43 @@
+{
+  "status": "DELETED_AFTER_EXPLICIT_USER_APPROVAL",
+  "targets": [
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\performance-107\\110-c9e46074ec19",
+      "version": 110,
+      "manifestVerified": true,
+      "files": 550,
+      "bytes": 252498502,
+      "matchingProcesses": 0
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\performance-107\\111-1c9385afc38c",
+      "version": 111,
+      "manifestVerified": true,
+      "files": 550,
+      "bytes": 252504526,
+      "matchingProcesses": 0
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\performance-107\\112-acf71fc1acb2",
+      "version": 112,
+      "manifestVerified": true,
+      "files": 550,
+      "bytes": 252523469,
+      "matchingProcesses": 0
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\performance-107\\113-c0bb2a2d76ea",
+      "version": 113,
+      "manifestVerified": true,
+      "files": 550,
+      "bytes": 252611853,
+      "matchingProcesses": 0
+    }
+  ],
+  "bytes": 1010138350,
+  "dailyInstallationExcluded": "H:/CCB-Studio-Suite-App",
+  "retainedVersions": [
+    107,
+    114
+  ]
+}

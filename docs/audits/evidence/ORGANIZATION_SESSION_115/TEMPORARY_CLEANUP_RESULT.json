@@ -1,0 +1,27 @@
+{
+  "targets": [
+    {
+      "matchingProcesses": 0,
+      "manifestVerified": true,
+      "bytes": 252846826.0,
+      "files": 549,
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\organization-session-115\\candidate\\payload"
+    },
+    {
+      "matchingProcesses": 0,
+      "manifestVerified": true,
+      "bytes": 252895803.0,
+      "files": 551,
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\organization-session-115\\smoke-115"
+    }
+  ],
+  "bytes": 505742629,
+  "retained": [
+    "115 installer",
+    "107 baseline",
+    "114 baseline",
+    "all evidence"
+  ],
+  "dailyInstallationModified": false,
+  "status": "DELETED_AFTER_EXPLICIT_USER_APPROVAL_AND_FINAL_VERIFICATION"
+}

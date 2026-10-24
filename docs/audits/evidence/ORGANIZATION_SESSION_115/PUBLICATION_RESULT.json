@@ -1,0 +1,39 @@
+{
+  "status": "INVITED_PREVIEW_PUBLISHED_SIGNED_CHANNEL_VERIFIED",
+  "repository": "MisakaPiano/CCB-Studio-Suite",
+  "sourceSha": "ff145d051bae286ab3e27cadd41195f8bd4c4e18",
+  "tag": "v0.0.0-preview.115",
+  "mainModified": false,
+  "legacyChannelModified": false,
+  "mainBefore": "36abfd8c11d0360a443e33e6ead84b78685b7541",
+  "assets": {
+    "CCB-Studio-Suite-0.0.0-preview.115-windows-x64.exe": {
+      "bytes": 168890283,
+      "sha256": "356e749bd346af4a1d419a0d8b48b1e27d2314e6fce5763fa0933917247862dc",
+      "assetId": 672298134
+    },
+    "RELEASE_NOTES.md": {
+      "bytes": 1471,
+      "sha256": "276eb623cc065d23b7968fa08767a45636372433addec11dbef9595bf4fef931",
+      "assetId": 672299243
+    },
+    "THIRD_PARTY_NOTICES.zip": {
+      "bytes": 184284,
+      "sha256": "c96a425a18f8b75d2d8939b595fa6809c432b398a9a62000484a8eb300de7b07",
+      "assetId": 672299290
+    },
+    "SHA256SUMS.txt": {
+      "bytes": 293,
+      "sha256": "26c111f066c734203043d70824b15e3526b418ed839f1de96354bfc28e462d3b",
+      "assetId": 672299329
+    }
+  },
+  "url": "https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.115",
+  "metadataCommit": "60c527f55ced1f8a8e897ce957b49a66c9f83f53",
+  "metadataVersions": {
+    "targets": 14,
+    "snapshot": 21,
+    "timestamp": 21
+  },
+  "rootSha256": "408008d80aeb2dd3844325d74f09da9d248733e220dd88c08cc6299c4a24cc7a"
+}
