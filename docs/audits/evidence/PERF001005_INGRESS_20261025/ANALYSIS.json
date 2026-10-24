@@ -1,0 +1,55 @@
+{
+  "medians": {
+    "baseline": {
+      "3145728": {
+        "wallMs": 601.6217,
+        "cpuMs": 125.0,
+        "allocatedBytes": 23856792
+      },
+      "12582912": {
+        "wallMs": 862.8461,
+        "cpuMs": 187.5,
+        "allocatedBytes": 77441296
+      }
+    },
+    "final": {
+      "3145728": {
+        "wallMs": 700.5029,
+        "cpuMs": 140.625,
+        "allocatedBytes": 6381152
+      },
+      "12582912": {
+        "wallMs": 1017.2608,
+        "cpuMs": 218.75,
+        "allocatedBytes": 6389648
+      }
+    }
+  },
+  "counts": {
+    "baseline": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "a6a366ee9349796238ac73cbb2c3cb54e9614748"
+    },
+    "final": {
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "3086895c49d4f6f41231a187aee110abe0782013"
+    }
+  },
+  "finalUniqueMethods": 4,
+  "cleanupFiles": 707,
+  "cleanupBytes": 384091762,
+  "limits": [
+    "Separate JVMs, not paired latency improvement proof; thread allocations not RSS",
+    "Metadata/history cost still grows across rounds and remains; new-vs-size growth bound2MiB catches original-sized buffers, not total fixed budget",
+    "Performance fixtures pause collections and use owned folders only; existing pure batch test starts no scan",
+    "No GUI/user folder/private data/native clipboard/real service/update or independent acceptance"
+  ]
+}

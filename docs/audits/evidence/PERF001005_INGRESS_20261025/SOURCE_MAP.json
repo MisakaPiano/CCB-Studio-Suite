@@ -1,0 +1,36 @@
+{
+  "source": "3086895c49d4f6f41231a187aee110abe0782013",
+  "baselineSource": "a6a366ee9349796238ac73cbb2c3cb54e9614748",
+  "sharedHelperUnchangedFrom": "5bfa51df9fdc632902cd329212d0b2fdaf9ba379",
+  "identities": [
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/LibraryRepository.kt",
+      "diskSha256": "2f4502ef69b7f94a076cdc7aba27a4799186938c46bb87578541b90b710bef43",
+      "gitSha256": "e5da8f4edb791424067ca2b1080f40b68a17e39242dde324c1bb20fb684c537c",
+      "textRepresentation": "CRLF checkout / LF Git"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/IngressCopyPerformanceTest.kt",
+      "diskSha256": "9c193b69f6755976f11905559f6780e0d4b2c6cfe66c4d41118187a697338284",
+      "gitSha256": "9c193b69f6755976f11905559f6780e0d4b2c6cfe66c4d41118187a697338284",
+      "textRepresentation": "exact"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/OriginalFileCopy.kt",
+      "diskSha256": "905db050fa61e5e9e1e2d6bc6807f13761200fac3079ef0e52d268e4ca6c36e3",
+      "gitSha256": "905db050fa61e5e9e1e2d6bc6807f13761200fac3079ef0e52d268e4ca6c36e3",
+      "textRepresentation": "exact"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/FileIntegrity.kt",
+      "diskSha256": "9c375fe7fc50ca1d5e233d58f7551f55cacb532c16f41c9fcbf5d34d4fbf2405",
+      "gitSha256": "9c375fe7fc50ca1d5e233d58f7551f55cacb532c16f41c9fcbf5d34d4fbf2405",
+      "textRepresentation": "exact"
+    }
+  ],
+  "finalUniqueMethods": 4,
+  "baselineRepeatedMethodNotAddedAgain": true,
+  "oldStoreAndFileLimitsUnchanged": true,
+  "independentReview": "NOT REQUESTED",
+  "humanAndPackage": "NOT TESTED"
+}

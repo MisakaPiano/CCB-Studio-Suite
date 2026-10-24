@@ -1,3 +1,7 @@
+## 2026-10-25 PERF-001/005受管目录副本增量
+
+[报告与原始执行](audits/PERF001005_INGRESS_COPY_20261025.md)：3086895/最终4唯一方法PASS，12MiB线程分配77.44→6.39MB，墙钟变慢，不称提速/RSS/用户或包验。旧预算/状态/检查点/原件与未知目标保持，无扫描用户目录；[复审仅准备](../handoff/PERF001005_INGRESS_REVIEW_READY_20261025.md)。持续既有性能工作、Desktop优先，不新外发或发布。
+
 ## 2026-10-25 PERF-005共享复制与排版原图增量
 
 [报告/原始证据](audits/PERF005_SHARED_ORIGINAL_COPY_20261025.md)：5bfa51d，最终12唯一方法PASS，新锁反例1 FAIL保留。12MiB排版/图库线程分配约0.795/0.606MB，非提速/RSS/人工/包验；[新复审仅准备](../handoff/PERF005_SHARED_COPY_REVIEW_READY_20261025.md)。按21:35/22:07持续授权接续受管副本基线，Desktop优先，未发新材料或发布，旧接受和未验保持。

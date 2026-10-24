@@ -1,0 +1,105 @@
+{
+  "format": 1,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19,
+      "sha256": "3e5e82fc72e044ea9af807a2030b73dbb94800d2cd1775302063b2eee761ba1e"
+    },
+    {
+      "path": "ANALYSIS.json",
+      "bytes": 1541,
+      "sha256": "30ff1fd2f0ea45564b7186705a3a6f299fcc3451783361d87a82c10438f9b5ea"
+    },
+    {
+      "path": "ATTEMPTS_AND_LIMITS.md",
+      "bytes": 1811,
+      "sha256": "36d8ba59830a1ddd6504e4996c62ae9f3a6a1a20db69c4a6f13ec4bf7dff90ba"
+    },
+    {
+      "path": "baseline-samples.json",
+      "bytes": 829,
+      "sha256": "f3cd9e17cda72dc881df8e801c8c167968e2fdc7d0c430d81930d42875ddce84"
+    },
+    {
+      "path": "collect.py",
+      "bytes": 6619,
+      "sha256": "26145c01fe12a7bb70af58368a59d228596839729b4e0df189fc25b2b23ed24c"
+    },
+    {
+      "path": "final-samples.json",
+      "bytes": 826,
+      "sha256": "ad50c1b748c4c9630aa75e95de5dd1822d4ef0ac5d750dc354d626e06ed9f44a"
+    },
+    {
+      "path": "runs/baseline/fixture-cleanup.json",
+      "bytes": 293,
+      "sha256": "050945e932a18847f3322c52b2a9cbb927f99d1c3139a359b97c6a509127c64e"
+    },
+    {
+      "path": "runs/baseline/gradle.log",
+      "bytes": 1554,
+      "sha256": "657e4cd9ad66b4deb4267071cc6938d8377b9f36bc29f555e6b6cb0d140ad363"
+    },
+    {
+      "path": "runs/baseline/source-before.json",
+      "bytes": 76224,
+      "sha256": "927c7df0c6ee8c495d9f0b644270a241c8e52ad70b66315ef1640f573446026f"
+    },
+    {
+      "path": "runs/baseline/studio-core-TEST-io.github.misakapiano.ccbstudio.core.IngressCopyPerformanceTest.xml",
+      "bytes": 1093,
+      "sha256": "b880ea5d5dc378448269e0961d2f14f8b59aba38b337568b3f075c27855703f5"
+    },
+    {
+      "path": "runs/baseline/summary.json",
+      "bytes": 996,
+      "sha256": "38d1d2f026dae3091f9b3714975e5f0b2a8484cefda2546d94e4576aacdc770c"
+    },
+    {
+      "path": "runs/baseline/test-cases.json",
+      "bytes": 200,
+      "sha256": "07d5bd3a0bedc38d528b16b7fc652b150e7a49e8c2aec154a75b1593056710ed"
+    },
+    {
+      "path": "runs/final/fixture-cleanup.json",
+      "bytes": 293,
+      "sha256": "fe1070a08e1b3e52a967f893cac75c64ae4ffdd408b067d0544ad79975386b3c"
+    },
+    {
+      "path": "runs/final/gradle.log",
+      "bytes": 1831,
+      "sha256": "7c041f9a669efd34c9c3b08e0c21687d047359e9b3e33c86684b560c4495d01b"
+    },
+    {
+      "path": "runs/final/source-before.json",
+      "bytes": 76224,
+      "sha256": "4c65792a40e346e09305772dbc3ae71a727f6d92f093c138265c21d3dde3c67e"
+    },
+    {
+      "path": "runs/final/studio-core-TEST-io.github.misakapiano.ccbstudio.core.IngressCopyPerformanceTest.xml",
+      "bytes": 1434,
+      "sha256": "653037e37aeb756d33c60ffad0f471dee29d28980a1b2e349e97efe084934e3c"
+    },
+    {
+      "path": "runs/final/studio-core-TEST-io.github.misakapiano.ccbstudio.core.LibraryIngressBatchTest.xml",
+      "bytes": 514,
+      "sha256": "b2b00dee5b74b4bc7f1ac9b52249ca9e601c96d80807a187c5746270a2e62846"
+    },
+    {
+      "path": "runs/final/summary.json",
+      "bytes": 1003,
+      "sha256": "46df2bcf1ce4344bfaac5f8899010616ddf2b64100f1377f4f1bc38dd40e6353"
+    },
+    {
+      "path": "runs/final/test-cases.json",
+      "bytes": 845,
+      "sha256": "9843b942ae6c33521aa0401942583a3bc1cae925cdc8a657e77bce3d24a61b9c"
+    },
+    {
+      "path": "SOURCE_MAP.json",
+      "bytes": 1808,
+      "sha256": "f52b8aabe098a776eb832dfde81563e64f768cde629a98522f0783ba4954d3bc"
+    }
+  ]
+}

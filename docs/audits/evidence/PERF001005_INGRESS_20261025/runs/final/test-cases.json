@@ -1,0 +1,26 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.IngressCopyPerformanceTest",
+    "name": "measuredManagedCopyAllocationAndReplay",
+    "seconds": "14.581",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.IngressCopyPerformanceTest",
+    "name": "existing32MiBCopyBudgetStillRejectsAndRetainsOversizeSecondaryFile",
+    "seconds": "3.26",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.IngressCopyPerformanceTest",
+    "name": "modifiedIntakeRemainsPendingWithoutReplacingItOrOriginal",
+    "seconds": "1.82",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryIngressBatchTest",
+    "name": "batchUsesBoundedRevisionsAndCancelledCopiesRemainRecoverable",
+    "seconds": "8.905",
+    "status": "PASS"
+  }
+]
