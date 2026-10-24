@@ -61,7 +61,9 @@ class ResidueCleanupTests(unittest.TestCase):
         atomic_json(folder/'plan.json',dict(format=1,nonce='c'*64,installed=str(self.root/'0-synthetic'),cache=str(self.cache),approved=dict(**self.old_id,sha256=self.installer_hash)))
         atomic_json(folder/'result.json',dict(status='COMPLETE',nonce='c'*64,installed=str(self.old),installJournal=str(journal),verification='B_PROGRAM_DATA_AND_CREDENTIAL_SNAPSHOT_MATCH'))
         (self.old/'unknown.txt').write_bytes(b'not owned')
+        (self.old/'Uninstall.exe').write_bytes(b'unknown replacement; old journal has no digest for this generated file')
         self.cleanup();self.assertFalse((self.old/'app/main.jar').exists());self.assertEqual((self.old/'unknown.txt').read_bytes(),b'not owned')
+        self.assertEqual((self.old/'Uninstall.exe').read_bytes(),b'unknown replacement; old journal has no digest for this generated file')
 
     def test_incomplete_or_failed_handoff_never_releases_fallback_or_download(self):
         for status in ('STARTING_B','FAILED_RETAINED'):

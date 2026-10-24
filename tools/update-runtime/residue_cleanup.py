@@ -65,6 +65,11 @@ def enroll_program(cache, install_root, directory, expected, installer_sha256, j
             files.append(dict(actual,path=item['path']))
     for name in ('INSTALL_MANIFEST.json','INSTALL_COMPLETE','Uninstall.exe'):
         p=no_reparse(directory/name)
+        # Legacy journals pin the manifest, not the generated NSIS uninstaller.
+        # Its basename alone cannot prove the bytes still belong to the installer.
+        if pinned_manifest is not None:
+            if name=='Uninstall.exe':continue
+            if name=='INSTALL_COMPLETE' and (not p.is_file() or p.stat().st_size>200 or p.read_text(encoding='utf-8')!=str(expected['version'])+':'+expected['sourceSha']):continue
         if p.is_file() and name.casefold() not in seen:files.append(file_identity(p))
     return write_receipt(cache,install_root,'program',directory,files,expected,
         dict(kind='VERIFIED_PRIOR_INSTALLATION' if pinned_manifest else 'VERIFIED_INSTALLER_OUTPUT',installerSha256=installer_sha256,
