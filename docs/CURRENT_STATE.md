@@ -1,3 +1,7 @@
+## 2026-10-25 启动诊断已单次交原Project，结果PENDING
+
+用户明确批准固定8a757a6/31d3853载荷后，[原Project交审回执](../handoff/STARTUP_DIAG_PROJECT_REVIEW_DISPATCH_20261025.md)：请求645bfece-b51e-4daf-bbe3-e9ca25086fe1已在原页面出现，并由会话工具完整回读4493字符逐字一致；仅发送一次。Studio承接YES、Project实际收到YES、复审开始未独立确认/结果PENDING分列；active不是通过，页面连接提示不触发重发。固定输入原字节不改，不重跑旧接受基线；反馈只限本诊断，其他未验状态及不发布边界保持。下方未交审描述保留交付时点。
+
 ## 2026-10-25 启动阶段隔离诊断完成（未改产品/未发布）
 
 固定测试/工具8a757a6，[阶段报告及原始证据](audits/STARTUP_PHASE_DIAGNOSTIC_20261025.md)：一次编译COMMAND_SUCCESS/0 JUnit，两次独立startup会话正常退出0，窗口就绪4.35/3.59秒；主要区间在Window创建与首次绘制，样本不足以确定产品方法根因，没有生产优化或改善结论。初次入口失败、CRLF身份检查失败及Desktop繁忙推迟分别保留；旧基线原字节不改、不重跑。新诊断未交Project；既有4ec1979/3cd2dab PASS_WITH_SCOPE已登记。全Main/打包/冷缓存/长期资源未验，q09、人工、115/Prompt及PRODUCT_HOLD / NOT RC保持。下一最小定位仍限测试宿主的图标/AWT/Skiko与首次布局栅格边界，超出生产接线/权限须另报。

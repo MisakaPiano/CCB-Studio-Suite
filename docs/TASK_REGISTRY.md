@@ -1,3 +1,7 @@
+## 2026-10-25 PERF-002/007启动诊断限定交审
+
+已获本次固定材料及目标明确批准，向原Project单次提交8a757a6源码/31d3853报告证据；请求645bfece-b51e-4daf-bbe3-e9ca25086fe1实际落地、4493字符全文回读一致。见[交审回执](../handoff/STARTUP_DIAG_PROJECT_REVIEW_DISPATCH_20261025.md)。Studio承接/Project收到均YES，复审开始尚未独立确认、结果PENDING；不得将active/送达代签通过。固定旧证据不改、旧基线/PERF-003不重开，不扩大功能、测试或发布；只承接本诊断具体反馈，q09/人工/115/Prompt与PRODUCT_HOLD保持。
+
 ## 2026-10-25 PERF-002/007：原基线限定通过及启动诊断完成
 
 [原Project裁定](audits/NATIVE_BASELINE_PROJECT_ACCEPTANCE_20261025.md)接受4ec1979/3cd2dab的NATIVE BASELINE PASS_WITH_SCOPE，新增48ID但1内容SHA、显式确认帧限制；无需返工或重跑，旧证据保持。接续已有性能授权的[启动诊断](audits/STARTUP_PHASE_DIAGNOSTIC_20261025.md)以8a757a6固定：2次独立startup会话PASS、1次编译COMMAND_SUCCESS/0 JUnit，未改生产/打包/发布。定位至Window创建/首次绘制区间，具体方法因果未定，不关闭PERF-002/007整体；初次调用/身份失败与繁忙推迟保留。新诊断未发送Project，独立审查NOT REQUESTED。用户待办登记不取消此前已授权进行中工作；资产/编辑未验、115/Prompt各PENDING、q09及PRODUCT_HOLD / NOT RC不变。

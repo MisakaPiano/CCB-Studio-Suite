@@ -1,0 +1,32 @@
+{
+  "threadId": "6adcaaef-3fac-83e8-ae57-2a524281e049",
+  "requestId": "645bfece-b51e-4daf-bbe3-e9ca25086fe1",
+  "status": {
+    "type": "active",
+    "activeFlags": []
+  },
+  "requestStartedUtc": "2026-10-24T20:22:48.814Z",
+  "fullTextMatched": true,
+  "chars": 4493,
+  "assistantMessages": [],
+  "source": "8a757a6121c219dd942358d25c7a3707bc1fa8db",
+  "evidence": "31d38532b48e7a94e182f14a90bfbc955d44095b",
+  "authorization": {
+    "humanReply": "同意",
+    "utc": "2026-10-24T20:20:30Z",
+    "scope": "This exact startup diagnostic engineering payload to original Project only"
+  },
+  "toolCallsToSend": 1,
+  "initialReadWasStale": true,
+  "browserReadback": {
+    "requestOccurrences": 1,
+    "sourceAndEvidenceAndRawShaMatched": true,
+    "chars": 4493,
+    "connectionNotice": "连接已中断，正在等待完整答复",
+    "readOnly": true,
+    "temporaryTabClosed": true
+  },
+  "reviewStarted": "NOT YET INDEPENDENTLY CONFIRMED; thread active only",
+  "reviewResult": "PENDING",
+  "fixedInputsUnchanged": true
+}
