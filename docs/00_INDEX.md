@@ -1,3 +1,7 @@
+## 2026-10-25 六项定向修复与高优先级清理机制
+
+固定源码da2ae81、未发布内部包；38 JVM/49 Python与真实原生合成更新证据。见[Project复审交接](../handoff/PROJECT_SIX_FIXES_CLEANUP_20261025.md)、[实现与限制](audits/REVIEW_FIXES_AND_CLEANUP_20261025.md)、[生命周期规则](rc/OWNED_ARTIFACT_LIFECYCLE.md)和[历史清理只读清单](audits/HISTORICAL_CLEANUP_REVIEW_20261025.md)。待独立复审，115体验及Prompt对比PENDING，旧审查包不变，无新公开发布。
+
 ## 2026-10-24 下载入口与阶段独立复审交接（文档完成）
 
 主库main README提交8107754、旧发行库main README提交e47d47a，醒目入口指向实际最新Preview115及全部版本，明确Assets安装器与实验限制。公开页面/链接回读通过；Releases区块开启，旧release/tag/附件、两库元数据分支及工作流未改，无新版本或自动化。阶段交接冻结ff145d0/115/安装器SHA，最后可核实Project审查为678caf1创作工程限定PASS，非全项目验收；115用户试用结果PENDING。见[阶段交接](../handoff/PROJECT_PHASE_REVIEW_20261024.md)及[本轮实际变更](audits/PUBLISH_ENTRY_PROJECT_HANDOFF_20261024.md)。

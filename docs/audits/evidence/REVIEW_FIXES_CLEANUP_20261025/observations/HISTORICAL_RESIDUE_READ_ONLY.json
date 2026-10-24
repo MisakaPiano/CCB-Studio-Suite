@@ -1,0 +1,394 @@
+{
+  "observedUtc": "2026-10-24T14:31:24.526545+00:00",
+  "scope": "Only registered installation program folders and its update cache; no workspace asset or credential files read",
+  "active": {
+    "format": 1,
+    "version": 115,
+    "installed": "H:\\CCB-Studio-Suite-App\\115-ff145d051bae",
+    "data": "H:\\CCB-Studio-Suite-App\\data\\workspace",
+    "runtime": "H:\\CCB-Studio-Suite-App\\data\\runtime",
+    "exeSha256": "494f137e9fa8cb07b7f1d19ed6cc3e6dfac4afd3df16397390d30f1aee58541f"
+  },
+  "protection": {
+    "format": 1,
+    "program": "H:\\CCB-Studio-Suite-App\\111-1c9385afc38c",
+    "workspace": "H:\\CCB-Studio-Suite-App\\data\\workspace",
+    "runtime": "H:\\CCB-Studio-Suite-App\\data\\runtime",
+    "shortcut": "H:\\CCB-Studio-Suite-App\\Launch-CCB-Studio.lnk",
+    "pauseCollections": true,
+    "status": "INDEPENDENT_PROFILE_READY_TO_LAUNCH",
+    "doNotCleanReferencedDirectories": true,
+    "retainedBackupWorkspace": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\model-accounts-review\\workspace",
+    "retainedBackupRuntime": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\model-accounts-review\\runtime"
+  },
+  "programs": [
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\105-a416a820955a",
+      "bytes": 252165408,
+      "files": 550,
+      "version": 105,
+      "sourceSha": "a416a820955a720181cb97c33131a3c4890bb786",
+      "manifestSha256": "c96b6df407c6f8eb063359c716e005f3b6d5057ec33e308e9d8d1ca1a7fbeef7",
+      "journals": [],
+      "manifestMatchesInstallJournal": false,
+      "unknownFiles": [],
+      "reparsePaths": [],
+      "current": false,
+      "explicitlyProtected": false,
+      "classification": "HISTORICAL_PROGRAM_REQUIRES_EXACT_CONFIRMATION",
+      "effect": "Removing deletes this manual fallback program; no automatic data rollback exists; data roots remain protected",
+      "deleteAuthorized": false
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\107-5907779fad12",
+      "bytes": 252182991,
+      "files": 550,
+      "version": 107,
+      "sourceSha": "5907779fad12cd3c2bfd3f22f1e6a0215ebe8be3",
+      "manifestSha256": "1161f0d64383f9f276af1db70d0ebe5dc73a9fa8cf71743b9c0ff8251aed0454",
+      "journals": [],
+      "manifestMatchesInstallJournal": false,
+      "unknownFiles": [],
+      "reparsePaths": [],
+      "current": false,
+      "explicitlyProtected": false,
+      "classification": "HISTORICAL_PROGRAM_REQUIRES_EXACT_CONFIRMATION",
+      "effect": "Removing deletes this manual fallback program; no automatic data rollback exists; data roots remain protected",
+      "deleteAuthorized": false
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\109-2093ae5cb858",
+      "bytes": 252496316,
+      "files": 550,
+      "version": 109,
+      "sourceSha": "2093ae5cb8581d8583e2abd422958c3133f041dc",
+      "manifestSha256": "6db4b154926f43a6437e0962db27b400ee301c69530538ca90219f958d458ea9",
+      "journals": [],
+      "manifestMatchesInstallJournal": false,
+      "unknownFiles": [],
+      "reparsePaths": [],
+      "current": false,
+      "explicitlyProtected": false,
+      "classification": "HISTORICAL_PROGRAM_REQUIRES_EXACT_CONFIRMATION",
+      "effect": "Removing deletes this manual fallback program; no automatic data rollback exists; data roots remain protected",
+      "deleteAuthorized": false
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\111-1c9385afc38c",
+      "bytes": 252504526,
+      "files": 550,
+      "version": 111,
+      "sourceSha": "1c9385afc38cfab8a7549cdb5287ccba3fdd4560",
+      "manifestSha256": "7cefba9ddcca008c507d63263639ddf3b441feb0d40a6beef2b5334946530437",
+      "journals": [],
+      "manifestMatchesInstallJournal": false,
+      "unknownFiles": [],
+      "reparsePaths": [],
+      "current": false,
+      "explicitlyProtected": true,
+      "classification": "PROTECTION_RECORD_KEEP",
+      "effect": "Removing deletes this manual fallback program; no automatic data rollback exists; data roots remain protected",
+      "deleteAuthorized": false
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\112-acf71fc1acb2",
+      "bytes": 252523469,
+      "files": 550,
+      "version": 112,
+      "sourceSha": "acf71fc1acb24b82d8f4ed8ef311908c30686862",
+      "manifestSha256": "9d86f89289ac548ebedee1a69d67d59c32d223fd721db5a2a6731427ae935576",
+      "journals": [
+        {
+          "path": "H:\\CCB-Studio-Suite-App\\data\\runtime\\updates\\install-22f75850391045318da9b1b526952435.json",
+          "sha256": "c5f20f36e04b756a9fcd1df739cfbfb398b0006595a6fbc992d02af0f8978597",
+          "status": "INSTALLED_NOT_STARTED",
+          "target": "H:\\CCB-Studio-Suite-App\\112-acf71fc1acb2",
+          "stage": "H:\\CCB-Studio-Suite-App\\112-acf71fc1acb2.9eb411a618f14d4f94accaa9d9170d54.installing",
+          "expected": {
+            "product": "ccb-studio-suite",
+            "platform": "windows-x86_64",
+            "channel": "preview",
+            "version": 112,
+            "sourceSha": "acf71fc1acb24b82d8f4ed8ef311908c30686862"
+          },
+          "verification": {
+            "files": 547,
+            "bytes": 252373376,
+            "manifestSha256": "9d86f89289ac548ebedee1a69d67d59c32d223fd721db5a2a6731427ae935576"
+          }
+        }
+      ],
+      "manifestMatchesInstallJournal": true,
+      "unknownFiles": [],
+      "reparsePaths": [],
+      "current": false,
+      "explicitlyProtected": false,
+      "classification": "HISTORICAL_PROGRAM_REQUIRES_EXACT_CONFIRMATION",
+      "effect": "Removing deletes this manual fallback program; no automatic data rollback exists; data roots remain protected",
+      "deleteAuthorized": false
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\114-f59b0c25a2eb",
+      "bytes": 252625080,
+      "files": 550,
+      "version": 114,
+      "sourceSha": "f59b0c25a2eb9d28ad2392d53e8cce1a95857a99",
+      "manifestSha256": "f43911dc957fe8d19b886304d4ca1f622f9cd84f18701568a115f381b8190e84",
+      "journals": [
+        {
+          "path": "H:\\CCB-Studio-Suite-App\\data\\runtime\\updates\\install-52576611b6e94d6998314ae9576da580.json",
+          "sha256": "3572e25420a8917cb442afd2eadf850cdd92ef85246c19be96ea52a0298f9783",
+          "status": "INSTALLED_NOT_STARTED",
+          "target": "H:\\CCB-Studio-Suite-App\\114-f59b0c25a2eb",
+          "stage": "H:\\CCB-Studio-Suite-App\\114-f59b0c25a2eb.eb982ce508094baaa04352d062101827.installing",
+          "expected": {
+            "product": "ccb-studio-suite",
+            "platform": "windows-x86_64",
+            "channel": "preview",
+            "version": 114,
+            "sourceSha": "f59b0c25a2eb9d28ad2392d53e8cce1a95857a99"
+          },
+          "verification": {
+            "files": 547,
+            "bytes": 252474986,
+            "manifestSha256": "f43911dc957fe8d19b886304d4ca1f622f9cd84f18701568a115f381b8190e84"
+          }
+        }
+      ],
+      "manifestMatchesInstallJournal": true,
+      "unknownFiles": [],
+      "reparsePaths": [],
+      "current": false,
+      "explicitlyProtected": false,
+      "classification": "HISTORICAL_PROGRAM_REQUIRES_EXACT_CONFIRMATION",
+      "effect": "Removing deletes this manual fallback program; no automatic data rollback exists; data roots remain protected",
+      "deleteAuthorized": false
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\115-ff145d051bae",
+      "bytes": 252895803,
+      "files": 551,
+      "version": 115,
+      "sourceSha": "ff145d051bae286ab3e27cadd41195f8bd4c4e18",
+      "manifestSha256": "5d1e91090d4bd941b80582245c215e98f525bcf9ea9e2d3b9842b4d47e288d49",
+      "journals": [
+        {
+          "path": "H:\\CCB-Studio-Suite-App\\data\\runtime\\updates\\install-0f69cfa53154465bb255f8ffce57494b.json",
+          "sha256": "160118cd3af098aec2d50b827d92aeeb6b35621778c5c3a4803db77b32525d60",
+          "status": "INSTALLED_NOT_STARTED",
+          "target": "H:\\CCB-Studio-Suite-App\\115-ff145d051bae",
+          "stage": "H:\\CCB-Studio-Suite-App\\115-ff145d051bae.a71b006c2ae94b8d856f612fb172f54e.installing",
+          "expected": {
+            "product": "ccb-studio-suite",
+            "platform": "windows-x86_64",
+            "channel": "preview",
+            "version": 115,
+            "sourceSha": "ff145d051bae286ab3e27cadd41195f8bd4c4e18"
+          },
+          "verification": {
+            "files": 548,
+            "bytes": 252745526,
+            "manifestSha256": "5d1e91090d4bd941b80582245c215e98f525bcf9ea9e2d3b9842b4d47e288d49"
+          }
+        }
+      ],
+      "manifestMatchesInstallJournal": true,
+      "unknownFiles": [],
+      "reparsePaths": [],
+      "current": true,
+      "explicitlyProtected": false,
+      "classification": "ACTIVE_KEEP",
+      "effect": "Current startup required",
+      "deleteAuthorized": false
+    }
+  ],
+  "downloads": [
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\data\\runtime\\updates\\downloads\\55f29ce4-a8f1-46ee-8ad6-4ab5603c7d1c",
+      "bytes": 168634431,
+      "files": 2,
+      "version": 114,
+      "sha256": "82464978a84decaada263459374450251ec21f070e33047e3f6647395aef9971",
+      "status": "AVAILABLE",
+      "reparsePaths": [],
+      "deleteAuthorized": false,
+      "effect": "Completed download cache; installation/failure journal dependency requires manual confirmation"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\data\\runtime\\updates\\downloads\\6a364160-365e-4bd6-b8fd-d3c92e9c5f56",
+      "bytes": 168519172,
+      "files": 2,
+      "version": 111,
+      "sha256": "d20ab5390227f9dbbf054e81a7b1f390fca6019eeba6b0b12578e1fc7e344a1b",
+      "status": "AVAILABLE",
+      "reparsePaths": [],
+      "deleteAuthorized": false,
+      "effect": "Completed download cache; installation/failure journal dependency requires manual confirmation"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\data\\runtime\\updates\\downloads\\6ed417d6-2848-4e04-81de-0d6ecd55f89f",
+      "bytes": 168509900,
+      "files": 2,
+      "version": 109,
+      "sha256": "b6ec692211a4ecea677adc144d794aadde5efec00eebe12b301f50950d8d2fcd",
+      "status": "AVAILABLE",
+      "reparsePaths": [],
+      "deleteAuthorized": false,
+      "effect": "Completed download cache; installation/failure journal dependency requires manual confirmation"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\data\\runtime\\updates\\downloads\\9e0a48ce-c1fa-45a3-bc81-1d5cf65ab58d",
+      "bytes": 168212176,
+      "files": 2,
+      "version": 107,
+      "sha256": "39cdf625eb6db8ad23889367eabe202e4727bfce11aaa2a780f31ce436ecf43d",
+      "status": "AVAILABLE",
+      "reparsePaths": [],
+      "deleteAuthorized": false,
+      "effect": "Completed download cache; installation/failure journal dependency requires manual confirmation"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\data\\runtime\\updates\\downloads\\ad964293-d37e-467b-a2a4-5c5dae56f88d",
+      "bytes": 168536656,
+      "files": 2,
+      "version": 112,
+      "sha256": "8a5f15576049ed6d23145b14365742330cf08b89470367c56c48e46e2d9cadb0",
+      "status": "AVAILABLE",
+      "reparsePaths": [],
+      "deleteAuthorized": false,
+      "effect": "Completed download cache; installation/failure journal dependency requires manual confirmation"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\data\\runtime\\updates\\downloads\\d5014e2a-6d75-4b4d-bd2d-6054f6990677",
+      "bytes": 168890976,
+      "files": 2,
+      "version": 115,
+      "sha256": "356e749bd346af4a1d419a0d8b48b1e27d2314e6fce5763fa0933917247862dc",
+      "status": "AVAILABLE",
+      "reparsePaths": [],
+      "deleteAuthorized": false,
+      "effect": "Completed download cache; installation/failure journal dependency requires manual confirmation"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\data\\runtime\\updates\\downloads\\e279470e-7160-4bcc-9561-7f5c29d0bff0",
+      "bytes": 168509900,
+      "files": 2,
+      "version": 109,
+      "sha256": "b6ec692211a4ecea677adc144d794aadde5efec00eebe12b301f50950d8d2fcd",
+      "status": "AVAILABLE",
+      "reparsePaths": [],
+      "deleteAuthorized": false,
+      "effect": "Completed download cache; installation/failure journal dependency requires manual confirmation"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\data\\runtime\\updates\\downloads\\fd0da5a1-d945-4786-839b-0a0a64bc80a2",
+      "bytes": 168509900,
+      "files": 2,
+      "version": 109,
+      "sha256": "b6ec692211a4ecea677adc144d794aadde5efec00eebe12b301f50950d8d2fcd",
+      "status": "AVAILABLE",
+      "reparsePaths": [],
+      "deleteAuthorized": false,
+      "effect": "Completed download cache; installation/failure journal dependency requires manual confirmation"
+    }
+  ],
+  "handoffs": [
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\data\\runtime\\updates\\handoffs\\31119347-6c15-4094-a3a7-af8b051f4cfe",
+      "bytes": 339843,
+      "files": 9,
+      "status": "FAILED_RETAINED",
+      "installed": "H:\\CCB-Studio-Suite-Preview\\109-2093ae5cb858",
+      "reason": "B program/data verification failed; old version and data retained",
+      "reparsePaths": [],
+      "deleteAuthorized": false,
+      "effect": "Update proof/failure evidence; retain, not garbage"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\data\\runtime\\updates\\handoffs\\4dc682c5-d3c0-432a-a866-fbe8839d9105",
+      "bytes": 677400,
+      "files": 9,
+      "status": "COMPLETE",
+      "installed": "H:\\CCB-Studio-Suite-Preview\\107-5907779fad12",
+      "reason": null,
+      "reparsePaths": [],
+      "deleteAuthorized": false,
+      "effect": "Update proof/failure evidence; retain, not garbage"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\data\\runtime\\updates\\handoffs\\5d006f86-07a5-4ee8-8f94-95bfba239657",
+      "bytes": 339074,
+      "files": 6,
+      "status": "FAILED_RETAINED",
+      "installed": null,
+      "reason": "Target version directory already exists; inspect retained installation",
+      "reparsePaths": [],
+      "deleteAuthorized": false,
+      "effect": "Update proof/failure evidence; retain, not garbage"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\data\\runtime\\updates\\handoffs\\8149e439-91ba-444d-931d-74971d7ec573",
+      "bytes": 681846,
+      "files": 9,
+      "status": "COMPLETE",
+      "installed": "H:\\CCB-Studio-Suite-App\\115-ff145d051bae",
+      "reason": null,
+      "reparsePaths": [],
+      "deleteAuthorized": false,
+      "effect": "Update proof/failure evidence; retain, not garbage"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\data\\runtime\\updates\\handoffs\\a7c4bdb3-f11d-4f45-a473-cd531324e279",
+      "bytes": 339072,
+      "files": 6,
+      "status": "FAILED_RETAINED",
+      "installed": null,
+      "reason": "Target version directory already exists; inspect retained installation",
+      "reparsePaths": [],
+      "deleteAuthorized": false,
+      "effect": "Update proof/failure evidence; retain, not garbage"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\data\\runtime\\updates\\handoffs\\abe27e58-d2ee-4373-aaca-02d6727a76f3",
+      "bytes": 677479,
+      "files": 9,
+      "status": "COMPLETE",
+      "installed": "H:\\CCB-Studio-Suite-Preview\\111-1c9385afc38c",
+      "reason": null,
+      "reparsePaths": [],
+      "deleteAuthorized": false,
+      "effect": "Update proof/failure evidence; retain, not garbage"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\data\\runtime\\updates\\handoffs\\dadcfda1-a260-4f5e-a419-2ee4e7c9a11a",
+      "bytes": 677428,
+      "files": 9,
+      "status": "COMPLETE",
+      "installed": "H:\\CCB-Studio-Suite-App\\112-acf71fc1acb2",
+      "reason": null,
+      "reparsePaths": [],
+      "deleteAuthorized": false,
+      "effect": "Update proof/failure evidence; retain, not garbage"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite-App\\data\\runtime\\updates\\handoffs\\ddc99ef1-130d-4694-ab9e-85eef3374497",
+      "bytes": 679997,
+      "files": 9,
+      "status": "COMPLETE",
+      "installed": "H:\\CCB-Studio-Suite-App\\114-f59b0c25a2eb",
+      "reason": null,
+      "reparsePaths": [],
+      "deleteAuthorized": false,
+      "effect": "Update proof/failure evidence; retain, not garbage"
+    }
+  ],
+  "operationCache": {
+    "path": "H:\\CCB-Studio-Suite-App\\data\\runtime\\updates\\operations",
+    "bytes": 16926,
+    "files": 84,
+    "effect": "Ownership not yet proven; retain",
+    "deleteAuthorized": false
+  },
+  "deletions": 0,
+  "processObservation": "Get-Process returned no matching native launcher process; CIM denied; not a future unused guarantee"
+}

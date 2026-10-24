@@ -1,0 +1,10 @@
+{
+  "status": "FAILED",
+  "sourceSha": "a170583cfe0d0e69118e6fe5ce779eea3b5dda5a",
+  "dailyInstallationModified": false,
+  "realProviderCalls": 0,
+  "normalHumanGuiUpdate": "NOT TESTED",
+  "scope": "Real native A with test-only driver invokes production Workbench drain, prepareUpdateHandoff and close; literal loopback TUF; real native B first-frame verification",
+  "reason": "RuntimeError",
+  "detail": "Post-COMPLETE owned program/download cleanup did not finish"
+}

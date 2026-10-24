@@ -1,3 +1,7 @@
+## 2026-10-25 六项定向修复与清理机制完成，待独立复审
+
+源码da2ae81，应用构建28d09f5（最终应用输入散列未变）；38 JVM、49 Python通过，分列且不累加重复。真实原生A→B链COMPLETE；最终驱动写证据FAILED、8项只读事后断言PASS分别保留。更新所属旧程序在COMPLETE后立即退役，无7天等待；新工作区测试先留证再清理，历史目录只读列清单。无新发布、无日常安装/私密资料写入；115体验与Prompt对比PENDING，PRODUCT_HOLD / NOT RC保持。见[新交接](../handoff/PROJECT_SIX_FIXES_CLEANUP_20261025.md)、[审计](audits/REVIEW_FIXES_AND_CLEANUP_20261025.md)与[历史清理清单](audits/HISTORICAL_CLEANUP_REVIEW_20261025.md)。旧Project复审包与失败/用户否决原状保留。
+
 ## 2026-10-24 下载入口与阶段独立复审交接（文档完成）
 
 主库main README提交8107754、旧发行库main README提交e47d47a，醒目入口指向实际最新Preview115及全部版本，明确Assets安装器与实验限制。公开页面/链接回读通过；Releases区块开启，旧release/tag/附件、两库元数据分支及工作流未改，无新版本或自动化。阶段交接冻结ff145d0/115/安装器SHA，最后可核实Project审查为678caf1创作工程限定PASS，非全项目验收；115用户试用结果PENDING。见[阶段交接](../handoff/PROJECT_PHASE_REVIEW_20261024.md)及[本轮实际变更](audits/PUBLISH_ENTRY_PROJECT_HANDOFF_20261024.md)。

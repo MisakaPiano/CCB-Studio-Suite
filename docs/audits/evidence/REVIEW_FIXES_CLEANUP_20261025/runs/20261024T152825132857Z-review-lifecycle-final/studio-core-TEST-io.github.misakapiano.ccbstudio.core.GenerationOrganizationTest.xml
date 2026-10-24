@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.GenerationOrganizationTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-24T15:30:19.458Z" hostname="DD1" time="5.0">
+  <properties/>
+  <testcase name="invalidHierarchyAndStaleEditsNeverReplaceCommittedOrganization" classname="io.github.misakapiano.ccbstudio.core.GenerationOrganizationTest" time="0.513"/>
+  <testcase name="manualSessionSurvivesReopenArchiveClearsOnlyCurrentAndKeepsReceipt" classname="io.github.misakapiano.ccbstudio.core.GenerationOrganizationTest" time="2.207"/>
+  <testcase name="archivingCannotBypassWholeBatch429Cooldown" classname="io.github.misakapiano.ccbstudio.core.GenerationOrganizationTest" time="0.244"/>
+  <testcase name="automaticArchiveUsesSameNamingPlacementAndRetainsFullSnapshot" classname="io.github.misakapiano.ccbstudio.core.GenerationOrganizationTest" time="0.636"/>
+  <testcase name="reopenedCopyReusesOriginalReferencesWithoutRewritingSource" classname="io.github.misakapiano.ccbstudio.core.GenerationOrganizationTest" time="1.399"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

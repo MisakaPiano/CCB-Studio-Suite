@@ -1,0 +1,230 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.BatchGenerationTest",
+    "name": "jitterIsSampledOncePersistedAndCannotShortenMinimum",
+    "seconds": "0.342",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.BatchGenerationTest",
+    "name": "snapshotsSeedsCountsBudgetAndStartedGroupsAreProtected",
+    "seconds": "0.088",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.BatchGenerationTest",
+    "name": "rateLimitLocksWholeBatchAcrossRestartUntilExplicitResume",
+    "seconds": "0.131",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.BatchGenerationTest",
+    "name": "serialIntervalSlowResponseRestAndSleepNeverCatchUp",
+    "seconds": "0.119",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.BatchGenerationTest",
+    "name": "malformedGuidanceAndSizesFailBeforeQueueing",
+    "seconds": "0.004",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.BatchGenerationTest",
+    "name": "restartReconcilesSavedResultWithoutResubmittingAndUnknownRemainsBlocked",
+    "seconds": "0.178",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.BatchGenerationTest",
+    "name": "fullThirtyGroup360ImageScheduleIsFiniteAndUsesBoundedDescriptors",
+    "seconds": "11.092",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.BatchGenerationTest",
+    "name": "pauseAndEndBothKeepInflightResultButOnlyPauseCanResume",
+    "seconds": "0.209",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.GenerationOrganizationTest",
+    "name": "invalidHierarchyAndStaleEditsNeverReplaceCommittedOrganization",
+    "seconds": "0.292",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.GenerationOrganizationTest",
+    "name": "manualSessionSurvivesReopenArchiveClearsOnlyCurrentAndKeepsReceipt",
+    "seconds": "1.051",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.GenerationOrganizationTest",
+    "name": "archivingCannotBypassWholeBatch429Cooldown",
+    "seconds": "0.183",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.GenerationOrganizationTest",
+    "name": "automaticArchiveUsesSameNamingPlacementAndRetainsFullSnapshot",
+    "seconds": "0.572",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.GenerationOrganizationTest",
+    "name": "reopenedCopyReusesOriginalReferencesWithoutRewritingSource",
+    "seconds": "1.039",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryCollectionTest",
+    "name": "progressReleasesWorkspaceAndCancellationCheckpointsOnlyCompletedFiles",
+    "seconds": "3.966",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryCollectionTest",
+    "name": "restoringAtIdenticalPathStillRequiresLocalCollectionReauthorization",
+    "seconds": "1.489",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryCollectionTest",
+    "name": "rescanAdoptsOldCommittedImageWithoutObservationAndDoesNotImportItAgain",
+    "seconds": "0.781",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryCollectionTest",
+    "name": "discoveringNewSubtreeKeepsOtherRegisteredRootLiveDuringConcurrentWrite",
+    "seconds": "0.034",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryCollectionTest",
+    "name": "watchCreatesVersionsAndRestoreRequiresExplicitReconnection",
+    "seconds": "7.969",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryCollectionTest",
+    "name": "intakeCopyIsIdempotentPreservesOriginalAndNeverReplacesModifiedDestination",
+    "seconds": "6.867",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.ReviewBoundaryTest",
+    "name": "queuedAccountSnapshotSurvivesEditingAndReopening",
+    "seconds": "0.52",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.ReviewBoundaryTest",
+    "name": "manualCapacityRejectsNewWorkBeforeSendAndLegacyOverflowStillArchivesWithoutLoss",
+    "seconds": "0.722",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.ReviewBoundaryTest",
+    "name": "promptInterruptionsReuseAssetAndRestoreLabelsAndObservationAcrossReopen",
+    "seconds": "6.06",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.ReviewBoundaryTest",
+    "name": "closeCancelsOnlyPendingAdmissionAndReopenRequiresExplicitAction",
+    "seconds": "0.059",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.ReviewBoundaryTest",
+    "name": "pauseOrEndWinsBeforeAtomicReservationAndBeforeTransportAdmission",
+    "seconds": "0.956",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GenerationManagementWorkflowTest",
+    "name": "detachedHistoryDialogStaysWithBatchWindow",
+    "seconds": "7.021",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GenerationManagementWorkflowTest",
+    "name": "realCurrentSessionNamingArchiveAndProjectTreePreserveImages",
+    "seconds": "14.218",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.RestoredUpdateSnapshotTest",
+    "name": "preBatchWriterSnapshotVerifiesWithoutHashingNewReaderDefaults",
+    "seconds": "0.695",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.RestoredUpdateSnapshotTest",
+    "name": "previouslyReadableCredentialCannotDisappearDuringUpdate",
+    "seconds": "0.334",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.RestoredUpdateSnapshotTest",
+    "name": "unreadableOrCorruptCredentialCannotBeTreatedAsMissing",
+    "seconds": "0.124",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.RestoredUpdateSnapshotTest",
+    "name": "formatCopyUsesAuthenticatedSourceCommitAndRejectsLaterChanges",
+    "seconds": "0.423",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.RestoredUpdateSnapshotTest",
+    "name": "restoredWorkspaceCanBeVerifiedWithoutRecreatingExcludedCredential",
+    "seconds": "1.112",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ReviewDispatchTest",
+    "name": "closeAndUpdateDrainKeepSlowInflightResultAndNeverSendTheNextManualRequest",
+    "seconds": "1.95",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ReviewDispatchTest",
+    "name": "pauseAndEndDuringAdmissionSendZeroGenerationRequests",
+    "seconds": "1.2",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ReviewDispatchTest",
+    "name": "restoredWorkspaceCannotChangeStableDefaultBytesOrShortcuts",
+    "seconds": "0.004",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.ReviewDispatchTest",
+    "name": "batchMaintenanceDrainsRealRunnerAndKeepsOnlyInflightSlot",
+    "seconds": "0.964",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioMaintenanceTest",
+    "name": "maintenanceRejectsNewEditsAndKeepsRootOwnedUntilWriterDrains",
+    "seconds": "0.347",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioMaintenanceTest",
+    "name": "migrationDestinationIsSeparateAndCannotReuseExistingWork",
+    "seconds": "0.003",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioMaintenanceTest",
+    "name": "snapshotPreservesOriginalAssociationsAndDpapiCredentialWithoutPlaintext",
+    "seconds": "0.436",
+    "status": "PASS"
+  }
+]

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.ReviewDispatchTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-24T14:32:01.150Z" hostname="DD1" time="5.165">
+  <properties/>
+  <testcase name="closeAndUpdateDrainKeepSlowInflightResultAndNeverSendTheNextManualRequest" classname="io.github.misakapiano.ccbstudio.desktop.ReviewDispatchTest" time="3.294"/>
+  <testcase name="pauseAndEndDuringAdmissionSendZeroGenerationRequests" classname="io.github.misakapiano.ccbstudio.desktop.ReviewDispatchTest" time="1.854"/>
+  <testcase name="restoredWorkspaceCannotChangeStableDefaultBytesOrShortcuts" classname="io.github.misakapiano.ccbstudio.desktop.ReviewDispatchTest" time="0.017"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

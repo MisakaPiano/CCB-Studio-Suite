@@ -1,0 +1,14 @@
+{
+  "kind": "TEST_ONLY_NATIVE_A",
+  "productionSource": "a170583cfe0d0e69118e6fe5ce779eea3b5dda5a",
+  "main": "ReviewUpdateNativeA (test JAR only)",
+  "probeJarSha256": "c3eda0717577bdf227eb04577d16ddad80c91c61a5e9eed66739d36cd6f26322",
+  "manifestSha256": "b176e4e1ee715a04b00507ada97d8627f04bc5107571a2ad3293b05a048d651a",
+  "executableSha256": "494f137e9fa8cb07b7f1d19ed6cc3e6dfac4afd3df16397390d30f1aee58541f",
+  "verification": {
+    "files": 551,
+    "bytes": 255101381,
+    "manifestSha256": "b176e4e1ee715a04b00507ada97d8627f04bc5107571a2ad3293b05a048d651a"
+  },
+  "publicRelease": false
+}

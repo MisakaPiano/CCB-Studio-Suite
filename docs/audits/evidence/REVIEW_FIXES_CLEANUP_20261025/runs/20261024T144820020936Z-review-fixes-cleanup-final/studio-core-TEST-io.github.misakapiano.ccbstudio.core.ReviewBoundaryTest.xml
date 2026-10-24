@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.ReviewBoundaryTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-24T14:49:39.075Z" hostname="DD1" time="8.318">
+  <properties/>
+  <testcase name="queuedAccountSnapshotSurvivesEditingAndReopening" classname="io.github.misakapiano.ccbstudio.core.ReviewBoundaryTest" time="0.52"/>
+  <testcase name="manualCapacityRejectsNewWorkBeforeSendAndLegacyOverflowStillArchivesWithoutLoss" classname="io.github.misakapiano.ccbstudio.core.ReviewBoundaryTest" time="0.722"/>
+  <testcase name="promptInterruptionsReuseAssetAndRestoreLabelsAndObservationAcrossReopen" classname="io.github.misakapiano.ccbstudio.core.ReviewBoundaryTest" time="6.06"/>
+  <testcase name="closeCancelsOnlyPendingAdmissionAndReopenRequiresExplicitAction" classname="io.github.misakapiano.ccbstudio.core.ReviewBoundaryTest" time="0.059"/>
+  <testcase name="pauseOrEndWinsBeforeAtomicReservationAndBeforeTransportAdmission" classname="io.github.misakapiano.ccbstudio.core.ReviewBoundaryTest" time="0.956"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

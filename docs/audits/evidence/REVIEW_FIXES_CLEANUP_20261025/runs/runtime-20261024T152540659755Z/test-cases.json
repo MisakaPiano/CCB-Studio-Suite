@@ -1,0 +1,237 @@
+[
+  {
+    "name": "test_client.ClientTests.test_authenticated_output_format_is_explicit_and_unknown_or_downgrade_rejected",
+    "status": "PASS",
+    "seconds": 0.1014683999819681
+  },
+  {
+    "name": "test_client.ClientTests.test_changed_download_has_no_success_receipt",
+    "status": "PASS",
+    "seconds": 0.011530200019478798
+  },
+  {
+    "name": "test_client.ClientTests.test_check_then_verified_download_no_install",
+    "status": "PASS",
+    "seconds": 0.1492570000118576
+  },
+  {
+    "name": "test_client.ClientTests.test_current_version_requires_exact_identity_and_never_downloads",
+    "status": "PASS",
+    "seconds": 0.07211569999344647
+  },
+  {
+    "name": "test_client.ClientTests.test_disconnect_preserves_metadata_for_retry",
+    "status": "PASS",
+    "seconds": 0.014473300019744784
+  },
+  {
+    "name": "test_client.ClientTests.test_http_is_allowed_only_for_explicit_internal_literal_loopback",
+    "status": "PASS",
+    "seconds": 0.004774900036863983
+  },
+  {
+    "name": "test_client.ClientTests.test_installed_root_hash_and_endpoint_are_required",
+    "status": "PASS",
+    "seconds": 0.004009499971289188
+  },
+  {
+    "name": "test_client.ClientTests.test_installer_validation_still_rejects_equal_version",
+    "status": "PASS",
+    "seconds": 0.0025890999822877347
+  },
+  {
+    "name": "test_client.ClientTests.test_low_space_no_download_or_completion",
+    "status": "PASS",
+    "seconds": 0.0103874999913387
+  },
+  {
+    "name": "test_client.ClientTests.test_other_process_cannot_enter_same_cache",
+    "status": "PASS",
+    "seconds": 0.7459429000155069
+  },
+  {
+    "name": "test_client.ClientTests.test_progress_counts_actual_target_bytes_and_success_only_after_commit",
+    "status": "PASS",
+    "seconds": 0.24895029998151585
+  },
+  {
+    "name": "test_client.ClientTests.test_wrong_identity_version_and_reader_block_before_download",
+    "status": "PASS",
+    "seconds": 0.12344609998399392
+  },
+  {
+    "name": "test_install.InstallTests.test_download_stays_immutable_during_executor",
+    "status": "PASS",
+    "seconds": 0.3136151999933645
+  },
+  {
+    "name": "test_install.InstallTests.test_existing_version_and_data_overlap_refuse_before_install",
+    "status": "PASS",
+    "seconds": 0.01346190000185743
+  },
+  {
+    "name": "test_install.InstallTests.test_independent_install_parent_may_contain_data_without_treating_it_as_program",
+    "status": "PASS",
+    "seconds": 0.2654852999839932
+  },
+  {
+    "name": "test_install.InstallTests.test_installer_failure_retains_partial_without_publish",
+    "status": "PASS",
+    "seconds": 0.12516640004469082
+  },
+  {
+    "name": "test_install.InstallTests.test_insufficient_space_has_no_install_stage",
+    "status": "PASS",
+    "seconds": 0.008549099962692708
+  },
+  {
+    "name": "test_install.InstallTests.test_manifest_wrong_identity_hash_or_unknown_file_is_rejected",
+    "status": "PASS",
+    "seconds": 0.9542190000065602
+  },
+  {
+    "name": "test_install.InstallTests.test_success_is_installed_not_started_and_preserves_sources",
+    "status": "PASS",
+    "seconds": 0.2918398000183515
+  },
+  {
+    "name": "test_install.InstallTests.test_tampered_executable_is_never_executed",
+    "status": "PASS",
+    "seconds": 0.07157939998432994
+  },
+  {
+    "name": "test_handoff.HandoffTests.test_independent_root_stable_launcher_advances_twice_without_changing_data",
+    "status": "PASS",
+    "seconds": 14.124540999997407
+  },
+  {
+    "name": "test_handoff.HandoffTests.test_migration_destination_is_fresh_sibling_and_bound_to_confirmed_versions",
+    "status": "PASS",
+    "seconds": 0.007153700047638267
+  },
+  {
+    "name": "test_handoff.HandoffTests.test_parent_handle_binds_actual_process_image",
+    "status": "PASS",
+    "seconds": 0.0014424999826587737
+  },
+  {
+    "name": "test_handoff.HandoffTests.test_terminal_handoff_replay_does_not_reinstall_or_replace_receipt",
+    "status": "PASS",
+    "seconds": 0.08660420001251623
+  },
+  {
+    "name": "test_handoff.HandoffTests.test_unicode_shortcut_keeps_explicit_roots_without_execution",
+    "status": "PASS",
+    "seconds": 4.718369000009261
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_access_denied_keeps_file_for_next_run_and_update_stays_complete",
+    "status": "PASS",
+    "seconds": 1.33387460000813
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_file_in_use_defers_whole_program_then_retries_without_changing_update_result",
+    "status": "PASS",
+    "seconds": 0.8083834000281058
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_incomplete_or_failed_handoff_never_releases_fallback_or_download",
+    "status": "PASS",
+    "seconds": 0.442516400013119
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_interrupted_cleanup_replays_safely_and_repeated_cleanup_is_idempotent",
+    "status": "PASS",
+    "seconds": 0.9327447999967262
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_legacy_manifest_alone_never_grants_automatic_deletion",
+    "status": "PASS",
+    "seconds": 1.0758780000032857
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_obsolete_manifest_members_removed_unknown_modified_files_and_plugin_tree_retained",
+    "status": "PASS",
+    "seconds": 1.1703387000015937
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_only_just_superseded_active_program_can_adopt_a_pinned_old_install_record",
+    "status": "PASS",
+    "seconds": 0.8391598000307567
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_partial_owned_extraction_retires_after_a_successful_new_program_without_a_timer",
+    "status": "PASS",
+    "seconds": 0.825396100000944
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_registered_program_and_backup_protection_override_retirement",
+    "status": "PASS",
+    "seconds": 0.8424257000442594
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_secondary_workspace_and_invalid_protection_record_fail_closed",
+    "status": "PASS",
+    "seconds": 0.3189606000087224
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_success_retires_immediately_without_seven_days_or_extra_cold_starts",
+    "status": "PASS",
+    "seconds": 0.5150525000062771
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_successful_download_retired_only_after_complete_while_incomplete_output_is_bounded_and_known",
+    "status": "PASS",
+    "seconds": 1.4102008999907412
+  },
+  {
+    "name": "test_residue_cleanup.ResidueCleanupTests.test_traversal_and_junction_refuse_any_outside_deletion",
+    "status": "PASS",
+    "seconds": 0.7236493999953382
+  },
+  {
+    "name": "test_workspace_artifacts.WorkspaceArtifactTests.test_activity_backup_record_overrides_disposable_registration",
+    "status": "PASS",
+    "seconds": 0.1666831000475213
+  },
+  {
+    "name": "test_workspace_artifacts.WorkspaceArtifactTests.test_changed_or_missing_proof_blocks_before_any_deletion",
+    "status": "PASS",
+    "seconds": 0.14849679998587817
+  },
+  {
+    "name": "test_workspace_artifacts.WorkspaceArtifactTests.test_failed_run_fixture_is_retained",
+    "status": "PASS",
+    "seconds": 0.12870790000306442
+  },
+  {
+    "name": "test_workspace_artifacts.WorkspaceArtifactTests.test_in_use_file_is_retried_and_keeps_identity",
+    "status": "PASS",
+    "seconds": 0.3913229000172578
+  },
+  {
+    "name": "test_workspace_artifacts.WorkspaceArtifactTests.test_junction_refused_without_touching_outside_target",
+    "status": "PASS",
+    "seconds": 0.07299890002468601
+  },
+  {
+    "name": "test_workspace_artifacts.WorkspaceArtifactTests.test_legacy_folder_and_modified_manifest_never_gain_ownership",
+    "status": "PASS",
+    "seconds": 0.11781740002334118
+  },
+  {
+    "name": "test_workspace_artifacts.WorkspaceArtifactTests.test_no_evidence_and_duplicate_seal_are_rejected",
+    "status": "PASS",
+    "seconds": 0.12311679997947067
+  },
+  {
+    "name": "test_workspace_artifacts.WorkspaceArtifactTests.test_success_removes_owned_payload_preserves_proof_and_repeats_safely",
+    "status": "PASS",
+    "seconds": 0.2948098999913782
+  },
+  {
+    "name": "test_workspace_artifacts.WorkspaceArtifactTests.test_unknown_and_changed_files_are_retained",
+    "status": "PASS",
+    "seconds": 0.2256067999987863
+  }
+]

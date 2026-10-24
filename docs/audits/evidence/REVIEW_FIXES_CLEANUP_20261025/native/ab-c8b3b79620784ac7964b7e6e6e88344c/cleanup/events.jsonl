@@ -1,0 +1,9 @@
+{"at": 1792856228.5821328, "event": "RESOURCE_PASS", "receipt": "61f75b3913a241fc88f82061350f7912.json", "area": "program", "base": "1-a170583cfe0d", "counts": {"REMOVED": 552, "RETRY_PermissionError": 1}, "retentionSeconds": 0}
+{"at": 1792856229.0761065, "event": "RESOURCE_PASS", "receipt": "996921665fad45d2a50ff54bc5a18a86.json", "area": "download", "base": "33ffa050-24ad-4447-9dd3-8bdf9621b81c", "counts": {"REMOVED": 2}, "retentionSeconds": 0}
+{"at": 1792856229.17612, "event": "PASS_COMPLETE", "removed": 554, "deferred": 1}
+{"at": 1792856231.264498, "event": "RESOURCE_PASS", "receipt": "61f75b3913a241fc88f82061350f7912.json", "area": "program", "base": "1-a170583cfe0d", "counts": {"RETRY_PermissionError": 1}, "retentionSeconds": 0}
+{"at": 1792856231.3930876, "event": "PASS_COMPLETE", "removed": 0, "deferred": 1}
+{"at": 1792856233.6745496, "event": "RESOURCE_PASS", "receipt": "61f75b3913a241fc88f82061350f7912.json", "area": "program", "base": "1-a170583cfe0d", "counts": {"RETRY_PermissionError": 1}, "retentionSeconds": 0}
+{"at": 1792856233.8022876, "event": "PASS_COMPLETE", "removed": 0, "deferred": 1}
+{"at": 1792856238.361767, "event": "RESOURCE_PASS", "receipt": "61f75b3913a241fc88f82061350f7912.json", "area": "program", "base": "1-a170583cfe0d", "counts": {"RETRY_PermissionError": 1}, "retentionSeconds": 0}
+{"at": 1792856238.4701042, "event": "PASS_COMPLETE", "removed": 0, "deferred": 1}

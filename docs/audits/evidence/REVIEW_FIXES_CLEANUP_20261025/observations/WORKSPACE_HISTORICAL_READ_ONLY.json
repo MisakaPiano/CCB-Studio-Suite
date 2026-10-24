@@ -1,0 +1,1333 @@
+{
+  "recordedAt": 1792856454.8933132,
+  "readOnly": true,
+  "deleted": 0,
+  "root": "H:\\CCB-Studio-Suite",
+  "protectedPaths": [
+    "H:\\CCB-Studio-Suite\\.local\\windows-rc\\model-accounts-review\\workspace",
+    "H:\\CCB-Studio-Suite\\.local\\windows-rc\\model-accounts-review\\runtime",
+    "H:\\CCB-Studio-Suite\\.local\\windows-rc\\performance-107\\smoke-107",
+    "H:\\CCB-Studio-Suite\\.local\\windows-rc\\performance-107\\114-f59b0c25a2eb",
+    "H:\\CCB-Studio-Suite\\.local\\windows-rc\\performance-107\\115-ff145d051bae",
+    "H:\\CCB-Studio-Suite\\.local\\windows-rc\\organization-session-115\\candidate\\studio-installer.exe",
+    "H:\\CCB-Studio-Suite\\.local\\windows-rc\\gallery-layout-114\\candidate\\studio-installer.exe"
+  ],
+  "rows": [
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\tests",
+      "bytes": 890634678,
+      "files": 19222,
+      "reparseLinks": [],
+      "errors": [
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\tests",
+          "error": "BOUND_REACHED_PARTIAL_NOT_EXACT"
+        }
+      ],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\desktop-tests",
+      "bytes": 126616221,
+      "files": 20125,
+      "reparseLinks": [],
+      "errors": [
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\desktop-tests",
+          "error": "BOUND_REACHED_PARTIAL_NOT_EXACT"
+        }
+      ],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\selfcheck-1",
+      "bytes": 690915,
+      "files": 117,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\selfcheck-modern-1",
+      "bytes": 690905,
+      "files": 117,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\png-fields-before-surface",
+      "bytes": 25131,
+      "files": 1,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\preview-layout-before-fix",
+      "bytes": 315131,
+      "files": 3,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\long-pdf-userunit-failure",
+      "bytes": 285798,
+      "files": 3,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-applications-1",
+      "bytes": 0,
+      "files": 0,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-applications-2",
+      "bytes": 1585,
+      "files": 1,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-applications-3",
+      "bytes": 1627,
+      "files": 1,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-applications-4",
+      "bytes": 0,
+      "files": 0,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-applications-5",
+      "bytes": 1585,
+      "files": 1,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-applications-6",
+      "bytes": 1610,
+      "files": 1,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-a-1",
+      "bytes": 127230,
+      "files": 3,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-a-2",
+      "bytes": 127232,
+      "files": 3,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-a-3",
+      "bytes": 127234,
+      "files": 3,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-a-4",
+      "bytes": 127608,
+      "files": 3,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-a-5",
+      "bytes": 127612,
+      "files": 3,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-a-6",
+      "bytes": 127614,
+      "files": 3,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-b-1",
+      "bytes": 127230,
+      "files": 3,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-b-2",
+      "bytes": 127230,
+      "files": 3,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-b-3",
+      "bytes": 127230,
+      "files": 3,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-b-4",
+      "bytes": 127610,
+      "files": 3,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-b-5",
+      "bytes": 127614,
+      "files": 3,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-build-b-6",
+      "bytes": 127615,
+      "files": 3,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-data-1",
+      "bytes": 189715,
+      "files": 45,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-data-2",
+      "bytes": 270676,
+      "files": 51,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-data-3",
+      "bytes": 86820,
+      "files": 128,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-data-3-format3-49cf5fbbe6ff",
+      "bytes": 50804,
+      "files": 74,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-data-3-probe-copy",
+      "bytes": 37955,
+      "files": 71,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-data-3-restore-after",
+      "bytes": 30547,
+      "files": 60,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-data-3-restore-before",
+      "bytes": 30547,
+      "files": 59,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-data-3-restore-migrated-after",
+      "bytes": 35215,
+      "files": 62,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-data-4",
+      "bytes": 130712,
+      "files": 139,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-data-5",
+      "bytes": 147983,
+      "files": 143,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-data-6-restored",
+      "bytes": 68852,
+      "files": 67,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-repository-1",
+      "bytes": 15582,
+      "files": 12,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-repository-2",
+      "bytes": 13820,
+      "files": 13,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-repository-3",
+      "bytes": 6837,
+      "files": 8,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-repository-4",
+      "bytes": 4382,
+      "files": 8,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-repository-5",
+      "bytes": 5342,
+      "files": 8,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-repository-6",
+      "bytes": 4633,
+      "files": 8,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-repository-7",
+      "bytes": 4056,
+      "files": 7,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-repository-8",
+      "bytes": 1716,
+      "files": 2,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-runtime-1",
+      "bytes": 5538,
+      "files": 10,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-runtime-2",
+      "bytes": 166548190,
+      "files": 22,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-runtime-3",
+      "bytes": 167216665,
+      "files": 26,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-runtime-5",
+      "bytes": 334630037,
+      "files": 35,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\ab-runtime-6",
+      "bytes": 167326773,
+      "files": 24,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\entrypoint-115-273d3fee046b4e6c992be8a15d3e9474",
+      "bytes": 129819,
+      "files": 15,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\entrypoint-115-3c917256734a46b191f78cf9a9e8185e",
+      "bytes": 127592,
+      "files": 10,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\entrypoint-115-47569f2c4eb74daaa1c2c277d9db01a1",
+      "bytes": 129793,
+      "files": 14,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\entrypoint-115-61113906ea7a472a99c2c2873bddb9ab",
+      "bytes": 0,
+      "files": 0,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\entrypoint-115-63442bf9108a4fe3be645b16acd81213",
+      "bytes": 129281,
+      "files": 14,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\entrypoint-115-c1a8407c26154d67a5bf6b7cdce1c74c",
+      "bytes": 0,
+      "files": 0,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\entrypoint-115-c85434b47cd142a28a03cb76885f42c0",
+      "bytes": 120315,
+      "files": 6,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\handoff-fixtures",
+      "bytes": 78741,
+      "files": 177,
+      "reparseLinks": [],
+      "errors": [
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\handoff-fixtures\\tmpzr7m3uye",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\handoff-fixtures\\tmpvkdv_yh_",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\handoff-fixtures\\tmpswyljxb0",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\handoff-fixtures\\tmpr4huuxso",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\handoff-fixtures\\tmpr3irolwu",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\handoff-fixtures\\tmpob0hegny",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\handoff-fixtures\\tmplql4bi9p",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\handoff-fixtures\\tmphzvstpmy",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\handoff-fixtures\\tmp9rgr_9i6",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\handoff-fixtures\\tmp9jfyrsk1",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\handoff-fixtures\\tmp8tdt0pgx",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\handoff-fixtures\\tmp6pu5mft5",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\handoff-fixtures\\tmp66ledrrx",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\handoff-fixtures\\tmp003pcso9",
+          "error": "PermissionError"
+        }
+      ],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures",
+      "bytes": 171760,
+      "files": 1030,
+      "reparseLinks": [],
+      "errors": [
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmp_bhzd6n8",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpy8lsn8w_",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpwe95zzuq",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpvps8dcy6",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpvmh3j07k",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmptkv5pyng",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpt7tip5wv",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmprzhouctg",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpr19jxlkc",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpp334s6g7",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpov2lr78k",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpof5v1orm",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpnrv64saw",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpncki_m_k",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpl3i_oqag",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpkzplccxa",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpkji7jfb1",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpkilgk76b",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmphorllksn",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmphfo66ecy",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmphc7xgpqc",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpfb5p0e9o",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpexo1fq2g",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpesjfsptg",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpeozh81a_",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpbrw8spir",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpbka5q060",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmpaa7nz8w1",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmp8mv5lb4b",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmp6x__5q6v",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmp6cex_ay6",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmp5q1c9kfl",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmp2prbkxs7",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmp1ugfchgg",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\install-ops-fixtures\\tmp0kacxsxv",
+          "error": "PermissionError"
+        }
+      ],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\residue-cleanup-fixtures",
+      "bytes": 189798,
+      "files": 466,
+      "reparseLinks": [
+        "H:\\CCB-Studio-Suite\\.local\\windows-rc\\residue-cleanup-fixtures\\eea3a4b27ee14539ab24438de238155c\\programs\\1-aaaaaaaaaaaa\\app",
+        "H:\\CCB-Studio-Suite\\.local\\windows-rc\\residue-cleanup-fixtures\\5cd9fdabfb974197a74f0ee7ecfaff4d\\programs\\1-aaaaaaaaaaaa\\app"
+      ],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures",
+      "bytes": 20418625,
+      "files": 5006,
+      "reparseLinks": [],
+      "errors": [
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmp_ou1rb_k",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmp_6xpgp8s",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpzp94sc3l",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpzlqm5rrd",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpy8vrmrk5",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpy8fbwsi6",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpur3kmqab",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpui7lsdzd",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpuf5dv0vo",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpualu7atr",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpu6_iivql",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmptzzp22d7",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmptyfmlmsl",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpt5mm0z_s",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpsrtxklsg",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmprsod4y18",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpq6tqkyqk",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmppm2hiyve",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpp5riuwd3",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpntr402yo",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpndnpu8k9",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpmgfo3gv5",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpm2l2okmf",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmplep562dp",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmplbwz01rl",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpkj1r7w_k",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpj_1d83_w",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpjys20275",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpjx2zeq32",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpjsfcsb6c",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpj5urvyew",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpindufbcc",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpi94qq6i_",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmphnxc2rpx",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmphlbvjlcm",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpgfv4tbek",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpgddxyrd8",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpf0wlr2g9",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpex_t3req",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpe59a9vqq",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpd5lgjhv5",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpbxqab530",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpb31pm8wp",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpax23q0ie",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpawjs0fw7",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmparoj50fn",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmpabwprd95",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmp9gbdhphz",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmp8aoa59ae",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmp7ha0us0f",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmp6jwt8dsd",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmp5huk0nqa",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmp50k37838",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmp4qsnqqcg",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures\\tmp20rj2f08",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\runtime-client-fixtures",
+          "error": "BOUND_REACHED_PARTIAL_NOT_EXACT"
+        }
+      ],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures",
+      "bytes": 59035,
+      "files": 60,
+      "reparseLinks": [],
+      "errors": [
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpz4x4fglp",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpytum2a3j",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpx55tbg74",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpwp94f69e",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpva02np5e",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpsqip2mkm",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpqty251t_",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpq9skkj98",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpok0ceawf",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpme_g_out",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpmdl5tr50",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpm5q71or_",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmplamve3cv",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpk5hyetpt",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpi1f377wf",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpg4tgjuab",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpg1n93khl",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpfussbigw",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpedyfi3es",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpcyws4s_m",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpbslnejr2",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpbqv83i1y",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpbfyb7z1i",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmpasrp3e78",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmp77ye_q14",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmp45zreac6",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmp2d26oqjw",
+          "error": "PermissionError"
+        },
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-fixtures\\tmp2af7g0u_",
+          "error": "PermissionError"
+        }
+      ],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\batch-109",
+      "bytes": 1178460675,
+      "files": 2218,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\batch-history-112",
+      "bytes": 842526333,
+      "files": 1196,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\batch-parity-111",
+      "bytes": 1056378708,
+      "files": 1284,
+      "reparseLinks": [],
+      "errors": [
+        {
+          "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\batch-parity-111\\temp-process-cache\\operations\\0d14a21f-8231-4fe3-a896-dc996f402510\\temp\\tmp8rrpxc5o",
+          "error": "PermissionError"
+        }
+      ],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\gallery-organization-113",
+      "bytes": 337722966,
+      "files": 113,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-repair-110",
+      "bytes": 842729832,
+      "files": 1236,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\performance-106",
+      "bytes": 672845874,
+      "files": 1116,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\performance-108",
+      "bytes": 673966677,
+      "files": 1239,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\review-update-native",
+      "bytes": 2237822176,
+      "files": 3846,
+      "reparseLinks": [],
+      "errors": [],
+      "classification": "HISTORICAL_TEST_CANDIDATE_NOT_AUTHORIZED_FOR_DELETION",
+      "sourceBasis": "Exact Suite .local test directory name; test source / audit references must be checked before disposal",
+      "runningProcessCheck": "PENDING",
+      "rollbackEffect": "May remove synthetic replay inputs; retain raw evidence and fixed baselines before explicit approval"
+    }
+  ],
+  "totalCandidateBytes": 9721665642,
+  "unknownOrUserDirectories": "NOT_SCANNED",
+  "dailyInstallationModified": false
+}

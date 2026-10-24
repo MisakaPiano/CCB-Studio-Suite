@@ -1,0 +1,109 @@
+[
+  {
+    "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\performance-106\\candidate\\payload",
+    "verification": "NOT_CONFIRMED",
+    "reason": "UpdateRejected",
+    "deletion": "RETAIN"
+  },
+  {
+    "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\performance-106\\smoke-106",
+    "bytes": 252177541,
+    "files": 550,
+    "version": 106,
+    "source": "839205b8499f9a5c68cd8ef96785efbb991ce7cb",
+    "manifestSha256": "91ce7b15d6bc3a2b10100b7132d0433ea9e73b53c5525b7214984719442cb92a",
+    "sourceBasis": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\performance-106\\candidate\\BUILD_RECEIPT.json",
+    "verification": "EXACT_LOCAL_INSTALL_MANIFEST_AND_BUILD_RECEIPT_MATCH",
+    "dailyRuntimeEffect": "NONE: synthetic Suite-local program copy",
+    "rollbackEffect": "Removes this synthetic replay program only; fixed 107/114/115, public installers and logs remain",
+    "deletion": "NOT_AUTHORIZED_NOT_DELETED"
+  },
+  {
+    "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\performance-108\\candidate\\payload",
+    "verification": "NOT_CONFIRMED",
+    "reason": "UpdateRejected",
+    "deletion": "RETAIN"
+  },
+  {
+    "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\performance-108\\smoke-108",
+    "verification": "NOT_CONFIRMED",
+    "reason": "UpdateRejected",
+    "deletion": "RETAIN"
+  },
+  {
+    "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\batch-109\\candidate\\payload",
+    "verification": "NOT_CONFIRMED",
+    "reason": "UpdateRejected",
+    "deletion": "RETAIN"
+  },
+  {
+    "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\batch-109\\smoke-109",
+    "bytes": 252496316,
+    "files": 550,
+    "version": 109,
+    "source": "2093ae5cb8581d8583e2abd422958c3133f041dc",
+    "manifestSha256": "6db4b154926f43a6437e0962db27b400ee301c69530538ca90219f958d458ea9",
+    "sourceBasis": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\batch-109\\candidate\\BUILD_RECEIPT.json",
+    "verification": "EXACT_LOCAL_INSTALL_MANIFEST_AND_BUILD_RECEIPT_MATCH",
+    "dailyRuntimeEffect": "NONE: synthetic Suite-local program copy",
+    "rollbackEffect": "Removes this synthetic replay program only; fixed 107/114/115, public installers and logs remain",
+    "deletion": "NOT_AUTHORIZED_NOT_DELETED"
+  },
+  {
+    "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-repair-110\\candidate\\payload",
+    "verification": "NOT_CONFIRMED",
+    "reason": "UpdateRejected",
+    "deletion": "RETAIN"
+  },
+  {
+    "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-repair-110\\smoke-110",
+    "bytes": 252498502,
+    "files": 550,
+    "version": 110,
+    "source": "c9e46074ec19c5d918505e6fd2a1b960898716dc",
+    "manifestSha256": "d44d753af7e24f236d876b37ef2c93012f353a0ea37306588c8fee11ee9c1b58",
+    "sourceBasis": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\update-repair-110\\candidate\\BUILD_RECEIPT.json",
+    "verification": "EXACT_LOCAL_INSTALL_MANIFEST_AND_BUILD_RECEIPT_MATCH",
+    "dailyRuntimeEffect": "NONE: synthetic Suite-local program copy",
+    "rollbackEffect": "Removes this synthetic replay program only; fixed 107/114/115, public installers and logs remain",
+    "deletion": "NOT_AUTHORIZED_NOT_DELETED"
+  },
+  {
+    "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\batch-parity-111\\candidate\\payload",
+    "verification": "NOT_CONFIRMED",
+    "reason": "UpdateRejected",
+    "deletion": "RETAIN"
+  },
+  {
+    "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\batch-parity-111\\smoke-111",
+    "bytes": 252504526,
+    "files": 550,
+    "version": 111,
+    "source": "1c9385afc38cfab8a7549cdb5287ccba3fdd4560",
+    "manifestSha256": "7cefba9ddcca008c507d63263639ddf3b441feb0d40a6beef2b5334946530437",
+    "sourceBasis": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\batch-parity-111\\candidate\\BUILD_RECEIPT.json",
+    "verification": "EXACT_LOCAL_INSTALL_MANIFEST_AND_BUILD_RECEIPT_MATCH",
+    "dailyRuntimeEffect": "NONE: synthetic Suite-local program copy",
+    "rollbackEffect": "Removes this synthetic replay program only; fixed 107/114/115, public installers and logs remain",
+    "deletion": "NOT_AUTHORIZED_NOT_DELETED"
+  },
+  {
+    "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\batch-history-112\\candidate\\payload",
+    "verification": "NOT_CONFIRMED",
+    "reason": "UpdateRejected",
+    "deletion": "RETAIN"
+  },
+  {
+    "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\batch-history-112\\smoke-112",
+    "bytes": 252523469,
+    "files": 550,
+    "version": 112,
+    "source": "acf71fc1acb24b82d8f4ed8ef311908c30686862",
+    "manifestSha256": "9d86f89289ac548ebedee1a69d67d59c32d223fd721db5a2a6731427ae935576",
+    "sourceBasis": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\batch-history-112\\candidate\\BUILD_RECEIPT.json",
+    "verification": "EXACT_LOCAL_INSTALL_MANIFEST_AND_BUILD_RECEIPT_MATCH",
+    "dailyRuntimeEffect": "NONE: synthetic Suite-local program copy",
+    "rollbackEffect": "Removes this synthetic replay program only; fixed 107/114/115, public installers and logs remain",
+    "deletion": "NOT_AUTHORIZED_NOT_DELETED"
+  }
+]

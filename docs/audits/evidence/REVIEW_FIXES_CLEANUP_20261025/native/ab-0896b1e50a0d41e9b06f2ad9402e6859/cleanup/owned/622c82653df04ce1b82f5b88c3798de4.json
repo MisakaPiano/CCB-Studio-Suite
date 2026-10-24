@@ -1,0 +1,31 @@
+{
+  "format": 1,
+  "installRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\ab-0896b1e50a0d41e9b06f2ad9402e6859\\payload\\review-update-native\\programs",
+  "cache": "H:\\CCB-Studio-Suite\\.local\\disposable\\ab-0896b1e50a0d41e9b06f2ad9402e6859\\payload\\review-update-native\\runtime\\updates",
+  "area": "download",
+  "base": "7b229d51-6aaa-4614-95d9-55eb61e02e55",
+  "expected": {
+    "product": "ccb-studio-suite",
+    "platform": "windows-x86_64",
+    "channel": "internal",
+    "version": 2,
+    "sourceSha": "22026ea0086a44f40ca1ca92acb79880a42536ea"
+  },
+  "files": [
+    {
+      "path": "studio-installer.exe",
+      "bytes": 168923758,
+      "sha256": "d1e4b1546d2f32c3ee730bf20625d7c6741aa3fb4f69a2df46bb93aa760bb8d9"
+    },
+    {
+      "path": "VERIFIED.json",
+      "bytes": 552,
+      "sha256": "4907e3ded88fc50a53bd135b0073222a80f02494d2d88cbf2b276d9994b56d93"
+    }
+  ],
+  "proof": {
+    "kind": "TUF_VERIFIED_DOWNLOAD",
+    "installerSha256": "d1e4b1546d2f32c3ee730bf20625d7c6741aa3fb4f69a2df46bb93aa760bb8d9"
+  },
+  "createdAt": 1792856589.453805
+}

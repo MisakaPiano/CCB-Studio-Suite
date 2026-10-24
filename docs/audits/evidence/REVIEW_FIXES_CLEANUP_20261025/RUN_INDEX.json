@@ -1,0 +1,126 @@
+{
+  "canonicalJvm": "runs/20261024T152825132857Z-review-lifecycle-final",
+  "canonicalPython": "runs/runtime-20261024T154544162428Z",
+  "canonicalNative": "native/ab-2f024ed824e94816943a7190b320f279",
+  "uniqueCounts": {
+    "jvm": 38,
+    "python": 49
+  },
+  "doNotSumAttempts": true,
+  "runs": [
+    {
+      "path": "runs/runtime-20261024T152411651465Z",
+      "status": "FAILED",
+      "tests": 47,
+      "failures": 0,
+      "errors": 1,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "9dde7daacd6526e2e252408310df4a594a8e39c0"
+    },
+    {
+      "path": "runs/runtime-20261024T152540659755Z",
+      "status": "PASS",
+      "tests": 47,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "9dde7daacd6526e2e252408310df4a594a8e39c0"
+    },
+    {
+      "path": "runs/runtime-20261024T152815142456Z",
+      "status": "PASS",
+      "tests": 47,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "28d09f52ea8954f7f713744af892fc50f53f3887"
+    },
+    {
+      "path": "runs/runtime-20261024T153428665498Z",
+      "status": "PASS",
+      "tests": 48,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "a170583cfe0d0e69118e6fe5ce779eea3b5dda5a"
+    },
+    {
+      "path": "runs/runtime-20261024T153835729056Z",
+      "status": "PASS",
+      "tests": 49,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "22026ea0086a44f40ca1ca92acb79880a42536ea"
+    },
+    {
+      "path": "runs/runtime-20261024T154544162428Z",
+      "status": "PASS",
+      "tests": 49,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "da2ae810542c79b0049b74148566a423fb3e1bc3"
+    },
+    {
+      "path": "runs/runtime-final",
+      "status": "PASS",
+      "tests": 37,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "baseCommit": "9dde7daacd6526e2e252408310df4a594a8e39c0",
+      "sourceStable": true
+    },
+    {
+      "path": "runs/runtime-first",
+      "status": "PASS",
+      "tests": 37,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "baseCommit": "31445d5b3ab1df9b66211536282c5ebfd8120235",
+      "sourceStable": true
+    },
+    {
+      "path": "runs/20261024T142938441594Z-review-six-boundaries",
+      "tests": 16,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "status": "PASS",
+      "baseCommit": "2489844984e2ad13f2f0c9d614702d37a7e1d615"
+    },
+    {
+      "path": "runs/20261024T144820020936Z-review-fixes-cleanup-final",
+      "tests": 38,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "status": "PASS",
+      "baseCommit": "9dde7daacd6526e2e252408310df4a594a8e39c0"
+    },
+    {
+      "path": "runs/20261024T152825132857Z-review-lifecycle-final",
+      "tests": 38,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "status": "PASS",
+      "baseCommit": "28d09f52ea8954f7f713744af892fc50f53f3887"
+    }
+  ],
+  "oldReviewPreserved": "2489844",
+  "userRejectedSevenDayPolicy": "SUPERSEDED_BY_IMMEDIATE_AFTER_COMPLETE",
+  "oldFailuresAndUserRejections": "PRESERVED_NOT_OVERRIDDEN",
+  "interimMetadataRetention": "Earlier internal raw root/targets were not retained outside disposable labs; final canonical native evidence includes all public signed metadata"
+}

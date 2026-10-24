@@ -1,0 +1,10 @@
+{
+  "status": "FAILED",
+  "sourceSha": "9dde7daacd6526e2e252408310df4a594a8e39c0",
+  "dailyInstallationModified": false,
+  "realProviderCalls": 0,
+  "normalHumanGuiUpdate": "NOT TESTED",
+  "scope": "Real native A with test-only driver invokes production Workbench drain, prepareUpdateHandoff and close; literal loopback TUF; real native B first-frame verification",
+  "reason": "AssertionError",
+  "detail": ""
+}

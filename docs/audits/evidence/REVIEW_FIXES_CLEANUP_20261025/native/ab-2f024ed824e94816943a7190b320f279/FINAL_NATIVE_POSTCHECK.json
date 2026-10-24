@@ -1,0 +1,43 @@
+{
+  "status": "POSTCHECK_PASS_DRIVER_FAILURE_PRESERVED",
+  "sourceSha": "da2ae810542c79b0049b74148566a423fb3e1bc3",
+  "installerSha256": "8b33fd65aa0d4a08d0d2d1e6b6a1614ae1e35b166eba4d8e1224abf43d49deff",
+  "checks": [
+    {
+      "name": "same_fixed_source_and_installer",
+      "status": "PASS"
+    },
+    {
+      "name": "real_A_image_bound_and_normal_exit_after_drain",
+      "status": "PASS"
+    },
+    {
+      "name": "helper_COMPLETE_and_B_snapshot",
+      "status": "PASS"
+    },
+    {
+      "name": "three_assets_one_decryptable_synthetic_credential",
+      "status": "PASS"
+    },
+    {
+      "name": "owned_old_program_and_downloads_retired",
+      "status": "PASS"
+    },
+    {
+      "name": "unknown_file_and_current_program_retained",
+      "status": "PASS"
+    },
+    {
+      "name": "B_visible_window_closed_and_process_exit",
+      "status": "PASS"
+    },
+    {
+      "name": "public_ephemeral_TUF_signatures_links_and_target_bytes",
+      "status": "PASS"
+    }
+  ],
+  "driverStatus": "FAILED",
+  "driverFailure": "Evidence-output atomic replacement sharing violation; actual helper result was COMPLETE. Not a claim of exception-free driver success.",
+  "dailyInstallationModified": false,
+  "realProviderCalls": 0
+}

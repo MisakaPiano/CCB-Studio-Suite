@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.BatchGenerationTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-10-24T14:49:02.623Z" hostname="DD1" time="12.163">
+  <properties/>
+  <testcase name="jitterIsSampledOncePersistedAndCannotShortenMinimum" classname="io.github.misakapiano.ccbstudio.core.BatchGenerationTest" time="0.342"/>
+  <testcase name="snapshotsSeedsCountsBudgetAndStartedGroupsAreProtected" classname="io.github.misakapiano.ccbstudio.core.BatchGenerationTest" time="0.088"/>
+  <testcase name="rateLimitLocksWholeBatchAcrossRestartUntilExplicitResume" classname="io.github.misakapiano.ccbstudio.core.BatchGenerationTest" time="0.131"/>
+  <testcase name="serialIntervalSlowResponseRestAndSleepNeverCatchUp" classname="io.github.misakapiano.ccbstudio.core.BatchGenerationTest" time="0.119"/>
+  <testcase name="malformedGuidanceAndSizesFailBeforeQueueing" classname="io.github.misakapiano.ccbstudio.core.BatchGenerationTest" time="0.004"/>
+  <testcase name="restartReconcilesSavedResultWithoutResubmittingAndUnknownRemainsBlocked" classname="io.github.misakapiano.ccbstudio.core.BatchGenerationTest" time="0.178"/>
+  <testcase name="fullThirtyGroup360ImageScheduleIsFiniteAndUsesBoundedDescriptors" classname="io.github.misakapiano.ccbstudio.core.BatchGenerationTest" time="11.092"/>
+  <testcase name="pauseAndEndBothKeepInflightResultButOnlyPauseCanResume" classname="io.github.misakapiano.ccbstudio.core.BatchGenerationTest" time="0.209"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

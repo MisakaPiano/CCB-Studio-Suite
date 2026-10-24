@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "sourceSha": "9dde7daacd6526e2e252408310df4a594a8e39c0",
+  "concurrentProcesses": "HIGHEST_VERSION_RETAINED",
+  "lateOlderProcess": "REJECTED_WITHOUT_DESCRIPTOR_CHANGE",
+  "restoredProfile": "REJECTED_WITHOUT_DESCRIPTOR_CHANGE",
+  "javaProbeSha256": "5dc2ca39b831a89bd00657bfd9b8afab6c957b35f8278b0e5a40d4c35a0e9743",
+  "descriptorSha256": "abcbf26b86ead68261e2c0491b59ff220026928cb4655521caa822c09cbe3b6b",
+  "productionJarSha256": {
+    "studio-desktop-48305121cbfbc5639566fe646249663.jar": "af5916751c350cd391a065427567a506019fbced7c65766b5575bbc30c3d8931"
+  },
+  "syntheticOnly": true
+}

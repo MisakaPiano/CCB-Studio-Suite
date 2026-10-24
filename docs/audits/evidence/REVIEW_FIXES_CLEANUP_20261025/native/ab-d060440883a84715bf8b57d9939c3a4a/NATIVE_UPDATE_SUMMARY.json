@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "sourceSha": "da2ae810542c79b0049b74148566a423fb3e1bc3",
+  "dailyInstallationModified": false,
+  "realProviderCalls": 0,
+  "normalHumanGuiUpdate": "NOT TESTED",
+  "scope": "Real native A with test-only driver invokes production Workbench drain, prepareUpdateHandoff and close; literal loopback TUF; real native B first-frame verification",
+  "aPid": 16780,
+  "launcherShimPid": 48992,
+  "aExitCode": 0,
+  "aDrain": "PRODUCTION_WORKBENCH_WAITED_FOR_SLOW_RESPONSE",
+  "aParent": "REAL_WINDOWS_IMAGE_BOUND_HANDLE",
+  "bVerification": "PROGRAM_DATA_AND_CREDENTIALS_MATCH",
+  "credentials": 1,
+  "generationSends": 1,
+  "assets": 3,
+  "installerSha256": "3c4cc9a1b24419eec0dc12ca7a704fb67eda5dac23422fb9ba638081a9731e5b",
+  "installerBytes": 168923942,
+  "bClose": "VISIBLE_MAIN_WINDOW_CLOSED_NORMALLY",
+  "ownedCleanup": "IMMEDIATE_COMPLETE_NO_WAIT_DAYS",
+  "aInputMap": "A_INPUT_MAP.json",
+  "release": "NOT_PUBLISHED"
+}

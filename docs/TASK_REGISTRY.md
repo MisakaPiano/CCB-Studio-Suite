@@ -1,3 +1,7 @@
+## 2026-10-25 高优先级：六项复审修复、更新与工作区所属残留清理
+
+[任务合同](../tasks/REVIEW_FIXES_AND_UPDATE_CLEANUP_20261024.md)已完成定向实现与隔离自动验证，固定源码da2ae81；新[独立复审交接](../handoff/PROJECT_SIX_FIXES_CLEANUP_20261025.md)待Project判断。38 JVM与49 Python通过，实际原生链COMPLETE；最终驱动写证据FAILED与8项只读事后断言PASS分列，不冒充115真人完整更新。历史目录仅列清单，未获具体授权不删除；无新发布或日常资料写入。115体验与Prompt对比继续分别PENDING。
+
 ## 2026-10-24 下载入口与阶段独立复审交接（文档完成）
 
 主库main README提交8107754、旧发行库main README提交e47d47a，醒目入口指向实际最新Preview115及全部版本，明确Assets安装器与实验限制。公开页面/链接回读通过；Releases区块开启，旧release/tag/附件、两库元数据分支及工作流未改，无新版本或自动化。阶段交接冻结ff145d0/115/安装器SHA，最后可核实Project审查为678caf1创作工程限定PASS，非全项目验收；115用户试用结果PENDING。见[阶段交接](../handoff/PROJECT_PHASE_REVIEW_20261024.md)及[本轮实际变更](audits/PUBLISH_ENTRY_PROJECT_HANDOFF_20261024.md)。
