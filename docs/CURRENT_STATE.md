@@ -1,4 +1,10 @@
-## 2026-10-25 启动诊断已单次交原Project，结果PENDING
+## 2026-10-25 启动诊断限定独立接受，归档边界另列
+
+归档补充已单次送达并完整读到回复：Project当前容器无法解析raw域名，未取得完整包，整包独立签收**NOT VERIFIED — TOOL_ACCESS_LIMIT**；本机公开GET通过只作交付侧REPORTED_PASS，不影响工程限定接受。没有再重试/新载荷/Library/权限变化，停在收尾检查点；如以后要求完整签收，需另定可访问的原字节交付方式。
+
+已直接读完[Project最终裁定及归档限制](audits/STARTUP_DIAG_PROJECT_ACCEPTANCE_20261025.md)：固定8a757a6/31d3853 PASS_WITH_SCOPE，无要求改生产的确定缺陷，不重做旧基线。阶段窗口外44条原生样本/169条类加载保留；关键JFR/gzip/12文本独立核对，完整ZIP因工具上限尚未独立签收。交付侧对同一公开原ZIP只GET一次，200/大小SHA/CRC及成员Git字节匹配；只向同目标补一次归档途径，不冒充对方签收。PERF-002/007不关闭、瓶颈/优化UNKNOWN、人工/包未验及q09/115/Prompt/PRODUCT_HOLD保持。本轮仅文档/归档收尾，停止新诊断/开发，不发布。以下PENDING保留历史时点。
+
+## 2026-10-25 启动诊断已单次交原Project，结果PENDING（历史）
 
 用户明确批准固定8a757a6/31d3853载荷后，[原Project交审回执](../handoff/STARTUP_DIAG_PROJECT_REVIEW_DISPATCH_20261025.md)：请求645bfece-b51e-4daf-bbe3-e9ca25086fe1已在原页面出现，并由会话工具完整回读4493字符逐字一致；仅发送一次。Studio承接YES、Project实际收到YES；后续实际读到审查进度及dace7591部分正文，复审开始YES，完整结果PENDING。开头接受方法/阶段不当作完整PASS；页面连接提示不触发重发。固定输入原字节不改，不重跑旧接受基线；反馈只限本诊断，其他未验状态及不发布边界保持。下方未交审描述保留交付时点。
 

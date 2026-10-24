@@ -1,0 +1,29 @@
+{
+  "startedUtc": "2026-10-24T20:39:20.087860+00:00",
+  "url": "https://raw.githubusercontent.com/MisakaPiano/CCB-Studio-Suite/31d38532b48e7a94e182f14a90bfbc955d44095b/docs/audits/evidence/STARTUP_DIAG_20261025/RAW_EVIDENCE.zip",
+  "commit": "31d38532b48e7a94e182f14a90bfbc955d44095b",
+  "path": "docs/audits/evidence/STARTUP_DIAG_20261025/RAW_EVIDENCE.zip",
+  "publicGetAttempts": 1,
+  "credentialsSupplied": false,
+  "scope": "Same authorized frozen archive; deliverer verification, not independent Project receipt",
+  "httpStatus": 200,
+  "finalUrl": "https://raw.githubusercontent.com/MisakaPiano/CCB-Studio-Suite/31d38532b48e7a94e182f14a90bfbc955d44095b/docs/audits/evidence/STARTUP_DIAG_20261025/RAW_EVIDENCE.zip",
+  "contentType": "application/zip",
+  "contentLengthHeader": "1233904",
+  "status": "PASS",
+  "bytes": 1233904,
+  "sha256": "a5eb28eb597763a306e558e006270ab9e8b58c3e6aa66929af1bbdba4a7fb99f",
+  "gitBlobSha1": "2932921b12d4699b72b6a466052059d692af41c1",
+  "manifestFiles": 55,
+  "zipMembers": 56,
+  "crcAndManifestVerified": true,
+  "publicBytesEqualLocalAndFixedGit": true,
+  "allManifestMembersEqualFixedGit": true,
+  "outsideStageWindows": {
+    "NativeMethodSample": 44,
+    "ClassLoad": 169
+  },
+  "archiveModified": false,
+  "independentProjectArchiveReceipt": "NOT YET OBTAINED",
+  "finishedUtc": "2026-10-24T20:39:22.809724+00:00"
+}

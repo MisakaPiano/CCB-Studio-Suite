@@ -1,4 +1,8 @@
-## 2026-10-25 启动诊断已限定交审
+## 2026-10-25 启动诊断独立限定接受与归档边界
+
+[完整Project接受记录](audits/STARTUP_DIAG_PROJECT_ACCEPTANCE_20261025.md)：8a757a6/31d3853 PASS_WITH_SCOPE，无生产返工；44原生样本/169类加载在阶段窗口外的限制保留。同一ZIP补充已单次送达，Project受容器DNS限制仍NOT VERIFIED — TOOL_ACCESS_LIMIT，交付侧只1次公开读取通过，不冒充独立签收。不改原包或新交全审，停止在文档/归档收尾；后续完整签收途径另定，不启动新诊断/开发/发布，PERF整项和原人工/包验边界保持。
+
+## 2026-10-25 启动诊断已限定交审（历史）
 
 [本次交审回执](../handoff/STARTUP_DIAG_PROJECT_REVIEW_DISPATCH_20261025.md)：用户批准固定8a757a6/31d3853后仅发送一次；原Project请求645bfece实际落地，完整回读一致。Studio承接/Project收到YES；实际读到审查进度及部分正文，独立复审已开始、完整结果PENDING，不把部分接受当完整通过。固定证据不改，不重开旧接受范围或发布。
 

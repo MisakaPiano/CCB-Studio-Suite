@@ -1,4 +1,10 @@
-## 2026-10-25 PERF-002/007启动诊断限定交审
+## 2026-10-25 PERF-002/007启动诊断：独立PASS_WITH_SCOPE，停在收尾
+
+同一原包归档补充已单次落地/完整回读，Project最终报告当前容器raw域名解析失败，整包独立保全**NOT VERIFIED — TOOL_ACCESS_LIMIT**，工程接受保持；交付侧读取只作REPORTED_PASS。原包不改，不重试/新上传/改权限。登记及补充在本轮完成并停止，若需完整签收则另定可访问方式；不启动其他工作。
+
+[原Project完整裁定](audits/STARTUP_DIAG_PROJECT_ACCEPTANCE_20261025.md)接受8a757a6/31d3853限定测量工程，无生产返工缺陷；2次固定宿主执行PASS，瓶颈/优化UNKNOWN、人工/包NOT TESTED、整项未关闭。44条原生样本/169类加载在窗口外，JFR/gzip/12文本独立核对与完整ZIP未签收分列。只对原批准冻结包做一次公开读取（200，字节/SHA/CRC及成员匹配）并向同Project补一次归档途径，不改原包/权限或新载荷，不再触发新诊断/开发。后续范围/启动另定；原失败、否决及q09/人工/115/Prompt/PRODUCT_HOLD保持，不发布。
+
+## 2026-10-25 PERF-002/007启动诊断限定交审（历史）
 
 已获本次固定材料及目标明确批准，向原Project单次提交8a757a6源码/31d3853报告证据；请求645bfece-b51e-4daf-bbe3-e9ca25086fe1实际落地、4493字符全文回读一致。见[交审回执](../handoff/STARTUP_DIAG_PROJECT_REVIEW_DISPATCH_20261025.md)。Studio承接/Project收到均YES；后续实际读到进度及dace7591部分正文，复审已开始、完整结果PENDING。不得将部分方法接受、active或送达代签完整通过。固定旧证据不改、旧基线/PERF-003不重开，不扩大功能、测试或发布；只承接本诊断具体反馈，q09/人工/115/Prompt与PRODUCT_HOLD保持。
 

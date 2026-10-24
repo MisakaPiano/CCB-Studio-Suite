@@ -1,5 +1,9 @@
 # 启动阶段诊断：原Project限定交审回执
 
+归档补充已收尾：原请求`7e227615-ea7d-4e6e-a0b6-b39c0108f0b2`于UTC20:40:26.796实际落地，1633字符回读一致。已完整读取[Project单次归档回复](https://chatgpt.com/c/6adcaaef-3fac-83e8-ae57-2a524281e049?messageId=4647f364-283a-4a15-8e5b-b28da1823e2c)：当前容器不能解析raw.githubusercontent.com，未取得完整ZIP，**NOT VERIFIED — TOOL_ACCESS_LIMIT**；工程PASS_WITH_SCOPE保持，交付侧整包只列REPORTED_PASS。见[结构化结果](evidence/STARTUP_DIAG_PROJECT_REVIEW_20261025/ARCHIVE_RESULT.json)。没有重发、重诊断、Library上传或权限变更。本轮登记与补充完成，停在收尾；完整签收如仍需要，须另定可访问的原字节交付途径。
+
+最新最终状态：已直接读完dace7591完整裁定，固定8a757a6/31d3853为**PASS_WITH_SCOPE**；新增44条原生样本/169条ClassLoad在阶段窗口外、完整ZIP尚未独立签收等限制见[最终接受记录](../docs/audits/STARTUP_DIAG_PROJECT_ACCEPTANCE_20261025.md)。没有要求改生产的确定缺陷，不重跑旧基线，不启动新诊断。公开原ZIP已由交付侧只GET一次验证，包字节不变；原Project归档补充另作一次，结果与工程接受分开记录。以下PENDING及部分正文是先前读取时点，保留历史。
+
 后续只读核对：**复审已开始，完整裁定仍PENDING。**原页面已显示助手消息`dace7591-239a-4eb0-982d-e918bc23c6c0`的明确范围说明、核验进度和部分审查正文；开头接受方法/阶段并复算两轮时间，强调不是提速对照。页面持续提示等待完整答复，一次只读重载后正文仍只到该对照边界说明，故不据部分文字登记PASS或宣称无残余。见[进度及读取边界](evidence/STARTUP_DIAG_PROJECT_REVIEW_20261025/PROGRESS.json)。下方“尚未确认开始”保留初次送达时点；发送始终只有一次。
 
 2026-10-25 Asia/Tokyo。用户于2026-10-24 20:20:30 UTC对固定8a757a6源码、31d3853报告/合成证据及原Project目标明确回复“同意”。本次只发送这些工程材料，不扩大为任意外发或全项目复审。
