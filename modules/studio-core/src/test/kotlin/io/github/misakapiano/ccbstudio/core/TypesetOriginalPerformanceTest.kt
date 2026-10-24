@@ -46,10 +46,63 @@ class TypesetOriginalPerformanceTest {
                     assertEquals(expected,digest(output.resolve("001.png")));assertEquals(id.toString(),receipt.assetIds["001.png"])
                     assertEquals("original-byte-identical",receipt.metadataStatuses["001.png"])
                     assertEquals(document,repository.load(project));assertEquals(expected,w.assets.read(id).require().sha256())
+                    assertTrue(row.getValue("allocatedBytes").jsonPrimitive.long<3L*1024*1024,"Original delivery must not buffer the 3/12MiB encoded input")
                     rows+=row
                 }
             }
         }
         println("TYPESET_ORIGINAL_ALLOCATION="+JsonArray(rows))
+    }
+
+    @Test fun originalSignatureDispatchPreservesOpaqueBytesAndIgnoresMisleadingNames() {
+        val base=root()
+        StudioWorkspace.openStudio(base.resolve("workspace")).use{w->
+            // Format-signature fixtures exercise opaque original delivery, not raster decoding.
+            val signatures=linkedMapOf("png" to byteArrayOf(-119,80,78,71,13,10,26,10),"jpg" to byteArrayOf(-1,-40,-1),"gif" to "GIF89a".toByteArray(),"bmp" to byteArrayOf(66,77),"webp" to ("RIFF".toByteArray()+byteArrayOf(0,0,0,0)+"WEBP".toByteArray()))
+            for((extension,signature) in signatures) {
+                val bytes=signature+ByteArray(512){(it*17).toByte()};val id=UUID.randomUUID()
+                bytes.inputStream().use{w.assets.put(AssetStore.Request(id,"misleading.bin",AssetStore.Kind.ORIGINAL,null,byteArrayOf(),byteArrayOf()),it)}
+                val repo=TypesetRepository(w);val p=repo.create("Signature $extension",listOf(id.toString()));val d=repo.load(p)
+                val parent=Files.createDirectory(base.resolve(extension));val out=TypesetExport.create(w,p,d,parent,TypesetExportRequest(d.pages.map{it.id},variant="original",format="source"))
+                val receipt=TypesetExport.verify(out);assertEquals("001.$extension",receipt.files.single().name)
+                assertContentEquals(bytes,Files.readAllBytes(out.resolve("001.$extension")))
+                assertEquals(id.toString(),receipt.assetIds["001.$extension"]);assertEquals(d,repo.load(p))
+                assertFalse(Files.list(out).use{it.anyMatch{p->p.fileName.toString().endsWith(".pending")}})
+            }
+            val bad=UUID.randomUUID();"unsupported original".byteInputStream().use{w.assets.put(AssetStore.Request(bad,"fake.png",AssetStore.Kind.ORIGINAL,null,byteArrayOf(),byteArrayOf()),it)}
+            val repo=TypesetRepository(w);val p=repo.create("Unsupported",listOf(bad.toString()));val d=repo.load(p);val parent=Files.createDirectory(base.resolve("unsupported"))
+            assertEquals("EXPORT_INCOMPLETE",assertFailsWith<DataProblem>{TypesetExport.create(w,p,d,parent,TypesetExportRequest(d.pages.map{it.id},variant="original"))}.status)
+            val stage=Files.list(parent).use{it.toList().single()};assertTrue(stage.fileName.toString().endsWith(".incomplete"));assertFalse(Files.exists(stage.resolve("COMPLETE.json")))
+            assertEquals(sha256("unsupported original".toByteArray()),w.assets.read(bad).require().sha256())
+        }
+    }
+
+    @Test fun existingOriginalFilenameCannotBeOverwrittenDuringStaging() {
+        val base=root()
+        StudioWorkspace.openStudio(base.resolve("workspace")).use{w->
+            val bytes=EditorRenderer.synthetic(16,16);val id=w.importImage("source.png",bytes);val repo=TypesetRepository(w)
+            val p=repo.create("Collision",listOf(id));val d=repo.load(p);val parent=Files.createDirectory(base.resolve("exports"))
+            val failure=assertFailsWith<DataProblem>{TypesetExport.create(w,p,d,parent,TypesetExportRequest(d.pages.map{it.id},variant="original"),hook={stage->
+                if(stage=="BEFORE_PAGE") {val root=Files.list(parent).use{it.toList().single()};Files.writeString(root.resolve("001.png"),"unknown-keep",StandardOpenOption.CREATE_NEW)}
+            })}
+            assertEquals("EXPORT_INCOMPLETE",failure.status)
+            val stage=Files.list(parent).use{it.toList().single()};assertEquals("unknown-keep",Files.readString(stage.resolve("001.png")))
+            assertFalse(Files.exists(stage.resolve("COMPLETE.json")));assertContentEquals(bytes,w.bytes(id));assertEquals(d,repo.load(p))
+        }
+    }
+
+    @Test fun sharedCopyKeepsPrefixAndTailAcrossBufferBoundariesAndRefusesExistingTarget() {
+        val base=root()
+        StudioWorkspace.openStudio(base.resolve("workspace")).use{w->
+            for(size in listOf(0,1,8,12,13,262143,262144,262145)) {
+                val bytes=ByteArray(size){(it*31).toByte()};val id=UUID.randomUUID()
+                bytes.inputStream().use{w.assets.put(AssetStore.Request(id,"opaque.bin",AssetStore.Kind.ORIGINAL,null,byteArrayOf(),byteArrayOf()),it)}
+                val target=base.resolve("copy-$size.bin");val result=copyVerifiedOriginal(w,id.toString(),target)
+                assertEquals(size.toLong(),result.size);assertEquals(sha256(bytes),result.sha256);assertContentEquals(bytes.take(12).toByteArray(),result.prefix)
+                assertContentEquals(bytes,Files.readAllBytes(target))
+                assertFailsWith<FileAlreadyExistsException>{copyVerifiedOriginal(w,id.toString(),target)}
+                assertContentEquals(bytes,Files.readAllBytes(target));assertEquals(sha256(bytes),w.assets.read(id).require().sha256())
+            }
+        }
     }
 }

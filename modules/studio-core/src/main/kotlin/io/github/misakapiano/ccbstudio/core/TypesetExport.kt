@@ -46,12 +46,16 @@ object TypesetExport {
                     pages.forEach{page->
                         report("GENERATING")
                         hook("BEFORE_PAGE")
-                        val original=workspace.bytes(page.assetId);val index=document.pages.indexOfFirst{it.id==page.id}
+                        val index=document.pages.indexOfFirst{it.id==page.id}
                         val number=TypesetQueue.number(document,index)
+                        val pending=if(variant=="original")directory.resolve(".$number.original.pending")else null
+                        // Original delivery needs a signature, not a second whole encoded image.
+                        // Rendered variants keep the existing full decode/metadata pipeline.
+                        val original=if(pending!=null)copyVerifiedOriginal(workspace,page.assetId,pending).prefix else workspace.bytes(page.assetId)
                         val format=if(request.format=="source")ImageFormats.format(original).takeIf{it in setOf("png","jpeg","webp")}?:"png"else request.format
                         val extension=if(variant=="original")ImageFormats.extension(original)else if(format=="jpeg")"jpg"else format
                         val file=directory.resolve("$number.$extension")
-                        val status=if(variant=="original"){Files.write(file,original,StandardOpenOption.CREATE_NEW);"original-byte-identical"}
+                        val status=if(variant=="original"){Files.move(requireNotNull(pending),file);"original-byte-identical"}
                         else {
                             val source=if(document.mode!="storybook" && request.metadata=="preserve")TypesetPngMetadata.extract(original)else null
                             val image=if(document.mode=="storybook")TypesetRenderer.story(original,page,document.startNumber+index) else TypesetRenderer.render(original,page,variant)
