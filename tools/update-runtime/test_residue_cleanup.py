@@ -1,5 +1,6 @@
 """All deletion targets are fresh synthetic fixtures, never the user's installation."""
 import ctypes, hashlib, json, os, subprocess, unittest, uuid
+from unittest.mock import patch
 from pathlib import Path
 from install_ops import atomic_json, immutable_file, verify_install
 from residue_cleanup import enroll_program,enroll_download,run,ROLLBACK_SECONDS,FAILED_SECONDS
@@ -95,11 +96,15 @@ class ResidueCleanupTests(unittest.TestCase):
         self.cleanup(ROLLBACK_SECONDS+2);self.assertFalse(self.old.exists());self.assertEqual((self.folder/'result.json').read_bytes(),result)
 
     def test_access_denied_keeps_file_for_next_run_and_update_stays_complete(self):
-        p=self.old/'retired.dll';k=ctypes.WinDLL('kernel32',use_last_error=True);k.SetFileAttributesW.argtypes=[ctypes.c_wchar_p,ctypes.c_ulong]
-        self.assertTrue(k.SetFileAttributesW(str(p),1))
-        try:self.assertEqual(self.mature()['status'],'DEFERRED');self.assertTrue(p.exists())
-        finally:self.assertTrue(k.SetFileAttributesW(str(p),0x80))
+        p=self.old/'retired.dll'
+        with patch('residue_cleanup.delete_matching',side_effect=PermissionError('injected ACL denial')):
+            self.assertEqual(self.cleanup()['status'],'DEFERRED');self.assertTrue(p.exists())
         self.cleanup(ROLLBACK_SECONDS+2);self.assertFalse(p.exists());self.assertEqual(json.loads((self.folder/'result.json').read_text())['status'],'COMPLETE')
+
+    def test_normal_readonly_shipped_launcher_is_deleted_by_its_verified_handle(self):
+        p=self.old/'CCBStudioSuitePreview.exe';k=ctypes.WinDLL('kernel32',use_last_error=True);k.SetFileAttributesW.argtypes=[ctypes.c_wchar_p,ctypes.c_ulong]
+        self.assertTrue(k.SetFileAttributesW(str(p),1))
+        self.cleanup();self.assertFalse(p.exists());self.assertTrue((self.current/'CCBStudioSuitePreview.exe').exists())
 
     def test_interrupted_cleanup_replays_safely_and_repeated_cleanup_is_idempotent(self):
         def interrupt(_):raise SystemExit('synthetic interruption after one removal')

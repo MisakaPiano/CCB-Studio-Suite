@@ -53,6 +53,11 @@ def held_parents(path):
         yield
 
 def dispose(k,handle):
+    # jpackage ships its launcher read-only. Ignore that attribute only when
+    # disposing the already verified owned HANDLE; never clear attributes by path.
+    # Older Windows without FileDispositionInfoEx falls back to safe deferral.
+    flags=wintypes.DWORD(1|16) # DELETE | IGNORE_READONLY_ATTRIBUTE
+    if k.SetFileInformationByHandle(handle,21,ctypes.byref(flags),ctypes.sizeof(flags)):return
     flag=wintypes.BOOL(True)
     if not k.SetFileInformationByHandle(handle,4,ctypes.byref(flag),ctypes.sizeof(flag)):raise ctypes.WinError(ctypes.get_last_error())
 
