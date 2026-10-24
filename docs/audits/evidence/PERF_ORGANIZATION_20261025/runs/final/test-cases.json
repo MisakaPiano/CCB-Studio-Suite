@@ -1,0 +1,56 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryLayoutParityTest",
+    "name": "approvedHierarchyAndDividerWorkWithTwentyImagesAndAllMenuStyles",
+    "seconds": "17.946",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GalleryOrganizationWorkflowTest",
+    "name": "realGalleryKeepsToolsAndSupportsTreeMembershipUndoAndCollapse",
+    "seconds": "4.861",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GenerationManagementWorkflowTest",
+    "name": "detachedHistoryDialogStaysWithBatchWindow",
+    "seconds": "0.59",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.GenerationManagementWorkflowTest",
+    "name": "realCurrentSessionNamingArchiveAndProjectTreePreserveImages",
+    "seconds": "11.8",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.OrganizationPerformanceTest",
+    "name": "repeatedQueriesTraverseReceiptSourceOnlyOncePerSnapshot",
+    "seconds": "0.009",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.OrganizationPerformanceTest",
+    "name": "changedSnapshotsReflectRenameRemovalAndNewReceiptWithoutMutatingOldProjection",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.OrganizationPerformanceTest",
+    "name": "pairedLegacyAndIndexedBatchProjectionMeasurements",
+    "seconds": "0.951",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.OrganizationPerformanceTest",
+    "name": "indexedScopesKeepLegacyMembershipNamesOrderAndGroupPrecedence",
+    "seconds": "0.004",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.OrganizationPerformanceTest",
+    "name": "batchListingMetadataBaseline",
+    "seconds": "0.045",
+    "status": "PASS"
+  }
+]

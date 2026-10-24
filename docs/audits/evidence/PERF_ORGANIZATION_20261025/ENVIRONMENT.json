@@ -1,0 +1,16 @@
+{
+  "os": "Windows-10-10.0.19045-SP0",
+  "python": "3.13.16",
+  "java": "17.0.20.1",
+  "testHeapBytes": 268435456,
+  "activeProcessors": 2,
+  "gradleWorkers": 1,
+  "networkDependencies": "offline/strict verification",
+  "clock": "UTC in run records; user-facing Asia/Tokyo",
+  "input": "100/1000/10000 synthetic in-memory image origins; 10 per batch; 2 warmups and 4 alternating paired rounds",
+  "nativeApplicationOpened": false,
+  "realProviderCalls": 0,
+  "userDataRead": false,
+  "pausedCollectionsResumed": false,
+  "ambient": "Initial run interrupted after Desktop build appeared; serial baseline started with no Desktop JVM but another Desktop build appeared before completion, so baseline wall time is exploratory. Final run observed no Desktop JVM at start/end; not continuous system-wide monitoring. Thread CPU is coarse (15.625ms Windows quantum)."
+}

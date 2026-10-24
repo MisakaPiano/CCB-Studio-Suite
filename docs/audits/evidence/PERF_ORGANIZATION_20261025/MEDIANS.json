@@ -1,0 +1,53 @@
+{
+  "100": {
+    "legacy": {
+      "wallMs": 0.473149,
+      "threadCpuMs": 0.0,
+      "allocatedBytes": 40840.0
+    },
+    "indexed-including-build": {
+      "wallMs": 0.2840005,
+      "threadCpuMs": 0.0,
+      "allocatedBytes": 31880.0
+    },
+    "indexed-reused-snapshot": {
+      "wallMs": 0.2095505,
+      "threadCpuMs": 0.0,
+      "allocatedBytes": 16744.0
+    }
+  },
+  "1000": {
+    "legacy": {
+      "wallMs": 4.6593990000000005,
+      "threadCpuMs": 7.8125,
+      "allocatedBytes": 408880.0
+    },
+    "indexed-including-build": {
+      "wallMs": 0.7072,
+      "threadCpuMs": 0.0,
+      "allocatedBytes": 314184.0
+    },
+    "indexed-reused-snapshot": {
+      "wallMs": 0.4616,
+      "threadCpuMs": 0.0,
+      "allocatedBytes": 165304.0
+    }
+  },
+  "10000": {
+    "legacy": {
+      "wallMs": 125.6295505,
+      "threadCpuMs": 125.0,
+      "allocatedBytes": 3750764.0
+    },
+    "indexed-including-build": {
+      "wallMs": 7.9003,
+      "threadCpuMs": 0.0,
+      "allocatedBytes": 2937804.0
+    },
+    "indexed-reused-snapshot": {
+      "wallMs": 1.8669995,
+      "threadCpuMs": 0.0,
+      "allocatedBytes": 1471440.0
+    }
+  }
+}

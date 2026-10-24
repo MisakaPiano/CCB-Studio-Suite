@@ -1,0 +1,9 @@
+{
+  "status": "INTERRUPTED_BEFORE_TESTS",
+  "reason": "Desktop compilation started after this run; own build cancelled to avoid heavy parallel builds",
+  "tests": 0,
+  "sourceProduction": "e4d3d5c554bc73d8f653b788a3122f833469fdee",
+  "fixtures": "RETAINED_UNSEALED_INTERRUPTED",
+  "productConclusion": "NOT TESTED",
+  "launcherAttempt": "First direct embedded Python invocation could not import workspace_artifacts; corrected sys.path wrapper used; no Gradle in that first attempt"
+}

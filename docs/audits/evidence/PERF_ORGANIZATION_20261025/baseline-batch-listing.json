@@ -1,0 +1,80 @@
+{
+    "scope": "production organizationFolders batch-list metadata only; excludes disk, UI, native RSS and human acceptance",
+    "providerCalls": 0,
+    "java": "17.0.20.1",
+    "heapLimitBytes": 268435456,
+    "measurements": [
+        {
+            "images": 100,
+            "batches": 10,
+            "round": 0,
+            "wallMs": 0.845,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 40992
+        },
+        {
+            "images": 100,
+            "batches": 10,
+            "round": 1,
+            "wallMs": 0.6383,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 40840
+        },
+        {
+            "images": 100,
+            "batches": 10,
+            "round": 2,
+            "wallMs": 0.646699,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 40840
+        },
+        {
+            "images": 1000,
+            "batches": 100,
+            "round": 0,
+            "wallMs": 5.9466,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 408880
+        },
+        {
+            "images": 1000,
+            "batches": 100,
+            "round": 1,
+            "wallMs": 5.994301,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 408880
+        },
+        {
+            "images": 1000,
+            "batches": 100,
+            "round": 2,
+            "wallMs": 5.872501,
+            "threadCpuMs": 15.625,
+            "allocatedBytes": 408880
+        },
+        {
+            "images": 10000,
+            "batches": 1000,
+            "round": 0,
+            "wallMs": 155.9265,
+            "threadCpuMs": 140.625,
+            "allocatedBytes": 3794792
+        },
+        {
+            "images": 10000,
+            "batches": 1000,
+            "round": 1,
+            "wallMs": 111.2693,
+            "threadCpuMs": 109.375,
+            "allocatedBytes": 3774176
+        },
+        {
+            "images": 10000,
+            "batches": 1000,
+            "round": 2,
+            "wallMs": 117.2359,
+            "threadCpuMs": 125.0,
+            "allocatedBytes": 3739680
+        }
+    ]
+}

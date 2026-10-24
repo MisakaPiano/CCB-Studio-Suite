@@ -1,0 +1,46 @@
+{
+  "sourceCommit": "98666fba90e0ebc10eb1b800a788b803ac211e1e",
+  "baselineCommit": "69f53d314abe0aa58730ac5ed4aadffd1ff7b940",
+  "projectClosureCommit": "cc745d17d7ced54d867655c72bd189eeb953dab1",
+  "inputs": [
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryBatchIndex.kt",
+      "gitSha256": "e1cb887c13fc872f63104308b040df814739edc34461da6dae1be6f2220027d1",
+      "executedDiskSha256": "e1cb887c13fc872f63104308b040df814739edc34461da6dae1be6f2220027d1",
+      "relation": "EXACT"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryOrganization.kt",
+      "gitSha256": "3355e8ec2436f277a1ad8fdbb7ab38e65387c12a6e6684c688f44fae98b390e1",
+      "executedDiskSha256": "2709b39c12e4285884d1d23cc22f19e5e8000d071344155cfcb716bbe0f0e3f3",
+      "relation": "CRLF_LF_ONLY"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryWorkspace.kt",
+      "gitSha256": "47e38992503bead28a7698cf577b5e817e3676e7fa1481ad390286446837b28f",
+      "executedDiskSha256": "ec9d43e7c00840740b45b3d3157cd72b5afc1b5340686ec68ddd3167d727ce20",
+      "relation": "CRLF_LF_ONLY"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/OrganizationPerformanceTest.kt",
+      "gitSha256": "cb702fc2e5bd262edfc09584053800235a08d41d5845e6c3ef9de0b0cd608de5",
+      "executedDiskSha256": "cb702fc2e5bd262edfc09584053800235a08d41d5845e6c3ef9de0b0cd608de5",
+      "relation": "EXACT"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/OrganizationPerformanceLegacy.kt",
+      "gitSha256": "2a55fec08d17668a11c4f4a8309bfb19457b8732adcba13bcf5c64bd5e0dfafb",
+      "executedDiskSha256": "9df45c93f8b45e8c35a106fb2fbd26365562fa5b4a68fcbd53bf7fdb773d2937",
+      "relation": "CRLF_LF_ONLY"
+    }
+  ],
+  "legacyFunctionMatchesFixedSource": true,
+  "installerBuilt": false,
+  "appImageBuilt": false,
+  "publishedRelease": "v0.0.0-preview.115 (unchanged; excludes this optimization and f6598d3 cleanup fix)",
+  "runtimeValidation": "Gradle test JVM/offscreen Compose; no native package validation",
+  "independentPerformanceReview": "PENDING",
+  "userAssetAndEditorAcceptance": "USER_NOT_TESTED",
+  "q09": "FAILED/UNKNOWN",
+  "promptComparison": "PENDING"
+}

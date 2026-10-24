@@ -1,3 +1,7 @@
+## 2026-10-25 PERF-003批次组织投影定向完成，未打包/发布
+
+性能源码98666fba90e0ebc10eb1b800a788b803ac211e1e，生产改动仅视图内批次索引及图库两处接入，旧算法保留于测试对照。最终9个唯一方法PASS、0失败/错误/跳过，输入稳定；1万张/1000批次同进程交替中位数125.6→7.9ms（含构建），复用1.9ms，累计分配3.75→2.94MB（含构建）。仅内存元数据/相关离屏接线，不是整页/RSS或人工验收；初轮中断、基线环境干扰和旧q09失败均保留。见[固定源码与证据](audits/PERF_ORGANIZATION_20261025.md)。性能独立复审PENDING，未构建安装包或启动日常应用。资产/编辑USER_NOT_TESTED、115体验与Prompt比较PENDING、PRODUCT_HOLD / NOT RC不变；PERF长期专项未关闭。
+
 ## 2026-10-25 Project源码P2限定关闭，接续性能基线
 
 已实际读取[Project原结论](audits/PROJECT_DOWNLOAD_TERMINAL_CLOSURE_20261025.md)：下载终态P2在f6598d3/证据54a5ba26下CLOSED_WITH_SCOPE，接受24项定向记录；旧内部包与公开115不含修复，包集成未验。13条失败记录严格为12个subtest和1个顶层断言，旧原始证据不改、不重测。最新用户经原协调会话授权继续性能，承接[PERF-003](../tasks/PERFORMANCE_RESOURCE_PROGRAM.md)批次组织投影的合成基线与有证据的定向优化，独立提交，不发版。资产/编辑USER_NOT_TESTED、q09 FAILED/UNKNOWN、115体验和Prompt比较PENDING及PRODUCT_HOLD / NOT RC保持。

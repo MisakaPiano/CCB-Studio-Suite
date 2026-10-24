@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.OrganizationPerformanceTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-24T18:08:02.143Z" hostname="DD1" time="1.01">
+  <properties/>
+  <testcase name="repeatedQueriesTraverseReceiptSourceOnlyOncePerSnapshot" classname="io.github.misakapiano.ccbstudio.desktop.OrganizationPerformanceTest" time="0.009"/>
+  <testcase name="changedSnapshotsReflectRenameRemovalAndNewReceiptWithoutMutatingOldProjection" classname="io.github.misakapiano.ccbstudio.desktop.OrganizationPerformanceTest" time="0.001"/>
+  <testcase name="pairedLegacyAndIndexedBatchProjectionMeasurements" classname="io.github.misakapiano.ccbstudio.desktop.OrganizationPerformanceTest" time="0.951"/>
+  <testcase name="indexedScopesKeepLegacyMembershipNamesOrderAndGroupPrecedence" classname="io.github.misakapiano.ccbstudio.desktop.OrganizationPerformanceTest" time="0.004"/>
+  <testcase name="batchListingMetadataBaseline" classname="io.github.misakapiano.ccbstudio.desktop.OrganizationPerformanceTest" time="0.045"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

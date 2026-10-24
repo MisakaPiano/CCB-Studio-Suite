@@ -1,0 +1,5 @@
+{
+  "status": "NOT_CONTINUOUSLY_RECORDED",
+  "baseline": "Desktop JVMs observed during baseline build; later PowerShell pipeline returned no rows and created no JSON file",
+  "final": "No Desktop JVM observed in tool snapshots at final start/end; no continuous monitor or quiet-machine guarantee"
+}

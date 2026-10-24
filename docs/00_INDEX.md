@@ -1,3 +1,7 @@
+## 2026-10-25 PERF-003批次投影优化（源码/自动检查完成，未发布）
+
+固定实现98666fb，最终9个唯一定向方法PASS；1万张/1000批次四轮交替对照中位数125.6→7.9ms（含索引构建），复用1.9ms，仅元数据计算，不外推整页/RSS。见[实现/基线/限制](audits/PERF_ORGANIZATION_20261025.md)和[原始证据](audits/evidence/PERF_ORGANIZATION_20261025/SOURCE_MAP.json)。性能独立复审PENDING，不打包/发版。前一下载清理P2已获源码限定关闭；资产/编辑USER_NOT_TESTED、q09 FAILED/UNKNOWN、115体验/Prompt比较PENDING及PRODUCT_HOLD / NOT RC保留。
+
 ## 2026-10-25 Project下载清理源码P2限定关闭；接续性能专项
 
 已读[Project原始关闭回执](audits/PROJECT_DOWNLOAD_TERMINAL_CLOSURE_20261025.md)，仅f6598d3源码/54a5ba26证据的P2 CLOSED_WITH_SCOPE，旧包不含修复、包集成未验。用户后续授权继续[性能专项](../tasks/PERFORMANCE_RESOURCE_PROGRAM.md)，本轮先PERF-003合成批次投影基线及有证据的定向优化，不发布。资产/编辑USER_NOT_TESTED、q09 FAILED/UNKNOWN、115体验与Prompt比较PENDING及PRODUCT_HOLD / NOT RC保持。以下为历史时间线。

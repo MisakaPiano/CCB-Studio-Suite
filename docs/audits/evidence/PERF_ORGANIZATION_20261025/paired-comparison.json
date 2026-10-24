@@ -1,0 +1,333 @@
+{
+    "scope": "in-memory production batch-list calculations; fresh index construction included; reuse separate; no disk/UI/native RSS claim",
+    "legacySource": "69f53d314abe0aa58730ac5ed4aadffd1ff7b940",
+    "syntheticOnly": true,
+    "providerCalls": 0,
+    "java": "17.0.20.1",
+    "measurements": [
+        {
+            "phase": "legacy",
+            "images": 100,
+            "batches": 10,
+            "round": 0,
+            "wallMs": 0.4182,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 40992
+        },
+        {
+            "phase": "indexed-including-build",
+            "images": 100,
+            "batches": 10,
+            "round": 0,
+            "wallMs": 0.301001,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 31880
+        },
+        {
+            "phase": "indexed-reused-snapshot",
+            "images": 100,
+            "batches": 10,
+            "round": 0,
+            "wallMs": 0.352,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 23784
+        },
+        {
+            "phase": "indexed-including-build",
+            "images": 100,
+            "batches": 10,
+            "round": 1,
+            "wallMs": 0.449601,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 31880
+        },
+        {
+            "phase": "legacy",
+            "images": 100,
+            "batches": 10,
+            "round": 1,
+            "wallMs": 0.5903,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 40840
+        },
+        {
+            "phase": "indexed-reused-snapshot",
+            "images": 100,
+            "batches": 10,
+            "round": 1,
+            "wallMs": 0.2466,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 16744
+        },
+        {
+            "phase": "legacy",
+            "images": 100,
+            "batches": 10,
+            "round": 2,
+            "wallMs": 0.508999,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 40840
+        },
+        {
+            "phase": "indexed-including-build",
+            "images": 100,
+            "batches": 10,
+            "round": 2,
+            "wallMs": 0.267,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 31880
+        },
+        {
+            "phase": "indexed-reused-snapshot",
+            "images": 100,
+            "batches": 10,
+            "round": 2,
+            "wallMs": 0.172501,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 16744
+        },
+        {
+            "phase": "indexed-including-build",
+            "images": 100,
+            "batches": 10,
+            "round": 3,
+            "wallMs": 0.231701,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 31880
+        },
+        {
+            "phase": "legacy",
+            "images": 100,
+            "batches": 10,
+            "round": 3,
+            "wallMs": 0.437299,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 40840
+        },
+        {
+            "phase": "indexed-reused-snapshot",
+            "images": 100,
+            "batches": 10,
+            "round": 3,
+            "wallMs": 0.146101,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 16744
+        },
+        {
+            "phase": "legacy",
+            "images": 1000,
+            "batches": 100,
+            "round": 0,
+            "wallMs": 3.768,
+            "threadCpuMs": 15.625,
+            "allocatedBytes": 408880
+        },
+        {
+            "phase": "indexed-including-build",
+            "images": 1000,
+            "batches": 100,
+            "round": 0,
+            "wallMs": 0.7727,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 314184
+        },
+        {
+            "phase": "indexed-reused-snapshot",
+            "images": 1000,
+            "batches": 100,
+            "round": 0,
+            "wallMs": 0.637499,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 236968
+        },
+        {
+            "phase": "indexed-including-build",
+            "images": 1000,
+            "batches": 100,
+            "round": 1,
+            "wallMs": 1.1151,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 314184
+        },
+        {
+            "phase": "legacy",
+            "images": 1000,
+            "batches": 100,
+            "round": 1,
+            "wallMs": 5.1749,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 408880
+        },
+        {
+            "phase": "indexed-reused-snapshot",
+            "images": 1000,
+            "batches": 100,
+            "round": 1,
+            "wallMs": 0.525,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 165304
+        },
+        {
+            "phase": "legacy",
+            "images": 1000,
+            "batches": 100,
+            "round": 2,
+            "wallMs": 4.981299,
+            "threadCpuMs": 15.625,
+            "allocatedBytes": 408880
+        },
+        {
+            "phase": "indexed-including-build",
+            "images": 1000,
+            "batches": 100,
+            "round": 2,
+            "wallMs": 0.6417,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 314184
+        },
+        {
+            "phase": "indexed-reused-snapshot",
+            "images": 1000,
+            "batches": 100,
+            "round": 2,
+            "wallMs": 0.3618,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 165304
+        },
+        {
+            "phase": "indexed-including-build",
+            "images": 1000,
+            "batches": 100,
+            "round": 3,
+            "wallMs": 0.6021,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 314184
+        },
+        {
+            "phase": "legacy",
+            "images": 1000,
+            "batches": 100,
+            "round": 3,
+            "wallMs": 4.337499,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 408928
+        },
+        {
+            "phase": "indexed-reused-snapshot",
+            "images": 1000,
+            "batches": 100,
+            "round": 3,
+            "wallMs": 0.3982,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 165304
+        },
+        {
+            "phase": "legacy",
+            "images": 10000,
+            "batches": 1000,
+            "round": 0,
+            "wallMs": 127.901801,
+            "threadCpuMs": 125.0,
+            "allocatedBytes": 3795680
+        },
+        {
+            "phase": "indexed-including-build",
+            "images": 10000,
+            "batches": 1000,
+            "round": 0,
+            "wallMs": 7.6449,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 2949664
+        },
+        {
+            "phase": "indexed-reused-snapshot",
+            "images": 10000,
+            "batches": 1000,
+            "round": 0,
+            "wallMs": 3.672201,
+            "threadCpuMs": 15.625,
+            "allocatedBytes": 2195776
+        },
+        {
+            "phase": "indexed-including-build",
+            "images": 10000,
+            "batches": 1000,
+            "round": 1,
+            "wallMs": 8.1557,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 2949664
+        },
+        {
+            "phase": "legacy",
+            "images": 10000,
+            "batches": 1000,
+            "round": 1,
+            "wallMs": 123.3573,
+            "threadCpuMs": 125.0,
+            "allocatedBytes": 3769912
+        },
+        {
+            "phase": "indexed-reused-snapshot",
+            "images": 10000,
+            "batches": 1000,
+            "round": 1,
+            "wallMs": 1.8431,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 1483328
+        },
+        {
+            "phase": "legacy",
+            "images": 10000,
+            "batches": 1000,
+            "round": 2,
+            "wallMs": 119.7041,
+            "threadCpuMs": 125.0,
+            "allocatedBytes": 3731616
+        },
+        {
+            "phase": "indexed-including-build",
+            "images": 10000,
+            "batches": 1000,
+            "round": 2,
+            "wallMs": 13.5846,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 2925944
+        },
+        {
+            "phase": "indexed-reused-snapshot",
+            "images": 10000,
+            "batches": 1000,
+            "round": 2,
+            "wallMs": 1.890899,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 1459328
+        },
+        {
+            "phase": "indexed-including-build",
+            "images": 10000,
+            "batches": 1000,
+            "round": 3,
+            "wallMs": 4.1763,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 2925664
+        },
+        {
+            "phase": "legacy",
+            "images": 10000,
+            "batches": 1000,
+            "round": 3,
+            "wallMs": 132.6045,
+            "threadCpuMs": 140.625,
+            "allocatedBytes": 3706696
+        },
+        {
+            "phase": "indexed-reused-snapshot",
+            "images": 10000,
+            "batches": 1000,
+            "round": 3,
+            "wallMs": 1.3529,
+            "threadCpuMs": 0.0,
+            "allocatedBytes": 1459552
+        }
+    ]
+}
