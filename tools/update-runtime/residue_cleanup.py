@@ -119,7 +119,7 @@ def verified_completion(plan,result,cache):
         old=no_reparse(plan['installed']);new=no_reparse(result['installed']);journal=no_reparse(result['installJournal'])
         if journal.parent!=cache or new.parent!=old.parent:return None
         installed=read_json(journal);expected=identity(installed['expected']);approved=plan['approved']
-        if installed.get('status','INSTALLED_NOT_STARTED')!='INSTALLED_NOT_STARTED':return None
+        if installed.get('status')!='INSTALLED_NOT_STARTED':return None
         if type(approved['version']) is not int or any(approved.get(k)!=expected[k] for k in ('version','sourceSha','channel')):return None
         if any(k in approved and approved[k]!=expected[k] for k in ('product','platform')):return None
         if not re.fullmatch('[0-9a-f]{64}',approved.get('sha256','')):return None

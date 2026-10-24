@@ -56,7 +56,7 @@ class ResidueCleanupTests(unittest.TestCase):
 
     def test_only_just_superseded_active_program_can_adopt_a_pinned_old_install_record(self):
         os.rename(self.old_receipt,self.base/'retained-original-ownership.json')
-        journal=self.cache/'install-prior.json';atomic_json(journal,dict(target=str(self.old),expected=self.old_id,verification=verify_install(self.old,self.old_id)))
+        journal=self.cache/'install-prior.json';atomic_json(journal,dict(status='INSTALLED_NOT_STARTED',target=str(self.old),expected=self.old_id,verification=verify_install(self.old,self.old_id)))
         folder=self.cache/'handoffs/prior';folder.mkdir()
         atomic_json(folder/'plan.json',dict(format=1,nonce='c'*64,installed=str(self.root/'0-synthetic'),cache=str(self.cache),approved=dict(**self.old_id,sha256=self.installer_hash)))
         atomic_json(folder/'result.json',dict(status='COMPLETE',nonce='c'*64,installed=str(self.old),installJournal=str(journal),verification='B_PROGRAM_DATA_AND_CREDENTIAL_SNAPSHOT_MATCH'))
@@ -136,7 +136,7 @@ class ResidueCleanupTests(unittest.TestCase):
 
     def complete_target(self,old,new,expected,nonce='d'*64):
         journal=self.cache/('install-'+str(expected['version'])+'.json')
-        atomic_json(journal,dict(target=str(new),expected=expected,verification=verify_install(new,expected)))
+        atomic_json(journal,dict(status='INSTALLED_NOT_STARTED',target=str(new),expected=expected,verification=verify_install(new,expected)))
         folder=self.cache/'handoffs'/nonce[:8];folder.mkdir(exist_ok=True)
         atomic_json(folder/'plan.json',dict(format=1,nonce=nonce,installed=str(old),cache=str(self.cache),approved=dict(**expected,sha256=self.installer_hash)))
         atomic_json(folder/'result.json',dict(status='COMPLETE',nonce=nonce,installed=str(new),installJournal=str(journal),verification='B_PROGRAM_DATA_AND_CREDENTIAL_SNAPSHOT_MATCH'))
@@ -221,12 +221,13 @@ class ResidueCleanupTests(unittest.TestCase):
                 atomic_json(folder/'result.json',failed);self.assert_reference_retained(directory)
 
     def test_cross_root_journal_identity_and_verification_must_match_before_releasing_reference(self):
-        for mismatch in ('target','version','sourceSha','channel','product','platform','verification','status'):
+        for mismatch in ('target','version','sourceSha','channel','product','platform','verification','status','missingStatus'):
             with self.subTest(mismatch=mismatch):
                 directory,folder,plan,result,journal=self.referenced_download();value=json.loads(journal.read_text())
                 if mismatch=='target':value['target']=str(self.current)
                 elif mismatch=='verification':value['verification']={}
                 elif mismatch=='status':value['status']='FAILED_RETAINED'
+                elif mismatch=='missingStatus':value.pop('status')
                 else:value['expected'][mismatch]={'version':3,'sourceSha':'f'*40,'channel':'preview','product':'other-product','platform':'other-platform'}[mismatch]
                 atomic_json(journal,value);self.assert_reference_retained(directory)
 
