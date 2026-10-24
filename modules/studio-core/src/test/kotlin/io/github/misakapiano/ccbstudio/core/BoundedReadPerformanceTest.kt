@@ -82,6 +82,24 @@ class BoundedReadPerformanceTest {
         }
     }
 
+    @Test fun boundedReadRequestsCannotCreateOriginalSizedNativeBufferAndZeroReadKeepsBytes() {
+        val payload=ByteArray(3*65536+17){(it*37+11).toByte()}
+        for(hint in listOf(0L,payload.size.toLong(),Long.MAX_VALUE)) {
+            var consumed=0;var largest=0;var zeroOnce=true
+            val input=object:java.io.InputStream() {
+                override fun read():Int=if(consumed==payload.size)-1 else payload[consumed++].toInt() and 255
+                override fun read(target:ByteArray,offset:Int,length:Int):Int {
+                    largest=maxOf(largest,length)
+                    if(length==0)return 0
+                    if(zeroOnce){zeroOnce=false;return 0}
+                    if(consumed==payload.size)return -1
+                    val n=minOf(length,payload.size-consumed);System.arraycopy(payload,consumed,target,offset,n);consumed+=n;return n
+                }
+            }
+            assertContentEquals(payload,readBoundedInput(input,payload.size,hint))
+            assertEquals(payload.size,consumed);assertTrue(largest<=65536,"File-channel requests must stay bounded independently of original size")
+        }
+    }
     @Test fun ioFailureAfterInitialOrGrowthReadReturnsNoPartialResultAndKeepsException() {
         for(hint in listOf(0L,5L,100L)) {
             val fault=java.io.IOException("synthetic bounded input failure");var consumed=0

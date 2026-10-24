@@ -96,7 +96,15 @@ internal fun readBoundedInput(input:java.io.InputStream,max:Int,sizeHint:Long):B
     val sentinelLimit=max+1
     require(sentinelLimit>=0) // Preserve readNBytes' rejection of negative/overflowed lengths.
     val capacity=sizeHint.coerceIn(0L,sentinelLimit.toLong()).toInt()
-    val initial=ByteArray(capacity);val count=input.readNBytes(initial,0,capacity)
+    val initial=ByteArray(capacity);var count=0
+    // FileChannel's heap-buffer adapter may cache a native buffer as large as each read.
+    // Fill the one return array in bounded requests rather than retaining an original-sized buffer.
+    while(count<capacity) {
+        val n=input.read(initial,count,minOf(65536,capacity-count))
+        if(n<0)break
+        if(n==0){val value=input.read();if(value<0)break;initial[count++]=value.toByte()}
+        else count+=n
+    }
     if(count>max)throw DataProblem("CORRUPT","File exceeds budget; retained")
     if(count<capacity)return initial.copyOf(count)
     val extra=input.read()
