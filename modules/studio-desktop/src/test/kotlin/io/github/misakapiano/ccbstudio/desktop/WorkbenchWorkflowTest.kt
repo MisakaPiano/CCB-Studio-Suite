@@ -407,8 +407,7 @@ class WorkbenchWorkflowTest {
         try {
             c.saveAccount(null,"Continuous fixture","NAI","https://image.novelai.net",NovelAiImageModel.V4_5_FULL.apiId,"LOCAL_TEST_ONLY");c.idle()
             scene.frames();scene.field("基础 Prompt","Continuous fixture")
-            val toggle=scene.nodes().first{it.config.getOrNull(SemanticsProperties.Role)==androidx.compose.ui.semantics.Role.Switch && (it.matches("连续生成")||it.children.any{child->child.matches("连续生成")})}
-            assertTrue(toggle.config[SemanticsActions.OnClick].action!!.invoke());scene.frames()
+            scene.click("连续生成");scene.frames()
             scene.field("目标图片数","3");scene.click("2")
             assertTrue(c.draft.continuousModeEnabled);assertEquals(2,c.draft.activeSettings.count)
             scene.generateClick();c.idle();scene.frames()
