@@ -1,3 +1,7 @@
+## 2026-10-25 作业日期合并新基线等待Desktop资源（生产未改）
+
+测试源码3d73699，仅新增RecordedJobTimesPerformanceTest单方法；生产仍已固定52e0bf0，基线尚未执行，不标通过。128/512/2048合成JobRecord普通/合成结果、乱序重复ID、失败任务结果，检查首次键顺序与最后输入任务覆盖，实际StudioState.validate/4MiB预算计划在用例执行时核验。目标是定位旧flatMap/Pair/双Map临时分配，有实际证据后才改合并，不改导入收据完整解析/预算/未知日期/来源/请求或UI。Desktop正在运行，Studio单次资源门等待、无并行构建；忙时仅低负载准备。旧接受批次9/启动不重跑，新Project只准备、无发布/日常操作，旧失败/人工未验/115与Prompt PENDING/q09保持；普通资源让行不是取消持续授权。
+
 ## 2026-10-25 标签相册默认对象分配增量自动通过（未发布）
 
 [52e0bf0实现/原始证据](audits/PERF003_TAG_ALBUM_DEFAULTS_20261025.md)：最终4唯一方法PASS，0失败/错误/跳过，基线1另列。仅tag投影内首次通过原canonical构造复用不可变默认recipe，entry/image仍逐条创建、时间/ID/key/原默认值保持；权威代码/请求未改。分配少约68%～73%，最大配对墙钟4.590→4.845ms略慢、原样保留，不称速度/UI/RSS/峰值堆/人工/包或独立通过。新Project仅准备，16历史索引/原Desktop报告边界不变；继续既有低负载定位、Desktop优先，无发布/日常操作，旧失败/否决/遍历未采用/资产编辑未验/115与Prompt PENDING/q09 FAILED-UNKNOWN/PRODUCT_HOLD保持。
