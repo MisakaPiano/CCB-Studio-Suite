@@ -1,0 +1,31 @@
+{
+  "phase": "perf005-rich-tag-syntax-baseline-20261025",
+  "startedUtc": "2026-10-25T05:47:56.640274+00:00",
+  "seconds": 15.022,
+  "exitCode": 0,
+  "tests": 1,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--priority",
+    "low",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    "-PpreviewTestRoot=H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-b6866bb2fbf94242bb0c8fb01d9d9d76\\payload",
+    ":studio-core:test",
+    "--tests",
+    "*RichTagSyntaxPerformanceTest"
+  ],
+  "baseCommit": "73259d51414ccd95d9a2f911c845084d00215bc2",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

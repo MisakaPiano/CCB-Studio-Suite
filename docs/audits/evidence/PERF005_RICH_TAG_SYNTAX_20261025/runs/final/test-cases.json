@@ -1,0 +1,20 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.RichTagSyntaxPerformanceTest",
+    "name": "aliasesQuotedMalformedTagsNumericRulesAndLimitsKeepRecordedResults",
+    "seconds": "0.093",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.RichTagSyntaxPerformanceTest",
+    "name": "measuredActualRichTokensKeepAdmittedDocumentStyleAndSnapshots",
+    "seconds": "0.387",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.RichTagSyntaxPerformanceTest",
+    "name": "simultaneousTagParsingKeepsIndependentStyleStacksAndResults",
+    "seconds": "0.004",
+    "status": "PASS"
+  }
+]

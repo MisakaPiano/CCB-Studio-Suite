@@ -1,3 +1,7 @@
+## 2026-10-25 PERF-005富文本固定表达式最终3方法通过
+
+[9987d85报告/原始逐例](audits/PERF005_RICH_TAG_SYNTAX_20261025.md)：只1lazy固定Regex+1引用，标签/样式/错误/长度嵌套及其他生产保持。最终3唯一方法PASS，基线1不累加；属性分配约少64%，纯文本/简单标签不变，墙钟对照有噪声，不外推UI/RSS/人工。新[复审仅准备](../handoff/PERF005_RICH_TAG_SYNTAX_REVIEW_READY_20261025.md)。持续授权已置当前交接顶部，继续已有PERF-005标点分类新函数基线、Desktop优先；旧失败/UNKNOWN/未验与发布边界保持。
+
 ## 2026-10-25 PERF-005竖排固定准备复用最终4方法通过
 
 [e9ae9f3实现/原始逐例及边界](audits/PERF005_VERTICAL_TOKENS_20261025.md)：最终4唯一方法PASS，基线2/参考文件/轮次不相加；只2lazy常量+3条件，映射/样式/每调用状态/其他生产保持。线程分配少约83%～93.3%，局部投影非字体/布局/像素/UI/RSS/冷启动或人工；collector准备失败与原字节恢复单列、0新测试。[复审只准备](../handoff/PERF005_VERTICAL_TOKENS_REVIEW_READY_20261025.md)，原固定包/失败/路径错误UNKNOWN/未验保持，Desktop优先，无发布/日常操作，五项登记不追加范围。
