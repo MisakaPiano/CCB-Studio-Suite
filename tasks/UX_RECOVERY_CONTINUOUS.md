@@ -1,5 +1,9 @@
 # UX恢复连续实施授权
 
+## 2026-10-25 21:46 JST 单次恢复原四项，验证范围已收尾
+
+原协调会话附用户12:46 UTC“同意”对话，授权先核Desktop当前资源/内存/磁盘及原预算，仅恢复已有4项主题测试；不打包/发布/安装、真实归档/搬移/删除、自动清理或新功能。本线程按相同H/C下限、额外内存观察、两次安静owner/启动前检查执行；首编译42146d3 FAILED/0JUnit保留，30b0659只补两处else前空格，不改断言/范围，最终原4唯一方法PASS/0失败错误跳过，sourceStable。[固定源码与原始逐例](../docs/audits/DISPLAY_THEME_FOUR_REGRESSION_20261025.md)。B/C均--keep-fixtures并显式保留，不做自动清理。当前本次范围结束，不自动进入原第3步内部包或后三组；实际UI/人工/包/完整更新/独立未验，UPD-CLEAN-PROTECTION-001仍仅静态登记，旧失败/否决/PENDING及PRODUCT_HOLD保持。以下较早未编译/资源等待按历史时点保留，不重跑已通过四项求绿。
+
 ## 2026-10-25 第2步主题接线与资源约束
 
 沿用UX-DISPLAY-THEME-001，固定42146d3；[范围/代码/逐例待执行及资源记录](../docs/audits/DISPLAY_THEME_IMPLEMENTATION_20261025.md)。Desktop实际模式/配色只读核对后作Suite最小对齐，默认保留深色蓝色、不改日常设置。当前SOURCE IMPLEMENTED但NOT COMPILED/NOT TESTED/USER NOT TESTED，4新增方法准备、实际0执行；保守预算2.043GiB高于H盘1.334GiB且Desktop Java owner存在，不启动Gradle/原生宿主/包，继续低负载源码核对和留证。重负载前逐次核实际目标卷及峰值预算，空间不足只暂停依赖项；不是清理/移动用户文件、真实隔离副本、凭据或原始证据的新授权，不扩I盘目录，不抢Desktop、不改安全/扫描/重启。第3步包仍NOT BUILT/NOT VERIFIED，须主题实际验证后另核构建/解包并存预算；后三组及旧失败/否决/PENDING/未验均保留。下方较早“尚未实施主题”按历史时点解读，不重复开工或重跑性能。

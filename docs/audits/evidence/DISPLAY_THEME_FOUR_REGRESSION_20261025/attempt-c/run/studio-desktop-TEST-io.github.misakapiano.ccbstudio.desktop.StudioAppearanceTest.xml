@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.StudioAppearanceTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-25T12:57:20.475Z" hostname="DD1" time="4.139">
+  <properties/>
+  <testcase name="damagedLatestAppearanceBlocksWritesAndRetainsItsRevisionAndOriginal" classname="io.github.misakapiano.ccbstudio.desktop.StudioAppearanceTest" time="1.731"/>
+  <testcase name="strictSettingsRejectFutureMalformedAndOutOfRangeValuesInsteadOfReplacingThem" classname="io.github.misakapiano.ccbstudio.desktop.StudioAppearanceTest" time="0.011"/>
+  <testcase name="modesAndColorStylesHaveReadableForegroundsWithoutChangingTheExistingDefault" classname="io.github.misakapiano.ccbstudio.desktop.StudioAppearanceTest" time="0.075"/>
+  <testcase name="saveUsesLatestMetadataAndReopensWithoutChangingOriginalImageBytes" classname="io.github.misakapiano.ccbstudio.desktop.StudioAppearanceTest" time="2.32"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

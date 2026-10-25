@@ -1,0 +1,22 @@
+{
+  "recordedUtc": "2026-10-25T12:51:01.740098+00:00",
+  "task": "UX-DISPLAY-THEME-001",
+  "applicationSource": "42146d3705f5cbc9ed392735f9c4727f8a8f67d7",
+  "executionDocsHead": "4bce9ad0ed81e7d2401a352805b5bebe7e9ab25e",
+  "phase": "display-theme-resume-b-20261025",
+  "authorization": "Direct human 2026-10-25 12:46 UTC agreement relayed with transcript by original coordinator; only resume original four theme tests after fresh original resource admission. No package/release/install/real data/archival/move/delete/automatic cleanup/new features.",
+  "priorZeroTestEvidence": "docs/audits/evidence/DISPLAY_THEME_RESOURCE_GATE_20261025_A; fixed 4bce9ad0ed81e7d2401a352805b5bebe7e9ab25e; unchanged",
+  "tasks": [
+    ":studio-desktop:test",
+    "--tests",
+    "*StudioAppearanceTest"
+  ],
+  "runnerExtra": [
+    "--keep-fixtures"
+  ],
+  "plannedUniqueMethods": 4,
+  "protectionCase": "UPD-CLEAN-PROTECTION-001 remains STATIC ONLY; not executed here",
+  "heavyPriority": "Desktop first; two quiet observations 30 seconds apart plus final fresh space/memory/owner check. Unknown owner/CIM failures block.",
+  "baselineReruns": "NONE",
+  "sourceChanges": "NONE planned; fix only an observed blocker within these same four tests if needed, preserving every failed attempt."
+}

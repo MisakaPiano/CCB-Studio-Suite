@@ -1,0 +1,48 @@
+{
+  "observedStartUtc": "2026-10-25T12:50:58.0740629Z",
+  "observedEndUtc": "2026-10-25T12:51:01.6380661Z",
+  "budget": {
+    "outputs": {
+      "modules/studio-desktop/build": {
+        "bytes": 143500389,
+        "files": 2351,
+        "complete": true
+      },
+      "modules/studio-core/build": {
+        "bytes": 287836985,
+        "files": 1097,
+        "complete": true
+      },
+      "modules/image-authority/build": {
+        "bytes": 10949292,
+        "files": 1216,
+        "complete": true
+      },
+      "modules/asset-library/build": {
+        "bytes": 418505,
+        "files": 87,
+        "complete": true
+      }
+    },
+    "boundedScanComplete": true,
+    "hBudgetBytes": 2194033190,
+    "cBudgetBytes": 805306368,
+    "memoryFreeMinimumBytes": 2147483648,
+    "memoryPlanningBasisMiB": {
+      "GradleHeap": 512,
+      "GradleMetaspace": 384,
+      "testHeap": 256,
+      "launcherAllowance": 128,
+      "nativeAndTestMetaspaceAllowance": 256,
+      "OSDesktopHeadroom": 512
+    },
+    "hFreeBytes": 3089678336,
+    "cFreeBytes": 9574281216,
+    "basis": "H/C original conservative floors unchanged. Memory planning envelope is not a measured peak; compiler/test single-worker settings unchanged."
+  },
+  "memoryTotalBytes": 17122840576,
+  "memoryFreeBytes": 2441568256,
+  "heavyOwners": [],
+  "actualTestsStarted": 0,
+  "cleanup": "Disabled via --keep-fixtures"
+}

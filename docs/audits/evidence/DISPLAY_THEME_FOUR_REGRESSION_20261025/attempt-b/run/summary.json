@@ -1,0 +1,31 @@
+{
+  "phase": "display-theme-resume-b-20261025",
+  "startedUtc": "2026-10-25T12:52:40.284018+00:00",
+  "seconds": 54.708,
+  "exitCode": 1,
+  "tests": 0,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "FAILED",
+  "testEvidence": "NOT TESTED (build only or failed before execution)",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--priority",
+    "low",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    "-PpreviewTestRoot=H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-b9013ac3cf35474d9b8c2d7b6d54d014\\payload",
+    ":studio-desktop:test",
+    "--tests",
+    "*StudioAppearanceTest"
+  ],
+  "baseCommit": "4bce9ad0ed81e7d2401a352805b5bebe7e9ab25e",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

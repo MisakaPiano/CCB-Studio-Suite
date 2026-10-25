@@ -1,0 +1,145 @@
+{
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19,
+      "sha256": "3e5e82fc72e044ea9af807a2030b73dbb94800d2cd1775302063b2eee761ba1e"
+    },
+    {
+      "path": "attempt-b/control/gate-observations.jsonl",
+      "bytes": 372,
+      "sha256": "307bab058ed54dbb8fcdacdd0df47cf4ea181d77eecc4cd970e8082b496c91ca"
+    },
+    {
+      "path": "attempt-b/control/gate-status.json",
+      "bytes": 374,
+      "sha256": "31d9414a18262b734b54533e891b205b1bebd61733480e418cb8f966b7ab7bd2"
+    },
+    {
+      "path": "attempt-b/control/PLAN.json",
+      "bytes": 1274,
+      "sha256": "c2353dc9999e430f48e81dce4f9f73555ec91e92e4cfd5ec29c771d92c2e7ef1"
+    },
+    {
+      "path": "attempt-b/control/preflight.json",
+      "bytes": 1431,
+      "sha256": "928038a4e3ded16946664e14a850c09ac61d6814fdfeb7d25ef0ada1fe361406"
+    },
+    {
+      "path": "attempt-b/control/run-gate.ps1",
+      "bytes": 6675,
+      "sha256": "64926d918a5b2594a920c65da47324fb7a4c472a778a3535e3c1040459808b14"
+    },
+    {
+      "path": "attempt-b/control/runner.log",
+      "bytes": 4382,
+      "sha256": "b23079c5480c7929a4ea8abb1f675dd7ced4b953ea23f74d409a4770f2b0e016"
+    },
+    {
+      "path": "attempt-b/run/fixture-cleanup.json",
+      "bytes": 143,
+      "sha256": "4a60fe1ab990a17f4c9927f8e314c55937a02d93b9187109d1a35fb461800edb"
+    },
+    {
+      "path": "attempt-b/run/gradle.log",
+      "bytes": 3244,
+      "sha256": "a08127b82d004e16a309f28863ebc36f56c3d6e3a7b91c739cd4b6a21d708c50"
+    },
+    {
+      "path": "attempt-b/run/source-before.json",
+      "bytes": 80579,
+      "sha256": "df46ecad6ad60c0d33503070ab95b5febec01adf8dc972f740ca9bc14f4f5419"
+    },
+    {
+      "path": "attempt-b/run/summary.json",
+      "bytes": 1019,
+      "sha256": "2b2322f1cac77f5bdf3fd03e6f1a035dd26d9cba2d35d28480dfb215d08c16cb"
+    },
+    {
+      "path": "attempt-b/run/test-cases.json",
+      "bytes": 4,
+      "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+    },
+    {
+      "path": "attempt-c/control/gate-observations.jsonl",
+      "bytes": 372,
+      "sha256": "826bee2e64433d542a1689e0e343e2a0159f1265934e83f32318e34f1c588864"
+    },
+    {
+      "path": "attempt-c/control/gate-status.json",
+      "bytes": 374,
+      "sha256": "909a02920e4f1831685b0f0b9e399ca065cbeb0e26fca82fa6b407efe6c44413"
+    },
+    {
+      "path": "attempt-c/control/PLAN.json",
+      "bytes": 794,
+      "sha256": "9245b515d0f680956c5c577d02ebf5b1c0129b32c52fec22d2a52d26c564a965"
+    },
+    {
+      "path": "attempt-c/control/preflight.json",
+      "bytes": 1334,
+      "sha256": "06b2cb4f54e76cba985d8a2c0252d8214bf7d29a071fea5f2e10d0aee69d934f"
+    },
+    {
+      "path": "attempt-c/control/run-gate.ps1",
+      "bytes": 6675,
+      "sha256": "d68a407d3aa1fa7d78c7b04a96595011b935fd1c97fb790304793aaa869bc2cd"
+    },
+    {
+      "path": "attempt-c/control/runner.log",
+      "bytes": 7564,
+      "sha256": "93b341b49d0a05aa501b7baa96b80fd3b3f6afcaa2159c4f1ffd3854ad9ce6d9"
+    },
+    {
+      "path": "attempt-c/run/fixture-cleanup.json",
+      "bytes": 143,
+      "sha256": "ac16a53a9de7f028dc9e71a52aa28cf3298ca01024039daa066d7017ebe4635c"
+    },
+    {
+      "path": "attempt-c/run/gradle.log",
+      "bytes": 6470,
+      "sha256": "f749d1b1cd251e7910cc5950d19ef3f1533f9c242a56673d003adf59deca0399"
+    },
+    {
+      "path": "attempt-c/run/source-before.json",
+      "bytes": 80579,
+      "sha256": "b108ccfd68a96f80d1449a0741517cac6ce7d3693bfe07826d119267f1a66234"
+    },
+    {
+      "path": "attempt-c/run/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioAppearanceTest.xml",
+      "bytes": 1063,
+      "sha256": "5f14839a0544fb67c1d9fa9e8bb84cc1520b91df1c1fb0fd2357c7312897429c"
+    },
+    {
+      "path": "attempt-c/run/summary.json",
+      "bytes": 975,
+      "sha256": "dcb2031558c07360cb7e52ce8b5528b47334a23a50b7a8728c240800ff49db7e"
+    },
+    {
+      "path": "attempt-c/run/test-cases.json",
+      "bytes": 899,
+      "sha256": "770ca06f20b8adab59322889e11199e56acf442ae43f3bc78a4afc679e62eed3"
+    },
+    {
+      "path": "collect-results.py",
+      "bytes": 9895,
+      "sha256": "55d33cbde64843dd8f46ce143115fe302738767c603397548c108b2b6374bc46"
+    },
+    {
+      "path": "LEXICAL_FIX.patch",
+      "bytes": 3423,
+      "sha256": "534fe1fc3c486d6b7587631483aed27f97891050e7a188243ac5964b5163e451"
+    },
+    {
+      "path": "RUN_MATRIX.json",
+      "bytes": 3333,
+      "sha256": "6e0f3f57c2e69d7325884f39b41a5fc180bb96aed51ef650698602408e4762e0"
+    },
+    {
+      "path": "SOURCE_MAP.json",
+      "bytes": 4830,
+      "sha256": "283a3556f550c8d27ccb440c7cb7a76c0846d142b92d0c8da473805ccec1d088"
+    }
+  ],
+  "basis": "Exact task-owned raw copies, explicit input/source mapping, no user data or fixture payloads included."
+}

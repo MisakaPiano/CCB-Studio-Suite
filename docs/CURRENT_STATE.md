@@ -1,4 +1,10 @@
-## 当前停点：主题资源门到期，0执行；保护冲突仅静态登记
+## 当前结果：原四项主题隔离回归PASS，本次范围收尾
+
+2026-10-25用户12:46 UTC（21:46 JST）明确同意只在新鲜资源准入后恢复原4项主题测试，不打包/发版/安装/真实归档搬删/自动清理或扩功能。源码及实际最终执行30b065915e376d75cc6439fac0ba55925c73f735，C在21:55:49.551 JST启动、含编译96.211秒后4唯一JUnit方法PASS，0失败/错误/跳过、sourceStable=true；[固定结果/原始证据](audits/DISPLAY_THEME_FOUR_REGRESSION_20261025.md)。B资源已准入但42146d3首编译FAILED/exit1、0JUnit，根因为我此前替换颜色属性时漏了else前两处空格；30b0659只补这2空格，测试类/断言/范围不变。A零执行资源延期、B失败与现场均保留，最终只计C的4方法，不加循环、日志副本或旧基线。
+
+H/C原保守预算未下调，另观察内存并设2GiB规划下限，Java及打包owner两次安静/启动前检查全过才运行；无Desktop进程操作。B/C均--keep-fixtures并EXPLICITLY_RETAINED，没有runner自动清理。当前无Studio后台测试或包任务；此次授权范围完成，**不自动进入内部包或后三组**。主题实际UI/系统事件/用户体验、新包与完整更新链仍未验，非Project通过或全项目验收；UPD-CLEAN-PROTECTION-001仍仅静态登记、真实App未访问/修改。资产/编辑USER_NOT_TESTED、115/Prompt各PENDING、q09 FAILED/root UNKNOWN、旧失败/否决/证据及PRODUCT_HOLD / NOT RC保持。以下A资源阻塞与准备是历史时点。
+
+## 历史停点：主题资源门到期，0执行；保护冲突仅静态登记
 
 2026-10-25 20:10:58 JST资源门返回`RESOURCE_GATE_TIMEOUT_NO_TEST_STARTED`，runnerInvoked=false、实际新增JUnit0、runner日志0字节、没有新Runner阶段目录；不是PASS/FAIL/SKIPPED。主题源码仍42146d3、NOT COMPILED/NOT TESTED，整版包NOT BUILT。20:11:27 JST后续只读观测H盘3,090,264,064字节、C盘9,589,731,328字节，均满足未下调的原预算，但Desktop owner47608仍在；本线程不操作该进程。无Studio后台编译/测试/打包，低负载准备已完成；等待真实资源变化后再新鲜预检，不因idle重复启动相同等待窗口或新增工作。原始[资源门回执](audits/evidence/DISPLAY_THEME_RESOURCE_GATE_20261025_A/RESULT.json)及收集首轮编码名失败保留，未重跑资源门/测试。UPD-CLEAN-PROTECTION-001已随57876f1登记，仅静态结论：保护111优先、无自动ACTIVE记录迁移分支，解除保护需一次性人工审定和独立归属证明；真实App未访问/修改、用例未执行，主题后的正常内部包验收门不变。以下启动前空间及等待记录保留其时点。
 

@@ -1,4 +1,8 @@
-## 2026-10-25 显示主题源码接线；资源预检推迟验证
+## 2026-10-25 原四项主题隔离回归通过；本次止于验证
+
+[固定源码/原始逐例/失败保留](audits/DISPLAY_THEME_FOUR_REGRESSION_20261025.md)：30b0659最终4唯一方法PASS，0失败/错误/跳过、sourceStable；42146d3首编译因漏空格FAILED/0JUnit、A资源门0执行均分列保留。只补2处词法分隔，测试类/断言/范围不变；两轮--keep-fixtures，无自动清理。实际UI/人工/包/整版与UPD-CLEAN-PROTECTION-001未验；当前12:46 UTC用户授权只恢复四项，不打包/发版/安装或开启后三组。
+
+## 历史准备：2026-10-25 显示主题源码接线；资源预检推迟验证
 
 [UX-DISPLAY-THEME-001源码/待执行逐例/预检](audits/DISPLAY_THEME_IMPLEMENTATION_20261025.md)：42146d3，Desktop固定d53d46c只读核对，主/独立窗口颜色入口统一；4方法准备但NOT COMPILED/NOT TESTED、实际0执行。H盘1.334GiB低于保守2.043GiB预算且Desktop owner存在，未启动重负载/包；只推迟依赖步骤，低负载工作继续，无清理/跨盘/日常设置/公开发布，旧未验保持。
 

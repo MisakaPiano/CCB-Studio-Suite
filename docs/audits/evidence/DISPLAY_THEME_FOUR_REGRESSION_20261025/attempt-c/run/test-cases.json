@@ -1,0 +1,26 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioAppearanceTest",
+    "name": "damagedLatestAppearanceBlocksWritesAndRetainsItsRevisionAndOriginal",
+    "seconds": "1.731",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioAppearanceTest",
+    "name": "strictSettingsRejectFutureMalformedAndOutOfRangeValuesInsteadOfReplacingThem",
+    "seconds": "0.011",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioAppearanceTest",
+    "name": "modesAndColorStylesHaveReadableForegroundsWithoutChangingTheExistingDefault",
+    "seconds": "0.075",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioAppearanceTest",
+    "name": "saveUsesLatestMetadataAndReopensWithoutChangingOriginalImageBytes",
+    "seconds": "2.32",
+    "status": "PASS"
+  }
+]

@@ -1,0 +1,72 @@
+{
+  "recordedUtc": "2026-10-25T13:03:56.828042+00:00",
+  "authorization": "Human 2026-10-25 12:46 UTC (21:46 JST) agreement relayed with transcript by original coordinator; original four tests only after fresh resource admission.",
+  "priorA": {
+    "fixedEvidenceCommit": "4bce9ad0ed81e7d2401a352805b5bebe7e9ab25e",
+    "path": "docs/audits/evidence/DISPLAY_THEME_RESOURCE_GATE_20261025_A",
+    "outcome": "RESOURCE TIMEOUT; RUNNER NOT INVOKED; 0 METHODS",
+    "changed": false
+  },
+  "attempts": {
+    "b": {
+      "phase": "20261025T125230731187Z-display-theme-resume-b-20261025",
+      "applicationSource": "42146d3705f5cbc9ed392735f9c4727f8a8f67d7",
+      "actualExecutionCommit": "4bce9ad0ed81e7d2401a352805b5bebe7e9ab25e",
+      "outcome": "COMPILE FAILED BEFORE JUNIT",
+      "startedUtc": "2026-10-25T12:52:40.284018+00:00",
+      "secondsIncludingBuild": 54.708,
+      "actualMethods": 0,
+      "cases": [],
+      "fixtures": {
+        "root": "H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-b9013ac3cf35474d9b8c2d7b6d54d014",
+        "status": "EXPLICITLY_RETAINED"
+      },
+      "autoCleanup": "DISABLED / EXPLICITLY_RETAINED"
+    },
+    "c": {
+      "phase": "20261025T125548826733Z-display-theme-resume-c-20261025",
+      "applicationSource": "30b065915e376d75cc6439fac0ba55925c73f735",
+      "actualExecutionCommit": "30b065915e376d75cc6439fac0ba55925c73f735",
+      "outcome": "FOUR UNIQUE METHODS PASS",
+      "startedUtc": "2026-10-25T12:55:49.550729+00:00",
+      "secondsIncludingBuild": 96.211,
+      "actualMethods": 4,
+      "cases": [
+        {
+          "suite": "io.github.misakapiano.ccbstudio.desktop.StudioAppearanceTest",
+          "name": "damagedLatestAppearanceBlocksWritesAndRetainsItsRevisionAndOriginal",
+          "seconds": "1.731",
+          "status": "PASS"
+        },
+        {
+          "suite": "io.github.misakapiano.ccbstudio.desktop.StudioAppearanceTest",
+          "name": "strictSettingsRejectFutureMalformedAndOutOfRangeValuesInsteadOfReplacingThem",
+          "seconds": "0.011",
+          "status": "PASS"
+        },
+        {
+          "suite": "io.github.misakapiano.ccbstudio.desktop.StudioAppearanceTest",
+          "name": "modesAndColorStylesHaveReadableForegroundsWithoutChangingTheExistingDefault",
+          "seconds": "0.075",
+          "status": "PASS"
+        },
+        {
+          "suite": "io.github.misakapiano.ccbstudio.desktop.StudioAppearanceTest",
+          "name": "saveUsesLatestMetadataAndReopensWithoutChangingOriginalImageBytes",
+          "seconds": "2.32",
+          "status": "PASS"
+        }
+      ],
+      "fixtures": {
+        "root": "H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-2f92d111e598483eacbaaf559f8d34ba",
+        "status": "EXPLICITLY_RETAINED"
+      },
+      "autoCleanup": "DISABLED / EXPLICITLY_RETAINED"
+    }
+  },
+  "finalUniqueMethods": 4,
+  "counting": "B compile failed before tests; C four unique methods only. Do not add variants, XML rows, old baselines or zero-test resource attempts.",
+  "actualNativeUiOrPackageAcceptance": "NOT TESTED",
+  "protectionCase": "UPD-CLEAN-PROTECTION-001 remains REGISTERED / STATIC ONLY; not executed",
+  "noActions": "No package, release, install, real archival/move/delete, automatic cleanup, real credentials or private data access. B/C synthetic fixture roots retained."
+}

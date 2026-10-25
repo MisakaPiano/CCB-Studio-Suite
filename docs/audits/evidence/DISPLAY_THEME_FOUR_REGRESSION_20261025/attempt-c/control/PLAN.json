@@ -1,0 +1,15 @@
+{
+  "recordedUtc": "2026-10-25T12:55:17.841470+00:00",
+  "applicationSource": "30b065915e376d75cc6439fac0ba55925c73f735",
+  "phase": "display-theme-resume-c-20261025",
+  "scope": "Same original four StudioAppearanceTest methods only; two lexical spaces fix observed B compile blocker, no feature or test-scope expansion",
+  "priorB": {
+    "source": "42146d3705f5cbc9ed392735f9c4727f8a8f67d7",
+    "phase": ".local/windows-preview/evidence/20261025T125230731187Z-display-theme-resume-b-20261025",
+    "outcome": "compile FAILED before tests; actualJUnit0; raw and failed fixture explicitly retained"
+  },
+  "priorA": "4bce9ad unchanged zero-test resource gate evidence",
+  "plannedUniqueMethods": 4,
+  "keepFixtures": true,
+  "noPackageReleaseInstallCleanupPrivateDataOrProtectionCase": true
+}

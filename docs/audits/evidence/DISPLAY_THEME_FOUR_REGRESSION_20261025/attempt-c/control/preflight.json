@@ -1,0 +1,46 @@
+{
+  "observedStartUtc": "2026-10-25T12:55:17.4449777Z",
+  "observedEndUtc": "2026-10-25T12:55:17.7563551Z",
+  "budget": {
+    "outputs": {
+      "modules/studio-desktop/build": {
+        "bytes": 143500389,
+        "files": 2351,
+        "complete": true
+      },
+      "modules/studio-core/build": {
+        "bytes": 287836985,
+        "files": 1097,
+        "complete": true
+      },
+      "modules/image-authority/build": {
+        "bytes": 10949292,
+        "files": 1216,
+        "complete": true
+      },
+      "modules/asset-library/build": {
+        "bytes": 418505,
+        "files": 87,
+        "complete": true
+      }
+    },
+    "boundedScanComplete": true,
+    "hBudgetBytes": 2194033190,
+    "cBudgetBytes": 805306368,
+    "memoryFreeMinimumBytes": 2147483648,
+    "memoryPlanningBasisMiB": {
+      "GradleHeap": 512,
+      "GradleMetaspace": 384,
+      "testHeap": 256,
+      "launcherAllowance": 128,
+      "nativeAndTestMetaspaceAllowance": 256,
+      "OSDesktopHeadroom": 512
+    },
+    "hFreeBytes": 3088236544,
+    "cFreeBytes": 9572179968,
+    "basis": "Original H/C floors and B memory minimum unchanged; conservative estimate not measured peak."
+  },
+  "memoryFreeBytes": 2445381632,
+  "actualTestsStarted": 0,
+  "cleanup": "--keep-fixtures; no automatic cleanup"
+}
