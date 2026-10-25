@@ -43,13 +43,14 @@ object TypesetLayout {
         }
         return out
     }
+    private val richTagSyntax by lazy { Regex("^([a-zA-Z_]+)\\s*=\\s*(.+)$") }
     private fun patch(tag:String,s:TypesetStyle):TypesetStyle? {
         when(tag.lowercase()) {
             "b","bold"->return s.copy(fontWeight=700);"i","italic"->return s.copy(italic=true)
             "u","underline"->return s.copy(underline=true);"strike","del"->return s.copy(strike=true)
             "plain"->return s.copy(fontWeight=400,italic=false,underline=false,strike=false)
         }
-        val m=Regex("^([a-zA-Z_]+)\\s*=\\s*(.+)$").matchEntire(tag)?:return null
+        val m=richTagSyntax.matchEntire(tag)?:return null
         val v=m.groupValues[2].trim().let{if(it.length>=2 && ((it.first()=='"' && it.last()=='"')||(it.first()=='\'' && it.last()=='\'')))it.substring(1,it.length-1)else it}
         fun number(default:Double)=v.toDoubleOrNull()?.takeIf{it.isFinite() && it!=0.0}?:default
         return when(m.groupValues[1].lowercase()) {
