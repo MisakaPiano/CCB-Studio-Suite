@@ -1,0 +1,70 @@
+{
+  "format": 1,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19,
+      "sha256": "3e5e82fc72e044ea9af807a2030b73dbb94800d2cd1775302063b2eee761ba1e"
+    },
+    {
+      "path": "ANALYSIS.json",
+      "bytes": 7119,
+      "sha256": "5cd2341f04693160ca12e23614c6234f1c142d0c8a74b947d2d270077281a90c"
+    },
+    {
+      "path": "ATTEMPTS_AND_LIMITS.md",
+      "bytes": 1356,
+      "sha256": "78cc06d5ee3e1262ed021487767670df2c1713b7765269dddfa8d885d5978d76"
+    },
+    {
+      "path": "collect-warm.py",
+      "bytes": 6857,
+      "sha256": "e0e6c7186b43da09543bb743a20fdce37ab0b3e01d075cc7724b42522b3fa9d0"
+    },
+    {
+      "path": "resource-boundaries.jsonl",
+      "bytes": 154,
+      "sha256": "f38677d3fd2820531d402371f238e77d3621136b3bea94e254cbf0a36f4da047"
+    },
+    {
+      "path": "run/fixture-cleanup.json",
+      "bytes": 283,
+      "sha256": "2d45fecc419b673c62d4f4aeeea59a5c3e4dac322737a895400953729218afb3"
+    },
+    {
+      "path": "run/gradle.log",
+      "bytes": 1600,
+      "sha256": "0112466af1e71eb2c7a9413abf8724d01c9c7a4a6c267ec0a9269146c88d912c"
+    },
+    {
+      "path": "run/source-before.json",
+      "bytes": 78568,
+      "sha256": "bc3bcd1fa934125cb7c672cdb5218c61c18822ff44a55d56020bb4672f19c224"
+    },
+    {
+      "path": "run/studio-core-TEST-io.github.misakapiano.ccbstudio.core.OrganizationDescendantsPerformanceTest.xml",
+      "bytes": 22925,
+      "sha256": "2cb3769bc2648bfb420e7f2aa32165312059735f79cfb301ae4eabd92334bb5b"
+    },
+    {
+      "path": "run/summary.json",
+      "bytes": 1083,
+      "sha256": "e7539f194c9b4383d31a8a0afa395b70bc298009651b9d177e9cc674b8b7a63b"
+    },
+    {
+      "path": "run/test-cases.json",
+      "bytes": 245,
+      "sha256": "77e21d591d4aec9bef2c642bf5397c72cc9655b591f6edb4d04536ab6def9dd8"
+    },
+    {
+      "path": "samples.json",
+      "bytes": 29829,
+      "sha256": "304b9301eb00ce299ba338c7e369b95ee69301d2bc6429f97366864f183c621f"
+    },
+    {
+      "path": "SOURCE_MAP.json",
+      "bytes": 1054,
+      "sha256": "0a2b76473d66a1a7b56e1a9f5142abbd129b9ad5638b058d27947eb4582f44b4"
+    }
+  ]
+}

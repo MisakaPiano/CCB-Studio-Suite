@@ -1,0 +1,18 @@
+{
+  "applicationSource": "01020b1f82bff95dfacdb75f6318b3d2d258c626",
+  "executionSource": "9512e88a9f78df9e373a8a1eb182992819475706",
+  "onlyChangedModuleInput": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/OrganizationDescendantsPerformanceTest.kt",
+  "onlyChange": "symmetric warmup2to20,no production change",
+  "productionInputSha256": "1be1194dd7b11e17b1d159f92b81f5f50cd25c64fed0654382f51d903189dcc2",
+  "productionEqualsPriorCandidateRaw": true,
+  "testInputSha256": "fe74f966daafd4bee67734831e0c9e2eb3f2f787b7863cde600508d66edb2151",
+  "diagnosticUniqueMethods": 1,
+  "noAdditionalFunctionalCoverage": true,
+  "originalThreeMethodsNotAddedAgain": true,
+  "oldTwoWarmupArchive": "4ed5cae62fc29993d7191f29b508c6a68ae86f0c5e9574ed85a62a1694a5a7e8,7314ef9",
+  "oldNegativeCohortRetained": true,
+  "performanceStatus": "HOLD;different warmup cohort changes direction,no JIT root cause/first-use acceptance",
+  "release": "NONE",
+  "independentReview": "NOT REQUESTED",
+  "userAndPackage": "NOT TESTED"
+}

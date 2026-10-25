@@ -1,3 +1,7 @@
+## 2026-10-25 PERF-003组织目录预热诊断与返工候选
+
+[9512e88诊断及原始证据](audits/PERF003_FOLDER_DESCENDANTS_WARM_DIAGNOSTIC_20261025.md)实际1方法PASS（重复测量不新增功能覆盖、不累加原3项），生产不变，20预热结果与旧2预热方向不同、根因UNKNOWN/HOLD保留。0564cc4先筛选再递归的生产返工待新3项回归，未标完成；旧负面数据/包/SHA保留，不代签首用/UI/RSS/用户/包或独立验收。Desktop优先，新Project只准备、无发布/日常操作，旧边界保持。
+
 ## 2026-10-25 PERF-003组织目录候选：性能HOLD，诊断中
 
 [01020b1/固定原始证据](audits/PERF003_FOLDER_DESCENDANTS_CANDIDATE_01020B1_20261025.md)功能3方法PASS、基线1分列；1000节点根分配改善但墙钟12.48对5.79ms，HOLD/根因UNKNOWN，不写完成。9512e88只改测试预热做单方法诊断，生产不变、原cohort保留；重复调用者问题另留。已准备[fa58a50的16报告固定索引](../handoff/PERFORMANCE_INCREMENT_REVIEW_READY_20261025.md)，排除此新候选，不累加旧测试、不自动外发/发布。Desktop优先，旧边界保持。
