@@ -20,12 +20,7 @@ import java.util.UUID
         batches.forEach{UUID.fromString(it.id);require(it.kind in setOf("manual","auto")&&it.alias.isNotBlank()&&it.alias.length<=100&&it.createdAt>0);require(it.parent==null||folders.any{f->f.id==it.parent});require(it.groups.size<=40&&it.groups.distinctBy{g->g.id}.size==it.groups.size);it.groups.forEach{g->UUID.fromString(g.id);require(g.name.isNotBlank()&&g.name.length<=100&&g.images.size<=1000&&g.images.distinct().size==g.images.size);g.images.forEach{UUID.fromString(it)}}}
         require(currentManual==null||batches.any{it.id==currentManual&&it.kind=="manual"&&it.archivedAt==null})
     }
-    fun descendants(id:String):Set<String> {
-        val result=linkedSetOf(id)
-        fun visit(parent:String){folders.filter{it.parent==parent}.forEach{child->result+=child.id;visit(child.id)}}
-        visit(id)
-        return result
-    }
+    fun descendants(id:String):Set<String> = setOf(id)+folders.filter{it.parent==id}.flatMap{descendants(it.id)}
     fun path(id:String?):String {val f=folders.find{it.id==id}?:return "";return listOf(path(f.parent),f.name).filter{it.isNotEmpty()}.joinToString(" / ")}
 }
 
