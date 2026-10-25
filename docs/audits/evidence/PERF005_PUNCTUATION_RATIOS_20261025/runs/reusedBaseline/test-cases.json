@@ -1,0 +1,20 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.VerticalPunctuationClassPerformanceTest",
+    "name": "punctuationOrderTightnessStylesWrappingAndDisabledControlKeepFullLayout",
+    "seconds": "0.102",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.VerticalPunctuationClassPerformanceTest",
+    "name": "simultaneousVerticalLayoutsKeepIndependentCellsAndLineState",
+    "seconds": "0.003",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.VerticalPunctuationClassPerformanceTest",
+    "name": "measuredVerticalLayoutKeepsClassesAdvancesWrappingAndDocument",
+    "seconds": "0.465",
+    "status": "PASS"
+  }
+]

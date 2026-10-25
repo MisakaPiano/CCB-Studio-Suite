@@ -1,0 +1,130 @@
+{
+  "format": 1,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19,
+      "sha256": "3e5e82fc72e044ea9af807a2030b73dbb94800d2cd1775302063b2eee761ba1e"
+    },
+    {
+      "path": "ANALYSIS.json",
+      "bytes": 14136,
+      "sha256": "357615c2f08843e5a9ab52f23c7a0f4158bbad9f59ccc5478335c5812fb22a15"
+    },
+    {
+      "path": "ATTEMPTS_AND_LIMITS.md",
+      "bytes": 2621,
+      "sha256": "c3968275f88310831a6f82767082c792f355dc121c44d9da45ce2ec964ecb27a"
+    },
+    {
+      "path": "collect.py",
+      "bytes": 12763,
+      "sha256": "819603e9b7740b906ac892e877636b0f0c932989a42bb228c992aa05df54665a"
+    },
+    {
+      "path": "final-samples.json",
+      "bytes": 34675,
+      "sha256": "1b82f1936b648c66d0e75bf5c183a776ed95c08f395f657f99456f565fb84c63"
+    },
+    {
+      "path": "inputs/final/TypesetLayout.kt",
+      "bytes": 11381,
+      "sha256": "2581b615b426cff5a63cac35f7420c1a1bff57cefd295345218d879abc65a122"
+    },
+    {
+      "path": "inputs/reusedBaseline/TypesetLayout.kt",
+      "bytes": 11149,
+      "sha256": "02a7bc69c710641ec7bf436ed51d7a5ebaa6fb82f0b522893d8ffb8737724c08"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2818,
+      "sha256": "471f9d18b82a60cdae08d3dacff2c6623ececadb9040e9a6567e5dd35cd61d49"
+    },
+    {
+      "path": "prepare.py",
+      "bytes": 5045,
+      "sha256": "278dd4b1d689becccd02d9ce094c51b920e8259f1f37e2f87a848613c44d6e2d"
+    },
+    {
+      "path": "resource-boundaries.jsonl",
+      "bytes": 362,
+      "sha256": "d111f1fc9961b67074d810d03d3e505932147c9ed511ee78b764b7f5988fb644"
+    },
+    {
+      "path": "resource-gate.ps1",
+      "bytes": 2851,
+      "sha256": "50b1040b8dfddbe6d7aa04649e2408ffbc88cb19b11731d7e6ff74ee09498350"
+    },
+    {
+      "path": "reusedBaseline-samples.json",
+      "bytes": 8689,
+      "sha256": "bf836cbf40c1bd9d4e3593b4df229cb410c2e4a46f592b3051738f18e29d7f3a"
+    },
+    {
+      "path": "runs/final/fixture-cleanup.json",
+      "bytes": 283,
+      "sha256": "0a66278038f4268bb753cb171f862e94f8bce4ce6632ecd7da6480ac09cd22bd"
+    },
+    {
+      "path": "runs/final/gradle.log",
+      "bytes": 1793,
+      "sha256": "58c4f1f7b216c5fe30136c5101c1fbda1b979af5b905ad7ed935e6f40d8dcb94"
+    },
+    {
+      "path": "runs/final/source-before.json",
+      "bytes": 80229,
+      "sha256": "c312ed9cc1f6294e3d6f59ed231f20d5e53d1a34244695850e9d6dd6b349ddde"
+    },
+    {
+      "path": "runs/final/studio-core-TEST-io.github.misakapiano.ccbstudio.core.VerticalPunctuationRatioPerformanceTest.xml",
+      "bytes": 28130,
+      "sha256": "05ed55592dbded489c5454265d8f18da5a4a07fd172932cee5155c35757f5820"
+    },
+    {
+      "path": "runs/final/summary.json",
+      "bytes": 1001,
+      "sha256": "303770f7b5665f8c036386683a9145450dc3905eacb2bb898a3c7b50c825db0f"
+    },
+    {
+      "path": "runs/final/test-cases.json",
+      "bytes": 692,
+      "sha256": "8ec5055e98b5d00a4281592eb33eddf77c900179abf251b52ce5552b094abca0"
+    },
+    {
+      "path": "runs/reusedBaseline/fixture-cleanup.json",
+      "bytes": 283,
+      "sha256": "7d9d42c235b272d44b62abfe99f234e2097c345dcf668f0a1d95d1e9f03a515e"
+    },
+    {
+      "path": "runs/reusedBaseline/gradle.log",
+      "bytes": 1804,
+      "sha256": "b5c5e42c1d3f4dc87e0404ab8446ffecb9177f8d5c3fba95ffa5359dc0f8aa3a"
+    },
+    {
+      "path": "runs/reusedBaseline/source-before.json",
+      "bytes": 80039,
+      "sha256": "8c0e443c74380eb047030c3c862f6581415207377eb6ff15d7de54d9d3f26f0c"
+    },
+    {
+      "path": "runs/reusedBaseline/studio-core-TEST-io.github.misakapiano.ccbstudio.core.VerticalPunctuationClassPerformanceTest.xml",
+      "bytes": 13630,
+      "sha256": "ece395903bfc88eb7e6104daa393afe3d8761ea1855c560b7fe3984298cf22a0"
+    },
+    {
+      "path": "runs/reusedBaseline/summary.json",
+      "bytes": 1002,
+      "sha256": "3f566a908fae3cb6d07f1a8a9736370a317325015bc653a1733293b40af2e386"
+    },
+    {
+      "path": "runs/reusedBaseline/test-cases.json",
+      "bytes": 703,
+      "sha256": "8b360e397cd23da04d1306cad52f479d91b87cb316d32226ec021e3a943caa78"
+    },
+    {
+      "path": "SOURCE_MAP.json",
+      "bytes": 3364,
+      "sha256": "5e31f55e09b6a3cb81f110bd8026941808b6fab0b3b64306eca9f132dce3b8d6"
+    }
+  ]
+}

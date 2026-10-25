@@ -1,0 +1,68 @@
+{
+  "sources": {
+    "reusedBaseline": "3d9abb0e10a61a230e17542a8cc22b5c1c0992e3",
+    "final": "e8378806ce950bf3d22fff1dc3e71bc7c0d95548"
+  },
+  "precedingEvidenceCommit": "838b087a08a7f81eb62d2bef2f2f5f819433e2f8",
+  "precedingEvidencePath": "docs/audits/evidence/PERF005_PUNCTUATION_CLASSES_20261025",
+  "precedingRawSha256": "d026c15e213282c99b4455492d2b6550cf1a7a1208eb1e2f89eb7e0b6efc64a9",
+  "executions": {
+    "reusedBaseline": "3d9abb0e10a61a230e17542a8cc22b5c1c0992e3",
+    "final": "e8378806ce950bf3d22fff1dc3e71bc7c0d95548"
+  },
+  "identities": [
+    {
+      "run": "reusedBaseline",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetLayout.kt",
+      "rawInputSha256": "02a7bc69c710641ec7bf436ed51d7a5ebaa6fb82f0b522893d8ffb8737724c08",
+      "gitBlobSha256": "02a7bc69c710641ec7bf436ed51d7a5ebaa6fb82f0b522893d8ffb8737724c08"
+    },
+    {
+      "run": "reusedBaseline",
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/VerticalPunctuationClassPerformanceTest.kt",
+      "rawInputSha256": "b57eb6ef2b4929dc15749d2d334ad3e9c739870f4c4f933ce68d20a6838a4c32",
+      "gitBlobSha256": "b57eb6ef2b4929dc15749d2d334ad3e9c739870f4c4f933ce68d20a6838a4c32"
+    },
+    {
+      "run": "reusedBaseline",
+      "path": "tools/Run-PreviewChecks.py",
+      "rawInputSha256": "45f0f681f68b83c67c5a04607dfea09ecea742bcfd2f5f4ee31e3162901e9e23",
+      "gitBlobSha256": "d8dec9e6bcc417c59cc9d3dd32b79fd4519c16b86adbf582798b2d707c4935b4"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetLayout.kt",
+      "rawInputSha256": "2581b615b426cff5a63cac35f7420c1a1bff57cefd295345218d879abc65a122",
+      "gitBlobSha256": "2581b615b426cff5a63cac35f7420c1a1bff57cefd295345218d879abc65a122"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/VerticalPunctuationRatioPerformanceTest.kt",
+      "rawInputSha256": "186ba5ae0bc6b0ade74e34dbc30f5ca40276f37a1a499dbcb330ac144ea6e707",
+      "gitBlobSha256": "186ba5ae0bc6b0ade74e34dbc30f5ca40276f37a1a499dbcb330ac144ea6e707"
+    },
+    {
+      "run": "final",
+      "path": "tools/Run-PreviewChecks.py",
+      "rawInputSha256": "45f0f681f68b83c67c5a04607dfea09ecea742bcfd2f5f4ee31e3162901e9e23",
+      "gitBlobSha256": "d8dec9e6bcc417c59cc9d3dd32b79fd4519c16b86adbf582798b2d707c4935b4"
+    }
+  ],
+  "changedModulePaths": [
+    "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetLayout.kt",
+    "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/VerticalPunctuationRatioPerformanceTest.kt"
+  ],
+  "productionOnlyThreePrivateLazyRatioArraysAndThreeUses": true,
+  "exactNumericOrderFormulaAndAllOtherProductionTextUnchanged": true,
+  "privateArraysOnlyFieldAndWhenReferencesNoExposureAndNoWrites": true,
+  "recordedCachedClsReductionLayoutExactExceptActualTypeDependencyQualification": true,
+  "reusedPrecedingActualCurrentRowsNoBaselineRerun": true,
+  "standardAndDisabledDocumentAndLayoutHashesIdenticalToPreceding": true,
+  "rawInputsAndCanonicalGitVerified": true,
+  "finalUniqueMethods": 3,
+  "precedingMethodsNotAdded": true,
+  "package": "NONE",
+  "release": "NONE",
+  "independentReview": "NOT REQUESTED",
+  "humanAndPackage": "NOT TESTED"
+}

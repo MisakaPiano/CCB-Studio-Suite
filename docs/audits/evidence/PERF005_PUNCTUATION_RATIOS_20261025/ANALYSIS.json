@@ -1,0 +1,464 @@
+{
+  "medians": {
+    "reusedBaseline": [
+      {
+        "inputCodepoints": 128,
+        "profile": "disabled",
+        "kind": "current",
+        "lines": 13,
+        "utf16Length": 139,
+        "serializedDocumentBytes": 1545,
+        "layoutSha256": "03debf42b5e1efa3607d71b55589f873fd7a48174d44112f2236faad79c9ff75",
+        "medians": {
+          "wallMs": 0.0655,
+          "cpuMs": 0.0,
+          "allocatedBytes": 41992.0
+        }
+      },
+      {
+        "inputCodepoints": 128,
+        "profile": "standard",
+        "kind": "current",
+        "lines": 12,
+        "utf16Length": 139,
+        "serializedDocumentBytes": 1544,
+        "layoutSha256": "ed683c5b89c19f10a7f60050c01663e8b25b34d8a7fd1b1a91cb1c001a3cc619",
+        "medians": {
+          "wallMs": 0.0774,
+          "cpuMs": 0.0,
+          "allocatedBytes": 52928.0
+        }
+      },
+      {
+        "inputCodepoints": 1024,
+        "profile": "disabled",
+        "kind": "current",
+        "lines": 103,
+        "utf16Length": 1117,
+        "serializedDocumentBytes": 3825,
+        "layoutSha256": "06a3cd5b6e094310cad20e645f11420c4204b3fa5068a28556b3cc8b511b18b1",
+        "medians": {
+          "wallMs": 0.31884999999999997,
+          "cpuMs": 0.0,
+          "allocatedBytes": 330872.0
+        }
+      },
+      {
+        "inputCodepoints": 1024,
+        "profile": "standard",
+        "kind": "current",
+        "lines": 94,
+        "utf16Length": 1117,
+        "serializedDocumentBytes": 3824,
+        "layoutSha256": "cc13ffddef16433e8c571e1e7e27abe4713ba0a34d38fbf0c1016a74d6eb2ec8",
+        "medians": {
+          "wallMs": 1.08625,
+          "cpuMs": 0.0,
+          "allocatedBytes": 419916.0
+        }
+      },
+      {
+        "inputCodepoints": 8192,
+        "profile": "disabled",
+        "kind": "current",
+        "lines": 820,
+        "utf16Length": 8937,
+        "serializedDocumentBytes": 22073,
+        "layoutSha256": "2efd42c54015ebdc37af33b94828cdbd654c79beb250ccde5f7905bb8e0c48c1",
+        "medians": {
+          "wallMs": 2.9501999999999997,
+          "cpuMs": 7.8125,
+          "allocatedBytes": 2620304.0
+        }
+      },
+      {
+        "inputCodepoints": 8192,
+        "profile": "standard",
+        "kind": "current",
+        "lines": 745,
+        "utf16Length": 8937,
+        "serializedDocumentBytes": 22072,
+        "layoutSha256": "2e4def993208c7652cd364569ec0976cfdb09dcead6f51a2f857a3b391d943ed",
+        "medians": {
+          "wallMs": 2.58965,
+          "cpuMs": 0.0,
+          "allocatedBytes": 3327304.0
+        }
+      }
+    ],
+    "final": [
+      {
+        "inputCodepoints": 128,
+        "profile": "disabled",
+        "kind": "current",
+        "lines": 13,
+        "utf16Length": 139,
+        "serializedDocumentBytes": 1545,
+        "layoutSha256": "03debf42b5e1efa3607d71b55589f873fd7a48174d44112f2236faad79c9ff75",
+        "medians": {
+          "wallMs": 0.15005000000000002,
+          "cpuMs": 0.0,
+          "allocatedBytes": 41992.0
+        }
+      },
+      {
+        "inputCodepoints": 128,
+        "profile": "disabled",
+        "kind": "recorded",
+        "lines": 13,
+        "utf16Length": 139,
+        "serializedDocumentBytes": 1545,
+        "layoutSha256": "03debf42b5e1efa3607d71b55589f873fd7a48174d44112f2236faad79c9ff75",
+        "medians": {
+          "wallMs": 0.14784999999999998,
+          "cpuMs": 0.0,
+          "allocatedBytes": 41992.0
+        }
+      },
+      {
+        "inputCodepoints": 128,
+        "profile": "standard",
+        "kind": "current",
+        "lines": 12,
+        "utf16Length": 139,
+        "serializedDocumentBytes": 1544,
+        "layoutSha256": "ed683c5b89c19f10a7f60050c01663e8b25b34d8a7fd1b1a91cb1c001a3cc619",
+        "medians": {
+          "wallMs": 0.1225,
+          "cpuMs": 0.0,
+          "allocatedBytes": 42768.0
+        }
+      },
+      {
+        "inputCodepoints": 128,
+        "profile": "standard",
+        "kind": "recorded",
+        "lines": 12,
+        "utf16Length": 139,
+        "serializedDocumentBytes": 1544,
+        "layoutSha256": "ed683c5b89c19f10a7f60050c01663e8b25b34d8a7fd1b1a91cb1c001a3cc619",
+        "medians": {
+          "wallMs": 0.20415,
+          "cpuMs": 0.0,
+          "allocatedBytes": 52928.0
+        }
+      },
+      {
+        "inputCodepoints": 128,
+        "profile": "compact",
+        "kind": "current",
+        "lines": 12,
+        "utf16Length": 139,
+        "serializedDocumentBytes": 1543,
+        "layoutSha256": "16a728b1653875e74015e9f5ffa595279d6142d65030bce51ab9f76ed1951b49",
+        "medians": {
+          "wallMs": 0.0739,
+          "cpuMs": 0.0,
+          "allocatedBytes": 42768.0
+        }
+      },
+      {
+        "inputCodepoints": 128,
+        "profile": "compact",
+        "kind": "recorded",
+        "lines": 12,
+        "utf16Length": 139,
+        "serializedDocumentBytes": 1543,
+        "layoutSha256": "16a728b1653875e74015e9f5ffa595279d6142d65030bce51ab9f76ed1951b49",
+        "medians": {
+          "wallMs": 0.10214999999999999,
+          "cpuMs": 0.0,
+          "allocatedBytes": 52928.0
+        }
+      },
+      {
+        "inputCodepoints": 128,
+        "profile": "loose",
+        "kind": "current",
+        "lines": 13,
+        "utf16Length": 139,
+        "serializedDocumentBytes": 1541,
+        "layoutSha256": "64e6ea1db3cf1434feac34c5b3287c1e27bdcaaefb5be7bebeaabad5b8df1ca6",
+        "medians": {
+          "wallMs": 0.07595,
+          "cpuMs": 0.0,
+          "allocatedBytes": 41992.0
+        }
+      },
+      {
+        "inputCodepoints": 128,
+        "profile": "loose",
+        "kind": "recorded",
+        "lines": 13,
+        "utf16Length": 139,
+        "serializedDocumentBytes": 1541,
+        "layoutSha256": "64e6ea1db3cf1434feac34c5b3287c1e27bdcaaefb5be7bebeaabad5b8df1ca6",
+        "medians": {
+          "wallMs": 0.20140000000000002,
+          "cpuMs": 0.0,
+          "allocatedBytes": 52152.0
+        }
+      },
+      {
+        "inputCodepoints": 1024,
+        "profile": "disabled",
+        "kind": "current",
+        "lines": 103,
+        "utf16Length": 1117,
+        "serializedDocumentBytes": 3825,
+        "layoutSha256": "06a3cd5b6e094310cad20e645f11420c4204b3fa5068a28556b3cc8b511b18b1",
+        "medians": {
+          "wallMs": 0.49595,
+          "cpuMs": 0.0,
+          "allocatedBytes": 330872.0
+        }
+      },
+      {
+        "inputCodepoints": 1024,
+        "profile": "disabled",
+        "kind": "recorded",
+        "lines": 103,
+        "utf16Length": 1117,
+        "serializedDocumentBytes": 3825,
+        "layoutSha256": "06a3cd5b6e094310cad20e645f11420c4204b3fa5068a28556b3cc8b511b18b1",
+        "medians": {
+          "wallMs": 0.9882,
+          "cpuMs": 0.0,
+          "allocatedBytes": 330872.0
+        }
+      },
+      {
+        "inputCodepoints": 1024,
+        "profile": "standard",
+        "kind": "current",
+        "lines": 94,
+        "utf16Length": 1117,
+        "serializedDocumentBytes": 3824,
+        "layoutSha256": "cc13ffddef16433e8c571e1e7e27abe4713ba0a34d38fbf0c1016a74d6eb2ec8",
+        "medians": {
+          "wallMs": 0.5402,
+          "cpuMs": 0.0,
+          "allocatedBytes": 337376.0
+        }
+      },
+      {
+        "inputCodepoints": 1024,
+        "profile": "standard",
+        "kind": "recorded",
+        "lines": 94,
+        "utf16Length": 1117,
+        "serializedDocumentBytes": 3824,
+        "layoutSha256": "cc13ffddef16433e8c571e1e7e27abe4713ba0a34d38fbf0c1016a74d6eb2ec8",
+        "medians": {
+          "wallMs": 1.4243000000000001,
+          "cpuMs": 0.0,
+          "allocatedBytes": 419216.0
+        }
+      },
+      {
+        "inputCodepoints": 1024,
+        "profile": "compact",
+        "kind": "current",
+        "lines": 94,
+        "utf16Length": 1117,
+        "serializedDocumentBytes": 3823,
+        "layoutSha256": "0702d252447f75aad9191f46cab06580ea1a5c2a36a8de490e7445e5f991bdb5",
+        "medians": {
+          "wallMs": 0.6003499999999999,
+          "cpuMs": 0.0,
+          "allocatedBytes": 337376.0
+        }
+      },
+      {
+        "inputCodepoints": 1024,
+        "profile": "compact",
+        "kind": "recorded",
+        "lines": 94,
+        "utf16Length": 1117,
+        "serializedDocumentBytes": 3823,
+        "layoutSha256": "0702d252447f75aad9191f46cab06580ea1a5c2a36a8de490e7445e5f991bdb5",
+        "medians": {
+          "wallMs": 1.4775,
+          "cpuMs": 0.0,
+          "allocatedBytes": 419216.0
+        }
+      },
+      {
+        "inputCodepoints": 1024,
+        "profile": "loose",
+        "kind": "current",
+        "lines": 103,
+        "utf16Length": 1117,
+        "serializedDocumentBytes": 3821,
+        "layoutSha256": "74511a988ed30485379ce2d0b1b7ca14b60c73d474d84b38300f9757ed475a5e",
+        "medians": {
+          "wallMs": 0.6696,
+          "cpuMs": 0.0,
+          "allocatedBytes": 330872.0
+        }
+      },
+      {
+        "inputCodepoints": 1024,
+        "profile": "loose",
+        "kind": "recorded",
+        "lines": 103,
+        "utf16Length": 1117,
+        "serializedDocumentBytes": 3821,
+        "layoutSha256": "74511a988ed30485379ce2d0b1b7ca14b60c73d474d84b38300f9757ed475a5e",
+        "medians": {
+          "wallMs": 0.9173,
+          "cpuMs": 0.0,
+          "allocatedBytes": 412712.0
+        }
+      },
+      {
+        "inputCodepoints": 8192,
+        "profile": "disabled",
+        "kind": "current",
+        "lines": 820,
+        "utf16Length": 8937,
+        "serializedDocumentBytes": 22073,
+        "layoutSha256": "2efd42c54015ebdc37af33b94828cdbd654c79beb250ccde5f7905bb8e0c48c1",
+        "medians": {
+          "wallMs": 4.46195,
+          "cpuMs": 7.8125,
+          "allocatedBytes": 2620304.0
+        }
+      },
+      {
+        "inputCodepoints": 8192,
+        "profile": "disabled",
+        "kind": "recorded",
+        "lines": 820,
+        "utf16Length": 8937,
+        "serializedDocumentBytes": 22073,
+        "layoutSha256": "2efd42c54015ebdc37af33b94828cdbd654c79beb250ccde5f7905bb8e0c48c1",
+        "medians": {
+          "wallMs": 4.52405,
+          "cpuMs": 0.0,
+          "allocatedBytes": 2620304.0
+        }
+      },
+      {
+        "inputCodepoints": 8192,
+        "profile": "standard",
+        "kind": "current",
+        "lines": 745,
+        "utf16Length": 8937,
+        "serializedDocumentBytes": 22072,
+        "layoutSha256": "2e4def993208c7652cd364569ec0976cfdb09dcead6f51a2f857a3b391d943ed",
+        "medians": {
+          "wallMs": 2.9124,
+          "cpuMs": 0.0,
+          "allocatedBytes": 2672024.0
+        }
+      },
+      {
+        "inputCodepoints": 8192,
+        "profile": "standard",
+        "kind": "recorded",
+        "lines": 745,
+        "utf16Length": 8937,
+        "serializedDocumentBytes": 22072,
+        "layoutSha256": "2e4def993208c7652cd364569ec0976cfdb09dcead6f51a2f857a3b391d943ed",
+        "medians": {
+          "wallMs": 3.28945,
+          "cpuMs": 0.0,
+          "allocatedBytes": 3327304.0
+        }
+      },
+      {
+        "inputCodepoints": 8192,
+        "profile": "compact",
+        "kind": "current",
+        "lines": 745,
+        "utf16Length": 8937,
+        "serializedDocumentBytes": 22071,
+        "layoutSha256": "ed41e280da92a158a8e72c0d429ec4bee0ea34071a102cd991ef4944f9762446",
+        "medians": {
+          "wallMs": 2.60105,
+          "cpuMs": 0.0,
+          "allocatedBytes": 2672024.0
+        }
+      },
+      {
+        "inputCodepoints": 8192,
+        "profile": "compact",
+        "kind": "recorded",
+        "lines": 745,
+        "utf16Length": 8937,
+        "serializedDocumentBytes": 22071,
+        "layoutSha256": "ed41e280da92a158a8e72c0d429ec4bee0ea34071a102cd991ef4944f9762446",
+        "medians": {
+          "wallMs": 2.6640499999999996,
+          "cpuMs": 0.0,
+          "allocatedBytes": 3327304.0
+        }
+      },
+      {
+        "inputCodepoints": 8192,
+        "profile": "loose",
+        "kind": "current",
+        "lines": 820,
+        "utf16Length": 8937,
+        "serializedDocumentBytes": 22069,
+        "layoutSha256": "873490956cc5b78a42344c73d1ff2a57eeda366cc4f1fd2c0dd1f75992a8d969",
+        "medians": {
+          "wallMs": 3.6132,
+          "cpuMs": 7.8125,
+          "allocatedBytes": 2620304.0
+        }
+      },
+      {
+        "inputCodepoints": 8192,
+        "profile": "loose",
+        "kind": "recorded",
+        "lines": 820,
+        "utf16Length": 8937,
+        "serializedDocumentBytes": 22069,
+        "layoutSha256": "873490956cc5b78a42344c73d1ff2a57eeda366cc4f1fd2c0dd1f75992a8d969",
+        "medians": {
+          "wallMs": 2.63585,
+          "cpuMs": 0.0,
+          "allocatedBytes": 3275584.0
+        }
+      }
+    ]
+  },
+  "counts": {
+    "reusedBaseline": {
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "baseCommit": "3d9abb0e10a61a230e17542a8cc22b5c1c0992e3",
+      "seconds": 20.127,
+      "startedUtc": "2026-10-25T06:00:31.057506+00:00",
+      "sourceStable": true,
+      "newExecutionsInThisIncrement": 0
+    },
+    "final": {
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "baseCommit": "e8378806ce950bf3d22fff1dc3e71bc7c0d95548",
+      "seconds": 20.648,
+      "startedUtc": "2026-10-25T06:09:03.480655+00:00",
+      "sourceStable": true,
+      "newExecutionsInThisIncrement": 3
+    }
+  },
+  "newTestMethodsExecuted": 3,
+  "newFixtureCleanupFiles": 0,
+  "precedingFixtureCleanupNotAdded": true,
+  "limits": [
+    "Actual vertical layout only,allinputs vertical;no horizontal font measure/render/UI/image/store/provider",
+    "Preceding actual3d9current rows reused0newbaseline execution;standard/disabled rawdocument+layout identities match,compact/loose onlynewpaired rows",
+    "2warmups eachmode/4alternating rounds,fullLayout/docvalidate/serialization<=4MiB/UTF16<=100000 outsidecounter",
+    "3private fixedratio arrays onlyreadbylocalpart,neverreturn/passout;lazydelegate/firstuse/retainedarrays/peakheap/GC/RSS unmeasured",
+    "Independent standard/compact/loose vectors1e-9;unknownhelperfallback preserved,not valid document admission",
+    "Two ownthreads50rounds rotate3profiles not every lazyinit race/platform/longrun",
+    "Disabledcontrol unchanged;wall/alloc variation notattributed to changedratio branch without evidence"
+  ]
+}

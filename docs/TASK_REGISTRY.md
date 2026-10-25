@@ -1,3 +1,7 @@
+## 2026-10-25 PERF-005数值表候选HOLD，原实现已恢复
+
+[候选e837880功能3PASS/负面记录/恢复2c35296](audits/PERF005_PUNCTUATION_RATIOS_EXPERIMENT_20261025.md)分列：最大loose配对墙钟约慢37%，分配少20%不代签响应收益，NOT ADOPTED/根因UNKNOWN，无求绿重跑；前值复用0新基线。恢复全部modules/tools同实际3d9abb0、0新测试，候选/raw及负面决定保留。新[复审只准备](../handoff/PERF005_PUNCTUATION_RATIOS_REVIEW_READY_20261025.md)，原未验/旧失败/包不扩大。连续授权继续PERF-005字体依赖清单纯元数据成本定位，不重复已有字体加载缓存/不加载字体或重开UI，Desktop优先，不新建任务或发布。
+
 ## 2026-10-25 PERF-005标点类别：最终3方法通过
 
 [3d9abb0报告/三阶段raw](audits/PERF005_PUNCTUATION_CLASSES_20261025.md)最终3PASS，修正基线1PASS、原预期错误1FAIL分列，失败现场/raw/原精度保留。仅5lazy Set+5引用，分类/布局其他规则逐字保持，开启分配约少95%、关闭不变，非字体/像素/UI/RSS/包/用户/独立。新[复审只准备](../handoff/PERF005_PUNCTUATION_CLASSES_REVIEW_READY_20261025.md)。81420ac未读结果误记未执行，实际当时已结束，更正观察状态且0新测试，旧commit/raw保留；后续异步除明确0执行回执外仅记PENDING_OBSERVATION。持续授权继续原性能范围，下一低负载固定数值表核对承接既有前值、不重复旧基线；Desktop优先，旧未验/失败/UNKNOWN保持。下方等待记录保留历史误写，不作当前未执行证据。

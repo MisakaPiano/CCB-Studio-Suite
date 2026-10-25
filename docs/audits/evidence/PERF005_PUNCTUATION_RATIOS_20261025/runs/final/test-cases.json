@@ -1,0 +1,20 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.VerticalPunctuationRatioPerformanceTest",
+    "name": "simultaneousRatioProfilesKeepTablesAndLineStateIndependent",
+    "seconds": "0.063",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.VerticalPunctuationRatioPerformanceTest",
+    "name": "measuredVerticalRatiosKeepCompleteLayoutAndAdmittedDocument",
+    "seconds": "0.689",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.VerticalPunctuationRatioPerformanceTest",
+    "name": "ratioTablesStylesTightnessWrappingAndFallbackKeepCompleteLayout",
+    "seconds": "0.008",
+    "status": "PASS"
+  }
+]

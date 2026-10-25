@@ -1,3 +1,7 @@
+## 2026-10-25 固定数值表候选未采用：原实现已恢复
+
+[e837880候选/2c35296恢复与全部原始值](audits/PERF005_PUNCTUATION_RATIOS_EXPERIMENT_20261025.md)：功能3方法PASS但最大loose墙钟约慢37%，性能HOLD/NOT ADOPTED，根因UNKNOWN；分配少约20%不代签响应改善，无调预热/求绿重跑。前值3d9abb0实际行复用、0新基线，恢复全部modules/tools同3d9abb0、0新测试，候选/raw和负面决定保留，[复审只准备](../handoff/PERF005_PUNCTUATION_RATIOS_REVIEW_READY_20261025.md)。持续授权继续字体依赖清单纯元数据聚合定位，已有字体缓存不重复造，Desktop优先、旧边界保持。
+
 ## 2026-10-25 PERF-005标点类别固定集合最终3方法通过
 
 [3d9abb0应用/实际执行及三阶段证据](audits/PERF005_PUNCTUATION_CLASSES_20261025.md)：最终3唯一方法PASS、修正基线1另列，首轮测试向量1FAIL/raw/现场保留，1e-9不放宽。只5lazy固定Set+5引用，类别/完整布局与其他生产保持；开启分配约少95%、关闭不变，仅vertical layout非字体/像素/UI/RSS/人工。81420ac把未读结果再误记未执行，时间线及后续PENDING_OBSERVATION纪律单列更正、0新增测试。[复审只准备](../handoff/PERF005_PUNCTUATION_CLASSES_REVIEW_READY_20261025.md)，持续授权/旧边界保持，继续低负载固定数值表核对，Desktop优先。
