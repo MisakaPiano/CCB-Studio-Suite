@@ -1,0 +1,122 @@
+[
+  {
+    "assets": 128,
+    "tagCount": 257,
+    "matchedTags": 256,
+    "serializedBytes": 11391,
+    "round": 0,
+    "wallMs": 3.9174,
+    "cpuMs": 15.625,
+    "allocatedBytes": 3174136
+  },
+  {
+    "assets": 128,
+    "tagCount": 257,
+    "matchedTags": 256,
+    "serializedBytes": 11391,
+    "round": 1,
+    "wallMs": 3.6628,
+    "cpuMs": 0.0,
+    "allocatedBytes": 3173920
+  },
+  {
+    "assets": 128,
+    "tagCount": 257,
+    "matchedTags": 256,
+    "serializedBytes": 11391,
+    "round": 2,
+    "wallMs": 4.2321,
+    "cpuMs": 15.625,
+    "allocatedBytes": 3173920
+  },
+  {
+    "assets": 128,
+    "tagCount": 257,
+    "matchedTags": 256,
+    "serializedBytes": 11391,
+    "round": 3,
+    "wallMs": 4.6318,
+    "cpuMs": 0.0,
+    "allocatedBytes": 3174896
+  },
+  {
+    "assets": 1024,
+    "tagCount": 2049,
+    "matchedTags": 2048,
+    "serializedBytes": 92079,
+    "round": 0,
+    "wallMs": 34.4444,
+    "cpuMs": 46.875,
+    "allocatedBytes": 38622448
+  },
+  {
+    "assets": 1024,
+    "tagCount": 2049,
+    "matchedTags": 2048,
+    "serializedBytes": 92079,
+    "round": 1,
+    "wallMs": 36.388,
+    "cpuMs": 31.25,
+    "allocatedBytes": 38622448
+  },
+  {
+    "assets": 1024,
+    "tagCount": 2049,
+    "matchedTags": 2048,
+    "serializedBytes": 92079,
+    "round": 2,
+    "wallMs": 22.6258,
+    "cpuMs": 31.25,
+    "allocatedBytes": 37926928
+  },
+  {
+    "assets": 1024,
+    "tagCount": 2049,
+    "matchedTags": 2048,
+    "serializedBytes": 92079,
+    "round": 3,
+    "wallMs": 14.5338,
+    "cpuMs": 15.625,
+    "allocatedBytes": 37760560
+  },
+  {
+    "assets": 4096,
+    "tagCount": 8193,
+    "matchedTags": 8192,
+    "serializedBytes": 374703,
+    "round": 0,
+    "wallMs": 60.3823,
+    "cpuMs": 46.875,
+    "allocatedBytes": 184681232
+  },
+  {
+    "assets": 4096,
+    "tagCount": 8193,
+    "matchedTags": 8192,
+    "serializedBytes": 374703,
+    "round": 1,
+    "wallMs": 59.8783,
+    "cpuMs": 46.875,
+    "allocatedBytes": 184681328
+  },
+  {
+    "assets": 4096,
+    "tagCount": 8193,
+    "matchedTags": 8192,
+    "serializedBytes": 374703,
+    "round": 2,
+    "wallMs": 59.7726,
+    "cpuMs": 62.5,
+    "allocatedBytes": 184484600
+  },
+  {
+    "assets": 4096,
+    "tagCount": 8193,
+    "matchedTags": 8192,
+    "serializedBytes": 374703,
+    "round": 3,
+    "wallMs": 57.4292,
+    "cpuMs": 62.5,
+    "allocatedBytes": 184484600
+  }
+]

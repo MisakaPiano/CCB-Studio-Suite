@@ -1,0 +1,33 @@
+{
+  "phase": "perf003-tag-suggestions-final-20261025",
+  "startedUtc": "2026-10-25T01:33:43.971816+00:00",
+  "seconds": 20.922,
+  "exitCode": 0,
+  "tests": 4,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--priority",
+    "low",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    "-PpreviewTestRoot=H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-01ae149f62484d2aa9bc9fb52553f144\\payload",
+    ":studio-core:test",
+    "--tests",
+    "*TagSuggestionsPerformanceTest",
+    "--tests",
+    "*LibraryInteractionTest.tagPredictionCountsUniqueScopedAssetsAndFiltersExactLabels"
+  ],
+  "baseCommit": "fa58a50c44a592df0f0c8745ba773c244d7442d9",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

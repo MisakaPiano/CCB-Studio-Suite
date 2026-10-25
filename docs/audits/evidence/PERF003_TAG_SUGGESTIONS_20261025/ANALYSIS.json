@@ -1,0 +1,151 @@
+{
+  "medians": {
+    "baseline": [
+      {
+        "assets": 128,
+        "tagCount": 257,
+        "matchedTags": 256,
+        "serializedBytes": 11391,
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 4.07475,
+          "cpuMs": 7.8125,
+          "allocatedBytes": 3174028.0
+        }
+      },
+      {
+        "assets": 1024,
+        "tagCount": 2049,
+        "matchedTags": 2048,
+        "serializedBytes": 92079,
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 28.5351,
+          "cpuMs": 31.25,
+          "allocatedBytes": 38274688.0
+        }
+      },
+      {
+        "assets": 4096,
+        "tagCount": 8193,
+        "matchedTags": 8192,
+        "serializedBytes": 374703,
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 59.825450000000004,
+          "cpuMs": 54.6875,
+          "allocatedBytes": 184582916.0
+        }
+      }
+    ],
+    "final": [
+      {
+        "assets": 128,
+        "tagCount": 257,
+        "matchedTags": 256,
+        "serializedBytes": 11391,
+        "kind": "current",
+        "medians": {
+          "wallMs": 1.4654500000000001,
+          "cpuMs": 0.0,
+          "allocatedBytes": 349352.0
+        }
+      },
+      {
+        "assets": 128,
+        "tagCount": 257,
+        "matchedTags": 256,
+        "serializedBytes": 11391,
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 5.551,
+          "cpuMs": 7.8125,
+          "allocatedBytes": 3173996.0
+        }
+      },
+      {
+        "assets": 1024,
+        "tagCount": 2049,
+        "matchedTags": 2048,
+        "serializedBytes": 92079,
+        "kind": "current",
+        "medians": {
+          "wallMs": 4.82195,
+          "cpuMs": 0.0,
+          "allocatedBytes": 2226600.0
+        }
+      },
+      {
+        "assets": 1024,
+        "tagCount": 2049,
+        "matchedTags": 2048,
+        "serializedBytes": 92079,
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 22.07715,
+          "cpuMs": 23.4375,
+          "allocatedBytes": 37760560.0
+        }
+      },
+      {
+        "assets": 4096,
+        "tagCount": 8193,
+        "matchedTags": 8192,
+        "serializedBytes": 374703,
+        "kind": "current",
+        "medians": {
+          "wallMs": 17.6047,
+          "cpuMs": 15.625,
+          "allocatedBytes": 8693520.0
+        }
+      },
+      {
+        "assets": 4096,
+        "tagCount": 8193,
+        "matchedTags": 8192,
+        "serializedBytes": 374703,
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 67.2242,
+          "cpuMs": 62.5,
+          "allocatedBytes": 184484600.0
+        }
+      }
+    ]
+  },
+  "counts": {
+    "baseline": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "f996e4ed48529af204ab6e6be9ef0ff5cf19c4bd",
+      "seconds": 16.591,
+      "startedUtc": "2026-10-25T01:31:51.229678+00:00"
+    },
+    "final": {
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "fa58a50c44a592df0f0c8745ba773c244d7442d9",
+      "seconds": 20.922,
+      "startedUtc": "2026-10-25T01:33:43.971816+00:00"
+    }
+  },
+  "finalUniqueMethods": 4,
+  "cleanupFiles": 0,
+  "cleanupBytes": 0,
+  "limits": [
+    "Pure management labels,LibraryState fixtures <=4MiB,fixed shuffled seed71+size,query-space-tag-space",
+    "Index construction/serialization/output verification outside measured query",
+    "Final two warmups per mode/four same-JVM alternating rounds;baseline separate JVM",
+    "Prefix-first/natural keys/stable ties/case/trim/Unicode/source scope preserved",
+    "Natural key map is call-local,temporary live keys scale with matched tags;peak heap/retention/GC/RSS not measured",
+    "Reduced cumulative thread allocation not zero allocation/wholeUI/physicalIO/universal speed",
+    "Desktop24008 created during final interval,exact CPU/JUnit-sample overlap UNKNOWN,not quiet host",
+    "Single worker/lowpriority2processors256MiB,no user data/services/UI/package"
+  ]
+}

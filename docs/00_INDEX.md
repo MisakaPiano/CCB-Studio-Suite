@@ -1,3 +1,7 @@
+## 2026-10-25 PERF-003标签建议自然键复用
+
+[fa58a50报告/固定证据](audits/PERF003_TAG_SUGGESTIONS_20261025.md)：最终4唯一方法PASS，只查询内键复用，原算法/规则/顺序保持，累计线程分配少约89.0%～95.3%。临时活键随匹配数增长、峰值堆/GC/RSS未测，非UI/包/用户验收；[复审仅准备](../handoff/PERF003_TAG_SUGGESTIONS_REVIEW_READY_20261025.md)，无发布/日常操作，旧边界保持。继续组织子树纯元数据新基线、Desktop优先。
+
 ## 2026-10-25 PERF-003目录相册消费者副本
 
 [605f89e报告与原始结果](audits/PERF003_DIRECTORY_COPY_20261025.md)：最终2既有方法PASS，只两处局部防御副本复用，解析/预算/来源/身份/原图保持。无新性能基线/数字或UI/RSS/包/人工验收，[复审仅准备](../handoff/PERF003_DIRECTORY_COPY_REVIEW_READY_20261025.md)；旧失败/未知/备份保留，无发布/日常操作。继续已有标签建议纯元数据定位，Desktop优先、旧边界保持。
