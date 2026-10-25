@@ -1,0 +1,51 @@
+{
+  "recordedUtc": "2026-10-25T11:14:02.104159+00:00",
+  "basis": "Exact copies of this task-owned gate files plus result/failure transcription; no test execution",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "collect-gate-result.py",
+      "bytes": 4785,
+      "sha256": "e3dc00e77b73745e2de1a1abc2b658478fcb867f8c1ee48d26ff2ecdd9b45e45"
+    },
+    {
+      "path": "COLLECTOR_FIRST_FAILURE.json",
+      "bytes": 487,
+      "sha256": "a229762516b3530287c2817750615ad7c6b9e1ba258df09865af0e8b3034fca1"
+    },
+    {
+      "path": "gate-observations.jsonl",
+      "bytes": 167,
+      "sha256": "d836cabde0888645f363ce09461e4afe64dc09ff2d4a585e6d63ade5c28448f1"
+    },
+    {
+      "path": "gate-runner.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "gate-status.json",
+      "bytes": 328,
+      "sha256": "d79c484514ca8b665f617f04a608ea7a147123f784227a53dae86eee0be0f31a"
+    },
+    {
+      "path": "RESOURCE_RECHECK_A.json",
+      "bytes": 1300,
+      "sha256": "83534e93d1bc6aa6727ad351d185170cefd8d2cd829e4f28917cd4e0f71ea412"
+    },
+    {
+      "path": "RESULT.json",
+      "bytes": 1685,
+      "sha256": "d65ae3a6d2112076e3b3e8848574740178a41c24165b3ecc4419fd2a6074e4e8"
+    },
+    {
+      "path": "wait-and-run-theme.ps1",
+      "bytes": 5397,
+      "sha256": "215196c3caaed23dbd11c107ad24338577e90af8bae4623f329f313bcefddb69"
+    }
+  ]
+}

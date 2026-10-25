@@ -1,0 +1,41 @@
+{
+  "recordedUtc": "2026-10-25T11:14:02.104159+00:00",
+  "applicationSource": "42146d3705f5cbc9ed392735f9c4727f8a8f67d7",
+  "executionDocsHead": "1c3c9d9e6ba1a35e29c462657a0eba888e0ced22",
+  "phase": "display-theme-20261025",
+  "gateOutcome": "RESOURCE_GATE_TIMEOUT_NO_TEST_STARTED",
+  "runnerInvoked": false,
+  "actualJUnitExecutions": 0,
+  "compileStatus": "NOT COMPILED",
+  "testStatus": "NOT TESTED; not PASS/FAIL/SKIPPED",
+  "runnerLogBytes": 0,
+  "freshRunnerEvidenceDirectories": 0,
+  "packageStatus": "NOT BUILT",
+  "protectionCase": {
+    "id": "UPD-CLEAN-PROTECTION-001",
+    "docsCommit": "57876f186bf1b6066e047d2898d4515dfab8ae38",
+    "status": "REGISTERED / STATIC ONLY / NOT EXECUTED"
+  },
+  "finalObservationRecordedFromPrecedingToolOutput": {
+    "observedUtc": "2026-10-25T11:11:27.5017227Z",
+    "hFreeBytes": 3090264064,
+    "cFreeBytes": 9589731328,
+    "owners": [
+      {
+        "pid": 47608,
+        "owner": "DESKTOP"
+      }
+    ]
+  },
+  "budgetBytes": {
+    "H": 2194033190,
+    "C": 805306368
+  },
+  "decision": "Space floor satisfied at observed snapshots. Thirty-minute gate did not obtain two quiet admissions. Desktop owner remains; do not loop retry without changed resource evidence. No termination or background Studio work remains.",
+  "humanAcceptance": "NOT TESTED",
+  "independentReview": "NOT REQUESTED",
+  "realAppOrDataAccess": "NONE",
+  "cleanupOrCrossVolumeUse": "NONE",
+  "collectorFirstAttempt": "FAILED before copies; see COLLECTOR_FIRST_FAILURE.json, no new tests/gate rerun",
+  "preserved": "Original source, raw results, failures, denied decisions, unknowns, 115/Prompt PENDING, assets/editor USER_NOT_TESTED, PRODUCT_HOLD/NOT RC."
+}

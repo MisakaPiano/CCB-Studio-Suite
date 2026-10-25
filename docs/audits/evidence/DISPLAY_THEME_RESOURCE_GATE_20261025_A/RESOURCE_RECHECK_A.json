@@ -1,0 +1,45 @@
+{
+  "observedStartUtc": "2026-10-25T10:36:58.8713948Z",
+  "observedEndUtc": "2026-10-25T10:37:02.4624314Z",
+  "budget": {
+    "outputs": {
+      "modules/studio-desktop/build": {
+        "bytes": 143500389,
+        "files": 2351,
+        "complete": true
+      },
+      "modules/studio-core/build": {
+        "bytes": 287836985,
+        "files": 1097,
+        "complete": true
+      },
+      "modules/image-authority/build": {
+        "bytes": 10949292,
+        "files": 1216,
+        "complete": true
+      },
+      "modules/asset-library/build": {
+        "bytes": 418505,
+        "files": 87,
+        "complete": true
+      }
+    },
+    "boundedScanComplete": true,
+    "hBudgetBytes": 2194033190,
+    "hBudgetNeverBelowOriginal": true,
+    "hFreeBytes": 3090518016,
+    "cFreeBytes": 10223579136,
+    "cBudgetBytes": 805306368,
+    "basis": "Same conservative H envelope; C launcher/Gradle temporary allowance 256MiB plus 512MiB headroom. Planning estimates, not measured peaks."
+  },
+  "javaOwners": [
+    {
+      "pid": 47608,
+      "owner": "DESKTOP"
+    }
+  ],
+  "allJavaWorkMustYieldBeforeStart": true,
+  "actualTestsStarted": 0,
+  "syntheticProtectionCase": "STATIC ONLY; not part of theme test execution",
+  "cleanupOrCrossVolumeUse": "NONE"
+}

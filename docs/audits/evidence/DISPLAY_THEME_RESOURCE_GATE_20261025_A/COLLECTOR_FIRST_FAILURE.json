@@ -1,0 +1,10 @@
+{
+  "type": "LookupError",
+  "message": "unknown encoding: utf8-sig",
+  "stage": "Inline collector, first read of gate-status.json before any evidence file copy",
+  "evidenceFilesCreatedBeforeFailure": 0,
+  "originalProducer": "Inline tool invocation retained in conversation; no saved first-producer file",
+  "correction": "Use Python encoding name utf-8-sig; resume this empty, task-created destination with CreateNew writes",
+  "actualJUnitExecutionsAdded": 0,
+  "gateRerun": false
+}
