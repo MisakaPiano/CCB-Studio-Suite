@@ -42,11 +42,12 @@ fun libraryRecordedDay(timestamp:Long?)=timestamp?.let{Instant.ofEpochMilli(it).
 fun galleryTagAlbums(ids:List<String>,labels:Map<String,AssetLabels>):List<NovelAiHistoryAlbum> {
     val groups=linkedMapOf<String,MutableList<NovelAiHistoryImageItem>>()
     val tagHashes=mutableMapOf<String,String>()
+    var defaultRecipe:NovelAiGenerationRecipe?=null
     ids.distinct().forEach{id->
         labels[id]?.tags.orEmpty().ifEmpty{listOf("")}.forEach{tag->
             val image=NovelAiGenerationHistoryImage(path=id)
             val hash=tagHashes.getOrPut(tag){sha256(tag.toByteArray())}
-            val item=NovelAiHistoryImageItem(NovelAiGenerationHistoryEntry(id="tag:$hash:$id",images=listOf(image)),image,0)
+            val item=NovelAiHistoryImageItem(NovelAiGenerationHistoryEntry(id="tag:$hash:$id",images=listOf(image),recipe=defaultRecipe?:NovelAiGenerationRecipe().also{defaultRecipe=it}),image,0)
             groups.getOrPut(tag){mutableListOf()}.add(item)
         }
     }
