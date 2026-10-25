@@ -1,0 +1,41 @@
+{
+  "beforeSource": "3bda776657a2908a2044d81f2c19c7ce542414f5",
+  "applicationSource": "605f89e8f8fd7d8cc9f93ade44135123b471c918",
+  "executionSource": "605f89e8f8fd7d8cc9f93ade44135123b471c918",
+  "executionModulesAndToolsEqualApplication": true,
+  "identities": [
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/GalleryHistory.kt",
+      "beforeGitSha256": "cf8f18d79b4dd45bad3aebe75c114e0b2eba07167f0b33dc1a763581cf93117c",
+      "beforeRawSha256": "b3d24b37a1172d7c1b2bbd21a0892277736bac9bf44738a712db5a91bb5b8dfa",
+      "finalGitSha256": "c63e957857238df27679af20746fa03e58eca095f407669931bec531bd1b39ab",
+      "actualTestInputSha256": "80aa0b839a91602dae5f8ce6010d7c01bd57ae7bbed8fa2feb9b74d2b9287b8e",
+      "rawSourcePreserved": true
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/GallerySorting.kt",
+      "beforeGitSha256": "20d1ed6b6fc0ecfdf8d5251798971ccb6d50b64d9412ebcade62930edb39c961",
+      "beforeRawSha256": "20d1ed6b6fc0ecfdf8d5251798971ccb6d50b64d9412ebcade62930edb39c961",
+      "finalGitSha256": "b91661e2795b944f4be3f1e6912b24d0cc3ffa6f0a518aaa737621f28868d06e",
+      "actualTestInputSha256": "b91661e2795b944f4be3f1e6912b24d0cc3ffa6f0a518aaa737621f28868d06e",
+      "rawSourcePreserved": true
+    }
+  ],
+  "changedModulePaths": [
+    "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/GalleryHistory.kt",
+    "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/GallerySorting.kt"
+  ],
+  "onlyTwoDirectoryRecipeAccessorBlocks": true,
+  "fullParsingBudgetsPathsLabelsFallbackAndHashesOutsideBlocksUnchanged": true,
+  "javaDefensiveApiUnchanged": true,
+  "finalUniqueMethods": 2,
+  "noNewTestSource": true,
+  "newPerformanceBaseline": "NOT RUN (same clone mechanism supported by prior recorded-date evidence)",
+  "newAllocationSpeedUiRssClaim": "NONE",
+  "costMechanismReference": "PERF003_RECORDED_TIMES_20261025,application492f8cc/evidence3bda776,not a new consumer performance measurement",
+  "packageVersion": "NONE",
+  "packageSha256": "NONE (no package built)",
+  "release": "NONE",
+  "independentReview": "NOT REQUESTED",
+  "humanAndPackage": "NOT TESTED"
+}

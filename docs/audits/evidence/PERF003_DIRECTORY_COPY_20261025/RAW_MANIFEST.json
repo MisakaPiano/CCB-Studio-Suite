@@ -1,0 +1,95 @@
+{
+  "format": 1,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19,
+      "sha256": "3e5e82fc72e044ea9af807a2030b73dbb94800d2cd1775302063b2eee761ba1e"
+    },
+    {
+      "path": "ANALYSIS.json",
+      "bytes": 2202,
+      "sha256": "ed956845fbad17a0522a74700470818542c67be1e91689db6e88babc46e98791"
+    },
+    {
+      "path": "ATTEMPTS_AND_LIMITS.md",
+      "bytes": 2948,
+      "sha256": "0644f37e448ecc257a8d5e3058b44828eff50c6d652734ba2844f6acb9c421da"
+    },
+    {
+      "path": "collect.py",
+      "bytes": 9242,
+      "sha256": "85bdd5bc51cad64538cb357a2fd8a98efcb704e0cc0c8a388286a65112404993"
+    },
+    {
+      "path": "inputs/before/GalleryHistory.kt",
+      "bytes": 7406,
+      "sha256": "b3d24b37a1172d7c1b2bbd21a0892277736bac9bf44738a712db5a91bb5b8dfa"
+    },
+    {
+      "path": "inputs/before/GallerySorting.kt",
+      "bytes": 5011,
+      "sha256": "20d1ed6b6fc0ecfdf8d5251798971ccb6d50b64d9412ebcade62930edb39c961"
+    },
+    {
+      "path": "inputs/final/GalleryHistory.kt",
+      "bytes": 7458,
+      "sha256": "80aa0b839a91602dae5f8ce6010d7c01bd57ae7bbed8fa2feb9b74d2b9287b8e"
+    },
+    {
+      "path": "inputs/final/GallerySorting.kt",
+      "bytes": 5023,
+      "sha256": "b91661e2795b944f4be3f1e6912b24d0cc3ffa6f0a518aaa737621f28868d06e"
+    },
+    {
+      "path": "resource-boundaries.jsonl",
+      "bytes": 147,
+      "sha256": "08cdd9864dd2155da4888df89be9833e48f0709f9964120b7141dd7d5be4fe09"
+    },
+    {
+      "path": "resource-gate.ps1",
+      "bytes": 2583,
+      "sha256": "2155dec0bae48062ff708a1d5a0abd530b53e1f632669efc77b11faef410b3fa"
+    },
+    {
+      "path": "run/fixture-cleanup.json",
+      "bytes": 289,
+      "sha256": "3f0158c8efceed8143e3e67307759d685133c8354fa3c3fd9a93ac4b91e6b1f3"
+    },
+    {
+      "path": "run/gradle.log",
+      "bytes": 1669,
+      "sha256": "6d1f87357fe40c2965f05ec3956bd3872ba69ab2d6866d0302b85341cfdc8242"
+    },
+    {
+      "path": "run/source-before.json",
+      "bytes": 78199,
+      "sha256": "320815fa13a60ccc5b987e6bdff2e917cd26ff1ac7da954f00956e9f83801979"
+    },
+    {
+      "path": "run/studio-core-TEST-io.github.misakapiano.ccbstudio.core.GalleryHistoryTest.xml",
+      "bytes": 514,
+      "sha256": "0a8078a40696fcb46dd8303480bdafc971cc8371818715558e74ff0b053e0530"
+    },
+    {
+      "path": "run/studio-core-TEST-io.github.misakapiano.ccbstudio.core.GallerySortingTest.xml",
+      "bytes": 514,
+      "sha256": "3516630c4c949249b1653a7196ae11efab81cac4dd20ed68ed7b8c5e207a150e"
+    },
+    {
+      "path": "run/summary.json",
+      "bytes": 1162,
+      "sha256": "7a773718c1c47219f45dce4cbc7f777c23ca9d55255d2ae239d6e85baaad40be"
+    },
+    {
+      "path": "run/test-cases.json",
+      "bytes": 441,
+      "sha256": "97bb839b9832f74fecf4565165fc84247d45d1c918a7002f2b1bd6a5a9ea314e"
+    },
+    {
+      "path": "SOURCE_MAP.json",
+      "bytes": 2276,
+      "sha256": "395a8fc7090a1c0121647edec335b0588682af0392fa248f81435d4535caf058"
+    }
+  ]
+}

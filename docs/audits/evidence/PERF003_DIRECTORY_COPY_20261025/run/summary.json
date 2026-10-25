@@ -1,0 +1,33 @@
+{
+  "phase": "perf003-directory-copy-final-20261025",
+  "startedUtc": "2026-10-25T01:24:13.188361+00:00",
+  "seconds": 47.691,
+  "exitCode": 0,
+  "tests": 2,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--priority",
+    "low",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    "-PpreviewTestRoot=H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-3d0e9b17748c46699c897698c14a445d\\payload",
+    ":studio-core:test",
+    "--tests",
+    "*GalleryHistoryTest.directoryGroupingUsesOnlyRecordedProvenanceAndPreferencesSurviveReopen",
+    "--tests",
+    "*GallerySortingTest.naturalOrderIndependentAlbumsAndNewArrivalsKeepPreferencesAcrossReopen"
+  ],
+  "baseCommit": "605f89e8f8fd7d8cc9f93ade44135123b471c918",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

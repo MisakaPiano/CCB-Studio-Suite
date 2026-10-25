@@ -1,0 +1,48 @@
+{
+  "finalSummary": {
+    "phase": "perf003-directory-copy-final-20261025",
+    "startedUtc": "2026-10-25T01:24:13.188361+00:00",
+    "seconds": 47.691,
+    "exitCode": 0,
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "sourceStable": true,
+    "status": "PASS",
+    "testEvidence": "EXECUTED",
+    "arguments": [
+      "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+      "--no-daemon",
+      "--priority",
+      "low",
+      "--max-workers=1",
+      "--console=plain",
+      "-Pkotlin.compiler.execution.strategy=in-process",
+      "--offline",
+      "--dependency-verification=strict",
+      "-PpreviewTestRoot=H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-3d0e9b17748c46699c897698c14a445d\\payload",
+      ":studio-core:test",
+      "--tests",
+      "*GalleryHistoryTest.directoryGroupingUsesOnlyRecordedProvenanceAndPreferencesSurviveReopen",
+      "--tests",
+      "*GallerySortingTest.naturalOrderIndependentAlbumsAndNewArrivalsKeepPreferencesAcrossReopen"
+    ],
+    "baseCommit": "605f89e8f8fd7d8cc9f93ade44135123b471c918",
+    "realProvider": "NOT TESTED",
+    "humanAcceptance": "NOT TESTED"
+  },
+  "finalUniqueMethods": 2,
+  "cleanupFiles": 106,
+  "cleanupBytes": 36200,
+  "limits": [
+    "Two existing changed-consumer tests only,not a full suite or new performance baseline",
+    "Directory grouping recorded provenance/removed root/same-name roots/preferences/reopen/original bytes",
+    "Directory sort identity,new arrivals/reversed order,natural sort/preferences/reopen/original bytes",
+    "No new unknown/oversize/corrupt branch execution in this narrow run;unchanged parsing/budget/fallback source compared",
+    "First recipe getter remains outside runCatching for grouping,inside for identity as before;oversize still avoids parse",
+    "No filesystem scan or original movement by these helpers;existing tests use fresh owned tiny synthetic images",
+    "No new thread allocation/frame/RSS/wall speed result claimed",
+    "Previous recorded-date timing/allocation not added or promoted as these consumers measurements"
+  ]
+}
