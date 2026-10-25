@@ -29,8 +29,10 @@ internal data class DesktopTokenProgress(val count: Int, val limit: Int) {
 internal fun StudioTokenBar(label: String, count: Int, limit: Int, modifier: Modifier = Modifier) {
     val progress = DesktopTokenProgress(count, limit)
     val color = if (progress.exceeded) DesktopBootstrapColors.destructive else if (progress.warning) DesktopBootstrapColors.warning else DesktopBootstrapColors.primary
+    // Text needs contrast with the footer; the progress fill keeps the user's original accent.
+    val textColor = if (progress.warning) color else DesktopBootstrapColors.selectionInk
     Column(modifier, verticalArrangement = Arrangement.spacedBy(3.dp)) {
-        StatusText("$label $count/$limit" + if (progress.exceeded) " · 超出上限" else if (progress.warning) " · 接近上限" else "", color)
+        StatusText("$label $count/$limit" + if (progress.exceeded) " · 超出上限" else if (progress.warning) " · 接近上限" else "", textColor)
         Box(Modifier.fillMaxWidth().height(5.dp).background(DesktopBootstrapColors.muted)
             .semantics { progressBarRangeInfo = ProgressBarRangeInfo(progress.fraction, 0f..1f) }) {
             Box(Modifier.fillMaxWidth(progress.fraction).fillMaxHeight().background(color))
