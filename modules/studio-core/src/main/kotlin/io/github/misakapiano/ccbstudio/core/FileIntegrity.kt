@@ -20,7 +20,7 @@ internal fun fingerprintFile(path:Path,max:Long=STORED_FILE_LIMIT):FileFingerpri
                 digest.update(buffer,0,n)
             }
         }
-        return FileFingerprint(size,digest.digest().joinToString(""){"%02x".format(it)})
+        return FileFingerprint(size,java.util.HexFormat.of().formatHex(digest.digest()))
     }catch(e:NoSuchFileException){throw DataProblem("MISSING","Required stored file missing",e)}
     catch(e:DataProblem){throw e}
     catch(e:java.io.IOException){throw DataProblem("READ_ERROR","Stored file unreadable; retained",e)}

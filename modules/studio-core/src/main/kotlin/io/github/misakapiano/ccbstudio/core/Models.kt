@@ -9,7 +9,7 @@ import com.example.chatbar.domain.image.NovelAiDesignConversation
 
 val documentJson = Json { encodeDefaults = true; ignoreUnknownKeys = false }
 fun newId(): String = UUID.randomUUID().toString()
-fun sha256(bytes: ByteArray): String = MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it) }
+fun sha256(bytes: ByteArray): String = java.util.HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(bytes))
 
 @Serializable data class AccountProfile(
     val id: String = newId(), val alias: String, val service: String,
