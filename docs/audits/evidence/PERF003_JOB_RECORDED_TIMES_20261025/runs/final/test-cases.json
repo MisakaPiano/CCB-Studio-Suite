@@ -1,0 +1,20 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryRecordedTimesPerformanceTest",
+    "name": "malformedOversizedUnknownReceiptsAndJobOverridesMatchLegacyWithoutPayloadAccess",
+    "seconds": "0.148",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.RecordedJobTimesPerformanceTest",
+    "name": "measuredActualResultDatesKeepFirstKeyOrderAndLastJobValue",
+    "seconds": "0.452",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.RecordedJobTimesPerformanceTest",
+    "name": "importsOverlapsEmptyResultsAndIndependentSnapshotsKeepOrderAndDates",
+    "seconds": "0.002",
+    "status": "PASS"
+  }
+]

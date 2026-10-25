@@ -1,3 +1,7 @@
+## 2026-10-25 PERF-003作业日期汇总：最终3唯一方法通过
+
+沿用PERF-003，[41e0111实现/c32045c执行/原始逐例](audits/PERF003_JOB_RECORDED_TIMES_20261025.md)最终3PASS，基线1和两次0执行资源等待不累加。局部Map顺序赋值省临时集合，原完整解析/预算/未知与负值/覆盖及键顺序/来源不变；分配少约61%～62%只局部合成元数据，不代签UI/RSS/包/用户或独立验收。新[复审仅准备](../handoff/PERF003_JOB_RECORDED_TIMES_REVIEW_READY_20261025.md)，原索引/两段补充/失败/路径错误UNKNOWN及未验保持；性能继续、Desktop优先，无发版/日常操作，不新增未来资产/编辑任务或整合。
+
 ## 2026-10-25 PERF-003标签相册默认参数：最终4唯一方法通过
 
 沿用PERF-003，[52e0bf0报告/原始逐例](audits/PERF003_TAG_ALBUM_DEFAULTS_20261025.md)最终4PASS，基线1另列。仅tag元数据投影调用内复用原canonical不可变默认参数，原权威Prompt/请求不改、entry时钟/ID/key保留；线程分配少约68%～73%，最大墙钟略慢不称提速，不代签UI/RSS/包/用户/独立验收。[复审仅准备](../handoff/PERF003_TAG_ALBUM_DEFAULTS_REVIEW_READY_20261025.md)，16历史索引/原Desktop范围不扩大，旧失败/否决/所有未验保持；既有低风险性能继续、Desktop优先，无新功能/发布/日常操作或重复任务。

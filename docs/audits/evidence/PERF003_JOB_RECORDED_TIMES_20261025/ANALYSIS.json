@@ -1,0 +1,148 @@
+{
+  "medians": {
+    "baseline": [
+      {
+        "jobs": 128,
+        "resultReferences": 692,
+        "dates": 250,
+        "serializedStateBytes": 89718,
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 0.23320000000000002,
+          "cpuMs": 0.0,
+          "allocatedBytes": 100960.0
+        }
+      },
+      {
+        "jobs": 512,
+        "resultReferences": 2776,
+        "dates": 1000,
+        "serializedStateBytes": 355177,
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 0.78845,
+          "cpuMs": 0.0,
+          "allocatedBytes": 396824.0
+        }
+      },
+      {
+        "jobs": 2048,
+        "resultReferences": 11116,
+        "dates": 3950,
+        "serializedStateBytes": 1417168,
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 3.19625,
+          "cpuMs": 0.0,
+          "allocatedBytes": 1617968.0
+        }
+      }
+    ],
+    "final": [
+      {
+        "jobs": 128,
+        "resultReferences": 692,
+        "dates": 250,
+        "serializedStateBytes": 89718,
+        "kind": "current",
+        "medians": {
+          "wallMs": 0.0942,
+          "cpuMs": 0.0,
+          "allocatedBytes": 38432.0
+        }
+      },
+      {
+        "jobs": 128,
+        "resultReferences": 692,
+        "dates": 250,
+        "serializedStateBytes": 89718,
+        "kind": "recorded",
+        "medians": {
+          "wallMs": 0.23745,
+          "cpuMs": 0.0,
+          "allocatedBytes": 100960.0
+        }
+      },
+      {
+        "jobs": 512,
+        "resultReferences": 2776,
+        "dates": 1000,
+        "serializedStateBytes": 355177,
+        "kind": "current",
+        "medians": {
+          "wallMs": 0.5298,
+          "cpuMs": 0.0,
+          "allocatedBytes": 153584.0
+        }
+      },
+      {
+        "jobs": 512,
+        "resultReferences": 2776,
+        "dates": 1000,
+        "serializedStateBytes": 355177,
+        "kind": "recorded",
+        "medians": {
+          "wallMs": 1.3991500000000001,
+          "cpuMs": 0.0,
+          "allocatedBytes": 396824.0
+        }
+      },
+      {
+        "jobs": 2048,
+        "resultReferences": 11116,
+        "dates": 3950,
+        "serializedStateBytes": 1417168,
+        "kind": "current",
+        "medians": {
+          "wallMs": 1.07105,
+          "cpuMs": 0.0,
+          "allocatedBytes": 612224.0
+        }
+      },
+      {
+        "jobs": 2048,
+        "resultReferences": 11116,
+        "dates": 3950,
+        "serializedStateBytes": 1417168,
+        "kind": "recorded",
+        "medians": {
+          "wallMs": 2.919,
+          "cpuMs": 0.0,
+          "allocatedBytes": 1617968.0
+        }
+      }
+    ]
+  },
+  "counts": {
+    "baseline": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "baseCommit": "b5e84daf63ceb3139277e6e3400d1116f354dd3b",
+      "seconds": 33.218,
+      "startedUtc": "2026-10-25T04:28:41.881349+00:00",
+      "sourceStable": true
+    },
+    "final": {
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "baseCommit": "c32045c0dfb7249d7c7490c8e87a873466d6a308",
+      "seconds": 22.664,
+      "startedUtc": "2026-10-25T04:33:57.278897+00:00",
+      "sourceStable": true
+    }
+  },
+  "cleanupFiles": 0,
+  "cleanupBytes": 0,
+  "limits": [
+    "Synthetic JobRecord metadata/full StudioState.validate and<=4MiB;no queue/provider/real credentials/actual recipe request or asset-store admission/execution claim",
+    "Expected first key order from independent linked set,last values by last matching job;not timestamp sort",
+    "Ordinary then composed results perjob;first insertion order/lastinputwins preserved,all jobstates eligible as before",
+    "Two warmups each mode/four alternating same-JVM rounds;counter before assertions/JSON",
+    "No wholeUI/native/frame/RSS/peakheap/GC/physicalIO/universalWindows or Prompt acceptance",
+    "Map interface/entries/iteration order required,not concrete collection implementation"
+  ]
+}

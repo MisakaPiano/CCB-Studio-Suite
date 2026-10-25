@@ -1,0 +1,33 @@
+{
+  "phase": "perf003-job-times-final-20261025",
+  "startedUtc": "2026-10-25T04:33:57.278897+00:00",
+  "seconds": 22.664,
+  "exitCode": 0,
+  "tests": 3,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--priority",
+    "low",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    "-PpreviewTestRoot=H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-e55201d1e6bc4ebdb7af572136586e39\\payload",
+    ":studio-core:test",
+    "--tests",
+    "*RecordedJobTimesPerformanceTest",
+    "--tests",
+    "*LibraryRecordedTimesPerformanceTest.malformedOversizedUnknownReceiptsAndJobOverridesMatchLegacyWithoutPayloadAccess"
+  ],
+  "baseCommit": "c32045c0dfb7249d7c7490c8e87a873466d6a308",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}
