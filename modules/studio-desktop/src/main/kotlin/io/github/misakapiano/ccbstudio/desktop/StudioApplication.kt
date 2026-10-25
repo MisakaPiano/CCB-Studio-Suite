@@ -535,11 +535,17 @@ internal fun launchStudio(args:Array<String>) {
     }
 }
 
-private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
+internal class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
     var width=0f;var height=0f;var title:ChromeRect?=null;var icon:ChromeRect?=null
     val buttons=linkedMapOf<String,ChromeRect>();val captions=linkedMapOf<ChromeHit,ChromeRect>()
     fun rect(c:LayoutCoordinates)=c.boundsInWindow().let{ChromeRect(it.left,it.top,it.right,it.bottom)}
     fun publish(){chrome.updateLayout(DesktopChromeLayout(width,height,title,buttons.values.toList(),captions.toMap(),icon))}
+}
+@Composable internal fun StudioAppearanceTitleButton(chrome:WorkbenchChrome,onClick:()->Unit) {
+    DisposableEffect(chrome){onDispose{chrome.buttons.remove("display-settings");chrome.publish()}}
+    Box(Modifier.onGloballyPositioned{chrome.buttons["display-settings"]=chrome.rect(it);chrome.publish()}) {
+        LibraryAction("",icon=DesktopAppIcons.Settings,accessibilityLabel="显示主题",onClick=onClick)
+    }
 }
 @Composable internal fun Workbench(c:WorkbenchController,chrome:DesktopWindowChrome,closing:Boolean) {
     CompositionLocalProvider(androidx.compose.foundation.LocalContextMenuRepresentation provides androidx.compose.foundation.DarkDefaultContextMenuRepresentation){WorkbenchContent(c,chrome,closing)}
@@ -563,7 +569,7 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
             if(showBrand)Text("Studio Suite",Modifier.width(120.dp),fontSize=14.sp)
             studioRoutes.forEach {label -> StudioRouteButton(label,c.view==label,compact,Modifier.onGloballyPositioned{r.buttons[label]=r.rect(it);r.publish()},pending=label=="更新"&&c.updater.pendingVersion!=null){c.view=label;if(label=="更新")c.updater.dismissStartupNotice()} }
             Spacer(Modifier.weight(1f))
-            LibraryAction("",icon=DesktopAppIcons.Settings,accessibilityLabel="显示主题"){c.appearance.shown=true}
+            StudioAppearanceTitleButton(r){c.appearance.shown=true}
             listOf(ChromeHit.MINIMIZE,ChromeHit.MAXIMIZE,ChromeHit.CLOSE).forEach {hit ->
                 StudioCaptionButton(hit,native,compact,Modifier.onGloballyPositioned{r.captions[hit]=r.rect(it);r.publish()},chrome::command)
             }
