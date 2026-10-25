@@ -234,7 +234,7 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
                             Row(verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(4.dp)) {Text("$label $done/${slots.size}",color=LibraryMuted,fontSize=12.sp);LinearProgressIndicator(done.toFloat()/slots.size,Modifier.width(26.dp).height(3.dp).semantics{contentDescription="${g.name} $label 进度"},color=Gold,backgroundColor=LibraryLine)}
                         }}
                     }
-                    Column(horizontalAlignment=Alignment.End){Text("${g.slots.count{it.status=="DONE"}}/${g.slots.size}");Text(when{g.slots.any{it.status=="FAILED"}->"等待处理";g.slots.any{it.status=="RUNNING"}->"生成中";g.slots.all{it.status in setOf("DONE","SKIPPED")}->"已完成";else->"待继续"},color=if(g.slots.any{it.status=="FAILED"})StudioAppearanceRuntime.palette.warningelse LibraryMuted,fontSize=12.sp)}
+                    Column(horizontalAlignment=Alignment.End){Text("${g.slots.count{it.status=="DONE"}}/${g.slots.size}");Text(when{g.slots.any{it.status=="FAILED"}->"等待处理";g.slots.any{it.status=="RUNNING"}->"生成中";g.slots.all{it.status in setOf("DONE","SKIPPED")}->"已完成";else->"待继续"},color=if(g.slots.any{it.status=="FAILED"})StudioAppearanceRuntime.palette.warning else LibraryMuted,fontSize=12.sp)}
                 }
             }
         }
