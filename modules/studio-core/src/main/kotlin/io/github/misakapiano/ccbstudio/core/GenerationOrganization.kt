@@ -22,7 +22,7 @@ import java.util.UUID
     }
     fun descendants(id:String):Set<String> {
         val result=linkedSetOf(id)
-        fun visit(parent:String){folders.forEach{child->if(child.parent==parent){result+=child.id;visit(child.id)}}}
+        fun visit(parent:String){folders.filter{it.parent==parent}.forEach{child->result+=child.id;visit(child.id)}}
         visit(id)
         return result
     }
