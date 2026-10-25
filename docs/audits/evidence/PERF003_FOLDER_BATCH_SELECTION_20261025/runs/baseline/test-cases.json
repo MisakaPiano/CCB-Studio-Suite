@@ -1,0 +1,20 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.FolderBatchProjectionPerformanceTest",
+    "name": "measuredRecordedFolderPredicatesKeepOrderArchivePolicyAndAdmittedState",
+    "seconds": "2.515",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.GenerationFolderContractTest",
+    "name": "depthFirstOrderUnknownRootsAndReparentedSnapshotsStayIndependent",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.GenerationFolderContractTest",
+    "name": "originalAdmissionStillRejectsInvalidGraphSizeAndDepth",
+    "seconds": "0.004",
+    "status": "PASS"
+  }
+]

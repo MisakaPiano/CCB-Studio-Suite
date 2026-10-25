@@ -1,0 +1,546 @@
+{
+  "medians": {
+    "baseline": [
+      {
+        "folders": 32,
+        "batches": 64,
+        "context": "root",
+        "archivedOnly": false,
+        "kind": "actualLegacy",
+        "selected": 51,
+        "serializedStateBytes": 25345,
+        "medians": {
+          "wallMs": 2.53165,
+          "cpuMs": 0.0,
+          "allocatedBytes": 2634780.0
+        }
+      },
+      {
+        "folders": 32,
+        "batches": 64,
+        "context": "root",
+        "archivedOnly": true,
+        "kind": "actualLegacy",
+        "selected": 25,
+        "serializedStateBytes": 25345,
+        "medians": {
+          "wallMs": 1.6448,
+          "cpuMs": 0.0,
+          "allocatedBytes": 1317312.0
+        }
+      },
+      {
+        "folders": 32,
+        "batches": 64,
+        "context": "leaf",
+        "archivedOnly": false,
+        "kind": "actualLegacy",
+        "selected": 2,
+        "serializedStateBytes": 25345,
+        "medians": {
+          "wallMs": 0.062299999999999994,
+          "cpuMs": 0.0,
+          "allocatedBytes": 20592.0
+        }
+      },
+      {
+        "folders": 32,
+        "batches": 64,
+        "context": "leaf",
+        "archivedOnly": true,
+        "kind": "actualLegacy",
+        "selected": 0,
+        "serializedStateBytes": 25345,
+        "medians": {
+          "wallMs": 0.03245,
+          "cpuMs": 0.0,
+          "allocatedBytes": 10296.0
+        }
+      },
+      {
+        "folders": 128,
+        "batches": 256,
+        "context": "root",
+        "archivedOnly": false,
+        "kind": "actualLegacy",
+        "selected": 204,
+        "serializedStateBytes": 98411,
+        "medians": {
+          "wallMs": 35.264849999999996,
+          "cpuMs": 23.4375,
+          "allocatedBytes": 39851032.0
+        }
+      },
+      {
+        "folders": 128,
+        "batches": 256,
+        "context": "root",
+        "archivedOnly": true,
+        "kind": "actualLegacy",
+        "selected": 102,
+        "serializedStateBytes": 98411,
+        "medians": {
+          "wallMs": 14.12915,
+          "cpuMs": 15.625,
+          "allocatedBytes": 19925400.0
+        }
+      },
+      {
+        "folders": 128,
+        "batches": 256,
+        "context": "leaf",
+        "archivedOnly": false,
+        "kind": "actualLegacy",
+        "selected": 1,
+        "serializedStateBytes": 98411,
+        "medians": {
+          "wallMs": 0.17154999999999998,
+          "cpuMs": 0.0,
+          "allocatedBytes": 61552.0
+        }
+      },
+      {
+        "folders": 128,
+        "batches": 256,
+        "context": "leaf",
+        "archivedOnly": true,
+        "kind": "actualLegacy",
+        "selected": 0,
+        "serializedStateBytes": 98411,
+        "medians": {
+          "wallMs": 0.0974,
+          "cpuMs": 0.0,
+          "allocatedBytes": 30776.0
+        }
+      },
+      {
+        "folders": 256,
+        "batches": 512,
+        "context": "root",
+        "archivedOnly": false,
+        "kind": "actualLegacy",
+        "selected": 409,
+        "serializedStateBytes": 196005,
+        "medians": {
+          "wallMs": 206.7345,
+          "cpuMs": 203.125,
+          "allocatedBytes": 161761928.0
+        }
+      },
+      {
+        "folders": 256,
+        "batches": 512,
+        "context": "root",
+        "archivedOnly": true,
+        "kind": "actualLegacy",
+        "selected": 204,
+        "serializedStateBytes": 196005,
+        "medians": {
+          "wallMs": 100.4538,
+          "cpuMs": 101.5625,
+          "allocatedBytes": 80880664.0
+        }
+      },
+      {
+        "folders": 256,
+        "batches": 512,
+        "context": "leaf",
+        "archivedOnly": false,
+        "kind": "actualLegacy",
+        "selected": 1,
+        "serializedStateBytes": 196005,
+        "medians": {
+          "wallMs": 0.8095,
+          "cpuMs": 0.0,
+          "allocatedBytes": 122992.0
+        }
+      },
+      {
+        "folders": 256,
+        "batches": 512,
+        "context": "leaf",
+        "archivedOnly": true,
+        "kind": "actualLegacy",
+        "selected": 0,
+        "serializedStateBytes": 196005,
+        "medians": {
+          "wallMs": 0.3716,
+          "cpuMs": 0.0,
+          "allocatedBytes": 61496.0
+        }
+      }
+    ],
+    "final": [
+      {
+        "folders": 32,
+        "batches": 64,
+        "context": "root",
+        "archivedOnly": false,
+        "kind": "current",
+        "selected": 51,
+        "serializedStateBytes": 25345,
+        "medians": {
+          "wallMs": 0.0672,
+          "cpuMs": 0.0,
+          "allocatedBytes": 42128.0
+        }
+      },
+      {
+        "folders": 32,
+        "batches": 64,
+        "context": "root",
+        "archivedOnly": false,
+        "kind": "recorded",
+        "selected": 51,
+        "serializedStateBytes": 25345,
+        "medians": {
+          "wallMs": 2.9556500000000003,
+          "cpuMs": 0.0,
+          "allocatedBytes": 2634704.0
+        }
+      },
+      {
+        "folders": 32,
+        "batches": 64,
+        "context": "root",
+        "archivedOnly": true,
+        "kind": "current",
+        "selected": 25,
+        "serializedStateBytes": 25345,
+        "medians": {
+          "wallMs": 0.06409999999999999,
+          "cpuMs": 0.0,
+          "allocatedBytes": 42048.0
+        }
+      },
+      {
+        "folders": 32,
+        "batches": 64,
+        "context": "root",
+        "archivedOnly": true,
+        "kind": "recorded",
+        "selected": 25,
+        "serializedStateBytes": 25345,
+        "medians": {
+          "wallMs": 1.61965,
+          "cpuMs": 0.0,
+          "allocatedBytes": 1317312.0
+        }
+      },
+      {
+        "folders": 32,
+        "batches": 64,
+        "context": "leaf",
+        "archivedOnly": false,
+        "kind": "current",
+        "selected": 2,
+        "serializedStateBytes": 25345,
+        "medians": {
+          "wallMs": 0.0109,
+          "cpuMs": 0.0,
+          "allocatedBytes": 432.0
+        }
+      },
+      {
+        "folders": 32,
+        "batches": 64,
+        "context": "leaf",
+        "archivedOnly": false,
+        "kind": "recorded",
+        "selected": 2,
+        "serializedStateBytes": 25345,
+        "medians": {
+          "wallMs": 0.0595,
+          "cpuMs": 0.0,
+          "allocatedBytes": 20592.0
+        }
+      },
+      {
+        "folders": 32,
+        "batches": 64,
+        "context": "leaf",
+        "archivedOnly": true,
+        "kind": "current",
+        "selected": 0,
+        "serializedStateBytes": 25345,
+        "medians": {
+          "wallMs": 0.01765,
+          "cpuMs": 0.0,
+          "allocatedBytes": 824.0
+        }
+      },
+      {
+        "folders": 32,
+        "batches": 64,
+        "context": "leaf",
+        "archivedOnly": true,
+        "kind": "recorded",
+        "selected": 0,
+        "serializedStateBytes": 25345,
+        "medians": {
+          "wallMs": 0.0392,
+          "cpuMs": 0.0,
+          "allocatedBytes": 10296.0
+        }
+      },
+      {
+        "folders": 128,
+        "batches": 256,
+        "context": "root",
+        "archivedOnly": false,
+        "kind": "current",
+        "selected": 204,
+        "serializedStateBytes": 98411,
+        "medians": {
+          "wallMs": 0.2015,
+          "cpuMs": 0.0,
+          "allocatedBytes": 158752.0
+        }
+      },
+      {
+        "folders": 128,
+        "batches": 256,
+        "context": "root",
+        "archivedOnly": false,
+        "kind": "recorded",
+        "selected": 204,
+        "serializedStateBytes": 98411,
+        "medians": {
+          "wallMs": 34.56955,
+          "cpuMs": 39.0625,
+          "allocatedBytes": 39851032.0
+        }
+      },
+      {
+        "folders": 128,
+        "batches": 256,
+        "context": "root",
+        "archivedOnly": true,
+        "kind": "current",
+        "selected": 102,
+        "serializedStateBytes": 98411,
+        "medians": {
+          "wallMs": 0.15065,
+          "cpuMs": 0.0,
+          "allocatedBytes": 159192.0
+        }
+      },
+      {
+        "folders": 128,
+        "batches": 256,
+        "context": "root",
+        "archivedOnly": true,
+        "kind": "recorded",
+        "selected": 102,
+        "serializedStateBytes": 98411,
+        "medians": {
+          "wallMs": 14.8156,
+          "cpuMs": 15.625,
+          "allocatedBytes": 19925400.0
+        }
+      },
+      {
+        "folders": 128,
+        "batches": 256,
+        "context": "leaf",
+        "archivedOnly": false,
+        "kind": "current",
+        "selected": 1,
+        "serializedStateBytes": 98411,
+        "medians": {
+          "wallMs": 0.02955,
+          "cpuMs": 0.0,
+          "allocatedBytes": 352.0
+        }
+      },
+      {
+        "folders": 128,
+        "batches": 256,
+        "context": "leaf",
+        "archivedOnly": false,
+        "kind": "recorded",
+        "selected": 1,
+        "serializedStateBytes": 98411,
+        "medians": {
+          "wallMs": 0.1816,
+          "cpuMs": 0.0,
+          "allocatedBytes": 61552.0
+        }
+      },
+      {
+        "folders": 128,
+        "batches": 256,
+        "context": "leaf",
+        "archivedOnly": true,
+        "kind": "current",
+        "selected": 0,
+        "serializedStateBytes": 98411,
+        "medians": {
+          "wallMs": 0.0308,
+          "cpuMs": 0.0,
+          "allocatedBytes": 2400.0
+        }
+      },
+      {
+        "folders": 128,
+        "batches": 256,
+        "context": "leaf",
+        "archivedOnly": true,
+        "kind": "recorded",
+        "selected": 0,
+        "serializedStateBytes": 98411,
+        "medians": {
+          "wallMs": 0.1024,
+          "cpuMs": 0.0,
+          "allocatedBytes": 30776.0
+        }
+      },
+      {
+        "folders": 256,
+        "batches": 512,
+        "context": "root",
+        "archivedOnly": false,
+        "kind": "current",
+        "selected": 409,
+        "serializedStateBytes": 196005,
+        "medians": {
+          "wallMs": 0.48635,
+          "cpuMs": 0.0,
+          "allocatedBytes": 322720.0
+        }
+      },
+      {
+        "folders": 256,
+        "batches": 512,
+        "context": "root",
+        "archivedOnly": false,
+        "kind": "recorded",
+        "selected": 409,
+        "serializedStateBytes": 196005,
+        "medians": {
+          "wallMs": 201.0387,
+          "cpuMs": 203.125,
+          "allocatedBytes": 161761928.0
+        }
+      },
+      {
+        "folders": 256,
+        "batches": 512,
+        "context": "root",
+        "archivedOnly": true,
+        "kind": "current",
+        "selected": 204,
+        "serializedStateBytes": 196005,
+        "medians": {
+          "wallMs": 0.5317000000000001,
+          "cpuMs": 0.0,
+          "allocatedBytes": 323600.0
+        }
+      },
+      {
+        "folders": 256,
+        "batches": 512,
+        "context": "root",
+        "archivedOnly": true,
+        "kind": "recorded",
+        "selected": 204,
+        "serializedStateBytes": 196005,
+        "medians": {
+          "wallMs": 101.5683,
+          "cpuMs": 109.375,
+          "allocatedBytes": 80880664.0
+        }
+      },
+      {
+        "folders": 256,
+        "batches": 512,
+        "context": "leaf",
+        "archivedOnly": false,
+        "kind": "current",
+        "selected": 1,
+        "serializedStateBytes": 196005,
+        "medians": {
+          "wallMs": 0.03505,
+          "cpuMs": 0.0,
+          "allocatedBytes": 352.0
+        }
+      },
+      {
+        "folders": 256,
+        "batches": 512,
+        "context": "leaf",
+        "archivedOnly": false,
+        "kind": "recorded",
+        "selected": 1,
+        "serializedStateBytes": 196005,
+        "medians": {
+          "wallMs": 0.7293,
+          "cpuMs": 0.0,
+          "allocatedBytes": 122992.0
+        }
+      },
+      {
+        "folders": 256,
+        "batches": 512,
+        "context": "leaf",
+        "archivedOnly": true,
+        "kind": "current",
+        "selected": 0,
+        "serializedStateBytes": 196005,
+        "medians": {
+          "wallMs": 0.08525,
+          "cpuMs": 0.0,
+          "allocatedBytes": 4872.0
+        }
+      },
+      {
+        "folders": 256,
+        "batches": 512,
+        "context": "leaf",
+        "archivedOnly": true,
+        "kind": "recorded",
+        "selected": 0,
+        "serializedStateBytes": 196005,
+        "medians": {
+          "wallMs": 0.34345000000000003,
+          "cpuMs": 0.0,
+          "allocatedBytes": 61496.0
+        }
+      }
+    ]
+  },
+  "counts": {
+    "baseline": {
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "baseCommit": "974e1007da207a47a27153cb34aec7380c98ff69",
+      "seconds": 39.189,
+      "startedUtc": "2026-10-25T02:40:29.195526+00:00",
+      "sourceStable": true
+    },
+    "final": {
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "baseCommit": "1256c64ddd4291f585be4ff8d086f98a404a972b",
+      "seconds": 84.092,
+      "startedUtc": "2026-10-25T02:54:55.026194+00:00",
+      "sourceStable": true
+    }
+  },
+  "cleanupFiles": 0,
+  "cleanupBytes": 0,
+  "limits": [
+    "Pure synthetic metadata/full StudioState validation <=4MiB;no assets/payloads or store admission claim",
+    "Two warmups per mode/four alternating same-JVM rounds;counter captured before JSON/assertions",
+    "No UI/frame/RSS/peakheap/GC/physicalIO/universal speed measurements",
+    "Original traversal unchanged;per-selection subtree allocation only once,not a global/per-state cache",
+    "Folder cards/tree/breadcrumb retain inclusion of current+archived metadata;view filter retains archived-only",
+    "Null ID eligibility short circuit and batch input order preserved",
+    "Pure desktop card adapter run;no native tree/breadcrumb/whole-view interaction test",
+    "Prior failed/rejected cohorts preserved;not combined into final method count"
+  ]
+}

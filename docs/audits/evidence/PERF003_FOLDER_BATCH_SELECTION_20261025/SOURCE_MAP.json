@@ -1,0 +1,96 @@
+{
+  "sources": {
+    "baseline": "974e1007da207a47a27153cb34aec7380c98ff69",
+    "final": "1256c64ddd4291f585be4ff8d086f98a404a972b"
+  },
+  "executionSource": "1256c64ddd4291f585be4ff8d086f98a404a972b",
+  "identities": [
+    {
+      "run": "baseline",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/GenerationOrganization.kt",
+      "rawInputSha256": "7be0ad53cb7cd3a0771ace09520e14fe34361c4b360c860f86f111cf35e0f40c",
+      "gitBlobSha256": "ea09b2a94b0f8db1a54d3ee418d9234e40ee5c27675c7c36bc0823deff669d20"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/GenerationOrganization.kt",
+      "rawInputSha256": "33d72cc70bd139d4a683ae04a0a9c671a0d6a2099bf9b84577f31655dcad252d",
+      "gitBlobSha256": "ee4c2c2644f7954549a31004346523e53cd82a6179a21bd6b31786f98a113015"
+    },
+    {
+      "run": "baseline",
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryOrganization.kt",
+      "rawInputSha256": "2709b39c12e4285884d1d23cc22f19e5e8000d071344155cfcb716bbe0f0e3f3",
+      "gitBlobSha256": "3355e8ec2436f277a1ad8fdbb7ab38e65387c12a6e6684c688f44fae98b390e1"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryOrganization.kt",
+      "rawInputSha256": "749729792af7f2722db7cb81fb89d62fad516a970368e76358d2444eac687e3c",
+      "gitBlobSha256": "8fc050b97cef42b5f7a28972aab82a85c71cd39dce01bc59b88839e8bed8c5bf"
+    },
+    {
+      "run": "baseline",
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryWorkspace.kt",
+      "rawInputSha256": "ec9d43e7c00840740b45b3d3157cd72b5afc1b5340686ec68ddd3167d727ce20",
+      "gitBlobSha256": "47e38992503bead28a7698cf577b5e817e3676e7fa1481ad390286446837b28f"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryWorkspace.kt",
+      "rawInputSha256": "7479dfc7efafdbbad03bc722b7e8ce33ef396d3c5934d4177e0e2433e0656e4c",
+      "gitBlobSha256": "6f4003af9c6bbedd27c4bb1c226eec10f1e03fc019eba713a25c909ace9bf12b"
+    },
+    {
+      "run": "baseline",
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/FolderBatchProjectionPerformanceTest.kt",
+      "rawInputSha256": "363255b53e352b748392093381193a29a0bdc46dfa9b1e276e870a67d22e361f",
+      "gitBlobSha256": "363255b53e352b748392093381193a29a0bdc46dfa9b1e276e870a67d22e361f"
+    },
+    {
+      "run": "baseline",
+      "path": "tools/Run-PreviewChecks.py",
+      "rawInputSha256": "45f0f681f68b83c67c5a04607dfea09ecea742bcfd2f5f4ee31e3162901e9e23",
+      "gitBlobSha256": "d8dec9e6bcc417c59cc9d3dd32b79fd4519c16b86adbf582798b2d707c4935b4"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/FolderBatchProjectionPerformanceTest.kt",
+      "rawInputSha256": "45aed00d863e2eaf055ab57e189d5f82c0467c6f30b22a093c5003af2967a480",
+      "gitBlobSha256": "45aed00d863e2eaf055ab57e189d5f82c0467c6f30b22a093c5003af2967a480"
+    },
+    {
+      "run": "final",
+      "path": "tools/Run-PreviewChecks.py",
+      "rawInputSha256": "45f0f681f68b83c67c5a04607dfea09ecea742bcfd2f5f4ee31e3162901e9e23",
+      "gitBlobSha256": "d8dec9e6bcc417c59cc9d3dd32b79fd4519c16b86adbf582798b2d707c4935b4"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/FolderSubtreeCardProjectionTest.kt",
+      "rawInputSha256": "d4c77aa818f09cc7f4ea16b4bb599d5a05632eadc194505a138f1c02a08d2401",
+      "gitBlobSha256": "d4c77aa818f09cc7f4ea16b4bb599d5a05632eadc194505a138f1c02a08d2401"
+    }
+  ],
+  "changedModulePaths": [
+    "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/GenerationOrganization.kt",
+    "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/FolderBatchProjectionPerformanceTest.kt",
+    "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryOrganization.kt",
+    "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryWorkspace.kt",
+    "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/FolderSubtreeCardProjectionTest.kt"
+  ],
+  "originalDescendantsAndValidationUnchanged": true,
+  "onlyThreeProductionFilesChanged": true,
+  "onlyHelperInsertionAndFourConsumerReplacements": true,
+  "legacyReferenceTextUnchanged": true,
+  "rawInputsAndCanonicalGitVerified": true,
+  "finalUniqueMethods": 4,
+  "baselineUniqueMethods": 3,
+  "baselineAndRoundsNotAdded": true,
+  "priorTraversalCandidates": "NOT ADOPTED;negative evidence124bd4e retained",
+  "oldAcceptedBatchNineAndStartup": "NOT RERUN",
+  "package": "NONE",
+  "release": "NONE",
+  "independentReview": "NOT REQUESTED",
+  "humanAndPackage": "NOT TESTED"
+}
