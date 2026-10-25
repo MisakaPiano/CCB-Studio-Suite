@@ -1,0 +1,54 @@
+{
+  "finishedUtc": "2026-10-25T20:13:26.924085+00:00",
+  "runnerExitCode": 1,
+  "samples": 1,
+  "monitorFailures": [],
+  "before": {
+    "atUtc": "2026-10-25T20:13:21.7872255Z",
+    "availableBytes": 991154176,
+    "committedBytes": 22410289152,
+    "commitLimitBytes": 29665406976,
+    "pageReadsPerSecond": 0,
+    "pagesInputPerSecond": 0,
+    "hFreeBytes": 5416685568,
+    "cFreeBytes": 13163016192,
+    "owned": [],
+    "foreign": []
+  },
+  "after": {
+    "atUtc": "2026-10-25T20:13:26.8026850Z",
+    "availableBytes": 989622272,
+    "committedBytes": 22405394432,
+    "commitLimitBytes": 29665406976,
+    "pageReadsPerSecond": 0,
+    "pagesInputPerSecond": 0,
+    "hFreeBytes": 5416677376,
+    "cFreeBytes": 13162954752,
+    "owned": [],
+    "foreign": []
+  },
+  "minAvailableBytes": 974368768,
+  "maxSystemCommittedBytes": 22427013120,
+  "sampledMaxOwnedPrivateBytes": 7720960,
+  "sampledMaxOwnedWorkingSetBytes": 12615680,
+  "perProcessObservedPeaks": [
+    {
+      "jvmFlags": [
+        "-XX:MaxMetaspaceSize=256m",
+        "-XX:ActiveProcessorCount=2\""
+      ],
+      "pid": 15164,
+      "createdUtc": "2026-10-25T20:13:22.0205800Z",
+      "privatePageCountBytes": 7720960,
+      "peakPageFileUsageBytes": 7720960,
+      "workingSetBytes": 12615680,
+      "pageFileUsageBytes": 7720960,
+      "peakWorkingSetBytes": 12619776,
+      "parent": 7476,
+      "name": "python.exe"
+    }
+  ],
+  "limits": "Sampled aggregate maxima can miss between-sample peaks; OS per-process lifetime peaks only for processes observed. Working sets overlap/share pages and are not unique physical RAM. Monitor helper overhead excluded from owned group but included in system observations.",
+  "externalSubmission": "NONE; PROHIBITED",
+  "push": "NONE; PROHIBITED"
+}

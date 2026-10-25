@@ -1,0 +1,46 @@
+{
+  "applicationSource": "c39e860252fdd96c9bec5b5d42d1abd988d3ec06",
+  "e": {
+    "outcome": "PREPARATION_FAILED_BEFORE_GRADLE",
+    "runnerExit": 1,
+    "junit": 0,
+    "reason": "Embedded Python script-directory import path was omitted; workspace_artifacts import failed. Exact runner.log retained, no fresh Gradle phase/fixtures created."
+  },
+  "f": {
+    "outcome": "PASS",
+    "runnerExit": 0,
+    "junitUniqueMethods": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "sourceStable": true,
+    "reason": "Only bootstrap corrected to existing sys.path+runpy pattern; source/assertions/profile/test filter unchanged.",
+    "startedUtc": "2026-10-25T20:14:22.961852+00:00",
+    "runnerSeconds": 95.83,
+    "gradleReportedSeconds": 89,
+    "cases": [
+      {
+        "suite": "io.github.misakapiano.ccbstudio.desktop.StudioSelectedContrastTest",
+        "name": "actualRouteAndLibrarySelectionBordersStayVisibleAndClickable",
+        "seconds": "1.995",
+        "status": "PASS"
+      },
+      {
+        "suite": "io.github.misakapiano.ccbstudio.desktop.StudioSelectedContrastTest",
+        "name": "filledBatchCoverAndLibraryControlsRenderReadableForegrounds",
+        "seconds": "2.942",
+        "status": "PASS"
+      },
+      {
+        "suite": "io.github.misakapiano.ccbstudio.desktop.StudioSelectedContrastTest",
+        "name": "indicatorUsesOriginalAccentWhenReadableAndPreservesEveryStoredRgb",
+        "seconds": "0.037",
+        "status": "PASS"
+      }
+    ]
+  },
+  "oldRecords": "Original A/B/C four-method evidence, P2 disk/memory zero-run records unchanged; not summed or relabeled",
+  "currentTask": "Local automatic validation completed; previous independent P2 remains OPEN/PARTIAL_ACCEPT until separately authorized review",
+  "projectSendAttemptsThisRound": 0,
+  "pushAttemptsThisRound": 0
+}

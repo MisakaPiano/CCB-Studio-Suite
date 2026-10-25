@@ -1,0 +1,92 @@
+EVIDENCE=H:\CCB-Studio-Suite\.local\windows-preview\evidence\20261025T201410975092Z-display-theme-selected-p2-lowmem-f-20261026
+{
+  "phase": "display-theme-selected-p2-lowmem-f-20261026",
+  "startedUtc": "2026-10-25T20:14:22.961852+00:00",
+  "seconds": 95.83,
+  "exitCode": 0,
+  "tests": 3,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--priority",
+    "low",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    "-PpreviewTestRoot=H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-defe092dca4d4c93b1bbe2662abc0dde\\payload",
+    ":studio-desktop:test",
+    "--tests",
+    "*StudioSelectedContrastTest",
+    "-Dorg.gradle.jvmargs=-Xmx384m -XX:MaxMetaspaceSize=256m -XX:ActiveProcessorCount=2"
+  ],
+  "baseCommit": "ed00cbb747a333999b27c072490927a5afe4958a",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :asset-library:compileJava UP-TO-DATE
+> Task :image-authority:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :image-authority:compileKotlin UP-TO-DATE
+> Task :image-authority:compileJava NO-SOURCE
+> Task :studio-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-core:compileKotlin UP-TO-DATE
+> Task :studio-core:compileJava NO-SOURCE
+> Task :studio-core:processResources UP-TO-DATE
+> Task :studio-core:classes UP-TO-DATE
+> Task :studio-core:jar UP-TO-DATE
+> Task :studio-desktop:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-desktop:convertXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:copyNonXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:prepareComposeResourcesTaskForMain NO-SOURCE
+> Task :studio-desktop:generateResourceAccessorsForMain SKIPPED
+> Task :studio-desktop:generateActualResourceCollectorsForMain SKIPPED
+> Task :studio-desktop:generateComposeResClass SKIPPED
+> Task :studio-desktop:compileKotlin
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioPromptField.kt:158:74 Unnecessary safe call on a non-null receiver of type 'NovelAiActiveTagFragment'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioPromptField.kt:166:135 Unnecessary safe call on a non-null receiver of type 'NovelAiActiveTagFragment'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioPromptField.kt:177:97 Unnecessary safe call on a non-null receiver of type 'NovelAiActiveTagFragment'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryWorkspace.kt:302:50 Unnecessary non-null assertion (!!) on a non-null receiver of type 'NovelAiHistoryAlbum'.
+w: file:///H:/CCB-Studio-Suite/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryWorkspace.kt:303:58 Unnecessary non-null assertion (!!) on a non-null receiver of type 'NovelAiHistoryAlbum'.
+
+> Task :studio-desktop:compileJava NO-SOURCE
+> Task :studio-desktop:assembleMainResources UP-TO-DATE
+> Task :studio-desktop:processResources UP-TO-DATE
+> Task :studio-desktop:classes UP-TO-DATE
+> Task :studio-desktop:jar
+> Task :asset-library:processResources NO-SOURCE
+> Task :asset-library:classes UP-TO-DATE
+> Task :asset-library:jar UP-TO-DATE
+> Task :image-authority:processResources NO-SOURCE
+> Task :image-authority:classes UP-TO-DATE
+> Task :image-authority:jar UP-TO-DATE
+> Task :studio-desktop:convertXmlValueResourcesForTest NO-SOURCE
+> Task :studio-desktop:copyNonXmlValueResourcesForTest NO-SOURCE
+> Task :studio-desktop:prepareComposeResourcesTaskForTest NO-SOURCE
+> Task :studio-desktop:generateResourceAccessorsForTest SKIPPED
+> Task :studio-desktop:compileTestKotlin
+> Task :studio-desktop:compileTestJava NO-SOURCE
+> Task :studio-desktop:assembleTestResources UP-TO-DATE
+> Task :studio-desktop:processTestResources UP-TO-DATE
+> Task :studio-desktop:testClasses UP-TO-DATE
+
+> Task :studio-desktop:test
+
+StudioSelectedContrastTest > actualRouteAndLibrarySelectionBordersStayVisibleAndClickable PASSED
+
+StudioSelectedContrastTest > filledBatchCoverAndLibraryControlsRenderReadableForegrounds PASSED
+
+StudioSelectedContrastTest > indicatorUsesOriginalAccentWhenReadableAndPreservesEveryStoredRgb PASSED
+
+BUILD SUCCESSFUL in 1m 29s
+15 actionable tasks: 4 executed, 11 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.1.0/userguide/configuration_cache_enabling.html
+

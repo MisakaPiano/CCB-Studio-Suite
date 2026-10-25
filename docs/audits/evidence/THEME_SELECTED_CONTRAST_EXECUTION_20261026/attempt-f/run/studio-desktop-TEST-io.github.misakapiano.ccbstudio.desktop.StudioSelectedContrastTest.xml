@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.StudioSelectedContrastTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-25T20:15:43.965Z" hostname="DD1" time="4.975">
+  <properties/>
+  <testcase name="actualRouteAndLibrarySelectionBordersStayVisibleAndClickable" classname="io.github.misakapiano.ccbstudio.desktop.StudioSelectedContrastTest" time="1.995"/>
+  <testcase name="filledBatchCoverAndLibraryControlsRenderReadableForegrounds" classname="io.github.misakapiano.ccbstudio.desktop.StudioSelectedContrastTest" time="2.942"/>
+  <testcase name="indicatorUsesOriginalAccentWhenReadableAndPreservesEveryStoredRgb" classname="io.github.misakapiano.ccbstudio.desktop.StudioSelectedContrastTest" time="0.037"/>
+  <system-out><![CDATA[selected-contrast consumer=DARK/0/route readablePixels=193 edgeOnly=false
+selected-contrast consumer=DARK/0/selected action readablePixels=142 edgeOnly=true
+selected-contrast consumer=LIGHT/16777215/route readablePixels=153 edgeOnly=false
+selected-contrast consumer=LIGHT/16777215/selected action readablePixels=142 edgeOnly=true
+selected-contrast consumer=DARK/8238591/route readablePixels=137 edgeOnly=false
+selected-contrast consumer=DARK/8238591/selected action readablePixels=142 edgeOnly=true
+selected-contrast consumer=DARK/单次 readablePixels=118 edgeOnly=false
+selected-contrast consumer=DARK/? 使用中 readablePixels=208 edgeOnly=false
+selected-contrast consumer=DARK/fixture selection checkbox readablePixels=40 edgeOnly=false
+selected-contrast consumer=DARK/fixture library toggle readablePixels=40 edgeOnly=false
+selected-contrast consumer=LIGHT/单次 readablePixels=73 edgeOnly=false
+selected-contrast consumer=LIGHT/? 使用中 readablePixels=125 edgeOnly=false
+selected-contrast consumer=LIGHT/fixture selection checkbox readablePixels=40 edgeOnly=false
+selected-contrast consumer=LIGHT/fixture library toggle readablePixels=40 edgeOnly=false
+selected-contrast default blue remains unchanged; all mode/style/system/RGB combinations keep format/RGB
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

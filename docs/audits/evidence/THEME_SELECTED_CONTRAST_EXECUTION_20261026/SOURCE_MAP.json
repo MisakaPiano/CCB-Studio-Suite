@@ -1,0 +1,221 @@
+{
+  "applicationSource": "c39e860252fdd96c9bec5b5d42d1abd988d3ec06",
+  "executionHead": "ed00cbb747a333999b27c072490927a5afe4958a",
+  "moduleToolGitDiffFromSource": "empty before and after",
+  "sourceStable": true,
+  "gradleProperties": "Unchanged Xmx512m/MaxMetaspace384m in source; this run overrides ONLY Gradle via exact -D argument recorded in COMMAND/summary. Test256m unchanged.",
+  "profile": "task-local 384MiB Gradle heap/256MiB Gradle metaspace/256MiB test heap, worker1/fork1/in-process/offline/low priority/no persistent daemon",
+  "originalFourTestClassUnchanged": true,
+  "originalFourNotRerun": true,
+  "files": [
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioControls.kt",
+      "gitBlobSha256": "9ecf47ef47c5048137ebbba2a088ad6f0369016844cf64d6eecc4d2d0e50055a",
+      "workingSha256": "9ecf47ef47c5048137ebbba2a088ad6f0369016844cf64d6eecc4d2d0e50055a",
+      "executedRunnerBeforeSha256": "9ecf47ef47c5048137ebbba2a088ad6f0369016844cf64d6eecc4d2d0e50055a",
+      "runnerCoverage": "before snapshot and sourceStable"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioPromptField.kt",
+      "gitBlobSha256": "a9758bef33e55d9249a0271ee313f2da169f164febbdd3b39116cb2ab87c204a",
+      "workingSha256": "a9758bef33e55d9249a0271ee313f2da169f164febbdd3b39116cb2ab87c204a",
+      "executedRunnerBeforeSha256": "a9758bef33e55d9249a0271ee313f2da169f164febbdd3b39116cb2ab87c204a",
+      "runnerCoverage": "before snapshot and sourceStable"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioResultControls.kt",
+      "gitBlobSha256": "2b9efdee9f69576f36367a3c685638fcce7148636890b1fd86372bfa653062cb",
+      "workingSha256": "2b9efdee9f69576f36367a3c685638fcce7148636890b1fd86372bfa653062cb",
+      "executedRunnerBeforeSha256": "2b9efdee9f69576f36367a3c685638fcce7148636890b1fd86372bfa653062cb",
+      "runnerCoverage": "before snapshot and sourceStable"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/SuiteSourceAdapters.kt",
+      "gitBlobSha256": "a4521e0cdb1de4f63ff6f48648a18d37941b6f28f184aec2749369ec4cead963",
+      "workingSha256": "a4521e0cdb1de4f63ff6f48648a18d37941b6f28f184aec2749369ec4cead963",
+      "executedRunnerBeforeSha256": "a4521e0cdb1de4f63ff6f48648a18d37941b6f28f184aec2749369ec4cead963",
+      "runnerCoverage": "before snapshot and sourceStable"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/BatchWorkspace.kt",
+      "gitBlobSha256": "e99e39a6f939ffec7cc2aea372e572f53cc299b21dbf7f51b3bcab681fc617e4",
+      "workingSha256": "e99e39a6f939ffec7cc2aea372e572f53cc299b21dbf7f51b3bcab681fc617e4",
+      "executedRunnerBeforeSha256": "e99e39a6f939ffec7cc2aea372e572f53cc299b21dbf7f51b3bcab681fc617e4",
+      "runnerCoverage": "before snapshot and sourceStable"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/DisguiseCoverManager.kt",
+      "gitBlobSha256": "f3ed0da456b1720329c60493c462ab87e86e1efd8e683d4fe1badc120e7245a4",
+      "workingSha256": "f3ed0da456b1720329c60493c462ab87e86e1efd8e683d4fe1badc120e7245a4",
+      "executedRunnerBeforeSha256": "f3ed0da456b1720329c60493c462ab87e86e1efd8e683d4fe1badc120e7245a4",
+      "runnerCoverage": "before snapshot and sourceStable"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryAnimationWorkspace.kt",
+      "gitBlobSha256": "c058546c6eced930c900c7e945f8b871da51549f2da5b7026d9518dd50ffb525",
+      "workingSha256": "6b81611184682293cfd73b0e5bb27287c70ea178f8e1e7eb2b65ec28954a19f4",
+      "executedRunnerBeforeSha256": "6b81611184682293cfd73b0e5bb27287c70ea178f8e1e7eb2b65ec28954a19f4",
+      "runnerCoverage": "before snapshot and sourceStable"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryWorkspace.kt",
+      "gitBlobSha256": "5af7fdb06bbc6040ddff8fc37da6c300b27d0ba22b589d1963fa7ce7ef2e89cc",
+      "workingSha256": "8197f3a4d97e6792af13218c5c09c9a2ac29237751a579d73541297ac39da65b",
+      "executedRunnerBeforeSha256": "8197f3a4d97e6792af13218c5c09c9a2ac29237751a579d73541297ac39da65b",
+      "runnerCoverage": "before snapshot and sourceStable"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/LibraryArchiveWorkspace.kt",
+      "gitBlobSha256": "92adfd0e2ee35e46be536d218e2f01eac0a5bcde8fd7aa033cd00f603dfb7773",
+      "workingSha256": "3b83f7653cf813297a1dbb9d0f6a77c1ec4f9ed3740fdc328f8e1748e558b374",
+      "executedRunnerBeforeSha256": "3b83f7653cf813297a1dbb9d0f6a77c1ec4f9ed3740fdc328f8e1748e558b374",
+      "runnerCoverage": "before snapshot and sourceStable"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/LibraryCommands.kt",
+      "gitBlobSha256": "07cf9cbb2a2f9c0efe19db118099c27d2fffab79d07b7b253c3f1c6dced6875d",
+      "workingSha256": "cfc81dfb2eb813c7006e964674c5ce6ded62c6112e9709767a145842dfc36f32",
+      "executedRunnerBeforeSha256": "cfc81dfb2eb813c7006e964674c5ce6ded62c6112e9709767a145842dfc36f32",
+      "runnerCoverage": "before snapshot and sourceStable"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/LibraryPresentation.kt",
+      "gitBlobSha256": "8998aba9c3f9b77154e0a6b9a62a10229f1b56b5220d237b14564eedd4b1c000",
+      "workingSha256": "8998aba9c3f9b77154e0a6b9a62a10229f1b56b5220d237b14564eedd4b1c000",
+      "executedRunnerBeforeSha256": "8998aba9c3f9b77154e0a6b9a62a10229f1b56b5220d237b14564eedd4b1c000",
+      "runnerCoverage": "before snapshot and sourceStable"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/Main.kt",
+      "gitBlobSha256": "8b4ed671179c977d10572999f13ff269f9cbbda57605de20c31cdef239e10919",
+      "workingSha256": "8b4ed671179c977d10572999f13ff269f9cbbda57605de20c31cdef239e10919",
+      "executedRunnerBeforeSha256": "8b4ed671179c977d10572999f13ff269f9cbbda57605de20c31cdef239e10919",
+      "runnerCoverage": "before snapshot and sourceStable"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/SharedAssetPicker.kt",
+      "gitBlobSha256": "8a8ede2aa9262812495308da21e62fdd0dc8d31c1a19d7becc264d621e043d49",
+      "workingSha256": "31e80454b553181588e8f0b85cc31279c3feb6d978c1631a676bd39fcade474c",
+      "executedRunnerBeforeSha256": "31e80454b553181588e8f0b85cc31279c3feb6d978c1631a676bd39fcade474c",
+      "runnerCoverage": "before snapshot and sourceStable"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioAppearance.kt",
+      "gitBlobSha256": "614438bde67b66ba7eee471815c79aa0a22633a1db662dabd2f02096b0e04dc1",
+      "workingSha256": "614438bde67b66ba7eee471815c79aa0a22633a1db662dabd2f02096b0e04dc1",
+      "executedRunnerBeforeSha256": "614438bde67b66ba7eee471815c79aa0a22633a1db662dabd2f02096b0e04dc1",
+      "runnerCoverage": "before snapshot and sourceStable"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioTitleControls.kt",
+      "gitBlobSha256": "8055cc86b6ffb656743531ed1bfac3e257d207644afe6eb53ddcaa24f2843bfe",
+      "workingSha256": "8055cc86b6ffb656743531ed1bfac3e257d207644afe6eb53ddcaa24f2843bfe",
+      "executedRunnerBeforeSha256": "8055cc86b6ffb656743531ed1bfac3e257d207644afe6eb53ddcaa24f2843bfe",
+      "runnerCoverage": "before snapshot and sourceStable"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/WorkspaceUi.kt",
+      "gitBlobSha256": "f2db72c7778c9fd64127e764aecd123d77e08c44bf1967efddd0466d54ffbe5a",
+      "workingSha256": "f2db72c7778c9fd64127e764aecd123d77e08c44bf1967efddd0466d54ffbe5a",
+      "executedRunnerBeforeSha256": "f2db72c7778c9fd64127e764aecd123d77e08c44bf1967efddd0466d54ffbe5a",
+      "runnerCoverage": "before snapshot and sourceStable"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioSelectedContrastTest.kt",
+      "gitBlobSha256": "aa04715873ac8043e8cdc5fedec0603e5748d213cb4db94f214ff4deb6e3d630",
+      "workingSha256": "aa04715873ac8043e8cdc5fedec0603e5748d213cb4db94f214ff4deb6e3d630",
+      "executedRunnerBeforeSha256": "aa04715873ac8043e8cdc5fedec0603e5748d213cb4db94f214ff4deb6e3d630",
+      "runnerCoverage": "before snapshot and sourceStable"
+    },
+    {
+      "path": "settings.gradle.kts",
+      "gitBlobSha256": "8488e6d35ba2dbc8e1ce6bb83a7293fc22da3f070f8e4ecbdbb3b6d57c45a33f",
+      "workingSha256": "8488e6d35ba2dbc8e1ce6bb83a7293fc22da3f070f8e4ecbdbb3b6d57c45a33f",
+      "executedRunnerBeforeSha256": "8488e6d35ba2dbc8e1ce6bb83a7293fc22da3f070f8e4ecbdbb3b6d57c45a33f",
+      "runnerCoverage": "before snapshot and sourceStable"
+    },
+    {
+      "path": "build.gradle.kts",
+      "gitBlobSha256": "a8c1bfc94f90f3f99785fc4656d1ec906878277a8208fd58a71822c9a56b20ad",
+      "workingSha256": "2622bdc1dc43dfaa9caa33aecc6b67546698b53b2a82fa3a4e527e9b7a9772f2",
+      "executedRunnerBeforeSha256": "2622bdc1dc43dfaa9caa33aecc6b67546698b53b2a82fa3a4e527e9b7a9772f2",
+      "runnerCoverage": "before snapshot and sourceStable"
+    },
+    {
+      "path": "gradle.properties",
+      "gitBlobSha256": "ff487523732b550a9f2667d873e49aaa9c13bb28652942a96d2cd0d06efa7907",
+      "workingSha256": "ff487523732b550a9f2667d873e49aaa9c13bb28652942a96d2cd0d06efa7907",
+      "executedRunnerBeforeSha256": "ff487523732b550a9f2667d873e49aaa9c13bb28652942a96d2cd0d06efa7907",
+      "runnerCoverage": "before snapshot and sourceStable"
+    },
+    {
+      "path": "gradle/verification-metadata.xml",
+      "gitBlobSha256": "96fa194b54d4bea48d6df24ccfa567a2d7a8096f8f14f8a365a69e806c400217",
+      "workingSha256": "f5b02ce97d6c32bc10fe31d8cea4aeb0cf99bd9fb90c82bc1b31453f8f658430",
+      "executedRunnerBeforeSha256": null,
+      "runnerCoverage": "unchanged Git/prepared input and after observation; runner hash selector did not cover this filename"
+    },
+    {
+      "path": "modules/studio-desktop/build.gradle.kts",
+      "gitBlobSha256": "7bc1571d2ed7e8104be866b8ae0d37a7be37f1c27d7bb33c2bd98cdeda88264e",
+      "workingSha256": "6d1918ab56c353fd92b58d0bdb739ded3b7867113d906b3ad0c582fb4497d7b8",
+      "executedRunnerBeforeSha256": "6d1918ab56c353fd92b58d0bdb739ded3b7867113d906b3ad0c582fb4497d7b8",
+      "runnerCoverage": "before snapshot and sourceStable"
+    },
+    {
+      "path": "modules/studio-desktop/gradle.lockfile",
+      "gitBlobSha256": "7798f0fabf9ca3c155c0d0ad19249218d11aee6cbd345569974eab32b0ebd145",
+      "workingSha256": "c354455af3def045c093ca16ee6cdb61820a69d849577d94cb73c922012b57bb",
+      "executedRunnerBeforeSha256": null,
+      "runnerCoverage": "unchanged Git/prepared input and after observation; runner hash selector did not cover this filename"
+    },
+    {
+      "path": "modules/studio-core/build.gradle.kts",
+      "gitBlobSha256": "50c7c05e82ece50d83ab7b56226fa553ccf69d3bd40a76342409194e32e5812a",
+      "workingSha256": "2825639a9850bdd683560c1810ce5cee1256b74e4e27bef2a2e8fecb4d0e466e",
+      "executedRunnerBeforeSha256": "2825639a9850bdd683560c1810ce5cee1256b74e4e27bef2a2e8fecb4d0e466e",
+      "runnerCoverage": "before snapshot and sourceStable"
+    },
+    {
+      "path": "modules/studio-core/gradle.lockfile",
+      "gitBlobSha256": "0097264d829a4c682d3b209b41138385db2dea8555bb5c1e4d070225e1b20909",
+      "workingSha256": "76d52588c62283ed159bbcbc4abccb57efd4d7cc4bf2dc6e3c3682d40abc35a8",
+      "executedRunnerBeforeSha256": null,
+      "runnerCoverage": "unchanged Git/prepared input and after observation; runner hash selector did not cover this filename"
+    },
+    {
+      "path": "modules/asset-library/build.gradle.kts",
+      "gitBlobSha256": "7c8b031aedfc544668ec407844c82e816363818b484669823073eb87ca848c13",
+      "workingSha256": "7c8b031aedfc544668ec407844c82e816363818b484669823073eb87ca848c13",
+      "executedRunnerBeforeSha256": "7c8b031aedfc544668ec407844c82e816363818b484669823073eb87ca848c13",
+      "runnerCoverage": "before snapshot and sourceStable"
+    },
+    {
+      "path": "modules/asset-library/gradle.lockfile",
+      "gitBlobSha256": "74ecf5d40cdc3329821f8f60793e38dc5c758a5e4b0d02dbaf695d47e3c3b328",
+      "workingSha256": "58954f64158eca19c941a1d226e9e6e7953f19ebf1044cef89fe2dcdbcf9e639",
+      "executedRunnerBeforeSha256": null,
+      "runnerCoverage": "unchanged Git/prepared input and after observation; runner hash selector did not cover this filename"
+    },
+    {
+      "path": "modules/image-authority/build.gradle.kts",
+      "gitBlobSha256": "7ebdac558ac9e8bd24c450d8764bffba33b92f9e9db5e79c3a901f6936184d7e",
+      "workingSha256": "bb58128ebc5e6e7a5df90693310fdb8dc4e27bacdad6af9884ece4851ecfc162",
+      "executedRunnerBeforeSha256": "bb58128ebc5e6e7a5df90693310fdb8dc4e27bacdad6af9884ece4851ecfc162",
+      "runnerCoverage": "before snapshot and sourceStable"
+    },
+    {
+      "path": "modules/image-authority/gradle.lockfile",
+      "gitBlobSha256": "61ee006966a59ae66791dc34621422adab6ac98bd64fc1429ea198fa52055fbf",
+      "workingSha256": "5a33a388c7f3836b6aff2f8d3c9c9945a1a5df13ad360e8d4183054076c41471",
+      "executedRunnerBeforeSha256": null,
+      "runnerCoverage": "unchanged Git/prepared input and after observation; runner hash selector did not cover this filename"
+    }
+  ],
+  "installer": "NOT BUILT",
+  "installerVersion": null,
+  "installerSha256": null,
+  "public115": "Does not contain this theme or P2",
+  "externalSubmission": "PROHIBITED_THIS_ROUND",
+  "push": "PROHIBITED_THIS_ROUND"
+}

@@ -1,4 +1,14 @@
-## 当前执行：P2原三项续接预检，磁盘满足、内存未准入
+## 当前执行：P2三项工程材料获准固定交付，原页待新鲜核对后单次送审
+
+用户20:22 UTC明确批准仅本P2源码/三项测试/资源采样材料commit/push及一次原Project限定复审，覆盖原本地阶段暂不外发安排。新[报告/原始工程材料](audits/THEME_SELECTED_CONTRAST_EXECUTION_20261026.md)保持c39源码/ed执行输入映射、E工具失败0/F实际3PASS、原26份本地字节不改；没有追加测试或源码改动。原Project实际页面已载入并于20:32 UTC核对：最新仍为30b/dce原P2回复，本轮源码/测试类/标识/报告均未出现；本执行者本P2新增请求仍0，不将固定交付称送达或独立通过。原独立P2 OPEN/HOLD及视觉/包/用户等边界保持，不发版、tag、打包/安装或扩大范围。下方本地禁止外发是旧阶段记录。
+
+## 历史本地结果：P2三项已通过，当时禁止外发及push
+
+c39e860原StudioSelectedContrastTest三项在任务临时Gradle384MiB堆/256MiB元空间、测试256MiB下实际编译并3唯一方法PASS（0失败/错误/跳过），sourceStable，runner95.83秒；应用/断言未变。首E启动工具缺tools路径引导在Gradle前失败/0JUnit，原日志保留；F只修引导后通过，原四项未重跑。启动Available约968MiB、组私有提交采样峰值约1245MiB、最低Available约340MiB，有短暂分页、未见OOM或预设组合严重压力；不是新普遍最低内存保证。完整本地报告/清单在`.local/theme-selected-contrast-local-result-20261026/`，原始F逐例在`.local/windows-preview/evidence/20261025T201410975092Z-display-theme-selected-p2-lowmem-f-20261026/`。未发Project/外部对话、未push，无新独立裁定；原P2独立OPEN/HOLD、实际视觉/系统事件/包未验及其他PENDING保持。当前没有后台门/编译/测试或新应用窗口，不进入打包/安装/发布/搬删；下方未读结果状态为运行前历史。
+
+沿用c39e860原P2及StudioSelectedContrastTest三项；最新协调暂停此前自动送审安排，不向任何外部对话提交、不push新材料。2GiB为执行者旧保守估算，未测峰值，不再按该数全局等待；当前按实际Free/Available/commit余量及H/C/owner保护选择任务临时参数并受监测执行，未读到结果前不称PASS。保持单worker/单fork、Kotlin进程内、不跳过当前编译或重跑四项已接受；OOM/实际压力/并行冲突分列保留。仅本地结果，不改OS/防护/分页/ACL、结束无关进程或打包/安装/发版。下文旧2GiB等待、自动送审按历史保留。
+
+## 历史D续接预检：磁盘满足，按旧内存估算未准入
 
 2026-10-26 04:48/04:49 JST两次新鲜有界预检沿用c39e860原三项及原一次送审授权：四模块build字节不变，H预算仍2,195,497,728、空闲4,538,703,872字节且C满足；内存仅1,057,619,968字节，距原2GiB差1,089,863,680，owner0也不能替代内存准入。见[D原始资源回执](audits/evidence/THEME_SELECTED_CONTRAST_RESUME_20261026_D/RESULT.json)。已承接但runner0/JUnit0，NOT COMPILED / NOT TESTED，新Project未发送/未落地/无新最终裁定，P2 OPEN；源码未改、旧失败/0执行/四项接受不覆盖。当前无后台门/测试，不新删文件、操作用户进程或打包/安装/发版；内存实际改善后再按原门槛与两次安静/最终预检续跑，其他未验/PENDING保持。
 

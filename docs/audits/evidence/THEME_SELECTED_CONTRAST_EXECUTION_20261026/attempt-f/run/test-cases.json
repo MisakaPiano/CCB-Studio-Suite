@@ -1,0 +1,20 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioSelectedContrastTest",
+    "name": "actualRouteAndLibrarySelectionBordersStayVisibleAndClickable",
+    "seconds": "1.995",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioSelectedContrastTest",
+    "name": "filledBatchCoverAndLibraryControlsRenderReadableForegrounds",
+    "seconds": "2.942",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.StudioSelectedContrastTest",
+    "name": "indicatorUsesOriginalAccentWhenReadableAndPreservesEveryStoredRgb",
+    "seconds": "0.037",
+    "status": "PASS"
+  }
+]

@@ -1,0 +1,135 @@
+{
+  "recordedUtc": "2026-10-25T20:21:52.541812+00:00",
+  "applicationSource": "c39e860252fdd96c9bec5b5d42d1abd988d3ec06",
+  "localOnly": true,
+  "externalSubmission": "PROHIBITED_THIS_ROUND",
+  "push": "PROHIBITED_THIS_ROUND",
+  "notes": "Exact original E failed bootstrap, F monitored run, fresh three JUnit results and local report/mapping. No fixture payload. Collector terminal filesSoFar included directories and is not a file count; this manifest counts only actual files.",
+  "files": [
+    {
+      "path": "attempt-e/control/COMMAND.json",
+      "bytes": 522,
+      "sha256": "21cdc78fa7a295ad84ff24655fa5b7ce645271de1d7618e6d54152be21cbc23c"
+    },
+    {
+      "path": "attempt-e/control/memory-samples.jsonl",
+      "bytes": 608,
+      "sha256": "e59f65b9c8e801bf738aa8558b2947257fd187884adb8177b6b40fb9ffbfb920"
+    },
+    {
+      "path": "attempt-e/control/MONITOR_RESULT.json",
+      "bytes": 1754,
+      "sha256": "686bc2ae26eca7afc0a248ff088f38c13af226aa1519d0d15b9cc93afff8b41b"
+    },
+    {
+      "path": "attempt-e/control/PLAN.json",
+      "bytes": 2246,
+      "sha256": "d9eed8eb8dc5f9c99dff24789c6e1f1c81975cc1b9b93f81d92ce1b99d82d609"
+    },
+    {
+      "path": "attempt-e/control/run-monitored.py",
+      "bytes": 9398,
+      "sha256": "fad4cc8e5658e2e488362a46b24bfabfe16d1f5e1f08026c7c02aa6006f2ed09"
+    },
+    {
+      "path": "attempt-e/control/runner.log",
+      "bytes": 219,
+      "sha256": "05b54cbb155f4e90b864a2ec4e4cd8cc4f2a722cc3058b272ff251c03b4e2f86"
+    },
+    {
+      "path": "attempt-e/control/RUNNER_IDENTITY.json",
+      "bytes": 185,
+      "sha256": "398893ca14800fa8b52d1db34cfbc67416b078ea3e863075662d936f879ca7a9"
+    },
+    {
+      "path": "attempt-f/control/COMMAND.json",
+      "bytes": 647,
+      "sha256": "ee041ac2159d5f023121dbf28f04bdecaad75560f44eb9a50b34f28008a83e43"
+    },
+    {
+      "path": "attempt-f/control/memory-samples.jsonl",
+      "bytes": 47842,
+      "sha256": "b09874ed6aeb14e06067e2ddfdb167e1556b3f2589b6d85a37dd7810f1752e1f"
+    },
+    {
+      "path": "attempt-f/control/MONITOR_RESULT.json",
+      "bytes": 4645,
+      "sha256": "85afa4c263459c3c05aa0c3a6492457c2ddd76d8c601c9daacf8b6b52ee4bcbf"
+    },
+    {
+      "path": "attempt-f/control/PLAN.json",
+      "bytes": 2247,
+      "sha256": "d169fc7e8cde9fcccefaac991d3fd33751c223baed4759d7c7294a8a4ff5446a"
+    },
+    {
+      "path": "attempt-f/control/run-monitored.py",
+      "bytes": 9551,
+      "sha256": "a40f7a59b49044e1df5f942610cb3b2ff945f716f13d018b1ade2ae386029e90"
+    },
+    {
+      "path": "attempt-f/control/runner.log",
+      "bytes": 5173,
+      "sha256": "5fcdf1e3eea34b81ab0718719acec66d5d76e5f506dbad5a4518aa9a84543326"
+    },
+    {
+      "path": "attempt-f/control/RUNNER_IDENTITY.json",
+      "bytes": 184,
+      "sha256": "a4d716bc7a56fcb258456ce1ba541b7102292e21bd48bc05da148163c5a3957e"
+    },
+    {
+      "path": "attempt-f/run/fixture-cleanup.json",
+      "bytes": 143,
+      "sha256": "909de1439e5ae4a44303d7410bf016cd228c1d7dd382b18207f6f6ed9d749f92"
+    },
+    {
+      "path": "attempt-f/run/gradle.log",
+      "bytes": 3959,
+      "sha256": "1a09452825450c3f0d4db8bcb542815688861b37eab75119b836dc6071e05726"
+    },
+    {
+      "path": "attempt-f/run/source-before.json",
+      "bytes": 80762,
+      "sha256": "643e7c5b392b9b851ca029db4be5e71b7c5dca62599d0649858a385c9cc9aa03"
+    },
+    {
+      "path": "attempt-f/run/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioSelectedContrastTest.xml",
+      "bytes": 2164,
+      "sha256": "d986af6b3b7801a9cb9addcde75a3964f18c281f970dca8cafcf7ee6bcefc06a"
+    },
+    {
+      "path": "attempt-f/run/summary.json",
+      "bytes": 1083,
+      "sha256": "c9f3fb8ec97b967e282675066b849ee40f1e3ad58eb7de955ce2dbb94e9427b5"
+    },
+    {
+      "path": "attempt-f/run/test-cases.json",
+      "bytes": 666,
+      "sha256": "f676031818aca675cdc9cc2c84712e17fa9eb23505280311b54a7699a489922f"
+    },
+    {
+      "path": "collect-results.py",
+      "bytes": 7783,
+      "sha256": "4073af37f6c39df8700e8f35b11042fcd4bdcec5e61ccda5b1f7452792d028fa"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5728,
+      "sha256": "87c58671c497d71d2e04cd312045b89dfd30cf5b6abaef4e37505f1184e36d53"
+    },
+    {
+      "path": "RUN_MATRIX.json",
+      "bytes": 1827,
+      "sha256": "4e56c07507c11ec50a859cf2242c5d54bcc6b8c52c45e46a78d076f817767e1c"
+    },
+    {
+      "path": "SOURCE_MAP.json",
+      "bytes": 13836,
+      "sha256": "572f214f723018ae1dec1265649f95a0815e90751ab1ba0e02acba4457fe00e5"
+    },
+    {
+      "path": "SUMMARY.json",
+      "bytes": 1957,
+      "sha256": "803a400184a0604b3bc02f8bd6c82014eda2d04bfe3d81cdf59111dab65b4119"
+    }
+  ]
+}

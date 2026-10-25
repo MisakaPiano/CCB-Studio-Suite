@@ -1,5 +1,11 @@
 ## 当前队列：2026-10-25 17:49 JST用户新顺序（替代旧后续排期）
 
+最新交付授权：用户20:22 UTC批准仅本P2源码/原三项/资源采样工程材料固定commit/push并向原Project单次限定复审，替代下方本地暂不外发；[新报告](audits/THEME_SELECTED_CONTRAST_EXECUTION_20261026.md)。旧c39/30b/dce及全部失败/0执行不覆盖，不新增测试/功能。实际原页20:32 UTC新鲜去重未见本增量，本执行者本P2新增请求0，固定工程不代表送达/开始/最终通过；原P2 OPEN/HOLD/人工与包未验保持，不发版打包安装。
+
+本地最新结果：原UX-DISPLAY-THEME-001/c39e860三项在临时384/256 Gradle、256 test参数下3唯一方法PASS/sourceStable/0失败错误跳过，runner95.83秒；E工具引导失败0JUnit保留、F实际通过，不重跑/累加原四项。25次资源采样保留，低于旧2GiB初始估算时完成，不宣称新全局最低内存。报告`.local/theme-selected-contrast-local-result-20261026/README.md`；仅本地留证，本轮Project/外部发送0、push0，独立P2仍OPEN/HOLD，实际视觉/包/用户及其他未验保持。无新任务或后续阶段自动启动。
+
+最新P2接续仅本地：沿用UX-DISPLAY-THEME-001/c39e860原三项，按任务临时JVM参数与实际资源监测执行；旧2GiB是未实测的执行者估算，不再全局拦截。保持H/C及owner、单worker/单fork/in-process、不降断言、不重跑原四项。**本轮禁止任何外部对话提交及新材料push**，覆盖旧自动送审接续；未读实际结果前仍NOT TESTED。只按实际OOM/压力/并行冲突处理，旧失败/0执行原样保留，不打包安装发版或扩大任务。
+
 2026-10-26 04:49 JST原P2续接实况：沿原UX-DISPLAY-THEME-001/c39e860三项及一次送审额度，两次新鲜预检H/C已满足，内存仅1,057,619,968字节，低于原2GiB、差1,089,863,680，owner0；[D回执](audits/evidence/THEME_SELECTED_CONTRAST_RESUME_20261026_D/RESULT.json)。runner0/JUnit0，未编译/未测，新Project提交0/无落地或新裁定，P2 OPEN，源码不变；当前无后台等待门。不重跑已接受四项、不降预算/新清理或操作用户进程，不打包/安装/发版；后续内存实际达标后仍按原准入继续。以下较早H不足为历史，不新增任务或改变顺序。
 
 最新执行补充：用户14:19 UTC明确批准原UX-DISPLAY-THEME-001 / P2-SELECTED-CONTRAST窄修及一次原Project复审，见[现有合同](../tasks/UX_RECOVERY_CONTINUOUS.md)。选中态代码及三项针对性回归已准备；H约1.64GiB低于原2.04GiB准入，NOT COMPILED / NOT TESTED，0新测试，P2 OPEN / REVIEW NOT SUBMITTED，不以旧四项PASS代签新源码。旧30b0659/dce6600和Project限定结论不改；不打包/发布/安装/搬删或启动其他任务。下方“本次只送审”等为此前授权时点。
@@ -17,7 +23,7 @@
 |顺序|沿用任务/范围|当前状态与进入条件|
 |---|---|---|
 |1|PERF-001～PERF-007，本轮性能优化及收尾|先完成正在进行的验证/固定源码/原始结果与失败分列。当前字体清单db46098/1aa1fde已自动3方法通过并留证，长期规模/UI/RSS/用户/包等未验仍保留，不宣称整个专项全部完成，也不以长期未关闭无限追加本轮微基线|
-|2|UX-DISPLAY-THEME-001：对齐Desktop实际显示主题色切换|30b0659 COMPILED / FOUR METHODS PASS获独立接受，核心/保存PASS_WITH_SCOPE；本轮独立PARTIAL_ACCEPT / LIMITED_HOLD，子发现P2-SELECTED-CONTRAST OPEN（c39e860候选已准备，NOT COMPILED / NOT TESTED）。保留原RGB，窄修消费端前景及唯一状态图标/边框，不能仅换3处Ink即关闭。实际UI/用户/包未验；14:19 UTC授权窄修/针对回归及一次送审，不授权打包/发布/安装或后三组。见[新候选与资源推迟](audits/THEME_SELECTED_CONTRAST_P2_20261025.md)及[原Project结论](audits/THEME_PROJECT_REVIEW_RESULT_20261025.md)|
+|2|UX-DISPLAY-THEME-001：对齐Desktop实际显示主题色切换|原30b0659四项及核心/保存获独立限定接受；c39e860本地已COMPILED / THREE TARGETED METHODS PASS，0失败/错误/跳过、sourceStable，保留原RGB/格式。原独立PARTIAL_ACCEPT / LIMITED_HOLD及P2-SELECTED-CONTRAST OPEN待后续复审；本地通过不代签独立关闭/真实UI/用户/包。**20:22 UTC用户重新批准仅本P2工程材料commit/push及原Project单次限定复审，原页去重后执行**，不打包发布安装或启动后三组。当前报告位于`.local/theme-selected-contrast-local-result-20261026/README.md`；旧[候选与推迟](audits/THEME_SELECTED_CONTRAST_P2_20261025.md)及[Project固定结论](audits/THEME_PROJECT_REVIEW_RESULT_20261025.md)保持|
 |3|UX-RECOVERY既有本轮内部打包/验收阶段，承接W1～W5/CP4相关门禁及REVIEW_FIXES_AND_UPDATE_CLEANUP_20261024|主题后准备包含已有修复、清理、性能、主题的内部包与验收，NOT BUILT / NOT VERIFIED。必须纳入最后f6598d39298c06ec5644a131e484e814f77b6f45下载终态清理修复；当前仅证实db46098是其后代，不等于新包已含修复。冻结源码/构建输入/包版本与SHA256/实际脚本字节及证据对应关系，补必要新包集成；旧115/2484858内部包不代替。本次内部包授权不等于公开发布、更新日常安装、改信任链或冒签用户/Project验收|
 |4a（第3步后）|UX-RECOVERY / W2～W4：资产管理与编辑界面验证|USER_NOT_TESTED，按用户实际测试时间推进；实现/自动通过不能代替人工，所需用户动作和审批继续等待用户|
 |4b（第3步后）|UX-ASSET-FS-001：本地批量文件管理与真正删除|PLANNED / NOT STARTED；保留批量重命名/复制/移动/删除与移出图库/回收站/永久删除原文件的区别，不因排期授权操作真实用户文件|

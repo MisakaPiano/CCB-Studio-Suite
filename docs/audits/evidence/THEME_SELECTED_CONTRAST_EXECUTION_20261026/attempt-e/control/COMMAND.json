@@ -1,0 +1,17 @@
+{
+  "arguments": [
+    "H:\\CCB-Studio-Suite\\.local\\windows-rc\\updater-runtime-115\\python.exe",
+    "-B",
+    "H:\\CCB-Studio-Suite\\tools\\Run-PreviewChecks.py",
+    "--phase",
+    "display-theme-selected-p2-lowmem-e-20261026",
+    "--keep-fixtures",
+    "--",
+    ":studio-desktop:test",
+    "--tests",
+    "*StudioSelectedContrastTest",
+    "-Dorg.gradle.jvmargs=-Xmx384m -XX:MaxMetaspaceSize=256m -XX:ActiveProcessorCount=2"
+  ],
+  "startedUtc": "2026-10-25T20:13:21.958060+00:00",
+  "noProjectSendOrPush": true
+}
