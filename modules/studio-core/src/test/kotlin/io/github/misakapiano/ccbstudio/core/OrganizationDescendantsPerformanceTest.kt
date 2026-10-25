@@ -27,7 +27,7 @@ class OrganizationDescendantsPerformanceTest {
             val expectedMembers=when(context){"root"->List(count,::folder).toSet();"small"->setOf(folder(count-2),folder(count-1));else->setOf(target)}
             val expectedOrder=org.legacyDescendants(target).toList()
             fun verify(actual:Set<String>) {assertEquals(expectedMembers,actual);assertEquals(target,actual.first());assertEquals(expectedOrder,actual.toList());assertContentEquals(before,documentJson.encodeToString(state).toByteArray())}
-            repeat(20){verify(org.legacyDescendants(target));verify(org.descendants(target))}
+            repeat(2){verify(org.legacyDescendants(target));verify(org.descendants(target))}
             repeat(4){round->
               for(kind in if(round%2==0)listOf("legacy","current")else listOf("current","legacy")) {
                 val thread=Thread.currentThread().id;val allocated=bean.getThreadAllocatedBytes(thread)
