@@ -9,8 +9,9 @@ import java.time.*
 /** Metadata-only projection. Unknown dates remain unknown; no filesystem lookup or guessed defaults. */
 fun libraryRecordedTimes(assets:List<AssetStore.Asset>,jobs:List<JobRecord>):Map<String,Long> {
     val imported=assets.mapNotNull{a->runCatching {
-        if(a.request().recipe().size>16384)return@runCatching null
-        val receipt=Json.parseToJsonElement(a.request().recipe().decodeToString()).jsonObject
+        val opaque=a.request().recipe()
+        if(opaque.size>16384)return@runCatching null
+        val receipt=Json.parseToJsonElement(opaque.decodeToString()).jsonObject
         if(receipt["kind"]?.jsonPrimitive?.content!="image-ingress" || receipt["version"]?.jsonPrimitive?.intOrNull!=1)return@runCatching null
         a.request().id().toString() to requireNotNull(receipt["createdAt"]?.jsonPrimitive?.longOrNull)
     }.getOrNull()}.toMap()
