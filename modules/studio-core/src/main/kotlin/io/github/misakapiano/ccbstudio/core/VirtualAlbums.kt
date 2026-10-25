@@ -22,7 +22,11 @@ object VirtualAlbums {
         do {val n=result.size;albums.filter{it.parent in result}.forEach{result+=it.id}}while(result.size!=n)
         return result
     }
-    fun members(albums:List<VirtualAlbum>,id:String):Set<String> = descendants(albums,id).flatMap{key->albums.single{it.id==key}.images}.toSet()
+    fun members(albums:List<VirtualAlbum>,id:String):Set<String> {
+        val selected=descendants(albums,id)
+        val byId=albums.associateBy{it.id}
+        return linkedSetOf<String>().also{result->selected.forEach{key->result.addAll(byId.getValue(key).images)}}
+    }
     fun save(albums:List<VirtualAlbum>,album:VirtualAlbum):List<VirtualAlbum> = (albums.filter{it.id!=album.id}+album).also(::validate)
     fun remove(albums:List<VirtualAlbum>,id:String):List<VirtualAlbum> = albums.filter{it.id !in descendants(albums,id)}
     fun associate(albums:List<VirtualAlbum>,ids:Set<String>,targets:Set<String>,from:String?=null):List<VirtualAlbum> {
