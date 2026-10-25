@@ -1,0 +1,16 @@
+{
+  "recordType": "final_receipt_boundaries",
+  "observedUtc": "2026-10-25T20:52:06.048Z",
+  "temporaryBrowserTabClosed": true,
+  "browserId": "2",
+  "tabId": "1",
+  "noSecondRequest": true,
+  "newJUnitMethods": 0,
+  "finalBodyChars": 2538,
+  "finalBodyWhitespaceNormalization": "all whitespace to single spaces; trim ends; file has final LF",
+  "finalBodyFNV1aUtf16": "97b05450",
+  "nativeFinalBody": "content-reference only",
+  "actualBodySource": "actual original page visible DOM",
+  "historicalPendingFiles": "SEND_INTENT.json and REVIEW_STARTED.json remain original observed-at snapshots",
+  "readPreparationNotes": "Native first final read rejected maxOutputCharsPerItem=25000 (maximum 20000); retried read-only with16000. DOM ancestor article absent; read-only locator corrected using observed parent. No re-send, regeneration, review stop or product test."
+}

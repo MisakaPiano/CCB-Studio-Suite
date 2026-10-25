@@ -1,0 +1,40 @@
+{
+  "recordType": "original_project_final_review_receipt",
+  "targetTitle": "阶段复审结论",
+  "targetConversation": "6adcaaef-3fac-83e8-ae57-2a524281e049",
+  "requestMessageId": "bc8bff73-334c-4bae-9fda-e62df014c122",
+  "replyMessageId": "f7d5a463-3afe-4560-9a56-2f6ac438b2f1",
+  "turnStatus": "completed",
+  "completedAtFromNative": "2026-10-25T20:45:31.540Z",
+  "exactReviewStartTime": "UNKNOWN",
+  "visibleBodyObservedUtc": "2026-10-25T20:51:02.384Z",
+  "nativeBody": "content-reference placeholder only; full body read from actual original page DOM, not inferred from placeholder",
+  "source": "c39e860252fdd96c9bec5b5d42d1abd988d3ec06",
+  "evidence": "013aab40726d35387d2184c957984cac94a778e7",
+  "decision": "CLOSED_WITH_SCOPE",
+  "scope": "P2-SELECTED-CONTRAST fixed source and three synthetic consumer regressions only",
+  "residualSameP2Defects": "NONE_FOUND_BY_PROJECT",
+  "actualSendAttempts": 1,
+  "remainingSendQuota": 0,
+  "oldDecisionPreserved": "30b0659/dce6600 PARTIAL_ACCEPT / LIMITED_HOLD; not retrospectively rewritten",
+  "notVerified": [
+    "Real Windows UI",
+    "System theme events",
+    "Detached-window redraw",
+    "User visual/interaction acceptance",
+    "New installer/full update",
+    "UPD-CLEAN-PROTECTION-001 static only"
+  ],
+  "otherStates": {
+    "q09": "FAILED / root UNKNOWN",
+    "assetEditor": "USER_NOT_TESTED",
+    "preview115Experience": "PENDING",
+    "promptComparison": "PENDING",
+    "wholeProject": "PRODUCT_HOLD / NOT RC"
+  },
+  "transcriptionFile": "FINAL_VISIBLE_NORMALIZED.txt",
+  "transcriptionFormat": "Full visible final body; whitespace normalized to single spaces, no hidden reasoning/sidebar/history; not original Markdown/network bytes",
+  "newTestsThisReceipt": 0,
+  "newRelease": false,
+  "newInstaller": false
+}
