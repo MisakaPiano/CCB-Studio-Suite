@@ -8,6 +8,10 @@ Desktop最新owner门、单worker/低优先级；重负载让行，忙时准备�
 
 2026-10-23 JST，用户明确要求将各种操作响应速度和系统运行资源占用独立列为长期专项。该专项维护可复现的问题/基线/回归，不建立定时任务，也不扩大用户资料访问、真实服务调用、跨仓修改或发行权限。当前执行合同仍为UX_RECOVERY_CONTINUOUS；本文件是长期工作流和验收框架，不宣称已完成全程序优化。
 
+## 2026-10-25 PERF-005字体依赖清单：b049e4c合成基线等待结果观察
+
+测试输入b049e4c仅新增DocumentFontDependenciesPerformanceTest单方法：1/4/16页×8文本/页×128单元/512字符、plain/inline与8预设，调用实际documentFonts，文档完整validate/<=4MiB、字体引用顺序/重复/摘要/输入字节和独立小向量在计数外。只字体名称/假别名字符串，不实际load/activate/resolve/measure/render/工作区数据。每文本原tokens解析保留；已有loaded缓存不重做。生产TypesetFonts未改，调用内buildList与顺序/空/隐藏文本/预设base-only/坏标签错误/2线程回归仅.local准备。Desktop大容量迁移运行，已发单门低优先级执行请求但结果PENDING_OBSERVATION；不把尚未读到结果称0执行/未执行。文档后续commit可变、模块/工具须同冻结输入，无重复旧基线/新功能/发行/真实资料/外发；持续授权/所有安全与未验边界保持。
+
 ## 2026-10-25 PERF-005固定数值表试验未采用，继续字体依赖清单纯元数据
 
 [候选e837880/恢复2c35296/固定负面证据](../docs/audits/PERF005_PUNCTUATION_RATIOS_EXPERIMENT_20261025.md)：功能3唯一方法PASS，前值3d9abb0/838b087已有实际行复用、0新基线，不累加旧3方法。3lazy固定DoubleArray虽只读/无外泄、保持数值/顺序/公式，8192loose墙钟2.636→3.613ms约慢37%，性能HOLD / NOT ADOPTED，原因UNKNOWN；分配少20%不作通过依据，无调预热/筛样/重复求绿。2c35296所有modules/tools恢复同3d9abb0，原候选及基准源码/raw保留、该基准退出默认套件；恢复本身0新测试，证据只输入等价。已有5类集合/富文本/竖排等增量不变。旧失败/异步误写/路径UNKNOWN、未验与新Project只准备保持。

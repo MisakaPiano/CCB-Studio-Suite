@@ -4,6 +4,10 @@
 
 竖排e9ae9f3/6805de7及4方法已完成，不重跑、不改旧固定包。当前同PERF-005富文本固定表达式9987d85已实际3方法通过，[报告/原始逐例](audits/PERF005_RICH_TAG_SYNTAX_20261025.md)：只1lazy Regex+1引用，原标签/样式/错误/嵌套长度/其他生产保持；属性分配少约64%、控制分配不变，墙钟噪声与首用/常驻/UI/RSS未测边界单列。新[复审只准备](../handoff/PERF005_RICH_TAG_SYNTAX_REVIEW_READY_20261025.md)，旧包/用户/独立状态不扩大。当前标点分类3d9abb0最终3方法已通过，修正基线1PASS/原向量1FAIL分列，旧失败与异步误写PENDING_OBSERVATION更正保留；只5lazy固定Set+5引用，完整布局与其他生产不变。数值表候选e837880因loose负面HOLD，2c35296已恢复；当前继续字体依赖清单纯元数据聚合定位，先测后改，不改规则/字体/渲染/UI或输入预算，不启动后续新功能。Desktop优先，重负载让行/忙时只准备；新Project只准备不外发，不新增执行者。所有临时文件限Suite根，写前核绝对路径/归属/冲突/链接；禁止再访问此前误写路径，旧覆盖/时间UNKNOWN不改。无发布/重启/MSI/安全变更/日常安装或私人数据/付费调用/暂停扫描恢复；资产编辑用户未验、115/Prompt各PENDING、q09及PRODUCT_HOLD保持。下方登记/阶段状态各自保留原时点。
 
+### 字体依赖清单b049e4c基线：PENDING_OBSERVATION，生产实现未改
+
+承接原PERF-005，测试输入b049e4c只新单方法`DocumentFontDependenciesPerformanceTest`，实际documentFonts纯字体名称字符串清单，1/4/16页×每页8文本×512字符、纯文本/inline两组与8预设；真实文档validate/<=4MiB和顺序/重复/字节检查在计数外。假字体别名仅字符串，不加载/激活/安装字体/图片或渲染。候选/最终3方法仅.local草稿，保留每条tokens原解析、全部顺序/重复/预设base-only与未知/长/深标签错误；已有字体加载缓存不重做。当前门控让行Desktop大容量迁移，执行状态只登记PENDING_OBSERVATION（尚未读到结果），不据未读说0执行/未执行；production TypesetFonts未改，不能称完成。模块/工具输入按b049e4c冻结，文档commit另列；持续授权继续低负载准备，Desktop优先，无发行/日常/真实资料或新外发。
+
 ### 数值表候选未采用，2c35296恢复原实现，继续已有性能定位
 
 [e837880实际3方法/负面样本及恢复映射](audits/PERF005_PUNCTUATION_RATIOS_EXPERIMENT_20261025.md)：功能3PASS，前值3d9abb0/838b087复用0新基线；3private lazy数组虽减少约20%分配，8192loose墙钟配对2.636→3.613ms约慢37%，性能HOLD / NOT ADOPTED，原因UNKNOWN。无追加预热/挑样/重跑求绿；原结果保留。2c35296恢复所有modules/tools同已实际通过3d9abb0，移除本候选默认基准，源码/raw保留，恢复0新测试、只固定输入等价证明，不冒称新执行或性能修复。新[负面试验复审只准备](../handoff/PERF005_PUNCTUATION_RATIOS_REVIEW_READY_20261025.md)，原包/用户/独立边界保持。当前继续同PERF-005纯元数据`TypesetFonts.documentFonts`依赖清单聚合定位，保留每文本原解析/重复/顺序/错误，已有字体加载缓存不重做，不加载字体/渲染/新功能；Desktop优先，异步状态仅观察回执，旧失败/未验/UNKNOWN及禁止项不变。

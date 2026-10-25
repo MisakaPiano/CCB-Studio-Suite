@@ -1,3 +1,7 @@
+## 2026-10-25 PERF-005字体依赖清单：基线b049e4c结果待观察
+
+沿用原任务，新测试仅一方法测实际documentFonts清单聚合，完整解析/文档校验/预算和字体字符串顺序重复保持；没有加载/安装/激活字体或渲染/图库/私人资料调用。生产未改，候选仅.local，门控让行Desktop大容量迁移。PENDING_OBSERVATION，不按未读结果认定0执行/未执行、不标PASS；后续文档commit不改b049e4c模块/工具。旧失败/数值表NOT ADOPTED/未验/UNKNOWN与新Project只准备保持，持续授权普通资源等待只限制重负载，低负载准备继续。
+
 ## 2026-10-25 PERF-005数值表候选HOLD，原实现已恢复
 
 [候选e837880功能3PASS/负面记录/恢复2c35296](audits/PERF005_PUNCTUATION_RATIOS_EXPERIMENT_20261025.md)分列：最大loose配对墙钟约慢37%，分配少20%不代签响应收益，NOT ADOPTED/根因UNKNOWN，无求绿重跑；前值复用0新基线。恢复全部modules/tools同实际3d9abb0、0新测试，候选/raw及负面决定保留。新[复审只准备](../handoff/PERF005_PUNCTUATION_RATIOS_REVIEW_READY_20261025.md)，原未验/旧失败/包不扩大。连续授权继续PERF-005字体依赖清单纯元数据成本定位，不重复已有字体加载缓存/不加载字体或重开UI，Desktop优先，不新建任务或发布。
