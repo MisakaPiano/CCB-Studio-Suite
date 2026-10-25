@@ -1,0 +1,13 @@
+{
+  "phase": "20261025T055505111885Z-perf005-punctuation-classes-baseline-20261025",
+  "source": "772a66c8cbee574cf82aa4e2688eaa4f1d13af86",
+  "tests": 1,
+  "cause": "Independent expected advance vector reversed the existing before/after small punctuation coefficients: source part(prev,false)/part(next,true), .12/.14. Wrong12,10.8,10.6; correct12,10.6,10.8. Product unchanged.",
+  "skipped": 0,
+  "observedUtc": "2026-10-25T05:56:21.1256685Z",
+  "resolution": "Correct expected vector only, preserve1e-9 precision, old source/raw/fixture/drafts retained; fresh actual baseline needed before production adoption",
+  "fixture": ".local/disposable/gradle-tests-31a2a3258b1f46e3b424dfffdf4d1408",
+  "failures": 1,
+  "errors": 0,
+  "performanceSamples": 0
+}

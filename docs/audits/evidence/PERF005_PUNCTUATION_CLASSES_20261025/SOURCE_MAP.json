@@ -1,0 +1,86 @@
+{
+  "sources": {
+    "failedBaseline": "772a66c8cbee574cf82aa4e2688eaa4f1d13af86",
+    "baseline": "d82f804d73557ab4e6fa633f2655835fcc3e6d03",
+    "final": "3d9abb0e10a61a230e17542a8cc22b5c1c0992e3"
+  },
+  "executions": {
+    "failedBaseline": "772a66c8cbee574cf82aa4e2688eaa4f1d13af86",
+    "baseline": "d82f804d73557ab4e6fa633f2655835fcc3e6d03",
+    "final": "3d9abb0e10a61a230e17542a8cc22b5c1c0992e3"
+  },
+  "identities": [
+    {
+      "run": "failedBaseline",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetLayout.kt",
+      "rawInputSha256": "d9fc519f711a9b630224ece1c8f7812f0e142bb594026a608c5769d916deeb58",
+      "gitBlobSha256": "d9fc519f711a9b630224ece1c8f7812f0e142bb594026a608c5769d916deeb58"
+    },
+    {
+      "run": "failedBaseline",
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/VerticalPunctuationClassPerformanceTest.kt",
+      "rawInputSha256": "5dbd505c92a3074225ea42d2575fdccfdfa2757799b6c17b74c31c99511c6d91",
+      "gitBlobSha256": "5dbd505c92a3074225ea42d2575fdccfdfa2757799b6c17b74c31c99511c6d91"
+    },
+    {
+      "run": "failedBaseline",
+      "path": "tools/Run-PreviewChecks.py",
+      "rawInputSha256": "45f0f681f68b83c67c5a04607dfea09ecea742bcfd2f5f4ee31e3162901e9e23",
+      "gitBlobSha256": "d8dec9e6bcc417c59cc9d3dd32b79fd4519c16b86adbf582798b2d707c4935b4"
+    },
+    {
+      "run": "baseline",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetLayout.kt",
+      "rawInputSha256": "d9fc519f711a9b630224ece1c8f7812f0e142bb594026a608c5769d916deeb58",
+      "gitBlobSha256": "d9fc519f711a9b630224ece1c8f7812f0e142bb594026a608c5769d916deeb58"
+    },
+    {
+      "run": "baseline",
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/VerticalPunctuationClassPerformanceTest.kt",
+      "rawInputSha256": "24fc252ba5bfe6a9c0ad8713fb411edd2c0563e0946ac4723353dd21bde8bb87",
+      "gitBlobSha256": "24fc252ba5bfe6a9c0ad8713fb411edd2c0563e0946ac4723353dd21bde8bb87"
+    },
+    {
+      "run": "baseline",
+      "path": "tools/Run-PreviewChecks.py",
+      "rawInputSha256": "45f0f681f68b83c67c5a04607dfea09ecea742bcfd2f5f4ee31e3162901e9e23",
+      "gitBlobSha256": "d8dec9e6bcc417c59cc9d3dd32b79fd4519c16b86adbf582798b2d707c4935b4"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetLayout.kt",
+      "rawInputSha256": "02a7bc69c710641ec7bf436ed51d7a5ebaa6fb82f0b522893d8ffb8737724c08",
+      "gitBlobSha256": "02a7bc69c710641ec7bf436ed51d7a5ebaa6fb82f0b522893d8ffb8737724c08"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/VerticalPunctuationClassPerformanceTest.kt",
+      "rawInputSha256": "b57eb6ef2b4929dc15749d2d334ad3e9c739870f4c4f933ce68d20a6838a4c32",
+      "gitBlobSha256": "b57eb6ef2b4929dc15749d2d334ad3e9c739870f4c4f933ce68d20a6838a4c32"
+    },
+    {
+      "run": "final",
+      "path": "tools/Run-PreviewChecks.py",
+      "rawInputSha256": "45f0f681f68b83c67c5a04607dfea09ecea742bcfd2f5f4ee31e3162901e9e23",
+      "gitBlobSha256": "d8dec9e6bcc417c59cc9d3dd32b79fd4519c16b86adbf582798b2d707c4935b4"
+    }
+  ],
+  "changedModulePaths": [
+    "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetLayout.kt",
+    "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/VerticalPunctuationClassPerformanceTest.kt"
+  ],
+  "productionOnlyFiveLazyFixedSetsAndFiveMembershipUses": true,
+  "exactStringsCategoryOrderAndAllOtherProductionTextUnchanged": true,
+  "recordedCharsClsReductionLayoutExactExceptActualTypeAndDependencyQualification": true,
+  "baselineCorrectionOnlyExpectedSideVectorPrecisionUnchanged": true,
+  "rawInputsAndCanonicalGitVerified": true,
+  "finalUniqueMethods": 3,
+  "correctedBaselineUniqueMethods": 1,
+  "failedBaselineUniqueMethods": 1,
+  "failedBaselineFailures": 1,
+  "noMethodsCasesThreadsRoundsSummed": true,
+  "package": "NONE",
+  "release": "NONE",
+  "independentReview": "NOT REQUESTED",
+  "humanAndPackage": "NOT TESTED"
+}

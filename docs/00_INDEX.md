@@ -1,3 +1,7 @@
+## 2026-10-25 PERF-005标点类别固定集合最终3方法通过
+
+[3d9abb0应用/实际执行及三阶段证据](audits/PERF005_PUNCTUATION_CLASSES_20261025.md)：最终3唯一方法PASS、修正基线1另列，首轮测试向量1FAIL/raw/现场保留，1e-9不放宽。只5lazy固定Set+5引用，类别/完整布局与其他生产保持；开启分配约少95%、关闭不变，仅vertical layout非字体/像素/UI/RSS/人工。81420ac把未读结果再误记未执行，时间线及后续PENDING_OBSERVATION纪律单列更正、0新增测试。[复审只准备](../handoff/PERF005_PUNCTUATION_CLASSES_REVIEW_READY_20261025.md)，持续授权/旧边界保持，继续低负载固定数值表核对，Desktop优先。
+
 ## 2026-10-25 PERF-005富文本固定表达式最终3方法通过
 
 [9987d85报告/原始逐例](audits/PERF005_RICH_TAG_SYNTAX_20261025.md)：只1lazy固定Regex+1引用，标签/样式/错误/长度嵌套及其他生产保持。最终3唯一方法PASS，基线1不累加；属性分配约少64%，纯文本/简单标签不变，墙钟对照有噪声，不外推UI/RSS/人工。新[复审仅准备](../handoff/PERF005_RICH_TAG_SYNTAX_REVIEW_READY_20261025.md)。持续授权已置当前交接顶部，继续已有PERF-005标点分类新函数基线、Desktop优先；旧失败/UNKNOWN/未验与发布边界保持。

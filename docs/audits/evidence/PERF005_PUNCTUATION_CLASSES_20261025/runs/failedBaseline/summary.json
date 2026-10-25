@@ -1,0 +1,31 @@
+{
+  "phase": "perf005-punctuation-classes-baseline-20261025",
+  "startedUtc": "2026-10-25T05:55:05.905497+00:00",
+  "seconds": 15.522,
+  "exitCode": 1,
+  "tests": 1,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "FAILED",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--priority",
+    "low",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    "-PpreviewTestRoot=H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-31a2a3258b1f46e3b424dfffdf4d1408\\payload",
+    ":studio-core:test",
+    "--tests",
+    "*VerticalPunctuationClassPerformanceTest"
+  ],
+  "baseCommit": "772a66c8cbee574cf82aa4e2688eaa4f1d13af86",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

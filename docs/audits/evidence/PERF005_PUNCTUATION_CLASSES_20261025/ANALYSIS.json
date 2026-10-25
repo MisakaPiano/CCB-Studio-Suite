@@ -1,0 +1,328 @@
+{
+  "medians": {
+    "baseline": [
+      {
+        "inputCodepoints": 128,
+        "enabled": false,
+        "kind": "actualLegacy",
+        "lines": 13,
+        "utf16Length": 139,
+        "serializedDocumentBytes": 1545,
+        "layoutSha256": "03debf42b5e1efa3607d71b55589f873fd7a48174d44112f2236faad79c9ff75",
+        "medians": {
+          "wallMs": 0.43925000000000003,
+          "cpuMs": 0.0,
+          "allocatedBytes": 41992.0
+        }
+      },
+      {
+        "inputCodepoints": 128,
+        "enabled": true,
+        "kind": "actualLegacy",
+        "lines": 12,
+        "utf16Length": 139,
+        "serializedDocumentBytes": 1544,
+        "layoutSha256": "ed683c5b89c19f10a7f60050c01663e8b25b34d8a7fd1b1a91cb1c001a3cc619",
+        "medians": {
+          "wallMs": 1.05395,
+          "cpuMs": 0.0,
+          "allocatedBytes": 1087648.0
+        }
+      },
+      {
+        "inputCodepoints": 1024,
+        "enabled": false,
+        "kind": "actualLegacy",
+        "lines": 103,
+        "utf16Length": 1117,
+        "serializedDocumentBytes": 3825,
+        "layoutSha256": "06a3cd5b6e094310cad20e645f11420c4204b3fa5068a28556b3cc8b511b18b1",
+        "medians": {
+          "wallMs": 1.0783,
+          "cpuMs": 0.0,
+          "allocatedBytes": 330872.0
+        }
+      },
+      {
+        "inputCodepoints": 1024,
+        "enabled": true,
+        "kind": "actualLegacy",
+        "lines": 94,
+        "utf16Length": 1117,
+        "serializedDocumentBytes": 3824,
+        "layoutSha256": "cc13ffddef16433e8c571e1e7e27abe4713ba0a34d38fbf0c1016a74d6eb2ec8",
+        "medians": {
+          "wallMs": 7.41145,
+          "cpuMs": 7.8125,
+          "allocatedBytes": 8735664.0
+        }
+      },
+      {
+        "inputCodepoints": 8192,
+        "enabled": false,
+        "kind": "actualLegacy",
+        "lines": 820,
+        "utf16Length": 8937,
+        "serializedDocumentBytes": 22073,
+        "layoutSha256": "2efd42c54015ebdc37af33b94828cdbd654c79beb250ccde5f7905bb8e0c48c1",
+        "medians": {
+          "wallMs": 5.203250000000001,
+          "cpuMs": 0.0,
+          "allocatedBytes": 2620352.0
+        }
+      },
+      {
+        "inputCodepoints": 8192,
+        "enabled": true,
+        "kind": "actualLegacy",
+        "lines": 745,
+        "utf16Length": 8937,
+        "serializedDocumentBytes": 22072,
+        "layoutSha256": "2e4def993208c7652cd364569ec0976cfdb09dcead6f51a2f857a3b391d943ed",
+        "medians": {
+          "wallMs": 17.141849999999998,
+          "cpuMs": 15.625,
+          "allocatedBytes": 69187992.0
+        }
+      }
+    ],
+    "final": [
+      {
+        "inputCodepoints": 128,
+        "enabled": false,
+        "kind": "current",
+        "lines": 13,
+        "utf16Length": 139,
+        "serializedDocumentBytes": 1545,
+        "layoutSha256": "03debf42b5e1efa3607d71b55589f873fd7a48174d44112f2236faad79c9ff75",
+        "medians": {
+          "wallMs": 0.0655,
+          "cpuMs": 0.0,
+          "allocatedBytes": 41992.0
+        }
+      },
+      {
+        "inputCodepoints": 128,
+        "enabled": false,
+        "kind": "recorded",
+        "lines": 13,
+        "utf16Length": 139,
+        "serializedDocumentBytes": 1545,
+        "layoutSha256": "03debf42b5e1efa3607d71b55589f873fd7a48174d44112f2236faad79c9ff75",
+        "medians": {
+          "wallMs": 0.06035,
+          "cpuMs": 0.0,
+          "allocatedBytes": 41992.0
+        }
+      },
+      {
+        "inputCodepoints": 128,
+        "enabled": true,
+        "kind": "current",
+        "lines": 12,
+        "utf16Length": 139,
+        "serializedDocumentBytes": 1544,
+        "layoutSha256": "ed683c5b89c19f10a7f60050c01663e8b25b34d8a7fd1b1a91cb1c001a3cc619",
+        "medians": {
+          "wallMs": 0.0774,
+          "cpuMs": 0.0,
+          "allocatedBytes": 52928.0
+        }
+      },
+      {
+        "inputCodepoints": 128,
+        "enabled": true,
+        "kind": "recorded",
+        "lines": 12,
+        "utf16Length": 139,
+        "serializedDocumentBytes": 1544,
+        "layoutSha256": "ed683c5b89c19f10a7f60050c01663e8b25b34d8a7fd1b1a91cb1c001a3cc619",
+        "medians": {
+          "wallMs": 1.48695,
+          "cpuMs": 0.0,
+          "allocatedBytes": 1087648.0
+        }
+      },
+      {
+        "inputCodepoints": 1024,
+        "enabled": false,
+        "kind": "current",
+        "lines": 103,
+        "utf16Length": 1117,
+        "serializedDocumentBytes": 3825,
+        "layoutSha256": "06a3cd5b6e094310cad20e645f11420c4204b3fa5068a28556b3cc8b511b18b1",
+        "medians": {
+          "wallMs": 0.31884999999999997,
+          "cpuMs": 0.0,
+          "allocatedBytes": 330872.0
+        }
+      },
+      {
+        "inputCodepoints": 1024,
+        "enabled": false,
+        "kind": "recorded",
+        "lines": 103,
+        "utf16Length": 1117,
+        "serializedDocumentBytes": 3825,
+        "layoutSha256": "06a3cd5b6e094310cad20e645f11420c4204b3fa5068a28556b3cc8b511b18b1",
+        "medians": {
+          "wallMs": 0.3139,
+          "cpuMs": 0.0,
+          "allocatedBytes": 330872.0
+        }
+      },
+      {
+        "inputCodepoints": 1024,
+        "enabled": true,
+        "kind": "current",
+        "lines": 94,
+        "utf16Length": 1117,
+        "serializedDocumentBytes": 3824,
+        "layoutSha256": "cc13ffddef16433e8c571e1e7e27abe4713ba0a34d38fbf0c1016a74d6eb2ec8",
+        "medians": {
+          "wallMs": 1.08625,
+          "cpuMs": 0.0,
+          "allocatedBytes": 419916.0
+        }
+      },
+      {
+        "inputCodepoints": 1024,
+        "enabled": true,
+        "kind": "recorded",
+        "lines": 94,
+        "utf16Length": 1117,
+        "serializedDocumentBytes": 3824,
+        "layoutSha256": "cc13ffddef16433e8c571e1e7e27abe4713ba0a34d38fbf0c1016a74d6eb2ec8",
+        "medians": {
+          "wallMs": 5.5793,
+          "cpuMs": 7.8125,
+          "allocatedBytes": 8735664.0
+        }
+      },
+      {
+        "inputCodepoints": 8192,
+        "enabled": false,
+        "kind": "current",
+        "lines": 820,
+        "utf16Length": 8937,
+        "serializedDocumentBytes": 22073,
+        "layoutSha256": "2efd42c54015ebdc37af33b94828cdbd654c79beb250ccde5f7905bb8e0c48c1",
+        "medians": {
+          "wallMs": 2.9501999999999997,
+          "cpuMs": 7.8125,
+          "allocatedBytes": 2620304.0
+        }
+      },
+      {
+        "inputCodepoints": 8192,
+        "enabled": false,
+        "kind": "recorded",
+        "lines": 820,
+        "utf16Length": 8937,
+        "serializedDocumentBytes": 22073,
+        "layoutSha256": "2efd42c54015ebdc37af33b94828cdbd654c79beb250ccde5f7905bb8e0c48c1",
+        "medians": {
+          "wallMs": 2.96795,
+          "cpuMs": 0.0,
+          "allocatedBytes": 2620304.0
+        }
+      },
+      {
+        "inputCodepoints": 8192,
+        "enabled": true,
+        "kind": "current",
+        "lines": 745,
+        "utf16Length": 8937,
+        "serializedDocumentBytes": 22072,
+        "layoutSha256": "2e4def993208c7652cd364569ec0976cfdb09dcead6f51a2f857a3b391d943ed",
+        "medians": {
+          "wallMs": 2.58965,
+          "cpuMs": 0.0,
+          "allocatedBytes": 3327304.0
+        }
+      },
+      {
+        "inputCodepoints": 8192,
+        "enabled": true,
+        "kind": "recorded",
+        "lines": 745,
+        "utf16Length": 8937,
+        "serializedDocumentBytes": 22072,
+        "layoutSha256": "2e4def993208c7652cd364569ec0976cfdb09dcead6f51a2f857a3b391d943ed",
+        "medians": {
+          "wallMs": 15.05455,
+          "cpuMs": 7.8125,
+          "allocatedBytes": 69843272.0
+        }
+      }
+    ]
+  },
+  "counts": {
+    "failedBaseline": {
+      "tests": 1,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "baseCommit": "772a66c8cbee574cf82aa4e2688eaa4f1d13af86",
+      "seconds": 15.522,
+      "startedUtc": "2026-10-25T05:55:05.905497+00:00",
+      "sourceStable": true,
+      "status": "FAILED"
+    },
+    "baseline": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "baseCommit": "d82f804d73557ab4e6fa633f2655835fcc3e6d03",
+      "seconds": 15.402,
+      "startedUtc": "2026-10-25T05:57:01.706856+00:00",
+      "sourceStable": true,
+      "status": "PASS"
+    },
+    "final": {
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "baseCommit": "3d9abb0e10a61a230e17542a8cc22b5c1c0992e3",
+      "seconds": 20.127,
+      "startedUtc": "2026-10-25T06:00:31.057506+00:00",
+      "sourceStable": true,
+      "status": "PASS"
+    }
+  },
+  "fixtureCleanup": [
+    {
+      "root": "H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-31a2a3258b1f46e3b424dfffdf4d1408",
+      "status": "RETAINED_FAILED_FIXTURES",
+      "removed": 0
+    },
+    {
+      "root": "H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-62775a5120904fcd88f28b99d83ed491",
+      "status": "COMPLETE",
+      "removed": 0,
+      "bytesFreed": 0,
+      "retained": [],
+      "sourceManifestSha256": "c3f0f38ad56bebcff9f9861b35d4084679b839c9f7b2f84c46800e4d45f7e0b6"
+    },
+    {
+      "root": "H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-b8b8bea8a7e94434b8e6e5108fa493a8",
+      "status": "COMPLETE",
+      "removed": 0,
+      "bytesFreed": 0,
+      "retained": [],
+      "sourceManifestSha256": "821fcf0fa5aa3e7273a854c6db3d07aa271383941d64174f6d0f87f466ce2d5d"
+    }
+  ],
+  "cleanupFiles": 0,
+  "limits": [
+    "Actual layout on all vertical=true inputs;tokens/projection/reduction/wrapping included,not render/font measurement/UI",
+    "TypesetDocument.validate/serialization<=4MiB/UTF16<=100000 and fullLayout/hash/snapshot validation outside counters",
+    "Exactold reference includes horizontal measure branch qualified to real dependency but never executed;allinputs vertical invariant",
+    "5lazy fixedSets retained,firstuse/delegate/retained/peakheap/GC/RSS unmeasured",
+    "Disabled punctuation branch unchanged;wall/alloc variation not attributed to changedcls path without evidence",
+    "Initial vector1FAIL before samples,onlyexpected before/after sides corrected1e-9 unchanged;oldraw/source/fixture retained,notproductfail orPASS",
+    "Two ownthreads50rounds normalshutdown not all lazy initialization races or allWindows"
+  ]
+}
