@@ -1,3 +1,7 @@
+## 2026-10-25 组织目录候选性能HOLD；性能复审索引只准备
+
+[01020b1功能/性能分列及原始结果](audits/PERF003_FOLDER_DESCENDANTS_CANDIDATE_01020B1_20261025.md)：3方法功能PASS，大根配对墙钟回退、性能HOLD/根因UNKNOWN，测试预热诊断另列、生产不变。新[16历史增量复审索引](../handoff/PERFORMANCE_INCREMENT_REVIEW_READY_20261025.md)只固定fa58a50、排除此候选，不累加、不外发/发版；资产/编辑/115/Prompt/q09与原失败边界保持，Desktop优先。
+
 ## 2026-10-25 PERF-003标签建议自然键复用
 
 [fa58a50报告/固定证据](audits/PERF003_TAG_SUGGESTIONS_20261025.md)：最终4唯一方法PASS，只查询内键复用，原算法/规则/顺序保持，累计线程分配少约89.0%～95.3%。临时活键随匹配数增长、峰值堆/GC/RSS未测，非UI/包/用户验收；[复审仅准备](../handoff/PERF003_TAG_SUGGESTIONS_REVIEW_READY_20261025.md)，无发布/日常操作，旧边界保持。继续组织子树纯元数据新基线、Desktop优先。

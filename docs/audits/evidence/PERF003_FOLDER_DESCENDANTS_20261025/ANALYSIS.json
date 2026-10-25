@@ -1,0 +1,511 @@
+{
+  "medians": {
+    "baseline": [
+      {
+        "folders": 32,
+        "context": "root",
+        "members": 32,
+        "serializedStateBytes": 5478,
+        "orderSha256": "9ee6a03c7e133ce606bb5f12fde3a83b8dd5c2c546a2b4e9cc27e9f7eebac91b",
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 0.14595,
+          "cpuMs": 0.0,
+          "allocatedBytes": 41152.0
+        }
+      },
+      {
+        "folders": 32,
+        "context": "small",
+        "members": 2,
+        "serializedStateBytes": 5478,
+        "orderSha256": "a4c17d4bc4a7329c73ee48cd7984a9b471fabab1f635f25cca149c7590f053ea",
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 0.0067,
+          "cpuMs": 0.0,
+          "allocatedBytes": 824.0
+        }
+      },
+      {
+        "folders": 32,
+        "context": "leaf",
+        "members": 1,
+        "serializedStateBytes": 5478,
+        "orderSha256": "38359df74e9469bf0fb2219007b242a17d69560f48e6afd4581f35bd5570abb2",
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 0.00365,
+          "cpuMs": 0.0,
+          "allocatedBytes": 320.0
+        }
+      },
+      {
+        "folders": 32,
+        "context": "unknown",
+        "members": 1,
+        "serializedStateBytes": 5478,
+        "orderSha256": "1fa3b276e078cabf17d261d4e0c026ebaf4f5c001d1452357adbe8c064c8d622",
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 0.0034000000000000002,
+          "cpuMs": 0.0,
+          "allocatedBytes": 320.0
+        }
+      },
+      {
+        "folders": 256,
+        "context": "root",
+        "members": 256,
+        "serializedStateBytes": 36546,
+        "orderSha256": "cf101d3642afbd04e3efe5ae544069729305412d45e7cde556ddd98bac65c5de",
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 1.2798500000000002,
+          "cpuMs": 0.0,
+          "allocatedBytes": 335616.0
+        }
+      },
+      {
+        "folders": 256,
+        "context": "small",
+        "members": 2,
+        "serializedStateBytes": 36546,
+        "orderSha256": "03ebac3f61bb3421a46b25c79185a3e6c14e0cad4cafad936c1708f54fda8d8b",
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 0.01035,
+          "cpuMs": 0.0,
+          "allocatedBytes": 824.0
+        }
+      },
+      {
+        "folders": 256,
+        "context": "leaf",
+        "members": 1,
+        "serializedStateBytes": 36546,
+        "orderSha256": "1ea5cdf105889d3d6adc03b5227092191dda64759e60485e56f98a71eed5a620",
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 0.005549999999999999,
+          "cpuMs": 0.0,
+          "allocatedBytes": 320.0
+        }
+      },
+      {
+        "folders": 256,
+        "context": "unknown",
+        "members": 1,
+        "serializedStateBytes": 36546,
+        "orderSha256": "9f588d508038530b108e94a8ce90ead961be469b313cc4cab298e3710f2278fa",
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 0.0057,
+          "cpuMs": 0.0,
+          "allocatedBytes": 320.0
+        }
+      },
+      {
+        "folders": 1000,
+        "context": "root",
+        "members": 1000,
+        "serializedStateBytes": 139962,
+        "orderSha256": "3912c900de07ea58e854b6d911b61879efdf623b650fee2de46b7f76270ac5a6",
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 13.83035,
+          "cpuMs": 15.625,
+          "allocatedBytes": 1273992.0
+        }
+      },
+      {
+        "folders": 1000,
+        "context": "small",
+        "members": 2,
+        "serializedStateBytes": 139962,
+        "orderSha256": "156ca0cd73e9875ce1cb4ffb607a299b0e4b18a0e6bfb94a1404b6f00966eb70",
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 0.01285,
+          "cpuMs": 0.0,
+          "allocatedBytes": 648.0
+        }
+      },
+      {
+        "folders": 1000,
+        "context": "leaf",
+        "members": 1,
+        "serializedStateBytes": 139962,
+        "orderSha256": "75c0fa6758aebd2a39e825b946213cbd30b5240ae2510952611ccf31297a7f59",
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 0.00685,
+          "cpuMs": 0.0,
+          "allocatedBytes": 240.0
+        }
+      },
+      {
+        "folders": 1000,
+        "context": "unknown",
+        "members": 1,
+        "serializedStateBytes": 139962,
+        "orderSha256": "cd33008b913ec1e4ee6d871a9eccbb671a7e7731eb398ac8071a1103ffd42fc8",
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 0.0071,
+          "cpuMs": 0.0,
+          "allocatedBytes": 240.0
+        }
+      }
+    ],
+    "final": [
+      {
+        "folders": 32,
+        "context": "root",
+        "members": 32,
+        "serializedStateBytes": 5478,
+        "orderSha256": "9ee6a03c7e133ce606bb5f12fde3a83b8dd5c2c546a2b4e9cc27e9f7eebac91b",
+        "kind": "current",
+        "medians": {
+          "wallMs": 0.0241,
+          "cpuMs": 0.0,
+          "allocatedBytes": 3000.0
+        }
+      },
+      {
+        "folders": 32,
+        "context": "root",
+        "members": 32,
+        "serializedStateBytes": 5478,
+        "orderSha256": "9ee6a03c7e133ce606bb5f12fde3a83b8dd5c2c546a2b4e9cc27e9f7eebac91b",
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 0.22455000000000003,
+          "cpuMs": 0.0,
+          "allocatedBytes": 41152.0
+        }
+      },
+      {
+        "folders": 32,
+        "context": "small",
+        "members": 2,
+        "serializedStateBytes": 5478,
+        "orderSha256": "a4c17d4bc4a7329c73ee48cd7984a9b471fabab1f635f25cca149c7590f053ea",
+        "kind": "current",
+        "medians": {
+          "wallMs": 0.0036,
+          "cpuMs": 0.0,
+          "allocatedBytes": 296.0
+        }
+      },
+      {
+        "folders": 32,
+        "context": "small",
+        "members": 2,
+        "serializedStateBytes": 5478,
+        "orderSha256": "a4c17d4bc4a7329c73ee48cd7984a9b471fabab1f635f25cca149c7590f053ea",
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 0.00765,
+          "cpuMs": 0.0,
+          "allocatedBytes": 824.0
+        }
+      },
+      {
+        "folders": 32,
+        "context": "leaf",
+        "members": 1,
+        "serializedStateBytes": 5478,
+        "orderSha256": "38359df74e9469bf0fb2219007b242a17d69560f48e6afd4581f35bd5570abb2",
+        "kind": "current",
+        "medians": {
+          "wallMs": 0.00275,
+          "cpuMs": 0.0,
+          "allocatedBytes": 192.0
+        }
+      },
+      {
+        "folders": 32,
+        "context": "leaf",
+        "members": 1,
+        "serializedStateBytes": 5478,
+        "orderSha256": "38359df74e9469bf0fb2219007b242a17d69560f48e6afd4581f35bd5570abb2",
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 0.0037,
+          "cpuMs": 0.0,
+          "allocatedBytes": 320.0
+        }
+      },
+      {
+        "folders": 32,
+        "context": "unknown",
+        "members": 1,
+        "serializedStateBytes": 5478,
+        "orderSha256": "1fa3b276e078cabf17d261d4e0c026ebaf4f5c001d1452357adbe8c064c8d622",
+        "kind": "current",
+        "medians": {
+          "wallMs": 0.0026,
+          "cpuMs": 0.0,
+          "allocatedBytes": 192.0
+        }
+      },
+      {
+        "folders": 32,
+        "context": "unknown",
+        "members": 1,
+        "serializedStateBytes": 5478,
+        "orderSha256": "1fa3b276e078cabf17d261d4e0c026ebaf4f5c001d1452357adbe8c064c8d622",
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 0.00355,
+          "cpuMs": 0.0,
+          "allocatedBytes": 320.0
+        }
+      },
+      {
+        "folders": 256,
+        "context": "root",
+        "members": 256,
+        "serializedStateBytes": 36546,
+        "orderSha256": "cf101d3642afbd04e3efe5ae544069729305412d45e7cde556ddd98bac65c5de",
+        "kind": "current",
+        "medians": {
+          "wallMs": 0.9707,
+          "cpuMs": 0.0,
+          "allocatedBytes": 22760.0
+        }
+      },
+      {
+        "folders": 256,
+        "context": "root",
+        "members": 256,
+        "serializedStateBytes": 36546,
+        "orderSha256": "cf101d3642afbd04e3efe5ae544069729305412d45e7cde556ddd98bac65c5de",
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 1.2932000000000001,
+          "cpuMs": 0.0,
+          "allocatedBytes": 335616.0
+        }
+      },
+      {
+        "folders": 256,
+        "context": "small",
+        "members": 2,
+        "serializedStateBytes": 36546,
+        "orderSha256": "03ebac3f61bb3421a46b25c79185a3e6c14e0cad4cafad936c1708f54fda8d8b",
+        "kind": "current",
+        "medians": {
+          "wallMs": 0.0107,
+          "cpuMs": 0.0,
+          "allocatedBytes": 296.0
+        }
+      },
+      {
+        "folders": 256,
+        "context": "small",
+        "members": 2,
+        "serializedStateBytes": 36546,
+        "orderSha256": "03ebac3f61bb3421a46b25c79185a3e6c14e0cad4cafad936c1708f54fda8d8b",
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 0.01125,
+          "cpuMs": 0.0,
+          "allocatedBytes": 824.0
+        }
+      },
+      {
+        "folders": 256,
+        "context": "leaf",
+        "members": 1,
+        "serializedStateBytes": 36546,
+        "orderSha256": "1ea5cdf105889d3d6adc03b5227092191dda64759e60485e56f98a71eed5a620",
+        "kind": "current",
+        "medians": {
+          "wallMs": 0.00675,
+          "cpuMs": 0.0,
+          "allocatedBytes": 192.0
+        }
+      },
+      {
+        "folders": 256,
+        "context": "leaf",
+        "members": 1,
+        "serializedStateBytes": 36546,
+        "orderSha256": "1ea5cdf105889d3d6adc03b5227092191dda64759e60485e56f98a71eed5a620",
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 0.0066,
+          "cpuMs": 0.0,
+          "allocatedBytes": 320.0
+        }
+      },
+      {
+        "folders": 256,
+        "context": "unknown",
+        "members": 1,
+        "serializedStateBytes": 36546,
+        "orderSha256": "9f588d508038530b108e94a8ce90ead961be469b313cc4cab298e3710f2278fa",
+        "kind": "current",
+        "medians": {
+          "wallMs": 0.00655,
+          "cpuMs": 0.0,
+          "allocatedBytes": 192.0
+        }
+      },
+      {
+        "folders": 256,
+        "context": "unknown",
+        "members": 1,
+        "serializedStateBytes": 36546,
+        "orderSha256": "9f588d508038530b108e94a8ce90ead961be469b313cc4cab298e3710f2278fa",
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 0.0066,
+          "cpuMs": 0.0,
+          "allocatedBytes": 320.0
+        }
+      },
+      {
+        "folders": 1000,
+        "context": "root",
+        "members": 1000,
+        "serializedStateBytes": 139962,
+        "orderSha256": "3912c900de07ea58e854b6d911b61879efdf623b650fee2de46b7f76270ac5a6",
+        "kind": "current",
+        "medians": {
+          "wallMs": 12.479099999999999,
+          "cpuMs": 15.625,
+          "allocatedBytes": 71880.0
+        }
+      },
+      {
+        "folders": 1000,
+        "context": "root",
+        "members": 1000,
+        "serializedStateBytes": 139962,
+        "orderSha256": "3912c900de07ea58e854b6d911b61879efdf623b650fee2de46b7f76270ac5a6",
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 5.787850000000001,
+          "cpuMs": 15.625,
+          "allocatedBytes": 1248336.0
+        }
+      },
+      {
+        "folders": 1000,
+        "context": "small",
+        "members": 2,
+        "serializedStateBytes": 139962,
+        "orderSha256": "156ca0cd73e9875ce1cb4ffb607a299b0e4b18a0e6bfb94a1404b6f00966eb70",
+        "kind": "current",
+        "medians": {
+          "wallMs": 0.014499999999999999,
+          "cpuMs": 0.0,
+          "allocatedBytes": 232.0
+        }
+      },
+      {
+        "folders": 1000,
+        "context": "small",
+        "members": 2,
+        "serializedStateBytes": 139962,
+        "orderSha256": "156ca0cd73e9875ce1cb4ffb607a299b0e4b18a0e6bfb94a1404b6f00966eb70",
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 0.0129,
+          "cpuMs": 0.0,
+          "allocatedBytes": 648.0
+        }
+      },
+      {
+        "folders": 1000,
+        "context": "leaf",
+        "members": 1,
+        "serializedStateBytes": 139962,
+        "orderSha256": "75c0fa6758aebd2a39e825b946213cbd30b5240ae2510952611ccf31297a7f59",
+        "kind": "current",
+        "medians": {
+          "wallMs": 0.0095,
+          "cpuMs": 0.0,
+          "allocatedBytes": 160.0
+        }
+      },
+      {
+        "folders": 1000,
+        "context": "leaf",
+        "members": 1,
+        "serializedStateBytes": 139962,
+        "orderSha256": "75c0fa6758aebd2a39e825b946213cbd30b5240ae2510952611ccf31297a7f59",
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 0.00825,
+          "cpuMs": 0.0,
+          "allocatedBytes": 240.0
+        }
+      },
+      {
+        "folders": 1000,
+        "context": "unknown",
+        "members": 1,
+        "serializedStateBytes": 139962,
+        "orderSha256": "cd33008b913ec1e4ee6d871a9eccbb671a7e7731eb398ac8071a1103ffd42fc8",
+        "kind": "current",
+        "medians": {
+          "wallMs": 0.00875,
+          "cpuMs": 0.0,
+          "allocatedBytes": 160.0
+        }
+      },
+      {
+        "folders": 1000,
+        "context": "unknown",
+        "members": 1,
+        "serializedStateBytes": 139962,
+        "orderSha256": "cd33008b913ec1e4ee6d871a9eccbb671a7e7731eb398ac8071a1103ffd42fc8",
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 0.0081,
+          "cpuMs": 0.0,
+          "allocatedBytes": 240.0
+        }
+      }
+    ]
+  },
+  "counts": {
+    "baseline": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "d30e94de2119f636b6517a0da81e51dbd7dbdfb8",
+      "seconds": 30.257,
+      "startedUtc": "2026-10-25T01:56:59.503193+00:00"
+    },
+    "final": {
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "01020b1f82bff95dfacdb75f6318b3d2d258c626",
+      "seconds": 27.456,
+      "startedUtc": "2026-10-25T02:02:59.162879+00:00"
+    }
+  },
+  "finalUniqueMethods": 3,
+  "cleanupFiles": 0,
+  "cleanupBytes": 0,
+  "limits": [
+    "Pure validated StudioState folder-node metadata <=4MiB,32depth/1000nodes,no real directory traversal",
+    "Full StudioState validation outside timed helper but actually executed before every fixture",
+    "Final two warmups per mode/four alternating same-JVM rounds per root/small/leaf/unknown context",
+    "Single ordered accumulator,still scans original folder list per visited node;asymptotic scan cost not removed",
+    "Set interface/content/DFS iteration preserved,concrete set implementation not promised",
+    "No new graph admission inside descendants;original full validator preserved,invalid graphs refused there",
+    "Callers repeated per-batch subtree calculation remains an identified separate issue",
+    "Thread heap not full UI/RSS/physicalIO/universal speed;no global/parent index/cache"
+  ]
+}

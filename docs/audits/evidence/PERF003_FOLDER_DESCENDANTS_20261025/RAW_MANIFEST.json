@@ -1,0 +1,140 @@
+{
+  "format": 1,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19,
+      "sha256": "3e5e82fc72e044ea9af807a2030b73dbb94800d2cd1775302063b2eee761ba1e"
+    },
+    {
+      "path": "ANALYSIS.json",
+      "bytes": 15401,
+      "sha256": "96089feb08c5e8ce9536f28ca26d4d04b0902a008968f88f252f029a4712bbab"
+    },
+    {
+      "path": "ATTEMPTS_AND_LIMITS.md",
+      "bytes": 3152,
+      "sha256": "91bf8706b32ba97873df68434f5b439496fd011886d541896a8dbd75e9854a52"
+    },
+    {
+      "path": "baseline-samples.json",
+      "bytes": 13800,
+      "sha256": "1e018a6e65c7d23f60e191ac7557ac959fda643c525ec91bd0d3e84a496a3c92"
+    },
+    {
+      "path": "collect.py",
+      "bytes": 11742,
+      "sha256": "c43a5b4bf5ff981f8571cdaa2bf3d4d344abd362137ee99489e6c123a85c1a24"
+    },
+    {
+      "path": "final-samples.json",
+      "bytes": 29839,
+      "sha256": "e25a13dc4c672e9c70eb0199ffc3357abad4c96aed4b64b0f53080489b8aabb6"
+    },
+    {
+      "path": "finish_test.py",
+      "bytes": 1922,
+      "sha256": "4418c4f4ad31dd787e6377c5d83e0cf926858694b1f9ca8eb3c3a4484d0dffac"
+    },
+    {
+      "path": "inputs/baseline/GenerationOrganization.kt",
+      "bytes": 6637,
+      "sha256": "7be0ad53cb7cd3a0771ace09520e14fe34361c4b360c860f86f111cf35e0f40c"
+    },
+    {
+      "path": "inputs/final/GenerationOrganization.kt",
+      "bytes": 6772,
+      "sha256": "1be1194dd7b11e17b1d159f92b81f5f50cd25c64fed0654382f51d903189dcc2"
+    },
+    {
+      "path": "PROTOTYPE_AND_CONSUMERS.md",
+      "bytes": 3118,
+      "sha256": "ca1d2d100bf16acda29f3f45fc44f2d5dd88c171ff63e405e76afc7bdd1a0283"
+    },
+    {
+      "path": "resource-boundaries.jsonl",
+      "bytes": 154,
+      "sha256": "f38677d3fd2820531d402371f238e77d3621136b3bea94e254cbf0a36f4da047"
+    },
+    {
+      "path": "resource-deferrals.jsonl",
+      "bytes": 336,
+      "sha256": "5ee05787cb1a868a33058a1b7e31c156590c9899ddf08a9c07664f78aab7d4de"
+    },
+    {
+      "path": "resource-gate.ps1",
+      "bytes": 2583,
+      "sha256": "2155dec0bae48062ff708a1d5a0abd530b53e1f632669efc77b11faef410b3fa"
+    },
+    {
+      "path": "ROOT_ONLY_GATE_CANCELLED",
+      "bytes": 95,
+      "sha256": "42d71e885018ffb4ea863ad508b8761725320e71fe0f1d8c1a7d559ff82ca8c7"
+    },
+    {
+      "path": "runs/baseline/fixture-cleanup.json",
+      "bytes": 283,
+      "sha256": "950999f13b1f30826619bcb8556cc16930c2668a28e96a35a78af88eee6ddfd1"
+    },
+    {
+      "path": "runs/baseline/gradle.log",
+      "bytes": 1600,
+      "sha256": "86619b1cf31551b87830b45b5718409dba2f989aa7bfed9c0dd4e498629bca83"
+    },
+    {
+      "path": "runs/baseline/source-before.json",
+      "bytes": 78568,
+      "sha256": "eb6486234eebe6a7761fc4a7e19c873008e872cf59aa0c678ea25a2d53752057"
+    },
+    {
+      "path": "runs/baseline/studio-core-TEST-io.github.misakapiano.ccbstudio.core.OrganizationDescendantsPerformanceTest.xml",
+      "bytes": 10976,
+      "sha256": "67c5f5bde949a8a616076b1e3db7d91f13d7e7a164db00e89f874d35af84d069"
+    },
+    {
+      "path": "runs/baseline/summary.json",
+      "bytes": 1076,
+      "sha256": "4f15082b35dc15ea2d2cabd50ee5c3e72ec68fe65432743f61097d0005899194"
+    },
+    {
+      "path": "runs/baseline/test-cases.json",
+      "bytes": 245,
+      "sha256": "18e6a5f21127999aef9a8a70ba37fe0c4926fc0562a1833e035eb3c331de8619"
+    },
+    {
+      "path": "runs/final/fixture-cleanup.json",
+      "bytes": 283,
+      "sha256": "86b96cc7e68571fa82badaa10f7dad7f7283a66b2005f5c94b68fbfa9099690e"
+    },
+    {
+      "path": "runs/final/gradle.log",
+      "bytes": 1810,
+      "sha256": "603eb63a9c44030236a2a996de3d5fbf4e9841b56c9e50e74d1c3242c547bf71"
+    },
+    {
+      "path": "runs/final/source-before.json",
+      "bytes": 78568,
+      "sha256": "14a5ff37d00bb40ab7ef3b0f0201f6819fd1ea91968161e131f9a2cfa17df461"
+    },
+    {
+      "path": "runs/final/studio-core-TEST-io.github.misakapiano.ccbstudio.core.OrganizationDescendantsPerformanceTest.xml",
+      "bytes": 23311,
+      "sha256": "9bdedf2da0b8e0876445b3af22d8678d2ae6110867d4b78b25b9c7540099b580"
+    },
+    {
+      "path": "runs/final/summary.json",
+      "bytes": 1000,
+      "sha256": "cb63ab5931bc94975104f8e76daf6f4d8bea904f8bf354ad2a900d1acc68b84a"
+    },
+    {
+      "path": "runs/final/test-cases.json",
+      "bytes": 709,
+      "sha256": "1d3f3a03b71c2de79871ab51bd862ad3cbb60ea2a768a32976a980e2026bc573"
+    },
+    {
+      "path": "SOURCE_MAP.json",
+      "bytes": 3290,
+      "sha256": "8bfe1c06a862f0d1650bc7a86f1822820791730e5027fdc562e7c6a4383d69f0"
+    }
+  ]
+}
