@@ -103,7 +103,7 @@ internal fun removeGalleryAlbumMembers(c:WorkbenchController){val id=c.gallery.o
 }
 @Composable private fun OrganizationFolders(c:WorkbenchController,p:GalleryHistoryProjection,parent:String?,depth:Int,batchIndex:GalleryBatchIndex){
     val org=c.state.generationOrganization
-    org.folders.filter{it.parent==parent}.forEach{f->val ids=org.batches.filter{it.parent in org.descendants(f.id)}.flatMap{batchIndex.images(it.id)}.toSet()
+    org.folders.filter{it.parent==parent}.forEach{f->val ids=org.batchesInSubtree(f.id).flatMap{batchIndex.images(it.id)}.toSet()
         OrganizationBranch(c.gallery,"folder:${f.id}",f.name,if(f.kind=="chapter")Lucide.BookOpen else Lucide.Folder,c.gallery.organizationKind=="folder"&&c.gallery.organizationId==f.id,depth,org.folders.any{it.parent==f.id}||org.batches.any{it.parent==f.id},{organizationOpen(c,OrganizationFolder("folder",f.id,f.name,ids),p)}){OrganizationFolders(c,p,f.id,depth+1,batchIndex)}
     }
     org.batches.filter{it.parent==parent&&it.archivedAt!=null}.forEach{b->OrganizationBatchBranch(c,p,b.id,batchIndex.origins(b.id),depth,"placed",batchIndex)}
@@ -188,7 +188,7 @@ internal data class OrganizationFolder(val kind:String,val id:String,val label:S
     },label)
 }
 internal fun organizationFolders(g:GalleryViewState,albums:List<VirtualAlbum>,p:GalleryHistoryProjection,org:GenerationOrganization=GenerationOrganization(),batchIndex:GalleryBatchIndex=GalleryBatchIndex(org,p)):List<OrganizationFolder> = when(g.organizationKind){
-    "organizations","folder"->{val parent=g.organizationId.takeIf{g.organizationKind=="folder"};org.folders.filter{it.parent==parent}.map{f->OrganizationFolder("folder",f.id,f.name,org.batches.filter{it.parent in org.descendants(f.id)}.flatMap{batchIndex.images(it.id)}.toSet())}+org.batches.filter{it.parent==parent&&it.archivedAt!=null}.map{b->OrganizationFolder("batch",b.id,b.title,batchIndex.images(b.id))}}
+    "organizations","folder"->{val parent=g.organizationId.takeIf{g.organizationKind=="folder"};org.folders.filter{it.parent==parent}.map{f->OrganizationFolder("folder",f.id,f.name,org.batchesInSubtree(f.id).flatMap{batchIndex.images(it.id)}.toSet())}+org.batches.filter{it.parent==parent&&it.archivedAt!=null}.map{b->OrganizationFolder("batch",b.id,b.title,batchIndex.images(b.id))}}
     "batches","type"->batchIndex.ids.filter{id->g.organizationKind!="type"||batchIndex.kind(id)==g.organizationId}.map{id->OrganizationFolder("batch",id,batchIndex.title(id),batchIndex.images(id))}
     "batch"->batchIndex.batches[g.organizationId]?.groups?.takeIf{it.isNotEmpty()}?.map{OrganizationFolder("members",it.id,it.name,it.images.toSet())}?:batchIndex.origins(g.organizationId.orEmpty()).entries.groupBy{it.value.groupId}.map{(id,entries)->OrganizationFolder("group",id,entries.first().value.groupName,entries.map{it.key}.toSet())}
     "album","albums"->albums.filter{it.parent==(if(g.organizationKind=="album")g.organizationId else null)}.map{OrganizationFolder("album",it.id,it.name,VirtualAlbums.members(albums,it.id))}
@@ -199,7 +199,7 @@ internal fun organizationOpen(c:WorkbenchController,f:OrganizationFolder,p:Galle
     if(f.kind=="folder"){
         val org=c.state.generationOrganization;val path=mutableListOf<GenerationFolder>();var folder=org.folders.find{it.id==f.id}
         while(folder!=null){path.add(0,folder);folder=org.folders.find{it.id==folder?.parent}}
-        c.gallery.levels=c.gallery.levels.take(1)+GalleryScope(label="项目与章节",identity="org:organizations:")+path.map{node->GalleryScope(ids=org.batches.filter{it.parent in org.descendants(node.id)}.flatMap{generationBatchImages(org,it.id,p)}.toSet(),label=node.name,identity="org:folder:${node.id}")}
+        c.gallery.levels=c.gallery.levels.take(1)+GalleryScope(label="项目与章节",identity="org:organizations:")+path.map{node->GalleryScope(ids=org.batchesInSubtree(node.id).flatMap{generationBatchImages(org,it.id,p)}.toSet(),label=node.name,identity="org:folder:${node.id}")}
     }else if(f.kind=="album"){
         val albums=c.library.state?.virtualAlbums.orEmpty();val path=mutableListOf<VirtualAlbum>();var a=albums.find{it.id==f.id}
         while(a!=null){path.add(0,a);a=albums.find{it.id==a?.parent}}

@@ -127,7 +127,9 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
     val organizationIds=remember(c.state.generationOrganization,organization,g.organizationKind,g.organizationId,projection){when(g.organizationKind){
         "albums"->organization.flatMap{it.images}.toSet()
         "album"->g.organizationId?.takeIf{id->organization.any{it.id==id}}?.let{VirtualAlbums.members(organization,it)}?:emptySet()
-        "organizations","folder"->c.state.generationOrganization.batches.filter{it.archivedAt!=null&&(g.organizationKind=="organizations"||it.parent in c.state.generationOrganization.descendants(g.organizationId!!))}.flatMap{batchIndex.images(it.id)}.toSet()
+        "organizations","folder"->{val org=c.state.generationOrganization
+            val batches=if(g.organizationKind=="organizations")org.batches.filter{it.archivedAt!=null}else org.batchesInSubtree(g.organizationId,archivedOnly=true)
+            batches.flatMap{batchIndex.images(it.id)}.toSet()}
         "fold","members"->g.scope.ids
         "type"->projection.batchOrigins.filterValues{o->batchIndex.kind(o.batchId)==g.organizationId}.keys
         "batches"->projection.batchOrigins.keys

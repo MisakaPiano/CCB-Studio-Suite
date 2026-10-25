@@ -21,6 +21,13 @@ import java.util.UUID
         require(currentManual==null||batches.any{it.id==currentManual&&it.kind=="manual"&&it.archivedAt==null})
     }
     fun descendants(id:String):Set<String> = setOf(id)+folders.filter{it.parent==id}.flatMap{descendants(it.id)}
+    /** Same lazy eligibility as the view predicates; one subtree per nonempty selection. */
+    fun batchesInSubtree(id:String?,archivedOnly:Boolean=false):List<GenerationBatch> {
+        val eligible=if(archivedOnly)batches.filter{it.archivedAt!=null}else batches
+        if(eligible.isEmpty())return emptyList()
+        val scope=descendants(id!!)
+        return eligible.filter{it.parent in scope}
+    }
     fun path(id:String?):String {val f=folders.find{it.id==id}?:return "";return listOf(path(f.parent),f.name).filter{it.isNotEmpty()}.joinToString(" / ")}
 }
 

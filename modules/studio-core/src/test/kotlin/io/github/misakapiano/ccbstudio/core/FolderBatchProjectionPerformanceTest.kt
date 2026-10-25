@@ -28,19 +28,52 @@ class FolderBatchProjectionPerformanceTest {
            for(archivedOnly in listOf(false,true)) {
             val expected=order.filter{i->i%5!=0&&(!archivedOnly||i%2==0)&&(context=="root"||i%folderCount==folderCount-1)}.map(::batch)
             fun verify(actual:List<GenerationBatch>) {assertEquals(expected,actual.map{it.id});assertContentEquals(before,documentJson.encodeToString(state).toByteArray())}
-            repeat(2){verify(recordedFolderBatchFilter(org,target,archivedOnly))}
+            repeat(2){verify(recordedFolderBatchFilter(org,target,archivedOnly));verify(org.batchesInSubtree(target,archivedOnly))}
             repeat(4){round->
+              for(kind in if(round%2==0)listOf("recorded","current")else listOf("current","recorded")) {
                 val thread=Thread.currentThread().id;val allocated=bean.getThreadAllocatedBytes(thread)
                 val cpu=bean.currentThreadCpuTime;val started=System.nanoTime()
-                val actual=recordedFolderBatchFilter(org,target,archivedOnly)
+                val actual=if(kind=="recorded")recordedFolderBatchFilter(org,target,archivedOnly)else org.batchesInSubtree(target,archivedOnly)
                 val elapsed=(System.nanoTime()-started)/1e6;val cpuMs=(bean.currentThreadCpuTime-cpu)/1e6
                 val allocatedBytes=bean.getThreadAllocatedBytes(thread)-allocated
                 verify(actual)
-                rows+=buildJsonObject{put("folders",folderCount);put("batches",batchCount);put("context",context);put("archivedOnly",archivedOnly);put("selected",actual.size);put("serializedStateBytes",before.size);put("round",round);put("wallMs",elapsed);put("cpuMs",cpuMs);put("allocatedBytes",allocatedBytes)}
+                rows+=buildJsonObject{put("kind",kind);put("folders",folderCount);put("batches",batchCount);put("context",context);put("archivedOnly",archivedOnly);put("selected",actual.size);put("serializedStateBytes",before.size);put("round",round);put("wallMs",elapsed);put("cpuMs",cpuMs);put("allocatedBytes",allocatedBytes)}
+              }
             }
            }
           }
         }
         println("FOLDER_BATCH_PREDICATES="+JsonArray(rows))
+    }
+    private fun sampleOrganization():GenerationOrganization {
+        fun sample(i:Int,parent:String?,archived:Boolean)=GenerationBatch(id=batch(i),kind="auto",alias="Synthetic batch $i",createdAt=1_700_000_000_000L+i,archivedAt=if(archived)1_700_000_100_000L+i else null,parent=parent)
+        return GenerationOrganization(folders=listOf(GenerationFolder(id=folder(0),name="root"),GenerationFolder(id=folder(1),name="child",parent=folder(0)),GenerationFolder(id=folder(2),name="leaf",parent=folder(1)),GenerationFolder(id=folder(3),name="other")),
+            batches=listOf(sample(5,folder(3),true),sample(4,folder(1),false),sample(3,folder(2),true),sample(2,folder(0),true),sample(1,null,true),sample(0,folder(1),true)))
+    }
+    @Test fun subtreeSelectionRetainsBatchOrderArchivePolicyAndUnplacedExclusion() {
+        val org=sampleOrganization();val state=StudioState(version=3,generationOrganization=org);state.validate();val before=documentJson.encodeToString(state)
+        assertEquals(listOf(4,3,2,0).map(::batch),org.batchesInSubtree(folder(0)).map{it.id})
+        assertEquals(listOf(3,2,0).map(::batch),org.batchesInSubtree(folder(0),true).map{it.id})
+        assertEquals(listOf(4,3,0).map(::batch),org.batchesInSubtree(folder(1)).map{it.id})
+        assertEquals(listOf(batch(3)),org.batchesInSubtree(folder(2)).map{it.id})
+        assertEquals(listOf(batch(5)),org.batchesInSubtree(folder(3)).map{it.id})
+        for(target in listOf(folder(0),folder(1),folder(2),folder(3),folder(999),"unknown",""))for(archived in listOf(false,true))
+            assertEquals(recordedFolderBatchFilter(org,target,archived),org.batchesInSubtree(target,archived))
+        assertEquals(before,documentJson.encodeToString(state))
+    }
+    @Test fun emptyEligibilityKeepsNullShortCircuitAndReparentedSnapshotsStayFresh() {
+        val org=sampleOrganization();org.validate();val before=documentJson.encodeToString(org)
+        assertTrue(org.copy(batches=emptyList()).batchesInSubtree(null).isEmpty())
+        val unarchived=org.copy(batches=org.batches.filter{it.archivedAt==null});unarchived.validate()
+        assertTrue(unarchived.batchesInSubtree(null,true).isEmpty())
+        assertEquals(recordedFolderBatchFilter(unarchived,null,true),unarchived.batchesInSubtree(null,true))
+        assertFailsWith<NullPointerException>{recordedFolderBatchFilter(org,null,true)}
+        assertFailsWith<NullPointerException>{org.batchesInSubtree(null,true)}
+        assertFailsWith<NullPointerException>{org.batchesInSubtree(null)}
+        val prior=org.batchesInSubtree(folder(0))
+        val moved=org.copy(folders=org.folders.map{if(it.id==folder(1))it.copy(parent=folder(3))else it});moved.validate()
+        assertEquals(listOf(batch(2)),moved.batchesInSubtree(folder(0)).map{it.id})
+        assertEquals(listOf(4,3,2,0).map(::batch),prior.map{it.id})
+        assertEquals(prior,org.batchesInSubtree(folder(0)));assertEquals(before,documentJson.encodeToString(org))
     }
 }
