@@ -1,0 +1,30 @@
+{
+  "recordedUtc": "2026-10-25T21:49:07.7733648Z",
+  "userStatement": "全部通过了",
+  "scope": "Four requested theme checks: follow Windows system, black/white custom accent, page appearance consistency, detached-window synchronization. Plus earlier gear open and close/reopen appearance retained.",
+  "status": "USER_REPORTED_PASS_FOR_REQUESTED_THEME_CHECKLIST",
+  "source": "22aa8c55ec4b05db29acb443d85717e80eb9d24a",
+  "independentReview": "NOT REQUESTED",
+  "scopeExclusions": [
+    "Full asset-management functional acceptance",
+    "Full editor tool acceptance",
+    "Actual generation/provider calls",
+    "Online update/daily migration",
+    "Prompt comparison"
+  ],
+  "screenshotsShow": [
+    "Custom7DB5FF and neutral",
+    "Custom000000 andFFFFFF",
+    "AI design/gallery/editor/assets/accounts/update pages",
+    "Update page explicitly shows appearance-gear isolated workspace",
+    "Batch detached light and dark"
+  ],
+  "separateObservedFinding": {
+    "id": "THEME-TEXT-ACTION-CONTRAST",
+    "status": "OPEN",
+    "sourceImage": "codex-clipboard-b8079402-db48-4547-b17c-13d65022f1ed.png",
+    "observation": "In light mode withFFFFFF accent, Apply color, Reset Studio default and Close are white on near-white and unreadable",
+    "handling": "Preserve user pass statement for requested operations; separately fix actual theme-dialog text-action readability. No relabeling whole project as accepted."
+  },
+  "userImagesPublished": false
+}

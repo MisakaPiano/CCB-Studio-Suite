@@ -1,0 +1,228 @@
+{
+  "source": "22aa8c55ec4b05db29acb443d85717e80eb9d24a",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19,
+      "sha256": "3e5e82fc72e044ea9af807a2030b73dbb94800d2cd1775302063b2eee761ba1e"
+    },
+    {
+      "path": "control/COMMAND.json",
+      "bytes": 677,
+      "sha256": "7e4153bacce96b95c549cfffb6343d9d4c58d9ca1e2e310dd0a456a02ab102a0"
+    },
+    {
+      "path": "control/isolated-install.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "control/ISOLATED_INSTALL_COMMAND.json",
+      "bytes": 455,
+      "sha256": "372f70b91316a84cf439d1be3169d716adbc940284e702168ee335a29b913131"
+    },
+    {
+      "path": "control/ISOLATED_INSTALL_VERIFICATION.json",
+      "bytes": 3387,
+      "sha256": "83ea3447360dfd2c87ccd9e707d45ee5e4194c6204db2f402e0eb82ef89111b2"
+    },
+    {
+      "path": "control/memory-samples.jsonl",
+      "bytes": 37986,
+      "sha256": "e6ddd39990e4a978cd1fcd51784d3c4ba292db3e68d5f8af36c3da58ae0d351f"
+    },
+    {
+      "path": "control/MONITOR_RESULT.json",
+      "bytes": 4590,
+      "sha256": "d44292e29afe93bb16918261faf6a53cd1602004acedbcdf1f97ada3f307e760"
+    },
+    {
+      "path": "control/package-fix.py",
+      "bytes": 1220,
+      "sha256": "a4ad31c36c8226145f013cdbd2c906dd25ae149c95dc91e99bd05918c3458a25"
+    },
+    {
+      "path": "control/package.log",
+      "bytes": 411,
+      "sha256": "28376750711194fa23ce2e1755cdc3bf9b149df9954825888e171e99a1842538"
+    },
+    {
+      "path": "control/PACKAGE_COMMAND.json",
+      "bytes": 870,
+      "sha256": "2973afefd3eb40298e499b5e64d0c061cd9b6c9e146bc2bb3e6aa4686c72ffde"
+    },
+    {
+      "path": "control/PLAN.json",
+      "bytes": 2234,
+      "sha256": "29f009278acf86babbfb0887c6102c529772f88fd7ae50a541d10dfcb448bf6d"
+    },
+    {
+      "path": "control/README.zh-CN.txt",
+      "bytes": 1643,
+      "sha256": "1afe133c1edfac099b3a35f1c9e1490caff7a1fb697b3aa0bbd5669cd2d63010"
+    },
+    {
+      "path": "control/run-fix.py",
+      "bytes": 9759,
+      "sha256": "b1816fbcf4a3bde9f9544ac2cbdcdf09920bad5b33ca66618cf4064452e95e77"
+    },
+    {
+      "path": "control/runner.log",
+      "bytes": 4482,
+      "sha256": "57008c646c15e4da6df5ce24d06b99eeb6b8cf0f4477e817cbf94465fcb2d6cd"
+    },
+    {
+      "path": "control/RUNNER_IDENTITY.json",
+      "bytes": 170,
+      "sha256": "a73df6ae29c1a773ecf1261f821c62256f441f558305e5c63e7d68b1b611ba6e"
+    },
+    {
+      "path": "control/USER_REOPEN_RESULT.json",
+      "bytes": 792,
+      "sha256": "179493917aa123763238c89b7b7892157359acedaebce0e01b9711a59ef41097"
+    },
+    {
+      "path": "control/USER_REQUESTED_REOPEN.json",
+      "bytes": 857,
+      "sha256": "27028697a7a1afe00dc4b6a705fbfb1704f4c966b9c7db74146344b498d18414"
+    },
+    {
+      "path": "control/USER_THEME_ACCEPTANCE.json",
+      "bytes": 1489,
+      "sha256": "693a180405fe88fe9e24449bbb247b7eed527be3ae8c846baeadadd62fb39d94"
+    },
+    {
+      "path": "control/verify-install.py",
+      "bytes": 3443,
+      "sha256": "ac8ca18f011a5548fdf31b435e48bed56d7c10ed4007f74e61b3bbeaa76c5dee"
+    },
+    {
+      "path": "entry/APP_IDENTITY_OBSERVATION.json",
+      "bytes": 1170,
+      "sha256": "5a2afdcf9baacf7d18537268f045bdc314289ad812c408488a67d5c801e7ebc6"
+    },
+    {
+      "path": "entry/APP_VERIFIED.json",
+      "bytes": 1496,
+      "sha256": "da874d563974cfbde87c293754085ddd990ed21271b2c7401f0fe6cda5870c4d"
+    },
+    {
+      "path": "entry/Launch-Candidate.ps1",
+      "bytes": 4269,
+      "sha256": "e5bd14a6c1eb888d25d24c78d56fbf9bf2474315d63533f232548dea58c07e81"
+    },
+    {
+      "path": "entry/LAUNCH_APP.json",
+      "bytes": 1726,
+      "sha256": "5296b0db94df754101b57b026b5e8e682712d50c291155f1c0741fd33f493bb3"
+    },
+    {
+      "path": "entry/LAUNCH_PROBE.json",
+      "bytes": 1858,
+      "sha256": "f0bf6383e131d3f35b399fb40b68847b29fd129ae1355c6ef93e901711a067f4"
+    },
+    {
+      "path": "entry/LAUNCH_REVIEW_0397291d020d4d03a85ab1cd53923ca4.json",
+      "bytes": 1730,
+      "sha256": "7dab644e6177043418b44cb8fbf4a14c61e903c37a8349efaac9492c7ff279e8"
+    },
+    {
+      "path": "entry/MODE.txt",
+      "bytes": 6,
+      "sha256": "182e499256bea391f0891e85aa5d782074934150b986e530eb4a4170f073312e"
+    },
+    {
+      "path": "entry/Probe.ps1",
+      "bytes": 493,
+      "sha256": "580e9a989b8ad714d7d726f7c895e05e7dca3b59ce47b3ee60943f6c86111fb8"
+    },
+    {
+      "path": "entry/PROBE_RESULT.json",
+      "bytes": 975,
+      "sha256": "c4b0eaf9b9f308197387d7ab4ec56cca885ede04240830ac1d5acc6512ce6891"
+    },
+    {
+      "path": "entry/PROBE_VERIFIED.json",
+      "bytes": 657,
+      "sha256": "bbd84e54a395414b9eb27dc87885dba4f82c9cd45a476b372facde4ad779df8f"
+    },
+    {
+      "path": "FIXED_SOURCE_PACKAGE_MAP.json",
+      "bytes": 169410,
+      "sha256": "6ea3068568965d8a405228ef44678acbe28bc6f0ecf6a9eb9e5ddbc8619164ee"
+    },
+    {
+      "path": "package/BUILD_RECEIPT.json",
+      "bytes": 453,
+      "sha256": "0839dc99359a84e8f045da2fa3a8604ebc3cdc462eb41a4163c9d8efd0433417"
+    },
+    {
+      "path": "package/compile.log",
+      "bytes": 1403,
+      "sha256": "907a8701d409689d8dd6052a4f77a73c0eb31b6d056e5eef1119d24998392a40"
+    },
+    {
+      "path": "package/installer.nsi",
+      "bytes": 132737,
+      "sha256": "a8c09aa6e23a0f8ca9db78baf201ff622a030cb6ff3cb413c632e5fa1ec791a7"
+    },
+    {
+      "path": "package/payload/INSTALL_MANIFEST.json",
+      "bytes": 101638,
+      "sha256": "6bafd7460ea04f36e239bf38018ee5cf85e69da173ca1fd8e575daac2086f0ee"
+    },
+    {
+      "path": "package/payload/update-config.json",
+      "bytes": 454,
+      "sha256": "076e1151df03389a5d75036c345482fd65ed267eec5ffccfc1f1a4152593e598"
+    },
+    {
+      "path": "package/payload/updater/RUNTIME_MANIFEST.json",
+      "bytes": 62256,
+      "sha256": "090d0324310d1dcd1ff59913220e5876210b98e1a7a351caaa23bd17d82b4c14"
+    },
+    {
+      "path": "PREVIOUS_CANDIDATE_FINDINGS.json",
+      "bytes": 1242,
+      "sha256": "5031a22d91d1ae872144f31dbe95732e6c48fbf2bdae13566ff4588842a360b2"
+    },
+    {
+      "path": "reproduction/freeze-gear.py",
+      "bytes": 4710,
+      "sha256": "34e2cb36743808670feceb09ac7f5ebec72ae89ebeeead720d1d7ac0b1d6e0db"
+    },
+    {
+      "path": "run/fixture-cleanup.json",
+      "bytes": 143,
+      "sha256": "2378165f93b9bbb3906e32109f090b73e74f3c32ff66810d39cb862237a6ab05"
+    },
+    {
+      "path": "run/gradle.log",
+      "bytes": 3251,
+      "sha256": "c6a741db3cc0df64b037b1d44b7eec305ec80a916856c710e7be74556f291c12"
+    },
+    {
+      "path": "run/source-before.json",
+      "bytes": 80947,
+      "sha256": "2e8b51febdb3facd287336996b15aa2f01087c3437d9a9339b8e7459fa2bc569"
+    },
+    {
+      "path": "run/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioAppearanceTitleHitTest.xml",
+      "bytes": 748,
+      "sha256": "1397f4d59b4008a561cce011f9b45cb9a585c131e245d727d58629c52803ffdf"
+    },
+    {
+      "path": "run/summary.json",
+      "bytes": 1115,
+      "sha256": "465ccb4e2f39d2ebb47c19b581678eeb5802c9b75837dab96c5445a1850ce626"
+    },
+    {
+      "path": "run/test-cases.json",
+      "bytes": 488,
+      "sha256": "e399052021bfe6245b6987c1066fd6aa6257a6ae752be00eace90bbcacda43c9"
+    }
+  ],
+  "membersIncludingManifest": 45,
+  "bytesExcludingManifest": 649859,
+  "excluded": "App/installer binaries, user screenshots, actual workspace/vault, private default data, credentials. Artifacts local with fixed hashes."
+}

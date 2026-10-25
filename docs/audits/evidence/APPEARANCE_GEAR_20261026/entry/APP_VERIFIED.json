@@ -1,0 +1,28 @@
+{
+  "recordedUtc": "2026-10-25T21:36:58.6513853Z",
+  "source": "22aa8c55ec4b05db29acb443d85717e80eb9d24a",
+  "entryChain": "Actual Start-Studio-Gear-Fix.lnk -> PowerShell wrapper -> probe, then same lnk -> packaged app",
+  "privateDefaultFallbackPrevented": true,
+  "actualExplicitWorkspaceObserved": true,
+  "isolatedFallbackAbsent": true,
+  "defaultPointerNotCreated": true,
+  "daily115PointerUnchanged": true,
+  "nativeWindowObserved": "CCB Studio Suite · 工作台",
+  "nativeAutomatedCapture": "FAILED FrameArrived timeout; no automated gear click or normal close sent",
+  "userGearScreenshot": "codex-clipboard-70d70774-fb19-4458-8eed-057252fd3b23.png",
+  "userGearResult": "Visible Display Theme dialog opened; fixes gear cannot open feedback for this new candidate",
+  "userThemeScreenshot": "codex-clipboard-1610ee5d-45f5-4b22-bc12-b3f171a6f8b2.png",
+  "userThemeResult": "Creation page visibly light with green accent; status Save display theme completed",
+  "userAcceptanceScope": "Gear open + this creation page applied theme/save only",
+  "notVerified": [
+    "Restart persistence",
+    "System-theme events",
+    "Detached-window synchronization",
+    "Full UI/user acceptance"
+  ],
+  "windowDisposition": "User is actively testing. Do not close/restart/interact. Left open for user.",
+  "independentReview": "NOT REQUESTED",
+  "providerCalls": 0,
+  "dailyInstallationChanged": false,
+  "imagePublication": "User screenshot bytes not copied/published"
+}

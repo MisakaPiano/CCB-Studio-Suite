@@ -1,0 +1,10 @@
+{
+  "arguments": [
+    "H:\\CCB-Studio-Suite\\.local\\appearance-gear-20261026\\candidate\\studio-installer.exe",
+    "/S",
+    "/D=H:\\CCB-Studio-Suite\\.local\\appearance-gear-20261026\\isolated-install"
+  ],
+  "installerSha256": "ee6f86a3ef347d88a38ea0a16eba1f8cfe75e448ed8960a5df41371404ebf06f",
+  "scope": "new exact task-owned directory only; no system/registry/shortcuts/default pointers",
+  "atUtc": "2026-10-25T21:33:41.174193+00:00"
+}

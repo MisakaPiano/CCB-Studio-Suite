@@ -1,0 +1,21 @@
+[
+  "H:\\CCB-Studio-Suite\\.local\\windows-rc\\updater-runtime-115\\python.exe",
+  "-B",
+  "H:\\CCB-Studio-Suite\\tools\\Build-InternalInstaller.py",
+  "--app",
+  "H:\\CCB-Studio-Suite\\modules\\studio-desktop\\build\\compose\\binaries\\main\\app\\CCBStudioSuitePreview",
+  "--runtime",
+  "H:\\CCB-Studio-Suite\\.local\\candidate-review-20261026\\updater-runtime",
+  "--bootstrap",
+  "H:\\CCB-Studio-Suite\\docs\\audits\\evidence\\REVIEW_RESIDUALS_20261025\\native-final\\repository\\root.json",
+  "--destination",
+  "H:\\CCB-Studio-Suite\\.local\\appearance-gear-20261026\\candidate",
+  "--version",
+  "2",
+  "--metadata-url",
+  "http://127.0.0.1:1/metadata/",
+  "--targets-url",
+  "http://127.0.0.1:1/targets/",
+  "--build-evidence",
+  "H:\\CCB-Studio-Suite\\.local\\windows-preview\\evidence\\20261025T213043457341Z-appearance-gear-fix-20261026"
+]

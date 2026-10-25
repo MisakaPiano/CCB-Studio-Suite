@@ -1,0 +1,33 @@
+{
+  "phase": "appearance-gear-fix-20261026",
+  "startedUtc": "2026-10-25T21:30:44.269912+00:00",
+  "seconds": 78.426,
+  "exitCode": 0,
+  "tests": 2,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--priority",
+    "low",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    "-PpreviewTestRoot=H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-a2a0b8aa816c4bffa2ad156a32be9693\\payload",
+    ":studio-desktop:test",
+    "--tests",
+    "*StudioAppearanceTitleHitTest",
+    ":studio-desktop:createDistributable",
+    "-Dorg.gradle.jvmargs=-Xmx384m -XX:MaxMetaspaceSize=256m -XX:ActiveProcessorCount=2"
+  ],
+  "baseCommit": "22aa8c55ec4b05db29acb443d85717e80eb9d24a",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

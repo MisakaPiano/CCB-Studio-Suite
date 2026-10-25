@@ -1,0 +1,93 @@
+{
+  "source": "48eed2aa35d1b2bcaa86f140ac33aac9cdc286ac",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19,
+      "sha256": "3e5e82fc72e044ea9af807a2030b73dbb94800d2cd1775302063b2eee761ba1e"
+    },
+    {
+      "path": "control/COMMAND.json",
+      "bytes": 683,
+      "sha256": "76293bde9e934e63535b5929159d4094d302219e35c749c574b62bf6706698af"
+    },
+    {
+      "path": "control/memory-samples.jsonl",
+      "bytes": 36009,
+      "sha256": "145bf09eab008cb5856a9ef5e2702470e90afcab84379816775c91d393436f75"
+    },
+    {
+      "path": "control/MONITOR_RESULT.json",
+      "bytes": 5351,
+      "sha256": "e50c4dea7350278afbc0a2a43740ee83b7726f587ddf4e3fa7e978df98d51023"
+    },
+    {
+      "path": "control/PLAN.json",
+      "bytes": 2240,
+      "sha256": "7f3d6d9422de941d10adb32fb50b1c3dbee44a2340c8f0cfd26f7ecd904c43d6"
+    },
+    {
+      "path": "control/run-text-actions.py",
+      "bytes": 9771,
+      "sha256": "2c07a98f5477e5a0ea6efc8c9eec31a7cd2a80a22d16ebb229e0fe81154c2c86"
+    },
+    {
+      "path": "control/runner.log",
+      "bytes": 4367,
+      "sha256": "9861ddf2ab6a3dad3a1be7ab073146fbbe5bbba53c3d7d0914097ddffaa9a8a6"
+    },
+    {
+      "path": "control/RUNNER_IDENTITY.json",
+      "bytes": 174,
+      "sha256": "1b9824a46f046a31fbf102f867e2b5c07153320514048d8b930b8a4327f76b6d"
+    },
+    {
+      "path": "FINDING.json",
+      "bytes": 919,
+      "sha256": "901d8a3dbb0d70505f03bc9b3c30b6b0bfc2b824e29a387621c24bd6aeaf31fb"
+    },
+    {
+      "path": "reproduction/freeze-text.py",
+      "bytes": 4045,
+      "sha256": "89bec2e4b7f6db8a61956c3bff1106660a0724853a908ebee20fa45dc355b415"
+    },
+    {
+      "path": "run/fixture-cleanup.json",
+      "bytes": 143,
+      "sha256": "7ccb0885f5103861079c2a3de8127e813d8bd2a2b7693486cdcab221d00f6c0b"
+    },
+    {
+      "path": "run/gradle.log",
+      "bytes": 3126,
+      "sha256": "3d79c264343f9b883a1e896a2fbc30c3c70d3a459188f903f123da4fb610b59a"
+    },
+    {
+      "path": "run/source-before.json",
+      "bytes": 81134,
+      "sha256": "16b852422bc287c853cd8133599a574580bb466d5cd567efe7e611d866e6c48b"
+    },
+    {
+      "path": "run/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioAppearanceTextActionTest.xml",
+      "bytes": 550,
+      "sha256": "df420597d15be6fb9a91886aa6c48b830a5d537cd22320591db764a1470dcd17"
+    },
+    {
+      "path": "run/summary.json",
+      "bytes": 1121,
+      "sha256": "7460ca9b660fc1161e6401d0d134e5c7ae7c721836590a95a2530a17b4044a07"
+    },
+    {
+      "path": "run/test-cases.json",
+      "bytes": 244,
+      "sha256": "ee26340b926b14b9d262a03c66862cb618370c6d9e009399ecdf11095c61da29"
+    },
+    {
+      "path": "SOURCE_APP_IMAGE_MAP.json",
+      "bytes": 207841,
+      "sha256": "f64d9c411f20100e52162eef92a3755bf01bdcc995f6dc05fc58928b96bd96a1"
+    }
+  ],
+  "membersIncludingManifest": 18,
+  "bytesExcludingManifest": 357737,
+  "excluded": "User screenshot bytes, binaries, private workspace, vault, credentials."
+}

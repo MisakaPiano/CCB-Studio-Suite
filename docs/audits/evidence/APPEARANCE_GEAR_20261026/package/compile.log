@@ -1,0 +1,24 @@
+Processing script file: "H:\CCB-Studio-Suite\.local\appearance-gear-20261026\candidate\installer.nsi" (UTF8)
+
+Processed 1 file, writing output (x86-unicode):
+warning 9100: Generating version information for language "1033-English" without standard key "FileDescription"
+warning 9100: Generating version information for language "1033-English" without standard key "LegalCopyright"
+
+Output: "H:\CCB-Studio-Suite\.local\appearance-gear-20261026\candidate\studio-installer.exe"
+Install: 2 pages (128 bytes), 1 section (2072 bytes), 1888 instructions (52864 bytes), 557 strings (26426 bytes), 1 language table (230 bytes).
+Uninstall: 2 pages (192 bytes), 1 section (2072 bytes), 636 instructions (17808 bytes), 682 strings (60460 bytes), 1 language table (218 bytes).
+Datablock optimizer saved 2550 bytes (~0.0%).
+
+Using zlib compression.
+
+EXE header size:               39424 / 39936 bytes
+Install code:                  11140 / 82112 bytes
+Install data:              168938013 / 252985932 bytes
+Uninstall code+data:            9769 / 10319 bytes
+CRC (0x577BC8C4):                  4 / 4 bytes
+
+Total size:                168998350 / 253118303 bytes (66.7%)
+
+2 warnings:
+  9100: Generating version information for language "1033-English" without standard key "FileDescription"
+  9100: Generating version information for language "1033-English" without standard key "LegalCopyright"

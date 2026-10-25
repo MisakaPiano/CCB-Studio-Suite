@@ -1,0 +1,11 @@
+{
+  "id": "THEME-TEXT-ACTION-CONTRAST",
+  "sourceImage": "codex-clipboard-b8079402-db48-4547-b17c-13d65022f1ed.png",
+  "oldSource": "22aa8c55ec4b05db29acb443d85717e80eb9d24a",
+  "observed": "White accent on light dialog caused unreadable Apply/Reset/Close text; retry same inherited default",
+  "fix": "Four theme-dialog TextButtons use existing derived selectionInk. Raw primary/RGB/format and original callbacks unchanged. No generic72 TextButton migration.",
+  "automated": "1 unique method actual production components, pixels>=4.5 readable foreground on both modes and black/white accents, all4click callbacks, original primary preserved",
+  "scope": "Source/offscreen consumer only; no new NSIS/native/user/Project acceptance claimed",
+  "manualStatement": "User prior four theme checklist all passed retained for22aa source; this screenshot finding separately fixed",
+  "userImagesPublished": false
+}
