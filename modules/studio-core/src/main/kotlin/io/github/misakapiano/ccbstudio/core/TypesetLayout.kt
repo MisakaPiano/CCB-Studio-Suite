@@ -75,20 +75,22 @@ object TypesetLayout {
         group("[［〚","﹇");group("]］〛","﹈")
     }
     private val uprightFallback=chars("・･·‧•※々〃ゝゞヽヾ﹅﹆").toSet()
+    private val verticalPunctuation by lazy { Regex("\\p{P}") }
+    private val rotationSymbols by lazy { chars("/\\／＼~～〜=＝+＋*＊&＆@＠#＃%％^＾<>＜＞|｜").toSet() }
     private fun presentation(ch:String)=ch.codePointAt(0).let{it in 0xfe10..0xfe19 || it in 0xfe30..0xfe4f}
     fun upright(ch:String)=ch.codePointAt(0).let{it in 0x3000..0x30ff || it in 0x31f0..0x31ff || it in 0x3400..0x9fff || it in 0xf900..0xfaff || it in 0xff01..0xff60 || it in 0xac00..0xd7af || it in 0xfe10..0xfe4f}
     fun verticalTokens(input:List<Token>):List<Token> {
         val out=mutableListOf<Token>();var doubleOpen=true;var singleOpen=true;var i=0
         while(i<input.size){val t=input[i];val ch=t.ch;val cp=ch.codePointAt(0)
             val next=when {
-                ch in setOf("\"","＂")->t.copy(display=if(doubleOpen)"﹃"else"﹄",forced=true).also{doubleOpen=!doubleOpen}
-                ch in setOf("'","＇")->if(input.getOrNull(i-1)?.ch?.codePointAt(0)?.let(Character::isLetterOrDigit)==true && input.getOrNull(i+1)?.ch?.codePointAt(0)?.let(Character::isLetterOrDigit)==true)t.copy(rotate=true)
+                ch=="\"" || ch=="＂"->t.copy(display=if(doubleOpen)"﹃"else"﹄",forced=true).also{doubleOpen=!doubleOpen}
+                ch=="'" || ch=="＇"->if(input.getOrNull(i-1)?.ch?.codePointAt(0)?.let(Character::isLetterOrDigit)==true && input.getOrNull(i+1)?.ch?.codePointAt(0)?.let(Character::isLetterOrDigit)==true)t.copy(rotate=true)
                     else t.copy(display=if(singleOpen)"﹁"else"﹂",forced=true).also{singleOpen=!singleOpen}
                 ch=="." && input.getOrNull(i+1)?.ch=="."->if(input.getOrNull(i+2)?.ch=="."){i+=2;t.copy(ch="…",display="︙",forced=true)}else{i++;t.copy(ch="‥",display="︰",forced=true)}
                 presentation(ch)->t.copy(forced=true)
                 force[ch]!=null->t.copy(display=force.getValue(ch),forced=true)
                 cp in 48..57 || cp in 65..90 || cp in 97..122->t.copy(display=String(Character.toChars(cp+0xfee0)),forced=true,alnum=true)
-                else->t.copy(rotate=ch !in uprightFallback && (Regex("\\p{P}").matches(ch)||ch in chars("/\\／＼~～〜=＝+＋*＊&＆@＠#＃%％^＾<>＜＞|｜")))
+                else->t.copy(rotate=ch !in uprightFallback && (verticalPunctuation.matches(ch)||ch in rotationSymbols))
             };out+=next;i++
         };return out
     }

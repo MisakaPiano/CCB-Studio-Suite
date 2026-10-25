@@ -5,7 +5,40 @@ import kotlinx.serialization.json.*
 import java.lang.management.ManagementFactory
 import java.nio.file.*
 import java.util.UUID
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
 import kotlin.test.*
+
+private object RecordedVerticalProjection {
+    private fun chars(text:String)=text.codePoints().toArray().map{String(Character.toChars(it))}
+    private val force=buildMap<String,String> {
+        fun group(input:String,output:String){chars(input).forEach{put(it,output)}}
+        group("，,﹐","︐");group("、﹑","︑");group("。．.","︒");group("：:﹕","︓");group("；;﹔","︔")
+        group("！!﹗","︕");group("？?﹖","︖");group("〖","︗");group("〗","︘");group("…","︙");group("‥","︰")
+        group("—―","︱");group("–","︲");group("_＿","︳");group("(（｟﹙","︵");group(")）｠﹚","︶")
+        group("{｛﹛","︷");group("}｝﹜","︸");group("〔〘﹝","︹");group("〕〙﹞","︺")
+        group("【","︻");group("】","︼");group("《«","︽");group("》»","︾");group("〈‹","︿");group("〉›","﹀")
+        group("「‘‚‛","﹁");group("」’","﹂");group("『“„〝","﹃");group("』”‟〞〟","﹄")
+        group("[［〚","﹇");group("]］〛","﹈")
+    }
+    private val uprightFallback=chars("・･·‧•※々〃ゝゞヽヾ﹅﹆").toSet()
+    private fun presentation(ch:String)=ch.codePointAt(0).let{it in 0xfe10..0xfe19 || it in 0xfe30..0xfe4f}
+    fun verticalTokens(input:List<TypesetLayout.Token>):List<TypesetLayout.Token> {
+        val out=mutableListOf<TypesetLayout.Token>();var doubleOpen=true;var singleOpen=true;var i=0
+        while(i<input.size){val t=input[i];val ch=t.ch;val cp=ch.codePointAt(0)
+            val next=when {
+                ch in setOf("\"","＂")->t.copy(display=if(doubleOpen)"﹃"else"﹄",forced=true).also{doubleOpen=!doubleOpen}
+                ch in setOf("'","＇")->if(input.getOrNull(i-1)?.ch?.codePointAt(0)?.let(Character::isLetterOrDigit)==true && input.getOrNull(i+1)?.ch?.codePointAt(0)?.let(Character::isLetterOrDigit)==true)t.copy(rotate=true)
+                    else t.copy(display=if(singleOpen)"﹁"else"﹂",forced=true).also{singleOpen=!singleOpen}
+                ch=="." && input.getOrNull(i+1)?.ch=="."->if(input.getOrNull(i+2)?.ch=="."){i+=2;t.copy(ch="…",display="︙",forced=true)}else{i++;t.copy(ch="‥",display="︰",forced=true)}
+                presentation(ch)->t.copy(forced=true)
+                force[ch]!=null->t.copy(display=force.getValue(ch),forced=true)
+                cp in 48..57 || cp in 65..90 || cp in 97..122->t.copy(display=String(Character.toChars(cp+0xfee0)),forced=true,alnum=true)
+                else->t.copy(rotate=ch !in uprightFallback && (Regex("\\p{P}").matches(ch)||ch in chars("/\\／＼~～〜=＝+＋*＊&＆@＠#＃%％^＾<>＜＞|｜")))
+            };out+=next;i++
+        };return out
+    }
+}
 
 /** Actual character projection only; no font/measure/layout/render/provider or user-file APIs. */
 class VerticalTokenProjectionPerformanceTest {
@@ -28,15 +61,17 @@ class VerticalTokenProjectionPerformanceTest {
             val input=TypesetLayout.tokens(text,style);assertEquals(count,input.size);val inputBefore=input.toList()
             val expected=TypesetLayout.verticalTokens(input);val hash=sha256(expected.joinToString("\n").toByteArray())
             fun verify(actual:List<TypesetLayout.Token>){assertEquals(expected,actual);assertEquals(inputBefore,input);assertContentEquals(before,documentJson.encodeToString(doc).toByteArray())}
-            repeat(2){verify(TypesetLayout.verticalTokens(input))}
+            repeat(2){verify(RecordedVerticalProjection.verticalTokens(input));verify(TypesetLayout.verticalTokens(input))}
             repeat(4){round->
-                val thread=Thread.currentThread().id;val allocated=bean.getThreadAllocatedBytes(thread)
-                val cpu=bean.currentThreadCpuTime;val started=System.nanoTime()
-                val actual=TypesetLayout.verticalTokens(input)
-                val elapsed=(System.nanoTime()-started)/1e6;val cpuMs=(bean.currentThreadCpuTime-cpu)/1e6
-                val allocatedBytes=bean.getThreadAllocatedBytes(thread)-allocated
-                verify(actual)
-                rows+=buildJsonObject{put("context",context);put("inputTokens",input.size);put("utf16Length",text.length);put("outputTokens",actual.size);put("serializedDocumentBytes",before.size);put("tokenOrderSha256",hash);put("round",round);put("wallMs",elapsed);put("cpuMs",cpuMs);put("allocatedBytes",allocatedBytes)}
+                for(kind in if(round%2==0)listOf("recorded","current")else listOf("current","recorded")) {
+                    val thread=Thread.currentThread().id;val allocated=bean.getThreadAllocatedBytes(thread)
+                    val cpu=bean.currentThreadCpuTime;val started=System.nanoTime()
+                    val actual=if(kind=="recorded")RecordedVerticalProjection.verticalTokens(input)else TypesetLayout.verticalTokens(input)
+                    val elapsed=(System.nanoTime()-started)/1e6;val cpuMs=(bean.currentThreadCpuTime-cpu)/1e6
+                    val allocatedBytes=bean.getThreadAllocatedBytes(thread)-allocated
+                    verify(actual)
+                    rows+=buildJsonObject{put("kind",kind);put("context",context);put("inputTokens",input.size);put("utf16Length",text.length);put("outputTokens",actual.size);put("serializedDocumentBytes",before.size);put("tokenOrderSha256",hash);put("round",round);put("wallMs",elapsed);put("cpuMs",cpuMs);put("allocatedBytes",allocatedBytes)}
+                }
             }
         }
         println("VERTICAL_TOKEN_PROJECTION="+JsonArray(rows))
@@ -66,5 +101,34 @@ class VerticalTokenProjectionPerformanceTest {
             identities+=buildJsonObject{put("path","$rel/$name.json");put("rawSha256",sha256(raw));put("bytes",raw.size);put("tokens",actual.size)}
         }
         println("VERTICAL_SOURCE_FIXTURES="+JsonArray(identities))
+    }
+
+    @Test fun unicodeStylesQuoteStateAndInvalidHelpersKeepRecordedSemantics() {
+        val style=TypesetStyle(fontFamily="Dialog",fontSize=31.0,fill="#123456",italic=true)
+        val samples=listOf("", "\"＂\"＂ '＇'＇", "can't a＇b '中'", ". .. ... .... .....", "︐︵︶・･·‧•※々〃ゝゞヽヾ﹅﹆", "/\\／＼~～〜=＝+＋*＊&＆@＠#＃%％^＾<>＜＞|｜", "中文한글αβ😀e\u0301𠀀\n\t", "[b]A[/][size=42]中[/]...")
+        for(text in samples) {
+            val input=TypesetLayout.tokens(text,style);val snapshot=input.toList()
+            val expected=RecordedVerticalProjection.verticalTokens(input)
+            repeat(3){assertEquals(expected,TypesetLayout.verticalTokens(input));assertEquals(snapshot,input)}
+        }
+        for(quote in listOf("\"","＂","'","＇"))repeat(3) {
+            assertEquals(listOf(if(quote=="\""||quote=="＂")"﹃"else"﹁"),TypesetLayout.verticalTokens(TypesetLayout.tokens(quote,style)).map{it.display})
+        }
+        val decorated=listOf(TypesetLayout.Token("中",style,"custom",rotate=true,forced=true,alnum=true),TypesetLayout.Token("%",style.copy(fontSize=47.0),"mark",forced=true))
+        assertEquals(RecordedVerticalProjection.verticalTokens(decorated),TypesetLayout.verticalTokens(decorated))
+        // Empty helper tokens are not admitted document input; preserve the old exception too.
+        val invalid=listOf(TypesetLayout.Token("",style))
+        val oldError=assertFails{RecordedVerticalProjection.verticalTokens(invalid)}
+        val newError=assertFails{TypesetLayout.verticalTokens(invalid)}
+        assertEquals(oldError.javaClass,newError.javaClass);assertEquals(oldError.message,newError.message)
+    }
+    @Test fun simultaneousProjectionKeepsPerCallQuoteStateAndFreshResults() {
+        val input=TypesetLayout.tokens("\"中文😀...\" 'a' a'b α%・",TypesetStyle(fontFamily="Dialog"))
+        val snapshot=input.toList();val expected=RecordedVerticalProjection.verticalTokens(input)
+        val pool=Executors.newFixedThreadPool(2)
+        try {
+            val futures=List(2){pool.submit{repeat(100){val actual=TypesetLayout.verticalTokens(input);assertEquals(expected,actual);assertNotSame(expected,actual);assertEquals(snapshot,input)}}}
+            futures.forEach{it.get(10,TimeUnit.SECONDS)}
+        }finally{pool.shutdown();assertTrue(pool.awaitTermination(10,TimeUnit.SECONDS))}
     }
 }
