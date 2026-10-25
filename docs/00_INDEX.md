@@ -1,3 +1,7 @@
+## 2026-10-25 PERF-001/006底层新组合观测
+
+[集成报告/原始执行](audits/PERF001006_INTEGRATION_20261025.md)：应用6dfadc0/执行1b6e3b6输入一致，无新代码，最终3唯一方法PASS；12MiB×2扫描分配26.56MB（历史约52MB），受管副本仍6.38MB，无额外明显收益，不作速度/RSS/用户/包验。并行读/取消/重放保持；[复审仅准备](../handoff/PERF001006_INTEGRATION_REVIEW_READY_20261025.md)，无发布，继续低风险定位、旧边界保持。
+
 ## 2026-10-25 PERF-001/007提交后内容复用
 
 [6dfadc0报告/原始执行](audits/PERF001007_JOURNAL_COMMIT_20261025.md)：最终12唯一方法PASS，256KiB ASCII保存分配11.53→7.56MB；预检/实际提交均完整编码验证，代理字符走旧解析、旧UTF-8及快照边界保持。非RSS/UI/人工/包验；[复审仅准备](../handoff/PERF001007_JOURNAL_REVIEW_READY_20261025.md)。继续底层增量后目录/副本集成观测、不重跑旧接受基线，Desktop优先，无发布/外发。

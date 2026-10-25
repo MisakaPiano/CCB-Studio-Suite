@@ -1,0 +1,80 @@
+{
+  "format": 1,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19,
+      "sha256": "3e5e82fc72e044ea9af807a2030b73dbb94800d2cd1775302063b2eee761ba1e"
+    },
+    {
+      "path": "ANALYSIS.json",
+      "bytes": 1827,
+      "sha256": "3b39dfab0a04739e212428bdd784603838cbf0c694aec7df2ccaa45d4cd8513c"
+    },
+    {
+      "path": "ATTEMPTS_AND_LIMITS.md",
+      "bytes": 1831,
+      "sha256": "bd4b8205451fd7f9e826570e952f38509103935ed55c32613114a1ca0793587a"
+    },
+    {
+      "path": "collect.py",
+      "bytes": 6312,
+      "sha256": "90fc22941b08931d5e8277fd605c3b5d890092d5fe98844da0f14d0007ef65b6"
+    },
+    {
+      "path": "CollectionHashPerformanceTest-samples.json",
+      "bytes": 923,
+      "sha256": "bb233a594e42a94f6fcac85d88fc93cf184aa4b11e7df46d09b804df76ec1378"
+    },
+    {
+      "path": "IngressCopyPerformanceTest-samples.json",
+      "bytes": 824,
+      "sha256": "3c7a3b615f9dde42241e673fc99af2d5a77ccd875fe3060a6fa32170396b664a"
+    },
+    {
+      "path": "run/fixture-cleanup.json",
+      "bytes": 293,
+      "sha256": "b6fafdc06b883ed11925c025b258c05372b86ffe440a5101ef39b5b886a9f118"
+    },
+    {
+      "path": "run/gradle.log",
+      "bytes": 1754,
+      "sha256": "d3726a42176affc627e3e63aa63f87c1b9482dbb01ecd90ec0cbcc7e0ada650c"
+    },
+    {
+      "path": "run/source-before.json",
+      "bytes": 77474,
+      "sha256": "937171b21c6731e2defcc0a78a0272ca7e58bfec1a1770b24fb0e22e402b54f4"
+    },
+    {
+      "path": "run/studio-core-TEST-io.github.misakapiano.ccbstudio.core.CollectionHashPerformanceTest.xml",
+      "bytes": 1156,
+      "sha256": "8a5d02f45244ce837858b028527a2fc2d9a1ae08eb670d5aaab6ec4b60db6dec"
+    },
+    {
+      "path": "run/studio-core-TEST-io.github.misakapiano.ccbstudio.core.IngressCopyPerformanceTest.xml",
+      "bytes": 1088,
+      "sha256": "93ad0697dda055d89e9c0d9a07c98a813ba89289525d7fd27086b147283f2954"
+    },
+    {
+      "path": "run/studio-core-TEST-io.github.misakapiano.ccbstudio.core.LibraryCollectionTest.xml",
+      "bytes": 519,
+      "sha256": "9de4308fe5e541d521e6e6047217d3ece2a219576d4f5ae60737c8b43e1b5528"
+    },
+    {
+      "path": "run/summary.json",
+      "bytes": 1242,
+      "sha256": "aa44e4c0fbe30be2965dcd9c9215010eb8e56b87cabde7d760298d58350dccbf"
+    },
+    {
+      "path": "run/test-cases.json",
+      "bytes": 621,
+      "sha256": "dcc697258f2fdcbbba0d19e7f8b204bcc79b60244b28483e24bae01b26243ecd"
+    },
+    {
+      "path": "SOURCE_MAP.json",
+      "bytes": 1918,
+      "sha256": "953aa63582f9d4e3d384a35cc623eb75d7192fa08832a8bb3b519f70e8030163"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.IngressCopyPerformanceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-24T23:55:02.240Z" hostname="DD1" time="12.399">
+  <properties/>
+  <testcase name="measuredManagedCopyAllocationAndReplay" classname="io.github.misakapiano.ccbstudio.core.IngressCopyPerformanceTest" time="12.399"/>
+  <system-out><![CDATA[INGRESS_COPY_ALLOCATION=[{"payloadBytes":3145728,"round":0,"wallMs":708.6609,"cpuMs":109.375,"allocatedBytes":5461800},{"payloadBytes":3145728,"round":1,"wallMs":634.1304,"cpuMs":125.0,"allocatedBytes":6377080},{"payloadBytes":3145728,"round":2,"wallMs":674.6726,"cpuMs":93.75,"allocatedBytes":7282120},{"payloadBytes":12582912,"round":0,"wallMs":925.2966,"cpuMs":171.875,"allocatedBytes":5459632},{"payloadBytes":12582912,"round":1,"wallMs":716.9774,"cpuMs":250.0,"allocatedBytes":6375312},{"payloadBytes":12582912,"round":2,"wallMs":792.1408,"cpuMs":203.125,"allocatedBytes":7291408}]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

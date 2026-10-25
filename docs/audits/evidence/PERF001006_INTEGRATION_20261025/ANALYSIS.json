@@ -1,0 +1,48 @@
+{
+  "currentMedians": {
+    "CollectionHashPerformanceTest": {
+      "3145728": {
+        "wallMs": 47.6893,
+        "cpuMs": 46.875,
+        "allocatedBytes": 7682856
+      },
+      "12582912": {
+        "wallMs": 123.7328,
+        "cpuMs": 125.0,
+        "allocatedBytes": 26558272
+      }
+    },
+    "IngressCopyPerformanceTest": {
+      "3145728": {
+        "wallMs": 674.6726,
+        "cpuMs": 109.375,
+        "allocatedBytes": 6377080
+      },
+      "12582912": {
+        "wallMs": 792.1408,
+        "cpuMs": 203.125,
+        "allocatedBytes": 6375312
+      }
+    }
+  },
+  "finalUniqueMethods": 3,
+  "cleanup": {
+    "root": "H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-026cfd2688424634af023977f8f9f25a",
+    "status": "COMPLETE",
+    "removed": 341,
+    "bytesFreed": 204604712,
+    "retained": [],
+    "sourceManifestSha256": "c597880ff9520f4ac9219baf7155a999c24597ee973eb4585cf9fc3990ee6d1f"
+  },
+  "historicalReferences": {
+    "scan": "cb819b4 / docs/audits/evidence/PERF006_COLLECTION_HASH_20261025",
+    "intake": "3086895 / docs/audits/evidence/PERF001005_INGRESS_20261025"
+  },
+  "limits": [
+    "Integrated observation after actual low-level code changes,not rerunning an unchanged or accepted003/startup baseline",
+    "Historical separate JVMs and scheduling are references only,no causal wall/CPU/RSS/UI or real-library claim",
+    "Current scan2 synthetic3/12MiB ancillary files,current managed-copy one per call;auto collections paused and no user paths",
+    "Prior perfsample counters include small JSON-record overhead unlike newer isolated-counter fixtures;no precision cross-fixture comparison",
+    "Source/state/asset count/replay/cancellation checkpoints/liveness asserted;no new archive/render/clipboard/update/package acceptance"
+  ]
+}
