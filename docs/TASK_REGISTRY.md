@@ -1,3 +1,9 @@
+## 2026-10-25 17:45 JST 后续需求：UX-DISPLAY-THEME-001（仅登记排队）
+
+用户08:45 UTC / 17:45 JST提出：“我觉得Studio也可以加一下desktop同样的显示主题色变换功能”。本次在现有UX-RECOVERY合同下去重登记**UX-DISPLAY-THEME-001**，状态**QUEUED / NOT STARTED / SCOPE_TO_VERIFY**；未找到同标识或同义主题色待办，不另开实现线程/合同。
+
+排队关系：当前PERF-005字体清单验证及固定证据收尾继续优先，既有性能持续授权不被本条打断；本项后续按排期先只读核对Desktop实际“显示主题色切换”的实现、交互与可复用部分，再确定Studio最小对齐范围。功能/交互应对齐Desktop，不自行扩大为完整换肤系统，不假定指角色颜色；歧义保留待核对。现在不启动Desktop源码核对、实现、UI演示/发版或设置迁移，不擅改用户当前主题设置；未实现/未测试/未验收，不得称完成。见[既有合同登记](../tasks/UX_RECOVERY_CONTINUOUS.md#2026-10-25-显示主题色切换排队登记)；随后继续原性能工作。
+
 ## 2026-10-25 后续六行复审索引只准备（0新测试）
 
 [固定六行索引](../handoff/PERFORMANCE_LATER_INCREMENT_REVIEW_READY_20261025.md)边界3d9abb0/恢复2c35296，五段各自自动完成与数值表候选NOT ADOPTED分开；原16项/两段对象不改、各方法不相加、不外推最新HEAD/包/人工/Project通过。字体依赖b049e4c PENDING_OBSERVATION排除；仅旧raw固定Git/CRC/SHA汇总0新测试，未发送，原持续授权/资源门/失败与未验保持，无新任务/发行或Desktop开发。

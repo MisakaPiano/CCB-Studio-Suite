@@ -4,6 +4,10 @@
 
 竖排e9ae9f3/6805de7及4方法已完成，不重跑、不改旧固定包。当前同PERF-005富文本固定表达式9987d85已实际3方法通过，[报告/原始逐例](audits/PERF005_RICH_TAG_SYNTAX_20261025.md)：只1lazy Regex+1引用，原标签/样式/错误/嵌套长度/其他生产保持；属性分配少约64%、控制分配不变，墙钟噪声与首用/常驻/UI/RSS未测边界单列。新[复审只准备](../handoff/PERF005_RICH_TAG_SYNTAX_REVIEW_READY_20261025.md)，旧包/用户/独立状态不扩大。当前标点分类3d9abb0最终3方法已通过，修正基线1PASS/原向量1FAIL分列，旧失败与异步误写PENDING_OBSERVATION更正保留；只5lazy固定Set+5引用，完整布局与其他生产不变。数值表候选e837880因loose负面HOLD，2c35296已恢复；当前继续字体依赖清单纯元数据聚合定位，先测后改，不改规则/字体/渲染/UI或输入预算，不启动后续新功能。Desktop优先，重负载让行/忙时只准备；新Project只准备不外发，不新增执行者。所有临时文件限Suite根，写前核绝对路径/归属/冲突/链接；禁止再访问此前误写路径，旧覆盖/时间UNKNOWN不改。无发布/重启/MSI/安全变更/日常安装或私人数据/付费调用/暂停扫描恢复；资产编辑用户未验、115/Prompt各PENDING、q09及PRODUCT_HOLD保持。下方登记/阶段状态各自保留原时点。
 
+### 后续排队登记：UX-DISPLAY-THEME-001，当前性能工作不变
+
+用户2026-10-25 17:45 JST（08:45 UTC）提出与Desktop相同的显示主题色切换，已在[任务入口](TASK_REGISTRY.md)及[既有UX合同](../tasks/UX_RECOVERY_CONTINUOUS.md#2026-10-25-显示主题色切换排队登记)去重登记。状态QUEUED / NOT STARTED / SCOPE_TO_VERIFY；后续先只读核对Desktop真实实现/交互，再确定Studio最小对齐，不扩大完整换肤、不假定角色颜色。当前不启动核对/实现/演示/新线程，不改用户主题设置或Desktop，未实现不称完成；不打断当前字体清单性能验证及证据收尾，原持续授权与未验/PENDING/发布边界保持。
+
 ### 六段后续复审索引准备完成，未发送
 
 [六行固定索引](../handoff/PERFORMANCE_LATER_INCREMENT_REVIEW_READY_20261025.md)包含41e0111/b8b225d/e9ae9f3/9987d85/3d9abb0的各自自动增量及e837880负面NOT ADOPTED；生产边界3d9abb0、2c35296恢复输入等价。六份旧raw/Git/CRC/manifest逐项核对，索引0新测试、各自方法不相加，不是最新HEAD全量/新包/用户/独立通过；原16项/两段/原Desktop固定范围保持。字体依赖基线尚结果待观察，明确排除；继续原普通工作/Desktop资源优先，不因准备检查点或新材料无发送许可全停，所有禁止范围/未验保持。
