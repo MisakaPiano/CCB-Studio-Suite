@@ -1,0 +1,159 @@
+{
+  "medians": {
+    "baseline": [
+      {
+        "uniqueLabeledAssets": 128,
+        "scopeReferences": 161,
+        "tagsPerAsset": 16,
+        "distinctTags": 64,
+        "serializedBytes": 23963,
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 0.5355,
+          "cpuMs": 0.0,
+          "allocatedBytes": 198184.0
+        }
+      },
+      {
+        "uniqueLabeledAssets": 1024,
+        "scopeReferences": 1281,
+        "tagsPerAsset": 16,
+        "distinctTags": 64,
+        "serializedBytes": 191067,
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 4.90465,
+          "cpuMs": 0.0,
+          "allocatedBytes": 1536096.0
+        }
+      },
+      {
+        "uniqueLabeledAssets": 8192,
+        "scopeReferences": 10241,
+        "tagsPerAsset": 16,
+        "distinctTags": 64,
+        "serializedBytes": 1527899,
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 15.341000000000001,
+          "cpuMs": 15.625,
+          "allocatedBytes": 12141760.0
+        }
+      }
+    ],
+    "final": [
+      {
+        "uniqueLabeledAssets": 128,
+        "scopeReferences": 161,
+        "tagsPerAsset": 16,
+        "distinctTags": 64,
+        "serializedBytes": 23963,
+        "kind": "current",
+        "medians": {
+          "wallMs": 0.87565,
+          "cpuMs": 0.0,
+          "allocatedBytes": 79936.0
+        }
+      },
+      {
+        "uniqueLabeledAssets": 128,
+        "scopeReferences": 161,
+        "tagsPerAsset": 16,
+        "distinctTags": 64,
+        "serializedBytes": 23963,
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 1.0629499999999998,
+          "cpuMs": 0.0,
+          "allocatedBytes": 198184.0
+        }
+      },
+      {
+        "uniqueLabeledAssets": 1024,
+        "scopeReferences": 1281,
+        "tagsPerAsset": 16,
+        "distinctTags": 64,
+        "serializedBytes": 191067,
+        "kind": "current",
+        "medians": {
+          "wallMs": 1.9013,
+          "cpuMs": 0.0,
+          "allocatedBytes": 742464.0
+        }
+      },
+      {
+        "uniqueLabeledAssets": 1024,
+        "scopeReferences": 1281,
+        "tagsPerAsset": 16,
+        "distinctTags": 64,
+        "serializedBytes": 191067,
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 2.65975,
+          "cpuMs": 7.8125,
+          "allocatedBytes": 1536096.0
+        }
+      },
+      {
+        "uniqueLabeledAssets": 8192,
+        "scopeReferences": 10241,
+        "tagsPerAsset": 16,
+        "distinctTags": 64,
+        "serializedBytes": 1527899,
+        "kind": "current",
+        "medians": {
+          "wallMs": 7.70995,
+          "cpuMs": 7.8125,
+          "allocatedBytes": 6820912.0
+        }
+      },
+      {
+        "uniqueLabeledAssets": 8192,
+        "scopeReferences": 10241,
+        "tagsPerAsset": 16,
+        "distinctTags": 64,
+        "serializedBytes": 1527899,
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 14.710799999999999,
+          "cpuMs": 15.625,
+          "allocatedBytes": 12076200.0
+        }
+      }
+    ]
+  },
+  "counts": {
+    "baseline": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "c82b463ba06f00f0251458f724fcc924622b1b35",
+      "seconds": 15.246,
+      "startedUtc": "2026-10-25T01:03:28.262665+00:00"
+    },
+    "final": {
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "ca70ab219baa7eabbefafbdd751148e9a0bc850f",
+      "seconds": 22.66,
+      "startedUtc": "2026-10-25T01:10:32.134884+00:00"
+    }
+  },
+  "finalUniqueMethods": 4,
+  "cleanupFiles": 0,
+  "cleanupBytes": 0,
+  "preparationFailure": "Explicit UTF-8 correction;0 Gradle/JUnit executions,see PREPARATION_FAILURE.md",
+  "limits": [
+    "Pure management-label metadata,all LibraryState serialized fixtures <=4MiB,no Prompt tags/real galleries",
+    "Final two warmups per mode and four same-JVM alternating legacy/current rounds;baseline separate JVM",
+    "Unique scoped asset count,one count per asset/tag,case-sensitive identity,insertion order,matching and suggestions unchanged",
+    "Per-asset HashSet reset each asset;ID set and scratch set constructor-local,not retained cache",
+    "Thread allocated heap not whole UI/RSS/physical IO/universal speed",
+    "Single worker/low priority/2processors/256MiB,Desktop gate checks not continuous quiet proof"
+  ]
+}

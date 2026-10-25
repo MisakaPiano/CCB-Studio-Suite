@@ -1,0 +1,26 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryInteractionTest",
+    "name": "tagPredictionCountsUniqueScopedAssetsAndFiltersExactLabels",
+    "seconds": "0.06",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryTagIndexPerformanceTest",
+    "name": "emptyAndRebuiltScopesDoNotRetainOtherScopesOrMutableInput",
+    "seconds": "0.003",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryTagIndexPerformanceTest",
+    "name": "duplicateReferencesTagsCaseAndSuggestionOrderMatchLegacyWithoutMutation",
+    "seconds": "0.031",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryTagIndexPerformanceTest",
+    "name": "measuredActualTagIndexCountsScopedUniqueAssetsWithinStorageBudget",
+    "seconds": "0.417",
+    "status": "PASS"
+  }
+]
