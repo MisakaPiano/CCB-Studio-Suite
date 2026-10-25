@@ -1,3 +1,7 @@
+## 2026-10-25 PERF-005竖排固定准备复用最终4方法通过（未发布）
+
+[e9ae9f3实现/实际执行与原始证据](audits/PERF005_VERTICAL_TOKENS_20261025.md)最终4唯一方法PASS、输入稳定，基线2与3参考文件/轮次/线程另列不相加。仅2lazy常量+3条件，精确字符/样式/引号状态/错误与原3来源元数据保持，其他生产不动。8192后备配对分配25.47→1.72MB、12.595→1.557ms，只实际verticalTokens，文档validate/预算与tokens准备在计数外；非整个编辑器/字体/布局/像素/UI/RSS/冷启动/人工/包或独立验收。首次collector误用缺失docs快照键失败，保留原脚本/部分字节SHA，同目录校验后收集，0新测试；夹具身份由实际JUnit读取SHA+固定Git证明。新[复审只准备](../handoff/PERF005_VERTICAL_TOKENS_REVIEW_READY_20261025.md)，原固定索引/报告不扩。旧失败/否决/路径错误UNKNOWN及禁止再访问、q09 FAILED/UNKNOWN、资产编辑USER_NOT_TESTED、115/Prompt PENDING、PRODUCT_HOLD保持。用户五项已登记原编号，不因消息启动后续需求/新测量；本段为原正在进行的修改接续，Desktop优先、无发布/日常资料/服务或整合。
+
 ## 2026-10-25 PERF-005颜色固定Regex复用最终5方法通过（未发布）
 
 [b8b225d实际执行/固定证据](audits/PERF005_COLOR_SYNTAX_20261025.md)最终5唯一方法PASS、输入稳定，基线1/162案例/线程轮次另列。只3个lazy固定表达式+3引用，原规则/字典/数值/长度/错误/完整校验及其他生产保持；功能色线程分配少约82%、2000次36.05→6.64MB/17.129→6.046ms，HEX分配不变，局部parse非整编辑器/UI/RSS/冷启动/用户/包或独立验收。3d1251f异步登记把“未读到结果”误写“未执行”，按原summary校正，旧提交/原始结果保留，未重跑。新[复审只准备](../handoff/PERF005_COLOR_SYNTAX_REVIEW_READY_20261025.md)，原16项/两段补充/原Desktop边界不扩大；旧失败/否决/路径错误UNKNOWN及禁止再访问、q09/资产编辑未验/115与Prompt PENDING/PRODUCT_HOLD保持。继续已有低风险性能源码定位、有证据才改，Desktop优先，不整合unified-image-tool/新增UI/发布/日常操作或恢复扫描。

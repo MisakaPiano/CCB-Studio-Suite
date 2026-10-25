@@ -1,0 +1,334 @@
+{
+  "medians": {
+    "baseline": [
+      {
+        "inputTokens": 128,
+        "context": "mapped-control",
+        "kind": "actualLegacy",
+        "outputTokens": 112,
+        "utf16Length": 128,
+        "serializedDocumentBytes": 1388,
+        "tokenOrderSha256": "12badf01312a74592477a7dc0347cddb1431d6aaf9db8ae544083ee09c3ce2ce",
+        "medians": {
+          "wallMs": 0.1778,
+          "cpuMs": 0.0,
+          "allocatedBytes": 54040.0
+        }
+      },
+      {
+        "inputTokens": 128,
+        "context": "fallback",
+        "kind": "actualLegacy",
+        "outputTokens": 128,
+        "utf16Length": 140,
+        "serializedDocumentBytes": 1544,
+        "tokenOrderSha256": "5b14d3de6432f1ad14f6d91db4eb7031512b7d22a69a3fae46bd586f94516bd3",
+        "medians": {
+          "wallMs": 1.4505,
+          "cpuMs": 0.0,
+          "allocatedBytes": 410504.0
+        }
+      },
+      {
+        "inputTokens": 1024,
+        "context": "mapped-control",
+        "kind": "actualLegacy",
+        "outputTokens": 888,
+        "utf16Length": 1024,
+        "serializedDocumentBytes": 2580,
+        "tokenOrderSha256": "7c4404a11d5ece8b9eb6a646e8ed1d527e84fb78a7fe68d84a2193c4955462cb",
+        "medians": {
+          "wallMs": 0.81475,
+          "cpuMs": 0.0,
+          "allocatedBytes": 425200.0
+        }
+      },
+      {
+        "inputTokens": 1024,
+        "context": "fallback",
+        "kind": "actualLegacy",
+        "outputTokens": 1024,
+        "utf16Length": 1117,
+        "serializedDocumentBytes": 3823,
+        "tokenOrderSha256": "8525499a2ec803aa4e4e350aa1968d4cae017b048d4470072e9d787e83bb4640",
+        "medians": {
+          "wallMs": 4.5139499999999995,
+          "cpuMs": 0.0,
+          "allocatedBytes": 3211200.0
+        }
+      },
+      {
+        "inputTokens": 8192,
+        "context": "mapped-control",
+        "kind": "actualLegacy",
+        "outputTokens": 7100,
+        "utf16Length": 8192,
+        "serializedDocumentBytes": 12138,
+        "tokenOrderSha256": "36add3de7cef09d70797514a7ac8b591827dca34b70efc61bc5563fe1d5e6538",
+        "medians": {
+          "wallMs": 8.145050000000001,
+          "cpuMs": 15.625,
+          "allocatedBytes": 3389824.0
+        }
+      },
+      {
+        "inputTokens": 8192,
+        "context": "fallback",
+        "kind": "actualLegacy",
+        "outputTokens": 8192,
+        "utf16Length": 8937,
+        "serializedDocumentBytes": 22069,
+        "tokenOrderSha256": "991e6c261b34c2caf99763e1edc34c76f1acc05125de55a708eb4b584fc0d04a",
+        "medians": {
+          "wallMs": 13.97105,
+          "cpuMs": 15.625,
+          "allocatedBytes": 25678984.0
+        }
+      }
+    ],
+    "final": [
+      {
+        "inputTokens": 128,
+        "context": "mapped-control",
+        "kind": "current",
+        "outputTokens": 112,
+        "utf16Length": 128,
+        "serializedDocumentBytes": 1388,
+        "tokenOrderSha256": "12badf01312a74592477a7dc0347cddb1431d6aaf9db8ae544083ee09c3ce2ce",
+        "medians": {
+          "wallMs": 0.052000000000000005,
+          "cpuMs": 0.0,
+          "allocatedBytes": 9112.0
+        }
+      },
+      {
+        "inputTokens": 128,
+        "context": "mapped-control",
+        "kind": "recorded",
+        "outputTokens": 112,
+        "utf16Length": 128,
+        "serializedDocumentBytes": 1388,
+        "tokenOrderSha256": "12badf01312a74592477a7dc0347cddb1431d6aaf9db8ae544083ee09c3ce2ce",
+        "medians": {
+          "wallMs": 0.11605,
+          "cpuMs": 0.0,
+          "allocatedBytes": 54040.0
+        }
+      },
+      {
+        "inputTokens": 128,
+        "context": "fallback",
+        "kind": "current",
+        "outputTokens": 128,
+        "utf16Length": 140,
+        "serializedDocumentBytes": 1544,
+        "tokenOrderSha256": "5b14d3de6432f1ad14f6d91db4eb7031512b7d22a69a3fae46bd586f94516bd3",
+        "medians": {
+          "wallMs": 0.04435,
+          "cpuMs": 0.0,
+          "allocatedBytes": 27368.0
+        }
+      },
+      {
+        "inputTokens": 128,
+        "context": "fallback",
+        "kind": "recorded",
+        "outputTokens": 128,
+        "utf16Length": 140,
+        "serializedDocumentBytes": 1544,
+        "tokenOrderSha256": "5b14d3de6432f1ad14f6d91db4eb7031512b7d22a69a3fae46bd586f94516bd3",
+        "medians": {
+          "wallMs": 1.8945500000000002,
+          "cpuMs": 0.0,
+          "allocatedBytes": 410504.0
+        }
+      },
+      {
+        "inputTokens": 1024,
+        "context": "mapped-control",
+        "kind": "current",
+        "outputTokens": 888,
+        "utf16Length": 1024,
+        "serializedDocumentBytes": 2580,
+        "tokenOrderSha256": "7c4404a11d5ece8b9eb6a646e8ed1d527e84fb78a7fe68d84a2193c4955462cb",
+        "medians": {
+          "wallMs": 0.1405,
+          "cpuMs": 0.0,
+          "allocatedBytes": 69936.0
+        }
+      },
+      {
+        "inputTokens": 1024,
+        "context": "mapped-control",
+        "kind": "recorded",
+        "outputTokens": 888,
+        "utf16Length": 1024,
+        "serializedDocumentBytes": 2580,
+        "tokenOrderSha256": "7c4404a11d5ece8b9eb6a646e8ed1d527e84fb78a7fe68d84a2193c4955462cb",
+        "medians": {
+          "wallMs": 1.35785,
+          "cpuMs": 0.0,
+          "allocatedBytes": 425200.0
+        }
+      },
+      {
+        "inputTokens": 1024,
+        "context": "fallback",
+        "kind": "current",
+        "outputTokens": 1024,
+        "utf16Length": 1117,
+        "serializedDocumentBytes": 3823,
+        "tokenOrderSha256": "8525499a2ec803aa4e4e350aa1968d4cae017b048d4470072e9d787e83bb4640",
+        "medians": {
+          "wallMs": 0.21755,
+          "cpuMs": 0.0,
+          "allocatedBytes": 215392.0
+        }
+      },
+      {
+        "inputTokens": 1024,
+        "context": "fallback",
+        "kind": "recorded",
+        "outputTokens": 1024,
+        "utf16Length": 1117,
+        "serializedDocumentBytes": 3823,
+        "tokenOrderSha256": "8525499a2ec803aa4e4e350aa1968d4cae017b048d4470072e9d787e83bb4640",
+        "medians": {
+          "wallMs": 4.16085,
+          "cpuMs": 7.8125,
+          "allocatedBytes": 3211200.0
+        }
+      },
+      {
+        "inputTokens": 8192,
+        "context": "mapped-control",
+        "kind": "current",
+        "outputTokens": 7100,
+        "utf16Length": 8192,
+        "serializedDocumentBytes": 12138,
+        "tokenOrderSha256": "36add3de7cef09d70797514a7ac8b591827dca34b70efc61bc5563fe1d5e6538",
+        "medians": {
+          "wallMs": 1.2208,
+          "cpuMs": 0.0,
+          "allocatedBytes": 549792.0
+        }
+      },
+      {
+        "inputTokens": 8192,
+        "context": "mapped-control",
+        "kind": "recorded",
+        "outputTokens": 7100,
+        "utf16Length": 8192,
+        "serializedDocumentBytes": 12138,
+        "tokenOrderSha256": "36add3de7cef09d70797514a7ac8b591827dca34b70efc61bc5563fe1d5e6538",
+        "medians": {
+          "wallMs": 6.7604,
+          "cpuMs": 7.8125,
+          "allocatedBytes": 3389848.0
+        }
+      },
+      {
+        "inputTokens": 8192,
+        "context": "fallback",
+        "kind": "current",
+        "outputTokens": 8192,
+        "utf16Length": 8937,
+        "serializedDocumentBytes": 22069,
+        "tokenOrderSha256": "991e6c261b34c2caf99763e1edc34c76f1acc05125de55a708eb4b584fc0d04a",
+        "medians": {
+          "wallMs": 1.55685,
+          "cpuMs": 0.0,
+          "allocatedBytes": 1715680.0
+        }
+      },
+      {
+        "inputTokens": 8192,
+        "context": "fallback",
+        "kind": "recorded",
+        "outputTokens": 8192,
+        "utf16Length": 8937,
+        "serializedDocumentBytes": 22069,
+        "tokenOrderSha256": "991e6c261b34c2caf99763e1edc34c76f1acc05125de55a708eb4b584fc0d04a",
+        "medians": {
+          "wallMs": 12.5953,
+          "cpuMs": 15.625,
+          "allocatedBytes": 25465236.0
+        }
+      }
+    ]
+  },
+  "counts": {
+    "baseline": {
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "baseCommit": "c6efb5e36827311da9e919521723a0dd7fce3f97",
+      "seconds": 16.132,
+      "startedUtc": "2026-10-25T05:24:42.684386+00:00",
+      "sourceStable": true
+    },
+    "final": {
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "baseCommit": "e9ae9f32498786326ae41552748db346604d97bd",
+      "seconds": 20.225,
+      "startedUtc": "2026-10-25T05:36:03.023694+00:00",
+      "sourceStable": true
+    }
+  },
+  "sourceFixtureIdentities": {
+    "baseline": [
+      {
+        "path": "docs/audits/evidence/TYPESET_REFERENCE/source-output/TS-V01.json",
+        "rawSha256": "f5e9ed66f711f95c197e0d1063c73c2f89ab526a4c4a7bc4b8fd1a83744ef7d8",
+        "bytes": 25178,
+        "tokens": 20
+      },
+      {
+        "path": "docs/audits/evidence/TYPESET_REFERENCE/source-output/TS-V02.json",
+        "rawSha256": "7b593412c6cea5a5ba0483b9f615124bed509766631229c9c03c12c15bcede2e",
+        "bytes": 26487,
+        "tokens": 21
+      },
+      {
+        "path": "docs/audits/evidence/TYPESET_REFERENCE/source-output/TS-R01-vertical.json",
+        "rawSha256": "953a8b62b5918a637f68121fedd221cf48c9dd1d2d6ae8a62e951bf371128636",
+        "bytes": 13221,
+        "tokens": 10
+      }
+    ],
+    "final": [
+      {
+        "path": "docs/audits/evidence/TYPESET_REFERENCE/source-output/TS-V01.json",
+        "rawSha256": "f5e9ed66f711f95c197e0d1063c73c2f89ab526a4c4a7bc4b8fd1a83744ef7d8",
+        "bytes": 25178,
+        "tokens": 20
+      },
+      {
+        "path": "docs/audits/evidence/TYPESET_REFERENCE/source-output/TS-V02.json",
+        "rawSha256": "7b593412c6cea5a5ba0483b9f615124bed509766631229c9c03c12c15bcede2e",
+        "bytes": 26487,
+        "tokens": 21
+      },
+      {
+        "path": "docs/audits/evidence/TYPESET_REFERENCE/source-output/TS-R01-vertical.json",
+        "rawSha256": "953a8b62b5918a637f68121fedd221cf48c9dd1d2d6ae8a62e951bf371128636",
+        "bytes": 13221,
+        "tokens": 10
+      }
+    ]
+  },
+  "cleanupFiles": 0,
+  "cleanupBytes": 0,
+  "limits": [
+    "Actual verticalTokens only,not tokens/document validation/layout/render/font metrics/UI",
+    "TypesetDocument.validate and serialization<=4MiB outside counters;tokens prepared outside,all output Token fields/styles/input/document snapshot compared outside",
+    "2warmups eachmode/4alternating rounds;no cold/firstuse/retained pattern/set costs/peakheap/GC/RSS measurement",
+    "Fixed3synthetic public source fixtures verify accepted display/rotation/fontSize metadata perparagraph only;no advances/wrapping/pixels",
+    "Lazy delegates and fixed Regex/Set retained;no user input/output cache;quote/dot state percall",
+    "Two own threads100rounds verify steady reuse/state,not every initialization race or Windows environment"
+  ]
+}

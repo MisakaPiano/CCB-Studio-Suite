@@ -1,0 +1,31 @@
+{
+  "phase": "perf005-vertical-tokens-final-20261025",
+  "startedUtc": "2026-10-25T05:36:03.023694+00:00",
+  "seconds": 20.225,
+  "exitCode": 0,
+  "tests": 4,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--priority",
+    "low",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    "-PpreviewTestRoot=H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-ed2f48e91a2147acac9766c70d8b8beb\\payload",
+    ":studio-core:test",
+    "--tests",
+    "*VerticalTokenProjectionPerformanceTest"
+  ],
+  "baseCommit": "e9ae9f32498786326ae41552748db346604d97bd",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

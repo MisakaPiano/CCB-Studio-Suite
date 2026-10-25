@@ -1,0 +1,26 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.VerticalTokenProjectionPerformanceTest",
+    "name": "simultaneousProjectionKeepsPerCallQuoteStateAndFreshResults",
+    "seconds": "0.058",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.VerticalTokenProjectionPerformanceTest",
+    "name": "measuredActualVerticalProjectionKeepsTokensStyleAndAdmittedDocument",
+    "seconds": "0.44",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.VerticalTokenProjectionPerformanceTest",
+    "name": "fixedSourceVerticalMetadataMatchesWithoutFontMeasurementOrRendering",
+    "seconds": "0.018",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.VerticalTokenProjectionPerformanceTest",
+    "name": "unicodeStylesQuoteStateAndInvalidHelpersKeepRecordedSemantics",
+    "seconds": "0.003",
+    "status": "PASS"
+  }
+]

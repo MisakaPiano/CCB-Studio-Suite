@@ -1,0 +1,89 @@
+{
+  "partialOwnedFiles": [
+    {
+      "bytes": 7918,
+      "path": "baseline-samples.json",
+      "sha256": "bd69a62a4bf7771605e306f9d9e6fff6ac76d82da2ed02688475cea7d90b9b5f"
+    },
+    {
+      "bytes": 16909,
+      "path": "final-samples.json",
+      "sha256": "d3f92ae95119684e2acc0100411c5ce3de722ad74b115292865f3bc7671f4a7e"
+    },
+    {
+      "bytes": 10613,
+      "path": "inputs/baseline/TypesetLayout.kt",
+      "sha256": "03b7bf522caad950571296602153ec8da6796c41036e634b71d36af9994e7419"
+    },
+    {
+      "bytes": 10745,
+      "path": "inputs/final/TypesetLayout.kt",
+      "sha256": "7b8deb58c7767bc84529364100ee9533809fadfa95291bb4d5f272b06dca2915"
+    },
+    {
+      "bytes": 283,
+      "path": "runs/baseline/fixture-cleanup.json",
+      "sha256": "cd0d3b9ce5e911e7b7953b53fa5822701692b239e4a54737226e061a3ac6f2d1"
+    },
+    {
+      "bytes": 1714,
+      "path": "runs/baseline/gradle.log",
+      "sha256": "9b56de1f3c450055249358062ce9af51f560f543850700212582a1acade122f3"
+    },
+    {
+      "bytes": 79670,
+      "path": "runs/baseline/source-before.json",
+      "sha256": "5274b5755e642641cd8bb077725d70766f99e166e046bf25e37348ddb94a7b01"
+    },
+    {
+      "bytes": 7682,
+      "path": "runs/baseline/studio-core-TEST-io.github.misakapiano.ccbstudio.core.VerticalTokenProjectionPerformanceTest.xml",
+      "sha256": "40c87af26352704d976b37c382f8ccc3953f02434451ef1c3ed89d59fc8301bf"
+    },
+    {
+      "bytes": 1000,
+      "path": "runs/baseline/summary.json",
+      "sha256": "5bc48a934313894372f5d403eea4c1fcdc0e66a30a71a493a566fc2a57b7fd4e"
+    },
+    {
+      "bytes": 475,
+      "path": "runs/baseline/test-cases.json",
+      "sha256": "49dd5642b272c156c58c84561b804120d1cf8c98e2d705ece4bc02b23a9b0b3a"
+    },
+    {
+      "bytes": 283,
+      "path": "runs/final/fixture-cleanup.json",
+      "sha256": "67efd7d9d47ea1d030f7954cde3ebad7a156bee873447386e451c474fd3a5905"
+    },
+    {
+      "bytes": 1916,
+      "path": "runs/final/gradle.log",
+      "sha256": "a5a9550e13df8ddb505cd6ea6deea517588322115168c58e4ead7055a3a2a515"
+    },
+    {
+      "bytes": 79670,
+      "path": "runs/final/source-before.json",
+      "sha256": "83d034d15fb8a429e167d7c538af4425b30b0912b5bd14fa912b5a5d737f5e8c"
+    },
+    {
+      "bytes": 15167,
+      "path": "runs/final/studio-core-TEST-io.github.misakapiano.ccbstudio.core.VerticalTokenProjectionPerformanceTest.xml",
+      "sha256": "8fbdbab8d4fa4f86480e582ea4bc39f8ee756dbf0a3cb223e9925b862faaeb46"
+    },
+    {
+      "bytes": 997,
+      "path": "runs/final/summary.json",
+      "sha256": "1f53b1a4d68548c5dd889de6db9e5c244456e00243d707d1030dfcdeef57978f"
+    },
+    {
+      "bytes": 930,
+      "path": "runs/final/test-cases.json",
+      "sha256": "7d4e30a2fbfc355b4030bca19fc6dd6c6b66fa17398aa284d150e8f6c8253682"
+    }
+  ],
+  "error": "KeyError: docs golden fixtures not included by source-before runner map; JUnit method emitted their actual raw hashes",
+  "resolution": "retain first collector and exact partial bytes; resume same destination only after byte identity checks; verify source fixtures from fixed Git and actual JUnit read identities, not missing runner keys",
+  "observedUtc": "2026-10-25T05:37:48.6440288Z",
+  "stage": "evidence collector after successful runtime; no new tests",
+  "testExecutions": 0
+}

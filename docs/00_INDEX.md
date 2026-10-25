@@ -1,3 +1,7 @@
+## 2026-10-25 PERF-005竖排固定准备复用最终4方法通过
+
+[e9ae9f3实现/原始逐例及边界](audits/PERF005_VERTICAL_TOKENS_20261025.md)：最终4唯一方法PASS，基线2/参考文件/轮次不相加；只2lazy常量+3条件，映射/样式/每调用状态/其他生产保持。线程分配少约83%～93.3%，局部投影非字体/布局/像素/UI/RSS/冷启动或人工；collector准备失败与原字节恢复单列、0新测试。[复审只准备](../handoff/PERF005_VERTICAL_TOKENS_REVIEW_READY_20261025.md)，原固定包/失败/路径错误UNKNOWN/未验保持，Desktop优先，无发布/日常操作，五项登记不追加范围。
+
 ## 2026-10-25 PERF-005固定颜色表达式复用最终5方法通过
 
 [b8b225d实现/原始逐例及边界](audits/PERF005_COLOR_SYNTAX_20261025.md)：最终5唯一方法PASS，基线1/162样本/线程轮次不相加；只3个lazy固定Regex/3引用，规则/错误/颜色/完整验证保持。功能色分配少约82%，HEX分配不变，只批量parse非UI/RSS/冷启动/包/用户；异步登记误写“未执行”已按raw更正为未观察结果、旧提交保留。[复审仅准备](../handoff/PERF005_COLOR_SYNTAX_REVIEW_READY_20261025.md)，原索引边界/失败/路径错误UNKNOWN/未验保持，Desktop优先，无发布/日常操作。
