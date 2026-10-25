@@ -1,0 +1,120 @@
+{
+  "format": 1,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19,
+      "sha256": "3e5e82fc72e044ea9af807a2030b73dbb94800d2cd1775302063b2eee761ba1e"
+    },
+    {
+      "path": "ANALYSIS.json",
+      "bytes": 3600,
+      "sha256": "726657debe25634b666ea3d0203212c80516a6dae8ecc045143d6a6df041beb5"
+    },
+    {
+      "path": "ATTEMPTS_AND_LIMITS.md",
+      "bytes": 2434,
+      "sha256": "7e8d7a315f852a311e8a9051211912bbb697b4b2a5ad34bb1eb33a0997fcaee8"
+    },
+    {
+      "path": "baseline-samples.json",
+      "bytes": 1772,
+      "sha256": "ce5a7bb760d83a4efd6181fa0941fa219b5a25af162fade20733f62361e8792f"
+    },
+    {
+      "path": "collect.py",
+      "bytes": 9293,
+      "sha256": "0ae1bcb6eb1575b07ff1445e49e2ced75203012f3b49a78f081f95b4ec7570ff"
+    },
+    {
+      "path": "final-samples.json",
+      "bytes": 4064,
+      "sha256": "82c98807141ef383a5df758823ed41499675848ad7d2a6bde2a4a0b08f984d10"
+    },
+    {
+      "path": "resource-deferrals.jsonl",
+      "bytes": 230,
+      "sha256": "81e084a4092f1a2dd01d04a33201560cfb7c6872dc8f63bd3656568ac7a42e6c"
+    },
+    {
+      "path": "runs/baseline/fixture-cleanup.json",
+      "bytes": 283,
+      "sha256": "445d46c7fd7669dd27cf8c5bf13e3c3d0af76c48a8c413f7b89170f082dcc6a0"
+    },
+    {
+      "path": "runs/baseline/gradle.log",
+      "bytes": 1660,
+      "sha256": "085e15b77eac02111377619c4cee95af26b2d8df9da557aaf9d15ed5c066a075"
+    },
+    {
+      "path": "runs/baseline/source-before.json",
+      "bytes": 77652,
+      "sha256": "f64d4df39e2c2b84b8d94843627af7299ad63c51df6af24e885040be07dfa88c"
+    },
+    {
+      "path": "runs/baseline/studio-core-TEST-io.github.misakapiano.ccbstudio.core.HashEncodingPerformanceTest.xml",
+      "bytes": 1872,
+      "sha256": "3b5b075430a4f05378795450dab458e40ff5ba1b7a194dcac124c5dbb4b08a6c"
+    },
+    {
+      "path": "runs/baseline/summary.json",
+      "bytes": 990,
+      "sha256": "aa85e47e0f87563412be07a21f53f0d11f92a8639646701419691340213cb1cb"
+    },
+    {
+      "path": "runs/baseline/test-cases.json",
+      "bytes": 421,
+      "sha256": "b96d81549a074ba0494b980cf1d71782e92f41e6da956f940cc0fe4c6e0cd45a"
+    },
+    {
+      "path": "runs/final/fixture-cleanup.json",
+      "bytes": 288,
+      "sha256": "49c127a02b760a32e59335be0f7ce73b268caa6ae846fbae573b6e227be458b5"
+    },
+    {
+      "path": "runs/final/gradle.log",
+      "bytes": 2324,
+      "sha256": "d1d70916f0f8f0f9950dc66837b49a61befabc0ae2996de4351a49d42095c747"
+    },
+    {
+      "path": "runs/final/source-before.json",
+      "bytes": 77652,
+      "sha256": "a299c96966241d8f6af6cc11f08534b546453c6795c583a435b2d52447b4ae4d"
+    },
+    {
+      "path": "runs/final/studio-core-TEST-io.github.misakapiano.ccbstudio.core.BackupLargeAssetTest.xml",
+      "bytes": 501,
+      "sha256": "e4e9251f9ff99641fc443440803d6c6e89613f1ecf0f0606444cbd32fff98ccc"
+    },
+    {
+      "path": "runs/final/studio-core-TEST-io.github.misakapiano.ccbstudio.core.HashEncodingPerformanceTest.xml",
+      "bytes": 3753,
+      "sha256": "cc217a71488fd9d8c3befc4c3b8b9d98c483abb3ef86f28190a66eecdaccf939"
+    },
+    {
+      "path": "runs/final/studio-core-TEST-io.github.misakapiano.ccbstudio.core.StudioCoreTest.xml",
+      "bytes": 486,
+      "sha256": "bda3275798d3248c8a80fff0bdc78bbcbd63b345cbe43f0f709d46c96c28ef9c"
+    },
+    {
+      "path": "runs/final/studio-core-TEST-io.github.misakapiano.ccbstudio.core.StudioRestoreTest.xml",
+      "bytes": 501,
+      "sha256": "68707335094c0ea1c292b7c3ca013366bfca15ca945737e7ca90763e629c688a"
+    },
+    {
+      "path": "runs/final/summary.json",
+      "bytes": 1283,
+      "sha256": "88a26b0cddd67de2567a80202a7aadb13a22a66ebe0f67f65b0029727fba551a"
+    },
+    {
+      "path": "runs/final/test-cases.json",
+      "bytes": 1470,
+      "sha256": "1aad38f5048d2d4e9a2c8584e26df71e41e5a48e92eedf12b6f111a4b8f20242"
+    },
+    {
+      "path": "SOURCE_MAP.json",
+      "bytes": 3443,
+      "sha256": "2757849b80e986414ffe03567d7fdf8ce08afa31600c965111cf8a672fd71eb9"
+    }
+  ]
+}

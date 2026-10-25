@@ -1,0 +1,131 @@
+{
+  "medians": {
+    "baseline": [
+      {
+        "payloadBytes": 0,
+        "kind": "actualLegacy",
+        "callsPerSample": 64,
+        "medians": {
+          "wallMs": 4.5121,
+          "cpuMs": 7.8125,
+          "allocatedBytes": 1508864.0
+        }
+      },
+      {
+        "payloadBytes": 1024,
+        "kind": "actualLegacy",
+        "callsPerSample": 64,
+        "medians": {
+          "wallMs": 5.61475,
+          "cpuMs": 7.8125,
+          "allocatedBytes": 1508864.0
+        }
+      },
+      {
+        "payloadBytes": 65536,
+        "kind": "actualLegacy",
+        "callsPerSample": 64,
+        "medians": {
+          "wallMs": 15.37,
+          "cpuMs": 15.625,
+          "allocatedBytes": 1509052.0
+        }
+      }
+    ],
+    "final": [
+      {
+        "payloadBytes": 0,
+        "kind": "current",
+        "callsPerSample": 64,
+        "medians": {
+          "wallMs": 0.6511,
+          "cpuMs": 0.0,
+          "allocatedBytes": 54272.0
+        }
+      },
+      {
+        "payloadBytes": 0,
+        "kind": "legacy",
+        "callsPerSample": 64,
+        "medians": {
+          "wallMs": 4.76365,
+          "cpuMs": 0.0,
+          "allocatedBytes": 1508940.0
+        }
+      },
+      {
+        "payloadBytes": 1024,
+        "kind": "current",
+        "callsPerSample": 64,
+        "medians": {
+          "wallMs": 1.22705,
+          "cpuMs": 0.0,
+          "allocatedBytes": 54272.0
+        }
+      },
+      {
+        "payloadBytes": 1024,
+        "kind": "legacy",
+        "callsPerSample": 64,
+        "medians": {
+          "wallMs": 3.20055,
+          "cpuMs": 7.8125,
+          "allocatedBytes": 1509024.0
+        }
+      },
+      {
+        "payloadBytes": 65536,
+        "kind": "current",
+        "callsPerSample": 64,
+        "medians": {
+          "wallMs": 10.10495,
+          "cpuMs": 15.625,
+          "allocatedBytes": 54272.0
+        }
+      },
+      {
+        "payloadBytes": 65536,
+        "kind": "legacy",
+        "callsPerSample": 64,
+        "medians": {
+          "wallMs": 12.2686,
+          "cpuMs": 15.625,
+          "allocatedBytes": 1508892.0
+        }
+      }
+    ]
+  },
+  "counts": {
+    "baseline": {
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "2559eb030bcda1d34e07802e79f704d3b8e0f9b1",
+      "seconds": 15.227,
+      "startedUtc": "2026-10-25T00:03:12.010132+00:00"
+    },
+    "final": {
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "d812e8fb249e865d99438bcd869f4f2df802d9a9",
+      "seconds": 62.583,
+      "startedUtc": "2026-10-25T00:41:05.888364+00:00"
+    }
+  },
+  "finalUniqueMethods": 7,
+  "cleanupFiles": 30,
+  "cleanupBytes": 24821,
+  "limits": [
+    "64 calls/sample,one warmup5calls,4same-JVM alternating legacy/current rounds per0/1KiB/64KiB input;not64unique tests",
+    "All256byte values compared under6 explicit Locales with no default change;empty/abc fixed SHA vectors",
+    "Two isolated constructed v2/v3 envelopes with old digest function,not an actual published installer/update path",
+    "No keys/signatures/trust roots/algorithm/input bytes/validation changed;only equivalent lowercase hex representation",
+    "Microbenchmark thread allocation not complete UI/RSS/physicalIO/real-library or universal speed acceptance",
+    "Single worker/low priority/2processors/256MiB,Desktop gate owner checks not continuous quiet proof"
+  ]
+}

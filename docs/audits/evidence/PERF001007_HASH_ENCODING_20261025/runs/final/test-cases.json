@@ -1,0 +1,44 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.BackupLargeAssetTest",
+    "name": "streamingChecksEnforceExactBoundaryAndKeepFileOnFailure",
+    "seconds": "0.09",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.HashEncodingPerformanceTest",
+    "name": "fileFingerprintMatchesLegacyDigestAndKeepsBytesAndBudget",
+    "seconds": "0.01",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.HashEncodingPerformanceTest",
+    "name": "allByteValuesLocalesAndKnownVectorsKeepLowercaseAsciiHex",
+    "seconds": "0.019",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.HashEncodingPerformanceTest",
+    "name": "measuredActualShaAllocationAndCanonicalOutputs",
+    "seconds": "0.189",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.HashEncodingPerformanceTest",
+    "name": "legacyDigestEnvelopesAcrossTwoVersionsRemainReadableAndCorruptionStillBlocks",
+    "seconds": "0.297",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioCoreTest",
+    "name": "completeChainRejectsDeletedRevisionAndUnknownEntry",
+    "seconds": "0.139",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.StudioRestoreTest",
+    "name": "corruptIncompleteAndUnknownSnapshotsNeverPublishOrOverwrite",
+    "seconds": "1.007",
+    "status": "PASS"
+  }
+]

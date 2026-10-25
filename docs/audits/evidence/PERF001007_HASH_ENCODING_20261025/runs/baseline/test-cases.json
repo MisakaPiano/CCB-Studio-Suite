@@ -1,0 +1,14 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.HashEncodingPerformanceTest",
+    "name": "allByteValuesLocalesAndKnownVectorsKeepLowercaseAsciiHex",
+    "seconds": "0.056",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.HashEncodingPerformanceTest",
+    "name": "measuredActualShaAllocationAndCanonicalOutputs",
+    "seconds": "0.143",
+    "status": "PASS"
+  }
+]

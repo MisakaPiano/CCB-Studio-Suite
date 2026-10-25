@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.core.HashEncodingPerformanceTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-25T00:03:25.937Z" hostname="DD1" time="0.199">
+  <properties/>
+  <testcase name="allByteValuesLocalesAndKnownVectorsKeepLowercaseAsciiHex" classname="io.github.misakapiano.ccbstudio.core.HashEncodingPerformanceTest" time="0.056"/>
+  <testcase name="measuredActualShaAllocationAndCanonicalOutputs" classname="io.github.misakapiano.ccbstudio.core.HashEncodingPerformanceTest" time="0.143"/>
+  <system-out><![CDATA[HASH_ENCODING_ALLOCATION=[{"payloadBytes":0,"calls":64,"round":0,"wallMs":4.9514,"cpuMs":15.625,"allocatedBytes":1518560},{"payloadBytes":0,"calls":64,"round":1,"wallMs":3.6351,"cpuMs":15.625,"allocatedBytes":1508864},{"payloadBytes":0,"calls":64,"round":2,"wallMs":4.0728,"cpuMs":0.0,"allocatedBytes":1508864},{"payloadBytes":0,"calls":64,"round":3,"wallMs":6.0542,"cpuMs":0.0,"allocatedBytes":1508864},{"payloadBytes":1024,"calls":64,"round":0,"wallMs":3.6195,"cpuMs":15.625,"allocatedBytes":1508864},{"payloadBytes":1024,"calls":64,"round":1,"wallMs":6.209,"cpuMs":0.0,"allocatedBytes":1509104},{"payloadBytes":1024,"calls":64,"round":2,"wallMs":6.7064,"cpuMs":0.0,"allocatedBytes":1508864},{"payloadBytes":1024,"calls":64,"round":3,"wallMs":5.0205,"cpuMs":15.625,"allocatedBytes":1508864},{"payloadBytes":65536,"calls":64,"round":0,"wallMs":18.8544,"cpuMs":15.625,"allocatedBytes":1513368},{"payloadBytes":65536,"calls":64,"round":1,"wallMs":19.3688,"cpuMs":31.25,"allocatedBytes":1509240},{"payloadBytes":65536,"calls":64,"round":2,"wallMs":11.4547,"cpuMs":0.0,"allocatedBytes":1508864},{"payloadBytes":65536,"calls":64,"round":3,"wallMs":11.8856,"cpuMs":15.625,"allocatedBytes":1508864}]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,74 @@
+{
+  "sources": {
+    "baseline": "2559eb030bcda1d34e07802e79f704d3b8e0f9b1",
+    "final": "8f4597ddb8278e25a1ab90dafabae4774755e853"
+  },
+  "executionSource": "d812e8fb249e865d99438bcd869f4f2df802d9a9",
+  "executionModulesAndToolsEqualApplication": true,
+  "identities": [
+    {
+      "run": "baseline",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/Models.kt",
+      "testInputSha256": "57e5ed6baeeebf01c3bceab568c6b90c17af2b1db365d3ff508fb04fe4cfbd9f",
+      "gitSha256": "1f03c13b0b481006fcb5532b3cc1554994560c78c2636c46d1b3e11945f522ae"
+    },
+    {
+      "run": "baseline",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/FileIntegrity.kt",
+      "testInputSha256": "9c375fe7fc50ca1d5e233d58f7551f55cacb532c16f41c9fcbf5d34d4fbf2405",
+      "gitSha256": "9c375fe7fc50ca1d5e233d58f7551f55cacb532c16f41c9fcbf5d34d4fbf2405"
+    },
+    {
+      "run": "baseline",
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/HashEncodingPerformanceTest.kt",
+      "testInputSha256": "9af3c4784b78a15c3f9ef0963e172c2c19ce7326d5b740c94135fa498201b135",
+      "gitSha256": "9af3c4784b78a15c3f9ef0963e172c2c19ce7326d5b740c94135fa498201b135"
+    },
+    {
+      "run": "baseline",
+      "path": "tools/Run-PreviewChecks.py",
+      "testInputSha256": "45f0f681f68b83c67c5a04607dfea09ecea742bcfd2f5f4ee31e3162901e9e23",
+      "gitSha256": "d8dec9e6bcc417c59cc9d3dd32b79fd4519c16b86adbf582798b2d707c4935b4"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/Models.kt",
+      "testInputSha256": "14995b4423c63df2c7ade41318e7d0bea1af6a86f9b7962ea8470b21b4add18a",
+      "gitSha256": "039758f1398e7e2b05a0173a96e3de5bb4ad8c5f6a317269aa19321208f20e70"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/FileIntegrity.kt",
+      "testInputSha256": "c39068d0632e40eb47922ad4b59f1133935fa5d671bd2f3ae6000140417296bb",
+      "gitSha256": "c39068d0632e40eb47922ad4b59f1133935fa5d671bd2f3ae6000140417296bb"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/HashEncodingPerformanceTest.kt",
+      "testInputSha256": "c84a9fb198c3bcda4468bf38903eb5569d810f2ba0f2f49f2cb9eead2b73a295",
+      "gitSha256": "364fd4f9507b98f6e2e1257b0a83cb6627bdd1efe8313c134b683016354f1003"
+    },
+    {
+      "run": "final",
+      "path": "tools/Run-PreviewChecks.py",
+      "testInputSha256": "45f0f681f68b83c67c5a04607dfea09ecea742bcfd2f5f4ee31e3162901e9e23",
+      "gitSha256": "d8dec9e6bcc417c59cc9d3dd32b79fd4519c16b86adbf582798b2d707c4935b4"
+    }
+  ],
+  "unchangedPaths": [
+    "modules/asset-library",
+    "modules/image-authority",
+    "modules/studio-desktop",
+    "tools",
+    "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StateJournal.kt",
+    "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioWorkspace.kt"
+  ],
+  "productionOnlyTwoHexTextExpressions": true,
+  "legacyFunctionExact": true,
+  "sha256AlgorithmInputsAndValidationUnchanged": true,
+  "finalUniqueMethods": 7,
+  "baselineRepeatedMethodsNotAdded": true,
+  "release": "NONE",
+  "independentReview": "NOT REQUESTED",
+  "humanAndPackage": "NOT TESTED"
+}
