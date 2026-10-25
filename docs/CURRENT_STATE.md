@@ -1,3 +1,7 @@
+## 2026-10-25 PERF-005颜色语法纯解析基线待资源（生产未改）
+
+测试输入1a007ab，仅新增TypesetColorSyntaxPerformanceTest单方法，原TypesetColors仍未改；基线尚未执行，不标通过。32/128/500文字层的合成文档，计划在计数外实际validate/<=4MiB和输入字节检查；计数内只批量map实际颜色parse调用（同结果列表包装），区分HEX/色名/透明控制与RGB/HSL/HWB功能色，非完整文档validate耗时、字体/图像/渲染/UI或冷启动测试。有实际分配依据后才考虑惰性复用3个固定Regex，精确模式/选项、语法/数值/错误/校验/色名字典不变，无输入或结果缓存；编辑用户仍未验，unified-image-tool/Prompt比较不启动。单门按最新Desktop owner等待/低优先级单worker，原失败/路径错误UNKNOWN/文件预检/无发行与日常资料操作及其他PENDING保持。
+
 ## 2026-10-25 作业日期Map汇总最终3方法通过（未发布）
 
 [应用41e0111/执行c32045c/实际证据](audits/PERF003_JOB_RECORDED_TIMES_20261025.md)最终3唯一方法PASS、输入稳定；基线1、两轮各0执行资源门另列，不相加。只省临时列表/Pair/双Map，原完整收据解析/16KiB/未知与0负值/最后输入覆盖及首键顺序/普通后合成/其他生产保持。2048合成任务线程分配1617968→612224B，局部墙钟2.919→1.071ms，非UI/RSS/峰值堆/包/人工或独立接受；新[复审只准备](../handoff/PERF003_JOB_RECORDED_TIMES_REVIEW_READY_20261025.md)，原16项/两段补充固定对象不扩大。旧失败/否决/遍历未采用、路径错误UNKNOWN及不再访问约束、q09/资产编辑未验/115和Prompt PENDING/PRODUCT_HOLD保持。继续既有性能低负载定位、Desktop优先，颜色仍草稿、有实际基线后才最小优化，不发版/动日常资料/恢复扫描或新外发。
