@@ -15,8 +15,11 @@ fun galleryDirectoryAlbums(ids:List<String>,assets:List<AssetStore.Asset>,folder
     val byId=assets.associateBy{it.request().id().toString()};val roots=folders.associateBy{it.id}
     val groups=linkedMapOf<String,Pair<String,MutableList<NovelAiHistoryImageItem>>>()
     ids.forEach{id->
-        val directory=byId[id]?.takeIf{it.request().recipe().size<=16384}?.let{asset->runCatching {
-            val receipt=Json.parseToJsonElement(asset.request().recipe().decodeToString()).jsonObject
+        val directory=byId[id]?.let{asset->
+            val opaque=asset.request().recipe()
+            if(opaque.size>16384)return@let null
+            runCatching {
+            val receipt=Json.parseToJsonElement(opaque.decodeToString()).jsonObject
             if(receipt["kind"]?.jsonPrimitive?.content!="image-ingress" || receipt["version"]?.jsonPrimitive?.intOrNull!=1)return@runCatching null
             when(receipt["source"]?.jsonPrimitive?.content) {
                 "managed-folder"->{val folder=receipt["folderId"]!!.jsonPrimitive.content

@@ -18,8 +18,9 @@ fun galleryAlbumIdentity(parent:String,album:NovelAiHistoryAlbum,type:NovelAiHis
     val key=if(directory) {
         val asset=assets.first{it.request().id().toString()==item.image.path}
         runCatching {
-            require(asset.request().recipe().size<=16384)
-            val receipt=Json.parseToJsonElement(asset.request().recipe().decodeToString()).jsonObject
+            val opaque=asset.request().recipe()
+            require(opaque.size<=16384)
+            val receipt=Json.parseToJsonElement(opaque.decodeToString()).jsonObject
             require(receipt["kind"]?.jsonPrimitive?.content=="image-ingress" && receipt["version"]?.jsonPrimitive?.intOrNull==1)
             when(receipt["source"]?.jsonPrimitive?.content) {
                 "managed-folder"->listOf("collection",receipt.getValue("folderId").jsonPrimitive.content,Path.of(receipt.getValue("relativePath").jsonPrimitive.content).parent?.toString().orEmpty())
