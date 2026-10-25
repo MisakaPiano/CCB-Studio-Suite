@@ -19,11 +19,11 @@ import java.nio.file.Path
 
 /** Small platform seams for the pinned Desktop Compose components. No Desktop store/settings access. */
 internal object DesktopBootstrapColors {
-    val background=Color(0xff0d1117);val foreground=Color(0xffe6edf3);val card=Color(0xff161b22)
-    val primary=Color(0xff7db5ff);val primaryForeground=Color(0xff0d1117);val muted=Color(0xff222a35)
-    val mutedForeground=Color(0xffaab6c5);val border=Color(0xff303946);val input=Color(0xff111820)
-    val accent=Color(0xff263c57);val warning=Color(0xffffc16d)
-    val destructive=Color(0xffff7b7b)
+    private val palette get()=io.github.misakapiano.ccbstudio.desktop.StudioAppearanceRuntime.palette
+    val background get()=palette.background;val foreground get()=palette.foreground;val card get()=palette.surface
+    val primary get()=palette.primary;val primaryForeground get()=palette.primaryForeground;val muted get()=palette.muted
+    val mutedForeground get()=palette.mutedForeground;val border get()=palette.border;val input get()=palette.input
+    val accent get()=palette.accent;val warning get()=palette.warning;val destructive get()=palette.destructive
 }
 @Composable internal fun StatusText(text:String,color:Color=DesktopBootstrapColors.mutedForeground) {BasicText(text,style=TextStyle(color=color,fontSize=14.sp))}
 @OptIn(ExperimentalLayoutApi::class)

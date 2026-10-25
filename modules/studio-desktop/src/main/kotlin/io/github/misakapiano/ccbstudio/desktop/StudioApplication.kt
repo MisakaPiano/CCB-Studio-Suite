@@ -33,6 +33,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     val gallery = GalleryViewState()
     val thumbnails=StaticThumbnailStore(scope,workspace::bytes)
     val library by lazy{LibraryController(this)}
+    val appearance by lazy{StudioAppearanceController(this)}
     val updater=StudioUpdateController(scope,budgetRoot.parent.resolve("updates"))
     var maintenance by mutableStateOf(false);private set
     var installUpdate:(()->Unit)?=null
@@ -478,6 +479,7 @@ internal fun launchStudio(args:Array<String>) {
     }
     application {
         val scope=rememberCoroutineScope();val c=remember{WorkbenchController(workspace,scope,DesktopNovelAiInfrastructure(runtime.resolve("catalog")),runtime.resolve("request-budget"),pauseCollectionsOnStart="--pause-collections" in args,allowDefaultEntrypoint="--secondary-workspace" !in args)}
+        StudioAppearanceHost(c)
         var closing by remember{mutableStateOf(false)}
         fun close(){if(!closing){closing=true;scope.launch{try{c.close();exitApplication()}catch(e:Exception){closing=false;c.problem=if(e is DataProblem && e.status=="ACCOUNT_DRAFT_UNSAVED")"账户档案尚未保存，请在账户页保存或放弃修改后再关闭" else "保存或排水尚未完成，窗口保持打开"}}}}
         c.requestClose=::close
@@ -514,13 +516,13 @@ internal fun launchStudio(args:Array<String>) {
         Window(onCloseRequest=::close,title="CCB Studio Suite · 工作台",undecorated=DesktopWindowChrome.isWindows,icon=StudioBrand.painter,state=rememberWindowState(width=1320.dp,height=880.dp)) {
             LaunchedEffect(window){withFrameNanos{};if(c.allowDefaultEntrypoint&&System.getProperty("jpackage.app-path")!=null&&DesktopEntrypoints.ownsDefault(workspace.root,runtime))runCatching{withContext(Dispatchers.IO){DesktopEntrypoints.configureWindow(window)}}.onFailure{c.message="任务栏入口设置未完成，可在更新页重新创建入口"}}
             DisposableEffect(window){StudioFileDialogs.attach(window){c.problem=it};onDispose{StudioFileDialogs.detach(window)}}
-            val chrome=rememberDesktopWindowChrome(window,::close);SideEffect{chrome.appearance(true)}
-            MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel,onPrimary=Ink,onSurface=Color(0xffe6edf3))) {Workbench(c,chrome,closing)}
+            val chrome=rememberDesktopWindowChrome(window,::close);val dark=StudioAppearanceRuntime.palette.dark;SideEffect{chrome.appearance(dark)}
+            StudioTheme {Workbench(c,chrome,closing)}
         }
         if(c.designDetached)Window(onCloseRequest=c::dismissDesign,title="CCB Studio Suite · AI 设计",icon=StudioBrand.painter,
             resizable=true,state=rememberWindowState(width=1120.dp,height=820.dp)) {
             SideEffect{window.minimumSize=java.awt.Dimension(700,520)}
-            MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel,onPrimary=Ink,onSurface=DesktopBootstrapColors.foreground)) {
+            StudioTheme {
                 Surface(color=Ink,contentColor=DesktopBootstrapColors.foreground){DesignWorkspace(c,detached=true)}
             }
         }
@@ -528,7 +530,7 @@ internal fun launchStudio(args:Array<String>) {
         if(c.batch.detached)Window(onCloseRequest={c.batch.detached=false;c.batch.shown=true},title="CCB Studio Suite · 批量生图",icon=StudioBrand.painter,
             resizable=true,state=rememberWindowState(width=1180.dp,height=820.dp)) {
             SideEffect{window.minimumSize=java.awt.Dimension(800,600)}
-            MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel,onPrimary=Ink,onSurface=DesktopBootstrapColors.foreground)) {GenerationManagementDialogs(c,true);BatchWorkspace(c,true)}
+            StudioTheme {GenerationManagementDialogs(c,true);BatchWorkspace(c,true)}
         }
     }
 }
@@ -545,6 +547,7 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
 @Composable private fun WorkbenchContent(c:WorkbenchController,chrome:DesktopWindowChrome,closing:Boolean) {
     LibrarySynchronization(c)
     AssetArchiveConfirmation(c)
+    StudioAppearanceDialog(c)
     GenerationManagementDialogs(c)
     Surface(color=Ink,contentColor=DesktopBootstrapColors.foreground,modifier=Modifier.onPreviewKeyEvent{event->
         if(!c.maintenance && event.type==KeyEventType.KeyDown && event.isCtrlPressed && event.isShiftPressed && event.key==Key.U){c.view="更新";true}else false
@@ -560,6 +563,7 @@ private class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
             if(showBrand)Text("Studio Suite",Modifier.width(120.dp),fontSize=14.sp)
             studioRoutes.forEach {label -> StudioRouteButton(label,c.view==label,compact,Modifier.onGloballyPositioned{r.buttons[label]=r.rect(it);r.publish()},pending=label=="更新"&&c.updater.pendingVersion!=null){c.view=label;if(label=="更新")c.updater.dismissStartupNotice()} }
             Spacer(Modifier.weight(1f))
+            LibraryAction("",icon=DesktopAppIcons.Settings,accessibilityLabel="显示主题"){c.appearance.shown=true}
             listOf(ChromeHit.MINIMIZE,ChromeHit.MAXIMIZE,ChromeHit.CLOSE).forEach {hit ->
                 StudioCaptionButton(hit,native,compact,Modifier.onGloballyPositioned{r.captions[hit]=r.rect(it);r.publish()},chrome::command)
             }

@@ -32,10 +32,10 @@ import java.awt.datatransfer.DataFlavor
 import java.awt.dnd.*
 import java.io.File
 
-internal val Ink=Color(0xff0d1117)
-internal val Panel=Color(0xff161b22)
-internal val Gold=Color(0xff7db5ff)
-internal val Quiet=Color(0xffaab6c5)
+internal val Ink get()=StudioAppearanceRuntime.palette.background
+internal val Panel get()=StudioAppearanceRuntime.palette.surface
+internal val Gold get()=StudioAppearanceRuntime.palette.primary
+internal val Quiet get()=StudioAppearanceRuntime.palette.mutedForeground
 
 fun main(args:Array<String>) {
     if("--synthetic-root" !in args) {launchStudio(args);return}
@@ -57,7 +57,7 @@ fun main(args:Array<String>) {
         Window(onCloseRequest={closeSafely()},undecorated=DesktopWindowChrome.isWindows,icon=StudioBrand.painter,title="CCB Studio Suite · Windows Preview",state=rememberWindowState(width=1260.dp,height=830.dp)) {
             DisposableEffect(window){StudioFileDialogs.attach(window){c.popup=it};onDispose{StudioFileDialogs.detach(window)}}
             val chrome=rememberDesktopWindowChrome(window){closeSafely()}
-            SideEffect {chrome.appearance(true)}
+            val dark=StudioAppearanceRuntime.palette.dark;SideEffect {chrome.appearance(dark)}
             DisposableEffect(Unit) {
                 val target=DropTarget(window.contentPane,DnDConstants.ACTION_COPY,object:DropTargetAdapter(){
                     override fun drop(event:DropTargetDropEvent) {
@@ -69,8 +69,8 @@ fun main(args:Array<String>) {
                 },true)
                 onDispose {target.isActive=false}
             }
-            MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel,onPrimary=Ink,onSurface=Color(0xffedf2f7))) {
-                Surface(Modifier.fillMaxSize(),color=Ink,contentColor=Color(0xffedf2f7)) { Studio(c,closing,frames,chrome) }
+            StudioTheme {
+                Surface(Modifier.fillMaxSize(),color=Ink,contentColor=DesktopBootstrapColors.foreground) { Studio(c,closing,frames,chrome) }
             }
             val report=option("--self-check")?:option("--smoke-report")
             report?.let {name->

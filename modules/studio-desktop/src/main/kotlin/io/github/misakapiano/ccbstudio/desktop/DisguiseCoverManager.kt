@@ -41,7 +41,7 @@ import io.github.misakapiano.ccbstudio.core.DisguiseCover
     Window(onCloseRequest=a::closeCoverManager,title="CCB Studio Suite · 伪装封面库",icon=StudioBrand.painter,
         resizable=true,state=rememberWindowState(width=1000.dp,height=740.dp)) {
         SideEffect{window.minimumSize=java.awt.Dimension(760,560)}
-        MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel,onPrimary=Ink,onSurface=DesktopBootstrapColors.foreground)) {
+        StudioTheme {
             DisguiseCoverManagerContent(c,a::closeCoverManager){
                 a.addCover(""){StudioFileDialogs.openOwned(window,"添加伪装封面",listOf("png","jpg","jpeg","webp","bmp"))}
             }

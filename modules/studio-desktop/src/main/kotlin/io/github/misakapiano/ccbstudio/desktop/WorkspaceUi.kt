@@ -35,9 +35,9 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.*
 
-private val Border=Color(0xff303946)
-private val Soft=Color(0xff222a35)
-private val TextInk=Color(0xffe6edf3)
+private val Border get()=StudioAppearanceRuntime.palette.border
+private val Soft get()=StudioAppearanceRuntime.palette.muted
+private val TextInk get()=StudioAppearanceRuntime.palette.foreground
 
 /** Layout measurements feed the unchanged Desktop native hit-test bridge. */
 private class ChromeRecorder(private val chrome:DesktopWindowChrome) {
@@ -219,8 +219,8 @@ private val thumbnailDispatcher=Dispatchers.IO.limitedParallelism(1)
 
 @Composable private fun CanvasView(c:StudioController,modifier:Modifier) {
     val bitmap=c.image
-    BoxWithConstraints(modifier.clip(RoundedCornerShape(10.dp)).background(Color(0xff090d12)).border(1.dp,Border,RoundedCornerShape(10.dp)).clipToBounds(),contentAlignment=Alignment.Center) {
-        if(bitmap==null){Column(horizontalAlignment=Alignment.CenterHorizontally){Glyph("image",Color(0xff506175),Modifier.size(44.dp));Spacer(Modifier.height(18.dp));Text("让创作从这里开始",fontSize=18.sp,fontWeight=FontWeight.SemiBold);Spacer(Modifier.height(8.dp));Text("导入合成图片，或先试试内置样例",fontSize=12.sp,color=Quiet);Spacer(Modifier.height(22.dp));Row {Button(onClick={c.pickImport()},enabled=!c.busy,shape=RoundedCornerShape(7.dp)){Text("导入图片")};Spacer(Modifier.width(10.dp));OutlinedButton(onClick={c.fixture()},enabled=!c.busy,shape=RoundedCornerShape(7.dp)){Text("创建样例")}}};return@BoxWithConstraints}
+    BoxWithConstraints(modifier.clip(RoundedCornerShape(10.dp)).background(if(bitmap==null)StudioAppearanceRuntime.palette.input else Color(0xff090d12)).border(1.dp,Border,RoundedCornerShape(10.dp)).clipToBounds(),contentAlignment=Alignment.Center) {
+        if(bitmap==null){Column(horizontalAlignment=Alignment.CenterHorizontally){Glyph("image",StudioAppearanceRuntime.palette.mutedForeground,Modifier.size(44.dp));Spacer(Modifier.height(18.dp));Text("让创作从这里开始",fontSize=18.sp,fontWeight=FontWeight.SemiBold);Spacer(Modifier.height(8.dp));Text("导入合成图片，或先试试内置样例",fontSize=12.sp,color=Quiet);Spacer(Modifier.height(22.dp));Row {Button(onClick={c.pickImport()},enabled=!c.busy,shape=RoundedCornerShape(7.dp)){Text("导入图片")};Spacer(Modifier.width(10.dp));OutlinedButton(onClick={c.fixture()},enabled=!c.busy,shape=RoundedCornerShape(7.dp)){Text("创建样例")}}};return@BoxWithConstraints}
         val ratio=minOf(maxWidth.value/bitmap.width,maxHeight.value/bitmap.height)*c.zoom
         var points by remember {mutableStateOf(listOf<Point>())};val density=androidx.compose.ui.platform.LocalDensity.current.density
         Image(bitmap,"当前图像",contentScale=ContentScale.Fit,modifier=Modifier.requiredSize((bitmap.width*ratio).dp,(bitmap.height*ratio).dp).pointerInput(c.tool,c.projectId,c.current,c.busy,ratio,c.tab) {
@@ -336,7 +336,7 @@ private val thumbnailDispatcher=Dispatchers.IO.limitedParallelism(1)
 }
 
 @Composable private fun Field(label:String,value:String,change:(String)->Unit,lines:Int=1) {
-    OutlinedTextField(value,change,label={Text(label,fontSize=11.sp)},modifier=Modifier.fillMaxWidth(),singleLine=lines==1,minLines=lines,maxLines=if(lines==1)1 else lines+1,shape=RoundedCornerShape(7.dp),colors=TextFieldDefaults.outlinedTextFieldColors(textColor=TextInk,unfocusedBorderColor=Border,focusedBorderColor=Gold,backgroundColor=Color(0xff1b222c)),textStyle=LocalTextStyle.current.copy(fontSize=12.sp))
+    OutlinedTextField(value,change,label={Text(label,fontSize=11.sp)},modifier=Modifier.fillMaxWidth(),singleLine=lines==1,minLines=lines,maxLines=if(lines==1)1 else lines+1,shape=RoundedCornerShape(7.dp),colors=TextFieldDefaults.outlinedTextFieldColors(textColor=TextInk,unfocusedBorderColor=Border,focusedBorderColor=Gold,backgroundColor=StudioAppearanceRuntime.palette.input),textStyle=LocalTextStyle.current.copy(fontSize=12.sp))
 }
 @Composable private fun ProfilePicker(service:String,accounts:List<AccountProfile>,selected:String,choose:(String)->Unit) {
     var expanded by remember {mutableStateOf(false)}

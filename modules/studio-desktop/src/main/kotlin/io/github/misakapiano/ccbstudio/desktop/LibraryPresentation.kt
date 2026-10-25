@@ -18,12 +18,12 @@ import androidx.compose.ui.unit.*
 import com.example.chatbar.desktop.*
 
 /** Presentation tokens from the approved gallery demo; no request or storage semantics. */
-internal val LibraryBackground=Color(0xff0d1219)
-internal val LibraryPanel=Color(0xff171e28)
-internal val LibraryLine=Color(0xff344254)
-internal val LibraryText=Color(0xffe0e7f1)
-internal val LibraryMuted=Color(0xffa4b2c5)
-internal val LibrarySelected=Color(0xff233e5e)
+internal val LibraryBackground get()=StudioAppearanceRuntime.palette.libraryBackground
+internal val LibraryPanel get()=StudioAppearanceRuntime.palette.libraryPanel
+internal val LibraryLine get()=StudioAppearanceRuntime.palette.libraryLine
+internal val LibraryText get()=StudioAppearanceRuntime.palette.libraryText
+internal val LibraryMuted get()=StudioAppearanceRuntime.palette.libraryMuted
+internal val LibrarySelected get()=StudioAppearanceRuntime.palette.accent
 
 @Composable internal fun LibraryPresentation(content:@Composable ()->Unit) {
     val base=MaterialTheme.typography

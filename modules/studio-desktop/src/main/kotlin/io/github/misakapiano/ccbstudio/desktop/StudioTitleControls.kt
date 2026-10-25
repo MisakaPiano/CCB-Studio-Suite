@@ -26,7 +26,7 @@ import com.example.chatbar.desktop.*
     val background=when {
         hover && hit==ChromeHit.CLOSE->if(down)Color(0xffc42b1c)else Color(0xffe81123)
         down->DesktopBootstrapColors.border
-        hover->Color(0xff222b36)
+        hover->DesktopBootstrapColors.muted
         else->Color.Transparent
     }
     val label=when(hit){ChromeHit.MINIMIZE->"最小化";ChromeHit.MAXIMIZE->if(state.maximized)"还原"else"最大化";else->"关闭"}
@@ -60,7 +60,7 @@ internal val studioRoutes=listOf("创作","AI 设计","图库","编辑","资产�
     val icon=when(label){"创作"->DesktopAppIcons.Star;"AI 设计"->DesktopAppIcons.Chat;"图库"->DesktopAppIcons.ImageAdd;"编辑"->DesktopAppIcons.Edit;"资产管理"->DesktopAppIcons.Data;"账户"->DesktopAppIcons.Settings;else->DesktopAppIcons.Refresh}
     TooltipArea(tooltip={Surface(shape=RoundedCornerShape(5.dp)){Text(label,Modifier.padding(8.dp))}}) {
         Row(modifier.width(if(compact)36.dp else 88.dp).height(36.dp)
-            .background(if(selected)Color(0xff222b36) else Color.Transparent,RoundedCornerShape(6.dp))
+            .background(if(selected)DesktopBootstrapColors.muted else Color.Transparent,RoundedCornerShape(6.dp))
             .semantics{contentDescription=label}.selectable(selected,role=Role.Tab,onClick=onClick),
             verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.Center) {
             val ink=if(selected)Gold else Quiet

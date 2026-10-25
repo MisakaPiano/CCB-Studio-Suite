@@ -56,7 +56,7 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
 }
 
 @Composable private fun BatchDialog(title:String,onClose:()->Unit,content:@Composable ColumnScope.()->Unit) {
-    Dialog(onDismissRequest=onClose){MaterialTheme(colors=darkColors(primary=Gold,background=LibraryBackground,surface=LibraryPanel,onSurface=LibraryText,onPrimary=Ink)){Surface(color=LibraryBackground,contentColor=LibraryText,shape=RoundedCornerShape(8.dp),border=androidx.compose.foundation.BorderStroke(1.dp,LibraryLine)){
+    Dialog(onDismissRequest=onClose){StudioTheme{Surface(color=LibraryBackground,contentColor=LibraryText,shape=RoundedCornerShape(8.dp),border=androidx.compose.foundation.BorderStroke(1.dp,LibraryLine)){
         Column(Modifier.widthIn(min=480.dp,max=840.dp).heightIn(max=700.dp).padding(16.dp)) {
             Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically){Text(title,Modifier.weight(1f),fontSize=19.sp);LibraryAction("关闭",onClick=onClose)}
             Spacer(Modifier.height(12.dp));val scroll=rememberScrollState()
@@ -135,8 +135,8 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
             Text(if(s.running && s.mode!="RUNNING")"${b.phase} · ${((until-now).coerceAtLeast(0)+999)/1000} 秒"else b.phase.ifBlank{"等待手动操作"},fontSize=12.sp,color=LibraryMuted)
             LibraryAction("记录"){logs=true}
         }
-        s.error?.let{error->Row(Modifier.fillMaxWidth().background(Color(0xff34291d)).padding(horizontal=12.dp,vertical=8.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(8.dp)) {
-            Column(Modifier.weight(1f)){Text(error.message,color=Color(0xffedbb7c));Text("${error.code}${if(error.notBefore>now)" · 冷却剩余 ${(error.notBefore-now+999)/1000} 秒"else" · 等待手动确认"}",fontSize=12.sp)}
+        s.error?.let{error->Row(Modifier.fillMaxWidth().background(StudioAppearanceRuntime.palette.warningBackground).padding(horizontal=12.dp,vertical=8.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+            Column(Modifier.weight(1f)){Text(error.message,color=StudioAppearanceRuntime.palette.warning);Text("${error.code}${if(error.notBefore>now)" · 冷却剩余 ${(error.notBefore-now+999)/1000} 秒"else" · 等待手动确认"}",fontSize=12.sp)}
             LibraryAction("确认重试",s.mode!="ENDED"&&now>=error.notBefore&&!b.changing){confirm="retry"}
             if(error.code!="429")LibraryAction("跳过并继续",s.mode!="ENDED"&&!b.changing){confirm="skip"}
             LibraryAction("结束批次",!b.changing){confirm="end"}
@@ -234,7 +234,7 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
                             Row(verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(4.dp)) {Text("$label $done/${slots.size}",color=LibraryMuted,fontSize=12.sp);LinearProgressIndicator(done.toFloat()/slots.size,Modifier.width(26.dp).height(3.dp).semantics{contentDescription="${g.name} $label 进度"},color=Gold,backgroundColor=LibraryLine)}
                         }}
                     }
-                    Column(horizontalAlignment=Alignment.End){Text("${g.slots.count{it.status=="DONE"}}/${g.slots.size}");Text(when{g.slots.any{it.status=="FAILED"}->"等待处理";g.slots.any{it.status=="RUNNING"}->"生成中";g.slots.all{it.status in setOf("DONE","SKIPPED")}->"已完成";else->"待继续"},color=if(g.slots.any{it.status=="FAILED"})Color(0xffedbb7c)else LibraryMuted,fontSize=12.sp)}
+                    Column(horizontalAlignment=Alignment.End){Text("${g.slots.count{it.status=="DONE"}}/${g.slots.size}");Text(when{g.slots.any{it.status=="FAILED"}->"等待处理";g.slots.any{it.status=="RUNNING"}->"生成中";g.slots.all{it.status in setOf("DONE","SKIPPED")}->"已完成";else->"待继续"},color=if(g.slots.any{it.status=="FAILED"})StudioAppearanceRuntime.palette.warningelse LibraryMuted,fontSize=12.sp)}
                 }
             }
         }
@@ -314,7 +314,7 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
         DesktopStudioCharacters(draft,c.infrastructure,false,{draft=it(draft)})
         StudioDisclosure("生成参数",initiallyOpen=false){StudioAdvancedSettings(draft.activeSettings){draft=draft.withActiveSettings(it(draft.activeSettings))}}
         BatchDirectionInputs(dirs){dirs=it};LibraryToggle("三种尺寸共用每轮 Seed",shared){shared=!shared}
-        error?.let{Text(it,color=Color(0xffedbb7c))}
+        error?.let{Text(it,color=StudioAppearanceRuntime.palette.warning)}
         LibraryAction(if(locked)"保存为新分组"else"保存分组",b.editing){runCatching{BatchGroup.create(name,draft,dirs,shared,existing?.designApplication)}.onSuccess{g->if(existing!=null&&!locked)b.replace(g.copy(id=existing.id))else b.addGroup(g);onClose()}.onFailure{error=it.message}}
     }
 }
@@ -324,7 +324,7 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
     LaunchedEffect(kind){items=withContext(Dispatchers.IO){if(kind=="prompt")c.library.repository.prompts().map{it.request().id().toString() to it.request().name()}else c.assets.map{it.request().id().toString() to it.request().name()}}}
     BatchDialog(if(kind=="prompt")"从 Prompt 资产添加"else"从图片生成参数添加",onClose){
         OutlinedTextField(search,{search=it},label={Text("查找名称")},modifier=Modifier.fillMaxWidth())
-        error?.let{Text(it,color=Color(0xffedbb7c))}
+        error?.let{Text(it,color=StudioAppearanceRuntime.palette.warning)}
         items.filter{it.second.contains(search,true)}.take(100).forEach{(id,name)->LibraryAction(name){scope.launch {
             try{val draft=withContext(Dispatchers.IO){if(kind=="prompt")NovelAiStudioPromptClipboard.apply(c.library.repository.prompt(id).text,c.draft)else {
                 val history=c.historyRecipe(id)
