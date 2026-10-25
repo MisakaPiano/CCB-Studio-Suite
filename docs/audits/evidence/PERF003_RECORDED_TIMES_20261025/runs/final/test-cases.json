@@ -1,0 +1,26 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryInteractionTest",
+    "name": "multiTagAlbumsHaveUniqueKeysAndUnknownDatesStayUnknown",
+    "seconds": "0.287",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryRecordedTimesPerformanceTest",
+    "name": "defensiveRecipeApiAndRebuiltRecordedDatesRemainIndependent",
+    "seconds": "0.029",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryRecordedTimesPerformanceTest",
+    "name": "malformedOversizedUnknownReceiptsAndJobOverridesMatchLegacyWithoutPayloadAccess",
+    "seconds": "0.082",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryRecordedTimesPerformanceTest",
+    "name": "measuredActualRecordedTimesUsesCatalogMetadataWithoutPayloadReads",
+    "seconds": "0.44",
+    "status": "PASS"
+  }
+]

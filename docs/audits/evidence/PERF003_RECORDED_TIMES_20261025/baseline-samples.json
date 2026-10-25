@@ -1,0 +1,122 @@
+[
+  {
+    "assets": 128,
+    "paddingBytes": 256,
+    "recipeBytes": 414,
+    "totalRecipeBytes": 52992,
+    "round": 0,
+    "wallMs": 3.5778,
+    "cpuMs": 0.0,
+    "allocatedBytes": 473544
+  },
+  {
+    "assets": 128,
+    "paddingBytes": 256,
+    "recipeBytes": 414,
+    "totalRecipeBytes": 52992,
+    "round": 1,
+    "wallMs": 4.2435,
+    "cpuMs": 15.625,
+    "allocatedBytes": 473392
+  },
+  {
+    "assets": 128,
+    "paddingBytes": 256,
+    "recipeBytes": 414,
+    "totalRecipeBytes": 52992,
+    "round": 2,
+    "wallMs": 0.9267,
+    "cpuMs": 0.0,
+    "allocatedBytes": 473392
+  },
+  {
+    "assets": 128,
+    "paddingBytes": 256,
+    "recipeBytes": 414,
+    "totalRecipeBytes": 52992,
+    "round": 3,
+    "wallMs": 0.7215,
+    "cpuMs": 0.0,
+    "allocatedBytes": 473872
+  },
+  {
+    "assets": 1024,
+    "paddingBytes": 1024,
+    "recipeBytes": 1182,
+    "totalRecipeBytes": 1210368,
+    "round": 0,
+    "wallMs": 7.0773,
+    "cpuMs": 15.625,
+    "allocatedBytes": 6945704
+  },
+  {
+    "assets": 1024,
+    "paddingBytes": 1024,
+    "recipeBytes": 1182,
+    "totalRecipeBytes": 1210368,
+    "round": 1,
+    "wallMs": 5.9986,
+    "cpuMs": 0.0,
+    "allocatedBytes": 6929520
+  },
+  {
+    "assets": 1024,
+    "paddingBytes": 1024,
+    "recipeBytes": 1182,
+    "totalRecipeBytes": 1210368,
+    "round": 2,
+    "wallMs": 6.6489,
+    "cpuMs": 15.625,
+    "allocatedBytes": 6929352
+  },
+  {
+    "assets": 1024,
+    "paddingBytes": 1024,
+    "recipeBytes": 1182,
+    "totalRecipeBytes": 1210368,
+    "round": 3,
+    "wallMs": 7.3512,
+    "cpuMs": 0.0,
+    "allocatedBytes": 6929352
+  },
+  {
+    "assets": 1024,
+    "paddingBytes": 12288,
+    "recipeBytes": 12446,
+    "totalRecipeBytes": 12744704,
+    "round": 0,
+    "wallMs": 21.5732,
+    "cpuMs": 0.0,
+    "allocatedBytes": 53067296
+  },
+  {
+    "assets": 1024,
+    "paddingBytes": 12288,
+    "recipeBytes": 12446,
+    "totalRecipeBytes": 12744704,
+    "round": 1,
+    "wallMs": 14.7395,
+    "cpuMs": 15.625,
+    "allocatedBytes": 53067024
+  },
+  {
+    "assets": 1024,
+    "paddingBytes": 12288,
+    "recipeBytes": 12446,
+    "totalRecipeBytes": 12744704,
+    "round": 2,
+    "wallMs": 13.9713,
+    "cpuMs": 0.0,
+    "allocatedBytes": 53066696
+  },
+  {
+    "assets": 1024,
+    "paddingBytes": 12288,
+    "recipeBytes": 12446,
+    "totalRecipeBytes": 12744704,
+    "round": 3,
+    "wallMs": 16.9763,
+    "cpuMs": 15.625,
+    "allocatedBytes": 53066840
+  }
+]

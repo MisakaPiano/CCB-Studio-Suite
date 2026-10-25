@@ -1,0 +1,82 @@
+{
+  "sources": {
+    "baseline": "e66aeaeecbca6a6ccbc9b4ec5e70a97a4dde8945",
+    "final": "492f8cc17d260a826a5a35019976dd90e450b7c4"
+  },
+  "executionSource": "492f8cc17d260a826a5a35019976dd90e450b7c4",
+  "executionModulesAndToolsEqualApplication": true,
+  "identities": [
+    {
+      "run": "baseline",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/LibraryCatalogProjection.kt",
+      "testInputSha256": "0d514d92383d2c3fd160eb0d832cc2f2bb45126120797e72d89f8ae0cbaf6840",
+      "gitSha256": "ec13157075a6f89e217c826957eb57dd9d3388146cd55d041db58a0ddbbae69a",
+      "mixedLineEndingRawInput": "inputs/baseline/LibraryCatalogProjection.kt"
+    },
+    {
+      "run": "baseline",
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/LibraryRecordedTimesPerformanceTest.kt",
+      "testInputSha256": "07f5a5640103506c08256696f03945045ff6ae0f6e0fcc45a8915477309e2c6e",
+      "gitSha256": "07f5a5640103506c08256696f03945045ff6ae0f6e0fcc45a8915477309e2c6e",
+      "mixedLineEndingRawInput": null
+    },
+    {
+      "run": "baseline",
+      "path": "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetStore.java",
+      "testInputSha256": "c59c3f5b4fc00e42c20a6df51cd867364c8db3a42e0eeaf1daf7915c69e37850",
+      "gitSha256": "c59c3f5b4fc00e42c20a6df51cd867364c8db3a42e0eeaf1daf7915c69e37850",
+      "mixedLineEndingRawInput": null
+    },
+    {
+      "run": "baseline",
+      "path": "tools/Run-PreviewChecks.py",
+      "testInputSha256": "45f0f681f68b83c67c5a04607dfea09ecea742bcfd2f5f4ee31e3162901e9e23",
+      "gitSha256": "d8dec9e6bcc417c59cc9d3dd32b79fd4519c16b86adbf582798b2d707c4935b4",
+      "mixedLineEndingRawInput": null
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/LibraryCatalogProjection.kt",
+      "testInputSha256": "de683b4f154bfe9d447930427ee5d927f66488ce0a44143f7d3b19e04cf2b4bf",
+      "gitSha256": "9141be8e72a61df3207efead63b6fbf53ab8b774e878a13ccc7e64a7578e7986",
+      "mixedLineEndingRawInput": "inputs/final/LibraryCatalogProjection.kt"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/LibraryRecordedTimesPerformanceTest.kt",
+      "testInputSha256": "fd642b0602e5d3d33521c8aa437c25fd120ee779bd8767e16a0135b5fb710f5e",
+      "gitSha256": "fd642b0602e5d3d33521c8aa437c25fd120ee779bd8767e16a0135b5fb710f5e",
+      "mixedLineEndingRawInput": null
+    },
+    {
+      "run": "final",
+      "path": "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetStore.java",
+      "testInputSha256": "c59c3f5b4fc00e42c20a6df51cd867364c8db3a42e0eeaf1daf7915c69e37850",
+      "gitSha256": "c59c3f5b4fc00e42c20a6df51cd867364c8db3a42e0eeaf1daf7915c69e37850",
+      "mixedLineEndingRawInput": null
+    },
+    {
+      "run": "final",
+      "path": "tools/Run-PreviewChecks.py",
+      "testInputSha256": "45f0f681f68b83c67c5a04607dfea09ecea742bcfd2f5f4ee31e3162901e9e23",
+      "gitSha256": "d8dec9e6bcc417c59cc9d3dd32b79fd4519c16b86adbf582798b2d707c4935b4",
+      "mixedLineEndingRawInput": null
+    }
+  ],
+  "changedModulePaths": [
+    "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/LibraryCatalogProjection.kt",
+    "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/LibraryRecordedTimesPerformanceTest.kt"
+  ],
+  "productionOnlySecondRecipeAccessorAvoided": true,
+  "fullJsonParsingBudgetRunCatchingDateAndJobsUnchanged": true,
+  "defensiveAssetApiUnchanged": true,
+  "legacyFunctionExactExceptPrivateName": true,
+  "mixedLineEndingProof": "Final raw matches recorded input SHA;reverse exact implementation block recreates baseline recorded SHA;both normalize CRLF only to exact Git blobs;raw bytes preserved",
+  "finalUniqueMethods": 4,
+  "baselineRepeatedMethodNotAdded": true,
+  "packageVersion": "NONE",
+  "packageSha256": "NONE (no package built)",
+  "release": "NONE",
+  "independentReview": "NOT REQUESTED",
+  "humanAndPackage": "NOT TESTED"
+}

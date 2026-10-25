@@ -1,0 +1,151 @@
+{
+  "medians": {
+    "baseline": [
+      {
+        "assets": 128,
+        "paddingBytes": 256,
+        "recipeBytes": 414,
+        "totalRecipeBytes": 52992,
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 2.25225,
+          "cpuMs": 0.0,
+          "allocatedBytes": 473468.0
+        }
+      },
+      {
+        "assets": 1024,
+        "paddingBytes": 1024,
+        "recipeBytes": 1182,
+        "totalRecipeBytes": 1210368,
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 6.8631,
+          "cpuMs": 7.8125,
+          "allocatedBytes": 6929436.0
+        }
+      },
+      {
+        "assets": 1024,
+        "paddingBytes": 12288,
+        "recipeBytes": 12446,
+        "totalRecipeBytes": 12744704,
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 15.857899999999999,
+          "cpuMs": 7.8125,
+          "allocatedBytes": 53066932.0
+        }
+      }
+    ],
+    "final": [
+      {
+        "assets": 128,
+        "paddingBytes": 256,
+        "recipeBytes": 414,
+        "totalRecipeBytes": 52992,
+        "kind": "current",
+        "medians": {
+          "wallMs": 1.2592500000000002,
+          "cpuMs": 0.0,
+          "allocatedBytes": 418096.0
+        }
+      },
+      {
+        "assets": 128,
+        "paddingBytes": 256,
+        "recipeBytes": 414,
+        "totalRecipeBytes": 52992,
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 1.30595,
+          "cpuMs": 0.0,
+          "allocatedBytes": 473392.0
+        }
+      },
+      {
+        "assets": 1024,
+        "paddingBytes": 1024,
+        "recipeBytes": 1182,
+        "totalRecipeBytes": 1210368,
+        "kind": "current",
+        "medians": {
+          "wallMs": 6.08165,
+          "cpuMs": 7.8125,
+          "allocatedBytes": 5700600.0
+        }
+      },
+      {
+        "assets": 1024,
+        "paddingBytes": 1024,
+        "recipeBytes": 1182,
+        "totalRecipeBytes": 1210368,
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 6.2089,
+          "cpuMs": 7.8125,
+          "allocatedBytes": 6929352.0
+        }
+      },
+      {
+        "assets": 1024,
+        "paddingBytes": 12288,
+        "recipeBytes": 12446,
+        "totalRecipeBytes": 12744704,
+        "kind": "current",
+        "medians": {
+          "wallMs": 11.61175,
+          "cpuMs": 15.625,
+          "allocatedBytes": 40303560.0
+        }
+      },
+      {
+        "assets": 1024,
+        "paddingBytes": 12288,
+        "recipeBytes": 12446,
+        "totalRecipeBytes": 12744704,
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 14.73515,
+          "cpuMs": 15.625,
+          "allocatedBytes": 53066932.0
+        }
+      }
+    ]
+  },
+  "counts": {
+    "baseline": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "e66aeaeecbca6a6ccbc9b4ec5e70a97a4dde8945",
+      "seconds": 17.046,
+      "startedUtc": "2026-10-25T01:15:13.707946+00:00"
+    },
+    "final": {
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "492f8cc17d260a826a5a35019976dd90e450b7c4",
+      "seconds": 20.18,
+      "startedUtc": "2026-10-25T01:17:05.342847+00:00"
+    }
+  },
+  "finalUniqueMethods": 4,
+  "cleanupFiles": 0,
+  "cleanupBytes": 0,
+  "limits": [
+    "Constructed Asset/Request catalog metadata only,no image payload/store admission/original integrity claim",
+    "Per-recipe <=16KiB budget;aggregate catalog metadata not a single LibraryState or4MiB document",
+    "Final two warmups per mode and four same-JVM alternating legacy/current rounds;baseline separate JVM",
+    "Same defensive getter and complete JSON parse;no borrowed immutable internal array/cache",
+    "Unknown/invalid/oversize dates remain absent;zero/negative values and job last-wins/order preserve old behavior",
+    "Thread allocated heap not complete UI/RSS/physical IO/universal speed",
+    "Desktop process43340 created during baseline;exact method CPU activity unknown,not quiet host",
+    "Single worker/low priority/2processors/256MiB,no private data/real calls/paused scans/package"
+  ]
+}
