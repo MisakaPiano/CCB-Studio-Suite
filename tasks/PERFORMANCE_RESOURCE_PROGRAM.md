@@ -10,6 +10,8 @@ Desktop最新owner门、单worker/低优先级；重负载让行，忙时准备�
 
 ## 2026-10-25 PERF-005字体依赖清单：b049e4c合成基线等待结果观察
 
+首轮资源门明确15:47:13.789 JST/RESOURCE_GATE_TIMEOUT_NO_TEST_STARTED，0实际测试；旧会话正常结束，复核Java owner元数据可读/无未知、Desktop3316仍存在、模块/工具同b049e4c后，以相同phase/冻结输入继续单门排队。第二轮PENDING_OBSERVATION，不提前称未执行/失败/通过；此为同一尚无成功执行的基线，不是重跑已接受结果。首轮回执原样保留resource-deferrals.jsonl，不降低资源门槛、改核心输入或启动其他重负载，准备工作继续/用户未验和禁止范围保持。
+
 测试输入b049e4c仅新增DocumentFontDependenciesPerformanceTest单方法：1/4/16页×8文本/页×128单元/512字符、plain/inline与8预设，调用实际documentFonts，文档完整validate/<=4MiB、字体引用顺序/重复/摘要/输入字节和独立小向量在计数外。只字体名称/假别名字符串，不实际load/activate/resolve/measure/render/工作区数据。每文本原tokens解析保留；已有loaded缓存不重做。生产TypesetFonts未改，调用内buildList与顺序/空/隐藏文本/预设base-only/坏标签错误/2线程回归仅.local准备。Desktop大容量迁移运行，已发单门低优先级执行请求但结果PENDING_OBSERVATION；不把尚未读到结果称0执行/未执行。文档后续commit可变、模块/工具须同冻结输入，无重复旧基线/新功能/发行/真实资料/外发；持续授权/所有安全与未验边界保持。
 
 ## 2026-10-25 PERF-005固定数值表试验未采用，继续字体依赖清单纯元数据

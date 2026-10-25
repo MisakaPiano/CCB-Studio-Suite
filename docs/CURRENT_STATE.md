@@ -10,6 +10,8 @@
 
 ### 字体依赖清单b049e4c基线：PENDING_OBSERVATION，生产实现未改
 
+首轮资源门15:47:13.789 JST明确返回RESOURCE_GATE_TIMEOUT_NO_TEST_STARTED / 0执行，记录.local/perf005-font-dependencies-20261025/resource-deferrals.jsonl。该会话已结束后按同一b049e4c输入重新排队，第二轮结果PENDING_OBSERVATION，未重复实际基线。15:48只读检查Java owner可读、Desktop3316仍在；候选仍仅.local草稿，不降低门槛/改源码或记PASS/FAIL。门控0执行和真正测试失败分开，原模块/工具未变，持续授权/Desktop优先保持。
+
 承接原PERF-005，测试输入b049e4c只新单方法`DocumentFontDependenciesPerformanceTest`，实际documentFonts纯字体名称字符串清单，1/4/16页×每页8文本×512字符、纯文本/inline两组与8预设；真实文档validate/<=4MiB和顺序/重复/字节检查在计数外。假字体别名仅字符串，不加载/激活/安装字体/图片或渲染。候选/最终3方法仅.local草稿，保留每条tokens原解析、全部顺序/重复/预设base-only与未知/长/深标签错误；已有字体加载缓存不重做。当前门控让行Desktop大容量迁移，执行状态只登记PENDING_OBSERVATION（尚未读到结果），不据未读说0执行/未执行；production TypesetFonts未改，不能称完成。模块/工具输入按b049e4c冻结，文档commit另列；持续授权继续低负载准备，Desktop优先，无发行/日常/真实资料或新外发。
 
 ### 数值表候选未采用，2c35296恢复原实现，继续已有性能定位
