@@ -14,7 +14,7 @@ class VerticalPunctuationClassPerformanceTest {
         val rows=mutableListOf<JsonObject>();val style=TypesetStyle(fontFamily="Dialog")
         val known=TypesetLayout.layout(TypesetText(text="A，中",style=style.copy(fontSize=10.0),width=1000.0,vertical=true))
         assertEquals(listOf("normal","small","normal"),known.lines.single().cells.map{it.cls})
-        listOf(12.0,10.8,10.6).zip(known.lines.single().cells).forEach{(expected,cell)->assertEquals(expected,cell.advance,1e-9)}
+        listOf(12.0,10.6,10.8).zip(known.lines.single().cells).forEach{(expected,cell)->assertEquals(expected,cell.advance,1e-9)}
         assertEquals(33.4,known.lines.single().width,1e-9);assertEquals(12.0,known.width,1e-9);assertEquals(1000.0,known.height)
         val unit="A中，）(…！😀한%「".codePoints().toArray().map{String(Character.toChars(it))}
         for(count in listOf(128,1024,8192))for(enabled in listOf(false,true)) {

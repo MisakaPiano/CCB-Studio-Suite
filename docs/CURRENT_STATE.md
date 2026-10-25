@@ -4,6 +4,10 @@
 
 竖排e9ae9f3/6805de7及4方法已完成，不重跑、不改旧固定包。当前同PERF-005富文本固定表达式9987d85已实际3方法通过，[报告/原始逐例](audits/PERF005_RICH_TAG_SYNTAX_20261025.md)：只1lazy Regex+1引用，原标签/样式/错误/嵌套长度/其他生产保持；属性分配少约64%、控制分配不变，墙钟噪声与首用/常驻/UI/RSS未测边界单列。新[复审只准备](../handoff/PERF005_RICH_TAG_SYNTAX_REVIEW_READY_20261025.md)，旧包/用户/独立状态不扩大。下一步继续既有PERF-005标点类别cls的固定字符列表重复准备实际vertical layout基线；先测完整类/advance/换行/尺寸，对照标点优化关闭，不先改规则/字体/渲染/UI或输入预算，不启动后续新功能。Desktop优先，重负载让行/忙时只准备；新Project只准备不外发，不新增执行者。所有临时文件限Suite根，写前核绝对路径/归属/冲突/链接；禁止再访问此前误写路径，旧覆盖/时间UNKNOWN不改。无发布/重启/MSI/安全变更/日常安装或私人数据/付费调用/暂停扫描恢复；资产编辑用户未验、115/Prompt各PENDING、q09及PRODUCT_HOLD保持。下方登记/阶段状态各自保留原时点。
 
+### 进行中标点分类基线：首轮测试预期错误，生产未改
+
+772a66c原始基线1方法执行/1FAIL，发生在性能取数前；独立advance向量把原代码part(prev,false)/part(next,true)的.12/.14方向写反，A/comma/Chinese实际应12/10.6/10.8。仅修测试预期，1e-9精度不变；原源码/raw及失败现场gradle-tests-31a2a3258b1f46e3b424dfffdf4d1408保留，不归因防护或产品错误，未应用.local候选。等待修正基线实际结果后才决定优化，不把失败计通过/不累加。持续授权/资源门和所有边界保持。
+
 ## 2026-10-25 PERF-005竖排固定准备复用最终4方法通过（未发布）
 
 [e9ae9f3实现/实际执行与原始证据](audits/PERF005_VERTICAL_TOKENS_20261025.md)最终4唯一方法PASS、输入稳定，基线2与3参考文件/轮次/线程另列不相加。仅2lazy常量+3条件，精确字符/样式/引号状态/错误与原3来源元数据保持，其他生产不动。8192后备配对分配25.47→1.72MB、12.595→1.557ms，只实际verticalTokens，文档validate/预算与tokens准备在计数外；非整个编辑器/字体/布局/像素/UI/RSS/冷启动/人工/包或独立验收。首次collector误用缺失docs快照键失败，保留原脚本/部分字节SHA，同目录校验后收集，0新测试；夹具身份由实际JUnit读取SHA+固定Git证明。新[复审只准备](../handoff/PERF005_VERTICAL_TOKENS_REVIEW_READY_20261025.md)，原固定索引/报告不扩。旧失败/否决/路径错误UNKNOWN及禁止再访问、q09 FAILED/UNKNOWN、资产编辑USER_NOT_TESTED、115/Prompt PENDING、PRODUCT_HOLD保持。用户五项已登记原编号，不因消息启动后续需求/新测量；本段为原正在进行的修改接续，Desktop优先、无发布/日常资料/服务或整合。
