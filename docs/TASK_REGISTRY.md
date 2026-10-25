@@ -1,3 +1,7 @@
+## 2026-10-25 后续六行复审索引只准备（0新测试）
+
+[固定六行索引](../handoff/PERFORMANCE_LATER_INCREMENT_REVIEW_READY_20261025.md)边界3d9abb0/恢复2c35296，五段各自自动完成与数值表候选NOT ADOPTED分开；原16项/两段对象不改、各方法不相加、不外推最新HEAD/包/人工/Project通过。字体依赖b049e4c PENDING_OBSERVATION排除；仅旧raw固定Git/CRC/SHA汇总0新测试，未发送，原持续授权/资源门/失败与未验保持，无新任务/发行或Desktop开发。
+
 ## 2026-10-25 PERF-005字体依赖清单：基线b049e4c结果待观察
 
 沿用原任务，新测试仅一方法测实际documentFonts清单聚合，完整解析/文档校验/预算和字体字符串顺序重复保持；没有加载/安装/激活字体或渲染/图库/私人资料调用。生产未改，候选仅.local，门控让行Desktop大容量迁移。PENDING_OBSERVATION，不按未读结果认定0执行/未执行、不标PASS；后续文档commit不改b049e4c模块/工具。旧失败/数值表NOT ADOPTED/未验/UNKNOWN与新Project只准备保持，持续授权普通资源等待只限制重负载，低负载准备继续。

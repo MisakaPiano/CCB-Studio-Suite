@@ -1,3 +1,7 @@
+## 2026-10-25 六段后续性能索引只准备
+
+[固定六行索引](../handoff/PERFORMANCE_LATER_INCREMENT_REVIEW_READY_20261025.md)补作业日期/颜色/竖排/富文本/分类与数值表未采用记录，生产边界3d9abb0、恢复2c35296；原16项/两段对象不改。六份raw固定Git/CRC/逐项SHA核对、0新测试，不累加方法或代签最新HEAD/包/人工/独立通过。字体依赖b049e4c基线PENDING_OBSERVATION排除，普通资源等待继续低负载准备，Desktop优先，新材料未发送。
+
 ## 2026-10-25 固定数值表候选未采用：原实现已恢复
 
 [e837880候选/2c35296恢复与全部原始值](audits/PERF005_PUNCTUATION_RATIOS_EXPERIMENT_20261025.md)：功能3方法PASS但最大loose墙钟约慢37%，性能HOLD/NOT ADOPTED，根因UNKNOWN；分配少约20%不代签响应改善，无调预热/求绿重跑。前值3d9abb0实际行复用、0新基线，恢复全部modules/tools同3d9abb0、0新测试，候选/raw和负面决定保留，[复审只准备](../handoff/PERF005_PUNCTUATION_RATIOS_REVIEW_READY_20261025.md)。持续授权继续字体依赖清单纯元数据聚合定位，已有字体缓存不重复造，Desktop优先、旧边界保持。

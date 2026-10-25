@@ -1,0 +1,187 @@
+{
+  "format": 1,
+  "state": "PREPARED_ONLY_NOT_SENT",
+  "scope": "six later historical increments after originaltwofollowons;not latestHEAD endtoend acceptance",
+  "productionBoundarySource": "3d9abb0e10a61a230e17542a8cc22b5c1c0992e3",
+  "restorationSource": "2c352961f2023464bbec0475722b78cdaa52d4ce",
+  "restorationInputsIdentical": true,
+  "rows": [
+    {
+      "id": "PERF003_JOB_RECORDED_TIMES_20261025",
+      "applicationSource": "41e0111194b407f329a222b2adf4dfcb7631a93b",
+      "executionSource": "c32045c0dfb7249d7c7490c8e87a873466d6a308",
+      "evidenceCommit": "614988a0f2f6bb7f11acb5ce2dd24879929516ec",
+      "sourceMapPath": "docs/audits/evidence/PERF003_JOB_RECORDED_TIMES_20261025/SOURCE_MAP.json",
+      "sourceMapSha256": "4fd0186a97567052078595c29bc5614bc599e9555037c499045aeef59db9170e",
+      "reportPath": "docs/audits/PERF003_JOB_RECORDED_TIMES_20261025.md",
+      "rawEvidencePath": "docs/audits/evidence/PERF003_JOB_RECORDED_TIMES_20261025/RAW_EVIDENCE.zip",
+      "rawSha256": "8ead31f82da88a387371a7d40734b7cb7c08b567e186e0f40c5a351ae869d34e",
+      "rawBytes": 76429,
+      "rawManifestFiles": 26,
+      "rawZipMembers": 27,
+      "localFinalUniqueMethods": 3,
+      "implementationState": "IMPLEMENTED_AUTO_TESTED",
+      "baselineSources": {
+        "baseline": "3d7369963ec942fed58b1a1963d2c5d9ccc397e4",
+        "final": "41e0111194b407f329a222b2adf4dfcb7631a93b"
+      },
+      "scopeAndNegativeRecords": "Job result date aggregation; imported parsing/budget/order unchanged;2resource timeouts0executions retained.",
+      "humanAndPackage": "NOT TESTED",
+      "independentReview": "NOT REQUESTED",
+      "newExecutionsFromThisIndex": 0
+    },
+    {
+      "id": "PERF005_COLOR_SYNTAX_20261025",
+      "applicationSource": "b8b225d6951617b35b8f5e3d5b82950511681e3c",
+      "executionSource": "b8b225d6951617b35b8f5e3d5b82950511681e3c",
+      "evidenceCommit": "7e18e27bfb3713af1ddead46e3ccebbe44e6d1f5",
+      "sourceMapPath": "docs/audits/evidence/PERF005_COLOR_SYNTAX_20261025/SOURCE_MAP.json",
+      "sourceMapSha256": "b19aaebc0add4c9b20dc37fb2430d80085861d978608e4a526929a0deeb31d77",
+      "reportPath": "docs/audits/PERF005_COLOR_SYNTAX_20261025.md",
+      "rawEvidencePath": "docs/audits/evidence/PERF005_COLOR_SYNTAX_20261025/RAW_EVIDENCE.zip",
+      "rawSha256": "5956ce94b63d548fd2def374d0293cb29f7ccbb0da688f6062577db4021d7fd1",
+      "rawBytes": 91403,
+      "rawManifestFiles": 31,
+      "rawZipMembers": 32,
+      "localFinalUniqueMethods": 5,
+      "implementationState": "IMPLEMENTED_AUTO_TESTED",
+      "baselineSources": {
+        "baseline": "1a007ab11f7fa50520d57387d2000e3d2f1cebf9",
+        "final": "b8b225d6951617b35b8f5e3d5b82950511681e3c"
+      },
+      "scopeAndNegativeRecords": "3lazy fixedRegex;functionalcolor allocationlower,HEX unchanged;3d1251f observation misreport retained/corrected.",
+      "humanAndPackage": "NOT TESTED",
+      "independentReview": "NOT REQUESTED",
+      "newExecutionsFromThisIndex": 0
+    },
+    {
+      "id": "PERF005_VERTICAL_TOKENS_20261025",
+      "applicationSource": "e9ae9f32498786326ae41552748db346604d97bd",
+      "executionSource": "e9ae9f32498786326ae41552748db346604d97bd",
+      "evidenceCommit": "6805de754f3472da91d41d6e39adce1f758d8043",
+      "sourceMapPath": "docs/audits/evidence/PERF005_VERTICAL_TOKENS_20261025/SOURCE_MAP.json",
+      "sourceMapSha256": "aaeac3b5db72cefcbce914681f9132a6bf9fb4d4b7237a8e6dc723eaccc6ad3a",
+      "reportPath": "docs/audits/PERF005_VERTICAL_TOKENS_20261025.md",
+      "rawEvidencePath": "docs/audits/evidence/PERF005_VERTICAL_TOKENS_20261025/RAW_EVIDENCE.zip",
+      "rawSha256": "de9d28a668688cd38672624267c01f27330dd4dafcdaa7df1fa07bd881841290",
+      "rawBytes": 99994,
+      "rawManifestFiles": 30,
+      "rawZipMembers": 31,
+      "localFinalUniqueMethods": 4,
+      "implementationState": "IMPLEMENTED_AUTO_TESTED",
+      "baselineSources": {
+        "baseline": "c6efb5e36827311da9e919521723a0dd7fce3f97",
+        "final": "e9ae9f32498786326ae41552748db346604d97bd"
+      },
+      "scopeAndNegativeRecords": "Fixed punctuation Regex/symbolSet/directquote comparisons;3source metadata fixtures notwhole typography;collector preparationfailure0extra tests retained.",
+      "humanAndPackage": "NOT TESTED",
+      "independentReview": "NOT REQUESTED",
+      "newExecutionsFromThisIndex": 0
+    },
+    {
+      "id": "PERF005_RICH_TAG_SYNTAX_20261025",
+      "applicationSource": "9987d85638c38bf64641f3c19bd4836084c905a5",
+      "executionSource": "9987d85638c38bf64641f3c19bd4836084c905a5",
+      "evidenceCommit": "753ccac4cf81b0eb7b958b11a1e42b5578f434b1",
+      "sourceMapPath": "docs/audits/evidence/PERF005_RICH_TAG_SYNTAX_20261025/SOURCE_MAP.json",
+      "sourceMapSha256": "c9ff68a893f8133724a3a39d413e566ba1b1bb9e878b58379ffd35cbff402dbe",
+      "reportPath": "docs/audits/PERF005_RICH_TAG_SYNTAX_20261025.md",
+      "rawEvidencePath": "docs/audits/evidence/PERF005_RICH_TAG_SYNTAX_20261025/RAW_EVIDENCE.zip",
+      "rawSha256": "3bca24af68d31a77a4a9162e5ecf28eb4884ed6fad4de1580746dd5bad0e462b",
+      "rawBytes": 87915,
+      "rawManifestFiles": 25,
+      "rawZipMembers": 26,
+      "localFinalUniqueMethods": 3,
+      "implementationState": "IMPLEMENTED_AUTO_TESTED",
+      "baselineSources": {
+        "baseline": "73259d51414ccd95d9a2f911c845084d00215bc2",
+        "final": "9987d85638c38bf64641f3c19bd4836084c905a5"
+      },
+      "scopeAndNegativeRecords": "One fixedRegex reuse;parser grammar/styles/errors/limits unchanged;plain/simple allocationunchanged andwall noise notattributed.",
+      "humanAndPackage": "NOT TESTED",
+      "independentReview": "NOT REQUESTED",
+      "newExecutionsFromThisIndex": 0
+    },
+    {
+      "id": "PERF005_PUNCTUATION_CLASSES_20261025",
+      "applicationSource": "3d9abb0e10a61a230e17542a8cc22b5c1c0992e3",
+      "executionSource": "3d9abb0e10a61a230e17542a8cc22b5c1c0992e3",
+      "evidenceCommit": "838b087a08a7f81eb62d2bef2f2f5f819433e2f8",
+      "sourceMapPath": "docs/audits/evidence/PERF005_PUNCTUATION_CLASSES_20261025/SOURCE_MAP.json",
+      "sourceMapSha256": "55b9a73a6c92ff2e0e636962e2813ca70c0ad360efbb535da1edf13ef8c895ab",
+      "reportPath": "docs/audits/PERF005_PUNCTUATION_CLASSES_20261025.md",
+      "rawEvidencePath": "docs/audits/evidence/PERF005_PUNCTUATION_CLASSES_20261025/RAW_EVIDENCE.zip",
+      "rawSha256": "d026c15e213282c99b4455492d2b6550cf1a7a1208eb1e2f89eb7e0b6efc64a9",
+      "rawBytes": 125974,
+      "rawManifestFiles": 34,
+      "rawZipMembers": 35,
+      "localFinalUniqueMethods": 3,
+      "implementationState": "IMPLEMENTED_AUTO_TESTED",
+      "baselineSources": {
+        "failedBaseline": "772a66c8cbee574cf82aa4e2688eaa4f1d13af86",
+        "baseline": "d82f804d73557ab4e6fa633f2655835fcc3e6d03",
+        "final": "3d9abb0e10a61a230e17542a8cc22b5c1c0992e3"
+      },
+      "scopeAndNegativeRecords": "5fixedSets;completeverticalLayout preserved,nofontmeasurement;initialvector1FAIL/source/fixture retained,1e-9 unchanged;81420ac repeated observationmisreport corrected separately.",
+      "humanAndPackage": "NOT TESTED",
+      "independentReview": "NOT REQUESTED",
+      "newExecutionsFromThisIndex": 0
+    },
+    {
+      "id": "PERF005_PUNCTUATION_RATIOS_20261025",
+      "applicationSource": "e8378806ce950bf3d22fff1dc3e71bc7c0d95548",
+      "executionSource": "e8378806ce950bf3d22fff1dc3e71bc7c0d95548",
+      "evidenceCommit": "e0ae1d43799957b52e0957ed0603de4edb14784e",
+      "sourceMapPath": "docs/audits/evidence/PERF005_PUNCTUATION_RATIOS_20261025/SOURCE_MAP.json",
+      "sourceMapSha256": "5e31f55e09b6a3cb81f110bd8026941808b6fab0b3b64306eca9f132dce3b8d6",
+      "reportPath": "docs/audits/PERF005_PUNCTUATION_RATIOS_EXPERIMENT_20261025.md",
+      "rawEvidencePath": "docs/audits/evidence/PERF005_PUNCTUATION_RATIOS_20261025/RAW_EVIDENCE.zip",
+      "rawSha256": "e97050aadfc269a36594ab3dc13348eefbab146763120546236d4cbcb7130e88",
+      "rawBytes": 89873,
+      "rawManifestFiles": 25,
+      "rawZipMembers": 26,
+      "localFinalUniqueMethods": 3,
+      "implementationState": "NOT_ADOPTED_PERFORMANCE_HOLD",
+      "baselineSources": {
+        "reusedBaseline": "3d9abb0e10a61a230e17542a8cc22b5c1c0992e3",
+        "final": "e8378806ce950bf3d22fff1dc3e71bc7c0d95548"
+      },
+      "scopeAndNegativeRecords": "Functional3PASS but8192loosewall2.63585->3.6132ms;allocationlower notadoption. Priorbaseline reused0newexecution;restored2c35296 inputs equal3d9,0restorationtests.",
+      "humanAndPackage": "NOT TESTED",
+      "independentReview": "NOT REQUESTED",
+      "newExecutionsFromThisIndex": 0
+    }
+  ],
+  "newTestExecutionsFromIndex": 0,
+  "noMethodSummation": true,
+  "noUnifiedLatestSourceOrPackageAcceptance": true,
+  "ratioAdoptionDecision": {
+    "path": "docs/audits/evidence/PERF005_PUNCTUATION_RATIOS_DECISION_20261025.json",
+    "evidenceCommit": "e0ae1d43799957b52e0957ed0603de4edb14784e",
+    "sha256": "f26aeb905169675bd2e7cb379965fb70b4b7f604d4125de916bc8d202b4421e1"
+  },
+  "originalIndexesUnchanged": [
+    {
+      "commit": "7314ef9ac092c0056ffa6d8918472cbf8868ec93",
+      "path": "handoff/PERFORMANCE_INCREMENT_REVIEW_READY_20261025.md"
+    },
+    {
+      "commit": "b5e84daf63ceb3139277e6e3400d1116f354dd3b",
+      "path": "handoff/PERFORMANCE_TWO_FOLLOW_ONS_REVIEW_READY_20261025.md"
+    }
+  ],
+  "excludedPending": {
+    "source": "b049e4c7bdc292a26e5623313c1c1d91933ca9b9",
+    "record": "55db06e30c65e0a8e317111931cd85d5ae2ea28e",
+    "state": "PENDING_OBSERVATION",
+    "feature": "document font dependencies baseline,productionunchanged;not included orclaimedtested"
+  },
+  "unchangedLimits": [
+    "Oldfailures/userrejections/rejectedfoldertraversals retained",
+    "Operatorwrongpath priorstate/exactUTC UNKNOWN,no furtheraccess",
+    "Asset/editorUSER_NOT_TESTED,115experience/Promptcomparison PENDING",
+    "q09FAILED/rootUNKNOWN,PRODUCT_HOLD / NOT RC",
+    "Allcurrent source-onlyincrements no newpackage/tag/release/trustchain orDesktop modifications",
+    "No newProjectsend authorized;originalDesktopreport boundaryunchanged"
+  ]
+}
