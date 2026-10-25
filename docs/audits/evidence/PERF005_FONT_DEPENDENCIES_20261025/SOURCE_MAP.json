@@ -1,0 +1,70 @@
+{
+  "sources": {
+    "baseline": "b049e4c7bdc292a26e5623313c1c1d91933ca9b9",
+    "final": "db46098445d1c1064ee77104fe320268cc6d0f93"
+  },
+  "executions": {
+    "baseline": "639d4ada0630e006df9414c64264993c7ab9d395",
+    "final": "db46098445d1c1064ee77104fe320268cc6d0f93"
+  },
+  "identities": [
+    {
+      "run": "baseline",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetFonts.kt",
+      "rawInputSha256": "6fe5d56a3f67ef5d01718040b5c72e90ffb9ae32c092590cd4e0a7528a7a95c0",
+      "gitBlobSha256": "6fe5d56a3f67ef5d01718040b5c72e90ffb9ae32c092590cd4e0a7528a7a95c0"
+    },
+    {
+      "run": "baseline",
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/DocumentFontDependenciesPerformanceTest.kt",
+      "rawInputSha256": "2ae0518d550e79dfb7601e6876d5d08de8424ae76daf167f0ea80905e4305b52",
+      "gitBlobSha256": "2ae0518d550e79dfb7601e6876d5d08de8424ae76daf167f0ea80905e4305b52"
+    },
+    {
+      "run": "baseline",
+      "path": "tools/Run-PreviewChecks.py",
+      "rawInputSha256": "45f0f681f68b83c67c5a04607dfea09ecea742bcfd2f5f4ee31e3162901e9e23",
+      "gitBlobSha256": "d8dec9e6bcc417c59cc9d3dd32b79fd4519c16b86adbf582798b2d707c4935b4"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetFonts.kt",
+      "rawInputSha256": "c34e42d9d596acde4126d098b1066d603a255ea7cb4d2f0be30631cf50f9d1ad",
+      "gitBlobSha256": "c34e42d9d596acde4126d098b1066d603a255ea7cb4d2f0be30631cf50f9d1ad"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/DocumentFontDependenciesPerformanceTest.kt",
+      "rawInputSha256": "9b135204c43e4ee6106d2ba2127656a2d1034bd04a19ccc1cd3514ade80f92c5",
+      "gitBlobSha256": "9b135204c43e4ee6106d2ba2127656a2d1034bd04a19ccc1cd3514ade80f92c5"
+    },
+    {
+      "run": "final",
+      "path": "tools/Run-PreviewChecks.py",
+      "rawInputSha256": "45f0f681f68b83c67c5a04607dfea09ecea742bcfd2f5f4ee31e3162901e9e23",
+      "gitBlobSha256": "d8dec9e6bcc417c59cc9d3dd32b79fd4519c16b86adbf582798b2d707c4935b4"
+    },
+    {
+      "run": "both",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetLayout.kt",
+      "rawInputSha256": "02a7bc69c710641ec7bf436ed51d7a5ebaa6fb82f0b522893d8ffb8737724c08",
+      "gitBlobSha256": "02a7bc69c710641ec7bf436ed51d7a5ebaa6fb82f0b522893d8ffb8737724c08"
+    }
+  ],
+  "changedModulePaths": [
+    "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetFonts.kt",
+    "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/DocumentFontDependenciesPerformanceTest.kt"
+  ],
+  "productionOnlyDocumentFontsBodyAggregation": true,
+  "fullActualTokensParsingOrderDuplicatesAndPresetBaseOnlyPreserved": true,
+  "fontLoadingCacheActivateVerifyRenderableAndAllOtherProductionUnchanged": true,
+  "recordedDocumentFontsExpressionExact": true,
+  "rawInputsAndCanonicalGitVerified": true,
+  "finalUniqueMethods": 3,
+  "baselineUniqueMethods": 1,
+  "noMethodsCasesThreadsRoundsSummed": true,
+  "package": "NONE",
+  "release": "NONE",
+  "independentReview": "NOT REQUESTED",
+  "humanAndPackage": "NOT TESTED"
+}

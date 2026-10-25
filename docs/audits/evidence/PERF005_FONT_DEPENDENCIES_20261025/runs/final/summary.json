@@ -1,0 +1,31 @@
+{
+  "phase": "perf005-font-dependencies-final-20261025",
+  "startedUtc": "2026-10-25T08:43:39.440315+00:00",
+  "seconds": 22.591,
+  "exitCode": 0,
+  "tests": 3,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--priority",
+    "low",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    "-PpreviewTestRoot=H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-e458da0704914022a3059c5c4be2c701\\payload",
+    ":studio-core:test",
+    "--tests",
+    "*DocumentFontDependenciesPerformanceTest"
+  ],
+  "baseCommit": "db46098445d1c1064ee77104fe320268cc6d0f93",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

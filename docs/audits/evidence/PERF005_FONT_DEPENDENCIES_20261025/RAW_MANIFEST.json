@@ -1,0 +1,145 @@
+{
+  "format": 1,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19,
+      "sha256": "3e5e82fc72e044ea9af807a2030b73dbb94800d2cd1775302063b2eee761ba1e"
+    },
+    {
+      "path": "ANALYSIS.json",
+      "bytes": 8890,
+      "sha256": "a266f148404af86cef14fde2852db16d1ae9a49507240d43e011d7981b045b7d"
+    },
+    {
+      "path": "ATTEMPTS_AND_LIMITS.md",
+      "bytes": 2543,
+      "sha256": "b779d07175a08673cd45f1da9d00f65ea43268880691f2567bce93e9584a5046"
+    },
+    {
+      "path": "baseline-samples.json",
+      "bytes": 7499,
+      "sha256": "a50945ce048a2965d2e0910d969b63a8e0f95737d679df7d460d4075183f9240"
+    },
+    {
+      "path": "CALLER_BOUNDARY.json",
+      "bytes": 1957,
+      "sha256": "545b1aac0cf5ab31dfd8042241e4673a87bb91442229fff1fd9a795c485ec8df"
+    },
+    {
+      "path": "collect.py",
+      "bytes": 11527,
+      "sha256": "f130b3b8336618cc2fdbeef68b5c3cd836ae04fe7a2c997e8bdc96b8fc024efc"
+    },
+    {
+      "path": "final-samples.json",
+      "bytes": 16117,
+      "sha256": "2e6130e74e1099098763e7239015648fa8bd0e954122d0dbf0b66acc0d85b15f"
+    },
+    {
+      "path": "inputs/baseline/TypesetFonts.kt",
+      "bytes": 6038,
+      "sha256": "6fe5d56a3f67ef5d01718040b5c72e90ffb9ae32c092590cd4e0a7528a7a95c0"
+    },
+    {
+      "path": "inputs/final/TypesetFonts.kt",
+      "bytes": 6233,
+      "sha256": "c34e42d9d596acde4126d098b1066d603a255ea7cb4d2f0be30631cf50f9d1ad"
+    },
+    {
+      "path": "inputs/shared/TypesetLayout.kt",
+      "bytes": 11149,
+      "sha256": "02a7bc69c710641ec7bf436ed51d7a5ebaa6fb82f0b522893d8ffb8737724c08"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 4167,
+      "sha256": "7d64d23d2b8d9687ee779e2ade806424fc301c2e013d500ce03cc3eaa2ca6ca1"
+    },
+    {
+      "path": "prepare-final.py",
+      "bytes": 6770,
+      "sha256": "20a7ab95b5a09f846ad6415b75a7d1b0a3393a43ccdf83321d9a018b4b9dd6a0"
+    },
+    {
+      "path": "resource-boundaries.jsonl",
+      "bytes": 671,
+      "sha256": "b78119df46402f235d96a09b0472564312f227132fae7c4d1d763585165e725b"
+    },
+    {
+      "path": "resource-deferrals.jsonl",
+      "bytes": 936,
+      "sha256": "d61a424fc043df110fa70e4287b3a690a59fdd149a09f9db4ce9be71e074edca"
+    },
+    {
+      "path": "resource-gate.ps1",
+      "bytes": 2851,
+      "sha256": "50b1040b8dfddbe6d7aa04649e2408ffbc88cb19b11731d7e6ff74ee09498350"
+    },
+    {
+      "path": "runs/baseline/fixture-cleanup.json",
+      "bytes": 283,
+      "sha256": "3470e7e8be4875630d4ade43345e24d72619d7bf644e4bd60a442f8a59d04fdf"
+    },
+    {
+      "path": "runs/baseline/gradle.log",
+      "bytes": 1568,
+      "sha256": "a81e2740e8ea2a34480c89a4f07ded784346a1ce94d13560fdd239d5fd813a57"
+    },
+    {
+      "path": "runs/baseline/source-before.json",
+      "bytes": 80229,
+      "sha256": "a1ff6c57a88babfa8c345535cb7865cb6e77c4649a6af2de08dfde79a068a244"
+    },
+    {
+      "path": "runs/baseline/studio-core-TEST-io.github.misakapiano.ccbstudio.core.DocumentFontDependenciesPerformanceTest.xml",
+      "bytes": 6489,
+      "sha256": "bdd295da9bdeca1f0e62778998ec99839cc6d526e79c222b764af8fee3d61919"
+    },
+    {
+      "path": "runs/baseline/summary.json",
+      "bytes": 1003,
+      "sha256": "f74fa35b8b6f8e8565b428a2e1ff935aff1225ea3d9681029de8122a9bd46b58"
+    },
+    {
+      "path": "runs/baseline/test-cases.json",
+      "bytes": 235,
+      "sha256": "8c1a19baa6dd0bf233205fe0cadcbf89c5c6f4a522796883ffe6f1bdcf3c875c"
+    },
+    {
+      "path": "runs/final/fixture-cleanup.json",
+      "bytes": 283,
+      "sha256": "56e4f6f31e11bdd2c5f8e79dce1a92fce43f5e0ee268fe1d0006f2f0b30a8dc1"
+    },
+    {
+      "path": "runs/final/gradle.log",
+      "bytes": 1808,
+      "sha256": "ec0155348aebf2a4c39423ee402b21017e320e059d2c2d6f5800cfc5f5466da5"
+    },
+    {
+      "path": "runs/final/source-before.json",
+      "bytes": 80229,
+      "sha256": "7017d97ecf93a0c173593343b2a5219fd13b25a21d904c3bba494448f5f18be3"
+    },
+    {
+      "path": "runs/final/studio-core-TEST-io.github.misakapiano.ccbstudio.core.DocumentFontDependenciesPerformanceTest.xml",
+      "bytes": 13619,
+      "sha256": "4f0d621bd3a2dd1b552604bc135c75a7cbb37b6bab155c8bfcd381aba6684351"
+    },
+    {
+      "path": "runs/final/summary.json",
+      "bytes": 1000,
+      "sha256": "c940fecb800f9d260a5ebe0f41564178bdfdff0ae21912eb85283630491a54f5"
+    },
+    {
+      "path": "runs/final/test-cases.json",
+      "bytes": 707,
+      "sha256": "5bb3f56d404254341bfd65c7374ed6e441d67700fdceb10cca0c9400ca505569"
+    },
+    {
+      "path": "SOURCE_MAP.json",
+      "bytes": 3272,
+      "sha256": "413d456a7f0dc7cd5848861d8cd770c7dd297508be304f2ebf12855d1c2b65a9"
+    }
+  ]
+}

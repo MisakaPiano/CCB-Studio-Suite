@@ -1,0 +1,20 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.DocumentFontDependenciesPerformanceTest",
+    "name": "measuredFontDependenciesKeepDuplicateOrderAndAdmittedDocument",
+    "seconds": "0.777",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.DocumentFontDependenciesPerformanceTest",
+    "name": "emptyHiddenTextPresetsDuplicatesAndParserErrorsKeepDependencySemantics",
+    "seconds": "0.005",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.DocumentFontDependenciesPerformanceTest",
+    "name": "simultaneousDependencyListsKeepOrderAndCallerDocumentIndependent",
+    "seconds": "0.005",
+    "status": "PASS"
+  }
+]

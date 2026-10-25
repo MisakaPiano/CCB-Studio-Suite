@@ -1,0 +1,38 @@
+{
+  "source": "b049e4c7bdc292a26e5623313c1c1d91933ca9b9",
+  "kind": "readonly_source_audit_not_runtime_acceptance",
+  "files": [
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetFonts.kt",
+      "rawSha256": "6fe5d56a3f67ef5d01718040b5c72e90ffb9ae32c092590cd4e0a7528a7a95c0",
+      "gitBlobSha256": "6fe5d56a3f67ef5d01718040b5c72e90ffb9ae32c092590cd4e0a7528a7a95c0"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetEditorController.kt",
+      "rawSha256": "332f859ca2d0b849bfd97b9e13b5701a42905bb021547ab0be296cdecc94ce33",
+      "gitBlobSha256": "e2ad6c66fe708a8ad5679fa369fb0f8806d40aa8e662197d5361f21e7c0d5473"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetPreviewRaster.kt",
+      "rawSha256": "b40a756ea50d05301491ef4dbdeabdc9d6b91d8d58a98b943e579f490de1ec65",
+      "gitBlobSha256": "b40a756ea50d05301491ef4dbdeabdc9d6b91d8d58a98b943e579f490de1ec65"
+    }
+  ],
+  "repositoryCallers": [
+    "TypesetEditorController.open retainsprojectandfontproblem",
+    "typesetPreviewRaster prefiltersvisibleandstoryfallback beforedocumentFonts"
+  ],
+  "consumerContract": "activate takes Collection<String>,filters imported aliases then distinct;no concreteList/mutablecast reliance observed in current two repository callers",
+  "existingProtection": "activate revalidates durableasset projectTAG andsha evenwhenloadedcachehit;candidate mustleaveall ofthisunchanged",
+  "emptyTextReason": "preview source explicitly retainsdurablefont for emptytextbox before firstenteredglyph",
+  "mustPreserve": "allstory/base/per-token/presetbaseonly dependencies,duplicates/order/hidden/empty;fulloriginaltokenparsing/errors",
+  "notExecuted": [
+    "activate",
+    "loadFont",
+    "Font.createFont",
+    "verifyRenderable",
+    "raster",
+    "openEditor",
+    "realfontsoruserassets"
+  ]
+}

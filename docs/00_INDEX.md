@@ -1,3 +1,7 @@
+## 2026-10-25 PERF-005字体依赖清单最终3方法通过
+
+[db46098应用/实际执行与固定证据](audits/PERF005_FONT_DEPENDENCIES_20261025.md)：最终3唯一方法PASS，基线b049e4c输入/639d4ad执行1方法与4轮资源门各0分列。只函数体收集，原顺序/重复/完整解析/错误/字体持久校验保持；128文本纯12.85→9.34MB、内联24.12→20.61MB，仅清单构造非加载/渲染/UI/RSS/人工。新[复审只准备](../handoff/PERF005_FONT_DEPENDENCIES_REVIEW_READY_20261025.md)，旧六行索引不扩、旧失败/未验/UNKNOWN保持。主题UX-DISPLAY-THEME-001仅8fc577e排队，持续性能授权/Desktop优先不变，无发行/日常操作。
+
 ## 2026-10-25 六段后续性能索引只准备
 
 [固定六行索引](../handoff/PERFORMANCE_LATER_INCREMENT_REVIEW_READY_20261025.md)补作业日期/颜色/竖排/富文本/分类与数值表未采用记录，生产边界3d9abb0、恢复2c35296；原16项/两段对象不改。六份raw固定Git/CRC/逐项SHA核对、0新测试，不累加方法或代签最新HEAD/包/人工/独立通过。字体依赖b049e4c基线PENDING_OBSERVATION排除，普通资源等待继续低负载准备，Desktop优先，新材料未发送。
