@@ -108,12 +108,9 @@ object TypesetLayout {
         in emphPunctuation->"emph"
         else->"normal"
     }
-    private val compactPunctuationRatios by lazy { doubleArrayOf(.20,.18,.28,.10,.10,.28,.22,.08) }
-    private val loosePunctuationRatios by lazy { doubleArrayOf(.08,.06,.12,.04,.04,.12,.10,.02) }
-    private val standardPunctuationRatios by lazy { doubleArrayOf(.14,.12,.20,.07,.07,.20,.16,.05) }
     private fun reduction(prev:String?,next:String,t:TypesetText,step:Double):Double {
         if(prev==null || !t.punctuationOptimization)return 0.0
-        val p=when(t.punctuationTightness){"compact"->compactPunctuationRatios;"loose"->loosePunctuationRatios;else->standardPunctuationRatios}
+        val p=when(t.punctuationTightness){"compact"->doubleArrayOf(.20,.18,.28,.10,.10,.28,.22,.08);"loose"->doubleArrayOf(.08,.06,.12,.04,.04,.12,.10,.02);else->doubleArrayOf(.14,.12,.20,.07,.07,.20,.16,.05)}
         fun part(c:String,before:Boolean)=when(c){"small"->p[if(before)0 else 1];"close"->p[if(before)2 else 3];"open"->p[if(before)4 else 5];"middle"->p[6];"emph"->p[7];else->0.0}
         return min((part(prev,false)+part(next,true))*t.style.fontSize,step*.36)
     }
