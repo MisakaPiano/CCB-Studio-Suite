@@ -40,7 +40,18 @@ object TypesetFonts {
             if(loaded[alias]==null){val bytes=workspace.bytes(ref.decodedId);require(bytes.size<=64*1024*1024);loaded[alias]=Loaded(Font.createFont(Font.TRUETYPE_FONT,ByteArrayInputStream(bytes)),ratio(bytes))}
         }
     }
-    fun documentFonts(document:TypesetDocument):List<String> = document.pages.flatMap{p->listOf(p.story.fontFamily)+p.texts.flatMap{t->listOf(t.style.fontFamily)+TypesetLayout.tokens(t.text,t.style).map{it.style.fontFamily}}}+document.presets.map{it.text.style.fontFamily}
+    fun documentFonts(document:TypesetDocument):List<String> {
+        val out=ArrayList<String>()
+        document.pages.forEach { p->
+            out.add(p.story.fontFamily)
+            p.texts.forEach { t->
+                out.add(t.style.fontFamily)
+                TypesetLayout.tokens(t.text,t.style).forEach { out.add(it.style.fontFamily) }
+            }
+        }
+        document.presets.forEach { out.add(it.text.style.fontFamily) }
+        return out
+    }
     fun verifyRenderable(workspace:StudioWorkspace,document:TypesetDocument,variant:String="all") {
         val styles=mutableListOf<Pair<TypesetStyle,String>>()
         document.pages.forEach{p->
