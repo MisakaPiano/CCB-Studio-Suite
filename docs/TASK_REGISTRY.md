@@ -13,6 +13,10 @@
 
 Desktop资源优先，用户实际验证/必须审批仍等待用户；私人图库/凭据/真实付费API、暂停扫描恢复、防护/重启/MSI、公开发布与跨仓写入等旧边界不扩大。当前登记结束后继续本轮性能收尾，依序进入后续步骤；没有实施主题或打包、没有修改日常安装/主题设置。
 
+## 第1步阶段收尾固定，下一动作进入第2步只读核对
+
+[性能阶段收尾](../handoff/PERFORMANCE_STAGE_CLOSURE_20261025.md)边界db46098/1aa1fde，不宣称长期性能全验收；不继续扩展新微基线。下一动作只读核对UX-DISPLAY-THEME-001的Desktop显示主题真实实现/交互，当前未核对/未实现；用户设置不变、Desktop只读。第3步包仍NOT BUILT/NOT VERIFIED，祖先关系不代替包内f6598d3实际字节和验收证明。旧未验/PENDING/失败保持。
+
 ## 2026-10-25 17:45 JST 后续需求：UX-DISPLAY-THEME-001（仅登记排队）
 
 用户08:45 UTC / 17:45 JST提出：“我觉得Studio也可以加一下desktop同样的显示主题色变换功能”。本次在现有UX-RECOVERY合同下去重登记**UX-DISPLAY-THEME-001**，状态**QUEUED / NOT STARTED / SCOPE_TO_VERIFY**；未找到同标识或同义主题色待办，不另开实现线程/合同。
