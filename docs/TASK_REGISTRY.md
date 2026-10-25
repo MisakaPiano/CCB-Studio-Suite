@@ -5,7 +5,7 @@
 |顺序|沿用任务/范围|当前状态与进入条件|
 |---|---|---|
 |1|PERF-001～PERF-007，本轮性能优化及收尾|先完成正在进行的验证/固定源码/原始结果与失败分列。当前字体清单db46098/1aa1fde已自动3方法通过并留证，长期规模/UI/RSS/用户/包等未验仍保留，不宣称整个专项全部完成，也不以长期未关闭无限追加本轮微基线|
-|2|UX-DISPLAY-THEME-001：对齐Desktop实际显示主题色切换|SOURCE IMPLEMENTED / NOT COMPILED / NOT TESTED；42146d3完成最小主题接线及4方法回归准备，Desktop固定参考d53d46c。空间预算约2.043GiB大于H盘约1.334GiB且Desktop owner存在，启动前推迟验证0执行；先继续低负载核对/留证，不将源码完成当验收，不改用户当前设置。见[源码与资源门](audits/DISPLAY_THEME_IMPLEMENTATION_20261025.md)|
+|2|UX-DISPLAY-THEME-001：对齐Desktop实际显示主题色切换|SOURCE IMPLEMENTED / NOT COMPILED / NOT TESTED；42146d3完成最小主题接线及4方法回归准备，Desktop固定参考d53d46c。空间预算约2.043GiB大于H盘约1.334GiB且Desktop owner存在，启动前推迟验证0执行；低负载源码核对/参考冻结/4方法草稿/留证及现有人工与包验清单均已准备，当前无编译/测试/打包后台任务；等待空间准入，不将源码完成当验收，不改用户当前设置。见[源码与资源门](audits/DISPLAY_THEME_IMPLEMENTATION_20261025.md)|
 |3|UX-RECOVERY既有本轮内部打包/验收阶段，承接W1～W5/CP4相关门禁及REVIEW_FIXES_AND_UPDATE_CLEANUP_20261024|主题后准备包含已有修复、清理、性能、主题的内部包与验收，NOT BUILT / NOT VERIFIED。必须纳入最后f6598d39298c06ec5644a131e484e814f77b6f45下载终态清理修复；当前仅证实db46098是其后代，不等于新包已含修复。冻结源码/构建输入/包版本与SHA256/实际脚本字节及证据对应关系，补必要新包集成；旧115/2484858内部包不代替。本次内部包授权不等于公开发布、更新日常安装、改信任链或冒签用户/Project验收|
 |4a（第3步后）|UX-RECOVERY / W2～W4：资产管理与编辑界面验证|USER_NOT_TESTED，按用户实际测试时间推进；实现/自动通过不能代替人工，所需用户动作和审批继续等待用户|
 |4b（第3步后）|UX-ASSET-FS-001：本地批量文件管理与真正删除|PLANNED / NOT STARTED；保留批量重命名/复制/移动/删除与移出图库/回收站/永久删除原文件的区别，不因排期授权操作真实用户文件|
