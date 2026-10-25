@@ -1,0 +1,33 @@
+{
+  "phase": "perf003-virtual-members-final-20261025",
+  "startedUtc": "2026-10-25T00:59:07.065017+00:00",
+  "seconds": 39.479,
+  "exitCode": 0,
+  "tests": 5,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--priority",
+    "low",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    "-PpreviewTestRoot=H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-8a5562514ffd4278affaac490ff1bdb8\\payload",
+    ":studio-core:test",
+    "--tests",
+    "*VirtualMembersPerformanceTest",
+    "--tests",
+    "*VirtualAlbumsTest"
+  ],
+  "baseCommit": "1553d8bdc1e9d63503feae3c90cb4444ac8645ce",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

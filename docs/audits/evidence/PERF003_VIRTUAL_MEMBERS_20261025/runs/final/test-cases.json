@@ -1,0 +1,32 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.VirtualAlbumsTest",
+    "name": "sourceProjectionUsesReceiptAfterQueueDisappears",
+    "seconds": "0.785",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.VirtualAlbumsTest",
+    "name": "nestedMembershipMoveRemoveReopenKeepsOriginalBytes",
+    "seconds": "1.479",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.VirtualMembersPerformanceTest",
+    "name": "measuredActualVirtualMembershipKeepsOrderAndPersistableFixtureSize",
+    "seconds": "0.402",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.VirtualMembersPerformanceTest",
+    "name": "membershipKeepsDescendantLayerOrderFirstOccurrenceAndDoesNotMutateMetadata",
+    "seconds": "0.008",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.VirtualMembersPerformanceTest",
+    "name": "invalidAndUnrelatedMetadataStillRejectAndDepthBoundaryIsUnchanged",
+    "seconds": "0.001",
+    "status": "PASS"
+  }
+]

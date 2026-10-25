@@ -1,0 +1,160 @@
+{
+  "medians": {
+    "baseline": [
+      {
+        "albums": 32,
+        "referencesPerAlbum": 128,
+        "totalReferences": 4096,
+        "uniqueMembers": 128,
+        "serializedBytes": 164047,
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 0.9521,
+          "cpuMs": 0.0,
+          "allocatedBytes": 489464.0
+        }
+      },
+      {
+        "albums": 128,
+        "referencesPerAlbum": 512,
+        "totalReferences": 65536,
+        "uniqueMembers": 512,
+        "serializedBytes": 2573003,
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 7.04725,
+          "cpuMs": 0.0,
+          "allocatedBytes": 7719560.0
+        }
+      },
+      {
+        "albums": 500,
+        "referencesPerAlbum": 128,
+        "totalReferences": 64000,
+        "uniqueMembers": 128,
+        "serializedBytes": 2562947,
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 6.1979500000000005,
+          "cpuMs": 15.625,
+          "allocatedBytes": 7637624.0
+        }
+      }
+    ],
+    "final": [
+      {
+        "albums": 32,
+        "referencesPerAlbum": 128,
+        "totalReferences": 4096,
+        "uniqueMembers": 128,
+        "serializedBytes": 164047,
+        "kind": "current",
+        "medians": {
+          "wallMs": 0.8705,
+          "cpuMs": 0.0,
+          "allocatedBytes": 392336.0
+        }
+      },
+      {
+        "albums": 32,
+        "referencesPerAlbum": 128,
+        "totalReferences": 4096,
+        "uniqueMembers": 128,
+        "serializedBytes": 164047,
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 1.0398,
+          "cpuMs": 0.0,
+          "allocatedBytes": 489464.0
+        }
+      },
+      {
+        "albums": 128,
+        "referencesPerAlbum": 512,
+        "totalReferences": 65536,
+        "uniqueMembers": 512,
+        "serializedBytes": 2573003,
+        "kind": "current",
+        "medians": {
+          "wallMs": 5.94045,
+          "cpuMs": 7.8125,
+          "allocatedBytes": 5892672.0
+        }
+      },
+      {
+        "albums": 128,
+        "referencesPerAlbum": 512,
+        "totalReferences": 65536,
+        "uniqueMembers": 512,
+        "serializedBytes": 2573003,
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 8.73925,
+          "cpuMs": 0.0,
+          "allocatedBytes": 7723688.0
+        }
+      },
+      {
+        "albums": 500,
+        "referencesPerAlbum": 128,
+        "totalReferences": 64000,
+        "uniqueMembers": 128,
+        "serializedBytes": 2562947,
+        "kind": "current",
+        "medians": {
+          "wallMs": 4.8664000000000005,
+          "cpuMs": 7.8125,
+          "allocatedBytes": 5996112.0
+        }
+      },
+      {
+        "albums": 500,
+        "referencesPerAlbum": 128,
+        "totalReferences": 64000,
+        "uniqueMembers": 128,
+        "serializedBytes": 2562947,
+        "kind": "legacy",
+        "medians": {
+          "wallMs": 6.38365,
+          "cpuMs": 0.0,
+          "allocatedBytes": 7638292.0
+        }
+      }
+    ]
+  },
+  "counts": {
+    "baseline": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "462790ad2d00c5b3e2e10d7e7ea0ab0bbf08faf5",
+      "seconds": 15.142,
+      "startedUtc": "2026-10-25T00:44:47.848492+00:00"
+    },
+    "final": {
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sourceStable": true,
+      "baseCommit": "1553d8bdc1e9d63503feae3c90cb4444ac8645ce",
+      "seconds": 39.479,
+      "startedUtc": "2026-10-25T00:59:07.065017+00:00"
+    }
+  },
+  "finalUniqueMethods": 5,
+  "cleanupFiles": 41,
+  "cleanupBytes": 30019,
+  "limits": [
+    "Pure metadata,all LibraryState serialized fixtures <=4MiB,not real galleries",
+    "Final two warmups per mode and four same-JVM alternating legacy/current rounds;baseline separate JVM",
+    "Ordered first-occurrence union,full validation,unknown ID rejection and 32/33 depth boundary preserved",
+    "Set interface/content/order preserved;concrete collection implementation not a promised API",
+    "Thread allocated heap not complete UI/RSS/physical IO/universal speed",
+    "Existing source-receipt test uses synthetic record only;no provider request",
+    "No new UI/schema/asset organization semantics/original movement/cache/update/trust/package change",
+    "Single worker/low priority/2processors/256MiB,Desktop gate checks not continuous quiet proof"
+  ]
+}

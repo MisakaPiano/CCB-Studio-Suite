@@ -1,0 +1,31 @@
+{
+  "phase": "perf003-virtual-members-baseline-20261025",
+  "startedUtc": "2026-10-25T00:44:47.848492+00:00",
+  "seconds": 15.142,
+  "exitCode": 0,
+  "tests": 1,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--priority",
+    "low",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    "-PpreviewTestRoot=H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-e28e28e6e060493ab0be109c75da1cfb\\payload",
+    ":studio-core:test",
+    "--tests",
+    "*VirtualMembersPerformanceTest.measuredActualVirtualMembershipKeepsOrderAndPersistableFixtureSize"
+  ],
+  "baseCommit": "462790ad2d00c5b3e2e10d7e7ea0ab0bbf08faf5",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

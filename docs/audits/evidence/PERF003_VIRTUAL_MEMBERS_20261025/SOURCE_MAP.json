@@ -1,0 +1,60 @@
+{
+  "sources": {
+    "baseline": "462790ad2d00c5b3e2e10d7e7ea0ab0bbf08faf5",
+    "final": "1553d8bdc1e9d63503feae3c90cb4444ac8645ce"
+  },
+  "executionSource": "1553d8bdc1e9d63503feae3c90cb4444ac8645ce",
+  "executionModulesAndToolsEqualApplication": true,
+  "identities": [
+    {
+      "run": "baseline",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/VirtualAlbums.kt",
+      "testInputSha256": "3661c7cade88f5223a5862c534734a02260bcfeb6662f6c9010d6186c91a9d59",
+      "gitSha256": "3661c7cade88f5223a5862c534734a02260bcfeb6662f6c9010d6186c91a9d59"
+    },
+    {
+      "run": "baseline",
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/VirtualMembersPerformanceTest.kt",
+      "testInputSha256": "a39276870f8c79937ac15ca1c1f099a4bd91b1f040d515e739fa74e3b1dcbc69",
+      "gitSha256": "a39276870f8c79937ac15ca1c1f099a4bd91b1f040d515e739fa74e3b1dcbc69"
+    },
+    {
+      "run": "baseline",
+      "path": "tools/Run-PreviewChecks.py",
+      "testInputSha256": "45f0f681f68b83c67c5a04607dfea09ecea742bcfd2f5f4ee31e3162901e9e23",
+      "gitSha256": "d8dec9e6bcc417c59cc9d3dd32b79fd4519c16b86adbf582798b2d707c4935b4"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/VirtualAlbums.kt",
+      "testInputSha256": "e90e8242e7fa86276273c8e459cb7099c7ae1440bab1a4f9fb2908292958d06a",
+      "gitSha256": "e90e8242e7fa86276273c8e459cb7099c7ae1440bab1a4f9fb2908292958d06a"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/VirtualMembersPerformanceTest.kt",
+      "testInputSha256": "1d2a4a10d872a438bf1c2301f43f38985d2179c9df86d7009d4daafaaeed28f2",
+      "gitSha256": "1d2a4a10d872a438bf1c2301f43f38985d2179c9df86d7009d4daafaaeed28f2"
+    },
+    {
+      "run": "final",
+      "path": "tools/Run-PreviewChecks.py",
+      "testInputSha256": "45f0f681f68b83c67c5a04607dfea09ecea742bcfd2f5f4ee31e3162901e9e23",
+      "gitSha256": "d8dec9e6bcc417c59cc9d3dd32b79fd4519c16b86adbf582798b2d707c4935b4"
+    }
+  ],
+  "changedModulePaths": [
+    "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/VirtualAlbums.kt",
+    "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/VirtualMembersPerformanceTest.kt"
+  ],
+  "productionOnlyMembersBody": true,
+  "fullValidationAndDescendantsUnchanged": true,
+  "legacyReferenceExactExceptPrivateNameAndQualification": true,
+  "finalUniqueMethods": 5,
+  "baselineRepeatedMethodNotAdded": true,
+  "packageVersion": "NONE",
+  "packageSha256": "NONE (no package built)",
+  "release": "NONE",
+  "independentReview": "NOT REQUESTED",
+  "humanAndPackage": "NOT TESTED"
+}
