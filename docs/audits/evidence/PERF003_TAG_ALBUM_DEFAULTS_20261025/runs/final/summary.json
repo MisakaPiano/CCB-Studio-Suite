@@ -1,0 +1,33 @@
+{
+  "phase": "perf003-tag-album-defaults-final-20261025",
+  "startedUtc": "2026-10-25T03:04:26.661234+00:00",
+  "seconds": 19.236,
+  "exitCode": 0,
+  "tests": 4,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--priority",
+    "low",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    "-PpreviewTestRoot=H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-2fcacf8a50dc4faab11a7662a074233e\\payload",
+    ":studio-core:test",
+    "--tests",
+    "*TagAlbumDefaultsPerformanceTest",
+    "--tests",
+    "*LibraryInteractionTest.multiTagAlbumsHaveUniqueKeysAndUnknownDatesStayUnknown"
+  ],
+  "baseCommit": "52e0bf05a5844f85c59d3bb79a71b7f2c3182858",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

@@ -1,3 +1,7 @@
+## 2026-10-25 PERF-003标签相册默认参数调用内复用
+
+[52e0bf0报告/原始逐例](audits/PERF003_TAG_ALBUM_DEFAULTS_20261025.md)：最终4唯一方法PASS，原权威canonical默认值调用内复用、entry时钟/ID/key保持，权威Prompt/请求未改。分配少约68%～73%，最大墙钟略慢、不称提速/UI/RSS/包/人工；[复审仅准备](../handoff/PERF003_TAG_ALBUM_DEFAULTS_REVIEW_READY_20261025.md)。16历史索引/原Desktop边界不扩大、无发布/日常操作，旧失败/未验/PENDING保持，Desktop优先。
+
 ## 2026-10-25 PERF-003每次文件夹筛选只求一次子树
 
 [1256c64实现/原始逐例/限制](audits/PERF003_FOLDER_BATCH_SELECTION_20261025.md)：最终4唯一方法PASS，归档差异/顺序/null短路保持；原递归/验证/布局不改。256节点512批次根配对201.039→0.486ms、161.76→0.323MB只局部计算，非UI/RSS/包/人工。基线另3方法含保留契约2实际PASS，不累加；此前遍历负面试验仍未采用。[新复审仅准备](../handoff/PERF003_FOLDER_BATCH_SELECTION_REVIEW_READY_20261025.md)，16报告索引原边界不扩大，Desktop优先、不发布/日常操作，旧失败/未验/PENDING保持。

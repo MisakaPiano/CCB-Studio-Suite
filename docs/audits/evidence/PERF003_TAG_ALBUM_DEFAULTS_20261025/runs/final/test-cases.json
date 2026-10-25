@@ -1,0 +1,26 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.LibraryInteractionTest",
+    "name": "multiTagAlbumsHaveUniqueKeysAndUnknownDatesStayUnknown",
+    "seconds": "0.077",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TagAlbumDefaultsPerformanceTest",
+    "name": "emptyMissingAndRepeatedInputsKeepLabelsMembershipAndRecipeValues",
+    "seconds": "0.001",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TagAlbumDefaultsPerformanceTest",
+    "name": "measuredActualTagAlbumsPreserveLabelsKeysDefaultsAndInputSnapshots",
+    "seconds": "0.596",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TagAlbumDefaultsPerformanceTest",
+    "name": "copiedMetadataCannotChangeSiblingRecipesOrAnotherProjection",
+    "seconds": "0.001",
+    "status": "PASS"
+  }
+]

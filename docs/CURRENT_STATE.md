@@ -1,3 +1,7 @@
+## 2026-10-25 标签相册默认对象分配增量自动通过（未发布）
+
+[52e0bf0实现/原始证据](audits/PERF003_TAG_ALBUM_DEFAULTS_20261025.md)：最终4唯一方法PASS，0失败/错误/跳过，基线1另列。仅tag投影内首次通过原canonical构造复用不可变默认recipe，entry/image仍逐条创建、时间/ID/key/原默认值保持；权威代码/请求未改。分配少约68%～73%，最大配对墙钟4.590→4.845ms略慢、原样保留，不称速度/UI/RSS/峰值堆/人工/包或独立通过。新Project仅准备，16历史索引/原Desktop报告边界不变；继续既有低负载定位、Desktop优先，无发布/日常操作，旧失败/否决/遍历未采用/资产编辑未验/115与Prompt PENDING/q09 FAILED-UNKNOWN/PRODUCT_HOLD保持。
+
 ## 2026-10-25 文件夹批次筛选增量自动通过（未发布）
 
 固定应用/最终执行1256c64，[报告/原始证据](audits/PERF003_FOLDER_BATCH_SELECTION_20261025.md)：4唯一方法PASS、0失败/错误/跳过；基线974e100另3含保留契约2通过，不相加。原重复每批次求子树改为每筛选一次，四调用处等价替换，原descendants/完整校验/归档差异/顺序/null短路/布局/图片索引/队列保持。256节点512批次根配对201.039→0.486ms、161.76→0.323MB仅局部元数据，非整页/RSS/峰值堆/包/人工或独立接受。此前遍历候选仍未采用、负面样本保留；[复审仅准备](../handoff/PERF003_FOLDER_BATCH_SELECTION_REVIEW_READY_20261025.md)，16索引与原Desktop报告范围不变。继续既有性能低负载定位，Desktop优先，无发布/日常操作；资产/编辑未验、115/Prompt PENDING、q09 FAILED/UNKNOWN与PRODUCT_HOLD / NOT RC保持。

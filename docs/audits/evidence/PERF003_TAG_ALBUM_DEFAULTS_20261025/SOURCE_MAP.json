@@ -1,0 +1,98 @@
+{
+  "sources": {
+    "baseline": "45068dfbf2213f8d8fc2041aa1b4a30e81024efb",
+    "final": "52e0bf05a5844f85c59d3bb79a71b7f2c3182858"
+  },
+  "executionSource": "52e0bf05a5844f85c59d3bb79a71b7f2c3182858",
+  "identities": [
+    {
+      "run": "baseline",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/LibraryCatalogProjection.kt",
+      "rawInputSha256": "de683b4f154bfe9d447930427ee5d927f66488ce0a44143f7d3b19e04cf2b4bf",
+      "gitBlobSha256": "9141be8e72a61df3207efead63b6fbf53ab8b774e878a13ccc7e64a7578e7986"
+    },
+    {
+      "run": "baseline",
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TagAlbumDefaultsPerformanceTest.kt",
+      "rawInputSha256": "dedcb89a12c649cdf4280b22f5384e75715a598a1b8942e37dd857231da5660d",
+      "gitBlobSha256": "dedcb89a12c649cdf4280b22f5384e75715a598a1b8942e37dd857231da5660d"
+    },
+    {
+      "run": "baseline",
+      "path": "tools/Run-PreviewChecks.py",
+      "rawInputSha256": "45f0f681f68b83c67c5a04607dfea09ecea742bcfd2f5f4ee31e3162901e9e23",
+      "gitBlobSha256": "d8dec9e6bcc417c59cc9d3dd32b79fd4519c16b86adbf582798b2d707c4935b4"
+    },
+    {
+      "run": "baseline",
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiStudioModels.kt",
+      "rawInputSha256": "be02ded92c5a9116c398fb0ccb26857ef33452c535820ed68d9cf48846088a34",
+      "gitBlobSha256": "be02ded92c5a9116c398fb0ccb26857ef33452c535820ed68d9cf48846088a34"
+    },
+    {
+      "run": "baseline",
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiImageGuidance.kt",
+      "rawInputSha256": "0c87a8de97279acde9103e883a2ecfe0c459d786508811007b641c76cb84aac5",
+      "gitBlobSha256": "0c87a8de97279acde9103e883a2ecfe0c459d786508811007b641c76cb84aac5"
+    },
+    {
+      "run": "baseline",
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/prompt/CharacterNaiPromptDefaults.kt",
+      "rawInputSha256": "b54be396079c946274b18c41815ccee6f9a355183690648cd2afefe24f224563",
+      "gitBlobSha256": "b54be396079c946274b18c41815ccee6f9a355183690648cd2afefe24f224563"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/LibraryCatalogProjection.kt",
+      "rawInputSha256": "c67c940268ecb98aa4fb4b397280b94aba4205b4f946ea1c54bf61aea3b62758",
+      "gitBlobSha256": "73052ac72e416c542f1281d98cc1a62b4f5bc93a7de32d080400dfd84569796c"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TagAlbumDefaultsPerformanceTest.kt",
+      "rawInputSha256": "d60ce774e3b16b580a42bde37a4c60a9c6cb92599e349f4e18fc5db860e5b0a4",
+      "gitBlobSha256": "d60ce774e3b16b580a42bde37a4c60a9c6cb92599e349f4e18fc5db860e5b0a4"
+    },
+    {
+      "run": "final",
+      "path": "tools/Run-PreviewChecks.py",
+      "rawInputSha256": "45f0f681f68b83c67c5a04607dfea09ecea742bcfd2f5f4ee31e3162901e9e23",
+      "gitBlobSha256": "d8dec9e6bcc417c59cc9d3dd32b79fd4519c16b86adbf582798b2d707c4935b4"
+    },
+    {
+      "run": "final",
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiStudioModels.kt",
+      "rawInputSha256": "be02ded92c5a9116c398fb0ccb26857ef33452c535820ed68d9cf48846088a34",
+      "gitBlobSha256": "be02ded92c5a9116c398fb0ccb26857ef33452c535820ed68d9cf48846088a34"
+    },
+    {
+      "run": "final",
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiImageGuidance.kt",
+      "rawInputSha256": "0c87a8de97279acde9103e883a2ecfe0c459d786508811007b641c76cb84aac5",
+      "gitBlobSha256": "0c87a8de97279acde9103e883a2ecfe0c459d786508811007b641c76cb84aac5"
+    },
+    {
+      "run": "final",
+      "path": "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/prompt/CharacterNaiPromptDefaults.kt",
+      "rawInputSha256": "b54be396079c946274b18c41815ccee6f9a355183690648cd2afefe24f224563",
+      "gitBlobSha256": "b54be396079c946274b18c41815ccee6f9a355183690648cd2afefe24f224563"
+    }
+  ],
+  "changedModulePaths": [
+    "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/LibraryCatalogProjection.kt",
+    "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TagAlbumDefaultsPerformanceTest.kt"
+  ],
+  "productionOnlyLazyCallLocalCanonicalDefaultReuse": true,
+  "fullOldFunctionReferenceExactExceptName": true,
+  "allOtherProductionAndAuthorityTextUnchanged": true,
+  "perEntryCreatedAtConstructorPreserved": true,
+  "noGlobalCacheOrEntryImageReuse": true,
+  "rawInputsAndCanonicalGitVerified": true,
+  "finalUniqueMethods": 4,
+  "baselineUniqueMethods": 1,
+  "baselineAndRoundsNotAdded": true,
+  "package": "NONE",
+  "release": "NONE",
+  "independentReview": "NOT REQUESTED",
+  "humanAndPackage": "NOT TESTED"
+}

@@ -1,0 +1,130 @@
+{
+  "format": 1,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19,
+      "sha256": "3e5e82fc72e044ea9af807a2030b73dbb94800d2cd1775302063b2eee761ba1e"
+    },
+    {
+      "path": "ANALYSIS.json",
+      "bytes": 3983,
+      "sha256": "a1276a4815339b3842e2224d9bfc705358a5e39037615e32a18e6b85dadb3c2e"
+    },
+    {
+      "path": "ATTEMPTS_AND_LIMITS.md",
+      "bytes": 3155,
+      "sha256": "573d5fbf4a251126018951ca6a8a763bc3105b429215ec04a5cf819741095064"
+    },
+    {
+      "path": "baseline-samples.json",
+      "bytes": 2222,
+      "sha256": "2ddb532881ff96be28e6d51f0e6acb7242aba9c41943d02074c8d7bf712b8c29"
+    },
+    {
+      "path": "collect.py",
+      "bytes": 11039,
+      "sha256": "c8677f523ffd24b82f204e3786acb719f6ccd76d49990d7f6994cca8a68d95dd"
+    },
+    {
+      "path": "final-samples.json",
+      "bytes": 5006,
+      "sha256": "8e72019369bc5caca871fcc6ef7a1068d47e2504fff0955df360e169a7f8df7a"
+    },
+    {
+      "path": "inputs/baseline/LibraryCatalogProjection.kt",
+      "bytes": 3411,
+      "sha256": "de683b4f154bfe9d447930427ee5d927f66488ce0a44143f7d3b19e04cf2b4bf"
+    },
+    {
+      "path": "inputs/final/LibraryCatalogProjection.kt",
+      "bytes": 3534,
+      "sha256": "c67c940268ecb98aa4fb4b397280b94aba4205b4f946ea1c54bf61aea3b62758"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2350,
+      "sha256": "4c3e56500cb233176e051fd69ffeaf74c33c45a50b62521a224b98186b85ad99"
+    },
+    {
+      "path": "resource-boundaries.jsonl",
+      "bytes": 155,
+      "sha256": "3b78bb07ee07d5d2b734736b1525a32a4e8581f8987bfc2a2152f8e765a0ab27"
+    },
+    {
+      "path": "resource-gate.ps1",
+      "bytes": 2851,
+      "sha256": "50b1040b8dfddbe6d7aa04649e2408ffbc88cb19b11731d7e6ff74ee09498350"
+    },
+    {
+      "path": "runs/baseline/fixture-cleanup.json",
+      "bytes": 283,
+      "sha256": "c1498285e0dd29428c23dde2fa3344b62fdea6072c1db60a81255c04dff74f5b"
+    },
+    {
+      "path": "runs/baseline/gradle.log",
+      "bytes": 1587,
+      "sha256": "944464ac8ea6054be89597aa57d333345a07f4aabcf2c24f59bcf4761b9ec33d"
+    },
+    {
+      "path": "runs/baseline/source-before.json",
+      "bytes": 79115,
+      "sha256": "6f509cabe60bd820ebae78cd682c8defbb95f1995b18af9586164fbedf9fddae"
+    },
+    {
+      "path": "runs/baseline/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TagAlbumDefaultsPerformanceTest.xml",
+      "bytes": 2091,
+      "sha256": "8b80a62bd433f5c330e6cd5120b17fd71d4e0a2faca9181e29f84c7b3a44134a"
+    },
+    {
+      "path": "runs/baseline/summary.json",
+      "bytes": 1062,
+      "sha256": "8152cc4d351a7a3bf875399d7f482f12ad8e5dc665f33f495c9e299b03f7e29b"
+    },
+    {
+      "path": "runs/baseline/test-cases.json",
+      "bytes": 232,
+      "sha256": "d7c5a3093785f5c0d4f5b11cd042ed14bdd084f64a7d1abec7d5c5eaf3d198a9"
+    },
+    {
+      "path": "runs/final/fixture-cleanup.json",
+      "bytes": 283,
+      "sha256": "fea2e48eb6b7d00364c8514b0ddda41f597034248ebab3b42f3bcf6323b5fbae"
+    },
+    {
+      "path": "runs/final/gradle.log",
+      "bytes": 1868,
+      "sha256": "46268323f5c2613d967f316ac5c97a87c6989137ca10b74cd4dfa674239f28d4"
+    },
+    {
+      "path": "runs/final/source-before.json",
+      "bytes": 79115,
+      "sha256": "8242261b7753e8bae050ff389d7a8aa65bd7b015bce091599c6cb34bdf002b9f"
+    },
+    {
+      "path": "runs/final/studio-core-TEST-io.github.misakapiano.ccbstudio.core.LibraryInteractionTest.xml",
+      "bytes": 506,
+      "sha256": "dd6ba9d4911f936ae57ffb48b02ce27400974f9331b9df91807b524a18da2219"
+    },
+    {
+      "path": "runs/final/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TagAlbumDefaultsPerformanceTest.xml",
+      "bytes": 4380,
+      "sha256": "01c172948784620990f5548fcb32b472629b62f85053ec8c25a4671906010e5d"
+    },
+    {
+      "path": "runs/final/summary.json",
+      "bytes": 1096,
+      "sha256": "f853c0caa76ad58e54fbc5af62c561c0e0c75fb704418c9984ffd9e998c6f1e6"
+    },
+    {
+      "path": "runs/final/test-cases.json",
+      "bytes": 883,
+      "sha256": "ac72d6a2d0ce6eab346399d66058a59ff4cd0465e10b67c790a82a78f63bdf28"
+    },
+    {
+      "path": "SOURCE_MAP.json",
+      "bytes": 4981,
+      "sha256": "d4f12dfd64236be64d63c6cfb655e53837c8c3c991a1a9b12182b62b226848d4"
+    }
+  ]
+}

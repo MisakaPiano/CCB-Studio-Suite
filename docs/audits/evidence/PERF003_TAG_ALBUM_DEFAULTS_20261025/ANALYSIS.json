@@ -1,0 +1,139 @@
+{
+  "medians": {
+    "baseline": [
+      {
+        "assets": 128,
+        "memberships": 877,
+        "serializedStateBytes": 14013,
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 1.02615,
+          "cpuMs": 0.0,
+          "allocatedBytes": 987432.0
+        }
+      },
+      {
+        "assets": 512,
+        "memberships": 3515,
+        "serializedStateBytes": 55850,
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 3.6969499999999997,
+          "cpuMs": 7.8125,
+          "allocatedBytes": 3784388.0
+        }
+      },
+      {
+        "assets": 2048,
+        "memberships": 14074,
+        "serializedStateBytes": 223365,
+        "kind": "actualLegacy",
+        "medians": {
+          "wallMs": 7.8946000000000005,
+          "cpuMs": 15.625,
+          "allocatedBytes": 14853936.0
+        }
+      }
+    ],
+    "final": [
+      {
+        "assets": 128,
+        "memberships": 877,
+        "serializedStateBytes": 14013,
+        "kind": "current",
+        "medians": {
+          "wallMs": 0.87455,
+          "cpuMs": 0.0,
+          "allocatedBytes": 314664.0
+        }
+      },
+      {
+        "assets": 128,
+        "memberships": 877,
+        "serializedStateBytes": 14013,
+        "kind": "recorded",
+        "medians": {
+          "wallMs": 1.14815,
+          "cpuMs": 0.0,
+          "allocatedBytes": 987508.0
+        }
+      },
+      {
+        "assets": 512,
+        "memberships": 3515,
+        "serializedStateBytes": 55850,
+        "kind": "current",
+        "medians": {
+          "wallMs": 1.5281500000000001,
+          "cpuMs": 0.0,
+          "allocatedBytes": 1056644.0
+        }
+      },
+      {
+        "assets": 512,
+        "memberships": 3515,
+        "serializedStateBytes": 55850,
+        "kind": "recorded",
+        "medians": {
+          "wallMs": 2.8474,
+          "cpuMs": 0.0,
+          "allocatedBytes": 3755396.0
+        }
+      },
+      {
+        "assets": 2048,
+        "memberships": 14074,
+        "serializedStateBytes": 223365,
+        "kind": "current",
+        "medians": {
+          "wallMs": 4.8451,
+          "cpuMs": 15.625,
+          "allocatedBytes": 4045872.0
+        }
+      },
+      {
+        "assets": 2048,
+        "memberships": 14074,
+        "serializedStateBytes": 223365,
+        "kind": "recorded",
+        "medians": {
+          "wallMs": 4.5898,
+          "cpuMs": 0.0,
+          "allocatedBytes": 14853936.0
+        }
+      }
+    ]
+  },
+  "counts": {
+    "baseline": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "baseCommit": "45068dfbf2213f8d8fc2041aa1b4a30e81024efb",
+      "seconds": 15.89,
+      "startedUtc": "2026-10-25T03:02:42.780041+00:00",
+      "sourceStable": true
+    },
+    "final": {
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "baseCommit": "52e0bf05a5844f85c59d3bb79a71b7f2c3182858",
+      "seconds": 19.236,
+      "startedUtc": "2026-10-25T03:04:26.661234+00:00",
+      "sourceStable": true
+    }
+  },
+  "cleanupFiles": 0,
+  "cleanupBytes": 0,
+  "limits": [
+    "Pure synthetic management-label metadata <=4MiB;explicit label constraints checked,no private Repository.validate invocation or real store-admission claim",
+    "Canonical NovelAiGenerationRecipe constructor remains authority,only immutable default val/empty/null contents reused within one call",
+    "Entry constructor and per-entry currentTimeMillis default remain;tests bound each timestamp around call,do not claim distinct timestamp values/count clock invocations",
+    "Two warmups each mode/four alternating same-JVM rounds;counter captured before validation/JSON",
+    "No wholeUI/native/frame/RSS/peakheap/GC/physicalIO/universalWindows or Prompt acceptance",
+    "Direct helper duplicate-tag test preserves old output but is not admitted management-label data"
+  ]
+}
