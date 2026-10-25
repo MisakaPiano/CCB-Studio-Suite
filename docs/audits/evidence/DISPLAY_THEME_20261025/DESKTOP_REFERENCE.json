@@ -1,0 +1,40 @@
+{
+  "recordedUtc": "2026-10-25T09:21:31.046841+00:00",
+  "readOnlyReferenceRoot": "H:/ChatChatBar-Desktop",
+  "commit": "d53d46ca8fe0dbac11c33e85b38e07099b105da8",
+  "branchObserved": "feature/phase8-fish-audio",
+  "unrelatedDirtyWorkObserved": "Desktop backup/mapping/test/docs/skill files; no edits performed by Suite",
+  "files": [
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopTheme.kt",
+      "commit": "d53d46ca8fe0dbac11c33e85b38e07099b105da8",
+      "fixedBlobSha256": "f5f034e452f6045d29ed1776f1d80e88f20d1cb782504ba1689a46dc25ca6845",
+      "workingTextMatchesFixedAtRead": true
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopAppearanceController.kt",
+      "commit": "d53d46ca8fe0dbac11c33e85b38e07099b105da8",
+      "fixedBlobSha256": "4c9538d2eb8a661d24c13dfeadb6d6ab0215125893b1b6b03ce4a0b0b4bd7611",
+      "workingTextMatchesFixedAtRead": true
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopManagePanel.kt",
+      "commit": "d53d46ca8fe0dbac11c33e85b38e07099b105da8",
+      "fixedBlobSha256": "824662d30a80f7d6ee8f19ed5d7680e66e9c9395d4048a9d522aa4ceedda15a9",
+      "workingTextMatchesFixedAtRead": true
+    },
+    {
+      "path": "app/desktopApp/src/main/kotlin/com/example/chatbar/desktop/DesktopSettings.kt",
+      "commit": "d53d46ca8fe0dbac11c33e85b38e07099b105da8",
+      "fixedBlobSha256": "15c6e9a1862258909f7f55ae15fefeb501b6207d38a5ea63d3a98f5ac829b09a",
+      "workingTextMatchesFixedAtRead": true
+    },
+    {
+      "path": "app/sharedCore/src/main/kotlin/com/example/chatbar/domain/appearance/ThemeColor.kt",
+      "commit": "d53d46ca8fe0dbac11c33e85b38e07099b105da8",
+      "fixedBlobSha256": "5c758a51571538fa8fc3192def551fff993b434c99258cd7d882cbacffe502fc",
+      "workingTextMatchesFixedAtRead": true
+    }
+  ],
+  "scope": "display mode, neutral/native/custom accent, palette contrast and save failure handling; no character/background settings or Desktop data store import"
+}

@@ -1,0 +1,46 @@
+# UX-DISPLAY-THEME-001：源码接线，验证因资源预检推迟
+
+2026-10-25 Asia/Tokyo。状态 **SOURCE IMPLEMENTED / NOT COMPILED / NOT TESTED / USER NOT TESTED**，不是功能验收或第3步内部包完成。沿用17:49 JST用户队列：本轮性能段收尾 → 显示主题 → 内部包/验收 → 后三组需求；不新增任务或执行者。注册事项的确认提交4b38e7b仅改任务记录，不启动所登记的后续需求。
+
+## 固定源码与参考
+
+- 本轮应用/新测试源码：[42146d3705f5cbc9ed392735f9c4727f8a8f67d7](https://github.com/MisakaPiano/CCB-Studio-Suite/commit/42146d3705f5cbc9ed392735f9c4727f8a8f67d7)。初稿2c56b3f，随后42146d3补图片工具独立窗口的主题提供器；两段均未编译/执行测试，不记为两轮通过。
+- 前置生产性能边界db46098445d1c1064ee77104fe320268cc6d0f93及字体证据1aa1fde不改；旧性能raw/失败/未采用方案及固定索引不改、不重跑。
+- Desktop只读参考：[d53d46ca8fe0dbac11c33e85b38e07099b105da8](https://github.com/MisakaPiano/ChatChatBar-Desktop/commit/d53d46ca8fe0dbac11c33e85b38e07099b105da8)。核对DesktopTheme、DesktopAppearanceController、DesktopManagePanel、DesktopSettings与共享ThemeColor五个固定文件；读取时工作副本文本均与该提交一致，字节散列见[参考记录](evidence/DISPLAY_THEME_20261025/DESKTOP_REFERENCE.json)。Desktop其他备份/映射等修改不属于本轮，未写入该仓库。
+- [源码与包状态映射](evidence/DISPLAY_THEME_20261025/SOURCE_MAP.json)列出11个应用/测试文件的固定Git blob SHA-256。f6598d3为新源祖先仅证明源码包含；无新包/版本/tag/签名或更新元数据，**包内下载清理修复仍NOT BUILT / NOT VERIFIED**，公开115及旧2484858包不代表本次源。
+
+## 实际接线与边界
+
+Desktop实际显示入口包含跟随系统/浅色/深色、中性/CCB原生/自定义强调色、预设色和恢复默认，并非角色颜色或完整换肤。本轮按该交互做最小Suite接线：
+
+- 主标题栏增加带提示与无障碍名称的齿轮入口“显示主题”，打开单独对话框；保留原路由、布局及工具入口。自定义提供色块和6位RGB输入，不引入新的颜色依赖；已有共享ThemeColor只读复用，不重写其模型/权威Prompt或请求逻辑。
+- 默认仍为深色蓝色，不自动改变用户当前安装/设置。仅用户切换后，通过现有LibraryRepository更新`studioDisplayAppearance`偏好；现有不可变修订链、备份路径及其他最新偏好保留。未知格式、损坏记录或读取失败禁止主题写入，不静默重置；保存成功后才切换显示，失败走现有回执。启动读取在首帧后发起，额外读取成本尚未测量。
+- `StudioAppearance.kt`集中模式、配色、前景对比选择、保存和主题提供器。`Main`、`LibraryPresentation`、`WorkspaceUi`及SuiteSourceAdapters的旧颜色入口改为读取同一可观察palette；主窗口、AI/批次/封面/图片工具独立窗口、菜单、标题按钮、批次警示、排版队列选中态跟随。每进程一个应用工作区，各窗口共用状态；没有跨进程设置广播。
+- 图片原件、排版文档/画布内容及封面像素不重着色；有实际图片时保留预览中性背景，空预览/输入框随主题。Windows关闭按钮红色和白色图标保留原交互；系统拥有的窗口装饰仍由系统管理，未改OS设置。窗口布局、提示、对比度和系统主题变化的实际表现均待运行/人工验证。
+
+## 执行事实与资源门
+
+实际只执行源码只读核对、有限目录体量统计、静态差异/空白检查与记录生成。**未启动Gradle/JVM测试、UI宿主或安装包构建**。源码提交成功不代表编译成功。
+
+[原始预检](evidence/DISPLAY_THEME_20261025/RESOURCE_PREFLIGHT.json)：H盘观测可用1,432,711,168字节（约1.334GiB）。四个明确模块build目录逻辑长度有限遍历均完成、未跟随重解析点：desktop143,500,389、core287,836,985、image-authority10,949,292、asset-library418,505字节。规划包络为这些既有输出的2倍、Gradle元数据128MiB、编译临时64MiB、合成测试16MiB、日志证据16MiB及并行Desktop余量1GiB，合计2,194,033,190字节（约2.043GiB）。这是**保守估算，不是实测峰值或最小所需空间**；未通过此预算，不为启动测试而下调余量。读取时还存在Desktop Java owner47608，无强杀或抢占。
+
+精确测量UTC未捕获，JSON明确区分后续recordedUtc与早先读数，不把记录创建时间冒充精确测量时间。判定`DEFERRED_SPACE_AND_DESKTOP_OWNER`发生在启动前，实际新增测试0；不是测试失败、跳过或PASS。未清理/移动用户文件、日常安装、真实隔离副本、凭据、原始证据或备份，未扩展I盘使用；没有恢复扫描或修改安全/重启设置。
+
+仅暂停需要这些资源的验证/打包步骤，源码核对与留证继续。内部打包需主题验证后单独核算目标卷和解包/运行时/安装产物并存峰值，当前未获资源准入；不能将小测试预算用于包构建。新开任何重负载前重新读实际空间与Desktop owner，不复用本次快照当作未来准入。
+
+## 待执行回归与验收
+
+测试命令（**未执行**）：`python tools/Run-PreviewChecks.py --phase display-theme-20261025 -- :studio-desktop:test --tests '*StudioAppearanceTest'`。须先有新鲜空间预算及Desktop让行门、固定执行源码、离线严格依赖和现有单worker/低优先级；仅新建所属合成fixture，按既有生命周期封存证据后退役。JDK17是构建配置目标，本轮未启动JVM确认环境。
+
+[逐例状态](evidence/DISPLAY_THEME_20261025/test-cases.json)明确四个新增唯一JUnit方法均**NOT EXECUTED / NOT COMPILED**，循环中的模式/颜色样本不另计方法，也不与旧测试累加：
+
+|新增方法|准备覆盖的风险|当前|
+|---|---|---|
+|modesAndColorStylesHaveReadableForegroundsWithoutChangingTheExistingDefault|模式解析、强调色前景对比、现有默认|未编译/未执行|
+|strictSettingsRejectFutureMalformedAndOutOfRangeValuesInsteadOfReplacingThem|未来/损坏/错误类型/越界输入拒绝|未编译/未执行|
+|saveUsesLatestMetadataAndReopensWithoutChangingOriginalImageBytes|最新元数据合并、重复保存、合成原图字节/重开|未编译/未执行|
+|damagedLatestAppearanceBlocksWritesAndRetainsItsRevisionAndOriginal|加载后被破坏的最新记录不可覆盖、合成原图保留|未编译/未执行|
+
+运行后仍需隔离UI核对：三种模式和三种配色；色块/自定义输入/默认恢复；各页、菜单、右键与独立窗口；窄窗口和系统主题变化；失败回执与重开保存。不得对真实凭据/图库或日常安装做自动测试。完成隔离与内部包后再交用户实际验证，**当前没有用户或Project通过**。
+
+资产/编辑仍USER_NOT_TESTED，115体验/Prompt比较分别PENDING，q09 FAILED/root UNKNOWN、旧失败/用户否决、路径错误前态与UTC UNKNOWN及禁止再访问、PRODUCT_HOLD / NOT RC全部保留；新Project材料未发送。下一动作是资源满足后只执行这组新回归并修复实际问题，随后才进入第3步内部包，不能借本项启动后三组需求或公开发布。

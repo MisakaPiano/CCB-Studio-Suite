@@ -1,0 +1,62 @@
+{
+  "applicationSource": "42146d3705f5cbc9ed392735f9c4727f8a8f67d7",
+  "initialThemeDraft": "2c56b3fe3b21f1ef8a9743baacdda94e1f33cac3",
+  "beforeTheme": "4b38e7b",
+  "productionPerformanceBoundary": "db46098445d1c1064ee77104fe320268cc6d0f93",
+  "testExecutionSource": null,
+  "actualTestExecutions": 0,
+  "compileStatus": "NOT COMPILED",
+  "humanAcceptance": "NOT TESTED",
+  "independentReview": "NOT REQUESTED",
+  "packageVersion": null,
+  "packageSha256": null,
+  "releaseTag": "UNCHANGED; no new release",
+  "f6598d3SourceAncestor": true,
+  "packageIncludesF6598d3": "NOT BUILT / NOT VERIFIED",
+  "files": [
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/SuiteSourceAdapters.kt",
+      "fixedGitBlobSha256": "82e5ba0a481a49a313d90de6a0dc4629774cc6bfaa4a3b86ede694245f9e40a2"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/BatchWorkspace.kt",
+      "fixedGitBlobSha256": "d16aaed9cb21c8dff19f84efa147b659714dfb18aef65911ae7a93d9316bd632"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/DisguiseCoverManager.kt",
+      "fixedGitBlobSha256": "e2b26defff5657cf78d8d6faa380da10c3eefe16187841e54792d1c3262ce2fa"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/LibraryPresentation.kt",
+      "fixedGitBlobSha256": "402e9d2356d7562da5e95c5a92139889df5add0ffd473baa81568bafc4901447"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/Main.kt",
+      "fixedGitBlobSha256": "69e9a23f600cf9829a26a49f406216055725ff1b64289f2dc7bc133f99324bde"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioAppearance.kt",
+      "fixedGitBlobSha256": "3382e71413f40144aea35bc0576c8c5bdc6357ac56a72e72fdf0ecce01f7ed2b"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt",
+      "fixedGitBlobSha256": "a351c8f8a1aafdb2477e2b7b56ab81dd90427940260fd51fcd041476308bb2a0"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioTitleControls.kt",
+      "fixedGitBlobSha256": "da005cd4fa6e211ca0c5806c7ade5dbd6985ad872202e332d61942c36f962a85"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetQueueWorkspace.kt",
+      "fixedGitBlobSha256": "dc01a3b3302239dff3b2ae553690e01a70f27d8a3b85bb0e42e5fc0331d19703"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/WorkspaceUi.kt",
+      "fixedGitBlobSha256": "0c67b32778aa90554fd4c77ad283505a41ddd696f6838c51d764adafc86fb364"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioAppearanceTest.kt",
+      "fixedGitBlobSha256": "bf6e1dedee2f324dd9caa218a7c3a1d0014dba321ed94a1cdbf622b2f1f44bd6"
+    }
+  ]
+}

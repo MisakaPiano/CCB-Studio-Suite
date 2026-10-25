@@ -1,0 +1,28 @@
+{
+  "status": "NOT EXECUTED / NOT COMPILED",
+  "applicationSource": "42146d3705f5cbc9ed392735f9c4727f8a8f67d7",
+  "actualJUnitMethodsExecuted": 0,
+  "plannedJUnitMethods": [
+    {
+      "suite": "io.github.misakapiano.ccbstudio.desktop.StudioAppearanceTest",
+      "name": "modesAndColorStylesHaveReadableForegroundsWithoutChangingTheExistingDefault",
+      "status": "NOT EXECUTED"
+    },
+    {
+      "suite": "io.github.misakapiano.ccbstudio.desktop.StudioAppearanceTest",
+      "name": "strictSettingsRejectFutureMalformedAndOutOfRangeValuesInsteadOfReplacingThem",
+      "status": "NOT EXECUTED"
+    },
+    {
+      "suite": "io.github.misakapiano.ccbstudio.desktop.StudioAppearanceTest",
+      "name": "saveUsesLatestMetadataAndReopensWithoutChangingOriginalImageBytes",
+      "status": "NOT EXECUTED"
+    },
+    {
+      "suite": "io.github.misakapiano.ccbstudio.desktop.StudioAppearanceTest",
+      "name": "damagedLatestAppearanceBlocksWritesAndRetainsItsRevisionAndOriginal",
+      "status": "NOT EXECUTED"
+    }
+  ],
+  "deferral": "Resource preflight failed before any Gradle/test process launch; not a test failure or PASS."
+}

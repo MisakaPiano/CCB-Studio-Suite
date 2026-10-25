@@ -1,0 +1,33 @@
+{
+  "targetVolume": "H:",
+  "observedFreeBytes": 1432711168,
+  "existingOutputLogicalBytes": {
+    "studio-desktop": 143500389,
+    "studio-core": 287836985,
+    "image-authority": 10949292,
+    "asset-library": 418505
+  },
+  "allFourScopedTraversalsComplete": true,
+  "reparseFollowed": false,
+  "planningComponentsBytes": {
+    "potential_duplicate_existing_outputs": 885410342,
+    "gradle_metadata_cache_growth_estimate": 134217728,
+    "compiler_disk_temporary_estimate": 67108864,
+    "synthetic_test_payload_cap_estimate": 16777216,
+    "test_log_evidence_estimate": 16777216,
+    "concurrent_desktop_headroom": 1073741824
+  },
+  "planningTotalBytes": 2194033190,
+  "basis": "Conservative planning envelope, NOT measured peak or a claim of minimum required disk. Unchanged dependency outputs might be reused; envelope must not be relaxed just to start. Includes concurrent Desktop headroom. No Gradle process was started.",
+  "desktopJavaOwnerAtObservation": [
+    47608
+  ],
+  "unknownJavaOwnersAtObservation": 0,
+  "decision": "DEFERRED_SPACE_AND_DESKTOP_OWNER",
+  "actualTestExecutions": 0,
+  "packageDecision": "NOT STARTED; dependent on theme validation and a fresh separate package peak budget",
+  "crossVolumeUse": "NONE; no expanded I: authorization",
+  "cleanupOrMove": "NONE",
+  "recordedUtc": "2026-10-25T09:17:55.634224+00:00",
+  "measurementUtc": "Not captured; preceding bounded read-only tool in this turn. recordedUtc is record creation, not an exact measurement timestamp."
+}

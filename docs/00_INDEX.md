@@ -1,3 +1,7 @@
+## 2026-10-25 显示主题源码接线；资源预检推迟验证
+
+[UX-DISPLAY-THEME-001源码/待执行逐例/预检](audits/DISPLAY_THEME_IMPLEMENTATION_20261025.md)：42146d3，Desktop固定d53d46c只读核对，主/独立窗口颜色入口统一；4方法准备但NOT COMPILED/NOT TESTED、实际0执行。H盘1.334GiB低于保守2.043GiB预算且Desktop owner存在，未启动重负载/包；只推迟依赖步骤，低负载工作继续，无清理/跨盘/日常设置/公开发布，旧未验保持。
+
 ## 2026-10-25 PERF-005字体依赖清单最终3方法通过
 
 [db46098应用/实际执行与固定证据](audits/PERF005_FONT_DEPENDENCIES_20261025.md)：最终3唯一方法PASS，基线b049e4c输入/639d4ad执行1方法与4轮资源门各0分列。只函数体收集，原顺序/重复/完整解析/错误/字体持久校验保持；128文本纯12.85→9.34MB、内联24.12→20.61MB，仅清单构造非加载/渲染/UI/RSS/人工。新[复审只准备](../handoff/PERF005_FONT_DEPENDENCIES_REVIEW_READY_20261025.md)，旧六行索引不扩、旧失败/未验/UNKNOWN保持。主题UX-DISPLAY-THEME-001仅8fc577e排队，持续性能授权/Desktop优先不变，无发行/日常操作。
