@@ -191,13 +191,13 @@ accdc59/最终5唯一方法PASS，12MiB当前线程分配46.44→0.606MB；墙�
 
 本次用户所列五项已在下方“用户待办登记”和现有合同中登记，沿用原编号，不新建任务或实施合同；本条只确认登记与最新状态，不中断、更改或回退当前进行中的修改，也不触发新测量、测试或代码修改。
 
-本次再次核对登记：五项均已有对应记录，未新增重复任务。性能后续范围仍须在当前收尾后确认；本消息不重排或启动既有进行中工作。资产管理/编辑均保持用户未验，本地文件管理及编辑工具对照仅排队；清理与Desktop参考报告沿用原合同及下述最新Project限定结论，包集成等未验项不关闭。
+本次再次核对登记：五项均已有对应记录，未新增重复任务。性能后续范围仍须在当前收尾后确认，承接PERF-001～PERF-007及既有基线；本消息不启动测量、测试或代码修改，也不重排、中断或改变既有进行中工作。资产管理/编辑均保持USER_NOT_TESTED，本地文件管理及编辑工具对照仅排队；清理与Desktop参考报告沿用REVIEW_FIXES_AND_UPDATE_CLEANUP_20261024，包集成等未验项不关闭。当前实际执行顺序仍按上方17:49 JST队列及最新复审记录，本段较早的“下一项性能”登记不倒退或重新启动已完成的性能阶段。
 
 - 顺序：既有复审修复收尾 → 既有性能专项PERF-001～PERF-007（承接原基线，具体后续范围在收尾后确认）→ 后续需求另定范围。既有已获授权的进行中工作保持原范围，本消息不追加执行权限。
 - UX-RECOVERY / W2–W4：资产管理界面、编辑界面均保持USER_NOT_TESTED；实现、自动通过或历史局部人工回执均不能代替两界面的用户实际验收。
 - UX-ASSET-FS-001：沿用[既有需求](../tasks/UX_RECOVERY_CONTINUOUS.md#2026-10-25-后续需求登记仅记录不启动)，PLANNED / NOT STARTED；本地文件/文件夹直接管理、批量重命名/复制/移动/删除，以及移出图库、回收站、永久删除原文件的区别均保留。
 - UX-EDITOR-GAP-001：WAITING_FOR_USER_EDITOR_TEST；到用户测试图片编辑工具时再对照已登记的unified-image-tool地址盘点并确定整合范围，现在不浏览盘点或整合。
-- REVIEW_FIXES_AND_UPDATE_CLEANUP_20261024：更新残留清理和Desktop参考报告继续沿用[原合同](../tasks/REVIEW_FIXES_AND_UPDATE_CLEANUP_20261024.md)；按[最新已登记Project结论](audits/PROJECT_DOWNLOAD_TERMINAL_CLOSURE_20261025.md)，f6598d3/54a5ba26仅下载终态P2源码限定关闭，安装包集成/原生运行仍未验证，旧内部包不含修复；报告存在不等于所有问题完成，不重复开工。下方较早PENDING表述保留历史时点。
+- REVIEW_FIXES_AND_UPDATE_CLEANUP_20261024：更新残留清理和Desktop参考报告继续沿用[原合同](../tasks/REVIEW_FIXES_AND_UPDATE_CLEANUP_20261024.md)；按[最新已登记Project结论](audits/PROJECT_DOWNLOAD_TERMINAL_CLOSURE_20261025.md)，f6598d3/54a5ba26仅下载终态P2源码限定关闭，安装包集成/原生运行仍未验证，旧内部包不含修复；报告存在不等于所有问题完成，不重复开工。下方较早PENDING表述保留历史时点。 UPD-CLEAN-PROTECTION-001仍STATIC ONLY / NOT EXECUTED；主题30b0659/dce6600的最新独立结论PARTIAL_ACCEPT / LIMITED_HOLD及P2-SELECTED-CONTRAST OPEN沿用UX-DISPLAY-THEME-001，不混写成清理或Desktop报告已全部完成，原固定源码/证据保持。见[最新主题限定结论](audits/THEME_PROJECT_REVIEW_RESULT_20261025.md)。
 
 本次仅改此任务清单；无新测试、代码、发版、日常安装更新、删除或Desktop开发。115体验和Prompt对比分别PENDING，旧失败、用户否决和其他未验证项保持。
 
