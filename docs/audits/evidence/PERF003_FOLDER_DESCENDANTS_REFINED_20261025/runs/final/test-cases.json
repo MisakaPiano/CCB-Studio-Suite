@@ -1,0 +1,20 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.OrganizationDescendantsPerformanceTest",
+    "name": "depthFirstOrderUnknownRootsAndReparentedSnapshotsMatchLegacy",
+    "seconds": "0.081",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.OrganizationDescendantsPerformanceTest",
+    "name": "originalOrganizationAdmissionStillRejectsInvalidGraphAndSizeAndDepth",
+    "seconds": "0.012",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.OrganizationDescendantsPerformanceTest",
+    "name": "measuredActualFolderTraversalPreservesValidatedMetadataAndRootMembership",
+    "seconds": "1.113",
+    "status": "PASS"
+  }
+]

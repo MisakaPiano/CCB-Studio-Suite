@@ -1,0 +1,296 @@
+{
+  "summary": {
+    "phase": "perf003-folder-descendants-refined-lowwarm-20261025",
+    "startedUtc": "2026-10-25T02:19:20.815038+00:00",
+    "seconds": 62.999,
+    "exitCode": 0,
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "sourceStable": true,
+    "status": "PASS",
+    "testEvidence": "EXECUTED",
+    "arguments": [
+      "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+      "--no-daemon",
+      "--priority",
+      "low",
+      "--max-workers=1",
+      "--console=plain",
+      "-Pkotlin.compiler.execution.strategy=in-process",
+      "--offline",
+      "--dependency-verification=strict",
+      "-PpreviewTestRoot=H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-96f5276206fa40abb477c03b82b9852a\\payload",
+      ":studio-core:test",
+      "--tests",
+      "*OrganizationDescendantsPerformanceTest.measuredActualFolderTraversalPreservesValidatedMetadataAndRootMembership"
+    ],
+    "baseCommit": "a59a78324b47e0e5f9287f90dfa3d02b45f29346",
+    "realProvider": "NOT TESTED",
+    "humanAcceptance": "NOT TESTED"
+  },
+  "medians": [
+    {
+      "folders": 32,
+      "context": "root",
+      "kind": "legacy",
+      "medians": {
+        "wallMs": 0.1361,
+        "cpuMs": 0.0,
+        "allocatedBytes": 41152.0
+      }
+    },
+    {
+      "folders": 32,
+      "context": "root",
+      "kind": "current",
+      "medians": {
+        "wallMs": 0.07075000000000001,
+        "cpuMs": 0.0,
+        "allocatedBytes": 6528.0
+      }
+    },
+    {
+      "folders": 32,
+      "context": "small",
+      "kind": "legacy",
+      "medians": {
+        "wallMs": 0.0076500000000000005,
+        "cpuMs": 0.0,
+        "allocatedBytes": 824.0
+      }
+    },
+    {
+      "folders": 32,
+      "context": "small",
+      "kind": "current",
+      "medians": {
+        "wallMs": 0.0072,
+        "cpuMs": 0.0,
+        "allocatedBytes": 464.0
+      }
+    },
+    {
+      "folders": 32,
+      "context": "leaf",
+      "kind": "legacy",
+      "medians": {
+        "wallMs": 0.00435,
+        "cpuMs": 0.0,
+        "allocatedBytes": 320.0
+      }
+    },
+    {
+      "folders": 32,
+      "context": "leaf",
+      "kind": "current",
+      "medians": {
+        "wallMs": 0.00475,
+        "cpuMs": 0.0,
+        "allocatedBytes": 248.0
+      }
+    },
+    {
+      "folders": 32,
+      "context": "unknown",
+      "kind": "legacy",
+      "medians": {
+        "wallMs": 0.0043,
+        "cpuMs": 0.0,
+        "allocatedBytes": 320.0
+      }
+    },
+    {
+      "folders": 32,
+      "context": "unknown",
+      "kind": "current",
+      "medians": {
+        "wallMs": 0.0072,
+        "cpuMs": 0.0,
+        "allocatedBytes": 248.0
+      }
+    },
+    {
+      "folders": 256,
+      "context": "root",
+      "kind": "legacy",
+      "medians": {
+        "wallMs": 1.7433,
+        "cpuMs": 0.0,
+        "allocatedBytes": 335616.0
+      }
+    },
+    {
+      "folders": 256,
+      "context": "root",
+      "kind": "current",
+      "medians": {
+        "wallMs": 1.15495,
+        "cpuMs": 0.0,
+        "allocatedBytes": 38888.0
+      }
+    },
+    {
+      "folders": 256,
+      "context": "small",
+      "kind": "legacy",
+      "medians": {
+        "wallMs": 0.01245,
+        "cpuMs": 0.0,
+        "allocatedBytes": 824.0
+      }
+    },
+    {
+      "folders": 256,
+      "context": "small",
+      "kind": "current",
+      "medians": {
+        "wallMs": 0.011800000000000001,
+        "cpuMs": 0.0,
+        "allocatedBytes": 464.0
+      }
+    },
+    {
+      "folders": 256,
+      "context": "leaf",
+      "kind": "legacy",
+      "medians": {
+        "wallMs": 0.0073,
+        "cpuMs": 0.0,
+        "allocatedBytes": 320.0
+      }
+    },
+    {
+      "folders": 256,
+      "context": "leaf",
+      "kind": "current",
+      "medians": {
+        "wallMs": 0.007050000000000001,
+        "cpuMs": 0.0,
+        "allocatedBytes": 248.0
+      }
+    },
+    {
+      "folders": 256,
+      "context": "unknown",
+      "kind": "legacy",
+      "medians": {
+        "wallMs": 0.00695,
+        "cpuMs": 0.0,
+        "allocatedBytes": 320.0
+      }
+    },
+    {
+      "folders": 256,
+      "context": "unknown",
+      "kind": "current",
+      "medians": {
+        "wallMs": 0.0069,
+        "cpuMs": 0.0,
+        "allocatedBytes": 248.0
+      }
+    },
+    {
+      "folders": 1000,
+      "context": "root",
+      "kind": "legacy",
+      "medians": {
+        "wallMs": 6.03445,
+        "cpuMs": 0.0,
+        "allocatedBytes": 1248336.0
+      }
+    },
+    {
+      "folders": 1000,
+      "context": "root",
+      "kind": "current",
+      "medians": {
+        "wallMs": 13.39945,
+        "cpuMs": 15.625,
+        "allocatedBytes": 124856.0
+      }
+    },
+    {
+      "folders": 1000,
+      "context": "small",
+      "kind": "legacy",
+      "medians": {
+        "wallMs": 0.01815,
+        "cpuMs": 0.0,
+        "allocatedBytes": 648.0
+      }
+    },
+    {
+      "folders": 1000,
+      "context": "small",
+      "kind": "current",
+      "medians": {
+        "wallMs": 0.0173,
+        "cpuMs": 0.0,
+        "allocatedBytes": 336.0
+      }
+    },
+    {
+      "folders": 1000,
+      "context": "leaf",
+      "kind": "legacy",
+      "medians": {
+        "wallMs": 0.010100000000000001,
+        "cpuMs": 0.0,
+        "allocatedBytes": 240.0
+      }
+    },
+    {
+      "folders": 1000,
+      "context": "leaf",
+      "kind": "current",
+      "medians": {
+        "wallMs": 0.0132,
+        "cpuMs": 0.0,
+        "allocatedBytes": 184.0
+      }
+    },
+    {
+      "folders": 1000,
+      "context": "unknown",
+      "kind": "legacy",
+      "medians": {
+        "wallMs": 0.0088,
+        "cpuMs": 0.0,
+        "allocatedBytes": 240.0
+      }
+    },
+    {
+      "folders": 1000,
+      "context": "unknown",
+      "kind": "current",
+      "medians": {
+        "wallMs": 0.0104,
+        "cpuMs": 0.0,
+        "allocatedBytes": 184.0
+      }
+    }
+  ],
+  "root1000": {
+    "legacyWallMs": 6.03445,
+    "currentWallMs": 13.39945,
+    "legacyAllocatedBytes": 1248336,
+    "currentAllocatedBytes": 124856
+  },
+  "classification": "Functional measurement PASS but response-performance candidate NOT ADOPTED;no causal attribution",
+  "cleanup": {
+    "root": "H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-96f5276206fa40abb477c03b82b9852a",
+    "status": "COMPLETE",
+    "removed": 0,
+    "bytesFreed": 0,
+    "retained": [],
+    "sourceManifestSha256": "a18c3d51a8ff7f719a1d330666e2b6ef91417bd5e3078dd501e7e1f14cb3a850"
+  },
+  "limits": [
+    "Two warmups per mode,four same-JVM alternating rounds;full context data retained",
+    "Desktop50020 created02:19:15 during resource-gate-to-Gradle transition and present during summary window;CPU activity unknown",
+    "No quiet host/confirmed JIT cause/first invocation/fullUI/RSS/universal speed conclusion",
+    "More-warm cohort not used to erase this slower cohort or force adoption"
+  ]
+}

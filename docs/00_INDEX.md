@@ -1,3 +1,7 @@
+## 2026-10-25 组织遍历试验未采用：原方法已恢复
+
+[全部候选/诊断/负面样本/恢复依据](audits/PERF003_FOLDER_TRAVERSAL_EXPERIMENT_20261025.md)：92f8f0e恢复原方法、生产同fa58a50，不把低分配但响应收益不稳候选写成修复；原包/SHA和未验保持。下一步仅重复调用次数基线，空范围/归档/顺序/布局必须保留。性能16报告索引仍只准备未外发，无发布/日常操作，Desktop优先。
+
 ## 2026-10-25 组织目录候选性能HOLD；性能复审索引只准备
 
 [01020b1功能/性能分列及原始结果](audits/PERF003_FOLDER_DESCENDANTS_CANDIDATE_01020B1_20261025.md)：3方法功能PASS，大根配对墙钟回退、性能HOLD/根因UNKNOWN，测试预热诊断另列、生产不变。新[16历史增量复审索引](../handoff/PERFORMANCE_INCREMENT_REVIEW_READY_20261025.md)只固定fa58a50、排除此候选，不累加、不外发/发版；资产/编辑/115/Prompt/q09与原失败边界保持，Desktop优先。

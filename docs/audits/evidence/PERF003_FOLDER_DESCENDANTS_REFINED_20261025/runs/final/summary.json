@@ -1,0 +1,31 @@
+{
+  "phase": "perf003-folder-descendants-refined-final-20261025",
+  "startedUtc": "2026-10-25T02:13:13.424162+00:00",
+  "seconds": 20.923,
+  "exitCode": 0,
+  "tests": 3,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--priority",
+    "low",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    "-PpreviewTestRoot=H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-b50eb443e39a48f6916fcdae0a49942f\\payload",
+    ":studio-core:test",
+    "--tests",
+    "*OrganizationDescendantsPerformanceTest"
+  ],
+  "baseCommit": "0564cc48fe75a4aecec6e8b0137b762a89f8bc2c",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

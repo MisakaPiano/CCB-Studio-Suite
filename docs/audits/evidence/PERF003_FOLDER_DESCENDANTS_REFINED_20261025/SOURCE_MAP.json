@@ -1,0 +1,67 @@
+{
+  "sources": {
+    "baseline": "e3989bc1f5e5f4a99caffee7419e4bb95d8f8b83",
+    "final": "0564cc48fe75a4aecec6e8b0137b762a89f8bc2c"
+  },
+  "executionSource": "0564cc48fe75a4aecec6e8b0137b762a89f8bc2c",
+  "baselineExecutionSource": "d30e94de2119f636b6517a0da81e51dbd7dbdfb8",
+  "executionModulesAndToolsEqualApplication": true,
+  "identities": [
+    {
+      "run": "baseline",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/GenerationOrganization.kt",
+      "testInputSha256": "7be0ad53cb7cd3a0771ace09520e14fe34361c4b360c860f86f111cf35e0f40c",
+      "gitSha256": "ea09b2a94b0f8db1a54d3ee418d9234e40ee5c27675c7c36bc0823deff669d20"
+    },
+    {
+      "run": "baseline",
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/OrganizationDescendantsPerformanceTest.kt",
+      "testInputSha256": "acc99871860a72cf56955c5043e6500a7a0a111a16bba29cb49091bfa541a023",
+      "gitSha256": "acc99871860a72cf56955c5043e6500a7a0a111a16bba29cb49091bfa541a023"
+    },
+    {
+      "run": "baseline",
+      "path": "tools/Run-PreviewChecks.py",
+      "testInputSha256": "45f0f681f68b83c67c5a04607dfea09ecea742bcfd2f5f4ee31e3162901e9e23",
+      "gitSha256": "d8dec9e6bcc417c59cc9d3dd32b79fd4519c16b86adbf582798b2d707c4935b4"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/GenerationOrganization.kt",
+      "testInputSha256": "78b548cfd89be65a56356cc8a3885e394a0e0640bfeb3acc78539e1285d1aa8d",
+      "gitSha256": "c5a7a6cf10ba8271a8c614f2c7f7043a04d91744d4964dd8ce3286df7efc6fc6"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/OrganizationDescendantsPerformanceTest.kt",
+      "testInputSha256": "fe74f966daafd4bee67734831e0c9e2eb3f2f787b7863cde600508d66edb2151",
+      "gitSha256": "fe74f966daafd4bee67734831e0c9e2eb3f2f787b7863cde600508d66edb2151"
+    },
+    {
+      "run": "final",
+      "path": "tools/Run-PreviewChecks.py",
+      "testInputSha256": "45f0f681f68b83c67c5a04607dfea09ecea742bcfd2f5f4ee31e3162901e9e23",
+      "gitSha256": "d8dec9e6bcc417c59cc9d3dd32b79fd4519c16b86adbf582798b2d707c4935b4"
+    }
+  ],
+  "changedModulePaths": [
+    "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/GenerationOrganization.kt",
+    "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/OrganizationDescendantsPerformanceTest.kt"
+  ],
+  "productionOnlyDescendantsBody": true,
+  "allOrganizationValidationPathBatchArchiveQueueAndOtherProductionTextUnchanged": true,
+  "legacyBodyExactExceptExtensionPrivateAndRecursiveName": true,
+  "rawInputHashAndCanonicalGitBothVerified": true,
+  "finalUniqueMethods": 3,
+  "baselineRepeatedMethodNotAdded": true,
+  "refinedFrom": "01020b1,negative cohort7314ef9 and warm diagnostic e1f4f2a retained",
+  "lowWarmCrossCheck": "PENDING / separate evidence",
+  "cancelledRootOnlyGate": "f6d680c;0 test executions;superseded before start",
+  "parentAdjacencyIndex": "NOT IMPLEMENTED;avoid imposing whole-tree index on small/leaf lookup",
+  "remainingConsumerMultiplicity": "NOT FIXED in this increment;see notes",
+  "packageVersion": "NONE",
+  "packageSha256": "NONE (no package built)",
+  "release": "NONE",
+  "independentReview": "NOT REQUESTED",
+  "humanAndPackage": "NOT TESTED"
+}

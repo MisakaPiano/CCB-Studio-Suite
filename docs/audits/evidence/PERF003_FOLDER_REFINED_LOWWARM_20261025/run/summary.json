@@ -1,0 +1,31 @@
+{
+  "phase": "perf003-folder-descendants-refined-lowwarm-20261025",
+  "startedUtc": "2026-10-25T02:19:20.815038+00:00",
+  "seconds": 62.999,
+  "exitCode": 0,
+  "tests": 1,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--priority",
+    "low",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    "-PpreviewTestRoot=H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-96f5276206fa40abb477c03b82b9852a\\payload",
+    ":studio-core:test",
+    "--tests",
+    "*OrganizationDescendantsPerformanceTest.measuredActualFolderTraversalPreservesValidatedMetadataAndRootMembership"
+  ],
+  "baseCommit": "a59a78324b47e0e5f9287f90dfa3d02b45f29346",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

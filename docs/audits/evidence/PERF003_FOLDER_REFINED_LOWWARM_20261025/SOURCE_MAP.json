@@ -1,0 +1,16 @@
+{
+  "applicationSource": "0564cc48fe75a4aecec6e8b0137b762a89f8bc2c",
+  "executionSource": "a59a78324b47e0e5f9287f90dfa3d02b45f29346",
+  "onlyChangedModuleInput": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/OrganizationDescendantsPerformanceTest.kt",
+  "onlyChange": "test warmup20to2,no production change",
+  "productionInputSha256": "78b548cfd89be65a56356cc8a3885e394a0e0640bfeb3acc78539e1285d1aa8d",
+  "testInputSha256": "bfe1b6dbf38337edab65df98223f8ab59744ecdfac5f7c6e2e188b7c2f3263c2",
+  "diagnosticUniqueMethods": 1,
+  "noAdditionalFunctionalCoverage": true,
+  "originalThreeMethodsNotAddedAgain": true,
+  "originalCandidateAndWarmDiagnosticRetained": true,
+  "performanceStatus": "NOT ADOPTED;lowwarm root still slower,restore original traversal before separate caller optimization",
+  "release": "NONE",
+  "independentReview": "NOT REQUESTED",
+  "userAndPackage": "NOT TESTED"
+}
