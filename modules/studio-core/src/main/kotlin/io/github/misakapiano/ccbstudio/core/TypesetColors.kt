@@ -8,6 +8,9 @@ import kotlinx.serialization.json.*
 /** sRGB colors used by TypeSet's controls and inline tags. Unsupported syntax is
  * explicit; the original text is retained instead of silently using a prior color. */
 object TypesetColors {
+    private val functionSyntax by lazy { Regex("([a-z]+)\\((.*)\\)",RegexOption.DOT_MATCHES_ALL) }
+    private val whitespaceSyntax by lazy { Regex("\\s+") }
+    private val numberSyntax by lazy { Regex("[+-]?(?:[0-9]+(?:\\.[0-9]*)?|\\.[0-9]+)(?:e[+-]?[0-9]+)?") }
     private val names by lazy {
         documentJson.parseToJsonElement(requireNotNull(javaClass.getResource("/typeset/css-named-colors.json")).readText()).jsonObject.mapValues{it.value.jsonPrimitive.content}
     }
@@ -21,7 +24,7 @@ object TypesetColors {
             val expanded=if(raw.length<5)raw.flatMap{listOf(it,it)}.joinToString("")else raw
             return Color(expanded.substring(0,2).toInt(16),expanded.substring(2,4).toInt(16),expanded.substring(4,6).toInt(16),if(expanded.length==8)expanded.substring(6,8).toInt(16)else 255)
         }
-        val match=Regex("([a-z]+)\\((.*)\\)",RegexOption.DOT_MATCHES_ALL).matchEntire(value)
+        val match=functionSyntax.matchEntire(value)
             ?:throw IllegalArgumentException("无法识别颜色；可使用色名、HEX、RGB、HSL 或 HWB")
         val function=match.groupValues[1];val body=match.groupValues[2].trim();val legacy=',' in body
         require(function in setOf("rgb","rgba","hsl","hsla","hwb")){"尚不支持此颜色空间；原值保留，请明确转换为 sRGB"}
@@ -32,7 +35,7 @@ object TypesetColors {
             parts=fields.take(3);alpha=fields.getOrNull(3)
         } else {
             val sides=body.split('/');require(sides.size<=2)
-            parts=sides[0].trim().split(Regex("\\s+"));require(parts.size==3)
+            parts=sides[0].trim().split(whitespaceSyntax);require(parts.size==3)
             alpha=sides.getOrNull(1)?.trim()
         }
         val a=alpha?.let{component(it,1.0)}?.coerceIn(0.0,1.0)?:1.0
@@ -51,7 +54,7 @@ object TypesetColors {
         return color(hsl(hue,second,third))
     }
     private fun number(value:String):Double {
-        require(Regex("[+-]?(?:[0-9]+(?:\\.[0-9]*)?|\\.[0-9]+)(?:e[+-]?[0-9]+)?").matches(value)){"颜色包含无效数值"}
+        require(numberSyntax.matches(value)){"颜色包含无效数值"}
         return value.toDouble().also{require(it.isFinite())}
     }
     private fun component(value:String,percentScale:Double)=when {
