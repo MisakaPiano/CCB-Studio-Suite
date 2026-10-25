@@ -50,6 +50,11 @@ class GallerySortPreferences(private val library:LibraryRepository) {
 private val naturalParts=Regex("\\d+|\\D+")
 private fun naturalKey(value:String)=naturalParts.findAll(value.lowercase(Locale.ROOT)).map{it.value}.toList()
 fun galleryNaturalCompare(a:String,b:String):Int=compareNaturalKeys(naturalKey(a),naturalKey(b))
+/** One synchronous sort owns its keys; no cross-query or retained corpus cache. */
+internal fun galleryNaturalComparator():Comparator<String> {
+    val keys=HashMap<String,List<String>>()
+    return Comparator{a,b->compareNaturalKeys(keys.getOrPut(a){naturalKey(a)},keys.getOrPut(b){naturalKey(b)})}
+}
 private fun compareNaturalKeys(left:List<String>,right:List<String>):Int {
     for(i in 0 until minOf(left.size,right.size)) {
         val x=left[i];val y=right[i]

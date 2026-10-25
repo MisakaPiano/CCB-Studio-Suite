@@ -13,11 +13,14 @@ class LibraryTagIndex(ids:Collection<String>,labels:Map<String,AssetLabels>) {
         }
         counts=totals
     }
-    fun suggestions(text:String):List<String> = counts.keys.filter{it.contains(text.trim(),ignoreCase=true)}
+    fun suggestions(text:String):List<String> {
+        val query=text.trim();val natural=galleryNaturalComparator()
+        return counts.keys.filter{it.contains(query,ignoreCase=true)}
         .sortedWith { a,b->
-            val prefixA=a.startsWith(text.trim(),true);val prefixB=b.startsWith(text.trim(),true)
-            if(prefixA!=prefixB)if(prefixA)-1 else 1 else galleryNaturalCompare(a,b)
+            val prefixA=a.startsWith(query,true);val prefixB=b.startsWith(query,true)
+            if(prefixA!=prefixB)if(prefixA)-1 else 1 else natural.compare(a,b)
         }
+    }
 }
 fun matchesLibraryTags(actual:List<String>,conditions:List<String>,any:Boolean=false):Boolean =
     conditions.isEmpty() || if(any)conditions.any{it in actual}else conditions.all{it in actual}
