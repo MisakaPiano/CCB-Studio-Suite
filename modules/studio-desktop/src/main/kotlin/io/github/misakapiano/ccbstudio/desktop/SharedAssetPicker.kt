@@ -24,7 +24,7 @@ import com.example.chatbar.desktop.*
             LazyVerticalGrid(GridCells.Adaptive(120.dp),Modifier.weight(1f)) {
                 items(available.filter{a->val labels=c.library.labels(a.request().id().toString());a.request().name().contains(query,true)||labels.alias.contains(query,true)||labels.tags.any{it.contains(query,true)}},key={it.request().id().toString()}) {a->
                     val id=a.request().id().toString()
-                    Column(Modifier.padding(4.dp).border(1.dp,if(id in selected)Gold else Quiet)
+                    Column(Modifier.padding(4.dp).border(1.dp,if(id in selected)SelectionInk else Quiet)
                         .clickable{selected=if(multiple){if(id in selected)selected-id else selected+id}else setOf(id)}
                         .semantics{contentDescription="选用资产 $id";this.selected=id in selected}) {
                         val labels=c.library.labels(id)

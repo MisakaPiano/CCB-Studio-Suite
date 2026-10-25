@@ -269,7 +269,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
                                     if(c.library.canRedo)add(ContextMenuItem("重做"){c.library.redo()})
                                 }
                             }}) {
-                                Column(Modifier.libraryCardBounds(drag,album.key,albumIds){rootOffset}.semantics{this.selected=selected}.background(if(selected)LibrarySelected else androidx.compose.ui.graphics.Color.Transparent,androidx.compose.foundation.shape.RoundedCornerShape(5.dp)).border(1.dp,if(selected)Gold else androidx.compose.ui.graphics.Color.Transparent,androidx.compose.foundation.shape.RoundedCornerShape(5.dp)).padding(5.dp)
+                                Column(Modifier.libraryCardBounds(drag,album.key,albumIds){rootOffset}.semantics{this.selected=selected}.background(if(selected)LibrarySelected else androidx.compose.ui.graphics.Color.Transparent,androidx.compose.foundation.shape.RoundedCornerShape(5.dp)).border(1.dp,if(selected)SelectionInk else androidx.compose.ui.graphics.Color.Transparent,androidx.compose.foundation.shape.RoundedCornerShape(5.dp)).padding(5.dp)
                                     .onPointerEvent(PointerEventType.Press){event->ctrl=event.keyboardModifiers.isCtrlPressed;shift=event.keyboardModifiers.isShiftPressed;if(event.buttons.isSecondaryPressed){if(!selected)c.selection=albumIds.toSet();c.current=id;focus.requestFocus()}}
                                     .combinedClickable(onClick={choose()},onDoubleClick={if(grouped)enter()else{c.current=id;g.preview(visibleIds,id)}})) {
                                     Box(Modifier.fillMaxWidth().height(115.dp).semantics{contentDescription=if(grouped)"图库相册 $id"else"图库图片 $id"}) {
@@ -343,7 +343,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
             GalleryTools(c,drag,{rootOffset},orderedSelection)
         }
         val density=androidx.compose.ui.platform.LocalDensity.current
-        drag.marquee?.let{rect->Box(Modifier.offset(with(density){rect.left.toDp()},with(density){rect.top.toDp()}).size(with(density){rect.width.toDp()},with(density){rect.height.toDp()}).background(Gold.copy(alpha=.15f)).border(1.dp,Gold))}
+        drag.marquee?.let{rect->Box(Modifier.offset(with(density){rect.left.toDp()},with(density){rect.top.toDp()}).size(with(density){rect.width.toDp()},with(density){rect.height.toDp()}).background(Gold.copy(alpha=.15f)).border(1.dp,SelectionInk))}
         var dragPreviewSize by remember{mutableStateOf(androidx.compose.ui.unit.IntSize.Zero)}
         val previewPosition=libraryDragPreviewPosition(drag.position,dragPreviewSize,rootSize,Offset(25*density.density,25*density.density))
         if(drag.dragging.isNotEmpty())Surface(Modifier.zIndex(10f).offset{androidx.compose.ui.unit.IntOffset(previewPosition.x.toInt(),previewPosition.y.toInt())}.width(180.dp).onSizeChanged{dragPreviewSize=it}.semantics{contentDescription="拖动预览 ${drag.dragging.size} 项"},color=Panel,elevation=8.dp) {
@@ -379,7 +379,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
 @Composable private fun GalleryGuidanceDialog(c:WorkbenchController,ids:List<String>,close:()->Unit) {
     var current by remember(ids){mutableStateOf(ids.first())}
     AlertDialog(onDismissRequest=close,title={Text("图像引导 · ${ids.size} 张")},text={Column {
-        Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState())){ids.forEach{id->Box(Modifier.size(72.dp).border(if(id==current)2.dp else 1.dp,if(id==current)Gold else Quiet).clickable{current=id}){QueueStaticThumbnail(c,id,Modifier.fillMaxSize())}}}
+        Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState())){ids.forEach{id->Box(Modifier.size(72.dp).border(if(id==current)2.dp else 1.dp,if(id==current)SelectionInk else Quiet).clickable{current=id}){QueueStaticThumbnail(c,id,Modifier.fillMaxSize())}}}
         Text("选择其中一张并指定引导用途；其余所选图片继续保留。")
     }},confirmButton={Column {
         com.example.chatbar.domain.image.NovelAiImageUseTarget.entries.forEach{target->TextButton(enabled=!c.busy,onClick={c.useImage(current,target);close()}){Text(target.displayName)}}

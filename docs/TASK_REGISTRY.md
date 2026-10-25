@@ -1,5 +1,7 @@
 ## 当前队列：2026-10-25 17:49 JST用户新顺序（替代旧后续排期）
 
+最新执行补充：用户14:19 UTC明确批准原UX-DISPLAY-THEME-001 / P2-SELECTED-CONTRAST窄修及一次原Project复审，见[现有合同](../tasks/UX_RECOVERY_CONTINUOUS.md)。选中态代码及三项针对性回归已准备；H约1.64GiB低于原2.04GiB准入，NOT COMPILED / NOT TESTED，0新测试，P2 OPEN / REVIEW NOT SUBMITTED，不以旧四项PASS代签新源码。旧30b0659/dce6600和Project限定结论不改；不打包/发布/安装/搬删或启动其他任务。下方“本次只送审”等为此前授权时点。
+
 最新Project结果：用户13:27 UTC批准后，30b0659/dce6600仅单次交原「阶段复审结论」，请求f03257f2、回复d5d317bf完整回读。独立结论PARTIAL_ACCEPT / LIMITED_HOLD：核心/保存限定接受、4JUnit及11源码/28证据校验接受，选中态消费接线P2 OPEN。沿既有UX-DISPLAY-THEME-001登记子发现P2-SELECTED-CONTRAST，不新建任务/合同；范围含3处Ink-on-Gold及Gold作为唯一选中图标/边框时缺对比，保留RGB、不扩换肤。当前未修复/未回归，本次仅送审/读取/登记，无新源码、测试、包、发版、安装或搬删。见[限定结论](audits/THEME_PROJECT_REVIEW_RESULT_20261025.md)及[实际送达回执](../handoff/THEME_PROJECT_REVIEW_DISPATCH_20261025.md)。
 
 送审前验证范围：用户12:46 UTC同意资源满足后只恢复原4项主题测试。最终30b0659在新鲜H/C预算、内存及Desktop/打包owner门全过后4唯一方法PASS，sourceStable，0失败/错误/跳过；B首编译FAILED/0JUnit与A资源门0执行保留，只补2空格、无测试扩展。见[固定源码/原始逐例](audits/DISPLAY_THEME_FOUR_REGRESSION_20261025.md)。两轮fixture显式保留，无自动清理；当次验证范围收尾，未打包/发布/安装或后三组。后续限定独立结果以顶部为准，UI/用户/包仍未验。下文旧资源等待保留当时观察。

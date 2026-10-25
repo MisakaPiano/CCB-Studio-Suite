@@ -108,7 +108,7 @@ import kotlinx.coroutines.*
                             if(id !in l.archiveSelection)l.archiveSelection=album.images.map{it.image.path}.toSet()
                             listOf(ContextMenuItem("恢复所选资产"){restore=l.archiveSelection.toSet()},ContextMenuItem("编辑标签"){g.tagEditor=l.archiveSelection.toSet()})
                         }) {
-                            Row(Modifier.fillMaxWidth().background(if(selected)LibrarySelected else androidx.compose.ui.graphics.Color.Transparent,RoundedCornerShape(5.dp)).border(1.dp,if(selected)Gold else androidx.compose.ui.graphics.Color.Transparent,RoundedCornerShape(5.dp)).padding(6.dp)
+                            Row(Modifier.fillMaxWidth().background(if(selected)LibrarySelected else androidx.compose.ui.graphics.Color.Transparent,RoundedCornerShape(5.dp)).border(1.dp,if(selected)SelectionInk else androidx.compose.ui.graphics.Color.Transparent,RoundedCornerShape(5.dp)).padding(6.dp)
                                 .onPointerEvent(PointerEventType.Press){ctrl=it.keyboardModifiers.isCtrlPressed;shift=it.keyboardModifiers.isShiftPressed}
                                 .combinedClickable(onClick={choose()},onDoubleClick={if(grouped)choose()else if(id in images)g.preview(ids.filter{it in images},id)})) {
                                 Box(Modifier.size(64.dp).semantics{contentDescription="回收站资产 $id"}) {

@@ -21,6 +21,7 @@ import java.nio.file.Path
 internal object DesktopBootstrapColors {
     private val palette get()=io.github.misakapiano.ccbstudio.desktop.StudioAppearanceRuntime.palette
     val background get()=palette.background;val foreground get()=palette.foreground;val card get()=palette.surface
+    val selectionInk get()=palette.selectionInk
     val primary get()=palette.primary;val primaryForeground get()=palette.primaryForeground;val muted get()=palette.muted
     val mutedForeground get()=palette.mutedForeground;val border get()=palette.border;val input get()=palette.input
     val accent get()=palette.accent;val warning get()=palette.warning;val destructive get()=palette.destructive

@@ -43,7 +43,7 @@ internal val LibrarySelected get()=StudioAppearanceRuntime.palette.accent
     TooltipArea(tooltip={Surface(color=LibraryPanel){Text(accessibilityLabel,Modifier.padding(8.dp))}}) {
         Row(Modifier.heightIn(min=31.dp).alpha(if(enabled)1f else .4f)
             .background(if(selected||hover)LibrarySelected else if(quiet)Color.Transparent else LibraryPanel,shape)
-            .border(1.dp,if(selected||focus)Gold else if(quiet)Color.Transparent else LibraryLine,shape)
+            .border(1.dp,if(selected||focus)SelectionInk else if(quiet)Color.Transparent else LibraryLine,shape)
             .semantics{contentDescription=accessibilityLabel;expanded?.let{stateDescription=if(it)"已展开"else"已收起"}}
             .hoverable(interaction).clickable(enabled=enabled,interactionSource=interaction,indication=null,role=Role.Button,onClick=onClick)
             .padding(horizontal=8.dp,vertical=5.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(5.dp)) {
@@ -56,7 +56,7 @@ internal val LibrarySelected get()=StudioAppearanceRuntime.palette.accent
 
 @Composable internal fun LibraryToggle(label:String,selected:Boolean,action:()->Unit) {
     Row(Modifier.height(31.dp).clickable(role=Role.Checkbox,onClick=action).semantics{contentDescription=label;this.selected=selected},verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(4.dp)) {
-        Checkbox(selected,{action()},Modifier.size(18.dp),colors=CheckboxDefaults.colors(checkedColor=Gold,uncheckedColor=LibraryMuted))
+        Checkbox(selected,{action()},Modifier.size(18.dp),colors=CheckboxDefaults.colors(checkedColor=Gold,checkmarkColor=StudioAppearanceRuntime.palette.primaryForeground,uncheckedColor=LibraryMuted))
         Text(label,fontSize=13.sp)
     }
 }
@@ -67,7 +67,7 @@ internal val LibrarySelected get()=StudioAppearanceRuntime.palette.accent
     val shape=RoundedCornerShape(6.dp)
     Column(Modifier.size(90.dp,62.dp).alpha(if(enabled)1f else .4f)
         .background(if(dropHovered||hovered)LibrarySelected else LibraryPanel,shape)
-        .border(if(dropHovered)2.dp else 1.dp,if(dropHovered||focused)Gold else LibraryLine,shape)
+        .border(if(dropHovered)2.dp else 1.dp,if(dropHovered||focused)SelectionInk else LibraryLine,shape)
         .semantics{contentDescription=description;stateDescription="磁贴"}
         .hoverable(interaction).clickable(enabled=enabled,interactionSource=interaction,indication=null,role=Role.Button,onClick=onClick)
         .padding(5.dp),horizontalAlignment=Alignment.CenterHorizontally,verticalArrangement=Arrangement.Center) {
@@ -78,7 +78,7 @@ internal val LibrarySelected get()=StudioAppearanceRuntime.palette.accent
 
 @Composable internal fun LibrarySelectionCheckbox(selected:Boolean,onSelected:(Boolean)->Unit,modifier:Modifier=Modifier,enabled:Boolean=true) {
     Checkbox(selected,onSelected,modifier.size(24.dp),enabled=enabled,
-        colors=CheckboxDefaults.colors(checkedColor=Gold,checkmarkColor=Ink,uncheckedColor=LibraryMuted))
+        colors=CheckboxDefaults.colors(checkedColor=Gold,checkmarkColor=StudioAppearanceRuntime.palette.primaryForeground,uncheckedColor=LibraryMuted))
 }
 
 @Composable internal fun LibraryBand(panel:Boolean=false,content:@Composable RowScope.()->Unit) {

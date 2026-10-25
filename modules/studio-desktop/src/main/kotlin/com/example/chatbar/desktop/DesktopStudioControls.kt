@@ -60,7 +60,7 @@ internal fun StudioAction(label: String, enabled: Boolean = true, selected: Bool
     val color = if (strong) DesktopBootstrapColors.primaryForeground else DesktopBootstrapColors.foreground
     Row(Modifier.heightIn(min = 32.dp).alpha(if (enabled) 1f else .4f)
         .background(if (strong) DesktopBootstrapColors.primary else if (tertiary) Color.Transparent else DesktopBootstrapColors.muted, shape)
-        .border(1.dp, if (focused) DesktopBootstrapColors.primary else if (!tertiary) DesktopBootstrapColors.border else Color.Transparent, shape)
+        .border(1.dp, if (focused) DesktopBootstrapColors.selectionInk else if (!tertiary) DesktopBootstrapColors.border else Color.Transparent, shape)
         .semantics { contentDescription = accessibilityLabel; expanded?.let{stateDescription=if(it)"已展开"else"已收起"}; if (style == StudioActionStyle.CHIP) this.selected = selected }
         .onFocusChanged { focused = it.isFocused }.clickable(enabled = enabled, role = Role.Button, onClick = onClick)
         .padding(horizontal = 8.dp, vertical = 5.dp), verticalAlignment = Alignment.CenterVertically,
@@ -86,7 +86,7 @@ internal fun <T> StudioChips(label: String, options: List<T>, selected: T?, text
 @Composable
 internal fun StudioSwitch(label: String, selected: Boolean, action: () -> Unit) {
     var focused by remember { mutableStateOf(false) }
-    Row(Modifier.heightIn(min = 32.dp).border(1.dp, if (focused) DesktopBootstrapColors.primary else Color.Transparent, RoundedCornerShape(6.dp))
+    Row(Modifier.heightIn(min = 32.dp).border(1.dp, if (focused) DesktopBootstrapColors.selectionInk else Color.Transparent, RoundedCornerShape(6.dp))
         .onFocusChanged { focused = it.isFocused }.toggleable(value = selected, role = Role.Switch, onValueChange = { action() })
         .padding(4.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         Box(Modifier.size(28.dp, 16.dp).background(if (selected) DesktopBootstrapColors.primary else DesktopBootstrapColors.muted, RoundedCornerShape(8.dp)).padding(2.dp)) {
@@ -175,7 +175,7 @@ internal fun StudioSlider(label: String, value: Float, min: Float, max: Float, s
             }
         }
         Box(Modifier.fillMaxWidth().height(24.dp).onFocusChanged { focused = it.isFocused }
-            .border(1.dp, if (focused) DesktopBootstrapColors.primary else Color.Transparent, RoundedCornerShape(4.dp))
+            .border(1.dp, if (focused) DesktopBootstrapColors.selectionInk else Color.Transparent, RoundedCornerShape(4.dp))
             .semantics { contentDescription = label; progressBarRangeInfo = ProgressBarRangeInfo(value, min..max)
                 setProgress { update(it.coerceIn(min, max)); true } }
             .onKeyEvent { event -> if (event.type != KeyEventType.KeyDown) false else when (event.key) {
@@ -201,7 +201,7 @@ internal fun StudioNumericInput(label: String, value: String, modifier: Modifier
     LaunchedEffect(value) { if (!focused || draft.toDoubleOrNull() != value.toDoubleOrNull()) draft = value }
     BasicTextField(draft, { draft = it; change(it) }, modifier
         .semantics { contentDescription = label }.onFocusChanged { focused = it.isFocused; if (!focused) draft = value }
-        .border(1.dp, if (focused) DesktopBootstrapColors.primary else DesktopBootstrapColors.border, RoundedCornerShape(4.dp))
+        .border(1.dp, if (focused) DesktopBootstrapColors.selectionInk else DesktopBootstrapColors.border, RoundedCornerShape(4.dp))
         .background(DesktopBootstrapColors.input).padding(6.dp), singleLine = true,
         textStyle = TextStyle(color = DesktopBootstrapColors.foreground, fontSize = 13.sp))
 }

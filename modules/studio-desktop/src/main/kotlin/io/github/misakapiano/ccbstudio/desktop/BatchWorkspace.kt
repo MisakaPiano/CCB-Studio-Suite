@@ -31,12 +31,12 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
 
 @Composable internal fun BatchCreationEntry(c:WorkbenchController) {
     val b=c.batch;var adjust by remember{mutableStateOf(false)}
-    Column(Modifier.fillMaxWidth().border(1.dp,if(b.batchMode)Gold else LibraryLine,RoundedCornerShape(5.dp)).padding(5.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
+    Column(Modifier.fillMaxWidth().border(1.dp,if(b.batchMode)SelectionInk else LibraryLine,RoundedCornerShape(5.dp)).padding(5.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
         Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(3.dp)) {
             Text("生成方式",fontSize=12.sp,color=LibraryMuted)
             listOf("单次","连续生成","批量任务").forEachIndexed{i,label->
                 val active=if(i==2)b.batchMode else !b.batchMode&&(c.draft.continuousModeEnabled==(i==1))
-                Text(label,Modifier.background(if(active)Gold else Color.Transparent,RoundedCornerShape(4.dp)).clickable{b.batchMode=i==2;c.edit{it.copy(continuousModeEnabled=i==1)}}.padding(horizontal=8.dp,vertical=6.dp),fontSize=12.sp,color=if(active)Ink else LibraryText)
+                Text(label,Modifier.background(if(active)Gold else Color.Transparent,RoundedCornerShape(4.dp)).clickable{b.batchMode=i==2;c.edit{it.copy(continuousModeEnabled=i==1)}}.padding(horizontal=8.dp,vertical=6.dp),fontSize=12.sp,color=if(active)StudioAppearanceRuntime.palette.primaryForeground else LibraryText)
             }
             Spacer(Modifier.weight(1f))
             LibraryAction("工作台 ${b.state.groups.size}",icon=DesktopAppIcons.DetailsOpen,style=StudioActionStyle.GHOST){b.open()}
@@ -221,7 +221,7 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
                 DisposableEffect(g.id){onDispose{bounds.remove(g.id)}}
                 Row(Modifier.fillMaxWidth().onGloballyPositioned{bounds[g.id]=it.boundsInRoot()}
                     .background(if(selected)LibrarySelected else LibraryPanel,RoundedCornerShape(6.dp))
-                    .border(if(target==g.id)2.dp else 1.dp,if(selected||target==g.id)Gold else Color.Transparent,RoundedCornerShape(6.dp))
+                    .border(if(target==g.id)2.dp else 1.dp,if(selected||target==g.id)SelectionInk else Color.Transparent,RoundedCornerShape(6.dp))
                     .semantics{contentDescription="批次分组 ${g.name}";this.selected=selected}
                     .onPointerEvent(PointerEventType.Press){ctrl=it.keyboardModifiers.isCtrlPressed;shift=it.keyboardModifiers.isShiftPressed;focus.requestFocus();if(it.buttons.isSecondaryPressed&&g.id !in b.selected)b.select(g.id)}
                     .pointerInput(g.id,b.editing,b.selected){if(b.editing)detectDragGestures(onDragStart={p->dragged=if(g.id in b.selected)b.selected else setOf(g.id);point=(bounds[g.id]?.topLeft?:Offset.Zero)+p-root},onDragCancel={dragged=emptySet();target=null},onDragEnd={target?.let{b.reorder(dragged,it)};dragged=emptySet();target=null}){change,delta->change.consume();point+=delta;target=bounds.entries.firstOrNull{it.key !in dragged&&it.value.contains(point+root)}?.key}}
@@ -266,7 +266,7 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
         // saved assets. Placeholders never masquerade as completed or copyable results.
         slots.withIndex().toList().chunked(4).forEach {row->
             Row(Modifier.fillMaxWidth().padding(bottom=5.dp),horizontalArrangement=Arrangement.spacedBy(5.dp)){
-                row.forEach{(i,slot)->Column(Modifier.weight(1f).height(72.dp).border(if(i==index)2.dp else 1.dp,if(i==index)Gold else LibraryLine,RoundedCornerShape(4.dp))
+                row.forEach{(i,slot)->Column(Modifier.weight(1f).height(72.dp).border(if(i==index)2.dp else 1.dp,if(i==index)SelectionInk else LibraryLine,RoundedCornerShape(4.dp))
                     .semantics{contentDescription="批次位置 ${slot.direction.label} ${slot.round}";stateDescription=status(slot);this.selected=i==index}
                     .clickable{b.follow=false;index=i}.padding(4.dp),horizontalAlignment=Alignment.CenterHorizontally){
                     Box(Modifier.weight(1f).fillMaxWidth().background(LibraryPanel)) {slot.results.firstOrNull()?.let{id->QueueStaticThumbnail(c,id,Modifier.fillMaxSize())}}

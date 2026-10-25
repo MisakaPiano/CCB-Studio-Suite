@@ -114,7 +114,7 @@ internal fun runGalleryTool(c:WorkbenchController,tool:String,ids:List<String>) 
             LibraryAction("自定义",style=StudioActionStyle.TERTIARY,icon=Lucide.SlidersHorizontal,accessibilityLabel="工具布局"){custom=true}
             StudioMenu(custom,{custom=false}) {
                 listOf(true to "小磁贴",false to "紧凑按钮").forEach{(tiles,label)->StudioMenuItem(onClick={custom=false;save(setting.copy(tiles=tiles))}){
-                    RadioButton(setting.tiles==tiles,null,Modifier.size(22.dp),colors=RadioButtonDefaults.colors(selectedColor=Gold));Text(label,Modifier.padding(start=6.dp))
+                    RadioButton(setting.tiles==tiles,null,Modifier.size(22.dp),colors=RadioButtonDefaults.colors(selectedColor=SelectionInk));Text(label,Modifier.padding(start=6.dp))
                 }}
                 Divider(color=LibraryLine)
                 order.forEachIndexed{i,tool->Row(verticalAlignment=Alignment.CenterVertically) {

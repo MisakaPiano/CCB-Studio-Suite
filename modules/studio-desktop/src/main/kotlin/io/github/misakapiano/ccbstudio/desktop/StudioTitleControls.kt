@@ -63,10 +63,10 @@ internal val studioRoutes=listOf("创作","AI 设计","图库","编辑","资产�
             .background(if(selected)DesktopBootstrapColors.muted else Color.Transparent,RoundedCornerShape(6.dp))
             .semantics{contentDescription=label}.selectable(selected,role=Role.Tab,onClick=onClick),
             verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.Center) {
-            val ink=if(selected)Gold else Quiet
+            val ink=if(selected)SelectionInk else Quiet
             Icon(icon,null,Modifier.size(17.dp),tint=ink)
             if(!compact){Spacer(Modifier.width(6.dp));Text(label,fontSize=13.sp,color=ink,maxLines=1)}
-            if(pending)Box(Modifier.padding(start=3.dp).size(6.dp).background(Gold,RoundedCornerShape(3.dp)).semantics{contentDescription="有待更新版本"})
+            if(pending)Box(Modifier.padding(start=3.dp).size(6.dp).background(SelectionInk,RoundedCornerShape(3.dp)).semantics{contentDescription="有待更新版本"})
         }
     }
 }

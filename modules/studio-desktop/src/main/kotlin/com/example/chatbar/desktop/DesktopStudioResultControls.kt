@@ -54,7 +54,7 @@ internal fun StudioFilmstrip(paths: List<String>, selected: String?, read: (Stri
         }, state = scroll, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
             items(paths, key = { it }) { path ->
                 DesktopOwnedImage(path, read, Modifier.size(88.dp).border(if (path == selected) 3.dp else 1.dp,
-                    if (path == selected) DesktopBootstrapColors.primary else DesktopBootstrapColors.border)
+                    if (path == selected) DesktopBootstrapColors.selectionInk else DesktopBootstrapColors.border)
                     .semantics { this.selected = path == selected; contentDescription = "选择结果缩略图 ${paths.indexOf(path) + 1}" }
                     .then(if (onPreview == null) Modifier.clickable { onSelect(path) }
                         else Modifier.desktopViewerEntry(onClick = { onSelect(path) }, onOpen = { onPreview(path) })))
@@ -81,7 +81,7 @@ internal fun StudioVerticalFilmstrip(paths: List<String>, selected: String?, rea
             state = scroll, verticalArrangement = Arrangement.spacedBy(6.dp)) {
             items(paths, key = { it }) { path ->
                 DesktopOwnedImage(path, read, Modifier.size(88.dp).border(if (path == selected) 3.dp else 1.dp,
-                    if (path == selected) DesktopBootstrapColors.primary else DesktopBootstrapColors.border)
+                    if (path == selected) DesktopBootstrapColors.selectionInk else DesktopBootstrapColors.border)
                     .semantics { this.selected = path == selected; contentDescription = "选择结果缩略图 ${paths.indexOf(path) + 1}" }
                     .then(if (onPreview == null) Modifier.clickable { onSelect(path) }
                         else Modifier.desktopViewerEntry(onClick = { onSelect(path) }, onOpen = { onPreview(path) })))

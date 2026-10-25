@@ -1,4 +1,8 @@
-## 当前结果：原Project主题复审部分接受，消费端对比度P2开放
+## 当前执行：主题选中态P2窄修已准备，资源不足未编译/未测
+
+用户14:19 UTC明确批准继续UX-DISPLAY-THEME-001 / P2-SELECTED-CONTRAST及一次原Project复审。已按原d5d317bf结论准备：原RGB仍用于填充，primaryForeground用于其上文字/勾选符，另加在标准深浅表面可读的selectionInk供导航、选择/焦点轮廓消费；默认蓝色标识保持。三项新回归包含实际控件离屏像素与点击检查，当前NOT COMPILED / NOT TESTED，0执行，H约1.64GiB低于原2,194,033,190字节门槛；不下调预算、不删文件或抢Desktop。新修复待实际回归与固定证据，尚未送新Project请求，P2仍OPEN，不把源码准备写成修复验收完成。旧四项接受及30b0659/dce6600原证据保持；包/视觉/用户/系统事件、保护用例和其他PENDING未验保持，不打包/发布/安装/搬删。原Project结果如下，旧仅送审边界由本次授权替代。
+
+## 原Project固定结果：部分接受，消费端对比度P2开放
 
 用户13:27 UTC（22:27 JST）明确批准仅本主题工程材料交既存原「阶段复审结论」。已单次发送并实际回读请求f03257f2-62a3-4bf6-981f-7ddcb98b4a0a（13:38:05.034 UTC）；原Project回复d5d317bf-4708-4405-ad8a-87de63bd92f3已完整读到，非只发给协调线程。固定30b0659/dce6600原字节不改，[送达/开始/最终回执](../handoff/THEME_PROJECT_REVIEW_DISPATCH_20261025.md)及[实际结论](audits/THEME_PROJECT_REVIEW_RESULT_20261025.md)：核心主题/格式/默认及最新修订安全保存PASS_WITH_SCOPE，4JUnit与11源码/28清单文件独立校验接受；配色消费端P2 OPEN — NARROW FIX REQUIRED，独立结果PARTIAL_ACCEPT / LIMITED_HOLD，非整版通过。
 

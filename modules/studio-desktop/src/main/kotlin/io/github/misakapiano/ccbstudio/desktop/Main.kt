@@ -35,6 +35,7 @@ import java.io.File
 internal val Ink get()=StudioAppearanceRuntime.palette.background
 internal val Panel get()=StudioAppearanceRuntime.palette.surface
 internal val Gold get()=StudioAppearanceRuntime.palette.primary
+internal val SelectionInk get()=StudioAppearanceRuntime.palette.selectionInk
 internal val Quiet get()=StudioAppearanceRuntime.palette.mutedForeground
 
 fun main(args:Array<String>) {

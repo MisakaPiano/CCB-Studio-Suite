@@ -56,6 +56,11 @@ import io.github.misakapiano.ccbstudio.core.DisguiseCover
     }
 }
 
+@Composable internal fun ActiveCoverBadge(modifier:Modifier=Modifier) {
+    Text("✓ 使用中",modifier.background(Gold,RoundedCornerShape(4.dp)).padding(horizontal=7.dp,vertical=3.dp),
+        color=StudioAppearanceRuntime.palette.primaryForeground,style=MaterialTheme.typography.caption)
+}
+
 internal fun studioVisibleScrollbarStyle()=ScrollbarStyle(24.dp,10.dp,RoundedCornerShape(5.dp),0,
     DesktopBootstrapColors.border,Gold)
 
@@ -88,13 +93,13 @@ internal fun studioVisibleScrollbarStyle()=ScrollbarStyle(24.dp,10.dp,RoundedCor
                             items(visible,key={it?.id?:"CCB_DEFAULT"}){cover->
                                 val active=state.selected==cover?.id
                                 Surface(color=if(active)DesktopBootstrapColors.accent else Panel,shape=RoundedCornerShape(10.dp),
-                                    border=BorderStroke(if(active)2.dp else 1.dp,if(active)Gold else DesktopBootstrapColors.border),
+                                    border=BorderStroke(if(active)2.dp else 1.dp,if(active)SelectionInk else DesktopBootstrapColors.border),
                                     modifier=Modifier.fillMaxWidth().semantics{contentDescription="选择封面 ${cover?.name?:"CCB 默认封面"}";this.selected=active}
                                         .clickable(enabled=!c.busy){a.selectCover(cover?.id)}) {
                                     Column(Modifier.padding(8.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
                                         Box {
                                             CoverThumbnail(c,cover,Modifier.fillMaxWidth().height(138.dp).clip(RoundedCornerShape(6.dp)))
-                                            if(active)Text("✓ 使用中",Modifier.align(Alignment.TopEnd).background(Gold,RoundedCornerShape(4.dp)).padding(horizontal=7.dp,vertical=3.dp),color=Ink,style=MaterialTheme.typography.caption)
+                                            if(active)ActiveCoverBadge(Modifier.align(Alignment.TopEnd))
                                         }
                                         Text(cover?.name?:"CCB 默认封面",maxLines=2,overflow=TextOverflow.Ellipsis,style=MaterialTheme.typography.body2)
                                         Text(if(cover==null)"内置封面"else"自定义封面",color=Quiet,style=MaterialTheme.typography.caption)
@@ -106,7 +111,7 @@ internal fun studioVisibleScrollbarStyle()=ScrollbarStyle(24.dp,10.dp,RoundedCor
                         VerticalScrollbar(rememberScrollbarAdapter(grid),Modifier.align(Alignment.CenterEnd).fillMaxHeight().semantics{contentDescription="封面库滚动条"},style=studioVisibleScrollbarStyle())
                     }
                     Column(Modifier.width(240.dp).fillMaxHeight().background(Panel,RoundedCornerShape(10.dp)).padding(16.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(12.dp)) {
-                        Text("正在使用",color=Gold,style=MaterialTheme.typography.caption)
+                        Text("正在使用",color=SelectionInk,style=MaterialTheme.typography.caption)
                         CoverThumbnail(c,selected,Modifier.fillMaxWidth().height(175.dp).clip(RoundedCornerShape(6.dp)))
                         Text(selected?.name?:"CCB 默认封面",fontWeight=FontWeight.Medium,maxLines=3,overflow=TextOverflow.Ellipsis)
                         Text("封面会等比适应图片，空白区域以深色补齐。",color=Quiet,style=MaterialTheme.typography.caption)

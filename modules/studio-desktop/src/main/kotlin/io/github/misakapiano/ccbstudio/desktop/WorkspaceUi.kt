@@ -103,7 +103,7 @@ private class ChromeRecorder(private val chrome:DesktopWindowChrome) {
             Row(Modifier.height(32.dp).width(if(compact)36.dp else 76.dp).onGloballyPositioned(r.button(label))
                 .clip(RoundedCornerShape(6.dp)).background(if(c.tab==index)Soft else Color.Transparent)
                 .clickable(role=Role.Tab){c.tab=index;c.compactPanel="INSPECTOR"}.padding(horizontal=8.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.Center) {
-                Glyph(glyph,if(c.tab==index)Gold else Quiet,Modifier.size(16.dp))
+                Glyph(glyph,if(c.tab==index)SelectionInk else Quiet,Modifier.size(16.dp))
                 if(!compact){Spacer(Modifier.width(7.dp));Text(label,fontSize=12.sp,color=if(c.tab==index)TextInk else Quiet)}
             }
         }
@@ -137,7 +137,7 @@ private class ChromeRecorder(private val chrome:DesktopWindowChrome) {
             }
         }
         if(!compact)Box {
-            Button(onClick={exportMenu=true},enabled=!c.busy&&c.project!=null,shape=RoundedCornerShape(7.dp),elevation=ButtonDefaults.elevation(0.dp,0.dp),contentPadding=PaddingValues(horizontal=14.dp,vertical=7.dp)) {Glyph("export",Ink,Modifier.size(14.dp));Spacer(Modifier.width(7.dp));Text("导出",fontSize=12.sp)}
+            Button(onClick={exportMenu=true},enabled=!c.busy&&c.project!=null,shape=RoundedCornerShape(7.dp),elevation=ButtonDefaults.elevation(0.dp,0.dp),contentPadding=PaddingValues(horizontal=14.dp,vertical=7.dp)) {Glyph("export",StudioAppearanceRuntime.palette.primaryForeground,Modifier.size(14.dp));Spacer(Modifier.width(7.dp));Text("导出",fontSize=12.sp)}
             StudioMenu(exportMenu,{exportMenu=false}){listOf("PRIVACY" to "隐私渲染 PNG","NORMAL" to "普通渲染 + Recipe","ORIGINAL" to "原始图片 · 保留字节").forEach {(mode,label)->StudioMenuItem(onClick={exportMenu=false;c.export(mode)}){Text(label)}}}
         }
     }
@@ -162,7 +162,7 @@ private class ChromeRecorder(private val chrome:DesktopWindowChrome) {
         if(pages.isNotEmpty())LazyRow(Modifier.fillMaxWidth().height(74.dp),horizontalArrangement=Arrangement.spacedBy(7.dp)) {
             items(pages,key={it.request().id().toString()}){a->
                 val id=a.request().id().toString()
-                Column(Modifier.width(64.dp).clip(RoundedCornerShape(6.dp)).border(1.dp,if(id==c.current)Gold else Border,RoundedCornerShape(6.dp)).clickable{c.current=id;c.refreshImage()}.padding(3.dp),horizontalAlignment=Alignment.CenterHorizontally) {
+                Column(Modifier.width(64.dp).clip(RoundedCornerShape(6.dp)).border(1.dp,if(id==c.current)SelectionInk else Border,RoundedCornerShape(6.dp)).clickable{c.current=id;c.refreshImage()}.padding(3.dp),horizontalAlignment=Alignment.CenterHorizontally) {
                     Thumbnail(c,a,Modifier.fillMaxWidth().height(48.dp));Text(a.request().name(),fontSize=9.sp,maxLines=1,overflow=TextOverflow.Ellipsis,color=Quiet)
                 }
             }
@@ -177,7 +177,7 @@ private class ChromeRecorder(private val chrome:DesktopWindowChrome) {
         Field("筛选名称",query,{query=it})
         if(c.state.projects.isNotEmpty()) {
             Text("工程",color=Quiet,fontSize=10.sp,modifier=Modifier.padding(top=14.dp,bottom=5.dp))
-            Row(Modifier.horizontalScroll(rememberScrollState())) {c.state.projects.forEach {p->TextButton(onClick={c.projectId=p.id;c.current=p.current.pages.firstOrNull()?.assetId;c.selected=p.current.pages.map{it.assetId}.toSet();c.refreshImage()},contentPadding=PaddingValues(horizontal=7.dp)){Text(p.name,fontSize=11.sp,color=if(c.projectId==p.id)Gold else Quiet)}}}
+            Row(Modifier.horizontalScroll(rememberScrollState())) {c.state.projects.forEach {p->TextButton(onClick={c.projectId=p.id;c.current=p.current.pages.firstOrNull()?.assetId;c.selected=p.current.pages.map{it.assetId}.toSet();c.refreshImage()},contentPadding=PaddingValues(horizontal=7.dp)){Text(p.name,fontSize=11.sp,color=if(c.projectId==p.id)SelectionInk else Quiet)}}}
         }
         Row(Modifier.padding(top=12.dp,bottom=8.dp),verticalAlignment=Alignment.CenterVertically){Text("原始图片",Modifier.weight(1f),fontSize=10.sp,color=Quiet);Text("${c.assets.size}",fontSize=10.sp,color=Quiet)}
         val ordered=c.project?.current?.pages?.mapNotNull {p->c.assets.find {it.request().id().toString()==p.assetId}}?:c.assets
@@ -290,7 +290,7 @@ private val thumbnailDispatcher=Dispatchers.IO.limitedParallelism(1)
                     Divider();Field("正向 Prompt",c.prompt,{c.prompt=it},4);Disclosure("负向 Prompt",c.negative){Field("负向 Prompt",c.negative,{c.negative=it},4)}
                     Disclosure("角色与位置",if(c.characters=="[]")"未添加角色"else"保留完整角色字段"){Field("角色列表 JSON",c.characters,{c.characters=it},4)}
                     ProfilePicker("NAI",c.state.accounts,c.naiId){c.naiId=it}
-                    Row {NovelAiImageModel.entries.forEach {m->TextButton(onClick={c.imageModel=m}){Text(if(m==NovelAiImageModel.V4_5_FULL)"V4.5"else"V5",color=if(c.imageModel==m)Gold else Quiet)}}}
+                    Row {NovelAiImageModel.entries.forEach {m->TextButton(onClick={c.imageModel=m}){Text(if(m==NovelAiImageModel.V4_5_FULL)"V4.5"else"V5",color=if(c.imageModel==m)SelectionInk else Quiet)}}}
                     Row {Box(Modifier.weight(1f)){Field("宽",c.width,{c.width=it})};Spacer(Modifier.width(8.dp));Box(Modifier.weight(1f)){Field("高",c.height,{c.height=it})}}
                     Row {Box(Modifier.weight(1f)){Field("Steps",c.steps,{c.steps=it})};Spacer(Modifier.width(8.dp));Box(Modifier.weight(1f)){Field("Guidance",c.guidance,{c.guidance=it})}}
                     Field("固定 Seed",c.seed,{c.seed=it})
@@ -300,7 +300,7 @@ private val thumbnailDispatcher=Dispatchers.IO.limitedParallelism(1)
                 1->{
                     Text("非破坏图层",fontWeight=FontWeight.Bold)
                     Text("先建立工程；在图像上拖绘。动作应用于工程中已选图片。",fontSize=12.sp,color=Quiet)
-                    Row {listOf("RECT" to "矩形","BRUSH" to "画笔","POLYGON" to "圈选","TEXT" to "文字").forEach {(id,label)->TextButton(onClick={c.tool=id},contentPadding=PaddingValues(5.dp)){Text(label,color=if(c.tool==id)Gold else Quiet)}}}
+                    Row {listOf("RECT" to "矩形","BRUSH" to "画笔","POLYGON" to "圈选","TEXT" to "文字").forEach {(id,label)->TextButton(onClick={c.tool=id},contentPadding=PaddingValues(5.dp)){Text(label,color=if(c.tool==id)SelectionInk else Quiet)}}}
                     if(c.tool=="TEXT") {Field("文字",c.text,{c.text=it},3);Field("字体",c.font,{c.font=it});Field("字号",c.fontSize,{c.fontSize=it});Row(verticalAlignment=Alignment.CenterVertically){Checkbox(c.vertical,{c.vertical=it});Text("竖排")}}
                     else Row(verticalAlignment=Alignment.CenterVertically){Checkbox(c.mosaic,{c.mosaic=it});Text(if(c.mosaic)"马赛克" else "纯色遮盖")}
                     OutlinedButton(onClick={c.addLayer(if(c.tool=="POLYGON")listOf(Point(20f,20f),Point(180f,20f),Point(100f,130f))else listOf(Point(20f,20f),Point(180f,130f)),20f,20f,160f,110f)},enabled=!c.busy&&c.project!=null){Text("添加示例图层")}
@@ -348,6 +348,6 @@ private val thumbnailDispatcher=Dispatchers.IO.limitedParallelism(1)
     AlertDialog(onDismissRequest={c.popup=null},title={Text("命名账户档案")},text={Column(verticalArrangement=Arrangement.spacedBy(8.dp)){
         Text("Preview 档案仅连接合成 transport。真实凭据验证独立限流，账户标识在任务创建时冻结。",fontSize=12.sp)
         c.state.accounts.forEach {Text("${it.alias} · ${it.service} · ${it.provider}",fontSize=12.sp)}
-        Field("新档案名称",alias,{alias=it});Row {TextButton(onClick={service="LLM"}){Text("LLM",color=if(service=="LLM")Gold else Quiet)};TextButton(onClick={service="NAI"}){Text("NAI",color=if(service=="NAI")Gold else Quiet)}}
+        Field("新档案名称",alias,{alias=it});Row {TextButton(onClick={service="LLM"}){Text("LLM",color=if(service=="LLM")SelectionInk else Quiet)};TextButton(onClick={service="NAI"}){Text("NAI",color=if(service=="NAI")SelectionInk else Quiet)}}
     }},confirmButton={Button(onClick={c.popup=null;c.run("保存命名档案"){c.workspace.save(c.state.copy(accounts=c.state.accounts+AccountProfile(alias=alias,service=service,provider="SYNTHETIC",model=if(service=="LLM")"fixture-designer" else "nai-diffusion-4-5-full"))) }},enabled=alias.isNotBlank()){Text("新增")}},dismissButton={TextButton(onClick={c.popup=null}){Text("关闭")}})
 }

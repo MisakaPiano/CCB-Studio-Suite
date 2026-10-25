@@ -156,7 +156,7 @@ internal fun animationNavigation(a:GalleryAnimationController,event:KeyEvent):Bo
             if(delta!=0f){scope.launch{scroll.scrollBy(delta*48)};event.changes.forEach{it.consume()}}
         },state=scroll,horizontalArrangement=Arrangement.spacedBy(6.dp)) {
             itemsIndexed(ids,key={_,id->id}){index,id->ContextMenuArea(items={animationMenu(c,id)}) {
-                Column(Modifier.width(132.dp).background(if(id in a.queueSelection)LibrarySelected else androidx.compose.ui.graphics.Color.Transparent).border(if(id in a.queueSelection||index==a.index)2.dp else 1.dp,if(id in a.queueSelection||index==a.index)Gold else LibraryLine).padding(3.dp)) {
+                Column(Modifier.width(132.dp).background(if(id in a.queueSelection)LibrarySelected else androidx.compose.ui.graphics.Color.Transparent).border(if(id in a.queueSelection||index==a.index)2.dp else 1.dp,if(id in a.queueSelection||index==a.index)SelectionInk else LibraryLine).padding(3.dp)) {
                     var range by remember{mutableStateOf(false)};var control by remember{mutableStateOf(false)}
                     Box(Modifier.fillMaxWidth().height(62.dp).onPointerEvent(PointerEventType.Press){range=it.keyboardModifiers.isShiftPressed;control=it.keyboardModifiers.isCtrlPressed}
                         .semantics{selected=index==a.index;contentDescription="选择结果缩略图 ${index+1}"}.clickable{onFocus();a.selectQueueItem(id,control,range)}) {

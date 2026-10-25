@@ -68,7 +68,18 @@ internal data class StudioSemanticColors(
     val mutedForeground:Color,val border:Color,val input:Color,val primary:Color,val primaryForeground:Color,
     val accent:Color,val warning:Color,val warningBackground:Color,val destructive:Color,
     val libraryBackground:Color,val libraryPanel:Color,val libraryLine:Color,val libraryText:Color,val libraryMuted:Color,
-)
+) {
+    // A fill keeps the user's RGB; a mark must also be visible on the surfaces beside it.
+    val selectionInk:Color=studioReadableSelectionInk(primary,
+        listOf(background,surface,muted,input,accent,libraryBackground,libraryPanel))
+}
+
+internal fun studioReadableSelectionInk(primary:Color,backgrounds:List<Color>):Color {
+    require(backgrounds.isNotEmpty())
+    fun leastContrast(color:Color)=backgrounds.minOf{studioContrastRatio(color,it)}
+    return if(leastContrast(primary)>=4.5)primary else
+        listOf(Color.Black,Color.White).maxBy{leastContrast(it)}
+}
 
 /** Adapted to Suite tokens from DesktopTheme.kt at Desktop d53d46ca8fe0dbac11c33e85b38e07099b105da8.
  * Pure palette math only; no Desktop store, credentials, background-image or character appearance access. */
