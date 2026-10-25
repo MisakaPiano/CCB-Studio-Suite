@@ -15,7 +15,12 @@ fun libraryRecordedTimes(assets:List<AssetStore.Asset>,jobs:List<JobRecord>):Map
         if(receipt["kind"]?.jsonPrimitive?.content!="image-ingress" || receipt["version"]?.jsonPrimitive?.intOrNull!=1)return@runCatching null
         a.request().id().toString() to requireNotNull(receipt["createdAt"]?.jsonPrimitive?.longOrNull)
     }.getOrNull()}.toMap()
-    return imported+jobs.flatMap{job->(job.results+job.composedResults).map{it to job.createdAt}}.toMap()
+    val recorded=imported.toMutableMap()
+    jobs.forEach{job->
+        job.results.forEach{recorded[it]=job.createdAt}
+        job.composedResults.forEach{recorded[it]=job.createdAt}
+    }
+    return recorded
 }
 fun libraryDateMatches(timestamp:Long?,date:String):Boolean {
     val filter=galleryDateFilter(date)?:return true
