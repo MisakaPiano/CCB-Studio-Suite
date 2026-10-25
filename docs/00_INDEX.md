@@ -1,3 +1,7 @@
+## 2026-10-25 两段后续性能复审补充只准备
+
+[固定两段补充索引](../handoff/PERFORMANCE_TWO_FOLLOW_ONS_REVIEW_READY_20261025.md)仅1256c64/37e4346、52e0bf0/74dfb15，最新生产边界52e0bf0；原16项fa58a50索引/包不改或重发。新索引0测试执行、两段各自4方法不相加，不代签最新源码单一端到端/用户/包/独立通过；旧遍历负面及执行者路径错误UNKNOWN均分列保留，日期基线仍资源等待/颜色仅草稿。材料未外发，无发布/日常操作，Desktop优先，旧未验/PENDING保持。
+
 ## 2026-10-25 PERF-003标签相册默认参数调用内复用
 
 [52e0bf0报告/原始逐例](audits/PERF003_TAG_ALBUM_DEFAULTS_20261025.md)：最终4唯一方法PASS，原权威canonical默认值调用内复用、entry时钟/ID/key保持，权威Prompt/请求未改。分配少约68%～73%，最大墙钟略慢、不称提速/UI/RSS/包/人工；[复审仅准备](../handoff/PERF003_TAG_ALBUM_DEFAULTS_REVIEW_READY_20261025.md)。16历史索引/原Desktop边界不扩大、无发布/日常操作，旧失败/未验/PENDING保持，Desktop优先。

@@ -1,0 +1,89 @@
+{
+  "format": 1,
+  "preparedOnly": true,
+  "sent": false,
+  "applicationBoundary": "52e0bf05a5844f85c59d3bb79a71b7f2c3182858",
+  "oldIndex": {
+    "commit": "7314ef9ac092c0056ffa6d8918472cbf8868ec93",
+    "applicationBoundary": "fa58a50c44a592df0f0c8745ba773c244d7442d9",
+    "matrix": "docs/audits/evidence/PERFORMANCE_INCREMENT_INDEX_20261025/REVIEW_MATRIX.json",
+    "matrixSha256": "cc69b9a92313c81aadde911ae2122d379cf36855924f440e3e1d986704932ca1",
+    "historicalRows": 16,
+    "notRewrittenOrResent": true
+  },
+  "rows": [
+    {
+      "scope": "\u6587\u4ef6\u5939\u6279\u6b21\u7b5b\u9009",
+      "applicationSource": "1256c64ddd4291f585be4ff8d086f98a404a972b",
+      "evidenceCommit": "37e434606f10930d5169961bb33b0dd282bbee6a",
+      "report": "docs/audits/PERF003_FOLDER_BATCH_SELECTION_20261025.md",
+      "fixedReport": "https://github.com/MisakaPiano/CCB-Studio-Suite/blob/37e434606f10930d5169961bb33b0dd282bbee6a/docs/audits/PERF003_FOLDER_BATCH_SELECTION_20261025.md",
+      "sourceMap": "docs/audits/evidence/PERF003_FOLDER_BATCH_SELECTION_20261025/SOURCE_MAP.json",
+      "sourceMapSha256": "fc53cbde4fa2a27ef6f789a21c9ae7680fcb6ecf0b00b1df023a4c67596388d9",
+      "rawArchive": "docs/audits/evidence/PERF003_FOLDER_BATCH_SELECTION_20261025/RAW_EVIDENCE.zip",
+      "rawArchiveBytes": 116842,
+      "rawArchiveSha256": "a5a089a2e5e1059320aac57b10f3ab8e9e88d063bfe1af20c96c1a1d83b118f7",
+      "finalUniqueMethodsReported": 4,
+      "resultsFromFixedHistoricalRunNotNewExecution": true,
+      "independentReview": "NOT REQUESTED",
+      "humanAndPackage": "NOT TESTED"
+    },
+    {
+      "scope": "\u6807\u7b7e\u76f8\u518c\u9ed8\u8ba4\u914d\u65b9",
+      "applicationSource": "52e0bf05a5844f85c59d3bb79a71b7f2c3182858",
+      "evidenceCommit": "74dfb15a764d47d618d658bdf5d7e07047b4a9bc",
+      "report": "docs/audits/PERF003_TAG_ALBUM_DEFAULTS_20261025.md",
+      "fixedReport": "https://github.com/MisakaPiano/CCB-Studio-Suite/blob/74dfb15a764d47d618d658bdf5d7e07047b4a9bc/docs/audits/PERF003_TAG_ALBUM_DEFAULTS_20261025.md",
+      "sourceMap": "docs/audits/evidence/PERF003_TAG_ALBUM_DEFAULTS_20261025/SOURCE_MAP.json",
+      "sourceMapSha256": "d4f12dfd64236be64d63c6cfb655e53837c8c3c991a1a9b12182b62b226848d4",
+      "rawArchive": "docs/audits/evidence/PERF003_TAG_ALBUM_DEFAULTS_20261025/RAW_EVIDENCE.zip",
+      "rawArchiveBytes": 76259,
+      "rawArchiveSha256": "c9ac75067185b9112282b3ddf75ae00720d49d6f248607eae7bd153c27628385",
+      "finalUniqueMethodsReported": 4,
+      "resultsFromFixedHistoricalRunNotNewExecution": true,
+      "independentReview": "NOT REQUESTED",
+      "humanAndPackage": "NOT TESTED"
+    }
+  ],
+  "newExecutionsByIndex": 0,
+  "noSumOrSingleLatestSourceEndToEndAcceptance": true,
+  "changedModuleAndToolPaths": [
+    "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/GenerationOrganization.kt",
+    "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/LibraryCatalogProjection.kt",
+    "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/FolderBatchProjectionPerformanceTest.kt",
+    "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/GenerationFolderContractTest.kt",
+    "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TagAlbumDefaultsPerformanceTest.kt",
+    "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryOrganization.kt",
+    "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryWorkspace.kt",
+    "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/FolderSubtreeCardProjectionTest.kt"
+  ],
+  "productionPaths": [
+    "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/GenerationOrganization.kt",
+    "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/LibraryCatalogProjection.kt",
+    "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryOrganization.kt",
+    "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryWorkspace.kt"
+  ],
+  "authorityUnchanged": true,
+  "rejectedTraversalNotPresent": true,
+  "operatorAudit": {
+    "commit": "50de30fdd15275e7b5d1226ec04d954ede1d5f11",
+    "path": "docs/audits/OPERATOR_PREPARATION_PATH_ERROR_20261025.md",
+    "sha256": "8214aec05f7890a4e58131bc30dea70f07b60d10ec556eb5d15817afbc232325",
+    "priorFileExistenceAndContents": "UNKNOWN",
+    "exactEventUtc": "UNKNOWN;bounded02:47:52..02:54:55UTC",
+    "notProductTestResult": true
+  },
+  "excludedPending": {
+    "jobDateBaseline": "3d7369963ec942fed58b1a1963d2c5d9ccc397e4 / NOT EXECUTED;two resource gates each0executions",
+    "colorParser": "LOCAL DRAFT ONLY / NOT APPLIED OR EXECUTED"
+  },
+  "package": "NONE",
+  "release": "NONE",
+  "human": "NOT TESTED",
+  "independent": "NOT REQUESTED",
+  "assetsAndEditor": "USER_NOT_TESTED",
+  "preview115Experience": "PENDING",
+  "promptComparison": "PENDING",
+  "q09": "FAILED/root UNKNOWN",
+  "product": "PRODUCT_HOLD / NOT RC"
+}
