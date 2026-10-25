@@ -1,0 +1,61 @@
+{
+  "recordedUtc": "2026-10-25T14:36:55.942781+00:00",
+  "basis": "Exact resource observations and prepared source/input identity; no compiler/JUnit result, no user fixture payload",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19,
+      "sha256": "3e5e82fc72e044ea9af807a2030b73dbb94800d2cd1775302063b2eee761ba1e"
+    },
+    {
+      "path": "AUTHORIZATION.json",
+      "bytes": 678,
+      "sha256": "93bcce03e5642c369e90247a7448ea2ecac0edc5328d114891bc49854829f079"
+    },
+    {
+      "path": "capture-preflight-initial.py",
+      "bytes": 3710,
+      "sha256": "20b4f6ded0e9555ddd43d76b846cc311d242274bb51f402e1063a183c94e32cc"
+    },
+    {
+      "path": "capture-preflight.py",
+      "bytes": 3743,
+      "sha256": "7ad8dd86d12421756c7e3e9e5dc51dc8e0f797f261591a9591099fbdf46d2e25"
+    },
+    {
+      "path": "collect-evidence.py",
+      "bytes": 7101,
+      "sha256": "92339bab314bd7484cecd78be9baa842229f66581c201dc5f1c7e22b3d9e1e97"
+    },
+    {
+      "path": "preflight-143420285513.json",
+      "bytes": 1431,
+      "sha256": "821967e565a7da6dda6a0bddfb69639e001c18ea683954fa307465fe7acb4938"
+    },
+    {
+      "path": "preflight-143537131884.json",
+      "bytes": 1431,
+      "sha256": "f7aabc94fad58b19de0c532cacfba5583ae84a42d16a4ab30c7260e98ff6774d"
+    },
+    {
+      "path": "PREPARATION_NOTES.json",
+      "bytes": 1478,
+      "sha256": "f358550fa6a83d3d95e5943290c9be5d09166c5680d719f258686e0e17e79d0d"
+    },
+    {
+      "path": "RUN_MATRIX.json",
+      "bytes": 1188,
+      "sha256": "7f2f1150cd02f825384e43732c8b6e71ff182a7158e0d45c85969f455f33c67c"
+    },
+    {
+      "path": "SOURCE_DIFF.patch",
+      "bytes": 54664,
+      "sha256": "7f7fcef45a99173712bf99775fc5bc7d6c751f0702f821a978f0ec257c050fb0"
+    },
+    {
+      "path": "SOURCE_MAP.json",
+      "bytes": 13085,
+      "sha256": "37a6c2c9bfec758c02d4387654d19b9aab86581944607646177b4540f41356f0"
+    }
+  ]
+}

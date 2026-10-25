@@ -1,0 +1,532 @@
+diff --git a/modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioControls.kt b/modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioControls.kt
+index 2515202..ab5797e 100644
+--- a/modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioControls.kt
++++ b/modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioControls.kt
+@@ -60,7 +60,7 @@ internal fun StudioAction(label: String, enabled: Boolean = true, selected: Bool
+     val color = if (strong) DesktopBootstrapColors.primaryForeground else DesktopBootstrapColors.foreground
+     Row(Modifier.heightIn(min = 32.dp).alpha(if (enabled) 1f else .4f)
+         .background(if (strong) DesktopBootstrapColors.primary else if (tertiary) Color.Transparent else DesktopBootstrapColors.muted, shape)
+-        .border(1.dp, if (focused) DesktopBootstrapColors.primary else if (!tertiary) DesktopBootstrapColors.border else Color.Transparent, shape)
++        .border(1.dp, if (focused) DesktopBootstrapColors.selectionInk else if (!tertiary) DesktopBootstrapColors.border else Color.Transparent, shape)
+         .semantics { contentDescription = accessibilityLabel; expanded?.let{stateDescription=if(it)"已展开"else"已收起"}; if (style == StudioActionStyle.CHIP) this.selected = selected }
+         .onFocusChanged { focused = it.isFocused }.clickable(enabled = enabled, role = Role.Button, onClick = onClick)
+         .padding(horizontal = 8.dp, vertical = 5.dp), verticalAlignment = Alignment.CenterVertically,
+@@ -86,7 +86,7 @@ internal fun <T> StudioChips(label: String, options: List<T>, selected: T?, text
+ @Composable
+ internal fun StudioSwitch(label: String, selected: Boolean, action: () -> Unit) {
+     var focused by remember { mutableStateOf(false) }
+-    Row(Modifier.heightIn(min = 32.dp).border(1.dp, if (focused) DesktopBootstrapColors.primary else Color.Transparent, RoundedCornerShape(6.dp))
++    Row(Modifier.heightIn(min = 32.dp).border(1.dp, if (focused) DesktopBootstrapColors.selectionInk else Color.Transparent, RoundedCornerShape(6.dp))
+         .onFocusChanged { focused = it.isFocused }.toggleable(value = selected, role = Role.Switch, onValueChange = { action() })
+         .padding(4.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+         Box(Modifier.size(28.dp, 16.dp).background(if (selected) DesktopBootstrapColors.primary else DesktopBootstrapColors.muted, RoundedCornerShape(8.dp)).padding(2.dp)) {
+@@ -175,7 +175,7 @@ internal fun StudioSlider(label: String, value: Float, min: Float, max: Float, s
+             }
+         }
+         Box(Modifier.fillMaxWidth().height(24.dp).onFocusChanged { focused = it.isFocused }
+-            .border(1.dp, if (focused) DesktopBootstrapColors.primary else Color.Transparent, RoundedCornerShape(4.dp))
++            .border(1.dp, if (focused) DesktopBootstrapColors.selectionInk else Color.Transparent, RoundedCornerShape(4.dp))
+             .semantics { contentDescription = label; progressBarRangeInfo = ProgressBarRangeInfo(value, min..max)
+                 setProgress { update(it.coerceIn(min, max)); true } }
+             .onKeyEvent { event -> if (event.type != KeyEventType.KeyDown) false else when (event.key) {
+@@ -201,7 +201,7 @@ internal fun StudioNumericInput(label: String, value: String, modifier: Modifier
+     LaunchedEffect(value) { if (!focused || draft.toDoubleOrNull() != value.toDoubleOrNull()) draft = value }
+     BasicTextField(draft, { draft = it; change(it) }, modifier
+         .semantics { contentDescription = label }.onFocusChanged { focused = it.isFocused; if (!focused) draft = value }
+-        .border(1.dp, if (focused) DesktopBootstrapColors.primary else DesktopBootstrapColors.border, RoundedCornerShape(4.dp))
++        .border(1.dp, if (focused) DesktopBootstrapColors.selectionInk else DesktopBootstrapColors.border, RoundedCornerShape(4.dp))
+         .background(DesktopBootstrapColors.input).padding(6.dp), singleLine = true,
+         textStyle = TextStyle(color = DesktopBootstrapColors.foreground, fontSize = 13.sp))
+ }
+diff --git a/modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioPromptField.kt b/modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioPromptField.kt
+index b9bc30d..d68b84f 100644
+--- a/modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioPromptField.kt
++++ b/modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioPromptField.kt
+@@ -148,7 +148,7 @@ internal fun StudioPromptField(label: String, value: String, suggestionService:
+             }
+             Box {
+                 Box(Modifier.fillMaxWidth().heightIn(max = if (fullscreen) 450.dp else 220.dp)
+-                    .border(1.dp, if (focused) DesktopBootstrapColors.primary else DesktopBootstrapColors.border)
++                    .border(1.dp, if (focused) DesktopBootstrapColors.selectionInk else DesktopBootstrapColors.border)
+                     .background(DesktopBootstrapColors.input).verticalScroll(rememberScrollState()).padding(9.dp)) {
+                     StudioPromptTextEditor(input, { next -> inspecting = next.text == input.text; input = next; if (!fullscreen) onChange(next.text) }, translated, currentAnnotations?.annotations.orEmpty(), Modifier.fillMaxWidth()
+                         .heightIn(min = if (fullscreen) 320.dp else 70.dp).focusRequester(focus)
+diff --git a/modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioResultControls.kt b/modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioResultControls.kt
+index 4c4ce9e..b71a2d7 100644
+--- a/modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioResultControls.kt
++++ b/modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioResultControls.kt
+@@ -54,7 +54,7 @@ internal fun StudioFilmstrip(paths: List<String>, selected: String?, read: (Stri
+         }, state = scroll, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+             items(paths, key = { it }) { path ->
+                 DesktopOwnedImage(path, read, Modifier.size(88.dp).border(if (path == selected) 3.dp else 1.dp,
+-                    if (path == selected) DesktopBootstrapColors.primary else DesktopBootstrapColors.border)
++                    if (path == selected) DesktopBootstrapColors.selectionInk else DesktopBootstrapColors.border)
+                     .semantics { this.selected = path == selected; contentDescription = "选择结果缩略图 ${paths.indexOf(path) + 1}" }
+                     .then(if (onPreview == null) Modifier.clickable { onSelect(path) }
+                         else Modifier.desktopViewerEntry(onClick = { onSelect(path) }, onOpen = { onPreview(path) })))
+@@ -81,7 +81,7 @@ internal fun StudioVerticalFilmstrip(paths: List<String>, selected: String?, rea
+             state = scroll, verticalArrangement = Arrangement.spacedBy(6.dp)) {
+             items(paths, key = { it }) { path ->
+                 DesktopOwnedImage(path, read, Modifier.size(88.dp).border(if (path == selected) 3.dp else 1.dp,
+-                    if (path == selected) DesktopBootstrapColors.primary else DesktopBootstrapColors.border)
++                    if (path == selected) DesktopBootstrapColors.selectionInk else DesktopBootstrapColors.border)
+                     .semantics { this.selected = path == selected; contentDescription = "选择结果缩略图 ${paths.indexOf(path) + 1}" }
+                     .then(if (onPreview == null) Modifier.clickable { onSelect(path) }
+                         else Modifier.desktopViewerEntry(onClick = { onSelect(path) }, onOpen = { onPreview(path) })))
+diff --git a/modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/SuiteSourceAdapters.kt b/modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/SuiteSourceAdapters.kt
+index b6ca87a..fe1ef73 100644
+--- a/modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/SuiteSourceAdapters.kt
++++ b/modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/SuiteSourceAdapters.kt
+@@ -21,6 +21,7 @@ import java.nio.file.Path
+ internal object DesktopBootstrapColors {
+     private val palette get()=io.github.misakapiano.ccbstudio.desktop.StudioAppearanceRuntime.palette
+     val background get()=palette.background;val foreground get()=palette.foreground;val card get()=palette.surface
++    val selectionInk get()=palette.selectionInk
+     val primary get()=palette.primary;val primaryForeground get()=palette.primaryForeground;val muted get()=palette.muted
+     val mutedForeground get()=palette.mutedForeground;val border get()=palette.border;val input get()=palette.input
+     val accent get()=palette.accent;val warning get()=palette.warning;val destructive get()=palette.destructive
+diff --git a/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/BatchWorkspace.kt b/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/BatchWorkspace.kt
+index b0447a0..b38d940 100644
+--- a/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/BatchWorkspace.kt
++++ b/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/BatchWorkspace.kt
+@@ -31,12 +31,12 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
+ 
+ @Composable internal fun BatchCreationEntry(c:WorkbenchController) {
+     val b=c.batch;var adjust by remember{mutableStateOf(false)}
+-    Column(Modifier.fillMaxWidth().border(1.dp,if(b.batchMode)Gold else LibraryLine,RoundedCornerShape(5.dp)).padding(5.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
++    Column(Modifier.fillMaxWidth().border(1.dp,if(b.batchMode)SelectionInk else LibraryLine,RoundedCornerShape(5.dp)).padding(5.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
+         Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(3.dp)) {
+             Text("生成方式",fontSize=12.sp,color=LibraryMuted)
+             listOf("单次","连续生成","批量任务").forEachIndexed{i,label->
+                 val active=if(i==2)b.batchMode else !b.batchMode&&(c.draft.continuousModeEnabled==(i==1))
+-                Text(label,Modifier.background(if(active)Gold else Color.Transparent,RoundedCornerShape(4.dp)).clickable{b.batchMode=i==2;c.edit{it.copy(continuousModeEnabled=i==1)}}.padding(horizontal=8.dp,vertical=6.dp),fontSize=12.sp,color=if(active)Ink else LibraryText)
++                Text(label,Modifier.background(if(active)Gold else Color.Transparent,RoundedCornerShape(4.dp)).clickable{b.batchMode=i==2;c.edit{it.copy(continuousModeEnabled=i==1)}}.padding(horizontal=8.dp,vertical=6.dp),fontSize=12.sp,color=if(active)StudioAppearanceRuntime.palette.primaryForeground else LibraryText)
+             }
+             Spacer(Modifier.weight(1f))
+             LibraryAction("工作台 ${b.state.groups.size}",icon=DesktopAppIcons.DetailsOpen,style=StudioActionStyle.GHOST){b.open()}
+@@ -221,7 +221,7 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
+                 DisposableEffect(g.id){onDispose{bounds.remove(g.id)}}
+                 Row(Modifier.fillMaxWidth().onGloballyPositioned{bounds[g.id]=it.boundsInRoot()}
+                     .background(if(selected)LibrarySelected else LibraryPanel,RoundedCornerShape(6.dp))
+-                    .border(if(target==g.id)2.dp else 1.dp,if(selected||target==g.id)Gold else Color.Transparent,RoundedCornerShape(6.dp))
++                    .border(if(target==g.id)2.dp else 1.dp,if(selected||target==g.id)SelectionInk else Color.Transparent,RoundedCornerShape(6.dp))
+                     .semantics{contentDescription="批次分组 ${g.name}";this.selected=selected}
+                     .onPointerEvent(PointerEventType.Press){ctrl=it.keyboardModifiers.isCtrlPressed;shift=it.keyboardModifiers.isShiftPressed;focus.requestFocus();if(it.buttons.isSecondaryPressed&&g.id !in b.selected)b.select(g.id)}
+                     .pointerInput(g.id,b.editing,b.selected){if(b.editing)detectDragGestures(onDragStart={p->dragged=if(g.id in b.selected)b.selected else setOf(g.id);point=(bounds[g.id]?.topLeft?:Offset.Zero)+p-root},onDragCancel={dragged=emptySet();target=null},onDragEnd={target?.let{b.reorder(dragged,it)};dragged=emptySet();target=null}){change,delta->change.consume();point+=delta;target=bounds.entries.firstOrNull{it.key !in dragged&&it.value.contains(point+root)}?.key}}
+@@ -266,7 +266,7 @@ internal fun batchStatus(s:BatchState)=when(s.mode){"ERROR"->if(s.error?.code=="
+         // saved assets. Placeholders never masquerade as completed or copyable results.
+         slots.withIndex().toList().chunked(4).forEach {row->
+             Row(Modifier.fillMaxWidth().padding(bottom=5.dp),horizontalArrangement=Arrangement.spacedBy(5.dp)){
+-                row.forEach{(i,slot)->Column(Modifier.weight(1f).height(72.dp).border(if(i==index)2.dp else 1.dp,if(i==index)Gold else LibraryLine,RoundedCornerShape(4.dp))
++                row.forEach{(i,slot)->Column(Modifier.weight(1f).height(72.dp).border(if(i==index)2.dp else 1.dp,if(i==index)SelectionInk else LibraryLine,RoundedCornerShape(4.dp))
+                     .semantics{contentDescription="批次位置 ${slot.direction.label} ${slot.round}";stateDescription=status(slot);this.selected=i==index}
+                     .clickable{b.follow=false;index=i}.padding(4.dp),horizontalAlignment=Alignment.CenterHorizontally){
+                     Box(Modifier.weight(1f).fillMaxWidth().background(LibraryPanel)) {slot.results.firstOrNull()?.let{id->QueueStaticThumbnail(c,id,Modifier.fillMaxSize())}}
+diff --git a/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/DisguiseCoverManager.kt b/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/DisguiseCoverManager.kt
+index a75efac..a439d58 100644
+--- a/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/DisguiseCoverManager.kt
++++ b/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/DisguiseCoverManager.kt
+@@ -56,6 +56,11 @@ import io.github.misakapiano.ccbstudio.core.DisguiseCover
+     }
+ }
+ 
++@Composable internal fun ActiveCoverBadge(modifier:Modifier=Modifier) {
++    Text("✓ 使用中",modifier.background(Gold,RoundedCornerShape(4.dp)).padding(horizontal=7.dp,vertical=3.dp),
++        color=StudioAppearanceRuntime.palette.primaryForeground,style=MaterialTheme.typography.caption)
++}
++
+ internal fun studioVisibleScrollbarStyle()=ScrollbarStyle(24.dp,10.dp,RoundedCornerShape(5.dp),0,
+     DesktopBootstrapColors.border,Gold)
+ 
+@@ -88,13 +93,13 @@ internal fun studioVisibleScrollbarStyle()=ScrollbarStyle(24.dp,10.dp,RoundedCor
+                             items(visible,key={it?.id?:"CCB_DEFAULT"}){cover->
+                                 val active=state.selected==cover?.id
+                                 Surface(color=if(active)DesktopBootstrapColors.accent else Panel,shape=RoundedCornerShape(10.dp),
+-                                    border=BorderStroke(if(active)2.dp else 1.dp,if(active)Gold else DesktopBootstrapColors.border),
++                                    border=BorderStroke(if(active)2.dp else 1.dp,if(active)SelectionInk else DesktopBootstrapColors.border),
+                                     modifier=Modifier.fillMaxWidth().semantics{contentDescription="选择封面 ${cover?.name?:"CCB 默认封面"}";this.selected=active}
+                                         .clickable(enabled=!c.busy){a.selectCover(cover?.id)}) {
+                                     Column(Modifier.padding(8.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
+                                         Box {
+                                             CoverThumbnail(c,cover,Modifier.fillMaxWidth().height(138.dp).clip(RoundedCornerShape(6.dp)))
+-                                            if(active)Text("✓ 使用中",Modifier.align(Alignment.TopEnd).background(Gold,RoundedCornerShape(4.dp)).padding(horizontal=7.dp,vertical=3.dp),color=Ink,style=MaterialTheme.typography.caption)
++                                            if(active)ActiveCoverBadge(Modifier.align(Alignment.TopEnd))
+                                         }
+                                         Text(cover?.name?:"CCB 默认封面",maxLines=2,overflow=TextOverflow.Ellipsis,style=MaterialTheme.typography.body2)
+                                         Text(if(cover==null)"内置封面"else"自定义封面",color=Quiet,style=MaterialTheme.typography.caption)
+@@ -106,7 +111,7 @@ internal fun studioVisibleScrollbarStyle()=ScrollbarStyle(24.dp,10.dp,RoundedCor
+                         VerticalScrollbar(rememberScrollbarAdapter(grid),Modifier.align(Alignment.CenterEnd).fillMaxHeight().semantics{contentDescription="封面库滚动条"},style=studioVisibleScrollbarStyle())
+                     }
+                     Column(Modifier.width(240.dp).fillMaxHeight().background(Panel,RoundedCornerShape(10.dp)).padding(16.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(12.dp)) {
+-                        Text("正在使用",color=Gold,style=MaterialTheme.typography.caption)
++                        Text("正在使用",color=SelectionInk,style=MaterialTheme.typography.caption)
+                         CoverThumbnail(c,selected,Modifier.fillMaxWidth().height(175.dp).clip(RoundedCornerShape(6.dp)))
+                         Text(selected?.name?:"CCB 默认封面",fontWeight=FontWeight.Medium,maxLines=3,overflow=TextOverflow.Ellipsis)
+                         Text("封面会等比适应图片，空白区域以深色补齐。",color=Quiet,style=MaterialTheme.typography.caption)
+diff --git a/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryAnimationWorkspace.kt b/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryAnimationWorkspace.kt
+index ba9ed41..f51ca6b 100644
+--- a/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryAnimationWorkspace.kt
++++ b/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryAnimationWorkspace.kt
+@@ -156,7 +156,7 @@ internal fun animationNavigation(a:GalleryAnimationController,event:KeyEvent):Bo
+             if(delta!=0f){scope.launch{scroll.scrollBy(delta*48)};event.changes.forEach{it.consume()}}
+         },state=scroll,horizontalArrangement=Arrangement.spacedBy(6.dp)) {
+             itemsIndexed(ids,key={_,id->id}){index,id->ContextMenuArea(items={animationMenu(c,id)}) {
+-                Column(Modifier.width(132.dp).background(if(id in a.queueSelection)LibrarySelected else androidx.compose.ui.graphics.Color.Transparent).border(if(id in a.queueSelection||index==a.index)2.dp else 1.dp,if(id in a.queueSelection||index==a.index)Gold else LibraryLine).padding(3.dp)) {
++                Column(Modifier.width(132.dp).background(if(id in a.queueSelection)LibrarySelected else androidx.compose.ui.graphics.Color.Transparent).border(if(id in a.queueSelection||index==a.index)2.dp else 1.dp,if(id in a.queueSelection||index==a.index)SelectionInk else LibraryLine).padding(3.dp)) {
+                     var range by remember{mutableStateOf(false)};var control by remember{mutableStateOf(false)}
+                     Box(Modifier.fillMaxWidth().height(62.dp).onPointerEvent(PointerEventType.Press){range=it.keyboardModifiers.isShiftPressed;control=it.keyboardModifiers.isCtrlPressed}
+                         .semantics{selected=index==a.index;contentDescription="选择结果缩略图 ${index+1}"}.clickable{onFocus();a.selectQueueItem(id,control,range)}) {
+diff --git a/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryWorkspace.kt b/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryWorkspace.kt
+index 6e5ed37..76d7533 100644
+--- a/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryWorkspace.kt
++++ b/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryWorkspace.kt
+@@ -269,7 +269,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
+                                     if(c.library.canRedo)add(ContextMenuItem("重做"){c.library.redo()})
+                                 }
+                             }}) {
+-                                Column(Modifier.libraryCardBounds(drag,album.key,albumIds){rootOffset}.semantics{this.selected=selected}.background(if(selected)LibrarySelected else androidx.compose.ui.graphics.Color.Transparent,androidx.compose.foundation.shape.RoundedCornerShape(5.dp)).border(1.dp,if(selected)Gold else androidx.compose.ui.graphics.Color.Transparent,androidx.compose.foundation.shape.RoundedCornerShape(5.dp)).padding(5.dp)
++                                Column(Modifier.libraryCardBounds(drag,album.key,albumIds){rootOffset}.semantics{this.selected=selected}.background(if(selected)LibrarySelected else androidx.compose.ui.graphics.Color.Transparent,androidx.compose.foundation.shape.RoundedCornerShape(5.dp)).border(1.dp,if(selected)SelectionInk else androidx.compose.ui.graphics.Color.Transparent,androidx.compose.foundation.shape.RoundedCornerShape(5.dp)).padding(5.dp)
+                                     .onPointerEvent(PointerEventType.Press){event->ctrl=event.keyboardModifiers.isCtrlPressed;shift=event.keyboardModifiers.isShiftPressed;if(event.buttons.isSecondaryPressed){if(!selected)c.selection=albumIds.toSet();c.current=id;focus.requestFocus()}}
+                                     .combinedClickable(onClick={choose()},onDoubleClick={if(grouped)enter()else{c.current=id;g.preview(visibleIds,id)}})) {
+                                     Box(Modifier.fillMaxWidth().height(115.dp).semantics{contentDescription=if(grouped)"图库相册 $id"else"图库图片 $id"}) {
+@@ -343,7 +343,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
+             GalleryTools(c,drag,{rootOffset},orderedSelection)
+         }
+         val density=androidx.compose.ui.platform.LocalDensity.current
+-        drag.marquee?.let{rect->Box(Modifier.offset(with(density){rect.left.toDp()},with(density){rect.top.toDp()}).size(with(density){rect.width.toDp()},with(density){rect.height.toDp()}).background(Gold.copy(alpha=.15f)).border(1.dp,Gold))}
++        drag.marquee?.let{rect->Box(Modifier.offset(with(density){rect.left.toDp()},with(density){rect.top.toDp()}).size(with(density){rect.width.toDp()},with(density){rect.height.toDp()}).background(Gold.copy(alpha=.15f)).border(1.dp,SelectionInk))}
+         var dragPreviewSize by remember{mutableStateOf(androidx.compose.ui.unit.IntSize.Zero)}
+         val previewPosition=libraryDragPreviewPosition(drag.position,dragPreviewSize,rootSize,Offset(25*density.density,25*density.density))
+         if(drag.dragging.isNotEmpty())Surface(Modifier.zIndex(10f).offset{androidx.compose.ui.unit.IntOffset(previewPosition.x.toInt(),previewPosition.y.toInt())}.width(180.dp).onSizeChanged{dragPreviewSize=it}.semantics{contentDescription="拖动预览 ${drag.dragging.size} 项"},color=Panel,elevation=8.dp) {
+@@ -379,7 +379,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
+ @Composable private fun GalleryGuidanceDialog(c:WorkbenchController,ids:List<String>,close:()->Unit) {
+     var current by remember(ids){mutableStateOf(ids.first())}
+     AlertDialog(onDismissRequest=close,title={Text("图像引导 · ${ids.size} 张")},text={Column {
+-        Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState())){ids.forEach{id->Box(Modifier.size(72.dp).border(if(id==current)2.dp else 1.dp,if(id==current)Gold else Quiet).clickable{current=id}){QueueStaticThumbnail(c,id,Modifier.fillMaxSize())}}}
++        Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState())){ids.forEach{id->Box(Modifier.size(72.dp).border(if(id==current)2.dp else 1.dp,if(id==current)SelectionInk else Quiet).clickable{current=id}){QueueStaticThumbnail(c,id,Modifier.fillMaxSize())}}}
+         Text("选择其中一张并指定引导用途；其余所选图片继续保留。")
+     }},confirmButton={Column {
+         com.example.chatbar.domain.image.NovelAiImageUseTarget.entries.forEach{target->TextButton(enabled=!c.busy,onClick={c.useImage(current,target);close()}){Text(target.displayName)}}
+diff --git a/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/LibraryArchiveWorkspace.kt b/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/LibraryArchiveWorkspace.kt
+index 79114a1..39dac52 100644
+--- a/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/LibraryArchiveWorkspace.kt
++++ b/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/LibraryArchiveWorkspace.kt
+@@ -108,7 +108,7 @@ import kotlinx.coroutines.*
+                             if(id !in l.archiveSelection)l.archiveSelection=album.images.map{it.image.path}.toSet()
+                             listOf(ContextMenuItem("恢复所选资产"){restore=l.archiveSelection.toSet()},ContextMenuItem("编辑标签"){g.tagEditor=l.archiveSelection.toSet()})
+                         }) {
+-                            Row(Modifier.fillMaxWidth().background(if(selected)LibrarySelected else androidx.compose.ui.graphics.Color.Transparent,RoundedCornerShape(5.dp)).border(1.dp,if(selected)Gold else androidx.compose.ui.graphics.Color.Transparent,RoundedCornerShape(5.dp)).padding(6.dp)
++                            Row(Modifier.fillMaxWidth().background(if(selected)LibrarySelected else androidx.compose.ui.graphics.Color.Transparent,RoundedCornerShape(5.dp)).border(1.dp,if(selected)SelectionInk else androidx.compose.ui.graphics.Color.Transparent,RoundedCornerShape(5.dp)).padding(6.dp)
+                                 .onPointerEvent(PointerEventType.Press){ctrl=it.keyboardModifiers.isCtrlPressed;shift=it.keyboardModifiers.isShiftPressed}
+                                 .combinedClickable(onClick={choose()},onDoubleClick={if(grouped)choose()else if(id in images)g.preview(ids.filter{it in images},id)})) {
+                                 Box(Modifier.size(64.dp).semantics{contentDescription="回收站资产 $id"}) {
+diff --git a/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/LibraryCommands.kt b/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/LibraryCommands.kt
+index e04b36b..e88b68e 100644
+--- a/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/LibraryCommands.kt
++++ b/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/LibraryCommands.kt
+@@ -114,7 +114,7 @@ internal fun runGalleryTool(c:WorkbenchController,tool:String,ids:List<String>)
+             LibraryAction("自定义",style=StudioActionStyle.TERTIARY,icon=Lucide.SlidersHorizontal,accessibilityLabel="工具布局"){custom=true}
+             StudioMenu(custom,{custom=false}) {
+                 listOf(true to "小磁贴",false to "紧凑按钮").forEach{(tiles,label)->StudioMenuItem(onClick={custom=false;save(setting.copy(tiles=tiles))}){
+-                    RadioButton(setting.tiles==tiles,null,Modifier.size(22.dp),colors=RadioButtonDefaults.colors(selectedColor=Gold));Text(label,Modifier.padding(start=6.dp))
++                    RadioButton(setting.tiles==tiles,null,Modifier.size(22.dp),colors=RadioButtonDefaults.colors(selectedColor=SelectionInk));Text(label,Modifier.padding(start=6.dp))
+                 }}
+                 Divider(color=LibraryLine)
+                 order.forEachIndexed{i,tool->Row(verticalAlignment=Alignment.CenterVertically) {
+diff --git a/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/LibraryPresentation.kt b/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/LibraryPresentation.kt
+index 91eebc3..07a2a15 100644
+--- a/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/LibraryPresentation.kt
++++ b/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/LibraryPresentation.kt
+@@ -43,7 +43,7 @@ internal val LibrarySelected get()=StudioAppearanceRuntime.palette.accent
+     TooltipArea(tooltip={Surface(color=LibraryPanel){Text(accessibilityLabel,Modifier.padding(8.dp))}}) {
+         Row(Modifier.heightIn(min=31.dp).alpha(if(enabled)1f else .4f)
+             .background(if(selected||hover)LibrarySelected else if(quiet)Color.Transparent else LibraryPanel,shape)
+-            .border(1.dp,if(selected||focus)Gold else if(quiet)Color.Transparent else LibraryLine,shape)
++            .border(1.dp,if(selected||focus)SelectionInk else if(quiet)Color.Transparent else LibraryLine,shape)
+             .semantics{contentDescription=accessibilityLabel;expanded?.let{stateDescription=if(it)"已展开"else"已收起"}}
+             .hoverable(interaction).clickable(enabled=enabled,interactionSource=interaction,indication=null,role=Role.Button,onClick=onClick)
+             .padding(horizontal=8.dp,vertical=5.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(5.dp)) {
+@@ -56,7 +56,7 @@ internal val LibrarySelected get()=StudioAppearanceRuntime.palette.accent
+ 
+ @Composable internal fun LibraryToggle(label:String,selected:Boolean,action:()->Unit) {
+     Row(Modifier.height(31.dp).clickable(role=Role.Checkbox,onClick=action).semantics{contentDescription=label;this.selected=selected},verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(4.dp)) {
+-        Checkbox(selected,{action()},Modifier.size(18.dp),colors=CheckboxDefaults.colors(checkedColor=Gold,uncheckedColor=LibraryMuted))
++        Checkbox(selected,{action()},Modifier.size(18.dp),colors=CheckboxDefaults.colors(checkedColor=Gold,checkmarkColor=StudioAppearanceRuntime.palette.primaryForeground,uncheckedColor=LibraryMuted))
+         Text(label,fontSize=13.sp)
+     }
+ }
+@@ -67,7 +67,7 @@ internal val LibrarySelected get()=StudioAppearanceRuntime.palette.accent
+     val shape=RoundedCornerShape(6.dp)
+     Column(Modifier.size(90.dp,62.dp).alpha(if(enabled)1f else .4f)
+         .background(if(dropHovered||hovered)LibrarySelected else LibraryPanel,shape)
+-        .border(if(dropHovered)2.dp else 1.dp,if(dropHovered||focused)Gold else LibraryLine,shape)
++        .border(if(dropHovered)2.dp else 1.dp,if(dropHovered||focused)SelectionInk else LibraryLine,shape)
+         .semantics{contentDescription=description;stateDescription="磁贴"}
+         .hoverable(interaction).clickable(enabled=enabled,interactionSource=interaction,indication=null,role=Role.Button,onClick=onClick)
+         .padding(5.dp),horizontalAlignment=Alignment.CenterHorizontally,verticalArrangement=Arrangement.Center) {
+@@ -78,7 +78,7 @@ internal val LibrarySelected get()=StudioAppearanceRuntime.palette.accent
+ 
+ @Composable internal fun LibrarySelectionCheckbox(selected:Boolean,onSelected:(Boolean)->Unit,modifier:Modifier=Modifier,enabled:Boolean=true) {
+     Checkbox(selected,onSelected,modifier.size(24.dp),enabled=enabled,
+-        colors=CheckboxDefaults.colors(checkedColor=Gold,checkmarkColor=Ink,uncheckedColor=LibraryMuted))
++        colors=CheckboxDefaults.colors(checkedColor=Gold,checkmarkColor=StudioAppearanceRuntime.palette.primaryForeground,uncheckedColor=LibraryMuted))
+ }
+ 
+ @Composable internal fun LibraryBand(panel:Boolean=false,content:@Composable RowScope.()->Unit) {
+diff --git a/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/Main.kt b/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/Main.kt
+index 8d716a9..b7dc6de 100644
+--- a/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/Main.kt
++++ b/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/Main.kt
+@@ -35,6 +35,7 @@ import java.io.File
+ internal val Ink get()=StudioAppearanceRuntime.palette.background
+ internal val Panel get()=StudioAppearanceRuntime.palette.surface
+ internal val Gold get()=StudioAppearanceRuntime.palette.primary
++internal val SelectionInk get()=StudioAppearanceRuntime.palette.selectionInk
+ internal val Quiet get()=StudioAppearanceRuntime.palette.mutedForeground
+ 
+ fun main(args:Array<String>) {
+diff --git a/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/SharedAssetPicker.kt b/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/SharedAssetPicker.kt
+index a1a215f..0ee133c 100644
+--- a/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/SharedAssetPicker.kt
++++ b/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/SharedAssetPicker.kt
+@@ -24,7 +24,7 @@ import com.example.chatbar.desktop.*
+             LazyVerticalGrid(GridCells.Adaptive(120.dp),Modifier.weight(1f)) {
+                 items(available.filter{a->val labels=c.library.labels(a.request().id().toString());a.request().name().contains(query,true)||labels.alias.contains(query,true)||labels.tags.any{it.contains(query,true)}},key={it.request().id().toString()}) {a->
+                     val id=a.request().id().toString()
+-                    Column(Modifier.padding(4.dp).border(1.dp,if(id in selected)Gold else Quiet)
++                    Column(Modifier.padding(4.dp).border(1.dp,if(id in selected)SelectionInk else Quiet)
+                         .clickable{selected=if(multiple){if(id in selected)selected-id else selected+id}else setOf(id)}
+                         .semantics{contentDescription="选用资产 $id";this.selected=id in selected}) {
+                         val labels=c.library.labels(id)
+diff --git a/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioAppearance.kt b/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioAppearance.kt
+index 0e68e6c..02285da 100644
+--- a/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioAppearance.kt
++++ b/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioAppearance.kt
+@@ -68,7 +68,18 @@ internal data class StudioSemanticColors(
+     val mutedForeground:Color,val border:Color,val input:Color,val primary:Color,val primaryForeground:Color,
+     val accent:Color,val warning:Color,val warningBackground:Color,val destructive:Color,
+     val libraryBackground:Color,val libraryPanel:Color,val libraryLine:Color,val libraryText:Color,val libraryMuted:Color,
+-)
++) {
++    // A fill keeps the user's RGB; a mark must also be visible on the surfaces beside it.
++    val selectionInk:Color=studioReadableSelectionInk(primary,
++        listOf(background,surface,muted,input,accent,libraryBackground,libraryPanel))
++}
++
++internal fun studioReadableSelectionInk(primary:Color,backgrounds:List<Color>):Color {
++    require(backgrounds.isNotEmpty())
++    fun leastContrast(color:Color)=backgrounds.minOf{studioContrastRatio(color,it)}
++    return if(leastContrast(primary)>=4.5)primary else
++        listOf(Color.Black,Color.White).maxBy{leastContrast(it)}
++}
+ 
+ /** Adapted to Suite tokens from DesktopTheme.kt at Desktop d53d46ca8fe0dbac11c33e85b38e07099b105da8.
+  * Pure palette math only; no Desktop store, credentials, background-image or character appearance access. */
+diff --git a/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioTitleControls.kt b/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioTitleControls.kt
+index a01df8d..6942a64 100644
+--- a/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioTitleControls.kt
++++ b/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioTitleControls.kt
+@@ -63,10 +63,10 @@ internal val studioRoutes=listOf("创作","AI 设计","图库","编辑","资产
+             .background(if(selected)DesktopBootstrapColors.muted else Color.Transparent,RoundedCornerShape(6.dp))
+             .semantics{contentDescription=label}.selectable(selected,role=Role.Tab,onClick=onClick),
+             verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.Center) {
+-            val ink=if(selected)Gold else Quiet
++            val ink=if(selected)SelectionInk else Quiet
+             Icon(icon,null,Modifier.size(17.dp),tint=ink)
+             if(!compact){Spacer(Modifier.width(6.dp));Text(label,fontSize=13.sp,color=ink,maxLines=1)}
+-            if(pending)Box(Modifier.padding(start=3.dp).size(6.dp).background(Gold,RoundedCornerShape(3.dp)).semantics{contentDescription="有待更新版本"})
++            if(pending)Box(Modifier.padding(start=3.dp).size(6.dp).background(SelectionInk,RoundedCornerShape(3.dp)).semantics{contentDescription="有待更新版本"})
+         }
+     }
+ }
+diff --git a/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/WorkspaceUi.kt b/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/WorkspaceUi.kt
+index 8b56c7d..79530fa 100644
+--- a/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/WorkspaceUi.kt
++++ b/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/WorkspaceUi.kt
+@@ -103,7 +103,7 @@ private class ChromeRecorder(private val chrome:DesktopWindowChrome) {
+             Row(Modifier.height(32.dp).width(if(compact)36.dp else 76.dp).onGloballyPositioned(r.button(label))
+                 .clip(RoundedCornerShape(6.dp)).background(if(c.tab==index)Soft else Color.Transparent)
+                 .clickable(role=Role.Tab){c.tab=index;c.compactPanel="INSPECTOR"}.padding(horizontal=8.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.Center) {
+-                Glyph(glyph,if(c.tab==index)Gold else Quiet,Modifier.size(16.dp))
++                Glyph(glyph,if(c.tab==index)SelectionInk else Quiet,Modifier.size(16.dp))
+                 if(!compact){Spacer(Modifier.width(7.dp));Text(label,fontSize=12.sp,color=if(c.tab==index)TextInk else Quiet)}
+             }
+         }
+@@ -137,7 +137,7 @@ private class ChromeRecorder(private val chrome:DesktopWindowChrome) {
+             }
+         }
+         if(!compact)Box {
+-            Button(onClick={exportMenu=true},enabled=!c.busy&&c.project!=null,shape=RoundedCornerShape(7.dp),elevation=ButtonDefaults.elevation(0.dp,0.dp),contentPadding=PaddingValues(horizontal=14.dp,vertical=7.dp)) {Glyph("export",Ink,Modifier.size(14.dp));Spacer(Modifier.width(7.dp));Text("导出",fontSize=12.sp)}
++            Button(onClick={exportMenu=true},enabled=!c.busy&&c.project!=null,shape=RoundedCornerShape(7.dp),elevation=ButtonDefaults.elevation(0.dp,0.dp),contentPadding=PaddingValues(horizontal=14.dp,vertical=7.dp)) {Glyph("export",StudioAppearanceRuntime.palette.primaryForeground,Modifier.size(14.dp));Spacer(Modifier.width(7.dp));Text("导出",fontSize=12.sp)}
+             StudioMenu(exportMenu,{exportMenu=false}){listOf("PRIVACY" to "隐私渲染 PNG","NORMAL" to "普通渲染 + Recipe","ORIGINAL" to "原始图片 · 保留字节").forEach {(mode,label)->StudioMenuItem(onClick={exportMenu=false;c.export(mode)}){Text(label)}}}
+         }
+     }
+@@ -162,7 +162,7 @@ private class ChromeRecorder(private val chrome:DesktopWindowChrome) {
+         if(pages.isNotEmpty())LazyRow(Modifier.fillMaxWidth().height(74.dp),horizontalArrangement=Arrangement.spacedBy(7.dp)) {
+             items(pages,key={it.request().id().toString()}){a->
+                 val id=a.request().id().toString()
+-                Column(Modifier.width(64.dp).clip(RoundedCornerShape(6.dp)).border(1.dp,if(id==c.current)Gold else Border,RoundedCornerShape(6.dp)).clickable{c.current=id;c.refreshImage()}.padding(3.dp),horizontalAlignment=Alignment.CenterHorizontally) {
++                Column(Modifier.width(64.dp).clip(RoundedCornerShape(6.dp)).border(1.dp,if(id==c.current)SelectionInk else Border,RoundedCornerShape(6.dp)).clickable{c.current=id;c.refreshImage()}.padding(3.dp),horizontalAlignment=Alignment.CenterHorizontally) {
+                     Thumbnail(c,a,Modifier.fillMaxWidth().height(48.dp));Text(a.request().name(),fontSize=9.sp,maxLines=1,overflow=TextOverflow.Ellipsis,color=Quiet)
+                 }
+             }
+@@ -177,7 +177,7 @@ private class ChromeRecorder(private val chrome:DesktopWindowChrome) {
+         Field("筛选名称",query,{query=it})
+         if(c.state.projects.isNotEmpty()) {
+             Text("工程",color=Quiet,fontSize=10.sp,modifier=Modifier.padding(top=14.dp,bottom=5.dp))
+-            Row(Modifier.horizontalScroll(rememberScrollState())) {c.state.projects.forEach {p->TextButton(onClick={c.projectId=p.id;c.current=p.current.pages.firstOrNull()?.assetId;c.selected=p.current.pages.map{it.assetId}.toSet();c.refreshImage()},contentPadding=PaddingValues(horizontal=7.dp)){Text(p.name,fontSize=11.sp,color=if(c.projectId==p.id)Gold else Quiet)}}}
++            Row(Modifier.horizontalScroll(rememberScrollState())) {c.state.projects.forEach {p->TextButton(onClick={c.projectId=p.id;c.current=p.current.pages.firstOrNull()?.assetId;c.selected=p.current.pages.map{it.assetId}.toSet();c.refreshImage()},contentPadding=PaddingValues(horizontal=7.dp)){Text(p.name,fontSize=11.sp,color=if(c.projectId==p.id)SelectionInk else Quiet)}}}
+         }
+         Row(Modifier.padding(top=12.dp,bottom=8.dp),verticalAlignment=Alignment.CenterVertically){Text("原始图片",Modifier.weight(1f),fontSize=10.sp,color=Quiet);Text("${c.assets.size}",fontSize=10.sp,color=Quiet)}
+         val ordered=c.project?.current?.pages?.mapNotNull {p->c.assets.find {it.request().id().toString()==p.assetId}}?:c.assets
+@@ -290,7 +290,7 @@ private val thumbnailDispatcher=Dispatchers.IO.limitedParallelism(1)
+                     Divider();Field("正向 Prompt",c.prompt,{c.prompt=it},4);Disclosure("负向 Prompt",c.negative){Field("负向 Prompt",c.negative,{c.negative=it},4)}
+                     Disclosure("角色与位置",if(c.characters=="[]")"未添加角色"else"保留完整角色字段"){Field("角色列表 JSON",c.characters,{c.characters=it},4)}
+                     ProfilePicker("NAI",c.state.accounts,c.naiId){c.naiId=it}
+-                    Row {NovelAiImageModel.entries.forEach {m->TextButton(onClick={c.imageModel=m}){Text(if(m==NovelAiImageModel.V4_5_FULL)"V4.5"else"V5",color=if(c.imageModel==m)Gold else Quiet)}}}
++                    Row {NovelAiImageModel.entries.forEach {m->TextButton(onClick={c.imageModel=m}){Text(if(m==NovelAiImageModel.V4_5_FULL)"V4.5"else"V5",color=if(c.imageModel==m)SelectionInk else Quiet)}}}
+                     Row {Box(Modifier.weight(1f)){Field("宽",c.width,{c.width=it})};Spacer(Modifier.width(8.dp));Box(Modifier.weight(1f)){Field("高",c.height,{c.height=it})}}
+                     Row {Box(Modifier.weight(1f)){Field("Steps",c.steps,{c.steps=it})};Spacer(Modifier.width(8.dp));Box(Modifier.weight(1f)){Field("Guidance",c.guidance,{c.guidance=it})}}
+                     Field("固定 Seed",c.seed,{c.seed=it})
+@@ -300,7 +300,7 @@ private val thumbnailDispatcher=Dispatchers.IO.limitedParallelism(1)
+                 1->{
+                     Text("非破坏图层",fontWeight=FontWeight.Bold)
+                     Text("先建立工程；在图像上拖绘。动作应用于工程中已选图片。",fontSize=12.sp,color=Quiet)
+-                    Row {listOf("RECT" to "矩形","BRUSH" to "画笔","POLYGON" to "圈选","TEXT" to "文字").forEach {(id,label)->TextButton(onClick={c.tool=id},contentPadding=PaddingValues(5.dp)){Text(label,color=if(c.tool==id)Gold else Quiet)}}}
++                    Row {listOf("RECT" to "矩形","BRUSH" to "画笔","POLYGON" to "圈选","TEXT" to "文字").forEach {(id,label)->TextButton(onClick={c.tool=id},contentPadding=PaddingValues(5.dp)){Text(label,color=if(c.tool==id)SelectionInk else Quiet)}}}
+                     if(c.tool=="TEXT") {Field("文字",c.text,{c.text=it},3);Field("字体",c.font,{c.font=it});Field("字号",c.fontSize,{c.fontSize=it});Row(verticalAlignment=Alignment.CenterVertically){Checkbox(c.vertical,{c.vertical=it});Text("竖排")}}
+                     else Row(verticalAlignment=Alignment.CenterVertically){Checkbox(c.mosaic,{c.mosaic=it});Text(if(c.mosaic)"马赛克" else "纯色遮盖")}
+                     OutlinedButton(onClick={c.addLayer(if(c.tool=="POLYGON")listOf(Point(20f,20f),Point(180f,20f),Point(100f,130f))else listOf(Point(20f,20f),Point(180f,130f)),20f,20f,160f,110f)},enabled=!c.busy&&c.project!=null){Text("添加示例图层")}
+@@ -348,6 +348,6 @@ private val thumbnailDispatcher=Dispatchers.IO.limitedParallelism(1)
+     AlertDialog(onDismissRequest={c.popup=null},title={Text("命名账户档案")},text={Column(verticalArrangement=Arrangement.spacedBy(8.dp)){
+         Text("Preview 档案仅连接合成 transport。真实凭据验证独立限流，账户标识在任务创建时冻结。",fontSize=12.sp)
+         c.state.accounts.forEach {Text("${it.alias} · ${it.service} · ${it.provider}",fontSize=12.sp)}
+-        Field("新档案名称",alias,{alias=it});Row {TextButton(onClick={service="LLM"}){Text("LLM",color=if(service=="LLM")Gold else Quiet)};TextButton(onClick={service="NAI"}){Text("NAI",color=if(service=="NAI")Gold else Quiet)}}
++        Field("新档案名称",alias,{alias=it});Row {TextButton(onClick={service="LLM"}){Text("LLM",color=if(service=="LLM")SelectionInk else Quiet)};TextButton(onClick={service="NAI"}){Text("NAI",color=if(service=="NAI")SelectionInk else Quiet)}}
+     }},confirmButton={Button(onClick={c.popup=null;c.run("保存命名档案"){c.workspace.save(c.state.copy(accounts=c.state.accounts+AccountProfile(alias=alias,service=service,provider="SYNTHETIC",model=if(service=="LLM")"fixture-designer" else "nai-diffusion-4-5-full"))) }},enabled=alias.isNotBlank()){Text("新增")}},dismissButton={TextButton(onClick={c.popup=null}){Text("关闭")}})
+ }
+diff --git a/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioSelectedContrastTest.kt b/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioSelectedContrastTest.kt
+new file mode 100644
+index 0000000..63d3229
+--- /dev/null
++++ b/modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioSelectedContrastTest.kt
+@@ -0,0 +1,119 @@
++@file:OptIn(androidx.compose.ui.ExperimentalComposeUiApi::class,androidx.compose.ui.InternalComposeUiApi::class)
++package io.github.misakapiano.ccbstudio.desktop
++
++import androidx.compose.foundation.layout.*
++import androidx.compose.material.*
++import androidx.compose.ui.ImageComposeScene
++import androidx.compose.ui.Modifier
++import androidx.compose.ui.graphics.Color
++import androidx.compose.ui.semantics.*
++import androidx.compose.ui.unit.dp
++import com.example.chatbar.desktop.DesktopNovelAiInfrastructure
++import io.github.misakapiano.ccbstudio.core.*
++import kotlinx.coroutines.*
++import java.awt.image.BufferedImage
++import java.io.ByteArrayInputStream
++import java.nio.file.Path
++import javax.imageio.ImageIO
++import javax.swing.SwingUtilities
++import kotlin.coroutines.CoroutineContext
++import kotlin.math.ceil
++import kotlin.math.floor
++import kotlin.test.*
++
++/** Targeted synthetic/offscreen checks, not Windows theme events or user visual acceptance. */
++class StudioSelectedContrastTest {
++    private val awt=object:CoroutineDispatcher(){override fun dispatch(context:CoroutineContext,block:Runnable)=SwingUtilities.invokeLater(block)}
++    private fun root()=Path.of(requireNotNull(System.getProperty("preview.test.root")),newId())
++    private val extremes=listOf(StudioDisplaySettings(StudioThemeMode.DARK,accentRgb=0),
++        StudioDisplaySettings(StudioThemeMode.LIGHT,accentRgb=0xffffff))
++    private suspend fun ImageComposeScene.frames(){repeat(4){render(System.nanoTime()).close();yield()};delay(80)}
++    private fun ImageComposeScene.nodes():List<SemanticsNode> {
++        fun walk(n:SemanticsNode):List<SemanticsNode> = listOf(n)+n.children.flatMap(::walk)
++        return semanticsOwners.flatMap{walk(it.rootSemanticsNode)}
++    }
++    private fun SemanticsNode.matches(label:String)=config.getOrNull(SemanticsProperties.Text)?.any{it.text==label}==true||
++        config.getOrNull(SemanticsProperties.ContentDescription)?.contains(label)==true
++    private fun ImageComposeScene.pixels():BufferedImage=render(System.nanoTime()).use {image->
++        image.encodeToData()!!.use {ImageIO.read(ByteArrayInputStream(it.bytes))}
++    }
++    private fun assertReadableMark(image:BufferedImage,node:SemanticsNode,background:Color,label:String,edgeOnly:Boolean=false,leadingWidth:Int?=null) {
++        val bounds=node.boundsInRoot
++        val left=floor(bounds.left).toInt().coerceAtLeast(0)
++        val right=minOf(ceil(bounds.right).toInt(),image.width,leadingWidth?.let{left+it}?:image.width)
++        val top=floor(bounds.top).toInt().coerceAtLeast(0);val bottom=ceil(bounds.bottom).toInt().coerceAtMost(image.height)
++        var marks=0
++        for(y in top until bottom)for(x in left until right) {
++            if(edgeOnly && !(y==top && x>=left+6 && x<right-6))continue
++            val pixel=Color(image.getRGB(x,y))
++            if(studioContrastRatio(pixel,background)>=4.5)marks++
++        }
++        assertTrue(marks>=3,"$label has no readable ${if(edgeOnly)"border" else "foreground"}: $marks pixels")
++        println("selected-contrast consumer=$label readablePixels=$marks edgeOnly=$edgeOnly")
++    }
++
++    @Test fun indicatorUsesOriginalAccentWhenReadableAndPreservesEveryStoredRgb() {
++        for(mode in StudioThemeMode.entries)for(style in StudioColorStyle.entries)for(system in listOf(false,true))
++            for(rgb in listOf(0,0xffffff,0xff0000,0x00ff00,0x0000ff,0x777777,0x7db5ff)) {
++                val settings=StudioDisplaySettings(mode,style,rgb);val encoded=settings.encode()
++                val p=studioSemanticColors(settings,system)
++                val surfaces=listOf(p.background,p.surface,p.muted,p.input,p.accent,p.libraryBackground,p.libraryPanel)
++                assertTrue(surfaces.all{studioContrastRatio(p.selectionInk,it)>=4.5},"$mode/$style/$system/$rgb")
++                if(surfaces.all{studioContrastRatio(p.primary,it)>=4.5})assertEquals(p.primary,p.selectionInk)
++                if(style==StudioColorStyle.CUSTOM_ACCENT)assertEquals(Color(0xff000000.toInt() or rgb),p.primary)
++                assertEquals(encoded,settings.encode());assertEquals(settings,StudioDisplaySettings.decode(encoded))
++            }
++        val defaults=studioSemanticColors(StudioDisplaySettings(),true)
++        assertEquals(defaults.primary,defaults.selectionInk)
++        println("selected-contrast default blue remains unchanged; all mode/style/system/RGB combinations keep format/RGB")
++    }
++
++    @Test fun filledBatchCoverAndLibraryControlsRenderReadableForegrounds()=runBlocking(awt) {
++        val original=StudioAppearanceRuntime.palette
++        try {for(settings in extremes) {
++            val palette=studioSemanticColors(settings,true);StudioAppearanceRuntime.palette=palette
++            val w=StudioWorkspace.openStudio(root());val scope=CoroutineScope(SupervisorJob()+awt)
++            val infrastructure=DesktopNovelAiInfrastructure(root())
++            val c=WorkbenchController(w,scope,infrastructure,root(),admissionOverride=RequestAdmission{error("No network permitted")})
++            val scene=ImageComposeScene(600,280,coroutineContext=awt){StudioTheme {
++                Surface(color=palette.libraryPanel){Column(Modifier.fillMaxSize(),verticalArrangement=Arrangement.spacedBy(12.dp)) {
++                    BatchCreationEntry(c)
++                    ActiveCoverBadge()
++                    Box(Modifier.semantics{contentDescription="fixture selection checkbox"}){LibrarySelectionCheckbox(true,{})}
++                    Box(Modifier.semantics{contentDescription="fixture library toggle"}){LibraryToggle("fixture toggle",true){}}
++                }}
++            }}
++            try {
++                scene.frames();val image=scene.pixels()
++                for(label in listOf("单次","✓ 使用中","fixture selection checkbox","fixture library toggle"))
++                    assertReadableMark(image,scene.nodes().first{it.matches(label)},palette.primary,"${settings.mode}/$label",
++                        leadingWidth=if(label=="fixture library toggle")18 else null)
++                assertEquals(settings.accentRgb,StudioDisplaySettings.decode(settings.encode()).accentRgb)
++            }finally {scene.close();scope.cancel();infrastructure.closeAndDrain();w.close()}
++        }}finally {StudioAppearanceRuntime.palette=original}
++    }
++
++    @Test fun actualRouteAndLibrarySelectionBordersStayVisibleAndClickable()=runBlocking(awt) {
++        val original=StudioAppearanceRuntime.palette
++        try {for(settings in extremes+StudioDisplaySettings()) {
++            val p=studioSemanticColors(settings,true);StudioAppearanceRuntime.palette=p
++            var routeClicks=0;var actionClicks=0
++            val scene=ImageComposeScene(360,150,coroutineContext=awt){StudioTheme {
++                Surface(color=p.libraryPanel){Column(Modifier.fillMaxSize(),verticalArrangement=Arrangement.spacedBy(12.dp)) {
++                    StudioRouteButton("创作",true,false){routeClicks++}
++                    LibraryAction("fixture selected action",selected=true,icon=null){actionClicks++}
++                }}
++            }}
++            try {
++                scene.frames();val image=scene.pixels()
++                val route=scene.nodes().first{it.matches("创作")&&it.config.getOrNull(SemanticsActions.OnClick)!=null}
++                val action=scene.nodes().first{it.matches("fixture selected action")&&it.config.getOrNull(SemanticsActions.OnClick)!=null}
++                assertReadableMark(image,route,p.muted,"${settings.mode}/${settings.accentRgb}/route")
++                assertReadableMark(image,action,p.accent,"${settings.mode}/${settings.accentRgb}/selected action",edgeOnly=true)
++                assertTrue(route.config[SemanticsActions.OnClick].action!!.invoke())
++                assertTrue(action.config[SemanticsActions.OnClick].action!!.invoke())
++                assertEquals(1,routeClicks);assertEquals(1,actionClicks)
++            }finally {scene.close()}
++        }}finally {StudioAppearanceRuntime.palette=original}
++    }
++}

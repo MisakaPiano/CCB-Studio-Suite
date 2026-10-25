@@ -1,0 +1,46 @@
+{
+  "observedStartUtc": "2026-10-25T14:35:36.101963+00:00",
+  "observedEndUtc": "2026-10-25T14:35:37.131884+00:00",
+  "source": "c39e860252fdd96c9bec5b5d42d1abd988d3ec06",
+  "status": "RESOURCE_NOT_ADMITTED_NO_TEST_STARTED",
+  "budget": {
+    "outputs": {
+      "modules/studio-desktop/build": {
+        "bytes": 144232658,
+        "files": 2369,
+        "complete": true
+      },
+      "modules/studio-core/build": {
+        "bytes": 287836985,
+        "files": 1097,
+        "complete": true
+      },
+      "modules/image-authority/build": {
+        "bytes": 10949292,
+        "files": 1216,
+        "complete": true
+      },
+      "modules/asset-library/build": {
+        "bytes": 418505,
+        "files": 87,
+        "complete": true
+      }
+    },
+    "boundedScanComplete": true,
+    "hBudgetBytes": 2195497728,
+    "cBudgetBytes": 805306368,
+    "memoryFreeMinimumBytes": 2147483648,
+    "basis": "Original floors unchanged or increased; 2x current build bytes + 1248 MiB planning allowance, not measured peak"
+  },
+  "snapshot": {
+    "atUtc": "2026-10-25T14:35:36.9020450Z",
+    "hFreeBytes": 1756520448,
+    "cFreeBytes": 9529102336,
+    "freeMemoryBytes": 2025144320,
+    "owners": []
+  },
+  "hShortfallBytes": 438977280,
+  "runnerInvocations": 0,
+  "actualJUnitMethods": 0,
+  "scope": "New three methods only; accepted StudioAppearanceTest four methods not rerun; --keep-fixtures; no package/install/release/cleanup"
+}

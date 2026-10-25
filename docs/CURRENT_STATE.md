@@ -1,6 +1,6 @@
 ## 当前执行：主题选中态P2窄修已准备，资源不足未编译/未测
 
-用户14:19 UTC明确批准继续UX-DISPLAY-THEME-001 / P2-SELECTED-CONTRAST及一次原Project复审。已按原d5d317bf结论准备：原RGB仍用于填充，primaryForeground用于其上文字/勾选符，另加在标准深浅表面可读的selectionInk供导航、选择/焦点轮廓消费；默认蓝色标识保持。三项新回归包含实际控件离屏像素与点击检查，当前NOT COMPILED / NOT TESTED，0执行，H约1.64GiB低于原2,194,033,190字节门槛；不下调预算、不删文件或抢Desktop。新修复待实际回归与固定证据，尚未送新Project请求，P2仍OPEN，不把源码准备写成修复验收完成。旧四项接受及30b0659/dce6600原证据保持；包/视觉/用户/系统事件、保护用例和其他PENDING未验保持，不打包/发布/安装/搬删。原Project结果如下，旧仅送审边界由本次授权替代。
+用户14:19 UTC明确批准继续UX-DISPLAY-THEME-001 / P2-SELECTED-CONTRAST及一次原Project复审。已按原d5d317bf结论准备：原RGB仍用于填充，primaryForeground用于其上文字/勾选符，另加在标准深浅表面可读的selectionInk供导航、选择/焦点轮廓消费；默认蓝色标识保持。三项新回归包含实际控件离屏像素与点击检查，当前NOT COMPILED / NOT TESTED，0执行，H约1.64GiB低于原2,194,033,190字节门槛；不下调预算、不删文件或抢Desktop。新修复待实际回归与固定证据，尚未送新Project请求，P2仍OPEN，不把源码准备写成修复验收完成。旧四项接受及30b0659/dce6600原证据保持；包/视觉/用户/系统事件、保护用例和其他PENDING未验保持，不打包/发布/安装/搬删。新固定候选c39e860及[两次原始资源观察/三项待跑](audits/THEME_SELECTED_CONTRAST_P2_20261025.md)：H要求上调为2,195,497,728字节，最近空闲1,756,520,448字节；内存两次低于2GiB，均0测试。原Project结果如下，旧仅送审边界由本次授权替代。
 
 ## 原Project固定结果：部分接受，消费端对比度P2开放
 

@@ -15,7 +15,7 @@
 |顺序|沿用任务/范围|当前状态与进入条件|
 |---|---|---|
 |1|PERF-001～PERF-007，本轮性能优化及收尾|先完成正在进行的验证/固定源码/原始结果与失败分列。当前字体清单db46098/1aa1fde已自动3方法通过并留证，长期规模/UI/RSS/用户/包等未验仍保留，不宣称整个专项全部完成，也不以长期未关闭无限追加本轮微基线|
-|2|UX-DISPLAY-THEME-001：对齐Desktop实际显示主题色切换|30b0659 COMPILED / FOUR METHODS PASS获独立接受，核心/保存PASS_WITH_SCOPE；本轮独立PARTIAL_ACCEPT / LIMITED_HOLD，子发现P2-SELECTED-CONTRAST OPEN（未实施/未回归）。保留原RGB，窄修消费端前景及唯一状态图标/边框，不能仅换3处Ink即关闭。实际UI/用户/包未验，送审本身不启动修复/打包/发布/安装或后三组。见[Project结论](audits/THEME_PROJECT_REVIEW_RESULT_20261025.md)|
+|2|UX-DISPLAY-THEME-001：对齐Desktop实际显示主题色切换|30b0659 COMPILED / FOUR METHODS PASS获独立接受，核心/保存PASS_WITH_SCOPE；本轮独立PARTIAL_ACCEPT / LIMITED_HOLD，子发现P2-SELECTED-CONTRAST OPEN（c39e860候选已准备，NOT COMPILED / NOT TESTED）。保留原RGB，窄修消费端前景及唯一状态图标/边框，不能仅换3处Ink即关闭。实际UI/用户/包未验；14:19 UTC授权窄修/针对回归及一次送审，不授权打包/发布/安装或后三组。见[新候选与资源推迟](audits/THEME_SELECTED_CONTRAST_P2_20261025.md)及[原Project结论](audits/THEME_PROJECT_REVIEW_RESULT_20261025.md)|
 |3|UX-RECOVERY既有本轮内部打包/验收阶段，承接W1～W5/CP4相关门禁及REVIEW_FIXES_AND_UPDATE_CLEANUP_20261024|主题后准备包含已有修复、清理、性能、主题的内部包与验收，NOT BUILT / NOT VERIFIED。必须纳入最后f6598d39298c06ec5644a131e484e814f77b6f45下载终态清理修复；当前仅证实db46098是其后代，不等于新包已含修复。冻结源码/构建输入/包版本与SHA256/实际脚本字节及证据对应关系，补必要新包集成；旧115/2484858内部包不代替。本次内部包授权不等于公开发布、更新日常安装、改信任链或冒签用户/Project验收|
 |4a（第3步后）|UX-RECOVERY / W2～W4：资产管理与编辑界面验证|USER_NOT_TESTED，按用户实际测试时间推进；实现/自动通过不能代替人工，所需用户动作和审批继续等待用户|
 |4b（第3步后）|UX-ASSET-FS-001：本地批量文件管理与真正删除|PLANNED / NOT STARTED；保留批量重命名/复制/移动/删除与移出图库/回收站/永久删除原文件的区别，不因排期授权操作真实用户文件|

@@ -1,3 +1,7 @@
+## 2026-10-25 主题选中态P2候选准备，资源未准入
+
+[c39e860源码/三项待跑/两次原始观察](audits/THEME_SELECTED_CONTRAST_P2_20261025.md)：原RGB填充与可读标识分开，16份展示生产文件/1新测试类；NOT COMPILED / NOT TESTED，0新执行，P2仍OPEN。H要求2,195,497,728字节、空闲约1,756,520,448，内存两次亦低于2GiB，不降低预算/清理或抢Desktop。14:19 UTC明确批准的单次新Project送审待实际回归，尚未发送；旧四项接受和失败/证据保持，不打包/发布/安装/搬删。
+
 ## 2026-10-25 主题原Project限定复审：部分接受，选中态P2开放
 
 [实际结论/范围](audits/THEME_PROJECT_REVIEW_RESULT_20261025.md)及[单次原Project送达回执](../handoff/THEME_PROJECT_REVIEW_DISPATCH_20261025.md)：源码30b0659/证据dce6600不改，请求f03257f2、回复d5d317bf已在原「阶段复审结论」完整回读。核心/保存PASS_WITH_SCOPE、4JUnit及11源码/28清单文件独立核验接受；消费端选中态对比P2 OPEN，本轮PARTIAL_ACCEPT / LIMITED_HOLD。既有UX-DISPLAY-THEME-001登记窄修，不只3处Ink还包括Gold作为唯一图标/边框；本次只送审/读取/登记，无源码或测试改动，不发版/安装/搬删或扩范围，视觉/用户/包及旧未验保持。

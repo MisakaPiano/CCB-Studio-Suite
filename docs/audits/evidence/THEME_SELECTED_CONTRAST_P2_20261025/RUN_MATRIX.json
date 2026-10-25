@@ -1,0 +1,23 @@
+{
+  "applicationSource": "c39e860252fdd96c9bec5b5d42d1abd988d3ec06",
+  "status": "RESOURCE_NOT_ADMITTED_NO_TEST_STARTED",
+  "compilation": "NOT COMPILED",
+  "plannedUniqueMethods": 3,
+  "actualUniqueMethods": 0,
+  "runnerInvocations": 0,
+  "actualPasses": 0,
+  "failures": "NOT RUN (not a passing zero-failure test run)",
+  "plannedMethods": [
+    "indicatorUsesOriginalAccentWhenReadableAndPreservesEveryStoredRgb",
+    "filledBatchCoverAndLibraryControlsRenderReadableForegrounds",
+    "actualRouteAndLibrarySelectionBordersStayVisibleAndClickable"
+  ],
+  "plannedCommand": "python tools/Run-PreviewChecks.py --phase display-theme-selected-p2-20261025 --keep-fixtures -- :studio-desktop:test --tests *StudioSelectedContrastTest",
+  "commandExecuted": false,
+  "oldAcceptedFour": "Preserved, not rerun or counted toward P2",
+  "reviewStatus": "NOT SUBMITTED; one authorized send remains unused pending actual regression results",
+  "noNewFixtureCreated": true,
+  "keepFixturesWhenRun": true,
+  "packageReleaseInstallCleanupMoves": false,
+  "next": "Fresh bounded budget/space/memory and two 30s quiet owner observations plus final preflight before invoking only the three new methods"
+}
