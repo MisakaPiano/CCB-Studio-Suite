@@ -158,6 +158,10 @@ internal class StudioAppearanceController(private val c:WorkbenchController) {
         onBackground=p.foreground,onSurface=p.foreground,onError=if(p.dark)Color.Black else Color.White),content=content)
 }
 
+@Composable internal fun StudioAppearanceTextAction(label:String,enabled:Boolean=true,onClick:()->Unit) {
+    TextButton(enabled=enabled,onClick=onClick,colors=ButtonDefaults.textButtonColors(contentColor=StudioAppearanceRuntime.palette.selectionInk)){Text(label)}
+}
+
 @Composable internal fun StudioAppearanceDialog(c:WorkbenchController) {
     val appearance=c.appearance
     if(!appearance.shown)return
@@ -166,7 +170,7 @@ internal class StudioAppearanceController(private val c:WorkbenchController) {
             Column(Modifier.widthIn(min=360.dp,max=620.dp).heightIn(max=650.dp).verticalScroll(rememberScrollState()).padding(20.dp),verticalArrangement=Arrangement.spacedBy(10.dp)) {
                 Text("显示主题",style=MaterialTheme.typography.h6)
                 if(appearance.loading)Text("正在读取显示设置…")
-                appearance.error?.let {Text(it,color=MaterialTheme.colors.error);TextButton(onClick=appearance::load){Text("重新读取")}}
+                appearance.error?.let {Text(it,color=MaterialTheme.colors.error);StudioAppearanceTextAction("重新读取",onClick=appearance::load)}
                 val enabled=appearance.loaded&&!appearance.loading&&!c.busy&&!c.maintenance
                 val settings=appearance.settings
                 Text("深浅模式")
@@ -190,12 +194,12 @@ internal class StudioAppearanceController(private val c:WorkbenchController) {
                     var hex by remember(settings.accentRgb){mutableStateOf("%06X".format(settings.accentRgb))}
                     val rgb=hex.takeIf{it.matches(Regex("[0-9a-fA-F]{6}"))}?.toIntOrNull(16)
                     OutlinedTextField(hex,{hex=it.take(6)},label={Text("RGB 十六进制（6位）")},singleLine=true,enabled=enabled)
-                    TextButton(enabled=enabled&&rgb!=null,onClick={appearance.save(settings.copy(accentRgb=requireNotNull(rgb)))}){Text("应用颜色")}
+                    StudioAppearanceTextAction("应用颜色",enabled&&rgb!=null){appearance.save(settings.copy(accentRgb=requireNotNull(rgb)))}
                 }
                 Text("切换后自动保存；不会改变图片、编辑画布内容或原文件。",style=MaterialTheme.typography.caption,color=Quiet)
                 Row(horizontalArrangement=Arrangement.spacedBy(8.dp)) {
-                    TextButton(enabled=enabled,onClick={appearance.save(StudioDisplaySettings())}){Text("恢复 Studio 默认")}
-                    TextButton(onClick={appearance.shown=false}){Text("关闭")}
+                    StudioAppearanceTextAction("恢复 Studio 默认",enabled){appearance.save(StudioDisplaySettings())}
+                    StudioAppearanceTextAction("关闭"){appearance.shown=false}
                 }
             }
         }}
