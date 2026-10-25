@@ -1,0 +1,80 @@
+{
+  "sources": {
+    "baseline": "1a007ab11f7fa50520d57387d2000e3d2f1cebf9",
+    "final": "b8b225d6951617b35b8f5e3d5b82950511681e3c"
+  },
+  "baselineExecutionSource": "1a007ab11f7fa50520d57387d2000e3d2f1cebf9",
+  "executionSource": "b8b225d6951617b35b8f5e3d5b82950511681e3c",
+  "identities": [
+    {
+      "run": "baseline",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetColors.kt",
+      "rawInputSha256": "ae0a772cf2db0cd35e813893113893d6135182ddd71dd2f1d8398d52e6383684",
+      "gitBlobSha256": "ae0a772cf2db0cd35e813893113893d6135182ddd71dd2f1d8398d52e6383684"
+    },
+    {
+      "run": "baseline",
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TypesetColorSyntaxPerformanceTest.kt",
+      "rawInputSha256": "16e14b07b1debfa844074622da1b7854e46a71e4ed913f67077a41c943c722e7",
+      "gitBlobSha256": "16e14b07b1debfa844074622da1b7854e46a71e4ed913f67077a41c943c722e7"
+    },
+    {
+      "run": "baseline",
+      "path": "tools/Run-PreviewChecks.py",
+      "rawInputSha256": "45f0f681f68b83c67c5a04607dfea09ecea742bcfd2f5f4ee31e3162901e9e23",
+      "gitBlobSha256": "d8dec9e6bcc417c59cc9d3dd32b79fd4519c16b86adbf582798b2d707c4935b4"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetColors.kt",
+      "rawInputSha256": "013d5cdf06651be5660d3177748646c2dc3d9eb7f84752deb69807fd7237f24e",
+      "gitBlobSha256": "004c764c7c64e222ceb9eec71111335ebd668b26663c5d42529428d248bd611f"
+    },
+    {
+      "run": "final",
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TypesetColorSyntaxPerformanceTest.kt",
+      "rawInputSha256": "ec4d3dd6f1eb6d81301d551761f0daf4b5ea4dd915f767dc070745e35f2004b7",
+      "gitBlobSha256": "5f9ba6c64b1d9f03cff7719694b5e21e856906eacb9fc30966616f3a983ed553"
+    },
+    {
+      "run": "final",
+      "path": "tools/Run-PreviewChecks.py",
+      "rawInputSha256": "45f0f681f68b83c67c5a04607dfea09ecea742bcfd2f5f4ee31e3162901e9e23",
+      "gitBlobSha256": "d8dec9e6bcc417c59cc9d3dd32b79fd4519c16b86adbf582798b2d707c4935b4"
+    },
+    {
+      "run": "both",
+      "path": "modules/studio-core/src/main/resources/typeset/css-named-colors.json",
+      "rawInputSha256": "4fe3585d7454204d9e47b64df861d2a43ba0805e22f274240e1063d06dde1976",
+      "gitBlobSha256": "02c347487d439770060574ccabb2d7957ebc218599617753d11587569c6a1e8e"
+    },
+    {
+      "run": "both",
+      "path": "modules/studio-core/src/test/resources/typeset/source-colors.json",
+      "rawInputSha256": "2804b572a43d87318d758b3084aaa6beeafbc43da87a112ede61e7eb63ca5364",
+      "gitBlobSha256": "2804b572a43d87318d758b3084aaa6beeafbc43da87a112ede61e7eb63ca5364"
+    },
+    {
+      "run": "both",
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TypesetColorTest.kt",
+      "rawInputSha256": "a1adf33406b1c2f4335fa33f2e6735ace51efb969a6a14e704408fcbb5b341e5",
+      "gitBlobSha256": "a1adf33406b1c2f4335fa33f2e6735ace51efb969a6a14e704408fcbb5b341e5"
+    }
+  ],
+  "changedModulePaths": [
+    "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetColors.kt",
+    "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TypesetColorSyntaxPerformanceTest.kt"
+  ],
+  "productionOnlyThreeLazyFixedRegexFieldsAndThreeUses": true,
+  "originalPatternsOptionsParsingAndValidationTextUnchanged": true,
+  "oldParserReferenceExactExceptPrivateObjectName": true,
+  "allOtherProductionAndResourcesUnchanged": true,
+  "rawInputsAndCanonicalGitVerified": true,
+  "finalUniqueMethods": 5,
+  "baselineUniqueMethods": 1,
+  "baselineAndCasesThreadsRoundsNotAdded": true,
+  "package": "NONE",
+  "release": "NONE",
+  "independentReview": "NOT REQUESTED",
+  "humanAndPackage": "NOT TESTED"
+}

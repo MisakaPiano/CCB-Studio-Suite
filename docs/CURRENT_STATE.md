@@ -1,6 +1,10 @@
-## 2026-10-25 PERF-005颜色语法纯解析基线待资源（生产未改）
+## 2026-10-25 PERF-005颜色固定Regex复用最终5方法通过（未发布）
 
-测试输入1a007ab，仅新增TypesetColorSyntaxPerformanceTest单方法，原TypesetColors仍未改；基线尚未执行，不标通过。32/128/500文字层的合成文档，计划在计数外实际validate/<=4MiB和输入字节检查；计数内只批量map实际颜色parse调用（同结果列表包装），区分HEX/色名/透明控制与RGB/HSL/HWB功能色，非完整文档validate耗时、字体/图像/渲染/UI或冷启动测试。有实际分配依据后才考虑惰性复用3个固定Regex，精确模式/选项、语法/数值/错误/校验/色名字典不变，无输入或结果缓存；编辑用户仍未验，unified-image-tool/Prompt比较不启动。单门按最新Desktop owner等待/低优先级单worker，原失败/路径错误UNKNOWN/文件预检/无发行与日常资料操作及其他PENDING保持。
+[b8b225d实际执行/固定证据](audits/PERF005_COLOR_SYNTAX_20261025.md)最终5唯一方法PASS、输入稳定，基线1/162案例/线程轮次另列。只3个lazy固定表达式+3引用，原规则/字典/数值/长度/错误/完整校验及其他生产保持；功能色线程分配少约82%、2000次36.05→6.64MB/17.129→6.046ms，HEX分配不变，局部parse非整编辑器/UI/RSS/冷启动/用户/包或独立验收。3d1251f异步登记把“未读到结果”误写“未执行”，按原summary校正，旧提交/原始结果保留，未重跑。新[复审只准备](../handoff/PERF005_COLOR_SYNTAX_REVIEW_READY_20261025.md)，原16项/两段补充/原Desktop边界不扩大；旧失败/否决/路径错误UNKNOWN及禁止再访问、q09/资产编辑未验/115与Prompt PENDING/PRODUCT_HOLD保持。继续已有低风险性能源码定位、有证据才改，Desktop优先，不整合unified-image-tool/新增UI/发布/日常操作或恢复扫描。
+
+## 2026-10-25 PERF-005颜色语法纯解析基线待资源（历史登记措辞已更正）
+
+测试输入1a007ab，仅新增TypesetColorSyntaxPerformanceTest单方法，登记时尚未读取后台执行结果；原写“未执行”不准确，应为PENDING_OBSERVATION，raw证明04:43:00起20.808秒已完成，旧提交3d1251f保留。32/128/500文字层的合成文档，计数外实际validate/<=4MiB和输入字节检查；计数内只批量map实际颜色parse调用（同结果列表包装），区分HEX/色名/透明控制与RGB/HSL/HWB功能色，非完整文档validate耗时、字体/图像/渲染/UI或冷启动测试。原准备意图是有实际分配依据后才考虑惰性复用3个固定Regex，精确模式/选项、语法/数值/错误/校验/色名字典不变，无输入或结果缓存；编辑用户仍未验，unified-image-tool/Prompt比较不启动。单门按最新Desktop owner/低优先级单worker，原失败/路径错误UNKNOWN/文件预检/无发行与日常资料操作及其他PENDING保持。
 
 ## 2026-10-25 作业日期Map汇总最终3方法通过（未发布）
 

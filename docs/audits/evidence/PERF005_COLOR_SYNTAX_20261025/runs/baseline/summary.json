@@ -1,0 +1,31 @@
+{
+  "phase": "perf005-color-syntax-baseline-20261025",
+  "startedUtc": "2026-10-25T04:43:00.224508+00:00",
+  "seconds": 20.808,
+  "exitCode": 0,
+  "tests": 1,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--priority",
+    "low",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    "-PpreviewTestRoot=H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-2911b4c35b4b44ca856e72d1038e6e13\\payload",
+    ":studio-core:test",
+    "--tests",
+    "*TypesetColorSyntaxPerformanceTest.measuredActualColorSyntaxKeepsAdmittedDocumentValuesAndSnapshots"
+  ],
+  "baseCommit": "1a007ab11f7fa50520d57387d2000e3d2f1cebf9",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

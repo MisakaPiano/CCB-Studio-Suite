@@ -1,0 +1,276 @@
+{
+  "medians": {
+    "baseline": [
+      {
+        "texts": 32,
+        "context": "hex-named",
+        "kind": "actualLegacy",
+        "colorCalls": 128,
+        "serializedDocumentBytes": 18798,
+        "argbOrderSha256": "011c01ed2328733a67fc2c14aa5f46c48bca78f14960fd38b2751723fb408315",
+        "medians": {
+          "wallMs": 0.4345,
+          "cpuMs": 0.0,
+          "allocatedBytes": 56624.0
+        }
+      },
+      {
+        "texts": 32,
+        "context": "functional",
+        "kind": "actualLegacy",
+        "colorCalls": 128,
+        "serializedDocumentBytes": 20562,
+        "argbOrderSha256": "dc2f293ad49487f172338a83398baadb07f1a8ef8061b434ce784741c25f8757",
+        "medians": {
+          "wallMs": 4.11425,
+          "cpuMs": 7.8125,
+          "allocatedBytes": 2331224.0
+        }
+      },
+      {
+        "texts": 128,
+        "context": "hex-named",
+        "kind": "actualLegacy",
+        "colorCalls": 512,
+        "serializedDocumentBytes": 73223,
+        "argbOrderSha256": "cc0a6e9b6168cadc4aee2472c7792003a7422c04a76f0f3581baf6662f501c39",
+        "medians": {
+          "wallMs": 0.73995,
+          "cpuMs": 0.0,
+          "allocatedBytes": 225496.0
+        }
+      },
+      {
+        "texts": 128,
+        "context": "functional",
+        "kind": "actualLegacy",
+        "colorCalls": 512,
+        "serializedDocumentBytes": 80283,
+        "argbOrderSha256": "f40f3fff424c4f8779a2a2e878ee376d9c97a2d3de5cd22570272604c2332fea",
+        "medians": {
+          "wallMs": 8.831,
+          "cpuMs": 0.0,
+          "allocatedBytes": 9229952.0
+        }
+      },
+      {
+        "texts": 500,
+        "context": "hex-named",
+        "kind": "actualLegacy",
+        "colorCalls": 2000,
+        "serializedDocumentBytes": 284365,
+        "argbOrderSha256": "af43d2826c7d9242f6d9ddc731b231616f0c8458f89c5a0c904107d7e9c4662c",
+        "medians": {
+          "wallMs": 2.6243,
+          "cpuMs": 0.0,
+          "allocatedBytes": 881672.0
+        }
+      },
+      {
+        "texts": 500,
+        "context": "functional",
+        "kind": "actualLegacy",
+        "colorCalls": 2000,
+        "serializedDocumentBytes": 311965,
+        "argbOrderSha256": "4930d4a1ce47788a4d39cb92175b953cb2baba940318fc338cb3ba2d20d193dc",
+        "medians": {
+          "wallMs": 19.037,
+          "cpuMs": 15.625,
+          "allocatedBytes": 36052972.0
+        }
+      }
+    ],
+    "final": [
+      {
+        "texts": 32,
+        "context": "hex-named",
+        "kind": "current",
+        "colorCalls": 128,
+        "serializedDocumentBytes": 18798,
+        "argbOrderSha256": "011c01ed2328733a67fc2c14aa5f46c48bca78f14960fd38b2751723fb408315",
+        "medians": {
+          "wallMs": 0.14585,
+          "cpuMs": 0.0,
+          "allocatedBytes": 56624.0
+        }
+      },
+      {
+        "texts": 32,
+        "context": "hex-named",
+        "kind": "recorded",
+        "colorCalls": 128,
+        "serializedDocumentBytes": 18798,
+        "argbOrderSha256": "011c01ed2328733a67fc2c14aa5f46c48bca78f14960fd38b2751723fb408315",
+        "medians": {
+          "wallMs": 0.33465,
+          "cpuMs": 0.0,
+          "allocatedBytes": 56624.0
+        }
+      },
+      {
+        "texts": 32,
+        "context": "functional",
+        "kind": "current",
+        "colorCalls": 128,
+        "serializedDocumentBytes": 20562,
+        "argbOrderSha256": "dc2f293ad49487f172338a83398baadb07f1a8ef8061b434ce784741c25f8757",
+        "medians": {
+          "wallMs": 1.06495,
+          "cpuMs": 0.0,
+          "allocatedBytes": 424888.0
+        }
+      },
+      {
+        "texts": 32,
+        "context": "functional",
+        "kind": "recorded",
+        "colorCalls": 128,
+        "serializedDocumentBytes": 20562,
+        "argbOrderSha256": "dc2f293ad49487f172338a83398baadb07f1a8ef8061b434ce784741c25f8757",
+        "medians": {
+          "wallMs": 4.55385,
+          "cpuMs": 0.0,
+          "allocatedBytes": 2331224.0
+        }
+      },
+      {
+        "texts": 128,
+        "context": "hex-named",
+        "kind": "current",
+        "colorCalls": 512,
+        "serializedDocumentBytes": 73223,
+        "argbOrderSha256": "cc0a6e9b6168cadc4aee2472c7792003a7422c04a76f0f3581baf6662f501c39",
+        "medians": {
+          "wallMs": 0.6489499999999999,
+          "cpuMs": 0.0,
+          "allocatedBytes": 225496.0
+        }
+      },
+      {
+        "texts": 128,
+        "context": "hex-named",
+        "kind": "recorded",
+        "colorCalls": 512,
+        "serializedDocumentBytes": 73223,
+        "argbOrderSha256": "cc0a6e9b6168cadc4aee2472c7792003a7422c04a76f0f3581baf6662f501c39",
+        "medians": {
+          "wallMs": 0.65825,
+          "cpuMs": 0.0,
+          "allocatedBytes": 225496.0
+        }
+      },
+      {
+        "texts": 128,
+        "context": "functional",
+        "kind": "current",
+        "colorCalls": 512,
+        "serializedDocumentBytes": 80283,
+        "argbOrderSha256": "f40f3fff424c4f8779a2a2e878ee376d9c97a2d3de5cd22570272604c2332fea",
+        "medians": {
+          "wallMs": 3.2071,
+          "cpuMs": 0.0,
+          "allocatedBytes": 1698624.0
+        }
+      },
+      {
+        "texts": 128,
+        "context": "functional",
+        "kind": "recorded",
+        "colorCalls": 512,
+        "serializedDocumentBytes": 80283,
+        "argbOrderSha256": "f40f3fff424c4f8779a2a2e878ee376d9c97a2d3de5cd22570272604c2332fea",
+        "medians": {
+          "wallMs": 9.827300000000001,
+          "cpuMs": 15.625,
+          "allocatedBytes": 9229952.0
+        }
+      },
+      {
+        "texts": 500,
+        "context": "hex-named",
+        "kind": "current",
+        "colorCalls": 2000,
+        "serializedDocumentBytes": 284365,
+        "argbOrderSha256": "af43d2826c7d9242f6d9ddc731b231616f0c8458f89c5a0c904107d7e9c4662c",
+        "medians": {
+          "wallMs": 2.21455,
+          "cpuMs": 0.0,
+          "allocatedBytes": 881672.0
+        }
+      },
+      {
+        "texts": 500,
+        "context": "hex-named",
+        "kind": "recorded",
+        "colorCalls": 2000,
+        "serializedDocumentBytes": 284365,
+        "argbOrderSha256": "af43d2826c7d9242f6d9ddc731b231616f0c8458f89c5a0c904107d7e9c4662c",
+        "medians": {
+          "wallMs": 2.2407000000000004,
+          "cpuMs": 0.0,
+          "allocatedBytes": 881672.0
+        }
+      },
+      {
+        "texts": 500,
+        "context": "functional",
+        "kind": "current",
+        "colorCalls": 2000,
+        "serializedDocumentBytes": 311965,
+        "argbOrderSha256": "4930d4a1ce47788a4d39cb92175b953cb2baba940318fc338cb3ba2d20d193dc",
+        "medians": {
+          "wallMs": 6.04625,
+          "cpuMs": 7.8125,
+          "allocatedBytes": 6635372.0
+        }
+      },
+      {
+        "texts": 500,
+        "context": "functional",
+        "kind": "recorded",
+        "colorCalls": 2000,
+        "serializedDocumentBytes": 311965,
+        "argbOrderSha256": "4930d4a1ce47788a4d39cb92175b953cb2baba940318fc338cb3ba2d20d193dc",
+        "medians": {
+          "wallMs": 17.129350000000002,
+          "cpuMs": 15.625,
+          "allocatedBytes": 36052956.0
+        }
+      }
+    ]
+  },
+  "counts": {
+    "baseline": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "baseCommit": "1a007ab11f7fa50520d57387d2000e3d2f1cebf9",
+      "seconds": 20.808,
+      "startedUtc": "2026-10-25T04:43:00.224508+00:00",
+      "sourceStable": true
+    },
+    "final": {
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "baseCommit": "b8b225d6951617b35b8f5e3d5b82950511681e3c",
+      "seconds": 23.745,
+      "startedUtc": "2026-10-25T04:52:18.675960+00:00",
+      "sourceStable": true
+    }
+  },
+  "cleanupFiles": 0,
+  "cleanupBytes": 0,
+  "limits": [
+    "Synthetic validated TypesetDocument32/128/500text layers,4colors/text,serialized<=4MiB;no image/store/font/provider/realdata admission",
+    "Actual parse calls in equal map result-list wrapper;full document.validate/expectedARGB/snapshot checks outside counter",
+    "Two warmups eachmode/four alternating same-JVM rounds;counter before validation/JSON",
+    "Fixed3lazy Regex only,no input/result/matcher cache;3lazydelegates allocated on singleton init and3Patterns retained when firstused",
+    "Cold/first-use init,peakheap/GC/RSS/wholeUI/render/export/physicalIO/universalWindows not measured",
+    "HEX/named/transparent branch unchanged;control allocation same;small wall variation not attributed to regex reuse",
+    "Concurrent2threads/100rounds/7values verifiesreuse,not all initialization races/platforms/longrun",
+    "Existing independent162Canvas cases preserve originalone-unitpremultiplied tolerance;not162JUnitmethods"
+  ]
+}

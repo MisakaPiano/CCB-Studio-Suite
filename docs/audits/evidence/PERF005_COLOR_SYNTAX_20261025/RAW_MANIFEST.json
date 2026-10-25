@@ -1,0 +1,160 @@
+{
+  "format": 1,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19,
+      "sha256": "3e5e82fc72e044ea9af807a2030b73dbb94800d2cd1775302063b2eee761ba1e"
+    },
+    {
+      "path": "ANALYSIS.json",
+      "bytes": 8915,
+      "sha256": "b899afa7bbcbdd9421f624f64614cb54c5e6bc407687c0bc928756a43711c98c"
+    },
+    {
+      "path": "ATTEMPTS_AND_LIMITS.md",
+      "bytes": 3114,
+      "sha256": "32ca31c7556c1f0698549f6d0f96591ce52c72855573bc48a8d36d75218ee2a8"
+    },
+    {
+      "path": "baseline-samples.json",
+      "bytes": 7335,
+      "sha256": "e1407b116d3fa8e3ab02267627d91ee726fd019fb20a62fc7872402d7a74a9f2"
+    },
+    {
+      "path": "candidate-source-check.json",
+      "bytes": 449,
+      "sha256": "b7ee94263d7d97509f0c70a007163fa5242bfe5eca625b9264fe316ade227b5f"
+    },
+    {
+      "path": "collect.py",
+      "bytes": 12075,
+      "sha256": "1c4794ffd6a8a5c4433969831531dcb3d1cd385103c0ca5b8199e3ce69e3ddaa"
+    },
+    {
+      "path": "final-samples.json",
+      "bytes": 15821,
+      "sha256": "ceef311f0964f7e95ddebfbc4500d2191672eeb7e384b4d107aaaf0a4c07a541"
+    },
+    {
+      "path": "inputs/baseline/TypesetColors.kt",
+      "bytes": 4452,
+      "sha256": "ae0a772cf2db0cd35e813893113893d6135182ddd71dd2f1d8398d52e6383684"
+    },
+    {
+      "path": "inputs/final/TypesetColors.kt",
+      "bytes": 4707,
+      "sha256": "013d5cdf06651be5660d3177748646c2dc3d9eb7f84752deb69807fd7237f24e"
+    },
+    {
+      "path": "inputs/shared/css-named-colors.json",
+      "bytes": 3991,
+      "sha256": "4fe3585d7454204d9e47b64df861d2a43ba0805e22f274240e1063d06dde1976"
+    },
+    {
+      "path": "inputs/shared/source-colors.json",
+      "bytes": 41238,
+      "sha256": "2804b572a43d87318d758b3084aaa6beeafbc43da87a112ede61e7eb63ca5364"
+    },
+    {
+      "path": "inputs/shared/TypesetColorTest.kt",
+      "bytes": 2432,
+      "sha256": "a1adf33406b1c2f4335fa33f2e6735ace51efb969a6a14e704408fcbb5b341e5"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 3520,
+      "sha256": "b6a3b310d77723af3c1286c64571cde041c8c99904101eef8b87c825f26e7e5c"
+    },
+    {
+      "path": "prepare-candidate.py",
+      "bytes": 1539,
+      "sha256": "6199ab3614fb49105c3ea25929067f7633fe615dbf935b9c1541635ae35570d1"
+    },
+    {
+      "path": "prepare-final.py",
+      "bytes": 4764,
+      "sha256": "8f05f8e15cff4c5718f6d44620a445b98319ba5cd486031ff7ef7d5becdcc203"
+    },
+    {
+      "path": "resource-boundaries.jsonl",
+      "bytes": 170,
+      "sha256": "d71431f2774c2985b8e9e8ec42adaa19d36bc34e2d60059d9ac3cb3f3f971a32"
+    },
+    {
+      "path": "resource-gate.ps1",
+      "bytes": 2851,
+      "sha256": "50b1040b8dfddbe6d7aa04649e2408ffbc88cb19b11731d7e6ff74ee09498350"
+    },
+    {
+      "path": "runs/baseline/fixture-cleanup.json",
+      "bytes": 283,
+      "sha256": "44b82dedde84bb6c2778e2bf768ad87ea59c856b476107fb58b6b3a8bb6b49dc"
+    },
+    {
+      "path": "runs/baseline/gradle.log",
+      "bytes": 1587,
+      "sha256": "d91d1b258da40708b7c528447a9f59802cb4478ff9b79e8b642c90a8ab3b0892"
+    },
+    {
+      "path": "runs/baseline/source-before.json",
+      "bytes": 79481,
+      "sha256": "5c2030d7d894bf2d0c3e6bef59f31e045cbb4c87bb2a538dca2766c527d0b33b"
+    },
+    {
+      "path": "runs/baseline/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetColorSyntaxPerformanceTest.xml",
+      "bytes": 6188,
+      "sha256": "14a9ed78ef977f658317ea32833c4e9f5db3b2b8990a9a83db87363fa72c2150"
+    },
+    {
+      "path": "runs/baseline/summary.json",
+      "bytes": 1057,
+      "sha256": "53a2272b57c320b6a792b96a3bf2e774d45dfc3f23e69a59e0068a295f89790b"
+    },
+    {
+      "path": "runs/baseline/test-cases.json",
+      "bytes": 232,
+      "sha256": "a45d0ce34d454648c4d3592bc097844c888a4ebb8c65a787e8fc3026c3d687a9"
+    },
+    {
+      "path": "runs/final/fixture-cleanup.json",
+      "bytes": 283,
+      "sha256": "1dcb587cf85f3c92fd9bce0aca5a56d1e07292955db5bdcdde1bd01789237d08"
+    },
+    {
+      "path": "runs/final/gradle.log",
+      "bytes": 1962,
+      "sha256": "8d0527096ba2fafc00c430986646a710ba076c01787cfde7217b98bbf3af96d9"
+    },
+    {
+      "path": "runs/final/source-before.json",
+      "bytes": 79481,
+      "sha256": "1a80eb6bbf5d5324deff752eeec272deeafa8228768de21c77513cf02dad1b7d"
+    },
+    {
+      "path": "runs/final/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetColorSyntaxPerformanceTest.xml",
+      "bytes": 13001,
+      "sha256": "37284dc475adfde9a3c0ab56280f32a38b01bc0a9dc26c5def459c4b0347d404"
+    },
+    {
+      "path": "runs/final/studio-core-TEST-io.github.misakapiano.ccbstudio.core.TypesetColorTest.xml",
+      "bytes": 655,
+      "sha256": "84fd950563e1966ca38cc405da6f44f4539577ced9aaf52b78bc7a35d6dce6cb"
+    },
+    {
+      "path": "runs/final/summary.json",
+      "bytes": 1031,
+      "sha256": "8fb983beb82c62ca0298d8b5d62c2a42787e9f9012370f999c1981f2d3dd050e"
+    },
+    {
+      "path": "runs/final/test-cases.json",
+      "bytes": 1092,
+      "sha256": "efac51ed0ef51833c389c19d7336977e6686b3a726155a7e913ed27add1168e9"
+    },
+    {
+      "path": "SOURCE_MAP.json",
+      "bytes": 3924,
+      "sha256": "b19aaebc0add4c9b20dc37fb2430d80085861d978608e4a526929a0deeb31d77"
+    }
+  ]
+}

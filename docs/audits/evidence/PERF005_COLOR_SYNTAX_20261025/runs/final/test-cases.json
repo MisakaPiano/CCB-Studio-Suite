@@ -1,0 +1,32 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetColorSyntaxPerformanceTest",
+    "name": "concurrentParserReuseKeepsIndependentMatchAndColorResults",
+    "seconds": "0.126",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetColorSyntaxPerformanceTest",
+    "name": "measuredActualColorSyntaxKeepsAdmittedDocumentValuesAndSnapshots",
+    "seconds": "0.498",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetColorSyntaxPerformanceTest",
+    "name": "exactArgbAndInvalidOutcomeMatchRecordedParserIncludingTrackedSourceCases",
+    "seconds": "0.028",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetColorTest",
+    "name": "invalidColorsCannotSilentlyRenderAsThePreviousStyle",
+    "seconds": "0.02",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetColorTest",
+    "name": "namedAndFunctionalRichColorsMatchIndependentSourceCanvasSamples",
+    "seconds": "0.238",
+    "status": "PASS"
+  }
+]
