@@ -1,0 +1,77 @@
+{
+  "recordedUtc": "2026-10-25T22:20:39.692651+00:00",
+  "appSource": "48eed2aa35d1b2bcaa86f140ac33aac9cdc286ac",
+  "packageSource": "b54a036fc65868836d901339f7d1e3dce24dff8a",
+  "status": "USER_REPORTED_PASS_WITH_SCOPE",
+  "question": "四种配色下应用颜色都生效，关闭后能重新打开，最后恢复Studio默认也生效了吗？",
+  "answer": "都正常",
+  "scope": [
+    "LIGHT/DARK x 000000/FFFFFF: Apply readable and effective",
+    "Close then gear reopen",
+    "Restore Studio default"
+  ],
+  "visibleResult": "Three dialog text actions readable in all four supplied combinations; later screenshots show default blue and dialog closed",
+  "screenshots": [
+    {
+      "name": "codex-clipboard-0937dbfd-210f-41c6-902d-716896782d83.png",
+      "sha256": "e8abad8ac164c23b7b27aabf9174bfb3a5609198106a599f321594ba0d30e4ee",
+      "observation": "LIGHT FFFFFF dialog"
+    },
+    {
+      "name": "codex-clipboard-dad83c93-df90-472e-9834-628860f95c4b.png",
+      "sha256": "96265ff09e478e0d7a47fee243b0fb180896d145007eb849c2abdbf020405f56",
+      "observation": "LIGHT 000000 dialog"
+    },
+    {
+      "name": "codex-clipboard-7281d8ea-e5f2-45fd-8f1a-2b95b698f854.png",
+      "sha256": "95947f6f97fa976107584897d77a651d6f651e58f70c9b6499e317c81c25d211",
+      "observation": "LIGHT black main window"
+    },
+    {
+      "name": "codex-clipboard-06d7efbd-9afe-4deb-b878-6b6c24123563.png",
+      "sha256": "38b6059c1dc8b01015ac0485e3d49cf79afdbebde9459ef3c1734503c1cbfc2b",
+      "observation": "LIGHT white main window"
+    },
+    {
+      "name": "codex-clipboard-30f367f6-3339-4d75-8d7a-cb132bf1d522.png",
+      "sha256": "ec260d23d26916c781d55f010c50eeed5b81d5d293624bf020988dd0d8fc04ee",
+      "observation": "DARK FFFFFF dialog"
+    },
+    {
+      "name": "codex-clipboard-86a29031-4400-4f1a-aa4c-32a33e464573.png",
+      "sha256": "6c1fc19282b0d429489b8e8f7e2eb30164d7ccf362ee420ec4d6ccb80e1d6455",
+      "observation": "DARK 000000 dialog"
+    },
+    {
+      "name": "codex-clipboard-82ac0afe-f835-487c-a126-d031d599eea5.png",
+      "sha256": "5b9ede7154b87bb3742cde0271b846f833627cc5415a38ea2063f2057de43bf2",
+      "observation": "DARK black main window; Tokens low contrast remains"
+    },
+    {
+      "name": "codex-clipboard-d88ab1ff-29ec-4498-8a1f-b2c8d0f9d2b1.png",
+      "sha256": "982e959583ba71b00bb1d967fab587f4bdc20b0546107050606e53ced8659fc5",
+      "observation": "DARK white main window"
+    },
+    {
+      "name": "codex-clipboard-75f2378c-5c51-400b-9c47-30865762a73e.png",
+      "sha256": "f2eeac3406a631bc7bf35eb6fecbf02a32333d208a892f90bc5bd14cc7e9a0dc",
+      "observation": "DARK default blue dialog after restore"
+    },
+    {
+      "name": "codex-clipboard-49f32799-dad1-40cc-bbd9-c7cf01f0d941.png",
+      "sha256": "ab78adb1602bfa4ef29e17275ceaaf2d879454f2d9a562427adc884a1eb1cb62",
+      "observation": "DARK default blue main window after close"
+    }
+  ],
+  "retryAction": "Error-only Reload is covered by previous fixed one-method automatic test; native error branch NOT TESTED; no corrupt fixture introduced",
+  "residual": {
+    "id": "THEME-TOKENS-CONTRAST",
+    "status": "OPEN / NOT FIXED / NOT IN TEXT-ACTION PATCH",
+    "observation": "DARK + black accent makes creation-page positive/negative Tokens text dark; image82ac. Separate screenshot finding, not a denial of the three confirmed dialog actions."
+  },
+  "previousDelayedAnswer": "稍后检查, then corrected by user: 我点错了，你让我继续检查吧; no timeout assumed acceptance",
+  "previous22aaAcceptance": "Four original theme checklist items USER_REPORTED_PASS only for22aa; not repeated here",
+  "userImagePixelsPublished": false,
+  "independentReview": "NOT REQUESTED",
+  "wholeProject": "PRODUCT_HOLD / NOT RC"
+}

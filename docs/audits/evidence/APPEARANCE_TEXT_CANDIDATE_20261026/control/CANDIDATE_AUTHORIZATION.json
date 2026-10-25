@@ -1,0 +1,27 @@
+{
+  "approvedUtc": "2026-10-25T22:06:00Z minute precision",
+  "trustedHumanEvidence": "Coordinator01a16f0a-b53e-7062-a303-f975e672a0db: user Sentinel_776f4bf95d5081919cb587fe9d99afe2 可以 to new independent48eed candidate and limited4theme-action verification",
+  "source": "48eed2aa35d1b2bcaa86f140ac33aac9cdc286ac",
+  "packagingHead": "b54a036fc65868836d901339f7d1e3dce24dff8a",
+  "noNewSourceChanges": true,
+  "scope": "Reuse fixed app image; fresh internal NSIS/install; verified real shortcut/probe/isolation; only residual theme text action checks",
+  "forbidden": [
+    "Daily115 or rollback replacement",
+    "Private default workspace/credentials",
+    "Release/tag/production trust or update metadata",
+    "New external review",
+    "Whole theme retest",
+    "MSI operations"
+  ],
+  "preflight": {
+    "atUtc": "2026-10-25T22:07:43.4447784Z",
+    "hFree": 4842803200,
+    "cFree": 12459122688,
+    "available": 2126393344,
+    "commitHeadroom": 7825174528,
+    "foreignHeavy": 0,
+    "hBudgetBytes": 1610612736,
+    "cBudgetBytes": 268435456,
+    "budgetNature": "Estimated fresh payload+installation+compressed EXE+temporary overhead; no new Gradle build"
+  }
+}

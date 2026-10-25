@@ -1,0 +1,173 @@
+{
+  "appSource": "48eed2aa35d1b2bcaa86f140ac33aac9cdc286ac",
+  "packageSource": "b54a036fc65868836d901339f7d1e3dce24dff8a",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19,
+      "sha256": "3e5e82fc72e044ea9af807a2030b73dbb94800d2cd1775302063b2eee761ba1e"
+    },
+    {
+      "path": "control/CANDIDATE_AUTHORIZATION.json",
+      "bytes": 1202,
+      "sha256": "3b80b1ee81bf5ab552e4ebb1973c77357dfa04887081c2c62a47f704c6585535"
+    },
+    {
+      "path": "control/isolated-install.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "control/ISOLATED_INSTALL_COMMAND.json",
+      "bytes": 471,
+      "sha256": "a9119257497dfdd7708d78efd272ecab8f18fefcd138946de79f4bc690a62457"
+    },
+    {
+      "path": "control/ISOLATED_INSTALL_VERIFICATION.json",
+      "bytes": 3387,
+      "sha256": "ce560fd837c8c32169a085406ec6fd910bfd57ef2a0f1840394a04ac0836fa9f"
+    },
+    {
+      "path": "control/MANUAL_TEXT_ACTION_RESULT.json",
+      "bytes": 3745,
+      "sha256": "3577bae60a1551626a558b97e05079aa60fb7fc2f0408d0024a60ffb35cdf219"
+    },
+    {
+      "path": "control/package-text-candidate.py",
+      "bytes": 1232,
+      "sha256": "3e96924225bff807b5c3b742e1673566cc4799b93e44c386722a9fd907ae7c4a"
+    },
+    {
+      "path": "control/package.log",
+      "bytes": 411,
+      "sha256": "aceeb23ee82059077396eec93bfc2975820b232e24c36d58a690368a22032595"
+    },
+    {
+      "path": "control/PACKAGE_COMMAND.json",
+      "bytes": 882,
+      "sha256": "1bf7ae796c94882c7ad9c81fdaaaa7455a0d26aacbb54e0da2514f983be86e96"
+    },
+    {
+      "path": "control/seed-compile-fixed.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "control/seed-compile.log",
+      "bytes": 555,
+      "sha256": "e691043bfb1544d69d2e1e524e4dd0d210503b358845b3712c8bebcfdd534608"
+    },
+    {
+      "path": "control/SEED_RESULT.json",
+      "bytes": 1732,
+      "sha256": "c2326652c35ec9065796b346d7febe1fcd7702468f7c17791423939b688198dc"
+    },
+    {
+      "path": "control/SeedTheme.failed-v1.java.txt",
+      "bytes": 1208,
+      "sha256": "27e51be25dc67520b32fa399df32c49bef07a7b9efe3fb15db2ee4df2f9bc7df"
+    },
+    {
+      "path": "control/SeedTheme.java",
+      "bytes": 1235,
+      "sha256": "427f4c48b28cc7574ac57fff71b47d7e2541515f905d56b58014809145dff7c4"
+    },
+    {
+      "path": "control/verify-new-candidate.py",
+      "bytes": 3451,
+      "sha256": "dc3e9150f665540c0968bdd51377f63e7db98f0b5d3be0deebe1e3b21fe73a5b"
+    },
+    {
+      "path": "entry/APP_IDENTITY_OBSERVATION.json",
+      "bytes": 1253,
+      "sha256": "30e18666d95fb61b0a632adf5b0f6dba2ae83129e872c21a8087734c2d7dc687"
+    },
+    {
+      "path": "entry/APP_VERIFIED.json",
+      "bytes": 727,
+      "sha256": "af1f78fe64cf9e5c2a8b97fb9f83496edea74608b0b071558e0e5a365381b890"
+    },
+    {
+      "path": "entry/Launch-Candidate.ps1",
+      "bytes": 4277,
+      "sha256": "9ffe7052c13dc1b1f27e3cd1ef2f3d7a6e5bc81c234a86d09230483e4b970e8e"
+    },
+    {
+      "path": "entry/LAUNCH_APP.json",
+      "bytes": 1814,
+      "sha256": "98358e469f10ae1107d19def2e5946f6ad828d8dd05b8bfcf462840816b39a4c"
+    },
+    {
+      "path": "entry/LAUNCH_PROBE.json",
+      "bytes": 1946,
+      "sha256": "0a8f87266a866ee35e546ffb2eacc81345a7b82fe5ef2912ff07d818eaf05863"
+    },
+    {
+      "path": "entry/MODE.txt",
+      "bytes": 6,
+      "sha256": "182e499256bea391f0891e85aa5d782074934150b986e530eb4a4170f073312e"
+    },
+    {
+      "path": "entry/Probe.ps1",
+      "bytes": 501,
+      "sha256": "70e8a486a1e8ffa2fa97dd7f3519e1ded2ed1a5440b14faab1c9c4ad011175af"
+    },
+    {
+      "path": "entry/PROBE_RESULT.json",
+      "bytes": 1039,
+      "sha256": "a0b8c398958007a6384998edaa95e1ab802467210158b8fb3b9ac1c30b308108"
+    },
+    {
+      "path": "entry/PROBE_VERIFIED.json",
+      "bytes": 868,
+      "sha256": "bf8b0cdb4ad90c30ee368a475c9444010bfc28bc719e4ea9844e980dbac35945"
+    },
+    {
+      "path": "installed/INSTALL_MANIFEST.json",
+      "bytes": 101638,
+      "sha256": "e53dce9faf914c580f371992ed412d28e7c0018e1feaf469b205d39ff4c3ebff"
+    },
+    {
+      "path": "installed/RUNTIME_MANIFEST.json",
+      "bytes": 62256,
+      "sha256": "090d0324310d1dcd1ff59913220e5876210b98e1a7a351caaa23bd17d82b4c14"
+    },
+    {
+      "path": "installed/update-config.json",
+      "bytes": 454,
+      "sha256": "26a632fcd8819bbaa422a46e3ef6caa15f08e2fa45c3e4967d447e5617ff56a0"
+    },
+    {
+      "path": "installed/update-root.json",
+      "bytes": 1568,
+      "sha256": "efc8fdda742b6cc5f7fe4edcb38f75eba9bfcbe0210e07eb888d25f76c3eb892"
+    },
+    {
+      "path": "package/BUILD_RECEIPT.json",
+      "bytes": 453,
+      "sha256": "06d5033c4d5bfc3a376bbaff22883ed50932584834c6e1bd01eaccad1fe23a7e"
+    },
+    {
+      "path": "package/compile.log",
+      "bytes": 1419,
+      "sha256": "1643851d89e62c85c09db86db3185e39a31666cfb1b07a2eba9cd256043d7b1b"
+    },
+    {
+      "path": "package/installer.nsi",
+      "bytes": 137153,
+      "sha256": "1a5a8a8cad2461a4304ac7574791c48e58ea8cb635af3a69a1ce33c770640afc"
+    },
+    {
+      "path": "reproduction/freeze-candidate.py",
+      "bytes": 7521,
+      "sha256": "0a6550001d8e866d937f98974afdff9bdc39cd5fda21a584c02d7da1a8e1ca83"
+    },
+    {
+      "path": "SOURCE_PACKAGE_MAP.json",
+      "bytes": 1402,
+      "sha256": "042e065385daea5aaad0e5d479ad909398131ff2cbb4af2bad40be6c4b202375"
+    }
+  ],
+  "membersIncludingManifest": 34,
+  "exclusions": "Binaries, shortcut binary, screenshot pixels, workspace, vault, user data and credentials. Only named synthetic/control records copied."
+}

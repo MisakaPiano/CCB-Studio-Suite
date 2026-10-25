@@ -1,0 +1,31 @@
+{
+  "mode": "APP",
+  "exe": "H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\isolated-install\\CCBStudioSuitePreview.exe",
+  "arguments": [
+    "--studio-root",
+    "H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\entry-review\\workspace",
+    "--runtime-root",
+    "H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\entry-review\\runtime",
+    "--secondary-workspace",
+    "--pause-collections"
+  ],
+  "environment": {
+    "SystemRoot": "C:\\WINDOWS",
+    "WINDIR": "C:\\WINDOWS",
+    "SystemDrive": "C:",
+    "ComSpec": "C:\\WINDOWS\\System32\\cmd.exe",
+    "PATH": "C:\\WINDOWS\\System32;C:\\WINDOWS",
+    "LOCALAPPDATA": "H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\entry-review\\profile\\Local",
+    "APPDATA": "H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\entry-review\\profile\\Roaming",
+    "USERPROFILE": "H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\entry-review\\profile",
+    "HOME": "H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\entry-review\\profile",
+    "TEMP": "H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\entry-review\\profile\\tmp",
+    "TMP": "H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\entry-review\\profile\\tmp"
+  },
+  "startedUtc": "2026-10-25T22:13:39.2027789Z",
+  "expectedWorkspace": "H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\entry-review\\workspace",
+  "expectedRuntime": "H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\entry-review\\runtime",
+  "privateDefaultFallbackPrevented": "Child LOCALAPPDATA redirected even if app arguments are ignored",
+  "sourceJarSha256": "1154b2cf6f961cba3d0d20b9846f9ada72703adb4d73bb55c2759301ce15fa19",
+  "pid": 5916
+}

@@ -1,0 +1,26 @@
+{
+  "args": [
+    "-Xmx128m",
+    "-XX:ActiveProcessorCount=2",
+    "-cp",
+    "H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\seed-classes-fixed;H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\isolated-install\\app\\*",
+    "SeedTheme",
+    "H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\entry-review\\workspace"
+  ],
+  "environment": {
+    "SystemRoot": "C:\\WINDOWS",
+    "WINDIR": "C:\\WINDOWS",
+    "PATH": "C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.20.101-hotspot\\bin;C:\\WINDOWS\\System32",
+    "LOCALAPPDATA": "H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\entry-review\\profile\\Local",
+    "APPDATA": "H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\entry-review\\profile\\Roaming",
+    "USERPROFILE": "H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\entry-review\\profile",
+    "HOME": "H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\entry-review\\profile",
+    "TEMP": "H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\entry-review\\profile\\tmp",
+    "TMP": "H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\entry-review\\profile\\tmp"
+  },
+  "exitCode": 0,
+  "stdout": "SYNTHETIC_THEME_SEEDED LIGHT FFFFFF; no provider/credentials; root=H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\entry-review\\workspace\r\n",
+  "stderr": "",
+  "scope": "Fresh synthetic workspace using installed classes; no provider/private credentials",
+  "priorFailure": "First javac omitted Kotlin default callback constructor argument, failed before workspace creation/app startup. Original source/log preserved; only helper callback supplied."
+}

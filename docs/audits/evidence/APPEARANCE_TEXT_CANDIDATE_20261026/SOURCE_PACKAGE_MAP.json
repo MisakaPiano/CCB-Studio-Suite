@@ -1,0 +1,24 @@
+{
+  "appBuildSource": "48eed2aa35d1b2bcaa86f140ac33aac9cdc286ac",
+  "packageSource": "b54a036fc65868836d901339f7d1e3dce24dff8a",
+  "modulesToolsRelationship": "git diff48eed..b54 -- modules tools empty; no new Gradle rerun",
+  "originalInputs": "https://github.com/MisakaPiano/CCB-Studio-Suite/blob/b54a036fc65868836d901339f7d1e3dce24dff8a/docs/audits/evidence/APPEARANCE_TEXT_ACTIONS_20261026/SOURCE_APP_IMAGE_MAP.json",
+  "inputCount": 497,
+  "mainJar": "studio-desktop-a667c3e9a048c3d6292aa2a6ab3d8a9.jar",
+  "mainJarSha256": "1154b2cf6f961cba3d0d20b9846f9ada72703adb4d73bb55c2759301ce15fa19",
+  "installer": {
+    "path": "H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\candidate\\studio-installer.exe",
+    "bytes": 168998452,
+    "sha256": "ca4cafd37285a2528090247ecc53326b5e78cafa87b569d040578639d8c10ee5",
+    "displayVersion": "0.2.2-internal",
+    "channel": "internal"
+  },
+  "originalJUnit": "One unique method at48eed in previous fixed bundle; no rerun or added test count in this package stage",
+  "buildReceipt": "package/BUILD_RECEIPT.json",
+  "installation": "control/ISOLATED_INSTALL_VERIFICATION.json",
+  "entry": "entry/APP_VERIFIED.json",
+  "userResult": "control/MANUAL_TEXT_ACTION_RESULT.json",
+  "release": "NOT PUBLISHED / no new tag",
+  "dailyInstallation": "UNCHANGED",
+  "oldEvidence": "Preserved original22aa and48eed source-stage bundles without edits"
+}

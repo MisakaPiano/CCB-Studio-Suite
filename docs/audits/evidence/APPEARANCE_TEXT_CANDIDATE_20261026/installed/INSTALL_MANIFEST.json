@@ -1,0 +1,2760 @@
+{
+  "format": 1,
+  "product": "ccb-studio-suite",
+  "platform": "windows-x86_64",
+  "channel": "internal",
+  "version": 2,
+  "sourceSha": "b54a036fc65868836d901339f7d1e3dce24dff8a",
+  "files": [
+    {
+      "path": "app/.jpackage.xml",
+      "bytes": 210,
+      "sha256": "5725c9f42fb15c3e4c5d4150db5ff376d0570d9b9037a30952ce1c7955ddae3d"
+    },
+    {
+      "path": "app/animation-core-desktop-1.10.3-a94bab3d67a320ccdc2cc2c2c973bc4.jar",
+      "bytes": 383171,
+      "sha256": "41c0220ddbc55cb897feb0d5816b748f9c11162171f12743c04b50d0d84db628"
+    },
+    {
+      "path": "app/animation-desktop-1.10.3-d75724d6eb8bef26a6affbebcbada5.jar",
+      "bytes": 374782,
+      "sha256": "1881c5575440055d54a679418f7ad7e86c0349743389360bed0f6a36af16ba34"
+    },
+    {
+      "path": "app/annotation-jvm-1.9.1-1d6a04b3b9847638d0529df8ef76a.jar",
+      "bytes": 60577,
+      "sha256": "1e343917ebf27ba96fe4dc52b1cad7fd32b738fbc6355bb6cd5b3b305d7212d0"
+    },
+    {
+      "path": "app/annotations-23.0.0-8484cd17d040d837983323f760b2c660.jar",
+      "bytes": 29371,
+      "sha256": "7b0f19724082cbfcbc66e5abea2b9bc92cf08a1ea11e191933ed43801eb3cd05"
+    },
+    {
+      "path": "app/asset-library-ee9417ce5653dbd2beddcf7b8f6462dd.jar",
+      "bytes": 51702,
+      "sha256": "b8c470e5e576e1d6c78f881be0a45bf7c8b0eb33269f5d50bd07594bb3b561e4"
+    },
+    {
+      "path": "app/atomicfu-jvm-0.23.2-5e4f88ed1c37222d791f5dcadf481498.jar",
+      "bytes": 36181,
+      "sha256": "101ff43ff563fca167af5ade98c3b69bf569010eab745013b84d8955034d3b3c"
+    },
+    {
+      "path": "app/CCBStudioSuitePreview.cfg",
+      "bytes": 5197,
+      "sha256": "db98aeb9d978128138300de829c6308d3760b78c4d186df7feb90fa2a6516d7d"
+    },
+    {
+      "path": "app/collection-jvm-1.5.0-4421442c114a4f8c8fe587cf2d668237.jar",
+      "bytes": 877998,
+      "sha256": "70b35924e4babcdffa37d0e575ee039c56a2d97123342624c48b603233704341"
+    },
+    {
+      "path": "app/core-common-2.2.0-2212d240dfe1e8a7598ee117ccc316d.jar",
+      "bytes": 11657,
+      "sha256": "65308a06b1c00ee186cb9e19321383f043b993813f1522c47f4a3e3303bdba41"
+    },
+    {
+      "path": "app/desktop-jvm-1.10.3-98023295d6f48188e5b98b192b9a30.jar",
+      "bytes": 4856,
+      "sha256": "fdb63de4c9bdc6570c5355eeb0f013d4635effda42907c2d084acc77e08d4f8a"
+    },
+    {
+      "path": "app/foundation-desktop-1.10.3-70d7b34e8681a374ed1ed640c3ba8c11.jar",
+      "bytes": 4314315,
+      "sha256": "3a9b7bfae72f1a92a8123d3290bb7d7f61d92e5cde877af5373c3e5c2caceb2b"
+    },
+    {
+      "path": "app/foundation-layout-desktop-1.10.3-8510263615bf71e2ede4f9451f89f7dd.jar",
+      "bytes": 558602,
+      "sha256": "8d8e00062a83a147409f42f91798394c3c221d22877953eff7d0a81767b5d0fc"
+    },
+    {
+      "path": "app/icons-lucide-cmp-jvm-2.2.1-41167b6273e4f1763de74dddcba2b6.jar",
+      "bytes": 5758205,
+      "sha256": "4bf2c5219e2e0031d21f4b6fa72183e805c62cf28ae9e3f5b8c51992c33dda35"
+    },
+    {
+      "path": "app/icudtl.dat",
+      "bytes": 10468208,
+      "sha256": "9ae98c06cbb0ea43c5cd6b5725310c008c65e46072421a1118cb88e1de9a8b92"
+    },
+    {
+      "path": "app/image-authority-95f9abde46a167be5c5d2437d288f5.jar",
+      "bytes": 2007132,
+      "sha256": "ca0ca98a1e2d1f5a4439ce0244fe6c7e9b1feda01a23504fd5a3c1b477c044df"
+    },
+    {
+      "path": "app/jbr-api-1.5.0-377e771977886f74954db4278394c51.jar",
+      "bytes": 44469,
+      "sha256": "657ede7d7f8e175c909b23caa10fcd4d4a511304fd938aa9cc8457b4378950d5"
+    },
+    {
+      "path": "app/jna-5.18.1-cb531ec131e1c68c45b5d45fe5b9878.jar",
+      "bytes": 2002994,
+      "sha256": "260c4b1e22b1db9e110ee441c4f13ce115f841fa48c41d78750986214b395557"
+    },
+    {
+      "path": "app/jna-platform-5.18.1-a7af0779ec98bfe22dfb07b153283d.jar",
+      "bytes": 1380744,
+      "sha256": "ad14c1b1ec4f43d396231219dfa635ebf828f738eac9f890ea1bc07795892d9a"
+    },
+    {
+      "path": "app/jspecify-1.0.0-9133aba420d0ca3b01dbb6ae9992cf6.jar",
+      "bytes": 3819,
+      "sha256": "1fad6e6be7557781e4d33729d49ae1cdc8fdda6fe477bb0cc68ce351eafdfbab"
+    },
+    {
+      "path": "app/kotlin-stdlib-2.3.20-17212d4ae1611e51ce4c3c4ba28717fa.jar",
+      "bytes": 1804720,
+      "sha256": "0ae12504a5040ebaf37703908483420d1a5624dd1d93f357665f8c77c848a01e"
+    },
+    {
+      "path": "app/kotlin-stdlib-jdk7-2.2.20-b62df9d3ec629ebc7658228fe49529.jar",
+      "bytes": 945,
+      "sha256": "3bd26ecb6d12978c5c4e0b41f76c9ff551fac2a5e6268427a9d2a0cdf8a5ad91"
+    },
+    {
+      "path": "app/kotlin-stdlib-jdk8-2.2.20-c2573686563f7aaca6f7ce98ec9a8b6.jar",
+      "bytes": 951,
+      "sha256": "c314177935d8dc2eda879507117f25d6de56f6c57ede99416b14cd622bb9e09d"
+    },
+    {
+      "path": "app/kotlinx-coroutines-core-jvm-1.10.2-16bb58d0777fca3b2efde66862478c.jar",
+      "bytes": 1479317,
+      "sha256": "5ca175b38df331fd64155b35cd8cae1251fa9ee369709b36d42e0a288ccce3fd"
+    },
+    {
+      "path": "app/kotlinx-serialization-core-jvm-1.8.1-ef302ac92198e315d9b084ca66ee5f1e.jar",
+      "bytes": 391821,
+      "sha256": "3565b6d4d789bf70683c45566944287fc1d8dc75c23d98bd87d01059cc76f2b3"
+    },
+    {
+      "path": "app/kotlinx-serialization-json-jvm-1.8.1-f061d934bcf1d0be1d6c697c320f86b.jar",
+      "bytes": 276969,
+      "sha256": "8769e5647557e3700919c32d508f5c5dad53c5d8234cd10846354fbcff14aa24"
+    },
+    {
+      "path": "app/lifecycle-common-jvm-2.9.4-6430746dbcfa6c26a0d997b9c76f84c.jar",
+      "bytes": 60804,
+      "sha256": "37d89b2101f074ac6c260917dabb185607645ee200aa3018c7c5bde70edcf184"
+    },
+    {
+      "path": "app/lifecycle-runtime-compose-desktop-2.9.4-8f8fe81afd5ce7cf3e8a38142f8aa2.jar",
+      "bytes": 43088,
+      "sha256": "d25c083df93da718a1876a3293bd15f7dc7a811e998735943bce590683a57835"
+    },
+    {
+      "path": "app/lifecycle-runtime-compose-desktop-2.9.6-497e8fcabac8a5f5ee68cb2a1c8e70a4.jar",
+      "bytes": 452,
+      "sha256": "31c3c4b6dea38f078c46829dee2c43abba2bf8757b7ee8a0f660f31217364898"
+    },
+    {
+      "path": "app/lifecycle-runtime-desktop-2.9.4-c2c1ed6e1ecd2d037e07bfe64884c5.jar",
+      "bytes": 47399,
+      "sha256": "2fb49f76d1021792fb359e0a9246c1509f2f5b555f0a46591d24d58deb68bd5c"
+    },
+    {
+      "path": "app/lifecycle-viewmodel-desktop-2.9.4-df36d8fe3a9c84b3bd8529b166e73d0.jar",
+      "bytes": 56060,
+      "sha256": "98f816be6869407c87d46058756f97780fa6c6cf61acdba97216f413731af15d"
+    },
+    {
+      "path": "app/lifecycle-viewmodel-savedstate-desktop-2.9.4-cf8139ef2d41e155eece234f1b2a358.jar",
+      "bytes": 36160,
+      "sha256": "3e0b44e2514eafdd6938d5457d9f46e4785077c45d3b4364b5c23c4dcb93efd3"
+    },
+    {
+      "path": "app/material-desktop-1.10.3-8f108d785527e786557d4884fe34a69.jar",
+      "bytes": 1473852,
+      "sha256": "ee4afa33a2411e06cf1bec689667767ffb991ff02269e040a4ef64e76e392119"
+    },
+    {
+      "path": "app/material-ripple-desktop-1.10.3-24324c2656b22bad47558022bfc18265.jar",
+      "bytes": 73535,
+      "sha256": "3257697a1a58188ec3dc31f31867f1c38209900b87df1261ebac9e6a1387db83"
+    },
+    {
+      "path": "app/msgpack-core-0.9.12-cb664b8c2d992969e89d30fd5a90b5.jar",
+      "bytes": 126925,
+      "sha256": "261e78e32227d298f25c328aecd532a789d487d8073f97ba9b6aa6dbe41a2be3"
+    },
+    {
+      "path": "app/navigationevent-desktop-1.0.2-e0291c4f5d6a6b9038dae1d32950806e.jar",
+      "bytes": 41775,
+      "sha256": "43deeb5774fd737fa945e09a47f93b6f1a508d17fac8f3b65f1c863e7f7d0660"
+    },
+    {
+      "path": "app/okhttp-4.12.0-6acba053af88fed87e71c6c29911d7c.jar",
+      "bytes": 789531,
+      "sha256": "b1050081b14bb7a3a7e55a4d3ef01b5dcfabc453b4573a4fc019767191d5f4e0"
+    },
+    {
+      "path": "app/okio-jvm-3.6.0-2637180ff99a7e8a12dcaac2a70cc6e.jar",
+      "bytes": 359580,
+      "sha256": "67543f0736fc422ae927ed0e504b98bc5e269fda0d3500579337cb713da28412"
+    },
+    {
+      "path": "app/runtime-annotation-jvm-1.10.5-b09c69fa8ca14488d4f66081b195f82d.jar",
+      "bytes": 9387,
+      "sha256": "f89dda8bcd73876d0fc16568844b2bd79443ee7ca62810874d25c7dcaa394bd6"
+    },
+    {
+      "path": "app/runtime-desktop-1.10.3-c25a54d26562099d86e41defd73c526.jar",
+      "bytes": 416,
+      "sha256": "05f5570c0a7ea8addd6fe9507a70f293efa7f1450d8b9b16dc3c8fee21cc6127"
+    },
+    {
+      "path": "app/runtime-desktop-1.10.5-b9da3d6a1b578bd2c87d566819b76a65.jar",
+      "bytes": 1470711,
+      "sha256": "b195860542f612de0512b54a75353e0f6d58815f0c9530a03bc5b0e734474829"
+    },
+    {
+      "path": "app/runtime-retain-desktop-1.10.5-d8f31750172c21975cc646addacfd80.jar",
+      "bytes": 52893,
+      "sha256": "463ee9c1e93d1b913458bfecc96d128a3574a802f41c8c9781d7320c3b55ed8b"
+    },
+    {
+      "path": "app/runtime-saveable-desktop-1.10.3-5e5be575eafc8b52fe238bc51bdea08e.jar",
+      "bytes": 434,
+      "sha256": "eb7132b55de2b0913736fdff4705022803e455810f018efecc9eb3230936520a"
+    },
+    {
+      "path": "app/runtime-saveable-desktop-1.10.5-db6b23c395f87685dd7a09443777e69.jar",
+      "bytes": 53379,
+      "sha256": "ef24e24cc8c9c3b9871007fbdf589ed9aaaecf95979a66b7484806f9f0e24d91"
+    },
+    {
+      "path": "app/savedstate-compose-desktop-1.3.3-a131c55f9df3dce54e7daaa9c7f4d17.jar",
+      "bytes": 15498,
+      "sha256": "4a94787a6e5bcfe143390a4f2737d4425d2ea867f2b34a847de6cda3c6ccc58a"
+    },
+    {
+      "path": "app/savedstate-compose-desktop-1.3.6-8de11644e97845eaa45d9e74fdec755.jar",
+      "bytes": 438,
+      "sha256": "0f3d045c5fd7e1301ab6c38cd0778067b0484cf39acac1233be71a723a6a8075"
+    },
+    {
+      "path": "app/savedstate-desktop-1.3.3-c3373bc168f837cab12de655ce867a18.jar",
+      "bytes": 80175,
+      "sha256": "c5c89062ba8402b8f8657efd54db1ff192f91ca95fae59c3b418fbc477c3e3ea"
+    },
+    {
+      "path": "app/skiko-awt-0.9.37.4-674c4dff5731dd62c15ac8c1527c8e7.jar",
+      "bytes": 1214259,
+      "sha256": "9e859aeb982623fab156ba6671c78255f7f5e1b73334f3de7932440fed6455df"
+    },
+    {
+      "path": "app/skiko-awt-runtime-windows-x64-0.9.37.4-58e07db5eee6ce6079b3c07b54fbd85.jar",
+      "bytes": 293,
+      "sha256": "264c9dff0eed0e8e0ec905f3cdfb66f1ad607dcca2f8bb42932cf7f725ffad54"
+    },
+    {
+      "path": "app/skiko-windows-x64.dll",
+      "bytes": 13903872,
+      "sha256": "f6915133061fc00b6d51b8a8277c696dc6313532609dfa23c4c3bec1fc2ee178"
+    },
+    {
+      "path": "app/skiko-windows-x64.dll.sha256",
+      "bytes": 64,
+      "sha256": "86da55796a8a7725bb360e75bd2b1c2d566bbbee7343892a4e6cc045aafc8b7b"
+    },
+    {
+      "path": "app/sqlite-jdbc-3.53.4.0-f4efbbf74fd258368ebb6529ec099dc.jar",
+      "bytes": 12002370,
+      "sha256": "bcb1f51e36f940867e83342f9efbf5968ac44a6bef4d397bb4af7b17b45cd2fb"
+    },
+    {
+      "path": "app/studio-core-e057314f5d4fa77bae3a8698a81c2b1.jar",
+      "bytes": 70036224,
+      "sha256": "3798df87452a150ee91dd85d9d9f80a9cba6bed8e13c3d8211093d9c69a29883"
+    },
+    {
+      "path": "app/studio-desktop-a667c3e9a048c3d6292aa2a6ab3d8a9.jar",
+      "bytes": 5095514,
+      "sha256": "1154b2cf6f961cba3d0d20b9846f9ada72703adb4d73bb55c2759301ce15fa19"
+    },
+    {
+      "path": "app/ui-backhandler-desktop-1.10.3-82133368fc2fe04ab219636dc220ee76.jar",
+      "bytes": 21557,
+      "sha256": "1babf68f5a05cbe1ba8cf934f0e575bb0d0b184444514e6aa7ec1f8004c9ce33"
+    },
+    {
+      "path": "app/ui-desktop-1.10.3-a87db18fb1c33d7286573c2eb6a58884.jar",
+      "bytes": 3396265,
+      "sha256": "ec8887c03a333fa374d0b4c46bb9fb700937857f4088eaea4c4cc0ec835f7498"
+    },
+    {
+      "path": "app/ui-geometry-desktop-1.10.3-74cadef60adf77a87e8bba823806b.jar",
+      "bytes": 57759,
+      "sha256": "cdbfdabccac8abef2d9bc0420ec0c4be7a880f6d26b2d1cc4e2317c0d252ee27"
+    },
+    {
+      "path": "app/ui-graphics-desktop-1.10.3-b18b35f89c2c5b7d4c839cae550b71f.jar",
+      "bytes": 628505,
+      "sha256": "9fa604364dc4de23d3f8101f2f5968afa742d847105a5e2c41b6a0aa9123f11b"
+    },
+    {
+      "path": "app/ui-text-desktop-1.10.3-f158a42475c13d7691adfa8c41cd7d2.jar",
+      "bytes": 718171,
+      "sha256": "fbca4db945be286b84f75c0c9c784218470bebefa831f73f08edfb3294b6c8e8"
+    },
+    {
+      "path": "app/ui-tooling-preview-desktop-1.10.3-98d4733a7ac1bc0f78fd3bc53ca7966.jar",
+      "bytes": 21697,
+      "sha256": "b5fa6fbbeea5f896ad2a8e7703bd7eb574d3a1b5ab6d44dbe0a07536bd6af6c4"
+    },
+    {
+      "path": "app/ui-unit-desktop-1.10.3-5ba072b3ad846d10195aa20b1dda94a.jar",
+      "bytes": 85587,
+      "sha256": "f0f3439928b3d9132f07cb2d7a86091696372ebc8354d16b48830b6ce15e8161"
+    },
+    {
+      "path": "app/ui-util-desktop-1.10.3-e987f56512148332ca73168ad7d270d.jar",
+      "bytes": 18548,
+      "sha256": "7bfc93a8cad2974cdfd5a2c817e3083e0e3c48ef99e4dbba51eb98a14c92ed2d"
+    },
+    {
+      "path": "CCBStudioSuitePreview.exe",
+      "bytes": 525312,
+      "sha256": "494f137e9fa8cb07b7f1d19ed6cc3e6dfac4afd3df16397390d30f1aee58541f"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-console-l1-1-0.dll",
+      "bytes": 22072,
+      "sha256": "88ace577a9c51061cb7d1a36babbbefa48212fadc838ffde98fdfff60de18386"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-console-l1-2-0.dll",
+      "bytes": 22056,
+      "sha256": "c062477ad3bfdc57b0cc402179637a214dab5045c8d644592c7decca7d18aa50"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-datetime-l1-1-0.dll",
+      "bytes": 22056,
+      "sha256": "1bd81dfd19204b44662510d9054852fb77c9f25c1088d647881c9b976cc16818"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-debug-l1-1-0.dll",
+      "bytes": 21944,
+      "sha256": "591358eb4d1531e9563ee0813e4301c552ce364c912ce684d16576eabf195dc3"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-errorhandling-l1-1-0.dll",
+      "bytes": 22096,
+      "sha256": "d56ce7b1cd76108ad6c137326ec694a14c99d48c3d7b0ace8c3ff4d9bcee3ce8"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-fibers-l1-1-0.dll",
+      "bytes": 22072,
+      "sha256": "91d249d7bc0e38ef6bcb17158b1fdc6dd8888dc086615c9b8b750b87e52a5fb3"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-fibers-l1-1-1.dll",
+      "bytes": 22072,
+      "sha256": "fc9d86cec621383eab636ebc87ddd3f5c19a3cb2a33d97be112c051d0b275429"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-file-l1-1-0.dll",
+      "bytes": 26152,
+      "sha256": "1ca895aba4e7435563a6b43e85eba67a0f8c74aa6a6a94d0fc48fa35535e2585"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-file-l1-2-0.dll",
+      "bytes": 22056,
+      "sha256": "4cadbc0c39da7c6722206fdcebd670abe5b8d261e7b041dd94f9397a89d1990d"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-file-l2-1-0.dll",
+      "bytes": 21960,
+      "sha256": "93c624b366ba16c643fc8933070a26f03b073ad0cf7f80173266d67536c61989"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-handle-l1-1-0.dll",
+      "bytes": 21944,
+      "sha256": "39095f59c41d76ec81bb2723d646fde4c148e7cc3402f4980d2ade95cb9c84f9"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-heap-l1-1-0.dll",
+      "bytes": 22072,
+      "sha256": "8f105771b236dbcb859de271f0a6822ce1cb79c36988dd42c9e3f6f55c5f7eb9"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-interlocked-l1-1-0.dll",
+      "bytes": 22072,
+      "sha256": "53b25e753ca785bf8b695d89dde5818a318890211dc992a89146f16658f0b606"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-kernel32-legacy-l1-1-1.dll",
+      "bytes": 22080,
+      "sha256": "a9b13a1cd1b8c19b0c6b4afcd5bb0dd29c0e2288231ac9e6db8510094ce68ba6"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-libraryloader-l1-1-0.dll",
+      "bytes": 22056,
+      "sha256": "7f39ba298b41e4963047341288cab36b6a241835ee11ba4ad70f44dacd40906c"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-localization-l1-2-0.dll",
+      "bytes": 22080,
+      "sha256": "6ee44dd0d8510dc024c9f7c79b1b9fa88c987b26b6beb6653ddd11751c34e5dc"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-memory-l1-1-0.dll",
+      "bytes": 22056,
+      "sha256": "0512a35316ec9180437f86696a84c5c06a7e4e82e050055a656e5bf9fca206f9"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-namedpipe-l1-1-0.dll",
+      "bytes": 22096,
+      "sha256": "c05f1fffe3b5a2738ea54ce9485cca026fb9635f982626fba1e1dcc531897273"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-processenvironment-l1-1-0.dll",
+      "bytes": 21968,
+      "sha256": "c4eca98c3c67b6395d5b005b00ac1eb0318b86b23aa71035a44c2b1602befba9"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-processthreads-l1-1-0.dll",
+      "bytes": 22096,
+      "sha256": "5ccb89e93d67bc3288d4e84649c5346e66e15e3d7cd65d989daf3f4cb584be9a"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-processthreads-l1-1-1.dll",
+      "bytes": 22072,
+      "sha256": "4ad565a8ba3ef0ea8ab87221ad11f83ee0bc844ce236607958406663b407333e"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-profile-l1-1-0.dll",
+      "bytes": 22080,
+      "sha256": "7809160932f44e59b021699f5bc68799eb7293ee1fa926d6fcca3c3445302e61"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-rtlsupport-l1-1-0.dll",
+      "bytes": 21960,
+      "sha256": "9dc1e91e71c7c054854bd1487cb4e6946d82c9f463430f1c4e8d1471005172b1"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-string-l1-1-0.dll",
+      "bytes": 22056,
+      "sha256": "60fc31d2a0c634412f529dba76af3b9bf991352877c6dae528186d3935704cfd"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-synch-l1-1-0.dll",
+      "bytes": 22056,
+      "sha256": "3a72b4f29f39a265d32ad12f0ce15dbf60129c840e10d84d427829ede45e78ad"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-synch-l1-2-0.dll",
+      "bytes": 22080,
+      "sha256": "efc1e4460984a73cf47a3def033af1c8f3b1dbc1a56cd27781d3aacf3e3330cb"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-sysinfo-l1-1-0.dll",
+      "bytes": 22072,
+      "sha256": "b203d862ddef1dd62bf623fc866c7f7a9c317c1c2ae30d1f52cb41f955b5698e"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-sysinfo-l1-2-0.dll",
+      "bytes": 22080,
+      "sha256": "2703635d835396afd0f138d7c73751afe7e33a24f4225d08c1690b0a371932c0"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-timezone-l1-1-0.dll",
+      "bytes": 22056,
+      "sha256": "33f4fddc181066fce06b2227bded813f95e94ed1f3d785e982c6b6b56c510c57"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-core-util-l1-1-0.dll",
+      "bytes": 21944,
+      "sha256": "6eda016742a6171205a387a14b3c0b331841567740376f56768f8c151724207d"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-crt-conio-l1-1-0.dll",
+      "bytes": 22056,
+      "sha256": "b762061b688aae679afe788904d2c9970f74a7dac98f3b42463d08f25e483d3f"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-crt-convert-l1-1-0.dll",
+      "bytes": 26056,
+      "sha256": "ebb2ae5535a64f65daeab8235585114fc9dd2cf1a49f5852d446250b998b6ae4"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-crt-environment-l1-1-0.dll",
+      "bytes": 22080,
+      "sha256": "17d63275d00bdd8670422b95bd264c532998e0a1b041079e54fce4b6b7a55819"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-crt-filesystem-l1-1-0.dll",
+      "bytes": 22056,
+      "sha256": "9a9e2a65a281644e368d0f272b95ba5f6b445d1c35910d06056c5ebeb77402db"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-crt-heap-l1-1-0.dll",
+      "bytes": 22096,
+      "sha256": "bab9ac3ec83e380ae51e4295ef3bf2c738627812d3a49d1e713661abbc8dc57a"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-crt-locale-l1-1-0.dll",
+      "bytes": 22080,
+      "sha256": "bd14c67ea28e21d6257ad780a37122c9b5773f69e693f5db6bffaee4d839526e"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-crt-math-l1-1-0.dll",
+      "bytes": 30248,
+      "sha256": "606d66d82db562ea7979179d06486a0f94d079941d26b80a1e2c49d29959df6f"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-crt-multibyte-l1-1-0.dll",
+      "bytes": 30248,
+      "sha256": "95f49efbe8107786733fa7c474025cf3fee0ac632f240367b296c736d06572aa"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-crt-private-l1-1-0.dll",
+      "bytes": 75328,
+      "sha256": "1bc82bed6143d2bf1b6b08a7809f4a5e29317d6fddd338a7da3c0223522e4bbf"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-crt-process-l1-1-0.dll",
+      "bytes": 22096,
+      "sha256": "f6156b1020380ec4f0e48577ebedaaef5fb1ab1f337d8b4e72e6a33a7567a9cc"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-crt-runtime-l1-1-0.dll",
+      "bytes": 26152,
+      "sha256": "c5902934d026d7e15fbe9917d474f3322846a41a25e66f4b2b1f758801879f4b"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-crt-stdio-l1-1-0.dll",
+      "bytes": 26168,
+      "sha256": "a9c5a153d8c0286f9b41a2b1c65854ad9e6471b8755b7de87bae4470e60bcab6"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-crt-string-l1-1-0.dll",
+      "bytes": 26176,
+      "sha256": "25b8f83a7767211b11132775a0e27a45aa4ec8ab4e6572599f9c172ae3606b40"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-crt-time-l1-1-0.dll",
+      "bytes": 22096,
+      "sha256": "7c7f6393f06de11750adb09cc5698ae55cd9fb27b2e51e207286feb1b5b2b156"
+    },
+    {
+      "path": "runtime/bin/api-ms-win-crt-utility-l1-1-0.dll",
+      "bytes": 21952,
+      "sha256": "d8ba5f17b9ffcbf3aeaf3fa1da226832d2fa90f81acce0cd669464e76ce434ac"
+    },
+    {
+      "path": "runtime/bin/awt.dll",
+      "bytes": 1493112,
+      "sha256": "358e7d8b59bf2f544a6a2b495d070abe34c6aeacc91667fdd46572bb19b73cc5"
+    },
+    {
+      "path": "runtime/bin/fontmanager.dll",
+      "bytes": 1030272,
+      "sha256": "b08bad15f0497ae383e9db02cc548a323692cc77dccdf9166392f7f528231f64"
+    },
+    {
+      "path": "runtime/bin/freetype.dll",
+      "bytes": 560768,
+      "sha256": "1fca733dd0035e6f0030baec539e9d9790e04497e715c4fdb58d39e9da5208cb"
+    },
+    {
+      "path": "runtime/bin/java.dll",
+      "bytes": 148088,
+      "sha256": "e4cbd1c144a8347463240ce4d567b31c4a4994f031f082d7b60d55738f9d36aa"
+    },
+    {
+      "path": "runtime/bin/javajpeg.dll",
+      "bytes": 180856,
+      "sha256": "f3ceecee8d9035e1712d9a36487dc2af563db897a277c824245f2b27580da544"
+    },
+    {
+      "path": "runtime/bin/jawt.dll",
+      "bytes": 21632,
+      "sha256": "7a3414204ebd9980ca8e9e20c3866d9f3768a485e00deeeeb2499e2d28c8b521"
+    },
+    {
+      "path": "runtime/bin/jimage.dll",
+      "bytes": 34424,
+      "sha256": "ccbd2249f4437395977cdca262cdce4a27e077a14ac9dec63095b0db0c88a23c"
+    },
+    {
+      "path": "runtime/bin/jli.dll",
+      "bytes": 89720,
+      "sha256": "6c15f990b5d849859d090becbf92365d08dd249971d4fa2236a7e653e7b7630f"
+    },
+    {
+      "path": "runtime/bin/jsound.dll",
+      "bytes": 61048,
+      "sha256": "7aeb27db70236f5d324be556286b51fd2155272308657c80e7cbf56753e562b3"
+    },
+    {
+      "path": "runtime/bin/lcms.dll",
+      "bytes": 261760,
+      "sha256": "5d081163a10593e581051a804d463f02c2e0e506b7a0577c4642c56ce7803dff"
+    },
+    {
+      "path": "runtime/bin/mlib_image.dll",
+      "bytes": 521336,
+      "sha256": "3161b6a9fad7d3a929be2d578c63add47648c4be336ecbacd413689844762ca1"
+    },
+    {
+      "path": "runtime/bin/msvcp140.dll",
+      "bytes": 575056,
+      "sha256": "a4c2229bdc2a2a630acdc095b4d86008e5c3e3bc7773174354f3da4f5beb9cde"
+    },
+    {
+      "path": "runtime/bin/net.dll",
+      "bytes": 98432,
+      "sha256": "363b5784dc8a64eb82f10eae337ab0e600a9e10aa88fabca15cb1fe9950be653"
+    },
+    {
+      "path": "runtime/bin/nio.dll",
+      "bytes": 80504,
+      "sha256": "4571b9e62b49e18561b29aa13ce9257c3f3529967657d8386e39e26e37b4922f"
+    },
+    {
+      "path": "runtime/bin/prefs.dll",
+      "bytes": 25720,
+      "sha256": "cd2a65c7e10f5e1352103fa1f3bc79a0297865f403dbbff8485d72f5b2fc004a"
+    },
+    {
+      "path": "runtime/bin/server/jvm.dll",
+      "bytes": 12684920,
+      "sha256": "6b9a2354b41134986d61d1f8ff0f9614e3a6b7e235469b7e9260fe7a1d9bb84a"
+    },
+    {
+      "path": "runtime/bin/splashscreen.dll",
+      "bytes": 216704,
+      "sha256": "9b35352de5ed51a4f109c03f41e075163a076dcd80b12f9dc5391311f4e8ab30"
+    },
+    {
+      "path": "runtime/bin/ucrtbase.dll",
+      "bytes": 1361448,
+      "sha256": "2e5fb14b7bf8540278f3614a12f0226e56a7cc9e64b81cbd976c6fcf2f71cbfb"
+    },
+    {
+      "path": "runtime/bin/vcruntime140.dll",
+      "bytes": 119888,
+      "sha256": "02c6aa0e6e624411a9f19b0360a7865ab15908e26024510e5c38a9c08362c35a"
+    },
+    {
+      "path": "runtime/bin/vcruntime140_1.dll",
+      "bytes": 49640,
+      "sha256": "7dd9aa02e271c68ca6d5f18d651d23a15d7259715af43326578f7dde27f37637"
+    },
+    {
+      "path": "runtime/bin/verify.dll",
+      "bytes": 54904,
+      "sha256": "5337b2ead28600e047c974b0121ade3a62006ec2b74461be0a0538eef2293c90"
+    },
+    {
+      "path": "runtime/bin/zip.dll",
+      "bytes": 87672,
+      "sha256": "a96a5cd67013edf93fac2044c0797cd35759dd2237f1940968bcc1952ed294cd"
+    },
+    {
+      "path": "runtime/conf/logging.properties",
+      "bytes": 2732,
+      "sha256": "b62d2733ab99556b108a1951d894c5a8d76b1ac7a00c02c388f9eb9be046c56f"
+    },
+    {
+      "path": "runtime/conf/net.properties",
+      "bytes": 7504,
+      "sha256": "56dd1f6095c189c1052f6baa32e457efc09de4832e19cdb82bb236dc8abfee9f"
+    },
+    {
+      "path": "runtime/conf/security/java.policy",
+      "bytes": 2293,
+      "sha256": "1224c11b69032c80e1493416641c82a37e558913a41f959f83ab2f96f097d6c0"
+    },
+    {
+      "path": "runtime/conf/security/java.security",
+      "bytes": 69696,
+      "sha256": "5cd497073edfd7fc26c68e92caee264a739db43d6781f8d8e8b74efbd107cfe7"
+    },
+    {
+      "path": "runtime/conf/security/policy/limited/default_local.policy",
+      "bytes": 647,
+      "sha256": "2b2627548e61316150d47ffc3e6cad465ca05b3cccd4785eb7d21aa7baa0f441"
+    },
+    {
+      "path": "runtime/conf/security/policy/limited/default_US_export.policy",
+      "bytes": 146,
+      "sha256": "758b930a526fc670ab7537f8c26321527050a31f5f42149a2dda623c56a0a1a9"
+    },
+    {
+      "path": "runtime/conf/security/policy/limited/exempt_local.policy",
+      "bytes": 566,
+      "sha256": "8c3d7648abcd95a272ce12db870082937f4d7f6878d730d83cb7fbb31eb8b2c9"
+    },
+    {
+      "path": "runtime/conf/security/policy/README.txt",
+      "bytes": 2390,
+      "sha256": "6da0747334b0fea7592fd92614b2bbc8b126535e129b1fee483774d914e98eb5"
+    },
+    {
+      "path": "runtime/conf/security/policy/unlimited/default_local.policy",
+      "bytes": 193,
+      "sha256": "8d8a318e6d90dfd7e26612d2b6385aa704f686ca6134c551f8928418d92b851a"
+    },
+    {
+      "path": "runtime/conf/security/policy/unlimited/default_US_export.policy",
+      "bytes": 146,
+      "sha256": "758b930a526fc670ab7537f8c26321527050a31f5f42149a2dda623c56a0a1a9"
+    },
+    {
+      "path": "runtime/conf/sound.properties",
+      "bytes": 1210,
+      "sha256": "299c2360b6155eb28990ec49cd21753f97e43442fe8fab03e04f3e213df43a66"
+    },
+    {
+      "path": "runtime/legal/java.base/ADDITIONAL_LICENSE_INFO",
+      "bytes": 2114,
+      "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+    },
+    {
+      "path": "runtime/legal/java.base/aes.md",
+      "bytes": 1444,
+      "sha256": "45c6d4da48325edfbff3dcf71c704e504c057904435ed23c6d57046d551eb69d"
+    },
+    {
+      "path": "runtime/legal/java.base/asm.md",
+      "bytes": 1584,
+      "sha256": "1ff912740e84e024711def5fa482ffbb46eff64559760c467352dfa7c39a3307"
+    },
+    {
+      "path": "runtime/legal/java.base/ASSEMBLY_EXCEPTION",
+      "bytes": 1522,
+      "sha256": "a44eb7b5caf5534c6ef536b21edb40b4d6babf91bf97d9d45596868618b2c6fb"
+    },
+    {
+      "path": "runtime/legal/java.base/c-libutl.md",
+      "bytes": 1556,
+      "sha256": "bef40679922d6fdfb7e4ddb223ad6722300f6054ba737bbf6188d60fcec517f9"
+    },
+    {
+      "path": "runtime/legal/java.base/cldr.md",
+      "bytes": 9130,
+      "sha256": "f2bd33ded550a05d59e8f659416ef382490504548d846e6388b1dffd273aa077"
+    },
+    {
+      "path": "runtime/legal/java.base/icu.md",
+      "bytes": 11086,
+      "sha256": "af0057e8553906083f69c2fb9fe9ed4ae8bc2340a0b1e376a424702f00300b29"
+    },
+    {
+      "path": "runtime/legal/java.base/LICENSE",
+      "bytes": 19274,
+      "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+    },
+    {
+      "path": "runtime/legal/java.base/public_suffix.md",
+      "bytes": 17785,
+      "sha256": "e7705b408e894e91c93968640773b1532cd9927f8a7f178020aa3c3f38c8b363"
+    },
+    {
+      "path": "runtime/legal/java.base/siphash.md",
+      "bytes": 8256,
+      "sha256": "5a792b5a74ad2a5f3d6a7ad8b7a841116e58a772c18bc6e392320a365b222c76"
+    },
+    {
+      "path": "runtime/legal/java.base/unicode.md",
+      "bytes": 2384,
+      "sha256": "5e4e6623a21a63f9bc16ea54af4133b8038e490c0d499a74676f9e5a61b9c5b2"
+    },
+    {
+      "path": "runtime/legal/java.base/wepoll.md",
+      "bytes": 1454,
+      "sha256": "3ac2992770080453b98c42afa807ba4b2c1738ef756b92a55c645f55e7df48f0"
+    },
+    {
+      "path": "runtime/legal/java.base/zlib.md",
+      "bytes": 1010,
+      "sha256": "c9c70c36a1f0325e8788771906202d42ba6ab4205caca44ec0f665707e83226b"
+    },
+    {
+      "path": "runtime/legal/java.datatransfer/ADDITIONAL_LICENSE_INFO",
+      "bytes": 49,
+      "sha256": "ebf9777bd307ed789ceabf282a9aca168c391c7f48e15a60939352efb3ea33f9"
+    },
+    {
+      "path": "runtime/legal/java.datatransfer/ASSEMBLY_EXCEPTION",
+      "bytes": 44,
+      "sha256": "b998cda101e5a1ebcfb5ff9cddd76ed43a2f2169676592d428b7c0d780665f2a"
+    },
+    {
+      "path": "runtime/legal/java.datatransfer/LICENSE",
+      "bytes": 33,
+      "sha256": "86e0516b888276a492b19f9a84f5a866ed36925fae1510b3a94a0b6213e69192"
+    },
+    {
+      "path": "runtime/legal/java.desktop/ADDITIONAL_LICENSE_INFO",
+      "bytes": 49,
+      "sha256": "ebf9777bd307ed789ceabf282a9aca168c391c7f48e15a60939352efb3ea33f9"
+    },
+    {
+      "path": "runtime/legal/java.desktop/ASSEMBLY_EXCEPTION",
+      "bytes": 44,
+      "sha256": "b998cda101e5a1ebcfb5ff9cddd76ed43a2f2169676592d428b7c0d780665f2a"
+    },
+    {
+      "path": "runtime/legal/java.desktop/colorimaging.md",
+      "bytes": 167,
+      "sha256": "04d61e3e8e71dd452ebe52008af5378d9f6640d14578aeb515dc5375973b0189"
+    },
+    {
+      "path": "runtime/legal/java.desktop/freetype.md",
+      "bytes": 30465,
+      "sha256": "553e804baecb7de7129d77c7259a6b70037d1893f1c600b41b35201695fb7758"
+    },
+    {
+      "path": "runtime/legal/java.desktop/giflib.md",
+      "bytes": 1689,
+      "sha256": "206aab89ec75968e48a6a1ed6df7d8b9bfb7aea12cbe4c9345d93e5d97460a25"
+    },
+    {
+      "path": "runtime/legal/java.desktop/harfbuzz.md",
+      "bytes": 3629,
+      "sha256": "5ec7cba7f8e7fc3a089213140aab6fa1b3bd5bf8a91bf8bddb3b8d315fc5f7d0"
+    },
+    {
+      "path": "runtime/legal/java.desktop/jpeg.md",
+      "bytes": 3475,
+      "sha256": "580be596216ee11e2554b24ce944973acaede2ebf5ffba34a6bd8cc441c05043"
+    },
+    {
+      "path": "runtime/legal/java.desktop/lcms.md",
+      "bytes": 2654,
+      "sha256": "843f9f6fa9c3f8109fcf4d5fe74caf7f2ae8e9bcd92238e4aff2d428c932b24b"
+    },
+    {
+      "path": "runtime/legal/java.desktop/libpng.md",
+      "bytes": 7519,
+      "sha256": "f73afb394792f3aeecd959e89487603677a430e56b44eba596d8b572accfd540"
+    },
+    {
+      "path": "runtime/legal/java.desktop/LICENSE",
+      "bytes": 33,
+      "sha256": "86e0516b888276a492b19f9a84f5a866ed36925fae1510b3a94a0b6213e69192"
+    },
+    {
+      "path": "runtime/legal/java.desktop/mesa3d.md",
+      "bytes": 5732,
+      "sha256": "63f4e6f75caebbccb95d903fb43e46ac7111b3624d0a34f146b276d7d9e7b152"
+    },
+    {
+      "path": "runtime/legal/java.logging/ADDITIONAL_LICENSE_INFO",
+      "bytes": 49,
+      "sha256": "ebf9777bd307ed789ceabf282a9aca168c391c7f48e15a60939352efb3ea33f9"
+    },
+    {
+      "path": "runtime/legal/java.logging/ASSEMBLY_EXCEPTION",
+      "bytes": 44,
+      "sha256": "b998cda101e5a1ebcfb5ff9cddd76ed43a2f2169676592d428b7c0d780665f2a"
+    },
+    {
+      "path": "runtime/legal/java.logging/LICENSE",
+      "bytes": 33,
+      "sha256": "86e0516b888276a492b19f9a84f5a866ed36925fae1510b3a94a0b6213e69192"
+    },
+    {
+      "path": "runtime/legal/java.naming/ADDITIONAL_LICENSE_INFO",
+      "bytes": 49,
+      "sha256": "ebf9777bd307ed789ceabf282a9aca168c391c7f48e15a60939352efb3ea33f9"
+    },
+    {
+      "path": "runtime/legal/java.naming/ASSEMBLY_EXCEPTION",
+      "bytes": 44,
+      "sha256": "b998cda101e5a1ebcfb5ff9cddd76ed43a2f2169676592d428b7c0d780665f2a"
+    },
+    {
+      "path": "runtime/legal/java.naming/LICENSE",
+      "bytes": 33,
+      "sha256": "86e0516b888276a492b19f9a84f5a866ed36925fae1510b3a94a0b6213e69192"
+    },
+    {
+      "path": "runtime/legal/java.net.http/ADDITIONAL_LICENSE_INFO",
+      "bytes": 49,
+      "sha256": "ebf9777bd307ed789ceabf282a9aca168c391c7f48e15a60939352efb3ea33f9"
+    },
+    {
+      "path": "runtime/legal/java.net.http/ASSEMBLY_EXCEPTION",
+      "bytes": 44,
+      "sha256": "b998cda101e5a1ebcfb5ff9cddd76ed43a2f2169676592d428b7c0d780665f2a"
+    },
+    {
+      "path": "runtime/legal/java.net.http/LICENSE",
+      "bytes": 33,
+      "sha256": "86e0516b888276a492b19f9a84f5a866ed36925fae1510b3a94a0b6213e69192"
+    },
+    {
+      "path": "runtime/legal/java.prefs/ADDITIONAL_LICENSE_INFO",
+      "bytes": 49,
+      "sha256": "ebf9777bd307ed789ceabf282a9aca168c391c7f48e15a60939352efb3ea33f9"
+    },
+    {
+      "path": "runtime/legal/java.prefs/ASSEMBLY_EXCEPTION",
+      "bytes": 44,
+      "sha256": "b998cda101e5a1ebcfb5ff9cddd76ed43a2f2169676592d428b7c0d780665f2a"
+    },
+    {
+      "path": "runtime/legal/java.prefs/LICENSE",
+      "bytes": 33,
+      "sha256": "86e0516b888276a492b19f9a84f5a866ed36925fae1510b3a94a0b6213e69192"
+    },
+    {
+      "path": "runtime/legal/java.security.sasl/ADDITIONAL_LICENSE_INFO",
+      "bytes": 49,
+      "sha256": "ebf9777bd307ed789ceabf282a9aca168c391c7f48e15a60939352efb3ea33f9"
+    },
+    {
+      "path": "runtime/legal/java.security.sasl/ASSEMBLY_EXCEPTION",
+      "bytes": 44,
+      "sha256": "b998cda101e5a1ebcfb5ff9cddd76ed43a2f2169676592d428b7c0d780665f2a"
+    },
+    {
+      "path": "runtime/legal/java.security.sasl/LICENSE",
+      "bytes": 33,
+      "sha256": "86e0516b888276a492b19f9a84f5a866ed36925fae1510b3a94a0b6213e69192"
+    },
+    {
+      "path": "runtime/legal/java.sql/ADDITIONAL_LICENSE_INFO",
+      "bytes": 49,
+      "sha256": "ebf9777bd307ed789ceabf282a9aca168c391c7f48e15a60939352efb3ea33f9"
+    },
+    {
+      "path": "runtime/legal/java.sql/ASSEMBLY_EXCEPTION",
+      "bytes": 44,
+      "sha256": "b998cda101e5a1ebcfb5ff9cddd76ed43a2f2169676592d428b7c0d780665f2a"
+    },
+    {
+      "path": "runtime/legal/java.sql/LICENSE",
+      "bytes": 33,
+      "sha256": "86e0516b888276a492b19f9a84f5a866ed36925fae1510b3a94a0b6213e69192"
+    },
+    {
+      "path": "runtime/legal/java.transaction.xa/ADDITIONAL_LICENSE_INFO",
+      "bytes": 49,
+      "sha256": "ebf9777bd307ed789ceabf282a9aca168c391c7f48e15a60939352efb3ea33f9"
+    },
+    {
+      "path": "runtime/legal/java.transaction.xa/ASSEMBLY_EXCEPTION",
+      "bytes": 44,
+      "sha256": "b998cda101e5a1ebcfb5ff9cddd76ed43a2f2169676592d428b7c0d780665f2a"
+    },
+    {
+      "path": "runtime/legal/java.transaction.xa/LICENSE",
+      "bytes": 33,
+      "sha256": "86e0516b888276a492b19f9a84f5a866ed36925fae1510b3a94a0b6213e69192"
+    },
+    {
+      "path": "runtime/legal/java.xml/ADDITIONAL_LICENSE_INFO",
+      "bytes": 49,
+      "sha256": "ebf9777bd307ed789ceabf282a9aca168c391c7f48e15a60939352efb3ea33f9"
+    },
+    {
+      "path": "runtime/legal/java.xml/ASSEMBLY_EXCEPTION",
+      "bytes": 44,
+      "sha256": "b998cda101e5a1ebcfb5ff9cddd76ed43a2f2169676592d428b7c0d780665f2a"
+    },
+    {
+      "path": "runtime/legal/java.xml/bcel.md",
+      "bytes": 11196,
+      "sha256": "cd578186ad93de46cca29ec8ace2b11f9da751987f3f140e6095c528596cc8c1"
+    },
+    {
+      "path": "runtime/legal/java.xml/dom.md",
+      "bytes": 3761,
+      "sha256": "6686e8877667584a3a7c07344baadca1a03e29f677162d87c3c0811e990d1148"
+    },
+    {
+      "path": "runtime/legal/java.xml/jcup.md",
+      "bytes": 1448,
+      "sha256": "8d5dcfdf50455a3c34c753a98f21e953248af200415a9084e3f102cb6c43b8bf"
+    },
+    {
+      "path": "runtime/legal/java.xml/LICENSE",
+      "bytes": 33,
+      "sha256": "86e0516b888276a492b19f9a84f5a866ed36925fae1510b3a94a0b6213e69192"
+    },
+    {
+      "path": "runtime/legal/java.xml/xalan.md",
+      "bytes": 13494,
+      "sha256": "ea67226be5cfe19c7e79725c2c24a16676323264d69f9747c528de0b44541b03"
+    },
+    {
+      "path": "runtime/legal/java.xml/xerces.md",
+      "bytes": 11852,
+      "sha256": "472224f99de833f4f4c19f2f8a0317f22114e1c641f5d77ffa3a4280a1b80176"
+    },
+    {
+      "path": "runtime/legal/jdk.crypto.ec/ADDITIONAL_LICENSE_INFO",
+      "bytes": 49,
+      "sha256": "ebf9777bd307ed789ceabf282a9aca168c391c7f48e15a60939352efb3ea33f9"
+    },
+    {
+      "path": "runtime/legal/jdk.crypto.ec/ASSEMBLY_EXCEPTION",
+      "bytes": 44,
+      "sha256": "b998cda101e5a1ebcfb5ff9cddd76ed43a2f2169676592d428b7c0d780665f2a"
+    },
+    {
+      "path": "runtime/legal/jdk.crypto.ec/LICENSE",
+      "bytes": 33,
+      "sha256": "86e0516b888276a492b19f9a84f5a866ed36925fae1510b3a94a0b6213e69192"
+    },
+    {
+      "path": "runtime/legal/jdk.unsupported/ADDITIONAL_LICENSE_INFO",
+      "bytes": 49,
+      "sha256": "ebf9777bd307ed789ceabf282a9aca168c391c7f48e15a60939352efb3ea33f9"
+    },
+    {
+      "path": "runtime/legal/jdk.unsupported/ASSEMBLY_EXCEPTION",
+      "bytes": 44,
+      "sha256": "b998cda101e5a1ebcfb5ff9cddd76ed43a2f2169676592d428b7c0d780665f2a"
+    },
+    {
+      "path": "runtime/legal/jdk.unsupported/LICENSE",
+      "bytes": 33,
+      "sha256": "86e0516b888276a492b19f9a84f5a866ed36925fae1510b3a94a0b6213e69192"
+    },
+    {
+      "path": "runtime/lib/classlist",
+      "bytes": 72950,
+      "sha256": "5e70bc24a91a857eb0d01eefe04a9a2d4726010a89046d972b37378336ea046d"
+    },
+    {
+      "path": "runtime/lib/fontconfig.bfc",
+      "bytes": 4630,
+      "sha256": "968ac99bbaaf8a49a474c934e73ad58f88c6c7f2a363cb44771e0378444e36ba"
+    },
+    {
+      "path": "runtime/lib/fontconfig.properties.src",
+      "bytes": 12345,
+      "sha256": "b44540473b97364e0f7a8a0002dd21d7a0717028fa1533f139bc98f40c91c0f0"
+    },
+    {
+      "path": "runtime/lib/jawt.lib",
+      "bytes": 1682,
+      "sha256": "af64af138d14b9fd0849d7f66ad6b529a4e5ec9c25476557bf6b3d65a8ac6884"
+    },
+    {
+      "path": "runtime/lib/jrt-fs.jar",
+      "bytes": 110515,
+      "sha256": "c0ca05b7af856766e6bd6bd8af6155b7066e5bc38b6c5398be435c0d57144cd1"
+    },
+    {
+      "path": "runtime/lib/jvm.cfg",
+      "bytes": 29,
+      "sha256": "aa9efb969444c1484e29adecab55a122458090616e766b2f1230ef05bc3867e0"
+    },
+    {
+      "path": "runtime/lib/jvm.lib",
+      "bytes": 1040306,
+      "sha256": "78d6360d8daef6bbffb3c0c4b62fb9e3d21d529de1101d167f5d533843edf321"
+    },
+    {
+      "path": "runtime/lib/modules",
+      "bytes": 47428495,
+      "sha256": "e915911e3bf2476f8498b4c5e0a54567d1d02f21cdb8c41e273464abd07eb85c"
+    },
+    {
+      "path": "runtime/lib/psfont.properties.ja",
+      "bytes": 3793,
+      "sha256": "5a4bd51b969bf187ff86d94f4a71fdfbfa602762975fa3c73d264b4575f7c78f"
+    },
+    {
+      "path": "runtime/lib/psfontj2d.properties",
+      "bytes": 11390,
+      "sha256": "780c565d5af3ee6f68b887b75c041cdf46a0592f67012f12eeb691283e92630a"
+    },
+    {
+      "path": "runtime/lib/security/blocked.certs",
+      "bytes": 2527,
+      "sha256": "583500b76965eb54b03493372989ab4d3426f85462d1db232c5ae6706a4d6c58"
+    },
+    {
+      "path": "runtime/lib/security/cacerts",
+      "bytes": 137281,
+      "sha256": "229eba133aba1e538de07e695155d1c3443059d298d3a1de02d7818887ff9043"
+    },
+    {
+      "path": "runtime/lib/security/default.policy",
+      "bytes": 10936,
+      "sha256": "f6340c1f4084d6927dc6491d9a1747e5d9b761f9f8158c0e36cb4d3ce519fcda"
+    },
+    {
+      "path": "runtime/lib/security/public_suffix_list.dat",
+      "bytes": 229254,
+      "sha256": "37e71e43c8605f29b9072f152d0ea4708735cdf335a5b68b2bc2f875760806c3"
+    },
+    {
+      "path": "runtime/lib/tzdb.dat",
+      "bytes": 102956,
+      "sha256": "5906b44e25a8a730131d7ba1beb5d15af27043f6536f1a169ca8a5d8b8bed8f8"
+    },
+    {
+      "path": "runtime/lib/tzmappings",
+      "bytes": 22143,
+      "sha256": "36dc51c4bf787f640a4b45cbb84ab6954f6e595cbd3617c2f5a4e1e607b38bff"
+    },
+    {
+      "path": "runtime/release",
+      "bytes": 215,
+      "sha256": "05610289c804230912c22206db11463d920337be5d5216c8868edb3b0f255edd"
+    },
+    {
+      "path": "update-config.json",
+      "bytes": 454,
+      "sha256": "26a632fcd8819bbaa422a46e3ef6caa15f08e2fa45c3e4967d447e5617ff56a0"
+    },
+    {
+      "path": "update-root.json",
+      "bytes": 1568,
+      "sha256": "efc8fdda742b6cc5f7fe4edcb38f75eba9bfcbe0210e07eb888d25f76c3eb892"
+    },
+    {
+      "path": "updater/_asyncio.pyd",
+      "bytes": 72928,
+      "sha256": "6654dfbf4cc92609801f35022acaddd3fc19e6c777b7771b0f0a68f5813889a8"
+    },
+    {
+      "path": "updater/_bz2.pyd",
+      "bytes": 86752,
+      "sha256": "6da4d453852346299e983b458f3ec2f0db3b5f765998ba3f45c91b4a1549037b"
+    },
+    {
+      "path": "updater/_ctypes.pyd",
+      "bytes": 134368,
+      "sha256": "5bcddf4c374c4d247e1e4a61f3347159c36c5785fe43bdae11a4e6c9ea2c0166"
+    },
+    {
+      "path": "updater/_decimal.pyd",
+      "bytes": 286944,
+      "sha256": "eeb278dfbdb305bb5af916ed79e878943e25dc4bd6e99ec17abb7b3fd9f935d5"
+    },
+    {
+      "path": "updater/_elementtree.pyd",
+      "bytes": 136416,
+      "sha256": "34968e3aebdb3e89cb1472b75b04986ce1bbf27d290f4154d77649cc17c41fab"
+    },
+    {
+      "path": "updater/_hashlib.pyd",
+      "bytes": 69344,
+      "sha256": "4d3eb9d9492d626c7bb10cfe5ab233a9195ec7b27e92b465b287e7a24fc8266c"
+    },
+    {
+      "path": "updater/_lzma.pyd",
+      "bytes": 159456,
+      "sha256": "2b4dcb12c0420ffced4b91968ae4eff6cb585f0f07490160c6da47da63064a99"
+    },
+    {
+      "path": "updater/_multiprocessing.pyd",
+      "bytes": 38112,
+      "sha256": "5017bb9dd0d5ab6d7c0f007763d7906d33464f0b436ac6577f1f4fffd5c98986"
+    },
+    {
+      "path": "updater/_overlapped.pyd",
+      "bytes": 57568,
+      "sha256": "3f393b2ce1fe5973fc45e49dffcf51405fa875cdb284cf96b2f0d4b93b08765c"
+    },
+    {
+      "path": "updater/_queue.pyd",
+      "bytes": 35552,
+      "sha256": "79c196a0804b152fc48b4055387f4352838e41c28863a0c946e7a98137e681e1"
+    },
+    {
+      "path": "updater/_socket.pyd",
+      "bytes": 86752,
+      "sha256": "c5936292083189e0675a96ddd0e38235726f1c58195cec64eb0085b9c479ddce"
+    },
+    {
+      "path": "updater/_sqlite3.pyd",
+      "bytes": 131296,
+      "sha256": "95d5b99f696cb33550534e8be80d31003db8b8a27062dfd6b09fdba4bb92f812"
+    },
+    {
+      "path": "updater/_ssl.pyd",
+      "bytes": 190688,
+      "sha256": "30ff82a3ea0c675ddc99e6b14f71ca750f06e77d6653e2da3d7d35b7ef0fc2ed"
+    },
+    {
+      "path": "updater/_uuid.pyd",
+      "bytes": 27872,
+      "sha256": "0d6fcf704721d4bae58cc754b15a3f8c36907b718874f6d7cbbaa363a14618b1"
+    },
+    {
+      "path": "updater/_wmi.pyd",
+      "bytes": 39648,
+      "sha256": "f88c322f871aef92de562278bd25c34c6e758642669d5512a22ed972840317b1"
+    },
+    {
+      "path": "updater/_zoneinfo.pyd",
+      "bytes": 51424,
+      "sha256": "b687deba154399bf6e44963e46abff518c3f987ae4fde087a3c891a1a1f08fdd"
+    },
+    {
+      "path": "updater/CCBStudioLauncher.exe",
+      "bytes": 115712,
+      "sha256": "0fa3e951eb6c2641ca2dcba33ec31d44c5f69f51b10336035034fe3c045c90f9"
+    },
+    {
+      "path": "updater/lib/_cffi_backend.cp313-win_amd64.pyd",
+      "bytes": 180736,
+      "sha256": "21b7160d4a6da9590794fdb38718982060b5c92d56fb0e441fc8b62ee789be8d"
+    },
+    {
+      "path": "updater/lib/apply_update.py",
+      "bytes": 15026,
+      "sha256": "61351ea4731deca049a8d7309b9015bbfaf1aba0fc5550063113c2d2fdf6bdc0"
+    },
+    {
+      "path": "updater/lib/cffi/__init__.py",
+      "bytes": 511,
+      "sha256": "c47b2db28c5f197e242d4dd4af95b7ebb0da65763fc76972cafd06f93e942cda"
+    },
+    {
+      "path": "updater/lib/cffi/_cffi_errors.h",
+      "bytes": 3583,
+      "sha256": "5b383ed01bb5fcad8610ad29494e5be90d86000b9d71a17cec7346f0ba05996c"
+    },
+    {
+      "path": "updater/lib/cffi/_cffi_gen_src.py",
+      "bytes": 7044,
+      "sha256": "c94479de91526ec6b7b2c17bfd53aa5d368a78be402531ccfddc99f48198f6cc"
+    },
+    {
+      "path": "updater/lib/cffi/_cffi_include.h",
+      "bytes": 15234,
+      "sha256": "cd8e8a168a3f6e96b4d8f6a042cd61cde5bd3b9eac9e2a25a32c6abd1280a2df"
+    },
+    {
+      "path": "updater/lib/cffi/_embedding.h",
+      "bytes": 17554,
+      "sha256": "3e101d00c70a0a5013559fa505c65e0c4735d85e85a9575a1ed689d8f920e84f"
+    },
+    {
+      "path": "updater/lib/cffi/_imp_emulation.py",
+      "bytes": 2960,
+      "sha256": "4714441bccc06c8d913c6070c3dd2eff97e2f2c59d6a1a5d8a93a83f3929ec2d"
+    },
+    {
+      "path": "updater/lib/cffi/_shimmed_dist_utils.py",
+      "bytes": 2230,
+      "sha256": "0638f6c26f3265bbc5bd6131e4011f9aa6aa6726458587e8c8b2d01e45d9b9aa"
+    },
+    {
+      "path": "updater/lib/cffi/api.py",
+      "bytes": 42013,
+      "sha256": "7165f5665b1c98ec9392fb61881a5458b712441b6a9699fe9a806ee1eb019b32"
+    },
+    {
+      "path": "updater/lib/cffi/backend_ctypes.py",
+      "bytes": 42283,
+      "sha256": "4fb092735e0fe6fca5a22e61ca8c7af2a841597d3bf68c075da1836d8fd4edba"
+    },
+    {
+      "path": "updater/lib/cffi/cffi_opcode.py",
+      "bytes": 5723,
+      "sha256": "e7ed5c53aa691c6cecb2d17f7a88250fff2d08393bebf6619338f77d6e1289cd"
+    },
+    {
+      "path": "updater/lib/cffi/commontypes.py",
+      "bytes": 2805,
+      "sha256": "ecdeb33ed08596fc57316847574f29b148dd6082b65e0b0ddf2a39760b9afefe"
+    },
+    {
+      "path": "updater/lib/cffi/cparser.py",
+      "bytes": 44754,
+      "sha256": "598fa8c785064ae552613b609b4d8598681b99cb9a6812b79a816591d1529ac5"
+    },
+    {
+      "path": "updater/lib/cffi/error.py",
+      "bytes": 877,
+      "sha256": "bfac53892e14d24bc3732e21fc10d1a39bf7f5942e8fe20c4582efe444dd759b"
+    },
+    {
+      "path": "updater/lib/cffi/ffiplatform.py",
+      "bytes": 3584,
+      "sha256": "6afc458dd8a460626812d9893bb7b0566c06fd511597a119fd668d859602aafe"
+    },
+    {
+      "path": "updater/lib/cffi/gen_src.py",
+      "bytes": 132,
+      "sha256": "4d4fd9543c282e71cf95a97cfe63e6a71ab2589ed4ef9da34dcdd4b13984d502"
+    },
+    {
+      "path": "updater/lib/cffi/lock.py",
+      "bytes": 747,
+      "sha256": "97d4d37703083298ba8c39091a742013d72f4c847b0809ed209afc1061edde96"
+    },
+    {
+      "path": "updater/lib/cffi/model.py",
+      "bytes": 21752,
+      "sha256": "700f9b10089b70751bb5ba9f80cab408b42314f02357425247333229588d805e"
+    },
+    {
+      "path": "updater/lib/cffi/parse_c_type.h",
+      "bytes": 5976,
+      "sha256": "39dc107f033d92dababe5081e377b11509b10c1b63d8c04d74af0b625d79b63c"
+    },
+    {
+      "path": "updater/lib/cffi/pkgconfig.py",
+      "bytes": 4365,
+      "sha256": "bb2b75d7b4d079e6b77636a03355b9828f11a67c921938280b337c407c997657"
+    },
+    {
+      "path": "updater/lib/cffi/recompiler.py",
+      "bytes": 65140,
+      "sha256": "4c9545d3b985cd819357ab33a76ccfac977674928737e781fd2ba22621a5f4ac"
+    },
+    {
+      "path": "updater/lib/cffi/setuptools_ext.py",
+      "bytes": 9566,
+      "sha256": "a59ae74ea54290632abbc37123191d6c8b65eb981e84c3f52e8ada51d4fbfb85"
+    },
+    {
+      "path": "updater/lib/cffi/vengine_cpy.py",
+      "bytes": 43030,
+      "sha256": "ad1a2e610e819650085cd8d91933d45b9e2b07de76aa2de0726d7a4965d628b7"
+    },
+    {
+      "path": "updater/lib/cffi/vengine_gen.py",
+      "bytes": 26931,
+      "sha256": "67f2aa685eabe789f98b886341385975bfb50c14c48a69d4e32e04fcac520838"
+    },
+    {
+      "path": "updater/lib/cffi/verifier.py",
+      "bytes": 11154,
+      "sha256": "c48cd5f220cc859d7eaa15f74515f80d6a36934ed6a5c271761840157023ae66"
+    },
+    {
+      "path": "updater/lib/cffi-2.1.1.dist-info/entry_points.txt",
+      "bytes": 132,
+      "sha256": "a6b6108011f8e27050fe5269bba88c8051b414697880d3b0b6fbe3a03a0b001c"
+    },
+    {
+      "path": "updater/lib/cffi-2.1.1.dist-info/licenses/LICENSE",
+      "bytes": 1123,
+      "sha256": "5ba24ddc57067f9249add644c3afc41a5d6dc37e23433ef759d95df370b0af63"
+    },
+    {
+      "path": "updater/lib/cffi-2.1.1.dist-info/METADATA",
+      "bytes": 2594,
+      "sha256": "67b6a7595df7ede2195016a05d285faa7d362a8f57c238984edb8bb674b5770d"
+    },
+    {
+      "path": "updater/lib/cffi-2.1.1.dist-info/RECORD",
+      "bytes": 2370,
+      "sha256": "a6ce9c8f08388d1d0493e38aaaf7cdad863905b679ed0958c8a7b789e29099db"
+    },
+    {
+      "path": "updater/lib/cffi-2.1.1.dist-info/top_level.txt",
+      "bytes": 19,
+      "sha256": "ac4ed6477ad97cd2b1588f7e8e7ea1b0708097b303901f859ae41bc568c57a14"
+    },
+    {
+      "path": "updater/lib/cffi-2.1.1.dist-info/WHEEL",
+      "bytes": 101,
+      "sha256": "00fff09229097149033d41af4cdc9dbfb83447b0615b5bbf7d51cd296ed32722"
+    },
+    {
+      "path": "updater/lib/cryptography/__about__.py",
+      "bytes": 445,
+      "sha256": "95184137751279e4ccc0ababa44ed8bc380fbcdd5ba584f0407c5d14e31c109d"
+    },
+    {
+      "path": "updater/lib/cryptography/__init__.py",
+      "bytes": 364,
+      "sha256": "9ad86e52b4dde0544e0a9518ad322a863cfab3a4fd763019ad5ee7675a0c9b6a"
+    },
+    {
+      "path": "updater/lib/cryptography/cobblestone.py",
+      "bytes": 693,
+      "sha256": "4fff85d3cf8051fde58daca965e92535357585639b1f9ee8a38e66552ce4f707"
+    },
+    {
+      "path": "updater/lib/cryptography/exceptions.py",
+      "bytes": 1087,
+      "sha256": "f37e445882dcd9fc31c3e83214cae27220b64aa8558844c1d742c14b2b670c87"
+    },
+    {
+      "path": "updater/lib/cryptography/fernet.py",
+      "bytes": 7687,
+      "sha256": "dac2c23ce99e8e13956ee75c4b742c3353c8b876f109e45c46d5a49dc437982a"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/__init__.py",
+      "bytes": 455,
+      "sha256": "e48c2b2d6ad5a7402312bff815d586fd5d39ecd489198fd6e1e80d36cb9cb748"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/_oid.py",
+      "bytes": 18150,
+      "sha256": "3a17b69d413a5e32b1d5417a4c0b06532daff06509f958bd0d2e32c52ba4b795"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/asn1/__init__.py",
+      "bytes": 812,
+      "sha256": "62a613a071858cb38a8a0442d341c68fa86b8c4c1bbb548fa408aeebebbe7daa"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/asn1/asn1.py",
+      "bytes": 19152,
+      "sha256": "f6671fae676f2bb2ad8e1458a1f3330235b4bbb9efa9b7ecbcf7db84d40ad414"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/backends/__init__.py",
+      "bytes": 361,
+      "sha256": "3b98ef28541d6675e129ea89f87b6e95a10bf4d8bb9abd660f3658e641e56212"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/backends/openssl/__init__.py",
+      "bytes": 305,
+      "sha256": "a778e625f9c26a0f62139b1d32b37a56f544bb9e6ee3ac5a4bf223a08d12ae60"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/backends/openssl/backend.py",
+      "bytes": 10475,
+      "sha256": "d0d73315b8b01b17eaf6a8b6f281d8af4f2bfebed5420e005c78dbd2814fc2a0"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/__init__.py",
+      "bytes": 216,
+      "sha256": "c0709b59f69e7daf9f93a4c74b0f6d87d7c952c4ad268ef6e39c1f141aa676e0"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/__init__.pyi",
+      "bytes": 2285,
+      "sha256": "b949e7bceabfb9a99e62704da66b2fdd244054ed16406a63239f1a47594be0ac"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/_openssl.pyi",
+      "bytes": 228,
+      "sha256": "4ffe53a583bc6e08483e3010dc1b40001ab0f82718b241e9f76c26e4f358e9d7"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/asn1.pyi",
+      "bytes": 354,
+      "sha256": "06b1a30bc27a9f0b92fabdc455c757241f27768b5f63d99b41839fa5b3c6d070"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/cobblestone.pyi",
+      "bytes": 1325,
+      "sha256": "f6551fd56d614ebb33109e18a527093483d20fd04e33ba3e0bcdbe9ad4831bda"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/declarative_asn1.pyi",
+      "bytes": 3866,
+      "sha256": "30198e6732d37663c9ebed4ae80ab73d3b872753068117c8bb484881a83ba1c1"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/exceptions.pyi",
+      "bytes": 640,
+      "sha256": "7b15ebdb1c3fd29075924f777186ccdcca216f3a149233a6b3564c522d2e4191"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/ocsp.pyi",
+      "bytes": 4020,
+      "sha256": "54f556b8a1c8f4432cd3d64b458006bd1d08cf49823261335c0920247a2fa683"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/openssl/__init__.pyi",
+      "bytes": 1578,
+      "sha256": "3ba18ecaf0f1b7aca589c0766851aebb945c199cbd5232a762a191f2bab3bddc"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/openssl/aead.pyi",
+      "bytes": 4582,
+      "sha256": "eddfbec5d734beecd17b84b6bae41a1a6fbd1862afe0d7122d070bc9671a0fab"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/openssl/ciphers.pyi",
+      "bytes": 1315,
+      "sha256": "2e13f31d649726ae20ac02579facd2bd249d57e698208b1c1c3c083e524618fb"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/openssl/cmac.pyi",
+      "bytes": 564,
+      "sha256": "9cf1f45f9ed1629b00911a305698d0887139eba4e1513c7b617aec69d9ab9879"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/openssl/dh.pyi",
+      "bytes": 1564,
+      "sha256": "6774c2f86d38f931ed49d00e3cb3358761bb9a5e5b75ad4495951c9f9c29ba19"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/openssl/dsa.pyi",
+      "bytes": 1299,
+      "sha256": "a81b64823d9a95bb76a8572767d503ae1ce83610953bb1d36f2e5549fd445cc2"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/openssl/ec.pyi",
+      "bytes": 1691,
+      "sha256": "cc9cb4a516b99fefe9d9d9b8e4fc44081ffe07a49567234a7e3c450e93ea4f7f"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/openssl/ed25519.pyi",
+      "bytes": 532,
+      "sha256": "5577d77791ba8548af837f7d4750d87665b77936f411e6f30d3aa3442da0691c"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/openssl/ed448.pyi",
+      "bytes": 514,
+      "sha256": "631e3d96a7678ec0fb6f188357591c68cac392dba0e5ebe2e5aeb37ab322cb6b"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/openssl/hashes.pyi",
+      "bytes": 1076,
+      "sha256": "6c57b74f5dd47b24489d424c0fe47902b19318ba960e25a8d8bbf6286cd46dfe"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/openssl/hmac.pyi",
+      "bytes": 702,
+      "sha256": "057667ecd0e32f72406d85b4490f298358b20b90db4175615008b0b22f03151f"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/openssl/hpke.pyi",
+      "bytes": 2914,
+      "sha256": "a7f8462e7e981fe11aac91755796d4b14b638a9be2100a5c4793b4b141c92ed7"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/openssl/kdf.pyi",
+      "bytes": 6619,
+      "sha256": "1e288b74407d9ea32c4ef330885a694297cfcfa7c7533f7f8298c407f5c03970"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/openssl/keys.pyi",
+      "bytes": 912,
+      "sha256": "b5e22df0ce9910c26b9f8b375b45275b40d9fb7d0977af169d2b0a286d76e25d"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/openssl/keywrap.pyi",
+      "bytes": 733,
+      "sha256": "9860891284389718b8091393044b94cdbf54e24cbc9f9d8bde20ef08e5cd0512"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/openssl/mldsa.pyi",
+      "bytes": 1421,
+      "sha256": "1fce170d6d134372c785d1890f9b8f6834f98a31222ba319cad5d873cac135fe"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/openssl/mlkem.pyi",
+      "bytes": 835,
+      "sha256": "6f2a1ebace3e9483a55a5122450742734d2a0a45e9381e6978163aca8f6293cb"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/openssl/poly1305.pyi",
+      "bytes": 585,
+      "sha256": "fd25bd36d4391439406dd72516d5a94f89469b1288287a4dfb88fc27607361f4"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/openssl/rsa.pyi",
+      "bytes": 1364,
+      "sha256": "d8e4023525e4c6073edeec35c620829682104d5ea9f7f90aefd62ed2b85980f7"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/openssl/x25519.pyi",
+      "bytes": 523,
+      "sha256": "7b09f81a94326fbccfc04fa78bb1adc9080c0b403598bbaa62c4b2aafea723fb"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/openssl/x448.pyi",
+      "bytes": 505,
+      "sha256": "8ee4d94e6962f233bfe5572e7e0faf1efc7fb42c9ece648b221ffd3d4dd37332"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/pkcs12.pyi",
+      "bytes": 1605,
+      "sha256": "bc411de700e266f6fc64615ace22c26962f3030a06fedbcf5312d0c39fee3a5f"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/pkcs7.pyi",
+      "bytes": 1601,
+      "sha256": "b711812628ea66c84472aadae9bc8f35b9e2b08765c733922073f6865f5aacfb"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/test_support.pyi",
+      "bytes": 757,
+      "sha256": "3cf86577e5a43bbe3789714f79b786d0bb602b4693cc6763708b1acb51a6e461"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/x509.pyi",
+      "bytes": 10211,
+      "sha256": "2d54f886d04db1ee608a3421e0685535811b00ed04d40360136f2d5aac378382"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust.pyd",
+      "bytes": 9988608,
+      "sha256": "4eae8a67fe13564fe90631d1d6d7c8e89e1cb38cde46b96f13fd4c59ca13f9af"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/openssl/__init__.py",
+      "bytes": 216,
+      "sha256": "c0709b59f69e7daf9f93a4c74b0f6d87d7c952c4ad268ef6e39c1f141aa676e0"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/openssl/_conditional.py",
+      "bytes": 5611,
+      "sha256": "bdfce2fb11dd4ad01c2508cbaaa3a54a8b3de0bf03feda85b417bb3afc3e2ad6"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/openssl/binding.py",
+      "bytes": 3706,
+      "sha256": "16cb8bc5b4e7aea5bad3e7405ad6a482e7deabb4e7a9a41a8b53dcec3a30ae3a"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/decrepit/__init__.py",
+      "bytes": 216,
+      "sha256": "c0709b59f69e7daf9f93a4c74b0f6d87d7c952c4ad268ef6e39c1f141aa676e0"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/decrepit/ciphers/__init__.py",
+      "bytes": 216,
+      "sha256": "c0709b59f69e7daf9f93a4c74b0f6d87d7c952c4ad268ef6e39c1f141aa676e0"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/decrepit/ciphers/algorithms.py",
+      "bytes": 3752,
+      "sha256": "5923e3336b177eb2c35ebb4de51ecdeab0355c5edbf772357bf96f0f8cb1da80"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/decrepit/ciphers/modes.py",
+      "bytes": 1649,
+      "sha256": "3aafcf1300a47b938b73339faffbf300e27ac0fc7eae5b2f1c05cf06e8796fda"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/__init__.py",
+      "bytes": 216,
+      "sha256": "c0709b59f69e7daf9f93a4c74b0f6d87d7c952c4ad268ef6e39c1f141aa676e0"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/_asymmetric.py",
+      "bytes": 532,
+      "sha256": "46181ca2e501e874e214306b4752f1aa4323a54c4888dbd0d6bff3263446eaa4"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/_cipheralgorithm.py",
+      "bytes": 1522,
+      "sha256": "121de2ee5c1e7477e2d1e2d2b07f773d9c502b363d23a9642baeef2f8579b4e7"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/_modes.py",
+      "bytes": 3075,
+      "sha256": "fc4880383f096fa5a915796ec247144f7102cff4c7f318c6bdb4251a4366e7d4"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/_serialization.py",
+      "bytes": 4440,
+      "sha256": "862d3125b941019f29999c769566be96bba9871befbc6de0f4334ad06f0e75fb"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/asymmetric/__init__.py",
+      "bytes": 216,
+      "sha256": "c0709b59f69e7daf9f93a4c74b0f6d87d7c952c4ad268ef6e39c1f141aa676e0"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/asymmetric/dh.py",
+      "bytes": 5793,
+      "sha256": "467b767cb683a501234125fc7cdb659935ce2478e5b7f0ca419d5595f85d8dae"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/asymmetric/dsa.py",
+      "bytes": 4482,
+      "sha256": "910cd3562a8023d3e210b34e05ca3f9fa31f3f737d7a120f91276e3a9ba9b743"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/asymmetric/ec.py",
+      "bytes": 10183,
+      "sha256": "2e495508b2f16db433aa213a1d16984d16ae2cca61614c37b44e9cf28048c584"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/asymmetric/ed25519.py",
+      "bytes": 2998,
+      "sha256": "99b7df2efb3edcf8020de835ad05d55e1ec62e7b6554be004e390811ce29b793"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/asymmetric/ed448.py",
+      "bytes": 4002,
+      "sha256": "9f474aeb2f952f1bb0fb3beb0f1b8f4f8e7df21ca6817fb5472fe3abd6944211"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/asymmetric/mldsa.py",
+      "bytes": 13803,
+      "sha256": "2c731a694d26eba12c4ab4a87567f87b691d99d0d14c41910b5cbe7c22b118ad"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/asymmetric/mlkem.py",
+      "bytes": 7901,
+      "sha256": "c2f5647854fee287fe55c500111dbecc8ff98574faaf04c93cc090f2017d1930"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/asymmetric/padding.py",
+      "bytes": 3678,
+      "sha256": "8db81a8ef18763090f8cc0e58c7bb99713019437e60b15947b6005d92e8a135d"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/asymmetric/rsa.py",
+      "bytes": 8492,
+      "sha256": "94813b9467b8e3d5b95112d3282a6f1467ab213a2e2a8655f46c2e4f349cb12a"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/asymmetric/types.py",
+      "bytes": 2588,
+      "sha256": "4a32614eb9c544b9533dd62b043d69a0c8ba723606f9f8747d221a427dd0522c"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/asymmetric/utils.py",
+      "bytes": 821,
+      "sha256": "42cf117bd1853e35bfb4da7fef721e2448cf09fd2c94e22c58ec68eaaca64fa9"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/asymmetric/x25519.py",
+      "bytes": 3888,
+      "sha256": "950720524f8f8ae6e3f329c535641e6267b7b5864c80742a9112a42033872f3a"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/asymmetric/x448.py",
+      "bytes": 3913,
+      "sha256": "6f7ee283b93ba681ba4890ebcb8da3f849428f9ab8790d17e421663744a7f33f"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/ciphers/__init__.py",
+      "bytes": 680,
+      "sha256": "7b21179a393afc265768e3d80ebeef018197af6f50bf38162f6fb8092a252c5b"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/ciphers/aead.py",
+      "bytes": 634,
+      "sha256": "173972c7bc3c29841a9330e9d735a026722beb6ce066b815875bb68787b1079e"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/ciphers/algorithms.py",
+      "bytes": 3496,
+      "sha256": "2067c2c9c6093a1d53be8237e2b7f0f0a7c9ff19add69fc3a4186dd8582171ea"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/ciphers/base.py",
+      "bytes": 4253,
+      "sha256": "6810bb1c7041a22c5e6e6a5aad5af4525383b37543d00ec1ea8cff01a4630eff"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/ciphers/modes.py",
+      "bytes": 6003,
+      "sha256": "1fb0194a02624930428b482b2fdecdc5a912f79d09c852982ecadaf2d8c73f14"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/cmac.py",
+      "bytes": 338,
+      "sha256": "b33fece87fdc6273afc7e54d59d20a85185edd89a9f33f09d03dc206a397de08"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/constant_time.py",
+      "bytes": 422,
+      "sha256": "c5dba7593d277fc3af29d72a52186514a6b21a9e3f3e0549454d96d702d2aff0"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/hashes.py",
+      "bytes": 7916,
+      "sha256": "4abb7081cdffa45bd97c88518fd7b5a7859d8be17f3e995e18796a240460b4e8"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/hmac.py",
+      "bytes": 423,
+      "sha256": "469077cfdcf9b248ab090ae6ef341bb67a7da4b327023ae54d4bcaa85e5a0c37"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/hpke.py",
+      "bytes": 865,
+      "sha256": "46c1e2b2c0b997e7533e7d69d896dcac8ac09c306b2ea339ba0045486a662aee"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/kdf/__init__.py",
+      "bytes": 1037,
+      "sha256": "bf7ca2601194dbbd84a233576f07d865d6db7c8f5c54e0821b79d78530dd6b79"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/kdf/argon2.py",
+      "bytes": 632,
+      "sha256": "649c7e7a7525000e28edbe3a0b5c25cc6fd7010416d3022416050a92b33fc00f"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/kdf/concatkdf.py",
+      "bytes": 591,
+      "sha256": "0459ce292ef6b71285d3242f012af435aeee873bcb1e95027242b988d002fda4"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/kdf/hkdf.py",
+      "bytes": 543,
+      "sha256": "33494011f468738929a78fa7c038fdc81faf359ba420e60442b5255ac04d9fda"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/kdf/kbkdf.py",
+      "bytes": 737,
+      "sha256": "0b7c3df6f8c5aa1ab3031cc5387e33cef5681e46f9002e8bcfa00440657b77f8"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/kdf/pbkdf2.py",
+      "bytes": 468,
+      "sha256": "5dc86493df6cf8c93a6fa2920a8baa764f0557288d54e48521e9e69d6ded2e04"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/kdf/scrypt.py",
+      "bytes": 590,
+      "sha256": "5f259475452686e23d57a4ea00f3afba3092306bf55d0760d1adb52160a63be5"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/kdf/x963kdf.py",
+      "bytes": 456,
+      "sha256": "40a8e145e86e4ec02cb4bdfce1b29fbe3bafd727dd6a6007561b014567a7d95c"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/keywrap.py",
+      "bytes": 735,
+      "sha256": "b7db7c299bb367852cdf4012521236ecc64f3cf2b2e041114439002be94ced34"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/padding.py",
+      "bytes": 1865,
+      "sha256": "413f94f8dbd5d9e4063b5c153db0e234635273d91e4434be8a0e5c40eacbcf41"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/poly1305.py",
+      "bytes": 355,
+      "sha256": "3f910f415f9107f1493da869834d6ed13b384bf3e7026b2ba312065db19e451a"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/serialization/__init__.py",
+      "bytes": 2217,
+      "sha256": "7d772ee3dba02fdaf1869465ff06639cca84f430a484231cb11c5f8ffa93bde8"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/serialization/base.py",
+      "bytes": 651,
+      "sha256": "48006bbe8d12f3a41ca01963ec3a6378b5b2da5cd032bca28a827a0eb1184150"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/serialization/pkcs12.py",
+      "bytes": 5104,
+      "sha256": "992f5c14d1b869fcefb1ea1ce5ed4c5a863656c91f2fc37c63f3858e5ebb96e6"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/serialization/pkcs7.py",
+      "bytes": 13998,
+      "sha256": "98533b385b99f1c0b1506528a380a87fa06708773f21bc750108e37f19cf971a"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/serialization/ssh.py",
+      "bytes": 53592,
+      "sha256": "162b177bf9d429d3c67ea10d5612a99a86b399a23ca87f067be5466dcd1dca4c"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/twofactor/__init__.py",
+      "bytes": 258,
+      "sha256": "b66319181fa0e08535afb94816a012534d7dcebd2e3e9ff010161cc1d0c22820"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/twofactor/hotp.py",
+      "bytes": 3256,
+      "sha256": "8af668e41adc08658bb2aaa5e27655d175c28f218f8bf8877c3165b4694e2709"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/twofactor/totp.py",
+      "bytes": 1652,
+      "sha256": "9b92cfa512f4d24a78cd8f204e3af9e477f3f5a3253d2e7790799591240299d6"
+    },
+    {
+      "path": "updater/lib/cryptography/py.typed",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "updater/lib/cryptography/utils.py",
+      "bytes": 4635,
+      "sha256": "21aed2d106734b47b3c2920741f63c1b57bea381a3ac78a31175e3c00af58ae2"
+    },
+    {
+      "path": "updater/lib/cryptography/x509/__init__.py",
+      "bytes": 8253,
+      "sha256": "d0a54d4e646d758357fe2fdec2c4cdcdb4e6d9ed6ac9fa0e85ce1e9a883984be"
+    },
+    {
+      "path": "updater/lib/cryptography/x509/base.py",
+      "bytes": 28311,
+      "sha256": "50830a9309acc75d01477fe09c14410814f0429d7e3bcc247d59bb6b31fefe61"
+    },
+    {
+      "path": "updater/lib/cryptography/x509/certificate_transparency.py",
+      "bytes": 797,
+      "sha256": "26aa0e203865c089eb60c156e88167efb589d2f885f8f07fae5655defb3d3187"
+    },
+    {
+      "path": "updater/lib/cryptography/x509/extensions.py",
+      "bytes": 77975,
+      "sha256": "fa25dcc169c82f5ce5e4c977055245904a3fef59dc5def387a1beacd6d6c2b83"
+    },
+    {
+      "path": "updater/lib/cryptography/x509/general_name.py",
+      "bytes": 7836,
+      "sha256": "b0ffeb575d50969b24e31dd75c6258fccbf443fb3d76d8de2dc907b23a4b4284"
+    },
+    {
+      "path": "updater/lib/cryptography/x509/name.py",
+      "bytes": 15566,
+      "sha256": "a08db0e95758f33830eeaa4d865c44c79d765b40215835d0ac361fe44b0cd8f6"
+    },
+    {
+      "path": "updater/lib/cryptography/x509/ocsp.py",
+      "bytes": 12699,
+      "sha256": "61ecba35d155d4c3e3a29db8323fd57a78c4a60de451a328a5258e2b401b781b"
+    },
+    {
+      "path": "updater/lib/cryptography/x509/oid.py",
+      "bytes": 931,
+      "sha256": "054ce05d71955a296406474a3d39bd478a84944f600061e07583cc640a7b3c9a"
+    },
+    {
+      "path": "updater/lib/cryptography/x509/verification.py",
+      "bytes": 958,
+      "sha256": "811d82d9cf97650b5b959853e53e6f8d228eb426fbe1e7f66a53d59847301653"
+    },
+    {
+      "path": "updater/lib/cryptography-50.0.2.dist-info/licenses/LICENSE",
+      "bytes": 197,
+      "sha256": "3e0c7c091a948b82533ba98fd7cbb40432d6f1a9acbf85f5922d2f99a93ae6bb"
+    },
+    {
+      "path": "updater/lib/cryptography-50.0.2.dist-info/licenses/LICENSE.APACHE",
+      "bytes": 11360,
+      "sha256": "aac73b3148f6d1d7111dbca32099f68d26c644c6813ae1e4f05f6579aa2663fe"
+    },
+    {
+      "path": "updater/lib/cryptography-50.0.2.dist-info/licenses/LICENSE.BSD",
+      "bytes": 1532,
+      "sha256": "602c4c7482de6479dd2e9793cda275e5e63d773dacd1eca689232ab7008fb4fb"
+    },
+    {
+      "path": "updater/lib/cryptography-50.0.2.dist-info/METADATA",
+      "bytes": 4394,
+      "sha256": "047cfc71226409de4318b360aef15c63a2adf609731e3dcf7fe932f14ea042ee"
+    },
+    {
+      "path": "updater/lib/cryptography-50.0.2.dist-info/RECORD",
+      "bytes": 12086,
+      "sha256": "35afe7212fcb3b3897f38f15eef25fe134f7cde09bc4caf86002854db1240aa9"
+    },
+    {
+      "path": "updater/lib/cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json",
+      "bytes": 45629,
+      "sha256": "5f9e54eef8bd1298c32726b1756c7d4af0f18e679f8ec54ca92808c3205957cd"
+    },
+    {
+      "path": "updater/lib/cryptography-50.0.2.dist-info/sboms/sbom.json",
+      "bytes": 1223,
+      "sha256": "5b5eea08dd952a16eef188f7a85ad439a4409efa0e2bce9ca339a4de9c8db3f0"
+    },
+    {
+      "path": "updater/lib/cryptography-50.0.2.dist-info/WHEEL",
+      "bytes": 95,
+      "sha256": "feb81975073db0b144aadd887a65fbab2c6c1ade5f1519c10c04f11b37ab7668"
+    },
+    {
+      "path": "updater/lib/github_transport.py",
+      "bytes": 4378,
+      "sha256": "93c0e136239b111948c169224d101045a2d22c80324b52d59838c70381b73c0d"
+    },
+    {
+      "path": "updater/lib/install_ops.py",
+      "bytes": 7374,
+      "sha256": "f1d4ddd4f1bc7033ff8653e34851243e93c6df92c7ba69e70137f627ca46c17e"
+    },
+    {
+      "path": "updater/lib/owned_files.py",
+      "bytes": 4902,
+      "sha256": "d67f7ce0ffefa2dc6d2f1413f224383666800cc0892ae9e7a9dfe282d352a452"
+    },
+    {
+      "path": "updater/lib/pycparser/__init__.py",
+      "bytes": 2816,
+      "sha256": "a78bf364bc0be541872ee109193d3e852d569cc82bd6715c8716d99808b190ff"
+    },
+    {
+      "path": "updater/lib/pycparser/_ast_gen.py",
+      "bytes": 11521,
+      "sha256": "f3ee67c4806e366f89c8a081fb6a96b25e7daf5eb789e6719dd09878ecc1307a"
+    },
+    {
+      "path": "updater/lib/pycparser/_c_ast.cfg",
+      "bytes": 5078,
+      "sha256": "9b0d422a7a039ea02d37bb411f1b8a4188303bbc1a7a16e8aa203e452c1c76e8"
+    },
+    {
+      "path": "updater/lib/pycparser/ast_transforms.py",
+      "bytes": 6512,
+      "sha256": "be8a97e579b7864abc9bb62b78fed044fdeb9d1ad542d2e3ad7c86b3e295c071"
+    },
+    {
+      "path": "updater/lib/pycparser/c_ast.py",
+      "bytes": 34029,
+      "sha256": "ea7da69073a22bf4f97a4ac8ba0651a2ebe63d50debc4da67d051402cd8c3be4"
+    },
+    {
+      "path": "updater/lib/pycparser/c_generator.py",
+      "bytes": 22157,
+      "sha256": "68211cc34c0a18462061e5c21ab14f8e9005c1662ce886e5a2e393538f7bb1b6"
+    },
+    {
+      "path": "updater/lib/pycparser/c_lexer.py",
+      "bytes": 25842,
+      "sha256": "f390447cdc32939eb727cd5ae4e87e276acf7454a414b06a8507d2657b2e6e75"
+    },
+    {
+      "path": "updater/lib/pycparser/c_parser.py",
+      "bytes": 95003,
+      "sha256": "ceb19bdbc09e5ebc8fc8bd1050d7103adf57ce7fc3bfce17815ea67b723b2579"
+    },
+    {
+      "path": "updater/lib/pycparser-3.11.dist-info/licenses/LICENSE",
+      "bytes": 1543,
+      "sha256": "0a9e78156ae8b96caf1b4f11ac2df424b83de29736f9e757630548a6272fdf90"
+    },
+    {
+      "path": "updater/lib/pycparser-3.11.dist-info/METADATA",
+      "bytes": 8238,
+      "sha256": "e3a74c846648bb55f4f907284b745e2003b87b96d9c9d17a8a50cf37804541c9"
+    },
+    {
+      "path": "updater/lib/pycparser-3.11.dist-info/RECORD",
+      "bytes": 1033,
+      "sha256": "45073e4baabce80228b1bf043515f6868f964a702b1c0163bc7114f7dabe0cc7"
+    },
+    {
+      "path": "updater/lib/pycparser-3.11.dist-info/top_level.txt",
+      "bytes": 10,
+      "sha256": "73e94f712ef82fff0aa07ec813a3d0179a1fca2ad140d57856191b48520f7963"
+    },
+    {
+      "path": "updater/lib/pycparser-3.11.dist-info/WHEEL",
+      "bytes": 91,
+      "sha256": "61532836a2b3111b7ec23519c09df7c41180c27165fb872a6d8913b566b88ad1"
+    },
+    {
+      "path": "updater/lib/residue_cleanup.py",
+      "bytes": 21561,
+      "sha256": "e8e12e94beeb52c5bd5134c91e21f4e11341b33ff44359e196621748d1babeeb"
+    },
+    {
+      "path": "updater/lib/securesystemslib/__init__.py",
+      "bytes": 611,
+      "sha256": "9648903fb3c234f71b42e1a442a7308a9032947e34b4f89798247acbcbd158ff"
+    },
+    {
+      "path": "updater/lib/securesystemslib/_gpg/__init__.py",
+      "bytes": 754,
+      "sha256": "10e1b0e9f6627db01b72200fe19cc80d275111ebd3d3296b6063421309a8463c"
+    },
+    {
+      "path": "updater/lib/securesystemslib/_gpg/common.py",
+      "bytes": 33737,
+      "sha256": "8706cb6f1130aa62740075d7ba535202a247b5078aee8d8f0798b3963b55d760"
+    },
+    {
+      "path": "updater/lib/securesystemslib/_gpg/constants.py",
+      "bytes": 3754,
+      "sha256": "4fa85f155329bef827b8ee771b2626606f6123074a9ddf5395f5954e8566e185"
+    },
+    {
+      "path": "updater/lib/securesystemslib/_gpg/dsa.py",
+      "bytes": 6700,
+      "sha256": "56ca59fd90d1cf679f7b2d78b6ce5aa99612939bb15d378279c5842e3aaddb6f"
+    },
+    {
+      "path": "updater/lib/securesystemslib/_gpg/eddsa.py",
+      "bytes": 6526,
+      "sha256": "1033befa665796c724e2c749ccc47ea94f890631f6a3eb2393931daa8ee35bb9"
+    },
+    {
+      "path": "updater/lib/securesystemslib/_gpg/exceptions.py",
+      "bytes": 1413,
+      "sha256": "985caaf83f0670214851d13a73066f6fec243d750368a582b76aff1679b86815"
+    },
+    {
+      "path": "updater/lib/securesystemslib/_gpg/functions.py",
+      "bytes": 10984,
+      "sha256": "0ec4201d43765619f96075e911e55d3c72fab09fb2b9c555967609f94c641497"
+    },
+    {
+      "path": "updater/lib/securesystemslib/_gpg/handlers.py",
+      "bytes": 734,
+      "sha256": "96c96c91ccc087094c3e2b85c9fdabd278f715256986c4a376afd6fa96246d20"
+    },
+    {
+      "path": "updater/lib/securesystemslib/_gpg/rsa.py",
+      "bytes": 5904,
+      "sha256": "db1c3a66804f7966d1eb8edb26ffa92c777405662d564ee585d7264855c1e22c"
+    },
+    {
+      "path": "updater/lib/securesystemslib/_gpg/util.py",
+      "bytes": 10348,
+      "sha256": "7e5e5f86833475172cc9cc75530571c215461cb300891382586b20c0ddaf0bbf"
+    },
+    {
+      "path": "updater/lib/securesystemslib/_internal/utils.py",
+      "bytes": 1608,
+      "sha256": "f48b642f6a0f21aa86c10c59b877f419ab313a0122812eebc1b023d5165aa389"
+    },
+    {
+      "path": "updater/lib/securesystemslib/_vendor/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "updater/lib/securesystemslib/_vendor/ed25519/.gitignore",
+      "bytes": 22,
+      "sha256": "2fd00b8b5c2d591d74f069c888726fbe9b226b7b5e05b74c11d3b4a2bf8e6124"
+    },
+    {
+      "path": "updater/lib/securesystemslib/_vendor/ed25519/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "updater/lib/securesystemslib/_vendor/ed25519/ed25519.py",
+      "bytes": 7125,
+      "sha256": "8021f85b12579c88a677f8f379fd922805f55e55f4ef8493d0e79c9c7060ce93"
+    },
+    {
+      "path": "updater/lib/securesystemslib/_vendor/ed25519/LICENSE",
+      "bytes": 7048,
+      "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+    },
+    {
+      "path": "updater/lib/securesystemslib/_vendor/ed25519/README.rst",
+      "bytes": 1491,
+      "sha256": "7c9478c683a7a771eeb9868c5bcd522c388534306cffc24056f1c63fc6e245a8"
+    },
+    {
+      "path": "updater/lib/securesystemslib/_vendor/ed25519/science.py",
+      "bytes": 1153,
+      "sha256": "8f555ce77b1c6d288a10507d0d107e1b8b6f63e67c4a2d48061a58d4cdbbcad9"
+    },
+    {
+      "path": "updater/lib/securesystemslib/_vendor/ed25519/test_data/ed25519",
+      "bytes": 2427904,
+      "sha256": "8db1fea94f4e78958aac6e839b483cdd79096d1fe478285f15164f9e58361baf"
+    },
+    {
+      "path": "updater/lib/securesystemslib/_vendor/ed25519/test_ed25519.py",
+      "bytes": 3795,
+      "sha256": "93607fe69e1fec24b0ec550c01d8fb8387e188839252c7c26e3c4b885759ab44"
+    },
+    {
+      "path": "updater/lib/securesystemslib/_vendor/README.md",
+      "bytes": 561,
+      "sha256": "6bb1c96d0d2a741d0aea054cf1cfe26d3bab4f347dd966f003496c8e10dc267c"
+    },
+    {
+      "path": "updater/lib/securesystemslib/_vendor/test-ed25519-upstream.sh",
+      "bytes": 1026,
+      "sha256": "0c3db130fc20398ce717d3773f4d2b5d3919ef69332f69f58e0cad55d45eda11"
+    },
+    {
+      "path": "updater/lib/securesystemslib/dsse.py",
+      "bytes": 5588,
+      "sha256": "71f7677e1eda67901c07223785f8fdf7fd01f18ff138945e818a774533945dc4"
+    },
+    {
+      "path": "updater/lib/securesystemslib/exceptions.py",
+      "bytes": 1295,
+      "sha256": "5ca5814d5c88aa3f997935e3ad7e6c9d04f57c696ebc53693f5598b44eb1fac6"
+    },
+    {
+      "path": "updater/lib/securesystemslib/formats.py",
+      "bytes": 5502,
+      "sha256": "b80f2cf7a48f8e670efe930f2f0607aca9bf5528cdd83fbe6fe43eaf8a58ffdb"
+    },
+    {
+      "path": "updater/lib/securesystemslib/hash.py",
+      "bytes": 11302,
+      "sha256": "b28771967a48099582313959115972e617ab20d0816bb96a45b5e8e1c4ef78a8"
+    },
+    {
+      "path": "updater/lib/securesystemslib/py.typed",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "updater/lib/securesystemslib/signer/__init__.py",
+      "bytes": 3451,
+      "sha256": "7026f858c3a4be8fd482c4ae8fe5bb68904dffe18a668285d55643070accc56f"
+    },
+    {
+      "path": "updater/lib/securesystemslib/signer/_aws_signer.py",
+      "bytes": 8002,
+      "sha256": "9b38709462df8e835f7f32c5a3ecc2e704b3363ebfdede679002daae9f4b4ef2"
+    },
+    {
+      "path": "updater/lib/securesystemslib/signer/_azure_signer.py",
+      "bytes": 9211,
+      "sha256": "5a97e27bc1765967bb9660a9d400f62b13bf86e9f4766d3bbf20623ee0043b73"
+    },
+    {
+      "path": "updater/lib/securesystemslib/signer/_constants.py",
+      "bytes": 2785,
+      "sha256": "8e9ec26ba1af9eeebea3ec8b36f21b137fdb46d7638ed3b5a40270f68883d227"
+    },
+    {
+      "path": "updater/lib/securesystemslib/signer/_crypto_signer.py",
+      "bytes": 15772,
+      "sha256": "7300238b50f2922d898a5e8e2a36b987ad305dd176661a2fd5649feefd478d35"
+    },
+    {
+      "path": "updater/lib/securesystemslib/signer/_crypto_utils.py",
+      "bytes": 566,
+      "sha256": "34df9106ec0d05b8127f9f99e2ea4b8c304dd504016c84eb09097b09c18afca7"
+    },
+    {
+      "path": "updater/lib/securesystemslib/signer/_gcp_signer.py",
+      "bytes": 7303,
+      "sha256": "1c5bc6170495e7a93aaa675c3ea553fffb16ccadada2bb686c64ae95a721b023"
+    },
+    {
+      "path": "updater/lib/securesystemslib/signer/_gpg_signer.py",
+      "bytes": 7619,
+      "sha256": "353cedf2fe3260c77b3d7a8893767fbb975655fe9c5c3016a2b6e7df5798e5c8"
+    },
+    {
+      "path": "updater/lib/securesystemslib/signer/_hsm_signer.py",
+      "bytes": 10326,
+      "sha256": "0270732cdc3a65f714b99ea268e7ea7677556e338c2afec0e496ab18e65fae1e"
+    },
+    {
+      "path": "updater/lib/securesystemslib/signer/_key.py",
+      "bytes": 20655,
+      "sha256": "dedeca5e78f369bf91f3ec9a115501003407aa5efa842e6dd48fb799030a6c59"
+    },
+    {
+      "path": "updater/lib/securesystemslib/signer/_signature.py",
+      "bytes": 2962,
+      "sha256": "c13886ed2d91b162071bcc1230d65e3ff20f94dc5d593c74d6eae06c77e1f0aa"
+    },
+    {
+      "path": "updater/lib/securesystemslib/signer/_signer.py",
+      "bytes": 4167,
+      "sha256": "dbdf943134a731b07653c7d0f6c92a3d4178442a34678b6041b8fa8ad6b2dbe4"
+    },
+    {
+      "path": "updater/lib/securesystemslib/signer/_sigstore_signer.py",
+      "bytes": 10860,
+      "sha256": "7d86138ae89f3bd9d399c5e5301ccdbbf247125b7e57416b61458ee277ecdd8a"
+    },
+    {
+      "path": "updater/lib/securesystemslib/signer/_tkey_signer.py",
+      "bytes": 6281,
+      "sha256": "80c1e8b71cba25f92a5f9e30caea771eae4bde5f67d31ceb2bcc026e8e7f90e0"
+    },
+    {
+      "path": "updater/lib/securesystemslib/signer/_utils.py",
+      "bytes": 1054,
+      "sha256": "0320cc7b5058f51434aeee98532b891c440ea1adf05060487479c48740e8ec5b"
+    },
+    {
+      "path": "updater/lib/securesystemslib/signer/_vault_signer.py",
+      "bytes": 4253,
+      "sha256": "3454159440da2d7beddb87efe7d04988ebf5e3228694ffe50003cfa61f86b4f9"
+    },
+    {
+      "path": "updater/lib/securesystemslib/storage.py",
+      "bytes": 9229,
+      "sha256": "8c35f334a1cc8027c38f2efd3367bef30f0c056392077fa7c5550ae19e02af57"
+    },
+    {
+      "path": "updater/lib/securesystemslib-1.6.0.dist-info/licenses/LICENSE",
+      "bytes": 1082,
+      "sha256": "6357addf59ba70a824bc678c35e0936916e1cc38182f503372147191ed227bd3"
+    },
+    {
+      "path": "updater/lib/securesystemslib-1.6.0.dist-info/METADATA",
+      "bytes": 4792,
+      "sha256": "01f1ade44083135d777e3aed7f906e002573ed462eb8b84cc59b667695964de9"
+    },
+    {
+      "path": "updater/lib/securesystemslib-1.6.0.dist-info/RECORD",
+      "bytes": 4509,
+      "sha256": "87728fa429881cd3e8dfc84ff4eae668453da0d6ed47a43a7b4b1df24f7e1dcd"
+    },
+    {
+      "path": "updater/lib/securesystemslib-1.6.0.dist-info/WHEEL",
+      "bytes": 87,
+      "sha256": "5b77e4a649bbfb07fdbc123967eeecd1e5a478cfaca6eefc23c35e6fdf037848"
+    },
+    {
+      "path": "updater/lib/studio_update.py",
+      "bytes": 12450,
+      "sha256": "6cd4e3ad33adfc0d820ee6dcec1ea7cd8e26555ed359c03b1b9488e4da67885f"
+    },
+    {
+      "path": "updater/lib/tuf/__init__.py",
+      "bytes": 197,
+      "sha256": "8475167bf3cc4359424022733a24ae6b7799cc07edaa1c5250e976793c500cd7"
+    },
+    {
+      "path": "updater/lib/tuf/api/__init__.py",
+      "bytes": 113,
+      "sha256": "a1ba485d5a794697d469cda6d06a260a7c638461b23d8b030486fd122a3695d0"
+    },
+    {
+      "path": "updater/lib/tuf/api/_payload.py",
+      "bytes": 66522,
+      "sha256": "21cb1a5022ce9b4f6739565507f220722fde3832d16b9cbe95c55984eb550e87"
+    },
+    {
+      "path": "updater/lib/tuf/api/dsse.py",
+      "bytes": 4542,
+      "sha256": "32cf807d2f2dcaac705fae9e37c12cc8b4ddc671802672df8e8d1694defedf40"
+    },
+    {
+      "path": "updater/lib/tuf/api/exceptions.py",
+      "bytes": 2041,
+      "sha256": "e12c7db70e01843dcc7a7cf8e25a30547ea0174805ccbe32c50f2a60863e6a38"
+    },
+    {
+      "path": "updater/lib/tuf/api/metadata.py",
+      "bytes": 14885,
+      "sha256": "fbc1511c7c3485343209857b445c10277622516000ea7fd0071ca8a18b3ab175"
+    },
+    {
+      "path": "updater/lib/tuf/api/serialization/__init__.py",
+      "bytes": 1870,
+      "sha256": "f296ad3b37d0a4e38c4d7d52694e2068bc51640613b8beb3126f1f4478b081a6"
+    },
+    {
+      "path": "updater/lib/tuf/api/serialization/json.py",
+      "bytes": 3817,
+      "sha256": "e52baddc411af6b23cfe8f32181dfa9e77253d5af9d7f2358740b9fc47a0b0d2"
+    },
+    {
+      "path": "updater/lib/tuf/ngclient/__init__.py",
+      "bytes": 544,
+      "sha256": "1c7dab0a984309f49c58a25533cf382716d344a23b917f9498e0767f483a18b7"
+    },
+    {
+      "path": "updater/lib/tuf/ngclient/_internal/__init__.py",
+      "bytes": 113,
+      "sha256": "6c333ead72997a14f6de868f3f3828bdb1c048ddcb9b0d0f505792713e86af2c"
+    },
+    {
+      "path": "updater/lib/tuf/ngclient/_internal/proxy.py",
+      "bytes": 3455,
+      "sha256": "8637a9e60bca87ef58073f560b69b55e7efc852f03aab381555ad7bf85f67bc8"
+    },
+    {
+      "path": "updater/lib/tuf/ngclient/_internal/trusted_metadata_set.py",
+      "bytes": 20692,
+      "sha256": "97ecbb5d42bf7228b56d1a65ebdebe26569470dc165e7a4386db689afbe44417"
+    },
+    {
+      "path": "updater/lib/tuf/ngclient/config.py",
+      "bytes": 2173,
+      "sha256": "f6f8dbf7c18cdb08b9dbbd4cd03e19a9b14873ab757cbe2579cb28769ef0df37"
+    },
+    {
+      "path": "updater/lib/tuf/ngclient/fetcher.py",
+      "bytes": 4684,
+      "sha256": "f4dadf82bad133c6f57b390976fceb38ee05edffa596deb777818d33c765b286"
+    },
+    {
+      "path": "updater/lib/tuf/ngclient/README.md",
+      "bytes": 972,
+      "sha256": "3d4e6d9852b3e7e4c4885fcb16fe244ce80d24b3e42cc02ead09d9b77d6f6a53"
+    },
+    {
+      "path": "updater/lib/tuf/ngclient/requests_fetcher.py",
+      "bytes": 5747,
+      "sha256": "fc5ed3da6a673077f348205d194ce31344f5a66694f55d0081214951440c1197"
+    },
+    {
+      "path": "updater/lib/tuf/ngclient/updater.py",
+      "bytes": 24311,
+      "sha256": "fa32bc4a416cf54b996b0b431df5081b68cb00f8b7c5e3e0b196f39dbe40d9f3"
+    },
+    {
+      "path": "updater/lib/tuf/ngclient/urllib3_fetcher.py",
+      "bytes": 4048,
+      "sha256": "8413a6f692f5133c6219083335f0692c666c9ed409217d5da9cd4e1a98053445"
+    },
+    {
+      "path": "updater/lib/tuf/py.typed",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "updater/lib/tuf/repository/__init__.py",
+      "bytes": 514,
+      "sha256": "dd4a07d1d52db797c441c1fd650747bf5ae6389101b366c314e427f6a94e5190"
+    },
+    {
+      "path": "updater/lib/tuf/repository/_repository.py",
+      "bytes": 10070,
+      "sha256": "1fefc4a8b2338f2c091fe7690989b8e944298c0d511bd852c00be21112689a18"
+    },
+    {
+      "path": "updater/lib/tuf-7.0.1.dist-info/licenses/LICENSE",
+      "bytes": 9694,
+      "sha256": "d3174ad63e721d4c9dccb8ad4320848992d314369bc46319720b5802c9153fe9"
+    },
+    {
+      "path": "updater/lib/tuf-7.0.1.dist-info/licenses/LICENSE-MIT",
+      "bytes": 1086,
+      "sha256": "ad52fe92b0d21a9b3733b484eb6f865e83855f4a6f9b9b8812b9012dc4587d27"
+    },
+    {
+      "path": "updater/lib/tuf-7.0.1.dist-info/METADATA",
+      "bytes": 8128,
+      "sha256": "528e5e373529ce419a34dc3fdf988442b1a7aa2c65706ba2dbadd7a017a5b6d3"
+    },
+    {
+      "path": "updater/lib/tuf-7.0.1.dist-info/RECORD",
+      "bytes": 2102,
+      "sha256": "7c5e518d5691b5d47ca0d349ea72526441e04b0b9976cb16bb3db64a49cc8a24"
+    },
+    {
+      "path": "updater/lib/tuf-7.0.1.dist-info/WHEEL",
+      "bytes": 87,
+      "sha256": "ccec20e2307acd7da453dd7437e70c6b08e2bc3ead3bc3445af135da37b56d59"
+    },
+    {
+      "path": "updater/lib/typing_extensions-4.16.0.dist-info/licenses/LICENSE",
+      "bytes": 13936,
+      "sha256": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf"
+    },
+    {
+      "path": "updater/lib/typing_extensions-4.16.0.dist-info/METADATA",
+      "bytes": 3310,
+      "sha256": "b05084ca1d50879865178d9fff9fabeab61bdfb1f361bfbde95421ffc8f9be46"
+    },
+    {
+      "path": "updater/lib/typing_extensions-4.16.0.dist-info/RECORD",
+      "bytes": 427,
+      "sha256": "44dcf97810bea7b84bcd83890b6674bbcc2f4c5ef899a4887f15d524bdf6bb97"
+    },
+    {
+      "path": "updater/lib/typing_extensions-4.16.0.dist-info/WHEEL",
+      "bytes": 82,
+      "sha256": "1b68144734c4b66791f27add5d425f3620775585718a03d0f9b110ba3a4d88db"
+    },
+    {
+      "path": "updater/lib/typing_extensions.py",
+      "bytes": 165012,
+      "sha256": "4040ca1a1ecbee00d1385c12a93084d1c5bd46f0b774f07e5ae7e91c4f55e696"
+    },
+    {
+      "path": "updater/lib/urllib3/__init__.py",
+      "bytes": 6979,
+      "sha256": "24ca35b60d67215d40789daf10d0bf4f17e5d1ee61e86ce5f43195935ad645ba"
+    },
+    {
+      "path": "updater/lib/urllib3/_base_connection.py",
+      "bytes": 5580,
+      "sha256": "1f37121077b1803ad152beb48cd9e20762908ddc3ded279d0f996e45f1ed0978"
+    },
+    {
+      "path": "updater/lib/urllib3/_collections.py",
+      "bytes": 17669,
+      "sha256": "1fac8ba8659d64d919d0b9bf7e72c4caaba59ce716eaab570a1daacf183bdf15"
+    },
+    {
+      "path": "updater/lib/urllib3/_request_methods.py",
+      "bytes": 9931,
+      "sha256": "802785f3948efd45385a83f0607228cffb70f9e33f1153a42c5a7c385b02ec30"
+    },
+    {
+      "path": "updater/lib/urllib3/_version.py",
+      "bytes": 520,
+      "sha256": "7b84320186a7a1805134fd8aeaa0d508e80116851aecbd23f7561042c5073bd4"
+    },
+    {
+      "path": "updater/lib/urllib3/connection.py",
+      "bytes": 47903,
+      "sha256": "8a59dab3d7b6a0e1b38a5fd6e565ef6a49381bb995729d015e4f6440ab8523e0"
+    },
+    {
+      "path": "updater/lib/urllib3/connectionpool.py",
+      "bytes": 45250,
+      "sha256": "6a147869216b94449a053e869d4311cba23294551c83ee20fe5d2f1eaff50a3e"
+    },
+    {
+      "path": "updater/lib/urllib3/contrib/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "updater/lib/urllib3/contrib/emscripten/__init__.py",
+      "bytes": 836,
+      "sha256": "c325ef7bcae6a97eecd8aa91401c43e56978f23cd63e7e7ed6efd7a100442d57"
+    },
+    {
+      "path": "updater/lib/urllib3/contrib/emscripten/connection.py",
+      "bytes": 8960,
+      "sha256": "822125b01a14b0a55445b6736fc182ac99aa5b6dd79ef8f668dc90545e36b258"
+    },
+    {
+      "path": "updater/lib/urllib3/contrib/emscripten/emscripten_fetch_worker.js",
+      "bytes": 3677,
+      "sha256": "cf5937cd9e3f84329ddfeb4def0cf3f0b1e31c2da9c4dfeebbc07793d0fd0377"
+    },
+    {
+      "path": "updater/lib/urllib3/contrib/emscripten/fetch.py",
+      "bytes": 23520,
+      "sha256": "e7171dfbebe217165dda7072d1a2bbdddb49f53b21d7261953f4945f09f089b9"
+    },
+    {
+      "path": "updater/lib/urllib3/contrib/emscripten/request.py",
+      "bytes": 566,
+      "sha256": "98bdbcb33cb52af137349856a2be633666aba7c830a650d4fbb8301996398344"
+    },
+    {
+      "path": "updater/lib/urllib3/contrib/emscripten/response.py",
+      "bytes": 9719,
+      "sha256": "083a58d0616896e47723110290cda01f9b837d80ccd042f5156afb07beb0b603"
+    },
+    {
+      "path": "updater/lib/urllib3/contrib/pyopenssl.py",
+      "bytes": 21494,
+      "sha256": "5acf2f0ae6527e023a4031da552246600f6e753581f4a2f4c19ff4d7c88a8230"
+    },
+    {
+      "path": "updater/lib/urllib3/contrib/socks.py",
+      "bytes": 7566,
+      "sha256": "81141f708d6928e021e62238fd30c090a6803f737f1f620de49e660652990691"
+    },
+    {
+      "path": "updater/lib/urllib3/exceptions.py",
+      "bytes": 9945,
+      "sha256": "8503c7a2aa38cb0e3a7ac3525647225505d5520031580825b21e8c6f242d6be4"
+    },
+    {
+      "path": "updater/lib/urllib3/fields.py",
+      "bytes": 10801,
+      "sha256": "6862c5015669554f856c996596f7b8021834fa91fd659050d88cfb95fa648e43"
+    },
+    {
+      "path": "updater/lib/urllib3/filepost.py",
+      "bytes": 2388,
+      "sha256": "53c78d67e9a928a1e1ae56c7104893c7180ad7a21e8e111aeeecf8db2a80fdd2"
+    },
+    {
+      "path": "updater/lib/urllib3/http2/__init__.py",
+      "bytes": 1741,
+      "sha256": "c73ac0487ed1e4035190f24ea2de651a70133aadca2aec97cc8e36adc9f09aab"
+    },
+    {
+      "path": "updater/lib/urllib3/http2/connection.py",
+      "bytes": 12613,
+      "sha256": "9e3960af8c0b862009bed52ac44127e12f79be27db95346b9ab6911e809cbfad"
+    },
+    {
+      "path": "updater/lib/urllib3/http2/probe.py",
+      "bytes": 3014,
+      "sha256": "9e7024a9b8406a43a217be6bcfb5b4b9d677f047a1fee0fc7e357be0def71442"
+    },
+    {
+      "path": "updater/lib/urllib3/poolmanager.py",
+      "bytes": 25026,
+      "sha256": "46654506338ff9a0e79baeef8a409af7d37aad001633150384a1eb4a5d1ff4cb"
+    },
+    {
+      "path": "updater/lib/urllib3/py.typed",
+      "bytes": 93,
+      "sha256": "51a0ae3c56b71fc5006a46edfb91bc48f69c95d4ce1af26fd7ca4f8d42798036"
+    },
+    {
+      "path": "updater/lib/urllib3/response.py",
+      "bytes": 54628,
+      "sha256": "0e4559c737914d4f8f941dca9ecfaf6caec6792258302bffec7b8b41dae3c71a"
+    },
+    {
+      "path": "updater/lib/urllib3/util/__init__.py",
+      "bytes": 1001,
+      "sha256": "faa792d1071e8af6b3bc110a0cd142008fba00271d0ce1384ccbe8ed22cd9404"
+    },
+    {
+      "path": "updater/lib/urllib3/util/connection.py",
+      "bytes": 4444,
+      "sha256": "2633bbdb69731e5ccb5cf4e4afd65605d86c7979cc5633126f50c92d5ad74a74"
+    },
+    {
+      "path": "updater/lib/urllib3/util/proxy.py",
+      "bytes": 1148,
+      "sha256": "b1e3fcf90e41e9b07474cb703e3f98719650df4bc7b8ba91bbeb48d096767f3b"
+    },
+    {
+      "path": "updater/lib/urllib3/util/request.py",
+      "bytes": 10228,
+      "sha256": "d9af3b7ae5309e3ca50777f27994b3fd5b3aeb32c6aaa44a252ddba5366c89b0"
+    },
+    {
+      "path": "updater/lib/urllib3/util/response.py",
+      "bytes": 3374,
+      "sha256": "bd013adfdba81218f5be98c4771bb994d22124249466477ba6a965508d0164e0"
+    },
+    {
+      "path": "updater/lib/urllib3/util/retry.py",
+      "bytes": 20151,
+      "sha256": "0fdc26b67d1ecc42b0cab3972f20bb07284d783f4dc318394fe8b99098c42925"
+    },
+    {
+      "path": "updater/lib/urllib3/util/ssl_.py",
+      "bytes": 17856,
+      "sha256": "72c779c13f6e2afa22149d75f98a5fab0cdc886193515d9dae62e12354fd61c4"
+    },
+    {
+      "path": "updater/lib/urllib3/util/ssl_match_hostname.py",
+      "bytes": 5479,
+      "sha256": "16de38289cd3cc632629f7ff6573fdd658b65785a19af132d7a3ca05cbf8bd99"
+    },
+    {
+      "path": "updater/lib/urllib3/util/ssltransport.py",
+      "bytes": 8847,
+      "sha256": "133e0ef2947fbd3f1d6a7fc5bea0584ba7600df05710c7d57ebcdc754a167e2e"
+    },
+    {
+      "path": "updater/lib/urllib3/util/timeout.py",
+      "bytes": 10346,
+      "sha256": "e1e4f5155799654ee1ee6603d49ab639735ee1fc5e91d36f868594919bac4690"
+    },
+    {
+      "path": "updater/lib/urllib3/util/url.py",
+      "bytes": 19579,
+      "sha256": "6a2814d91987dd9728278d413a154ee5277b15cb262d9945425377f2a693311f"
+    },
+    {
+      "path": "updater/lib/urllib3/util/util.py",
+      "bytes": 1146,
+      "sha256": "8f795b64ad633f28b00f7e13f08809cdd5846554fee04fb4bd82098bd52378d0"
+    },
+    {
+      "path": "updater/lib/urllib3/util/wait.py",
+      "bytes": 4423,
+      "sha256": "fe987c22b511deca8faa2d0ea29420254947e30ce419e3390a2c80ed7186b662"
+    },
+    {
+      "path": "updater/lib/urllib3-2.8.0.dist-info/licenses/LICENSE.txt",
+      "bytes": 1093,
+      "sha256": "130e3a64d5fdd5d096a752694634a7d9df284469de86e5732100268041e3d686"
+    },
+    {
+      "path": "updater/lib/urllib3-2.8.0.dist-info/METADATA",
+      "bytes": 7389,
+      "sha256": "10898c620e8007c030e07fa5622b68358a43010025dfbd78a1cb797699de2bb4"
+    },
+    {
+      "path": "updater/lib/urllib3-2.8.0.dist-info/RECORD",
+      "bytes": 3451,
+      "sha256": "04e66961a9e3616bd8d221103dc1c9cdca4a23dc86c71bbfa9e8dc4022b3009e"
+    },
+    {
+      "path": "updater/lib/urllib3-2.8.0.dist-info/WHEEL",
+      "bytes": 87,
+      "sha256": "ccec20e2307acd7da453dd7437e70c6b08e2bc3ead3bc3445af135da37b56d59"
+    },
+    {
+      "path": "updater/libcrypto-3.dll",
+      "bytes": 6021880,
+      "sha256": "75495fe0e079ab00d49be740d3c710a0b94e3f74f9648cb7cc9f768fc7f52319"
+    },
+    {
+      "path": "updater/libffi-8.dll",
+      "bytes": 39696,
+      "sha256": "eff52743773eb550fcc6ce3efc37c85724502233b6b002a35496d828bd7b280a"
+    },
+    {
+      "path": "updater/libssl-3.dll",
+      "bytes": 1308920,
+      "sha256": "8957182a9c385bfd9f3f790921de2ddc614cf91f99edbed4e9e5446a46504e32"
+    },
+    {
+      "path": "updater/LICENSE.txt",
+      "bytes": 33861,
+      "sha256": "62bec384df47b0328307db41455ff6ea2559e5546b394ac69148561b21703120"
+    },
+    {
+      "path": "updater/pyexpat.pyd",
+      "bytes": 200416,
+      "sha256": "3865fae84ff0f274c049e737731cd8aa184fae208af5b4c0d0cfc42a38f79cea"
+    },
+    {
+      "path": "updater/python.cat",
+      "bytes": 578227,
+      "sha256": "297a28dea041bad442aca6d7cb92957627501870e3c5cb7c642afb83563ee9c1"
+    },
+    {
+      "path": "updater/python.exe",
+      "bytes": 105696,
+      "sha256": "31fe10b4ed82a2f960af0ef9931f46a4b84ff286f8b6ffd9dee098cf4f10f17f"
+    },
+    {
+      "path": "updater/python3.dll",
+      "bytes": 72416,
+      "sha256": "a1a32b2475675e784d9b34d33d3a8f3e4afaa563da1feb784b0dd69fc4d8f9dc"
+    },
+    {
+      "path": "updater/python313._pth",
+      "bytes": 23,
+      "sha256": "18d2aa1b0b145266ab6711e1f4f00d433b0de23e393b9006e5072697fba0ca99"
+    },
+    {
+      "path": "updater/python313.dll",
+      "bytes": 6142176,
+      "sha256": "3b29bf9ff39bed8f660f5b935f19657f7ce7f145009851741b11364f6ebcb862"
+    },
+    {
+      "path": "updater/python313.zip",
+      "bytes": 3837053,
+      "sha256": "33c48dd2c3031d27784950aaee96d3d65f916e3c43dd3637ace333a7b9e8021a"
+    },
+    {
+      "path": "updater/pythonw.exe",
+      "bytes": 104160,
+      "sha256": "435e222945e1a110559fb71b5ebff8c3d698689b5e5eee0371815c1141d72738"
+    },
+    {
+      "path": "updater/RUNTIME_MANIFEST.json",
+      "bytes": 62256,
+      "sha256": "090d0324310d1dcd1ff59913220e5876210b98e1a7a351caaa23bd17d82b4c14"
+    },
+    {
+      "path": "updater/select.pyd",
+      "bytes": 32992,
+      "sha256": "17df388a7aa42e7f066b80aa4f77cbbba9286495e6f3508425806be6766d122b"
+    },
+    {
+      "path": "updater/sqlite3.dll",
+      "bytes": 1584864,
+      "sha256": "2e3cf1b96e8afc679ee8bd69d6bde3aeb797b48b297b9cafd0eb9fd578eaafb5"
+    },
+    {
+      "path": "updater/unicodedata.pyd",
+      "bytes": 712416,
+      "sha256": "d113047658f92d893bf4ee2da81ffbd624ec5c485733c02e116fac1b9a1b964c"
+    },
+    {
+      "path": "updater/vcruntime140.dll",
+      "bytes": 178616,
+      "sha256": "d1f4225df2cd877dbf130d5668a021dce3f94118455ff5ec952061c30afc9ce7"
+    },
+    {
+      "path": "updater/vcruntime140_1.dll",
+      "bytes": 50112,
+      "sha256": "a7146c08f89fe5b04541ab507cdb59ff7b44534d4ba3c668a426c6450a03434e"
+    },
+    {
+      "path": "updater/winsound.pyd",
+      "bytes": 31968,
+      "sha256": "8450de54438b1698556b794400c3114b78ede8c10b13dcf263d646ef639ae7d1"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "observedUtc": "2026-10-25T22:13:52.8543558Z",
+  "ownProcesses": [
+    {
+      "ProcessId": 5916,
+      "ParentProcessId": 11988,
+      "CommandLine": "\"H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\isolated-install\\CCBStudioSuitePreview.exe\" --studio-root H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\entry-review\\workspace --runtime-root H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\entry-review\\runtime --secondary-workspace --pause-collections"
+    },
+    {
+      "ProcessId": 24940,
+      "ParentProcessId": 5916,
+      "CommandLine": "H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\isolated-install\\CCBStudioSuitePreview.exe --studio-root H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\entry-review\\workspace --runtime-root H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\entry-review\\runtime --secondary-workspace --pause-collections"
+    }
+  ],
+  "runtimeCreated": true,
+  "isolatedFallbackCreated": false,
+  "defaultPointerCreated": false,
+  "dailyPointerSha256": "783eb43528a486ff97a08a7581108fc2bd7add8cc2d1464f3e8effdcd84b5df2",
+  "privateWorkspaceRead": false,
+  "manualResidual": "NOT YET VERIFIED"
+}

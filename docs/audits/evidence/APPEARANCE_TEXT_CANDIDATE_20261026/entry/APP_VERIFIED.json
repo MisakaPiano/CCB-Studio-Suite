@@ -1,0 +1,13 @@
+{
+  "status": "APP_ENTRY_ISOLATION_PASS",
+  "recordedUtc": "2026-10-25T22:20:39.692651+00:00",
+  "meaning": "This gate validates the isolated app entry; it is not whole-product acceptance",
+  "appSource": "48eed2aa35d1b2bcaa86f140ac33aac9cdc286ac",
+  "packageSource": "b54a036fc65868836d901339f7d1e3dce24dff8a",
+  "probe": "PROBE_VERIFIED.json",
+  "identity": "APP_IDENTITY_OBSERVATION.json",
+  "manual": "../MANUAL_TEXT_ACTION_RESULT.json",
+  "nativeCapture": "FAILED: FrameArrived timed out; helper cause UNKNOWN; no tool button clicks delivered",
+  "manualResult": "USER_REPORTED_PASS_WITH_SCOPE",
+  "remaining": "Tokens screenshot finding OPEN; error-only Reload native branch NOT TESTED; other legacy pending unchanged"
+}

@@ -1,3 +1,7 @@
+## 2026-10-26 文字修正独立候选：三按钮人工通过，Tokens残余开放
+
+[固定包与限定回执](../docs/audits/APPEARANCE_TEXT_CANDIDATE_20261026.md)：22:06 UTC新授权后，应用48eed2a/打包b54a036，内部包168998452字节、SHA256 ca4cafd37285a2528090247ecc53326b5e78cafa87b569d040578639d8c10ee5；550安装项/2242类/6更新脚本及真实快捷方式隔离链核验。本打包阶段0新JUnit，旧单方法不重跑累加；首seed辅助编译失败及native截图超时保留。用户对两模式×黑白下应用颜色、关闭重开、恢复默认答‘都正常’，仅这三项USER_REPORTED_PASS_WITH_SCOPE；Reload仅自动、native错误分支未验。另从截图登记THEME-TOKENS-CONTRAST OPEN：深色黑强调色的Tokens文字过暗，沿用UX-DISPLAY-THEME-001，尚未改源/测试/新包。34份新证据独立保存，旧22aa/48eed证据和失败不改；Project新包NOT REQUESTED、q09/资产编辑功能未验/115与Prompt PENDING及PRODUCT_HOLD保持。不发版、更新日常、清理或启动后续开发。下方‘未打包/未人工’为较早阶段事实。
+
 ## 2026-10-26 显示主题四项人工通过；齿轮及文字残余分列收尾
 
 [本轮修复/固定来源/人工回执](../docs/audits/APPEARANCE_GEAR_AND_USER_ACCEPTANCE_20261026.md)：22aa8c5修复齿轮原生命中，2方法实际PASS；内部包168998350字节、SHA256 ee6f86a3ef347d88a38ea0a16eba1f8cfe75e448ed8960a5df41371404ebf06f，550项隔离安装/2242类/6更新脚本核验。新真实快捷方式链已验证参数与子进程环境隔离，用户更新页显示H任务工作区；旧80ea候选失败/默认C路径未知启动原因/自动截图超时均保留。用户按四项主题清单明确“全部通过了”，并确认齿轮打开、配色保存及重开；只验主题外观，不代签资产/编辑功能。另从FFFFFF截图发现弹窗文字白底白字，48eed2a只修4文字按钮，1新方法/应用映像实际PASS；该增量未新建NSIS/原生运行/人工或独立审查，不把22aa用户PASS配给48eed新包。原Project固定P2裁定、q09失败根因未知、115/Prompt各PENDING与PRODUCT_HOLD / NOT RC保持。沿用UX-DISPLAY-THEME-001，不启动后续性能/功能、发版、日常更新或清理。
