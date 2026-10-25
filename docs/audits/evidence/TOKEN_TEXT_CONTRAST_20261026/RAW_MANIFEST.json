@@ -1,0 +1,117 @@
+{
+  "source": "26ef38857be510636dffdb5fcbd59a8d70c85550",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19,
+      "sha256": "3e5e82fc72e044ea9af807a2030b73dbb94800d2cd1775302063b2eee761ba1e"
+    },
+    {
+      "path": "control/AUTHORIZATION.json",
+      "bytes": 707,
+      "sha256": "9ded3f1cda4247909ee5ec8bfad5e487110c32867c80e555da75f2dda6f18bf9"
+    },
+    {
+      "path": "control/COMMAND.json",
+      "bytes": 618,
+      "sha256": "d86ab3382017a3780334d51cd5987807f48e3b6b77114ae95a935f4075ad60b6"
+    },
+    {
+      "path": "control/freeze-token.failed-v1.py.txt",
+      "bytes": 4234,
+      "sha256": "fa158ae8e16c7ac59859d2d5680b02968d64b2c658e0a2143224e04225241742"
+    },
+    {
+      "path": "control/freeze-token.failed-v2.py.txt",
+      "bytes": 4380,
+      "sha256": "d8ae38719362d569956cc5d12612aa4f144b81b44c7c6c79c6c27526c2eb906b"
+    },
+    {
+      "path": "control/FREEZE_PREPARATION_FAILURE.json",
+      "bytes": 373,
+      "sha256": "e5d7631cfb118db1c581306212761cd374dbf484d79b93d3171563a36bb896af"
+    },
+    {
+      "path": "control/FREEZE_PREPARATION_FAILURE_V2.json",
+      "bytes": 426,
+      "sha256": "ec6e611a3abb2eecee48e64df64cf71b17eeea2053e394414e5f739942afc31b"
+    },
+    {
+      "path": "control/memory-samples.jsonl",
+      "bytes": 37670,
+      "sha256": "440d6b89240a9fb74beebde6216b584c8d6d3552cc85d531112efb27f2a2052a"
+    },
+    {
+      "path": "control/MONITOR_RESULT.json",
+      "bytes": 5054,
+      "sha256": "a0633f222ec6ac095c4cbaaf383c9617f3eeb907b6f713eff967a34eba6d0982"
+    },
+    {
+      "path": "control/PLAN.json",
+      "bytes": 2278,
+      "sha256": "c1cbb48d0182137610e857e43fb86feec9a979165f7034ba72984e2ad8d0eab6"
+    },
+    {
+      "path": "control/run-token.py",
+      "bytes": 9778,
+      "sha256": "898a6f609dcbeb8421e9f084ca0d6697488814b832d0f763126df3744d259adb"
+    },
+    {
+      "path": "control/runner.log",
+      "bytes": 3833,
+      "sha256": "66206b18d7c59eb4f5ddf49c51e4998bc1b92666aa98af5f5557b5af6f3817b3"
+    },
+    {
+      "path": "control/RUNNER_IDENTITY.json",
+      "bytes": 165,
+      "sha256": "fa4e580188de55cb6ead9f3d897d0f6b7e352a677c0a19b15acb5c779849ca8c"
+    },
+    {
+      "path": "MONITOR_OBSERVATION.json",
+      "bytes": 1110,
+      "sha256": "b5debebf9979a0f9030f6fb4cd38e0c8e48905804d25a5c02ac7ca8862ad209a"
+    },
+    {
+      "path": "reproduction/freeze-token.py",
+      "bytes": 4521,
+      "sha256": "09cd3df78362aae62a0fa0e1343a81346616dec6ecf0cb7920a90473bd843b60"
+    },
+    {
+      "path": "run/fixture-cleanup.json",
+      "bytes": 143,
+      "sha256": "491f22833dad0dfcb38a69d13c74e16e89ad8f71d1e906d407c3202e8448b67c"
+    },
+    {
+      "path": "run/gradle.log",
+      "bytes": 2661,
+      "sha256": "c905c5f9d7d2fdc09b6b8a28a1aa4a87fc727b47798f9c2d833b80fcbae719e0"
+    },
+    {
+      "path": "run/source-before.json",
+      "bytes": 81314,
+      "sha256": "4e3086ed2760e09cb289e0f05e3d37d73745c5fc0b429af26c37b8cdde281540"
+    },
+    {
+      "path": "run/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.StudioTokenContrastTest.xml",
+      "bytes": 3353,
+      "sha256": "830f136a792fb4033faa105561dd3e9962f17aa05668d9ed38cd1c7e832843b0"
+    },
+    {
+      "path": "run/summary.json",
+      "bytes": 1061,
+      "sha256": "eb78d7610d7c9d0745adccbe336f1668e9cde5d73f1e20dd0dc93d5f00f9bc8e"
+    },
+    {
+      "path": "run/test-cases.json",
+      "bytes": 234,
+      "sha256": "36589e093187c530a7415ff7705c99909e9bb2382d1f625e6b38941dd49fbc3c"
+    },
+    {
+      "path": "SOURCE_EXECUTION_MAP.json",
+      "bytes": 163657,
+      "sha256": "b33ae6275e08ef894559db5af53941bcb18eb786467915f15cc2851a5b99396e"
+    }
+  ],
+  "membersIncludingManifest": 23,
+  "excludes": "No binary, image pixels, workspace, user data, vault, credentials or installer; only new scoped synthetic regression and controls."
+}

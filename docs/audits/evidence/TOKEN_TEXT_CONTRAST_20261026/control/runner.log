@@ -1,0 +1,82 @@
+EVIDENCE=H:\CCB-Studio-Suite\.local\windows-preview\evidence\20261025T224626053760Z-token-contrast-20261026
+{
+  "phase": "token-contrast-20261026",
+  "startedUtc": "2026-10-25T22:46:29.906596+00:00",
+  "seconds": 77.149,
+  "exitCode": 0,
+  "tests": 1,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "PASS",
+  "testEvidence": "EXECUTED",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--priority",
+    "low",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    "-PpreviewTestRoot=H:\\CCB-Studio-Suite\\.local\\disposable\\gradle-tests-3fcb76bd7a6b4618bc41483d200d18be\\payload",
+    ":studio-desktop:test",
+    "--tests",
+    "*StudioTokenContrastTest",
+    "-Dorg.gradle.jvmargs=-Xmx384m -XX:MaxMetaspaceSize=256m -XX:ActiveProcessorCount=2"
+  ],
+  "baseCommit": "26ef38857be510636dffdb5fcbd59a8d70c85550",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :asset-library:compileJava UP-TO-DATE
+> Task :image-authority:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :image-authority:compileKotlin UP-TO-DATE
+> Task :image-authority:compileJava NO-SOURCE
+> Task :studio-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-core:compileKotlin UP-TO-DATE
+> Task :studio-core:compileJava NO-SOURCE
+> Task :studio-core:processResources UP-TO-DATE
+> Task :studio-core:classes UP-TO-DATE
+> Task :studio-core:jar UP-TO-DATE
+> Task :studio-desktop:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :studio-desktop:convertXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:copyNonXmlValueResourcesForMain NO-SOURCE
+> Task :studio-desktop:prepareComposeResourcesTaskForMain NO-SOURCE
+> Task :studio-desktop:generateResourceAccessorsForMain SKIPPED
+> Task :studio-desktop:generateActualResourceCollectorsForMain SKIPPED
+> Task :studio-desktop:generateComposeResClass SKIPPED
+> Task :studio-desktop:compileKotlin
+> Task :studio-desktop:compileJava NO-SOURCE
+> Task :studio-desktop:assembleMainResources UP-TO-DATE
+> Task :studio-desktop:processResources UP-TO-DATE
+> Task :studio-desktop:classes UP-TO-DATE
+> Task :studio-desktop:jar
+> Task :asset-library:processResources NO-SOURCE
+> Task :asset-library:classes UP-TO-DATE
+> Task :asset-library:jar UP-TO-DATE
+> Task :image-authority:processResources NO-SOURCE
+> Task :image-authority:classes UP-TO-DATE
+> Task :image-authority:jar UP-TO-DATE
+> Task :studio-desktop:convertXmlValueResourcesForTest NO-SOURCE
+> Task :studio-desktop:copyNonXmlValueResourcesForTest NO-SOURCE
+> Task :studio-desktop:prepareComposeResourcesTaskForTest NO-SOURCE
+> Task :studio-desktop:generateResourceAccessorsForTest SKIPPED
+> Task :studio-desktop:compileTestKotlin
+> Task :studio-desktop:compileTestJava NO-SOURCE
+> Task :studio-desktop:assembleTestResources UP-TO-DATE
+> Task :studio-desktop:processTestResources UP-TO-DATE
+> Task :studio-desktop:testClasses UP-TO-DATE
+
+> Task :studio-desktop:test
+
+StudioTokenContrastTest > actualFooterTokenTextIsReadableWithoutChangingCountsWarningsOrAccentFills PASSED
+
+BUILD SUCCESSFUL in 1m 11s
+15 actionable tasks: 4 executed, 11 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.1.0/userguide/configuration_cache_enabling.html
+

@@ -1,0 +1,27 @@
+{
+  "processSamplingAlerts": [
+    {
+      "observedUtc": "2026-10-25T22:46:30.9123297Z",
+      "pid": 10752,
+      "initial": "FOREIGN_OR_UNKNOWN during sequential process-tree snapshot",
+      "laterOwned": {
+        "jvmFlags": [
+          "-XX:MaxMetaspaceSize=256m",
+          "-XX:ActiveProcessorCount=2\""
+        ],
+        "pageFileUsageBytes": 190099456,
+        "name": "java.exe",
+        "createdUtc": "2026-10-25T22:46:30.5285750Z",
+        "privatePageCountBytes": 190099456,
+        "peakPageFileUsageBytes": 190099456,
+        "peakWorkingSetBytes": 121999360,
+        "pid": 10752,
+        "workingSetBytes": 121995264,
+        "parent": 26512
+      },
+      "conclusion": "Next sample resolves same PID as own descendant; process creation raced the ancestry scan. Raw intervention message preserved; not treated as outside build or test failure."
+    }
+  ],
+  "actualForeignOverlap": "No sustained foreign owner found; one initially unknownPID resolved in next own-tree sample",
+  "monitor": "Raw samples and thresholds preserved; sampling is not a universal memory reliability guarantee"
+}

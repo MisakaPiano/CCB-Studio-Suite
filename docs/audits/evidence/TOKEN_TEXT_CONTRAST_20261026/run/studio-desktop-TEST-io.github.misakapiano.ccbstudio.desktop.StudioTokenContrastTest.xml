@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.StudioTokenContrastTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-25T22:47:31.306Z" hostname="DD1" time="7.037">
+  <properties/>
+  <testcase name="actualFooterTokenTextIsReadableWithoutChangingCountsWarningsOrAccentFills" classname="io.github.misakapiano.ccbstudio.desktop.StudioTokenContrastTest" time="7.037"/>
+  <system-out><![CDATA[token-contrast mode=DARK rgb=000000 width=300 counts=1/152: actual text pixels, warning and original fill verified
+token-contrast mode=DARK rgb=000000 width=300 counts=461/513: actual text pixels, warning and original fill verified
+token-contrast mode=DARK rgb=000000 width=660 counts=1/152: actual text pixels, warning and original fill verified
+token-contrast mode=DARK rgb=000000 width=660 counts=461/513: actual text pixels, warning and original fill verified
+token-contrast mode=DARK rgb=FFFFFF width=300 counts=1/152: actual text pixels, warning and original fill verified
+token-contrast mode=DARK rgb=FFFFFF width=300 counts=461/513: actual text pixels, warning and original fill verified
+token-contrast mode=DARK rgb=FFFFFF width=660 counts=1/152: actual text pixels, warning and original fill verified
+token-contrast mode=DARK rgb=FFFFFF width=660 counts=461/513: actual text pixels, warning and original fill verified
+token-contrast mode=DARK rgb=7DB5FF width=300 counts=1/152: actual text pixels, warning and original fill verified
+token-contrast mode=DARK rgb=7DB5FF width=300 counts=461/513: actual text pixels, warning and original fill verified
+token-contrast mode=DARK rgb=7DB5FF width=660 counts=1/152: actual text pixels, warning and original fill verified
+token-contrast mode=DARK rgb=7DB5FF width=660 counts=461/513: actual text pixels, warning and original fill verified
+token-contrast mode=LIGHT rgb=000000 width=300 counts=1/152: actual text pixels, warning and original fill verified
+token-contrast mode=LIGHT rgb=000000 width=300 counts=461/513: actual text pixels, warning and original fill verified
+token-contrast mode=LIGHT rgb=000000 width=660 counts=1/152: actual text pixels, warning and original fill verified
+token-contrast mode=LIGHT rgb=000000 width=660 counts=461/513: actual text pixels, warning and original fill verified
+token-contrast mode=LIGHT rgb=FFFFFF width=300 counts=1/152: actual text pixels, warning and original fill verified
+token-contrast mode=LIGHT rgb=FFFFFF width=300 counts=461/513: actual text pixels, warning and original fill verified
+token-contrast mode=LIGHT rgb=FFFFFF width=660 counts=1/152: actual text pixels, warning and original fill verified
+token-contrast mode=LIGHT rgb=FFFFFF width=660 counts=461/513: actual text pixels, warning and original fill verified
+token-contrast mode=LIGHT rgb=7DB5FF width=300 counts=1/152: actual text pixels, warning and original fill verified
+token-contrast mode=LIGHT rgb=7DB5FF width=300 counts=461/513: actual text pixels, warning and original fill verified
+token-contrast mode=LIGHT rgb=7DB5FF width=660 counts=1/152: actual text pixels, warning and original fill verified
+token-contrast mode=LIGHT rgb=7DB5FF width=660 counts=461/513: actual text pixels, warning and original fill verified
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,18 @@
+{
+  "arguments": [
+    "H:\\CCB-Studio-Suite\\.local\\windows-rc\\updater-runtime-115\\python.exe",
+    "-B",
+    "-c",
+    "import sys,runpy;sys.path.insert(0,'H:/CCB-Studio-Suite/tools');sys.argv=['tools/Run-PreviewChecks.py']+sys.argv[1:];runpy.run_path(sys.argv[0],run_name='__main__')",
+    "--phase",
+    "token-contrast-20261026",
+    "--keep-fixtures",
+    "--",
+    ":studio-desktop:test",
+    "--tests",
+    "*StudioTokenContrastTest",
+    "-Dorg.gradle.jvmargs=-Xmx384m -XX:MaxMetaspaceSize=256m -XX:ActiveProcessorCount=2"
+  ],
+  "startedUtc": "2026-10-25T22:46:25.718024+00:00",
+  "noProjectSend": true
+}

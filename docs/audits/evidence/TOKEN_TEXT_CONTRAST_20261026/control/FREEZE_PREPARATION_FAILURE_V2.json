@@ -1,0 +1,8 @@
+{
+  "stage": "evidence preparation after passing regression",
+  "failure": "Second suffix-based CRLF allowlist omitted .md for studio-core test font README",
+  "testReruns": 0,
+  "productChanges": 0,
+  "destinationRemainedEmpty": true,
+  "correction": "Require UTF-8 decoding for any differing input, then require CRLF/LF as the sole byte difference; preserve separate Git and build SHA-256 and both failed script versions"
+}

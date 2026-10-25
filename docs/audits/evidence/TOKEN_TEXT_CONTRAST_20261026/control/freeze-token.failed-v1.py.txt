@@ -1,0 +1,46 @@
+from pathlib import Path
+import json,hashlib,subprocess
+ROOT=Path('H:/CCB-Studio-Suite');OUT=ROOT/'.local/token-contrast-20261026'
+SOURCE='26ef38857be510636dffdb5fcbd59a8d70c85550'
+RUN=ROOT/'.local/windows-preview/evidence/20261025T224626053760Z-token-contrast-20261026'
+DEST=ROOT/'docs/audits/evidence/TOKEN_TEXT_CONTRAST_20261026'
+assert subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()==SOURCE
+assert not subprocess.check_output(['git','status','--porcelain','--','modules','tools'],cwd=ROOT)
+assert not DEST.exists();assert not DEST.parent.is_symlink();DEST.mkdir()
+def sha(p):
+    with p.open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
+def write(p,value):
+    with p.open('x',encoding='utf-8',newline='\n') as f:json.dump(value,f,indent=2,ensure_ascii=False);f.write('\n')
+def copy(p,name):
+    q=DEST/name;q.parent.mkdir(parents=True,exist_ok=True)
+    with q.open('xb') as f:f.write(p.read_bytes())
+summary=json.loads((RUN/'summary.json').read_text());assert summary['status']=='PASS' and summary['tests']==1 and summary['sourceStable']
+mapping=[]
+for name,digest in json.loads((RUN/'source-before.json').read_text()).items():
+    p=ROOT/name;assert sha(p)==digest,name
+    raw=p.read_bytes();git=subprocess.check_output(['git','show',SOURCE+':'+name],cwd=ROOT)
+    assert raw==git or (p.suffix in ('.kt','.kts','.java','.py','.ps1','.cs','.cjs','.properties') and raw.replace(b'\r\n',b'\n')==git.replace(b'\r\n',b'\n')),name
+    mapping.append(dict(path=name,buildSha256=digest,gitSha256=hashlib.sha256(git).hexdigest(),relationship='EXACT' if raw==git else 'CRLF_LF_ONLY'))
+samples=[json.loads(s) for s in (OUT/'memory-samples.jsonl').read_text().splitlines()]
+alerts=[]
+for i,s in enumerate(samples):
+    for item in s['foreign']:
+        pid=item['pid'];later=[p for later in samples[i+1:] for p in later['owned'] if p['pid']==pid]
+        assert later,('Unresolved foreign owner',item)
+        alerts.append(dict(observedUtc=s['atUtc'],pid=pid,initial='FOREIGN_OR_UNKNOWN during sequential process-tree snapshot',laterOwned=later[0],conclusion='Next sample resolves same PID as own descendant; process creation raced the ancestry scan. Raw intervention message preserved; not treated as outside build or test failure.'))
+write(DEST/'SOURCE_EXECUTION_MAP.json',dict(source=SOURCE,parent='37231f6c60da7b5e301e072ea8db20ee71fa30e0',inputs=mapping,
+    actualUniqueMethods=1,newAppImage='NOT BUILT',installer='NOT BUILT',native='NOT TESTED',user='NOT TESTED for26ef; previous48eed dialog confirmation retained',
+    finding='THEME-TOKENS-CONTRAST: source and offscreen production footer verified; no whole-product acceptance',
+    sourceChange='One StudioTokenBar consumer separates normal text selectionInk from unchanged primary progress fill. Warning/exceeded colors, count text, thresholds, fraction and domain tokenizer unchanged.',
+    oldEvidence='22aa,48eed and37231 fixed raw unchanged; old failures/UNKNOWN/user denials retained'))
+write(DEST/'MONITOR_OBSERVATION.json',dict(processSamplingAlerts=alerts,actualForeignOverlap='No sustained foreign owner found; one initially unknownPID resolved in next own-tree sample',
+    monitor='Raw samples and thresholds preserved; sampling is not a universal memory reliability guarantee'))
+copy(ROOT/'docs/audits/evidence/APPEARANCE_TEXT_CANDIDATE_20261026/.gitattributes','.gitattributes')
+for p in sorted(RUN.iterdir()):
+    if p.is_file():copy(p,'run/'+p.name)
+for name in ('AUTHORIZATION.json','run-token.py','COMMAND.json','PLAN.json','RUNNER_IDENTITY.json','runner.log','memory-samples.jsonl','MONITOR_RESULT.json'):
+    copy(OUT/name,'control/'+name)
+copy(Path(__file__),'reproduction/freeze-token.py')
+files=[dict(path=p.relative_to(DEST).as_posix(),bytes=p.stat().st_size,sha256=sha(p)) for p in sorted(DEST.rglob('*')) if p.is_file()]
+write(DEST/'RAW_MANIFEST.json',dict(source=SOURCE,files=files,membersIncludingManifest=len(files)+1,excludes='No binary, image pixels, workspace, user data, vault, credentials or installer; only new scoped synthetic regression and controls.'))
+print(json.dumps(dict(status='FROZEN',files=len(files)+1,inputs=len(mapping),samplingAlertsResolved=len(alerts),actualUniqueMethods=1)))

@@ -1,3 +1,7 @@
+## 2026-10-26 Tokens文字：窄修及定向自动验证通过，未打包发布
+
+[固定源码与原始结果](audits/TOKEN_TEXT_CONTRAST_20261026.md)：用户新授权THEME-TOKENS-CONTRAST窄修，沿用UX-DISPLAY-THEME-001；26ef388只分开正常文字可读前景与原强调色进度填充，警告/超限/计数/阈值及Prompt请求不改。实际生产底栏1唯一方法PASS、0失败错误跳过、sourceStable；24离屏场景不累计方法，旧回归不重跑。源码/自动已验证，新原生/用户未验、独立NOT REQUESTED；旧48eed三按钮人工PASS保留。证据准备两次CRLF白名单失败和一次进程采样未知后解析为自有PID均留原始记录；没有新应用映像/安装包、发布、日常更新或清理，现有候选不含本增量。旧失败/未验及115/Prompt各PENDING、PRODUCT_HOLD保持。下方OPEN为修复前历史观察。
+
 ## 2026-10-26 文字修正独立候选：三按钮人工通过，Tokens残余开放
 
 [固定包与限定回执](audits/APPEARANCE_TEXT_CANDIDATE_20261026.md)：22:06 UTC新授权后，应用48eed2a/打包b54a036，内部包168998452字节、SHA256 ca4cafd37285a2528090247ecc53326b5e78cafa87b569d040578639d8c10ee5；550安装项/2242类/6更新脚本及真实快捷方式隔离链核验。本打包阶段0新JUnit，旧单方法不重跑累加；首seed辅助编译失败及native截图超时保留。用户对两模式×黑白下应用颜色、关闭重开、恢复默认答‘都正常’，仅这三项USER_REPORTED_PASS_WITH_SCOPE；Reload仅自动、native错误分支未验。另从截图登记THEME-TOKENS-CONTRAST OPEN：深色黑强调色的Tokens文字过暗，沿用UX-DISPLAY-THEME-001，尚未改源/测试/新包。34份新证据独立保存，旧22aa/48eed证据和失败不改；Project新包NOT REQUESTED、q09/资产编辑功能未验/115与Prompt PENDING及PRODUCT_HOLD保持。不发版、更新日常、清理或启动后续开发。下方‘未打包/未人工’为较早阶段事实。

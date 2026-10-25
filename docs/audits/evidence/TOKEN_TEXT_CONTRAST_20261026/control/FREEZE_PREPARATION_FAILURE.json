@@ -1,0 +1,1 @@
+{"stage":"evidence preparation after passing regression","failure":"Initial source-to-Git CRLF allowlist omitted .json for css-named-colors.json","testReruns":0,"productChanges":0,"initialDestination":"new exact evidence directory created but empty","correction":"Allow CRLF/LF identity for JSON text and resume only if destination remains empty; preserve original script"}
