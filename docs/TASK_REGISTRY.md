@@ -1,5 +1,7 @@
 ## 当前队列：2026-10-25 17:49 JST用户新顺序（替代旧后续排期）
 
+2026-10-26 04:49 JST原P2续接实况：沿原UX-DISPLAY-THEME-001/c39e860三项及一次送审额度，两次新鲜预检H/C已满足，内存仅1,057,619,968字节，低于原2GiB、差1,089,863,680，owner0；[D回执](audits/evidence/THEME_SELECTED_CONTRAST_RESUME_20261026_D/RESULT.json)。runner0/JUnit0，未编译/未测，新Project提交0/无落地或新裁定，P2 OPEN，源码不变；当前无后台等待门。不重跑已接受四项、不降预算/新清理或操作用户进程，不打包/安装/发版；后续内存实际达标后仍按原准入继续。以下较早H不足为历史，不新增任务或改变顺序。
+
 最新执行补充：用户14:19 UTC明确批准原UX-DISPLAY-THEME-001 / P2-SELECTED-CONTRAST窄修及一次原Project复审，见[现有合同](../tasks/UX_RECOVERY_CONTINUOUS.md)。选中态代码及三项针对性回归已准备；H约1.64GiB低于原2.04GiB准入，NOT COMPILED / NOT TESTED，0新测试，P2 OPEN / REVIEW NOT SUBMITTED，不以旧四项PASS代签新源码。旧30b0659/dce6600和Project限定结论不改；不打包/发布/安装/搬删或启动其他任务。下方“本次只送审”等为此前授权时点。
 
 最新Project结果：用户13:27 UTC批准后，30b0659/dce6600仅单次交原「阶段复审结论」，请求f03257f2、回复d5d317bf完整回读。独立结论PARTIAL_ACCEPT / LIMITED_HOLD：核心/保存限定接受、4JUnit及11源码/28证据校验接受，选中态消费接线P2 OPEN。沿既有UX-DISPLAY-THEME-001登记子发现P2-SELECTED-CONTRAST，不新建任务/合同；范围含3处Ink-on-Gold及Gold作为唯一选中图标/边框时缺对比，保留RGB、不扩换肤。当前未修复/未回归，本次仅送审/读取/登记，无新源码、测试、包、发版、安装或搬删。见[限定结论](audits/THEME_PROJECT_REVIEW_RESULT_20261025.md)及[实际送达回执](../handoff/THEME_PROJECT_REVIEW_DISPATCH_20261025.md)。

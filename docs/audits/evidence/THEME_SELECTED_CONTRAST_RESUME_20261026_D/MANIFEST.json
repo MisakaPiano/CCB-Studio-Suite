@@ -1,0 +1,31 @@
+{
+  "recordedUtc": "2026-10-25T19:49:49.930321+00:00",
+  "basis": "Two exact read-only resource observations; not JVM/Gradle output or test evidence",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19,
+      "sha256": "3e5e82fc72e044ea9af807a2030b73dbb94800d2cd1775302063b2eee761ba1e"
+    },
+    {
+      "path": "capture-preflight.py",
+      "bytes": 3777,
+      "sha256": "b696d01cc072ba8ce47cc5cd8ebcb0c337cdf74827e892a4d5bb3aa5e0fff00a"
+    },
+    {
+      "path": "preflight-194811483599.json",
+      "bytes": 1424,
+      "sha256": "410749a846d9a5e5780de056424700e97f305347cffe44cb6617ae3deba54702"
+    },
+    {
+      "path": "preflight-194901803591.json",
+      "bytes": 1424,
+      "sha256": "4ce352e6a9ba4f29597b1b2a1d1a7ba39971ef0d740cbec6ece277c715f7bbc0"
+    },
+    {
+      "path": "RESULT.json",
+      "bytes": 1458,
+      "sha256": "7b48fb117de7a0dd117a69db078695af758d848ddd3f4edcef9db1f85d0b4aff"
+    }
+  ]
+}
