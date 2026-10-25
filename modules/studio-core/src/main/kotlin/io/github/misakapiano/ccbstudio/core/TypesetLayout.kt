@@ -95,12 +95,17 @@ object TypesetLayout {
             };out+=next;i++
         };return out
     }
+    private val smallPunctuation by lazy { chars("，,﹐、﹑。．.：:﹕；;﹔").toSet() }
+    private val closePunctuation by lazy { chars(")）｠}｝〕〙】》»〉›」』]］〛”‟’〞〟﹚﹜﹞").toSet() }
+    private val openPunctuation by lazy { chars("(（｟{｛〔〘【《«〈‹「『[［〚“„‘‚‛〝﹙﹛﹝\"＂'＇").toSet() }
+    private val middlePunctuation by lazy { chars("…‥—―–").toSet() }
+    private val emphPunctuation by lazy { chars("！!﹗？?﹖").toSet() }
     private fun cls(ch:String)=when(ch) {
-        in chars("，,﹐、﹑。．.：:﹕；;﹔")->"small"
-        in chars(")）｠}｝〕〙】》»〉›」』]］〛”‟’〞〟﹚﹜﹞")->"close"
-        in chars("(（｟{｛〔〘【《«〈‹「『[［〚“„‘‚‛〝﹙﹛﹝\"＂'＇")->"open"
-        in chars("…‥—―–")->"middle"
-        in chars("！!﹗？?﹖")->"emph"
+        in smallPunctuation->"small"
+        in closePunctuation->"close"
+        in openPunctuation->"open"
+        in middlePunctuation->"middle"
+        in emphPunctuation->"emph"
         else->"normal"
     }
     private fun reduction(prev:String?,next:String,t:TypesetText,step:Double):Double {
