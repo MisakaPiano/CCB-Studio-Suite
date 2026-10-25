@@ -1,0 +1,25 @@
+{
+  "arguments": [
+    "H:\\CCB-Studio-Suite\\.local\\candidate-review-20261026\\isolated-install\\CCBStudioSuitePreview.exe",
+    "--studio-root",
+    "H:\\CCB-Studio-Suite\\.local\\candidate-review-20261026\\startup-smoke\\workspace",
+    "--runtime-root",
+    "H:\\CCB-Studio-Suite\\.local\\candidate-review-20261026\\startup-smoke\\runtime",
+    "--secondary-workspace",
+    "--pause-collections"
+  ],
+  "environment": {
+    "SystemRoot": "C:\\WINDOWS",
+    "WINDIR": "C:\\WINDOWS",
+    "SystemDrive": "C:",
+    "ComSpec": "C:\\WINDOWS\\System32\\cmd.exe",
+    "PATH": "C:\\WINDOWS\\System32;C:\\WINDOWS",
+    "TEMP": "H:\\CCB-Studio-Suite\\.local\\candidate-review-20261026\\startup-smoke\\tmp",
+    "TMP": "H:\\CCB-Studio-Suite\\.local\\candidate-review-20261026\\startup-smoke\\tmp",
+    "USERPROFILE": "H:\\CCB-Studio-Suite\\.local\\candidate-review-20261026\\startup-smoke\\home",
+    "HOME": "H:\\CCB-Studio-Suite\\.local\\candidate-review-20261026\\startup-smoke\\home",
+    "APPDATA": "H:\\CCB-Studio-Suite\\.local\\candidate-review-20261026\\startup-smoke\\home\\Roaming",
+    "LOCALAPPDATA": "H:\\CCB-Studio-Suite\\.local\\candidate-review-20261026\\startup-smoke\\home\\Local"
+  },
+  "scope": "production packaged UI; fresh empty task-owned workspace and caches; no real credentials; no default entrypoint; directory collection paused"
+}

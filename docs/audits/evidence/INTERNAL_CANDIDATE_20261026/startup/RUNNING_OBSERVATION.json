@@ -1,0 +1,22 @@
+{
+  "observedUtc": "2026-10-25T21:09:23.6061227Z",
+  "processes": [
+    {
+      "pid": 23044,
+      "parent": 25104,
+      "exe": "H:\\CCB-Studio-Suite\\.local\\candidate-review-20261026\\isolated-install\\CCBStudioSuitePreview.exe",
+      "privateBytes": 1277952,
+      "workingSetBytes": 6545408
+    },
+    {
+      "pid": 18308,
+      "parent": 23044,
+      "exe": "H:\\CCB-Studio-Suite\\.local\\candidate-review-20261026\\isolated-install\\CCBStudioSuitePreview.exe",
+      "privateBytes": 544579584,
+      "workingSetBytes": 378044416
+    }
+  ],
+  "mainWindowTitleObserved": "CCB Studio Suite · 工作台",
+  "windowId": 2297082,
+  "frameCapture": "FAILED: first FrameArrived timeout; after fresh selection+activation window capture timeout. Not assumed product render failure; visual verification unavailable."
+}

@@ -1,0 +1,10 @@
+{
+  "path": "H:\\CCB-Studio-Suite\\.local\\candidate-review-20261026\\Start-Studio-Candidate.lnk",
+  "target": "H:\\CCB-Studio-Suite\\.local\\candidate-review-20261026\\isolated-install\\CCBStudioSuitePreview.exe",
+  "arguments": "--studio-root \"H:\\CCB-Studio-Suite\\.local\\candidate-review-20261026\\startup-smoke\\workspace\" --runtime-root \"H:\\CCB-Studio-Suite\\.local\\candidate-review-20261026\\startup-smoke\\runtime\" --secondary-workspace --pause-collections",
+  "sha256": "36fa6701ead8b2e94b7d8d90fb837294424929b9f530c3d2c2b50c2763aa49fb",
+  "systemDesktopShortcutCreated": false,
+  "startMenuShortcutCreated": false,
+  "defaultEntrypointChanged": false,
+  "launch": "NOT EXECUTED; same production entry and explicit roots as completed smoke; shortcut click not tested"
+}

@@ -1,0 +1,152 @@
+{
+  "finishedUtc": "2026-10-25T21:03:53.344206+00:00",
+  "runnerExitCode": 0,
+  "samples": 13,
+  "monitorFailures": [],
+  "before": {
+    "atUtc": "2026-10-25T21:02:52.8948028Z",
+    "availableBytes": 1312366592,
+    "committedBytes": 22655877120,
+    "commitLimitBytes": 29665406976,
+    "pageReadsPerSecond": 0,
+    "pagesInputPerSecond": 0,
+    "hFreeBytes": 6633996288,
+    "cFreeBytes": 12920848384,
+    "owned": [],
+    "foreign": []
+  },
+  "after": {
+    "atUtc": "2026-10-25T21:03:53.2234058Z",
+    "availableBytes": 1211875328,
+    "committedBytes": 23177129984,
+    "commitLimitBytes": 29665406976,
+    "pageReadsPerSecond": 3,
+    "pagesInputPerSecond": 60,
+    "hFreeBytes": 6417543168,
+    "cFreeBytes": 12890128384,
+    "owned": [],
+    "foreign": []
+  },
+  "minAvailableBytes": 658915328,
+  "maxSystemCommittedBytes": 23801286656,
+  "sampledMaxOwnedPrivateBytes": 683380736,
+  "sampledMaxOwnedWorkingSetBytes": 558530560,
+  "perProcessObservedPeaks": [
+    {
+      "peakWorkingSetBytes": 45608960,
+      "parent": 22908,
+      "createdUtc": "2026-10-25T21:02:53.0539460Z",
+      "peakPageFileUsageBytes": 37462016,
+      "name": "python.exe",
+      "pageFileUsageBytes": 13717504,
+      "pid": 4360,
+      "privatePageCountBytes": 13717504,
+      "workingSetBytes": 22003712,
+      "jvmFlags": [
+        "-XX:MaxMetaspaceSize=256m",
+        "-XX:ActiveProcessorCount=2\""
+      ]
+    },
+    {
+      "workingSetBytes": 5472256,
+      "privatePageCountBytes": 4997120,
+      "name": "cmd.exe",
+      "pageFileUsageBytes": 4997120,
+      "pid": 13196,
+      "peakPageFileUsageBytes": 4997120,
+      "createdUtc": "2026-10-25T21:03:03.6862120Z",
+      "jvmFlags": [
+        "-XX:MaxMetaspaceSize=256m",
+        "-XX:ActiveProcessorCount=2\""
+      ],
+      "peakWorkingSetBytes": 5476352,
+      "parent": 4360
+    },
+    {
+      "workingSetBytes": 130306048,
+      "privatePageCountBytes": 200601600,
+      "name": "java.exe",
+      "pageFileUsageBytes": 200601600,
+      "pid": 19088,
+      "peakPageFileUsageBytes": 202235904,
+      "createdUtc": "2026-10-25T21:03:04.0600800Z",
+      "jvmFlags": [
+        "-XX:MaxMetaspaceSize=256m",
+        "-XX:ActiveProcessorCount=2\""
+      ],
+      "peakWorkingSetBytes": 132902912,
+      "parent": 13196
+    },
+    {
+      "workingSetBytes": 4681728,
+      "privatePageCountBytes": 4374528,
+      "name": "cmd.exe",
+      "pageFileUsageBytes": 4374528,
+      "pid": 19604,
+      "peakPageFileUsageBytes": 4521984,
+      "createdUtc": "2026-10-25T21:03:05.8270230Z",
+      "jvmFlags": [
+        "-XX:MaxMetaspaceSize=256m",
+        "-XX:ActiveProcessorCount=2",
+        "-Xmx384m"
+      ],
+      "peakWorkingSetBytes": 4734976,
+      "parent": 19088
+    },
+    {
+      "workingSetBytes": 11874304,
+      "privatePageCountBytes": 6582272,
+      "name": "conhost.exe",
+      "pageFileUsageBytes": 6582272,
+      "pid": 20568,
+      "peakPageFileUsageBytes": 6582272,
+      "createdUtc": "2026-10-25T21:03:05.8726920Z",
+      "jvmFlags": [],
+      "peakWorkingSetBytes": 11878400,
+      "parent": 19604
+    },
+    {
+      "workingSetBytes": 362000384,
+      "privatePageCountBytes": 390807552,
+      "name": "java.exe",
+      "pageFileUsageBytes": 390807552,
+      "pid": 13064,
+      "peakPageFileUsageBytes": 424947712,
+      "createdUtc": "2026-10-25T21:03:05.9267490Z",
+      "jvmFlags": [
+        "-XX:MaxMetaspaceSize=256m",
+        "-XX:ActiveProcessorCount=2",
+        "-Xmx384m"
+      ],
+      "peakWorkingSetBytes": 363515904,
+      "parent": 19604
+    },
+    {
+      "createdUtc": "2026-10-25T21:03:36.6487100Z",
+      "peakPageFileUsageBytes": 100610048,
+      "name": "jpackage.exe",
+      "pid": 12312,
+      "workingSetBytes": 52850688,
+      "peakWorkingSetBytes": 52854784,
+      "pageFileUsageBytes": 100610048,
+      "privatePageCountBytes": 100610048,
+      "parent": 13064,
+      "jvmFlags": []
+    },
+    {
+      "createdUtc": "2026-10-25T21:03:36.6643100Z",
+      "peakPageFileUsageBytes": 6586368,
+      "name": "conhost.exe",
+      "pid": 23684,
+      "workingSetBytes": 11784192,
+      "peakWorkingSetBytes": 11788288,
+      "pageFileUsageBytes": 6586368,
+      "privatePageCountBytes": 6586368,
+      "parent": 12312,
+      "jvmFlags": []
+    }
+  ],
+  "limits": "Sampled aggregate maxima can miss between-sample peaks; OS per-process lifetime peaks only for processes observed. Working sets overlap/share pages and are not unique physical RAM. Monitor helper overhead excluded from owned group but included in system observations.",
+  "externalSubmission": "NONE; PROHIBITED",
+  "push": "NONE; PROHIBITED"
+}

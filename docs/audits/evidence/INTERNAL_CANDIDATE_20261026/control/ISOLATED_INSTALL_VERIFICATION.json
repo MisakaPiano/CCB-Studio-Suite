@@ -1,0 +1,91 @@
+{
+  "status": "PASS",
+  "source": "80ea1167cdc197db30980ed116ee6d30731c994a",
+  "installerExitCode": 0,
+  "installerSha256": "2db2f03f655aefff13103b3f63a603b346a6091c98c491af10c6def43521eaef",
+  "installerBytes": 168996001,
+  "identityLoaded": true,
+  "installed": {
+    "files": 550,
+    "bytes": 252879034,
+    "manifestSha256": "153caa9044eda38e23e20640af75575bfd5ea57aa19e516f8479e5d23e0578e6"
+  },
+  "packagedUpdaterSources": [
+    {
+      "path": "updater/lib/studio_update.py",
+      "sha256": "6cd4e3ad33adfc0d820ee6dcec1ea7cd8e26555ed359c03b1b9488e4da67885f",
+      "sourcePath": "tools/update-runtime/studio_update.py"
+    },
+    {
+      "path": "updater/lib/github_transport.py",
+      "sha256": "93c0e136239b111948c169224d101045a2d22c80324b52d59838c70381b73c0d",
+      "sourcePath": "tools/update-runtime/github_transport.py"
+    },
+    {
+      "path": "updater/lib/install_ops.py",
+      "sha256": "f1d4ddd4f1bc7033ff8653e34851243e93c6df92c7ba69e70137f627ca46c17e",
+      "sourcePath": "tools/update-runtime/install_ops.py"
+    },
+    {
+      "path": "updater/lib/apply_update.py",
+      "sha256": "61351ea4731deca049a8d7309b9015bbfaf1aba0fc5550063113c2d2fdf6bdc0",
+      "sourcePath": "tools/update-runtime/apply_update.py"
+    },
+    {
+      "path": "updater/lib/residue_cleanup.py",
+      "sha256": "e8e12e94beeb52c5bd5134c91e21f4e11341b33ff44359e196621748d1babeeb",
+      "sourcePath": "tools/update-runtime/residue_cleanup.py"
+    },
+    {
+      "path": "updater/lib/owned_files.py",
+      "sha256": "d67f7ce0ffefa2dc6d2f1413f224383666800cc0892ae9e7a9dfe282d352a452",
+      "sourcePath": "tools/update-runtime/owned_files.py"
+    }
+  ],
+  "packagedClasses": [
+    {
+      "module": "asset-library",
+      "jar": "asset-library-ee9417ce5653dbd2beddcf7b8f6462dd.jar",
+      "jarSha256": "b8c470e5e576e1d6c78f881be0a45bf7c8b0eb33269f5d50bd07594bb3b561e4",
+      "compiledClassMatches": 23
+    },
+    {
+      "module": "image-authority",
+      "jar": "image-authority-95f9abde46a167be5c5d2437d288f5.jar",
+      "jarSha256": "ca0ca98a1e2d1f5a4439ce0244fe6c7e9b1feda01a23504fd5a3c1b477c044df",
+      "compiledClassMatches": 844
+    },
+    {
+      "module": "studio-core",
+      "jar": "studio-core-e057314f5d4fa77bae3a8698a81c2b1.jar",
+      "jarSha256": "3798df87452a150ee91dd85d9d9f80a9cba6bed8e13c3d8211093d9c69a29883",
+      "compiledClassMatches": 385
+    },
+    {
+      "module": "studio-desktop",
+      "jar": "studio-desktop-b3acd61956f5b38ad8ef956826796.jar",
+      "jarSha256": "327dd41f9ac60ad76f8e4f7a10bc349387a48313ca15541c1ae63d67ae4f425c",
+      "compiledClassMatches": 989
+    }
+  ],
+  "runtimeFilesVerified": 326,
+  "config": {
+    "format": 1,
+    "product": "ccb-studio-suite",
+    "platform": "windows-x86_64",
+    "version": 2,
+    "reader": 3,
+    "sourceSha": "80ea1167cdc197db30980ed116ee6d30731c994a",
+    "metadataUrl": "http://127.0.0.1:1/metadata/",
+    "targetsUrl": "http://127.0.0.1:1/targets/",
+    "rootSha256": "efc8fdda742b6cc5f7fe4edcb38f75eba9bfcbe0210e07eb888d25f76c3eb892",
+    "channel": "internal",
+    "displayVersion": "0.2.2-internal",
+    "internalTest": true
+  },
+  "registryCommandsInNSIS": false,
+  "dailyInstallationAccessed": false,
+  "newJUnitMethods": 0,
+  "applicationStartup": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

@@ -1,0 +1,11 @@
+{
+  "userImage": "codex-clipboard-13d1a445-b791-4c1f-b182-b6887cc1667d.png; user-owned local image not published",
+  "observation": "User supplied screenshot shows normally displayed empty creation workbench; user says already normally closed",
+  "scope": "This startup screen only, not full theme/UI acceptance",
+  "agentAltF4Sent": false,
+  "agentCloseClickSent": false,
+  "agentRestartSent": false,
+  "watcherCorrection": "EXIT_OBSERVATION.json normalCloseRequestedBy is an unexecuted preparatory intent hard-coded in the watcher. Actual close by user; no agent close action occurred. Original watcher bytes retained.",
+  "providerCalls": 0,
+  "dailyInstallationAccessed": false
+}

@@ -1,3 +1,7 @@
+## 2026-10-26 UPD-CLEAN-PROTECTION-001新增包内合成证据
+
+[内部候选与3逐例](../audits/INTERNAL_CANDIDATE_20261026.md)直接调用80ea116安装包实际updater字节：默认115/保护111保持；成功115→116只退役有所属证明的115，未知文件/111/备份保留、重复0；nonce不符和损坏保护记录拒绝或保留。3PASS，Windows原语/全合成JSON和假程序字节，非实际App111记录迁移。原静态登记作为历史保留；当前仅SYNTHETIC_3_PASS / REAL_RECORD_PENDING，完整重解析点/占用等矩阵本轮未重跑，不宣布所有保护或实际历史清理完成。未访问、修改、迁移或删除真实App/ACTIVE/备份。
+
 # 安装与测试产物生命周期（下一版实现，未发布）
 
 最新已记录结论：Project对f6598d3/54a5ba26下载终态P2作CLOSED_WITH_SCOPE，24项定向证据获限定接受；[原回执](../audits/PROJECT_DOWNLOAD_TERMINAL_CLOSURE_20261025.md)不覆盖旧包或完整升级链。未重打包，2484858内部EXE不含该补充。完整COMPLETE/journal身份验证和FAILED nonce绑定必须先于程序根筛选；不能证明终态的引用保留。实现见`docs/audits/DOWNLOAD_TERMINAL_FIX_20261025.md`。

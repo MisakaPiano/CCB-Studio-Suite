@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "cases": 3,
+  "failures": 0,
+  "source": "80ea1167cdc197db30980ed116ee6d30731c994a",
+  "enginePath": "H:\\CCB-Studio-Suite\\.local\\candidate-review-20261026\\isolated-install\\updater\\lib\\residue_cleanup.py",
+  "engineSha256": "e8e12e94beeb52c5bd5134c91e21f4e11341b33ff44359e196621748d1babeeb",
+  "scope": "native Windows filesystem primitives and packaged production decision functions; all protocol records/exe bytes synthetic; not real115 upgrade or real ACTIVE record migration",
+  "junitMethods": 0,
+  "realDataAccessed": false,
+  "privateCredentialsRead": false,
+  "fixtures": "RETAINED",
+  "independentReview": "NOT REQUESTED"
+}

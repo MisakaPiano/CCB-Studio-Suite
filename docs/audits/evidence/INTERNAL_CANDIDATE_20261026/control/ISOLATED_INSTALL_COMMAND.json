@@ -1,0 +1,10 @@
+{
+  "arguments": [
+    "H:\\CCB-Studio-Suite\\.local\\candidate-review-20261026\\candidate\\studio-installer.exe",
+    "/S",
+    "/D=H:\\CCB-Studio-Suite\\.local\\candidate-review-20261026\\isolated-install"
+  ],
+  "installerSha256": "2db2f03f655aefff13103b3f63a603b346a6091c98c491af10c6def43521eaef",
+  "scope": "new exact task-owned directory only; no system/registry/shortcuts/default pointers",
+  "atUtc": "2026-10-25T21:06:21.364369+00:00"
+}

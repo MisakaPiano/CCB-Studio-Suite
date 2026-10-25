@@ -1,0 +1,19 @@
+{
+  "observedUtc": "2026-10-25T21:09:55.5797275Z",
+  "watchStartedUtc": "2026-10-25T21:09:38.0610927Z",
+  "processes": [
+    {
+      "exited": true,
+      "pid": 23044,
+      "exitCode": 0
+    },
+    {
+      "exited": true,
+      "pid": 18308,
+      "exitCode": 0
+    }
+  ],
+  "forcedTermination": false,
+  "normalCloseRequestedBy": "Computer Use Alt+F4 to exact task-owned window",
+  "dailyProcessesTouched": false
+}

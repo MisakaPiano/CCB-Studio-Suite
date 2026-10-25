@@ -1,0 +1,14 @@
+{
+  "arguments": [
+    "H:\\CCB-Studio-Suite\\.local\\windows-rc\\updater-runtime-115\\python.exe",
+    "-B",
+    "H:\\CCB-Studio-Suite\\tools\\Prepare-UpdaterRuntime.py",
+    "--destination",
+    "H:\\CCB-Studio-Suite\\.local\\candidate-review-20261026\\updater-runtime",
+    "--source",
+    "H:\\CCB-Studio-Suite\\.local\\windows-rc\\updater-downloads",
+    "--source",
+    "H:\\CCB-Studio-Suite\\.local\\windows-rc\\wheels"
+  ],
+  "startedUtc": "2026-10-25T21:04:30.587545+00:00"
+}

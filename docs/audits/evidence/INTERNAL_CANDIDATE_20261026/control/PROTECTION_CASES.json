@@ -1,0 +1,74 @@
+[
+  {
+    "name": "UPD-CLEAN-PROTECTION-001/protected111-default115",
+    "status": "PASS",
+    "seconds": 1.2285554000000047,
+    "first": {
+      "status": "COMPLETE",
+      "removed": 0,
+      "deferred": 0
+    },
+    "repeat": {
+      "status": "COMPLETE",
+      "removed": 0,
+      "deferred": 0
+    },
+    "protectedHashes": {
+      "programs\\ACTIVE_INSTALLATION.json": "ec280bb4961531558c093609a5cf3cffcae8c067f36553dd28c352d5cd39dced",
+      "data\\original.bin": "ecf832834ceb71c4012302aeead66fed7df3c8bef234ea60e580e745ef93dbf8",
+      "programs\\backups\\keep.bin": "37af08f6ff2a6c78bb85e4e2f9d10159d892caa4fb6be70e9e5e0938b6f5502e",
+      "programs\\111-aaaaaaaaaaaa\\CCBStudioSuitePreview.exe": "14c4072d7a1efe0bd6483edc44faedfb81f57700c91519dfd95c4c08e47baf70",
+      "programs\\111-aaaaaaaaaaaa\\INSTALL_COMPLETE": "a017ff94fe017671415ee5ac1504b52a279cca82fe8ece19dd7aa28d1a2438c2",
+      "programs\\111-aaaaaaaaaaaa\\INSTALL_MANIFEST.json": "98b08827fd4049939eb11936dc27dfab9c66e49c2740d58e8e6af4848cff2737",
+      "programs\\111-aaaaaaaaaaaa\\Uninstall.exe": "c7c23dc73ea138e1a538d71703eec6f03ad3bc224753a77f6ae346a8a70ec84b",
+      "programs\\111-aaaaaaaaaaaa\\app\\main.jar": "71198d42af3335d2e6d17df7bd861b2ab7ec94b6b863d853d3fa135dd6b96c0e"
+    }
+  },
+  {
+    "name": "UPD-CLEAN-PROTECTION-001/complete115-to116-retire-only115",
+    "status": "PASS",
+    "seconds": 1.2059454000000187,
+    "first": {
+      "status": "COMPLETE",
+      "removed": 5,
+      "deferred": 0
+    },
+    "repeat": {
+      "status": "COMPLETE",
+      "removed": 0,
+      "deferred": 0
+    },
+    "protectedHashes": {
+      "programs\\ACTIVE_INSTALLATION.json": "0f11295e82397875c3c4c9104fb16bf2834ab897101bc303840bbec60f6ad21d",
+      "data\\original.bin": "ecf832834ceb71c4012302aeead66fed7df3c8bef234ea60e580e745ef93dbf8",
+      "programs\\backups\\keep.bin": "37af08f6ff2a6c78bb85e4e2f9d10159d892caa4fb6be70e9e5e0938b6f5502e",
+      "programs\\111-aaaaaaaaaaaa\\CCBStudioSuitePreview.exe": "14c4072d7a1efe0bd6483edc44faedfb81f57700c91519dfd95c4c08e47baf70",
+      "programs\\111-aaaaaaaaaaaa\\INSTALL_COMPLETE": "a017ff94fe017671415ee5ac1504b52a279cca82fe8ece19dd7aa28d1a2438c2",
+      "programs\\111-aaaaaaaaaaaa\\INSTALL_MANIFEST.json": "98b08827fd4049939eb11936dc27dfab9c66e49c2740d58e8e6af4848cff2737",
+      "programs\\111-aaaaaaaaaaaa\\Uninstall.exe": "c7c23dc73ea138e1a538d71703eec6f03ad3bc224753a77f6ae346a8a70ec84b",
+      "programs\\111-aaaaaaaaaaaa\\app\\main.jar": "71198d42af3335d2e6d17df7bd861b2ab7ec94b6b863d853d3fa135dd6b96c0e"
+    },
+    "unknownFileKept": true
+  },
+  {
+    "name": "UPD-CLEAN-PROTECTION-001/unproven-and-invalid-record-retain",
+    "status": "PASS",
+    "seconds": 0.7306941000006191,
+    "first": {
+      "status": "RETAINED_NO_COMPLETE_HANDOFF",
+      "removed": 0
+    },
+    "invalidRecordRejected": true,
+    "oldProgramRetained": true,
+    "protectedHashesBefore": {
+      "programs\\ACTIVE_INSTALLATION.json": "8af7394db0074848da944d4f82cdb9e65df9fba9f4a1988022d767bca36c9bc5",
+      "data\\original.bin": "ecf832834ceb71c4012302aeead66fed7df3c8bef234ea60e580e745ef93dbf8",
+      "programs\\backups\\keep.bin": "37af08f6ff2a6c78bb85e4e2f9d10159d892caa4fb6be70e9e5e0938b6f5502e",
+      "programs\\111-aaaaaaaaaaaa\\CCBStudioSuitePreview.exe": "14c4072d7a1efe0bd6483edc44faedfb81f57700c91519dfd95c4c08e47baf70",
+      "programs\\111-aaaaaaaaaaaa\\INSTALL_COMPLETE": "a017ff94fe017671415ee5ac1504b52a279cca82fe8ece19dd7aa28d1a2438c2",
+      "programs\\111-aaaaaaaaaaaa\\INSTALL_MANIFEST.json": "98b08827fd4049939eb11936dc27dfab9c66e49c2740d58e8e6af4848cff2737",
+      "programs\\111-aaaaaaaaaaaa\\Uninstall.exe": "c7c23dc73ea138e1a538d71703eec6f03ad3bc224753a77f6ae346a8a70ec84b",
+      "programs\\111-aaaaaaaaaaaa\\app\\main.jar": "71198d42af3335d2e6d17df7bd861b2ab7ec94b6b863d853d3fa135dd6b96c0e"
+    }
+  }
+]
