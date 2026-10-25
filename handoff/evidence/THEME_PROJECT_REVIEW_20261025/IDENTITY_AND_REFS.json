@@ -1,0 +1,23 @@
+{
+  "recordedUtc": "2026-10-25T13:37:43.765661+00:00",
+  "targetId": "6adcaaef-3fac-83e8-ae57-2a524281e049",
+  "targetKind": "chatgpt",
+  "targetTitle": "阶段复审结论",
+  "pageTitle": "阶段复审结论",
+  "pageUrl": "https://chatgpt.com/g/g-p-6ad78514b9fc8191aa079334997d776a-ccb-studio-suite-project/c/6adcaaef-3fac-83e8-ae57-2a524281e049",
+  "beforeThemeFullSourceOccurrences": 0,
+  "beforeThemeFullEvidenceOccurrences": 0,
+  "beforeThemeTaskOccurrences": 0,
+  "referenceProof": {
+    "applicationResolved": "30b065915e376d75cc6439fac0ba55925c73f735",
+    "evidenceResolved": "dce6600814e91c92e1d95432faef02e8ad09c5d4",
+    "remoteHead": "dce6600814e91c92e1d95432faef02e8ad09c5d4",
+    "sourceIsEvidenceAncestor": true
+  },
+  "onlyTargetEngineeringMetadataSaved": true,
+  "sidebarAndUnrelatedConversationContentExcluded": true,
+  "preparationNotes": [
+    "Unquoted PowerShell rev suffix misparse corrected with literal subprocess argv",
+    "Local source-index read default GBK failure corrected with explicit UTF8; no mutation or extra tests"
+  ]
+}

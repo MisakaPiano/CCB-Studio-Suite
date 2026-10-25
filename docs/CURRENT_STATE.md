@@ -1,4 +1,10 @@
-## 当前结果：原四项主题隔离回归PASS，本次范围收尾
+## 当前结果：原Project主题复审部分接受，消费端对比度P2开放
+
+用户13:27 UTC（22:27 JST）明确批准仅本主题工程材料交既存原「阶段复审结论」。已单次发送并实际回读请求f03257f2-62a3-4bf6-981f-7ddcb98b4a0a（13:38:05.034 UTC）；原Project回复d5d317bf-4708-4405-ad8a-87de63bd92f3已完整读到，非只发给协调线程。固定30b0659/dce6600原字节不改，[送达/开始/最终回执](../handoff/THEME_PROJECT_REVIEW_DISPATCH_20261025.md)及[实际结论](audits/THEME_PROJECT_REVIEW_RESULT_20261025.md)：核心主题/格式/默认及最新修订安全保存PASS_WITH_SCOPE，4JUnit与11源码/28清单文件独立校验接受；配色消费端P2 OPEN — NARROW FIX REQUIRED，独立结果PARTIAL_ACCEPT / LIMITED_HOLD，非整版通过。
+
+遗留沿既有UX-DISPLAY-THEME-001登记P2-SELECTED-CONTRAST：三处Ink-on-Gold文字/勾选符，以及Gold直接作为唯一选中图标/文字/边框的极端RGB对比问题，不能只换3处就关闭；应保留用户RGB/存储格式、做窄范围可辨认状态及针对回归。当前NOT IMPLEMENTED / NOT RETESTED，本次只按送审授权读取和记录，无源码/测试修改、构建/打包/发布/安装/搬删或新增开发范围，不把Project建议直接当新开发授权。临时只读IAB标签已关闭，未重发/重新生成/停止原审查。加载错误仅在设置框可见、系统主题实时变化/独立窗口真实重绘缺少原生证据等限制保留；实际UI/用户/新包未验，UPD-CLEAN-PROTECTION-001仍仅静态，资产编辑/115/Prompt/q09/旧失败否决与PRODUCT_HOLD均保持。以下四项执行收尾为送审前历史记录。
+
+## 送审前结果：原四项主题隔离回归PASS，当次范围收尾
 
 2026-10-25用户12:46 UTC（21:46 JST）明确同意只在新鲜资源准入后恢复原4项主题测试，不打包/发版/安装/真实归档搬删/自动清理或扩功能。源码及实际最终执行30b065915e376d75cc6439fac0ba55925c73f735，C在21:55:49.551 JST启动、含编译96.211秒后4唯一JUnit方法PASS，0失败/错误/跳过、sourceStable=true；[固定结果/原始证据](audits/DISPLAY_THEME_FOUR_REGRESSION_20261025.md)。B资源已准入但42146d3首编译FAILED/exit1、0JUnit，根因为我此前替换颜色属性时漏了else前两处空格；30b0659只补这2空格，测试类/断言/范围不变。A零执行资源延期、B失败与现场均保留，最终只计C的4方法，不加循环、日志副本或旧基线。
 

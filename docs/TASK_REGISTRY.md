@@ -1,6 +1,8 @@
 ## 当前队列：2026-10-25 17:49 JST用户新顺序（替代旧后续排期）
 
-最新本次范围：用户12:46 UTC同意资源满足后只恢复原4项主题测试。最终30b0659在新鲜H/C预算、内存及Desktop/打包owner门全过后4唯一方法PASS，sourceStable，0失败/错误/跳过；B首编译FAILED/0JUnit与A资源门0执行保留，只补2空格、无测试扩展。见[固定源码/原始逐例](audits/DISPLAY_THEME_FOUR_REGRESSION_20261025.md)。两轮fixture显式保留，无自动清理；此次验证范围收尾，不继续打包/发布/安装或后三组，UI/用户/包/独立状态仍未验。下文旧资源等待保留当时观察。
+最新Project结果：用户13:27 UTC批准后，30b0659/dce6600仅单次交原「阶段复审结论」，请求f03257f2、回复d5d317bf完整回读。独立结论PARTIAL_ACCEPT / LIMITED_HOLD：核心/保存限定接受、4JUnit及11源码/28证据校验接受，选中态消费接线P2 OPEN。沿既有UX-DISPLAY-THEME-001登记子发现P2-SELECTED-CONTRAST，不新建任务/合同；范围含3处Ink-on-Gold及Gold作为唯一选中图标/边框时缺对比，保留RGB、不扩换肤。当前未修复/未回归，本次仅送审/读取/登记，无新源码、测试、包、发版、安装或搬删。见[限定结论](audits/THEME_PROJECT_REVIEW_RESULT_20261025.md)及[实际送达回执](../handoff/THEME_PROJECT_REVIEW_DISPATCH_20261025.md)。
+
+送审前验证范围：用户12:46 UTC同意资源满足后只恢复原4项主题测试。最终30b0659在新鲜H/C预算、内存及Desktop/打包owner门全过后4唯一方法PASS，sourceStable，0失败/错误/跳过；B首编译FAILED/0JUnit与A资源门0执行保留，只补2空格、无测试扩展。见[固定源码/原始逐例](audits/DISPLAY_THEME_FOUR_REGRESSION_20261025.md)。两轮fixture显式保留，无自动清理；当次验证范围收尾，未打包/发布/安装或后三组。后续限定独立结果以顶部为准，UI/用户/包仍未验。下文旧资源等待保留当时观察。
 
 整版验收补充沿用REVIEW_FIXES_AND_UPDATE_CLEANUP_20261024，单一用例**UPD-CLEAN-PROTECTION-001**：[登记与静态结论](rc/OWNED_ARTIFACT_LIFECYCLE.md#upd-clean-protection-001历史保护与当前入口冲突待整版合成验收)。仅合成前提登记/源码核对，NOT EXECUTED；主题后的内部包资源门再执行。默认115与旧保护111的现场由协调线程核实，本线程未访问真实App；当前源码保护优先且无自动迁移ACTIVE记录分支，解除历史保护需一次性人工审定与归属核验，未知保留。旧20根清理按保护保留111，非漏删，不从旧115推断新策略失败。无新任务/实现者/实际清理或真实指针修改，不改变以下队列。
 
@@ -11,7 +13,7 @@
 |顺序|沿用任务/范围|当前状态与进入条件|
 |---|---|---|
 |1|PERF-001～PERF-007，本轮性能优化及收尾|先完成正在进行的验证/固定源码/原始结果与失败分列。当前字体清单db46098/1aa1fde已自动3方法通过并留证，长期规模/UI/RSS/用户/包等未验仍保留，不宣称整个专项全部完成，也不以长期未关闭无限追加本轮微基线|
-|2|UX-DISPLAY-THEME-001：对齐Desktop实际显示主题色切换|30b0659 COMPILED / FOUR AUTOMATED METHODS PASS；B首编译0JUnit失败和A资源0执行分列保留，只补2空格，原4方法无断言/范围变更。实际UI/用户/包/独立仍NOT TESTED，本次12:46 UTC授权只恢复四项，范围收尾后不进入打包/发布/安装或后三组。见[固定结果](audits/DISPLAY_THEME_FOUR_REGRESSION_20261025.md)|
+|2|UX-DISPLAY-THEME-001：对齐Desktop实际显示主题色切换|30b0659 COMPILED / FOUR METHODS PASS获独立接受，核心/保存PASS_WITH_SCOPE；本轮独立PARTIAL_ACCEPT / LIMITED_HOLD，子发现P2-SELECTED-CONTRAST OPEN（未实施/未回归）。保留原RGB，窄修消费端前景及唯一状态图标/边框，不能仅换3处Ink即关闭。实际UI/用户/包未验，送审本身不启动修复/打包/发布/安装或后三组。见[Project结论](audits/THEME_PROJECT_REVIEW_RESULT_20261025.md)|
 |3|UX-RECOVERY既有本轮内部打包/验收阶段，承接W1～W5/CP4相关门禁及REVIEW_FIXES_AND_UPDATE_CLEANUP_20261024|主题后准备包含已有修复、清理、性能、主题的内部包与验收，NOT BUILT / NOT VERIFIED。必须纳入最后f6598d39298c06ec5644a131e484e814f77b6f45下载终态清理修复；当前仅证实db46098是其后代，不等于新包已含修复。冻结源码/构建输入/包版本与SHA256/实际脚本字节及证据对应关系，补必要新包集成；旧115/2484858内部包不代替。本次内部包授权不等于公开发布、更新日常安装、改信任链或冒签用户/Project验收|
 |4a（第3步后）|UX-RECOVERY / W2～W4：资产管理与编辑界面验证|USER_NOT_TESTED，按用户实际测试时间推进；实现/自动通过不能代替人工，所需用户动作和审批继续等待用户|
 |4b（第3步后）|UX-ASSET-FS-001：本地批量文件管理与真正删除|PLANNED / NOT STARTED；保留批量重命名/复制/移动/删除与移出图库/回收站/永久删除原文件的区别，不因排期授权操作真实用户文件|

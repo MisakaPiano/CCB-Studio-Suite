@@ -1,4 +1,8 @@
-## 2026-10-25 原四项主题隔离回归通过；本次止于验证
+## 2026-10-25 主题原Project限定复审：部分接受，选中态P2开放
+
+[实际结论/范围](audits/THEME_PROJECT_REVIEW_RESULT_20261025.md)及[单次原Project送达回执](../handoff/THEME_PROJECT_REVIEW_DISPATCH_20261025.md)：源码30b0659/证据dce6600不改，请求f03257f2、回复d5d317bf已在原「阶段复审结论」完整回读。核心/保存PASS_WITH_SCOPE、4JUnit及11源码/28清单文件独立核验接受；消费端选中态对比P2 OPEN，本轮PARTIAL_ACCEPT / LIMITED_HOLD。既有UX-DISPLAY-THEME-001登记窄修，不只3处Ink还包括Gold作为唯一图标/边框；本次只送审/读取/登记，无源码或测试改动，不发版/安装/搬删或扩范围，视觉/用户/包及旧未验保持。
+
+## 2026-10-25 原四项主题隔离回归通过；当次止于验证
 
 [固定源码/原始逐例/失败保留](audits/DISPLAY_THEME_FOUR_REGRESSION_20261025.md)：30b0659最终4唯一方法PASS，0失败/错误/跳过、sourceStable；42146d3首编译因漏空格FAILED/0JUnit、A资源门0执行均分列保留。只补2处词法分隔，测试类/断言/范围不变；两轮--keep-fixtures，无自动清理。实际UI/人工/包/整版与UPD-CLEAN-PROTECTION-001未验；当前12:46 UTC用户授权只恢复四项，不打包/发版/安装或开启后三组。
 

@@ -1,5 +1,9 @@
 # UX恢复连续实施授权
 
+## 2026-10-25 22:27 JST限定送审授权与原Project结果
+
+用户13:27 UTC对指定主题源码30b0659/证据dce6600和既存原Project明确答复“可以”，只批准该工程材料送审及实际反馈读取。[单次送达回执](../handoff/THEME_PROJECT_REVIEW_DISPATCH_20261025.md)记录请求f03257f2、回复d5d317bf，目标标题/ID/正文核对，开始及完整最终回复分别确认，没有新对话或重发。Project结果[PARTIAL_ACCEPT / LIMITED_HOLD](../docs/audits/THEME_PROJECT_REVIEW_RESULT_20261025.md)：核心/默认/格式和安全保存PASS_WITH_SCOPE、4项JUnit/11源码/28证据独立校验接受；消费端P2-SELECTED-CONTRAST OPEN，沿既有UX-DISPLAY-THEME-001跟踪，不另建任务。范围同时含Ink-on-Gold与Gold作为唯一状态图标/边框的低对比，保留原RGB和存储格式，后续仅窄修/针对回归，不重设计或重做已接受存储基线。本次只读反馈和登记，未改源/测试、未实施/回归该P2，不将Project建议当新开发或打包权限；临时浏览器标签关闭，旧源码/raw/失败/未验及PRODUCT_HOLD保持。
+
 ## 2026-10-25 21:46 JST 单次恢复原四项，验证范围已收尾
 
 原协调会话附用户12:46 UTC“同意”对话，授权先核Desktop当前资源/内存/磁盘及原预算，仅恢复已有4项主题测试；不打包/发布/安装、真实归档/搬移/删除、自动清理或新功能。本线程按相同H/C下限、额外内存观察、两次安静owner/启动前检查执行；首编译42146d3 FAILED/0JUnit保留，30b0659只补两处else前空格，不改断言/范围，最终原4唯一方法PASS/0失败错误跳过，sourceStable。[固定源码与原始逐例](../docs/audits/DISPLAY_THEME_FOUR_REGRESSION_20261025.md)。B/C均--keep-fixtures并显式保留，不做自动清理。当前本次范围结束，不自动进入原第3步内部包或后三组；实际UI/人工/包/完整更新/独立未验，UPD-CLEAN-PROTECTION-001仍仅静态登记，旧失败/否决/PENDING及PRODUCT_HOLD保持。以下较早未编译/资源等待按历史时点保留，不重跑已通过四项求绿。
