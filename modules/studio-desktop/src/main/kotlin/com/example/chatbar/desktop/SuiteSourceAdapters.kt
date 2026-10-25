@@ -35,7 +35,9 @@ internal object DesktopBootstrapColors {
 @Composable internal fun rememberDesktopImageWindowSize(width:Dp,height:Dp)=remember(width,height){DpSize(width,height)}
 @Composable internal fun DesktopImageToolWindow(title:String,close:()->Unit,width:Dp=800.dp,height:Dp=700.dp,content:@Composable ()->Unit) {
     DialogWindow(onCloseRequest=close,title=title,icon=StudioBrand.painter,state=rememberDialogState(width=width,height=height)) {
-        androidx.compose.material.Surface(color=DesktopBootstrapColors.background,contentColor=DesktopBootstrapColors.foreground,modifier=Modifier.fillMaxSize()){content()}
+        io.github.misakapiano.ccbstudio.desktop.StudioTheme {
+            androidx.compose.material.Surface(color=DesktopBootstrapColors.background,contentColor=DesktopBootstrapColors.foreground,modifier=Modifier.fillMaxSize()){content()}
+        }
     }
 }
 internal class DesktopChromeLayoutRecorder(private val observe:(LayoutCoordinates?)->Unit={}) {
