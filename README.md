@@ -1,17 +1,18 @@
 <!-- suite-download-entry-20261024 -->
 > [!IMPORTANT]
-> ## [Windows 预览版下载 · 0.0.0-preview.115](https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.115) · [全部版本](https://github.com/MisakaPiano/CCB-Studio-Suite/releases)
-> 打开发布页，在 **Assets** 下载 **`CCB-Studio-Suite-0.0.0-preview.115-windows-x64.exe`**；**Source code (zip / tar.gz) 是源码，不是 Windows 安装程序**。
+> ## [Windows 预览版下载 — 0.0.0-preview.116](https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.116) · [全部版本](https://github.com/MisakaPiano/CCB-Studio-Suite/releases)
+> 打开发行页，在 **Assets** 下载 **`CCB-Studio-Suite-0.0.0-preview.116-windows-x64.exe`**。**Source code (zip / tar.gz) 是源码，不是 Windows 安装器。**
 >
-> 这是**实验性邀请 Preview，尚非稳定版或完整 RC 验收版**。当前以 Windows 生图、图库和批量任务为重点。
+> 这是**实验性邀请 Preview，尚非稳定版或完整 RC 验收版**，以 Windows 生图和图库管理体验为重点。116包含更新/关闭排水、所属清理和显示主题修复；公开签名发现、下载及隔离安装已验证，用户验收范围仍单独保留。
 
 当前主要限制：
 
-- 115 的命名归档、组织树和任务栏固定正在用户试用；自动检查不能代替真人验收或所有供应商的实际调用验证。
-- 多来源 Prompt 比较继续 pending；完整编辑／排版／交付／恢复的连贯人工验收、升级故障矩阵及小时级资源表现尚未全部覆盖。
-- Android 与独立 Server 尚未交付；当前下载仅面向 Windows x64。
+- 资产管理/编辑完整人工验收、115体验反馈和Prompt对比分别保留待验；自动与局部人工检查不能代替完整功能验收。日常安装状态单独留证。
+- q09编辑历史像素断言失败根因仍UNKNOWN；跨机器恢复、更多Windows环境、长时间负载及各供应商实际调用没有本轮新验收。
+- 清理只处理具有可信归属的废弃程序和缓存，受保护111、未知/自改文件、用户资料与备份保留。Windows Authenticode发布者签名尚未提供，不能把TUF更新签名视为Windows发布者认证。
+- Android 与 BYOK Server 尚未实施；当前可下载交付为 Windows x64。
 
-[当前实现与验证记录](https://github.com/MisakaPiano/CCB-Studio-Suite/blob/feature/windows-rc-continuous/docs/CURRENT_STATE.md) · [阶段独立复审交接](https://github.com/MisakaPiano/CCB-Studio-Suite/blob/feature/windows-rc-continuous/handoff/PROJECT_PHASE_REVIEW_20261024.md) · [后续首页链接同步步骤](https://github.com/MisakaPiano/CCB-Studio-Suite/blob/feature/windows-rc-continuous/docs/rc/PREVIEW_UPDATE_CONTINUITY.md#首页下载入口同步)
+[当前实现与验证记录](https://github.com/MisakaPiano/CCB-Studio-Suite/blob/feature/windows-rc-continuous/docs/CURRENT_STATE.md) · [阶段独立复审交接](https://github.com/MisakaPiano/CCB-Studio-Suite/blob/feature/windows-rc-continuous/handoff/PROJECT_PHASE_REVIEW_20261024.md) · [以后首页链接同步流程](https://github.com/MisakaPiano/CCB-Studio-Suite/blob/feature/windows-rc-continuous/docs/rc/PREVIEW_UPDATE_CONTINUITY.md#首页下载入口同步)
 
 ---
 
