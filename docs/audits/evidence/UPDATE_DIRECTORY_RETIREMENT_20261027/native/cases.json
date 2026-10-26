@@ -1,0 +1,34 @@
+[
+  {
+    "case": "legacy-inherited-cwd",
+    "status": "PASS",
+    "newVmPid": 27060,
+    "newCwd": "H:\\CCB-Studio-Suite\\.local\\disposable\\directory-native-7e8b154748324781a317c719a20defa1\\payload\\0\\programs\\2-bbbbbbbbbbbb",
+    "oldRootAbsentWhileBRunning": true,
+    "cleanupWorkerCwd": "H:\\CCB-Studio-Suite\\.local\\disposable\\directory-native-7e8b154748324781a317c719a20defa1\\payload\\0\\programs\\2-bbbbbbbbbbbb",
+    "cleanup": {
+      "status": "COMPLETE",
+      "removed": 4,
+      "deferred": 0
+    },
+    "receiptUnchanged": true,
+    "repeatRemoved": 0,
+    "normalShutdown": true
+  },
+  {
+    "case": "fixed-explicit-cwd",
+    "status": "PASS",
+    "newVmPid": 24524,
+    "newCwd": "H:\\CCB-Studio-Suite\\.local\\disposable\\directory-native-7e8b154748324781a317c719a20defa1\\payload\\1\\programs\\2-bbbbbbbbbbbb",
+    "oldRootAbsentWhileBRunning": true,
+    "cleanupWorkerCwd": "H:\\CCB-Studio-Suite\\.local\\disposable\\directory-native-7e8b154748324781a317c719a20defa1\\payload\\1\\programs\\2-bbbbbbbbbbbb",
+    "cleanup": {
+      "status": "COMPLETE",
+      "removed": 4,
+      "deferred": 0
+    },
+    "receiptUnchanged": true,
+    "repeatRemoved": 0,
+    "normalShutdown": true
+  }
+]

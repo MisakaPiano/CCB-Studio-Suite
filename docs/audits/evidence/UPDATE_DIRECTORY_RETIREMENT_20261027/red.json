@@ -1,0 +1,22 @@
+{
+  "status": "FAILED",
+  "cases": [
+    {
+      "case": "test_launch_directory.DirectoryRetirementTests.test_empty_cwd_is_deferred_then_retried_without_changing_complete",
+      "status": "FAILED",
+      "seconds": 1.3978920999943512
+    },
+    {
+      "case": "test_launch_directory.DirectoryRetirementTests.test_both_update_children_choose_new_program_directory",
+      "status": "FAILED",
+      "seconds": 0.8985345999972196
+    }
+  ],
+  "baseCommit": "594c006eb762730de8649016d06cd74c27048280",
+  "sourceHashes": {
+    "tools/update-runtime/apply_update.py": "0e7b7ded323591e57f0ccdca31fdf00e6327b0971730729c56a44d8cf6471c56",
+    "tools/update-runtime/owned_files.py": "d67f7ce0ffefa2dc6d2f1413f224383666800cc0892ae9e7a9dfe282d352a452",
+    "tools/update-runtime/residue_cleanup.py": "7b6a6de032b9d5b031141c4516c3e827ecb30048f1f44756194bda3c3ce1fb3d",
+    "tools/update-runtime/test_launch_directory.py": "fcb786acd6058abd11ab6d5f7ea495a4eaef8d2e9f4ce8d50a1904fe7f0ef808"
+  }
+}

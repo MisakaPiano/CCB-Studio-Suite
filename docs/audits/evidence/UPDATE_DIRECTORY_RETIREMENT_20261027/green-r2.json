@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "case": "test_launch_directory.DirectoryRetirementTests.test_both_update_children_choose_new_program_directory",
+      "status": "PASS",
+      "seconds": 0.45851179999590386
+    },
+    {
+      "case": "test_launch_directory.DirectoryRetirementTests.test_empty_cwd_is_deferred_then_retried_without_changing_complete",
+      "status": "PASS",
+      "seconds": 1.2549716000066837
+    },
+    {
+      "case": "test_launch_directory.DirectoryRetirementTests.test_empty_directory_access_denied_is_reported_and_can_retry",
+      "status": "PASS",
+      "seconds": 1.0570732000051066
+    },
+    {
+      "case": "test_launch_directory.DirectoryRetirementTests.test_unknown_nonempty_directory_retained_without_endless_retry",
+      "status": "PASS",
+      "seconds": 1.0503107999975327
+    }
+  ],
+  "baseCommit": "594c006eb762730de8649016d06cd74c27048280",
+  "sourceHashes": {
+    "tools/update-runtime/apply_update.py": "e4022b05154e82b2c4304b6b0e96e9f6cc33caaf411e7d098f53114fa61436ba",
+    "tools/update-runtime/owned_files.py": "1c1b798fcabfdf875da72121e856ad4542bfcdaf8692e0d489565ed9b163391a",
+    "tools/update-runtime/residue_cleanup.py": "b1f802839ddd719f57b54479902dde799081bb92a033c54ab4180a27a9b96327",
+    "tools/update-runtime/test_launch_directory.py": "fcb786acd6058abd11ab6d5f7ea495a4eaef8d2e9f4ce8d50a1904fe7f0ef808"
+  }
+}

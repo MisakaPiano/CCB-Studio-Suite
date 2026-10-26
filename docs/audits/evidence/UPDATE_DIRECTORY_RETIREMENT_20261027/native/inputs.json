@@ -1,0 +1,21 @@
+{
+  "javaSourceSha256": "30d8dea7dfd37ef8cfb3dd0a568848a35740b418a3dfd5f9f3b8a1f72526b2d3",
+  "baselineNativeExeSha256": "494f137e9fa8cb07b7f1d19ed6cc3e6dfac4afd3df16397390d30f1aee58541f",
+  "jnaSha256": "260c4b1e22b1db9e110ee441c4f13ce115f841fa48c41d78750986214b395557",
+  "commands": [
+    [
+      "C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.20.101-hotspot\\bin\\javac.exe",
+      "-encoding",
+      "UTF-8",
+      "--release",
+      "17",
+      "-cp",
+      ".local\\preview-candidate-116-20261026\\candidate\\payload\\app\\jna-5.18.1-cb531ec131e1c68c45b5d45fe5b9878.jar",
+      "-d",
+      "H:\\CCB-Studio-Suite\\.local\\disposable\\directory-native-7e8b154748324781a317c719a20defa1\\payload\\classes",
+      "H:\\CCB-Studio-Suite\\modules\\studio-desktop\\src\\main\\java\\io\\github\\misakapiano\\ccbstudio\\desktop\\UpdateLaunchDirectory.java",
+      "H:\\CCB-Studio-Suite\\tools\\update-runtime\\fixtures\\LaunchDirectoryProbe.java"
+    ]
+  ],
+  "scope": "NATIVE_PROCESS_DIRECTORY_ONLY_NO_TUF_NSIS_OR_REAL_DATA"
+}

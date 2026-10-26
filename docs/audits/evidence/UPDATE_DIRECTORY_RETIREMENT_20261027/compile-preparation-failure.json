@@ -1,0 +1,6 @@
+{
+  "command": "Embedded Python direct Run-PreviewChecks.py",
+  "resolution": "Add tools explicitly via sys.path and runpy; keep original failure",
+  "reason": "Embedded _pth excludes tools script directory; no Gradle invocation occurred",
+  "status": "PREPARATION_FAILED"
+}

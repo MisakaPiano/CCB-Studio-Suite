@@ -1,0 +1,270 @@
+{
+  "sourceCommit": "9f5a6a6be251326b2d4be27a8305cc6f74754d7b",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    {
+      "path": "compile/gradle.log",
+      "bytes": 1544,
+      "sha256": "251eea8ce9fd238ebe55313dfb42bd80b325b92f5acb8b3f85b2408ee631c7c3"
+    },
+    {
+      "path": "compile/summary.json",
+      "bytes": 899,
+      "sha256": "ac7a102baef7e1fd971de5ff17fdc886b9ed2abe80b625c77e9611dd69b0fc5d"
+    },
+    {
+      "path": "compile-preparation-failure.json",
+      "bytes": 281,
+      "sha256": "a71d9a167709f7300ebb92d655ae3e75d22fd781c896c17097b2c5df2ea02478"
+    },
+    {
+      "path": "fixture-logs/native/0/r/updates/cleanup/events.jsonl",
+      "bytes": 366,
+      "sha256": "f569d28d8ef02f60090d8301bc057fc7d740e178f291e9aedfe4aac50f9053c8"
+    },
+    {
+      "path": "fixture-logs/native/0/r/updates/handoffs/probe/READY",
+      "bytes": 128,
+      "sha256": "e7f46c0e3740fe6aa1fe80013a9ebf02c60cefd535a44aede968a5991ed0bce1"
+    },
+    {
+      "path": "fixture-logs/native/0/r/updates/handoffs/probe/result.json",
+      "bytes": 478,
+      "sha256": "212a91cb7b99e3eb2513fce43a5f4863306814d3e8d311ab65e0e5f02bcb117d"
+    },
+    {
+      "path": "fixture-logs/native/0/r/updates/worker-cwd.txt",
+      "bytes": 121,
+      "sha256": "8defb9e9868e9b31c7cc635b17e13d628fa5204c692f5f725ee2a4416786e7a2"
+    },
+    {
+      "path": "fixture-logs/native/1/r/updates/cleanup/events.jsonl",
+      "bytes": 365,
+      "sha256": "5e8c23ce4f671247131d731b7d723ddbeabf98a63fe0adfd87145514155c2062"
+    },
+    {
+      "path": "fixture-logs/native/1/r/updates/handoffs/probe/READY",
+      "bytes": 128,
+      "sha256": "a22d8a622cdcd15d6013a80833b03f51cdb292b1ba1d945f90d7dbfe27a9cd3e"
+    },
+    {
+      "path": "fixture-logs/native/1/r/updates/handoffs/probe/result.json",
+      "bytes": 478,
+      "sha256": "045b2d2f5172ba1b224b2980046074f1449ab0918eec4241b328caf156e3b771"
+    },
+    {
+      "path": "fixture-logs/native/1/r/updates/worker-cwd.txt",
+      "bytes": 121,
+      "sha256": "e46e1eaf2d73e15da134e809cde51c47acc2c9ea0ed9f070e47e35c57a3171a4"
+    },
+    {
+      "path": "fixture-logs/passing/green-r2/unicode space/residue-cleanup-fixtures/4269cbfe/runtime/updates/cleanup/events.jsonl",
+      "bytes": 554,
+      "sha256": "a0cc1ae18a77fd4763c39d642314a34ce18ec7e110dec0f1a4043490af87579c"
+    },
+    {
+      "path": "fixture-logs/passing/green-r2/unicode space/residue-cleanup-fixtures/4269cbfe/runtime/updates/handoffs/fixture/result.json",
+      "bytes": 582,
+      "sha256": "9ce385db0dca9d3caa738baad260367809552d564040661c7abdf2fcd531b4cc"
+    },
+    {
+      "path": "fixture-logs/passing/green-r2/unicode space/residue-cleanup-fixtures/b248165d/runtime/updates/cleanup/events.jsonl",
+      "bytes": 941,
+      "sha256": "38d28aa016ba835dba24943e0e69f67088c660c54722a72606dad731c625770d"
+    },
+    {
+      "path": "fixture-logs/passing/green-r2/unicode space/residue-cleanup-fixtures/b248165d/runtime/updates/handoffs/fixture/result.json",
+      "bytes": 582,
+      "sha256": "4f29efbddda3314f8d1b1628a6bf6cc29d394626dee243bcaf414b47e0dc8bea"
+    },
+    {
+      "path": "fixture-logs/passing/green-r2/unicode space/residue-cleanup-fixtures/e76e30a6/runtime/updates/handoffs/fixture/result.json",
+      "bytes": 582,
+      "sha256": "d12a88d421c01b719c46f76ec753e3b183d8a5bb44954fcf4120b41448ed5cd7"
+    },
+    {
+      "path": "fixture-logs/passing/green-r2/unicode space/residue-cleanup-fixtures/f8938f3c/runtime/updates/cleanup/events.jsonl",
+      "bytes": 831,
+      "sha256": "84e51013aa5fa089db4109b4e136edfe6aecbdab0d62b27ad85c8830c7bdd9cb"
+    },
+    {
+      "path": "fixture-logs/passing/green-r2/unicode space/residue-cleanup-fixtures/f8938f3c/runtime/updates/handoffs/fixture/result.json",
+      "bytes": 582,
+      "sha256": "805204aebe951ec85c3a352e060d99a65bd4746878553d6d88209cd68c3713df"
+    },
+    {
+      "path": "fixture-logs/passing/guards/residue-cleanup-fixtures/3b74a241/runtime/updates/cleanup/events.jsonl",
+      "bytes": 249,
+      "sha256": "c7ee8acc6d49b12fa9efc02c16c490bc69e825ec1e25d717657b991f3140d636"
+    },
+    {
+      "path": "fixture-logs/passing/guards/residue-cleanup-fixtures/3b74a241/runtime/updates/handoffs/fixture/result.json",
+      "bytes": 548,
+      "sha256": "f2f82ade7a15bb8dd219b5ccece15f1d0e8acfde82ad41d68c2fd11e60f049d5"
+    },
+    {
+      "path": "fixture-logs/passing/guards/residue-cleanup-fixtures/87a54b65/runtime/updates/cleanup/events.jsonl",
+      "bytes": 366,
+      "sha256": "f3f7ed920116497907914646726f028451789a5cad6adaf50f717b92e9dbac74"
+    },
+    {
+      "path": "fixture-logs/passing/guards/residue-cleanup-fixtures/87a54b65/runtime/updates/handoffs/fixture/result.json",
+      "bytes": 548,
+      "sha256": "498ad659da31a7a6cd14e506cbbf7f4d6101e425dc6f055a15fe465960cbd081"
+    },
+    {
+      "path": "fixture-logs/passing/guards/residue-cleanup-fixtures/925f006d/runtime/updates/handoffs/fixture/result.json",
+      "bytes": 548,
+      "sha256": "9383cd93044eab6c67b9d6f0350d49309dd199027612407988c4eba42f8eb5b9"
+    },
+    {
+      "path": "fixture-logs/passing/guards/residue-cleanup-fixtures/dec5b4fb/runtime/updates/handoffs/fixture/result.json",
+      "bytes": 548,
+      "sha256": "f646c86a767d79443eb9fe152829230b5b54d6f5e3e8b2fd6286fa757d3060e7"
+    },
+    {
+      "path": "fixture-logs/red/red/unicode space/residue-cleanup-fixtures/bdce47fd/runtime/updates/handoffs/fixture/result.json",
+      "bytes": 606,
+      "sha256": "0fdaf89089bdaf3d0cee988f33dffcfa75875410bc1fbf9961ece075b7ae1042"
+    },
+    {
+      "path": "fixture-logs/red/red/unicode space/residue-cleanup-fixtures/d20efa8f/runtime/updates/cleanup/events.jsonl",
+      "bytes": 283,
+      "sha256": "7ab5a9eaaae806caf1a9430c11318141520d816c7ba89962a1a18ae03499c44d"
+    },
+    {
+      "path": "fixture-logs/red/red/unicode space/residue-cleanup-fixtures/d20efa8f/runtime/updates/handoffs/fixture/result.json",
+      "bytes": 606,
+      "sha256": "b94d2a87e30c8c6eaccb5b98f8f5a2ef054010e3dedd42b652c1281ae030532e"
+    },
+    {
+      "path": "FIXTURE_RETIREMENT.json",
+      "bytes": 618,
+      "sha256": "2c4bab379bfa449563c07b9e12ab4bb1fdc663f9836807e4ea877786823df266"
+    },
+    {
+      "path": "green-r2.json",
+      "bytes": 1409,
+      "sha256": "19957b1d248713df66c1ddacfdd8e0e42263b6e58619896bb1f6bf270b2b1e77"
+    },
+    {
+      "path": "green-r2.log",
+      "bytes": 821,
+      "sha256": "cb124bb477d63a23bb46880eec73b8fa91e6bddba3e891056cb03c2ac5a6d2c7"
+    },
+    {
+      "path": "green.json",
+      "bytes": 1417,
+      "sha256": "cf1b8ec19861d5974482c3a104c0ed5f31f09dcd397f5fe3da6da40dcc0bbd39"
+    },
+    {
+      "path": "green.log",
+      "bytes": 9874,
+      "sha256": "6afbd414ee228ee3cc73d0f455552cd74b8cdbe98a028cdb61365c096ea427af"
+    },
+    {
+      "path": "guards.log",
+      "bytes": 835,
+      "sha256": "98c9fccae18f07903feb499b210a8aa69c13b08f3e075b90b5576270dd8ffa3e"
+    },
+    {
+      "path": "native/cases.json",
+      "bytes": 1249,
+      "sha256": "f8df34c6a9764523f99f9bc244b5fb8bab1ee55c345e473dbcea800daabd3aaf"
+    },
+    {
+      "path": "native/fixed-explicit-cwd-b-stderr.log",
+      "bytes": 142,
+      "sha256": "d665cc6f6a87978f33eeddfeae5a1617eaba768bb19d98cf974de74cd7c2fc26"
+    },
+    {
+      "path": "native/fixed-explicit-cwd-b-stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native/inputs.json",
+      "bytes": 1046,
+      "sha256": "9bbc2a43eba68b3f0b5f1f09cc675871aa6a83c7db6cbe3e20326cbae0256dd4"
+    },
+    {
+      "path": "native/javac.log",
+      "bytes": 142,
+      "sha256": "d665cc6f6a87978f33eeddfeae5a1617eaba768bb19d98cf974de74cd7c2fc26"
+    },
+    {
+      "path": "native/legacy-inherited-cwd-b-stderr.log",
+      "bytes": 284,
+      "sha256": "1be513e8000badaea5f60d91fe3450759228cd25d844e82d10a49c81d85cb98f"
+    },
+    {
+      "path": "native/legacy-inherited-cwd-b-stdout.log",
+      "bytes": 43,
+      "sha256": "1d181147b3120cbb7e97fa737847297519bab31bdd583070afe4777933026c8d"
+    },
+    {
+      "path": "red.json",
+      "bytes": 1006,
+      "sha256": "542085a13148612d99ea4c92af63804fb50668ecdefed873abf38ba570f568d3"
+    },
+    {
+      "path": "red.log",
+      "bytes": 1942,
+      "sha256": "c43ad436c0dc1ac142b0bfa594e41d4e20fa6f11d6abdcfa3564edf852956a08"
+    },
+    {
+      "path": "source/modules/studio-desktop/src/main/java/io/github/misakapiano/ccbstudio/desktop/UpdateLaunchDirectory.java.txt",
+      "bytes": 3255,
+      "sha256": "30d8dea7dfd37ef8cfb3dd0a568848a35740b418a3dfd5f9f3b8a1f72526b2d3"
+    },
+    {
+      "path": "source/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/Main.kt.txt",
+      "bytes": 17203,
+      "sha256": "f92b4a0caec2f8aa0db958b32f87690fbdde92357359372d0047d089e21b0f66"
+    },
+    {
+      "path": "source/modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioUpdateHandoff.kt.txt",
+      "bytes": 9585,
+      "sha256": "ceefb15e54bf2c0df8d9cd39b3cf45ef7c7d31c6329a458b07a7e2ec98807e5f"
+    },
+    {
+      "path": "source/tools/Test-UpdateLaunchDirectory.py.txt",
+      "bytes": 8682,
+      "sha256": "3e64109fc47f27ba1babbf2e08319ec6b22ae4dacb1062bb810f96c9a545c9d9"
+    },
+    {
+      "path": "source/tools/update-runtime/apply_update.py.txt",
+      "bytes": 15572,
+      "sha256": "e4022b05154e82b2c4304b6b0e96e9f6cc33caaf411e7d098f53114fa61436ba"
+    },
+    {
+      "path": "source/tools/update-runtime/fixtures/LaunchDirectoryProbe.java.txt",
+      "bytes": 1040,
+      "sha256": "8909a1be046c24440895877d8c39c617a0ba7f32542c0190c841cf232f2bfe96"
+    },
+    {
+      "path": "source/tools/update-runtime/owned_files.py.txt",
+      "bytes": 5548,
+      "sha256": "1c1b798fcabfdf875da72121e856ad4542bfcdaf8692e0d489565ed9b163391a"
+    },
+    {
+      "path": "source/tools/update-runtime/residue_cleanup.py.txt",
+      "bytes": 27307,
+      "sha256": "b1f802839ddd719f57b54479902dde799081bb92a033c54ab4180a27a9b96327"
+    },
+    {
+      "path": "source/tools/update-runtime/test_launch_directory.py.txt",
+      "bytes": 3304,
+      "sha256": "fcb786acd6058abd11ab6d5f7ea495a4eaef8d2e9f4ce8d50a1904fe7f0ef808"
+    },
+    {
+      "path": "SOURCE_MAPPING.json",
+      "bytes": 3260,
+      "sha256": "504dd384e0a29578d4fdc34450b937b213aa2edb568783d117e1c76a898a0758"
+    }
+  ]
+}

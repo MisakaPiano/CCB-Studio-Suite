@@ -1,0 +1,9 @@
+test_registered_program_and_backup_protection_override_retirement (test_residue_cleanup.ResidueCleanupTests.test_registered_program_and_backup_protection_override_retirement) ... ok
+test_interrupted_cleanup_replays_safely_and_repeated_cleanup_is_idempotent (test_residue_cleanup.ResidueCleanupTests.test_interrupted_cleanup_replays_safely_and_repeated_cleanup_is_idempotent) ... ok
+test_traversal_and_junction_refuse_any_outside_deletion (test_residue_cleanup.ResidueCleanupTests.test_traversal_and_junction_refuse_any_outside_deletion) ... ok
+test_secondary_workspace_and_invalid_protection_record_fail_closed (test_residue_cleanup.ResidueCleanupTests.test_secondary_workspace_and_invalid_protection_record_fail_closed) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 3.354s
+
+OK

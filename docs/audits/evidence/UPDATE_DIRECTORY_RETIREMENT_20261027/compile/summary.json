@@ -1,0 +1,29 @@
+{
+  "phase": "update-directory-20261027",
+  "startedUtc": "2026-10-26T17:28:39.140923+00:00",
+  "seconds": 161.343,
+  "exitCode": 0,
+  "tests": 0,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "COMMAND_SUCCESS",
+  "testEvidence": "NOT TESTED (build only or failed before execution)",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--priority",
+    "low",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:compileKotlin",
+    ":studio-desktop:compileJava"
+  ],
+  "baseCommit": "594c006eb762730de8649016d06cd74c27048280",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

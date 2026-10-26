@@ -1,0 +1,6 @@
+{"at": 1793035529.2334938, "event": "DIRECTORY_DEFERRED", "receipt": "2870c4dfbdf9479db5de33ea6fa04c5e.json", "base": "1-aaaaaaaaaaaa", "path": "app", "status": "RETRY_DIRECTORY", "winerror": 5}
+{"at": 1793035529.2823796, "event": "DIRECTORY_DEFERRED", "receipt": "2870c4dfbdf9479db5de33ea6fa04c5e.json", "base": "1-aaaaaaaaaaaa", "path": ".", "status": "RETRY_DIRECTORY", "winerror": 5}
+{"at": 1793035529.357759, "event": "RESOURCE_PASS", "receipt": "2870c4dfbdf9479db5de33ea6fa04c5e.json", "area": "program", "base": "1-aaaaaaaaaaaa", "counts": {"REMOVED": 6}, "retentionSeconds": 0}
+{"at": 1793035529.4416265, "event": "PASS_COMPLETE", "removed": 6, "deferred": 2}
+{"at": 1793035529.644803, "event": "RESOURCE_PASS", "receipt": "2870c4dfbdf9479db5de33ea6fa04c5e.json", "area": "program", "base": "1-aaaaaaaaaaaa", "counts": {}, "retentionSeconds": 0}
+{"at": 1793035529.708054, "event": "PASS_COMPLETE", "removed": 0, "deferred": 0}

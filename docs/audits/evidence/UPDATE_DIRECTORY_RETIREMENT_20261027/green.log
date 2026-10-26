@@ -1,0 +1,97 @@
+test_both_update_children_choose_new_program_directory (test_launch_directory.DirectoryRetirementTests.test_both_update_children_choose_new_program_directory) ... ERROR
+test_empty_cwd_is_deferred_then_retried_without_changing_complete (test_launch_directory.DirectoryRetirementTests.test_empty_cwd_is_deferred_then_retried_without_changing_complete) ... ERROR
+test_empty_directory_access_denied_is_reported_and_can_retry (test_launch_directory.DirectoryRetirementTests.test_empty_directory_access_denied_is_reported_and_can_retry) ... ERROR
+test_unknown_nonempty_directory_retained_without_endless_retry (test_launch_directory.DirectoryRetirementTests.test_unknown_nonempty_directory_retained_without_endless_retry) ... ERROR
+
+======================================================================
+ERROR: test_both_update_children_choose_new_program_directory (test_launch_directory.DirectoryRetirementTests.test_both_update_children_choose_new_program_directory)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 18, in setUp
+    self.old_receipt=enroll_program(self.cache,self.root,self.old,self.old_id,self.installer_hash,self.cache/'install-old.json',self.now)
+                     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\residue_cleanup.py", line 74, in enroll_program
+    return write_receipt(cache,install_root,'program',directory,files,expected,
+        dict(kind='VERIFIED_PRIOR_INSTALLATION' if pinned_manifest else 'VERIFIED_INSTALLER_OUTPUT',installerSha256=installer_sha256,
+             manifestSha256=file_identity(manifest)['sha256'],installJournal=Path(journal).name),now)
+  File "H:\CCB-Studio-Suite\tools\update-runtime\residue_cleanup.py", line 40, in write_receipt
+    atomic_json(path,dict(format=1,installRoot=str(install_root),cache=str(cache),area=area,base=base.name,
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        expected=identity(expected),files=files,proof=proof,createdAt=time.time() if now is None else now))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\install_ops.py", line 20, in atomic_json
+    with stage.open('x',encoding='utf-8') as stream:
+         ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 537, in open
+FileNotFoundError: [Errno 2] No such file or directory: 'H:\\CCB-Studio-Suite\\.local\\disposable\\directory-retirement-green-e9dcb80533084086be20b7b2039404e1\\payload\\green\\unicode space\\residue-cleanup-fixtures\\9668182b\\runtime\\updates\\cleanup\\owned\\58656059cc4b4f8dacde0fc7e1eafd64.json.8705c94ad49a496c99a529217ccb7a5a.tmp'
+
+======================================================================
+ERROR: test_empty_cwd_is_deferred_then_retried_without_changing_complete (test_launch_directory.DirectoryRetirementTests.test_empty_cwd_is_deferred_then_retried_without_changing_complete)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 18, in setUp
+    self.old_receipt=enroll_program(self.cache,self.root,self.old,self.old_id,self.installer_hash,self.cache/'install-old.json',self.now)
+                     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\residue_cleanup.py", line 74, in enroll_program
+    return write_receipt(cache,install_root,'program',directory,files,expected,
+        dict(kind='VERIFIED_PRIOR_INSTALLATION' if pinned_manifest else 'VERIFIED_INSTALLER_OUTPUT',installerSha256=installer_sha256,
+             manifestSha256=file_identity(manifest)['sha256'],installJournal=Path(journal).name),now)
+  File "H:\CCB-Studio-Suite\tools\update-runtime\residue_cleanup.py", line 40, in write_receipt
+    atomic_json(path,dict(format=1,installRoot=str(install_root),cache=str(cache),area=area,base=base.name,
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        expected=identity(expected),files=files,proof=proof,createdAt=time.time() if now is None else now))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\install_ops.py", line 20, in atomic_json
+    with stage.open('x',encoding='utf-8') as stream:
+         ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 537, in open
+FileNotFoundError: [Errno 2] No such file or directory: 'H:\\CCB-Studio-Suite\\.local\\disposable\\directory-retirement-green-e9dcb80533084086be20b7b2039404e1\\payload\\green\\unicode space\\residue-cleanup-fixtures\\fa008c42\\runtime\\updates\\cleanup\\owned\\f3fce7496ec04c0b82f482b48e2057a3.json.194064a215424e1a998ff21354a35c10.tmp'
+
+======================================================================
+ERROR: test_empty_directory_access_denied_is_reported_and_can_retry (test_launch_directory.DirectoryRetirementTests.test_empty_directory_access_denied_is_reported_and_can_retry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 18, in setUp
+    self.old_receipt=enroll_program(self.cache,self.root,self.old,self.old_id,self.installer_hash,self.cache/'install-old.json',self.now)
+                     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\residue_cleanup.py", line 74, in enroll_program
+    return write_receipt(cache,install_root,'program',directory,files,expected,
+        dict(kind='VERIFIED_PRIOR_INSTALLATION' if pinned_manifest else 'VERIFIED_INSTALLER_OUTPUT',installerSha256=installer_sha256,
+             manifestSha256=file_identity(manifest)['sha256'],installJournal=Path(journal).name),now)
+  File "H:\CCB-Studio-Suite\tools\update-runtime\residue_cleanup.py", line 40, in write_receipt
+    atomic_json(path,dict(format=1,installRoot=str(install_root),cache=str(cache),area=area,base=base.name,
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        expected=identity(expected),files=files,proof=proof,createdAt=time.time() if now is None else now))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\install_ops.py", line 20, in atomic_json
+    with stage.open('x',encoding='utf-8') as stream:
+         ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 537, in open
+FileNotFoundError: [Errno 2] No such file or directory: 'H:\\CCB-Studio-Suite\\.local\\disposable\\directory-retirement-green-e9dcb80533084086be20b7b2039404e1\\payload\\green\\unicode space\\residue-cleanup-fixtures\\2eddc5df\\runtime\\updates\\cleanup\\owned\\2d5fb2c0442f42a8b144f0741bcf8f98.json.f1c15556709846cabdc558b67d2c96bd.tmp'
+
+======================================================================
+ERROR: test_unknown_nonempty_directory_retained_without_endless_retry (test_launch_directory.DirectoryRetirementTests.test_unknown_nonempty_directory_retained_without_endless_retry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 18, in setUp
+    self.old_receipt=enroll_program(self.cache,self.root,self.old,self.old_id,self.installer_hash,self.cache/'install-old.json',self.now)
+                     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\residue_cleanup.py", line 74, in enroll_program
+    return write_receipt(cache,install_root,'program',directory,files,expected,
+        dict(kind='VERIFIED_PRIOR_INSTALLATION' if pinned_manifest else 'VERIFIED_INSTALLER_OUTPUT',installerSha256=installer_sha256,
+             manifestSha256=file_identity(manifest)['sha256'],installJournal=Path(journal).name),now)
+  File "H:\CCB-Studio-Suite\tools\update-runtime\residue_cleanup.py", line 40, in write_receipt
+    atomic_json(path,dict(format=1,installRoot=str(install_root),cache=str(cache),area=area,base=base.name,
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        expected=identity(expected),files=files,proof=proof,createdAt=time.time() if now is None else now))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\install_ops.py", line 20, in atomic_json
+    with stage.open('x',encoding='utf-8') as stream:
+         ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 537, in open
+FileNotFoundError: [Errno 2] No such file or directory: 'H:\\CCB-Studio-Suite\\.local\\disposable\\directory-retirement-green-e9dcb80533084086be20b7b2039404e1\\payload\\green\\unicode space\\residue-cleanup-fixtures\\1309c05e\\runtime\\updates\\cleanup\\owned\\9b9aef21c5934bdc87b147399f5bd0f0.json.d8cb0ac4068b473e83c8c3fda44ac484.tmp'
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.468s
+
+FAILED (errors=4)

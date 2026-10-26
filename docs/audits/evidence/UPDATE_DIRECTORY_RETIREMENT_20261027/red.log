@@ -1,0 +1,28 @@
+test_empty_cwd_is_deferred_then_retried_without_changing_complete (test_launch_directory.DirectoryRetirementTests.test_empty_cwd_is_deferred_then_retried_without_changing_complete) ... FAIL
+test_both_update_children_choose_new_program_directory (test_launch_directory.DirectoryRetirementTests.test_both_update_children_choose_new_program_directory) ... FAIL
+
+======================================================================
+FAIL: test_empty_cwd_is_deferred_then_retried_without_changing_complete (test_launch_directory.DirectoryRetirementTests.test_empty_cwd_is_deferred_then_retried_without_changing_complete)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_launch_directory.py", line 24, in test_empty_cwd_is_deferred_then_retried_without_changing_complete
+    self.assertEqual(result['status'],'DEFERRED')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'COMPLETE' != 'DEFERRED'
+- COMPLETE
++ DEFERRED
+
+
+======================================================================
+FAIL: test_both_update_children_choose_new_program_directory (test_launch_directory.DirectoryRetirementTests.test_both_update_children_choose_new_program_directory)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_launch_directory.py", line 39, in test_both_update_children_choose_new_program_directory
+    self.assertTrue(any(k.arg=='cwd' and isinstance(k.value,ast.Name) and k.value.id=='final' for k in call.keywords))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 2 tests in 2.297s
+
+FAILED (failures=2)
