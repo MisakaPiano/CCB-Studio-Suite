@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "helperResult": {
+    "status": "INSTALLED_NOT_STARTED",
+    "target": "H:\\CCB-Studio-Suite\\.local\\disposable\\pv-e5ed35fb071b4943887578d53e034275\\payload\\programs\\116-9839bce20ccd",
+    "stage": "H:\\CCB-Studio-Suite\\.local\\disposable\\pv-e5ed35fb071b4943887578d53e034275\\payload\\programs\\116-9839bce20ccd.4143a7d331494a279760b2f6deb5bf2d.installing",
+    "expected": {
+      "product": "ccb-studio-suite",
+      "platform": "windows-x86_64",
+      "channel": "preview",
+      "version": 116,
+      "sourceSha": "9839bce20ccdf4460e0aa42befcb070c1a6a235f"
+    },
+    "dataModified": false,
+    "verification": {
+      "files": 550,
+      "bytes": 252882745,
+      "manifestSha256": "c3183c60438f1941343247c7607cb3afe873510f8ca732fb6dec3d2f73aa7137"
+    }
+  },
+  "verified": {
+    "files": 550,
+    "bytes": 252882745,
+    "manifestSha256": "c3183c60438f1941343247c7607cb3afe873510f8ca732fb6dec3d2f73aa7137"
+  },
+  "journal": "H:\\CCB-Studio-Suite\\.local\\disposable\\pv-e5ed35fb071b4943887578d53e034275\\payload\\runtime\\updates\\install-fc78ac8d4ecc404f93931381fe3102b6.json",
+  "installerSha256": "8fee16c386f1da7a247b0f8a739b067687ab6712f9ad0e749fff106e0648966e",
+  "oldClientModules": {
+    "studio_update": {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\performance-107\\115-ff145d051bae\\updater\\lib\\studio_update.py",
+      "sha256": "10b9719f4ad777847d25bc159727fe8cd1954cdafdee6f24e955c8b52e65211a"
+    },
+    "install_ops": {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\performance-107\\115-ff145d051bae\\updater\\lib\\install_ops.py",
+      "sha256": "3faf7342ecb50d054a21354402e45077570eef689a363c94425dabe987f2b0f4"
+    },
+    "github_transport": {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\performance-107\\115-ff145d051bae\\updater\\lib\\github_transport.py",
+      "sha256": "93c0e136239b111948c169224d101045a2d22c80324b52d59838c70381b73c0d"
+    }
+  },
+  "dataSentinelMatched": true,
+  "actualOldNativeGui": "NOT TESTED IN THIS CASE",
+  "newNativeStart": "NOT STARTED",
+  "dailyInstallationAccessed": false,
+  "driverFailurePreserved": "PUBLIC_DRIVER_FAILURE.json",
+  "downloadInstallRerun": false
+}

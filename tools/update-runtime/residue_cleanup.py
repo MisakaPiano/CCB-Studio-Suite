@@ -7,7 +7,7 @@ are local integrity records, not a new publisher trust anchor or a hostile-user 
 from pathlib import Path
 import argparse, hashlib, json, os, re, time, uuid
 from owned_files import relative, held, held_parents, delete_matching, prune_empty
-from install_ops import no_reparse, atomic_json, verify_install
+from install_ops import no_reparse, atomic_json, verify_install, immutable_file
 from studio_update import UpdateRejected, exclusive
 
 ROLLBACK_SECONDS=0 # User policy: retire immediately after COMPLETE, no time-based rollback copy.
@@ -136,9 +136,9 @@ def verified_completion(plan,result,cache):
 
 def completed_updates(cache,install_root):
     """Keep handoff proof in place. Return bounded identity projections, never log snapshots."""
-    completed=[];blocked=set();pending_downloads=set()
+    completed=[];blocked=set();pending_downloads=set();pending_targets=set()
     folders=cache/'handoffs'
-    if not folders.exists():return completed,blocked,pending_downloads
+    if not folders.exists():return completed,blocked,pending_downloads,pending_targets
     paths=sorted(folders.iterdir())
     if len(paths)>MAX_RECEIPTS:raise UpdateRejected('Handoff inspection bound reached; retained')
     for folder in paths:
@@ -148,7 +148,29 @@ def completed_updates(cache,install_root):
         if not plan_path.exists():continue
         plan=read_json(plan_path);result=read_json(result_path) if result_path.exists() else {}
         if plan.get('format')!=1 or not re.fullmatch('[0-9a-f]{64}',plan.get('nonce','')):raise UpdateRejected('Invalid handoff identity')
-        if Path(plan.get('cache','')).absolute()!=cache:raise UpdateRejected('Cleanup handoff cache mismatch')
+        origin=plan.get('cache')
+        if not isinstance(origin,str) or not Path(origin).is_absolute():raise UpdateRejected('Invalid handoff cache identity')
+        if Path(origin).absolute()!=cache:
+            # A retained handoff can predate an install-root rename or move. Its
+            # terminal marker never authorizes deletion here. Preserve its local
+            # references and target identity without rewriting/traversing old roots.
+            approved=plan.get('approved',{})
+            key=(approved.get('channel'),approved.get('version'),approved.get('sourceSha'))
+            if (key[0] not in ('internal','preview','stable') or type(key[1]) is not int or key[1]<1
+                or not isinstance(key[2],str) or not re.fullmatch('[0-9a-f]{40}',key[2])):
+                raise UpdateRejected('Unprojectable historical handoff; retained')
+            pending_targets.add(key);blocked.add(str(key[1])+'-'+key[2][:12])
+            for value in (plan.get('installed'),result.get('installed')):
+                if value is None:continue
+                if not isinstance(value,str) or not Path(value).is_absolute():raise UpdateRejected('Invalid historical program reference')
+                candidate=Path(value).absolute()
+                if candidate.parent==install_root:blocked.add(no_reparse(candidate).name)
+            installer=approved.get('installer')
+            if installer is not None:
+                if not isinstance(installer,str) or not Path(installer).is_absolute():raise UpdateRejected('Invalid historical download reference')
+                directory=Path(installer).absolute().parent
+                if directory.parent==cache/'downloads':pending_downloads.add(no_reparse(directory))
+            continue
         completion=verified_completion(plan,result,cache)
         verified_failed=result.get('status')=='FAILED_RETAINED' and result.get('nonce')==plan['nonce']
         if completion is None and not verified_failed:
@@ -164,7 +186,7 @@ def completed_updates(cache,install_root):
                 if 'version' in approved and 'sourceSha' in approved:blocked.add(str(approved['version'])+'-'+approved['sourceSha'][:12])
             continue
         completed.append(dict(old=old.name,new=new.name,approved=plan['approved'],**completion,nonce=plan['nonce'],completedAt=result_path.stat().st_mtime))
-    return completed,blocked,pending_downloads
+    return completed,blocked,pending_downloads,pending_targets
 
 def run(package,cache,data,runtime,startup_token=None,now=None,after_delete=lambda _:None):
     now=time.time() if now is None else now
@@ -176,7 +198,7 @@ def run(package,cache,data,runtime,startup_token=None,now=None,after_delete=lamb
         return dict(status='RETAINED_SECONDARY_WORKSPACE',removed=0)
     protections=protected_paths(root,data,runtime)
     with exclusive(cache):
-        completed,blocked,pending_downloads=completed_updates(cache,root)
+        completed,blocked,pending_downloads,pending_targets=completed_updates(cache,root)
         current=[c for c in completed if c['new']==package.name]
         if not current:return dict(status='RETAINED_NO_COMPLETE_HANDOFF',removed=0)
         folder=no_reparse(cache/'cleanup');folder.mkdir(exist_ok=True)
@@ -189,6 +211,26 @@ def run(package,cache,data,runtime,startup_token=None,now=None,after_delete=lamb
         owned=folder/'owned';owned.mkdir(exist_ok=True);no_reparse(owned)
         paths=sorted(owned.glob('*.json'))
         if len(paths)>MAX_RECEIPTS:raise UpdateRejected('Cleanup receipt bound reached; retained')
+        # Older clients did not enroll downloads. Adopt only the exact bytes named
+        # by a verified completed handoff, never by scanning old download folders.
+        known_downloads={read_json(p).get('base') for p in paths if read_json(p).get('area')=='download'}
+        for completion in completed:
+            approved=completion['approved'];value=approved.get('installer')
+            if not isinstance(value,str) or not Path(value).is_absolute():continue
+            installer=Path(value).absolute();directory=installer.parent
+            if (installer.name!='studio-installer.exe' or directory.parent!=cache/'downloads'
+                or not re.fullmatch(r'[0-9a-f-]{36}',directory.name) or directory.name in known_downloads):continue
+            installer=no_reparse(installer);verified=no_reparse(directory/'VERIFIED.json')
+            if not installer.is_file() or not verified.is_file():continue
+            expected=completion['installation']['expected']
+            with held_parents(installer),immutable_file(installer) as stream,immutable_file(verified):
+                proof=read_json(verified)
+                if (any(proof.get(k)!=expected[k] for k in ('version','sourceSha','channel'))
+                    or proof.get('sha256')!=approved['sha256']
+                    or hashlib.file_digest(stream,'sha256').hexdigest()!=approved['sha256']):continue
+                receipt=enroll_download(cache,root,directory,expected,approved['sha256'],True,now)
+            paths.append(receipt);known_downloads.add(directory.name)
+            if len(paths)>MAX_RECEIPTS:raise UpdateRejected('Cleanup receipt bound reached; retained')
         # First upgrade into this feature can use an older helper. Adopt ONLY the running
         # new package, tied to that helper's pinned manifest digest, never its predecessor.
         if not any(read_json(p).get('area')=='program' and read_json(p).get('base')==package.name for p in paths):
@@ -231,7 +273,7 @@ def run(package,cache,data,runtime,startup_token=None,now=None,after_delete=lamb
             if not re.fullmatch('[0-9a-f]{64}',proof.get('installerSha256','')):raise UpdateRejected('Missing source proof')
             matching=[c for c in completed if all(c['installation']['expected'].get(k)==expected[k] for k in ('product','platform','channel','sourceSha','version')) and c['approved'].get('sha256')==proof['installerSha256']]
             if area=='download':
-                if base in pending_downloads:continue
+                if base in pending_downloads or (expected['channel'],expected['version'],expected['sourceSha']) in pending_targets:continue
                 # Verified candidates awaiting installation are not failed output.
                 # Only completion of that exact target releases them.
                 if proof['kind']=='TUF_VERIFIED_DOWNLOAD' and not matching:continue

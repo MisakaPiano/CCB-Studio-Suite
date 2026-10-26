@@ -1,0 +1,8 @@
+test_old_cache_record_is_retained_without_blocking_unrelated_completed_cleanup (test_residue_cleanup.ResidueCleanupTests.test_old_cache_record_is_retained_without_blocking_unrelated_completed_cleanup) ... ok
+test_old_cache_unproven_local_references_still_protect_program_and_download (test_residue_cleanup.ResidueCleanupTests.test_old_cache_unproven_local_references_still_protect_program_and_download) ... ok
+test_old_cache_record_without_projectable_target_fails_closed (test_residue_cleanup.ResidueCleanupTests.test_old_cache_record_without_projectable_target_fails_closed) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 2.785s
+
+OK

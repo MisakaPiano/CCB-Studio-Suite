@@ -1,0 +1,208 @@
+{
+  "format": 1,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 21,
+      "sha256": "d52819fcfcc346c0c10a630c519d3045b4f9297e92f2de18338775c687c37b25"
+    },
+    {
+      "path": "control/APP_IMAGE_BEFORE.json",
+      "bytes": 41102,
+      "sha256": "daf06474a8a1ffd1107970dee845b394baa9c32a1f614a2f039d7f1795f65e1e"
+    },
+    {
+      "path": "control/APP_IMAGE_REFERENCE_DIFF.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "control/BUDGET.json",
+      "bytes": 466,
+      "sha256": "93176bbfc30c46dc0f223f5869b22ce80602538a55071727f853c31fc21d99c2"
+    },
+    {
+      "path": "control/build-and-verify.py",
+      "bytes": 8917,
+      "sha256": "e3c4b4b1b7709a9ee4c7c5108e4c6c4a4f007d3e66dffc10c27c5b508cd364b7"
+    },
+    {
+      "path": "control/ENVIRONMENT_SCOPE.json",
+      "bytes": 456,
+      "sha256": "ba6211742a7ecbd1b3a67f8ad33d45d3e636ef0ecfb6cc8116a34aea70be9347"
+    },
+    {
+      "path": "control/install.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "control/INSTALL_COMMAND.json",
+      "bytes": 382,
+      "sha256": "008568e32827df31b26195a6b895c77bbaf4b0eb60aa6c2b8f3dd293eb47fcb7"
+    },
+    {
+      "path": "control/INSTALL_FIXTURE_OWNER.json",
+      "bytes": 284,
+      "sha256": "dad3a03c308a58e456250354240bdf0120b76b522a11824426e08efd3ffa5a2f"
+    },
+    {
+      "path": "control/INSTALL_FIXTURE_RETIREMENT.json",
+      "bytes": 495,
+      "sha256": "b34803b603b20a4b572c92ba2239555fc7b21144da014ee4fbf56e04159c38ad"
+    },
+    {
+      "path": "control/INSTALL_VERIFICATION.json",
+      "bytes": 3431,
+      "sha256": "7c620b3a9f82d459802ed2e66369d4718e2266b7c374e7d2dc6607de71b8bdb6"
+    },
+    {
+      "path": "control/materials.log",
+      "bytes": 213,
+      "sha256": "a558de5ef311bc01742184c2f5cf1200973cd86cdf6cf9589e57d78610a24524"
+    },
+    {
+      "path": "control/MATERIALS_PREPARATION_FAILURE.json",
+      "bytes": 553,
+      "sha256": "260460b7bcf17d4b80a7dec7741e93e187b70b727585199c66e836d0572b6e4e"
+    },
+    {
+      "path": "control/memory-samples.jsonl",
+      "bytes": 18751,
+      "sha256": "7fcf691adc0ca91493a3a083de214f897a7bf6f91084a1a67a0850e54db54ea7"
+    },
+    {
+      "path": "control/package.log",
+      "bytes": 415,
+      "sha256": "2ce5a8f8d2fe920e404053def59c2512d8d5e2413da78c779a7e7e332eeafcc2"
+    },
+    {
+      "path": "control/PACKAGE_COMMAND.json",
+      "bytes": 1295,
+      "sha256": "3a20943b233004a93837f223a3d7fe341954c802e610fff79f77801bac9502f9"
+    },
+    {
+      "path": "control/PACKAGE_EXIT.json",
+      "bytes": 23,
+      "sha256": "ea61d7736f0b7ecb9b35158f03de77013db6b100cf1d36c957e78e6c8817c5b6"
+    },
+    {
+      "path": "control/PLAN.json",
+      "bytes": 1095,
+      "sha256": "fb05205f1f60c1e4ad98a6ff97ebfe7e56a28a80c01ffae7c61d103e6b512445"
+    },
+    {
+      "path": "control/prepare-materials-attempt-a.py",
+      "bytes": 4001,
+      "sha256": "38bb52d847320d3ad70f7436c92bf0ef43e9aff78a1fcd86d833081c748ba692"
+    },
+    {
+      "path": "control/prepare-materials.py",
+      "bytes": 4075,
+      "sha256": "0e7f93afec6e8f540214c2614a24d155f70de5e11afa5e83381a71f567be50eb"
+    },
+    {
+      "path": "control/prepare.py",
+      "bytes": 5132,
+      "sha256": "b9c98bae573d91ddf806b2bc41ea5ccb052558adbc98de7e08bbe52f888e1a23"
+    },
+    {
+      "path": "control/PUBLICATION_MANIFEST.json",
+      "bytes": 2776,
+      "sha256": "06627802c629a313bd5357fa02b90d56b12784f18f9616b0b2cdb54172431922"
+    },
+    {
+      "path": "control/README.zh-CN.txt",
+      "bytes": 561,
+      "sha256": "0bdd2d4a5d7e968d374d6e66ef53b485e41ae137ad0cf5494e271095a43df8e5"
+    },
+    {
+      "path": "control/release-profile.json",
+      "bytes": 170,
+      "sha256": "d7e49af30e24c15a4095a04fb2b976a0a130673ff9cf220d055311ff355b39fd"
+    },
+    {
+      "path": "control/RELEASE_NOTES.md",
+      "bytes": 2395,
+      "sha256": "7269878405922ee7582bad81fdfbfb39ad6e71172976b21634545fb8b1084489"
+    },
+    {
+      "path": "control/REMOTE_RELEASE_OBSERVATION.json",
+      "bytes": 1047,
+      "sha256": "309bad75d95a4bdd443617bccd462b20290d82cb08e873a8020deb55177ae8ee"
+    },
+    {
+      "path": "control/RESOURCE_ADMISSION.json",
+      "bytes": 172,
+      "sha256": "5b1002b608e771ef4607894b45a859b24566f208c608acadbb025ef7f48659eb"
+    },
+    {
+      "path": "control/retire-install-fixture.py",
+      "bytes": 1037,
+      "sha256": "08fb867c01790258e7629d0f1ad66b641b08659673d011039db3868cc72bebc7"
+    },
+    {
+      "path": "control/RUN_RESULT.json",
+      "bytes": 433,
+      "sha256": "b89fe3951c78c7456f62de5746da72325892766323c900593eccba0673c6e7d5"
+    },
+    {
+      "path": "control/runner.log",
+      "bytes": 435,
+      "sha256": "e2c794aae1ace4748843953c0d81a6d8cb322c25f459c43d558241f8da0da74b"
+    },
+    {
+      "path": "control/SHA256SUMS.txt",
+      "bytes": 293,
+      "sha256": "b63001b44aa2f06b9050f0158b880569fbd8e19cf059c6585c9d9563b0549208"
+    },
+    {
+      "path": "control/UNSIGNED_TARGET_PROPOSAL.json",
+      "bytes": 3817,
+      "sha256": "924cad6123e51ca58a32e991bc6f96f922f0c5665af67899146be88c62ff19fb"
+    },
+    {
+      "path": "package/BUILD_RECEIPT.json",
+      "bytes": 457,
+      "sha256": "cc41be1230b488ea5b2bfaf8de0ab79d95d3144fec10e711f1d0ea9053c1db63"
+    },
+    {
+      "path": "package/compile.log",
+      "bytes": 1415,
+      "sha256": "13e974c4e6b655bd5e15a1c1e4a998cf47d4bc28ea930b9ec8b3bd2d5f3bbd60"
+    },
+    {
+      "path": "package/INSTALL_MANIFEST.json",
+      "bytes": 101638,
+      "sha256": "c3183c60438f1941343247c7607cb3afe873510f8ca732fb6dec3d2f73aa7137"
+    },
+    {
+      "path": "package/installer.nsi",
+      "bytes": 136053,
+      "sha256": "bafeade8c0d8757a3cda2888cebb9760f9d028303320cb347a01acc7d790f9c9"
+    },
+    {
+      "path": "package/update-config.json",
+      "bytes": 682,
+      "sha256": "78cca1f6283067644de6c26d347b3bfb24b7419c08c6d863cc87dd57b79ff468"
+    },
+    {
+      "path": "package/update-root.json",
+      "bytes": 1567,
+      "sha256": "408008d80aeb2dd3844325d74f09da9d248733e220dd88c08cc6299c4a24cc7a"
+    },
+    {
+      "path": "REUSED_EVIDENCE_MAPPING.json",
+      "bytes": 1582,
+      "sha256": "91adb7d10f911810051abbe12aa4228831fb8f7211c9c7d938de9d34508d838b"
+    },
+    {
+      "path": "SOURCE_INPUTS.json",
+      "bytes": 1318,
+      "sha256": "dea9b0ebbc06c26e511c0028575cfe3b25ef932b92bf6d59124fd6dd14210e29"
+    }
+  ],
+  "rawBytesPreserved": true,
+  "realUserData": 0,
+  "privateKeys": 0
+}

@@ -1,0 +1,27 @@
+{
+  "arguments": [
+    "H:\\CCB-Studio-Suite\\.local\\windows-rc\\updater-runtime-115\\python.exe",
+    "-B",
+    "H:\\CCB-Studio-Suite\\tools\\Build-InternalInstaller.py",
+    "--app",
+    "H:\\CCB-Studio-Suite\\modules\\studio-desktop\\build\\compose\\binaries\\main\\app\\CCBStudioSuitePreview",
+    "--runtime",
+    "H:\\CCB-Studio-Suite\\.local\\candidate-review-20261026\\updater-runtime",
+    "--bootstrap",
+    "H:\\CCB-Studio-Suite\\.local\\disposable\\ab-d44233293dff4f1f8f6e9727ad12134e\\payload\\review-update-native\\repository\\root.json",
+    "--destination",
+    "H:\\CCB-Studio-Suite\\.local\\disposable\\ab-d44233293dff4f1f8f6e9727ad12134e\\payload\\review-update-native\\candidate",
+    "--version",
+    "2",
+    "--metadata-url",
+    "http://127.0.0.1:51519/metadata/",
+    "--targets-url",
+    "http://127.0.0.1:51519/targets/",
+    "--build-evidence",
+    "H:\\CCB-Studio-Suite\\.local\\windows-preview\\evidence\\20261026T100534386552Z-token-candidate-app-20261026"
+  ],
+  "source": "9839bce20ccdf4460e0aa42befcb070c1a6a235f",
+  "appBuild": "0f11fdd6b6d281987dd7c449d623a74b8b74b8f0",
+  "public": false,
+  "formalTrustChanged": false
+}

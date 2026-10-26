@@ -1,0 +1,29 @@
+{
+  "arguments": [
+    "H:\\CCB-Studio-Suite\\.local\\windows-rc\\updater-runtime-115\\python.exe",
+    "-B",
+    "H:\\CCB-Studio-Suite\\tools\\Build-InternalInstaller.py",
+    "--app",
+    "H:\\CCB-Studio-Suite\\modules\\studio-desktop\\build\\compose\\binaries\\main\\app\\CCBStudioSuitePreview",
+    "--runtime",
+    "H:\\CCB-Studio-Suite\\.local\\candidate-review-20261026\\updater-runtime",
+    "--bootstrap",
+    "H:\\CCB-Studio-Suite\\.local\\preview-candidate-116-20261026\\preview-update-root.json",
+    "--destination",
+    "H:\\CCB-Studio-Suite\\.local\\preview-candidate-116-20261026\\candidate",
+    "--version",
+    "116",
+    "--metadata-url",
+    "https://raw.githubusercontent.com/MisakaPiano/CCB-Studio-Suite/long-term-metadata/preview/windows-x86_64/metadata/",
+    "--targets-url",
+    "https://github.com/MisakaPiano/CCB-Studio-Suite/releases/download/",
+    "--build-evidence",
+    "H:\\CCB-Studio-Suite\\.local\\windows-preview\\evidence\\20261026T100534386552Z-token-candidate-app-20261026",
+    "--release-profile",
+    "H:\\CCB-Studio-Suite\\.local\\preview-candidate-116-20261026\\release-profile.json",
+    "--consume-app-image"
+  ],
+  "source": "9839bce20ccdf4460e0aa42befcb070c1a6a235f",
+  "formalKeysRead": false,
+  "publish": false
+}

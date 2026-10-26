@@ -1,0 +1,18 @@
+{
+  "source": "9839bce20ccdf4460e0aa42befcb070c1a6a235f",
+  "appBuildSource": "0f11fdd6b6d281987dd7c449d623a74b8b74b8f0",
+  "version": 116,
+  "displayVersion": "0.0.0-preview.116",
+  "proposedTag": "v0.0.0-preview.116",
+  "tagCreated": false,
+  "formalRootSha256": "408008d80aeb2dd3844325d74f09da9d248733e220dd88c08cc6299c4a24cc7a",
+  "runtime": "H:\\CCB-Studio-Suite\\.local\\candidate-review-20261026\\updater-runtime",
+  "app": "H:\\CCB-Studio-Suite\\modules\\studio-desktop\\build\\compose\\binaries\\main\\app\\CCBStudioSuitePreview",
+  "buildEvidence": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\evidence\\20261026T100534386552Z-token-candidate-app-20261026",
+  "installerName": "CCB-Studio-Suite-0.0.0-preview.116-windows-x64.exe",
+  "noticesSha256": "c96a425a18f8b75d2d8939b595fa6809c432b398a9a62000484a8eb300de7b07",
+  "publication": "WAITING_FOR_USER_CONFIRMATION",
+  "dailyInstallation": "DO_NOT_MODIFY",
+  "signingKeysRead": false,
+  "scope": "Package/install/identity/release-material checks only; reuse fixed regressions; no expanded tests, no new Gradle"
+}

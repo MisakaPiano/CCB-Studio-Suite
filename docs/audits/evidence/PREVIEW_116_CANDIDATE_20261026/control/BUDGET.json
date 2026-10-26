@@ -1,0 +1,10 @@
+{
+  "hRequiredAdditionalBytes": 828603664,
+  "appBytes": 215144160,
+  "runtimeBytes": 37558368,
+  "previousInstallerBytes": 168998707,
+  "calculation": "Supported same-volume consume of disposable app image, runtime copy, installer x1.2, full isolated installation,64MiB packaging buffer and256MiB safety. No Gradle/app-image duplication or native A/B rerun.",
+  "cBudgetBytes": 268435456,
+  "physicalEstimateBytes": 268435456,
+  "notMeasuredPeak": true
+}

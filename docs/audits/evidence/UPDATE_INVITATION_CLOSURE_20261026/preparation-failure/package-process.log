@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\Build-InternalInstaller.py", line 146, in <module>
+    a=p.parse_args();build(a.app,a.runtime,a.bootstrap,a.destination,a.version,a.metadata_url,a.targets_url,a.build_evidence,
+                     ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                          json.loads(a.release_profile.read_text(encoding='utf-8')) if a.release_profile else None,a.consume_app_image)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\Build-InternalInstaller.py", line 56, in build
+    sha=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
+        ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "subprocess.py", line 473, in check_output
+  File "subprocess.py", line 555, in run
+  File "subprocess.py", line 1040, in __init__
+  File "subprocess.py", line 1555, in _execute_child
+FileNotFoundError: [WinError 2] 系统找不到指定的文件。

@@ -1,0 +1,43 @@
+DRAFT_CREATED 424305004
+UPLOADING CCB-Studio-Suite-0.0.0-preview.116-windows-x64.exe
+ASSET_VERIFIED CCB-Studio-Suite-0.0.0-preview.116-windows-x64.exe
+UPLOADING RELEASE_NOTES.md
+ASSET_VERIFIED RELEASE_NOTES.md
+UPLOADING THIRD_PARTY_NOTICES.zip
+ASSET_VERIFIED THIRD_PARTY_NOTICES.zip
+UPLOADING SHA256SUMS.txt
+ASSET_VERIFIED SHA256SUMS.txt
+{
+  "source": "9839bce20ccdf4460e0aa42befcb070c1a6a235f",
+  "tag": "v0.0.0-preview.116",
+  "assets": {
+    "CCB-Studio-Suite-0.0.0-preview.116-windows-x64.exe": {
+      "id": 678306334,
+      "bytes": 168998814,
+      "sha256": "8fee16c386f1da7a247b0f8a739b067687ab6712f9ad0e749fff106e0648966e"
+    },
+    "RELEASE_NOTES.md": {
+      "id": 678307508,
+      "bytes": 2395,
+      "sha256": "7269878405922ee7582bad81fdfbfb39ad6e71172976b21634545fb8b1084489"
+    },
+    "THIRD_PARTY_NOTICES.zip": {
+      "id": 678307555,
+      "bytes": 184284,
+      "sha256": "c96a425a18f8b75d2d8939b595fa6809c432b398a9a62000484a8eb300de7b07"
+    },
+    "SHA256SUMS.txt": {
+      "id": 678307600,
+      "bytes": 293,
+      "sha256": "b63001b44aa2f06b9050f0158b880569fbd8e19cf059c6585c9d9563b0549208"
+    }
+  },
+  "userApproved": true,
+  "status": "PUBLIC_PRERELEASE_ASSETS_VERIFIED_METADATA_PENDING",
+  "releaseId": 424305004,
+  "url": "https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.116",
+  "publishedAt": "2026-10-26T13:47:44Z",
+  "tagSource": "9839bce20ccdf4460e0aa42befcb070c1a6a235f",
+  "preRelease": true,
+  "draft": false
+}

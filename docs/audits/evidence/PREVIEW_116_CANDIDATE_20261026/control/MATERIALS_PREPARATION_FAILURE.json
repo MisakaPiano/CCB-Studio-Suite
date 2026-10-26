@@ -1,0 +1,12 @@
+{
+  "status": "RETAINED_PREPARATION_FAILURE",
+  "command": "python -B prepare-materials.py",
+  "error": "ModuleNotFoundError: No module named release_repository",
+  "line": 5,
+  "originalScriptSha256": "38bb52d847320d3ad70f7436c92bf0ef43e9aff78a1fcd86d833081c748ba692",
+  "reason": "Publisher-only target builder intentionally not bundled in the client; add tracked source directory after packaged runtime path",
+  "installerRebuilt": false,
+  "regressionsRerun": false,
+  "privateKeysRead": false,
+  "metadataGeneratedBeforeFailure": false
+}

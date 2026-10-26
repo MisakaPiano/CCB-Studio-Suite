@@ -1,0 +1,17 @@
+{
+  "parentSource": "9839bce20ccdf4460e0aa42befcb070c1a6a235f",
+  "sourceHashes": {
+    "residue_cleanup.py": "ad6f7e7ab02da6c172a7ace5833f3821c0dbf6ab2496c69f586b5a29697a103d",
+    "test_residue_cleanup.py": "57c3ac422e836e81fadcbe2e64ebc09dbf1ff528c995d327f1ab9a9f91741ac6"
+  },
+  "previousTerminalVerifierAstUnchanged": true,
+  "finalUniqueMethods": 7,
+  "doNotSumBaselineOrIntermediate": true,
+  "published116EngineSha256": "e8e12e94beeb52c5bd5134c91e21f4e11341b33ff44359e196621748d1babeeb",
+  "futureEngineSha256": "ad6f7e7ab02da6c172a7ace5833f3821c0dbf6ab2496c69f586b5a29697a103d",
+  "newPackageBuilt": false,
+  "newVersionPublished": false,
+  "realCrossVolumeMigration": "NOT TESTED; only foreign-drive record projection tested",
+  "completeLauncherDataAndReceiptRelocation": "Not implemented or validated by this narrow fix",
+  "independentReview": "NOT REQUESTED"
+}

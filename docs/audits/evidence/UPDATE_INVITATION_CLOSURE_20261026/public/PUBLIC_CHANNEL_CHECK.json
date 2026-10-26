@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "result": {
+    "status": "UP_TO_DATE",
+    "version": 115,
+    "displayVersion": "0.0.0-preview.115",
+    "channel": "preview",
+    "notes": "Persistent current manual generation session; timestamped manual and automatic batch naming and archives, Project/Chapter organization, compact menus, Explorer-style tree and stable Windows desktop/Start/taskbar entry. Original image bytes and provenance retained. Prompt comparison remains pending.",
+    "sourceSha": "ff145d051bae286ab3e27cadd41195f8bd4c4e18",
+    "bytes": 168890283,
+    "installedBytes": 252745526,
+    "sha256": "356e749bd346af4a1d419a0d8b48b1e27d2314e6fce5763fa0933917247862dc",
+    "minimumReader": 2,
+    "maximumReader": 3,
+    "dataVersion": 3
+  },
+  "seconds": 3.6011201000001165,
+  "readOnlyBaseline": "H:\\CCB-Studio-Suite\\.local\\windows-rc\\performance-107\\115-ff145d051bae",
+  "clientLib": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\isolated-install\\updater\\lib",
+  "inputs": {
+    "update-config.json": "d7b8fdc2c579424e01133119ceb33917a12ed5f8a23e4bba46c61690113fb923",
+    "update-root.json": "408008d80aeb2dd3844325d74f09da9d248733e220dd88c08cc6299c4a24cc7a"
+  },
+  "downloadedInstaller": false,
+  "dailyInstallationAccessed": false,
+  "privateCredentialsRead": false
+}

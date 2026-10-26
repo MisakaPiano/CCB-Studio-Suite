@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "methods": 3,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 7.7071766999943065,
+  "inputs": {
+    "residue_cleanup.py": {
+      "path": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\isolated-install\\updater\\lib\\residue_cleanup.py",
+      "sha256": "e8e12e94beeb52c5bd5134c91e21f4e11341b33ff44359e196621748d1babeeb"
+    },
+    "owned_files.py": {
+      "path": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\isolated-install\\updater\\lib\\owned_files.py",
+      "sha256": "d67f7ce0ffefa2dc6d2f1413f224383666800cc0892ae9e7a9dfe282d352a452"
+    },
+    "install_ops.py": {
+      "path": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\isolated-install\\updater\\lib\\install_ops.py",
+      "sha256": "f1d4ddd4f1bc7033ff8653e34851243e93c6df92c7ba69e70137f627ca46c17e"
+    },
+    "studio_update.py": {
+      "path": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\isolated-install\\updater\\lib\\studio_update.py",
+      "sha256": "6cd4e3ad33adfc0d820ee6dcec1ea7cd8e26555ed359c03b1b9488e4da67885f"
+    },
+    "apply_update.py": {
+      "path": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\isolated-install\\updater\\lib\\apply_update.py",
+      "sha256": "61351ea4731deca049a8d7309b9015bbfaf1aba0fc5550063113c2d2fdf6bdc0"
+    },
+    "github_transport.py": {
+      "path": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\isolated-install\\updater\\lib\\github_transport.py",
+      "sha256": "93c0e136239b111948c169224d101045a2d22c80324b52d59838c70381b73c0d"
+    }
+  },
+  "testSha256": "59118a13fe465a8cfb1c9e5295ea26d3d0f92292dd43631a3dc21956e0d88557",
+  "scope": "Packaged production decisions and native Windows handles/junction; ACL denial and interruption injected. Synthetic records and executable bytes, no native application upgrade.",
+  "fixtures": "RETAINED",
+  "realInstallationAccessed": false,
+  "privateCredentialsRead": false,
+  "independentReview": "NOT REQUESTED"
+}

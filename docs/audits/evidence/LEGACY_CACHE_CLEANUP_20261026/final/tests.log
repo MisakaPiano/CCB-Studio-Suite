@@ -1,0 +1,12 @@
+test_old_cache_record_is_retained_without_blocking_unrelated_completed_cleanup (test_residue_cleanup.ResidueCleanupTests.test_old_cache_record_is_retained_without_blocking_unrelated_completed_cleanup) ... ok
+test_old_cache_unproven_local_references_still_protect_program_and_download (test_residue_cleanup.ResidueCleanupTests.test_old_cache_unproven_local_references_still_protect_program_and_download) ... ok
+test_old_cache_record_without_projectable_target_fails_closed (test_residue_cleanup.ResidueCleanupTests.test_old_cache_record_without_projectable_target_fails_closed) ... ok
+test_legacy_completed_download_without_receipt_is_adopted_and_retired (test_residue_cleanup.ResidueCleanupTests.test_legacy_completed_download_without_receipt_is_adopted_and_retired) ... ok
+test_legacy_completed_download_changed_bytes_or_identity_is_retained (test_residue_cleanup.ResidueCleanupTests.test_legacy_completed_download_changed_bytes_or_identity_is_retained) ... ok
+test_legacy_download_adoption_never_releases_foreign_unproven_reference (test_residue_cleanup.ResidueCleanupTests.test_legacy_download_adoption_never_releases_foreign_unproven_reference) ... ok
+test_foreign_drive_bookkeeping_is_projected_without_traversing_old_drive (test_residue_cleanup.ResidueCleanupTests.test_foreign_drive_bookkeeping_is_projected_without_traversing_old_drive) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 8.647s
+
+OK

@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\.local\update-chain-20261026\run-chain.py", line 51, in <module>
+    if completed.returncode:raise RuntimeError('Package failed, inspect raw log')
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Package failed, inspect raw log

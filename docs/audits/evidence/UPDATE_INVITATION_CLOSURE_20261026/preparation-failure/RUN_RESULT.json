@@ -1,0 +1,19 @@
+{
+  "status": "FAILED",
+  "failure": {
+    "kind": "RuntimeError",
+    "detail": "Package failed, inspect raw log"
+  },
+  "seconds": 11.493567800003802,
+  "source": "9839bce20ccdf4460e0aa42befcb070c1a6a235f",
+  "serverExitCode": 0,
+  "samples": 12,
+  "minAvailableBytes": 969400320,
+  "minHFree": 2390614016,
+  "dailyInstallationAccessed": false,
+  "privateCredentialsRead": false,
+  "realProviderCalls": 0,
+  "formalTrustChanged": false,
+  "published": false,
+  "independentReview": "NOT REQUESTED"
+}

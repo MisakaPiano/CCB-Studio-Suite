@@ -1,0 +1,52 @@
+{
+  "status": "PASS",
+  "stage": "final",
+  "methods": 7,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "cases": [
+    {
+      "name": "test_residue_cleanup.ResidueCleanupTests.test_old_cache_record_is_retained_without_blocking_unrelated_completed_cleanup",
+      "status": "PASS"
+    },
+    {
+      "name": "test_residue_cleanup.ResidueCleanupTests.test_old_cache_unproven_local_references_still_protect_program_and_download",
+      "status": "PASS"
+    },
+    {
+      "name": "test_residue_cleanup.ResidueCleanupTests.test_old_cache_record_without_projectable_target_fails_closed",
+      "status": "PASS"
+    },
+    {
+      "name": "test_residue_cleanup.ResidueCleanupTests.test_legacy_completed_download_without_receipt_is_adopted_and_retired",
+      "status": "PASS"
+    },
+    {
+      "name": "test_residue_cleanup.ResidueCleanupTests.test_legacy_completed_download_changed_bytes_or_identity_is_retained",
+      "status": "PASS"
+    },
+    {
+      "name": "test_residue_cleanup.ResidueCleanupTests.test_legacy_download_adoption_never_releases_foreign_unproven_reference",
+      "status": "PASS"
+    },
+    {
+      "name": "test_residue_cleanup.ResidueCleanupTests.test_foreign_drive_bookkeeping_is_projected_without_traversing_old_drive",
+      "status": "PASS"
+    }
+  ],
+  "seconds": 8.648011800003587,
+  "sourceStable": true,
+  "sourceHashes": {
+    "residue_cleanup.py": "ad6f7e7ab02da6c172a7ace5833f3821c0dbf6ab2496c69f586b5a29697a103d",
+    "test_residue_cleanup.py": "57c3ac422e836e81fadcbe2e64ebc09dbf1ff528c995d327f1ab9a9f91741ac6",
+    "install_ops.py": "f1d4ddd4f1bc7033ff8653e34851243e93c6df92c7ba69e70137f627ca46c17e",
+    "owned_files.py": "d67f7ce0ffefa2dc6d2f1413f224383666800cc0892ae9e7a9dfe282d352a452",
+    "studio_update.py": "6cd4e3ad33adfc0d820ee6dcec1ea7cd8e26555ed359c03b1b9488e4da67885f"
+  },
+  "fixtureRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\legacy-cache-61efc4b2054740ceb4575580ef25e35b",
+  "dailyInstallationAccessed": false,
+  "privateCredentialsRead": false,
+  "realProviderCalls": 0,
+  "published116Modified": false
+}

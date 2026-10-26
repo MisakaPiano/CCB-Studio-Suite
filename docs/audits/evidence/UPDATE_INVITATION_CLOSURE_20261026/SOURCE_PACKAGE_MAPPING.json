@@ -1,0 +1,77 @@
+{
+  "atUtc": "2026-10-26T12:33:52.142537+00:00",
+  "source": "9839bce20ccdf4460e0aa42befcb070c1a6a235f",
+  "codeSource": "26ef38857be510636dffdb5fcbd59a8d70c85550",
+  "appBuildSource": "0f11fdd6b6d281987dd7c449d623a74b8b74b8f0",
+  "appCodeDiffToHead": "EMPTY (modules/tools)",
+  "installer": {
+    "task": "UX-R4",
+    "status": "BUILT",
+    "sourceSha": "9839bce20ccdf4460e0aa42befcb070c1a6a235f",
+    "appBuildSourceSha": "0f11fdd6b6d281987dd7c449d623a74b8b74b8f0",
+    "version": 2,
+    "channel": "internal",
+    "displayVersion": "0.2.2-internal",
+    "compiler": "NSIS3.13",
+    "exitCode": 0,
+    "files": 550,
+    "installed": "NOT TESTED",
+    "bytes": 168998701,
+    "sha256": "0bd761c36ef35cba4e12dc469eb08656d9963123da7ad8936d20fde94fcf321f"
+  },
+  "retainedLocalInstaller": "H:\\CCB-Studio-Suite\\.local\\update-chain-20261026\\retry-b\\review-installer.exe",
+  "formalRelease": "NOT PUBLISHED",
+  "tag": "NONE FOR THIS INTERNAL CANDIDATE",
+  "mainJar": {
+    "name": "studio-desktop-c2d9f69ad95e163c1c361e6cc59ee.jar",
+    "sha256": "04381d42afc15e50db1354b32736c1107a7d5df6733e2c6ca57105817653b7e0"
+  },
+  "installedManifest": {
+    "files": 550,
+    "sha256": "b42a9871430afcc376d2ac0cdbeea5616c69162ea9b6877a7658196bc6a5b2d9",
+    "allMembersMatch": true
+  },
+  "updaterScripts": [
+    {
+      "path": "updater/lib/studio_update.py",
+      "source": "tools/update-runtime/studio_update.py",
+      "sha256": "6cd4e3ad33adfc0d820ee6dcec1ea7cd8e26555ed359c03b1b9488e4da67885f"
+    },
+    {
+      "path": "updater/lib/github_transport.py",
+      "source": "tools/update-runtime/github_transport.py",
+      "sha256": "93c0e136239b111948c169224d101045a2d22c80324b52d59838c70381b73c0d"
+    },
+    {
+      "path": "updater/lib/apply_update.py",
+      "source": "tools/update-runtime/apply_update.py",
+      "sha256": "61351ea4731deca049a8d7309b9015bbfaf1aba0fc5550063113c2d2fdf6bdc0"
+    },
+    {
+      "path": "updater/lib/install_ops.py",
+      "source": "tools/update-runtime/install_ops.py",
+      "sha256": "f1d4ddd4f1bc7033ff8653e34851243e93c6df92c7ba69e70137f627ca46c17e"
+    },
+    {
+      "path": "updater/lib/residue_cleanup.py",
+      "source": "tools/update-runtime/residue_cleanup.py",
+      "sha256": "e8e12e94beeb52c5bd5134c91e21f4e11341b33ff44359e196621748d1babeeb"
+    },
+    {
+      "path": "updater/lib/owned_files.py",
+      "source": "tools/update-runtime/owned_files.py",
+      "sha256": "d67f7ce0ffefa2dc6d2f1413f224383666800cc0892ae9e7a9dfe282d352a452"
+    }
+  ],
+  "environment": {
+    "python": "3.13.16 (tags/v3.13.16:cbc944f, Sep 30 2026, 19:17:50) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.19045-SP0"
+  },
+  "newTestSha256": "59118a13fe465a8cfb1c9e5295ea26d3d0f92292dd43631a3dc21956e0d88557",
+  "oldUserCandidateSha256": "ff8f868a5dbadaa4bcce1970e0cc98aab73c30f8c1bd0555e19e3d3ea5f71a3d",
+  "productionSourceChanged": false,
+  "independentReview": "NOT REQUESTED",
+  "nativeUiConfirmation": "NOT TESTED; native A has test-only main driving production methods",
+  "actualPublic115Upgrade": "NOT TESTED IN THIS RUN",
+  "privateCredentialsOrUserData": "NOT ACCESSED"
+}

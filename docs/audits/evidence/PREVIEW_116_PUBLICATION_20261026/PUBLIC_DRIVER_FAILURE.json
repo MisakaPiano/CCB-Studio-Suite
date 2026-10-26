@@ -1,0 +1,10 @@
+{
+  "status": "RETAINED_DRIVER_RETURN_SHAPE_FAILURE",
+  "error": "TypeError: tuple indices must be integers or slices, not str",
+  "actualOldReturn": "final,journal,record",
+  "realInstallStatus": "INSTALLED_NOT_STARTED",
+  "journal": "H:\\CCB-Studio-Suite\\.local\\disposable\\pv-e5ed35fb071b4943887578d53e034275\\payload\\runtime\\updates\\install-fc78ac8d4ecc404f93931381fe3102b6.json",
+  "downloadInstallRerun": false,
+  "script": "verify-public-channel.py preserved unchanged",
+  "resume": "Read the actual successful journal and validate installed bytes; do not repeat install"
+}

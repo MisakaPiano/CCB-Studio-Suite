@@ -1,0 +1,64 @@
+{
+  "status": "READY_FOR_USER_CONFIRMATION_NOT_PUBLISHED",
+  "sourceSha": "9839bce20ccdf4460e0aa42befcb070c1a6a235f",
+  "appBuildSourceSha": "0f11fdd6b6d281987dd7c449d623a74b8b74b8f0",
+  "version": 116,
+  "displayVersion": "0.0.0-preview.116",
+  "proposedTag": "v0.0.0-preview.116",
+  "tagCreated": false,
+  "installer": {
+    "task": "UX-R4",
+    "status": "BUILT",
+    "sourceSha": "9839bce20ccdf4460e0aa42befcb070c1a6a235f",
+    "appBuildSourceSha": "0f11fdd6b6d281987dd7c449d623a74b8b74b8f0",
+    "version": 116,
+    "channel": "preview",
+    "displayVersion": "0.0.0-preview.116",
+    "compiler": "NSIS3.13",
+    "exitCode": 0,
+    "files": 550,
+    "installed": "NOT TESTED",
+    "bytes": 168998814,
+    "sha256": "8fee16c386f1da7a247b0f8a739b067687ab6712f9ad0e749fff106e0648966e"
+  },
+  "installationVerification": "INSTALL_VERIFICATION.json",
+  "targetProposal": "UNSIGNED_TARGET_PROPOSAL.json",
+  "assets": {
+    "CCB-Studio-Suite-0.0.0-preview.116-windows-x64.exe": {
+      "localPath": "H:\\CCB-Studio-Suite\\.local\\preview-candidate-116-20261026\\candidate\\studio-installer.exe",
+      "bytes": 168998814,
+      "sha256": "8fee16c386f1da7a247b0f8a739b067687ab6712f9ad0e749fff106e0648966e"
+    },
+    "RELEASE_NOTES.md": {
+      "localPath": "H:\\CCB-Studio-Suite\\.local\\preview-candidate-116-20261026\\RELEASE_NOTES.md",
+      "bytes": 2395,
+      "sha256": "7269878405922ee7582bad81fdfbfb39ad6e71172976b21634545fb8b1084489"
+    },
+    "THIRD_PARTY_NOTICES.zip": {
+      "localPath": "H:\\CCB-Studio-Suite\\.local\\preview-candidate-116-20261026\\THIRD_PARTY_NOTICES.zip",
+      "bytes": 184284,
+      "sha256": "c96a425a18f8b75d2d8939b595fa6809c432b398a9a62000484a8eb300de7b07"
+    }
+  },
+  "checksums": {
+    "path": "H:\\CCB-Studio-Suite\\.local\\preview-candidate-116-20261026\\SHA256SUMS.txt",
+    "sha256": "b63001b44aa2f06b9050f0158b880569fbd8e19cf059c6585c9d9563b0549208"
+  },
+  "noticesEntries": 100,
+  "formalRootSha256": "408008d80aeb2dd3844325d74f09da9d248733e220dd88c08cc6299c4a24cc7a",
+  "newTests": 0,
+  "reusedEvidence": "docs/audits/UPDATE_INVITATION_CLOSURE_20261026.md; TOKEN_CANDIDATE_20261026.md and original scoped Project judgments",
+  "pending": [
+    "Full asset/editor human acceptance",
+    "User115 experience",
+    "Prompt comparison",
+    "Public116 signed discovery/download after publication",
+    "Daily installation after user confirmation and publication verification",
+    "Independent review of new package NOT REQUESTED",
+    "q09 historical FAILED/root UNKNOWN; cross-machine restore and other Windows environments unverified"
+  ],
+  "userConfirmationRequired": true,
+  "dailyInstallationModified": false,
+  "published": false,
+  "signingKeysRead": false
+}

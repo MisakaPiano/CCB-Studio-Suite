@@ -1,0 +1,32 @@
+{
+  "source": "9839bce20ccdf4460e0aa42befcb070c1a6a235f",
+  "files": [
+    {
+      "path": "tools/Build-InternalInstaller.py",
+      "sha256": "622a8ab673f283e101ccf63301e550c47a8e519badcf68cee3b5c6b01753646c"
+    },
+    {
+      "path": "tools/Prepare-UpdaterRuntime.py",
+      "sha256": "2ab092a1686e06dec228b7de8fde7e8218d71e792baf0c56a96277c67ff5727a"
+    },
+    {
+      "path": "tools/update-runtime/release_repository.py",
+      "sha256": "9e328f8206ee9a7ed107eb26b7b377ee51b817657d20b9a0e6465b2bafd13e0f"
+    },
+    {
+      "path": "tools/update-runtime/github_transport.py",
+      "sha256": "93c0e136239b111948c169224d101045a2d22c80324b52d59838c70381b73c0d"
+    },
+    {
+      "path": "tools/windows-launcher/Launcher.cs",
+      "sha256": "800b7277d1c34cee4bc95dc4979c5394e3eecb698326c7a68984e59b342abe6a"
+    }
+  ],
+  "productRootSha256": "408008d80aeb2dd3844325d74f09da9d248733e220dd88c08cc6299c4a24cc7a",
+  "appBuildSource": "0f11fdd6b6d281987dd7c449d623a74b8b74b8f0",
+  "previewInstallerSha256": "8fee16c386f1da7a247b0f8a739b067687ab6712f9ad0e749fff106e0648966e",
+  "installerLocalPath": "H:\\CCB-Studio-Suite\\.local\\preview-candidate-116-20261026\\candidate\\studio-installer.exe",
+  "tagNotCreated": true,
+  "sourceCommitPush": false,
+  "productSourceUnmodified": true
+}

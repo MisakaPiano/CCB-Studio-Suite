@@ -44,6 +44,72 @@ class ResidueCleanupTests(unittest.TestCase):
         result=self.cleanup();self.assertGreater(result['removed'],0);self.assertFalse(self.old.exists());self.assertTrue((self.current/'retired.dll').exists())
         self.assertEqual((self.data/'original.bin').read_bytes(),b'unique synthetic data');self.assertTrue((self.folder/'result.json').is_file())
 
+    def legacy_cache_handoff(self,approved,old=None,new=None,origin=None):
+        legacy=self.base/'previous-install-name';cache=origin or legacy/'runtime/updates'
+        folder=self.cache/'handoffs/legacy-cache';folder.mkdir()
+        plan=dict(format=1,nonce='f'*64,cache=str(cache),installed=str(old or legacy/'programs/107-synthetic'),approved=approved)
+        atomic_json(folder/'plan.json',plan)
+        atomic_json(folder/'result.json',dict(status='COMPLETE',nonce='f'*64,installed=str(new or legacy/'programs/109-synthetic'),installJournal=str(self.cache/'install-current.json'),verification='B_PROGRAM_DATA_AND_CREDENTIAL_SNAPSHOT_MATCH'))
+        return folder
+
+    def owned_current_download(self):
+        folder=self.cache/'downloads'/str(uuid.uuid4());folder.mkdir(parents=True)
+        (folder/'studio-installer.exe').write_bytes(b'synthetic verified installer')
+        atomic_json(folder/'VERIFIED.json',dict(version=2,sha256=self.installer_hash))
+        enroll_download(self.cache,self.root,folder,self.current_id,self.installer_hash,True,self.now)
+        return folder
+
+    def test_old_cache_record_is_retained_without_blocking_unrelated_completed_cleanup(self):
+        download=self.owned_current_download();protected,_=self.program(111,'d')
+        atomic_json(self.root/'ACTIVE_INSTALLATION.json',dict(program=str(protected),workspace=str(self.data)))
+        legacy=self.legacy_cache_handoff(dict(version=109,sourceSha='c'*40,channel='internal'))
+        proof=(legacy/'plan.json').read_bytes();keep=(protected/'app/main.jar').read_bytes()
+        result=self.cleanup();self.assertGreater(result['removed'],0)
+        self.assertFalse(self.old.exists());self.assertFalse(download.exists())
+        self.assertEqual((legacy/'plan.json').read_bytes(),proof);self.assertEqual((protected/'app/main.jar').read_bytes(),keep)
+        self.assertEqual((self.data/'original.bin').read_bytes(),b'unique synthetic data');self.assertEqual(self.cleanup()['removed'],0)
+
+    def test_old_cache_unproven_local_references_still_protect_program_and_download(self):
+        download=self.owned_current_download()
+        self.legacy_cache_handoff(dict(version=2,sourceSha='b'*40,channel='internal',installer=str(download/'studio-installer.exe')),self.old,self.current)
+        self.assertEqual(self.cleanup()['removed'],0);self.assertTrue((self.old/'app/main.jar').exists());self.assertTrue(download.exists())
+        self.assertEqual(self.cleanup()['removed'],0)
+
+    def test_old_cache_record_without_projectable_target_fails_closed(self):
+        download=self.owned_current_download();self.legacy_cache_handoff(dict(version=109,channel='internal'))
+        with self.assertRaises(ValueError):self.cleanup()
+        self.assertTrue((self.old/'app/main.jar').exists());self.assertTrue(download.exists())
+        self.assertEqual((self.data/'original.bin').read_bytes(),b'unique synthetic data')
+
+    def unowned_completed_download(self):
+        folder=self.cache/'downloads'/str(uuid.uuid4());folder.mkdir(parents=True)
+        (folder/'studio-installer.exe').write_bytes(b'synthetic verified installer')
+        atomic_json(folder/'VERIFIED.json',dict(version=2,sourceSha='b'*40,channel='internal',sha256=self.installer_hash))
+        self.plan['approved']['installer']=str(folder/'studio-installer.exe');atomic_json(self.folder/'plan.json',self.plan)
+        return folder
+
+    def test_legacy_completed_download_without_receipt_is_adopted_and_retired(self):
+        download=self.unowned_completed_download();self.assertGreater(self.cleanup()['removed'],0)
+        self.assertFalse(download.exists());self.assertEqual(self.cleanup()['removed'],0)
+
+    def test_legacy_completed_download_changed_bytes_or_identity_is_retained(self):
+        download=self.unowned_completed_download();(download/'studio-installer.exe').write_bytes(b'unknown replacement')
+        self.cleanup();self.assertTrue(download.exists())
+        (download/'studio-installer.exe').write_bytes(b'synthetic verified installer')
+        atomic_json(download/'VERIFIED.json',dict(version=999,sourceSha='b'*40,channel='internal',sha256=self.installer_hash))
+        self.cleanup();self.assertTrue(download.exists());self.assertEqual((self.data/'original.bin').read_bytes(),b'unique synthetic data')
+
+    def test_legacy_download_adoption_never_releases_foreign_unproven_reference(self):
+        download=self.unowned_completed_download()
+        self.legacy_cache_handoff(dict(version=2,sourceSha='b'*40,channel='internal',installer=str(download/'studio-installer.exe')),self.old,self.current)
+        self.assertEqual(self.cleanup()['removed'],0);self.assertTrue(download.exists());self.assertTrue((self.old/'app/main.jar').exists())
+
+    def test_foreign_drive_bookkeeping_is_projected_without_traversing_old_drive(self):
+        download=self.owned_current_download()
+        self.legacy_cache_handoff(dict(version=109,sourceSha='c'*40,channel='internal'),Path('Z:/synthetic-old/programs/107-old'),Path('Z:/synthetic-old/programs/109-old'),Path('Z:/synthetic-old/runtime/updates'))
+        self.assertGreater(self.cleanup()['removed'],0);self.assertFalse(download.exists())
+        self.assertFalse(self.old.exists());self.assertEqual((self.data/'original.bin').read_bytes(),b'unique synthetic data')
+
     def test_obsolete_manifest_members_removed_unknown_modified_files_and_plugin_tree_retained(self):
         (self.old/'manual-backup').mkdir();(self.old/'manual-backup/keep.bin').write_bytes(b'backup')
         (self.old/'plugins').mkdir();(self.old/'plugins/custom.dll').write_bytes(b'plugin')

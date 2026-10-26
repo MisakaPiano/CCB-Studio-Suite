@@ -1,0 +1,31 @@
+{
+  "status": "PUBLISHED_VERIFICATION_PENDING",
+  "commit": "59412d5ab296563ccc556e7cfb1523bcf9b0cb3e",
+  "parent": "9d1e0472eea272a4e877804258cadf1090fcf017",
+  "versions": {
+    "snapshot.json": 24,
+    "targets.json": 15,
+    "timestamp.json": 24
+  },
+  "rootSha256": "408008d80aeb2dd3844325d74f09da9d248733e220dd88c08cc6299c4a24cc7a",
+  "rootUnchanged": true,
+  "installerSha256": "8fee16c386f1da7a247b0f8a739b067687ab6712f9ad0e749fff106e0648966e",
+  "releaseVersion": 116,
+  "source": "9839bce20ccdf4460e0aa42befcb070c1a6a235f",
+  "changedPaths": [
+    "preview/windows-x86_64/metadata/15.targets.json",
+    "preview/windows-x86_64/metadata/24.snapshot.json",
+    "preview/windows-x86_64/metadata/snapshot.json",
+    "preview/windows-x86_64/metadata/targets.json",
+    "preview/windows-x86_64/metadata/timestamp.json"
+  ],
+  "signerRoles": [
+    "targets",
+    "snapshot",
+    "timestamp"
+  ],
+  "privateMaterialExported": false,
+  "force": false,
+  "legacyChannelModified": false,
+  "preparedGeneration": "H:\\CCB-Studio-Suite\\.local\\preview-publication-116-20261026\\metadata-attempt-1\\store\\generations\\14471434dd864a7c87a6b483d2bdca85"
+}

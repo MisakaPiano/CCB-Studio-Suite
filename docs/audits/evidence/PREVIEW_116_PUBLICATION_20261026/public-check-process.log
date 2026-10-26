@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\.local\preview-publication-116-20261026\verify-public-channel.py", line 26, in <module>
+    before=sha(data/'synthetic-original.bin');record=install_ops.install_candidate(installer,target,custom,anchor,cache,data);assert record['status']=='INSTALLED_NOT_STARTED',record
+                                                                                                                                     ~~~~~~^^^^^^^^^^
+TypeError: tuple indices must be integers or slices, not str

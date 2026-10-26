@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "oldClientVersion": 115,
+  "newVersion": 116,
+  "installerSha256": "8fee16c386f1da7a247b0f8a739b067687ab6712f9ad0e749fff106e0648966e",
+  "rootUnchanged": true,
+  "discovery": "SIGNED116",
+  "download": "VERIFIED_REAL_PUBLIC_BYTES",
+  "isolatedInstall": "REAL_NSIS_PASS",
+  "current116": "UP_TO_DATE",
+  "nativeGui": "NOT_TESTED_IN_THIS_CASE",
+  "data": "SYNTHETIC_SENTINEL_MATCH",
+  "providerCalls": 0,
+  "privateCredentialsRead": false,
+  "dailyInstallationAccessed": false,
+  "fixtureRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\pv-e5ed35fb071b4943887578d53e034275",
+  "driverFailurePreserved": true,
+  "downloadInstallRerun": false
+}

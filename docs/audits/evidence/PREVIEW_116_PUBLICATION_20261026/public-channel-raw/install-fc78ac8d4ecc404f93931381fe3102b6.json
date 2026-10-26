@@ -1,0 +1,18 @@
+{
+  "status": "INSTALLED_NOT_STARTED",
+  "target": "H:\\CCB-Studio-Suite\\.local\\disposable\\pv-e5ed35fb071b4943887578d53e034275\\payload\\programs\\116-9839bce20ccd",
+  "stage": "H:\\CCB-Studio-Suite\\.local\\disposable\\pv-e5ed35fb071b4943887578d53e034275\\payload\\programs\\116-9839bce20ccd.4143a7d331494a279760b2f6deb5bf2d.installing",
+  "expected": {
+    "product": "ccb-studio-suite",
+    "platform": "windows-x86_64",
+    "channel": "preview",
+    "version": 116,
+    "sourceSha": "9839bce20ccdf4460e0aa42befcb070c1a6a235f"
+  },
+  "dataModified": false,
+  "verification": {
+    "files": 550,
+    "bytes": 252882745,
+    "manifestSha256": "c3183c60438f1941343247c7607cb3afe873510f8ca732fb6dec3d2f73aa7137"
+  }
+}

@@ -1,0 +1,43 @@
+test_old_cache_record_is_retained_without_blocking_unrelated_completed_cleanup (test_residue_cleanup.ResidueCleanupTests.test_old_cache_record_is_retained_without_blocking_unrelated_completed_cleanup) ... ERROR
+test_old_cache_unproven_local_references_still_protect_program_and_download (test_residue_cleanup.ResidueCleanupTests.test_old_cache_unproven_local_references_still_protect_program_and_download) ... ERROR
+test_old_cache_record_without_projectable_target_fails_closed (test_residue_cleanup.ResidueCleanupTests.test_old_cache_record_without_projectable_target_fails_closed) ... ok
+
+======================================================================
+ERROR: test_old_cache_record_is_retained_without_blocking_unrelated_completed_cleanup (test_residue_cleanup.ResidueCleanupTests.test_old_cache_record_is_retained_without_blocking_unrelated_completed_cleanup)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 67, in test_old_cache_record_is_retained_without_blocking_unrelated_completed_cleanup
+    result=self.cleanup();self.assertGreater(result['removed'],0)
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 39, in cleanup
+    def cleanup(self,offset=0,start=None,**kwargs):return run(self.current,self.cache,self.data,self.runtime,start,self.now+offset,**kwargs)
+                                                          ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\residue_cleanup.py", line 179, in run
+    completed,blocked,pending_downloads=completed_updates(cache,root)
+                                        ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\residue_cleanup.py", line 151, in completed_updates
+    if Path(plan.get('cache','')).absolute()!=cache:raise UpdateRejected('Cleanup handoff cache mismatch')
+                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+studio_update.UpdateRejected: Cleanup handoff cache mismatch
+
+======================================================================
+ERROR: test_old_cache_unproven_local_references_still_protect_program_and_download (test_residue_cleanup.ResidueCleanupTests.test_old_cache_unproven_local_references_still_protect_program_and_download)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 75, in test_old_cache_unproven_local_references_still_protect_program_and_download
+    self.assertEqual(self.cleanup()['removed'],0);self.assertTrue((self.old/'app/main.jar').exists());self.assertTrue(download.exists())
+                     ~~~~~~~~~~~~^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\test_residue_cleanup.py", line 39, in cleanup
+    def cleanup(self,offset=0,start=None,**kwargs):return run(self.current,self.cache,self.data,self.runtime,start,self.now+offset,**kwargs)
+                                                          ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\residue_cleanup.py", line 179, in run
+    completed,blocked,pending_downloads=completed_updates(cache,root)
+                                        ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\update-runtime\residue_cleanup.py", line 151, in completed_updates
+    if Path(plan.get('cache','')).absolute()!=cache:raise UpdateRejected('Cleanup handoff cache mismatch')
+                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+studio_update.UpdateRejected: Cleanup handoff cache mismatch
+
+----------------------------------------------------------------------
+Ran 3 tests in 3.159s
+
+FAILED (errors=2)

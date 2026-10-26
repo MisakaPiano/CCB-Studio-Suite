@@ -1,3 +1,7 @@
+## 2026-10-26 Preview116已发布；清理兼容增量独立留证
+
+[实际发布与日常升级](audits/PREVIEW_116_PUBLICATION_20261026.md)：固定9839bce／安装器SHA8fee16c3…648966e，正式签名通道及旧115客户端下载／隔离安装通过；用户日常116当前检查通过。此次旧115和下载残留已受控清理。另见[旧缓存路径兼容修正](audits/LEGACY_CACHE_CLEANUP_FIX_20261026.md)：7唯一合成回归通过，新修正不在已发布116中，无新版本。资产编辑完整人工、115体验、Prompt各待验；完整目录迁移及跨盘实测未签收。
+
 ## 2026-10-26 Tokens：用户实际截图视觉核验通过（限定本项）
 
 [原候选与后续回执](audits/TOKEN_CANDIDATE_20261026.md)：用户打开26ef/0f11候选后供图，深色＋黑色强调色下正向1/512、负向152/512文字均清楚可读，记FIXED / AUTO_PASS / USER_SUPPLIED_SCREENSHOT_VISUAL_PASS_WITH_SCOPE；仅截图，无新增整套通过声明。真实READY入口与固定JAR/合成根核对，task runtime存在、回退/default指针未创建。新增4份证据与原50份分开，不改旧raw；本次0构建/0JUnit/0执行者UI操作，未关闭或重开用户窗口。独立NOT REQUESTED、旧未验/失败及115/Prompt PENDING、PRODUCT_HOLD保持；不发版、日常更新、清理或下一开发。下方未验为交付前时点。

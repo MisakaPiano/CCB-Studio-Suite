@@ -1,3 +1,9 @@
+## 2026-10-26 Preview116发布／日常升级已完成，后续清理源码未发版
+
+[发行与本机结果](audits/PREVIEW_116_PUBLICATION_20261026.md)：tag v0.0.0-preview.116→9839bce，固定安装器SHA256 8fee16c386f1da7a247b0f8a739b067687ab6712f9ad0e749fff106e0648966e；公开附件、签名发现／下载、隔离安装及当前检查通过，用户手动完成日常115→116并供图。程序550项、应用COMPLETE与原资料根确认；执行者未读vault或用户图库。原自动清理因历史旧cache记录延后；用户授权主动维护后，553所属文件／421899352字节清完，旧115目录及下载缓存已空，111保护／历史记录／116字节不改。
+
+[独立源码增量](audits/LEGACY_CACHE_CLEANUP_FIX_20261026.md)将旧cache证明隔离保留并兼容旧下载收据缺失，7方法PASS，原失败和中间结果不累加；源码一次性维护不是116热补丁，无后续版本。整体目录迁移后的入口／资料定位／所属收据重绑定及真实跨盘仍待验证。资产编辑完整人工、115体验和Prompt对比分别PENDING，新包独立NOT REQUESTED，q09及旧否决／失败保留，非稳定版／全项目RC。
+
 ## 2026-10-26 Tokens：用户实际截图视觉核验通过（限定本项）
 
 [原候选与后续回执](audits/TOKEN_CANDIDATE_20261026.md)：用户打开26ef/0f11候选后供图，深色＋黑色强调色下正向1/512、负向152/512文字均清楚可读，记FIXED / AUTO_PASS / USER_SUPPLIED_SCREENSHOT_VISUAL_PASS_WITH_SCOPE；仅截图，无新增整套通过声明。真实READY入口与固定JAR/合成根核对，task runtime存在、回退/default指针未创建。新增4份证据与原50份分开，不改旧raw；本次0构建/0JUnit/0执行者UI操作，未关闭或重开用户窗口。独立NOT REQUESTED、旧未验/失败及115/Prompt PENDING、PRODUCT_HOLD保持；不发版、日常更新、清理或下一开发。下方未验为交付前时点。

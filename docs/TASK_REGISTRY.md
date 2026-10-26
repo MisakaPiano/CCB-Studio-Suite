@@ -1,3 +1,9 @@
+## 2026-10-26 原第3步发行完成；UPD-CLEAN-PROTECTION-001后续源码增量
+
+[Preview116发行／日常升级](audits/PREVIEW_116_PUBLICATION_20261026.md)已按确认执行；用户当前116／最新检查限定通过，不代签115整体验或其他功能。旧115／下载的553确认归属文件共421899352字节已主动维护清理，111保护不动。
+
+沿原更新清理ID，不新建重复任务：[历史cache兼容及旧下载接管](audits/LEGACY_CACHE_CLEANUP_FIX_20261026.md)7唯一隔离回归通过，未包含在116中，后续候选仍需确认，不自动另发版。完整安装根改名／移动后的稳定入口、资料定位、所属收据保护重绑定及真实跨盘搬迁列未完成／未验；不能仅改路径或删旧记录宣称支持。资产编辑完整人工／115体验／Prompt分别PENDING、q09及原失败／否决保留，不自动启动后三组、Tag或Desktop。
+
 ## 2026-10-26 Tokens：用户实际截图视觉核验通过（限定本项）
 
 [原候选与后续回执](audits/TOKEN_CANDIDATE_20261026.md)：用户打开26ef/0f11候选后供图，深色＋黑色强调色下正向1/512、负向152/512文字均清楚可读，记FIXED / AUTO_PASS / USER_SUPPLIED_SCREENSHOT_VISUAL_PASS_WITH_SCOPE；仅截图，无新增整套通过声明。真实READY入口与固定JAR/合成根核对，task runtime存在、回退/default指针未创建。新增4份证据与原50份分开，不改旧raw；本次0构建/0JUnit/0执行者UI操作，未关闭或重开用户窗口。独立NOT REQUESTED、旧未验/失败及115/Prompt PENDING、PRODUCT_HOLD保持；不发版、日常更新、清理或下一开发。下方未验为交付前时点。

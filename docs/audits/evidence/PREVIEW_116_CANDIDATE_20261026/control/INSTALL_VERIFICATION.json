@@ -1,0 +1,92 @@
+{
+  "status": "PASS",
+  "source": "9839bce20ccdf4460e0aa42befcb070c1a6a235f",
+  "appBuildSource": "0f11fdd6b6d281987dd7c449d623a74b8b74b8f0",
+  "version": 116,
+  "installerExitCode": 0,
+  "installerBytes": 168998814,
+  "installerSha256": "8fee16c386f1da7a247b0f8a739b067687ab6712f9ad0e749fff106e0648966e",
+  "installation": {
+    "files": 550,
+    "bytes": 252882745,
+    "manifestSha256": "c3183c60438f1941343247c7607cb3afe873510f8ca732fb6dec3d2f73aa7137"
+  },
+  "config": {
+    "format": 1,
+    "product": "ccb-studio-suite",
+    "platform": "windows-x86_64",
+    "version": 116,
+    "reader": 3,
+    "sourceSha": "9839bce20ccdf4460e0aa42befcb070c1a6a235f",
+    "metadataUrl": "https://raw.githubusercontent.com/MisakaPiano/CCB-Studio-Suite/long-term-metadata/preview/windows-x86_64/metadata/",
+    "targetsUrl": "https://github.com/MisakaPiano/CCB-Studio-Suite/releases/download/",
+    "rootSha256": "408008d80aeb2dd3844325d74f09da9d248733e220dd88c08cc6299c4a24cc7a",
+    "channel": "preview",
+    "displayVersion": "0.0.0-preview.116",
+    "githubRepository": "MisakaPiano/CCB-Studio-Suite",
+    "metadataBranch": "long-term-metadata",
+    "internalTest": false
+  },
+  "scripts": [
+    {
+      "path": "updater/lib/studio_update.py",
+      "sha256": "6cd4e3ad33adfc0d820ee6dcec1ea7cd8e26555ed359c03b1b9488e4da67885f"
+    },
+    {
+      "path": "updater/lib/github_transport.py",
+      "sha256": "93c0e136239b111948c169224d101045a2d22c80324b52d59838c70381b73c0d"
+    },
+    {
+      "path": "updater/lib/apply_update.py",
+      "sha256": "61351ea4731deca049a8d7309b9015bbfaf1aba0fc5550063113c2d2fdf6bdc0"
+    },
+    {
+      "path": "updater/lib/install_ops.py",
+      "sha256": "f1d4ddd4f1bc7033ff8653e34851243e93c6df92c7ba69e70137f627ca46c17e"
+    },
+    {
+      "path": "updater/lib/residue_cleanup.py",
+      "sha256": "e8e12e94beeb52c5bd5134c91e21f4e11341b33ff44359e196621748d1babeeb"
+    },
+    {
+      "path": "updater/lib/owned_files.py",
+      "sha256": "d67f7ce0ffefa2dc6d2f1413f224383666800cc0892ae9e7a9dfe282d352a452"
+    }
+  ],
+  "modules": [
+    {
+      "module": "asset-library",
+      "jar": "asset-library-ee9417ce5653dbd2beddcf7b8f6462dd.jar",
+      "sha256": "b8c470e5e576e1d6c78f881be0a45bf7c8b0eb33269f5d50bd07594bb3b561e4",
+      "productionClasses": 23
+    },
+    {
+      "module": "image-authority",
+      "jar": "image-authority-95f9abde46a167be5c5d2437d288f5.jar",
+      "sha256": "ca0ca98a1e2d1f5a4439ce0244fe6c7e9b1feda01a23504fd5a3c1b477c044df",
+      "productionClasses": 844
+    },
+    {
+      "module": "studio-core",
+      "jar": "studio-core-e057314f5d4fa77bae3a8698a81c2b1.jar",
+      "sha256": "3798df87452a150ee91dd85d9d9f80a9cba6bed8e13c3d8211093d9c69a29883",
+      "productionClasses": 385
+    },
+    {
+      "module": "studio-desktop",
+      "jar": "studio-desktop-c2d9f69ad95e163c1c361e6cc59ee.jar",
+      "sha256": "04381d42afc15e50db1354b32736c1107a7d5df6733e2c6ca57105817653b7e0",
+      "productionClasses": 990
+    }
+  ],
+  "classMatches": 2242,
+  "runtimeFiles": 326,
+  "nativeAppStarted": false,
+  "newJUnit": 0,
+  "newPythonRegressionMethods": 0,
+  "public116SignedDiscovery": "PENDING_PUBLICATION_AFTER_USER_CONFIRMATION",
+  "humanAcceptance": "NOT TESTED FOR THIS PACKAGE",
+  "independentReview": "NOT REQUESTED",
+  "dailyInstallationAccessed": false,
+  "privateCredentialsRead": false
+}

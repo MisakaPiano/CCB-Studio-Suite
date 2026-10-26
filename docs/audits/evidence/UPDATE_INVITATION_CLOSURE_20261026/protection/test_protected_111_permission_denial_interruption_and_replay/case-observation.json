@@ -1,0 +1,54 @@
+{
+  "steps": [
+    {
+      "status": "DEFERRED",
+      "removed": 0,
+      "deferred": 6
+    },
+    {
+      "status": "COMPLETE",
+      "removed": 5,
+      "deferred": 0
+    },
+    {
+      "status": "COMPLETE",
+      "removed": 0,
+      "deferred": 0
+    }
+  ],
+  "fixture": "H:\\CCB-Studio-Suite\\.local\\update-protection-20261026\\test_protected_111_permission_denial_interruption_and_replay",
+  "protectedBefore": {
+    "programs\\ACTIVE_INSTALLATION.json": "814685a61214e7747cff056d7f74106a0534023d5302713d69d7d680a3789bde",
+    "data\\original.bin": "003f92c6988066b166e2784cc1d34eedbbc22be6f6bd166e4cd2b7ac0251f64a",
+    "backup\\keep.bin": "37af08f6ff2a6c78bb85e4e2f9d10159d892caa4fb6be70e9e5e0938b6f5502e",
+    "programs\\111-aaaaaaaaaaaa\\CCBStudioSuitePreview.exe": "14c4072d7a1efe0bd6483edc44faedfb81f57700c91519dfd95c4c08e47baf70",
+    "programs\\111-aaaaaaaaaaaa\\INSTALL_COMPLETE": "a017ff94fe017671415ee5ac1504b52a279cca82fe8ece19dd7aa28d1a2438c2",
+    "programs\\111-aaaaaaaaaaaa\\INSTALL_MANIFEST.json": "180812b12bd4e9ae7ef43ff2249969111052b1c35b194e27d7032933966d9d25",
+    "programs\\111-aaaaaaaaaaaa\\retired.dll": "5d5cb7057d867ebc8e46d4aaccad00dec0118d2db7450f4eede8209dded68a80",
+    "programs\\111-aaaaaaaaaaaa\\Uninstall.exe": "9d001c340e68c5e3479564f1f41dad587c31b9c45618a289c3cef9995fec6d03",
+    "programs\\111-aaaaaaaaaaaa\\app\\main.jar": "71198d42af3335d2e6d17df7bd861b2ab7ec94b6b863d853d3fa135dd6b96c0e",
+    "programs\\116-cccccccccccc\\CCBStudioSuitePreview.exe": "8e0154adf1682e2e311d3c0d01052cc08e951f17c674b4efd9eddb7e94921719",
+    "programs\\116-cccccccccccc\\INSTALL_COMPLETE": "b3239ce9a32e5da5806b25c68d2d8105c328bb0f5dc5305180ffcdf60a05c8f4",
+    "programs\\116-cccccccccccc\\INSTALL_MANIFEST.json": "5b5f419c179c57aa2d110b2eb4ee3b34ae252e45b84350b537ef38d78b1e0b04",
+    "programs\\116-cccccccccccc\\retired.dll": "8823d71556793f58f3cd4ed1eb902f1357eeb3ea9c7ce09c112dedb879d7348f",
+    "programs\\116-cccccccccccc\\Uninstall.exe": "9d001c340e68c5e3479564f1f41dad587c31b9c45618a289c3cef9995fec6d03",
+    "programs\\116-cccccccccccc\\app\\main.jar": "98d942676951b149cdb0aac8cabd1540e66f0e17f0165222e4e7ce8f8a16b994"
+  },
+  "protectedAfter": {
+    "programs\\ACTIVE_INSTALLATION.json": "814685a61214e7747cff056d7f74106a0534023d5302713d69d7d680a3789bde",
+    "data\\original.bin": "003f92c6988066b166e2784cc1d34eedbbc22be6f6bd166e4cd2b7ac0251f64a",
+    "backup\\keep.bin": "37af08f6ff2a6c78bb85e4e2f9d10159d892caa4fb6be70e9e5e0938b6f5502e",
+    "programs\\111-aaaaaaaaaaaa\\CCBStudioSuitePreview.exe": "14c4072d7a1efe0bd6483edc44faedfb81f57700c91519dfd95c4c08e47baf70",
+    "programs\\111-aaaaaaaaaaaa\\INSTALL_COMPLETE": "a017ff94fe017671415ee5ac1504b52a279cca82fe8ece19dd7aa28d1a2438c2",
+    "programs\\111-aaaaaaaaaaaa\\INSTALL_MANIFEST.json": "180812b12bd4e9ae7ef43ff2249969111052b1c35b194e27d7032933966d9d25",
+    "programs\\111-aaaaaaaaaaaa\\retired.dll": "5d5cb7057d867ebc8e46d4aaccad00dec0118d2db7450f4eede8209dded68a80",
+    "programs\\111-aaaaaaaaaaaa\\Uninstall.exe": "9d001c340e68c5e3479564f1f41dad587c31b9c45618a289c3cef9995fec6d03",
+    "programs\\111-aaaaaaaaaaaa\\app\\main.jar": "71198d42af3335d2e6d17df7bd861b2ab7ec94b6b863d853d3fa135dd6b96c0e",
+    "programs\\116-cccccccccccc\\CCBStudioSuitePreview.exe": "8e0154adf1682e2e311d3c0d01052cc08e951f17c674b4efd9eddb7e94921719",
+    "programs\\116-cccccccccccc\\INSTALL_COMPLETE": "b3239ce9a32e5da5806b25c68d2d8105c328bb0f5dc5305180ffcdf60a05c8f4",
+    "programs\\116-cccccccccccc\\INSTALL_MANIFEST.json": "5b5f419c179c57aa2d110b2eb4ee3b34ae252e45b84350b537ef38d78b1e0b04",
+    "programs\\116-cccccccccccc\\retired.dll": "8823d71556793f58f3cd4ed1eb902f1357eeb3ea9c7ce09c112dedb879d7348f",
+    "programs\\116-cccccccccccc\\Uninstall.exe": "9d001c340e68c5e3479564f1f41dad587c31b9c45618a289c3cef9995fec6d03",
+    "programs\\116-cccccccccccc\\app\\main.jar": "98d942676951b149cdb0aac8cabd1540e66f0e17f0165222e4e7ce8f8a16b994"
+  }
+}

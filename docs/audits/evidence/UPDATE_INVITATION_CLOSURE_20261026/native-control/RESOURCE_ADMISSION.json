@@ -1,0 +1,10 @@
+{
+  "atUtc": "2026-10-26T12:20:52.272372+00:00",
+  "availableBytes": 1042980864,
+  "commitHeadroomBytes": 7381749760,
+  "hFree": 2390577152,
+  "cFree": 12311375872,
+  "hBudget": 1787564193,
+  "physicalBudget": 939524096,
+  "explanation": "No Gradle. Sequential native A and B, each existing -Xmx512m; 256MiB native/Python plus 128MiB margin. Four payload copies and three installer-size buffers plus256MiB disk safety. Estimate, not measured peak."
+}
