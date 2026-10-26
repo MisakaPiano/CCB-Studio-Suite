@@ -1,0 +1,38 @@
+{
+  "observedUtc": "2026-10-26T11:16:56.1455497Z",
+  "finding": "THEME-TOKENS-CONTRAST",
+  "status": "FIXED / AUTO_PASS / USER_SUPPLIED_SCREENSHOT_VISUAL_PASS_WITH_SCOPE",
+  "appCode": "26ef38857be510636dffdb5fcbd59a8d70c85550",
+  "buildPackageHead": "0f11fdd6b6d281987dd7c449d623a74b8b74b8f0",
+  "packageEvidenceCommit": "98f6e290204d66944b4c23605f1f9dd43020de7d",
+  "installerSha256": "ff8f868a5dbadaa4bcce1970e0cc98aab73c30f8c1bd0555e19e3d3ea5f71a3d",
+  "mainJarSha256": "04381d42afc15e50db1354b32736c1107a7d5df6733e2c6ca57105817653b7e0",
+  "screenshot": {
+    "name": "codex-clipboard-37a58c40-ce9e-41f2-a6bd-3049cd82da58.png",
+    "sha256": "2567e80192d23e07829582ec64ae78475eca844041e8458d183964b017f179ee",
+    "pixelsPublished": false,
+    "observation": "Dark creation page with black accent selections; positive Tokens1/512 and negative Tokens152/512 are bright and legible"
+  },
+  "userEvidence": "Image supplied after requested residual check; no new explicit textual all-tests-pass statement",
+  "nativeUserStartup": "Main window shown by user; task-local wrapper launch receipt, pinned app JAR and task runtime support identity",
+  "launchStartedUtc": "2026-10-26T11:14:36.4537739Z",
+  "runtimeUpdatesPresent": true,
+  "isolatedFallbackCreated": false,
+  "defaultPointerCreated": false,
+  "agentUIInput": "NONE",
+  "agentNativeLaunchesThisStage": 0,
+  "agentClosedOrRelaunchedWindow": false,
+  "newBuilds": 0,
+  "newJUnit": 0,
+  "automaticNativeUI": "NOT TESTED",
+  "otherManualCoverage": "Only this DARK/000000 normal Tokens view; other theme checks retain prior fixed scope; warnings/extremes covered by original offscreen regression",
+  "independentReview": "NOT REQUESTED",
+  "wholeProject": "PRODUCT_HOLD / NOT RC",
+  "unchanged": [
+    "Daily115/private gallery/current config/backup not accessed",
+    "Old failures/UNKNOWN and fixed evidence preserved",
+    "Assets/editor functional acceptance still USER_NOT_TESTED",
+    "115 experience and Prompt comparison separately PENDING",
+    "No publication, cleanup, Tag library or next development"
+  ]
+}

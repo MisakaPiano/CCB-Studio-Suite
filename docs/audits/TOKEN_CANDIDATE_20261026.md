@@ -1,5 +1,13 @@
 # Tokens修复独立候选：构建、隔离安装及入口证据
 
+## 后续用户截图：Tokens显示视觉核验通过
+
+用户随后提供`codex-clipboard-37a58c40-ce9e-41f2-a6bd-3049cd82da58.png`。实际截图中，深色界面和黑色强调色选中态下，左下角“正向Tokens1/512”“负向Tokens152/512”均为亮色且清楚可读。本项更新为 **FIXED / AUTO_PASS / USER_SUPPLIED_SCREENSHOT_VISUAL_PASS_WITH_SCOPE**；用户本次仅发截图，没有新增“整套测试通过”的文字声明，不扩张为全主题或项目验收。
+
+[独立保存的截图观察及哈希](evidence/TOKEN_USER_VISUAL_20261026/USER_VISUAL_RESULT.json)、[用户启动回执](evidence/TOKEN_USER_VISUAL_20261026/USER_LAUNCH_RECEIPT.json)、[4文件清单](evidence/TOKEN_USER_VISUAL_20261026/RAW_MANIFEST.json)。20:14:36 JST真实READY入口记录明确指定本候选的合成workspace/runtime、secondary/pause参数及隔离环境，主JAR散列与已交付包一致；随后任务runtime/updates存在，隔离profile默认回退及task launch-current均未创建。workspace此前已由合成seed创建，不拿其存在冒充原生启动证明。
+
+本次只读核对任务入口记录/程序散列/目录存在性及用户已提供图像，新增构建0、JUnit0、执行者UI输入/启动/关闭/重开0；未公开图像像素、workspace或私有数据。未自动截图/操纵用户窗口，新包独立审查仍NOT REQUESTED；其他未验/旧失败与115/Prompt各PENDING保持。下文nativeAppStarts=0和用户未验是交付当时的固定历史；原50份证据未回写，本次新增4份另存。
+
 2026-10-26 Asia/Tokyo。用户09:46 UTC批准独立候选及自动验证，沿用UX-DISPLAY-THEME-001 / THEME-TOKENS-CONTRAST；只打包既有Tokens窄修，不混入Tag库或其他需求。没有新公开版本、tag、外部送审、日常115替换、私人图库/现用配置/凭据访问、清理或安全设置变更。
 
 ## 固定对应关系

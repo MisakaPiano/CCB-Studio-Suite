@@ -1,0 +1,21 @@
+{
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19,
+      "sha256": "3e5e82fc72e044ea9af807a2030b73dbb94800d2cd1775302063b2eee761ba1e"
+    },
+    {
+      "path": "USER_LAUNCH_RECEIPT.json",
+      "bytes": 1728,
+      "sha256": "39a86774f655525cefccd07533efa1be47ea64f5042a78f11cc9d697985886ee"
+    },
+    {
+      "path": "USER_VISUAL_RESULT.json",
+      "bytes": 2109,
+      "sha256": "e7106fa4ece4e517eb955ccc4e9e4052fb0848f7f8c0ff7faed4cec00db2e73a"
+    }
+  ],
+  "membersIncludingManifest": 4,
+  "excludes": "User screenshot pixels, workspace/profile/vault, binaries and private data"
+}

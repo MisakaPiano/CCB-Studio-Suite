@@ -1,3 +1,7 @@
+## 2026-10-26 Tokens：用户实际截图视觉核验通过（限定本项）
+
+[原候选与后续回执](../docs/audits/TOKEN_CANDIDATE_20261026.md)：用户打开26ef/0f11候选后供图，深色＋黑色强调色下正向1/512、负向152/512文字均清楚可读，记FIXED / AUTO_PASS / USER_SUPPLIED_SCREENSHOT_VISUAL_PASS_WITH_SCOPE；仅截图，无新增整套通过声明。真实READY入口与固定JAR/合成根核对，task runtime存在、回退/default指针未创建。新增4份证据与原50份分开，不改旧raw；本次0构建/0JUnit/0执行者UI操作，未关闭或重开用户窗口。独立NOT REQUESTED、旧未验/失败及115/Prompt PENDING、PRODUCT_HOLD保持；不发版、日常更新、清理或下一开发。下方未验为交付前时点。
+
 ## 2026-10-26 Tokens独立候选已交付，重型时段释放
 
 [固定源码/包/入口与实际证据](../docs/audits/TOKEN_CANDIDATE_20261026.md)：新授权独立候选，代码26ef388与实际构建/打包0f11fdd的modules/tools相同；内部包168998707字节、SHA256 ff8f868a5dbadaa4bcce1970e0cc98aab73c30f8c1bd0555e19e3d3ea5f71a3d。应用映像42.605秒/sourceStable/0新JUnit，550安装项/2242生产类/6更新脚本/326运行时及新Tokens消费者匹配；旧1方法不重跑累计。真实快捷方式探针与全新深色黑色合成根通过，nativeAppStarts=0，窗口/用户未验、独立NOT REQUESTED。Desktop明确WAIT_ACK后获时段，19:08:53 JST已释放；后续仅轻量留证。50份新raw独立保存，旧48eed散列/旧证据保持；无Tag库、日常115/私人图库访问、清理、发版或外部送审。旧未验/失败及115/Prompt PENDING、PRODUCT_HOLD保持；下方‘未打包’保留为之前阶段事实。
