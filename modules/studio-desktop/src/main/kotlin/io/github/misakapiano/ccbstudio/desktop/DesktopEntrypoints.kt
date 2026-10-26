@@ -34,8 +34,10 @@ internal object DesktopEntrypoints {
         val manifest=Json.parseToJsonElement(Files.readString(app.resolve("INSTALL_MANIFEST.json"))).jsonObject
         val config=Json.parseToJsonElement(Files.readString(app.resolve("update-config.json"))).jsonObject
         val descriptor=root.resolve("launch-current.json")
+        var previousRoots:JsonElement?=null
         if(Files.exists(descriptor)){safePath(descriptor);require(Files.size(descriptor)<16384);val old=Json.parseToJsonElement(Files.readString(descriptor)).jsonObject
             if(!defaultMatches(old,data,runtime))return false
+            previousRoots=old["previousRoots"]
             require((old["version"]?.jsonPrimitive?.int?:0)<=(config["version"]?.jsonPrimitive?.int?:0)){"较新版本已有固定入口，请从原入口启动"}}
         fun verified(path:String):ByteArray {
             val entry=manifest["files"]!!.jsonArray.single{it.jsonObject["path"]!!.jsonPrimitive.content==path}.jsonObject
@@ -45,7 +47,7 @@ internal object DesktopEntrypoints {
         fun atomic(target:Path,bytes:ByteArray){safePath(target);val stage=target.resolveSibling(target.fileName.toString()+"."+newId()+".tmp");writeNewForced(stage,bytes);try{Files.move(stage,target,StandardCopyOption.ATOMIC_MOVE,StandardCopyOption.REPLACE_EXISTING)}finally{Files.deleteIfExists(stage)}}
         // Avoid replacing a currently executing stable launcher when its content is identical.
         if(!Files.exists(stable())||!Files.readAllBytes(stable()).contentEquals(launcher))atomic(stable(),launcher)
-        atomic(descriptor,buildJsonObject{put("format",1);put("version",config["version"]!!);put("installed",app.toString());put("data",data.toAbsolutePath().normalize().toString());put("runtime",runtime.toAbsolutePath().normalize().toString());put("exeSha256",sha256(exe))}.toString().toByteArray())
+        atomic(descriptor,buildJsonObject{put("format",1);put("version",config["version"]!!);put("installed",app.toString());put("data",data.toAbsolutePath().normalize().toString());put("runtime",runtime.toAbsolutePath().normalize().toString());put("exeSha256",sha256(exe));previousRoots?.let{put("previousRoots",it)}}.toString().toByteArray())
         execute("--shortcut",root.resolve("Launch-CCB-Studio.lnk").toString());return true
     }
     internal fun defaultMatches(descriptor:JsonObject,data:Path,runtime:Path):Boolean =

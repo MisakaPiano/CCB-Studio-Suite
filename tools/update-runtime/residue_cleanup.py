@@ -85,7 +85,38 @@ def enroll_download(cache, install_root, directory, expected, installer_sha256, 
     return write_receipt(cache,install_root,'download',directory,files,expected,
         dict(kind='TUF_VERIFIED_DOWNLOAD' if verified else 'OWNED_DOWNLOAD_FAILURE',installerSha256=installer_sha256),now)
 
-def protected_paths(install_root, data, runtime):
+def relocation_projection(root,descriptor):
+    """Lexical projection of a launcher's bounded move history; never read old roots.
+    It cannot enroll files: terminal proofs, receipts and per-file hashes still apply.
+    """
+    origins=descriptor.get('previousRoots',[])
+    if not isinstance(origins,list) or len(origins)>16:raise UpdateRejected('Invalid relocation history')
+    roots=[]
+    for origin in origins:
+        if not isinstance(origin,str) or not Path(origin).is_absolute():raise UpdateRejected('Invalid relocation origin')
+        origin=Path(os.path.abspath(origin))
+        if origin.parent==origin or origin==root or root.is_relative_to(origin) or origin.is_relative_to(root):raise UpdateRejected('Overlapping relocation origin')
+        if origin not in roots:roots.append(origin)
+    def project(value):
+        if not isinstance(value,str) or not Path(value).is_absolute():return value
+        path=Path(os.path.abspath(value))
+        matches=[p for p in roots if path==p or path.is_relative_to(p)]
+        if len(matches)>1:raise UpdateRejected('Ambiguous relocated location')
+        return str(root/path.relative_to(matches[0])) if matches else value
+    return project
+
+
+def projected_record(value,project):
+    result=dict(value)
+    for key in ('installed','cache','installRoot','dataRoot','runtimeRoot','sourceDataRoot','installJournal','target','stage','cleanupOwnership'):
+        if key in result:result[key]=project(result[key])
+    if isinstance(result.get('approved'),dict):
+        result['approved']=dict(result['approved'])
+        if 'installer' in result['approved']:result['approved']['installer']=project(result['approved']['installer'])
+    return result
+
+
+def protected_paths(install_root, data, runtime,project=lambda value:value):
     protected=[no_reparse(data),no_reparse(runtime)]
     for name in ('data','plugins','backups','source','.git'):protected.append(install_root/name)
     record=install_root/'ACTIVE_INSTALLATION.json'
@@ -95,7 +126,7 @@ def protected_paths(install_root, data, runtime):
             for key in ('program','workspace','runtime','retainedBackupWorkspace','retainedBackupRuntime'):
                 if key in value:
                     if not isinstance(value[key],str) or not Path(value[key]).is_absolute():raise UpdateRejected('Invalid protected installation record')
-                    protected.append(no_reparse(value[key]))
+                    protected.append(no_reparse(project(value[key])))
     return protected
 
 def overlaps(path, protected):return any(path==p or path.is_relative_to(p) or p.is_relative_to(path) for p in protected)
@@ -106,7 +137,7 @@ def event(cache,kind,**fields):
     with log.open('a',encoding='utf-8') as stream:
         stream.write(json.dumps(dict(at=time.time(),event=kind,**fields),ensure_ascii=True)+'\n');stream.flush();os.fsync(stream.fileno())
 
-def verified_completion(plan,result,cache):
+def verified_completion(plan,result,cache,project=lambda value:value):
     """Validate a terminal proof before any program-root eligibility filtering.
     Old target directories may already be retired; use the pinned install record,
     not a scan of another workspace. Unprovable completion keeps its reference.
@@ -118,7 +149,7 @@ def verified_completion(plan,result,cache):
             if not isinstance(value,str) or not Path(value).is_absolute():return None
         old=no_reparse(plan['installed']);new=no_reparse(result['installed']);journal=no_reparse(result['installJournal'])
         if journal.parent!=cache or new.parent!=old.parent:return None
-        installed=read_json(journal);expected=identity(installed['expected']);approved=plan['approved']
+        installed=projected_record(read_json(journal),project);expected=identity(installed['expected']);approved=plan['approved']
         if installed.get('status')!='INSTALLED_NOT_STARTED':return None
         if type(approved['version']) is not int or any(approved.get(k)!=expected[k] for k in ('version','sourceSha','channel')):return None
         if any(k in approved and approved[k]!=expected[k] for k in ('product','platform')):return None
@@ -134,7 +165,7 @@ def verified_completion(plan,result,cache):
         return None
 
 
-def completed_updates(cache,install_root):
+def completed_updates(cache,install_root,project=lambda value:value):
     """Keep handoff proof in place. Return bounded identity projections, never log snapshots."""
     completed=[];blocked=set();pending_downloads=set();pending_targets=set()
     folders=cache/'handoffs'
@@ -146,7 +177,7 @@ def completed_updates(cache,install_root):
         if not folder.is_dir():continue
         plan_path=folder/'plan.json';result_path=folder/'result.json'
         if not plan_path.exists():continue
-        plan=read_json(plan_path);result=read_json(result_path) if result_path.exists() else {}
+        plan=projected_record(read_json(plan_path),project);result=projected_record(read_json(result_path),project) if result_path.exists() else {}
         if plan.get('format')!=1 or not re.fullmatch('[0-9a-f]{64}',plan.get('nonce','')):raise UpdateRejected('Invalid handoff identity')
         origin=plan.get('cache')
         if not isinstance(origin,str) or not Path(origin).is_absolute():raise UpdateRejected('Invalid handoff cache identity')
@@ -171,7 +202,7 @@ def completed_updates(cache,install_root):
                 directory=Path(installer).absolute().parent
                 if directory.parent==cache/'downloads':pending_downloads.add(no_reparse(directory))
             continue
-        completion=verified_completion(plan,result,cache)
+        completion=verified_completion(plan,result,cache,project)
         verified_failed=result.get('status')=='FAILED_RETAINED' and result.get('nonce')==plan['nonce']
         if completion is None and not verified_failed:
             installer=plan.get('approved',{}).get('installer')
@@ -196,9 +227,10 @@ def run(package,cache,data,runtime,startup_token=None,now=None,after_delete=lamb
     descriptor=read_json(root/'launch-current.json',16384)
     if any(Path(descriptor.get(k,'')).absolute()!=v for k,v in [('installed',package),('data',data),('runtime',runtime)]):
         return dict(status='RETAINED_SECONDARY_WORKSPACE',removed=0)
-    protections=protected_paths(root,data,runtime)
+    project=relocation_projection(root,descriptor)
+    protections=protected_paths(root,data,runtime,project)
     with exclusive(cache):
-        completed,blocked,pending_downloads,pending_targets=completed_updates(cache,root)
+        completed,blocked,pending_downloads,pending_targets=completed_updates(cache,root,project)
         current=[c for c in completed if c['new']==package.name]
         if not current:return dict(status='RETAINED_NO_COMPLETE_HANDOFF',removed=0)
         folder=no_reparse(cache/'cleanup');folder.mkdir(exist_ok=True)
@@ -252,7 +284,7 @@ def run(package,cache,data,runtime,startup_token=None,now=None,after_delete=lamb
         atomic_json(state_path,state)
         removed=0;deferred=0
         for path in paths[:MAX_RECEIPTS]:
-            receipt=read_json(path)
+            receipt=projected_record(read_json(path),project)
             if receipt.get('format')!=1 or receipt.get('installRoot')!=str(root) or receipt.get('cache')!=str(cache):raise UpdateRejected('Cleanup receipt root mismatch')
             expected=identity(receipt['expected']);area=receipt['area'];name=receipt['base'];parts=relative(name)
             if len(parts)!=1 or area not in ('program','download'):raise UpdateRejected('Invalid cleanup area')

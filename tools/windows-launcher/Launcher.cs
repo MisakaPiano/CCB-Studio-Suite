@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web.Script.Serialization;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 // Small, version-independent shell entry. Selection is committed only after update verification.
@@ -15,15 +16,51 @@ static class Launcher {
     static JavaScriptSerializer Json=new JavaScriptSerializer();
     static string Quote(string s){if(s.IndexOf('"')>=0)throw new IOException("Unsupported quoted path");return "\""+s.TrimEnd('\\')+new string('\\',(s.Length-s.TrimEnd('\\').Length)*2)+"\"";}
     static string Digest(string p){using(var a=SHA256.Create())using(var f=File.OpenRead(p))return BitConverter.ToString(a.ComputeHash(f)).Replace("-","").ToLowerInvariant();}
-    static void Safe(string p){for(var d=new DirectoryInfo(Path.GetDirectoryName(p));d!=null;d=d.Parent)if((d.Attributes&FileAttributes.ReparsePoint)!=0)throw new IOException("Unsupported linked directory");if(File.Exists(p)&&(File.GetAttributes(p)&FileAttributes.ReparsePoint)!=0)throw new IOException("Unsupported linked file");}
+    static void Safe(string p){for(var d=new DirectoryInfo(Path.GetDirectoryName(p));d!=null;d=d.Parent)if((d.Attributes&FileAttributes.ReparsePoint)!=0)throw new IOException("Unsupported linked directory");if((File.Exists(p)||Directory.Exists(p))&&(File.GetAttributes(p)&FileAttributes.ReparsePoint)!=0)throw new IOException("Unsupported linked file");}
+    static bool Same(string a,string b){return String.Equals(Path.GetFullPath(a).TrimEnd('\\'),Path.GetFullPath(b).TrimEnd('\\'),StringComparison.OrdinalIgnoreCase);}
+    static string Absolute(object value){var s=value as string;if(s==null||!Path.IsPathRooted(s)||s.IndexOfAny(new[]{'\r','\n','\0'})>=0)throw new IOException("Invalid absolute location");return Path.GetFullPath(s);}
+    static List<string> Previous(Dictionary<string,object> v){
+        var roots=new List<string>();object raw;
+        if(v.TryGetValue("previousRoots",out raw)){var items=raw as System.Collections.IEnumerable;if(items==null||raw is string)throw new IOException("Invalid relocation history");foreach(object item in items){var path=Absolute(item);if(!roots.Exists(p=>Same(p,path)))roots.Add(path);if(roots.Count>16)throw new IOException("Relocation history limit reached");}}
+        return roots;
+    }
+    static string Project(string value,string oldRoot,string root){
+        string prefix=oldRoot.TrimEnd('\\')+"\\";
+        return value.StartsWith(prefix,StringComparison.OrdinalIgnoreCase)?Path.Combine(root,value.Substring(prefix.Length)):value;
+    }
     static Dictionary<string,object> Resolve(){
         string root=Path.GetDirectoryName(Self),path=Path.Combine(root,"launch-current.json");Safe(path);
+        string gate=Path.Combine(root,"entrypoints.lock");Safe(gate);
+        using(var stream=new FileStream(gate,FileMode.OpenOrCreate,FileAccess.ReadWrite,FileShare.ReadWrite)){
+            stream.Lock(0,1);try{return ResolveLocked(root,path);}finally{stream.Unlock(0,1);}
+        }
+    }
+    static Dictionary<string,object> ResolveLocked(string root,string path){
         if(new FileInfo(path).Length>16384)throw new IOException("Invalid launch descriptor");
         var v=Json.Deserialize<Dictionary<string,object>>(File.ReadAllText(path,Encoding.UTF8));
-        string app=Path.GetFullPath((string)v["installed"]),exe=Path.Combine(app,"CCBStudioSuitePreview.exe");
-        if(!String.Equals(Path.GetDirectoryName(app),root,StringComparison.OrdinalIgnoreCase))throw new IOException("Target must be a verified sibling installation");
+        string app=Absolute(v["installed"]),oldRoot=Path.GetDirectoryName(app);bool moved=!Same(oldRoot,root);
+        var history=Previous(v);history.RemoveAll(p=>Same(p,root));
+        if(moved){
+            if(oldRoot.Length<=3||root.StartsWith(oldRoot.TrimEnd('\\')+"\\",StringComparison.OrdinalIgnoreCase)||oldRoot.StartsWith(root.TrimEnd('\\')+"\\",StringComparison.OrdinalIgnoreCase))throw new IOException("Overlapping relocation roots");
+            string name=Path.GetFileName(app);if(!Regex.IsMatch(name,@"^[1-9][0-9]*-[0-9a-f]{12}$"))throw new IOException("Invalid relocated installation identity");
+            app=Path.Combine(root,name);Safe(Path.Combine(app,"update-config.json"));
+            if(new FileInfo(Path.Combine(app,"update-config.json")).Length>16384)throw new IOException("Oversized relocated configuration");
+            var config=Json.Deserialize<Dictionary<string,object>>(File.ReadAllText(Path.Combine(app,"update-config.json"),Encoding.UTF8));
+            if(!Object.Equals(config["version"],v["version"])||config["product"].ToString()!="ccb-studio-suite"||config["platform"].ToString()!="windows-x86_64"||name!=config["version"]+"-"+config["sourceSha"].ToString().Substring(0,12))throw new IOException("Relocated target identity mismatch");
+            string complete=Path.Combine(app,"INSTALL_COMPLETE"),manifest=Path.Combine(app,"INSTALL_MANIFEST.json"),bundled=Path.Combine(app,"updater","CCBStudioLauncher.exe");Safe(complete);Safe(manifest);Safe(bundled);
+            if(File.ReadAllText(complete,Encoding.UTF8)!=config["version"]+":"+config["sourceSha"]||Digest(bundled)!=Digest(Self))throw new IOException("Relocated program proof mismatch");
+            if(new FileInfo(manifest).Length>4*1024*1024)throw new IOException("Oversized relocated inventory");
+            var inventory=Json.Deserialize<Dictionary<string,object>>(File.ReadAllText(manifest,Encoding.UTF8));
+            if(!Object.Equals(inventory["version"],config["version"])||inventory["sourceSha"].ToString()!=config["sourceSha"].ToString())throw new IOException("Relocated manifest identity mismatch");
+            foreach(string k in new[]{"data","runtime"}){var destination=Project(Absolute(v[k]),oldRoot,root);Safe(destination);if(!Directory.Exists(destination))throw new IOException("Moved profile is missing; original location retained");v[k]=destination;}
+            if(!history.Exists(p=>Same(p,oldRoot)))history.Add(oldRoot);
+            if(history.Count>16)throw new IOException("Relocation history limit reached");
+            v["installed"]=app;v["previousRoots"]=history;v["locationRoot"]=root;
+        }
+        string exe=Path.Combine(app,"CCBStudioSuitePreview.exe");
         Safe(exe);if(!String.Equals(Digest(exe),(string)v["exeSha256"],StringComparison.Ordinal))throw new IOException("Launch target has changed");
-        foreach(string k in new[]{"data","runtime"})if(!Path.IsPathRooted((string)v[k]))throw new IOException("Absolute profile path required");
+        foreach(string k in new[]{"data","runtime"})Absolute(v[k]);
+        if(moved){string stage=path+"."+Guid.NewGuid().ToString("N")+".tmp";try{File.WriteAllText(stage,Json.Serialize(v),new UTF8Encoding(false));File.Replace(stage,path,null);}finally{if(File.Exists(stage))File.Delete(stage);}}
         return v;
     }
     [STAThread] static int Main(string[] args){try{
@@ -47,9 +84,9 @@ static class Launcher {
     static void Shortcut(string destination){
         if(!Path.IsPathRooted(destination)||!destination.EndsWith(".lnk",StringComparison.OrdinalIgnoreCase))throw new IOException("Absolute shortcut path required");
         Safe(destination);string stage=destination+"."+Guid.NewGuid().ToString("N")+".tmp.lnk";
-        if(File.Exists(destination)){var priorLink=(IShellLinkW)new ShellLink();try{((System.Runtime.InteropServices.ComTypes.IPersistFile)priorLink).Load(destination,0);var old=new StringBuilder(32768);priorLink.GetPath(old,old.Capacity,IntPtr.Zero,0);string prior=old.ToString(),root=Path.GetDirectoryName(Self);bool own=String.Equals(prior,Self,StringComparison.OrdinalIgnoreCase)||(String.Equals(Path.GetFileName(prior),"CCBStudioSuitePreview.exe",StringComparison.OrdinalIgnoreCase)&&String.Equals(Path.GetDirectoryName(Path.GetDirectoryName(prior)),root,StringComparison.OrdinalIgnoreCase));if(!own)throw new IOException("同名快捷方式属于其他入口，请保留并检查");}finally{Marshal.FinalReleaseComObject(priorLink);}}
+        if(File.Exists(destination)){var priorLink=(IShellLinkW)new ShellLink();try{((System.Runtime.InteropServices.ComTypes.IPersistFile)priorLink).Load(destination,0);var old=new StringBuilder(32768);priorLink.GetPath(old,old.Capacity,IntPtr.Zero,0);string prior=old.ToString(),root=Path.GetDirectoryName(Self);bool own=String.Equals(prior,Self,StringComparison.OrdinalIgnoreCase)||(String.Equals(Path.GetFileName(prior),"CCBStudioSuitePreview.exe",StringComparison.OrdinalIgnoreCase)&&String.Equals(Path.GetDirectoryName(Path.GetDirectoryName(prior)),root,StringComparison.OrdinalIgnoreCase));if(!own&&Path.GetFileName(prior).Equals("CCBStudioLauncher.exe",StringComparison.OrdinalIgnoreCase)&&Read((IPropertyStore)priorLink,5)==AppId){var descriptor=Resolve();own=Previous(descriptor).Exists(p=>Same(prior,Path.Combine(p,"CCBStudioLauncher.exe")));}if(!own)throw new IOException("同名快捷方式属于其他入口，请保留并检查");}finally{Marshal.FinalReleaseComObject(priorLink);}}
         var link=(IShellLinkW)new ShellLink();try{
-            link.SetPath(Self);link.SetWorkingDirectory(Path.GetDirectoryName(Self));link.SetDescription("CCB Studio Suite");link.SetIconLocation(Self,0);
+            link.SetPath(Self);link.SetRelativePath(Self,0);link.SetWorkingDirectory(Path.GetDirectoryName(Self));link.SetDescription("CCB Studio Suite");link.SetIconLocation(Self,0);
             var store=(IPropertyStore)link;Properties(store,Self);store.Commit();((System.Runtime.InteropServices.ComTypes.IPersistFile)link).Save(stage,true);
         }finally{Marshal.FinalReleaseComObject(link);}
         try{if(File.Exists(destination))File.Replace(stage,destination,null);else File.Move(stage,destination);}finally{if(File.Exists(stage))File.Delete(stage);}

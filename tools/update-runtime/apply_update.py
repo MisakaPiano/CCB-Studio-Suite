@@ -71,7 +71,12 @@ def _create_launcher_locked(final,data,runtime,expected_current=None,expected_ab
             temporary=stable.with_suffix('.'+uuid.uuid4().hex+'.tmp')
             temporary.write_bytes(body);os.replace(temporary,stable)
         if config is None:raise UpdateRejected('Missing installed program configuration')
-        atomic_json(no_reparse(final.parent/'launch-current.json'),dict(format=1,version=config['version'],installed=str(final),data=str(data),runtime=str(runtime),exeSha256=hashlib.sha256((final/'CCBStudioSuitePreview.exe').read_bytes()).hexdigest()))
+        descriptor=dict(format=1,version=config['version'],installed=str(final),data=str(data),runtime=str(runtime),exeSha256=hashlib.sha256((final/'CCBStudioSuitePreview.exe').read_bytes()).hexdigest())
+        if current is not None and 'previousRoots' in current:
+            from residue_cleanup import relocation_projection
+            relocation_projection(final.parent,current) # Validate before propagating local move history.
+            descriptor['previousRoots']=current['previousRoots']
+        atomic_json(no_reparse(final.parent/'launch-current.json'),descriptor)
         result=subprocess.run([str(stable),'--shortcut',str(launcher)],creationflags=subprocess.CREATE_NO_WINDOW)
         if result.returncode:raise UpdateRejected('Could not create stable application shortcut')
         return launcher
