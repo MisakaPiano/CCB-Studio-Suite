@@ -1,0 +1,522 @@
+{
+  "root": "H:\\CCB-Studio-Suite\\.local\\relocation-117-20261027\\synthetic",
+  "files": [
+    {
+      "path": "residue-cleanup-fixtures/e670589e/data/original.bin",
+      "bytes": 21,
+      "sha256": "7df354a5a5d6745afabccb28ce096773daa004c3da7fae313375c1f025771ede"
+    },
+    {
+      "path": "residue-cleanup-fixtures/e670589e/programs/launch-current.json",
+      "bytes": 397,
+      "sha256": "e895993ba055922802299ab4ae7c7165c2ede4daa93eaa6df43327e5740b53a2"
+    },
+    {
+      "path": "residue-cleanup-fixtures/e670589e/runtime/updates/install-current.json",
+      "bytes": 538,
+      "sha256": "9e81ac53a2d648b03c881f8d97804d04c99ab98553739757c59a394fc61231cf"
+    },
+    {
+      "path": "residue-cleanup-fixtures/e670589e/runtime/updates/handoffs/fixture/plan.json",
+      "bytes": 664,
+      "sha256": "6607e4fd19235caff38c5be0e536388323b75bfec7438aac5089faa2230b85d7"
+    },
+    {
+      "path": "residue-cleanup-fixtures/e670589e/runtime/updates/handoffs/fixture/result.json",
+      "bytes": 486,
+      "sha256": "7dcd1243cbe0ab8e5bb51203acf88878fda507546eb826b7eb096175362cc4b1"
+    },
+    {
+      "path": "residue-cleanup-fixtures/e670589e/runtime/updates/cleanup/owned/5136dd0918034c0bb1ed5123248ede21.json",
+      "bytes": 1802,
+      "sha256": "6d2b2013dd41dd9fb28cc9600102ce6415deae5c5f258fd8fa0adfe4d2e0c46f"
+    },
+    {
+      "path": "residue-cleanup-fixtures/e670589e/runtime/updates/cleanup/owned/b2f98b3a3d8c4e22bd76d7c35a09923a.json",
+      "bytes": 1798,
+      "sha256": "b9c16b8b98d3a0ee42efd033db8c92023686d63507477c914fb619cdde544a70"
+    },
+    {
+      "path": "residue-cleanup-fixtures/e670589e/programs/1-aaaaaaaaaaaa/CCBStudioSuitePreview.exe",
+      "bytes": 26,
+      "sha256": "3bb3c570d100ee730ece7694dd33d41db2196c23ccfae2ad81167bb134163e59"
+    },
+    {
+      "path": "residue-cleanup-fixtures/e670589e/programs/1-aaaaaaaaaaaa/INSTALL_COMPLETE",
+      "bytes": 42,
+      "sha256": "8e3afe6be41562a2ffba222d54b47694452ca4f10b76e1c2955ced0354f693b4"
+    },
+    {
+      "path": "residue-cleanup-fixtures/e670589e/programs/1-aaaaaaaaaaaa/INSTALL_MANIFEST.json",
+      "bytes": 670,
+      "sha256": "4244454d2a1174bec84f785717c556b75a7ee26d5b6468abda97f609a1b40b11"
+    },
+    {
+      "path": "residue-cleanup-fixtures/e670589e/programs/1-aaaaaaaaaaaa/retired.dll",
+      "bytes": 12,
+      "sha256": "6e006caeefde3eae5e0d12260693aa244b7bfe7960c0caaa468849c8f3227c40"
+    },
+    {
+      "path": "residue-cleanup-fixtures/e670589e/programs/1-aaaaaaaaaaaa/Uninstall.exe",
+      "bytes": 21,
+      "sha256": "9d001c340e68c5e3479564f1f41dad587c31b9c45618a289c3cef9995fec6d03"
+    },
+    {
+      "path": "residue-cleanup-fixtures/e670589e/programs/2-bbbbbbbbbbbb/CCBStudioSuitePreview.exe",
+      "bytes": 26,
+      "sha256": "ab7682c7463893af1dd087ae19d2f08f5512356262dfb97332a4da0bf2b82c80"
+    },
+    {
+      "path": "residue-cleanup-fixtures/e670589e/programs/2-bbbbbbbbbbbb/INSTALL_COMPLETE",
+      "bytes": 42,
+      "sha256": "02ca27c444e4c8a0b1b68d46ad24e076aee0944764def6106336b9b5729ab99a"
+    },
+    {
+      "path": "residue-cleanup-fixtures/e670589e/programs/2-bbbbbbbbbbbb/INSTALL_MANIFEST.json",
+      "bytes": 670,
+      "sha256": "68510393b560e931976df5ab7330390a601def2c4c9e45b9ff565dd9bec0b902"
+    },
+    {
+      "path": "residue-cleanup-fixtures/e670589e/programs/2-bbbbbbbbbbbb/retired.dll",
+      "bytes": 12,
+      "sha256": "fd3ad9f994ac9e4d243afb7e322e56f043866aa7d05e62652d2c97bca4c0f5fe"
+    },
+    {
+      "path": "residue-cleanup-fixtures/e670589e/programs/2-bbbbbbbbbbbb/Uninstall.exe",
+      "bytes": 21,
+      "sha256": "9d001c340e68c5e3479564f1f41dad587c31b9c45618a289c3cef9995fec6d03"
+    },
+    {
+      "path": "residue-cleanup-fixtures/e670589e/programs/2-bbbbbbbbbbbb/app/main.jar",
+      "bytes": 13,
+      "sha256": "2b25a0e31fe94c964d75b2be2fca6529bb8b1716a5946f458c1e61f5b7e36854"
+    },
+    {
+      "path": "residue-cleanup-fixtures/e670589e/programs/1-aaaaaaaaaaaa/app/main.jar",
+      "bytes": 13,
+      "sha256": "f1700b245c51f1e72243f26a5baa7083ad2f6bf3d2a5698a05979dfd400ba7dc"
+    },
+    {
+      "path": "residue-cleanup-fixtures/5790c21d/renamed/launch-current.json",
+      "bytes": 577,
+      "sha256": "385cff422c5e7fddec0bcb7832bda71fffa3dfb66119bb582dc24c926edb3a84"
+    },
+    {
+      "path": "residue-cleanup-fixtures/5790c21d/renamed/1-aaaaaaaaaaaa/CCBStudioSuitePreview.exe",
+      "bytes": 26,
+      "sha256": "3bb3c570d100ee730ece7694dd33d41db2196c23ccfae2ad81167bb134163e59"
+    },
+    {
+      "path": "residue-cleanup-fixtures/5790c21d/renamed/1-aaaaaaaaaaaa/INSTALL_COMPLETE",
+      "bytes": 42,
+      "sha256": "8e3afe6be41562a2ffba222d54b47694452ca4f10b76e1c2955ced0354f693b4"
+    },
+    {
+      "path": "residue-cleanup-fixtures/5790c21d/renamed/1-aaaaaaaaaaaa/INSTALL_MANIFEST.json",
+      "bytes": 670,
+      "sha256": "4244454d2a1174bec84f785717c556b75a7ee26d5b6468abda97f609a1b40b11"
+    },
+    {
+      "path": "residue-cleanup-fixtures/5790c21d/renamed/1-aaaaaaaaaaaa/retired.dll",
+      "bytes": 12,
+      "sha256": "6e006caeefde3eae5e0d12260693aa244b7bfe7960c0caaa468849c8f3227c40"
+    },
+    {
+      "path": "residue-cleanup-fixtures/5790c21d/renamed/1-aaaaaaaaaaaa/Uninstall.exe",
+      "bytes": 21,
+      "sha256": "9d001c340e68c5e3479564f1f41dad587c31b9c45618a289c3cef9995fec6d03"
+    },
+    {
+      "path": "residue-cleanup-fixtures/5790c21d/renamed/2-bbbbbbbbbbbb/CCBStudioSuitePreview.exe",
+      "bytes": 26,
+      "sha256": "ab7682c7463893af1dd087ae19d2f08f5512356262dfb97332a4da0bf2b82c80"
+    },
+    {
+      "path": "residue-cleanup-fixtures/5790c21d/renamed/2-bbbbbbbbbbbb/INSTALL_COMPLETE",
+      "bytes": 42,
+      "sha256": "02ca27c444e4c8a0b1b68d46ad24e076aee0944764def6106336b9b5729ab99a"
+    },
+    {
+      "path": "residue-cleanup-fixtures/5790c21d/renamed/2-bbbbbbbbbbbb/INSTALL_MANIFEST.json",
+      "bytes": 670,
+      "sha256": "68510393b560e931976df5ab7330390a601def2c4c9e45b9ff565dd9bec0b902"
+    },
+    {
+      "path": "residue-cleanup-fixtures/5790c21d/renamed/2-bbbbbbbbbbbb/retired.dll",
+      "bytes": 12,
+      "sha256": "fd3ad9f994ac9e4d243afb7e322e56f043866aa7d05e62652d2c97bca4c0f5fe"
+    },
+    {
+      "path": "residue-cleanup-fixtures/5790c21d/renamed/2-bbbbbbbbbbbb/Uninstall.exe",
+      "bytes": 21,
+      "sha256": "9d001c340e68c5e3479564f1f41dad587c31b9c45618a289c3cef9995fec6d03"
+    },
+    {
+      "path": "residue-cleanup-fixtures/5790c21d/renamed/data/workspace/original.bin",
+      "bytes": 21,
+      "sha256": "7df354a5a5d6745afabccb28ce096773daa004c3da7fae313375c1f025771ede"
+    },
+    {
+      "path": "residue-cleanup-fixtures/5790c21d/renamed/data/runtime/updates/client.lock",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "path": "residue-cleanup-fixtures/5790c21d/renamed/data/runtime/updates/install-current.json",
+      "bytes": 538,
+      "sha256": "ff7e9bf8e3a5f32c0f75739197048d467fdc7649502419380857307d4e031b1b"
+    },
+    {
+      "path": "residue-cleanup-fixtures/5790c21d/renamed/data/runtime/updates/handoffs/fixture/plan.json",
+      "bytes": 680,
+      "sha256": "a0679e9d7e0d55596de978e151931cf43adb281fb1c6a95201b521d6a087c080"
+    },
+    {
+      "path": "residue-cleanup-fixtures/5790c21d/renamed/data/runtime/updates/handoffs/fixture/result.json",
+      "bytes": 33,
+      "sha256": "30621e251c05512e6099a22b59055df093398d42396d35156a22c8223d251b69"
+    },
+    {
+      "path": "residue-cleanup-fixtures/5790c21d/renamed/data/runtime/updates/cleanup/owned/2ee57cc4964548bc8ec67c9583bc1e40.json",
+      "bytes": 1818,
+      "sha256": "fd49a83bbf478ffb3283af94fdcc2933014e4aea04a7c8b27112a756fe28b9c5"
+    },
+    {
+      "path": "residue-cleanup-fixtures/5790c21d/renamed/data/runtime/updates/cleanup/owned/7f9e31d6831c4e77bf5c4cb823b4dc64.json",
+      "bytes": 1814,
+      "sha256": "dd4e573ccfe06ecb4cbdd4f788c4c2f8594f3a533ce2ee28adb1944fbe5b30ff"
+    },
+    {
+      "path": "residue-cleanup-fixtures/5790c21d/renamed/2-bbbbbbbbbbbb/app/main.jar",
+      "bytes": 13,
+      "sha256": "2b25a0e31fe94c964d75b2be2fca6529bb8b1716a5946f458c1e61f5b7e36854"
+    },
+    {
+      "path": "residue-cleanup-fixtures/5790c21d/renamed/1-aaaaaaaaaaaa/app/main.jar",
+      "bytes": 13,
+      "sha256": "f1700b245c51f1e72243f26a5baa7083ad2f6bf3d2a5698a05979dfd400ba7dc"
+    },
+    {
+      "path": "residue-cleanup-fixtures/53a6654c/renamed/ACTIVE_INSTALLATION.json",
+      "bytes": 296,
+      "sha256": "e73d0a7c40e4525884a9adfb94278d6a1d0e8a1271b85a015717ca5a42a7ca43"
+    },
+    {
+      "path": "residue-cleanup-fixtures/53a6654c/renamed/launch-current.json",
+      "bytes": 577,
+      "sha256": "469b45c54851e95787cfff60a162c53e6b779b3d41ca61083c122fa21597f93d"
+    },
+    {
+      "path": "residue-cleanup-fixtures/53a6654c/renamed/1-aaaaaaaaaaaa/unknown.txt",
+      "bytes": 17,
+      "sha256": "6587ed6c37918c47c12a0ca626373e8ffafdc51e6bb19eb70b5e2ad2c41342e2"
+    },
+    {
+      "path": "residue-cleanup-fixtures/53a6654c/renamed/111-dddddddddddd/CCBStudioSuitePreview.exe",
+      "bytes": 28,
+      "sha256": "828fef5b08642b8670a632e5fef21b11cc82e8cbf0c1d3347eeea5d2467da432"
+    },
+    {
+      "path": "residue-cleanup-fixtures/53a6654c/renamed/111-dddddddddddd/INSTALL_COMPLETE",
+      "bytes": 44,
+      "sha256": "05c92cae288e936688b413dc5d3ca35eb623089433fa07da58dd301ad17df527"
+    },
+    {
+      "path": "residue-cleanup-fixtures/53a6654c/renamed/111-dddddddddddd/INSTALL_MANIFEST.json",
+      "bytes": 672,
+      "sha256": "3e0ed9735898ed813cf1c654360da67b97d2c15f3fade11e1662011cab2c8064"
+    },
+    {
+      "path": "residue-cleanup-fixtures/53a6654c/renamed/111-dddddddddddd/retired.dll",
+      "bytes": 14,
+      "sha256": "5a49f4aa8ed0e55281108557f2b81848227c64277387e1fd39a0aa1a0737d920"
+    },
+    {
+      "path": "residue-cleanup-fixtures/53a6654c/renamed/111-dddddddddddd/Uninstall.exe",
+      "bytes": 21,
+      "sha256": "9d001c340e68c5e3479564f1f41dad587c31b9c45618a289c3cef9995fec6d03"
+    },
+    {
+      "path": "residue-cleanup-fixtures/53a6654c/renamed/2-bbbbbbbbbbbb/CCBStudioSuitePreview.exe",
+      "bytes": 26,
+      "sha256": "ab7682c7463893af1dd087ae19d2f08f5512356262dfb97332a4da0bf2b82c80"
+    },
+    {
+      "path": "residue-cleanup-fixtures/53a6654c/renamed/2-bbbbbbbbbbbb/INSTALL_COMPLETE",
+      "bytes": 42,
+      "sha256": "02ca27c444e4c8a0b1b68d46ad24e076aee0944764def6106336b9b5729ab99a"
+    },
+    {
+      "path": "residue-cleanup-fixtures/53a6654c/renamed/2-bbbbbbbbbbbb/INSTALL_MANIFEST.json",
+      "bytes": 670,
+      "sha256": "68510393b560e931976df5ab7330390a601def2c4c9e45b9ff565dd9bec0b902"
+    },
+    {
+      "path": "residue-cleanup-fixtures/53a6654c/renamed/2-bbbbbbbbbbbb/retired.dll",
+      "bytes": 12,
+      "sha256": "fd3ad9f994ac9e4d243afb7e322e56f043866aa7d05e62652d2c97bca4c0f5fe"
+    },
+    {
+      "path": "residue-cleanup-fixtures/53a6654c/renamed/2-bbbbbbbbbbbb/Uninstall.exe",
+      "bytes": 21,
+      "sha256": "9d001c340e68c5e3479564f1f41dad587c31b9c45618a289c3cef9995fec6d03"
+    },
+    {
+      "path": "residue-cleanup-fixtures/53a6654c/renamed/data/workspace/original.bin",
+      "bytes": 21,
+      "sha256": "7df354a5a5d6745afabccb28ce096773daa004c3da7fae313375c1f025771ede"
+    },
+    {
+      "path": "residue-cleanup-fixtures/53a6654c/renamed/data/runtime/updates/client.lock",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "path": "residue-cleanup-fixtures/53a6654c/renamed/data/runtime/updates/install-current.json",
+      "bytes": 538,
+      "sha256": "aaf65c3a1e153adf3717e225109a0843e5638b2842708236cfae49643b1cf4c9"
+    },
+    {
+      "path": "residue-cleanup-fixtures/53a6654c/renamed/data/runtime/updates/cleanup/events.jsonl",
+      "bytes": 551,
+      "sha256": "4a48054ba03651e328552158e54a78294cff0072b1f78eeb136f114ad206d7b9"
+    },
+    {
+      "path": "residue-cleanup-fixtures/53a6654c/renamed/data/runtime/updates/cleanup/state.json",
+      "bytes": 172,
+      "sha256": "b3cc4ccd2b0e59674a886cce0e73a29a32862949aad30d47bcb2f50052eabd7a"
+    },
+    {
+      "path": "residue-cleanup-fixtures/53a6654c/renamed/data/runtime/updates/handoffs/fixture/plan.json",
+      "bytes": 680,
+      "sha256": "0c2f29e9f0de4f9e41313203a2f14587597a81fed3d3028f4c820a4109ce2798"
+    },
+    {
+      "path": "residue-cleanup-fixtures/53a6654c/renamed/data/runtime/updates/handoffs/fixture/result.json",
+      "bytes": 502,
+      "sha256": "98a7aa8268ea29e84cb6b86838df670c836ff7c46ae528141a40fe91b48aeef5"
+    },
+    {
+      "path": "residue-cleanup-fixtures/53a6654c/renamed/data/runtime/updates/cleanup/owned/5452ab6f144541c8982d2f76f2b75674.json",
+      "bytes": 1818,
+      "sha256": "2b6c8184d7a36ec14a73cf906908b9a83652bce182e69799036d854512701f12"
+    },
+    {
+      "path": "residue-cleanup-fixtures/53a6654c/renamed/data/runtime/updates/cleanup/owned/733a7d77e54e4bfd98b0dd959e1f0fae.json",
+      "bytes": 1814,
+      "sha256": "5d1348fe09984fc37e713efb99da844e24f8a1e234bdb4880f067c5c3027feb9"
+    },
+    {
+      "path": "residue-cleanup-fixtures/53a6654c/renamed/2-bbbbbbbbbbbb/app/main.jar",
+      "bytes": 13,
+      "sha256": "2b25a0e31fe94c964d75b2be2fca6529bb8b1716a5946f458c1e61f5b7e36854"
+    },
+    {
+      "path": "residue-cleanup-fixtures/53a6654c/renamed/111-dddddddddddd/app/main.jar",
+      "bytes": 15,
+      "sha256": "0968591ae30101757228f45c1af789f87a9d3485e2c516dbb22b9bea67f616f3"
+    },
+    {
+      "path": "residue-cleanup-fixtures/4c2b6a94/renamed/launch-current.json",
+      "bytes": 577,
+      "sha256": "8ed3f4e02599491d89f938a0f01976d89e518522d946c3ea59ba76a49b3d7c84"
+    },
+    {
+      "path": "residue-cleanup-fixtures/4c2b6a94/renamed/1-aaaaaaaaaaaa/retired.dll",
+      "bytes": 25,
+      "sha256": "6c87d09ef62a745f8713f286c130127081d64d76c6e5e10b668d5ecc3f9c256e"
+    },
+    {
+      "path": "residue-cleanup-fixtures/4c2b6a94/renamed/2-bbbbbbbbbbbb/CCBStudioSuitePreview.exe",
+      "bytes": 26,
+      "sha256": "ab7682c7463893af1dd087ae19d2f08f5512356262dfb97332a4da0bf2b82c80"
+    },
+    {
+      "path": "residue-cleanup-fixtures/4c2b6a94/renamed/2-bbbbbbbbbbbb/INSTALL_COMPLETE",
+      "bytes": 42,
+      "sha256": "02ca27c444e4c8a0b1b68d46ad24e076aee0944764def6106336b9b5729ab99a"
+    },
+    {
+      "path": "residue-cleanup-fixtures/4c2b6a94/renamed/2-bbbbbbbbbbbb/INSTALL_MANIFEST.json",
+      "bytes": 670,
+      "sha256": "68510393b560e931976df5ab7330390a601def2c4c9e45b9ff565dd9bec0b902"
+    },
+    {
+      "path": "residue-cleanup-fixtures/4c2b6a94/renamed/2-bbbbbbbbbbbb/retired.dll",
+      "bytes": 12,
+      "sha256": "fd3ad9f994ac9e4d243afb7e322e56f043866aa7d05e62652d2c97bca4c0f5fe"
+    },
+    {
+      "path": "residue-cleanup-fixtures/4c2b6a94/renamed/2-bbbbbbbbbbbb/Uninstall.exe",
+      "bytes": 21,
+      "sha256": "9d001c340e68c5e3479564f1f41dad587c31b9c45618a289c3cef9995fec6d03"
+    },
+    {
+      "path": "residue-cleanup-fixtures/4c2b6a94/renamed/data/workspace/original.bin",
+      "bytes": 21,
+      "sha256": "7df354a5a5d6745afabccb28ce096773daa004c3da7fae313375c1f025771ede"
+    },
+    {
+      "path": "residue-cleanup-fixtures/4c2b6a94/renamed/data/runtime/updates/client.lock",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "path": "residue-cleanup-fixtures/4c2b6a94/renamed/data/runtime/updates/install-current.json",
+      "bytes": 538,
+      "sha256": "2cb07715e4532544ce6f2470580260f4b4841e31d45aed010dfcd908fabff4cd"
+    },
+    {
+      "path": "residue-cleanup-fixtures/4c2b6a94/renamed/data/runtime/updates/cleanup/events.jsonl",
+      "bytes": 302,
+      "sha256": "112d3831e2862ab4d167509a368fb707e689a3bbe491ddc6c5939e3bb60ef198"
+    },
+    {
+      "path": "residue-cleanup-fixtures/4c2b6a94/renamed/data/runtime/updates/cleanup/state.json",
+      "bytes": 172,
+      "sha256": "2889e853cb34ac629228ca9bf4099257b97760be91982e31e71ba698c8bad2ef"
+    },
+    {
+      "path": "residue-cleanup-fixtures/4c2b6a94/renamed/data/runtime/updates/handoffs/fixture/plan.json",
+      "bytes": 680,
+      "sha256": "6040a076b0d35ab705e3d2e8ed75848d25caa2efddded3555c9bf985126f9d05"
+    },
+    {
+      "path": "residue-cleanup-fixtures/4c2b6a94/renamed/data/runtime/updates/handoffs/fixture/result.json",
+      "bytes": 502,
+      "sha256": "1c28144be82edb0a1edd2098b33690ebcdd4a8e693bc9aebf57e50d8d39360c8"
+    },
+    {
+      "path": "residue-cleanup-fixtures/4c2b6a94/renamed/data/runtime/updates/cleanup/owned/265a260d5f724e56a518d3123ce1cbab.json",
+      "bytes": 1818,
+      "sha256": "0224c0fa6f06480d46db51cf68d3b6fba9407d9bb7bebe25d6923a753bad5dc6"
+    },
+    {
+      "path": "residue-cleanup-fixtures/4c2b6a94/renamed/data/runtime/updates/cleanup/owned/deb4e389b1ff4f248a108b5179ad3f96.json",
+      "bytes": 1814,
+      "sha256": "04b26a0acf13db2a0f4ba8ddb9275044b396856984201363d713560dee68021e"
+    },
+    {
+      "path": "residue-cleanup-fixtures/4c2b6a94/renamed/2-bbbbbbbbbbbb/app/main.jar",
+      "bytes": 13,
+      "sha256": "2b25a0e31fe94c964d75b2be2fca6529bb8b1716a5946f458c1e61f5b7e36854"
+    },
+    {
+      "path": "residue-cleanup-fixtures/0279d855/renamed/ACTIVE_INSTALLATION.json",
+      "bytes": 147,
+      "sha256": "8a626ee69a96feae8dfd5d1cb64b1c5b55cba9b397be896202f176dcca15cdd8"
+    },
+    {
+      "path": "residue-cleanup-fixtures/0279d855/renamed/launch-current.json",
+      "bytes": 577,
+      "sha256": "dd95b37331362de925039e810a67ee2138ddc4eceb74750dfac0600fcb290658"
+    },
+    {
+      "path": "residue-cleanup-fixtures/0279d855/renamed/1-aaaaaaaaaaaa/CCBStudioSuitePreview.exe",
+      "bytes": 26,
+      "sha256": "3bb3c570d100ee730ece7694dd33d41db2196c23ccfae2ad81167bb134163e59"
+    },
+    {
+      "path": "residue-cleanup-fixtures/0279d855/renamed/1-aaaaaaaaaaaa/INSTALL_COMPLETE",
+      "bytes": 42,
+      "sha256": "8e3afe6be41562a2ffba222d54b47694452ca4f10b76e1c2955ced0354f693b4"
+    },
+    {
+      "path": "residue-cleanup-fixtures/0279d855/renamed/1-aaaaaaaaaaaa/INSTALL_MANIFEST.json",
+      "bytes": 670,
+      "sha256": "4244454d2a1174bec84f785717c556b75a7ee26d5b6468abda97f609a1b40b11"
+    },
+    {
+      "path": "residue-cleanup-fixtures/0279d855/renamed/1-aaaaaaaaaaaa/retired.dll",
+      "bytes": 12,
+      "sha256": "6e006caeefde3eae5e0d12260693aa244b7bfe7960c0caaa468849c8f3227c40"
+    },
+    {
+      "path": "residue-cleanup-fixtures/0279d855/renamed/1-aaaaaaaaaaaa/Uninstall.exe",
+      "bytes": 21,
+      "sha256": "9d001c340e68c5e3479564f1f41dad587c31b9c45618a289c3cef9995fec6d03"
+    },
+    {
+      "path": "residue-cleanup-fixtures/0279d855/renamed/2-bbbbbbbbbbbb/CCBStudioSuitePreview.exe",
+      "bytes": 26,
+      "sha256": "ab7682c7463893af1dd087ae19d2f08f5512356262dfb97332a4da0bf2b82c80"
+    },
+    {
+      "path": "residue-cleanup-fixtures/0279d855/renamed/2-bbbbbbbbbbbb/INSTALL_COMPLETE",
+      "bytes": 42,
+      "sha256": "02ca27c444e4c8a0b1b68d46ad24e076aee0944764def6106336b9b5729ab99a"
+    },
+    {
+      "path": "residue-cleanup-fixtures/0279d855/renamed/2-bbbbbbbbbbbb/INSTALL_MANIFEST.json",
+      "bytes": 670,
+      "sha256": "68510393b560e931976df5ab7330390a601def2c4c9e45b9ff565dd9bec0b902"
+    },
+    {
+      "path": "residue-cleanup-fixtures/0279d855/renamed/2-bbbbbbbbbbbb/retired.dll",
+      "bytes": 12,
+      "sha256": "fd3ad9f994ac9e4d243afb7e322e56f043866aa7d05e62652d2c97bca4c0f5fe"
+    },
+    {
+      "path": "residue-cleanup-fixtures/0279d855/renamed/2-bbbbbbbbbbbb/Uninstall.exe",
+      "bytes": 21,
+      "sha256": "9d001c340e68c5e3479564f1f41dad587c31b9c45618a289c3cef9995fec6d03"
+    },
+    {
+      "path": "residue-cleanup-fixtures/0279d855/renamed/data/workspace/original.bin",
+      "bytes": 21,
+      "sha256": "7df354a5a5d6745afabccb28ce096773daa004c3da7fae313375c1f025771ede"
+    },
+    {
+      "path": "residue-cleanup-fixtures/0279d855/renamed/data/runtime/updates/client.lock",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "path": "residue-cleanup-fixtures/0279d855/renamed/data/runtime/updates/install-current.json",
+      "bytes": 538,
+      "sha256": "aab611d5089cd56a7486b055a11ba04b656d60c41721114cc1316bf9fe24fbc0"
+    },
+    {
+      "path": "residue-cleanup-fixtures/0279d855/renamed/data/runtime/updates/cleanup/events.jsonl",
+      "bytes": 81,
+      "sha256": "5de79ed7993c5ece3e6ac3cad6ed5dfa4d50be64f0b5fd6a1c0b4d21f6c5bede"
+    },
+    {
+      "path": "residue-cleanup-fixtures/0279d855/renamed/data/runtime/updates/cleanup/state.json",
+      "bytes": 88,
+      "sha256": "3a8bd40d7842e32a8879c63bd2ab9f007df9fad742552516fafbb087247832a4"
+    },
+    {
+      "path": "residue-cleanup-fixtures/0279d855/renamed/data/runtime/updates/handoffs/fixture/plan.json",
+      "bytes": 680,
+      "sha256": "2310530d14b2c798b253dfb02eb2f86f436e6313a34ff22cf3276ca8b4202fb4"
+    },
+    {
+      "path": "residue-cleanup-fixtures/0279d855/renamed/data/runtime/updates/handoffs/fixture/result.json",
+      "bytes": 502,
+      "sha256": "9831c6ad922f3e8c8acfddb753397c852bae1f330d5fb3e4aae1daf64fb22144"
+    },
+    {
+      "path": "residue-cleanup-fixtures/0279d855/renamed/data/runtime/updates/cleanup/owned/257d0434a4d047ed9ff205cb7f35411c.json",
+      "bytes": 1818,
+      "sha256": "4d93e996702745838ab6f3abeec510e9ab5a4a79525adfbee97ff53adb857f06"
+    },
+    {
+      "path": "residue-cleanup-fixtures/0279d855/renamed/data/runtime/updates/cleanup/owned/85bff41f9fec4918968e75021b3da206.json",
+      "bytes": 1814,
+      "sha256": "c0d19aa217cc939e73361ce40d979745edae66f9fafef793a5fed8e8968c56f5"
+    },
+    {
+      "path": "residue-cleanup-fixtures/0279d855/renamed/2-bbbbbbbbbbbb/app/main.jar",
+      "bytes": 13,
+      "sha256": "2b25a0e31fe94c964d75b2be2fca6529bb8b1716a5946f458c1e61f5b7e36854"
+    },
+    {
+      "path": "residue-cleanup-fixtures/0279d855/renamed/1-aaaaaaaaaaaa/app/main.jar",
+      "bytes": 13,
+      "sha256": "f1700b245c51f1e72243f26a5baa7083ad2f6bf3d2a5698a05979dfd400ba7dc"
+    }
+  ],
+  "kind": "THIS_TURN_EXPLICIT_SYNTHETIC_ROOT",
+  "containsUserData": false
+}

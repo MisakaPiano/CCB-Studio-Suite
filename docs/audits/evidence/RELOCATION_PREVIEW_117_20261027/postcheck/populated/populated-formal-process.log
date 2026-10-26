@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\.local\relocation-117-20261027\check-populated-formal.py", line 61, in <module>
+    if root.drive==destination.drive:root.rename(destination)
+                                     ~~~~~~~~~~~^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 767, in rename
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\g0' -> 'C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\g1'

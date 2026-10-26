@@ -1,0 +1,24 @@
+{
+  "case": "same-volume-rename",
+  "status": "PASS",
+  "source": "b9b240a248d428ec158c341b8c127969fd54cb64",
+  "realFilesystemMove": true,
+  "nativeBeforeAfter": "PRODUCTION_GUI_VISIBLE_AND_NORMAL_CLOSE",
+  "relocatedDataAndRuntime": true,
+  "nativeAtoB": "REAL_PARENT_DRAIN_NSIS_B_COMPLETE",
+  "syntheticCredentials": 2,
+  "assets": 3,
+  "ownedPredecessorRemoved": true,
+  "downloadRemoved": true,
+  "unknownAndProtectedRetained": true,
+  "repeatedCleanupRemoved": 0,
+  "externalShortcut": "RECREATED_AND_TARGET_VERIFIED; NOT AUTOMATIC_SHELL_TRACKING",
+  "taskbarPin": "NOT TESTED",
+  "nativeBClose": [
+    {
+      "pid": 24656,
+      "window": 10951388,
+      "image": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\a1\\2-b9b240a248d4\\CCBStudioSuitePreview.exe"
+    }
+  ]
+}

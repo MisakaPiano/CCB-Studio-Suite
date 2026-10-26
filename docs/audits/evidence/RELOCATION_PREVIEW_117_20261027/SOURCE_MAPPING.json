@@ -1,0 +1,44 @@
+[
+  {
+    "path": "tools/windows-launcher/Launcher.cs",
+    "windowsSha256": "eaa0fcc496e2fa760f6af1c4b337ace89127db4cc65dd694e9c5d7733f1020fe",
+    "gitBlob": "5ea57a3aa19a3a4811201a6b361f650111bc8961",
+    "sourceCommit": "b9b240a248d428ec158c341b8c127969fd54cb64"
+  },
+  {
+    "path": "tools/update-runtime/residue_cleanup.py",
+    "windowsSha256": "7b6a6de032b9d5b031141c4516c3e827ecb30048f1f44756194bda3c3ce1fb3d",
+    "gitBlob": "b2c7f6a3f8bc2a8bde3dc70d431afb65321778ee",
+    "sourceCommit": "b9b240a248d428ec158c341b8c127969fd54cb64"
+  },
+  {
+    "path": "tools/update-runtime/apply_update.py",
+    "windowsSha256": "0e7b7ded323591e57f0ccdca31fdf00e6327b0971730729c56a44d8cf6471c56",
+    "gitBlob": "adafc9c48bf8b1783d7ea85131caf37795d1ad4a",
+    "sourceCommit": "b9b240a248d428ec158c341b8c127969fd54cb64"
+  },
+  {
+    "path": "tools/update-runtime/test_relocation.py",
+    "windowsSha256": "17ea210d622318432c77411c2dcef38baa62fc7b4ee27030d6ef7a3064b0d118",
+    "gitBlob": "799528f0061458210bae1503ecbc0dde2a616285",
+    "sourceCommit": "b9b240a248d428ec158c341b8c127969fd54cb64"
+  },
+  {
+    "path": "tools/Build-InternalInstaller.py",
+    "windowsSha256": "7ef0dce86737ab16ef25c623488375732ebff6343eedfda30714b2c5893433dd",
+    "gitBlob": "825dede9ba1b5ce3acc422448aef547b7668e3b1",
+    "sourceCommit": "b9b240a248d428ec158c341b8c127969fd54cb64"
+  },
+  {
+    "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/DesktopEntrypoints.kt",
+    "windowsSha256": "956a98617991b723e44d3be6bd53ad79c24ab410783a6870b49bb617ecee31a9",
+    "gitBlob": "d6656f299d2621b1f1d717305e9f1eff2df8d08d",
+    "sourceCommit": "b9b240a248d428ec158c341b8c127969fd54cb64"
+  },
+  {
+    "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/RelocationNativeA.kt",
+    "windowsSha256": "7c260dcbe8d9009e8e8a2830729699e30de01e2f1e3b1fee4c44ffda859459d8",
+    "gitBlob": "79f5d9ec8d15ea2ddb93c841764a33aea6602176",
+    "sourceCommit": "b9b240a248d428ec158c341b8c127969fd54cb64"
+  }
+]

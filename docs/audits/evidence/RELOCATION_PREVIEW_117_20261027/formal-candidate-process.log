@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\.local\relocation-117-20261027\check-formal-candidate.py", line 11, in <module>
+    assert old_files.keys()==new_files.keys() and set(delta)=={'update-root.json','update-config.json'},delta
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ['update-config.json', 'update-root.json', 'updater/CCBStudioLauncher.exe']

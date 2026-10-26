@@ -1,0 +1,237 @@
+{
+  "root": "H:\\CCB-Studio-Suite\\.local\\relocation-117-20261027\\launcher-fixtures",
+  "files": [
+    {
+      "path": "Baseline.cs",
+      "bytes": 9145,
+      "sha256": "09d071ccd9c6a95fc0792e80e315f5e1e6bb320008f3f03c9580109d084e51af"
+    },
+    {
+      "path": "Marker.cs",
+      "bytes": 163,
+      "sha256": "dc79846148f02fb2ecf4a01745306c61709a0cfb6eef5d281c0810e55bbf5a49"
+    },
+    {
+      "path": "OldLauncher.exe",
+      "bytes": 15360,
+      "sha256": "1338dce8d13c8f996a99221e0abdbd38a47eee1a76dc820d0220adcb61e723bc"
+    },
+    {
+      "path": "external-profile-after/CCBStudioLauncher.exe",
+      "bytes": 18432,
+      "sha256": "3c5092f50f8edf268dd0bb594c1fdf12450cc07a37ec3642eae1efab9568fc94"
+    },
+    {
+      "path": "external-profile-after/entrypoints.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "external-profile-after/launch-current.json",
+      "bytes": 683,
+      "sha256": "690e379e591f0a710e64f43d4eb267be55b4c735aa99a637f548a35192b726ae"
+    },
+    {
+      "path": "junction-profile-after/CCBStudioLauncher.exe",
+      "bytes": 18432,
+      "sha256": "3c5092f50f8edf268dd0bb594c1fdf12450cc07a37ec3642eae1efab9568fc94"
+    },
+    {
+      "path": "junction-profile-after/entrypoints.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "junction-profile-after/launch-current.json",
+      "bytes": 491,
+      "sha256": "bcd46d5d45948d9e4019848329d02d42fcb670f0252e0e7b478aa8fe6dd7ee06"
+    },
+    {
+      "path": "missing-profile-after/CCBStudioLauncher.exe",
+      "bytes": 18432,
+      "sha256": "3c5092f50f8edf268dd0bb594c1fdf12450cc07a37ec3642eae1efab9568fc94"
+    },
+    {
+      "path": "missing-profile-after/entrypoints.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "missing-profile-after/launch-current.json",
+      "bytes": 488,
+      "sha256": "2210cd3ebadd80cbdba374084d5b2816195298265216b3a8c756514151721bd2"
+    },
+    {
+      "path": "rename-after/BaselineLauncher.exe",
+      "bytes": 15360,
+      "sha256": "1338dce8d13c8f996a99221e0abdbd38a47eee1a76dc820d0220adcb61e723bc"
+    },
+    {
+      "path": "rename-after/CCBStudioLauncher.exe",
+      "bytes": 18432,
+      "sha256": "3c5092f50f8edf268dd0bb594c1fdf12450cc07a37ec3642eae1efab9568fc94"
+    },
+    {
+      "path": "rename-after/entrypoints.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "rename-after/launch-current.json",
+      "bytes": 659,
+      "sha256": "35676c13ff3410045d44632ed99f2bd3554f2ae8cd80c24625178f084713a0ef"
+    },
+    {
+      "path": "tampered-exe-after/CCBStudioLauncher.exe",
+      "bytes": 18432,
+      "sha256": "3c5092f50f8edf268dd0bb594c1fdf12450cc07a37ec3642eae1efab9568fc94"
+    },
+    {
+      "path": "tampered-exe-after/entrypoints.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tampered-exe-after/launch-current.json",
+      "bytes": 479,
+      "sha256": "b35060f64f6ef1bd786afb90984331cd7528ade26af1e1eec24ffefc42ec1651"
+    },
+    {
+      "path": "tampered-exe-after/2-bbbbbbbbbbbb/CCBStudioSuitePreview.exe",
+      "bytes": 19,
+      "sha256": "09030a5717689d4d8923ba0b5272f56a87e767758c3f3d176b06f446eb969fad"
+    },
+    {
+      "path": "tampered-exe-after/2-bbbbbbbbbbbb/INSTALL_COMPLETE",
+      "bytes": 42,
+      "sha256": "02ca27c444e4c8a0b1b68d46ad24e076aee0944764def6106336b9b5729ab99a"
+    },
+    {
+      "path": "tampered-exe-after/2-bbbbbbbbbbbb/INSTALL_MANIFEST.json",
+      "bytes": 181,
+      "sha256": "a5a36335d9ecf3df99355ea064b5f5d238872de683c519344912f195f076e20c"
+    },
+    {
+      "path": "tampered-exe-after/2-bbbbbbbbbbbb/update-config.json",
+      "bytes": 155,
+      "sha256": "8194f6b0ebf9ef36b974560abec738ba0e8281fe6636fb282c464ec345c91d64"
+    },
+    {
+      "path": "tampered-exe-after/2-bbbbbbbbbbbb/updater/CCBStudioLauncher.exe",
+      "bytes": 18432,
+      "sha256": "3c5092f50f8edf268dd0bb594c1fdf12450cc07a37ec3642eae1efab9568fc94"
+    },
+    {
+      "path": "rename-after/2-bbbbbbbbbbbb/arguments.txt",
+      "bytes": 225,
+      "sha256": "b0a57eded700add1e14b8696778854fdf2b0de6c4d40738f7c214026d0445ca4"
+    },
+    {
+      "path": "rename-after/2-bbbbbbbbbbbb/CCBStudioSuitePreview.exe",
+      "bytes": 3584,
+      "sha256": "3cd42add5167df104424b7e63bf9d6d2a5ebca0e1cec77a5c03ee7446b608495"
+    },
+    {
+      "path": "rename-after/2-bbbbbbbbbbbb/INSTALL_COMPLETE",
+      "bytes": 42,
+      "sha256": "02ca27c444e4c8a0b1b68d46ad24e076aee0944764def6106336b9b5729ab99a"
+    },
+    {
+      "path": "rename-after/2-bbbbbbbbbbbb/INSTALL_MANIFEST.json",
+      "bytes": 181,
+      "sha256": "a5a36335d9ecf3df99355ea064b5f5d238872de683c519344912f195f076e20c"
+    },
+    {
+      "path": "rename-after/2-bbbbbbbbbbbb/update-config.json",
+      "bytes": 155,
+      "sha256": "8194f6b0ebf9ef36b974560abec738ba0e8281fe6636fb282c464ec345c91d64"
+    },
+    {
+      "path": "rename-after/2-bbbbbbbbbbbb/updater/CCBStudioLauncher.exe",
+      "bytes": 18432,
+      "sha256": "3c5092f50f8edf268dd0bb594c1fdf12450cc07a37ec3642eae1efab9568fc94"
+    },
+    {
+      "path": "missing-profile-after/2-bbbbbbbbbbbb/CCBStudioSuitePreview.exe",
+      "bytes": 3584,
+      "sha256": "0e689536de432f9b23c5be5ff7842cb6fed772172db21d9be881ddcb8c7edc3f"
+    },
+    {
+      "path": "missing-profile-after/2-bbbbbbbbbbbb/INSTALL_COMPLETE",
+      "bytes": 42,
+      "sha256": "02ca27c444e4c8a0b1b68d46ad24e076aee0944764def6106336b9b5729ab99a"
+    },
+    {
+      "path": "missing-profile-after/2-bbbbbbbbbbbb/INSTALL_MANIFEST.json",
+      "bytes": 181,
+      "sha256": "a5a36335d9ecf3df99355ea064b5f5d238872de683c519344912f195f076e20c"
+    },
+    {
+      "path": "missing-profile-after/2-bbbbbbbbbbbb/update-config.json",
+      "bytes": 155,
+      "sha256": "8194f6b0ebf9ef36b974560abec738ba0e8281fe6636fb282c464ec345c91d64"
+    },
+    {
+      "path": "missing-profile-after/2-bbbbbbbbbbbb/updater/CCBStudioLauncher.exe",
+      "bytes": 18432,
+      "sha256": "3c5092f50f8edf268dd0bb594c1fdf12450cc07a37ec3642eae1efab9568fc94"
+    },
+    {
+      "path": "junction-profile-after/2-bbbbbbbbbbbb/CCBStudioSuitePreview.exe",
+      "bytes": 3584,
+      "sha256": "592e92adb9e04aa2a88e45d0050be8c8d95b53be0f2a2632b9f008a0fafe672f"
+    },
+    {
+      "path": "junction-profile-after/2-bbbbbbbbbbbb/INSTALL_COMPLETE",
+      "bytes": 42,
+      "sha256": "02ca27c444e4c8a0b1b68d46ad24e076aee0944764def6106336b9b5729ab99a"
+    },
+    {
+      "path": "junction-profile-after/2-bbbbbbbbbbbb/INSTALL_MANIFEST.json",
+      "bytes": 181,
+      "sha256": "a5a36335d9ecf3df99355ea064b5f5d238872de683c519344912f195f076e20c"
+    },
+    {
+      "path": "junction-profile-after/2-bbbbbbbbbbbb/update-config.json",
+      "bytes": 155,
+      "sha256": "8194f6b0ebf9ef36b974560abec738ba0e8281fe6636fb282c464ec345c91d64"
+    },
+    {
+      "path": "junction-profile-after/2-bbbbbbbbbbbb/updater/CCBStudioLauncher.exe",
+      "bytes": 18432,
+      "sha256": "3c5092f50f8edf268dd0bb594c1fdf12450cc07a37ec3642eae1efab9568fc94"
+    },
+    {
+      "path": "external-profile-after/2-bbbbbbbbbbbb/arguments.txt",
+      "bytes": 221,
+      "sha256": "e474b67d721f4ecdd02ad0db800fa14e117a4dff84017033da8817bfb14a0638"
+    },
+    {
+      "path": "external-profile-after/2-bbbbbbbbbbbb/CCBStudioSuitePreview.exe",
+      "bytes": 3584,
+      "sha256": "480f8a051c593c32472bc6a499f2c1073e18ffd1cf61c7d9b1cebbcea544618a"
+    },
+    {
+      "path": "external-profile-after/2-bbbbbbbbbbbb/INSTALL_COMPLETE",
+      "bytes": 42,
+      "sha256": "02ca27c444e4c8a0b1b68d46ad24e076aee0944764def6106336b9b5729ab99a"
+    },
+    {
+      "path": "external-profile-after/2-bbbbbbbbbbbb/INSTALL_MANIFEST.json",
+      "bytes": 181,
+      "sha256": "a5a36335d9ecf3df99355ea064b5f5d238872de683c519344912f195f076e20c"
+    },
+    {
+      "path": "external-profile-after/2-bbbbbbbbbbbb/update-config.json",
+      "bytes": 155,
+      "sha256": "8194f6b0ebf9ef36b974560abec738ba0e8281fe6636fb282c464ec345c91d64"
+    },
+    {
+      "path": "external-profile-after/2-bbbbbbbbbbbb/updater/CCBStudioLauncher.exe",
+      "bytes": 18432,
+      "sha256": "3c5092f50f8edf268dd0bb594c1fdf12450cc07a37ec3642eae1efab9568fc94"
+    }
+  ],
+  "kind": "THIS_TURN_EXPLICIT_SYNTHETIC_ROOT",
+  "containsUserData": false
+}

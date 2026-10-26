@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "observation": {
+    "data": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\b0\\data",
+    "runtime": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\b0\\runtime",
+    "pid": 26740,
+    "command": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\b0\\1-b9b240a248d4\\CCBStudioSuitePreview.exe",
+    "scope": "TEST_ONLY_ADAPTER_DELEGATES_TO_PRODUCTION_LAUNCH_STUDIO"
+  },
+  "visibleWindows": [
+    {
+      "pid": 26740,
+      "window": 5577592,
+      "image": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\b0\\1-b9b240a248d4\\CCBStudioSuitePreview.exe"
+    }
+  ],
+  "normalClose": [
+    {
+      "pid": 26740,
+      "window": 5577592,
+      "image": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\b0\\1-b9b240a248d4\\CCBStudioSuitePreview.exe"
+    }
+  ],
+  "workspaceStateFiles": [
+    "data\\documents\\000000000001-1208a655-0da5-4c85-9d2a-36d527602d80.json"
+  ]
+}

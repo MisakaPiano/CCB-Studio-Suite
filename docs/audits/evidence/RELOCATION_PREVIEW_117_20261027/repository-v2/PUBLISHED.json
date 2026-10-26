@@ -1,0 +1,13 @@
+{
+  "product": "ccb-studio-suite",
+  "platform": "windows-x86_64",
+  "channel": "internal",
+  "version": 2,
+  "minimum_reader": 2,
+  "maximum_reader": 3,
+  "data_version": 3,
+  "sourceSha": "b9b240a248d428ec158c341b8c127969fd54cb64",
+  "displayVersion": "0.2.2-internal",
+  "notes": "隔离内部真实应用更新；保留原件、工程、历史和测试凭据。",
+  "installedBytes": 252893133
+}

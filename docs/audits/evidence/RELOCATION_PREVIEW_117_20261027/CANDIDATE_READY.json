@@ -1,0 +1,25 @@
+{
+  "status": "READY_FOR_USER_CONFIRMATION_NOT_PUBLISHED",
+  "version": 117,
+  "displayVersion": "0.0.0-preview.117",
+  "source": "b9b240a248d428ec158c341b8c127969fd54cb64",
+  "appBuildSource": "c601d50a0b57de765353c6f0e600ddc2e9807738",
+  "nativeLauncherSourceSha256": "eaa0fcc496e2fa760f6af1c4b337ace89127db4cc65dd694e9c5d7733f1020fe",
+  "installer": "H:\\CCB-Studio-Suite\\.local\\relocation-117-20261027\\candidate-preview-117\\studio-installer.exe",
+  "assetName": "CCB-Studio-Suite-0.0.0-preview.117-windows-x64.exe",
+  "bytes": 169002371,
+  "sha256": "bec5f78735b6cd4c517c7c31c3d5bd499ed97a0d565e75718bc90c38fb0089c9",
+  "realRelocationCases": 3,
+  "formalCandidateVerified": true,
+  "oldSevenReusedOnly": true,
+  "formalRootUnchanged": true,
+  "dailyInstallationModified": false,
+  "pending": [
+    "public117 signed discovery/download",
+    "independent review",
+    "full asset/editor human acceptance",
+    "115 experience",
+    "Prompt comparison",
+    "actual user taskbar pin after move"
+  ]
+}

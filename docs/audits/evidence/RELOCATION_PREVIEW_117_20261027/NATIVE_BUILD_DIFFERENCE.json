@@ -1,0 +1,1 @@
+{"initialAssertion": "Expected config/root-only change rejected native PE difference before installation", "actual": "Native launcher recompiled separately for Preview; same nativeLauncherSourceSha256 and compiler; no byte equality claim", "correction": "Keep all three binary deltas, require547 other members exact, execute actual formal native launcher through three moves"}

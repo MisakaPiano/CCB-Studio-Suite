@@ -1,0 +1,13 @@
+{
+  "source": "b9b240a248d428ec158c341b8c127969fd54cb64",
+  "appBuildSource": "c601d50a0b57de765353c6f0e600ddc2e9807738",
+  "identicalMembers": 547,
+  "differingOnly": [
+    "update-config.json",
+    "update-root.json",
+    "updater/CCBStudioLauncher.exe"
+  ],
+  "nativeCasesNotRecounted": true,
+  "formalSigningKeyRead": false,
+  "nativeLauncher": "Same committed source and compiler; separately compiled native bytes differ, actual Preview entry independently exercised below"
+}

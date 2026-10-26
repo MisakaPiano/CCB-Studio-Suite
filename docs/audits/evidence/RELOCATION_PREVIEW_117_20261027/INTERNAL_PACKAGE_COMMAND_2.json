@@ -1,0 +1,26 @@
+{
+  "arguments": [
+    "H:\\CCB-Studio-Suite\\.local\\windows-rc\\updater-runtime-115\\python.exe",
+    "-B",
+    "H:\\CCB-Studio-Suite\\tools\\Build-InternalInstaller.py",
+    "--app",
+    "H:\\CCB-Studio-Suite\\modules\\studio-desktop\\build\\compose\\binaries\\main\\app\\CCBStudioSuitePreview",
+    "--runtime",
+    "H:\\CCB-Studio-Suite\\.local\\relocation-117-20261027\\updater-runtime",
+    "--bootstrap",
+    "H:\\CCB-Studio-Suite\\.local\\relocation-117-20261027\\repository-v2\\root.json",
+    "--destination",
+    "H:\\CCB-Studio-Suite\\.local\\relocation-117-20261027\\candidate-v2",
+    "--version",
+    "2",
+    "--metadata-url",
+    "http://127.0.0.1:57678/metadata/",
+    "--targets-url",
+    "http://127.0.0.1:57678/targets/",
+    "--build-evidence",
+    "H:\\CCB-Studio-Suite\\.local\\windows-preview\\evidence\\20261026T152805598295Z-relocation-117-native-inputs-20261027",
+    "--consume-app-image"
+  ],
+  "appBuild": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\evidence\\20261026T152805598295Z-relocation-117-native-inputs-20261027",
+  "formalTrustChanged": false
+}

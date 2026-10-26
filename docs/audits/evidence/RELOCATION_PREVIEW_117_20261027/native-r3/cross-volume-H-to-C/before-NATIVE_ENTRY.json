@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "observation": {
+    "data": "H:\\CCB-Studio-Suite\\.local\\disposable\\relocation-f8065cb408c4441a9310319c1d8cead9\\payload\\.local\\review-update-native\\c0\\data",
+    "runtime": "H:\\CCB-Studio-Suite\\.local\\disposable\\relocation-f8065cb408c4441a9310319c1d8cead9\\payload\\.local\\review-update-native\\c0\\runtime",
+    "pid": 27900,
+    "command": "H:\\CCB-Studio-Suite\\.local\\disposable\\relocation-f8065cb408c4441a9310319c1d8cead9\\payload\\.local\\review-update-native\\c0\\1-b9b240a248d4\\CCBStudioSuitePreview.exe",
+    "scope": "TEST_ONLY_ADAPTER_DELEGATES_TO_PRODUCTION_LAUNCH_STUDIO"
+  },
+  "visibleWindows": [
+    {
+      "pid": 27900,
+      "window": 793380,
+      "image": "H:\\CCB-Studio-Suite\\.local\\disposable\\relocation-f8065cb408c4441a9310319c1d8cead9\\payload\\.local\\review-update-native\\c0\\1-b9b240a248d4\\CCBStudioSuitePreview.exe"
+    }
+  ],
+  "normalClose": [
+    {
+      "pid": 27900,
+      "window": 793380,
+      "image": "H:\\CCB-Studio-Suite\\.local\\disposable\\relocation-f8065cb408c4441a9310319c1d8cead9\\payload\\.local\\review-update-native\\c0\\1-b9b240a248d4\\CCBStudioSuitePreview.exe"
+    }
+  ],
+  "workspaceStateFiles": [
+    "data\\documents\\000000000001-77a6a0eb-ba01-48b7-92e0-c0521e2e56b8.json"
+  ]
+}

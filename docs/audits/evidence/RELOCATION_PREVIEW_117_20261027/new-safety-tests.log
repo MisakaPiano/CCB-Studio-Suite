@@ -1,0 +1,10 @@
+test_relocated_complete_cleans_owned_bytes_preserves_unknown_and_protected (test_relocation.RelocationCleanupTests.test_relocated_complete_cleans_owned_bytes_preserves_unknown_and_protected) ... ok
+test_relocated_incomplete_handoff_retains_predecessor (test_relocation.RelocationCleanupTests.test_relocated_incomplete_handoff_retains_predecessor) ... ok
+test_relocated_protection_record_still_blocks_old_program (test_relocation.RelocationCleanupTests.test_relocated_protection_record_still_blocks_old_program) ... ok
+test_relocated_receipt_does_not_relax_modified_file_hash (test_relocation.RelocationCleanupTests.test_relocated_receipt_does_not_relax_modified_file_hash) ... ok
+test_relocation_history_rejects_drive_root_overlap_and_ambiguity (test_relocation.RelocationCleanupTests.test_relocation_history_rejects_drive_root_overlap_and_ambiguity) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 4.843s
+
+OK

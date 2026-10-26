@@ -1,0 +1,8 @@
+{
+  "firstCleanup": "REJECTED_REPARSE_BEFORE_ANY_DELETION",
+  "path": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\profile\\AppData\\Local\\Microsoft\\Windows\\INetCache\\Content.IE5",
+  "target": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\profile\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE",
+  "targetWithinApprovedSyntheticRoot": true,
+  "action": "Removed exactly the junction with rmdir; did not traverse or delete through link",
+  "targetPreserved": true
+}

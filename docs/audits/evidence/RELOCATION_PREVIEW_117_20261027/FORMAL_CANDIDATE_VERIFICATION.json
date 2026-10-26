@@ -1,0 +1,148 @@
+{
+  "status": "PASS",
+  "version": 117,
+  "source": "b9b240a248d428ec158c341b8c127969fd54cb64",
+  "installerSha256": "bec5f78735b6cd4c517c7c31c3d5bd499ed97a0d565e75718bc90c38fb0089c9",
+  "installation": {
+    "files": 550,
+    "bytes": 252893352,
+    "manifestSha256": "8bec122ed3a350d68932add8f71edf0bec8520f1fbb49c596cf4546f0c991343"
+  },
+  "channel": "preview",
+  "formalRootUnchanged": true,
+  "productionMain": true,
+  "testProbePackaged": false,
+  "moves": [
+    {
+      "kind": "rename",
+      "source": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\f0",
+      "destination": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\f1",
+      "files": 576,
+      "allBytesMatched": true,
+      "sourceGone": true
+    },
+    {
+      "kind": "same-volume-move",
+      "source": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\f1",
+      "destination": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\sub\\f2",
+      "files": 581,
+      "allBytesMatched": true,
+      "sourceGone": true
+    },
+    {
+      "kind": "cross-volume-C-to-H",
+      "source": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\sub\\f2",
+      "destination": "H:\\CCB-Studio-Suite\\.local\\disposable\\proof117-8f8cba32\\payload\\f3",
+      "files": 586,
+      "allBytesMatched": true,
+      "sourceGone": true
+    }
+  ],
+  "entryChecks": [
+    {
+      "label": "installed",
+      "status": "PASS",
+      "root": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\f0",
+      "visibleWindows": [
+        {
+          "pid": 19628,
+          "window": 657246,
+          "image": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\f0\\117-b9b240a248d4\\CCBStudioSuitePreview.exe"
+        }
+      ],
+      "commandLine": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\f0\\117-b9b240a248d4\\CCBStudioSuitePreview.exe --studio-root C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\f0\\data --runtime-root C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\f0\\runtime",
+      "normalClose": [
+        {
+          "pid": 19628,
+          "window": 657246,
+          "image": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\f0\\117-b9b240a248d4\\CCBStudioSuitePreview.exe"
+        }
+      ],
+      "previousRoots": [],
+      "workspaceLockHeld": true,
+      "stateFiles": 1
+    },
+    {
+      "label": "rename",
+      "status": "PASS",
+      "root": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\f1",
+      "visibleWindows": [
+        {
+          "pid": 25872,
+          "window": 4135466,
+          "image": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\f1\\117-b9b240a248d4\\CCBStudioSuitePreview.exe"
+        }
+      ],
+      "commandLine": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\f1\\117-b9b240a248d4\\CCBStudioSuitePreview.exe --studio-root C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\f1\\data --runtime-root C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\f1\\runtime",
+      "normalClose": [
+        {
+          "pid": 25872,
+          "window": 4135466,
+          "image": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\f1\\117-b9b240a248d4\\CCBStudioSuitePreview.exe"
+        }
+      ],
+      "previousRoots": [
+        "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\f0"
+      ],
+      "workspaceLockHeld": true,
+      "stateFiles": 3
+    },
+    {
+      "label": "same-volume-move",
+      "status": "PASS",
+      "root": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\sub\\f2",
+      "visibleWindows": [
+        {
+          "pid": 28044,
+          "window": 793362,
+          "image": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\sub\\f2\\117-b9b240a248d4\\CCBStudioSuitePreview.exe"
+        }
+      ],
+      "commandLine": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\sub\\f2\\117-b9b240a248d4\\CCBStudioSuitePreview.exe --studio-root C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\sub\\f2\\data --runtime-root C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\sub\\f2\\runtime",
+      "normalClose": [
+        {
+          "pid": 28044,
+          "window": 793362,
+          "image": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\sub\\f2\\117-b9b240a248d4\\CCBStudioSuitePreview.exe"
+        }
+      ],
+      "previousRoots": [
+        "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\f0",
+        "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\f1"
+      ],
+      "workspaceLockHeld": true,
+      "stateFiles": 5
+    },
+    {
+      "label": "cross-volume-C-to-H",
+      "status": "PASS",
+      "root": "H:\\CCB-Studio-Suite\\.local\\disposable\\proof117-8f8cba32\\payload\\f3",
+      "visibleWindows": [
+        {
+          "pid": 13084,
+          "window": 6492254,
+          "image": "H:\\CCB-Studio-Suite\\.local\\disposable\\proof117-8f8cba32\\payload\\f3\\117-b9b240a248d4\\CCBStudioSuitePreview.exe"
+        }
+      ],
+      "commandLine": "H:\\CCB-Studio-Suite\\.local\\disposable\\proof117-8f8cba32\\payload\\f3\\117-b9b240a248d4\\CCBStudioSuitePreview.exe --studio-root H:\\CCB-Studio-Suite\\.local\\disposable\\proof117-8f8cba32\\payload\\f3\\data --runtime-root H:\\CCB-Studio-Suite\\.local\\disposable\\proof117-8f8cba32\\payload\\f3\\runtime",
+      "normalClose": [
+        {
+          "pid": 13084,
+          "window": 6492254,
+          "image": "H:\\CCB-Studio-Suite\\.local\\disposable\\proof117-8f8cba32\\payload\\f3\\117-b9b240a248d4\\CCBStudioSuitePreview.exe"
+        }
+      ],
+      "previousRoots": [
+        "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\f0",
+        "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\f1",
+        "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\sub\\f2"
+      ],
+      "workspaceLockHeld": true,
+      "stateFiles": 7
+    }
+  ],
+  "fullUpdateAndRetirement": "Mapped to three internal A-to-B cases; 547 exact members match; separate native launcher built from same input, actually exercised here",
+  "public117Metadata": "NOT PUBLISHED / NOT TESTED",
+  "taskbarPin": "NOT TESTED",
+  "dailyInstallationModified": false
+}

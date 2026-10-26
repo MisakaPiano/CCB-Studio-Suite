@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\.local\relocation-117-20261027\native-cases-r3.py", line 158, in <module>
+    write(evidence/'RESULT.json',results[-1]);status='PASS';retire(root,evidence)
+                                                            ~~~~~~^^^^^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\.local\relocation-117-20261027\native-cases-r3.py", line 88, in retire
+    assert not root.exists() or not any(root.iterdir())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

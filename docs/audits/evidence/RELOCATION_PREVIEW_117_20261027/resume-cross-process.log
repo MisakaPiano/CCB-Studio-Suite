@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\.local\relocation-117-20261027\resume-cross.py", line 140, in <module>
+    finish()
+    ~~~~~~^^
+  File "H:\CCB-Studio-Suite\.local\relocation-117-20261027\resume-cross.py", line 120, in finish
+    write(evidence/'A_INPUT_MAP.json',dict(kind='TEST_ONLY_A_APP_IMAGE',source=SOURCE,main='RelocationNativeA delegates production GUI / ReviewUpdateNativeA',manifest=sha(a/'INSTALL_MANIFEST.json'),probe=sha(probe),basePayload=receipt['sha256'],notPublic116Binary=True))
+                                                                                                                                                                                                                ^^^^^
+NameError: name 'probe' is not defined

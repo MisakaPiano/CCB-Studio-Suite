@@ -1,0 +1,42 @@
+{
+  "root": "H:\\CCB-Studio-Suite\\.local\\relocation-117-20261027\\shortcut-lock-fixture",
+  "files": [
+    {
+      "path": "foreign.lnk",
+      "bytes": 2201,
+      "sha256": "66ad5934f275c71997db720b48b6ad0a85c46c453001acf9f2a43a586d692a9a"
+    },
+    {
+      "path": "owned.lnk",
+      "bytes": 2153,
+      "sha256": "fa164519ba5b5bed21eb080401d158d0c0fc5dd439f01dc0071b24157f0670d5"
+    },
+    {
+      "path": "foreign/CCBStudioLauncher.exe",
+      "bytes": 18432,
+      "sha256": "ebf2cd250b7aec564761ec6d355064bda72127a4d901690b7308ef80f44286f6"
+    },
+    {
+      "path": "new/CCBStudioLauncher.exe",
+      "bytes": 18432,
+      "sha256": "ebf2cd250b7aec564761ec6d355064bda72127a4d901690b7308ef80f44286f6"
+    },
+    {
+      "path": "new/entrypoints.lock",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "path": "new/launch-current.json",
+      "bytes": 104,
+      "sha256": "425f948cfd5e3660d4f9ca39fb903be43f48702d7068fc51190cc30c4e7b6a9e"
+    },
+    {
+      "path": "old/CCBStudioLauncher.exe",
+      "bytes": 18432,
+      "sha256": "ebf2cd250b7aec564761ec6d355064bda72127a4d901690b7308ef80f44286f6"
+    }
+  ],
+  "kind": "THIS_TURN_EXPLICIT_SYNTHETIC_ROOT",
+  "containsUserData": false
+}

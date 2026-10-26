@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "shutil.py", line 860, in move
+OSError: [WinError 17] ϵͳ�޷����ļ��Ƶ���ͬ�Ĵ�����������: 'H:\\CCB-Studio-Suite\\.local\\disposable\\relocation-f8065cb408c4441a9310319c1d8cead9\\payload\\.local\\review-update-native\\c0' -> 'C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\c1'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\.local\relocation-117-20261027\native-cases-r4.py", line 133, in <module>
+    shutil.move(initial,destination);assert not initial.exists();root=destination;a=root/a.name
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "shutil.py", line 878, in move
+  File "shutil.py", line 790, in rmtree
+  File "shutil.py", line 629, in _rmtree_unsafe
+  File "shutil.py", line 625, in _rmtree_unsafe
+PermissionError: [WinError 5] �ܾ����ʡ�: 'H:\\CCB-Studio-Suite\\.local\\disposable\\relocation-f8065cb408c4441a9310319c1d8cead9\\payload\\.local\\review-update-native\\c0\\1-b9b240a248d4\\CCBStudioSuitePreview.exe'

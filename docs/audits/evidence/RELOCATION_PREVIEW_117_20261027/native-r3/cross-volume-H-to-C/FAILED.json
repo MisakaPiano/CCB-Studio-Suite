@@ -1,0 +1,8 @@
+{
+  "status": "FAILED",
+  "kind": "PermissionError",
+  "detail": "[WinError 5] \u62d2\u7edd\u8bbf\u95ee\u3002: 'H:\\\\CCB-Studio-Suite\\\\.local\\\\disposable\\\\relocation-f8065cb408c4441a9310319c1d8cead9\\\\payload\\\\.local\\\\review-update-native\\\\c0\\\\1-b9b240a248d4\\\\CCBStudioSuitePreview.exe'",
+  "initial": "H:\\CCB-Studio-Suite\\.local\\disposable\\relocation-f8065cb408c4441a9310319c1d8cead9\\payload\\.local\\review-update-native\\c0",
+  "destination": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\c1",
+  "retained": true
+}

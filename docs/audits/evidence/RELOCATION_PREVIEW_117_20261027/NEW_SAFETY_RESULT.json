@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "tests": 5,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 4.842968000011751,
+  "names": [
+    "test_relocated_complete_cleans_owned_bytes_preserves_unknown_and_protected",
+    "test_relocated_incomplete_handoff_retains_predecessor",
+    "test_relocated_protection_record_still_blocks_old_program",
+    "test_relocated_receipt_does_not_relax_modified_file_hash",
+    "test_relocation_history_rejects_drive_root_overlap_and_ambiguity"
+  ],
+  "realRelocationEvidence": false
+}

@@ -1,0 +1,193 @@
+{
+  "plan": {
+    "format": 1,
+    "nonce": "2759479df25bc80d7d27221d1562760d258e869f8d6264648aaae8403f7a3f6a",
+    "installed": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\c1\\1-b9b240a248d4",
+    "cache": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\c1\\runtime\\updates",
+    "dataRoot": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\c1\\data",
+    "runtimeRoot": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\c1\\runtime",
+    "parentPid": 27444,
+    "sourceDataVersion": 3,
+    "targetDataVersion": 3,
+    "destinationDataRoot": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\c1\\data",
+    "approved": {
+      "status": "DOWNLOADED_VERIFIED",
+      "version": 2,
+      "displayVersion": "0.2.2-internal",
+      "channel": "internal",
+      "notes": "\u9694\u79bb\u5185\u90e8\u771f\u5b9e\u5e94\u7528\u66f4\u65b0\uff1b\u4fdd\u7559\u539f\u4ef6\u3001\u5de5\u7a0b\u3001\u5386\u53f2\u548c\u6d4b\u8bd5\u51ed\u636e\u3002",
+      "sourceSha": "b9b240a248d428ec158c341b8c127969fd54cb64",
+      "bytes": 169002256,
+      "installedBytes": 252893133,
+      "sha256": "fa1738d8cc204b1f51f231114ac4bf40456d7697899aa54666bc13703a5268f3",
+      "minimumReader": 2,
+      "maximumReader": 3,
+      "dataVersion": 3,
+      "installer": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\c1\\runtime\\updates\\downloads\\615f5fd1-f51c-4c0e-87f1-2cac1e97c3d1\\studio-installer.exe"
+    },
+    "snapshot": {
+      "stateSha256": "14f60983840a06d29c8a3dc9653bc01306b885001a66cd551bc5287784e13c57",
+      "stateEncoding": "COMMITTED_STATE_V1",
+      "assets": [
+        {
+          "id": "1c124b51-fe40-43b8-aa50-d2725a354154",
+          "sha256": "466e78b9816bd096cb2b0d501ba5b23d7eb62a6c7a74cda1aa53db36ca4695ef",
+          "size": 1246,
+          "kind": "ORIGINAL",
+          "parent": null,
+          "nameSha256": "3b4e41cb081461af2c93edfaa7d963087a4a34788da3f2ab46edf9e6dc874e44",
+          "recipeSha256": "6de1bfc85ea8b0f0a3be30f674ce2cd08b0ab16be3f0e1e5061af6bd7a2f126f",
+          "projectSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "id": "5541cfcd-dafb-4028-bec0-8cac9e74c37d",
+          "sha256": "521bf4f571f22b70c902eb0b8534419cbb265d3857ca4458a182ea4c323448cc",
+          "size": 871,
+          "kind": "ORIGINAL",
+          "parent": null,
+          "nameSha256": "e50a2bae572f50216f53f2388e7c21188e6b12900a721bd793ea14c548f95c36",
+          "recipeSha256": "77cad19089271940160a58fe92c296a1afcd7003be52b68d2f75d635eb30d719",
+          "projectSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "id": "99a3071c-1bda-480f-a222-c979264ab55d",
+          "sha256": "6de1bfc85ea8b0f0a3be30f674ce2cd08b0ab16be3f0e1e5061af6bd7a2f126f",
+          "size": 3721,
+          "kind": "ORIGINAL",
+          "parent": null,
+          "nameSha256": "af3993a968c93f7dc055db28ccd76539ec94221c70ed455c992d87693f229a75",
+          "recipeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "projectSha256": "544436e20beb2746b79389ba853787d930391e438600d231b4fee04738b59ccf"
+        }
+      ],
+      "credentials": [
+        {
+          "ref": "04474bea-4b5b-4b20-8e8b-cbe6b246450f",
+          "sha256": "88c64a3fe4a9763563febd8f22b753549887e015487cd8b505ee1cd353d9a9e7"
+        },
+        {
+          "ref": "d86dede7-161f-4d84-b3ad-634958a99fe8",
+          "sha256": "96239bbe9443e32cd4b3562de10ec99f6f324281b3c98e50f368524a6387c3d3"
+        }
+      ]
+    }
+  },
+  "result": {
+    "status": "COMPLETE",
+    "nonce": "2759479df25bc80d7d27221d1562760d258e869f8d6264648aaae8403f7a3f6a",
+    "dataModifiedByInstaller": false,
+    "installed": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\c1\\2-b9b240a248d4",
+    "installJournal": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\c1\\runtime\\updates\\install-0b3f9ade40534257b36fe9bc929a8d41.json",
+    "verification": "B_PROGRAM_DATA_AND_CREDENTIAL_SNAPSHOT_MATCH",
+    "launcher": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\c1\\Launch-CCB-Studio.lnk",
+    "dataRoot": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\c1\\data",
+    "sourceDataRoot": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\c1\\data"
+  },
+  "b": {
+    "nonce": "2759479df25bc80d7d27221d1562760d258e869f8d6264648aaae8403f7a3f6a",
+    "version": 2,
+    "sourceSha": "b9b240a248d428ec158c341b8c127969fd54cb64",
+    "snapshot": {
+      "stateSha256": "14f60983840a06d29c8a3dc9653bc01306b885001a66cd551bc5287784e13c57",
+      "stateEncoding": "COMMITTED_STATE_V1",
+      "assets": [
+        {
+          "id": "1c124b51-fe40-43b8-aa50-d2725a354154",
+          "sha256": "466e78b9816bd096cb2b0d501ba5b23d7eb62a6c7a74cda1aa53db36ca4695ef",
+          "size": 1246,
+          "kind": "ORIGINAL",
+          "parent": null,
+          "nameSha256": "3b4e41cb081461af2c93edfaa7d963087a4a34788da3f2ab46edf9e6dc874e44",
+          "recipeSha256": "6de1bfc85ea8b0f0a3be30f674ce2cd08b0ab16be3f0e1e5061af6bd7a2f126f",
+          "projectSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "id": "5541cfcd-dafb-4028-bec0-8cac9e74c37d",
+          "sha256": "521bf4f571f22b70c902eb0b8534419cbb265d3857ca4458a182ea4c323448cc",
+          "size": 871,
+          "kind": "ORIGINAL",
+          "parent": null,
+          "nameSha256": "e50a2bae572f50216f53f2388e7c21188e6b12900a721bd793ea14c548f95c36",
+          "recipeSha256": "77cad19089271940160a58fe92c296a1afcd7003be52b68d2f75d635eb30d719",
+          "projectSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "id": "99a3071c-1bda-480f-a222-c979264ab55d",
+          "sha256": "6de1bfc85ea8b0f0a3be30f674ce2cd08b0ab16be3f0e1e5061af6bd7a2f126f",
+          "size": 3721,
+          "kind": "ORIGINAL",
+          "parent": null,
+          "nameSha256": "af3993a968c93f7dc055db28ccd76539ec94221c70ed455c992d87693f229a75",
+          "recipeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "projectSha256": "544436e20beb2746b79389ba853787d930391e438600d231b4fee04738b59ccf"
+        }
+      ],
+      "credentials": [
+        {
+          "ref": "04474bea-4b5b-4b20-8e8b-cbe6b246450f",
+          "sha256": "88c64a3fe4a9763563febd8f22b753549887e015487cd8b505ee1cd353d9a9e7"
+        },
+        {
+          "ref": "d86dede7-161f-4d84-b3ad-634958a99fe8",
+          "sha256": "96239bbe9443e32cd4b3562de10ec99f6f324281b3c98e50f368524a6387c3d3"
+        }
+      ]
+    },
+    "dataRoot": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\c1\\data",
+    "dataVersion": 3,
+    "actualStateSha256": "14f60983840a06d29c8a3dc9653bc01306b885001a66cd551bc5287784e13c57"
+  },
+  "a": {
+    "plan": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\c1\\runtime\\updates\\handoffs\\63e1cb05-bb9f-4e3e-bcb2-3f05440d6753\\plan.json",
+    "parentPid": 27444,
+    "generationSends": 1,
+    "snapshot": {
+      "stateSha256": "14f60983840a06d29c8a3dc9653bc01306b885001a66cd551bc5287784e13c57",
+      "stateEncoding": "COMMITTED_STATE_V1",
+      "assets": [
+        {
+          "id": "1c124b51-fe40-43b8-aa50-d2725a354154",
+          "sha256": "466e78b9816bd096cb2b0d501ba5b23d7eb62a6c7a74cda1aa53db36ca4695ef",
+          "size": 1246,
+          "kind": "ORIGINAL",
+          "parent": null,
+          "nameSha256": "3b4e41cb081461af2c93edfaa7d963087a4a34788da3f2ab46edf9e6dc874e44",
+          "recipeSha256": "6de1bfc85ea8b0f0a3be30f674ce2cd08b0ab16be3f0e1e5061af6bd7a2f126f",
+          "projectSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "id": "5541cfcd-dafb-4028-bec0-8cac9e74c37d",
+          "sha256": "521bf4f571f22b70c902eb0b8534419cbb265d3857ca4458a182ea4c323448cc",
+          "size": 871,
+          "kind": "ORIGINAL",
+          "parent": null,
+          "nameSha256": "e50a2bae572f50216f53f2388e7c21188e6b12900a721bd793ea14c548f95c36",
+          "recipeSha256": "77cad19089271940160a58fe92c296a1afcd7003be52b68d2f75d635eb30d719",
+          "projectSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "id": "99a3071c-1bda-480f-a222-c979264ab55d",
+          "sha256": "6de1bfc85ea8b0f0a3be30f674ce2cd08b0ab16be3f0e1e5061af6bd7a2f126f",
+          "size": 3721,
+          "kind": "ORIGINAL",
+          "parent": null,
+          "nameSha256": "af3993a968c93f7dc055db28ccd76539ec94221c70ed455c992d87693f229a75",
+          "recipeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "projectSha256": "544436e20beb2746b79389ba853787d930391e438600d231b4fee04738b59ccf"
+        }
+      ],
+      "credentials": [
+        {
+          "ref": "04474bea-4b5b-4b20-8e8b-cbe6b246450f",
+          "sha256": "88c64a3fe4a9763563febd8f22b753549887e015487cd8b505ee1cd353d9a9e7"
+        },
+        {
+          "ref": "d86dede7-161f-4d84-b3ad-634958a99fe8",
+          "sha256": "96239bbe9443e32cd4b3562de10ec99f6f324281b3c98e50f368524a6387c3d3"
+        }
+      ]
+    },
+    "originalId": "5541cfcd-dafb-4028-bec0-8cac9e74c37d",
+    "drain": "PRODUCTION_WORKBENCH_COMPLETED"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "phase": "relocation-117-native-inputs-20261027",
+  "startedUtc": "2026-10-26T15:28:06.323129+00:00",
+  "seconds": 27.673,
+  "exitCode": 0,
+  "tests": 0,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "sourceStable": true,
+  "status": "COMMAND_SUCCESS",
+  "testEvidence": "NOT TESTED (build only or failed before execution)",
+  "arguments": [
+    "C:\\Users\\1\\.gradle\\wrapper\\dists\\gradle-9.1.0-bin\\a7zz1zpvyl3jaouarz82m4yky\\gradle-9.1.0\\bin\\gradle.bat",
+    "--no-daemon",
+    "--priority",
+    "low",
+    "--max-workers=1",
+    "--console=plain",
+    "-Pkotlin.compiler.execution.strategy=in-process",
+    "--offline",
+    "--dependency-verification=strict",
+    ":studio-desktop:reviewUpdateProbeJar",
+    ":studio-desktop:createDistributable",
+    "-Dorg.gradle.jvmargs=-Xmx384m -XX:MaxMetaspaceSize=256m -XX:ActiveProcessorCount=2"
+  ],
+  "baseCommit": "c601d50a0b57de765353c6f0e600ddc2e9807738",
+  "realProvider": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED"
+}

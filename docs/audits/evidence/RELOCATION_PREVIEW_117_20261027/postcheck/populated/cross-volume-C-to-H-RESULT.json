@@ -1,0 +1,29 @@
+{
+  "label": "cross-volume-C-to-H",
+  "status": "PASS",
+  "root": "H:\\CCB-Studio-Suite\\.local\\disposable\\proof117-pop-9bc203e3\\payload\\f3",
+  "visibleWindows": [
+    {
+      "pid": 18276,
+      "window": 924540,
+      "image": "H:\\CCB-Studio-Suite\\.local\\disposable\\proof117-pop-9bc203e3\\payload\\f3\\117-b9b240a248d4\\CCBStudioSuitePreview.exe"
+    }
+  ],
+  "commandLine": "H:\\CCB-Studio-Suite\\.local\\disposable\\proof117-pop-9bc203e3\\payload\\f3\\117-b9b240a248d4\\CCBStudioSuitePreview.exe --studio-root H:\\CCB-Studio-Suite\\.local\\disposable\\proof117-pop-9bc203e3\\payload\\f3\\data --runtime-root H:\\CCB-Studio-Suite\\.local\\disposable\\proof117-pop-9bc203e3\\payload\\f3\\runtime",
+  "normalClose": [
+    {
+      "pid": 18276,
+      "window": 924540,
+      "image": "H:\\CCB-Studio-Suite\\.local\\disposable\\proof117-pop-9bc203e3\\payload\\f3\\117-b9b240a248d4\\CCBStudioSuitePreview.exe"
+    }
+  ],
+  "previousRoots": [
+    "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\g0",
+    "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\g1",
+    "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\.local\\review-update-native\\sub\\g2"
+  ],
+  "workspaceLockHeld": true,
+  "stateFiles": 7,
+  "preMoveAssetsVerified": 2,
+  "preMoveSyntheticCredentialsVerified": 2
+}

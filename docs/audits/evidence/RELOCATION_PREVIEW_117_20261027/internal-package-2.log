@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\tools\Build-InternalInstaller.py", line 150, in <module>
+    a=p.parse_args();build(a.app,a.runtime,a.bootstrap,a.destination,a.version,a.metadata_url,a.targets_url,a.build_evidence,
+                     ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                          json.loads(a.release_profile.read_text(encoding='utf-8')) if a.release_profile else None,a.consume_app_image)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\tools\Build-InternalInstaller.py", line 79, in build
+    shutil.copytree(runtime,payload/'updater',ignore=shutil.ignore_patterns('__pycache__'))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "shutil.py", line 593, in copytree
+  File "shutil.py", line 491, in _copytree
+  File "<frozen os>", line 228, in makedirs
+FileExistsError: [WinError 183] 当文件已存在时，无法创建该文件。: 'H:\\CCB-Studio-Suite\\.local\\relocation-117-20261027\\candidate-v2\\payload\\updater'

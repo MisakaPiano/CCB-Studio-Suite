@@ -1,0 +1,23 @@
+{
+  "baseCommit": "71bac6ff5ff7d5a204908773de1f5a46ef3caeea",
+  "scope": "Next candidate plus real same-volume rename/move and cross-volume relocation; no daily changes or publication yet",
+  "secondaryRoot": "C:/Users/1/AppData/Local/Temp/CCB-Studio-Suite-Relocation-20261027",
+  "secondaryRootApproved": true,
+  "cases": [
+    "same-volume rename",
+    "same-volume different-parent move",
+    "H to C real cross-volume move"
+  ],
+  "previousSevenTests": "Reuse only; not evidence for these cases",
+  "pending": [
+    "asset/editor full user acceptance",
+    "115 experience",
+    "Prompt comparison"
+  ],
+  "sourceFiles": [
+    "tools/windows-launcher/Launcher.cs",
+    "tools/update-runtime/residue_cleanup.py",
+    "tools/update-runtime/apply_update.py",
+    "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/DesktopEntrypoints.kt"
+  ]
+}

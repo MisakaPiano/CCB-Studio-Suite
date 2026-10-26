@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\.local\relocation-117-20261027\native-cases-r2.py", line 145, in <module>
+    result=wait(lambda:(lambda v:v if v.get('status')=='COMPLETE' else (_ for _ in ()).throw(RuntimeError(str(v))) if v.get('status')=='FAILED_RETAINED' else None)(load(plan_path.parent/'result.json')) if (plan_path.parent/'result.json').exists() else None,150)
+  File "H:\CCB-Studio-Suite\.local\relocation-117-20261027\native-cases-r2.py", line 22, in wait
+    value=check()
+  File "H:\CCB-Studio-Suite\.local\relocation-117-20261027\native-cases-r2.py", line 145, in <lambda>
+    result=wait(lambda:(lambda v:v if v.get('status')=='COMPLETE' else (_ for _ in ()).throw(RuntimeError(str(v))) if v.get('status')=='FAILED_RETAINED' else None)(load(plan_path.parent/'result.json')) if (plan_path.parent/'result.json').exists() else None,150)
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\.local\relocation-117-20261027\native-cases-r2.py", line 145, in <lambda>
+    result=wait(lambda:(lambda v:v if v.get('status')=='COMPLETE' else (_ for _ in ()).throw(RuntimeError(str(v))) if v.get('status')=='FAILED_RETAINED' else None)(load(plan_path.parent/'result.json')) if (plan_path.parent/'result.json').exists() else None,150)
+                                                                       ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\CCB-Studio-Suite\.local\relocation-117-20261027\native-cases-r2.py", line 145, in <genexpr>
+    result=wait(lambda:(lambda v:v if v.get('status')=='COMPLETE' else (_ for _ in ()).throw(RuntimeError(str(v))) if v.get('status')=='FAILED_RETAINED' else None)(load(plan_path.parent/'result.json')) if (plan_path.parent/'result.json').exists() else None,150)
+RuntimeError: {'status': 'FAILED_RETAINED', 'nonce': 'aba2fae78b6b746c3fda47f1bf4e239715c6d832c3889d27f17985e6d61877c0', 'dataModifiedByInstaller': False, 'reason': 'Installer failed with exit code 19'}
