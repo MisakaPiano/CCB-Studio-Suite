@@ -1,0 +1,29 @@
+{
+  "status": "PUBLISHED_PUBLIC_CHAIN_VERIFIED_DAILY_NOT_UPDATED",
+  "version": "0.0.0-preview.117",
+  "source": "b9b240a248d428ec158c341b8c127969fd54cb64",
+  "appBuildSource": "c601d50a0b57de765353c6f0e600ddc2e9807738",
+  "candidateEvidence": "3d4a97f7c6303bf7c81798abbabfdc7057312a36",
+  "release": "https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.117",
+  "releaseId": 424487169,
+  "installerSha256": "bec5f78735b6cd4c517c7c31c3d5bd499ed97a0d565e75718bc90c38fb0089c9",
+  "installerBytes": 169002371,
+  "metadataCommit": "ad7ed68caa2fe99ac20bbc77aeec76281f0ead74",
+  "readmeCommit": "ec99e7cd9dfc8acf92f4284133ff6f2a03f91c3d",
+  "rootSha256": "408008d80aeb2dd3844325d74f09da9d248733e220dd88c08cc6299c4a24cc7a",
+  "publicChain": "Actual116 bundled client -> real signed public117 -> old helper NSIS isolated installation ->117 UP_TO_DATE",
+  "publicNativeGui": "NOT TESTED IN THIS CASE",
+  "candidateNativeEvidence": "RELOCATION_PREVIEW_117_20261027 retained; not rerun or counted again",
+  "daily116": "NOT ACCESSED OR UPDATED",
+  "pending": [
+    "asset/editor full human acceptance",
+    "115 experience",
+    "Prompt comparison",
+    "actual user taskbar pin after move",
+    "independent review not requested"
+  ],
+  "crossRootGone": true,
+  "hFree": 335024128,
+  "hDailyUpdateEstimatedPeak": 489004587,
+  "atUtc": "2026-10-26T16:33:31.139525+00:00"
+}

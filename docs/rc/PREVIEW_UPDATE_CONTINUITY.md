@@ -1,3 +1,9 @@
+## 2026-10-27 最新公开Preview117，信任根与旧桥接不变
+
+[发行回执](../audits/PREVIEW_117_PUBLICATION_20261027.md)：v0.0.0-preview.117→b9b240a，SHA256 bec5f787…fb0089c9；正式元数据ad7ed68／targets16、snapshot25、timestamp25。公开116客户端发现并下载、旧helper真实隔离安装及117 UP_TO_DATE通过。main README ec99e7c只同步入口和限制，Releases区块维持、Pre-release不变；旧Releases迁移链接保留。
+
+日常116未访问／更新，正式GUI日常升级尚非本例结论；保留原生候选及其他待验范围。继续沿既有首页同步流程，不新增自动化或改签名根。
+
 ## 2026-10-27 117候选：真实搬迁核验完成，未公开
 
 [固定包与三条原生链](../audits/RELOCATION_PREVIEW_117_20261027.md)，源码b9b240a／映像c601d50，SHA256 bec5f787…fb0089c9。正式根408008d8…24cc7a未变，候选没有创建tag／Release或签发正式117元数据；当前仍116。外部快捷方式需从新位置启动后重建，任务栏自动追踪未验，长路径限制保留。原确认门及所有独立／用户待验状态保持。

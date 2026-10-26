@@ -1,0 +1,12 @@
+{
+  "arguments": [
+    "H:\\CCB-Studio-Suite\\.local\\preview-candidate-116-20261026\\candidate\\payload\\updater\\python.exe",
+    "-B",
+    "H:\\CCB-Studio-Suite\\.local\\preview-candidate-116-20261026\\candidate\\payload\\updater\\lib\\studio_update.py",
+    "--package",
+    "H:\\CCB-Studio-Suite\\.local\\preview-candidate-116-20261026\\candidate\\payload",
+    "--cache",
+    "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\r\\updates",
+    "--download"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "journal": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\r\\updates\\install-f2825bdf762b459fb4b64cd2ffcbb8c1.json",
+  "record": {
+    "status": "INSTALLED_NOT_STARTED",
+    "target": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\p\\117-b9b240a248d4",
+    "stage": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\p\\117-b9b240a248d4.005a5c783b0d495dafbdb28f48b48498.installing",
+    "expected": {
+      "product": "ccb-studio-suite",
+      "platform": "windows-x86_64",
+      "channel": "preview",
+      "version": 117,
+      "sourceSha": "b9b240a248d428ec158c341b8c127969fd54cb64"
+    },
+    "dataModified": false,
+    "cleanupOwnership": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\r\\updates\\cleanup\\owned\\2affc2ff5d56415a979edd0368cb021e.json",
+    "verification": {
+      "files": 550,
+      "bytes": 252893352,
+      "manifestSha256": "8bec122ed3a350d68932add8f71edf0bec8520f1fbb49c596cf4546f0c991343"
+    }
+  },
+  "verification": {
+    "files": 550,
+    "bytes": 252893352,
+    "manifestSha256": "8bec122ed3a350d68932add8f71edf0bec8520f1fbb49c596cf4546f0c991343"
+  },
+  "oldClientModules": {
+    "studio_update": {
+      "path": "H:\\CCB-Studio-Suite\\.local\\preview-candidate-116-20261026\\candidate\\payload\\updater\\lib\\studio_update.py",
+      "sha256": "6cd4e3ad33adfc0d820ee6dcec1ea7cd8e26555ed359c03b1b9488e4da67885f"
+    },
+    "install_ops": {
+      "path": "H:\\CCB-Studio-Suite\\.local\\preview-candidate-116-20261026\\candidate\\payload\\updater\\lib\\install_ops.py",
+      "sha256": "f1d4ddd4f1bc7033ff8653e34851243e93c6df92c7ba69e70137f627ca46c17e"
+    },
+    "github_transport": {
+      "path": "H:\\CCB-Studio-Suite\\.local\\preview-candidate-116-20261026\\candidate\\payload\\updater\\lib\\github_transport.py",
+      "sha256": "93c0e136239b111948c169224d101045a2d22c80324b52d59838c70381b73c0d"
+    }
+  },
+  "dataSentinelMatched": true,
+  "realOldNativeGui": "NOT TESTED IN THIS CASE",
+  "newNativeStart": "NOT STARTED; native checks are separate candidate evidence",
+  "dailyInstallationAccessed": false
+}

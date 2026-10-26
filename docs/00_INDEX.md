@@ -1,3 +1,7 @@
+## 2026-10-27 Preview117已公开，正式更新链验证通过
+
+[公开发行回执](audits/PREVIEW_117_PUBLICATION_20261027.md)／[下载117](https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.117)：固定源码b9b240a，安装器SHA256 bec5f787…fb0089c9；真实116客户端签名发现／下载、旧helper NSIS隔离安装和117 UP_TO_DATE通过。正式根不变、main首页已同步；日常116未操作。原生搬迁继续引用3d4a97f固定证据，不重复累计；资产编辑完整人工／115体验／Prompt及任务栏待验保持。
+
 ## 2026-10-27 搬迁实测与Preview117固定候选
 
 [固定报告](audits/RELOCATION_PREVIEW_117_20261027.md)：纳入71bac6f，3种真实搬迁及原生更新链PASS；正式117包另做生产入口的连续搬迁核验。源码b9b240a／映像c601d50，SHA256 bec5f787…fb0089c9。原7项只复用，失败保留；候选未发布，日常116不改，资产编辑完整人工／115体验／Prompt仍待验。

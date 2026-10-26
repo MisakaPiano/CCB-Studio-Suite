@@ -1,0 +1,19 @@
+{
+  "status": "INSTALLED_NOT_STARTED",
+  "target": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\p\\117-b9b240a248d4",
+  "stage": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\p\\117-b9b240a248d4.005a5c783b0d495dafbdb28f48b48498.installing",
+  "expected": {
+    "product": "ccb-studio-suite",
+    "platform": "windows-x86_64",
+    "channel": "preview",
+    "version": 117,
+    "sourceSha": "b9b240a248d428ec158c341b8c127969fd54cb64"
+  },
+  "dataModified": false,
+  "cleanupOwnership": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027\\r\\updates\\cleanup\\owned\\2affc2ff5d56415a979edd0368cb021e.json",
+  "verification": {
+    "files": 550,
+    "bytes": 252893352,
+    "manifestSha256": "8bec122ed3a350d68932add8f71edf0bec8520f1fbb49c596cf4546f0c991343"
+  }
+}

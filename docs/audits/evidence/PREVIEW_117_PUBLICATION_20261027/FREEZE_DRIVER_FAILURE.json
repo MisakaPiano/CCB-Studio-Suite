@@ -1,0 +1,1 @@
+{"status": "RETAINED_DIAGNOSTIC_FAILURE", "reason": "Windows local README capture used CRLF while exact public bytes are LF", "fix": "Compare text capture normalized by read_text to UTF8 LF; public README mutation had already verified exact outbound bytes", "installerDownloadOrInstallRepeated": false, "releaseAndTrustUnchanged": true}

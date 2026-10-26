@@ -1,3 +1,11 @@
+## 2026-10-27 Preview117已发布并通过公开链核验，未更新日常
+
+[发布与实际证据](audits/PREVIEW_117_PUBLICATION_20261027.md)：tag v0.0.0-preview.117固定b9b240a／映像输入c601d50，169002371字节，SHA256 bec5f78735b6cd4c517c7c31c3d5bd499ed97a0d565e75718bc90c38fb0089c9。按用户确认完成Pre-release及4附件，正式元数据ad7ed68（targets16／snapshot25／timestamp25），根408008d8…24cc7a不变；main只改README的ec99e7c已同步下载链接和限制。
+
+公开116实际包内客户端发现／下载117通过；旧helper真实NSIS隔离安装后117检查UP_TO_DATE，合成资料哨兵不变。本例为命令行公开链，没有新GUI日常升级或伪造COMPLETE；原生搬迁／合成凭据验证仍引用固定候选3d4a97f，不重跑累计。C盘573临时文件已留证退役。PUBLISHED_PUBLIC_CHAIN_VERIFIED_DAILY_NOT_UPDATED；日常安装未访问或更新。H盘空间偏紧，日常升级前另核空间，不删保护基线。
+
+资产编辑完整人工、115体验、Prompt对比、实际任务栏固定继续待验，独立NOT REQUESTED、q09旧失败／UNKNOWN及原否决保持；非稳定版／全项目RC。
+
 ## 2026-10-27 Preview117候选就绪，等待固定候选确认
 
 [实际源码、包与搬迁证据](audits/RELOCATION_PREVIEW_117_20261027.md)：b9b240a包含71bac6f，版本0.0.0-preview.117，169002371字节，SHA256 bec5f78735b6cd4c517c7c31c3d5bd499ed97a0d565e75718bc90c38fb0089c9。3种真实同盘改名／移动／H→C搬迁的原生更新链PASS；生产117另完成连续改名／移动／C→H入口与资料核验。非原7项的替代或重复计数，非公开旧116二进制搬迁。

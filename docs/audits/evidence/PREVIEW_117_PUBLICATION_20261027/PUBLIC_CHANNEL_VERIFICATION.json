@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "oldClientVersion": 116,
+  "newVersion": 117,
+  "source": "b9b240a248d428ec158c341b8c127969fd54cb64",
+  "installerSha256": "bec5f78735b6cd4c517c7c31c3d5bd499ed97a0d565e75718bc90c38fb0089c9",
+  "rootUnchanged": true,
+  "discovery": "SIGNED117",
+  "download": "REAL_PUBLIC_BYTES_VERIFIED",
+  "isolatedInstall": "REAL_NSIS_PASS",
+  "current117": "UP_TO_DATE",
+  "data": "SYNTHETIC_SENTINEL_UNCHANGED",
+  "nativeGui": "NOT TESTED IN THIS PUBLIC CASE; fixed candidate native evidence remains separate",
+  "fixtureRoot": "C:\\Users\\1\\AppData\\Local\\Temp\\CCB-Studio-Suite-Relocation-20261027",
+  "dailyInstallationModified": false,
+  "privateCredentialsRead": false,
+  "providerCalls": 0,
+  "atUtc": "2026-10-26T16:26:44.701097+00:00"
+}

@@ -1,0 +1,35 @@
+{
+  "status": "PREFLIGHT_PASS",
+  "atUtc": "2026-10-26T16:22:22.728503+00:00",
+  "candidateSource": "b9b240a248d428ec158c341b8c127969fd54cb64",
+  "evidenceCommit": "3d4a97f7c6303bf7c81798abbabfdc7057312a36",
+  "userConfirmed": true,
+  "userScope": "Publish fixed117 and public update-chain verification; do not update daily116",
+  "latestPublic": "v0.0.0-preview.116",
+  "assets": {
+    "CCB-Studio-Suite-0.0.0-preview.117-windows-x64.exe": {
+      "localPath": "H:\\CCB-Studio-Suite\\.local\\relocation-117-20261027\\candidate-preview-117\\studio-installer.exe",
+      "bytes": 169002371,
+      "sha256": "bec5f78735b6cd4c517c7c31c3d5bd499ed97a0d565e75718bc90c38fb0089c9"
+    },
+    "RELEASE_NOTES.md": {
+      "localPath": "H:\\CCB-Studio-Suite\\.local\\relocation-117-20261027\\candidate-preview-117\\RELEASE_NOTES.md",
+      "bytes": 1937,
+      "sha256": "36c5ac0b8f90458e2d6db91a0972c805555be60c69070b89773945ec826c6df2"
+    },
+    "THIRD_PARTY_NOTICES.zip": {
+      "localPath": "H:\\CCB-Studio-Suite\\.local\\relocation-117-20261027\\candidate-preview-117\\THIRD_PARTY_NOTICES.zip",
+      "bytes": 184284,
+      "sha256": "c96a425a18f8b75d2d8939b595fa6809c432b398a9a62000484a8eb300de7b07"
+    },
+    "SHA256SUMS.txt": {
+      "localPath": "H:\\CCB-Studio-Suite\\.local\\relocation-117-20261027\\candidate-preview-117\\SHA256SUMS.txt",
+      "bytes": 293,
+      "sha256": "0b1b5c447437ee6c54e87376a7cb3bd683807a0a5a3c247816d14b7b2069a716"
+    }
+  },
+  "baseline": "H:\\CCB-Studio-Suite\\.local\\preview-candidate-116-20261026\\candidate\\payload",
+  "hFree": 335810560,
+  "cFree": 12037324800,
+  "privateWorkingDocsNotPublished": true
+}
