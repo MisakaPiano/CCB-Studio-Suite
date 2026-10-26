@@ -1,0 +1,29 @@
+{
+  "exe": "C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.20.101-hotspot\\bin\\java.exe",
+  "arguments": [
+    "-Xmx128m",
+    "-XX:ActiveProcessorCount=2",
+    "-Duser.home=H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-review\\profile",
+    "-Djava.io.tmpdir=H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-review\\profile\\tmp",
+    "-cp",
+    "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\seed-classes;H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\isolated-install\\app\\*",
+    "SeedTheme",
+    "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-review\\workspace"
+  ],
+  "environment": {
+    "SystemRoot": "C:\\WINDOWS",
+    "WINDIR": "C:\\WINDOWS",
+    "SystemDrive": "C:",
+    "ComSpec": "C:\\WINDOWS\\System32\\cmd.exe",
+    "PATH": "C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.20.101-hotspot\\bin;C:\\WINDOWS\\System32;C:\\WINDOWS",
+    "LOCALAPPDATA": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-review\\profile\\Local",
+    "APPDATA": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-review\\profile\\Roaming",
+    "USERPROFILE": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-review\\profile",
+    "HOME": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-review\\profile",
+    "TEMP": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-review\\profile\\tmp",
+    "TMP": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-review\\profile\\tmp"
+  },
+  "exitCode": 0,
+  "stdout": "SYNTHETIC_THEME_SEEDED DARK 000000; no provider/credentials; root=H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-review\\workspace\r\n",
+  "stderr": ""
+}

@@ -1,0 +1,23 @@
+{
+  "recordedUtc": "2026-10-26T09:49:44.833319+00:00",
+  "humanApproval": "2026-10-26 09:46 UTC user approval relayed by coordinator01a16f0a-b53e-7062-a303-f975e672a0db: independent Tokens candidate and automatic verification",
+  "code": "26ef38857be510636dffdb5fcbd59a8d70c85550",
+  "buildHead": "0f11fdd6b6d281987dd7c449d623a74b8b74b8f0",
+  "codeToolsDiff": "EMPTY",
+  "model": "UNCHANGED",
+  "permitted": [
+    "Fresh app image/internal installer and isolated manifest verification",
+    "Proven explicit synthetic entry chain only if isolation established"
+  ],
+  "forbidden": [
+    "Old48eed candidate overwrite",
+    "Daily115/default pointers/private gallery/config/credentials",
+    "Tag library or other requirements",
+    "External release/tag/review",
+    "Security changes",
+    "Interrupt Desktop packaging",
+    "Cleanup"
+  ],
+  "desktopPriority": "Desktop currently preparing approved real MSI package. Delay Studio heavy build until Desktop packaging stage finished and fresh resource check passes; no unmeasured2GiB physical RAM gate.",
+  "noNewJUnit": "Existing one-method regression remains bound to26ef; do not rerun accepted tests for packaging"
+}

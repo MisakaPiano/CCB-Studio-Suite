@@ -1,0 +1,23 @@
+{
+  "status": "REAL_SHORTCUT_PROBE_PASS",
+  "observedUtc": "2026-10-26T10:08:29.3372559Z",
+  "arguments": [
+    "--studio-root",
+    "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-review\\workspace",
+    "--runtime-root",
+    "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-review\\runtime",
+    "--secondary-workspace",
+    "--pause-collections"
+  ],
+  "childEnvironmentIsolated": true,
+  "nativeAppStarts": 0,
+  "syntheticSeed": "DARK / CUSTOM_ACCENT / 000000, no accounts/provider",
+  "fallbackCreated": false,
+  "defaultPointerCreated": false,
+  "dailyInstallationAccessed": false,
+  "privateGalleryAccessed": false,
+  "packageLock": "PACKAGE_LOCK.json",
+  "nativeStartup": "NOT TESTED",
+  "humanAcceptance": "NOT TESTED",
+  "entryMeaning": "READY permits user launch through verified explicit roots and isolated child environment; not a native or user PASS"
+}

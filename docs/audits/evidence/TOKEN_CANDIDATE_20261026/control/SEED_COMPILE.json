@@ -1,0 +1,27 @@
+{
+  "exe": "C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.20.101-hotspot\\bin\\javac.exe",
+  "arguments": [
+    "-J-Xmx128m",
+    "-cp",
+    "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\isolated-install\\app\\*",
+    "-d",
+    "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\seed-classes",
+    "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\SeedTheme.java"
+  ],
+  "environment": {
+    "SystemRoot": "C:\\WINDOWS",
+    "WINDIR": "C:\\WINDOWS",
+    "SystemDrive": "C:",
+    "ComSpec": "C:\\WINDOWS\\System32\\cmd.exe",
+    "PATH": "C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.20.101-hotspot\\bin;C:\\WINDOWS\\System32;C:\\WINDOWS",
+    "LOCALAPPDATA": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-review\\profile\\Local",
+    "APPDATA": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-review\\profile\\Roaming",
+    "USERPROFILE": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-review\\profile",
+    "HOME": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-review\\profile",
+    "TEMP": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-review\\profile\\tmp",
+    "TMP": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-review\\profile\\tmp"
+  },
+  "exitCode": 0,
+  "stdout": "",
+  "stderr": ""
+}

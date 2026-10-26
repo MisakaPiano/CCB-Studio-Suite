@@ -1,0 +1,253 @@
+{
+  "appCode": "26ef38857be510636dffdb5fcbd59a8d70c85550",
+  "buildPackageHead": "0f11fdd6b6d281987dd7c449d623a74b8b74b8f0",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19,
+      "sha256": "3e5e82fc72e044ea9af807a2030b73dbb94800d2cd1775302063b2eee761ba1e"
+    },
+    {
+      "path": "control/AUTHORIZATION.json",
+      "bytes": 1192,
+      "sha256": "c8dea40005ee5355df25dbc026ba558f729f2565562fa7a15b81c23b69dd0daa"
+    },
+    {
+      "path": "control/build-app.py",
+      "bytes": 9782,
+      "sha256": "61f6f79ac0f2168738602cb0b5dcfd6a5733b351f2b45ea9dcd3921f9e5b9533"
+    },
+    {
+      "path": "control/BUILD_BUDGET.json",
+      "bytes": 1883,
+      "sha256": "6ea778f3d945b7441043a48de43275920b0f402bfb2ae1a9899f21637c72ec8e"
+    },
+    {
+      "path": "control/COMMAND.json",
+      "bytes": 591,
+      "sha256": "c87c49292025036e1f2430dc140cb74be8d3cec95db8932c5ddb0089c111ccdb"
+    },
+    {
+      "path": "control/isolated-install.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "control/ISOLATED_INSTALL_COMMAND.json",
+      "bytes": 450,
+      "sha256": "4e54e596a6e1e87e998c1a088dec6f6deab8895af59bf1a36d768cab76ef82d0"
+    },
+    {
+      "path": "control/ISOLATED_INSTALL_VERIFICATION.json",
+      "bytes": 3824,
+      "sha256": "4a278d3c5ebb77edbfe2120df243adc45dc162b7067990ecfaea47e63babe350"
+    },
+    {
+      "path": "control/measure-budget.py",
+      "bytes": 2265,
+      "sha256": "ff47308bc7be5310599157f8fedf3031d2e82523e77ccb265ed0575423b7b1b5"
+    },
+    {
+      "path": "control/memory-samples.jsonl",
+      "bytes": 22159,
+      "sha256": "00863cd87f1b7d7153608a87b12569c710b8f1ae3912e6ccb61f321d56fa313f"
+    },
+    {
+      "path": "control/MONITOR_RESULT.json",
+      "bytes": 4636,
+      "sha256": "3ac0c5a38c490cf2f095641ab767695c7fb3d4e4fc50b486bae182ec607e4516"
+    },
+    {
+      "path": "control/package-candidate.py",
+      "bytes": 1635,
+      "sha256": "9d7214bce21f3b3b4a7b6726b53bbe83439fa6c07526759a3f8d57f880c824ee"
+    },
+    {
+      "path": "control/package.log",
+      "bytes": 411,
+      "sha256": "a92709ec3aea6e6e29d9047cca87c9aaaadc8bd578a795ee4ef0e65222a9406a"
+    },
+    {
+      "path": "control/PACKAGE_COMMAND.json",
+      "bytes": 870,
+      "sha256": "24abddc7a634c3336f8313d174a1b4e1c16dbb7a3e37bfc49c838c643f08471e"
+    },
+    {
+      "path": "control/PACKAGE_RESOURCE_OBSERVATION.json",
+      "bytes": 277,
+      "sha256": "0b7849b629130f5a5868d80e7ad678935c80cc40c6a098c45f1d3d8cef48551c"
+    },
+    {
+      "path": "control/PLAN.json",
+      "bytes": 2292,
+      "sha256": "d37f3370e4a3ef51d0b88b0a16bbe22be00f5aa8bb0b9df935abca40b06dddd4"
+    },
+    {
+      "path": "control/prepare-entry.py",
+      "bytes": 2916,
+      "sha256": "1dd051db03a25f433e80ef76fc7dbbeaace2ac7babc1d7d7318c1fba2c8674a3"
+    },
+    {
+      "path": "control/READY_FOR_SLOT.json",
+      "bytes": 907,
+      "sha256": "35dc971921e4fbab18873f43b2758fbc46987d2610c536d17ea1e266b0755d11"
+    },
+    {
+      "path": "control/RESOURCE_WAIT_A.json",
+      "bytes": 690,
+      "sha256": "2041011f2e3111ef2dd46902b163817107aee9043b079bc739fb7e319cfddf47"
+    },
+    {
+      "path": "control/runner.log",
+      "bytes": 3552,
+      "sha256": "974cc6142d1bd8788f55d76c3b51162bfc7279b3de724f025da5d865f5253456"
+    },
+    {
+      "path": "control/RUNNER_IDENTITY.json",
+      "bytes": 169,
+      "sha256": "ee368fb205414f8cd16cd90b469ad47d2574ec42fd76ec6d5a88f5b000288394"
+    },
+    {
+      "path": "control/SEED_COMPILE.json",
+      "bytes": 1343,
+      "sha256": "ee6b56159fbc8a2e67264c3739b67cbaad8524defe9361a3a502e7a34034aefa"
+    },
+    {
+      "path": "control/SEED_RESULT.json",
+      "bytes": 1738,
+      "sha256": "e87deb79cb7ef133a4159ec8855fe671203df80b90f4bb6023893b253b777804"
+    },
+    {
+      "path": "control/SeedTheme.java",
+      "bytes": 1225,
+      "sha256": "5ade54f17d8bb418eb01402422f1b039936713a5a724b2832d49598e674a6b96"
+    },
+    {
+      "path": "control/SLOT_GRANTED.json",
+      "bytes": 819,
+      "sha256": "6f6198c858026dfbf2ca922bcc2c45fd3914273be43fc976297d8c3963a00468"
+    },
+    {
+      "path": "control/SLOT_RELEASED.json",
+      "bytes": 802,
+      "sha256": "7d497563726c91ead7070834645f44dd75dc371af0a86150856858ccd2b121c8"
+    },
+    {
+      "path": "control/verify-entry.ps1",
+      "bytes": 7274,
+      "sha256": "863794aa4e0a20896b2d0ca2ebb11f2cf22028e505d745fb5c3b044a884e73f3"
+    },
+    {
+      "path": "control/verify-install.py",
+      "bytes": 4757,
+      "sha256": "07e238f22dca1a613c8c2bed8ff5cac81628a82c2cb56d8b48396d9ebef2e9ac"
+    },
+    {
+      "path": "entry/Launch-Candidate.ps1",
+      "bytes": 4183,
+      "sha256": "58426cb1d192bf66e2fb5a6c2ca84accee375f7e09a49abd62ec6680e7496558"
+    },
+    {
+      "path": "entry/LAUNCH_PROBE.json",
+      "bytes": 1858,
+      "sha256": "ada836f7a2c8d98cebafa2c11ddce10f7eb72f48f8f3e267d3fa665a0c17df85"
+    },
+    {
+      "path": "entry/MODE.txt",
+      "bytes": 5,
+      "sha256": "c2e3ac47f4a325469c1a2d5f117e463ec943c721986d5d9f09ac4540b7d80526"
+    },
+    {
+      "path": "entry/PACKAGE_LOCK.json",
+      "bytes": 581,
+      "sha256": "e8e05b27e1135f02f044a7ad80ec67d97d7e37ad60e2edf0bc7d8ef6257e9c43"
+    },
+    {
+      "path": "entry/Probe.ps1",
+      "bytes": 493,
+      "sha256": "d79930087cc9331726cb71d17532cfb4f7ea766ff5037cf9ebd466f92eca17ed"
+    },
+    {
+      "path": "entry/PROBE_RESULT.json",
+      "bytes": 975,
+      "sha256": "6601ccebbb9adfd92e1b57f4090cb5b4901a4dd7c66ba146c6080db8b5a38210"
+    },
+    {
+      "path": "entry/PROBE_VERIFIED.json",
+      "bytes": 917,
+      "sha256": "d899aedfc0eb2210869fc37b1188488bd4526128bb7f1d4cee0c07bd70df96ea"
+    },
+    {
+      "path": "entry/SHORTCUT_IDENTITY.json",
+      "bytes": 664,
+      "sha256": "48d92769f06594e4157a11706fc428b2d2962d99dae9f8d5ecf2a951f3a93eb1"
+    },
+    {
+      "path": "installed/INSTALL_MANIFEST.json",
+      "bytes": 101637,
+      "sha256": "f9724173b58dc1758943c68251052a2407c4f5cb89d45d93a0ad84033a7b868a"
+    },
+    {
+      "path": "installed/RUNTIME_MANIFEST.json",
+      "bytes": 62256,
+      "sha256": "090d0324310d1dcd1ff59913220e5876210b98e1a7a351caaa23bd17d82b4c14"
+    },
+    {
+      "path": "installed/update-config.json",
+      "bytes": 454,
+      "sha256": "6d6ab77cfccf6a01d85151cfcd904b5dec9ef2954a5a68f4486e6c19e4d8ebec"
+    },
+    {
+      "path": "installed/update-root.json",
+      "bytes": 1568,
+      "sha256": "efc8fdda742b6cc5f7fe4edcb38f75eba9bfcbe0210e07eb888d25f76c3eb892"
+    },
+    {
+      "path": "package/BUILD_RECEIPT.json",
+      "bytes": 453,
+      "sha256": "9c4b33a9e368a6ef40050204d0af179019388d7d287be35393783481f4b11109"
+    },
+    {
+      "path": "package/compile.log",
+      "bytes": 1403,
+      "sha256": "2e15e5be152cddcd0b744b4d3c0d3f64e84879f1b1f968824a21949f2933ae16"
+    },
+    {
+      "path": "package/installer.nsi",
+      "bytes": 132735,
+      "sha256": "c5632b225263aef290b634f425ec194d7199bcfffc8b2f44795a2b861e35d941"
+    },
+    {
+      "path": "reproduction/freeze-candidate.py",
+      "bytes": 5508,
+      "sha256": "ba318f0dbc51b7a524c17c1b8e823f3bf078122ae336958f0fd312716e4941b3"
+    },
+    {
+      "path": "run/gradle.log",
+      "bytes": 2474,
+      "sha256": "4b86a2dd53ee34d4a5fbfb0e070e202ead84d7f58328f669a1073d9bd1f519ed"
+    },
+    {
+      "path": "run/source-before.json",
+      "bytes": 81314,
+      "sha256": "4e3086ed2760e09cb289e0f05e3d37d73745c5fc0b429af26c37b8cdde281540"
+    },
+    {
+      "path": "run/summary.json",
+      "bytes": 962,
+      "sha256": "27a74b00502d4409683d81e007dd1bdc66c39c302ff530f9e5e5eeef71352b27"
+    },
+    {
+      "path": "run/test-cases.json",
+      "bytes": 4,
+      "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+    },
+    {
+      "path": "SOURCE_PACKAGE_MAP.json",
+      "bytes": 168144,
+      "sha256": "e6781bb4205d4b3dfd53a117e3c80cfdd6b02f9615d5c5382e414c5516b60317"
+    }
+  ],
+  "membersIncludingManifest": 50,
+  "exclusions": "No binary, shortcut binary, screenshot pixels, synthetic workspace/profile/vault, credentials or private data. Only named synthetic control records."
+}

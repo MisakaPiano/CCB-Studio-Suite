@@ -1,0 +1,11 @@
+{
+  "recordedUtc": "2026-10-26T10:05:28.8275767Z",
+  "status": "EXPLICIT_STUDIO_SLOT_GRANTED",
+  "authority": "Coordinator01a16f0a-b53e-7062-a303-f975e672a0db relays Desktop actual NOT_READY/WAIT_ACK; syntax failure before jpackage; Desktop accepted lightweight-only wait",
+  "appCode": "26ef38857be510636dffdb5fcbd59a8d70c85550",
+  "buildHead": "0f11fdd6b6d281987dd7c449d623a74b8b74b8f0",
+  "sourceAndWorktree": "Clean; modules/tools diff from26ef empty",
+  "resourceObservation": "19:05 JST H3491667968 C12397895680 Available1131249664 commitHeadroom7263825920; heavy process list empty",
+  "sequence": "One build-app then package-candidate then verify-install then prepare-entry and verify-entry",
+  "release": "Explicitly release slot when heavy phase ends or is blocked; no repeated attempt or cleanup"
+}

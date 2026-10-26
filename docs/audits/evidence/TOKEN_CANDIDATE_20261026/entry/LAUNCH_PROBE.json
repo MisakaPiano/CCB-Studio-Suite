@@ -1,0 +1,34 @@
+{
+  "mode": "PROBE",
+  "exe": "C:\\Users\\1\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+  "arguments": [
+    "-NoProfile",
+    "-File",
+    "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-correction\\Probe.ps1",
+    "--studio-root",
+    "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-review\\workspace",
+    "--runtime-root",
+    "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-review\\runtime",
+    "--secondary-workspace",
+    "--pause-collections"
+  ],
+  "environment": {
+    "SystemRoot": "C:\\WINDOWS",
+    "WINDIR": "C:\\WINDOWS",
+    "SystemDrive": "C:",
+    "ComSpec": "C:\\WINDOWS\\System32\\cmd.exe",
+    "PATH": "C:\\WINDOWS\\System32;C:\\WINDOWS",
+    "LOCALAPPDATA": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-review\\profile\\Local",
+    "APPDATA": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-review\\profile\\Roaming",
+    "USERPROFILE": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-review\\profile",
+    "HOME": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-review\\profile",
+    "TEMP": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-review\\profile\\tmp",
+    "TMP": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-review\\profile\\tmp"
+  },
+  "startedUtc": "2026-10-26T10:08:28.4649317Z",
+  "expectedWorkspace": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-review\\workspace",
+  "expectedRuntime": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\entry-review\\runtime",
+  "privateDefaultFallbackPrevented": "Child LOCALAPPDATA redirected even if app arguments are ignored",
+  "sourceJarSha256": "04381d42afc15e50db1354b32736c1107a7d5df6733e2c6ca57105817653b7e0",
+  "pid": 17872
+}

@@ -1,0 +1,25 @@
+{
+  "status": "READY_FOR_EXPLICIT_SLOT_NOT_STARTED",
+  "observedUtc": "2026-10-26T10:03:13.7227702Z",
+  "hFreeBytes": 3491684352,
+  "cFreeBytes": 12398149632,
+  "availableBytes": 1128128512,
+  "commitHeadroomBytes": 7291367424,
+  "hBudgetBytes": 1447291365,
+  "cBudgetBytes": 805306368,
+  "heavyProcesses": [],
+  "heavyBuildStarted": false,
+  "completeCommandsPrepared": true,
+  "sourceHead": "0f11fdd6b6d281987dd7c449d623a74b8b74b8f0",
+  "missing": [
+    "Desktop explicitly accepts waiting",
+    "Coordinator grants heavy-build slot"
+  ],
+  "next": "Execute one build-app.py then package-candidate.py, verify-install.py, prepare-entry.py and verify-entry.ps1 sequentially, subject to fresh admission at slot start",
+  "nativeAppStartPlanned": false,
+  "noCleanup": true,
+  "modelUnchanged": true,
+  "hDiskBudgetPass": true,
+  "cDiskBudgetPass": true,
+  "commitHeadroomPass": true
+}

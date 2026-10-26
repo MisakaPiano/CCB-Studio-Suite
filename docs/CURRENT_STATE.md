@@ -1,3 +1,7 @@
+## 2026-10-26 Tokens独立候选已交付，重型时段释放
+
+[固定源码/包/入口与实际证据](audits/TOKEN_CANDIDATE_20261026.md)：新授权独立候选，代码26ef388与实际构建/打包0f11fdd的modules/tools相同；内部包168998707字节、SHA256 ff8f868a5dbadaa4bcce1970e0cc98aab73c30f8c1bd0555e19e3d3ea5f71a3d。应用映像42.605秒/sourceStable/0新JUnit，550安装项/2242生产类/6更新脚本/326运行时及新Tokens消费者匹配；旧1方法不重跑累计。真实快捷方式探针与全新深色黑色合成根通过，nativeAppStarts=0，窗口/用户未验、独立NOT REQUESTED。Desktop明确WAIT_ACK后获时段，19:08:53 JST已释放；后续仅轻量留证。50份新raw独立保存，旧48eed散列/旧证据保持；无Tag库、日常115/私人图库访问、清理、发版或外部送审。旧未验/失败及115/Prompt PENDING、PRODUCT_HOLD保持；下方‘未打包’保留为之前阶段事实。
+
 ## 2026-10-26 Tokens文字：窄修及定向自动验证通过，未打包发布
 
 [固定源码与原始结果](audits/TOKEN_TEXT_CONTRAST_20261026.md)：用户新授权THEME-TOKENS-CONTRAST窄修，沿用UX-DISPLAY-THEME-001；26ef388只分开正常文字可读前景与原强调色进度填充，警告/超限/计数/阈值及Prompt请求不改。实际生产底栏1唯一方法PASS、0失败错误跳过、sourceStable；24离屏场景不累计方法，旧回归不重跑。源码/自动已验证，新原生/用户未验、独立NOT REQUESTED；旧48eed三按钮人工PASS保留。证据准备两次CRLF白名单失败和一次进程采样未知后解析为自有PID均留原始记录；没有新应用映像/安装包、发布、日常更新或清理，现有候选不含本增量。旧失败/未验及115/Prompt各PENDING、PRODUCT_HOLD保持。下方OPEN为修复前历史观察。

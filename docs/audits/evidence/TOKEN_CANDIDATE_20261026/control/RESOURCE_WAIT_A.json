@@ -1,0 +1,15 @@
+{
+  "observedUtc": "2026-10-26T09:51:44.6759089Z",
+  "status": "WAITING_DESKTOP_APPROVED_HEAVY_STAGE",
+  "desktopThread": "01a10e16-9252-7930-afe1-f07cb92177e6",
+  "desktopLastObserved": "Active: preparing approved actual MSI package; no completion observed",
+  "hFree": 3491880960,
+  "cFree": 12402675712,
+  "available": 1019011072,
+  "commitHeadroom": 7218212864,
+  "heavyProcesses": [],
+  "suiteBuildStarted": false,
+  "localPreparation": "Only bounded scripts/identity checks; no Gradle/NSIS/native launch, cleanup or user program closure",
+  "physical2GiBGate": "Not used",
+  "next": "Wait for Desktop stage completion, then fresh actual disk and overlap memory budget"
+}

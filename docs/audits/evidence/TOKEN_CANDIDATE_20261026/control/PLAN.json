@@ -1,0 +1,59 @@
+{
+  "atUtc": "2026-10-26T10:05:33.991640+00:00",
+  "source": "0f11fdd6b6d281987dd7c449d623a74b8b74b8f0",
+  "executionHead": "0f11fdd6b6d281987dd7c449d623a74b8b74b8f0",
+  "phase": "token-candidate-app-20261026",
+  "gradleHeapMiB": 384,
+  "gradleMetaspaceMiB": 256,
+  "testHeapMiB": 256,
+  "testMetaspace": "No tests invoked; existing targeted test remains fixed to26ef",
+  "worker": 1,
+  "testForks": 1,
+  "kotlin": "in-process",
+  "priority": "low",
+  "cpuPerJvm": 2,
+  "daemon": "no persistent daemon; single-use fork may occur",
+  "oldPhysicalFree2GiBRule": "Not used; it was an unmeasured estimate, not user or platform requirement",
+  "admissionBasis": "H/C bounded budget and no foreign owner required. Current commit headroom vs configured 896MiB heap/metaspace ceilings, paging/Available and actual process overlap evaluated; no new fixed physical-free gate.",
+  "risk": "Native/metaspace/launcher are not bounded by heap sum; GC/paging/OOM possible; one scoped attempt and retain failures, no blind retries.",
+  "pressureAlert": "Two consecutive samples: commit>=95% and Available<128MiB, or Available<64MiB and pageReads/sec>1000. Foreign owner or disk below retained floors also alerts for normal cancellation of only this run; no forced kill or OS changes.",
+  "hBudgetBytes": 1447291365,
+  "cBudgetBytes": 805306368,
+  "buildOutputs": {
+    "modules/studio-desktop/build": {
+      "bytes": 360200036,
+      "files": 2612,
+      "complete": true
+    },
+    "modules/studio-core/build": {
+      "bytes": 287836985,
+      "files": 1097,
+      "complete": true
+    },
+    "modules/image-authority/build": {
+      "bytes": 10949292,
+      "files": 1216,
+      "complete": true
+    },
+    "modules/asset-library/build": {
+      "bytes": 418505,
+      "files": 87,
+      "complete": true
+    }
+  },
+  "before": {
+    "atUtc": "2026-10-26T10:05:33.8761345Z",
+    "availableBytes": 1128656896,
+    "committedBytes": 22352449536,
+    "commitLimitBytes": 29665406976,
+    "pageReadsPerSecond": 0,
+    "pagesInputPerSecond": 0,
+    "hFreeBytes": 3491663872,
+    "cFreeBytes": 12397899776,
+    "owned": [],
+    "foreign": []
+  },
+  "preserveFixtures": true,
+  "externalSubmission": "PROHIBITED_THIS_ROUND",
+  "push": "Only existing authorized engineering checkpoint after raw result review"
+}

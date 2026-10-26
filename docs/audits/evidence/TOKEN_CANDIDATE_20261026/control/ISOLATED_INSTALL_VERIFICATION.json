@@ -1,0 +1,100 @@
+{
+  "status": "PASS",
+  "appCode": "26ef38857be510636dffdb5fcbd59a8d70c85550",
+  "buildPackageHead": "0f11fdd6b6d281987dd7c449d623a74b8b74b8f0",
+  "installerExitCode": 0,
+  "installerBytes": 168998707,
+  "installerSha256": "ff8f868a5dbadaa4bcce1970e0cc98aab73c30f8c1bd0555e19e3d3ea5f71a3d",
+  "installed": {
+    "files": 550,
+    "bytes": 252882518,
+    "manifestSha256": "f9724173b58dc1758943c68251052a2407c4f5cb89d45d93a0ad84033a7b868a"
+  },
+  "identityLoaded": true,
+  "config": {
+    "format": 1,
+    "product": "ccb-studio-suite",
+    "platform": "windows-x86_64",
+    "version": 2,
+    "reader": 3,
+    "sourceSha": "0f11fdd6b6d281987dd7c449d623a74b8b74b8f0",
+    "metadataUrl": "http://127.0.0.1:1/metadata/",
+    "targetsUrl": "http://127.0.0.1:1/targets/",
+    "rootSha256": "efc8fdda742b6cc5f7fe4edcb38f75eba9bfcbe0210e07eb888d25f76c3eb892",
+    "channel": "internal",
+    "displayVersion": "0.2.2-internal",
+    "internalTest": true
+  },
+  "packagedUpdaterSources": [
+    {
+      "path": "updater/lib/studio_update.py",
+      "sha256": "6cd4e3ad33adfc0d820ee6dcec1ea7cd8e26555ed359c03b1b9488e4da67885f",
+      "sourcePath": "tools/update-runtime/studio_update.py"
+    },
+    {
+      "path": "updater/lib/github_transport.py",
+      "sha256": "93c0e136239b111948c169224d101045a2d22c80324b52d59838c70381b73c0d",
+      "sourcePath": "tools/update-runtime/github_transport.py"
+    },
+    {
+      "path": "updater/lib/install_ops.py",
+      "sha256": "f1d4ddd4f1bc7033ff8653e34851243e93c6df92c7ba69e70137f627ca46c17e",
+      "sourcePath": "tools/update-runtime/install_ops.py"
+    },
+    {
+      "path": "updater/lib/apply_update.py",
+      "sha256": "61351ea4731deca049a8d7309b9015bbfaf1aba0fc5550063113c2d2fdf6bdc0",
+      "sourcePath": "tools/update-runtime/apply_update.py"
+    },
+    {
+      "path": "updater/lib/residue_cleanup.py",
+      "sha256": "e8e12e94beeb52c5bd5134c91e21f4e11341b33ff44359e196621748d1babeeb",
+      "sourcePath": "tools/update-runtime/residue_cleanup.py"
+    },
+    {
+      "path": "updater/lib/owned_files.py",
+      "sha256": "d67f7ce0ffefa2dc6d2f1413f224383666800cc0892ae9e7a9dfe282d352a452",
+      "sourcePath": "tools/update-runtime/owned_files.py"
+    }
+  ],
+  "packagedClasses": [
+    {
+      "module": "asset-library",
+      "jar": "asset-library-ee9417ce5653dbd2beddcf7b8f6462dd.jar",
+      "sha256": "b8c470e5e576e1d6c78f881be0a45bf7c8b0eb33269f5d50bd07594bb3b561e4",
+      "compiledClassMatches": 23
+    },
+    {
+      "module": "image-authority",
+      "jar": "image-authority-95f9abde46a167be5c5d2437d288f5.jar",
+      "sha256": "ca0ca98a1e2d1f5a4439ce0244fe6c7e9b1feda01a23504fd5a3c1b477c044df",
+      "compiledClassMatches": 844
+    },
+    {
+      "module": "studio-core",
+      "jar": "studio-core-e057314f5d4fa77bae3a8698a81c2b1.jar",
+      "sha256": "3798df87452a150ee91dd85d9d9f80a9cba6bed8e13c3d8211093d9c69a29883",
+      "compiledClassMatches": 385
+    },
+    {
+      "module": "studio-desktop",
+      "jar": "studio-desktop-c2d9f69ad95e163c1c361e6cc59ee.jar",
+      "sha256": "04381d42afc15e50db1354b32736c1107a7d5df6733e2c6ca57105817653b7e0",
+      "compiledClassMatches": 990
+    }
+  ],
+  "tokenConsumer": {
+    "path": "com/example/chatbar/desktop/DesktopStudioResultControlsKt.class",
+    "newSha256": "4a78ddeee24d43473e6b299c58e3ef1014651232cb99068bdcacbe302c4c3690",
+    "old48eedSha256": "1697285c82d37d0cf68638d7b8a2c3bf9029a1b8b23758c89f007fc26d3fedf5",
+    "oldCandidateChanged": false
+  },
+  "runtimeFilesVerified": 326,
+  "registryCommandsInNSIS": false,
+  "dailyInstallationAccessed": false,
+  "privateGalleryAccessed": false,
+  "tagLibraryAdded": false,
+  "newJUnit": 0,
+  "native": "NOT STARTED",
+  "humanAcceptance": "NOT TESTED FOR THIS PACKAGE"
+}

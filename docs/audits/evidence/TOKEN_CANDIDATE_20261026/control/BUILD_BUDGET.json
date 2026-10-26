@@ -1,0 +1,42 @@
+{
+  "atUtc": "2026-10-26T09:56:46.518371+00:00",
+  "app": {
+    "path": "H:\\CCB-Studio-Suite\\modules\\studio-desktop\\build\\compose\\binaries\\main\\app\\CCBStudioSuitePreview",
+    "bytes": 215143868,
+    "files": 220
+  },
+  "runtime": {
+    "path": "H:\\CCB-Studio-Suite\\.local\\candidate-review-20261026\\updater-runtime",
+    "bytes": 37620624,
+    "files": 327
+  },
+  "compiled": [
+    {
+      "path": "H:\\CCB-Studio-Suite\\modules\\asset-library\\build\\classes\\java\\main",
+      "bytes": 109026,
+      "files": 23
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\modules\\image-authority\\build\\classes\\kotlin\\main",
+      "bytes": 4630576,
+      "files": 845
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\modules\\studio-core\\build\\classes\\kotlin\\main",
+      "bytes": 2920092,
+      "files": 386
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\modules\\studio-desktop\\build\\classes\\kotlin\\main",
+      "bytes": 10363677,
+      "files": 991
+    }
+  ],
+  "previousInstallerBytes": 168998452,
+  "hBudgetBytes": 1447291365,
+  "cBudgetBytes": 805306368,
+  "calculation": "Two full app-image buffers + full payload and isolated installation + previous NSIS size x1.2 + twice all compiled main classes +256MiB safety; existing unrelated module/test/old-candidate output is retained, not duplicated by this app-image-only invocation.",
+  "reasonForRefinement": "No tests or full module output copies are requested. Earlier runner double-counted whole existing build trees including unrelated outputs. This narrower budget is based on measured files and explicitly allows the new copies retained by this task; no deletion/consumption of old image/candidates.",
+  "notActualPeakMeasurement": true,
+  "physicalRamGate": "No 2GiB rule; actual Available/commit/overlap and configured JVM limits separately evaluated."
+}

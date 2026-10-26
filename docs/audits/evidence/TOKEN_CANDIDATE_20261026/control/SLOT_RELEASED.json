@@ -1,0 +1,22 @@
+{
+  "status": "HEAVY_SLOT_RELEASED",
+  "releasedUtc": "2026-10-26T10:08:53.0168185Z",
+  "appBuildExitCode": 0,
+  "appBuildSeconds": 42.605,
+  "packagingExitCode": 0,
+  "installerSha256": "ff8f868a5dbadaa4bcce1970e0cc98aab73c30f8c1bd0555e19e3d3ea5f71a3d",
+  "installerBytes": 168998707,
+  "isolatedInstall": "PASS",
+  "manifestFiles": 550,
+  "nativeAppStarts": 0,
+  "probe": "REAL_SHORTCUT_PROBE_PASS",
+  "heavyProcesses": [],
+  "hFreeBytes": 2812837888,
+  "cFreeBytes": 12395261952,
+  "availableBytes": 1154195456,
+  "commitHeadroomBytes": 7329890304,
+  "remaining": "Lightweight evidence/docs only; Desktop may recheck and resume; no further Studio heavy build planned",
+  "dailyInstallationAccessed": false,
+  "privateGalleryAccessed": false,
+  "oldCandidateOverwritten": false
+}
