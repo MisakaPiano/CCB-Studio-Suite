@@ -74,13 +74,46 @@ def delete_matching(path,item):
         dispose(k,handle)
     return 'REMOVED'
 
-def prune_empty(base,files,extra_dirs=()):
+EMPTY_DIRECTORY_LIMIT=4096
+EMPTY_DIRECTORY_ENTRY_LIMIT=25000
+EMPTY_DIRECTORY_PROTECTED={'data','userdata','workspace','plugins','backups','source','.git','secrets','credentials','config','configuration','media','assets'}
+
+
+def prune_empty(base,files,extra_dirs=(),discover_empty=False):
     dirs={base}|{base.joinpath(*relative(d)) for d in extra_dirs}
     for item in files:
         p=base.joinpath(*relative(item['path'])).parent
         while p!=base:dirs.add(p);p=p.parent
     results=[]
+    if discover_empty and io_path(base).exists():
+        # Used ONLY after a program receipt passes the updater's retirement gates.
+        # Empty driver-created subdirectories need not appear in the package manifest.
+        # No unknown file is deleted, opened or hashed. Discover first, remove later:
+        # if any unprotected file remains, retain its unknown directory structure too.
+        stack=[base];discovered=set();entries=0;only_directories=True
+        try:
+            while stack:
+                directory=stack.pop()
+                if len(discovered)>=EMPTY_DIRECTORY_LIMIT or len(directory.relative_to(base).parts)>64:
+                    raise OSError('Owned empty-directory scan bound reached')
+                discovered.add(directory)
+                with held_parents(directory),held(directory):
+                    with os.scandir(io_path(directory)) as children:
+                        for child in children:
+                            entries+=1
+                            if entries>EMPTY_DIRECTORY_ENTRY_LIMIT:raise OSError('Owned empty-directory entry bound reached')
+                            attributes=child.stat(follow_symlinks=False).st_file_attributes
+                            if attributes&0x400:raise ValueError('Reparse point in empty-directory scan refused')
+                            if attributes&0x10:
+                                if child.name.casefold() not in EMPTY_DIRECTORY_PROTECTED:stack.append(directory/child.name)
+                            else:only_directories=False
+                if not only_directories:break
+            if only_directories:dirs.update(discovered)
+        except OSError as error:
+            if getattr(error,'winerror',None) not in (2,3):
+                results.append(dict(path='.',status='RETRY_DIRECTORY',winerror=getattr(error,'winerror',None)))
     for directory in sorted(dirs,key=lambda p:len(p.parts),reverse=True):
+        if discover_empty and any(part.casefold() in EMPTY_DIRECTORY_PROTECTED for part in directory.relative_to(base).parts):continue
         if not io_path(directory).exists():continue
         try:
             with held_parents(directory),held(directory,True) as (k,handle,info):
