@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "method": "ORIGINAL_FIXED111_NSIS_OUTPUT_RECONSTRUCTION",
+  "sourceSha": "1c9385afc38cfab8a7549cdb5287ccba3fdd4560",
+  "installerSha256": "d20ab5390227f9dbbf054e81a7b1f390fca6019eeba6b0b12578e1fc7e344a1b",
+  "manifestSha256": "7cefba9ddcca008c507d63263639ddf3b441feb0d40a6beef2b5334946530437",
+  "uninstallSha256": "3a5c12d831e9f7560125db89affcd499978efb54307827502db2d905a7dbed22",
+  "oldUninstallMatches": true,
+  "oldUninstallBytes": 48921,
+  "verification": {
+    "files": 547,
+    "bytes": 252354429,
+    "manifestSha256": "7cefba9ddcca008c507d63263639ddf3b441feb0d40a6beef2b5334946530437"
+  },
+  "originalInstallerPreserved": true,
+  "fixture": "H:\\CCB-Studio-Suite\\.local\\disposable\\retire111-proof-5f54a8883bb84e30adcd48fdcea71c96",
+  "applicationLaunched": false,
+  "networkCalls": false
+}

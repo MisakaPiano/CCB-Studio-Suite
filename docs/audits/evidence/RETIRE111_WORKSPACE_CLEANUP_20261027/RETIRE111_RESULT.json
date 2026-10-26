@@ -1,0 +1,350 @@
+{
+  "status": "COMPLETE",
+  "root": "H:\\CCB-Studio-Suite-App\\111-1c9385afc38c",
+  "old111RootGone": true,
+  "files": 550,
+  "bytesFreed": 252504526,
+  "unknownFilesDeleted": 0,
+  "protectionMigration": {
+    "status": "MIGRATED_PROGRAM_POINTER_ONLY",
+    "records": 2,
+    "oldVersion": 111,
+    "currentVersion": 118,
+    "defaultEntryUnchanged": true,
+    "allOtherFieldsUnchanged": true,
+    "doNotCleanReferencedDirectoriesRemainsTrue": true,
+    "backupsAndDataNotTraversed": true,
+    "sourceManifestSha256": "7cefba9ddcca008c507d63263639ddf3b441feb0d40a6beef2b5334946530437"
+  },
+  "current118ProgramUnchanged": true,
+  "default118EntryUnchanged": true,
+  "userDataOrCredentialContentRead": false,
+  "backupsNotTraversed": true,
+  "directories": [
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust/openssl",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/twofactor",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/openssl",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/ciphers",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings/_rust",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/backends/openssl",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/asymmetric",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/decrepit/ciphers",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/securesystemslib/_vendor/ed25519/test_data",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/serialization",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives/kdf",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/tuf/ngclient/_internal",
+      "status": "REMOVED"
+    },
+    {
+      "path": "runtime/conf/security/policy/limited",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/bindings",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/urllib3/contrib/emscripten",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/decrepit",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/primitives",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/securesystemslib/_vendor/ed25519",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/backends",
+      "status": "REMOVED"
+    },
+    {
+      "path": "runtime/conf/security/policy/unlimited",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/tuf/api/serialization",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat/asn1",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/cryptography/x509",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/securesystemslib/_internal",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/typing_extensions-4.16.0.dist-info/licenses",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/urllib3/contrib",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/securesystemslib-1.6.0.dist-info/licenses",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/tuf/ngclient",
+      "status": "REMOVED"
+    },
+    {
+      "path": "runtime/conf/security/policy",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/cffi-2.1.1.dist-info/licenses",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/securesystemslib/_gpg",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/cryptography-50.0.2.dist-info/licenses",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/securesystemslib/signer",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/tuf-7.0.1.dist-info/licenses",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/cryptography/hazmat",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/cryptography-50.0.2.dist-info/sboms",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/pycparser-3.11.dist-info/licenses",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/tuf/repository",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/urllib3/util",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/urllib3-2.8.0.dist-info/licenses",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/urllib3/http2",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/securesystemslib/_vendor",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/tuf/api",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/urllib3",
+      "status": "REMOVED"
+    },
+    {
+      "path": "runtime/legal/java.prefs",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/urllib3-2.8.0.dist-info",
+      "status": "REMOVED"
+    },
+    {
+      "path": "runtime/legal/jdk.crypto.ec",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/tuf-7.0.1.dist-info",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/cryptography",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/cffi-2.1.1.dist-info",
+      "status": "REMOVED"
+    },
+    {
+      "path": "runtime/legal/java.sql",
+      "status": "REMOVED"
+    },
+    {
+      "path": "runtime/legal/java.base",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/tuf",
+      "status": "REMOVED"
+    },
+    {
+      "path": "runtime/legal/java.naming",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/securesystemslib",
+      "status": "REMOVED"
+    },
+    {
+      "path": "runtime/conf/security",
+      "status": "REMOVED"
+    },
+    {
+      "path": "runtime/legal/java.logging",
+      "status": "REMOVED"
+    },
+    {
+      "path": "runtime/legal/java.security.sasl",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/securesystemslib-1.6.0.dist-info",
+      "status": "REMOVED"
+    },
+    {
+      "path": "runtime/legal/java.net.http",
+      "status": "REMOVED"
+    },
+    {
+      "path": "runtime/legal/jdk.unsupported",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/pycparser-3.11.dist-info",
+      "status": "REMOVED"
+    },
+    {
+      "path": "runtime/legal/java.transaction.xa",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/cryptography-50.0.2.dist-info",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/pycparser",
+      "status": "REMOVED"
+    },
+    {
+      "path": "runtime/legal/java.xml",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/cffi",
+      "status": "REMOVED"
+    },
+    {
+      "path": "runtime/legal/java.desktop",
+      "status": "REMOVED"
+    },
+    {
+      "path": "runtime/legal/java.datatransfer",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib/typing_extensions-4.16.0.dist-info",
+      "status": "REMOVED"
+    },
+    {
+      "path": "runtime/lib/security",
+      "status": "REMOVED"
+    },
+    {
+      "path": "runtime/bin/server",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater/lib",
+      "status": "REMOVED"
+    },
+    {
+      "path": "runtime/bin",
+      "status": "REMOVED"
+    },
+    {
+      "path": "runtime/legal",
+      "status": "REMOVED"
+    },
+    {
+      "path": "runtime/lib",
+      "status": "REMOVED"
+    },
+    {
+      "path": "runtime/conf",
+      "status": "REMOVED"
+    },
+    {
+      "path": "updater",
+      "status": "REMOVED"
+    },
+    {
+      "path": "runtime",
+      "status": "REMOVED"
+    },
+    {
+      "path": "app",
+      "status": "REMOVED"
+    },
+    {
+      "path": ".",
+      "status": "REMOVED"
+    }
+  ],
+  "atUtc": "2026-10-26T22:19:00.901625+00:00"
+}

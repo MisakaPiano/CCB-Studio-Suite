@@ -1,0 +1,6 @@
+{
+  "status": "RETAINED_PREPARATION_ERROR",
+  "reason": "verify_install requires INSTALL_COMPLETE; raw packaging payload is not an installed program. Replaced with explicit manifest-byte verification; real NSIS proof remains separate",
+  "deletedAtFailure": 0,
+  "notApplicationFailure": true
+}

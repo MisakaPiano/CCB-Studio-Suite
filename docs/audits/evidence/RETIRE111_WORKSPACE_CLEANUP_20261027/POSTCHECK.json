@@ -1,0 +1,35 @@
+{
+  "status": "COMPLETE",
+  "applicationVersion": 118,
+  "installedProgram": {
+    "files": 550,
+    "bytes": 252900763,
+    "manifestSha256": "8af3972681326b95fa2faa97dfea07d66bb28c1e3b4a45e85ed937b65967021c"
+  },
+  "dailyProgramDirectories": [
+    "118-a1202e24f7a0"
+  ],
+  "old111Gone": true,
+  "protectionRecordsMigrated": 2,
+  "dataRuntimeBackupFieldsUnchanged": true,
+  "privateDataOrCredentialsRead": false,
+  "oldProgramCopiesRetired": 6,
+  "oldFilesRemoved": 3918,
+  "netOldBytesRemoved": 1770579121,
+  "temporaryProofFilesRetired": 2209,
+  "temporaryProofBytesRetired": 1011603268,
+  "unknownFilesDeleted": 0,
+  "preserved": [
+    "fixed install packages and 107/114/115/116 compatibility baselines",
+    "review evidence and failure records",
+    "failed/unsealed disposable payloads",
+    "user data, configuration, credentials, plugins and backups",
+    "source and signing custody",
+    "shared build dependency caches"
+  ],
+  "hFreeObserved": 4909023232,
+  "hFreeObservationIsNotNetCleanupAccounting": true,
+  "noProductionSourceChange": true,
+  "newRelease": false,
+  "atUtc": "2026-10-26T22:23:17.310563+00:00"
+}

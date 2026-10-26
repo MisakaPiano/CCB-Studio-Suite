@@ -1,0 +1,33 @@
+{
+  "status": "MATCHED_REAL_FIXED_INSTALLER_OUTPUT",
+  "installerSha256": "ff8f868a5dbadaa4bcce1970e0cc98aab73c30f8c1bd0555e19e3d3ea5f71a3d",
+  "programManifestSha256": "f9724173b58dc1758943c68251052a2407c4f5cb89d45d93a0ad84033a7b868a",
+  "source": "0f11fdd6b6d281987dd7c449d623a74b8b74b8f0",
+  "originalInstallerPreserved": true,
+  "verification": {
+    "files": 550,
+    "bytes": 252882518,
+    "manifestSha256": "f9724173b58dc1758943c68251052a2407c4f5cb89d45d93a0ad84033a7b868a"
+  },
+  "commands": [
+    "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\candidate\\studio-installer.exe",
+    "/S",
+    "/D=H:\\CCB-Studio-Suite\\.local\\disposable\\workspace-program-proof-02968bfa5ef74acc9e67b0fb4a7e1b44\\payload\\program"
+  ],
+  "targets": [
+    {
+      "root": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\candidate\\payload",
+      "status": "COMPLETE",
+      "files": 551,
+      "bytesFreed": 252984155,
+      "unknownFilesDeleted": 0
+    },
+    {
+      "root": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\isolated-install",
+      "status": "COMPLETE",
+      "files": 553,
+      "bytesFreed": 253033154,
+      "unknownFilesDeleted": 0
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+[
+  {
+    "root": "H:\\CCB-Studio-Suite\\.local\\appearance-gear-20261026",
+    "installerSha256": "ee6f86a3ef347d88a38ea0a16eba1f8cfe75e448ed8960a5df41371404ebf06f",
+    "installerBytes": 168998350,
+    "source": "22aa8c55ec4b05db29acb443d85717e80eb9d24a",
+    "payloadManifestSha256": "6bafd7460ea04f36e239bf38018ee5cf85e69da173ca1fd8e575daac2086f0ee",
+    "targets": [
+      {
+        "path": "H:\\CCB-Studio-Suite\\.local\\appearance-gear-20261026\\candidate\\payload",
+        "files": 551,
+        "bytes": 252983720,
+        "unknownNames": [],
+        "manifestMatchesPayload": true
+      },
+      {
+        "path": "H:\\CCB-Studio-Suite\\.local\\appearance-gear-20261026\\isolated-install",
+        "files": 553,
+        "bytes": 253032721,
+        "unknownNames": [],
+        "manifestMatchesPayload": true
+      }
+    ]
+  },
+  {
+    "root": "H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026",
+    "installerSha256": "ca4cafd37285a2528090247ecc53326b5e78cafa87b569d040578639d8c10ee5",
+    "installerBytes": 168998452,
+    "source": "b54a036fc65868836d901339f7d1e3dce24dff8a",
+    "payloadManifestSha256": "e53dce9faf914c580f371992ed412d28e7c0018e1feaf469b205d39ff4c3ebff",
+    "targets": [
+      {
+        "path": "H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\candidate\\payload",
+        "files": 551,
+        "bytes": 252983864,
+        "unknownNames": [],
+        "manifestMatchesPayload": true
+      },
+      {
+        "path": "H:\\CCB-Studio-Suite\\.local\\appearance-text-actions-20261026\\isolated-install",
+        "files": 553,
+        "bytes": 253032867,
+        "unknownNames": [],
+        "manifestMatchesPayload": true
+      }
+    ]
+  },
+  {
+    "root": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026",
+    "installerSha256": "ff8f868a5dbadaa4bcce1970e0cc98aab73c30f8c1bd0555e19e3d3ea5f71a3d",
+    "installerBytes": 168998707,
+    "source": "0f11fdd6b6d281987dd7c449d623a74b8b74b8f0",
+    "payloadManifestSha256": "f9724173b58dc1758943c68251052a2407c4f5cb89d45d93a0ad84033a7b868a",
+    "targets": [
+      {
+        "path": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\candidate\\payload",
+        "files": 551,
+        "bytes": 252984155,
+        "unknownNames": [],
+        "manifestMatchesPayload": true
+      },
+      {
+        "path": "H:\\CCB-Studio-Suite\\.local\\token-candidate-20261026\\isolated-install",
+        "files": 553,
+        "bytes": 253033154,
+        "unknownNames": [],
+        "manifestMatchesPayload": true
+      }
+    ]
+  }
+]
