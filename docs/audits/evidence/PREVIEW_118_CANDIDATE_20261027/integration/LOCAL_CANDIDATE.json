@@ -1,0 +1,18 @@
+{
+  "custom": {
+    "product": "ccb-studio-suite",
+    "platform": "windows-x86_64",
+    "channel": "preview",
+    "version": 118,
+    "minimum_reader": 3,
+    "maximum_reader": 3,
+    "data_version": 3,
+    "sourceSha": "3d0bd1f02c630d1e312d7469dbd71f29efe0bec1",
+    "displayVersion": "0.0.0-preview.118",
+    "notes": "Isolated candidate, no public metadata",
+    "installedBytes": 252897828
+  },
+  "bytes": 169005851,
+  "sha256": "7016b3145a801cb878663c76279ea922128e9c823b77ce36d251a97802533ccb",
+  "scope": "TEST_DISCOVERY_ONLY_NOT_PUBLIC_TUF"
+}

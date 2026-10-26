@@ -1,0 +1,43 @@
+from pathlib import Path
+import hashlib,json,os,sys,shutil
+ROOT=Path('H:/CCB-Studio-Suite');OUT=ROOT/'.local/preview-candidate-118-20261027';CROSS=Path('C:/CCB-Studio-Suite-Test-118-20261027');DEST=ROOT/'docs/audits/evidence/PREVIEW_118_CANDIDATE_20261027'
+sys.path[:0]=[str(ROOT/'tools'),str(ROOT/'tools/update-runtime')]
+from owned_files import delete_matching,prune_empty,held_parents,io_path
+import workspace_artifacts as artifacts
+sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+proof=OUT/'RETAINED_PROOF.json'
+for e in json.loads(proof.read_text())['files']:
+ p=ROOT/e['path'];assert p.is_file() and p.stat().st_size==e['bytes'] and sha(p)==e['sha256']
+manifest=json.loads((OUT/'C_FIXTURE_MANIFEST.json').read_text());assert manifest['root']==str(CROSS) and CROSS==Path('C:/CCB-Studio-Suite-Test-118-20261027')
+assert json.loads((CROSS/'OWNER.json').read_text())['kind']=='AUTHORIZED_SUITE_SYNTHETIC_118'
+removed=0;freed=0
+for e in manifest['files']:
+ p=CROSS/e['path'];assert p.absolute().is_relative_to(CROSS)
+ assert delete_matching(p,e)=='REMOVED';removed+=1;freed+=e['bytes']
+# Link identity is rechecked and removed nonrecursively. Its target is never traversed.
+for link in manifest['links']:
+ p=CROSS/link['path'];assert p.is_junction() and os.readlink(p)==link['target']
+ assert Path(link['target'].removeprefix('\\\\?\\')).is_relative_to(CROSS)
+ with held_parents(p):os.rmdir(p)
+prune_empty(CROSS,manifest['files'],manifest['directories']);assert not CROSS.exists()
+results=[dict(kind='EXACT_AUTHORIZED_C_TEST_ROOT',status='COMPLETE',files=removed,bytes=freed,linksUnlinked=len(manifest['links']),unknownFilesDeleted=0)]
+# Seal and retire only the newly generated PASS unit fixtures.
+for name in ('ed-89ed2631dfb548a79b007531e98b0736','cw-ad12b382b9784599a24fda25df864777'):
+ folder=ROOT/'.local/disposable'/name;artifacts.seal(folder,[proof],'PASS');result=artifacts.cleanup(folder);assert result['status']=='COMPLETE';results.append(dict(kind='PASS_UNIT_FIXTURE',root=str(folder),**result))
+# Keep exact fixed installer + release inputs; discard its redundant unpacked copy.
+package=OUT/'candidate-r3';base=package/'payload';inputs=package/'release-inputs';inputs.mkdir()
+for name in ('INSTALL_MANIFEST.json','update-config.json','update-root.json'):shutil.copy2(base/name,inputs/name)
+items=json.loads((base/'INSTALL_MANIFEST.json').read_text())['files'];p=base/'INSTALL_MANIFEST.json';items=items+[dict(path=p.name,bytes=p.stat().st_size,sha256=sha(p))]
+assert {p.relative_to(base).as_posix() for p in base.rglob('*') if p.is_file()}=={e['path'] for e in items}
+for e in items:assert delete_matching(base/e['path'],e)=='REMOVED'
+prune_empty(base,items);assert not base.exists()
+results.append(dict(kind='REDUNDANT_FINAL_PAYLOAD',status='COMPLETE',files=len(items),bytes=sum(e['bytes'] for e in items),installerKept=True))
+(package/'PAYLOAD_RETIRED.json').write_text(json.dumps(dict(status='RETIRED_AFTER_FIXED_INSTALLER_VERIFICATION',installerSha256=sha(package/'studio-installer.exe'),inputs='release-inputs',reuse='Reconstruct from the same fixed installer in a new owned root; do not assume old payload still exists'),indent=2)+'\n')
+base=OUT/'updater-runtime';items=json.loads((base/'RUNTIME_MANIFEST.json').read_text())['files'];p=base/'RUNTIME_MANIFEST.json';items=items+[dict(path=p.name,bytes=p.stat().st_size,sha256=sha(p))]
+for e in items:assert delete_matching(base/e['path'],e)=='REMOVED'
+prune_empty(base,items);assert not base.exists()
+results.append(dict(kind='REDUNDANT_ASSEMBLED_UPDATER',status='COMPLETE',files=len(items),bytes=sum(e['bytes'] for e in items),lockedBaselineKept=True))
+(DEST/'FIXTURE_RETIREMENT.json').write_text(json.dumps(results,indent=2)+'\n');(OUT/'FIXTURE_RETIREMENT.json').write_text(json.dumps(results,indent=2)+'\n')
+for name in ('candidate','candidate-r2'):(OUT/name/'FAILED_CANDIDATE_RETIRED.json').write_text(json.dumps(dict(status='SUPERSEDED_UNPUBLISHED_FAILURE',installer='Retired as owned C fixture after raw evidence, fixed source and digest mapping retained',independentBaseline=False,noPublicArtifactChanged=True),indent=2)+'\n')
+assert sha(package/'studio-installer.exe')=='3540be44ca7a1fcfd583899b325abad7630e10b120d288e9f2e7dc7a1e8bd60d'
+print(json.dumps(dict(retirements=results,hFree=shutil.disk_usage(ROOT).free,cTestRootGone=not CROSS.exists()),indent=2))

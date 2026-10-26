@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "H:\CCB-Studio-Suite\.local\preview-candidate-118-20261027\old-helper-adapter.py", line 9, in <module>
+    custom=fixture['custom'];target=TargetFile.from_dict('studio-installer.exe',dict(length=fixture['bytes'],hashes={'sha256':fixture['sha256']},custom=custom))
+                                    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\CCB-Studio-Suite-Test-118-20261027\install\117-b9b240a248d4\updater\lib\tuf\api\_payload.py", line 1606, in from_dict
+    length = target_dict.pop("length")
+             ^^^^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'pop'

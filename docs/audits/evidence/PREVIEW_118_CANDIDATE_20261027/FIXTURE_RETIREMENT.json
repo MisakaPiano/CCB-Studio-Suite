@@ -1,0 +1,44 @@
+[
+  {
+    "kind": "EXACT_AUTHORIZED_C_TEST_ROOT",
+    "status": "COMPLETE",
+    "files": 2070,
+    "bytes": 1121015570,
+    "linksUnlinked": 3,
+    "linksNeverTraversed": true
+  },
+  {
+    "kind": "PASS_UNIT_FIXTURE",
+    "status": "COMPLETE",
+    "removed": 169,
+    "bytesFreed": 74574,
+    "retained": [],
+    "sourceManifestSha256": "118894ba067f9eca1612de23e7b31046bcc89114f379958bd81588ec2ac15bdf"
+  },
+  {
+    "kind": "PASS_UNIT_FIXTURE",
+    "status": "COMPLETE",
+    "removed": 57,
+    "bytesFreed": 22614,
+    "retained": [],
+    "sourceManifestSha256": "8c2b657519cb40263e93c9becf1ff4969b6d53f796f22f28df4180521f7963d2"
+  },
+  {
+    "kind": "REDUNDANT_FINAL_PAYLOAD",
+    "status": "COMPLETE",
+    "files": 551,
+    "bytes": 253002401,
+    "emptyDirectoryContinuation": [
+      "app",
+      "app/resources"
+    ],
+    "installerKept": true
+  },
+  {
+    "kind": "REDUNDANT_ASSEMBLED_UPDATER",
+    "status": "COMPLETE",
+    "files": 327,
+    "bytes": 37630497,
+    "lockedBaselineKept": true
+  }
+]

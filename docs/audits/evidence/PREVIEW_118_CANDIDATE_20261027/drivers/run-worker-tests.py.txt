@@ -1,0 +1,17 @@
+from pathlib import Path
+import sys,os,unittest,time,json,subprocess,hashlib
+ROOT=Path('H:/CCB-Studio-Suite');OUT=ROOT/'.local/preview-candidate-118-20261027'
+sys.path[:0]=[str(ROOT/'tools/update-runtime')]
+os.environ['CCB_SYNTHETIC_TEST_ROOT']=str(ROOT/'.local/disposable/cw-ad12b382b9784599a24fda25df864777/payload')
+import test_worker_directory as new
+suite=unittest.TestSuite(new.WorkerDirectoryTests(n) for n in dir(new.WorkerDirectoryTests) if n.startswith('test_'))
+rows=[]
+class Results(unittest.TextTestResult):
+ def startTest(self,t):self.started=time.monotonic();super().startTest(t)
+ def record(self,t,status):rows.append(dict(case=t.id(),status=status,seconds=time.monotonic()-self.started,fixture=str(t.base)))
+ def addSuccess(self,t):super().addSuccess(t);self.record(t,'PASS')
+ def addFailure(self,t,e):super().addFailure(t,e);self.record(t,'FAILED')
+ def addError(self,t,e):super().addError(t,e);self.record(t,'ERROR')
+with (OUT/'worker-tests.log').open('x',encoding='utf-8') as f:r=unittest.TextTestRunner(stream=f,verbosity=2,resultclass=Results).run(suite)
+value=dict(status='PASS' if r.wasSuccessful() else 'FAILED',newUnique=3,previousCasesRechecked=0,rows=rows,sourceHashes={n:hashlib.sha256((ROOT/'tools/update-runtime'/n).read_bytes()).hexdigest() for n in ['owned_files.py','residue_cleanup.py','test_worker_directory.py']})
+(OUT/'WORKER_TESTS.json').write_text(json.dumps(value,indent=2)+'\n');print(json.dumps(value,indent=2))

@@ -1,0 +1,39 @@
+"""Read only handle PATH metadata of one exact synthetic test process; no memory/credential reads."""
+import ctypes,json
+from ctypes import wintypes as W
+from pathlib import Path
+pid=18436;allowed=Path('C:/CCB-Studio-Suite-Test-118-20261027/r2/install');exe=allowed/'118-862f2a8ada44/CCBStudioSuitePreview.exe'
+k=ctypes.WinDLL('kernel32',use_last_error=True);n=ctypes.WinDLL('ntdll')
+k.OpenProcess.argtypes=[W.DWORD,W.BOOL,W.DWORD];k.OpenProcess.restype=W.HANDLE;k.CloseHandle.argtypes=[W.HANDLE]
+k.QueryFullProcessImageNameW.argtypes=[W.HANDLE,W.DWORD,W.LPWSTR,ctypes.POINTER(W.DWORD)]
+k.DuplicateHandle.argtypes=[W.HANDLE,W.HANDLE,W.HANDLE,ctypes.POINTER(W.HANDLE),W.DWORD,W.BOOL,W.DWORD];k.GetCurrentProcess.restype=W.HANDLE
+k.GetFileType.argtypes=[W.HANDLE];k.GetFinalPathNameByHandleW.argtypes=[W.HANDLE,W.LPWSTR,W.DWORD,W.DWORD];k.GetHandleInformation.argtypes=[W.HANDLE,ctypes.POINTER(W.DWORD)]
+h=k.OpenProcess(0x40|0x1000,False,pid);assert h
+try:
+ buf=ctypes.create_unicode_buffer(32768);size=W.DWORD(32768);assert k.QueryFullProcessImageNameW(h,0,buf,ctypes.byref(size)) and Path(buf.value)==exe
+ class Entry(ctypes.Structure):
+  _fields_=[('object',ctypes.c_void_p),('pid',ctypes.c_size_t),('handle',ctypes.c_size_t),('access',W.DWORD),('creator',W.USHORT),('type',W.USHORT),('attributes',W.DWORD),('reserved',W.DWORD)]
+ n.NtQuerySystemInformation.argtypes=[W.ULONG,ctypes.c_void_p,W.ULONG,ctypes.POINTER(W.ULONG)]
+ length=1<<20
+ while True:
+  memory=ctypes.create_string_buffer(length);needed=W.ULONG();status=n.NtQuerySystemInformation(64,memory,length,ctypes.byref(needed))
+  if status==0:break
+  assert length<64*1024**2;length=max(length*2,needed.value+65536)
+ count=ctypes.c_size_t.from_buffer(memory).value;rows=[];scope=0
+ for i in range(count):
+  e=Entry.from_buffer(memory,2*ctypes.sizeof(ctypes.c_size_t)+i*ctypes.sizeof(Entry))
+  if e.pid!=pid:continue
+  copy=W.HANDLE()
+  if not k.DuplicateHandle(h,W.HANDLE(e.handle),k.GetCurrentProcess(),ctypes.byref(copy),0,False,2):continue
+  try:
+   if k.GetFileType(copy)!=1:continue
+   path=ctypes.create_unicode_buffer(32768);got=k.GetFinalPathNameByHandleW(copy,path,len(path),0)
+   if not got or got>=len(path):continue
+   value=path.value.removeprefix('\\\\?\\');p=Path(value)
+   if p.is_relative_to(allowed):
+    scope+=1
+    if p==allowed/'117-b9b240a248d4' or p.is_relative_to(allowed/'117-b9b240a248d4'):rows.append(dict(handle=e.handle,path=value,access=e.access,attributes=e.attributes))
+  finally:k.CloseHandle(copy)
+ result=dict(pid=pid,image=str(exe),oldProgramHandlePaths=rows,matchedSyntheticHandles=scope,metadataOnly=True,processModified=False)
+ Path('H:/CCB-Studio-Suite/.local/preview-candidate-118-20261027/integration-r2/HANDLE_METADATA.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result,indent=2))
+finally:k.CloseHandle(h)

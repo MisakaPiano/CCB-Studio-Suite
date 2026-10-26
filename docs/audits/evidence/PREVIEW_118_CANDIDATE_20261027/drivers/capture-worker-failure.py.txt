@@ -1,0 +1,72 @@
+from pathlib import Path
+import json,hashlib,subprocess,sys,os,time,uuid,ctypes,shutil,msvcrt
+from ctypes import wintypes as W
+ROOT=Path('H:/CCB-Studio-Suite');OUT=ROOT/'.local/preview-candidate-118-20261027';CROSS=Path('C:/CCB-Studio-Suite-Test-118-20261027/r2');PY=ROOT/'.local/windows-rc/updater-runtime-115/python.exe'
+sys.path.insert(0,str(ROOT/'tools/update-runtime'))
+from install_ops import atomic_json,verify_install,immutable_file
+from apply_update import create_launcher,ParentProcess
+from residue_cleanup import enroll_program,enroll_download
+from tuf.api.metadata import TargetFile
+sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+def write(p,v):p.parent.mkdir(parents=True,exist_ok=True);atomic_json(p,v)
+def load(p):return json.loads(p.read_text(encoding='utf-8-sig'))
+def wait(fn,seconds=60):
+ end=time.monotonic()+seconds
+ while time.monotonic()<end:
+  value=fn()
+  if value:return value
+  time.sleep(.15)
+ raise TimeoutError('Bounded isolated condition not reached')
+user=ctypes.WinDLL('user32',use_last_error=True);kernel=ctypes.WinDLL('kernel32',use_last_error=True);CB=ctypes.WINFUNCTYPE(W.BOOL,W.HWND,W.LPARAM)
+user.EnumWindows.argtypes=[CB,W.LPARAM];user.IsWindowVisible.argtypes=[W.HWND];user.GetClassNameW.argtypes=[W.HWND,W.LPWSTR,ctypes.c_int];user.GetWindowThreadProcessId.argtypes=[W.HWND,ctypes.POINTER(W.DWORD)];user.PostMessageW.argtypes=[W.HWND,W.UINT,W.WPARAM,W.LPARAM]
+kernel.OpenProcess.argtypes=[W.DWORD,W.BOOL,W.DWORD];kernel.OpenProcess.restype=W.HANDLE;kernel.QueryFullProcessImageNameW.argtypes=[W.HANDLE,W.DWORD,W.LPWSTR,ctypes.POINTER(W.DWORD)];kernel.CloseHandle.argtypes=[W.HANDLE]
+def windows(exe):
+ found=[]
+ def cb(hwnd,_):
+  klass=ctypes.create_unicode_buffer(256);user.GetClassNameW(hwnd,klass,256)
+  if not user.IsWindowVisible(hwnd) or klass.value!='SunAwtFrame':return True
+  pid=W.DWORD();user.GetWindowThreadProcessId(hwnd,ctypes.byref(pid));h=kernel.OpenProcess(0x1000,False,pid.value)
+  if h:
+   try:
+    value=ctypes.create_unicode_buffer(32768);size=W.DWORD(32768)
+    if kernel.QueryFullProcessImageNameW(h,0,value,ctypes.byref(size)) and Path(value.value)==exe:found.append(dict(pid=pid.value,hwnd=int(hwnd)))
+   finally:kernel.CloseHandle(h)
+  return True
+ callback=CB(cb);user.EnumWindows(callback,0);return found
+
+def close(exe):
+ views=wait(lambda:windows(exe),20);handles=[ParentProcess(v['pid'],exe) for v in views]
+ try:
+  for view in views:assert user.PostMessageW(view['hwnd'],0x10,0,0)
+  for h in handles:wait(h.exited,45)
+ finally:
+  for h in handles:h.close()
+ return views
+
+def command(args,name,timeout=60):
+ with (EVIDENCE/name).open('xb') as log:
+  r=subprocess.run(list(map(str,args)),cwd=CROSS,env=ENV,stdout=log,stderr=subprocess.STDOUT,creationflags=subprocess.CREATE_NO_WINDOW,timeout=timeout)
+ assert r.returncode==0,name
+ return r
+
+def unlocked(data):
+ with (data/'.owner.lock').open('r+b') as f:
+  try:msvcrt.locking(f.fileno(),msvcrt.LK_NBLCK,1)
+  except OSError:return False
+  else:f.seek(0);msvcrt.locking(f.fileno(),msvcrt.LK_UNLCK,1);return True
+
+
+from owned_files import held,held_parents
+EVIDENCE=OUT/'integration-r2';ENV=load(EVIDENCE/'ENVIRONMENT.json');root=CROSS/'install';old=root/'117-b9b240a248d4';current=root/'118-862f2a8ada44';exe=current/'CCBStudioSuitePreview.exe';cache=root/'data/runtime/updates'
+assert old.is_dir() and not list(old.iterdir())
+with held_parents(old),held(old,True):deleteAccessNow=True # inspect only; no disposition/deletion
+views=windows(exe);assert len(views)==1
+write(EVIDENCE/'WORKER_CWD_FAILURE.json',dict(status='FAILED_EMPTY_OLD_ROOT_AFTER_AUTOMATIC_RETRIES',oldFiles=0,oldChildDirectories=0,oldRootStillPresent=True,deleteHandleCanOpenAfterWorkersExit=deleteAccessNow,bStillRunning=views,oldHelperPostWorkerHasNoCwd=True,manualDeletion=False,needed='Packaged cleanup worker must release inherited A cwd itself'))
+for name in ('events.jsonl','post-update-process.log','state.json'):
+ p=cache/'cleanup'/name
+ if p.exists():shutil.copy2(p,EVIDENCE/('failed-cleanup-'+name))
+for folder in (cache/'handoffs').iterdir():
+ if (folder/'result.json').exists() and load(folder/'result.json').get('status')=='COMPLETE':
+  for name in ('B_VERIFIED.json','b-stdout.log','b-stderr.log'):shutil.copy2(folder/name,EVIDENCE/('failed-'+name))
+write(EVIDENCE/'NORMAL_CLOSE_AFTER_FAILURE.json',dict(windows=close(exe),forcedTermination=False))
+print('FAILED evidence retained; B closed normally; old directory NOT removed manually')

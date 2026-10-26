@@ -1,0 +1,6 @@
+{
+  "status": "RETIRED_AFTER_FIXED_INSTALLER_VERIFICATION",
+  "installerSha256": "3540be44ca7a1fcfd583899b325abad7630e10b120d288e9f2e7dc7a1e8bd60d",
+  "inputs": "release-inputs",
+  "reuse": "Reconstruct from the same fixed installer in a new owned root; do not assume old payload still exists"
+}

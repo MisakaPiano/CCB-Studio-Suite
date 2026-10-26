@@ -1,0 +1,16 @@
+{
+  "status": "FAILED_EMPTY_OLD_ROOT_AFTER_AUTOMATIC_RETRIES",
+  "oldFiles": 0,
+  "oldChildDirectories": 0,
+  "oldRootStillPresent": true,
+  "deleteHandleCanOpenAfterWorkersExit": true,
+  "bStillRunning": [
+    {
+      "pid": 18436,
+      "hwnd": 12065700
+    }
+  ],
+  "oldHelperPostWorkerHasNoCwd": true,
+  "manualDeletion": false,
+  "needed": "Packaged cleanup worker must release inherited A cwd itself"
+}

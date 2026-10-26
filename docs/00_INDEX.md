@@ -1,3 +1,9 @@
+## 2026-10-27 Preview118候选真实117升级通过，等待确认
+
+沿原UPD-CLEAN-PROTECTION-001，[固定候选与证据](audits/PREVIEW_118_CANDIDATE_20261027.md)：源码a1202e2／应用映像3d0bd1f，0.0.0-preview.118，169006742字节，SHA256 3540be44ca7a1fcfd583899b325abad7630e10b120d288e9f2e7dc7a1e8bd60d。纳入9f5a6a6，并按确认补受控空子目录清理和旧helper启动清理进程时的自身cwd切换。最终真实117/118程序、旧helper、NSIS及合成资料/凭据确认通过，新版运行时旧根自动消失，下载/解包0、重复清理0；候选发现适配不等于公开TUF链已验。
+
+9新单元＋4既有定向复核PASS；2次旧根失败和准备失败分别留存，不累计成通过。3174自有文件约1.31GiB留证退役，固定最终包/证据/原基线和保护保留。READY_FOR_USER_CONFIRMATION_NOT_PUBLISHED；正式根和元数据不变、118无tag/Release，日常117未改。资产编辑人工／115体验／Prompt／任务栏待验，独立NOT REQUESTED、q09/旧否决保持；不扩展性能、界面或Desktop。
+
 ## 2026-10-27 更新后旧空目录收尾已修，未发版
 
 沿原 UPD-CLEAN-PROTECTION-001，[固定源码与证据](audits/UPDATE_DIRECTORY_RETIREMENT_20261027.md)记录9f5a6a6：helper/B/清理工作目录修正、兼容旧helper的原生父进程交接、空目录占用/权限失败进入DEFERRED重试。新增4单元＋2原生目录场景PASS，另4既有保护用例复核；应用编译成功但JUnit0。原生薄宿主不是完整117→新包升级，下一候选仍需包级组合核验。本轮520所属临时文件约139.4MiB留证退役，RED/准备失败保留；未打包/发版/修改日常117或撤销历史保护。资产编辑人工、115体验、Prompt及任务栏待验与旧失败/独立状态保持。

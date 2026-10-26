@@ -1,0 +1,19 @@
+from pathlib import Path
+import sys,json,hashlib,zipfile,subprocess
+ROOT=Path('H:/CCB-Studio-Suite');OUT=ROOT/'.local/preview-candidate-118-20261027';sys.path.insert(0,str(ROOT/'tools/update-runtime'))
+from install_ops import verify_install
+sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+b=OUT/'candidate-r3';receipt=json.loads((b/'BUILD_RECEIPT.json').read_text());p=b/'payload';config=json.loads((p/'update-config.json').read_text());m=json.loads((p/'INSTALL_MANIFEST.json').read_text())
+assert sha(b/'studio-installer.exe')==receipt['sha256']=='3540be44ca7a1fcfd583899b325abad7630e10b120d288e9f2e7dc7a1e8bd60d'
+assert (config['version'],config['displayVersion'],config['sourceSha'],config['channel'])==(118,'0.0.0-preview.118','a1202e24f7a0cba8a53f43bf035b67e2134ca2aa','preview')
+assert sha(p/'update-root.json')=='408008d80aeb2dd3844325d74f09da9d248733e220dd88c08cc6299c4a24cc7a'
+for e in m['files']:assert (p/e['path']).stat().st_size==e['bytes'] and sha(p/e['path'])==e['sha256']
+jar=next((p/'app').glob('studio-desktop-*.jar'))
+with zipfile.ZipFile(jar) as z:
+ names=z.namelist();assert 'io/github/misakapiano/ccbstudio/desktop/UpdateLaunchDirectory.class' in names;assert 'io/github/misakapiano/ccbstudio/desktop/UpdateLaunchDirectory$Kernel.class' in names
+ assert not any(t in n for n in names for t in ['ReviewUpdateNativeA','LaunchDirectoryProbe','RelocationNativeA','SeedCandidate118'])
+ classes=len([n for n in names if n.endswith('.class')]);classhash={n:hashlib.sha256(z.read(n)).hexdigest() for n in names if '/UpdateLaunchDirectory' in n}
+ scripts={n:sha(p/'updater/lib'/n) for n in ('studio_update.py','github_transport.py','apply_update.py','install_ops.py','residue_cleanup.py','owned_files.py')}
+ for n,h in scripts.items():assert h==sha(ROOT/'tools/update-runtime'/n)
+value=dict(status='PASS_PAYLOAD_ONLY_NOT_YET_INSTALLED',receipt=receipt,manifestFiles=len(m['files']),shippedDesktopClasses=classes,bridgeClasses=classhash,scriptHashes=scripts,formalRootUnchanged=True,testDriverPackaged=False,newIntegration='RUNNING_ISOLATED_UPGRADE',noPublish=True,noDailyUpdate=True)
+(OUT/'PAYLOAD_VERIFICATION_R3.json').write_text(json.dumps(value,indent=2)+'\n');print(json.dumps(value,indent=2))

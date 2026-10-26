@@ -1,0 +1,28 @@
+{
+  "status": "READY_FOR_USER_CONFIRMATION_NOT_PUBLISHED",
+  "version": "0.0.0-preview.118",
+  "source": "a1202e24f7a0cba8a53f43bf035b67e2134ca2aa",
+  "appBuildSource": "3d0bd1f02c630d1e312d7469dbd71f29efe0bec1",
+  "installer": "H:\\CCB-Studio-Suite\\.local\\preview-candidate-118-20261027\\candidate-r3\\studio-installer.exe",
+  "bytes": 169006742,
+  "sha256": "3540be44ca7a1fcfd583899b325abad7630e10b120d288e9f2e7dc7a1e8bd60d",
+  "actual117To118": {
+    "status": "PASS_INSTALL_HANDOFF_AND_CLEANUP",
+    "publicTufDiscovery": "NOT_PUBLISHED_NOT_TESTED",
+    "oldRootAbsentWhileBAlive": true,
+    "assets": 2,
+    "syntheticCredentials": 2,
+    "repeatRemoved": 0
+  },
+  "newUnitCases": 9,
+  "existingUnitCasesRechecked": 4,
+  "independentReview": "NOT_REQUESTED",
+  "dailyInstallationModified": false,
+  "pending": [
+    "asset/editor complete user acceptance",
+    "115 experience",
+    "Prompt comparison",
+    "taskbar manual pin"
+  ],
+  "cTestRootRetired": true
+}

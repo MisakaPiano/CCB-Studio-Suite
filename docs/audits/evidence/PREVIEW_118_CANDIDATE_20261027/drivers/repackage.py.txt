@@ -1,0 +1,35 @@
+from pathlib import Path
+import hashlib,json,shutil,sys,subprocess,os
+ROOT=Path('H:/CCB-Studio-Suite');OUT=ROOT/'.local/preview-candidate-118-20261027';CROSS=Path('C:/CCB-Studio-Suite-Test-118-20261027')
+sys.path.insert(0,str(ROOT/'tools/update-runtime'));from owned_files import delete_matching,prune_empty
+sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+old=OUT/'candidate';payload=old/'payload';manifest=json.loads((payload/'INSTALL_MANIFEST.json').read_text());items=manifest['files']
+assert {p.relative_to(payload).as_posix() for p in payload.rglob('*') if p.is_file()}=={e['path'] for e in items}|{'INSTALL_MANIFEST.json'}
+for e in items:assert sha(payload/e['path'])==e['sha256']
+retained=OUT/'integration/B-inputs';retained.mkdir()
+for name in ('owned_files.py','residue_cleanup.py'):shutil.copy2(payload/'updater/lib'/name,retained/(name+'.txt'))
+releaseInputs=old/'release-inputs';releaseInputs.mkdir()
+for name in ('INSTALL_MANIFEST.json','update-config.json','update-root.json'):shutil.copy2(payload/name,releaseInputs/name)
+stash=CROSS/'retained-build-staging';stash.mkdir();source=old/'studio-installer.exe';destination=stash/'failed-118-7016b314.exe'
+assert source.resolve().is_relative_to(ROOT/'.local') and destination.resolve().is_relative_to(CROSS) and not destination.exists()
+assert sha(source)=='7016b3145a801cb878663c76279ea922128e9c823b77ce36d251a97802533ccb';shutil.move(source,destination);assert sha(destination)=='7016b3145a801cb878663c76279ea922128e9c823b77ce36d251a97802533ccb'
+removed=[]
+for e in items:
+ name=e['path']
+ if name=='CCBStudioSuitePreview.exe' or name.startswith(('app/','runtime/')):continue
+ assert delete_matching(payload/name,e)=='REMOVED';removed.append(e)
+p=payload/'INSTALL_MANIFEST.json';item=dict(path=p.name,bytes=p.stat().st_size,sha256=sha(p));assert delete_matching(p,item)=='REMOVED';removed.append(item)
+prune_empty(payload,removed)
+image=ROOT/'modules/studio-desktop/build/compose/binaries/main/app/CCBStudioSuitePreview';assert not image.exists();assert not (payload/'updater').exists();payload.rename(image)
+write=lambda n,v:(OUT/n).write_text(json.dumps(v,indent=2)+'\n')
+write('APP_IMAGE_REUSE_R2.json',dict(originalBuild='3d0bd1f02c630d1e312d7469dbd71f29efe0bec1',applicationSourcesUnchanged=True,restoredExactComposeMembers=sum(1 for e in items if e['path']=='CCBStudioSuitePreview.exe' or e['path'].startswith(('app/','runtime/'))),generatedPackagingMembersRetired=len(removed),failedInstallerTemporaryLocation=str(destination),failedInstallerSha256=sha(destination),noUserOrHistoricalFilesTouched=True))
+runtime=OUT/'updater-runtime';receipt=json.loads((runtime/'RUNTIME_MANIFEST.json').read_text())
+for e in receipt['files']:assert sha(runtime/e['path'])==e['sha256']
+for name in ('studio_update.py','github_transport.py','apply_update.py','install_ops.py','residue_cleanup.py','owned_files.py'):shutil.copy2(ROOT/'tools/update-runtime'/name,runtime/'lib'/name)
+receipt['files']=[dict(path=p.relative_to(runtime).as_posix(),bytes=p.stat().st_size,sha256=sha(p)) for p in sorted(runtime.rglob('*')) if p.is_file() and p.name!='RUNTIME_MANIFEST.json'];(runtime/'RUNTIME_MANIFEST.json').write_text(json.dumps(receipt,indent=2)+'\n')
+args=json.loads((OUT/'PACKAGE_COMMAND.json').read_text())['arguments'];i=args.index('--destination');args[i+1]=str(OUT/'candidate-r2')
+write('PACKAGE_COMMAND_R2.json',dict(arguments=args,source=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),appBuildSource='3d0bd1f02c630d1e312d7469dbd71f29efe0bec1',newEmptyDirectoryRuleAuthorized=True,publish=False))
+env=dict(os.environ);env['TEMP']=env['TMP']=str(CROSS/'profile/TEMP')
+with (OUT/'package-r2.log').open('xb') as log:r=subprocess.run(args,cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,creationflags=subprocess.CREATE_NO_WINDOW,timeout=180)
+write('PACKAGE_EXIT_R2.json',dict(exitCode=r.returncode,hFree=shutil.disk_usage(ROOT).free));assert r.returncode==0
+print((OUT/'candidate-r2/BUILD_RECEIPT.json').read_text())

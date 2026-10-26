@@ -1,0 +1,26 @@
+from pathlib import Path
+import sys,json,hashlib,shutil
+ROOT=Path('H:/CCB-Studio-Suite');OUT=ROOT/'.local/preview-candidate-118-20261027';DEST=ROOT/'docs/audits/evidence/PREVIEW_118_CANDIDATE_20261027';CROSS=Path('C:/CCB-Studio-Suite-Test-118-20261027')
+sys.path.insert(0,str(ROOT/'tools/update-runtime'));from owned_files import delete_matching,prune_empty
+sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+assert not CROSS.exists();c=json.loads((OUT/'C_FIXTURE_MANIFEST.json').read_text())
+results=[dict(kind='EXACT_AUTHORIZED_C_TEST_ROOT',status='COMPLETE',files=len(c['files']),bytes=sum(e['bytes'] for e in c['files']),linksUnlinked=len(c['links']),linksNeverTraversed=True)]
+for name in ('ed-89ed2631dfb548a79b007531e98b0736','cw-ad12b382b9784599a24fda25df864777'):
+ folder=ROOT/'.local/disposable'/name;result=json.loads((folder/'CLEANUP.json').read_text());assert result['status']=='COMPLETE' and not (folder/'payload').exists();results.append(dict(kind='PASS_UNIT_FIXTURE',**result))
+package=OUT/'candidate-r3';base=package/'payload';assert not [p for p in base.rglob('*') if p.is_file()]
+dirs=[p.relative_to(base).as_posix() for p in base.rglob('*') if p.is_dir()]
+for p in base.rglob('*'):assert not p.is_symlink() and not p.is_junction()
+prune_empty(base,[],dirs);assert not base.exists()
+items=json.loads((package/'release-inputs/INSTALL_MANIFEST.json').read_text())['files']
+results.append(dict(kind='REDUNDANT_FINAL_PAYLOAD',status='COMPLETE',files=len(items)+1,bytes=sum(e['bytes'] for e in items)+(package/'release-inputs/INSTALL_MANIFEST.json').stat().st_size,emptyDirectoryContinuation=dirs,installerKept=True))
+(package/'PAYLOAD_RETIRED.json').write_text(json.dumps(dict(status='RETIRED_AFTER_FIXED_INSTALLER_VERIFICATION',installerSha256=sha(package/'studio-installer.exe'),inputs='release-inputs',reuse='Reconstruct from the same fixed installer in a new owned root; do not assume old payload still exists'),indent=2)+'\n')
+base=OUT/'updater-runtime';items=json.loads((base/'RUNTIME_MANIFEST.json').read_text())['files'];p=base/'RUNTIME_MANIFEST.json';items=items+[dict(path=p.name,bytes=p.stat().st_size,sha256=sha(p))];dirs=[p.relative_to(base).as_posix() for p in base.rglob('*') if p.is_dir()]
+for e in items:assert delete_matching(base/e['path'],e)=='REMOVED'
+prune_empty(base,items,dirs);assert not base.exists()
+results.append(dict(kind='REDUNDANT_ASSEMBLED_UPDATER',status='COMPLETE',files=len(items),bytes=sum(e['bytes'] for e in items),lockedBaselineKept=True))
+for p in (DEST/'FIXTURE_RETIREMENT.json',OUT/'FIXTURE_RETIREMENT.json'):p.write_text(json.dumps(results,indent=2)+'\n')
+for name in ('candidate','candidate-r2'):(OUT/name/'FAILED_CANDIDATE_RETIRED.json').write_text(json.dumps(dict(status='SUPERSEDED_UNPUBLISHED_FAILURE',installer='Retired as owned C fixture after raw evidence, fixed source and digest mapping retained',independentBaseline=False,noPublicArtifactChanged=True),indent=2)+'\n')
+shutil.copy2(OUT/'retire-fixtures.py',DEST/'drivers/retire-fixtures.py.txt')
+(DEST/'RETIREMENT_CONTINUATION.json').write_text(json.dumps(dict(firstPass='C root and PASS fixtures retired; payload files retired but assertion found two unlisted empty Compose app/resources directories',continuation='Enumerated the exact empty owned build directories; removed nonrecursively; runtime then retired',userOrProtectedPathsTouched=False),indent=2)+'\n')
+assert sha(package/'studio-installer.exe')=='3540be44ca7a1fcfd583899b325abad7630e10b120d288e9f2e7dc7a1e8bd60d'
+print(json.dumps(dict(files=sum(x.get('files',x.get('removed',0)) for x in results),bytes=sum(x.get('bytes',x.get('bytesFreed',0)) for x in results),hFree=shutil.disk_usage(ROOT).free,cGone=True),indent=2))

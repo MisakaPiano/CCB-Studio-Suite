@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "newUnique": 6,
+  "previousCasesRechecked": 4,
+  "rows": [
+    {
+      "case": "test_empty_program_directories.EmptyProgramDirectoryTests.test_directory_bound_defers_without_walking_indefinitely",
+      "status": "PASS",
+      "seconds": 1.068231500001275,
+      "fixture": "H:\\CCB-Studio-Suite\\.local\\disposable\\ed-89ed2631dfb548a79b007531e98b0736\\payload\\residue-cleanup-fixtures\\cc4dd9a7"
+    },
+    {
+      "case": "test_empty_program_directories.EmptyProgramDirectoryTests.test_file_created_during_directory_disposition_is_retained",
+      "status": "PASS",
+      "seconds": 0.35599910000746604,
+      "fixture": "H:\\CCB-Studio-Suite\\.local\\disposable\\ed-89ed2631dfb548a79b007531e98b0736\\payload\\residue-cleanup-fixtures\\b906b841"
+    },
+    {
+      "case": "test_empty_program_directories.EmptyProgramDirectoryTests.test_protected_empty_directories_are_not_traversed_or_removed",
+      "status": "PASS",
+      "seconds": 0.6399878000083845,
+      "fixture": "H:\\CCB-Studio-Suite\\.local\\disposable\\ed-89ed2631dfb548a79b007531e98b0736\\payload\\residue-cleanup-fixtures\\c8025ffc"
+    },
+    {
+      "case": "test_empty_program_directories.EmptyProgramDirectoryTests.test_unknown_file_preserves_bytes_and_unknown_structure",
+      "status": "PASS",
+      "seconds": 0.6472110000031535,
+      "fixture": "H:\\CCB-Studio-Suite\\.local\\disposable\\ed-89ed2631dfb548a79b007531e98b0736\\payload\\residue-cleanup-fixtures\\e698ca10"
+    },
+    {
+      "case": "test_empty_program_directories.EmptyProgramDirectoryTests.test_unknown_junction_refused_and_outside_unchanged",
+      "status": "PASS",
+      "seconds": 0.6899881999997888,
+      "fixture": "H:\\CCB-Studio-Suite\\.local\\disposable\\ed-89ed2631dfb548a79b007531e98b0736\\payload\\residue-cleanup-fixtures\\07dd5547"
+    },
+    {
+      "case": "test_empty_program_directories.EmptyProgramDirectoryTests.test_unlisted_empty_driver_directories_retire_with_program",
+      "status": "PASS",
+      "seconds": 0.930778800000553,
+      "fixture": "H:\\CCB-Studio-Suite\\.local\\disposable\\ed-89ed2631dfb548a79b007531e98b0736\\payload\\residue-cleanup-fixtures\\3bec20d3"
+    },
+    {
+      "case": "test_launch_directory.DirectoryRetirementTests.test_both_update_children_choose_new_program_directory",
+      "status": "PASS",
+      "seconds": 0.36565730000438634,
+      "fixture": "H:\\CCB-Studio-Suite\\.local\\disposable\\ed-89ed2631dfb548a79b007531e98b0736\\payload\\residue-cleanup-fixtures\\38b35b1c"
+    },
+    {
+      "case": "test_launch_directory.DirectoryRetirementTests.test_empty_cwd_is_deferred_then_retried_without_changing_complete",
+      "status": "PASS",
+      "seconds": 1.4104711999971187,
+      "fixture": "H:\\CCB-Studio-Suite\\.local\\disposable\\ed-89ed2631dfb548a79b007531e98b0736\\payload\\residue-cleanup-fixtures\\98e76536"
+    },
+    {
+      "case": "test_launch_directory.DirectoryRetirementTests.test_empty_directory_access_denied_is_reported_and_can_retry",
+      "status": "PASS",
+      "seconds": 1.1706592999980785,
+      "fixture": "H:\\CCB-Studio-Suite\\.local\\disposable\\ed-89ed2631dfb548a79b007531e98b0736\\payload\\residue-cleanup-fixtures\\1d570d54"
+    },
+    {
+      "case": "test_launch_directory.DirectoryRetirementTests.test_unknown_nonempty_directory_retained_without_endless_retry",
+      "status": "PASS",
+      "seconds": 1.0719123000017134,
+      "fixture": "H:\\CCB-Studio-Suite\\.local\\disposable\\ed-89ed2631dfb548a79b007531e98b0736\\payload\\residue-cleanup-fixtures\\2a2c3bd6"
+    }
+  ],
+  "sourceHashes": {
+    "owned_files.py": "4452a281d77b996a2a2c662111b603e11c6b1c37268025ba91963d1550d144a7",
+    "residue_cleanup.py": "deada00b807806259f60faa68c363c2b9475e3e42018f69ba0f04f61bab080c5",
+    "test_empty_program_directories.py": "6e415c2c6a24a38235812265bb0905a814885b4c3a1cc9a69e2b6d425b7312f8"
+  }
+}

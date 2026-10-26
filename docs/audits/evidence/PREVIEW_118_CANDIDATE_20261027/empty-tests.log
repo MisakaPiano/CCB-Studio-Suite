@@ -1,0 +1,15 @@
+test_directory_bound_defers_without_walking_indefinitely (test_empty_program_directories.EmptyProgramDirectoryTests.test_directory_bound_defers_without_walking_indefinitely) ... ok
+test_file_created_during_directory_disposition_is_retained (test_empty_program_directories.EmptyProgramDirectoryTests.test_file_created_during_directory_disposition_is_retained) ... ok
+test_protected_empty_directories_are_not_traversed_or_removed (test_empty_program_directories.EmptyProgramDirectoryTests.test_protected_empty_directories_are_not_traversed_or_removed) ... ok
+test_unknown_file_preserves_bytes_and_unknown_structure (test_empty_program_directories.EmptyProgramDirectoryTests.test_unknown_file_preserves_bytes_and_unknown_structure) ... ok
+test_unknown_junction_refused_and_outside_unchanged (test_empty_program_directories.EmptyProgramDirectoryTests.test_unknown_junction_refused_and_outside_unchanged) ... ok
+test_unlisted_empty_driver_directories_retire_with_program (test_empty_program_directories.EmptyProgramDirectoryTests.test_unlisted_empty_driver_directories_retire_with_program) ... ok
+test_both_update_children_choose_new_program_directory (test_launch_directory.DirectoryRetirementTests.test_both_update_children_choose_new_program_directory) ... ok
+test_empty_cwd_is_deferred_then_retried_without_changing_complete (test_launch_directory.DirectoryRetirementTests.test_empty_cwd_is_deferred_then_retried_without_changing_complete) ... ok
+test_empty_directory_access_denied_is_reported_and_can_retry (test_launch_directory.DirectoryRetirementTests.test_empty_directory_access_denied_is_reported_and_can_retry) ... ok
+test_unknown_nonempty_directory_retained_without_endless_retry (test_launch_directory.DirectoryRetirementTests.test_unknown_nonempty_directory_retained_without_endless_retry) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 8.351s
+
+OK

@@ -1,0 +1,8 @@
+{
+  "status": "FAILED_RETAINED",
+  "reason": "Another update operation owns this cache",
+  "installationStarted": false,
+  "originalPlanSha256": "15503108e50342025caf80d553cf70e30d109429f6617627366d0bef8c0d8b7e",
+  "originalResultSha256": "653cd7c221fe728b5fe938cdd0136f23a950aa5b06ee3a0fc05e3b1af63526ed",
+  "scope": "Test driver raced the production startup update check; wait for its lock before a fresh confirmed handoff"
+}

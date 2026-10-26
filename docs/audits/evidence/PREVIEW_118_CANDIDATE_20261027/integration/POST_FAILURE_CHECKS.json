@@ -1,0 +1,34 @@
+{
+  "status": "PARTIAL_PASS_CORE_OLD_ROOT_REQUIREMENT_FAILED",
+  "actual117To118InstallAndAck": "PASS",
+  "assets": 2,
+  "referencedSyntheticCredentials": 2,
+  "normalBClose": [
+    {
+      "pid": 27780,
+      "hwnd": 4790950
+    }
+  ],
+  "reopen118NormalClose": [
+    {
+      "pid": 21428,
+      "hwnd": 48830722
+    }
+  ],
+  "default118": {
+    "format": 1,
+    "version": 118,
+    "installed": "C:\\CCB-Studio-Suite-Test-118-20261027\\install\\118-3d0bd1f02c63",
+    "data": "C:\\CCB-Studio-Suite-Test-118-20261027\\install\\data\\workspace",
+    "runtime": "C:\\CCB-Studio-Suite-Test-118-20261027\\install\\data\\runtime",
+    "exeSha256": "494f137e9fa8cb07b7f1d19ed6cc3e6dfac4afd3df16397390d30f1aee58541f"
+  },
+  "downloadsRemaining": 0,
+  "installingDirectoriesRemaining": 0,
+  "backupRetained": true,
+  "oldDirectoryRemoved": false,
+  "unknownEmptyDirectoriesRetained": true,
+  "publicRelease": false,
+  "dailyInstallationModified": false,
+  "discovery": "LOCAL_ADAPTER_NOT_PUBLIC_TUF"
+}

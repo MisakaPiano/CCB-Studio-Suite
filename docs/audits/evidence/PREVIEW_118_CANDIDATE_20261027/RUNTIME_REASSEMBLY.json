@@ -1,0 +1,15 @@
+{
+  "baselineManifestSha256": "090d0324310d1dcd1ff59913220e5876210b98e1a7a351caaa23bd17d82b4c14",
+  "baselineAllMembersVerified": true,
+  "artifactLockUnchanged": true,
+  "scriptInputs": {
+    "studio_update.py": "6cd4e3ad33adfc0d820ee6dcec1ea7cd8e26555ed359c03b1b9488e4da67885f",
+    "github_transport.py": "93c0e136239b111948c169224d101045a2d22c80324b52d59838c70381b73c0d",
+    "apply_update.py": "e4022b05154e82b2c4304b6b0e96e9f6cc33caaf411e7d098f53114fa61436ba",
+    "install_ops.py": "f1d4ddd4f1bc7033ff8653e34851243e93c6df92c7ba69e70137f627ca46c17e",
+    "residue_cleanup.py": "b1f802839ddd719f57b54479902dde799081bb92a033c54ab4180a27a9b96327",
+    "owned_files.py": "1c1b798fcabfdf875da72121e856ad4542bfcdaf8692e0d489565ed9b163391a"
+  },
+  "files": 326,
+  "noDownloads": true
+}

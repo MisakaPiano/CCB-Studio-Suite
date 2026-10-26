@@ -1,0 +1,5 @@
+{
+  "firstPass": "C root and PASS fixtures retired; payload files retired but assertion found two unlisted empty Compose app/resources directories",
+  "continuation": "Enumerated the exact empty owned build directories; removed nonrecursively; runtime then retired",
+  "userOrProtectedPathsTouched": false
+}

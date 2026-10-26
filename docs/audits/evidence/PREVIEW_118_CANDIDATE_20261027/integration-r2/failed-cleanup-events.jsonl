@@ -1,0 +1,13 @@
+{"at": 1793038264.9199817, "event": "RESOURCE_PASS", "receipt": "682c59e86172415fbae7cec88525355a.json", "area": "download", "base": "5274d1b4-44ca-4bc1-942a-b47fa3670100", "counts": {"REMOVED": 2}, "retentionSeconds": 0}
+{"at": 1793038268.0884697, "event": "DIRECTORY_DEFERRED", "receipt": "79f185a4f6d6466c84f909c8222fbe89.json", "base": "117-b9b240a248d4", "path": ".", "status": "RETRY_DIRECTORY", "winerror": 32}
+{"at": 1793038268.0973592, "event": "RESOURCE_PASS", "receipt": "79f185a4f6d6466c84f909c8222fbe89.json", "area": "program", "base": "117-b9b240a248d4", "counts": {"REMOVED": 553}, "retentionSeconds": 0}
+{"at": 1793038268.1113846, "event": "PASS_COMPLETE", "removed": 555, "deferred": 1}
+{"at": 1793038269.8119063, "event": "DIRECTORY_DEFERRED", "receipt": "79f185a4f6d6466c84f909c8222fbe89.json", "base": "117-b9b240a248d4", "path": ".", "status": "RETRY_DIRECTORY", "winerror": 32}
+{"at": 1793038269.8193395, "event": "RESOURCE_PASS", "receipt": "79f185a4f6d6466c84f909c8222fbe89.json", "area": "program", "base": "117-b9b240a248d4", "counts": {}, "retentionSeconds": 0}
+{"at": 1793038269.8336122, "event": "PASS_COMPLETE", "removed": 0, "deferred": 1}
+{"at": 1793038272.4655972, "event": "DIRECTORY_DEFERRED", "receipt": "79f185a4f6d6466c84f909c8222fbe89.json", "base": "117-b9b240a248d4", "path": ".", "status": "RETRY_DIRECTORY", "winerror": 32}
+{"at": 1793038272.473186, "event": "RESOURCE_PASS", "receipt": "79f185a4f6d6466c84f909c8222fbe89.json", "area": "program", "base": "117-b9b240a248d4", "counts": {}, "retentionSeconds": 0}
+{"at": 1793038272.4878297, "event": "PASS_COMPLETE", "removed": 0, "deferred": 1}
+{"at": 1793038276.51201, "event": "DIRECTORY_DEFERRED", "receipt": "79f185a4f6d6466c84f909c8222fbe89.json", "base": "117-b9b240a248d4", "path": ".", "status": "RETRY_DIRECTORY", "winerror": 32}
+{"at": 1793038276.5192676, "event": "RESOURCE_PASS", "receipt": "79f185a4f6d6466c84f909c8222fbe89.json", "area": "program", "base": "117-b9b240a248d4", "counts": {}, "retentionSeconds": 0}
+{"at": 1793038276.5331085, "event": "PASS_COMPLETE", "removed": 0, "deferred": 1}

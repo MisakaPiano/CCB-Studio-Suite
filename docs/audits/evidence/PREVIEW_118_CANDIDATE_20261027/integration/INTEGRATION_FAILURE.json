@@ -1,0 +1,29 @@
+{
+  "status": "FAILED_OLD_ROOT_RETAINED_UNKNOWN_EMPTY_DIRECTORIES",
+  "updateStatus": "COMPLETE",
+  "ownedProgramFilesRemaining": 0,
+  "unknownDirectories": [
+    {
+      "path": "NVIDIA Corporation",
+      "directory": true,
+      "bytes": 0
+    },
+    {
+      "path": "NVIDIA Corporation\\umdlogs",
+      "directory": true,
+      "bytes": 0
+    }
+  ],
+  "newBWindows": [
+    {
+      "pid": 27780,
+      "hwnd": 4790950
+    }
+  ],
+  "bRunning": true,
+  "initialBStillPresentAtFollowup": false,
+  "initialBExitReason": "UNKNOWN_AFTER_DRIVER_FAILURE",
+  "manualDeletion": false,
+  "formalCandidateChanged": false,
+  "next": "Await empty-directory policy; keep this failure"
+}

@@ -1,0 +1,18 @@
+"""Test-only discovery adapter. The on-disk 117 updater and formal root stay unchanged."""
+import sys,json,hashlib
+from pathlib import Path
+# The 117 embedded interpreter's _pth resolves these imports to its own verified lib.
+import apply_update as old
+from tuf.api.metadata import TargetFile
+plan=Path(sys.argv[1]);fixture=json.loads(Path(sys.argv[2]).read_text())
+assert plan.is_relative_to(Path('C:/CCB-Studio-Suite-Test-118-20261027'))
+custom=fixture['custom'];target=TargetFile.from_dict('studio-installer.exe',dict(length=fixture['bytes'],hashes={'sha256':fixture['sha256']},custom=custom))
+class LocalCandidate:
+ def get_targetinfo(self,name):
+  assert name=='studio-installer.exe';return target
+old.create_updater=lambda *a,**k:(LocalCandidate(),None)
+old.authorize_download=lambda *a,**k:None
+# inspect/version checks, parent image handle, drain wait, immutable installer hash,
+# NSIS, install verification, B ACK comparison, launcher CAS and cleanup are original 117.
+print(json.dumps(dict(scope='ISOLATED_DISCOVERY_ADAPTER_NO_FORMAL_TUF_VERIFICATION',overrides=['create_updater','authorize_download'],helper=str(Path(old.__file__)),helperSha256=hashlib.sha256(Path(old.__file__).read_bytes()).hexdigest())),flush=True)
+raise SystemExit(old.perform(plan))

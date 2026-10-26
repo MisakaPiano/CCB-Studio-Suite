@@ -1,0 +1,79 @@
+{
+  "sourceCommit": "a1202e24f7a0cba8a53f43bf035b67e2134ca2aa",
+  "applicationBuildSource": "3d0bd1f02c630d1e312d7469dbd71f29efe0bec1",
+  "previousFix": "9f5a6a6be251326b2d4be27a8305cc6f74754d7b",
+  "emptyDirectoryFix": "862f2a8ada442c68d15d44c1f793865d96e72dcf",
+  "version": "0.0.0-preview.118",
+  "installerBytes": 169006742,
+  "installerSha256": "3540be44ca7a1fcfd583899b325abad7630e10b120d288e9f2e7dc7a1e8bd60d",
+  "sourceInputs": [
+    {
+      "path": "modules/studio-desktop/src/main/java/io/github/misakapiano/ccbstudio/desktop/UpdateLaunchDirectory.java",
+      "executedSha256": "30d8dea7dfd37ef8cfb3dd0a568848a35740b418a3dfd5f9f3b8a1f72526b2d3",
+      "gitContentSha256": "30d8dea7dfd37ef8cfb3dd0a568848a35740b418a3dfd5f9f3b8a1f72526b2d3"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/Main.kt",
+      "executedSha256": "f92b4a0caec2f8aa0db958b32f87690fbdde92357359372d0047d089e21b0f66",
+      "gitContentSha256": "f92b4a0caec2f8aa0db958b32f87690fbdde92357359372d0047d089e21b0f66"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioUpdateHandoff.kt",
+      "executedSha256": "ceefb15e54bf2c0df8d9cd39b3cf45ef7c7d31c6329a458b07a7e2ec98807e5f",
+      "gitContentSha256": "e9b3fa93a58601fd734008ef2a21c94cd38f928c40e91233ea58e0ce5ab1921b"
+    },
+    {
+      "path": "tools/update-runtime/apply_update.py",
+      "executedSha256": "e4022b05154e82b2c4304b6b0e96e9f6cc33caaf411e7d098f53114fa61436ba",
+      "gitContentSha256": "f6df92abedc1683b0d4e56fa968acfab52511ea16434077202594e04e8c469f5"
+    },
+    {
+      "path": "tools/update-runtime/install_ops.py",
+      "executedSha256": "f1d4ddd4f1bc7033ff8653e34851243e93c6df92c7ba69e70137f627ca46c17e",
+      "gitContentSha256": "da3f8e215086fb0a414fbd9d5eb43c57b5f823775908d1a7b92428835a6fb0fd"
+    },
+    {
+      "path": "tools/update-runtime/owned_files.py",
+      "executedSha256": "4452a281d77b996a2a2c662111b603e11c6b1c37268025ba91963d1550d144a7",
+      "gitContentSha256": "1becd5f2c1e0345ebec63f45a053a0496f1d624b0474f66906b76e05effa7752"
+    },
+    {
+      "path": "tools/update-runtime/residue_cleanup.py",
+      "executedSha256": "0e6ec3d46df881710c6a4c80173fda8d74f6a4396539d8ba5c88e68c07d7e947",
+      "gitContentSha256": "ecdd0e61b4018c1ed7c079367218fc9cb55821f87c0d2389caaa166fc4b562e0"
+    },
+    {
+      "path": "tools/update-runtime/test_empty_program_directories.py",
+      "executedSha256": "6e415c2c6a24a38235812265bb0905a814885b4c3a1cc9a69e2b6d425b7312f8",
+      "gitContentSha256": "6e415c2c6a24a38235812265bb0905a814885b4c3a1cc9a69e2b6d425b7312f8"
+    },
+    {
+      "path": "tools/update-runtime/test_worker_directory.py",
+      "executedSha256": "29f04b717e85f0f469e5427a2f1a64c2ca63fea1e92608aa1e854c53a7c6f079",
+      "gitContentSha256": "29f04b717e85f0f469e5427a2f1a64c2ca63fea1e92608aa1e854c53a7c6f079"
+    },
+    {
+      "path": "tools/Build-InternalInstaller.py",
+      "executedSha256": "7ef0dce86737ab16ef25c623488375732ebff6343eedfda30714b2c5893433dd",
+      "gitContentSha256": "a3cbc4c743de17768d6a75fa327e1d36aa93ca7e1d081369c867dbebc138cc56"
+    },
+    {
+      "path": "tools/windows-launcher/Launcher.cs",
+      "executedSha256": "eaa0fcc496e2fa760f6af1c4b337ace89127db4cc65dd694e9c5d7733f1020fe",
+      "gitContentSha256": "fe9359fa4dc647c7e0f4c4a4133420295c252c3d298c754d37f25d46632eb972"
+    }
+  ],
+  "newUnitMethods": 9,
+  "previousUnitMethodsRechecked": 4,
+  "completeNativeUpgradeCases": {
+    "failed": 2,
+    "passed": 1
+  },
+  "preparationFailuresKept": [
+    "adapter argument order",
+    "cache owned by startup update check"
+  ],
+  "public118Metadata": "NOT_PUBLISHED_NOT_TESTED",
+  "independentReview": "NOT_REQUESTED",
+  "dailyInstallationModified": false
+}

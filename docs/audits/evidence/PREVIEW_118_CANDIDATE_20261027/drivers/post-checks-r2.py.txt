@@ -1,0 +1,80 @@
+from pathlib import Path
+import json,hashlib,subprocess,sys,os,time,uuid,ctypes,shutil,msvcrt
+from ctypes import wintypes as W
+ROOT=Path('H:/CCB-Studio-Suite');OUT=ROOT/'.local/preview-candidate-118-20261027';CROSS=Path('C:/CCB-Studio-Suite-Test-118-20261027');PY=ROOT/'.local/windows-rc/updater-runtime-115/python.exe'
+sys.path.insert(0,str(ROOT/'tools/update-runtime'))
+from install_ops import atomic_json,verify_install,immutable_file
+from apply_update import create_launcher,ParentProcess
+from residue_cleanup import enroll_program,enroll_download
+from tuf.api.metadata import TargetFile
+sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+def write(p,v):p.parent.mkdir(parents=True,exist_ok=True);atomic_json(p,v)
+def load(p):return json.loads(p.read_text(encoding='utf-8-sig'))
+def wait(fn,seconds=60):
+ end=time.monotonic()+seconds
+ while time.monotonic()<end:
+  value=fn()
+  if value:return value
+  time.sleep(.15)
+ raise TimeoutError('Bounded isolated condition not reached')
+user=ctypes.WinDLL('user32',use_last_error=True);kernel=ctypes.WinDLL('kernel32',use_last_error=True);CB=ctypes.WINFUNCTYPE(W.BOOL,W.HWND,W.LPARAM)
+user.EnumWindows.argtypes=[CB,W.LPARAM];user.IsWindowVisible.argtypes=[W.HWND];user.GetClassNameW.argtypes=[W.HWND,W.LPWSTR,ctypes.c_int];user.GetWindowThreadProcessId.argtypes=[W.HWND,ctypes.POINTER(W.DWORD)];user.PostMessageW.argtypes=[W.HWND,W.UINT,W.WPARAM,W.LPARAM]
+kernel.OpenProcess.argtypes=[W.DWORD,W.BOOL,W.DWORD];kernel.OpenProcess.restype=W.HANDLE;kernel.QueryFullProcessImageNameW.argtypes=[W.HANDLE,W.DWORD,W.LPWSTR,ctypes.POINTER(W.DWORD)];kernel.CloseHandle.argtypes=[W.HANDLE]
+def windows(exe):
+ found=[]
+ def cb(hwnd,_):
+  klass=ctypes.create_unicode_buffer(256);user.GetClassNameW(hwnd,klass,256)
+  if not user.IsWindowVisible(hwnd) or klass.value!='SunAwtFrame':return True
+  pid=W.DWORD();user.GetWindowThreadProcessId(hwnd,ctypes.byref(pid));h=kernel.OpenProcess(0x1000,False,pid.value)
+  if h:
+   try:
+    value=ctypes.create_unicode_buffer(32768);size=W.DWORD(32768)
+    if kernel.QueryFullProcessImageNameW(h,0,value,ctypes.byref(size)) and Path(value.value)==exe:found.append(dict(pid=pid.value,hwnd=int(hwnd)))
+   finally:kernel.CloseHandle(h)
+  return True
+ callback=CB(cb);user.EnumWindows(callback,0);return found
+
+def close(exe):
+ views=wait(lambda:windows(exe),20);handles=[ParentProcess(v['pid'],exe) for v in views]
+ try:
+  for view in views:assert user.PostMessageW(view['hwnd'],0x10,0,0)
+  for h in handles:wait(h.exited,45)
+ finally:
+  for h in handles:h.close()
+ return views
+
+def command(args,name,timeout=60):
+ with (EVIDENCE/name).open('xb') as log:
+  r=subprocess.run(list(map(str,args)),cwd=CROSS,env=ENV,stdout=log,stderr=subprocess.STDOUT,creationflags=subprocess.CREATE_NO_WINDOW,timeout=timeout)
+ assert r.returncode==0,name
+ return r
+
+def unlocked(data):
+ with (data/'.owner.lock').open('r+b') as f:
+  try:msvcrt.locking(f.fileno(),msvcrt.LK_NBLCK,1)
+  except OSError:return False
+  else:f.seek(0);msvcrt.locking(f.fileno(),msvcrt.LK_UNLCK,1);return True
+
+
+EVIDENCE=OUT/'integration';ENV=load(EVIDENCE/'ENVIRONMENT.json');root=CROSS/'install';old=root/'117-b9b240a248d4';current=root/'118-3d0bd1f02c63';data=root/'data/workspace';runtime=root/'data/runtime';cache=runtime/'updates';folder=next((cache/'handoffs').iterdir())
+remaining=[dict(path=str(p.relative_to(old)),directory=p.is_dir(),bytes=p.stat().st_size if p.is_file() else 0) for p in old.rglob('*')]
+assert not any(not x['directory'] for x in remaining)
+bexe=current/'CCBStudioSuitePreview.exe';views=windows(bexe);initialPresent=bool(views)
+if not views:
+ command([root/'CCBStudioLauncher.exe'],'post-failure-reopen.log');views=wait(lambda:windows(bexe));assert len(views)==1
+ack=load(folder/'B_VERIFIED.json');assert len(ack['snapshot']['assets'])==2 and len(ack['snapshot']['credentials'])==2
+failure=dict(status='FAILED_OLD_ROOT_RETAINED_UNKNOWN_EMPTY_DIRECTORIES',updateStatus=load(folder/'result.json')['status'],ownedProgramFilesRemaining=0,unknownDirectories=remaining,newBWindows=views,bRunning=bool(views),initialBStillPresentAtFollowup=initialPresent,initialBExitReason='UNKNOWN_AFTER_DRIVER_FAILURE' if not initialPresent else 'STILL_RUNNING',manualDeletion=False,formalCandidateChanged=False,next='Await empty-directory policy; keep this failure')
+write(EVIDENCE/'INTEGRATION_FAILURE.json',failure)
+JAVA=Path('C:/Program Files/Eclipse Adoptium/jdk-17.0.20.101-hotspot/bin/java.exe');record=EVIDENCE/'SYNTHETIC_FINGERPRINTS.txt'
+handle=ParentProcess(views[0]['pid'],bexe);closed=close(bexe);wait(handle.exited);handle.close();wait(lambda:unlocked(data))
+command([JAVA,'-cp',str(EVIDENCE)+os.pathsep+str(current/'app/*'),'SeedCandidate118','check',data,record],'after-update-check-r2.log')
+command([root/'CCBStudioLauncher.exe'],'reopen118-entry-r2.log');wait(lambda:windows(bexe));assert not unlocked(data);reopened=close(bexe);wait(lambda:unlocked(data))
+assert not list((cache/'downloads').iterdir()) and not list(root.glob('*.installing'))
+assert (root/'backups/synthetic-keep.bin').read_bytes()==b'SYNTHETIC_BACKUP_KEEP'
+value=dict(status='PARTIAL_PASS_CORE_OLD_ROOT_REQUIREMENT_FAILED',actual117To118InstallAndAck='PASS',assets=2,referencedSyntheticCredentials=2,normalBClose=closed,reopen118NormalClose=reopened,default118=load(root/'launch-current.json'),downloadsRemaining=0,installingDirectoriesRemaining=0,backupRetained=True,oldDirectoryRemoved=False,unknownEmptyDirectoriesRetained=True,publicRelease=False,dailyInstallationModified=False,discovery='LOCAL_ADAPTER_NOT_PUBLIC_TUF')
+write(EVIDENCE/'POST_FAILURE_CHECKS.json',value)
+for name in ('events.jsonl','state.json'):
+ p=cache/'cleanup'/name
+ if p.exists():shutil.copy2(p,EVIDENCE/('cleanup-'+name))
+for name in ('B_VERIFIED.json','b-stdout.log','b-stderr.log'):shutil.copy2(folder/name,EVIDENCE/name)
+print(json.dumps(value,indent=2))

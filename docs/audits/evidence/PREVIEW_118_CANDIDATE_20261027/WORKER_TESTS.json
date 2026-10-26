@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "newUnique": 3,
+  "previousCasesRechecked": 0,
+  "rows": [
+    {
+      "case": "test_worker_directory.WorkerDirectoryTests.test_junction_package_refused_without_changing_directory",
+      "status": "PASS",
+      "seconds": 0.4633120999933453,
+      "fixture": "H:\\CCB-Studio-Suite\\.local\\disposable\\cw-ad12b382b9784599a24fda25df864777\\payload\\residue-cleanup-fixtures\\dab3f809"
+    },
+    {
+      "case": "test_worker_directory.WorkerDirectoryTests.test_packaged_worker_releases_inherited_empty_root_while_alive",
+      "status": "PASS",
+      "seconds": 0.7214238999877125,
+      "fixture": "H:\\CCB-Studio-Suite\\.local\\disposable\\cw-ad12b382b9784599a24fda25df864777\\payload\\residue-cleanup-fixtures\\156818ca"
+    },
+    {
+      "case": "test_worker_directory.WorkerDirectoryTests.test_source_or_foreign_interpreter_does_not_reanchor",
+      "status": "PASS",
+      "seconds": 0.4105890999926487,
+      "fixture": "H:\\CCB-Studio-Suite\\.local\\disposable\\cw-ad12b382b9784599a24fda25df864777\\payload\\residue-cleanup-fixtures\\7d250316"
+    }
+  ],
+  "sourceHashes": {
+    "owned_files.py": "4452a281d77b996a2a2c662111b603e11c6b1c37268025ba91963d1550d144a7",
+    "residue_cleanup.py": "0e6ec3d46df881710c6a4c80173fda8d74f6a4396539d8ba5c88e68c07d7e947",
+    "test_worker_directory.py": "29f04b717e85f0f469e5427a2f1a64c2ca63fea1e92608aa1e854c53a7c6f079"
+  }
+}

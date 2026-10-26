@@ -1,0 +1,60 @@
+{
+  "status": "RUNNING",
+  "parent": [
+    {
+      "pid": 9116,
+      "hwnd": 12065564
+    }
+  ],
+  "helperPid": 28388,
+  "oldManifest": {
+    "files": 550,
+    "bytes": 252893352,
+    "manifestSha256": "8bec122ed3a350d68932add8f71edf0bec8520f1fbb49c596cf4546f0c991343"
+  },
+  "oldHelperSha256": "0e7b7ded323591e57f0ccdca31fdf00e6327b0971730729c56a44d8cf6471c56",
+  "snapshot": {
+    "stateSha256": "b5872d231e089cbc357aacee3c09702e168f327e4a474aeee22519692ff91834",
+    "stateEncoding": "COMMITTED_STATE_V1",
+    "assets": [
+      {
+        "id": "287a9106-05f7-479d-9141-a289c3592d4d",
+        "sha256": "322880b38fb2d5487ea1a9f091bd20194b8e1d33c4238f9f5cfd1a49106e1dab",
+        "size": 111,
+        "kind": "ORIGINAL",
+        "parent": null,
+        "nameSha256": "b05c842b86c675cfaba8030dfcd2390283dedee5457d03a88b34a82488b22652",
+        "recipeSha256": "bf6fbd88a194f32c160b4a62ab004f804392b73b59f5c9049d659af04b6068c7",
+        "projectSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "id": "f46e358f-ad67-4979-85f0-ef9037535e04",
+        "sha256": "68fa367302caba454c7853c2ef1f637210a6a9f059f53dc7a22a2454fae5e1db",
+        "size": 109,
+        "kind": "ORIGINAL",
+        "parent": null,
+        "nameSha256": "7fa419c30921cdc4765a6755c8ec854912b48d7131c9d76448e3f302db7707bc",
+        "recipeSha256": "282df3a983f3b4577a55f85b15e5cbb110f254ef0794697a67ff5c3a2c50eb7a",
+        "projectSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "credentials": [
+      {
+        "ref": "8e7cd7d8-d34f-4b87-812f-3f9339fcb317",
+        "sha256": "d04f701f6f6dae862920c0b82878de71f4ee49e85d4f0844a92c77ec04d3620a"
+      },
+      {
+        "ref": "f4917fa7-5971-4d44-9dd7-8a9bd5c636b5",
+        "sha256": "6a5151adfd0b61316c29bdd87ae14211c0d8c97a8a8a7509d51e1178881ba6da"
+      }
+    ]
+  },
+  "defaultBefore": {
+    "format": 1,
+    "version": 117,
+    "installed": "C:\\CCB-Studio-Suite-Test-118-20261027\\r2\\install\\117-b9b240a248d4",
+    "data": "C:\\CCB-Studio-Suite-Test-118-20261027\\r2\\install\\data\\workspace",
+    "runtime": "C:\\CCB-Studio-Suite-Test-118-20261027\\r2\\install\\data\\runtime",
+    "exeSha256": "494f137e9fa8cb07b7f1d19ed6cc3e6dfac4afd3df16397390d30f1aee58541f"
+  }
+}

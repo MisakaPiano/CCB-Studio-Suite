@@ -1,0 +1,38 @@
+{
+  "status": "PASS_PAYLOAD_ONLY_NOT_YET_INSTALLED",
+  "receipt": {
+    "task": "UX-R4",
+    "status": "BUILT",
+    "sourceSha": "3d0bd1f02c630d1e312d7469dbd71f29efe0bec1",
+    "appBuildSourceSha": "3d0bd1f02c630d1e312d7469dbd71f29efe0bec1",
+    "nativeLauncherSourceSha256": "eaa0fcc496e2fa760f6af1c4b337ace89127db4cc65dd694e9c5d7733f1020fe",
+    "version": 118,
+    "channel": "preview",
+    "displayVersion": "0.0.0-preview.118",
+    "compiler": "NSIS3.13",
+    "exitCode": 0,
+    "files": 550,
+    "installed": "NOT TESTED",
+    "bytes": 169005851,
+    "sha256": "7016b3145a801cb878663c76279ea922128e9c823b77ce36d251a97802533ccb"
+  },
+  "manifestFiles": 550,
+  "shippedDesktopClasses": 992,
+  "bridgeClasses": {
+    "io/github/misakapiano/ccbstudio/desktop/UpdateLaunchDirectory$Kernel.class": "720af95d6f3f22a696c009d006ade6991514088e81cb35d599a215918936307c",
+    "io/github/misakapiano/ccbstudio/desktop/UpdateLaunchDirectory.class": "cc232f0e42da501ef75dcf768db996d8760dceadb9886f992dbb88992505675a"
+  },
+  "scriptHashes": {
+    "studio_update.py": "6cd4e3ad33adfc0d820ee6dcec1ea7cd8e26555ed359c03b1b9488e4da67885f",
+    "github_transport.py": "93c0e136239b111948c169224d101045a2d22c80324b52d59838c70381b73c0d",
+    "apply_update.py": "e4022b05154e82b2c4304b6b0e96e9f6cc33caaf411e7d098f53114fa61436ba",
+    "install_ops.py": "f1d4ddd4f1bc7033ff8653e34851243e93c6df92c7ba69e70137f627ca46c17e",
+    "residue_cleanup.py": "b1f802839ddd719f57b54479902dde799081bb92a033c54ab4180a27a9b96327",
+    "owned_files.py": "1c1b798fcabfdf875da72121e856ad4542bfcdaf8692e0d489565ed9b163391a"
+  },
+  "formalRootUnchanged": true,
+  "testDriverPackaged": false,
+  "newIntegration": "PENDING_C_PATH_AUTHORIZATION",
+  "noPublish": true,
+  "noDailyUpdate": true
+}

@@ -1,0 +1,9 @@
+{
+  "status": "PREPARATION_FAILED",
+  "reason": "Local discovery adapter reversed TargetFile.from_dict parameters",
+  "installationStarted": false,
+  "updaterProductionSourceModified": false,
+  "candidateInstallerChanged": false,
+  "source": "integration/old-helper.log",
+  "resume": "Correct adapter only; same immutable candidate and unchanged A fixture"
+}
