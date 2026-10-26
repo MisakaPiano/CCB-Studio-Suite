@@ -5,7 +5,7 @@ can be enrolled. Legacy directories are not adopted by scanning. Receipts/journa
 are local integrity records, not a new publisher trust anchor or a hostile-user sandbox.
 """
 from pathlib import Path
-import argparse, hashlib, json, os, re, time, uuid
+import argparse, hashlib, json, os, re, sys, time, uuid
 from owned_files import relative, held, held_parents, delete_matching, prune_empty
 from install_ops import no_reparse, atomic_json, verify_install, immutable_file
 from studio_update import UpdateRejected, exclusive
@@ -352,10 +352,22 @@ def run(package,cache,data,runtime,startup_token=None,now=None,after_delete=lamb
         event(cache,'PASS_COMPLETE',removed=removed,deferred=deferred)
         return dict(status='DEFERRED' if deferred else 'COMPLETE',removed=removed,deferred=deferred)
 
+def anchor_packaged_worker(package):
+    # An OLD helper also starts B's cleanup interpreter without cwd. Release its
+    # inherited A directory before retrying; otherwise the worker pins its own
+    # deletion target until its last retry exits. Repository maintenance invocations
+    # are left alone. Both script and interpreter must belong to the supplied B.
+    package=no_reparse(package)
+    script=no_reparse(Path(__file__));interpreter=no_reparse(Path(sys.executable))
+    if (script.parents[2]==package and interpreter.parent==package/'updater'):
+        os.chdir(package)
+
+
 def main():
     p=argparse.ArgumentParser();p.add_argument('--package',required=True,type=Path);p.add_argument('--cache',required=True,type=Path);p.add_argument('--data',required=True,type=Path);p.add_argument('--runtime',required=True,type=Path);p.add_argument('--startup-token')
     a=p.parse_args()
     try:
+        anchor_packaged_worker(a.package)
         for attempt in range(4):
             try:value=run(a.package,a.cache,a.data,a.runtime,a.startup_token)
             except OSError as error:value=dict(status='DEFERRED',reason=type(error).__name__)
