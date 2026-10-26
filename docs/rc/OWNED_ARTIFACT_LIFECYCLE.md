@@ -1,3 +1,7 @@
+## 2026-10-27 发布后重复payload的手工授权退役
+
+[准确目录、归属、保留与结果](../audits/UNUSED_ARTIFACTS_CLEANUP_20261027.md)：公开链结束后的117重复解包物，按用户新清理要求逐项匹配真实公开NSIS安装清单并安全退役551文件。固定安装包仍可重建该版本，manifest／配置／公开根另存release-inputs；原候选阶段“保留payload”是旧时点，不改旧证据。非更新器自动运行、非追溯注册disposable；旧固定基线、活动安装／备份和所有未知内容保留。
+
 ## 2026-10-27 公开链测试副本已留证退役
 
 [117公开链](../audits/PREVIEW_117_PUBLICATION_20261027.md)完成后，在用户已批准的准确C盘Suite测试根固定全文件散列，逐文件退役573项；目录已移除。旧helper安装回执保持INSTALLED_NOT_STARTED，不为清理伪造更新COMPLETE。固定117包／payload、原失败证据、既有基线、日常安装、111保护和备份保留。

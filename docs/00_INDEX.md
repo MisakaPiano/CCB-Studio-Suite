@@ -1,3 +1,7 @@
+## 2026-10-27 发布后重复解包物已清理
+
+[本机清理回执](audits/UNUSED_ARTIFACTS_CLEANUP_20261027.md)：117构建payload的551个已核实程序文件／约241.3MiB已退役，H盘余约560MiB；同散列固定安装包、发布清单、源码／失败证据和116兼容基线保留，日常安装／资料／111保护／备份不动。发布状态与所有待验保持。
+
 ## 2026-10-27 Preview117已公开，正式更新链验证通过
 
 [公开发行回执](audits/PREVIEW_117_PUBLICATION_20261027.md)／[下载117](https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.117)：固定源码b9b240a，安装器SHA256 bec5f787…fb0089c9；真实116客户端签名发现／下载、旧helper NSIS隔离安装和117 UP_TO_DATE通过。正式根不变、main首页已同步；日常116未操作。原生搬迁继续引用3d4a97f固定证据，不重复累计；资产编辑完整人工／115体验／Prompt及任务栏待验保持。
