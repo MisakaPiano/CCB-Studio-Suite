@@ -1,3 +1,11 @@
+## 2026-10-27 Preview118公开链及日常升级完成
+
+[固定发布与原始证据](../audits/PREVIEW_118_PUBLICATION_20261027.md)：固定a1202e2／映像3d0bd1f／SHA256 3540be44…1e8bd60d，118 Pre-release已公开；元数据9ddec97（targets17/snapshot26/timestamp26），根不变，main仅README的3db4dda已同步。原117客户端真实公开发现／下载、原helper/NSIS/生产Main及合成资料凭据确认通过，无候选发现适配。过早清理断言失败和原B退出未诊断保留，同一安装续验，不重复升级累加。
+
+用户正常GUI升级日常117→118并确认118/已是最新；只读核验550项、COMPLETE、资料/runtime定位不变，118运行时旧117与下载/解包已自动清空。暂存空间不足以临时移存仓库安装包解决，缓存占用在清理退出后消失；未降低检查或修改已发布包。1260本轮C测试文件约812.7MiB已留证退役，固定117/118包归还原位。111旧保护保持；只读549程序项约241MiB一致，另有卸载器待归属补证，未解除保护/删除。
+
+PUBLISHED_PUBLIC_CHAIN_VERIFIED_DAILY118_CONFIRMED；只确认本次升级，不代签资产/编辑完整人工、115体验、Prompt对比或任务栏人工固定。新独立NOT REQUESTED，q09 FAILED/root UNKNOWN、旧失败/否决保持，不启动其他开发。以下为历史时点。
+
 ## 2026-10-27 最新公开Preview117，信任根与旧桥接不变
 
 [发行回执](../audits/PREVIEW_117_PUBLICATION_20261027.md)：v0.0.0-preview.117→b9b240a，SHA256 bec5f787…fb0089c9；正式元数据ad7ed68／targets16、snapshot25、timestamp25。公开116客户端发现并下载、旧helper真实隔离安装及117 UP_TO_DATE通过。main README ec99e7c只同步入口和限制，Releases区块维持、Pre-release不变；旧Releases迁移链接保留。

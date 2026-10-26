@@ -1,0 +1,39 @@
+{
+  "atUtc": "2026-10-26T21:49:43.498554+00:00",
+  "userConfirmed": true,
+  "scope": "Publish fixed118; verify real public117-to118; only then update daily installation; preserve pending acceptance",
+  "candidateSource": "a1202e24f7a0cba8a53f43bf035b67e2134ca2aa",
+  "evidenceCommit": "ee46f20bccf34fa5268cb6b39e0d180793d9ebb4",
+  "latestPublic": "v0.0.0-preview.117",
+  "public117InstallerSha256": "sha256:bec5f78735b6cd4c517c7c31c3d5bd499ed97a0d565e75718bc90c38fb0089c9",
+  "defaultBranch": "main",
+  "buildView": "C:\\CCB-Studio-Suite-Test-118-20261027\\b",
+  "hFree": 559022080,
+  "cFree": 10197127168,
+  "privateWorkingDocsNotPublished": true,
+  "status": "PREFLIGHT_PASS",
+  "assets": {
+    "CCB-Studio-Suite-0.0.0-preview.118-windows-x64.exe": {
+      "localPath": "C:\\CCB-Studio-Suite-Test-118-20261027\\b\\studio-installer.exe",
+      "bytes": 169006742,
+      "sha256": "3540be44ca7a1fcfd583899b325abad7630e10b120d288e9f2e7dc7a1e8bd60d"
+    },
+    "RELEASE_NOTES.md": {
+      "localPath": "C:\\CCB-Studio-Suite-Test-118-20261027\\b\\RELEASE_NOTES.md",
+      "bytes": 2122,
+      "sha256": "b2f99ec48ef224214df5dc9a06b279aedef6ce2184ff7e71689b11410f8d8467"
+    },
+    "THIRD_PARTY_NOTICES.zip": {
+      "localPath": "C:\\CCB-Studio-Suite-Test-118-20261027\\b\\THIRD_PARTY_NOTICES.zip",
+      "bytes": 198986,
+      "sha256": "48e6e162be0078e387002fbf49df433e500ec9e616a77246e0801ac9788d35f6"
+    },
+    "SHA256SUMS.txt": {
+      "localPath": "C:\\CCB-Studio-Suite-Test-118-20261027\\b\\SHA256SUMS.txt",
+      "bytes": 293,
+      "sha256": "ad7b479749fc0b5c9768c60f138a85c9d072cbec1626b8117c4f5ca44b075ad5"
+    }
+  },
+  "noticesGeneratedFromFixedPayload": true,
+  "noticesCurrentComponentHashes": true
+}

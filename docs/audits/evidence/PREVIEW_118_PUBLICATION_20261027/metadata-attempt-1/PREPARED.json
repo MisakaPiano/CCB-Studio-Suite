@@ -1,0 +1,35 @@
+{
+  "parent": "ad7ed68caa2fe99ac20bbc77aeec76281f0ead74",
+  "commit": "9ddec977eab81725fa36c99e2628413118c90958",
+  "files": {
+    "17.targets.json": "0cb6195b55993e7ae256fed6c5e5c26975b7dfbf3703c7ff1ceb48f3233ef1e9",
+    "26.snapshot.json": "08425afb54385c409975ba10dfeab552d209c7e60c9563ee939c1e1fd38d712c",
+    "snapshot.json": "08425afb54385c409975ba10dfeab552d209c7e60c9563ee939c1e1fd38d712c",
+    "targets.json": "0cb6195b55993e7ae256fed6c5e5c26975b7dfbf3703c7ff1ceb48f3233ef1e9",
+    "timestamp.json": "afaf56334c5e73f6294376aee059efb3010c1f1fdc96a4d4e33f1bc0f277e19d"
+  },
+  "receipt": {
+    "generation": "2decb4d67bc943e5b6edd3a145a773d6",
+    "repository": "MisakaPiano/CCB-Studio-Suite",
+    "channel": "preview",
+    "rootVersion": 1,
+    "timestampVersion": 26,
+    "releaseVersion": 118,
+    "files": {
+      "1.root.json": "408008d80aeb2dd3844325d74f09da9d248733e220dd88c08cc6299c4a24cc7a",
+      "17.targets.json": "0cb6195b55993e7ae256fed6c5e5c26975b7dfbf3703c7ff1ceb48f3233ef1e9",
+      "26.snapshot.json": "08425afb54385c409975ba10dfeab552d209c7e60c9563ee939c1e1fd38d712c",
+      "snapshot.json": "08425afb54385c409975ba10dfeab552d209c7e60c9563ee939c1e1fd38d712c",
+      "targets.json": "0cb6195b55993e7ae256fed6c5e5c26975b7dfbf3703c7ff1ceb48f3233ef1e9",
+      "timestamp.json": "afaf56334c5e73f6294376aee059efb3010c1f1fdc96a4d4e33f1bc0f277e19d"
+    },
+    "status": "PREPARED_NOT_PUBLISHED",
+    "publishLast": "timestamp.json"
+  },
+  "rootUnchanged": true,
+  "signerRoles": [
+    "targets",
+    "snapshot",
+    "timestamp"
+  ]
+}

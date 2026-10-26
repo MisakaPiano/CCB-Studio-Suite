@@ -1,0 +1,9 @@
+{
+  "status": "FAILED_TEST_TIMING_ASSERTION",
+  "atUtc": "2026-10-26T22:00:31.359204+00:00",
+  "line": 132,
+  "message": "Old root disappears before download cleanup in same asynchronous pass; immediate assertion raced worker",
+  "observedLater": "cleanup events REMOVED 555 then removed 0; downloads empty",
+  "noApplicationMutation": true,
+  "noUpgradeRerun": true
+}

@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "atUtc": "2026-10-26T22:08:52.167377+00:00",
+  "version": 118,
+  "source": "a1202e24f7a0cba8a53f43bf035b67e2134ca2aa",
+  "source117": "b9b240a248d428ec158c341b8c127969fd54cb64",
+  "method": "USER_OPERATED_NORMAL_GUI_UPDATE",
+  "applicationResult": "COMPLETE",
+  "applicationVerification": "B_PROGRAM_DATA_AND_CREDENTIAL_SNAPSHOT_MATCH",
+  "programVerification": {
+    "files": 550,
+    "bytes": 252900763,
+    "manifestSha256": "8af3972681326b95fa2faa97dfea07d66bb28c1e3b4a45e85ed937b65967021c"
+  },
+  "formalRootUnchanged": true,
+  "dataAndRuntimeLocationUnchanged": true,
+  "dataModifiedByInstaller": false,
+  "privateSnapshotsOrCredentialsRead": false,
+  "applicationSuccessAssertionNotIndependentPrivateDataAudit": true,
+  "old117RootRemovedWhile118Running": true,
+  "running118ProcessCount": 1,
+  "downloadsRemaining": 0,
+  "installingRemaining": 0,
+  "protected111Preserved": true,
+  "protectionRecordUnchanged": true,
+  "hFree": 725479424,
+  "userFunctionalAcceptance": "UNCHANGED_PENDING"
+}

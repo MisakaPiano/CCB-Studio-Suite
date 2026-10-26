@@ -1,3 +1,11 @@
+## 2026-10-27 Preview118公开链及日常升级完成
+
+[固定发布与原始证据](audits/PREVIEW_118_PUBLICATION_20261027.md)：固定a1202e2／映像3d0bd1f／SHA256 3540be44…1e8bd60d，118 Pre-release已公开；元数据9ddec97（targets17/snapshot26/timestamp26），根不变，main仅README的3db4dda已同步。原117客户端真实公开发现／下载、原helper/NSIS/生产Main及合成资料凭据确认通过，无候选发现适配。过早清理断言失败和原B退出未诊断保留，同一安装续验，不重复升级累加。
+
+用户正常GUI升级日常117→118并确认118/已是最新；只读核验550项、COMPLETE、资料/runtime定位不变，118运行时旧117与下载/解包已自动清空。暂存空间不足以临时移存仓库安装包解决，缓存占用在清理退出后消失；未降低检查或修改已发布包。1260本轮C测试文件约812.7MiB已留证退役，固定117/118包归还原位。111旧保护保持；只读549程序项约241MiB一致，另有卸载器待归属补证，未解除保护/删除。
+
+PUBLISHED_PUBLIC_CHAIN_VERIFIED_DAILY118_CONFIRMED；只确认本次升级，不代签资产/编辑完整人工、115体验、Prompt对比或任务栏人工固定。新独立NOT REQUESTED，q09 FAILED/root UNKNOWN、旧失败/否决保持，不启动其他开发。以下为历史时点。
+
 ## 2026-10-27 Preview118候选真实117升级通过，等待确认
 
 沿原UPD-CLEAN-PROTECTION-001，[固定候选与证据](audits/PREVIEW_118_CANDIDATE_20261027.md)：源码a1202e2／应用映像3d0bd1f，0.0.0-preview.118，169006742字节，SHA256 3540be44ca7a1fcfd583899b325abad7630e10b120d288e9f2e7dc7a1e8bd60d。纳入9f5a6a6，并按确认补受控空子目录清理和旧helper启动清理进程时的自身cwd切换。最终真实117/118程序、旧helper、NSIS及合成资料/凭据确认通过，新版运行时旧根自动消失，下载/解包0、重复清理0；候选发现适配不等于公开TUF链已验。

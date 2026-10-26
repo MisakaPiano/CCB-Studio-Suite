@@ -1,0 +1,28 @@
+{
+  "status": "PUBLISHED_PUBLIC_CHAIN_VERIFIED_DAILY118_CONFIRMED",
+  "version": 118,
+  "source": "a1202e24f7a0cba8a53f43bf035b67e2134ca2aa",
+  "appBuildSource": "3d0bd1f02c630d1e312d7469dbd71f29efe0bec1",
+  "candidateEvidence": "ee46f20bccf34fa5268cb6b39e0d180793d9ebb4",
+  "installerSha256": "3540be44ca7a1fcfd583899b325abad7630e10b120d288e9f2e7dc7a1e8bd60d",
+  "metadataCommit": "9ddec977eab81725fa36c99e2628413118c90958",
+  "mainReadmeCommit": "3db4dda450e0184e0298cd7eb01f9dc781e9cedc",
+  "rootUnchanged": true,
+  "publicChain": "PASS_WITH_RETAINED_DRIVER_FAILURE_AND_SAME_INSTALL_CONTINUATION",
+  "dailyGui": "USER_OPERATED_AND_CONFIRMED118_UP_TO_DATE",
+  "cacheLockAfterCleanup": "FREE",
+  "old117RemovedWhile118Running": true,
+  "protected111Preserved": true,
+  "protected111Migration": "READ_ONLY_INVENTORY_NO_DELETE_OR_PROTECTION_CHANGE",
+  "cFixtureRetired": true,
+  "newUnitTests": 0,
+  "newBuilds": 0,
+  "pending": [
+    "asset/editor full human acceptance",
+    "115 experience",
+    "Prompt comparison",
+    "actual user taskbar pin",
+    "new independent review not requested"
+  ],
+  "q09": "FAILED_ROOT_UNKNOWN"
+}

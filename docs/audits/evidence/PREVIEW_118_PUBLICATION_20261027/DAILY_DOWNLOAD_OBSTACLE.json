@@ -1,0 +1,13 @@
+{
+  "status": "TEMPORARY_CROSS_VOLUME_STORAGE_VERIFIED",
+  "source": "H:\\CCB-Studio-Suite\\.local\\relocation-117-20261027\\candidate-preview-117\\studio-installer.exe",
+  "retained": "C:\\CCB-Studio-Suite-Test-118-20261027\\retained117\\studio-installer.exe",
+  "sha256": "bec5f78735b6cd4c517c7c31c3d5bd499ed97a0d565e75718bc90c38fb0089c9",
+  "bytes": 169002371,
+  "reason": "Existing117 staging guard requires 574129090 free bytes; only 558MB available",
+  "restoreBeforeFixtureRetirement": true,
+  "protectedDailyOrDataUntouched": true,
+  "cacheLock": "FREE",
+  "hFreeAfter": 727195648,
+  "stagingRequired": 574129090
+}
