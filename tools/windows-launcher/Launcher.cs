@@ -24,6 +24,13 @@ static class Launcher {
         if(v.TryGetValue("previousRoots",out raw)){var items=raw as System.Collections.IEnumerable;if(items==null||raw is string)throw new IOException("Invalid relocation history");foreach(object item in items){var path=Absolute(item);if(!roots.Exists(p=>Same(p,path)))roots.Add(path);if(roots.Count>16)throw new IOException("Relocation history limit reached");}}
         return roots;
     }
+    static List<string> ShortcutOrigins(string root){
+        // The app may already hold entrypoints.lock while requesting a shortcut.
+        // Read the atomic descriptor without taking that lock again in this child.
+        string path=Path.Combine(root,"launch-current.json");Safe(path);
+        if(new FileInfo(path).Length>16384)throw new IOException("Invalid launch descriptor");
+        return Previous(Json.Deserialize<Dictionary<string,object>>(File.ReadAllText(path,Encoding.UTF8)));
+    }
     static string Project(string value,string oldRoot,string root){
         string prefix=oldRoot.TrimEnd('\\')+"\\";
         return value.StartsWith(prefix,StringComparison.OrdinalIgnoreCase)?Path.Combine(root,value.Substring(prefix.Length)):value;
@@ -84,7 +91,7 @@ static class Launcher {
     static void Shortcut(string destination){
         if(!Path.IsPathRooted(destination)||!destination.EndsWith(".lnk",StringComparison.OrdinalIgnoreCase))throw new IOException("Absolute shortcut path required");
         Safe(destination);string stage=destination+"."+Guid.NewGuid().ToString("N")+".tmp.lnk";
-        if(File.Exists(destination)){var priorLink=(IShellLinkW)new ShellLink();try{((System.Runtime.InteropServices.ComTypes.IPersistFile)priorLink).Load(destination,0);var old=new StringBuilder(32768);priorLink.GetPath(old,old.Capacity,IntPtr.Zero,0);string prior=old.ToString(),root=Path.GetDirectoryName(Self);bool own=String.Equals(prior,Self,StringComparison.OrdinalIgnoreCase)||(String.Equals(Path.GetFileName(prior),"CCBStudioSuitePreview.exe",StringComparison.OrdinalIgnoreCase)&&String.Equals(Path.GetDirectoryName(Path.GetDirectoryName(prior)),root,StringComparison.OrdinalIgnoreCase));if(!own&&Path.GetFileName(prior).Equals("CCBStudioLauncher.exe",StringComparison.OrdinalIgnoreCase)&&Read((IPropertyStore)priorLink,5)==AppId){var descriptor=Resolve();own=Previous(descriptor).Exists(p=>Same(prior,Path.Combine(p,"CCBStudioLauncher.exe")));}if(!own)throw new IOException("同名快捷方式属于其他入口，请保留并检查");}finally{Marshal.FinalReleaseComObject(priorLink);}}
+        if(File.Exists(destination)){var priorLink=(IShellLinkW)new ShellLink();try{((System.Runtime.InteropServices.ComTypes.IPersistFile)priorLink).Load(destination,0);var old=new StringBuilder(32768);priorLink.GetPath(old,old.Capacity,IntPtr.Zero,0);string prior=old.ToString(),root=Path.GetDirectoryName(Self);bool own=String.Equals(prior,Self,StringComparison.OrdinalIgnoreCase)||(String.Equals(Path.GetFileName(prior),"CCBStudioSuitePreview.exe",StringComparison.OrdinalIgnoreCase)&&String.Equals(Path.GetDirectoryName(Path.GetDirectoryName(prior)),root,StringComparison.OrdinalIgnoreCase));if(!own&&Path.GetFileName(prior).Equals("CCBStudioLauncher.exe",StringComparison.OrdinalIgnoreCase)&&Read((IPropertyStore)priorLink,5)==AppId)own=ShortcutOrigins(root).Exists(p=>Same(prior,Path.Combine(p,"CCBStudioLauncher.exe")));if(!own)throw new IOException("同名快捷方式属于其他入口，请保留并检查");}finally{Marshal.FinalReleaseComObject(priorLink);}}
         var link=(IShellLinkW)new ShellLink();try{
             link.SetPath(Self);link.SetRelativePath(Self,0);link.SetWorkingDirectory(Path.GetDirectoryName(Self));link.SetDescription("CCB Studio Suite");link.SetIconLocation(Self,0);
             var store=(IPropertyStore)link;Properties(store,Self);store.Commit();((System.Runtime.InteropServices.ComTypes.IPersistFile)link).Save(stage,true);

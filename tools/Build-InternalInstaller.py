@@ -51,7 +51,10 @@ def build(app,runtime,bootstrap,destination,version,metadata_url,targets_url,bui
     summary=json.loads((build_evidence/'summary.json').read_text(encoding='utf-8'))
     if summary['exitCode']!=0 or not summary['sourceStable'] or ':studio-desktop:createDistributable' not in summary['arguments']:raise ValueError('No verified actual app build')
     source=json.loads((build_evidence/'source-before.json').read_text(encoding='utf-8'))
-    if any(digest(ROOT/p)!=h for p,h in source.items() if p.startswith(('modules/','tools/windows-launcher/'))):raise ValueError('Application or native launcher sources changed since build')
+    if any(digest(ROOT/p)!=h for p,h in source.items() if p.startswith('modules/')):raise ValueError('Application sources changed since build')
+    # The native launcher is compiled below from this committed packaging source,
+    # independently of the reusable Compose app image. Record its separate input.
+    launcher_source_sha256=digest(ROOT/'tools/windows-launcher/Launcher.cs')
     app_sha=summary['baseCommit']
     sha=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
     # The app image can be reused after an updater-only change; record both origins.
@@ -131,7 +134,8 @@ def build(app,runtime,bootstrap,destination,version,metadata_url,targets_url,bui
     nsi=destination/'installer.nsi';nsi.write_text('\n'.join(script)+'\n',encoding='utf-8-sig')
     with (destination/'compile.log').open('wb') as log:
         result=subprocess.run([str(compiler),'/NOCONFIG',str(nsi)],stdout=log,stderr=subprocess.STDOUT)
-    report=dict(task='UX-R4',status='BUILT' if result.returncode==0 else 'FAILED',sourceSha=sha,appBuildSourceSha=app_sha,version=version,channel=identity['channel'],displayVersion=identity['displayVersion'],compiler='NSIS3.13',exitCode=result.returncode,files=len(manifest['files']),installed='NOT TESTED')
+    if digest(ROOT/'tools/windows-launcher/Launcher.cs')!=launcher_source_sha256:raise ValueError('Native launcher source changed during packaging')
+    report=dict(task='UX-R4',status='BUILT' if result.returncode==0 else 'FAILED',sourceSha=sha,appBuildSourceSha=app_sha,nativeLauncherSourceSha256=launcher_source_sha256,version=version,channel=identity['channel'],displayVersion=identity['displayVersion'],compiler='NSIS3.13',exitCode=result.returncode,files=len(manifest['files']),installed='NOT TESTED')
     if result.returncode==0:report.update(bytes=(destination/'studio-installer.exe').stat().st_size,sha256=digest(destination/'studio-installer.exe'))
     (destination/'BUILD_RECEIPT.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8');print(json.dumps(report))
     if result.returncode:raise RuntimeError('NSIS compiler failed; inspect retained compile.log')
