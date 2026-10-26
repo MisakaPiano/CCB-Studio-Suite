@@ -118,6 +118,21 @@ def perform(plan_path):
     plan_path=no_reparse(plan_path)
     with exclusive(plan_path.parent):return _perform(plan_path)
 
+def start_b(final,data,runtime,plan_path):
+    folder=plan_path.parent
+    args=[str(final/'CCBStudioSuitePreview.exe'),'--studio-root',str(data),'--runtime-root',str(runtime),'--update-handoff',str(plan_path)]
+    with (folder/'b-stdout.log').open('wb') as stdout,(folder/'b-stderr.log').open('wb') as stderr:
+        return subprocess.Popen(args,cwd=final,stdout=stdout,stderr=stderr,creationflags=subprocess.CREATE_NO_WINDOW)
+
+
+def start_cleanup(final,cache,data,runtime):
+    cleanup=final/'updater/lib/residue_cleanup.py'
+    if not cleanup.is_file():return
+    log=no_reparse(cache/'cleanup');log.mkdir(exist_ok=True)
+    with (log/'post-update-process.log').open('ab') as output:
+        return subprocess.Popen([str(final/'updater/pythonw.exe'),'-B',str(cleanup),'--package',str(final),'--cache',str(cache),'--data',str(data),'--runtime',str(runtime)],cwd=final,stdout=output,stderr=subprocess.STDOUT,creationflags=subprocess.CREATE_NO_WINDOW)
+
+
 def _perform(plan_path):
     plan_path=no_reparse(plan_path)
     if plan_path.stat().st_size>4*1024**2:raise UpdateRejected('Oversized handoff')
@@ -167,9 +182,7 @@ def _perform(plan_path):
             final,journal,install_record=install_candidate(installer,target,custom,installed,cache,data)
             update('STARTING_B',installed=str(final),installJournal=str(journal))
             # B receives only the controlled handoff path and the same explicit roots.
-            args=[str(final/'CCBStudioSuitePreview.exe'),'--studio-root',str(data),'--runtime-root',str(runtime),'--update-handoff',str(plan_path)]
-            with (folder/'b-stdout.log').open('wb') as stdout,(folder/'b-stderr.log').open('wb') as stderr:
-                child=subprocess.Popen(args,stdout=stdout,stderr=stderr,creationflags=subprocess.CREATE_NO_WINDOW)
+            child=start_b(final,data,runtime,plan_path)
             deadline=time.monotonic()+120;ack=folder/'B_VERIFIED.json'
             while not ack.exists():
                 if (folder/'B_FAILED.json').exists():raise UpdateRejected('B program/data verification failed; old version and data retained')
@@ -194,11 +207,7 @@ def _perform(plan_path):
     # This is outside the update transaction: cleanup cannot turn COMPLETE into FAILED.
     # Use B's runtime so A's program can be retired after this helper exits.
     try:
-        cleanup=final/'updater/lib/residue_cleanup.py'
-        if cleanup.is_file():
-            log=no_reparse(cache/'cleanup');log.mkdir(exist_ok=True)
-            with (log/'post-update-process.log').open('ab') as output:
-                subprocess.Popen([str(final/'updater/pythonw.exe'),'-B',str(cleanup),'--package',str(final),'--cache',str(cache),'--data',str(destination),'--runtime',str(runtime)],stdout=output,stderr=subprocess.STDOUT,creationflags=subprocess.CREATE_NO_WINDOW)
+        start_cleanup(final,cache,destination,runtime)
     except Exception:pass # B startup and later ordinary launches retry from retained receipts.
     return 0
 

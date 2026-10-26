@@ -39,6 +39,7 @@ internal val SelectionInk get()=StudioAppearanceRuntime.palette.selectionInk
 internal val Quiet get()=StudioAppearanceRuntime.palette.mutedForeground
 
 fun main(args:Array<String>) {
+    if(UpdateLaunchDirectory.handoffIfNeeded(args))return
     if("--synthetic-root" !in args) {launchStudio(args);return}
     fun option(name:String)=args.indexOf(name).takeIf {it>=0}?.let {args.getOrNull(it+1)}
     StudioBrand.configureDefaultWindows()

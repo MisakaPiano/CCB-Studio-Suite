@@ -79,11 +79,21 @@ def prune_empty(base,files,extra_dirs=()):
     for item in files:
         p=base.joinpath(*relative(item['path'])).parent
         while p!=base:dirs.add(p);p=p.parent
+    results=[]
     for directory in sorted(dirs,key=lambda p:len(p.parts),reverse=True):
         if not io_path(directory).exists():continue
         try:
             with held_parents(directory),held(directory,True) as (k,handle,info):
                 if not info.attributes&0x10:raise ValueError('Owned directory changed type')
                 dispose(k,handle) # Windows rejects nonempty directories; never recursive.
-        except OSError:pass
+            results.append(dict(path=directory.relative_to(base).as_posix(),status='REMOVED'))
+        except OSError as error:
+            code=getattr(error,'winerror',None)
+            # Nonempty can mean unknown/user content: retain it, without endlessly
+            # retrying or walking it. Busy/ACL failures of owned directories must
+            # remain visible even when every inventoried file is already absent.
+            if code in (2,3):continue
+            results.append(dict(path=directory.relative_to(base).as_posix(),
+                status='RETAIN_NONEMPTY' if code==145 else 'RETRY_DIRECTORY',winerror=code))
+    return results
 

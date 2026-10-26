@@ -85,7 +85,7 @@ internal suspend fun prepareUpdateHandoff(c:WorkbenchController,runtime:Path):Pa
     }
     val path=folder.resolve("plan.json");writeUpdateJson(path,plan)
     val process=ProcessBuilder(installed.resolve("updater/pythonw.exe").toString(),"-B",installed.resolve("updater/lib/apply_update.py").toString(),"--handoff",path.toString())
-        .directory(installed.toFile()).redirectOutput(folder.resolve("helper-stdout.log").toFile()).redirectError(folder.resolve("helper-stderr.log").toFile()).start()
+        .directory(folder.toFile()).redirectOutput(folder.resolve("helper-stdout.log").toFile()).redirectError(folder.resolve("helper-stderr.log").toFile()).start()
     try {
         withTimeout(120000) {
             while(true) {

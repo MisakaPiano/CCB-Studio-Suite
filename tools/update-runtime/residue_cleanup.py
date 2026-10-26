@@ -343,7 +343,10 @@ def run(package,cache,data,runtime,startup_token=None,now=None,after_delete=lamb
                 except (OSError,ValueError) as error:status='RETRY_'+type(error).__name__;deferred+=1
                 statuses[status]=statuses.get(status,0)+1
                 if status=='REMOVED':removed+=1;count+=1;after_delete(target)
-            prune_empty(base,files)
+            directories=prune_empty(base,files)
+            pending=[d for d in directories if d['status']=='RETRY_DIRECTORY']
+            deferred+=len(pending)
+            for directory in pending:event(cache,'DIRECTORY_DEFERRED',receipt=path.name,base=name,**directory)
             event(cache,'RESOURCE_PASS',receipt=path.name,area=area,base=name,counts=statuses,retentionSeconds=FAILED_SECONDS if failed else ROLLBACK_SECONDS if area=='program' else 0)
         atomic_json(state_path,state)
         event(cache,'PASS_COMPLETE',removed=removed,deferred=deferred)
