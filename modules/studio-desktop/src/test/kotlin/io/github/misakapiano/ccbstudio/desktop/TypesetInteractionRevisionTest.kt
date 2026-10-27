@@ -134,7 +134,7 @@ class TypesetInteractionRevisionTest {
     }}
     @Test fun saveAiSettingsThenToolbarAppliesAcrossPagesWithoutReopeningConfiguration()=runBlocking(awt){editor{c,scene,bytes,asset,_->
         val a=c.editor.autoMask;a.chooseModel={"synthetic.onnx" to LocalOnnxMaskDetectorTest.syntheticModel()}
-        scene.click("AI 自动打码");c.idle();scene.frames();assertTrue(scene.nodes().any{it.matches("自动打码配置")})
+        scene.click("AI 打码设置");c.idle();scene.frames();assertTrue(scene.nodes().any{it.matches("自动打码配置")})
         scene.click("选择本地 ONNX 模型");c.idle();scene.frames();assertEquals("0.3",scene.fieldNode("置信度").config[SemanticsProperties.EditableText].text)
         assertTrue(scene.nodes().none{it.matches("开始本地识别")});scene.shot("one-click-ai-settings")
         scene.click("保存配置");c.idle();scene.frames();assertTrue(scene.nodes().none{it.matches("自动打码配置")})

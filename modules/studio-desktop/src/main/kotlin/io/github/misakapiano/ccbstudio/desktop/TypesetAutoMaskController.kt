@@ -32,12 +32,19 @@ internal class TypesetAutoMaskController(private val c:WorkbenchController,priva
         currentCoroutineContext().ensureActive()
         withContext(ui){model=next;classes=next.classes.filterNot{it.contains("face",true)}.toSet();review=null;selectedRegions=emptySet();progress="本地模型已就绪 · CPU识别"}
     }
-    private suspend fun restoreSaved():TypesetAutoMaskSettings? {
-        val saved=TypesetEditorExtrasStore.load(c.workspace).autoMask?:return null
-        val loaded=if(model?.sha256==saved.modelSha256)model!!else {
+    fun useBundledModel()=c.run("读取内置识别模型"){
+        val next=BundledAutoMaskModel.load()
+        withContext(ui){model=next;classes=next.classes.filterNot{it.contains("face",true)}.toSet();review=null;selectedRegions=emptySet();progress="内置模型已就绪；保存配置后生效"}
+    }
+    private suspend fun restoreSaved():TypesetAutoMaskSettings {
+        val existing=TypesetEditorExtrasStore.load(c.workspace).autoMask
+        val loaded=if(existing==null||TypesetAutoMaskResources.isBundled(existing))BundledAutoMaskModel.load()
+        else if(model?.sha256==existing.modelSha256)model!!else {
+            val saved=existing
             val input=TypesetAutoMaskResources.read(c.workspace,saved)
             LocalOnnxMaskDetector.inspect(input.first,input.second)
         }
+        val saved=existing?:TypesetAutoMaskSettings(TypesetAutoMaskResources.BUNDLED_ID,loaded.sha256,loaded.classes.filterNot{it.contains("face",true)})
         require(saved.classes.all{it in loaded.classes}){"模型类别不一致，请重新设置"}
         withContext(ui){model=loaded;classes=saved.classes.toSet();options=AutoMaskOptions(saved.confidence.toFloat(),saved.iou.toFloat(),saved.resolution,saved.expansion);effect=saved.effect;strength=saved.strength;opacity=saved.opacity;selectedPages=saved.selectedPages;followTool=saved.followTool;configured=true}
         return saved
@@ -45,15 +52,15 @@ internal class TypesetAutoMaskController(private val c:WorkbenchController,priva
     fun readSettings()=c.run("读取 AI 打码配置"){restoreSaved()}
     fun saveConfiguration(onSaved:()->Unit={})=c.run("保存 AI 打码配置") {
         val chosen=model?:error("请先选择本地模型");require(classes.isNotEmpty()&&classes.all{it in chosen.classes});options.validate()
-        val id=TypesetAutoMaskResources.retain(c.workspace,chosen.name,chosen.bytes)
+        val id=if(chosen.sha256==TypesetAutoMaskResources.BUNDLED_SHA256)TypesetAutoMaskResources.BUNDLED_ID
+            else TypesetAutoMaskResources.retain(c.workspace,chosen.name,chosen.bytes)
         val saved=TypesetAutoMaskSettings(id,chosen.sha256,classes.sorted(),options.confidence.toString().toDouble(),options.iou.toString().toDouble(),options.resolution,options.expansion,effect,strength,opacity,selectedPages,followTool)
         saved.validate();val extras=TypesetEditorExtrasStore.load(c.workspace)
         TypesetEditorExtrasStore.save(c.workspace,extras.copy(autoMask=saved))
         withContext(ui){configured=true;progress="配置已保存，重开后可直接自动打码";onSaved()}
     }
     fun runConfigured(needsSettings:()->Unit={})=c.run("AI 自动打码") {
-        val saved=restoreSaved()
-        if(saved==null){withContext(ui){progress="请先保存一次 AI 打码配置";c.operationNotice=progress;needsSettings()};return@run}
+        val saved=try{restoreSaved()}catch(cancelled:CancellationException){throw cancelled}catch(ex:Exception){withContext(ui){needsSettings()};throw ex}
         val style=withContext(ui){if(saved.followTool)e.mask?:e.maskDefault else TypesetMask(effect=saved.effect,strength=saved.strength,opacity=saved.opacity)}
         val snapshot=inspectSnapshot(style)
         var added=0

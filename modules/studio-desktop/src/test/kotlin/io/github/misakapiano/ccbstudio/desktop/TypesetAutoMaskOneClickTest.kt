@@ -27,11 +27,11 @@ class TypesetAutoMaskOneClickTest {
         try{c2.editor.open(projectId);idle(c2);val a=c2.editor.autoMask;a.chooseModel={error("Saved model must not ask for a path again")};a.runConfigured();idle(c2);assertTrue(a.configured);assertEquals(listOf(2,1,0),c2.editor.document!!.pages.map{it.masks.size});assertContentEquals(bytes,reopened.bytes(id))}
         finally{c2.close();s2.cancel()}
     }
-    @Test fun missingConfigurationCancellationInvalidModelAndStaleCommitDoNotWriteMasks()=runBlocking {
+    @Test fun defaultConfigurationCancellationInvalidModelAndStaleCommitDoNotWriteMasks()=runBlocking {
         val root=Path.of(System.getProperty("preview.test.root")).resolve(newId());val w=StudioWorkspace.openStudio(root.resolve("workspace"));val bytes=EditorRenderer.synthetic(128,64);val id=w.importImage("synthetic.png",bytes)
         val scope=CoroutineScope(SupervisorJob()+Dispatchers.Default);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root.resolve("runtime/catalog")),root.resolve("runtime/budget"),admissionOverride=RequestAdmission{error("No services")})
         try{
-            c.editor.create("guards",listOf(id));idle(c);val a=c.editor.autoMask;var needed=false;a.runConfigured{needed=true};idle(c);assertTrue(needed);assertTrue(c.editor.page!!.masks.isEmpty())
+            c.editor.create("guards",listOf(id));idle(c);val a=c.editor.autoMask;a.readSettings();idle(c);assertTrue(a.configured);assertEquals(TypesetAutoMaskResources.BUNDLED_SHA256,a.model!!.sha256);assertTrue(c.editor.page!!.masks.isEmpty())
             a.chooseModel={"synthetic.onnx" to LocalOnnxMaskDetectorTest.syntheticModel()};a.loadModel();idle(c);a.saveConfiguration();idle(c)
             a.runConfigured();c.active?.cancelAndJoin();assertTrue(c.editor.page!!.masks.isEmpty())
             val before=c.editor.document!!;c.editor.pageChange{it.copy(caption="changed")}

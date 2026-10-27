@@ -13,7 +13,8 @@ import com.example.chatbar.desktop.*
     LaunchedEffect(Unit){a.readSettings()}
     AlertDialog(onDismissRequest={if(!c.busy)dismiss()},title={Text("自动打码配置")},text={
         Column(Modifier.width(600.dp).heightIn(max=580.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(8.dp)){
-            Text("保存一次后，在编辑工具栏一键执行；模型和配置保留在本工作区，重开继续使用。",style=MaterialTheme.typography.caption)
+            Text("程序已内置默认模型，可直接一键自动打码，无需寻找文件。自定义配置在本工作区保存；重开继续使用。",style=MaterialTheme.typography.caption)
+            EditorCommand("使用内置模型",!c.busy){a.useBundledModel()}
             EditorCommand("选择本地 ONNX 模型",!c.busy){a.loadModel()}
             Text(a.model?.name?:"尚未选择模型",style=MaterialTheme.typography.caption)
             StudioSwitch("识别所选页",a.selectedPages){if(!c.busy)a.selectedPages=!a.selectedPages}
