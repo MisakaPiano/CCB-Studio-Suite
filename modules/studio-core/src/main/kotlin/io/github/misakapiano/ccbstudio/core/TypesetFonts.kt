@@ -17,9 +17,14 @@ import java.util.concurrent.ConcurrentHashMap
 /** Fonts stay in the Suite asset root, never installed into Windows or silently substituted. */
 object TypesetFonts {
     const val TAG="CCB_FONT_RESOURCE_V1"
-    private data class Loaded(val font:Font,val ratio:Double?)
+    private data class Loaded(val font:Font,val ratio:Double?,val bytes:()->ByteArray)
     private val loaded=ConcurrentHashMap<String,Loaded>()
     fun font(alias:String):Font?=if(alias.startsWith("ccb-font:"))loaded[alias]?.font?:throw DataProblem("FONT_MISSING","Imported font is unavailable; retain the document and reimport its resource")else null
+    internal fun nativeBytes(alias:String):ByteArray?=if(alias.startsWith("ccb-font:"))loaded[alias]?.bytes?.invoke()?:throw DataProblem("FONT_MISSING","Imported font unavailable")else null
+    private fun reader(store:AssetStore,id:String,hash:String):()->ByteArray={
+        val key=UUID.fromString(id);val asset=store.read(key).require();require(asset.size()<=64*1024*1024&&asset.sha256()==hash)
+        AssetBytesBuffer().also{store.export(key,it)}.bytes()
+    }
     fun baseline(alias:String,font:Font)=NativeFontMetrics.topBaseline(font,loaded[alias]?.takeIf{it.font.deriveFont(font.style,font.size2D)==font}?.ratio)
     fun import(workspace:StudioWorkspace,name:String,bytes:ByteArray):TypesetFontResource=workspace.operation {
         require(workspace.state.typesetFonts.size<64){"64 imported fonts already retained; use another workspace for additional fonts"}
@@ -29,7 +34,7 @@ object TypesetFonts {
         val source=put(bytes,null);val target=if(decoded.contentEquals(bytes))source else put(decoded,UUID.fromString(source))
         val ref=TypesetFontResource(newId(),source,target,font.fontName,hash)
         workspace.save(workspace.state.copy(typesetFonts=workspace.state.typesetFonts+ref))
-        loaded[ref.alias]=Loaded(font,ratio(decoded));ref
+        loaded[ref.alias]=Loaded(font,ratio(decoded),reader(workspace.assets,target,hash));ref
     }
     fun activate(workspace:StudioWorkspace,names:Collection<String>)=workspace.operation {
         names.filter{it.startsWith("ccb-font:")}.distinct().forEach{alias->
@@ -37,7 +42,7 @@ object TypesetFonts {
             // Revalidate the durable asset even if this process already rendered a cached font.
             val a=workspace.assets.read(UUID.fromString(ref.decodedId)).require()
             if(!a.request().project().contentEquals(TAG.toByteArray()) || a.sha256()!=ref.sha256)throw DataProblem("CORRUPT","Font resource identity mismatch; retained")
-            if(loaded[alias]==null){val bytes=workspace.bytes(ref.decodedId);require(bytes.size<=64*1024*1024);loaded[alias]=Loaded(Font.createFont(Font.TRUETYPE_FONT,ByteArrayInputStream(bytes)),ratio(bytes))}
+            if(loaded[alias]==null){val bytes=workspace.bytes(ref.decodedId);require(bytes.size<=64*1024*1024);loaded[alias]=Loaded(Font.createFont(Font.TRUETYPE_FONT,ByteArrayInputStream(bytes)),ratio(bytes),reader(workspace.assets,ref.decodedId,ref.sha256))}
         }
     }
     fun documentFonts(document:TypesetDocument):List<String> {

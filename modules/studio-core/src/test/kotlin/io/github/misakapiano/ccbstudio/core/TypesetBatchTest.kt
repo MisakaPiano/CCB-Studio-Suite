@@ -3,6 +3,16 @@ package io.github.misakapiano.ccbstudio.core
 import kotlin.test.*
 
 class TypesetBatchTest {
+    @Test fun separateTargetsNeverChangeTheOtherObjectKind(){
+        val a=page(30.0).copy(masks=listOf(TypesetMask(effect="white",x=3.0,y=7.0)),toolDefaults=TypesetMask(effect="white"))
+        val b=page(50.0).copy(masks=listOf(TypesetMask(effect="blur",x=13.0,y=17.0)),toolDefaults=TypesetMask(effect="blur"))
+        val doc=TypesetDocument(pages=listOf(a,b));val selected=setOf(b.id)
+        val text=TypesetBatch.apply(doc,selected,true,null,TypesetMask(),kind="text"){100}
+        assertEquals(b.masks,text.pages[1].masks);assertEquals(b.toolDefaults,text.pages[1].toolDefaults);assertEquals(30.0,text.pages[1].texts.single().style.fontSize)
+        val mask=TypesetBatch.apply(doc,selected,true,null,TypesetMask(),kind="mask"){error("mask-only must not decode widths")}
+        assertEquals(b.texts,mask.pages[1].texts);assertEquals("white",mask.pages[1].masks.single().effect);assertEquals(13.0,mask.pages[1].masks.single().x)
+        assertEquals(a,mask.pages[0]);assertEquals(a,text.pages[0])
+    }
     private fun page(vararg sizes:Double)=TypesetPage(assetId=newId(),name="合成页",texts=sizes.mapIndexed{i,size->TypesetText(text="第${i}项",x=17.0,y=29.0,width=300.0,style=TypesetStyle(fontSize=size))})
     @Test fun previousUsesFrozenSnapshotAndLastStyleForExtraObjects() {
         val a=page(20.0,30.0);val b=page(40.0,50.0,60.0);val c=page(70.0,80.0,90.0,100.0)

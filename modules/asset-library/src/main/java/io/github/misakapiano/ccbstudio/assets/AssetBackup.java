@@ -130,7 +130,8 @@ public final class AssetBackup {
                 || relative.matches("objects/[0-9a-f]{64}\\.blob")
                 || relative.matches("records/(" + uuid + "\\.rec|\\.pending-" + uuid + ")")
                 || relative.matches("transactions/" + uuid + "/(request\\.rec|seal\\.rec|complete\\.rec|payload\\.part|\\.pending-" + uuid + ")")
-                || relative.matches("maintenance/reconciliations/" + uuid + "/(intent\\.rec|candidate\\.rec|complete\\.rec|\\.pending-" + uuid + ")")) return;
+                || relative.matches("maintenance/reconciliations/" + uuid + "/(intent\\.rec|candidate\\.rec|complete\\.rec|\\.pending-" + uuid + ")")
+                || relative.matches("maintenance/editor-retirements/" + uuid + "/(intent\\.rec|relationship\\.rec|complete\\.rec|\\.pending-" + uuid + ")")) return;
         throw new StoreException("CORRUPT", "Unrecognized or unsafe snapshot path");
     }
     private static byte[] encode(List<Entry> entries) throws IOException {

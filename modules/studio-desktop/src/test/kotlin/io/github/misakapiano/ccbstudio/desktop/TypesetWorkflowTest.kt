@@ -31,9 +31,9 @@ class TypesetWorkflowTest {
             assertEquals("第一张自己的文字",c.editor.document!!.pages.first().texts.single().text)
             scene.field("文字内容","第二张独立内容");c.editor.drain()
             assertEquals(42.0,w.state.typesetPreferences.textDefault!!.style.fontSize);assertEquals("",w.state.typesetPreferences.textDefault!!.text)
-            scene.click("存为预设");scene.field("样式名称，例如对白或旁白","对白");scene.click("保存样式");c.idle();scene.frames()
-            scene.field("字号","30");scene.click("存为预设");scene.field("样式名称，例如对白或旁白","旁白");scene.click("保存样式");c.idle();scene.frames()
-            scene.click("样式 · 旁白 ▾");scene.click("对白");c.idle();scene.frames()
+            scene.click("预设");scene.field("预设名称","对白");scene.click("保存新预设");c.idle();scene.frames()
+            scene.click("文字");scene.field("字号","30");scene.click("预设");scene.field("预设名称","旁白");scene.click("保存新预设");c.idle();scene.frames()
+            scene.click("已保存文字预设 · 旁白 ▾");scene.click("对白");scene.click("应用到当前对象");c.idle();scene.frames()
             assertEquals(listOf("对白","旁白"),w.state.typesetPreferences.textPresets.map{it.name});assertEquals(42.0,c.editor.text!!.style.fontSize)
             assertEquals("第二张独立内容",c.editor.text!!.text)
             scene.shot("editor-quick-named-presets")
@@ -59,7 +59,7 @@ class TypesetWorkflowTest {
         suspend fun begin(){scene.frames();scene.click("预览与导出");withTimeout(30000){while(scene.nodes().none{it.matches("导出页面预览")}){delay(40);scene.frames()}};scene.click("选择位置并导出")}
         try {
             begin();withTimeout(20000){while(c.editor.exportProgress?.completed!=1)delay(20)};scene.frames()
-            assertTrue(scene.nodes().any{it.matches("正在生成页面 · 1 / 3")});assertTrue(scene.nodes().any{it.matches("编辑工程 · 导出进度 ▾")});scene.shot("export-one-of-three")
+            assertTrue(scene.nodes().any{it.matches("正在生成页面 · 1 / 6")});assertTrue(scene.nodes().any{it.matches("编辑工程 · 导出进度 ▾")});scene.shot("export-one-of-three")
             assertNull(c.editor.exportDirectory);scene.click("停止导出");gate.countDown();c.active?.join();scene.frames()
             assertEquals("CANCELLED",c.editor.exportProgress?.stage);assertNull(c.editor.exportDirectory);assertNull(c.problem)
             val incomplete=Files.list(parent).use{it.filter{p->p.fileName.toString().endsWith(".incomplete")}.toList()}.single()
@@ -67,8 +67,8 @@ class TypesetWorkflowTest {
             assertContentEquals(original,w.bytes(id));scene.shot("export-cancelled")
             c.editor.exportTrace={};begin();c.idle();scene.frames()
             val output=c.editor.exportDirectory!!;val receipt=TypesetExport.verify(output)
-            assertEquals(3,receipt.files.count{it.name.endsWith(".png")});assertEquals("COMPLETE",c.editor.exportProgress?.stage)
-            assertTrue(scene.nodes().any{it.matches("导出完成并已校验 · 3 / 3")});assertTrue(Files.exists(incomplete));scene.shot("export-verified")
+            assertEquals(6,receipt.files.count{it.name.endsWith(".png")});assertEquals("COMPLETE",c.editor.exportProgress?.stage)
+            assertTrue(scene.nodes().any{it.matches("导出完成并已校验 · 6 / 6")});assertTrue(Files.exists(incomplete));scene.shot("export-verified")
             assertContentEquals(original,w.bytes(id))
             c.editor.copyExportFiles={error("synthetic clipboard unavailable")}
             scene.click("预览与导出");withTimeout(30000){while(scene.nodes().none{it.matches("导出页面预览")}){delay(40);scene.frames()}}
@@ -168,7 +168,7 @@ class TypesetWorkflowTest {
             assertEquals(alias,c.editor.text!!.style.fontFamily);assertNotNull(TypesetFonts.font(alias));c.editor.drain()
             cache.remove(alias);scene.click("完整预览")
             withTimeout(30000){while(scene.nodes().none{it.matches("完整页面预览")}){delay(80);scene.frames()}}
-            assertNotNull(TypesetFonts.font(alias));scene.click("关闭完整预览 · Esc")
+            assertNotNull(TypesetFonts.font(alias));scene.click("关闭预览窗口")
             cache.remove(alias);scene.click("预览与导出")
             withTimeout(30000){while(scene.nodes().none{it.matches("导出页面预览")}){delay(80);scene.frames()}}
             assertNotNull(TypesetFonts.font(alias));scene.click("返回编辑")
@@ -208,8 +208,8 @@ class TypesetWorkflowTest {
             key(Key.DirectionLeft);assertTrue(scene.nodes().any{it.matches("1 / 3")});key(Key.DirectionLeft);assertTrue(scene.nodes().any{it.matches("1 / 3")})
             val imageBounds=scene.nodes().first{it.matches("完整页面预览")}.boundsInRoot
             val titleBounds=scene.nodes().first{it.matches("完整预览 · 001 · preview.png")}.boundsInRoot
-            val closeBounds=scene.nodes().first{it.matches("关闭完整预览 · Esc")}.boundsInRoot
-            assertTrue(imageBounds.top>=titleBounds.bottom && imageBounds.bottom<=closeBounds.top,"preview must fit between title and controls: $imageBounds / $titleBounds / $closeBounds")
+            val closeBounds=scene.nodes().first{it.matches("关闭预览窗口")}.boundsInRoot
+            assertTrue(imageBounds.top>=maxOf(titleBounds.bottom,closeBounds.bottom) && imageBounds.bottom<=950,"preview must fit below its title-bar controls: $imageBounds / $titleBounds / $closeBounds")
             scene.shot("full-preview");key(Key.Escape);assertFalse(scene.nodes().any{it.matches("完整页面预览")})
             assertEquals(project,c.editor.project);assertEquals(selected,c.editor.selectedPages);assertEquals(current,c.editor.pageId);assertNull(c.editor.exportDirectory)
             scene.click("预览与导出");withTimeout(30000){while(scene.nodes().none{it.matches("导出页面预览")}){delay(80);scene.frames()}}
@@ -236,13 +236,16 @@ class TypesetWorkflowTest {
             }finally{narrow.close()}
         }finally{if(!wideClosed)scene.close();c.close();scope.cancel();w.close()}
     }
-    @Test fun continuousMaskDefaultsRespectPerPageSettings()=runBlocking(awt) {
+    @Test fun continuousToolsCarryCurrentSettingsWithoutOverwritingPerPageRecipes()=runBlocking(awt) {
         val w=StudioWorkspace.openStudio(root());val id=w.importImage("defaults.png",EditorRenderer.synthetic(100,80));val scope=CoroutineScope(SupervisorJob()+awt)
         val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
         try{c.editor.create("defaults",listOf(id,id,id));c.idle();val pages=c.editor.document!!.pages
             c.editor.change{it.copy(pages=it.pages.mapIndexed{i,p->if(i==2)p.copy(toolDefaults=TypesetMask(strength=88))else p})};c.editor.drain()
             c.editor.maskDefault=TypesetMask(strength=51);c.editor.rememberLaterMaskDefault();c.idle();c.editor.selectPage(pages[1].id);assertEquals(51,c.editor.maskDefault.strength)
-            c.editor.selectPage(pages[2].id);assertEquals(88,c.editor.maskDefault.strength);c.editor.selectPage(pages[0].id);assertEquals(51,c.editor.maskDefault.strength)
+            c.editor.tool="brush";c.editor.propertySection="预设"
+            c.editor.selectPage(pages[2].id);assertEquals(51,c.editor.maskDefault.strength);assertEquals("brush",c.editor.tool);assertEquals("预设",c.editor.propertySection)
+            assertEquals(88,c.editor.document!!.pages[2].toolDefaults!!.strength,"Selecting a page never rewrites its saved recipe")
+            c.editor.selectPage(pages[0].id);assertEquals(51,c.editor.maskDefault.strength)
             assertTrue(c.editor.document!!.pages.all{it.masks.isEmpty()})
         }finally{c.close();scope.cancel();w.close()}
     }
@@ -257,7 +260,7 @@ class TypesetWorkflowTest {
             scene.click("预览与导出");withTimeout(30000){while(scene.nodes().none{it.matches("导出页面预览")}){delay(80);scene.frames()}}
             scene.click("图片格式 · PNG ▾");scene.click("WEBP");scene.shot("webp-export-preview");scene.click("选择位置并导出");c.idle()
             val output=c.editor.exportDirectory!!;assertEquals("webp",TypesetExport.verify(output).format);assertEquals("webp",w.state.typesetPreferences.exportFormat)
-            val decoded=EditorRenderer.decode(Files.readAllBytes(output.resolve("001.webp")));assertEquals(180,decoded.width);decoded.flush();assertContentEquals(bytes,w.bytes(id))
+            val decoded=EditorRenderer.decode(Files.readAllBytes(output.resolve("03_打码并嵌字/001.webp")));assertEquals(180,decoded.width);decoded.flush();assertContentEquals(bytes,w.bytes(id))
         }finally{scene.close();c.close();scope.cancel();w.close()}
         StudioWorkspace.openStudio(r).use{next->assertEquals("webp",next.state.typesetPreferences.exportFormat);assertContentEquals(bytes,next.bytes(id));assertEquals("格式验证",TypesetRepository(next).load(next.state.typesetProjects.single()).pages.single().texts.single().text)}
     }
@@ -270,14 +273,15 @@ class TypesetWorkflowTest {
         val scene=ImageComposeScene(1320,950,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
         try {
             scene.frames();scene.click("预览与导出");withTimeout(30000){while(scene.nodes().none{it.matches("导出页面预览")}){delay(80);scene.frames()}}
-            scene.click("导出 · 原始文件（字节保全）");scene.click("导出 · 仅打码");scene.click("导出 · 仅文字");scene.click("附带可编辑 Recipe 文件");scene.click("同时打包 ZIP")
+            scene.click("01_原始排序（按所选格式编码）");scene.click("另存原图副本（原字节）");scene.click("02_仅打码");scene.click("04_仅嵌字");scene.click("附带可编辑 Recipe 文件");scene.click("同时打包 ZIP")
             scene.shot("batch-export-deck");scene.click("复制所选输出文件");c.idle();scene.frames()
             val files=clipboard.getData(java.awt.datatransfer.DataFlavor.javaFileListFlavor) as List<*>
             assertEquals(17,files.size);assertFalse(clipboard.isDataFlavorAvailable(java.awt.datatransfer.DataFlavor.imageFlavor))
-            val output=c.editor.exportDirectory!!;assertEquals(17,TypesetExport.verify(output).files.size);assertContentEquals(bytes,Files.readAllBytes(output.resolve("original/001.png")))
-            val single=ExportClipboard.contents(listOf(output.resolve("all/001.png")));assertTrue(single.isDataFlavorSupported(java.awt.datatransfer.DataFlavor.imageFlavor))
+            val output=c.editor.exportDirectory!!;assertEquals(17,TypesetExport.verify(output).files.size);assertContentEquals(bytes,Files.readAllBytes(output.resolve("原图副本/001.png")))
+            val single=ExportClipboard.contents(listOf(output.resolve("03_打码并嵌字/001.png")));assertTrue(single.isDataFlavorSupported(java.awt.datatransfer.DataFlavor.imageFlavor))
             assertEquals(180,(single.getTransferData(java.awt.datatransfer.DataFlavor.imageFlavor) as java.awt.image.BufferedImage).width)
-            c.editor.pageChange{page->page.copy(texts=page.texts.map{it.copy(text="修改")})};c.editor.drain();c.editor.chooseRecipeFile={output.resolve("all/001_recipe.json")}
+            c.editor.pageChange{page->page.copy(texts=page.texts.map{it.copy(text="修改")})};c.editor.drain();c.editor.chooseRecipeFile={output.resolve("03_打码并嵌字/001_recipe.json")}
+            scene.click("工程选项")
             scene.click("导入编辑 Recipe");c.idle();scene.frames();assertEquals("修改",c.editor.page!!.texts.single().text)
             scene.click("确认应用编辑 Recipe");c.idle();scene.frames();assertEquals("可恢复",c.editor.page!!.texts.single().text)
             scene.click("撤销编辑");c.idle();assertEquals("修改",c.editor.page!!.texts.single().text)
@@ -296,7 +300,7 @@ class TypesetWorkflowTest {
             scene.click("导入 TypeSet 工程");c.idle();scene.frames();scene.shot("source-exchange-confirm");scene.click("建立独立导入工程");c.idle();scene.frames()
             assertEquals(1,c.assets.size);assertEquals(3,c.editor.page!!.masks.size);scene.click("▸ 工程交换文件");scene.click("导出当前 TypeSet 工程");c.idle();assertTrue(Files.exists(output))
             val roundTrip=TypesetSourceExchange.inspect(Files.readAllBytes(output));assertEquals(c.editor.page!!.texts,roundTrip.document.pages.single().texts)
-            scene.click("▸ 预设与默认");scene.click("导入 TypeSet 预设");c.idle();scene.frames();assertTrue(w.state.typesetPreferences.textPresets.isEmpty());scene.click("合并并导入默认");c.idle();scene.frames()
+            scene.click("预设");scene.click("▸ 导入与导出预设");scene.click("导入 TypeSet 预设");c.idle();scene.frames();assertTrue(w.state.typesetPreferences.textPresets.isEmpty());scene.click("合并并导入默认");c.idle();scene.frames()
             assertEquals("heavy_mosaic",w.state.typesetPreferences.preferredMaskSlot);assertEquals(1,w.state.typesetPreferences.textPresets.size)
             scene.click("导出 TypeSet 预设");c.idle();assertEquals(48.0,TypesetSourceExchange.inspectPresets(Files.readAllBytes(presetOutput)).preferences.textPresets.single().text.style.fontSize)
             c.editor.drain()
@@ -338,7 +342,7 @@ class TypesetWorkflowTest {
     private suspend fun ImageComposeScene.field(s:String,value:String){val n=nodes().first{it.config.getOrNull(SemanticsActions.SetText)!=null && (it.matches(s)||it.children.any{it.matches(s)})};assertTrue(n.config[SemanticsActions.SetText].action!!.invoke(AnnotatedString(value)));frames()}
     private suspend fun WorkbenchController.idle(){withTimeout(30000){active?.join()};assertNull(problem,problem)}
     private suspend fun ImageComposeScene.rendered(){withTimeout(30000){while(nodes().none{it.matches("排版编辑画布") && it.config.getOrNull(SemanticsProperties.StateDescription)=="已更新"}){delay(40);frames()}}}
-    private fun ImageComposeScene.shot(name:String){val p=Path.of("build/ux-r2a-workbench/$name.png");Files.createDirectories(p.parent);render(System.nanoTime()).use{im->im.encodeToData()!!.use{Files.write(p,it.bytes)}}}
+    private fun ImageComposeScene.shot(name:String){val p=Path.of(System.getProperty("preview.test.root")).resolve("typeset-queue/$name.png");Files.createDirectories(p.parent);render(System.nanoTime()).use{im->im.encodeToData()!!.use{Files.write(p,it.bytes)}}}
 
     @Test fun namedProjectLiveVerticalEditingHistoryAndRestart()=runBlocking(awt) {
         val r=root();val w=StudioWorkspace.openStudio(r);val bytes=EditorRenderer.synthetic(600,400);val id=w.importImage("fixture.png",bytes)
@@ -348,19 +352,19 @@ class TypesetWorkflowTest {
         try {
             scene.frames();scene.click("新建编辑工程");scene.field("工程名称","排版回归册");scene.click("建立工程");c.idle();scene.frames()
             assertEquals("排版回归册",c.editor.project!!.name)
-            withTimeout(30000){while(scene.nodes().none{it.matches("添加文字")}){delay(100);scene.frames()}}
+            scene.rendered()
             scene.click("添加文字");scene.field("文字内容","「你好，世界！」[b]粗体[/]123ABC");scene.click("竖排")
             scene.field("竖排框高度","240")
             assertTrue(c.editor.text!!.vertical)
             scene.rendered();scene.shot("vertical-live");c.editor.drain();assertFalse(c.editor.dirty)
             val styleBeforePreset=c.editor.text!!
-            scene.click("▸ 预设与默认");scene.field("预设名称","竖排字幕");scene.click("保存新文字预设");c.idle();scene.frames()
+            scene.click("预设");scene.field("预设名称","竖排字幕");scene.click("保存新预设");c.idle();scene.frames()
             assertEquals("",w.state.typesetPreferences.textPresets.single().text.text)
-            scene.field("字号","18");c.editor.drain();scene.click("应用文字预设");c.idle();scene.frames()
+            scene.click("文字");scene.field("字号","18");c.editor.drain();scene.click("预设");scene.click("应用到当前对象");c.idle();scene.frames()
             assertEquals(styleBeforePreset.style,c.editor.text!!.style);assertEquals(styleBeforePreset.text,c.editor.text!!.text);assertEquals(styleBeforePreset.x,c.editor.text!!.x)
-            scene.click("▾ 预设与默认")
+            scene.click("文字");scene.click("选择／移动对象")
             val beforeMove=c.editor.text!!
-            scene.click("锁定对象");scene.frames()
+            scene.click("图层");scene.click("锁定对象");scene.frames()
             suspend fun dragText(){
                 val b=scene.nodes().first{it.matches("排版编辑画布")}.boundsInRoot
                 val scale=minOf(b.width/600,b.height/400)
@@ -370,7 +374,7 @@ class TypesetWorkflowTest {
                 scene.sendPointerEvent(PointerEventType.Release,from+Offset(60f,0f),button=PointerButton.Primary);scene.frames();scene.rendered()
             }
             dragText();assertEquals(beforeMove.x,c.editor.page!!.texts.single().x)
-            scene.click("文字 1 · 已锁定");scene.click("解锁对象");dragText()
+            scene.click("图层");scene.click("文字 1 · 已锁定");scene.click("解锁对象");dragText();scene.click("文字")
             assertTrue(c.editor.page!!.texts.single().x>beforeMove.x)
             c.editor.drain()
             val text=c.editor.page!!.texts.single();assertEquals(text,TypesetRepository(w).load(w.state.typesetProjects.single()).pages.single().texts.single())
@@ -379,7 +383,7 @@ class TypesetWorkflowTest {
             scene.constraints=Constraints.fixed(700,900);scene.frames();scene.shot("compact-canvas");scene.click("属性");scene.frames();scene.shot("compact-properties")
             assertEquals("即时改字",c.editor.page!!.texts.single().text);assertContentEquals(bytes,w.bytes(id))
             assertEquals(1,c.visibleAssets().size)
-            scene.click("另存工程");scene.field("新工程名称","独立副本");scene.click("确认工程操作");c.idle();scene.frames()
+            scene.click("工程选项");scene.click("另存工程");scene.field("新工程名称","独立副本");scene.click("确认工程操作");c.idle();scene.frames()
             assertEquals(2,w.state.typesetProjects.size);assertEquals("独立副本",c.editor.project!!.name);assertTrue(c.editor.project!!.undo.isEmpty())
             scene.click("删除工程");scene.click("确认工程操作");c.idle();scene.frames();assertNull(c.editor.project)
             scene.click("继续最近工程");c.idle();scene.frames();assertEquals("排版回归册",c.editor.project!!.name)
@@ -406,12 +410,12 @@ class TypesetWorkflowTest {
             assertEquals(listOf("rect","brush","lasso"),c.editor.page!!.masks.map{it.shape})
             scene.click("打码效果 · 马赛克 ▾");scene.click("黑条 / 黑色");scene.frames();scene.rendered()
             assertEquals("black",c.editor.mask!!.effect)
-            scene.click("▸ 预设与默认");scene.click("覆盖打码预设");scene.click("确认预设变更");c.idle();scene.frames()
+            scene.click("预设");scene.click("▸ 连续编辑与 TypeSet 内置槽");scene.click("覆盖内置槽");scene.click("确认预设变更");c.idle();scene.frames()
             assertEquals("black",w.state.typesetPreferences.maskOverrides["light_mosaic"]!!.effect)
-            scene.click("恢复内置打码预设");scene.click("确认预设变更");c.idle();scene.frames()
+            scene.click("恢复内置槽");scene.click("确认预设变更");c.idle();scene.frames()
             assertTrue(w.state.typesetPreferences.maskOverrides.isEmpty());assertEquals("black",c.editor.mask!!.effect)
-            scene.click("启动默认 · 已保存自定义参数 ▾");scene.click("重马赛克");c.idle();scene.frames()
-            assertEquals("heavy_mosaic",w.state.typesetPreferences.preferredMaskSlot);scene.click("▾ 预设与默认")
+            scene.click("旧启动默认 · 已保存自定义参数 ▾");scene.click("重马赛克");c.idle();scene.frames()
+            assertEquals("heavy_mosaic",w.state.typesetPreferences.preferredMaskSlot);scene.click("打码")
 
             scene.shot("mask-workflow");c.editor.drain();val before=c.editor.page!!.masks
             scene.click("移除打码");c.editor.drain();assertEquals(2,c.editor.page!!.masks.size)

@@ -19,7 +19,7 @@ object TypesetEditRecipes {
         val raw=documentJson.parseToJsonElement(bytes.decodeToString(throwOnInvalidSequence=true)).jsonObject
         if(raw["version"]?.jsonPrimitive?.intOrNull!=1)throw DataProblem("UNSUPPORTED_VERSION","未知编辑Recipe版本，文件未改动")
         return documentJson.decodeFromJsonElement<TypesetEditRecipe>(raw).also{r->
-            require(r.originalSha256.matches(Regex("[0-9a-f]{64}")) && r.variant in setOf("original","mask","all","text"))
+            require(r.originalSha256.matches(Regex("[0-9a-f]{64}")) && r.variant in setOf("original","plain","mask","all","text"))
             TypesetDocument(pages=listOf(r.page)).validate();require(r.sourceRecipeBase64.length<=4*1024*1024);Base64.getDecoder().decode(r.sourceRecipeBase64)
         }
     }

@@ -5,7 +5,8 @@ import java.awt.font.FontRenderContext
 import java.awt.geom.AffineTransform
 import kotlin.math.*
 
-/** Port of TypeSet 1.1 2583–3306. No browser renderer or network font dependency. */
+/** Horizontal/story layout retains TypeSet 1.1 geometry. Vertical layout uses native
+ * font shaping; the old character-substitution helpers remain only for provenance. */
 object TypesetLayout {
     data class Token(val ch:String,val style:TypesetStyle,val display:String=ch,val rotate:Boolean=false,val forced:Boolean=false,val alnum:Boolean=false)
     data class Cell(val token:Token,val advance:Double,val cls:String="normal")
@@ -115,6 +116,7 @@ object TypesetLayout {
         return min((part(prev,false)+part(next,true))*t.style.fontSize,step*.36)
     }
     fun layout(t:TypesetText):Layout {
+        if(t.vertical){val native=WindowsVerticalTypography.layout(t);return Layout(emptyList(),native.width,native.height,true)}
         val paragraphs=mutableListOf(mutableListOf<Token>())
         tokens(t.text,t.style).forEach{if(it.ch=="\n")paragraphs+=mutableListOf<Token>() else paragraphs.last()+=it}
         val lines=mutableListOf<Line>();val step=max(1.0,t.style.fontSize*t.lineHeight+t.letterSpacing)

@@ -35,21 +35,19 @@ class TypesetReferenceTest {
         fun b(k:String)=o.getValue(k).jsonPrimitive.boolean
         return TypesetText(text=s("text"),x=d("x"),y=d("y"),width=d("width"),style=TypesetStyle(s("fontFamily"),d("fontSize"),d("fontWeight").toInt(),s("fontStyle")=="italic",b("underline"),b("strike"),s("fill"),s("stroke"),d("strokeWidth")),vertical=s("writingMode")=="vertical",align=s("align"),lineHeight=d("lineHeight"),letterSpacing=d("letterSpacing"))
     }
-    @Test fun sourceVerticalGlyphsColumnsAndAdvances() {
+    // Historical TypeSet fixtures remain unchanged. Their manual displayCh/fullwidth
+    // substitutions are not the oracle for the user-requested native-font vertical mode.
+    @Test fun sourceVerticalInputsKeepRawTextAndUseNativeShapingInsteadOfLegacySubstitution() {
         for(id in listOf("TS-V01","TS-V02","TS-R01-vertical")) {
-            val fixture=source(id);val text=input(fixture.getValue("input").jsonObject);val actual=TypesetLayout.layout(text)
-            val expected=fixture.getValue("metrics").jsonObject.getValue("cols").jsonArray
-            assertEquals(expected.size,actual.lines.size,id)
-            expected.forEachIndexed{i,line->val cells=line.jsonArray;assertEquals(cells.size,actual.lines[i].cells.size,id)
-                cells.forEachIndexed{j,c->val e=c.jsonObject;val a=actual.lines[i].cells[j]
-                    assertEquals(e.getValue("displayCh").jsonPrimitive.content,a.token.display,"$id $i/$j")
-                    assertEquals(e.getValue("advance").jsonPrimitive.double,a.advance,.000001,"$id $i/$j")
-                    assertEquals(e.getValue("rotate").jsonPrimitive.boolean,a.token.rotate)
-                    assertEquals(e.getValue("style").jsonObject.getValue("fontSize").jsonPrimitive.double,a.token.style.fontSize)
-                }
-            }
-            val page=TypesetPage(assetId=newId(),name=id,texts=listOf(text));val image=TypesetRenderer.render(Files.readAllBytes(reference.resolve("synthetic-reference.png")),page)
+            val fixture=source(id);val text=input(fixture.getValue("input").jsonObject)
+            val original=documentJson.encodeToString(TypesetText.serializer(),text)
+            val actual=TypesetLayout.layout(text);val native=WindowsVerticalTypography.layout(text)
+            assertTrue(actual.vertical);assertEquals(native.width,actual.width);assertEquals(native.height,actual.height)
+            assertTrue(native.glyphs>0);assertTrue(native.parts.isNotEmpty())
+            val page=TypesetPage(assetId=newId(),name=id,texts=listOf(text))
+            val image=TypesetRenderer.render(Files.readAllBytes(reference.resolve("synthetic-reference.png")),page)
             try{ImageIO.write(image,"png",output.resolve("$id-native.png").toFile())}finally{image.flush()}
+            assertEquals(original,documentJson.encodeToString(TypesetText.serializer(),text),"Rendering never rewrites source text or source typography flags")
         }
     }
     @Test fun sourceHorizontalWrappingAndRichStyles() {

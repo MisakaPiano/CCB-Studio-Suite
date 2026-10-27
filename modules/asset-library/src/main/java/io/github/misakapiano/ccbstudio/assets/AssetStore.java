@@ -131,6 +131,7 @@ public final class AssetStore implements AutoCloseable {
     public Receipt put(Request request, InputStream input) throws IOException {
         Objects.requireNonNull(request); Objects.requireNonNull(input);
         return operation(() -> {
+            if (EditorSnapshotRetirement.retired(this, request.id())) throw new StoreException("CONFLICT", "Explicitly discarded editor identity cannot be reused");
             var existing = readInternal(request.id());
             if (existing.status() != ReadResult.Status.MISSING)
                 return replay(existing.require(), request, input);
@@ -291,6 +292,7 @@ public final class AssetStore implements AutoCloseable {
     private Recovery recoverOne(UUID id) {
         Path tx = transaction(id);
         try {
+            if (EditorSnapshotRetirement.retired(this,id)) return new Recovery(id,"EDITOR_RETIRED","Explicit editor deletion; transaction is not replayed");
             StoreIO.safeChain(tx);
             var request = io.read(tx.resolve("request.rec"), "request");
             if (request.status() != ReadResult.Status.VALID) return new Recovery(id, request.status().name(), request.detail());

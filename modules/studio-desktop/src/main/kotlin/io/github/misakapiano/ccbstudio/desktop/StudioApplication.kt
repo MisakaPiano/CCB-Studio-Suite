@@ -53,6 +53,13 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
     var llmId by mutableStateOf(state.creation!!.llmAccountId);private set
     var naiId by mutableStateOf(state.creation!!.naiAccountId);private set
     var view by mutableStateOf("创作")
+    fun navigate(destination:String){
+        if(busy||maintenance||destination==view)return
+        if(view=="编辑")run("保存编辑并切换页面") {
+            editor.drain()
+            withContext(scope.coroutineContext.minusKey(Job)){view=destination}
+        }else view=destination
+    }
     var section by mutableStateOf("Prompt")
     var message by mutableStateOf("草稿已读取")
     var problem by mutableStateOf<String?>(null)
@@ -567,7 +574,7 @@ internal class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
         Row(Modifier.fillMaxWidth().height(44.dp).background(Panel).onGloballyPositioned{r.title=r.rect(it);r.publish()},verticalAlignment=Alignment.CenterVertically) {
             Box(Modifier.width(40.dp).fillMaxHeight().onGloballyPositioned{r.icon=r.rect(it);r.publish()},contentAlignment=Alignment.Center){Image(StudioBrand.painter,"CCB 蓝色 logo",Modifier.size(24.dp))}
             if(showBrand)Text("Studio Suite",Modifier.width(120.dp),fontSize=14.sp)
-            studioRoutes.forEach {label -> StudioRouteButton(label,c.view==label,compact,Modifier.onGloballyPositioned{r.buttons[label]=r.rect(it);r.publish()},pending=label=="更新"&&c.updater.pendingVersion!=null){c.view=label;if(label=="更新")c.updater.dismissStartupNotice()} }
+            studioRoutes.forEach {label -> StudioRouteButton(label,c.view==label,compact,Modifier.onGloballyPositioned{r.buttons[label]=r.rect(it);r.publish()},pending=label=="更新"&&c.updater.pendingVersion!=null){c.navigate(label);if(label=="更新")c.updater.dismissStartupNotice()} }
             Spacer(Modifier.weight(1f))
             StudioAppearanceTitleButton(r){c.appearance.shown=true}
             listOf(ChromeHit.MINIMIZE,ChromeHit.MAXIMIZE,ChromeHit.CLOSE).forEach {hit ->

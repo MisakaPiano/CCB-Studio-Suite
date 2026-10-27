@@ -16,12 +16,16 @@ class TypesetRepository(private val workspace:StudioWorkspace) {
         workspace.save(workspace.state.copy(typesetProjects=workspace.state.typesetProjects+project));project
     }
     fun create(name:String,ids:List<String>):TypesetProject=workspace.operation {
+        val project=prepareCreate(name,ids)
+        workspace.save(workspace.state.copy(typesetProjects=workspace.state.typesetProjects+project));project
+    }
+    internal fun prepareCreate(name:String,ids:List<String>):TypesetProject=workspace.operation {
         require(name.length in 1..100 && ids.isNotEmpty() && ids.size<=1000)
         val prefs=workspace.state.typesetPreferences
         val document=TypesetDocument(thumbnailSize=prefs.queueThumbSize,queueWidth=prefs.sidebarWidth,pages=ids.map{id->val a=workspace.assets.read(UUID.fromString(id)).require();
             TypesetPage(assetId=id,name=a.request().name(),coordinates=TypesetImage.DISPLAY,story=prefs.storyDefault?:StoryStyle(),toolDefaults=prefs.batchToolDefault?.apply(TypesetMask()))})
         val project=TypesetProject(name=name,current=write(document))
-        workspace.save(workspace.state.copy(typesetProjects=workspace.state.typesetProjects+project));project
+        project
     }
     fun load(project:TypesetProject):TypesetDocument=workspace.operation {read(project.current)}
     fun view(id:String,revision:Long,currentPageId:String?,selected:List<String>):TypesetProject=workspace.operation {

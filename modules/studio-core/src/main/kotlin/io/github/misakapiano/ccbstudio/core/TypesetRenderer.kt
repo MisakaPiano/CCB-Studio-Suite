@@ -8,7 +8,7 @@ import kotlin.math.*
 /** Preview and export share this renderer. Original bytes are never replaced. */
 object TypesetRenderer {
     fun color(value:String):Color = TypesetColors.parse(value)
-    private fun quality(g:Graphics2D){g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_ON);g.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS,RenderingHints.VALUE_FRACTIONALMETRICS_ON);g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BICUBIC)}
+    internal fun quality(g:Graphics2D){g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_ON);g.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS,RenderingHints.VALUE_FRACTIONALMETRICS_ON);g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BICUBIC)}
     fun render(original:ByteArray,page:TypesetPage,variant:String="all"):BufferedImage {
         require(variant in setOf("all","text","mask","original"))
         val image=TypesetImage.decode(original,page.coordinates)
@@ -28,6 +28,13 @@ object TypesetRenderer {
             if(t.backgroundOpacity>0){g.composite=AlphaComposite.getInstance(AlphaComposite.SRC_OVER,t.backgroundOpacity.toFloat());g.color=color(t.background);g.fill(box)}
             if(t.borderWidth>0 && t.borderOpacity>0){g.composite=AlphaComposite.getInstance(AlphaComposite.SRC_OVER,t.borderOpacity.toFloat());g.color=color(t.border);g.stroke=BasicStroke(t.borderWidth.toFloat());g.draw(Rectangle2D.Double(left+t.borderWidth/2,t.y+t.borderWidth/2,max(0.0,layout.width-t.borderWidth),max(0.0,layout.height-t.borderWidth)))}
             g.composite=AlphaComposite.getInstance(AlphaComposite.SRC_OVER,t.opacity.toFloat())
+            if(t.vertical){
+                val native=WindowsVerticalTypography.layout(t);g.translate(left,t.y)
+                native.parts.forEach{part->val style=part.style
+                    if(!part.decoration&&style.strokeWidth>0){g.color=color(style.stroke);g.stroke=BasicStroke((style.strokeWidth*2).toFloat(),BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND);g.draw(part.outline)}
+                    g.color=color(style.fill);g.fill(part.outline)
+                };return
+            }
             val pitch=t.style.fontSize*t.lineHeight
             layout.lines.forEachIndexed{i,line->
                 var x=if(t.vertical)t.x+layout.width/2-pitch/2-i*pitch else when(t.align){"left"->left;"right"->left+layout.width-line.width;else->t.x-line.width/2}

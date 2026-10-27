@@ -25,6 +25,7 @@ object TypesetSourceExchange {
         require(bytes.size in 1..4*1024*1024);val root=documentJson.parseToJsonElement(bytes.decodeToString(throwOnInvalidSequence=true)).jsonObject
         require(root.s("app")=="image_typesetter_frontend_presets")
         if(root["version"]?.jsonPrimitive?.intOrNull!=1)throw DataProblem("UNSUPPORTED_VERSION","未知TypeSet预设版本，原文件保持不变")
+        val editorExtras=TypesetEditorExtrasStore.inspect(root)
         val raw=root.getValue("prefs").jsonObject;val texts=raw.a("textPresets");require(texts.size<=200)
         val selected=raw.s("selectedTextPresetId");var selectedId:String?=null
         val presets=texts.map{val p=it.jsonObject;val id=newId();if(p.s("id")==selected)selectedId=id;TypesetPreset(id=id,name=p.s("name"),text=TypesetPreferences.styleOnly(text(p.o("style"))))}
@@ -34,7 +35,7 @@ object TypesetSourceExchange {
         if(preferred !in TypesetPreferences.MASK_SLOTS+"custom")preferred="custom"
         val prefs=TypesetPreferences(presets,selectedId,raw["textDefaults"]?.takeUnless{it==JsonNull}?.let{TypesetPreferences.styleOnly(text(it.jsonObject))},overrides,preferred,settings(raw),
             exportFormat=raw.s("exportFormat","png").let{if(it=="original")"source"else it},preserveSourceMetadata=raw.b("preserveSourceMetadata",true),
-            exportVariants=listOf("original" to "original","maskOnly" to "mask","maskText" to "all","textOnly" to "text").filter{raw.o("exportVariantSelection").b(it.first,true)}.map{it.second},
+            exportVariants=listOf("original" to "original","maskOnly" to "mask","maskText" to "all","textOnly" to "text").filter{if(it.second=="original"&&TypesetEditorExtrasStore.KEY in root)editorExtras.originalCopies else raw.o("exportVariantSelection").b(it.first,true)}.map{it.second},
             sidebarWidth=raw.n("sidebarWidth",300.0).toInt(),queueThumbSize=raw.n("queueThumbSize",120.0).toInt(),
             storyDefault=raw["storybookDefaults"]?.takeUnless{it==JsonNull}?.let{story(it.jsonObject)},
             batchToolDefault=raw["batchToolDefaults"]?.takeUnless{it==JsonNull}?.let{settings(it.jsonObject)}).also{it.validate()}
@@ -42,24 +43,31 @@ object TypesetSourceExchange {
     }
     fun importPresets(workspace:StudioWorkspace,inspection:PresetInspection,merge:Boolean)=workspace.operation {
         val source=inspectPresets(inspection.bytes);val old=workspace.state.typesetPreferences
+        val incomingExtras=TypesetEditorExtrasStore.inspect(documentJson.parseToJsonElement(source.bytes.decodeToString()).jsonObject)
+        val oldExtras=TypesetEditorExtrasStore.load(workspace)
+        val extras=(if(merge)incomingExtras.copy(namedMasks=oldExtras.namedMasks+incomingExtras.namedMasks.map{it.copy(id=newId())})else incomingExtras).copy(autoMask=oldExtras.autoMask,lastProjectId=oldExtras.lastProjectId,projectSelectionRecorded=oldExtras.projectSelectionRecorded,projectRecords=oldExtras.projectRecords,outputs=oldExtras.outputs,retirements=oldExtras.retirements)
+        extras.validate()
         val next=if(merge)source.preferences.copy(textPresets=old.textPresets+source.preferences.textPresets,maskOverrides=old.maskOverrides+source.preferences.maskOverrides)else source.preferences
         next.validate();val id=UUID.randomUUID()
         workspace.assets.put(AssetStore.Request(id,"source.typesetter-presets.json",AssetStore.Kind.ORIGINAL,null,byteArrayOf(),TAG.toByteArray()),ByteArrayInputStream(source.bytes));workspace.assets.read(id).require()
         workspace.save(workspace.state.copy(typesetPreferences=next.copy(sourceExchangeId=id.toString())))
+        if((merge&&oldExtras.namedMasks.isNotEmpty())||oldExtras.autoMask!=null||oldExtras.lastProjectId!=null||incomingExtras.autoMask!=null||incomingExtras.lastProjectId!=null||oldExtras.projectSelectionRecorded||incomingExtras.projectSelectionRecorded||oldExtras.projectRecords.isNotEmpty()||incomingExtras.projectRecords.isNotEmpty()||oldExtras.outputs.isNotEmpty()||incomingExtras.outputs.isNotEmpty()||oldExtras.retirements.isNotEmpty()||incomingExtras.retirements.isNotEmpty())TypesetEditorExtrasStore.save(workspace,extras)
     }
     fun exportPresets(workspace:StudioWorkspace):ByteArray=workspace.operation {
         val prefs=workspace.state.typesetPreferences
+        val editorExtras=TypesetEditorExtrasStore.load(workspace).copy(originalCopies="original" in prefs.exportVariants,autoMask=null,lastProjectId=null,projectSelectionRecorded=false,projectRecords=emptyList(),outputs=emptyList(),retirements=emptyList())
         val raw=prefs.sourceExchangeId?.let{id->
             require(workspace.assets.read(UUID.fromString(id)).require().request().project().contentEquals(TAG.toByteArray()))
             documentJson.parseToJsonElement(workspace.bytes(id).decodeToString()).jsonObject.also{require(it.s("app")=="image_typesetter_frontend_presets")}
         }?:JsonObject(emptyMap())
         val result=buildJsonObject {raw.forEach{(k,v)->put(k,v)};put("app","image_typesetter_frontend_presets");put("version",1);put("exportedAt",System.currentTimeMillis())
+            put(TypesetEditorExtrasStore.KEY,documentJson.encodeToJsonElement(editorExtras))
             putJsonObject("prefs") {raw.o("prefs").forEach{(k,v)->if(k!="userMaskPreset")put(k,v)};settingsJson(prefs.currentMask).forEach{(k,v)->put(k,v)}
                 put("exportFormat",if(prefs.exportFormat=="source")"original"else prefs.exportFormat);put("preserveSourceMetadata",prefs.preserveSourceMetadata)
                 put("sidebarWidth",prefs.sidebarWidth);put("queueThumbSize",prefs.queueThumbSize)
                 put("storybookDefaults",prefs.storyDefault?.let{s->buildJsonObject{raw.o("prefs").o("storybookDefaults").forEach{(k,v)->put(k,v)};storyJson(TypesetPage(assetId="",name="",story=s)).filterKeys{it!="caption"}.forEach{(k,v)->put(k,v)}}}?:JsonNull)
                 put("batchToolDefaults",prefs.batchToolDefault?.let(::settingsJson)?:JsonNull)
-                putJsonObject("exportVariantSelection"){listOf("original" to "original","maskOnly" to "mask","maskText" to "all","textOnly" to "text").forEach{(source,native)->put(source,native in prefs.exportVariants)}}
+                putJsonObject("exportVariantSelection"){listOf("original" to "original","maskOnly" to "mask","maskText" to "all","textOnly" to "text").forEach{(source,native)->put(source,if(source=="original")editorExtras.originalSorted else native in prefs.exportVariants)}}
                 put("preferredPreset",prefs.preferredMaskSlot);put("selectedTextPresetId",prefs.selectedTextPresetId.orEmpty());put("textDefaults",prefs.textDefault?.let(::textJson)?:JsonNull)
                 putJsonObject("presetOverrides"){prefs.maskOverrides.forEach{(k,v)->put(k,settingsJson(v))}}
                 putJsonArray("textPresets"){prefs.textPresets.forEach{p->add(buildJsonObject{put("id",p.id);put("name",p.name);put("style",textJson(p.text))})}}

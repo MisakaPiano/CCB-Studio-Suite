@@ -4,17 +4,18 @@ package io.github.misakapiano.ccbstudio.core
  * All previous-page sources come from the input snapshot, never the evolving result. */
 object TypesetBatch {
     fun apply(document:TypesetDocument, selected:Set<String>, previous:Boolean,
-              currentText:TypesetText?, currentMask:TypesetMask, imageWidth:(TypesetPage)->Int):TypesetDocument {
+              currentText:TypesetText?, currentMask:TypesetMask, kind:String="both", imageWidth:(TypesetPage)->Int):TypesetDocument {
+        require(kind in setOf("text","mask","both"))
         val pages=document.pages.mapIndexed { index, page ->
             if(page.id !in selected || previous && index==0) return@mapIndexed page
             val source=if(previous)document.pages[index-1]else null
             val maskStyle=if(previous)source!!.toolDefaults?:source.masks.firstOrNull()else currentMask
-            val texts=page.texts.mapIndexed { i,target ->
+            val texts=if(kind=="mask")page.texts else page.texts.mapIndexed { i,target ->
                 val style=if(previous)source!!.texts.getOrNull(minOf(i,source.texts.lastIndex))else currentText
                 if(style==null)target else style.copy(id=target.id,text=target.text,x=target.x,y=target.y,
                     visible=target.visible,locked=target.locked,width=maxOf(20.0,minOf(style.width,imageWidth(page)*.95)))
             }
-            page.copy(texts=texts,toolDefaults=maskStyle?:page.toolDefaults,masks=page.masks.map { mask ->
+            page.copy(texts=texts,toolDefaults=if(kind=="text")page.toolDefaults else maskStyle?:page.toolDefaults,masks=if(kind=="text")page.masks else page.masks.map { mask ->
                 if(maskStyle==null)mask else mask.copy(effect=maskStyle.effect,strength=maskStyle.strength,
                     size=if(mask.shape=="brush")maskStyle.size else mask.size,
                     density=if(mask.shape=="brush")maskStyle.density else mask.density,

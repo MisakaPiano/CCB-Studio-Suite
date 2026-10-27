@@ -14,17 +14,20 @@ import javax.imageio.ImageIO
 @Serializable data class TypesetExportFile(val name:String,val size:Long,val sha256:String)
 @Serializable data class TypesetExportReceipt(val version:Int=3,val projectId:String,val revision:Long,val mode:String,val variant:String,val format:String,
     val pageIds:List<String>,val files:List<TypesetExportFile>,val variants:List<String> = listOf(variant),val metadataStatuses:Map<String,String> = emptyMap(),val assetIds:Map<String,String> = emptyMap())
-data class TypesetExportRequest(val pageIds:List<String>,val variant:String="all",val format:String="png",val zip:Boolean=false,val pdf:Boolean=false, val variants:List<String> = listOf(variant),val metadata:String="preserve",val includeRecipe:Boolean=false)
+data class TypesetExportRequest(val pageIds:List<String>,val variant:String="all",val format:String="png",val zip:Boolean=false,val pdf:Boolean=false, val variants:List<String> = listOf(variant),val metadata:String="preserve",val includeRecipe:Boolean=false,val categoryNames:Boolean=false,val filePrefix:String="")
 data class TypesetExportProgress(val stage:String,val completed:Int,val total:Int,val currentFile:String?=null)
 
 /** A fresh output directory is published only after every file and completion receipt is durable.
  * Failed staging directories remain identifiable and never replace a user's previous export. */
 object TypesetExport {
+    fun validPrefix(value:String)=value.isEmpty() || value.length<=80&&Regex("[\\p{L}\\p{N} _.-]+").matches(value)&&value.last() !in " ."
+    private fun category(key:String)=when(key){"plain"->"01_原始排序";"mask"->"02_仅打码";"all"->"03_打码并嵌字";"text"->"04_仅嵌字";else->"原图副本"}
     fun create(workspace:StudioWorkspace,project:TypesetProject,document:TypesetDocument,parent:Path,request:TypesetExportRequest,
         progress:(TypesetExportProgress)->Unit={},
         hook:(String)->Unit={}):Path=workspace.operation {
         document.validate();require(Files.isDirectory(parent,LinkOption.NOFOLLOW_LINKS)){"Select an existing destination directory"}
-        require(request.variants.isNotEmpty() && request.variants.distinct().size==request.variants.size && request.variants.all{it in setOf("all","text","mask","original")} && request.format in setOf("png","jpeg","webp","source"))
+        require(request.variants.isNotEmpty() && request.variants.distinct().size==request.variants.size && request.variants.all{it in setOf("plain","all","text","mask","original")} && request.format in setOf("png","jpeg","webp","source"))
+        require(validPrefix(request.filePrefix)){"文件名前缀只支持文字、数字、空格、下划线、点和短横线，且不能以空格或点结尾"}
         require(request.metadata in setOf("preserve","strip"))
         require(request.pageIds.isNotEmpty() && request.pageIds.distinct().size==request.pageIds.size)
         val selected=request.pageIds.toSet();val pages=document.pages.filter{it.id in selected};require(pages.size==selected.size)
@@ -42,12 +45,12 @@ object TypesetExport {
             val pdf=if(request.pdf)RasterBookPdf(staging.resolve("book.pdf"),pages.size)else null
             try {
                 for(variant in request.variants) {
-                    val directory=if(request.variants.size==1)staging else Files.createDirectory(staging.resolve(variant))
+                    val directory=if(request.variants.size==1&&!request.categoryNames)staging else Files.createDirectory(staging.resolve(if(request.categoryNames){if(document.mode=="storybook")"小人书完整页"else category(variant)}else variant))
                     pages.forEach{page->
                         report("GENERATING")
                         hook("BEFORE_PAGE")
                         val index=document.pages.indexOfFirst{it.id==page.id}
-                        val number=TypesetQueue.number(document,index)
+                        val number=(if(request.filePrefix.isEmpty())""else request.filePrefix+"_")+TypesetQueue.number(document,index)
                         val pending=if(variant=="original")directory.resolve(".$number.original.pending")else null
                         // Original delivery needs a signature, not a second whole encoded image.
                         // Rendered variants keep the existing full decode/metadata pipeline.
@@ -58,7 +61,7 @@ object TypesetExport {
                         val status=if(variant=="original"){Files.move(requireNotNull(pending),file);"original-byte-identical"}
                         else {
                             val source=if(document.mode!="storybook" && request.metadata=="preserve")TypesetPngMetadata.extract(original)else null
-                            val image=if(document.mode=="storybook")TypesetRenderer.story(original,page,document.startNumber+index) else TypesetRenderer.render(original,page,variant)
+                            val image=if(document.mode=="storybook")TypesetRenderer.story(original,page,document.startNumber+index) else TypesetRenderer.render(original,page,if(variant=="plain")"original"else variant)
                             try {
                                 if(document.mode=="storybook"){writeImage(file,image,format);pdf?.page(image);"composite"}
                                 else if(request.metadata=="strip"){
@@ -97,7 +100,7 @@ object TypesetExport {
             }
             report("RETAINING")
             origins.forEach{(file,origin)->report("RETAINING",staging.relativize(file).toString());val expected=identity(file,staging);assetIds[expected.name]=SharedAssets.retain(workspace,file,expected,origin);hook("ASSET_RETAINED")}
-            val receipt=TypesetExportReceipt(assetIds=assetIds,projectId=project.id,revision=project.revision,mode=document.mode,variant=if(request.variants.size==1)request.variants.single()else"multiple",format=request.format,pageIds=pages.map{it.id},files=outputs.map{identity(it,staging)},variants=request.variants,metadataStatuses=statuses)
+            val receipt=TypesetExportReceipt(version=if(request.categoryNames||request.filePrefix.isNotEmpty()||"plain" in request.variants)4 else 3,assetIds=assetIds,projectId=project.id,revision=project.revision,mode=document.mode,variant=if(request.variants.size==1)request.variants.single()else"multiple",format=request.format,pageIds=pages.map{it.id},files=outputs.map{identity(it,staging)},variants=request.variants,metadataStatuses=statuses)
             report("PUBLISHING")
             val marker=staging.resolve("COMPLETE.json");Files.writeString(marker,documentJson.encodeToString(receipt),StandardOpenOption.CREATE_NEW);force(marker)
             hook("BEFORE_PUBLISH")
@@ -111,8 +114,13 @@ object TypesetExport {
     fun verify(directory:Path):TypesetExportReceipt {
         require(!directory.fileName.toString().endsWith(".incomplete")){"Unpublished export"}
         val receipt=documentJson.decodeFromString<TypesetExportReceipt>(readBounded(directory.resolve("COMPLETE.json"),4*1024*1024).decodeToString())
-        require(receipt.version in 1..3 && receipt.files.isNotEmpty() && receipt.files.size<=8002 && receipt.files.map{it.name}.distinct().size==receipt.files.size)
-        receipt.files.forEach{expected->require(Regex("(?:(?:all|mask|text|original)/)?[A-Za-z0-9._-]+").matches(expected.name) && expected.name!="." && expected.name!="..");val path=directory.resolve(expected.name);safePath(path);require(Files.isRegularFile(path,LinkOption.NOFOLLOW_LINKS));require(identity(path,directory)==expected){"Export checksum mismatch"}}
+        require(receipt.version in 1..4 && receipt.files.isNotEmpty() && receipt.files.size<=(if(receipt.version>=4)10002 else 8002) && receipt.files.map{it.name}.distinct().size==receipt.files.size)
+        val folders=setOf("all","mask","text","original","plain","小人书完整页")+listOf("plain","mask","all","text","original").map(::category)
+        receipt.files.forEach{expected->
+            val parts=expected.name.split('/');require(parts.size in 1..2 && (parts.size==1||parts.first() in folders))
+            val leaf=parts.last();require(Regex("[\\p{L}\\p{N} _.-]{1,180}").matches(leaf)&&leaf!="."&&leaf!=".."&&leaf.last() !in " .")
+            val path=directory.resolve(expected.name);safePath(path);require(Files.isRegularFile(path,LinkOption.NOFOLLOW_LINKS));require(identity(path,directory)==expected){"Export checksum mismatch"}
+        }
         return receipt
     }
     private fun identity(path:Path,base:Path):TypesetExportFile {

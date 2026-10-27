@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.*
 import androidx.compose.ui.input.key.*
 import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.focus.*
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.*
 import androidx.compose.ui.text.TextRange
@@ -24,46 +25,58 @@ import androidx.compose.ui.unit.*
 import com.example.chatbar.desktop.*
 import io.github.misakapiano.ccbstudio.core.*
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.conflate
+import kotlinx.coroutines.flow.first
 import java.awt.GraphicsEnvironment
 import kotlin.math.*
 
 @Composable internal fun TypesetWorkspace(c:WorkbenchController) {
-    var picking by remember{mutableStateOf(false)}
     var appendPicking by remember{mutableStateOf(false)}
-    val e=c.editor;var newName by remember{mutableStateOf("")};var creating by remember{mutableStateOf(false)}
+    val e=c.editor;var creating by remember{mutableStateOf(false)}
+    LaunchedEffect(e){snapshotFlow{c.busy}.first{!it};e.resumeLastProject()}
+    LaunchedEffect(c.state.typesetPreferences.sourceExchangeId){e.refreshEditorExtras().join()}
     var projectAction by remember{mutableStateOf<String?>(null)};var projectName by remember{mutableStateOf("")};
     var deletePages by remember{mutableStateOf(false)};var tab by remember{mutableStateOf("画布")}
-    var management by remember{mutableStateOf(false)}
+    var autoMaskInfo by remember{mutableStateOf(false)}
+    var archiveProject by remember{mutableStateOf(false)}
+    var projectHistory by remember{mutableStateOf(false)}
+    var localProjects by remember{mutableStateOf(false)}
+    var fileHelp by remember{mutableStateOf<String?>(null)}
+    LaunchedEffect(e.objectId){
+        // Selecting a layer must keep its lock/order commands in view.
+        if(e.propertySection!="图层") {
+            if(e.text!=null)e.propertySection="文字"
+            else if(e.mask!=null)e.propertySection="打码"
+        }
+    }
     var exporting by remember{mutableStateOf(false)};var fullPreview by remember{mutableStateOf(false)}
-    if(picking)SharedAssetPicker(c,true,{picking=false}){ids->c.selection=ids.toSet();creating=true}
+    var fullPreviewPage by remember{mutableStateOf<String?>(null)}
     if(appendPicking)SharedAssetPicker(c,true,{appendPicking=false}){ids->e.appendSelected(confirmedIds=ids)}
-    if(fullPreview)TypesetFullPreview(c){fullPreview=false}
+    if(fullPreview)TypesetFullPreview(c,fullPreviewPage){fullPreview=false;fullPreviewPage=null}
+    if(autoMaskInfo)TypesetAutoMaskDialog(c,e){autoMaskInfo=false}
+    if(archiveProject)TypesetProjectArchiveDialog(c,e){archiveProject=false}
+    if(creating)TypesetProjectPlacementDialog(c,e,false){creating=false}
+    if(localProjects)TypesetLocalProjects(c,e){localProjects=false}
+    fileHelp?.let{kind->TypesetProjectFileHelp(c,kind,{fileHelp=null}){if(kind=="export")e.exportExchange()else if(kind=="import")e.inspectExchange()}}
+    if(e.deletionPlan!=null)TypesetProjectDeleteDialog(c,e)
     Column(Modifier.fillMaxSize()) {
-        StudioActions {
-            CompactChoice("编辑工程",c.state.typesetProjects.map{if(it.id==e.project?.id)e.project!!else it},e.project,{it.name}){e.open(it.id)}
-            StudioAction("新建编辑工程",!c.busy){creating=true}
-            if(e.project!=null)StudioAction("从资产库追加",!c.busy){appendPicking=true}
-            StudioAction("撤销编辑",!c.busy && (e.dirty || e.project?.undo?.isNotEmpty()==true)){e.history()}
-            StudioAction("重做编辑",!c.busy && e.project?.redo?.isNotEmpty()==true){e.history(true)}
-            StudioAction("预览与导出",!c.busy && e.document?.pages?.isNotEmpty()==true){exporting=true}
-            StatusText(if(e.dirty)"编辑待保存"else"编辑已保存")
-            StudioAction("工程选项",selected=management){management=!management}
-        }
-        if(management)Column(Modifier.fillMaxWidth().heightIn(max=240.dp).verticalScroll(rememberScrollState())) {
-            StudioActions {
-            StudioAction("从资产库新建",!c.busy){picking=true}
-            StudioAction("导入 TypeSet 工程",!c.busy){e.inspectExchange()}
-            if(e.project!=null){StudioAction("重命名工程",!c.busy){projectName=e.project!!.name;projectAction="rename"};StudioAction("另存工程",!c.busy){projectName=e.project!!.name+" 副本";projectAction="copy"};StudioAction("删除工程",!c.busy){projectAction="remove"}}
-            StudioAction("保存工程",e.dirty && !c.busy){c.run("保存工程"){e.drain()}}
-            StudioAction("完整预览",!c.busy && e.document?.pages?.isNotEmpty()==true){fullPreview=true}
-            StudioAction("导入编辑 Recipe",!c.busy && e.page!=null){e.inspectRecipe()}
-            }
-        if(e.project!=null)StudioDisclosure("工程交换文件") {
-            Text("包含原始图片和可编辑内容。TypeSet不支持的锁定与混合层序保存在Studio扩展中；外部TypeSet按其原有先打码后文字规则显示。字体文件不自动再分发。")
-            StudioActions {StudioAction("导出当前 TypeSet 工程",!c.busy){e.exportExchange()};StudioAction("另存导入原文件",!c.busy && e.project?.sourceExchangeId!=null){e.exportExchange(true)}}
-        }
-            StudioDisclosure("编辑说明") { Text("编辑结果自动保存；动画图片仅编辑首帧或默认图，原始文件保留。") }
-        }
+        TypesetProjectToolbar(c,e,projectHistory){command->when(command){
+            "new"->{projectHistory=false;creating=true}
+            "local"->{projectHistory=false;localProjects=true}
+            "history"->projectHistory=true
+            "append"->appendPicking=true
+            "archive"->archiveProject=true
+            "discard"->e.project?.let{e.prepareDeletion(it.id)}
+            "collapse"->e.collapseCurrent()
+            "rename","copy","remove"->{projectName=e.project?.name.orEmpty()+if(command=="copy")" 副本"else"";projectAction=command}
+            "save"->c.run("保存工程"){e.drain()}
+            "import","export","info"->{if(command=="import")projectHistory=false;fileHelp=command}
+            "recipe"->e.inspectRecipe()
+            "source"->e.exportExchange(true)
+        }}
+        TypesetProjectCleanupNotices(c,e)
+        if(projectHistory)TypesetProjectHistory(c,e,Modifier.weight(1f)){projectHistory=false}
+        else {
         e.exportProgress?.let{progress->
             if(c.busy&&c.activeOperation in setOf("导出编辑工程","复制批量输出文件"))StudioAction("停止导出"){c.active?.cancel()}
             Column(Modifier.fillMaxWidth().padding(horizontal=12.dp,vertical=6.dp)) {
@@ -94,12 +107,27 @@ import kotlin.math.*
         e.exchangeMessage?.let{Text(it,modifier=Modifier.padding(horizontal=12.dp))}
         if(e.document==null) {
             Box(Modifier.fillMaxSize(),contentAlignment=Alignment.Center){Column(horizontalAlignment=Alignment.CenterHorizontally){Text("把图片编成可再次编辑的工程");Text("从图库选择图片，命名后建立队列；原件保持完整。")
-                StudioAction("前往图库选择图片"){c.view="图库"};if(c.state.typesetProjects.isNotEmpty())StudioAction("继续最近工程"){e.open(c.state.typesetProjects.last().id)}}}
+                Text("使用上方新建按钮；已有工程从工程菜单打开。",style=MaterialTheme.typography.caption)}}
         }else {
-            StudioActions {StudioChips("工作模式",listOf("editor","storybook"),e.document!!.mode,{if(it=="editor")"图片编辑"else"小人书"}){mode->e.change{it.copy(mode=mode)}}
-                StudioChips("工具",listOf("select","rect","brush","lasso","pan"),e.tool,{when(it){"select"->"选择 / 移动";"rect"->"矩形";"brush"->"画笔";"lasso"->"圈选";else->"平移"}}){e.tool=it}
-                StudioAction("−"){e.zoom=(e.zoom/1.25f).coerceAtLeast(.25f)};StudioAction("适应"){e.zoom=1f};StudioAction("＋"){e.zoom=(e.zoom*1.25f).coerceAtMost(8f)}
+            Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()).padding(horizontal=8.dp,vertical=6.dp),horizontalArrangement=Arrangement.spacedBy(6.dp),verticalAlignment=Alignment.CenterVertically) {
+                EditorCommand("图片编辑",!c.busy,TypesetIcons.Image,selected=e.document!!.mode=="editor"){e.change{it.copy(mode="editor")}}
+                EditorCommand("小人书",!c.busy,TypesetIcons.Book,selected=e.document!!.mode=="storybook"){e.change{it.copy(mode="storybook")}}
+                Divider(Modifier.height(22.dp).width(1.dp));Spacer(Modifier.width(2.dp))
+                listOf("select","rect","brush","lasso","pan").forEach{tool->
+                    val label=when(tool){"select"->"选择／移动对象";"rect"->"矩形";"brush"->"画笔";"lasso"->"圈选";else->"平移画布"}
+                    val icon=when(tool){"select"->TypesetIcons.Select;"rect"->TypesetIcons.Rectangle;"brush"->TypesetIcons.Brush;"lasso"->TypesetIcons.Lasso;else->TypesetIcons.Pan}
+                    EditorCommand(label,!c.busy,icon,selected=e.tool==tool){e.tool=tool;if(tool in setOf("rect","brush","lasso")){e.objectId=null;e.propertySection="打码"}}
+                    if(tool=="select"){
+                        val source=e.canvasSource?.takeIf{it.pageId==e.pageId&&it.assetId==e.page?.assetId}
+                        EditorCommand("添加文字",source!=null&&!c.busy&&e.document!!.mode=="editor",TypesetIcons.Text){source?.let{e.addText(it.width,it.height)}}
+                    }
+                }
+                if(e.document!!.mode=="editor")EditorCommand("AI 自动打码",!c.busy,TypesetIcons.AutoMask){e.autoMask.runConfigured{autoMaskInfo=true}}
+                EditorCommand("AI 打码设置",!c.busy,DesktopAppIcons.Settings){autoMaskInfo=true}
+                if(c.busy&&c.activeOperation=="AI 自动打码")EditorCommand("取消 AI 识别"){c.active?.cancel()}
             }
+            Text(when(e.tool){"select"->"选择／移动对象：拖动文字和打码对象；底图固定";"pan"->"平移画布：拖动视图；滚轮缩放；0 适应画布";else->"在画布拖动绘制；Ctrl+Z 撤销，Ctrl+Shift+Z 重做"},Modifier.fillMaxWidth().padding(horizontal=10.dp,vertical=5.dp),style=MaterialTheme.typography.caption)
+            Divider()
             BoxWithConstraints(Modifier.weight(1f).fillMaxWidth()) {
                 val density=LocalDensity.current
                 val availableWidth=maxWidth.value
@@ -110,7 +138,7 @@ import kotlin.math.*
                     if(compact)StudioChips("",listOf("队列","画布","属性"),tab,{it}){tab=it}
                     Row(Modifier.weight(1f).fillMaxWidth()) {
                         if(!compact || tab=="队列")Column(if(compact)Modifier.fillMaxSize()else Modifier.width((queueDragWidth?:e.document!!.queueWidth.toFloat()).dp).fillMaxHeight()) {
-                            TypesetQueue(c,e,Modifier.weight(1f))
+                            TypesetQueue(c,e,Modifier.weight(1f)){id->fullPreviewPage=id;fullPreview=true}
                             StudioDisclosure("页面操作") {
                             StudioDisclosure("队列设置") {
                                 NumberField("开始编号",e.document!!.startNumber.toDouble(),0.0..1000000.0){v->e.change{it.copy(startNumber=v.toInt())}}
@@ -119,28 +147,41 @@ import kotlin.math.*
                                 NumberField("队列栏宽度",e.document!!.queueWidth.toDouble(),180.0..720.0){v->e.change{it.copy(queueWidth=v.toInt())}}
                                 StudioAction("记住新工程队列尺寸",!c.busy){e.rememberQueueDefaults()}
                             }
-                            StudioActions{StudioAction("全选页"){e.selectedPages=e.document!!.pages.map{it.id}.toSet()};StudioAction("全不选页"){e.selectedPages=emptySet()};StudioAction("反选页"){e.selectedPages=e.document!!.pages.map{it.id}.toSet()-e.selectedPages}}
+
                             StudioActions{StudioAction("上移页"){e.movePages(-1)};StudioAction("下移页"){e.movePages(1)};StudioAction("移除所选页",e.selectedPages.isNotEmpty()){deletePages=true}}
                             StudioActions{StudioAction("置顶页"){e.movePagesTo(null,false)};StudioAction("置底页"){e.movePagesTo(null,true)};StudioAction("追加图库所选",c.selection.isNotEmpty() && !c.busy){e.appendSelected()}}
                             }
                             StatusText("${e.selectedPages.size} 页已选 / ${e.document!!.pages.size} 页")
                         }
-                        if(!compact)Box(Modifier.width(6.dp).fillMaxHeight().background(if(queueDragWidth!=null)Gold else Panel)
+                        if(!compact)Box(Modifier.width(8.dp).fillMaxHeight().background(if(queueDragWidth!=null)Gold else MaterialTheme.colors.onSurface.copy(alpha=.12f))
+                            .pointerHoverIcon(PointerIcon(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.E_RESIZE_CURSOR)))
                             .semantics{contentDescription="调整队列栏宽度"}
                             .pointerInput(e.project?.id,c.busy,c.maintenance,availableWidth){detectDragGestures(
                                 onDragStart={if(!c.busy&&!c.maintenance)queueDragWidth=e.document!!.queueWidth.toFloat()},
                                 onDragCancel={queueDragWidth=null},
                                 onDragEnd={queueDragWidth?.let{width->e.change{it.copy(queueWidth=width.roundToInt())}};queueDragWidth=null},
-                                onDrag={change,amount->queueDragWidth?.let{width->change.consume();queueDragWidth=(width+amount.x/density.density).coerceIn(220f,minOf(720f,availableWidth-706f))}}
+                                onDrag={change,amount->queueDragWidth?.let{width->change.consume();queueDragWidth=(width+amount.x/density.density).coerceIn(220f,minOf(720f,availableWidth-726f))}}
                             )})
-                        if(!compact || tab=="画布")Box(Modifier.weight(1f).fillMaxHeight().background(Ink)){TypesetCanvas(c,e)}
-                        if(!compact || tab=="属性")Column((if(compact)Modifier.fillMaxSize()else Modifier.width(300.dp).fillMaxHeight()).background(Panel).padding(12.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(8.dp)) {
-                            if(e.document!!.mode=="storybook")StoryProperties(c,e)else TypesetProperties(c,e)
+                        if(!compact || tab=="画布")Box(Modifier.weight(1f).fillMaxHeight().background(Ink)){TypesetCanvas(c,e,{fullPreviewPage=null;fullPreview=true},{exporting=true})}
+                        if(!compact || tab=="属性")Column((if(compact)Modifier.fillMaxSize()else Modifier.width(288.dp).fillMaxHeight()).background(Panel).padding(10.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
+                            if(e.document!!.mode=="editor") {
+                                Text("编辑属性",style=MaterialTheme.typography.subtitle1)
+                                Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(5.dp)) {
+                                    listOf("文字","打码","图层","预设").forEach{section->EditorCommand(section,selected=e.propertySection==section,modifier=Modifier.weight(1f)){e.propertySection=section}}
+                                }
+                                Divider()
+                            }
+                            key(e.propertySection,e.document!!.mode) {
+                                Column(Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(8.dp)) {
+                                    if(e.document!!.mode=="storybook")StoryProperties(c,e)else TypesetProperties(c,e,e.propertySection){e.propertySection=it}
+                                }
+                            }
                         }
                     }
                 }
             }
         }
+    }
     }
     if(exporting)TypesetExportDialog(c,e){exporting=false}
     e.recipeInspection?.let{r->AlertDialog(onDismissRequest={e.cancelRecipe()},title={Text("应用编辑 Recipe 到当前页？")},text={Column{
@@ -150,14 +191,13 @@ import kotlin.math.*
     }},confirmButton={TextButton(enabled=!c.busy,onClick={e.applyRecipe()}){Text("确认应用编辑 Recipe")}},dismissButton={TextButton(onClick={e.cancelRecipe()}){Text("取消 Recipe 导入")}})}
     e.exchangeInspection?.let{inspection->AlertDialog(onDismissRequest={e.cancelExchange()},title={Text("确认导入 TypeSet 工程")},text={Column{
         Text("${inspection.name} · ${inspection.document.pages.size} 页 · ${inspection.bytes.size} bytes")
-        Text("将新建独立工程，不替换当前工程或图片。")
+        Text("内含原图与当前文字、打码、排版和页面顺序；将新建独立工程，不替换当前工程或图片。字体文件、模型和本机撤销历史不导入。")
         inspection.notes.forEach{Text(it)}
-    }},confirmButton={TextButton(enabled=!c.busy,onClick={e.importExchange()}){Text("建立独立导入工程")}},dismissButton={TextButton(onClick={e.cancelExchange()}){Text("取消导入")}})}
-    if(projectAction!=null)AlertDialog(onDismissRequest={projectAction=null},title={Text(when(projectAction){"rename"->"重命名工程";"copy"->"另存为独立工程";else->"删除工程记录？"})},text={Column{
-        if(projectAction=="remove")Text("只移除此工程记录；图库原件与已保存资产保留。删除后不能通过工程撤销恢复，请先备份或另存。")
+    }},confirmButton={TextButton(enabled=!c.busy,onClick={e.importExchange()}){Text("导入为新工程")}},dismissButton={TextButton(onClick={e.cancelExchange()}){Text("取消导入")}})}
+    if(projectAction!=null)AlertDialog(onDismissRequest={projectAction=null},title={Text(when(projectAction){"rename"->"重命名工程";"copy"->"另存为独立工程";else->"移出工程列表？"})},text={Column{
+        if(projectAction=="remove")Text("只隐藏此工程入口；工程编号、原图关联及编辑历史仍保留，不删除本地文件。")
         else {OutlinedTextField(projectName,{projectName=it.take(100)},label={Text("新工程名称")});if(projectAction=="copy")Text("保留当前页面与图层，新工程有独立历史；后续修改互不影响。")}
     }},confirmButton={TextButton(enabled=projectAction=="remove" || projectName.isNotBlank(),onClick={e.manageProject(projectAction!!,projectName);projectAction=null}){Text("确认工程操作")}},dismissButton={TextButton(onClick={projectAction=null}){Text("取消")}})
-    if(creating)AlertDialog(onDismissRequest={creating=false},title={Text("新建编辑工程")},text={Column{OutlinedTextField(newName,{newName=it.take(100)},label={Text("工程名称")});Text("将图库选中的 ${c.selection.size} 张图片加入独立队列；编辑不覆盖原件。")}},confirmButton={TextButton(enabled=newName.isNotBlank() && c.selection.isNotEmpty(),onClick={e.create(newName,c.assets.filter{it.request().id().toString() in c.selection}.map{it.request().id().toString()});creating=false;newName=""}){Text("建立工程")}},dismissButton={TextButton(onClick={creating=false}){Text("取消")}})
     e.staticChoice?.let{choice->AlertDialog(onDismissRequest=e::cancelStaticChoice,title={Text("动画图片的静态编辑确认")},
         text={Text("所选 ${choice.ids.size} 张含动画格式。GIF/动态WebP仅编辑首帧；APNG使用默认静态图，伪装APNG的默认图可能只是封面。需要真实内容时先返回图库使用APNG还原。原始动画文件保留，编辑导出不会保留动画。")},
         confirmButton={TextButton(enabled=!c.busy,onClick=e::confirmStaticChoice){Text("同意仅编辑静态图")}},
@@ -165,24 +205,53 @@ import kotlin.math.*
     if(deletePages)AlertDialog(onDismissRequest={deletePages=false},title={Text("从工程移除 ${e.selectedPages.size} 页？")},text={Text("图库原件保留，可撤销恢复页面与编辑内容。")},confirmButton={TextButton(onClick={e.removePages();deletePages=false}){Text("移除页面")}},dismissButton={TextButton(onClick={deletePages=false}){Text("取消")}})
 }
 
+private val editorPreviewDispatcher=Dispatchers.IO.limitedParallelism(1)
+private data class EditorPreviewRequest(val page:TypesetPage?,val number:Int,val changingObject:String?)
 private data class EditorRaster(val bitmap:ImageBitmap,val width:Int,val height:Int,val page:TypesetPage,val mode:String?)
-@Composable private fun TypesetCanvas(c:WorkbenchController,e:TypesetEditorController) {
+@Composable private fun TypesetCanvas(c:WorkbenchController,e:TypesetEditorController,preview:()->Unit,export:()->Unit) {
     val page=e.page;val mode=e.document?.mode;var error by remember{mutableStateOf<String?>(null)}
     var draftMask by remember(page?.id){mutableStateOf<TypesetMask?>(null)};var dragText by remember(page?.id){mutableStateOf<TypesetText?>(null)}
     var dragMask by remember(page?.id){mutableStateOf<TypesetMask?>(null)}
     val previewPage=page?.copy(texts=page.texts.map{if(it.id==dragText?.id)dragText!!else it},
         masks=page.masks.map{if(it.id==dragMask?.id)dragMask!!else it}+listOfNotNull(draftMask?.takeIf{it.shape!="lasso" || it.points.size>=3}))
-    val raster by produceState<EditorRaster?>(null,previewPage,mode,e.document?.startNumber) {
-        error=null
-        try{value=withContext(Dispatchers.IO){previewPage?.let{p->val image=typesetPreviewRaster(c.workspace,p,mode=="storybook",e.document!!.startNumber+e.document!!.pages.indexOf(p))
-            try{EditorRaster(image.toComposeImageBitmap(),image.width,image.height,p,mode)}finally{image.flush()}}}}
-        catch(e:CancellationException){throw e}catch(ex:Exception){error="页面暂无法绘制：${ex.message}";value=null}
+    val latestRequest by rememberUpdatedState(EditorPreviewRequest(previewPage,
+        (e.document?.startNumber?:1)+(e.document?.pages?.indexOfFirst{it.id==page?.id}?:0),
+        draftMask?.id?:dragText?.id?:dragMask?.id?:e.objectId))
+    // One page owns one worker/session. Pointer events conflate instead of cancelling
+    // non-cooperative Java2D work and decoding/repainting every existing mask again.
+    val raster by produceState<EditorRaster?>(null,page?.id,page?.assetId,page?.coordinates,mode) {
+        value=null;error=null
+        withContext(editorPreviewDispatcher) {
+            var session:TypesetPreviewSession?=null
+            val fonts=TypesetPreviewFonts(c.workspace)
+            try {
+                snapshotFlow{latestRequest}.conflate().collect{request->
+                    val p=request.page
+                    if(p!=null)try {
+                        if(mode=="editor"&&value?.page==p)return@collect
+                        val image=if(mode=="storybook")typesetPreviewRaster(c.workspace,p,true,request.number)else {
+                            fonts.ensure(p)
+                            val engine=session?:TypesetPreviewSession(c.workspace.bytes(p.assetId),p.coordinates).also{session=it}
+                            engine.render(p,request.changingObject)
+                        }
+                        try{currentCoroutineContext().ensureActive();val bitmap=image.toComposeImageBitmap();currentCoroutineContext().ensureActive();e.canvasSource=TypesetCanvasSource(p.id,p.assetId,image.width,image.height);value=EditorRaster(bitmap,image.width,image.height,p,mode);error=null}finally{image.flush()}
+                    }catch(cancelled:CancellationException){throw cancelled}catch(ex:Exception){error="页面暂无法绘制：${ex.message}"}
+                }
+            }finally{session?.close()}
+        }
     }
-    var pan by remember(page?.id){mutableStateOf(Offset.Zero)};var frame by remember{mutableStateOf(IntSize.Zero)}
+    var pan by remember(page?.id,e.viewportReset){mutableStateOf(Offset.Zero)};var frame by remember{mutableStateOf(IntSize.Zero)}
+    val focus=remember{FocusRequester()}
     var origin by remember{mutableStateOf(Offset.Zero)}
     var resize by remember{mutableStateOf(false)}
-    val picture=raster
-    if(picture==null){Box(Modifier.fillMaxSize(),contentAlignment=Alignment.Center){Text(error?:if(page==null)"请选择页面"else"正在排版…")};return}
+    val picture=raster?.takeIf{it.page.id==page?.id&&it.page.assetId==page?.assetId&&it.mode==mode}
+    if(picture==null){
+        Column(Modifier.fillMaxSize()){
+            Box(Modifier.weight(1f).fillMaxWidth(),contentAlignment=Alignment.Center){Text(error?:if(page==null)"请选择页面"else"正在排版…")}
+            Divider();TypesetCanvasToolbar(c,e,preview,export)
+        }
+        return
+    }
     val scale=min(frame.width.toFloat()/picture.width,frame.height.toFloat()/picture.height)*e.zoom
     val offset=Offset((frame.width-picture.width*scale)/2,(frame.height-picture.height*scale)/2)+pan
     val currentOffset by rememberUpdatedState(offset)
@@ -196,8 +265,17 @@ private data class EditorRaster(val bitmap:ImageBitmap,val width:Int,val height:
         }
     }
     Column(Modifier.fillMaxSize()) {
-        StudioActions {StatusText("${picture.width} × ${picture.height} · ${e.page?.name.orEmpty()}");if(picture.page!=previewPage || picture.mode!=mode)StatusText("排版中…");if(mode=="editor")StudioAction("添加文字",!c.busy){e.addText(picture.width,picture.height)}}
-        Canvas(Modifier.weight(1f).fillMaxWidth().clipToBounds().semantics{contentDescription="排版编辑画布";stateDescription=if(picture.page==previewPage && picture.mode==mode)"已更新"else"排版中"}.onSizeChanged{frame=it}
+        StudioActions {StatusText("${picture.width} × ${picture.height} · ${e.page?.name.orEmpty()}");if(picture.page!=previewPage || picture.mode!=mode)StatusText(error?:"排版中…")}
+        Canvas(Modifier.weight(1f).fillMaxWidth().clipToBounds().focusRequester(focus).onKeyEvent{event->
+            if(event.type==KeyEventType.KeyDown&&event.key==Key.Escape){draftMask=null;dragText=null;dragMask=null;true}
+            else if(typesetShortcut(event,c,e))true else if(event.type==KeyEventType.KeyDown&&event.key==Key.Zero){e.fitCanvas();true}else false
+        }.onPointerEvent(PointerEventType.Press){focus.requestFocus()}.focusable()
+            .onPointerEvent(PointerEventType.Scroll){event->event.changes.firstOrNull()?.let{p->
+                val next=(e.zoom*exp(-p.scrollDelta.y*.18f)).coerceIn(.1f,16f);val ratio=next/e.zoom
+                val oldBase=Offset((frame.width-picture.width*scale)/2,(frame.height-picture.height*scale)/2)
+                val newBase=Offset((frame.width-picture.width*scale*ratio)/2,(frame.height-picture.height*scale*ratio)/2)
+                pan=p.position-newBase-(p.position-oldBase-pan)*ratio;e.zoom=next;event.changes.forEach{it.consume()}
+            }}.semantics{contentDescription="排版编辑画布";stateDescription=if(picture.page==previewPage && picture.mode==mode)"已更新"else"排版中"}.onSizeChanged{frame=it}
             .pointerInput(page?.id,mode,e.tool,scale,offset,page?.texts,page?.masks,c.busy){detectTapGestures{if(!c.busy && mode=="editor" && e.tool=="select")e.objectId=hit(toImage(it))}}
             .pointerInput(page,mode,e.tool,scale,c.busy){detectDragGestures(
                 onDragStart={pos->if(!c.busy){origin=toImage(pos);resize=false
@@ -224,89 +302,112 @@ private data class EditorRaster(val bitmap:ImageBitmap,val width:Int,val height:
                     if(m.points.size>1){for(i in 1 until m.points.size)drawLine(Gold,Offset(m.points[i-1].x.toFloat(),m.points[i-1].y.toFloat())*scale+offset,Offset(m.points[i].x.toFloat(),m.points[i].y.toFloat())*scale+offset,2f)}}
             }
         }
+        Divider()
+        TypesetCanvasToolbar(c,e,preview,export)
     }
 }
 
-@Composable private fun TypesetProperties(c:WorkbenchController,e:TypesetEditorController) {
+@Composable private fun TypesetProperties(c:WorkbenchController,e:TypesetEditorController,section:String,selectSection:(String)->Unit) {
     val page=e.page?:return
-    Text("对象与属性")
-    TypesetPresets(c,e)
-    StudioActions {TypesetObjects.order(page).asReversed().forEach{id->
-        val t=page.texts.firstOrNull{it.id==id};val m=page.masks.firstOrNull{it.id==id}
-        val label=if(t!=null)"文字 ${page.texts.indexOf(t)+1}"else"打码 ${page.masks.indexOf(m)+1}"
-        StudioAction(label+(if(t?.locked==true || m?.locked==true)" · 已锁定"else""),selected=e.objectId==id){e.objectId=id}
-    }}
-    if(e.text!=null || e.mask!=null)StudioActions {
-        val locked=e.text?.locked?:e.mask!!.locked
-        StudioAction(if(locked)"解锁对象"else"锁定对象"){e.lockObject(!locked)}
-        StudioAction("复制对象"){e.copyObject()};StudioAction("上移图层"){e.moveObject(1)};StudioAction("下移图层"){e.moveObject(-1)}
-    }
-    e.text?.let{t->
+    if(section=="预设"){TypesetPresets(c,e);return}
+    if(section=="图层"){TypesetLayerPanel(c,e);return}
+    if(section=="文字" && e.text==null)Text("点击画布上方的“添加文字”新建文本框，或在画布／图层中选择已有文字。新文字沿用最近样式。")
+    if(section=="文字")e.text?.let{t->
         var input by remember(t.id){mutableStateOf(TextFieldValue(t.text))}
         LaunchedEffect(t.text){if(input.text!=t.text)input=TextFieldValue(t.text,TextRange(input.selection.start.coerceAtMost(t.text.length)))}
         Text("文字内容")
-        OutlinedTextField(input,{input=it;e.textChange{t->t.copy(text=it.text)}},modifier=Modifier.fillMaxWidth().heightIn(min=120.dp).semantics{contentDescription="文字内容"})
+        OutlinedTextField(input,{input=it;e.textChange{t->t.copy(text=it.text)}},modifier=Modifier.fillMaxWidth().heightIn(min=88.dp,max=130.dp).semantics{contentDescription="文字内容"})
         fun wrap(tag:String){val a=input.selection.min;val z=input.selection.max;val text=input.text.substring(0,a)+"[$tag]"+input.text.substring(a,z)+"[/]"+input.text.substring(z);input=TextFieldValue(text,TextRange(a+tag.length+2,z+tag.length+2));e.textChange{it.copy(text=text)}}
-        StudioActions{StudioAction("选区粗体"){wrap("b")};StudioAction("选区斜体"){wrap("i")};StudioAction("选区下划线"){wrap("u")};StudioAction("选区删除线"){wrap("strike")}}
-        StudioSwitch("竖排",t.vertical){e.textChange{it.copy(vertical=!it.vertical)}}
+        Row(horizontalArrangement=Arrangement.spacedBy(6.dp)){
+            EditorCommand("横排",selected=!t.vertical){e.textChange{it.copy(vertical=false)}}
+            EditorCommand("竖排",selected=t.vertical){e.textChange{it.copy(vertical=true)}}
+        }
+        StudioDisclosure("字体与排版",initiallyOpen=true) {
         val fonts=remember{GraphicsEnvironment.getLocalGraphicsEnvironment().availableFontFamilyNames.toList()}
-        CompactChoice("字体",(c.state.typesetFonts.map{it.alias}+listOf(t.style.fontFamily)+fonts).distinct(),t.style.fontFamily,{key->c.state.typesetFonts.firstOrNull{it.alias==key}?.let{"${it.name} · 已导入"}?:key}){value->e.textChange{it.copy(style=it.style.copy(fontFamily=value))}}
-        StudioAction("导入字体 TTF / OTF / WOFF / WOFF2",!c.busy){e.importFont()}
-        StudioAction("选区使用当前字体"){wrap("font=${t.style.fontFamily}")}
-        NumberField("字号",t.style.fontSize,6.0..1000.0){v->e.textChange{it.copy(style=it.style.copy(fontSize=v))}}
-        StudioAction("选区使用当前字号"){wrap("size=${t.style.fontSize}")}
-        NumberField(if(t.vertical)"竖排框高度"else"文本框宽度",t.width,20.0..100000.0){v->e.textChange{it.copy(width=v)}}
-        NumberField("行距",t.lineHeight,.2..10.0){v->e.textChange{it.copy(lineHeight=v)}}
-        NumberField("字距",t.letterSpacing,-100.0..1000.0){v->e.textChange{it.copy(letterSpacing=v)}}
-        CompactChoice("对齐",listOf("left","center","right"),t.align,{when(it){"left"->"左对齐";"right"->"右对齐";else->"居中"}}){v->e.textChange{it.copy(align=v)}}
-        CompactChoice("字重",listOf(100,200,300,400,500,600,700,800,900),t.style.fontWeight,{it.toString()}){v->e.textChange{it.copy(style=it.style.copy(fontWeight=v))}}
-        StudioSwitch("斜体",t.style.italic){e.textChange{it.copy(style=it.style.copy(italic=!t.style.italic))}}
-        StudioSwitch("下划线",t.style.underline){e.textChange{it.copy(style=it.style.copy(underline=!t.style.underline))}}
-        StudioSwitch("删除线",t.style.strike){e.textChange{it.copy(style=it.style.copy(strike=!t.style.strike))}}
+        EditorRow{
+            Box(Modifier.weight(1.6f)){EditorChoice("字体",(c.state.typesetFonts.map{it.alias}+listOf(t.style.fontFamily)+fonts).distinct(),t.style.fontFamily,{key->c.state.typesetFonts.firstOrNull{it.alias==key}?.let{"${it.name} · 已导入"}?:key}){value->e.textChange{it.copy(style=it.style.copy(fontFamily=value))}}}
+            Box(Modifier.weight(1f)){NumberField("字号",t.style.fontSize,6.0..1000.0){v->e.textChange{it.copy(style=it.style.copy(fontSize=v))}}}
+        }
+        EditorRow{
+            Box(Modifier.weight(1f)){NumberField(if(t.vertical)"竖排框高度"else"文本框宽度",t.width,20.0..100000.0){v->e.textChange{it.copy(width=v)}}}
+            Box(Modifier.weight(1f)){NumberField("行距",t.lineHeight,.2..10.0){v->e.textChange{it.copy(lineHeight=v)}}}
+        }
+        EditorRow{
+            Box(Modifier.weight(1f)){NumberField("字距",t.letterSpacing,-100.0..1000.0){v->e.textChange{it.copy(letterSpacing=v)}}}
+            Box(Modifier.weight(1f)){EditorChoice("对齐",listOf("left","center","right"),t.align,{when(it){"left"->"左对齐";"right"->"右对齐";else->"居中"}}){v->e.textChange{it.copy(align=v)}}}
+        }
+        StudioDisclosure("选区格式与字体导入"){
+            StudioActions{StudioAction("选区粗体"){wrap("b")};StudioAction("选区斜体"){wrap("i")};StudioAction("选区下划线"){wrap("u")};StudioAction("选区删除线"){wrap("strike")}}
+            StudioAction("导入字体 TTF / OTF / WOFF / WOFF2",!c.busy){e.importFont()}
+            StudioAction("选区使用当前字体"){wrap("font=${t.style.fontFamily}")};StudioAction("选区使用当前字号"){wrap("size=${t.style.fontSize}")}
+            CompactChoice("字重",listOf(100,200,300,400,500,600,700,800,900),t.style.fontWeight,{it.toString()}){v->e.textChange{it.copy(style=it.style.copy(fontWeight=v))}}
+            StudioSwitch("斜体",t.style.italic){e.textChange{it.copy(style=it.style.copy(italic=!t.style.italic))}}
+            StudioSwitch("下划线",t.style.underline){e.textChange{it.copy(style=it.style.copy(underline=!t.style.underline))}}
+            StudioSwitch("删除线",t.style.strike){e.textChange{it.copy(style=it.style.copy(strike=!t.style.strike))}}
+        }
+        }
+        StudioDisclosure("颜色、描边与透明度") {
         ColorField("文字颜色",t.style.fill){v->e.textChange{it.copy(style=it.style.copy(fill=v))}}
         StudioAction("选区使用当前颜色"){wrap("color=${t.style.fill}")}
         ColorField("描边颜色",t.style.stroke){v->e.textChange{it.copy(style=it.style.copy(stroke=v))}}
         NumberField("描边宽度",t.style.strokeWidth,0.0..100.0){v->e.textChange{it.copy(style=it.style.copy(strokeWidth=v))}}
         NumberField("文字透明度",t.opacity,0.0..1.0){v->e.textChange{it.copy(opacity=v)}}
+        }
+        StudioDisclosure("背景与边框") {
         ColorField("文字背景",t.background){v->e.textChange{it.copy(background=v)}}
         NumberField("背景透明度",t.backgroundOpacity,0.0..1.0){v->e.textChange{it.copy(backgroundOpacity=v)}}
         ColorField("文本框边框",t.border){v->e.textChange{it.copy(border=v)}}
         NumberField("边框宽度",t.borderWidth,0.0..100.0){v->e.textChange{it.copy(borderWidth=v)}}
         NumberField("边框透明度",t.borderOpacity,0.0..1.0){v->e.textChange{it.copy(borderOpacity=v)}}
-        if(t.vertical){StudioSwitch("标点优化",t.punctuationOptimization){e.textChange{it.copy(punctuationOptimization=!it.punctuationOptimization)}};CompactChoice("标点紧凑度",listOf("standard","compact","loose"),t.punctuationTightness,{when(it){"compact"->"紧凑";"loose"->"宽松";else->"标准"}}){v->e.textChange{it.copy(punctuationTightness=v)}}}
+        }
+        if(t.vertical)Text("字体竖排：从上到下、从右向左换列；中文直立，西文按原生混排方向显示。正文不改写。",style=MaterialTheme.typography.caption)
         StudioAction(if(t.visible)"隐藏对象"else"显示对象"){e.textChange{it.copy(visible=!it.visible)}}
         StudioAction("移除对象"){e.removeObject()}
+        EditorCommand("保存为文字预设",icon=TypesetIcons.Text){selectSection("预设")}
     }
-    if(e.mask!=null || e.tool in setOf("rect","brush","lasso")) {
+    if(section=="打码") {
+        StudioChips("打码工具",listOf("rect","brush","lasso"),e.tool,{when(it){"rect"->"矩形";"brush"->"画笔";else->"圈选"}}){e.tool=it}
         val m=e.mask?:e.maskDefault
         Text(if(e.mask!=null)"所选打码属性"else"新打码参数")
         fun update(transform:(TypesetMask)->TypesetMask)=e.updateMaskSettings(transform)
         if(m.effect in setOf("solid","hatch"))Text("旧中间版效果已保留，请明确选择下列效果完成转换。")
         CompactChoice("打码效果",listOf("black","white","mosaic","blur"),m.effect,{when(it){"black"->"黑条 / 黑色";"white"->"白条 / 白色";"mosaic"->"马赛克";else->"模糊"}}){v->update{it.copy(effect=v)}}
-        NumberField("效果强度",m.strength.toDouble(),1.0..256.0){v->update{it.copy(strength=v.toInt())}}
-        if(m.shape=="brush" || e.tool=="brush") {
+        val brush=(e.mask?.shape?:e.tool)=="brush"
+        if(m.effect in setOf("mosaic","blur"))NumberField(if(m.effect=="mosaic")"马赛克块大小"else"模糊强度",m.strength.toDouble(),1.0..256.0){v->update{it.copy(strength=v.toInt())}}
+        if(brush){
             NumberField("画笔宽度",m.size,1.0..2000.0){v->update{it.copy(size=v)}}
-            NumberField("条纹密度",m.density,1.0..1000.0){v->update{it.copy(density=v)}}
-            NumberField("条纹厚度",m.stripeThickness,1.0..1000.0){v->update{it.copy(stripeThickness=v)}}
-            NumberField("笔点密度",m.pointDensity,1.0..1000.0){v->update{it.copy(pointDensity=v)}}
+            if(m.effect in setOf("black","white"))EditorRow{
+                Box(Modifier.weight(1f)){NumberField("条纹密度",m.density,1.0..1000.0){v->update{it.copy(density=v)}}}
+                Box(Modifier.weight(1f)){NumberField("条纹厚度",m.stripeThickness,1.0..1000.0){v->update{it.copy(stripeThickness=v)}}}
+            }else NumberField("笔点密度",m.pointDensity,1.0..1000.0){v->update{it.copy(pointDensity=v)}}
         }
+        if(m.effect in setOf("black","white")&&!brush)Text("矩形／圈选使用实心覆盖；条纹参数仅用于画笔。",style=MaterialTheme.typography.caption)
+        NumberField("打码透明度",m.opacity,0.0..1.0){v->update{it.copy(opacity=v)}}
         if(e.mask!=null){StudioAction(if(m.visible)"隐藏打码"else"显示打码"){e.pageChange{p->p.copy(masks=p.masks.map{if(it.id==m.id)it.copy(visible=!it.visible)else it})}};StudioAction("移除打码"){e.removeObject()}}
     }
-    if(e.text==null && e.mask==null && e.tool=="select")Text("选中文字或打码以调整样式。")
-    StudioDisclosure("批次样式") {Text("当前文字样式应用到所有所选页面的文字；上一页样式按对象顺序匹配，多出的文字沿用上一页最后一项。保留文字和位置，可整体撤销。")
-        StudioAction("当前样式应用到所选页",e.selectedPages.isNotEmpty()){e.applyStyleToSelection()};StudioAction("各自上一页样式",e.selectedPages.isNotEmpty()){e.applyStyleToSelection(true)}}
+    if(section=="打码")Text("在画布拖动绘制；参数会沿用到下一个打码。切换“选择 / 移动”可调整已有对象。")
+    StudioDisclosure("批次样式") {
+        var kind by remember{mutableStateOf("both")}
+        Text("目标：所选 ${e.selectedPages.size} 页。保留各页文字内容、对象位置与锁定状态，可整体撤销。")
+        StudioChips("应用内容",listOf("text","mask","both"),kind,{when(it){"text"->"文字样式";"mask"->"打码参数";else->"两者"}}){kind=it}
+        Text("各自上一页使用操作前快照；文字按对象顺序匹配，多出的沿用上一页最后一项。",style=MaterialTheme.typography.caption)
+        StudioAction("当前样式应用到所选页",e.selectedPages.isNotEmpty()&&!c.busy){e.applyStyleToSelection(kind=kind)}
+        StudioAction("各自上一页样式",e.selectedPages.isNotEmpty()&&!c.busy){e.applyStyleToSelection(true,kind)}
+    }
 }
 
 @Composable internal fun NumberField(label:String,value:Double,range:ClosedFloatingPointRange<Double>,change:(Double)->Unit) {
     var text by remember(value){mutableStateOf(if(value%1.0==0.0)value.toInt().toString()else value.toString())}
     val number=text.toDoubleOrNull();val valid=number!=null && number.isFinite() && number in range
-    OutlinedTextField(text,{text=it;it.toDoubleOrNull()?.takeIf{n->n.isFinite()&&n in range}?.let(change)},label={Text(label)},isError=!valid,singleLine=true,modifier=Modifier.fillMaxWidth())
+    EditorInput(label,text,!valid){text=it;it.toDoubleOrNull()?.takeIf{n->n.isFinite()&&n in range}?.let(change)}
 }
 @Composable internal fun ColorField(label:String,value:String,change:(String)->Unit) {
+    var choosing by remember{mutableStateOf(false)}
+    if(choosing)EditorColorPicker(label,value,{choosing=false}){change(it);choosing=false}
+    EditorCommand("$label · 色盘取色"){choosing=true}
     var text by remember(value){mutableStateOf(value)};val parsed=runCatching{TypesetColors.parse(text)}
-    OutlinedTextField(text,{text=it;if(runCatching{TypesetColors.parse(it)}.isSuccess)change(it)},label={Text(label)},isError=parsed.isFailure,singleLine=true,modifier=Modifier.fillMaxWidth())
+    EditorInput(label,text,parsed.isFailure){text=it;if(runCatching{TypesetColors.parse(it)}.isSuccess)change(it)}
     if(parsed.isFailure)Text("尚未应用：${parsed.exceptionOrNull()?.message?:"颜色格式无效"}",color=MaterialTheme.colors.error,style=MaterialTheme.typography.caption)
-    else Text("色名 / HEX / RGB / HSL / HWB；支持透明度",style=MaterialTheme.typography.caption)
 }
 @Composable private fun StoryProperties(c:WorkbenchController,e:TypesetEditorController) {
     val p=e.page?:return;val s=p.story

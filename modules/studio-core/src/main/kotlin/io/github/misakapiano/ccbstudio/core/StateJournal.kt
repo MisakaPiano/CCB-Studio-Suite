@@ -25,6 +25,20 @@ class StateJournal(private val directory: Path, private val fault:(String)->Unit
     }
     /** Read projection only; the on-disk envelope and commit algorithm remain unchanged. */
     var creationRevision:String?=null; private set
+    /** On-demand reference proof for explicit editor destruction, including snapshots
+     * that fell outside the bounded undo list. Never rewrites the audit chain. */
+    fun editorReferences(projectIds:Set<String>):Pair<Set<TypesetReference>,Set<String>> {
+        val refs=linkedSetOf<TypesetReference>();val sources=linkedSetOf<String>();var seq=0L;var prior=""
+        Files.list(directory).use{files->files.sorted().forEach{p->
+            require(p.fileName.toString().matches(Regex("[0-9]{12}-[0-9a-f-]{36}\\.json")))
+            val bytes=readBounded(p,4*1024*1024);val e=documentJson.decodeFromString<Envelope>(bytes.decodeToString())
+            require(e.version==1&&e.sequence==seq+1&&e.previous==prior&&sha256(e.body.toByteArray())==e.sha256&&p.fileName.toString().startsWith("%012d-".format(e.sequence)))
+            val value=documentJson.decodeFromString<StudioState>(e.body).also{it.validate()}
+            value.typesetProjects.filter{it.id in projectIds}.forEach{project->refs+=project.current;refs+=project.undo;refs+=project.redo;project.sourceExchangeId?.let{sources+=it}}
+            require(refs.size<=50000&&sources.size<=10000){"工程历史过大，请先检查资料"};seq=e.sequence;prior=sha256(bytes)
+        }}
+        require(seq==sequence&&prior==previous){"审计记录改变，停止删除"};return refs to sources
+    }
     init {
         safePath(directory); Files.createDirectories(directory)
         val entries=Files.list(directory).use { it.sorted().toList() }

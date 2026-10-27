@@ -10,6 +10,7 @@ dependencies {
     implementation("com.composables:icons-lucide-cmp-jvm:2.2.1")
     implementation("net.java.dev.jna:jna:5.18.1")
     implementation("net.java.dev.jna:jna-platform:5.18.1")
+    implementation("com.microsoft.onnxruntime:onnxruntime:1.31.1")
     testImplementation(kotlin("test-junit"))
     implementation(project(":asset-library"))
     implementation(project(":image-authority"))

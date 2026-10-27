@@ -5,6 +5,7 @@ import androidx.compose.material.*
 import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.input.pointer.*
+import androidx.compose.ui.input.key.*
 import androidx.compose.ui.semantics.*
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.*
@@ -47,7 +48,7 @@ class TypesetQueueWorkflowTest {
     @Test fun longQueueDragAutoScrollsKeepsBlockAndHoverUsesEditedPageWithoutSelecting()=runBlocking(awt){
         val root=root();val w=StudioWorkspace.openStudio(root);val bytes=EditorRenderer.synthetic(120,80);val asset=w.importImage("long-queue.png",bytes)
         val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
-        c.editor.create("long queue",List(28){asset});c.idle()
+        c.editor.create("long queue",List(28){asset});c.idle();c.editor.queueView="list"
         c.editor.change{it.copy(thumbnailSize=48,pages=it.pages.mapIndexed{i,p->p.copy(name="Page ${i+1}",texts=listOf(TypesetText(text="edited ${i+1}",x=60.0,y=10.0,style=TypesetStyle(fontSize=16.0))))})}
         c.editor.drain();val original=c.editor.document!!.pages.map{it.id};val scene=scene(c);var primaryFailure:Throwable?=null;var lastPointer=Offset.Zero
         try {
@@ -97,6 +98,105 @@ class TypesetQueueWorkflowTest {
         }finally{scene.close();c.close();scope.cancel();w.close()}
         StudioWorkspace.openStudio(root).use{next->val d=TypesetRepository(next).load(next.state.typesetProjects.single());assertTrue(d.queueWidth in 300..325);assertEquals(original[1],d.pages.last().id);assertContentEquals(bytes,next.bytes(asset))}
     }
+    @Test fun gridAndListSwitchAndIndependentPreviewKeepEditorState()=runBlocking(awt){
+        val root=root();val w=StudioWorkspace.openStudio(root);val bytes=EditorRenderer.synthetic(160,100);val asset=w.importImage("views.png",bytes)
+        val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
+        c.editor.create("views",List(12){asset});c.idle();c.editor.drain()
+        val ids=c.editor.document!!.pages.map{it.id};c.editor.selectedPages=setOf(ids[0],ids[1]);val original=c.editor.document!!;val revision=c.editor.project!!.revision
+        val scene=scene(c)
+        try{
+            scene.frames();assertTrue(scene.node("队列页 2").boundsInRoot.left>scene.node("队列页 1").boundsInRoot.left)
+            scene.click("缩略图与条目视图");assertEquals("list",c.editor.queueView)
+            assertTrue(scene.node("队列页 2").boundsInRoot.top>scene.node("队列页 1").boundsInRoot.top)
+            assertEquals(setOf(ids[0],ids[1]),c.editor.selectedPages);assertEquals(ids[0],c.editor.pageId)
+            scene.click("预览队列页 2");assertEquals(ids[0],c.editor.pageId)
+            withTimeout(15000){while(scene.nodes().none{it.matches("完整页面预览")})scene.frames()}
+            scene.click("下一页 · →");scene.click("关闭预览窗口")
+            assertEquals(ids[0],c.editor.pageId);assertEquals(setOf(ids[0],ids[1]),c.editor.selectedPages)
+            assertEquals(original,c.editor.document);assertEquals(revision,c.editor.project!!.revision)
+            scene.click("网格视图");assertEquals("grid",c.editor.queueView);scene.shot("native-grid-and-groups")
+            withTimeout(15000){while(!scene.enabled("添加文字"))scene.frames()}
+            scene.click("添加文字");scene.field("文字内容","竖排，AB！");scene.click("竖排");c.editor.drain()
+            assertTrue(c.editor.text!!.vertical);assertEquals("竖排，AB！",c.editor.text!!.text)
+            val before=c.editor.document;val reset=c.editor.viewportReset;c.editor.zoom=2f
+            scene.click("适应画布");assertEquals(1f,c.editor.zoom);assertEquals(reset+1,c.editor.viewportReset);assertEquals(before,c.editor.document)
+        }finally{scene.close();c.close();scope.cancel();w.close()}
+        StudioWorkspace.openStudio(root).use{next->assertContentEquals(bytes,next.bytes(asset))}
+    }
+    @Test fun gridDragCancelsWithEscapeThenCommitsStableBlock()=runBlocking(awt){
+        val root=root();val w=StudioWorkspace.openStudio(root);val asset=w.importImage("grid-drag.png",EditorRenderer.synthetic(120,80))
+        val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
+        c.editor.create("grid drag",List(8){asset});c.idle();c.editor.drain();val ids=c.editor.document!!.pages.map{it.id}
+        c.editor.selectedPages=setOf(ids[0],ids[1]);val scene=scene(c)
+        try{
+            scene.frames()
+            suspend fun begin(){val from=scene.node("队列页 2").boundsInRoot.center;val target=scene.node("队列页 4").boundsInRoot
+                val to=Offset(target.right-4,target.center.y)
+                scene.sendPointerEvent(PointerEventType.Press,from,button=PointerButton.Primary)
+                for(i in 1..8){scene.sendPointerEvent(PointerEventType.Move,from+(to-from)*(i/8f),button=PointerButton.Primary);scene.frames()}
+            }
+            begin();assertEquals(ids,c.editor.document!!.pages.map{it.id})
+            scene.sendKeyEvent(KeyEvent(Key.Escape,KeyEventType.KeyDown));scene.sendKeyEvent(KeyEvent(Key.Escape,KeyEventType.KeyUp));scene.frames()
+            scene.sendPointerEvent(PointerEventType.Release,scene.node("队列页 4").boundsInRoot.center,button=PointerButton.Primary);scene.frames()
+            assertEquals(ids,c.editor.document!!.pages.map{it.id})
+            begin();val target=scene.node("队列页 4").boundsInRoot
+            scene.sendPointerEvent(PointerEventType.Release,Offset(target.right-4,target.center.y),button=PointerButton.Primary);scene.frames()
+            assertEquals(listOf(ids[2],ids[3],ids[0],ids[1])+ids.drop(4),c.editor.document!!.pages.map{it.id})
+            assertEquals(setOf(ids[0],ids[1]),c.editor.selectedPages);c.editor.drain();scene.shot("native-grid-drop")
+            scene.click("撤销编辑");c.idle();scene.frames();assertEquals(ids,c.editor.document!!.pages.map{it.id})
+        }finally{scene.close();c.close();scope.cancel();w.close()}
+    }
+    @Test fun namedMaskPresetUiPreservesObjectsAndNewDefaultIsSeparate()=runBlocking(awt){
+        val root=root();val w=StudioWorkspace.openStudio(root);val bytes=EditorRenderer.synthetic(140,100);val asset=w.importImage("presets.png",bytes)
+        val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
+        c.editor.create("named masks",listOf(asset));c.idle()
+        val mask=TypesetMask(x=12.0,y=14.0,width=40.0,height=30.0,strength=10)
+        c.editor.pageChange{it.copy(masks=listOf(mask))};c.editor.objectId=mask.id;c.editor.drain()
+        val scene=scene(c)
+        try{
+            scene.frames();scene.click("预设");scene.click("打码配置");scene.field("预设名称","柔和");scene.click("保存新预设");c.idle();scene.frames()
+            val id=c.editor.editorExtras.namedMasks.single().id;assertEquals(10,c.editor.editorExtras.namedMasks.single().settings.strength)
+            c.editor.updateMaskSettings{it.copy(effect="blur",strength=24)};c.editor.drain();scene.frames()
+            scene.click("应用到当前对象");c.idle();scene.frames()
+            assertEquals("mosaic",c.editor.mask!!.effect);assertEquals(10,c.editor.mask!!.strength)
+            assertEquals(mask.x,c.editor.mask!!.x);assertEquals(mask.width,c.editor.mask!!.width)
+            scene.field("预设名称","改名");scene.click("重命名预设");c.idle();scene.frames();assertEquals(id,c.editor.editorExtras.namedMasks.single().id)
+            assertEquals("改名",c.editor.editorExtras.namedMasks.single().name)
+            c.editor.updateMaskSettings{it.copy(effect="blur",strength=32)};c.editor.drain();scene.frames()
+            scene.click("覆盖所选预设");scene.click("确认预设变更");c.idle();scene.frames()
+            assertEquals("blur",c.editor.editorExtras.namedMasks.single().settings.effect)
+            c.editor.updateMaskSettings{it.copy(effect="white")};c.editor.drain();scene.frames()
+            val existing=c.editor.page!!;scene.click("设为新建默认");c.idle();scene.frames()
+            assertEquals(existing,c.editor.page);assertEquals("blur",c.editor.maskDefault.effect);assertEquals("white",c.editor.mask!!.effect)
+            scene.click("删除预设");scene.click("确认预设变更");c.idle();scene.frames()
+            assertTrue(c.editor.editorExtras.namedMasks.isEmpty());assertEquals(existing,c.editor.page)
+            c.editor.drain();scene.shot("native-named-presets")
+        }finally{scene.close();c.close();scope.cancel();w.close()}
+        StudioWorkspace.openStudio(root).use{next->assertTrue(TypesetEditorExtrasStore.load(next).namedMasks.isEmpty());assertEquals("blur",next.state.typesetPreferences.batchToolDefault!!.effect);assertContentEquals(bytes,next.bytes(asset))}
+    }
+    @Test fun categoryExportUiKeepsAllPagesOrSelectedRangeAndPersistsIndependentChoices()=runBlocking(awt){
+        val r=root();val w=StudioWorkspace.openStudio(r);val bytes=EditorRenderer.synthetic(160,100);val asset=w.importImage("export-ui.png",bytes)
+        val scope=CoroutineScope(SupervisorJob()+awt);val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root()),root(),admissionOverride=RequestAdmission{})
+        c.editor.create("export UI",List(3){asset});c.idle();c.editor.drain()
+        val ids=c.editor.document!!.pages.map{it.id};c.editor.selectedPages=setOf(ids[0],ids[2]);val parent=Files.createDirectories(root());c.editor.chooseExportDirectory={parent}
+        val scene=scene(c)
+        suspend fun open(){scene.frames();scene.click("预览与导出");withTimeout(30000){while(scene.nodes().none{it.matches("导出页面预览")})scene.frames()}}
+        try{
+            open();scene.click("02_仅打码");scene.click("04_仅嵌字");scene.click("另存原图副本（原字节）")
+            scene.click("导出范围 · 全部页 ▾");scene.click("所选页");scene.field("图片文件名前缀（可留空）","测试")
+            scene.shot("native-export-categories");scene.click("选择位置并导出");c.idle();scene.frames()
+            val out=c.editor.exportDirectory!!;val receipt=TypesetExport.verify(out);assertEquals(4,receipt.version)
+            assertEquals(listOf(ids[0],ids[2]),receipt.pageIds);assertEquals(10,receipt.files.size)
+            assertEquals(listOf("plain","mask","all","text","original"),receipt.variants)
+            assertContentEquals(bytes,Files.readAllBytes(out.resolve("原图副本/测试_001.png")))
+            open();scene.click("01_原始排序（按所选格式编码）");scene.click("02_仅打码");scene.click("03_打码并嵌字");scene.click("04_仅嵌字")
+            scene.click("选择位置并导出");c.idle();scene.frames()
+            val only=TypesetExport.verify(c.editor.exportDirectory!!);assertEquals(listOf("original"),only.variants);assertEquals(3,only.pageIds.size)
+            assertFalse(c.editor.editorExtras.originalSorted);assertEquals(listOf("original"),w.state.typesetPreferences.exportVariants)
+            assertEquals(3,c.editor.document!!.pages.size);assertContentEquals(bytes,w.bytes(asset))
+        }finally{scene.close();c.close();scope.cancel();w.close()}
+        StudioWorkspace.openStudio(r).use{next->assertFalse(TypesetEditorExtrasStore.load(next).originalSorted);assertEquals(listOf("original"),next.state.typesetPreferences.exportVariants)}
+    }
     private val awt=object:CoroutineDispatcher(){override fun dispatch(context:CoroutineContext,block:Runnable)=SwingUtilities.invokeLater(block)}
     private fun root()=Path.of(System.getProperty("preview.test.root")).resolve(newId())
     private fun scene(c:WorkbenchController)=ImageComposeScene(1320,1000,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
@@ -111,5 +211,5 @@ class TypesetQueueWorkflowTest {
     private suspend fun ImageComposeScene.click(s:String){val n=nodes().first{it.matches(s)&&it.config.getOrNull(SemanticsActions.OnClick)!=null};assertTrue(n.config[SemanticsActions.OnClick].action!!.invoke());frames()}
     private suspend fun ImageComposeScene.field(s:String,v:String){val n=nodes().first{it.config.getOrNull(SemanticsActions.SetText)!=null&&(it.matches(s)||it.children.any{it.matches(s)})};assertTrue(n.config[SemanticsActions.SetText].action!!.invoke(AnnotatedString(v)));frames()}
     private suspend fun WorkbenchController.idle(){withTimeout(30000){active?.join()};assertNull(problem,problem)}
-    private fun ImageComposeScene.shot(name:String){val p=Path.of("build/typeset-queue/$name.png");Files.createDirectories(p.parent);render(System.nanoTime()).use{im->im.encodeToData()!!.use{Files.write(p,it.bytes)}}}
+    private fun ImageComposeScene.shot(name:String){val p=Path.of(System.getProperty("preview.test.root")).resolve("typeset-queue/$name.png");Files.createDirectories(p.parent);render(System.nanoTime()).use{im->im.encodeToData()!!.use{Files.write(p,it.bytes)}}}
 }
