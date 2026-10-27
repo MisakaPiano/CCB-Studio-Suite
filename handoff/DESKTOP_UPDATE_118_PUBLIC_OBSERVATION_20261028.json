@@ -1,0 +1,217 @@
+{
+  "dateJST": "2026-10-28",
+  "source": "GitHub connector read-only observation; no new installer download or signature verification this turn",
+  "release": {
+    "tag": "v0.0.0-preview.118",
+    "source": "a1202e24f7a0cba8a53f43bf035b67e2134ca2aa",
+    "prerelease": true,
+    "draft": false,
+    "url": "https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.118",
+    "assets": [
+      {
+        "name": "CCB-Studio-Suite-0.0.0-preview.118-windows-x64.exe",
+        "size": 169006742,
+        "digest": "sha256:3540be44ca7a1fcfd583899b325abad7630e10b120d288e9f2e7dc7a1e8bd60d",
+        "id": 679593008,
+        "url": "https://github.com/MisakaPiano/CCB-Studio-Suite/releases/download/v0.0.0-preview.118/CCB-Studio-Suite-0.0.0-preview.118-windows-x64.exe"
+      },
+      {
+        "name": "RELEASE_NOTES.md",
+        "size": 2122,
+        "digest": "sha256:b2f99ec48ef224214df5dc9a06b279aedef6ce2184ff7e71689b11410f8d8467",
+        "id": 679594000,
+        "url": "https://github.com/MisakaPiano/CCB-Studio-Suite/releases/download/v0.0.0-preview.118/RELEASE_NOTES.md"
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "size": 293,
+        "digest": "sha256:ad7b479749fc0b5c9768c60f138a85c9d072cbec1626b8117c4f5ca44b075ad5",
+        "id": 679594060,
+        "url": "https://github.com/MisakaPiano/CCB-Studio-Suite/releases/download/v0.0.0-preview.118/SHA256SUMS.txt"
+      },
+      {
+        "name": "THIRD_PARTY_NOTICES.zip",
+        "size": 198986,
+        "digest": "sha256:48e6e162be0078e387002fbf49df433e500ec9e616a77246e0801ac9788d35f6",
+        "id": 679594035,
+        "url": "https://github.com/MisakaPiano/CCB-Studio-Suite/releases/download/v0.0.0-preview.118/THIRD_PARTY_NOTICES.zip"
+      }
+    ]
+  },
+  "tagCommit": "a1202e24f7a0cba8a53f43bf035b67e2134ca2aa",
+  "metadataCommit": "c1ba1804d0ff40a7891231b5de99667260e5b98a",
+  "metadata": {
+    "targets.json": {
+      "url": "https://raw.githubusercontent.com/MisakaPiano/CCB-Studio-Suite/c1ba1804d0ff40a7891231b5de99667260e5b98a/preview/windows-x86_64/metadata/targets.json",
+      "metadata": {
+        "signatures": [
+          {
+            "keyid": "ba25a71a0608180da40460848b0c985daad9942815811b283d66f997dd60918e",
+            "sig": "74ac4cd00211e9041704250d3e608407fbd188e443b0c5c5737c9e4569f83dcafa705884df19e55097b8ebcc324595abcc40be01e7b2d744960e784b9edd490c"
+          }
+        ],
+        "signed": {
+          "_type": "targets",
+          "expires": "2027-01-24T21:55:25Z",
+          "spec_version": "1.0.31",
+          "targets": {
+            "studio-installer.exe": {
+              "custom": {
+                "channel": "preview",
+                "data_version": 3,
+                "displayVersion": "0.0.0-preview.118",
+                "github": {
+                  "asset": "CCB-Studio-Suite-0.0.0-preview.118-windows-x64.exe",
+                  "tag": "v0.0.0-preview.118"
+                },
+                "installedBytes": 252900763,
+                "maximum_reader": 3,
+                "minimum_reader": 2,
+                "notes": "# Preview118 — 更新交接与旧程序目录收尾\n\n实验性 Windows x64 邀请 Preview，尚非稳定版或全项目验收。\n\n- 修正更新进程、新程序及清理进程继承旧工作目录的问题；兼容旧117 helper，避免新版仍运行时旧空目录被持续占用。\n- 成功确认程序、资料和凭据状态、切换默认入口后，立即按所属证明清理废弃程序和下载；不等待7天。仅在获准退役的程序根中受控收尾空子目录；不删除未知文件，不遍历受保护目录或目录联接。\n- 占用、权限或遍历限额失败会安全延后并重试；清理失败不会改写更新的成功/失败，也不会强行关闭用户窗口。\n- 固定候选已经实际执行原始117程序/旧helper到118的NSIS安装、正常关闭及重启；118运行时旧117根自动移除，下载/解包0，重复清理0，两张合成原图及两项引用的合成凭据保留。候选阶段使用本地发现适配，正式公开签名发现/下载链须在发布后另行验证。\n\n未知或自行改动的文件、配置、插件、源码、图库、备份及历史受保护安装继续保留，包含受保护的空目录；遇此情况旧根可能保留。不会为了目录消失而删除用户内容。\n\n仍待验：资产管理/编辑完整人工验收、115体验反馈、Prompt对比、实际任务栏固定；q09历史失败的根因仍UNKNOWN。独立复审NOT REQUESTED。本轮只覆盖本机同一Windows账户的隔离升级；更多Windows环境、网络盘、跨账户/跨机器凭据迁移和所有异常组合未由本例验证。保留现有安装路径长度限制。Windows Authenticode发布者签名尚未提供，TUF更新签名不能代替Windows发布者认证。\n\n固定源码：a1202e24f7a0cba8a53f43bf035b67e2134ca2aa\n应用映像输入：3d0bd1f02c630d1e312d7469dbd71f29efe0bec1\n安装器SHA-256：3540be44ca7a1fcfd583899b325abad7630e10b120d288e9f2e7dc7a1e8bd60d\n候选证据：https://github.com/MisakaPiano/CCB-Studio-Suite/blob/ee46f20bccf34fa5268cb6b39e0d180793d9ebb4/docs/audits/PREVIEW_118_CANDIDATE_20261027.md\n",
+                "platform": "windows-x86_64",
+                "product": "ccb-studio-suite",
+                "sourceSha": "a1202e24f7a0cba8a53f43bf035b67e2134ca2aa",
+                "version": 118
+              },
+              "hashes": {
+                "sha256": "3540be44ca7a1fcfd583899b325abad7630e10b120d288e9f2e7dc7a1e8bd60d"
+              },
+              "length": 169006742
+            }
+          },
+          "version": 17
+        }
+      }
+    },
+    "snapshot.json": {
+      "url": "https://raw.githubusercontent.com/MisakaPiano/CCB-Studio-Suite/c1ba1804d0ff40a7891231b5de99667260e5b98a/preview/windows-x86_64/metadata/snapshot.json",
+      "metadata": {
+        "signatures": [
+          {
+            "keyid": "dffcf79e19a04dec7dc25f7f843131dccec82bc7c506a5a6422012260cd46788",
+            "sig": "0104f6a491f24502ac8f80801856f6d1b1b74623a0a1262cce912edaa2dc895cb88b472f6b7b3a922474c6aeb707d0976bbd19aca70b26bc714e44458cd9150e"
+          }
+        ],
+        "signed": {
+          "_type": "snapshot",
+          "expires": "2026-11-10T09:08:34Z",
+          "meta": {
+            "targets.json": {
+              "hashes": {
+                "sha256": "0cb6195b55993e7ae256fed6c5e5c26975b7dfbf3703c7ff1ceb48f3233ef1e9"
+              },
+              "length": 4618,
+              "version": 17
+            }
+          },
+          "spec_version": "1.0.31",
+          "version": 27
+        }
+      }
+    },
+    "timestamp.json": {
+      "url": "https://raw.githubusercontent.com/MisakaPiano/CCB-Studio-Suite/c1ba1804d0ff40a7891231b5de99667260e5b98a/preview/windows-x86_64/metadata/timestamp.json",
+      "metadata": {
+        "signatures": [
+          {
+            "keyid": "631b89a46549cc5e0d3e43bc1913d088451e03e6ff4f5affb1025d01fbef84c3",
+            "sig": "06bf47253371f9febebfb7844f7f07a44797ffe9c4309881b691bcb44521b9c997dd1c0d615d89ff62edbe9b44bf3561a14ceafe532e29b961454fc015f5310f"
+          }
+        ],
+        "signed": {
+          "_type": "timestamp",
+          "expires": "2026-11-03T09:08:34Z",
+          "meta": {
+            "snapshot.json": {
+              "hashes": {
+                "sha256": "9471746983d3f154a16f4cd90392830427a48c1722ac718725e15886db4278e4"
+              },
+              "length": 470,
+              "version": 27
+            }
+          },
+          "spec_version": "1.0.31",
+          "version": 27
+        }
+      }
+    },
+    "1.root.json": {
+      "url": "https://raw.githubusercontent.com/MisakaPiano/CCB-Studio-Suite/c1ba1804d0ff40a7891231b5de99667260e5b98a/preview/windows-x86_64/metadata/1.root.json",
+      "metadata": {
+        "signatures": [
+          {
+            "keyid": "be433f73b64a48774622a54ed556f46cee46f3d0fe2f45b7eeab6411008fe2c0",
+            "sig": "e86eb7f332f14aa2863916ad175d25755ef62f42e0eb6a1c1cc0dd75f19ada888bfe11eaedcd6b69e1abbaf296357df754d52b5552e5e2d27d8f6c6113287e06"
+          }
+        ],
+        "signed": {
+          "_type": "root",
+          "consistent_snapshot": true,
+          "expires": "2027-10-22T10:47:53Z",
+          "keys": {
+            "631b89a46549cc5e0d3e43bc1913d088451e03e6ff4f5affb1025d01fbef84c3": {
+              "keytype": "ed25519",
+              "keyval": {
+                "public": "fed73d1c042f9348a02c78724fb091b8024bbf08f7d95fd1d06cc9d72250358a"
+              },
+              "scheme": "ed25519"
+            },
+            "ba25a71a0608180da40460848b0c985daad9942815811b283d66f997dd60918e": {
+              "keytype": "ed25519",
+              "keyval": {
+                "public": "07ff3c8aabe12c706f73e2103de49e4af6211dd1d6f90e07a6fb437a7401b34c"
+              },
+              "scheme": "ed25519"
+            },
+            "be433f73b64a48774622a54ed556f46cee46f3d0fe2f45b7eeab6411008fe2c0": {
+              "keytype": "ed25519",
+              "keyval": {
+                "public": "493fd1faf8a6eaf5088ff1d7a44dbd8702e8d11d2dc70dd59a7477decf66f3b7"
+              },
+              "scheme": "ed25519"
+            },
+            "dffcf79e19a04dec7dc25f7f843131dccec82bc7c506a5a6422012260cd46788": {
+              "keytype": "ed25519",
+              "keyval": {
+                "public": "2479ec27f1cd992642bb6cd4c8b28f03448e86050d4924796d0728f116fbec27"
+              },
+              "scheme": "ed25519"
+            }
+          },
+          "roles": {
+            "root": {
+              "keyids": [
+                "be433f73b64a48774622a54ed556f46cee46f3d0fe2f45b7eeab6411008fe2c0"
+              ],
+              "threshold": 1
+            },
+            "snapshot": {
+              "keyids": [
+                "dffcf79e19a04dec7dc25f7f843131dccec82bc7c506a5a6422012260cd46788"
+              ],
+              "threshold": 1
+            },
+            "targets": {
+              "keyids": [
+                "ba25a71a0608180da40460848b0c985daad9942815811b283d66f997dd60918e"
+              ],
+              "threshold": 1
+            },
+            "timestamp": {
+              "keyids": [
+                "631b89a46549cc5e0d3e43bc1913d088451e03e6ff4f5affb1025d01fbef84c3"
+              ],
+              "threshold": 1
+            }
+          },
+          "spec_version": "1.0.31",
+          "version": 1
+        }
+      }
+    }
+  },
+  "independentReview": "NOT_REQUESTED_FOR_118",
+  "dailyGui": "Historical user confirmation and fixed audit only; no private installation inspection this turn",
+  "desktopReferenceHead": "7eb766fec77b70155d81840cb9e8c6d0f7494476",
+  "desktopFilesModified": false
+}
