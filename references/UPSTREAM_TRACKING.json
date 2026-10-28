@@ -1,0 +1,54 @@
+{
+  "format": 1,
+  "policy": "Observe public upstream metadata only; no automatic adoption, merge, download or release",
+  "automation": {
+    "id": "studio",
+    "name": "Studio 上游变更检查",
+    "kind": "heartbeat",
+    "status": "ACTIVE",
+    "schedule": "Daily 09:00 Asia/Tokyo",
+    "execution": "tools/Check-Upstream.py using configured Python 3.13",
+    "results": ".local/upstream-monitor/latest.json",
+    "scheduledExecutionAcceptance": "NOT_YET_OBSERVED"
+  },
+  "repositories": [
+    {
+      "id": "UNIFIED_IMAGE_TOOL_REFERENCE",
+      "repository": "duxingz/unified-image-tool",
+      "url": "https://github.com/duxingz/unified-image-tool",
+      "branch": "main",
+      "referenceCommit": "ed42f1f459dde621086f7763c36a46d768d091cb",
+      "referenceRelease": "v1.22.2",
+      "licenseStatus": "UNKNOWN_NOT_A_REDISTRIBUTION_GRANT",
+      "pathsOfInterest": [
+        "app/core/detector.py",
+        "app/core/effects.py",
+        "app/core/image_ops.py",
+        "app/ui/",
+        "models/README.md",
+        "requirements.txt",
+        "LICENSE"
+      ],
+      "baseline": {
+        "commit": "ed42f1f459dde621086f7763c36a46d768d091cb",
+        "release": {
+          "tag": "v1.22.2",
+          "id": 422439679,
+          "url": "https://github.com/duxingz/unified-image-tool/releases/tag/v1.22.2",
+          "publishedAt": "2026-10-24T12:29:06Z",
+          "assets": [
+            {
+              "name": "UnifiedImageTool.zip",
+              "size": 196473712,
+              "digest": "sha256:53572f585e2c9cf872ba58f12b488b0102e96a0b6b91cf2aa572aa1e4a98d269"
+            }
+          ]
+        },
+        "license": null
+      },
+      "checkFrequency": "daily",
+      "notify": "Only new source/release/asset/license changes or a newly actionable check failure",
+      "adoption": "Manual review and Suite-specific validation required"
+    }
+  ]
+}

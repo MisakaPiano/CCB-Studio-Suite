@@ -73,6 +73,30 @@
       "role": "local_read_only_workflow_and_source_reference",
       "adoption": "no_browser_runtime_transplant",
       "hashStatus": "sha256_computed_from_materialized_raw_bytes_in_this_packaging_run"
+    },
+    {
+      "id": "UNIFIED_IMAGE_TOOL_REFERENCE",
+      "repository": "duxingz/unified-image-tool",
+      "ref": "main",
+      "commit": "ed42f1f459dde621086f7763c36a46d768d091cb",
+      "versionLabel": "v1.22.2",
+      "role": "user_authorized_local_image_processing_reference",
+      "adoption": "Independent local detector-box adapter; not a whole upstream import or license grant",
+      "recordedDate": "2026-10-27",
+      "tracking": "references/UPSTREAM_TRACKING.json"
+    },
+    {
+      "id": "AUTOMASK_BUNDLED_MODEL",
+      "repository": "https://huggingface.co/01miku/anime-nsfw-segm-yolo26",
+      "commit": "1697d5d1827b6a818b350b44bf3ec27f08837a2a",
+      "file": "nsfw-anime-medium-x1280.onnx",
+      "bytes": 47600269,
+      "sha256": "a12ac5532e93be9dfeb96a77fc3f3647791335c9df0de9a18fcd503f7877a828",
+      "declaredLicense": "MIT in model card; no standalone LICENSE present",
+      "role": "bundled_readonly_program_resource_default_local_detector",
+      "adoption": "Unmodified ONNX weights; independent adapter; no per-workspace weight copy; not an upstream application code license",
+      "recordedDate": "2026-10-28",
+      "publicRelease": "NOT_PUBLISHED"
     }
   ],
   "auditObservations": [

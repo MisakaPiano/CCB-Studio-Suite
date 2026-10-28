@@ -38,3 +38,7 @@ docs/desktop/92_PHASE7_POST_MERGE_CLOSEOUT.md
 本包哈希证明取得的文件字节身份，不证明它就是用户本机最后修改版本、不代表运行验收、不授予再分发许可。旧聊天观察、真实源码与正式采用状态严格分开。
 
 所有来源采纳记录采用：来源 → 精确身份 → 功能 → 共享/适配/仅参考 → 差异 → 测试 → 后续同步责任。
+
+## 2026-10-27 外部图像工具增量
+
+用户明确将`duxingz/unified-image-tool`加入Studio来源及上游追踪；固定参考/当前观察均为`ed42f1f459dde621086f7763c36a46d768d091cb`，最新release `v1.22.2`。沿[公共引用](../references/PUBLIC_SOURCE_LINKS.md)与[机器可读追踪表](../references/UPSTREAM_TRACKING.json)登记，历史立项锚点保持。关注检测/效果/图像管线/UI/模型/依赖/许可；观察变化不是自动采用或独立验收，许可仍UNKNOWN。不新增git upstream remote，不修改Desktop/官方仓库。
