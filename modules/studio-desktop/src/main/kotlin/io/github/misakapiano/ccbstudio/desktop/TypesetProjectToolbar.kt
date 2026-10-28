@@ -12,50 +12,52 @@ import com.example.chatbar.desktop.DesktopAppIcons
 import kotlin.math.roundToInt
 
 /** One project header. Secondary actions have exactly one menu entry, not another expanded row. */
+@OptIn(ExperimentalFoundationApi::class)
 @Composable internal fun TypesetProjectToolbar(c:WorkbenchController,e:TypesetEditorController,history:Boolean,action:(String)->Unit){
     var expanded by remember{mutableStateOf(false)}
+    var exportMenu by remember{mutableStateOf(false)}
     val current=e.project!=null&&!history
     val editable=current&&!c.busy
-    val archived=e.editorExtras.projectRecords.count{it.state=="ARCHIVED"&&c.state.typesetProjects.any{p->p.id==it.projectId}}
-    Row(Modifier.fillMaxWidth().background(Panel).horizontalScroll(rememberScrollState()).padding(8.dp)
+    val title=if(history)"归档历史"else e.project?.let(e::projectTitle)?:"未打开工程"
+    BoxWithConstraints(Modifier.fillMaxWidth().background(Panel)){
+    val narrow=maxWidth<1000.dp
+    Row(Modifier.fillMaxWidth().then(if(narrow)Modifier.horizontalScroll(rememberScrollState())else Modifier).padding(8.dp)
         .semantics{contentDescription="工程主工具栏"},horizontalArrangement=Arrangement.spacedBy(6.dp),verticalAlignment=Alignment.CenterVertically){
         Box{
-            OutlinedButton(onClick={expanded=true},modifier=Modifier.width(270.dp).height(32.dp).semantics{contentDescription="工程菜单"},contentPadding=PaddingValues(horizontal=8.dp)){
+            OutlinedButton(onClick={expanded=true},modifier=Modifier.height(32.dp).semantics{contentDescription="工程菜单"},contentPadding=PaddingValues(horizontal=8.dp)){
                 Icon(TypesetIcons.FolderOpen,null,Modifier.size(15.dp));Spacer(Modifier.width(6.dp))
-                Text(if(history)"历史工程"else e.project?.name?:"工程 · 选择或新建",Modifier.weight(1f),fontSize=12.sp,maxLines=1,overflow=TextOverflow.Ellipsis)
+                Text("工程",fontSize=12.sp)
                 Text("▾",fontSize=12.sp)
             }
             DropdownMenu(expanded,{expanded=false},modifier=Modifier.width(340.dp).heightIn(max=580.dp)){
-                Column(Modifier.padding(horizontal=12.dp,vertical=8.dp),verticalArrangement=Arrangement.spacedBy(4.dp)){
-                    Text(e.project?.let(e::projectTitle)?:"暂无打开的工程",style=MaterialTheme.typography.subtitle2)
-                    Text(e.project?.let{p->c.state.generationOrganization.path(e.editorExtras.projectRecords.firstOrNull{it.projectId==p.id}?.parent).ifBlank{"未归类"}+" · ${e.document?.pages?.size?:0} 页"}?:"本机工程与归档历史分开管理",style=MaterialTheme.typography.caption)
-                }
-                Divider()
                 @Composable fun item(label:String,enabled:Boolean=!c.busy,key:String){
                     DropdownMenuItem(onClick={expanded=false;action(key)},enabled=enabled,modifier=Modifier.height(32.dp)){Text(label,fontSize=12.sp)}
                 }
                 item("打开本机工程",key="local")
-                item("历史工程 · $archived",key="history")
+                item("导入…",key="import-menu")
                 Divider()
+                item("当前工程设置…",editable,"settings")
                 item("收起当前工程",editable,"collapse")
-                item("重命名工程",editable,"rename")
-                item("另存工程",editable,"copy")
-                item("移出工程列表",editable,"remove")
                 item("保存工程",editable&&e.dirty,"save")
-                Divider()
-                item("导入工程文件",key="import")
-                item("导入编辑 Recipe",editable&&e.page!=null,"recipe")
-                item("另存导入原文件",editable&&e.project?.sourceExchangeId!=null,"source")
-                Divider()
-                item("工程与文件",key="info")
             }
         }
         EditorCommand("新建编辑工程",!c.busy,DesktopAppIcons.Add){action("new")}
-        EditorCommand("从资产库追加",editable,DesktopAppIcons.ImageAdd){action("append")}
-        Text(if(e.dirty)"待保存"else if(e.project!=null)"已保存"else"未打开工程",Modifier.padding(horizontal=4.dp),style=MaterialTheme.typography.caption)
+        TooltipArea(tooltip={Surface(color=Panel,elevation=4.dp){Text(title,Modifier.widthIn(max=600.dp).padding(8.dp))}},modifier=(if(narrow)Modifier.width(260.dp)else Modifier.weight(1f)).semantics{contentDescription="当前工程信息"}){
+          Column(Modifier.fillMaxWidth().padding(horizontal=4.dp)){
+            Text(title,maxLines=1,overflow=TextOverflow.Ellipsis)
+            Text(if(e.project==null)"本机工程与归档历史分开管理"else c.state.generationOrganization.path(e.editorExtras.projectRecords.firstOrNull{it.projectId==e.project!!.id}?.parent).ifBlank{"未归类"}+" · ${e.document?.pages?.size?:0} 页 · "+if(e.dirty)"待保存"else"已自动保存",style=MaterialTheme.typography.caption,maxLines=1,overflow=TextOverflow.Ellipsis)
+          }
+        }
         EditorCommand("命名并归档",editable,TypesetIcons.Archive){action("archive")}
-        EditorCommand("导出完整工程",editable,TypesetIcons.Export){action("export")}
-        EditorCommand("废弃当前工程…",editable,TypesetIcons.Delete){action("discard")}
+        EditorCommand("废弃当前工程",editable,TypesetIcons.Delete,destructive=true){action("discard")}
+        Box{
+            EditorCommand("导出",editable,TypesetIcons.Export){exportMenu=true}
+            DropdownMenu(exportMenu,{exportMenu=false}){
+                DropdownMenuItem({exportMenu=false;action("output")}){Text("图片／PDF 等成品",fontSize=12.sp)}
+                DropdownMenuItem({exportMenu=false;action("export")}){Text("完整工程包（继续编辑）",fontSize=12.sp)}
+            }
+        }
+    }
     }
     Divider()
 }
@@ -72,6 +74,5 @@ import kotlin.math.roundToInt
         EditorCommand("撤销编辑",!c.busy&&(e.dirty||e.project?.undo?.isNotEmpty()==true),TypesetIcons.Undo){e.history()}
         EditorCommand("重做编辑",!c.busy&&e.project?.redo?.isNotEmpty()==true,TypesetIcons.Redo){e.history(true)}
         EditorCommand("完整预览",!c.busy&&e.document?.pages?.isNotEmpty()==true,TypesetIcons.Preview,action=preview)
-        EditorCommand("预览与导出",!c.busy&&e.document?.pages?.isNotEmpty()==true,TypesetIcons.Export,action=export)
     }
 }

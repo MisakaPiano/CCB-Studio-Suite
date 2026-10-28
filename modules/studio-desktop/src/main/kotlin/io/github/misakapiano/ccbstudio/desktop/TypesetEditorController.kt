@@ -57,6 +57,11 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
         val extras=TypesetEditorExtrasStore.load(c.workspace)
         withContext(ui){clearCurrent();editorExtras=extras;rememberedProject=null;rememberedProjectLoaded=true;completed();c.operationNotice="已归档同一工程；原图与工程未复制，编辑历史保留"}
     }
+    fun placeCurrent(name:String,parent:String?,completed:()->Unit={},organization:TypesetOrganizationChange?=null)=c.run("保存工程名称与组织") {
+        drain();val p=project?:return@run
+        val next=archives.place(p.id,p.revision,name,parent,organization);val extras=TypesetEditorExtrasStore.load(c.workspace)
+        withContext(ui){project=next;editorExtras=extras;completed();c.operationNotice="工程名称与组织已保存；原图和编辑历史保留"}
+    }
     fun collapseCurrent(completed:()->Unit={})=c.run("收起当前工程") {
         drain();rememberProject(null);val extras=TypesetEditorExtrasStore.load(c.workspace)
         withContext(ui){clearCurrent();editorExtras=extras;completed();c.operationNotice="进度已保存并收起；可从打开本机工程继续"}
@@ -180,7 +185,7 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
     fun importExchange()=c.run("导入 TypeSet 工程") {
         drain();val inspection=exchangeInspection?:return@run;val next=TypesetSourceExchange.import(c.workspace,inspection);val d=repository.load(next)
         rememberProject(next.id)
-        withContext(ui){project=next;document=d;dirty=false;pageId=next.currentPageId;selectedPages=next.selectedPageIds.toSet();objectId=null;exchangeInspection=null;exchangeMessage="已建立独立工程，原始交换文件与图片已保全";c.view="编辑"}
+        withContext(ui){project=next;document=d;dirty=false;pageId=next.currentPageId;selectedPages=next.selectedPageIds.toSet();objectId=null;exchangeInspection=null;exchangeMessage="已建立独立工程，原图与当前编辑内容已保存；未额外保存整包，外部文件未改动";c.view="编辑"}
     }
     fun exportExchange(original:Boolean=false)=c.run("保存 TypeSet 工程文件") {
         drain();val p=project?:return@run;val d=document?:return@run
@@ -301,7 +306,7 @@ internal class TypesetEditorController(private val c:WorkbenchController) {
         when(action){
             "rename"->{val next=repository.rename(p.id,p.revision,name);withContext(ui){project=next}}
             "copy"->{val next=repository.copy(p.id,p.revision,name);rememberProject(next.id);withContext(ui){project=next;dirty=false}}
-            "remove"->{archives.removeFromList(p.id,p.revision);val extras=TypesetEditorExtrasStore.load(c.workspace);withContext(ui){clearCurrent();editorExtras=extras;rememberedProject=null;rememberedProjectLoaded=true}}
+
             else->error("Unknown project operation")
         }
     }

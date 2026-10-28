@@ -9,8 +9,8 @@ import java.util.UUID
 
 /** Immutable snapshot assets first, journal reference last. Failed writes retain orphans; no originals are deleted. */
 class TypesetRepository(private val workspace:StudioWorkspace) {
-    fun importDocument(name:String,document:TypesetDocument,sourceExchangeId:String,current:Int):TypesetProject=workspace.operation {
-        require(name.isNotBlank() && name.length<=100);document.validate();workspace.assets.read(UUID.fromString(sourceExchangeId)).require()
+    fun importDocument(name:String,document:TypesetDocument,sourceExchangeId:String?,current:Int):TypesetProject=workspace.operation {
+        require(name.isNotBlank() && name.length<=100);document.validate();sourceExchangeId?.let{workspace.assets.read(UUID.fromString(it)).require()}
         val page=document.pages.getOrNull(current)?.id?:document.pages.firstOrNull()?.id
         val project=TypesetProject(name=name,current=write(document),sourceExchangeId=sourceExchangeId,currentPageId=page,selectedPageIds=listOfNotNull(page))
         workspace.save(workspace.state.copy(typesetProjects=workspace.state.typesetProjects+project));project

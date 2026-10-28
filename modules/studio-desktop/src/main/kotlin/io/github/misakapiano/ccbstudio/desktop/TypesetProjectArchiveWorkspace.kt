@@ -31,11 +31,11 @@ private fun organizationPath(c:WorkbenchController,id:String?)=if(id==null)"未�
 }
 
 @Composable internal fun TypesetProjectArchiveDialog(c:WorkbenchController,e:TypesetEditorController,dismiss:()->Unit){
-    TypesetProjectPlacementDialog(c,e,true,dismiss)
+    TypesetProjectPlacementDialog(c,e,true,dismiss=dismiss)
 }
 
 private data class TypesetArchivedPreview(val document:TypesetDocument,val bitmap:ImageBitmap?,val problem:String?)
-@Composable internal fun TypesetProjectHistory(c:WorkbenchController,e:TypesetEditorController,modifier:Modifier,back:()->Unit){
+@Composable internal fun TypesetProjectHistory(c:WorkbenchController,e:TypesetEditorController,modifier:Modifier,showBack:Boolean=true,back:()->Unit){
     val records=e.editorExtras.projectRecords.filter{it.state=="ARCHIVED"}.associateBy{it.projectId}
     val projects=c.state.typesetProjects.filter{it.id in records}.sortedByDescending{records[it.id]!!.archivedAt}
     var selectedId by remember{mutableStateOf(projects.firstOrNull()?.id)}
@@ -51,7 +51,7 @@ private data class TypesetArchivedPreview(val document:TypesetDocument,val bitma
         }}catch(cancelled:CancellationException){throw cancelled}catch(ex:Exception){error="工程暂无法读取，原有文件保留；请检查恢复记录"}
     }
     Column(modifier.fillMaxWidth()){
-        Row(Modifier.fillMaxWidth().padding(10.dp),horizontalArrangement=Arrangement.spacedBy(10.dp),verticalAlignment=Alignment.CenterVertically){EditorCommand("返回编辑",!c.busy,TypesetIcons.Previous,action=back);Text("历史工程",style=MaterialTheme.typography.subtitle1);Text("${projects.size} 份 · 重新打开后回到进行中",style=MaterialTheme.typography.caption)}
+        Row(Modifier.fillMaxWidth().padding(10.dp),horizontalArrangement=Arrangement.spacedBy(10.dp),verticalAlignment=Alignment.CenterVertically){if(showBack)EditorCommand("返回编辑",!c.busy,TypesetIcons.Previous,action=back);Text("历史工程",style=MaterialTheme.typography.subtitle1);Text("${projects.size} 份 · 重新打开后回到进行中",style=MaterialTheme.typography.caption)}
         Divider()
         BoxWithConstraints(Modifier.weight(1f).fillMaxWidth()){
             val compact=maxWidth<720.dp
@@ -72,7 +72,8 @@ private data class TypesetArchivedPreview(val document:TypesetDocument,val bitma
                     }
                 }
             }
-            @Composable fun details(mod:Modifier){Column(mod.padding(14.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(10.dp)){
+            @Composable fun details(mod:Modifier){Column(mod.padding(14.dp),verticalArrangement=Arrangement.spacedBy(10.dp)){
+              Column(Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(10.dp)){
                 if(selected==null)Text("归档后可在这里查看并继续编辑。",color=Quiet)else{
                     preview?.bitmap?.let{Image(it,"归档工程封面",Modifier.fillMaxWidth().heightIn(max=270.dp),contentScale=ContentScale.Fit)}
                     Text(e.projectTitle(selected),style=MaterialTheme.typography.subtitle1)
@@ -80,6 +81,9 @@ private data class TypesetArchivedPreview(val document:TypesetDocument,val bitma
                     preview?.let{v->Text("${v.document.pages.size} 页 · 文字 ${v.document.pages.sumOf{it.texts.size}} 处 · 打码 ${v.document.pages.sumOf{it.masks.size}} 处");Text("上次编辑：第 ${(v.document.pages.indexOfFirst{it.id==selected.currentPageId}+1).coerceAtLeast(1)} 页 · 撤销 ${selected.undo.size} / 重做 ${selected.redo.size} 步",style=MaterialTheme.typography.caption);v.problem?.let{Text(it,color=Quiet)}}
                     error?.let{Text(it,color=MaterialTheme.colors.error)}
                     Text("沿用同一份工程，原图仍在原位置；不自动清理编辑历史。",style=MaterialTheme.typography.caption)
+                }
+              }
+              if(selected!=null){
                     EditorCommand("重新打开工程",!c.busy&&preview!=null,TypesetIcons.FolderOpen){e.reopenArchived(selected.id,back)}
                     EditorCommand("删除归档工程…",!c.busy,TypesetIcons.Delete){e.prepareDeletion(selected.id)}
                 }

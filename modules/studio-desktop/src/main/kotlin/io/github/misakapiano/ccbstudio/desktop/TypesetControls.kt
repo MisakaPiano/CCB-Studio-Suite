@@ -25,11 +25,11 @@ import androidx.compose.ui.text.style.TextOverflow
                 .background(Ink,MaterialTheme.shapes.small).padding(horizontal=8.dp,vertical=7.dp).semantics{contentDescription=label})
     }
 }
-@Composable internal fun EditorCommand(label:String,enabled:Boolean=true,icon:ImageVector?=null,selected:Boolean=false,modifier:Modifier=Modifier,action:()->Unit) {
+@Composable internal fun EditorCommand(label:String,enabled:Boolean=true,icon:ImageVector?=null,selected:Boolean=false,modifier:Modifier=Modifier,destructive:Boolean=false,action:()->Unit) {
     OutlinedButton(onClick=action,enabled=enabled,modifier=modifier.defaultMinSize(minWidth=1.dp).height(32.dp),contentPadding=PaddingValues(horizontal=8.dp,vertical=3.dp),
         colors=ButtonDefaults.outlinedButtonColors(backgroundColor=if(selected)Gold.copy(alpha=.22f)else Panel,contentColor=MaterialTheme.colors.onSurface),
         border=BorderStroke(1.dp,if(selected)Gold else MaterialTheme.colors.onSurface.copy(alpha=.22f))){
-        icon?.let{Icon(it,null,Modifier.size(15.dp));Spacer(Modifier.width(5.dp))};Text(label,fontSize=12.sp,maxLines=1)
+        icon?.let{Icon(it,null,Modifier.size(15.dp),tint=if(destructive&&enabled)MaterialTheme.colors.error else LocalContentColor.current.copy(alpha=LocalContentAlpha.current));Spacer(Modifier.width(5.dp))};Text(label,fontSize=12.sp,maxLines=1)
     }
 }
 

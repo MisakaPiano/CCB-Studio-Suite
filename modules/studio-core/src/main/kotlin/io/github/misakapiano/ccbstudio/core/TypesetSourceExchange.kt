@@ -108,15 +108,13 @@ object TypesetSourceExchange {
         val mode=raw.s("workspaceMode","image");require(mode in setOf("image","storybook"))
         val document=TypesetDocument(pages=pages,startNumber=raw.n("batchStart",1.0).toInt(),numberDigits=raw.n("batchDigits",3.0).toInt(),mode=if(mode=="storybook")mode else "editor").also{it.validate()}
         val name=raw.s("name","导入TypeSet工程");require(name.isNotBlank() && name.length<=100)
-        return Inspection(bytes.copyOf(),name,document,originals,raw.n("activeIndex",0.0).toInt(),listOf("源文件、未知字段、metadata和 $history 条源历史原样保留；源历史不执行为Studio撤销命令。","字体按源名称保留；缺失字体会阻止渲染导出，请在编辑器中选择或导入字体。"))
+        return Inspection(bytes.copyOf(),name,document,originals,raw.n("activeIndex",0.0).toInt(),listOf("导入原图及Studio支持的当前编辑内容；不保留整份包、未知字段和 $history 条外来源历史。外部文件不改动。","字体按源名称保留；缺失字体会阻止渲染导出，请在编辑器中选择或导入字体。"))
     }
     fun import(workspace:StudioWorkspace,inspection:Inspection):TypesetProject=workspace.operation {
         // Reparse immutable submitted bytes rather than trusting UI-mutated inspection collections.
-        val source=inspect(inspection.bytes);val sourceId=UUID.randomUUID()
-        workspace.assets.put(AssetStore.Request(sourceId,"source.typesetter-workspace.json",AssetStore.Kind.ORIGINAL,null,byteArrayOf(),TAG.toByteArray()),ByteArrayInputStream(source.bytes))
-        workspace.assets.read(sourceId).require()
-        val pages=source.document.pages.mapIndexed{index,page->page.copy(assetId=workspace.importImage(page.name,source.originals[index]))}
-        TypesetRepository(workspace).importDocument(source.name,source.document.copy(pages=pages),sourceId.toString(),source.activeIndex)
+        val source=inspect(inspection.bytes)
+        val pages=source.document.pages.mapIndexed{index,page->page.copy(assetId=workspace.importImage(page.name,source.originals[index]),sourceEntryIndex=null)}
+        TypesetRepository(workspace).importDocument(source.name,source.document.copy(pages=pages),null,source.activeIndex)
     }
     fun originalExchange(workspace:StudioWorkspace,project:TypesetProject):ByteArray=workspace.operation {
         val id=project.sourceExchangeId?:throw DataProblem("MISSING","This project has no imported source exchange")

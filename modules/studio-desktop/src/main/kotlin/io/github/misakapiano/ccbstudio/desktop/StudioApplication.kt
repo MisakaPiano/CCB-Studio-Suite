@@ -524,20 +524,20 @@ internal fun launchStudio(args:Array<String>) {
             LaunchedEffect(window){withFrameNanos{};if(c.allowDefaultEntrypoint&&System.getProperty("jpackage.app-path")!=null&&DesktopEntrypoints.ownsDefault(workspace.root,runtime))runCatching{withContext(Dispatchers.IO){DesktopEntrypoints.configureWindow(window)}}.onFailure{c.message="任务栏入口设置未完成，可在更新页重新创建入口"}}
             DisposableEffect(window){StudioFileDialogs.attach(window){c.problem=it};onDispose{StudioFileDialogs.detach(window)}}
             val chrome=rememberDesktopWindowChrome(window,::close);val dark=StudioAppearanceRuntime.palette.dark;SideEffect{chrome.appearance(dark)}
-            StudioTheme {Workbench(c,chrome,closing)}
+            CompositionLocalProvider(LocalStudioNativeWindows provides true){StudioTheme {Workbench(c,chrome,closing)}}
         }
         if(c.designDetached)Window(onCloseRequest=c::dismissDesign,title="CCB Studio Suite · AI 设计",icon=StudioBrand.painter,
             resizable=true,state=rememberWindowState(width=1120.dp,height=820.dp)) {
             SideEffect{window.minimumSize=java.awt.Dimension(700,520)}
-            StudioTheme {
+            CompositionLocalProvider(LocalStudioNativeWindows provides true){StudioTheme {
                 Surface(color=Ink,contentColor=DesktopBootstrapColors.foreground){DesignWorkspace(c,detached=true)}
-            }
+            }}
         }
         DisguiseCoverManagerWindow(c)
         if(c.batch.detached)Window(onCloseRequest={c.batch.detached=false;c.batch.shown=true},title="CCB Studio Suite · 批量生图",icon=StudioBrand.painter,
             resizable=true,state=rememberWindowState(width=1180.dp,height=820.dp)) {
             SideEffect{window.minimumSize=java.awt.Dimension(800,600)}
-            StudioTheme {GenerationManagementDialogs(c,true);BatchWorkspace(c,true)}
+            CompositionLocalProvider(LocalStudioNativeWindows provides true){StudioTheme {GenerationManagementDialogs(c,true);BatchWorkspace(c,true)}}
         }
     }
 }

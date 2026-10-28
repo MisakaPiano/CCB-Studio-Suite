@@ -42,6 +42,8 @@ import kotlin.math.*
     var projectHistory by remember{mutableStateOf(false)}
     var localProjects by remember{mutableStateOf(false)}
     var fileHelp by remember{mutableStateOf<String?>(null)}
+    var placementSettings by remember{mutableStateOf(false)}
+    var projectSettings by remember{mutableStateOf(false)};var importMenu by remember{mutableStateOf(false)}
     LaunchedEffect(e.objectId){
         // Selecting a layer must keep its lock/order commands in view.
         if(e.propertySection!="图层") {
@@ -56,8 +58,21 @@ import kotlin.math.*
     if(autoMaskInfo)TypesetAutoMaskDialog(c,e){autoMaskInfo=false}
     if(archiveProject)TypesetProjectArchiveDialog(c,e){archiveProject=false}
     if(creating)TypesetProjectPlacementDialog(c,e,false){creating=false}
+    if(placementSettings)TypesetProjectPlacementDialog(c,e,false,true){placementSettings=false}
     if(localProjects)TypesetLocalProjects(c,e){localProjects=false}
     fileHelp?.let{kind->TypesetProjectFileHelp(c,kind,{fileHelp=null}){if(kind=="export")e.exportExchange()else if(kind=="import")e.inspectExchange()}}
+    if(importMenu)AlertDialog(onDismissRequest={importMenu=false},title={Text("导入")},text={Column(verticalArrangement=Arrangement.spacedBy(8.dp)){
+        EditorCommand("完整工程包／TypeSet 工程",!c.busy,TypesetIcons.FolderOpen){importMenu=false;fileHelp="import"}
+        EditorCommand("编辑 Recipe（当前页）",!c.busy&&e.page!=null,TypesetIcons.FolderOpen){importMenu=false;e.inspectRecipe()}
+    }},confirmButton={TextButton(onClick={importMenu=false}){Text("取消导入选择")}})
+    if(projectSettings)AlertDialog(onDismissRequest={projectSettings=false},title={Text("当前工程设置")},text={Column(verticalArrangement=Arrangement.spacedBy(8.dp)){
+        Text(e.project?.let(e::projectTitle)?:"未打开工程")
+        EditorCommand("名称与组织…",!c.busy){projectSettings=false;placementSettings=true}
+        EditorCommand("创建本机副本",!c.busy){projectSettings=false;projectName=e.project?.name.orEmpty()+" 副本";projectAction="copy"}
+        EditorCommand("工程保存与分享说明"){projectSettings=false;fileHelp="info"}
+        if(e.project?.sourceExchangeId!=null)EditorCommand("另存已有导入原文件",!c.busy){projectSettings=false;e.exportExchange(true)}
+        Text("新导入只保留原图及可编辑内容，不另存完整包。已有导入源保持不变。",style=MaterialTheme.typography.caption)
+    }},confirmButton={TextButton(onClick={projectSettings=false}){Text("关闭工程设置")}})
     if(e.deletionPlan!=null)TypesetProjectDeleteDialog(c,e)
     Column(Modifier.fillMaxSize()) {
         TypesetProjectToolbar(c,e,projectHistory){command->when(command){
@@ -68,9 +83,12 @@ import kotlin.math.*
             "archive"->archiveProject=true
             "discard"->e.project?.let{e.prepareDeletion(it.id)}
             "collapse"->e.collapseCurrent()
-            "rename","copy","remove"->{projectName=e.project?.name.orEmpty()+if(command=="copy")" 副本"else"";projectAction=command}
+            "rename","copy"->{projectName=e.project?.name.orEmpty()+if(command=="copy")" 副本"else"";projectAction=command}
             "save"->c.run("保存工程"){e.drain()}
             "import","export","info"->{if(command=="import")projectHistory=false;fileHelp=command}
+            "output"->exporting=true
+            "settings"->projectSettings=true
+            "import-menu"->importMenu=true
             "recipe"->e.inspectRecipe()
             "source"->e.exportExchange(true)
         }}
@@ -138,6 +156,7 @@ import kotlin.math.*
                     if(compact)StudioChips("",listOf("队列","画布","属性"),tab,{it}){tab=it}
                     Row(Modifier.weight(1f).fillMaxWidth()) {
                         if(!compact || tab=="队列")Column(if(compact)Modifier.fillMaxSize()else Modifier.width((queueDragWidth?:e.document!!.queueWidth.toFloat()).dp).fillMaxHeight()) {
+                            EditorCommand("从资产库追加",!c.busy,DesktopAppIcons.ImageAdd){appendPicking=true}
                             TypesetQueue(c,e,Modifier.weight(1f)){id->fullPreviewPage=id;fullPreview=true}
                             StudioDisclosure("页面操作") {
                             StudioDisclosure("队列设置") {
@@ -194,10 +213,9 @@ import kotlin.math.*
         Text("内含原图与当前文字、打码、排版和页面顺序；将新建独立工程，不替换当前工程或图片。字体文件、模型和本机撤销历史不导入。")
         inspection.notes.forEach{Text(it)}
     }},confirmButton={TextButton(enabled=!c.busy,onClick={e.importExchange()}){Text("导入为新工程")}},dismissButton={TextButton(onClick={e.cancelExchange()}){Text("取消导入")}})}
-    if(projectAction!=null)AlertDialog(onDismissRequest={projectAction=null},title={Text(when(projectAction){"rename"->"重命名工程";"copy"->"另存为独立工程";else->"移出工程列表？"})},text={Column{
-        if(projectAction=="remove")Text("只隐藏此工程入口；工程编号、原图关联及编辑历史仍保留，不删除本地文件。")
-        else {OutlinedTextField(projectName,{projectName=it.take(100)},label={Text("新工程名称")});if(projectAction=="copy")Text("保留当前页面与图层，新工程有独立历史；后续修改互不影响。")}
-    }},confirmButton={TextButton(enabled=projectAction=="remove" || projectName.isNotBlank(),onClick={e.manageProject(projectAction!!,projectName);projectAction=null}){Text("确认工程操作")}},dismissButton={TextButton(onClick={projectAction=null}){Text("取消")}})
+    if(projectAction!=null)AlertDialog(onDismissRequest={projectAction=null},title={Text(when(projectAction){"rename"->"重命名工程";else->"另存为独立工程"})},text={Column{
+        OutlinedTextField(projectName,{projectName=it.take(100)},label={Text("新工程名称")});if(projectAction=="copy")Text("保留当前页面与图层，新工程有独立历史；后续修改互不影响。")
+    }},confirmButton={TextButton(enabled=projectName.isNotBlank(),onClick={e.manageProject(projectAction!!,projectName);projectAction=null}){Text("确认工程操作")}},dismissButton={TextButton(onClick={projectAction=null}){Text("取消")}})
     e.staticChoice?.let{choice->AlertDialog(onDismissRequest=e::cancelStaticChoice,title={Text("动画图片的静态编辑确认")},
         text={Text("所选 ${choice.ids.size} 张含动画格式。GIF/动态WebP仅编辑首帧；APNG使用默认静态图，伪装APNG的默认图可能只是封面。需要真实内容时先返回图库使用APNG还原。原始动画文件保留，编辑导出不会保留动画。")},
         confirmButton={TextButton(enabled=!c.busy,onClick=e::confirmStaticChoice){Text("同意仅编辑静态图")}},

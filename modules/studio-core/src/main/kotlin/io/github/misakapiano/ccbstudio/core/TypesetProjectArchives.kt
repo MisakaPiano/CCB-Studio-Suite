@@ -29,6 +29,18 @@ class TypesetProjectArchives(private val w:StudioWorkspace) {
         val p=TypesetRepository(w).prepareCreate(name.trim(),ids)
         TypesetEditorExtrasStore.save(w,old.copy(lastProjectId=p.id,projectSelectionRecorded=true,projectRecords=old.projectRecords+TypesetProjectRecord(p.id,parent=parent)),w.state.typesetProjects+p,org);p
     }
+    fun place(id:String,revision:Long,name:String,parent:String?,change:TypesetOrganizationChange?=null):TypesetProject=w.operation {
+        val org=TypesetOrganizationChanges.resolve(w,change);val alias=name.trim()
+        require(alias.isNotEmpty()&&alias.length<=100)
+        require(parent==null||org.folders.any{it.id==parent}){"上级组织已改变，请重新选择"}
+        val p=current(id,revision);val old=TypesetOrganizationChanges.relocate(extras(),w.state.generationOrganization,org)
+        val r=old.projectRecords.firstOrNull{it.projectId==id}?:TypesetProjectRecord(id)
+        require(r.state=="ACTIVE"){"请先打开可编辑工程"}
+        TypesetRepository(w).load(p)
+        if(p.name==alias&&r.parent==parent&&org==w.state.generationOrganization)return@operation p
+        val next=p.copy(name=alias,revision=p.revision+1)
+        TypesetEditorExtrasStore.save(w,old.copy(projectRecords=old.projectRecords.filterNot{it.projectId==id}+r.copy(parent=parent)),w.state.typesetProjects.map{if(it.id==id)next else it},org);next
+    }
     fun archive(id:String,revision:Long,name:String,parent:String?,at:Long=System.currentTimeMillis(),change:TypesetOrganizationChange?=null):TypesetProject=w.operation {
         val org=TypesetOrganizationChanges.resolve(w,change)
         val alias=name.trim();require(alias.isNotEmpty()&&alias.length<=100&&at>0)

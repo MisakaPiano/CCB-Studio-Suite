@@ -296,16 +296,16 @@ class TypesetWorkflowTest {
         c.editor.choosePresetFile={save->if(save)presetOutput else presetInput}
         val scene=ImageComposeScene(1320,950,coroutineContext=awt){MaterialTheme(colors=darkColors(primary=Gold,background=Ink,surface=Panel)){Workbench(c,DesktopWindowChrome{},false)}}
         try {
-            scene.frames();scene.click("导入 TypeSet 工程");c.idle();scene.frames();assertTrue(w.state.typesetProjects.isEmpty());scene.click("取消导入");assertNull(c.editor.exchangeInspection)
-            scene.click("导入 TypeSet 工程");c.idle();scene.frames();scene.shot("source-exchange-confirm");scene.click("建立独立导入工程");c.idle();scene.frames()
-            assertEquals(1,c.assets.size);assertEquals(3,c.editor.page!!.masks.size);scene.click("▸ 工程交换文件");scene.click("导出当前 TypeSet 工程");c.idle();assertTrue(Files.exists(output))
+            scene.frames();scene.click("工程菜单");scene.click("导入…");scene.click("完整工程包／TypeSet 工程");scene.click("选择外部工程文件");c.idle();scene.frames();assertTrue(w.state.typesetProjects.isEmpty());scene.click("取消导入");assertNull(c.editor.exchangeInspection)
+            scene.click("工程菜单");scene.click("导入…");scene.click("完整工程包／TypeSet 工程");scene.click("选择外部工程文件");c.idle();scene.frames();scene.shot("source-exchange-confirm");scene.click("导入为新工程");c.idle();scene.frames()
+            assertEquals(1,c.assets.size);assertEquals(3,c.editor.page!!.masks.size);assertNull(c.editor.project!!.sourceExchangeId);scene.click("导出");scene.click("完整工程包（继续编辑）");scene.click("选择位置并导出完整工程");c.idle();assertTrue(Files.exists(output))
             val roundTrip=TypesetSourceExchange.inspect(Files.readAllBytes(output));assertEquals(c.editor.page!!.texts,roundTrip.document.pages.single().texts)
             scene.click("预设");scene.click("▸ 导入与导出预设");scene.click("导入 TypeSet 预设");c.idle();scene.frames();assertTrue(w.state.typesetPreferences.textPresets.isEmpty());scene.click("合并并导入默认");c.idle();scene.frames()
             assertEquals("heavy_mosaic",w.state.typesetPreferences.preferredMaskSlot);assertEquals(1,w.state.typesetPreferences.textPresets.size)
             scene.click("导出 TypeSet 预设");c.idle();assertEquals(48.0,TypesetSourceExchange.inspectPresets(Files.readAllBytes(presetOutput)).preferences.textPresets.single().text.style.fontSize)
             c.editor.drain()
         }finally{scene.close();c.close();scope.cancel();w.close()}
-        StudioWorkspace.openStudio(r).use{next->assertContentEquals(Files.readAllBytes(input),TypesetSourceExchange.originalExchange(next,next.state.typesetProjects.single()));assertEquals("heavy_mosaic",next.state.typesetPreferences.preferredMaskSlot)}
+        StudioWorkspace.openStudio(r).use{next->assertNull(next.state.typesetProjects.single().sourceExchangeId);assertContentEquals(TypesetSourceExchange.inspect(Files.readAllBytes(input)).originals.single(),next.bytes(TypesetRepository(next).load(next.state.typesetProjects.single()).pages.single().assetId));assertEquals("heavy_mosaic",next.state.typesetPreferences.preferredMaskSlot)}
     }
     @Test fun storyCaptionPresetPreviewExportAndRestart()=runBlocking(awt) {
         val r=root();val w=StudioWorkspace.openStudio(r);val original=EditorRenderer.synthetic(180,120);val id=w.importImage("book.png",original)
@@ -334,6 +334,7 @@ class TypesetWorkflowTest {
     }
     private fun SemanticsNode.matches(s:String)=config.getOrNull(SemanticsProperties.Text)?.any{it.text==s}==true || config.getOrNull(SemanticsProperties.ContentDescription)?.contains(s)==true
     private suspend fun ImageComposeScene.click(s:String){
+        if(s=="预览与导出"){click("导出");click("图片／PDF 等成品");return}
         if(nodes().none{it.matches(s)&&it.config.getOrNull(SemanticsActions.OnClick)!=null}) {
             if(s in setOf("从资产库新建","导入 TypeSet 工程","重命名工程","另存工程","删除工程","保存工程","完整预览","导入编辑 Recipe","▸ 工程交换文件"))click("工程选项")
             if(s in setOf("▸ 队列设置","全选页","全不选页","反选页","上移页","下移页","移除所选页","置顶页","置底页","追加图库所选"))click("▸ 页面操作")

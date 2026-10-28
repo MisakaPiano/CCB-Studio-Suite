@@ -14,11 +14,11 @@ import androidx.compose.ui.window.DialogProperties
 import io.github.misakapiano.ccbstudio.core.*
 
 /** One staged tree for creation and archive. Cancel never publishes organization edits. */
-@Composable internal fun TypesetProjectPlacementDialog(c:WorkbenchController,e:TypesetEditorController,archive:Boolean,dismiss:()->Unit){
-    val p=e.project;if(archive&&p==null)return
+@Composable internal fun TypesetProjectPlacementDialog(c:WorkbenchController,e:TypesetEditorController,archive:Boolean,placement:Boolean=false,dismiss:()->Unit){
+    val p=e.project;if((archive||placement)&&p==null)return
     val before=remember{c.state.generationOrganization}
     var org by remember{mutableStateOf(before)}
-    var name by remember{mutableStateOf(if(archive)p!!.name else "")}
+    var name by remember{mutableStateOf(if(archive||placement)p!!.name else "")}
     var parent by remember{mutableStateOf(e.editorExtras.projectRecords.firstOrNull{it.projectId==p?.id}?.parent)}
     val at=remember{System.currentTimeMillis()}
     var expanded by remember{mutableStateOf(before.folders.filter{f->parent!=null&&parent in before.descendants(f.id)}.map{it.id}.toSet())}
@@ -64,33 +64,36 @@ import io.github.misakapiano.ccbstudio.core.*
     @Composable fun detailsPanel(modifier:Modifier){Column(modifier,verticalArrangement=Arrangement.spacedBy(12.dp)){
             EditorInput(if(archive)"归档工程名称"else"工程名称",name){if(!c.busy)name=it.take(100)}
             Text("归属位置：${org.path(parent).ifBlank{"未归类"}}")
-            if(!archive){EditorCommand("选择图库图片 · ${ids.size} 张",!c.busy,TypesetIcons.Image){picking=true};Text("引用所选图库原图，不另复制；也可先通过图库导入图片。",style=MaterialTheme.typography.caption)}
+            if(!archive&&!placement){EditorCommand("选择图库图片 · ${ids.size} 张",!c.busy,TypesetIcons.Image){picking=true};Text("引用所选图库原图，不另复制；也可先通过图库导入图片。",style=MaterialTheme.typography.caption)}
             if(archive){Divider();Text(typesetProjectTitle(p!!.copy(name=name.trim().ifBlank{"未命名工程"}),TypesetProjectRecord(p.id,"ARCHIVED",at,parent)));Text("同一份工程与原图，保留编辑历史；归档后清空编辑区。")}
             Text("组织调整随本次保存生效，取消不会改变已有组织。",style=MaterialTheme.typography.caption)
             c.problem?.let{Text(it,color=MaterialTheme.colors.error)}
     }}
     Dialog(onDismissRequest={if(!c.busy)dismiss()},properties=DialogProperties(usePlatformDefaultWidth=false)){
       Surface(Modifier.widthIn(max=860.dp).fillMaxWidth(.94f),shape=MaterialTheme.shapes.medium,color=Panel){Column(Modifier.padding(20.dp).heightIn(max=650.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(16.dp)){
-        Text(if(archive)"命名并归档"else"新建编辑工程",style=MaterialTheme.typography.h6);Divider()
+        Text(if(archive)"命名并归档"else if(placement)"名称与组织"else"新建编辑工程",style=MaterialTheme.typography.h6);Divider()
         BoxWithConstraints(Modifier.fillMaxWidth()){
             if(maxWidth>=620.dp)Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(20.dp)){treePanel(Modifier.weight(1f));detailsPanel(Modifier.weight(1f))}
             else Column(verticalArrangement=Arrangement.spacedBy(16.dp)){detailsPanel(Modifier.fillMaxWidth());treePanel(Modifier.fillMaxWidth())}
         }
-        Divider();Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.End){TextButton(enabled=!c.busy,onClick=dismiss){Text(if(archive)"取消归档"else"取消新建")};Spacer(Modifier.width(8.dp));TextButton(enabled=!c.busy&&name.isNotBlank()&&editing==null&&(archive||ids.isNotEmpty()),onClick={
+        Divider();Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.End){TextButton(enabled=!c.busy,onClick=dismiss){Text(if(archive)"取消归档"else if(placement)"取消设置"else"取消新建")};Spacer(Modifier.width(8.dp));TextButton(enabled=!c.busy&&name.isNotBlank()&&editing==null&&(archive||placement||ids.isNotEmpty()),onClick={
         val change=TypesetOrganizationChange(before,org)
-        if(archive)e.archiveCurrent(name,parent,at,dismiss,change)else {e.create(name,ids,organization=change,parent=parent);dismiss()}
-        }){Text(if(archive)"保存并归档"else"建立工程")}}
+        if(archive)e.archiveCurrent(name,parent,at,dismiss,change)else if(placement)e.placeCurrent(name,parent,dismiss,change)else {e.create(name,ids,organization=change,parent=parent);dismiss()}
+        }){Text(if(archive)"保存并归档"else if(placement)"保存名称与组织"else"建立工程")}}
       }}
     }
 }
 
 @Composable internal fun TypesetLocalProjects(c:WorkbenchController,e:TypesetEditorController,dismiss:()->Unit){
-    val projects=e.activeProjects(c)
+    val projects=e.activeProjects(c);var archived by remember{mutableStateOf(false)}
     AlertDialog(onDismissRequest=dismiss,title={Text("打开本机工程")},text={Column(Modifier.width(600.dp),verticalArrangement=Arrangement.spacedBy(10.dp)){
-        Text("这里只列出未归档工程，包括已收起的工程；归档工程请从归档历史打开。")
+        Row(horizontalArrangement=Arrangement.spacedBy(8.dp)){EditorCommand("进行中／已收起",selected=!archived){archived=false};EditorCommand("归档历史",selected=archived){archived=true}}
+        if(archived)TypesetProjectHistory(c,e,Modifier.height(460.dp),showBack=false,back=dismiss)else Column{
+        Text("这里只列出未归档工程，包括已收起的工程。")
         LazyColumn(Modifier.heightIn(max=380.dp),verticalArrangement=Arrangement.spacedBy(8.dp)){
             if(projects.isEmpty())item{Text("暂无未归档工程")}
             items(projects,key={it.id}){p->Row(Modifier.fillMaxWidth().border(1.dp,Quiet).padding(10.dp),verticalAlignment=Alignment.CenterVertically){Column(Modifier.weight(1f)){Text(p.name);Text(c.state.generationOrganization.path(e.editorExtras.projectRecords.firstOrNull{it.projectId==p.id}?.parent).ifBlank{"未归类"},style=MaterialTheme.typography.caption);Text(if(p.id==e.project?.id)"正在编辑"else"已保存，可继续",style=MaterialTheme.typography.caption)};EditorCommand("打开本机工程 · ${p.name}",!c.busy&&p.id!=e.project?.id,TypesetIcons.FolderOpen){e.open(p.id);dismiss()}}}
+        }
         }
     }},confirmButton={TextButton(onClick=dismiss){Text("关闭列表")}})
 }
@@ -106,10 +109,11 @@ import io.github.misakapiano.ccbstudio.core.*
         }
         Text(if(importing)"选择 Studio 或兼容 TypeSet 导出的 .typesetter-workspace.json 文件。确认摘要后建立独立工程，不覆盖当前工程。"else"完整工程是一个 .typesetter-workspace.json 文件：包含原图字节、当前文字／打码／排版、图片队列顺序和活动页。只有主动导出才生成它。")
         Divider();Text("怎样继续编辑",style=MaterialTheme.typography.subtitle2)
-        Text("1. 导出时自行选择保存位置，将生成的工程文件保存或发给对方。\n2. 在 Studio 编辑页点击“导入工程文件”，选择文件并核对内容摘要，再点击“导入为新工程”。\n3. 可继续修改文字、打码、排版与图片顺序；缺失字体需自行安装、导入或替换。")
+        Text("1. 导出时自行选择保存位置，将生成的工程文件保存或发给对方。\n2. 在 Studio 编辑页选择“工程 → 导入… → 完整工程包／TypeSet 工程”，选择文件并核对内容摘要，再点击“导入为新工程”。\n3. 可继续修改文字、打码、排版与图片顺序；缺失字体需自行安装、导入或替换。")
         Text("不包含：本机撤销／重做历史、字体文件、AI 模型、账户凭据、已导出成品和本机组织树。这不是完整资料备份。",style=MaterialTheme.typography.caption)
+        if(importing)Text("确认后将原图与当前可编辑内容保存到工作区，不额外保存整包、外来历史或未知字段；外部原文件不变。已有导入资料不清理。")
         Text("单个文件上限64 MiB。原图会完整嵌入分享文件，请确认愿意分享这些原图；本机归档不复制原图。",style=MaterialTheme.typography.caption)
-        Text("原有“预览与导出”继续用于成品图片／PDF／ZIP；不是可继续编辑的工程。",style=MaterialTheme.typography.caption)
+        Text("“导出 → 图片／PDF 等成品”用于成品；“完整工程包”用于继续编辑。",style=MaterialTheme.typography.caption)
     }},confirmButton={TextButton(enabled=!c.busy,onClick={dismiss();proceed()}){Text(if(exporting)"选择位置并导出完整工程"else if(importing)"选择外部工程文件"else"知道了")}},dismissButton={if(kind!="info")TextButton(onClick=dismiss){Text("取消文件操作")}})
 }
 

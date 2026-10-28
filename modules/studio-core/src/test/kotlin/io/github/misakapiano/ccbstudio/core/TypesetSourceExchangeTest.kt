@@ -12,6 +12,12 @@ class TypesetSourceExchangeTest {
         assertFails{TypesetSourceExchange.saveFile(path,bytes)};assertEquals("concurrent file",Files.readString(path))
         val success=parent.resolve("new.json");TypesetSourceExchange.saveFile(success,bytes);assertContentEquals(bytes,Files.readAllBytes(success))
     }
+    private fun legacyImport(w:StudioWorkspace,bytes:ByteArray):TypesetProject {
+        val inspection=TypesetSourceExchange.inspect(bytes);val id=java.util.UUID.randomUUID()
+        w.assets.put(io.github.misakapiano.ccbstudio.assets.AssetStore.Request(id,"source.typesetter-workspace.json",io.github.misakapiano.ccbstudio.assets.AssetStore.Kind.ORIGINAL,null,byteArrayOf(),TypesetSourceExchange.TAG.toByteArray()),java.io.ByteArrayInputStream(bytes))
+        val pages=inspection.document.pages.mapIndexed{i,p->p.copy(assetId=w.importImage(p.name,inspection.originals[i]))}
+        return TypesetRepository(w).importDocument(inspection.name,inspection.document.copy(pages=pages),id.toString(),inspection.activeIndex)
+    }
     @Test fun actualSourcePresetExportMatchesStyleAndDefaults() {
         val bytes=javaClass.getResourceAsStream("/typeset/source-presets.json")!!.readBytes();assertEquals("60c6a6248dde41c8d870190861cd6a042373cf4ad6f8e6ef6a161f6de77894bf",sha256(bytes))
         val p=TypesetSourceExchange.inspectPresets(bytes).preferences;assertEquals("heavy_mosaic",p.preferredMaskSlot);assertEquals(48.0,p.textPresets.single().text.style.fontSize);assertTrue(p.textPresets.single().text.vertical)
@@ -31,18 +37,18 @@ class TypesetSourceExchangeTest {
     }
     private fun root()=Path.of(System.getProperty("preview.test.root")).resolve(newId())
     private fun source()=javaClass.getResourceAsStream("/typeset/source-workspace.json")!!.readBytes()
-    @Test fun actualSourceExportImportsAllObjectsAndKeepsRawAcrossBackup() {
+    @Test fun actualSourceExportImportsEditableContentWithoutRawAcrossBackup() {
         val original=source();assertEquals("45a6215884ede5f7193f88fc2a219f98aae09461b60d44546ad575b7fbf9958c",sha256(original))
         val inspection=TypesetSourceExchange.inspect(original);assertEquals(1,inspection.document.pages.size)
         val page=inspection.document.pages.single();assertEquals(3,page.masks.size);assertTrue(page.texts.single().vertical);assertEquals("[b]源文字[/]「竖排」",page.texts.single().text);assertEquals("源旁白，保留。",page.caption)
         val r=root();val backup=StudioWorkspace.openStudio(r).use{w->val p=TypesetSourceExchange.import(w,inspection);val d=TypesetRepository(w).load(p)
-            assertContentEquals(inspection.originals.single(),w.bytes(d.pages.single().assetId));assertContentEquals(original,TypesetSourceExchange.originalExchange(w,p));w.backup()}
-        val restored=root();StudioRestore.restore(backup,restored);StudioWorkspace.openStudio(restored).use{w->val p=w.state.typesetProjects.single();assertContentEquals(original,TypesetSourceExchange.originalExchange(w,p));assertEquals(page.caption,TypesetRepository(w).load(p).pages.single().caption)}
+            assertContentEquals(inspection.originals.single(),w.bytes(d.pages.single().assetId));assertNull(p.sourceExchangeId);assertTrue(w.catalog().none{it.request().project().contentEquals(TypesetSourceExchange.TAG.toByteArray())});w.backup()}
+        val restored=root();StudioRestore.restore(backup,restored);StudioWorkspace.openStudio(restored).use{w->val p=w.state.typesetProjects.single();assertNull(p.sourceExchangeId);assertContentEquals(inspection.originals.single(),w.bytes(TypesetRepository(w).load(p).pages.single().assetId));assertEquals(page.caption,TypesetRepository(w).load(p).pages.single().caption)}
     }
     @Test fun editedExportRoundTripsStudioExtensionsAndRetainsUnknownSourceFields() {
         val raw=documentJson.parseToJsonElement(source().decodeToString()).jsonObject
         val augmented=JsonObject(raw+mapOf("futureField" to JsonPrimitive("retained"),"entries" to JsonArray(raw.getValue("entries").jsonArray.map{JsonObject(it.jsonObject+mapOf("futureEntry" to JsonPrimitive(72)))}))).toString().toByteArray()
-        StudioWorkspace.openStudio(root()).use{w->val repository=TypesetRepository(w);var p=TypesetSourceExchange.import(w,TypesetSourceExchange.inspect(augmented))
+        StudioWorkspace.openStudio(root()).use{w->val repository=TypesetRepository(w);var p=legacyImport(w,augmented)
             p=repository.update(p.id,p.revision){d->d.copy(pages=d.pages.map{page->page.copy(texts=page.texts.map{it.copy(text="编辑后 [b]正文[/]",locked=true)},layerOrder=listOf(page.texts.single().id)+page.masks.map{it.id},caption="修改后旁白")})}
             val document=repository.load(p);val bytes=TypesetSourceExchange.export(w,p,document);val parsed=documentJson.parseToJsonElement(bytes.decodeToString()).jsonObject
             assertEquals("retained",parsed.getValue("futureField").jsonPrimitive.content);assertEquals(72,parsed.getValue("entries").jsonArray[0].jsonObject.getValue("futureEntry").jsonPrimitive.int)

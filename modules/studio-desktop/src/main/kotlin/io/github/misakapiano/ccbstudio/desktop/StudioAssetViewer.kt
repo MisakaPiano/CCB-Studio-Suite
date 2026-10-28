@@ -57,7 +57,7 @@ internal fun viewerMenu(c:WorkbenchController,id:String,copy:()->Unit,save:()->U
 @Composable internal fun StudioAssetViewer(c:WorkbenchController,ids:List<String>,initial:Int,onClose:()->Unit) {
     val selection=remember{StudioViewerSelection(ids,initial)}
     if(selection.id==null)return
-    DialogWindow(onCloseRequest=onClose,title="图片 ${selection.index+1} / ${selection.ids.size}",icon=StudioBrand.painter,state=rememberDialogState(width=1000.dp,height=800.dp),onKeyEvent={event->
+    StudioImageWindow(close=onClose,title="图片 ${selection.index+1} / ${selection.ids.size}",width=1000.dp,height=800.dp,onKeyEvent={event->
         if(event.type!=KeyEventType.KeyDown)false else when(event.key){
             Key.DirectionLeft->{selection.previous();true}
             Key.DirectionRight->{selection.next();true}

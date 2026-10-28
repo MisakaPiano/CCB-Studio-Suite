@@ -5,6 +5,17 @@ import kotlin.test.*
 
 class TypesetProjectArchivesTest {
     private fun root()=Path.of(System.getProperty("preview.test.root")).resolve(newId())
+    @Test fun currentNameAndNestedOrganizationSaveTogetherWithoutCopyingRecipes(){
+        StudioWorkspace.openStudio(root()).use{w->
+            val bytes=EditorRenderer.synthetic(100,80);val id=w.importImage("original.png",bytes);val repo=TypesetRepository(w);val p=repo.create("before",listOf(id))
+            val before=w.state.generationOrganization;val parent=GenerationFolder(name="Project");val chapter=GenerationFolder(name="Chapter",parent=parent.id);val nextOrg=before.copy(folders=before.folders+parent+chapter)
+            val a=TypesetProjectArchives(w);val next=a.place(p.id,p.revision,"renamed",chapter.id,TypesetOrganizationChange(before,nextOrg))
+            assertEquals("renamed",next.name);assertEquals(p.current,next.current);assertEquals(p.undo,next.undo);assertEquals(p.redo,next.redo)
+            assertEquals(chapter.id,a.record(p.id)!!.parent);assertEquals(nextOrg,w.state.generationOrganization);assertContentEquals(bytes,w.bytes(id))
+            val count=w.catalog().size;assertEquals(next,a.place(next.id,next.revision,next.name,chapter.id));assertEquals(count,w.catalog().size)
+            val state=w.state;assertFails{a.place(p.id,p.revision,"stale",null)};assertFails{a.place(next.id,next.revision," ",null)};assertFails{a.place(next.id,next.revision,"bad",newId())};assertEquals(state,w.state)
+        }
+    }
     @Test fun archiveReopenAndBackupRetainIdentityRecipesHistoryAndOriginalBytes(){
         val path=root();lateinit var backup:Path;lateinit var retained:TypesetProject
         lateinit var originalId:String;val bytes=EditorRenderer.synthetic(160,100)
