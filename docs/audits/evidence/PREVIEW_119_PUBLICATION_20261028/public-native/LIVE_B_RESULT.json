@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "source": "d9be9d9f90cd305c71749933a0b2c4f2929b06a3",
+  "installerSha256": "b425ae408e3613acac2a0000ead5f04cd02c9831a63d4b288682f5e2f75f1c83",
+  "version": 119,
+  "oldVersion": 118,
+  "oldInstallerSha256": "3540be44ca7a1fcfd583899b325abad7630e10b120d288e9f2e7dc7a1e8bd60d",
+  "oldDirectoryRemovedWhileBRunning": true,
+  "bWindows": [
+    {
+      "pid": 13560,
+      "hwnd": 855190
+    }
+  ],
+  "bProcessStillRunning": true,
+  "bVerification": {
+    "files": 551,
+    "bytes": 348335736,
+    "manifestSha256": "1341b3f7eba6ce943e23b20d30a7af09360e58af379aa76326c36411465ca858"
+  },
+  "defaultAfter": {
+    "format": 1,
+    "version": 119,
+    "installed": "H:\\CCB-Studio-Suite\\.local\\disposable\\p119n-9f3fa12a1bfd436ab87e075b099f7068\\payload\\install\\119-d9be9d9f90cd",
+    "data": "H:\\CCB-Studio-Suite\\.local\\disposable\\p119n-9f3fa12a1bfd436ab87e075b099f7068\\payload\\install\\data\\workspace",
+    "runtime": "H:\\CCB-Studio-Suite\\.local\\disposable\\p119n-9f3fa12a1bfd436ab87e075b099f7068\\payload\\install\\data\\runtime",
+    "exeSha256": "494f137e9fa8cb07b7f1d19ed6cc3e6dfac4afd3df16397390d30f1aee58541f"
+  },
+  "downloadsRemaining": 0,
+  "installingDirectoriesRemaining": 0,
+  "assetsVerifiedInAck": 2,
+  "syntheticCredentialsVerifiedInAck": 2,
+  "backupRetained": true,
+  "formalRootUnchanged": true,
+  "discovery": "REAL_PUBLIC_SIGNED_TUF_118_TO_119_NO_ADAPTER",
+  "actual118And119ProductionMain": true,
+  "oldHelperSourceUnmodified": true,
+  "forcedTermination": false,
+  "publicRelease": false,
+  "dailyInstallationModified": false
+}

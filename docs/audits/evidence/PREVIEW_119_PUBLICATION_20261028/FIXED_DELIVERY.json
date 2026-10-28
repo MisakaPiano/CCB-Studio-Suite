@@ -1,0 +1,56 @@
+{
+  "status": "PASS",
+  "source": "d9be9d9f90cd305c71749933a0b2c4f2929b06a3",
+  "retainedInstaller": "H:\\CCB-Studio-Suite\\.local\\preview-publication-119-20261028\\delivery\\CCB-Studio-Suite-0.0.0-preview.119-windows-x64.exe",
+  "sha256": "b425ae408e3613acac2a0000ead5f04cd02c9831a63d4b288682f5e2f75f1c83",
+  "bytes": 264116085,
+  "rootSha256": "408008d80aeb2dd3844325d74f09da9d248733e220dd88c08cc6299c4a24cc7a",
+  "buildReceipt": "H:\\CCB-Studio-Suite\\.local\\preview-publication-119-20261028\\delivery\\BUILD_RECEIPT.json",
+  "files": [
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\preview-publication-119-20261028\\delivery\\BUILD_RECEIPT.json",
+      "sha256": "f46d162dc05154e3df32ae9b6ef0499fd881f4c44484451bca84a8db4ee0fe47",
+      "bytes": 558
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\preview-publication-119-20261028\\delivery\\CCB-Studio-Suite-0.0.0-preview.119-windows-x64.exe",
+      "sha256": "b425ae408e3613acac2a0000ead5f04cd02c9831a63d4b288682f5e2f75f1c83",
+      "bytes": 264116085
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\preview-publication-119-20261028\\delivery\\INSTALL_MANIFEST.json",
+      "sha256": "1341b3f7eba6ce943e23b20d30a7af09360e58af379aa76326c36411465ca858",
+      "bytes": 101839
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\preview-publication-119-20261028\\delivery\\release-inputs\\INSTALL_MANIFEST.json",
+      "sha256": "1341b3f7eba6ce943e23b20d30a7af09360e58af379aa76326c36411465ca858",
+      "bytes": 101839
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\preview-publication-119-20261028\\delivery\\release-inputs\\update-config.json",
+      "sha256": "e058dcfbbaeb91fb3920d16113521d1918ee981382f177fad13a855e6e64b854",
+      "bytes": 682
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\preview-publication-119-20261028\\delivery\\release-inputs\\update-root.json",
+      "sha256": "408008d80aeb2dd3844325d74f09da9d248733e220dd88c08cc6299c4a24cc7a",
+      "bytes": 1567
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\preview-publication-119-20261028\\delivery\\RELEASE_NOTES.md",
+      "sha256": "279b203c9b3d7922fc53d23765c772674bea83d4639f15f460d73b1c59ee3954",
+      "bytes": 3000
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\preview-publication-119-20261028\\delivery\\SHA256SUMS.txt",
+      "sha256": "52555f648451ee95422907dec04acbf12c0af4bfc22adcc52fd72a5afbb66666",
+      "bytes": 293
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\preview-publication-119-20261028\\delivery\\THIRD_PARTY_NOTICES.zip",
+      "sha256": "29e744c28982b24bd3f4d9130a5f2f643de1ce741030640d4864620ee936f202",
+      "bytes": 269964
+    }
+  ]
+}

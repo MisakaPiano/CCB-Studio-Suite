@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.misakapiano.ccbstudio.desktop.TypesetAutoMaskOneClickTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-27T17:08:52.504Z" hostname="DD1" time="11.835">
+  <properties/>
+  <testcase name="defaultConfigurationCancellationInvalidModelAndStaleCommitDoNotWriteMasks" classname="io.github.misakapiano.ccbstudio.desktop.TypesetAutoMaskOneClickTest" time="5.332"/>
+  <testcase name="saveOnceThenRepeatedPagesAndRestartUseLocalModelWithOneUndoAndNoDuplicateMasks" classname="io.github.misakapiano.ccbstudio.desktop.TypesetAutoMaskOneClickTest" time="6.503"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

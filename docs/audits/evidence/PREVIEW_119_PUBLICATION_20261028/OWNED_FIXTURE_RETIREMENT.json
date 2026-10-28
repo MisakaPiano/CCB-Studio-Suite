@@ -1,0 +1,49 @@
+{
+  "status": "PASS",
+  "fixtures": [
+    {
+      "ownerRecord": "PACKAGE_OWNER.json",
+      "root": "H:\\CCB-Studio-Suite\\.local\\disposable\\preview119-package-74b3235609b7475eb90f5c4026a13984",
+      "manifest": "H:\\CCB-Studio-Suite\\.local\\disposable\\preview119-package-74b3235609b7475eb90f5c4026a13984\\MANIFEST.json.gz",
+      "status": "COMPLETE",
+      "result": {
+        "status": "COMPLETE",
+        "removed": 886,
+        "bytesFreed": 650617887,
+        "retained": [],
+        "sourceManifestSha256": "c724c9ae9be0c837393a688d3f8150fd7136fb712795a47542fbb239e6e67be4"
+      }
+    },
+    {
+      "ownerRecord": "INSTALL_OWNER.json",
+      "root": "H:\\CCB-Studio-Suite\\.local\\disposable\\p119i-6eab393693f34112848ec0f56f56d164",
+      "manifest": "H:\\CCB-Studio-Suite\\.local\\disposable\\p119i-6eab393693f34112848ec0f56f56d164\\MANIFEST.json.gz",
+      "status": "COMPLETE",
+      "result": {
+        "status": "COMPLETE",
+        "removed": 556,
+        "bytesFreed": 365839986,
+        "retained": [],
+        "sourceManifestSha256": "dd7388e8187012444dc76e60357992fd079704057382849d9f6b2acaf93b3bd7"
+      }
+    },
+    {
+      "ownerRecord": "NATIVE_OWNER.json",
+      "root": "H:\\CCB-Studio-Suite\\.local\\disposable\\p119n-9f3fa12a1bfd436ab87e075b099f7068",
+      "manifest": "H:\\CCB-Studio-Suite\\.local\\disposable\\p119n-9f3fa12a1bfd436ab87e075b099f7068\\MANIFEST.json.gz",
+      "status": "COMPLETE",
+      "result": {
+        "status": "COMPLETE",
+        "removed": 686,
+        "bytesFreed": 356370595,
+        "retained": [],
+        "sourceManifestSha256": "d1cf31f51034afd8812e8a1488493501254a942168be03103ffc4c9223ba12e9"
+      }
+    }
+  ],
+  "retainedInstaller": "H:\\CCB-Studio-Suite\\.local\\preview-publication-119-20261028\\delivery\\CCB-Studio-Suite-0.0.0-preview.119-windows-x64.exe",
+  "dailyInstallationModified": false,
+  "unknownDeletion": 0,
+  "reviewProfilesPreserved": true,
+  "priorFailedEvidencePreserved": true
+}

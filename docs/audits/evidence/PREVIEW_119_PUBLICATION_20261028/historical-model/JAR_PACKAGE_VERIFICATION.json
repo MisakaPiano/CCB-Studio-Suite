@@ -1,0 +1,310 @@
+{
+  "status": "PASS",
+  "sourceBase": "e74f7a2769595259a32d546e165c1f00107a895e",
+  "phase": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\evidence\\20261027T170800326125Z-bundled-automask-fixed-inputs-20261028",
+  "applicationInputs": [
+    {
+      "path": "H:\\CCB-Studio-Suite\\modules\\studio-desktop\\build\\libs\\studio-desktop.jar",
+      "bytes": 49383927,
+      "sha256": "ba9299fc8af5cd73294c145d8a21765888ea580225eccda801fccc90c7953383"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\modules\\studio-core\\build\\libs\\studio-core.jar",
+      "bytes": 70198376,
+      "sha256": "b5d01f552c3636377d25739d64f5185c8c7042273534b531de65c6f572e3c873"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\maven\\com\\composables\\icons-lucide-cmp-jvm\\2.2.1\\icons-lucide-cmp-jvm-2.2.1.jar",
+      "bytes": 5758205,
+      "sha256": "4bf2c5219e2e0031d21f4b6fa72183e805c62cf28ae9e3f5b8c51992c33dda35"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\programs\\editor-review-r3\\image-authority.jar",
+      "bytes": 2007132,
+      "sha256": "ca0ca98a1e2d1f5a4439ce0244fe6c7e9b1feda01a23504fd5a3c1b477c044df"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.skiko\\skiko-awt-runtime-windows-x64\\0.9.37.4\\348449c8ddcd248c336def6b799a2ee4a58bb546\\skiko-awt-runtime-windows-x64-0.9.37.4.jar",
+      "bytes": 10524077,
+      "sha256": "12cbbc1890773264d99a15a234a35001e61098f9e54a631554f89dc8d84ccd9b"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.compose.desktop\\desktop-jvm\\1.10.3\\42facd9840309ac4eb841a986c5d1b97d2780471\\desktop-jvm-1.10.3.jar",
+      "bytes": 4856,
+      "sha256": "fdb63de4c9bdc6570c5355eeb0f013d4635effda42907c2d084acc77e08d4f8a"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.compose.material\\material-desktop\\1.10.3\\63e1c3c6705d111bf84e41110e7729df5b85163e\\material-desktop-1.10.3.jar",
+      "bytes": 1473852,
+      "sha256": "ee4afa33a2411e06cf1bec689667767ffb991ff02269e040a4ef64e76e392119"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.compose.material\\material-ripple-desktop\\1.10.3\\74a14824f086339703264689c5a7cf4ceb39ed40\\material-ripple-desktop-1.10.3.jar",
+      "bytes": 73535,
+      "sha256": "3257697a1a58188ec3dc31f31867f1c38209900b87df1261ebac9e6a1387db83"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.compose.foundation\\foundation-desktop\\1.10.3\\d9ba57abee3527886ea640d3b390a70ba9e28af\\foundation-desktop-1.10.3.jar",
+      "bytes": 4314315,
+      "sha256": "3a9b7bfae72f1a92a8123d3290bb7d7f61d92e5cde877af5373c3e5c2caceb2b"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.compose.animation\\animation-desktop\\1.10.3\\52a17b8bd5f608cdb60f01c64eee2830b8484ca7\\animation-desktop-1.10.3.jar",
+      "bytes": 374782,
+      "sha256": "1881c5575440055d54a679418f7ad7e86c0349743389360bed0f6a36af16ba34"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.compose.foundation\\foundation-layout-desktop\\1.10.3\\149192cb271d4c11905104b9180d5d648b3591f2\\foundation-layout-desktop-1.10.3.jar",
+      "bytes": 558602,
+      "sha256": "8d8e00062a83a147409f42f91798394c3c221d22877953eff7d0a81767b5d0fc"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.compose.animation\\animation-core-desktop\\1.10.3\\5dd98c5745e548644b7657901bbcc4c2c8f9ec59\\animation-core-desktop-1.10.3.jar",
+      "bytes": 383171,
+      "sha256": "41c0220ddbc55cb897feb0d5816b748f9c11162171f12743c04b50d0d84db628"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.compose.ui\\ui-desktop\\1.10.3\\73a6b1e10434fb11bae82daa68c205c71af03c55\\ui-desktop-1.10.3.jar",
+      "bytes": 3396265,
+      "sha256": "ec8887c03a333fa374d0b4c46bb9fb700937857f4088eaea4c4cc0ec835f7498"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.compose.ui\\ui-text-desktop\\1.10.3\\7babd6e2dea601e74bed24b4017350e1acf4569c\\ui-text-desktop-1.10.3.jar",
+      "bytes": 718171,
+      "sha256": "fbca4db945be286b84f75c0c9c784218470bebefa831f73f08edfb3294b6c8e8"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.compose.ui\\ui-graphics-desktop\\1.10.3\\1fd5d0189d75eca10163a1f07842627519399337\\ui-graphics-desktop-1.10.3.jar",
+      "bytes": 628505,
+      "sha256": "9fa604364dc4de23d3f8101f2f5968afa742d847105a5e2c41b6a0aa9123f11b"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.skiko\\skiko-awt\\0.9.37.4\\fc7470cca1041a52b182a921205c5c224e7709ad\\skiko-awt-0.9.37.4.jar",
+      "bytes": 1214259,
+      "sha256": "9e859aeb982623fab156ba6671c78255f7f5e1b73334f3de7932440fed6455df"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.compose.ui\\ui-tooling-preview-desktop\\1.10.3\\6d464d6c6d654d45aecdfaff7a08d64af62217e2\\ui-tooling-preview-desktop-1.10.3.jar",
+      "bytes": 21697,
+      "sha256": "b5fa6fbbeea5f896ad2a8e7703bd7eb574d3a1b5ab6d44dbe0a07536bd6af6c4"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.compose.ui\\ui-unit-desktop\\1.10.3\\aeeb2f31358ab5abf0bafa0828de2faba7189db5\\ui-unit-desktop-1.10.3.jar",
+      "bytes": 85587,
+      "sha256": "f0f3439928b3d9132f07cb2d7a86091696372ebc8354d16b48830b6ce15e8161"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.compose.ui\\ui-geometry-desktop\\1.10.3\\779ddaadbc03720f7bb2507f6ed6dc4ffc9e7f3e\\ui-geometry-desktop-1.10.3.jar",
+      "bytes": 57759,
+      "sha256": "cdbfdabccac8abef2d9bc0420ec0c4be7a880f6d26b2d1cc4e2317c0d252ee27"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.compose.ui\\ui-backhandler-desktop\\1.10.3\\ed725f86a0fdff73fb37561ffb606166725e4b6f\\ui-backhandler-desktop-1.10.3.jar",
+      "bytes": 21557,
+      "sha256": "1babf68f5a05cbe1ba8cf934f0e575bb0d0b184444514e6aa7ec1f8004c9ce33"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\androidx.navigationevent\\navigationevent-desktop\\1.0.2\\ddb1e7fe97ed51c3d35bba493f97fcf12398719\\navigationevent-desktop-1.0.2.jar",
+      "bytes": 41775,
+      "sha256": "43deeb5774fd737fa945e09a47f93b6f1a508d17fac8f3b65f1c863e7f7d0660"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\androidx.compose.runtime\\runtime-annotation-jvm\\1.10.5\\ea491da34ba40ae9bd340c393566753ddfd95a76\\runtime-annotation-jvm-1.10.5.jar",
+      "bytes": 9387,
+      "sha256": "f89dda8bcd73876d0fc16568844b2bd79443ee7ca62810874d25c7dcaa394bd6"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\androidx.compose.runtime\\runtime-retain-desktop\\1.10.5\\879812e3cd2c6151f5d91f515a35952b1be07a76\\runtime-retain-desktop-1.10.5.jar",
+      "bytes": 52893,
+      "sha256": "463ee9c1e93d1b913458bfecc96d128a3574a802f41c8c9781d7320c3b55ed8b"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\androidx.compose.runtime\\runtime-saveable-desktop\\1.10.5\\f6903c683c07ba479659ba4eb55bc7c80a7c433e\\runtime-saveable-desktop-1.10.5.jar",
+      "bytes": 53379,
+      "sha256": "ef24e24cc8c9c3b9871007fbdf589ed9aaaecf95979a66b7484806f9f0e24d91"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.compose.runtime\\runtime-saveable-desktop\\1.10.3\\9b0e2a8ce3ae7d2b1a40307bc9271933b238cfd4\\runtime-saveable-desktop-1.10.3.jar",
+      "bytes": 434,
+      "sha256": "eb7132b55de2b0913736fdff4705022803e455810f018efecc9eb3230936520a"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.androidx.lifecycle\\lifecycle-runtime-compose-desktop\\2.9.6\\7b6b6793f3c4c5996b20d1d99cf728e5fac00364\\lifecycle-runtime-compose-desktop-2.9.6.jar",
+      "bytes": 452,
+      "sha256": "31c3c4b6dea38f078c46829dee2c43abba2bf8757b7ee8a0f660f31217364898"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.androidx.savedstate\\savedstate-compose-desktop\\1.3.6\\63692375ffe667f12cb3ea8aa1e605d659ed2add\\savedstate-compose-desktop-1.3.6.jar",
+      "bytes": 438,
+      "sha256": "0f3d045c5fd7e1301ab6c38cd0778067b0484cf39acac1233be71a723a6a8075"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.compose.runtime\\runtime-desktop\\1.10.3\\edbd39fc9691f4ba1e29c6690341148db4272752\\runtime-desktop-1.10.3.jar",
+      "bytes": 416,
+      "sha256": "05f5570c0a7ea8addd6fe9507a70f293efa7f1450d8b9b16dc3c8fee21cc6127"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\androidx.lifecycle\\lifecycle-viewmodel-savedstate-desktop\\2.9.4\\72a1919b08c5a4da224d8a65ce1589aa69934e8a\\lifecycle-viewmodel-savedstate-desktop-2.9.4.jar",
+      "bytes": 36160,
+      "sha256": "3e0b44e2514eafdd6938d5457d9f46e4785077c45d3b4364b5c23c4dcb93efd3"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\androidx.lifecycle\\lifecycle-viewmodel-desktop\\2.9.4\\93fee6d78f0df0e38f36e0fa2eff74f8da6d5481\\lifecycle-viewmodel-desktop-2.9.4.jar",
+      "bytes": 56060,
+      "sha256": "98f816be6869407c87d46058756f97780fa6c6cf61acdba97216f413731af15d"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\androidx.lifecycle\\lifecycle-runtime-desktop\\2.9.4\\1cc820319ec0139e76b8a2fe4be0b356b4e624c4\\lifecycle-runtime-desktop-2.9.4.jar",
+      "bytes": 47399,
+      "sha256": "2fb49f76d1021792fb359e0a9246c1509f2f5b555f0a46591d24d58deb68bd5c"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\androidx.savedstate\\savedstate-compose-desktop\\1.3.3\\cd60b543d5722a8b5e6cea1e4ccdec8b4375a22b\\savedstate-compose-desktop-1.3.3.jar",
+      "bytes": 15498,
+      "sha256": "4a94787a6e5bcfe143390a4f2737d4425d2ea867f2b34a847de6cda3c6ccc58a"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\androidx.savedstate\\savedstate-desktop\\1.3.3\\1c5bfc3fb56614538528060a06f2c03e34fa5188\\savedstate-desktop-1.3.3.jar",
+      "bytes": 80175,
+      "sha256": "c5c89062ba8402b8f8657efd54db1ff192f91ca95fae59c3b418fbc477c3e3ea"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\androidx.lifecycle\\lifecycle-common-jvm\\2.9.4\\ab739bccdb3541983385af169565c7c035d897e7\\lifecycle-common-jvm-2.9.4.jar",
+      "bytes": 60804,
+      "sha256": "37d89b2101f074ac6c260917dabb185607645ee200aa3018c7c5bde70edcf184"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\androidx.lifecycle\\lifecycle-runtime-compose-desktop\\2.9.4\\86a4ffec845d4e488078118a0b5095bd1fabcafe\\lifecycle-runtime-compose-desktop-2.9.4.jar",
+      "bytes": 43088,
+      "sha256": "d25c083df93da718a1876a3293bd15f7dc7a811e998735943bce590683a57835"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\androidx.compose.runtime\\runtime-desktop\\1.10.5\\b1705e2087f06395622b784aa88e2e738043459\\runtime-desktop-1.10.5.jar",
+      "bytes": 1470711,
+      "sha256": "b195860542f612de0512b54a75353e0f6d58815f0c9530a03bc5b0e734474829"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlinx\\kotlinx-coroutines-core-jvm\\1.10.2\\4a9f78ef49483748e2c129f3d124b8fa249dafbf\\kotlinx-coroutines-core-jvm-1.10.2.jar",
+      "bytes": 1479317,
+      "sha256": "5ca175b38df331fd64155b35cd8cae1251fa9ee369709b36d42e0a288ccce3fd"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlinx\\kotlinx-serialization-core-jvm\\1.8.1\\510cb839cce9a3e708052d480a6fbf4a7274dfcd\\kotlinx-serialization-core-jvm-1.8.1.jar",
+      "bytes": 391821,
+      "sha256": "3565b6d4d789bf70683c45566944287fc1d8dc75c23d98bd87d01059cc76f2b3"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlinx\\kotlinx-serialization-json-jvm\\1.8.1\\4de3bace4b175753df5484d2acd74c14bfeb5be9\\kotlinx-serialization-json-jvm-1.8.1.jar",
+      "bytes": 276969,
+      "sha256": "8769e5647557e3700919c32d508f5c5dad53c5d8234cd10846354fbcff14aa24"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\com.squareup.okhttp3\\okhttp\\4.12.0\\2f4525d4a200e97e1b87449c2cd9bd2e25b7e8cd\\okhttp-4.12.0.jar",
+      "bytes": 789531,
+      "sha256": "b1050081b14bb7a3a7e55a4d3ef01b5dcfabc453b4573a4fc019767191d5f4e0"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\com.squareup.okio\\okio-jvm\\3.6.0\\5600569133b7bdefe1daf9ec7f4abeb6d13e1786\\okio-jvm-3.6.0.jar",
+      "bytes": 359580,
+      "sha256": "67543f0736fc422ae927ed0e504b98bc5e269fda0d3500579337cb713da28412"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlin\\kotlin-stdlib-jdk8\\2.2.20\\57c4d839a6e5ad105d61ffc5cc0bf4de649c1714\\kotlin-stdlib-jdk8-2.2.20.jar",
+      "bytes": 951,
+      "sha256": "c314177935d8dc2eda879507117f25d6de56f6c57ede99416b14cd622bb9e09d"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.compose.ui\\ui-util-desktop\\1.10.3\\fe41825dccacb792ded7df579736a0ed919ee270\\ui-util-desktop-1.10.3.jar",
+      "bytes": 18548,
+      "sha256": "7bfc93a8cad2974cdfd5a2c817e3083e0e3c48ef99e4dbba51eb98a14c92ed2d"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlinx\\atomicfu-jvm\\0.23.2\\a4601dc42dceb031a586058e8356ff778a57dea0\\atomicfu-jvm-0.23.2.jar",
+      "bytes": 36181,
+      "sha256": "101ff43ff563fca167af5ade98c3b69bf569010eab745013b84d8955034d3b3c"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlin\\kotlin-stdlib-jdk7\\2.2.20\\bdbe3b5d872fa3b74d8fcd4e7ca3193f4abc9cc8\\kotlin-stdlib-jdk7-2.2.20.jar",
+      "bytes": 945,
+      "sha256": "3bd26ecb6d12978c5c4e0b41f76c9ff551fac2a5e6268427a9d2a0cdf8a5ad91"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\androidx.collection\\collection-jvm\\1.5.0\\7ba2c69414d46ebc2dd76598bdd0a75c54281a57\\collection-jvm-1.5.0.jar",
+      "bytes": 877998,
+      "sha256": "70b35924e4babcdffa37d0e575ee039c56a2d97123342624c48b603233704341"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\androidx.arch.core\\core-common\\2.2.0\\5e1b8b81dfd5f52c56a8d53b18ca759c19a301f3\\core-common-2.2.0.jar",
+      "bytes": 11657,
+      "sha256": "65308a06b1c00ee186cb9e19321383f043b993813f1522c47f4a3e3303bdba41"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\androidx.annotation\\annotation-jvm\\1.9.1\\b17951747e38bf3986a24431b9ba0d039958aa5f\\annotation-jvm-1.9.1.jar",
+      "bytes": 60577,
+      "sha256": "1e343917ebf27ba96fe4dc52b1cad7fd32b738fbc6355bb6cd5b3b305d7212d0"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlin\\kotlin-stdlib\\2.3.20\\ed866de74ad3d49086a27bbd75952cd186479436\\kotlin-stdlib-2.3.20.jar",
+      "bytes": 1804720,
+      "sha256": "0ae12504a5040ebaf37703908483420d1a5624dd1d93f357665f8c77c848a01e"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\maven\\org\\xerial\\sqlite-jdbc\\3.53.4.0\\sqlite-jdbc-3.53.4.0.jar",
+      "bytes": 12002370,
+      "sha256": "bcb1f51e36f940867e83342f9efbf5968ac44a6bef4d397bb4af7b17b45cd2fb"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\maven\\net\\java\\dev\\jna\\jna-platform\\5.18.1\\jna-platform-5.18.1.jar",
+      "bytes": 1380744,
+      "sha256": "ad14c1b1ec4f43d396231219dfa635ebf828f738eac9f890ea1bc07795892d9a"
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\maven\\net\\java\\dev\\jna\\jna\\5.18.1\\jna-5.18.1.jar",
+      "bytes": 2002994,
+      "sha256": "260c4b1e22b1db9e110ee441c4f13ce115f841fa48c41d78750986214b395557"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\com.microsoft.onnxruntime\\onnxruntime\\1.31.1\\4d8eba74d43e2592907829036084c19858d5a84e\\onnxruntime-1.31.1.jar",
+      "bytes": 50942631,
+      "sha256": "854b4fae9b5202371eb8cd978d2e872eafb75664ef2db2f3c91f2b095b518b62"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\programs\\editor-project-management\\asset-library.jar",
+      "bytes": 58442,
+      "sha256": "f55abfcfa68293ca1b58e31c5aa1574c86f7d141bfc491c4ba949147dc75ebe5"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jspecify\\jspecify\\1.0.0\\7425a601c1c7ec76645a78d22b8c6a627edee507\\jspecify-1.0.0.jar",
+      "bytes": 3819,
+      "sha256": "1fad6e6be7557781e4d33729d49ae1cdc8fdda6fe477bb0cc68ce351eafdfbab"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains\\annotations\\23.0.0\\8cc20c07506ec18e0834947b84a864bfc094484e\\annotations-23.0.0.jar",
+      "bytes": 29371,
+      "sha256": "7b0f19724082cbfcbc66e5abea2b9bc92cf08a1ea11e191933ed43801eb3cd05"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.jetbrains.runtime\\jbr-api\\1.5.0\\4158e485a7a4ecfd521e03095d81e0225529e8d2\\jbr-api-1.5.0.jar",
+      "bytes": 44469,
+      "sha256": "657ede7d7f8e175c909b23caa10fcd4d4a511304fd938aa9cc8457b4378950d5"
+    },
+    {
+      "path": "C:\\CCB-Studio-Suite-Editor-20261027\\gradle-home\\caches\\modules-2\\files-2.1\\org.msgpack\\msgpack-core\\0.9.12\\7ed93230c1d5ded2eab11908031132fa3649a30b\\msgpack-core-0.9.12.jar",
+      "bytes": 126925,
+      "sha256": "261e78e32227d298f25c328aecd532a789d487d8073f97ba9b6aa6dbe41a2be3"
+    }
+  ],
+  "desktopJarSha256": "ba9299fc8af5cd73294c145d8a21765888ea580225eccda801fccc90c7953383",
+  "desktopJarBytes": 49383927,
+  "modelBytes": 47600269,
+  "modelSha256": "a12ac5532e93be9dfeb96a77fc3f3647791335c9df0de9a18fcd503f7877a828",
+  "modelResource": "models/automask/nsfw-anime-medium-x1280.onnx",
+  "productionJarsOnly": true,
+  "testOnlyProbe": "H:\\CCB-Studio-Suite\\.local\\model-bundle-20261028\\bundle-probe-test-only.jar",
+  "probeSha256": "3c80f0a323b1363b5e1b5ba314f219f5f4e0a5f62a1d1e95d45de67ba68c7929",
+  "inputArguments": "H:\\CCB-Studio-Suite\\.local\\model-bundle-20261028\\jar-probe.args",
+  "result": "BUNDLED_MODEL_JAR_PASS bytes=47600269 sha256=a12ac5532e93be9dfeb96a77fc3f3647791335c9df0de9a18fcd503f7877a828 classes=7 resourceProtocol=jar",
+  "newInstallerBuilt": false,
+  "published": false,
+  "dailyInstallationModified": false
+}

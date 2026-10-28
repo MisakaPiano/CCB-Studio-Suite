@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "source": "d9be9d9f90cd305c71749933a0b2c4f2929b06a3",
+  "package": {
+    "task": "UX-R4",
+    "status": "BUILT",
+    "sourceSha": "d9be9d9f90cd305c71749933a0b2c4f2929b06a3",
+    "appBuildSourceSha": "e012e2e098e20d40de97688cae376978840c3575",
+    "nativeLauncherSourceSha256": "eaa0fcc496e2fa760f6af1c4b337ace89127db4cc65dd694e9c5d7733f1020fe",
+    "version": 119,
+    "channel": "preview",
+    "displayVersion": "0.0.0-preview.119",
+    "compiler": "NSIS3.13",
+    "exitCode": 0,
+    "files": 551,
+    "installed": "NOT TESTED",
+    "bytes": 264116085,
+    "sha256": "b425ae408e3613acac2a0000ead5f04cd02c9831a63d4b288682f5e2f75f1c83"
+  },
+  "installerExitCode": 0,
+  "verifiedFiles": 551,
+  "installedRoot": "H:\\CCB-Studio-Suite\\.local\\disposable\\p119i-6eab393693f34112848ec0f56f56d164\\payload\\i",
+  "probeResult": "BUNDLED_MODEL_JAR_PASS bytes=47600269 sha256=a12ac5532e93be9dfeb96a77fc3f3647791335c9df0de9a18fcd503f7877a828 classes=7 resourceProtocol=jar",
+  "modelSha256": "a12ac5532e93be9dfeb96a77fc3f3647791335c9df0de9a18fcd503f7877a828",
+  "elapsedSeconds": 14.543,
+  "nativeGuiStartup": "NOT_TESTED",
+  "userAcceptance": "NOT_TESTED",
+  "published": false,
+  "dailyInstallationModified": false
+}

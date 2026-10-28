@@ -1,0 +1,22 @@
+{
+  "status": "USER_CONFIRMED_PASS_WITH_SCOPE",
+  "statement": "这三项都通过了。把这轮编辑改善收尾发布更新各种材料之后，告诉我目前我们计划中还有什么来着？",
+  "atJst": "2026-10-28T15:21:55.062549+09:00",
+  "scope": [
+    "收起后从本机工程列表重开并保留进度",
+    "归档后从归档历史重开",
+    "完整工程包导出再导入并继续编辑"
+  ],
+  "candidate": "H:\\CCB-Studio-Suite\\.local\\project-bar-import-20261028-final\\CANDIDATE_INPUT_MAP.json",
+  "sourceBase": "03f589c313b1aef324b39e4eb697bbbe747fb305",
+  "sourceMapSha256": "5867d1f738713f177d40cebd7a0f93bffd9aa174b9e4acdd8cb430d736fc1fd0",
+  "publishAuthorized": true,
+  "dailyInstallationChangeAuthorized": false,
+  "notAccepted": [
+    "资产管理完整人工验收",
+    "编辑完整能力及全Windows环境验收",
+    "115整体体验",
+    "Prompt对比",
+    "独立复审"
+  ]
+}

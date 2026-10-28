@@ -1,0 +1,26 @@
+{
+  "items": [
+    {
+      "kind": "source index driver",
+      "error": "check_output capture_output combination",
+      "evidence": "PREPARATION_FAILURE.json"
+    },
+    {
+      "kind": "install probe preparation",
+      "error": "generated Python quote",
+      "evidence": "install-probe-preparation-failed.log"
+    },
+    {
+      "kind": "unrelated placeholder command typo",
+      "error": "H:/.DOESNOTEXIST not found; no state mutation",
+      "productImpact": false
+    },
+    {
+      "kind": "documentation index check",
+      "error": "Byte-preserved CRLF/raw logs trigger normal source whitespace check; no application error",
+      "resolution": "Verify raw manifest bytes separately; retain logs unchanged; restrict formatting check to authored non-raw files"
+    }
+  ],
+  "nativeUpgrade": "PASS",
+  "productFailureReclassified": false
+}

@@ -1,0 +1,14 @@
+{
+  "arguments": [
+    "H:\\CCB-Studio-Suite\\.local\\disposable\\p119n-9f3fa12a1bfd436ab87e075b099f7068\\payload\\install\\118-a1202e24f7a0\\updater\\python.exe",
+    "-B",
+    "H:\\CCB-Studio-Suite\\.local\\disposable\\p119n-9f3fa12a1bfd436ab87e075b099f7068\\payload\\install\\118-a1202e24f7a0\\updater\\lib\\studio_update.py",
+    "--package",
+    "H:\\CCB-Studio-Suite\\.local\\disposable\\p119n-9f3fa12a1bfd436ab87e075b099f7068\\payload\\install\\118-a1202e24f7a0",
+    "--cache",
+    "H:\\CCB-Studio-Suite\\.local\\disposable\\p119n-9f3fa12a1bfd436ab87e075b099f7068\\payload\\install\\data\\runtime\\updates",
+    "--download"
+  ],
+  "noAdapter": true,
+  "rootSha256": "408008d80aeb2dd3844325d74f09da9d248733e220dd88c08cc6299c4a24cc7a"
+}

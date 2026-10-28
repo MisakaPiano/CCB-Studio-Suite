@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "modules": [
+    {
+      "module": "studio-core",
+      "reviewSha256": "7b4633031129dbb4606ce972b05394c639c27e94be40e40657f56080d3d987c8",
+      "installedSha256": "7b4633031129dbb4606ce972b05394c639c27e94be40e40657f56080d3d987c8"
+    },
+    {
+      "module": "studio-desktop",
+      "reviewSha256": "865803081bfdd623b3a37371996ae5275053a28900c7ef6b4dda649b98115428",
+      "installedSha256": "865803081bfdd623b3a37371996ae5275053a28900c7ef6b4dda649b98115428"
+    },
+    {
+      "module": "asset-library",
+      "reviewSha256": "f55abfcfa68293ca1b58e31c5aa1574c86f7d141bfc491c4ba949147dc75ebe5",
+      "installedSha256": "f55abfcfa68293ca1b58e31c5aa1574c86f7d141bfc491c4ba949147dc75ebe5"
+    }
+  ],
+  "reviewCandidateUnchanged": true,
+  "installedFiles": 551,
+  "modelSha256": "a12ac5532e93be9dfeb96a77fc3f3647791335c9df0de9a18fcd503f7877a828"
+}

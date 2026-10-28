@@ -1,3 +1,7 @@
+## 2026-10-28 公开发行补充
+
+固定模型已随实验性Preview119公开，沿原1697d5d／a12ac553来源与MIT模型卡声明；不授予unified-image-tool应用代码许可。默认模型不按工程复制，来源锁仅更新实际发布标记；upstream固定参考与观察不变。发行映射见../docs/audits/PREVIEW_119_PUBLICATION_20261028.md，以下本地／未发布是历史时点。
+
 ## 2026-10-28：内置识图模型来源（本地实现，未发布）
 
 - 固定权重与模型页：[01miku/anime-nsfw-segm-yolo26@1697d5d](https://huggingface.co/01miku/anime-nsfw-segm-yolo26/tree/1697d5d1827b6a818b350b44bf3ec27f08837a2a)。模型卡明确标注MIT，单独LICENSE文件未提供；原卡、声明和标准许可文本随资源保留，不发明上游版权行。

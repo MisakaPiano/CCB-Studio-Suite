@@ -1,3 +1,9 @@
+## 2026-10-28 Preview119已公开，本轮编辑改善阶段收尾（限定签收）
+
+用户明确确认工程三项通过；119纳入累计编辑、默认内置模型、独立预览窗口、工程栏去重和新导入精简保存。源码／tag d9be9d9，映像e012e2e，安装包SHA256 b425ae40…75f1c83；正式元数据9b86ac3／targets18-snapshot28-timestamp28，原root及旧桥接不变。551安装文件、模型生产JAR读取、与试用JAR等价、原版118公开签名下载／真实helper-NSIS-生产Main／合成原图凭据保全／119运行时旧根和缓存清理／重开及UP_TO_DATE均有证据。详见docs/audits/PREVIEW_119_PUBLICATION_20261028.md；没有自动更新日常118。
+
+本轮13唯一编辑JUnit与历史模型／窗口证据分层，不累加重复；所有旧失败、用户否决、q09根因UNKNOWN及独立范围保留，不宣称全项目验收。3份本轮自有fixture2128项约1.28GiB留证退役，固定包／基线／人工资料保留。接续见handoff/STUDIO_NEXT_CONVERSATION_20261028.md：换新对话先确认性能专项范围；资产完整人工／编辑余项、115整体体验／任务栏、文件管理与真正删除、更多图像能力、Tag库仍排队；Prompt继续PENDING，不自行启动。
+
 ## 2026-10-28 本轮编辑三项人工通过，准备Preview119收尾发布
 
 用户确认收起／本机重开、归档／历史重开、完整包导出再导入继续编辑三项通过，并明确要求本轮编辑改善收尾发布及更新材料。沿UX-RECOVERY/W4／UX-R2／UX-EDITOR-GAP-001记录限定签收；不外推资产管理、编辑完整能力、115整体体验、Prompt或独立审查。固定候选及13唯一自动例仍见docs/ux/EDITOR_PROJECT_BAR_IMPORT_20261028.md；回执.local/preview-publication-119-20261028/USER_EDITOR_ACCEPTANCE.json。

@@ -1,0 +1,38 @@
+[
+  {
+    "suite": "io.github.misakapiano.ccbstudio.core.TypesetAutoMaskSettingsTest",
+    "name": "localModelConfigurationSurvivesReopenBackupAndIsNotPresetExchangeOrGalleryContent",
+    "seconds": "9.727",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.BundledAutoMaskModelTest",
+    "name": "shippedResourceHasPinnedBytesMetadataAndRejectsCorruption",
+    "seconds": "3.384",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.BundledAutoMaskModelTest",
+    "name": "firstUseNeedsNoPickerAndBuiltinSettingsReopenAndRestoreWithoutWeightCopies",
+    "seconds": "10.41",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetAutoMaskOneClickTest",
+    "name": "defaultConfigurationCancellationInvalidModelAndStaleCommitDoNotWriteMasks",
+    "seconds": "5.332",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetAutoMaskOneClickTest",
+    "name": "saveOnceThenRepeatedPagesAndRestartUseLocalModelWithOneUndoAndNoDuplicateMasks",
+    "seconds": "6.503",
+    "status": "PASS"
+  },
+  {
+    "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetInteractionRevisionTest",
+    "name": "saveAiSettingsThenToolbarAppliesAcrossPagesWithoutReopeningConfiguration",
+    "seconds": "14.509",
+    "status": "PASS"
+  }
+]

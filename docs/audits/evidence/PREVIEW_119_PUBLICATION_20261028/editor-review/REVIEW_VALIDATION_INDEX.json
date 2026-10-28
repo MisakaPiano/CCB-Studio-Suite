@@ -1,0 +1,164 @@
+{
+  "uniqueCasesWithPassEvidence": 13,
+  "cases": [
+    {
+      "suite": "io.github.misakapiano.ccbstudio.core.TypesetProjectManagementTest",
+      "name": "deletingImportedProjectReclaimsEmbeddedSourceExchangeButKeepsExtractedOriginalsAndSourceProject",
+      "seconds": "3.366",
+      "status": "PASS",
+      "evidence": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\evidence\\20261028T055749735507Z-project-bar-import-storage-final-20261028",
+      "phaseStatus": "FAILED"
+    },
+    {
+      "suite": "io.github.misakapiano.ccbstudio.core.TypesetSourceExchangeTest",
+      "name": "editedExportRoundTripsStudioExtensionsAndRetainsUnknownSourceFields",
+      "seconds": "2.049",
+      "status": "PASS",
+      "evidence": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\evidence\\20261028T055749735507Z-project-bar-import-storage-final-20261028",
+      "phaseStatus": "FAILED"
+    },
+    {
+      "suite": "io.github.misakapiano.ccbstudio.core.TypesetSourceExchangeTest",
+      "name": "actualSourceExportImportsEditableContentWithoutRawAcrossBackup",
+      "seconds": "2.237",
+      "status": "PASS",
+      "evidence": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\evidence\\20261028T055749735507Z-project-bar-import-storage-final-20261028",
+      "phaseStatus": "FAILED"
+    },
+    {
+      "suite": "io.github.misakapiano.ccbstudio.core.TypesetSourceExchangeTest",
+      "name": "legacyPresetMigrationMergeReplaceAndUnknownFieldsRoundTrip",
+      "seconds": "1.159",
+      "status": "PASS",
+      "evidence": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\evidence\\20261028T055749735507Z-project-bar-import-storage-final-20261028",
+      "phaseStatus": "FAILED"
+    },
+    {
+      "suite": "io.github.misakapiano.ccbstudio.core.TypesetSourceExchangeTest",
+      "name": "actualSourcePresetExportMatchesStyleAndDefaults",
+      "seconds": "0.001",
+      "status": "PASS",
+      "evidence": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\evidence\\20261028T055749735507Z-project-bar-import-storage-final-20261028",
+      "phaseStatus": "FAILED"
+    },
+    {
+      "suite": "io.github.misakapiano.ccbstudio.core.TypesetSourceExchangeTest",
+      "name": "exchangeFileFailureAndConcurrentDestinationNeverOverwrite",
+      "seconds": "0.28",
+      "status": "PASS",
+      "evidence": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\evidence\\20261028T055749735507Z-project-bar-import-storage-final-20261028",
+      "phaseStatus": "FAILED"
+    },
+    {
+      "suite": "io.github.misakapiano.ccbstudio.core.TypesetSourceExchangeTest",
+      "name": "unknownVersionRemoteDataAndCorruptionRefusedBeforeMutation",
+      "seconds": "0.006",
+      "status": "PASS",
+      "evidence": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\evidence\\20261028T055749735507Z-project-bar-import-storage-final-20261028",
+      "phaseStatus": "FAILED"
+    },
+    {
+      "suite": "io.github.misakapiano.ccbstudio.core.TypesetImportStorageTest",
+      "name": "newImportsRetainOnlyEditableContentAndNeverModifyExistingImportsOrExternalPackage",
+      "seconds": "6.066",
+      "status": "PASS",
+      "evidence": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\evidence\\20261028T055749735507Z-project-bar-import-storage-final-20261028",
+      "phaseStatus": "FAILED"
+    },
+    {
+      "suite": "io.github.misakapiano.ccbstudio.core.TypesetProjectArchivesTest",
+      "name": "currentNameAndNestedOrganizationSaveTogetherWithoutCopyingRecipes",
+      "seconds": "1.339",
+      "status": "PASS",
+      "evidence": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\evidence\\20261028T055749735507Z-project-bar-import-storage-final-20261028",
+      "phaseStatus": "FAILED"
+    },
+    {
+      "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetToolbarWorkflowTest",
+      "name": "singleProjectHeaderAndCanvasToolbarKeepSecondaryActionsReachableWithoutExpandedRows",
+      "seconds": "5.901",
+      "status": "PASS",
+      "evidence": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\evidence\\20261028T060806825846Z-project-bar-import-reviewed-20261028",
+      "phaseStatus": "PASS"
+    },
+    {
+      "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetToolbarWorkflowTest",
+      "name": "previewHeaderMaximizeRestoreClosePreservesPageSelectionAndProject",
+      "seconds": "5.407",
+      "status": "PASS",
+      "evidence": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\evidence\\20261028T060806825846Z-project-bar-import-reviewed-20261028",
+      "phaseStatus": "PASS"
+    },
+    {
+      "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetWorkflowTest",
+      "name": "sourceExchangePreviewConfirmExportAndReopen",
+      "seconds": "6.863",
+      "status": "PASS",
+      "evidence": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\evidence\\20261028T055923081471Z-project-bar-import-reviewed-20261028",
+      "phaseStatus": "PASS"
+    },
+    {
+      "suite": "io.github.misakapiano.ccbstudio.desktop.TypesetToolbarWorkflowTest",
+      "name": "collapsedProjectsReopenFromActiveListAndArchivesStayInHistory",
+      "seconds": "8.1",
+      "status": "PASS",
+      "evidence": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\evidence\\20261028T060806825846Z-project-bar-import-reviewed-20261028",
+      "phaseStatus": "PASS"
+    }
+  ],
+  "phases": [
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\evidence\\20261028T055327450964Z-project-bar-import-storage-20261028",
+      "status": "FAILED",
+      "executed": 8,
+      "failures": 1,
+      "sourceStable": true
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\evidence\\20261028T055749735507Z-project-bar-import-storage-final-20261028",
+      "status": "FAILED",
+      "executed": 9,
+      "failures": 0,
+      "sourceStable": true
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\evidence\\20261028T055923081471Z-project-bar-import-reviewed-20261028",
+      "status": "PASS",
+      "executed": 3,
+      "failures": 0,
+      "sourceStable": true
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\evidence\\20261028T060153704666Z-project-bar-import-reviewed-20261028",
+      "status": "PASS",
+      "executed": 2,
+      "failures": 0,
+      "sourceStable": true
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\evidence\\20261028T060320580205Z-project-bar-import-reviewed-20261028",
+      "status": "PASS",
+      "executed": 1,
+      "failures": 0,
+      "sourceStable": true
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\evidence\\20261028T060540248493Z-project-bar-import-reviewed-20261028",
+      "status": "PASS",
+      "executed": 1,
+      "failures": 0,
+      "sourceStable": true
+    },
+    {
+      "path": "H:\\CCB-Studio-Suite\\.local\\windows-preview\\evidence\\20261028T060806825846Z-project-bar-import-reviewed-20261028",
+      "status": "PASS",
+      "executed": 3,
+      "failures": 0,
+      "sourceStable": true
+    }
+  ],
+  "counting": "Unique suite+case keys; repeated attempts never added; phase FAILED retained even when core cases passed before desktop compile failure",
+  "humanAcceptance": "PENDING",
+  "independentReview": "NOT PERFORMED",
+  "realData": "NOT ACCESSED"
+}

@@ -1,3 +1,5 @@
+> 2026-10-28 后续补充：最新公开Preview119，组装／tag d9be9d9、映像e012e2e、包SHA256 b425ae408e3613acac2a0000ead5f04cd02c9831a63d4b288682f5e2f75f1c83。新增编辑与内置模型；更新器6脚本、安装器生成器及Launcher.cs相对118的a1202e2无源码差异。119新增原版118公开下载／真实NSIS／生产Main／合成凭据／旧根自动退役证据，见[119发行回执](../docs/audits/PREVIEW_119_PUBLICATION_20261028.md)。因此下方118是机制固定实现基线，119不是另一套更新方案。Studio结果不代签Desktop验证，仍不授权修改Desktop、复制标识／端点／密钥或信任配置。
+
 # Studio 更新安装方案：Preview118 最新交接，供 Desktop Codex 与 Project 独立判断
 
 2026-10-28，Asia/Tokyo。本文更新[2026-10-25交接](DESKTOP_UPDATE_TECHNICAL_HANDOFF_20261025.md)中已过时的“公开115／内部未发布包”状态；旧固定报告、失败和独立结论保持历史原义。**最新公开应用为实验性 Pre-release 118，公开117→118升级及用户日常升级已留证；不是稳定版、全项目验收或Desktop可直接采用的安装方案。** 本次只发布交接文档，不重建或发布安装器、不修改日常安装或Desktop。

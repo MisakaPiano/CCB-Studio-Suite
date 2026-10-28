@@ -1,0 +1,4 @@
+  File "H:\CCB-Studio-Suite\.local\preview-publication-119-20261028\install-probe.py", line 7
+    (out/'INSTALL_OWNER.json').write_text(json.dumps({'root':str(owned),'purpose:'new isolated synthetic install only','source':candidate['source']},indent=2))
+                                                                                                                                                 ^
+SyntaxError: unterminated string literal (detected at line 7)

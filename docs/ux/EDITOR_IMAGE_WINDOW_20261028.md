@@ -1,3 +1,5 @@
+> 2026-10-28 发行补充：本轮相应实现已纳入Preview119（d9be9d9／SHA256 b425ae40…75f1c83），用户确认按原限定范围记录；公开118→119链通过。完整映射及所有未完成见docs/audits/PREVIEW_119_PUBLICATION_20261028.md，以下历史候选／未发布状态不改写。
+
 # 图片预览窗口修复：本地候选与验证边界
 
 2026-10-28 Asia/Tokyo，沿 UX-RECOVERY/W4／UX-R2／UX-EDITOR-GAP-001。不是新Preview发行，也不是编辑整体验收。

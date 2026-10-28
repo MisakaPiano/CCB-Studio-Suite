@@ -1,0 +1,26 @@
+from pathlib import Path
+import subprocess,json,hashlib,zipfile,uuid,shutil,time,sys
+out=Path(__file__).parent;candidate=json.loads((out/'PACKAGE.json').read_text());installer=Path(candidate['installer']);sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+receipt=json.loads((installer.parent/'BUILD_RECEIPT.json').read_text());assert sha(installer)==receipt['sha256']
+sys.path.insert(0,'H:/CCB-Studio-Suite/tools');import workspace_artifacts as art
+owned=art.create('p119i');parent=owned/'payload';target=parent/'i'
+(out/'INSTALL_OWNER.json').write_text(json.dumps({'root':str(owned),'purpose':'new isolated synthetic install only','source':candidate['source']},indent=2))
+started=time.time();r=subprocess.run([str(installer),'/S','/D='+str(target)],cwd=parent,creationflags=subprocess.CREATE_NO_WINDOW);assert r.returncode==0,r.returncode
+manifest=json.loads((target/'INSTALL_MANIFEST.json').read_text());assert manifest['sourceSha']==candidate['source']
+for e in manifest['files']:
+ p=target/e['path'];assert p.stat().st_size==e['bytes'] and sha(p)==e['sha256'],e['path']
+cfg=(target/'app/CCBStudioSuitePreview.cfg').read_text();jars=[target/'app'/line.split('=',1)[1].replace('$APPDIR\\','') for line in cfg.splitlines() if line.startswith('app.classpath=')]
+appjar=next(p for p in jars if p.name.startswith('studio-desktop-'));expected='a12ac5532e93be9dfeb96a77fc3f3647791335c9df0de9a18fcd503f7877a828'
+with zipfile.ZipFile(appjar) as z:
+ data=z.read('models/automask/nsfw-anime-medium-x1280.onnx');assert len(data)==47600269 and hashlib.sha256(data).hexdigest()==expected
+ for n in ['MODEL_NOTICE.md','MIT.txt','model.json']:assert z.read('models/automask/'+n)
+ assert not any('BundledAutoMaskPackageProbe' in n or 'ModelTest' in n for n in z.namelist())
+del data
+prior=json.loads((Path('H:/CCB-Studio-Suite/.local/model-bundle-20261028/JAR_PACKAGE_VERIFICATION.json')).read_text());probe=Path(prior['testOnlyProbe']);assert sha(probe)==prior['probeSha256']
+runtime=json.loads((Path('H:/CCB-Studio-Suite/.local/project-bar-import-20261028-final/CANDIDATE_INPUT_MAP.json')).read_text())
+args=out/'installed-probe.args';args.write_text('-Xmx256m\n-XX:ActiveProcessorCount=2\n-Dfile.encoding=UTF-8\n-Djava.io.tmpdir='+str(parent).replace('\\','/')+'\n-cp\n"'+';'.join(str(p).replace('\\','/') for p in [probe,*jars])+'"\nio.github.misakapiano.ccbstudio.desktop.BundledAutoMaskPackageProbe\n')
+with (out/'installed-probe.stdout.log').open('wb') as stdout,(out/'installed-probe.stderr.log').open('wb') as stderr:r=subprocess.run([runtime['java'],'@'+str(args)],cwd=parent,stdout=stdout,stderr=stderr,creationflags=subprocess.CREATE_NO_WINDOW)
+text=(out/'installed-probe.stdout.log').read_text();assert r.returncode==0,text;assert 'resourceProtocol=jar' in text and expected in text
+delivery=out/'delivery';delivery.mkdir();shutil.copy2(installer,delivery/installer.name);shutil.copy2(installer.parent/'BUILD_RECEIPT.json',delivery/'BUILD_RECEIPT.json');shutil.copy2(target/'INSTALL_MANIFEST.json',delivery/'INSTALL_MANIFEST.json')
+value=dict(status='PASS',source=candidate['source'],package=receipt,installerExitCode=0,verifiedFiles=len(manifest['files']),installedRoot=str(target),productionClasspath=[dict(path=str(p),sha256=sha(p)) for p in jars],probeResult=text.strip(),modelSha256=expected,elapsedSeconds=round(time.time()-started,3),nativeGuiStartup='NOT_TESTED',userAcceptance='NOT_TESTED',published=False,dailyInstallationModified=False)
+(out/'ISOLATED_INSTALL_VERIFICATION.json').write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n');print(json.dumps({k:v for k,v in value.items() if k!='productionClasspath'},ensure_ascii=False,indent=2))

@@ -1,0 +1,393 @@
+{
+  "base": "e74f7a2769595259a32d546e165c1f00107a895e",
+  "status": "PASS",
+  "sources": [
+    {
+      "path": "gradle/verification-metadata.xml",
+      "bytes": 50841,
+      "sha256": "13d383a8e0c21893da79a21c3cb9e80c5aeaa271645020cd1afec6676c5ad248"
+    },
+    {
+      "path": "modules/asset-library/README.md",
+      "bytes": 8924,
+      "sha256": "92f4c08c800fd2d04222c6a6456850b540b6146ad6853a121fbaf3f503a1c1e4"
+    },
+    {
+      "path": "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetBackup.java",
+      "bytes": 10280,
+      "sha256": "8a13c19bd8bfe857038805eaa7b027d2ed4f60dc361dd4d64d59ea4b8735e4e7"
+    },
+    {
+      "path": "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetStore.java",
+      "bytes": 23735,
+      "sha256": "3cd000e075155e3e4331a801e81e6beaddc805d93af0f37db5ee4173d5155308"
+    },
+    {
+      "path": "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/EditorSnapshotRetirement.java",
+      "bytes": 5936,
+      "sha256": "c916ac12a19b10decd37569899a80a103b398a44a34ed67a0f899d633415b183"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StateJournal.kt",
+      "bytes": 8922,
+      "sha256": "a30bd612d9edf2e832da4417ad34b50178001dd23f6c4fa450fb0a4ffce3f56f"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/StudioWorkspace.kt",
+      "bytes": 13326,
+      "sha256": "d983fb61f01ce87adb9feec313070a7fa0f43649bc7cbab9b1132c455a2ee4e7"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetAutoMaskSettings.kt",
+      "bytes": 3156,
+      "sha256": "93f40a628c99383743debd71d6b3eefabef2a7e2ef46924cb1dab3eec4fe77b3"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetBatch.kt",
+      "bytes": 2069,
+      "sha256": "66c437be221c67f24918c6d5c9b65a5fadf92b11db21eebfc59a7ec103c49238"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetEditRecipe.kt",
+      "bytes": 2442,
+      "sha256": "e71ad3da2da125db85d04c6e423f345e6948d75e5ef8535b41ce5d048fb47555"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetEditorExtras.kt",
+      "bytes": 4984,
+      "sha256": "4cb9438ee1504bcc0ff8c1035651c3c553d8042c0015935dce5aeea8532e6f60"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetExport.kt",
+      "bytes": 16968,
+      "sha256": "baa6c2983ee9ed96d6eebfd4fe64c5789626a9814c1432e06e803b4aa3e64fdf"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetFonts.kt",
+      "bytes": 6811,
+      "sha256": "6b6d9e4b19e67185a1290b5b98243ef940b3bb82b2b67fc8cd3c0aef8ac069b0"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetLayout.kt",
+      "bytes": 11364,
+      "sha256": "a31f45bfeb4b1a02c4b270407e7353ab9834ba938f7fb64ff05f11de269d0e52"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetOrganizationChanges.kt",
+      "bytes": 1641,
+      "sha256": "821164ab236faae50c3f5bad6fcc913503bec33573a2482d416dd7168685719a"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetPreviewSession.kt",
+      "bytes": 3127,
+      "sha256": "5d7491f7a26880c262981000b4c4c1d41b6c376f510b608a21e0d1176136fa33"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetProjectArchives.kt",
+      "bytes": 5789,
+      "sha256": "78789e60aca543a6ef5838f56e92bb01fb583cc30f8ddc9b894cfd49541d312b"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetProjectDeletion.kt",
+      "bytes": 6613,
+      "sha256": "7c20cbb9f80d2d868f653ffeed6514ecf276a2a7121dc4716f2e156ac2ddc10e"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetRenderer.kt",
+      "bytes": 7748,
+      "sha256": "3a42b1379feb1b9cda5f029ba4fe0ee08d9c6d870e3ee6936115301b010f59e9"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetRepository.kt",
+      "bytes": 7825,
+      "sha256": "2cd359aef529ecc2991133064b1b98a31fa018018dd803423b79b5f50d49bf70"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetSnapshotRetirement.kt",
+      "bytes": 3537,
+      "sha256": "9eccea7897aad9933a84e74e30d89073b5d9a1b4740eae810b191f3ca4686849"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/TypesetSourceExchange.kt",
+      "bytes": 19515,
+      "sha256": "2d94f56ad4266c01492da3dcbddc51700cd3d014cdd91e65a7c6cdcc25391887"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/WindowsOwnedOutputDeletion.kt",
+      "bytes": 3031,
+      "sha256": "0904941fcd562c34b39eb327019fb8c3f091f34d81b0dd976472227ff1fc99c8"
+    },
+    {
+      "path": "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/WindowsVerticalTypography.kt",
+      "bytes": 15662,
+      "sha256": "849b1c4ff5166cb4b0525d1a4a4f73208b8baedd58ead611a9cc778ee754bf97"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TypesetAutoMaskSettingsTest.kt",
+      "bytes": 3444,
+      "sha256": "fdb7ba2632de4a7d8106a995fc5276ece4d7e455c383da2b0af40cf6093abc28"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TypesetBatchTest.kt",
+      "bytes": 4011,
+      "sha256": "5c196759274185a382825a82161bcbcdda91fb8534e38ee2e31157b9e258f1e5"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TypesetEditorExtrasTest.kt",
+      "bytes": 4989,
+      "sha256": "01c52abbc2e483d6a0af6b446a72bb5819ab17ef4135c3bc2e520d187a27d7aa"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TypesetExportCategoriesTest.kt",
+      "bytes": 5462,
+      "sha256": "69ba8edaa330614eea7b6fbc4ab1b678ca43a119fb319278cb3cf7713a206172"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TypesetPreviewSessionTest.kt",
+      "bytes": 6123,
+      "sha256": "b862d370cfce2fbae2a79c5abd509208706197887fa935e80efa019898f88031"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TypesetProjectArchivesTest.kt",
+      "bytes": 7055,
+      "sha256": "d5b32933b069b3c4d6bdd4270b4a7f689f97adacd29be38fe13084d67000e16b"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TypesetProjectManagementTest.kt",
+      "bytes": 17969,
+      "sha256": "1c8de5507958ea89a4a98b3495da9456a954859de7342c9db69bda5cc0be24ee"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/TypesetReferenceTest.kt",
+      "bytes": 6668,
+      "sha256": "7623db15fc58de2a8fd044f32f32a837b92670a13b0ffb09fd078025dc5860c5"
+    },
+    {
+      "path": "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/WindowsVerticalTypographyTest.kt",
+      "bytes": 5648,
+      "sha256": "b94ccea6c0912ee40884e4cc890c49aedb9a97a44d3ff78336d206a7016e9997"
+    },
+    {
+      "path": "modules/studio-desktop/build.gradle.kts",
+      "bytes": 2964,
+      "sha256": "fe6b2c7654c2562a9c61de23d8211698158ce12fa8cff20aa1fd77ea917ea9de"
+    },
+    {
+      "path": "modules/studio-desktop/gradle.lockfile",
+      "bytes": 41024,
+      "sha256": "1907bd7bfce5db067c0087716808c8004e95e7dd262e1c2509df53e4973cc000"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/BundledAutoMaskModel.kt",
+      "bytes": 948,
+      "sha256": "74e89f49240d98275902dc78e99eb919a980fafcd84ca38a6285e0dea20acd3b"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/LocalOnnxMaskDetector.kt",
+      "bytes": 8099,
+      "sha256": "d6670ef2a6a2205add0c31beb3fa80b99191458a2188dfdba021d70648c0268c"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/OnnxModelBoundary.kt",
+      "bytes": 2181,
+      "sha256": "2df21866823cdf8ac9afd5aaffa7c7a31328008b8102a28aab93e93205f1fa69"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt",
+      "bytes": 77134,
+      "sha256": "d0c2ce63b33d2e7b91800780b8b1c5af5bfd91328c3ddee50eadb824ccff4e3f"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetAutoMaskController.kt",
+      "bytes": 8570,
+      "sha256": "3a4737092385138d31697192cbe4a60468b17782e2abcb8fecaa67ba9b295c89"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetAutoMaskDialog.kt",
+      "bytes": 4494,
+      "sha256": "a17e49bf01eb3408f11a47632e4d10b38f335ad079daafb79028f4148f6cc233"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetClipboard.kt",
+      "bytes": 5465,
+      "sha256": "ca4a01e14773bbbe395d48a91c7561f30ffabc85f7a4a11beecb8e128214f706"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetColorPicker.kt",
+      "bytes": 3948,
+      "sha256": "b166122e6c5a0863c1b3e06612d94a7079c4158b4392768d86a07e693bf97e8f"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetControls.kt",
+      "bytes": 3357,
+      "sha256": "316346d39f0adf1cbfe0fa5ebd3ed7dc89211d789fd07049dabf000663cbe05b"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetEditorController.kt",
+      "bytes": 33881,
+      "sha256": "2cb5424733d35a740cb5f2a3ac394968cd42a7650d4234c2996b6ffc93777b56"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetExportDialog.kt",
+      "bytes": 10454,
+      "sha256": "f11a344c10045cce1955922c45d4accc34a72b4fbca0a70bb18b90eaa5b73a69"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetFullPreview.kt",
+      "bytes": 2156,
+      "sha256": "5661779e2e2e9db30dba75f6835990e21626ac7ac92acf1115adb10ba4914f0a"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetIcons.kt",
+      "bytes": 1187,
+      "sha256": "f6ea998813c7c0a7ff3f2ac1b0b18006f1f6238704c58f2d477ddbec0229ee2c"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetImageViewport.kt",
+      "bytes": 4407,
+      "sha256": "02f519f1932bb76869f2affe46f4893e020cb07c6a97b173edaf1ef7146202fa"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetLayerPanel.kt",
+      "bytes": 5536,
+      "sha256": "99ec49ccaa6e655af247757d3e24d9bc97bef71ed8ed4facfdb071b372a31f20"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetPresets.kt",
+      "bytes": 7327,
+      "sha256": "54d27dd35647d37b6bbea35f39e0eb5ab29facb7bb3f51c88d27f52e776e9ce0"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetPreviewDialog.kt",
+      "bytes": 2519,
+      "sha256": "e41cf29a3a2a3d8d7f43b2051d20fd57c263db277b2bdd124561691beb2f03fc"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetPreviewRaster.kt",
+      "bytes": 1914,
+      "sha256": "b50347ef03cfa1ab3489ce6851a181d24ac690bb46029add2a81a8627b3f440d"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetProjectArchiveWorkspace.kt",
+      "bytes": 7949,
+      "sha256": "4230b05e08cfa606b4dcd74c90587c0d044198302b3802b83deb3d676bc41657"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetProjectManagement.kt",
+      "bytes": 15419,
+      "sha256": "1c62c6af17dd386441407b71e3a42b0a5093912a3efdf162b0602302c09e363d"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetProjectToolbar.kt",
+      "bytes": 5442,
+      "sha256": "5da3e7f026430fc6a33db3235d39599e1005c6d71fef139b42a3f8dadbbabfcf"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetQueueWorkspace.kt",
+      "bytes": 19769,
+      "sha256": "66d7693c2dfd62ff9234da8239cdded53ecdb571657896296e39bd1576421ad3"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetWorkspace.kt",
+      "bytes": 40691,
+      "sha256": "3adeb2a76677d97de1ca440b4aeb94741b54b50b2ce66c7ca1093630d1d3c289"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/resources/licenses/onnxruntime-LICENSE",
+      "bytes": 1074,
+      "sha256": "7a69ec43a422a470ab5505c2ad13e0574b19f0a85a5a67a3048c60b4bc2938e7"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/resources/licenses/onnxruntime-ThirdPartyNotices.txt",
+      "bytes": 338089,
+      "sha256": "c52cf35aaf21f913fc7a30e1037153b5f76f1a4824535132d980cde436717097"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/resources/models/automask/MIT.txt",
+      "bytes": 1036,
+      "sha256": "508a77d2e7b51d98adeed32648ad124b7b30241a8e70b2e72c99f92d8e5874d1"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/resources/models/automask/MODEL_NOTICE.md",
+      "bytes": 1703,
+      "sha256": "dc6f61a23e055d061fe9cadee75f47e97e5548cc15ee16dfb2c1a2e94877be5e"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/resources/models/automask/model.json",
+      "bytes": 556,
+      "sha256": "06c1a6f4f266d2613701d511e37a891e42480a077f23d3a4238346beba6f58a1"
+    },
+    {
+      "path": "modules/studio-desktop/src/main/resources/models/automask/nsfw-anime-medium-x1280.onnx",
+      "bytes": 47600269,
+      "sha256": "a12ac5532e93be9dfeb96a77fc3f3647791335c9df0de9a18fcd503f7877a828"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/BundledAutoMaskModelTest.kt",
+      "bytes": 4260,
+      "sha256": "663d545618ffd483f8ecafb0979a4de2711d9f073d2f4ca97e253bb577b3d95f"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/EditorProjectManagementReviewSeed.kt",
+      "bytes": 3182,
+      "sha256": "3f2525959b123f0cbf702bcb11150f2ea4e1356c4ec239732f578a0af94d350e"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/EditorReviewCandidate.kt",
+      "bytes": 9607,
+      "sha256": "006bc74b5664dbfddfbd4cead2b30a7a1d0254ab65129a3d1bf22dd2a5fbee87"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/EditorReviewCandidateTest.kt",
+      "bytes": 1442,
+      "sha256": "59b28a6d3ca1678579d1515990e4f4f24bf60f38125f243f1c0d6a363f26befd"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/LocalOnnxMaskDetectorTest.kt",
+      "bytes": 6940,
+      "sha256": "01a0e2fde38727bb3fc2665ef8d13130fa16f03ad6876d72cf949ad32c42bb57"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetAutoMaskOneClickTest.kt",
+      "bytes": 5162,
+      "sha256": "17b4696aa5ee26e35ac16a848ac6accc13136c47e4235772400fe26c18a5a07a"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetInteractionRevisionTest.kt",
+      "bytes": 19238,
+      "sha256": "b33d259831f51f8473b6db82bed0e92a18928e9207d88470c7d3012df0560512"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetNavigationAndPerformanceTest.kt",
+      "bytes": 8698,
+      "sha256": "169ea44fe952dc3763913df2f0ba31bbb3cb08ae89011395cb4bfab9abeccea7"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetProjectArchiveWorkflowTest.kt",
+      "bytes": 8766,
+      "sha256": "468e997de07ba436230d8d10bb73a6ef5df4cbf4212b457b1d29a4e4f6c6260d"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetProjectManagementWorkflowTest.kt",
+      "bytes": 12249,
+      "sha256": "803939a6d331077f1c05665381bc6768dfcf95c2ac3d0d5621e3c3ae11592baa"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetQueueWorkflowTest.kt",
+      "bytes": 22852,
+      "sha256": "b988db230f40325d125649cebdbdb02e307d732636b14c838c979509e86c892b"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetToolbarWorkflowTest.kt",
+      "bytes": 6966,
+      "sha256": "2a1a7496611be428a21e57ba7da03189b3c1331ea6ba1d4e650ab7d8243d3a8e"
+    },
+    {
+      "path": "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetWorkflowTest.kt",
+      "bytes": 50260,
+      "sha256": "91f160bc24b4bf2d26f44d0e9d49bbcc5ffd35dd0a7d0ea47b62d986217d8bf8"
+    }
+  ],
+  "tests": 6,
+  "humanAcceptance": "PENDING"
+}
