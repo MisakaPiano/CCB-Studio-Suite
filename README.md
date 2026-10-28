@@ -1,20 +1,19 @@
 <!-- suite-download-entry-20261024 -->
 > [!IMPORTANT]
-> ## [Windows 预览版下载 — 0.0.0-preview.118](https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.118) · [全部版本](https://github.com/MisakaPiano/CCB-Studio-Suite/releases)
-> 在发行页 **Assets** 下载 **`CCB-Studio-Suite-0.0.0-preview.118-windows-x64.exe`**。**Source code (zip / tar.gz) 是源码，不是 Windows 安装器。**
+> ## [Windows 预览版下载 — 0.0.0-preview.119](https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.119) · [全部版本](https://github.com/MisakaPiano/CCB-Studio-Suite/releases)
+> 在发行页 **Assets** 下载 **`CCB-Studio-Suite-0.0.0-preview.119-windows-x64.exe`**。**Source code (zip / tar.gz) 是源码，不是 Windows 安装器。**
 >
-> 这是**实验性邀请 Preview，尚非稳定版或完整 RC 验收版**。118补齐旧117升级后的程序目录占用与空目录收尾；公开签名发现／下载及真实NSIS隔离升级已核验，新版运行时旧根自动退役。自动验证不能代替完整人工验收。
+> 这是**实验性邀请 Preview，尚非稳定版或全项目验收版**。119纳入编辑改善、工程收起／归档／完整包、独立预览窗口及内置本地AI识别。原版118→119公开签名发现、下载及真实NSIS隔离升级已核验。
 
 当前主要限制：
 
-- 资产管理／编辑完整人工验收、115体验反馈和Prompt对比分别待验；q09编辑历史像素断言失败的根因仍UNKNOWN。
-- 安装盘需留足暂存空间；117客户端下载本包前要求约548MiB空闲。检查／下载／清理共用缓存锁，重叠操作时安全拒绝，应等待当前操作结束再重试。
-- 搬迁前正常关闭程序，携带完整目录，从新位置CCBStudioLauncher.exe启动可重建外部入口。Windows任务栏自动跟随搬迁／用户重新固定尚未验收；外置资料不会自动搬运，过长路径可能安全拒绝。
-- 当前原生升级和搬迁仅在本机同一Windows账户的C/H NTFS卷验证；跨机器、换账户、网络盘、更多Windows环境及真实供应商调用未由本轮验证。
-- 清理只处理有归属证明的废弃程序／缓存和获准退役根内安全空目录；受保护111、未知／自改文件、用户资料、插件、备份及受保护空目录均保留。持续占用或权限失败仍可能保留旧目录并安全重试。
-- Windows Authenticode发布者签名尚未提供，TUF更新签名不能代替发布者认证。Android与BYOK Server尚未实施，当前下载为Windows x64。
+- 本轮收起／重开、归档／历史重开、完整包导出再导入，以及此前预览窗口三步已获限定人工确认；资产管理和编辑剩余覆盖、115整体体验／任务栏固定、Prompt对比仍待验。旧q09像素断言失败根因仍UNKNOWN，不宣称Project独立验收通过。
+- AI当前为本地检测框打码，非像素分割或智能擦除；准确率需用户检查。内置模型使安装包约252MiB，更新需要相应暂存空间。完整工程交换包仍限64MiB，字体文件／模型／凭据与本机撤销历史不包含在内。
+- 组织和归档不复制原图；新导入只保留继续编辑所需内容，不额外留整包，已有导入资料不自动清理。文件管理与真正删除原文件的更广能力仍待后续实施。
+- 更新／关闭排水、搬迁及所属清理沿用原机制；未知、自行修改和受保护内容保留，占用或权限失败安全重试。外部入口搬迁后可能需要重建，路径长度限制仍存在。
+- 当前验证是本机同Windows账户的隔离案例；更多机器、网络盘、跨账户／跨机器凭据、长期CPU／RSS与大规模队列并未由本轮签收。Windows Authenticode发布者签名尚未提供；TUF签名不能替代发布者认证。Android及独立Server尚未实施。
 
-[固定候选与旧失败](https://github.com/MisakaPiano/CCB-Studio-Suite/blob/ee46f20bccf34fa5268cb6b39e0d180793d9ebb4/docs/audits/PREVIEW_118_CANDIDATE_20261027.md) · [当前状态](https://github.com/MisakaPiano/CCB-Studio-Suite/blob/feature/windows-rc-continuous/docs/CURRENT_STATE.md) · [首页链接同步流程](https://github.com/MisakaPiano/CCB-Studio-Suite/blob/feature/windows-rc-continuous/docs/rc/PREVIEW_UPDATE_CONTINUITY.md#首页下载入口同步)
+[当前状态](https://github.com/MisakaPiano/CCB-Studio-Suite/blob/feature/windows-rc-continuous/docs/CURRENT_STATE.md) · [本轮发行证据](https://github.com/MisakaPiano/CCB-Studio-Suite/blob/feature/windows-rc-continuous/docs/audits/PREVIEW_119_PUBLICATION_20261028.md) · [首页同步流程](https://github.com/MisakaPiano/CCB-Studio-Suite/blob/feature/windows-rc-continuous/docs/rc/PREVIEW_UPDATE_CONTINUITY.md)
 
 ---
 
