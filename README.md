@@ -1,19 +1,19 @@
 <!-- suite-download-entry-20261024 -->
 > [!IMPORTANT]
-> ## [Windows 预览版下载 — 0.0.0-preview.119](https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.119) · [全部版本](https://github.com/MisakaPiano/CCB-Studio-Suite/releases)
-> 在发行页 **Assets** 下载 **`CCB-Studio-Suite-0.0.0-preview.119-windows-x64.exe`**。**Source code (zip / tar.gz) 是源码，不是 Windows 安装器。**
+> ## [Windows 预览版下载 — 0.0.0-preview.120](https://github.com/MisakaPiano/CCB-Studio-Suite/releases/tag/v0.0.0-preview.120) · [全部版本](https://github.com/MisakaPiano/CCB-Studio-Suite/releases)
+> 在发行页 **Assets** 下载 **`CCB-Studio-Suite-0.0.0-preview.120-windows-x64.exe`**。Source code (zip / tar.gz) 是源码，不是 Windows 安装器。
 >
-> 这是**实验性邀请 Preview，尚非稳定版或全项目验收版**。119纳入编辑改善、工程收起／归档／完整包、独立预览窗口及内置本地AI识别。原版118→119公开签名发现、下载及真实NSIS隔离升级已核验。
+> 实验性邀请 Preview，尚非稳定版或全产品验收版。120减少未变化目录的重复内容扫描，明确自动打码“当前图／所选N张”，简化图库操作并增加页面说明，纳入已限定验证的更新恢复与程序修复工具。原版119→120公开签名发现、下载及真实NSIS隔离更新已核验。
 
 当前主要限制：
 
-- 本轮收起／重开、归档／历史重开、完整包导出再导入，以及此前预览窗口三步已获限定人工确认；资产管理和编辑剩余覆盖、115整体体验／任务栏固定、Prompt对比仍待验。旧q09像素断言失败根因仍UNKNOWN，不宣称Project独立验收通过。
-- AI当前为本地检测框打码，非像素分割或智能擦除；准确率需用户检查。内置模型使安装包约252MiB，更新需要相应暂存空间。完整工程交换包仍限64MiB，字体文件／模型／凭据与本机撤销历史不包含在内。
-- 组织和归档不复制原图；新导入只保留继续编辑所需内容，不额外留整包，已有导入资料不自动清理。文件管理与真正删除原文件的更广能力仍待后续实施。
-- 更新／关闭排水、搬迁及所属清理沿用原机制；未知、自行修改和受保护内容保留，占用或权限失败安全重试。外部入口搬迁后可能需要重建，路径长度限制仍存在。
-- 当前验证是本机同Windows账户的隔离案例；更多机器、网络盘、跨账户／跨机器凭据、长期CPU／RSS与大规模队列并未由本轮签收。Windows Authenticode发布者签名尚未提供；TUF签名不能替代发布者认证。Android及独立Server尚未实施。
+- **重复存储尚未解决**：图库单份原件＋目录/相册引用的改造仍为最高优先待办，已有目录副本没有清理。本版不声称消除了重复保存；源文件和现有资料保留。
+- 空闲扫描的局部合成观察通过，不等于真实千图或长期CPU/RSS、各页全面性能通过。实际变更、手动同步与原件读取仍保留校验；属性稳定不等于内容完整性认证。
+- 帮助按钮、图库呈现及编辑范围说明三项已获限定人工确认；自动打码识别质量仍须检查，所选指编辑队列勾选集合，每次最多100张。Prompt对比及其余原待办、历史失败和UNKNOWN保持。
+- 程序修复从新可信安装包运行，保留原损坏程序和资料；不修复资料内容。当前公开更新验证只覆盖本机同Windows账户的隔离合成案例，没有自动升级日常安装。
+- 内置本地AI模型使安装包约251MiB，更新需相应暂存空间。Windows Authenticode发布者签名仍未提供；TUF签名不能替代发布者认证。
 
-[当前状态](https://github.com/MisakaPiano/CCB-Studio-Suite/blob/feature/windows-rc-continuous/docs/CURRENT_STATE.md) · [本轮发行证据](https://github.com/MisakaPiano/CCB-Studio-Suite/blob/feature/windows-rc-continuous/docs/audits/PREVIEW_119_PUBLICATION_20261028.md) · [首页同步流程](https://github.com/MisakaPiano/CCB-Studio-Suite/blob/feature/windows-rc-continuous/docs/rc/PREVIEW_UPDATE_CONTINUITY.md)
+[120发行证据](https://github.com/MisakaPiano/CCB-Studio-Suite/blob/codex/preview120-gallery-workflow/docs/audits/PREVIEW_120_PUBLICATION_20261101.md) · [120固定源码](https://github.com/MisakaPiano/CCB-Studio-Suite/tree/8fccd113aa387a7adbac6894d3327a8b1d8080e6) · [首页同步流程](https://github.com/MisakaPiano/CCB-Studio-Suite/blob/feature/windows-rc-continuous/docs/rc/PREVIEW_UPDATE_CONTINUITY.md)
 
 ---
 
