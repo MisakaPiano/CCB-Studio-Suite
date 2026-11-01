@@ -1,0 +1,14 @@
+{
+  "status": "TIMED_OUT_AFTER_UPDATE_COMPLETE",
+  "reason": "Observer expected old program directory gone while explicit update-status window remained open",
+  "businessUpdateStatus": "COMPLETE",
+  "requiredStatusWindowClose": "NORMAL_SKY_ALT_F4",
+  "unknownDriverEntries": "Only empty NVIDIA Corporation/umdlogs directories observed; no files manually removed",
+  "normalCleanupAfterStatusClose": {
+    "status": "COMPLETE",
+    "removed": 1,
+    "deferred": 0
+  },
+  "updateNotRepeated": true,
+  "inputGeometryFailure": "Sky indexed click unavailable; reobserved and used normal Alt+F4; not a product click failure"
+}

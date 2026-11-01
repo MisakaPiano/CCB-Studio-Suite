@@ -1,0 +1,49 @@
+{
+  "status": "PASS",
+  "source": "e6cbe7ef6313c1389d48501d948c2d99763f1e56",
+  "target": "H:\\CCB-Studio-Suite\\.local\\i121\\121-e6cbe7ef6313",
+  "installerExitCode": 0,
+  "installerSha256": "4722287ddc74549df340be98f6779eedf8dbcee650d9df55f017dd92571988f6",
+  "verification": {
+    "files": 552,
+    "bytes": 347401589,
+    "manifestSha256": "fbe40d04d177ba675a64068f8f27cbf6869166f93f3ac4e75ff6ac52f23d5987"
+  },
+  "applicationClasses": [
+    {
+      "module": "studio-desktop",
+      "classes": 1154,
+      "packagedClassesMatchCompiledMain": true
+    },
+    {
+      "module": "studio-core",
+      "classes": 431,
+      "packagedClassesMatchCompiledMain": true
+    },
+    {
+      "module": "image-authority",
+      "classes": 854,
+      "packagedClassesMatchCompiledMain": true
+    },
+    {
+      "module": "asset-library",
+      "classes": 26,
+      "packagedClassesMatchCompiledMain": true
+    }
+  ],
+  "syntheticFixture": {
+    "status": "PASS",
+    "syntheticOriginals": 12,
+    "uniqueOriginalPayloads": 12,
+    "accounts": 0,
+    "jobs": 0,
+    "eligibleFolders": 1,
+    "startsPaused": true,
+    "secondaryImportImages": 0,
+    "sharedImageIdAcrossAlbums": true,
+    "scope": "New candidate assembly/fixture check only; prior9 regression methods not repeated"
+  },
+  "oldRegressionMethodsRepeated": 0,
+  "dailyInstallationModified": false,
+  "publicRelease": false
+}

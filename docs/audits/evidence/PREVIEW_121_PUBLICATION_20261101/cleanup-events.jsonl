@@ -1,0 +1,24 @@
+{"at": 1793546046.4071388, "event": "RESOURCE_PASS", "receipt": "97a09b9fa3644a4fbc1bd7aad1155d04.json", "area": "download", "base": "b11a2620-a7c3-4de5-bfd6-01ec1c759141", "counts": {"REMOVED": 2}, "retentionSeconds": 0}
+{"at": 1793546049.7454934, "event": "DIRECTORY_DEFERRED", "receipt": "b25da1acd3f14c509dabe044db68aee5.json", "base": "120-8fccd113aa38", "path": ".", "status": "RETRY_DIRECTORY", "winerror": 32}
+{"at": 1793546049.7924023, "event": "RESOURCE_PASS", "receipt": "b25da1acd3f14c509dabe044db68aee5.json", "area": "program", "base": "120-8fccd113aa38", "counts": {"REMOVED": 554, "RETRY_PermissionError": 1}, "retentionSeconds": 0}
+{"at": 1793546049.9595497, "event": "PASS_COMPLETE", "removed": 556, "deferred": 2}
+{"at": 1793546052.8144321, "event": "DIRECTORY_DEFERRED", "receipt": "b25da1acd3f14c509dabe044db68aee5.json", "base": "120-8fccd113aa38", "path": ".", "status": "RETRY_DIRECTORY", "winerror": 32}
+{"at": 1793546052.851597, "event": "RESOURCE_PASS", "receipt": "b25da1acd3f14c509dabe044db68aee5.json", "area": "program", "base": "120-8fccd113aa38", "counts": {"RETRY_PermissionError": 1}, "retentionSeconds": 0}
+{"at": 1793546052.9523404, "event": "PASS_COMPLETE", "removed": 0, "deferred": 2}
+{"at": 1793546056.9566555, "event": "DIRECTORY_DEFERRED", "receipt": "b25da1acd3f14c509dabe044db68aee5.json", "base": "120-8fccd113aa38", "path": ".", "status": "RETRY_DIRECTORY", "winerror": 32}
+{"at": 1793546056.9861267, "event": "RESOURCE_PASS", "receipt": "b25da1acd3f14c509dabe044db68aee5.json", "area": "program", "base": "120-8fccd113aa38", "counts": {"RETRY_PermissionError": 1}, "retentionSeconds": 0}
+{"at": 1793546057.1045823, "event": "PASS_COMPLETE", "removed": 0, "deferred": 2}
+{"at": 1793546252.8368063, "event": "DIRECTORY_DEFERRED", "receipt": "b25da1acd3f14c509dabe044db68aee5.json", "base": "120-8fccd113aa38", "path": ".", "status": "RETRY_DIRECTORY", "winerror": 32}
+{"at": 1793546252.8677347, "event": "RESOURCE_PASS", "receipt": "b25da1acd3f14c509dabe044db68aee5.json", "area": "program", "base": "120-8fccd113aa38", "counts": {"RETRY_PermissionError": 1}, "retentionSeconds": 0}
+{"at": 1793546252.9370947, "event": "PASS_COMPLETE", "removed": 0, "deferred": 2}
+{"at": 1793546254.7278216, "event": "DIRECTORY_DEFERRED", "receipt": "b25da1acd3f14c509dabe044db68aee5.json", "base": "120-8fccd113aa38", "path": ".", "status": "RETRY_DIRECTORY", "winerror": 32}
+{"at": 1793546254.7535162, "event": "RESOURCE_PASS", "receipt": "b25da1acd3f14c509dabe044db68aee5.json", "area": "program", "base": "120-8fccd113aa38", "counts": {"RETRY_PermissionError": 1}, "retentionSeconds": 0}
+{"at": 1793546254.830143, "event": "PASS_COMPLETE", "removed": 0, "deferred": 2}
+{"at": 1793546257.640157, "event": "DIRECTORY_DEFERRED", "receipt": "b25da1acd3f14c509dabe044db68aee5.json", "base": "120-8fccd113aa38", "path": ".", "status": "RETRY_DIRECTORY", "winerror": 32}
+{"at": 1793546257.6627126, "event": "RESOURCE_PASS", "receipt": "b25da1acd3f14c509dabe044db68aee5.json", "area": "program", "base": "120-8fccd113aa38", "counts": {"RETRY_PermissionError": 1}, "retentionSeconds": 0}
+{"at": 1793546257.7134316, "event": "PASS_COMPLETE", "removed": 0, "deferred": 2}
+{"at": 1793546262.640724, "event": "DIRECTORY_DEFERRED", "receipt": "b25da1acd3f14c509dabe044db68aee5.json", "base": "120-8fccd113aa38", "path": ".", "status": "RETRY_DIRECTORY", "winerror": 32}
+{"at": 1793546262.6890893, "event": "RESOURCE_PASS", "receipt": "b25da1acd3f14c509dabe044db68aee5.json", "area": "program", "base": "120-8fccd113aa38", "counts": {"RETRY_PermissionError": 1}, "retentionSeconds": 0}
+{"at": 1793546262.8238842, "event": "PASS_COMPLETE", "removed": 0, "deferred": 2}
+{"at": 1793546275.2653835, "event": "RESOURCE_PASS", "receipt": "b25da1acd3f14c509dabe044db68aee5.json", "area": "program", "base": "120-8fccd113aa38", "counts": {"REMOVED": 1}, "retentionSeconds": 0}
+{"at": 1793546275.327958, "event": "PASS_COMPLETE", "removed": 1, "deferred": 0}

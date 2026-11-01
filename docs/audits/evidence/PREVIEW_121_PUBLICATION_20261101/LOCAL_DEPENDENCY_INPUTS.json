@@ -1,0 +1,927 @@
+{
+  "status": "COPIED_EXACT_PREVIOUSLY_USED_REPOSITORY",
+  "source": "H:\\CCB-Studio-Suite\\.local\\r120\\.local\\windows-preview\\maven",
+  "target": "H:\\CCB-Studio-Suite\\.local\\r121\\.local\\windows-preview\\maven",
+  "files": {
+    "org/xerial/sqlite-jdbc/3.53.4.0/sqlite-jdbc-3.53.4.0.jar": {
+      "bytes": 12002370,
+      "sha256": "bcb1f51e36f940867e83342f9efbf5968ac44a6bef4d397bb4af7b17b45cd2fb"
+    },
+    "org/xerial/sqlite-jdbc/3.53.4.0/sqlite-jdbc-3.53.4.0.pom": {
+      "bytes": 28419,
+      "sha256": "ff588556ba06aa68a568062f2cb9d243dde1f631eafd2010cfef23cab06a7ab9"
+    },
+    "org/sonatype/oss/oss-parent/7/oss-parent-7.pom": {
+      "bytes": 4824,
+      "sha256": "b51f8867c92b6a722499557fc3a1fdea77bdf9ef574722fe90ce436a29559454"
+    },
+    "org/sonatype/oss/oss-parent/9/oss-parent-9.pom": {
+      "bytes": 6569,
+      "sha256": "fb40265f982548212ff82e362e59732b2187ec6f0d80182885c14ef1f982827a"
+    },
+    "org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.jar": {
+      "bytes": 41472,
+      "sha256": "cdba07964d1bb40a0761485c6b1e8c2f8fd9eb1d19c53928ac0d7f9510105c57"
+    },
+    "org/msgpack/msgpack-core/0.9.12/msgpack-core-0.9.12.jar": {
+      "bytes": 126925,
+      "sha256": "261e78e32227d298f25c328aecd532a789d487d8073f97ba9b6aa6dbe41a2be3"
+    },
+    "org/junit/junit-bom/5.12.2/junit-bom-5.12.2.pom": {
+      "bytes": 5649,
+      "sha256": "cef80fec86454f6806bfb0df24669b5c6f32e2cb728539ea859f47dfdc9bbc17"
+    },
+    "org/jetbrains/skiko/skiko-awt-runtime-windows-x64/0.9.37.4/skiko-awt-runtime-windows-x64-0.9.37.4.jar": {
+      "bytes": 10524077,
+      "sha256": "12cbbc1890773264d99a15a234a35001e61098f9e54a631554f89dc8d84ccd9b"
+    },
+    "org/jetbrains/skiko/skiko-awt/0.9.37.4/skiko-awt-0.9.37.4.jar": {
+      "bytes": 1214259,
+      "sha256": "9e859aeb982623fab156ba6671c78255f7f5e1b73334f3de7932440fed6455df"
+    },
+    "org/jetbrains/runtime/jbr-api/1.5.0/jbr-api-1.5.0.jar": {
+      "bytes": 44469,
+      "sha256": "657ede7d7f8e175c909b23caa10fcd4d4a511304fd938aa9cc8457b4378950d5"
+    },
+    "org/jetbrains/kotlinx/kotlinx-serialization-json-jvm/1.8.1/kotlinx-serialization-json-jvm-1.8.1.jar": {
+      "bytes": 276969,
+      "sha256": "8769e5647557e3700919c32d508f5c5dad53c5d8234cd10846354fbcff14aa24"
+    },
+    "org/jetbrains/kotlinx/kotlinx-serialization-core-jvm/1.7.3/kotlinx-serialization-core-jvm-1.7.3.jar": {
+      "bytes": 390987,
+      "sha256": "f0adde45864144475385cf4aa7e0b7feb27f61fcf9472665ed98cc971b06b1eb"
+    },
+    "org/jetbrains/kotlinx/kotlinx-serialization-core-jvm/1.8.1/kotlinx-serialization-core-jvm-1.8.1.jar": {
+      "bytes": 391821,
+      "sha256": "3565b6d4d789bf70683c45566944287fc1d8dc75c23d98bd87d01059cc76f2b3"
+    },
+    "org/jetbrains/kotlinx/kotlinx-datetime-jvm/0.6.2/kotlinx-datetime-jvm-0.6.2.jar": {
+      "bytes": 675271,
+      "sha256": "102764921129e1e44a74f408b7a0b8dac6d1892c6042e0e48f8bdbbbf78c6d2e"
+    },
+    "org/jetbrains/kotlinx/kotlinx-coroutines-test-jvm/1.10.2/kotlinx-coroutines-test-jvm-1.10.2.jar": {
+      "bytes": 136781,
+      "sha256": "590a549f8c1db590c9d98a8a20424a1f581a34162a369e6a6bd884ce7d36d3d7"
+    },
+    "org/jetbrains/kotlinx/kotlinx-coroutines-test/1.9.0/kotlinx-coroutines-test-1.9.0.module": {
+      "bytes": 45747,
+      "sha256": "3a5f38700b2a4eb290e3507a0e3e4f9cc0bd63e70cca7f15e911dbf37c4f44ca"
+    },
+    "org/jetbrains/kotlinx/kotlinx-coroutines-test/1.9.0/kotlinx-coroutines-test-1.9.0.pom": {
+      "bytes": 2057,
+      "sha256": "e6b4aae143750cb1b64e0397d4b96dc6135ba6ab2c337386df54df0d98cdf121"
+    },
+    "org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.10.2/kotlinx-coroutines-core-jvm-1.10.2.jar": {
+      "bytes": 1479317,
+      "sha256": "5ca175b38df331fd64155b35cd8cae1251fa9ee369709b36d42e0a288ccce3fd"
+    },
+    "org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.6.4/kotlinx-coroutines-core-jvm-1.6.4.module": {
+      "bytes": 3389,
+      "sha256": "0d94c8a41483e7c2707ebd693e1b1357a84152998ce85550ebbc54ca4321a3a7"
+    },
+    "org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.6.4/kotlinx-coroutines-core-jvm-1.6.4.pom": {
+      "bytes": 2217,
+      "sha256": "09d960f85922903c2e52e126b17e9fa5020b425c469ec61944b3c01835547224"
+    },
+    "org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.7.3/kotlinx-coroutines-core-jvm-1.7.3.jar": {
+      "bytes": 1551152,
+      "sha256": "1ab3acc38f3e7355c4f9d1ec62107a46fa73c899f3070d055e5d4373dfe67e12"
+    },
+    "org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.7.3/kotlinx-coroutines-core-jvm-1.7.3.module": {
+      "bytes": 4642,
+      "sha256": "34d6ee99b76ac062b51555b4a70be18349fe5566da79a190614f171c80b6538e"
+    },
+    "org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.7.3/kotlinx-coroutines-core-jvm-1.7.3.pom": {
+      "bytes": 2395,
+      "sha256": "753858753decbbb2397343e2b871f062f697812e9422e41c9ee46a66b93eee30"
+    },
+    "org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.8.0/kotlinx-coroutines-core-jvm-1.8.0.jar": {
+      "bytes": 1548360,
+      "sha256": "9860906a1937490bf5f3b06d2f0e10ef451e65b95b269f22daf68a3d1f5065c5"
+    },
+    "org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.8.1/kotlinx-coroutines-core-jvm-1.8.1.module": {
+      "bytes": 4278,
+      "sha256": "09b81c9d11c2deebf133ad87b707927c1f04099cb611ef008c7725b3eb308329"
+    },
+    "org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.8.1/kotlinx-coroutines-core-jvm-1.8.1.pom": {
+      "bytes": 2196,
+      "sha256": "47c6a50b14151e8faf7f350a95235c37d12abc38bfb055b668974293172daf2c"
+    },
+    "org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.9.0/kotlinx-coroutines-core-jvm-1.9.0.jar": {
+      "bytes": 1463587,
+      "sha256": "ad89c2892235e670f222d819cb3d81188143cb19a05b59df9889ae4269f5c70a"
+    },
+    "org/jetbrains/kotlinx/kotlinx-coroutines-core/1.6.4/kotlinx-coroutines-core-1.6.4.module": {
+      "bytes": 22845,
+      "sha256": "a6eed4a1835588e7c84fcd7b0475fce9a7b3444c870ebc797b88ba64ccf4576b"
+    },
+    "org/jetbrains/kotlinx/kotlinx-coroutines-core/1.6.4/kotlinx-coroutines-core-1.6.4.pom": {
+      "bytes": 2057,
+      "sha256": "136b4edb87a47e15251f0842f3189fa31979eb4ab51acfb4239b4bf8d16d4588"
+    },
+    "org/jetbrains/kotlinx/kotlinx-coroutines-core/1.7.3/kotlinx-coroutines-core-1.7.3.module": {
+      "bytes": 43629,
+      "sha256": "7fb162396594ec28e1b6a4411b457949a7670f5e12019176774e1fd6b9471bbf"
+    },
+    "org/jetbrains/kotlinx/kotlinx-coroutines-core/1.7.3/kotlinx-coroutines-core-1.7.3.pom": {
+      "bytes": 2057,
+      "sha256": "ed6eb0398717035e29f1c1d60a4e3ddbb89858f3db9e07b57ad759d374dae829"
+    },
+    "org/jetbrains/kotlinx/kotlinx-coroutines-bom/1.6.4/kotlinx-coroutines-bom-1.6.4.pom": {
+      "bytes": 4291,
+      "sha256": "ab2614855fba66aa8a42514dbe3d5a884315ffe1ed63f5932e710a8006245ce1"
+    },
+    "org/jetbrains/kotlinx/kotlinx-coroutines-bom/1.7.3/kotlinx-coroutines-bom-1.7.3.pom": {
+      "bytes": 4291,
+      "sha256": "4e5d1900e6379ef3f5970d04a8f30529adc82f859e8cc107c21ce8149ef666c4"
+    },
+    "org/jetbrains/kotlinx/kotlinx-coroutines-bom/1.8.1/kotlinx-coroutines-bom-1.8.1.pom": {
+      "bytes": 4291,
+      "sha256": "563e4aa29fa8fe09a6e1746d0a5b51308f7c7dedc468dc5a0ca810a485877030"
+    },
+    "org/jetbrains/kotlinx/kotlinx-coroutines-bom/1.9.0/kotlinx-coroutines-bom-1.9.0.pom": {
+      "bytes": 4291,
+      "sha256": "bea5511e9001f2c593ab5080df131b219ab5e2085cc5979ce583eacd4946fd78"
+    },
+    "org/jetbrains/kotlinx/kotlinx-coroutines-android/1.10.2/kotlinx-coroutines-android-1.10.2.jar": {
+      "bytes": 17826,
+      "sha256": "e713f1f874244115a07571065cffa0f24f5e78300e9720fea16de3af1d75fd41"
+    },
+    "org/jetbrains/kotlinx/atomicfu-jvm/0.22.0/atomicfu-jvm-0.22.0.jar": {
+      "bytes": 38431,
+      "sha256": "2da073727f3ab5e5584e74c12e11519c908ae2dfaf6aeb25ded42b6682297882"
+    },
+    "org/jetbrains/kotlinx/atomicfu-jvm/0.22.0/atomicfu-jvm-0.22.0.module": {
+      "bytes": 3192,
+      "sha256": "35070f923ce69f87c6f90e5305720e2704409b69a2374492ac45be70075ee49a"
+    },
+    "org/jetbrains/kotlinx/atomicfu-jvm/0.22.0/atomicfu-jvm-0.22.0.pom": {
+      "bytes": 1834,
+      "sha256": "09233d37935a296878fc7ebef761021264fae2805bf926420328b7cb90d67a56"
+    },
+    "org/jetbrains/kotlinx/atomicfu-jvm/0.23.2/atomicfu-jvm-0.23.2.jar": {
+      "bytes": 36181,
+      "sha256": "101ff43ff563fca167af5ade98c3b69bf569010eab745013b84d8955034d3b3c"
+    },
+    "org/jetbrains/kotlinx/atomicfu/0.22.0/atomicfu-0.22.0.module": {
+      "bytes": 39412,
+      "sha256": "5c876ef7e1ee07dd30721c43b46ead8eda23ce2b22260e70f933cbe004e80607"
+    },
+    "org/jetbrains/kotlinx/atomicfu/0.22.0/atomicfu-0.22.0.pom": {
+      "bytes": 1667,
+      "sha256": "96c3f87d03628a83111c3df934e803d77e10d613420f7bc4d300598386c8ef37"
+    },
+    "org/jetbrains/kotlin/kotlin-util-klib-metadata/2.3.20/kotlin-util-klib-metadata-2.3.20.jar": {
+      "bytes": 101378,
+      "sha256": "a8994e0bca6846dfb19f458c4cc15d7b13779ca1b0d9f34880b5ff2c2a2b73b3"
+    },
+    "org/jetbrains/kotlin/kotlin-util-klib/2.3.20/kotlin-util-klib-2.3.20.jar": {
+      "bytes": 733653,
+      "sha256": "9562b8d3b7a04beba2b14c05671e713859ea54bbc0a2107e65b2bcf273fa8448"
+    },
+    "org/jetbrains/kotlin/kotlin-util-io/2.3.20/kotlin-util-io-2.3.20.jar": {
+      "bytes": 57195,
+      "sha256": "0e76e7471e91c53ea68d2d24ef1f29fb592ac5fbb0d1d10faa916430eff3daca"
+    },
+    "org/jetbrains/kotlin/kotlin-tooling-core/2.3.20/kotlin-tooling-core-2.3.20.jar": {
+      "bytes": 99749,
+      "sha256": "367142781299bc0f9120c1deec0e62934a1af9ea7f01aaa9c5a5354dc5d8d7d9"
+    },
+    "org/jetbrains/kotlin/kotlin-test-junit/2.3.20/kotlin-test-junit-2.3.20.jar": {
+      "bytes": 5112,
+      "sha256": "a1c7f029c044553f1d425ec5810ca7997325e8c181fe92cce0cf0d4a2b0be727"
+    },
+    "org/jetbrains/kotlin/kotlin-test/2.3.20/kotlin-test-2.3.20.jar": {
+      "bytes": 102710,
+      "sha256": "d6c9ccf82f67e6cf7fdaf9e0cea419dac4dfa58620a1653d3dba45f544a289ac"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.8.20/kotlin-stdlib-jdk8-1.8.20.jar": {
+      "bytes": 969,
+      "sha256": "e398b67977622718bf18ff99b739c7d9da060f33fb458a2e25203221c16af010"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.8.20/kotlin-stdlib-jdk8-1.8.20.pom": {
+      "bytes": 1581,
+      "sha256": "3a462214a336e995687769531b1e37b0c81d8e10c9949cd5ea7ae1d7803a0232"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.8.21/kotlin-stdlib-jdk8-1.8.21.jar": {
+      "bytes": 968,
+      "sha256": "3db752a30074f06ee6c57984aa6f27da44f4d2bbc7f5442651f6988f1cb2b7d7"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.9.0/kotlin-stdlib-jdk8-1.9.0.jar": {
+      "bytes": 963,
+      "sha256": "a59fa24fdf1ffb594baecdbf0fd10010f977cea10236d487fe3464977a7377fa"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.9.10/kotlin-stdlib-jdk8-1.9.10.jar": {
+      "bytes": 965,
+      "sha256": "a4c74d94d64ce1abe53760fe0389dd941f6fc558d0dab35e47c085a11ec80f28"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.9.10/kotlin-stdlib-jdk8-1.9.10.pom": {
+      "bytes": 1581,
+      "sha256": "5f4b94dd3065a7764c37fa15de2ad6d81f40d59f8cb33f17d181c6384fb7a72e"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib-jdk8/2.2.10/kotlin-stdlib-jdk8-2.2.10.jar": {
+      "bytes": 951,
+      "sha256": "8974bfdd08b1d81843fe8d11f0729ab6e5b3c1f88d671ebe0c006358129ce149"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib-jdk8/2.2.20/kotlin-stdlib-jdk8-2.2.20.jar": {
+      "bytes": 951,
+      "sha256": "c314177935d8dc2eda879507117f25d6de56f6c57ede99416b14cd622bb9e09d"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.8.20/kotlin-stdlib-jdk7-1.8.20.jar": {
+      "bytes": 963,
+      "sha256": "af1ec40c3b951afdcc0c2a0173c7b81763c5281c2d5bafbf0a8544a24c5dcc0c"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.8.20/kotlin-stdlib-jdk7-1.8.20.pom": {
+      "bytes": 1389,
+      "sha256": "3622d106578cddcc0a9ec20f8ce815f7f49ff542f640228d2141fcaf80616b06"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.8.21/kotlin-stdlib-jdk7-1.8.21.jar": {
+      "bytes": 963,
+      "sha256": "33d148db0e11debd0d90677d28242bced907f9c77730000fd597867089039d86"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.9.0/kotlin-stdlib-jdk7-1.9.0.jar": {
+      "bytes": 958,
+      "sha256": "b7979a7aac94055f0d9f1fd3b47ce5ffe1cb6032a842ba9fbe7186f085289178"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.9.10/kotlin-stdlib-jdk7-1.9.10.jar": {
+      "bytes": 959,
+      "sha256": "ac6361bf9ad1ed382c2103d9712c47cdec166232b4903ed596e8876b0681c9b7"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.9.10/kotlin-stdlib-jdk7-1.9.10.pom": {
+      "bytes": 1389,
+      "sha256": "c7fa67c7961320b89d85a3ca59a2e18c2c65850845595dcae4b46af6945edcd5"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib-jdk7/2.2.10/kotlin-stdlib-jdk7-2.2.10.jar": {
+      "bytes": 945,
+      "sha256": "cf95eccc6cc784dff479dee0b8834f3584b93292cc5d91972e82f5d7b9e13e3b"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib-jdk7/2.2.20/kotlin-stdlib-jdk7-2.2.20.jar": {
+      "bytes": 945,
+      "sha256": "3bd26ecb6d12978c5c4e0b41f76c9ff551fac2a5e6268427a9d2a0cdf8a5ad91"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib-common/1.8.21/kotlin-stdlib-common-1.8.21.jar": {
+      "bytes": 221490,
+      "sha256": "6a44c9ecc9d7754d9e943fb1e3588c74d4a3f1785be51074f49d6c5723682a73"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib-common/1.8.21/kotlin-stdlib-common-1.8.21.pom": {
+      "bytes": 1162,
+      "sha256": "e19a5577cbcea89728970db5333c8264c8c69ae722eeb79cbf41d5f0b0c9ae65"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib-common/1.9.0/kotlin-stdlib-common-1.9.0.jar": {
+      "bytes": 225141,
+      "sha256": "283274204bd7c020789ec46f8f8e72af4244d7f550b3392a57e5ca006ad7aa2c"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib-common/1.9.0/kotlin-stdlib-common-1.9.0.pom": {
+      "bytes": 1161,
+      "sha256": "3660d36a70feb3abe49f11b90633e41d36273576f071b0e109da9b3a0df082a5"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib-common/2.2.10/kotlin-stdlib-common-2.2.10.module": {
+      "bytes": 625,
+      "sha256": "336afb512852028b1da5d5d07a6fb833cf9a797ee4b33519694d312f683227c9"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib-common/2.2.10/kotlin-stdlib-common-2.2.10.pom": {
+      "bytes": 1842,
+      "sha256": "e199b04f736f0c7334ed5deb737899233442b36238a59310790b216b6934c067"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib-common/2.3.20/kotlin-stdlib-common-2.3.20.module": {
+      "bytes": 625,
+      "sha256": "7d5e33de714cddd75078642098cbcbee97c18398d034b77d32b4b074b9503939"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib-common/2.3.20/kotlin-stdlib-common-2.3.20.pom": {
+      "bytes": 1821,
+      "sha256": "fd7b63edf6f7d6eaebc16a18560bbb928b3342561ea5c9d1f769198b0fe9b988"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib/1.8.21/kotlin-stdlib-1.8.21.jar": {
+      "bytes": 1670468,
+      "sha256": "042a1cd1ac976cdcfe5eb63f1d8e0b0b892c9248e15a69c8cfba495d546ea52a"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib/1.8.21/kotlin-stdlib-1.8.21.pom": {
+      "bytes": 1554,
+      "sha256": "fe0cd9e32193e453333fd2b1f577e662fb5abc6907102bb967817bc131280fd7"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib/1.9.0/kotlin-stdlib-1.9.0.jar": {
+      "bytes": 1708006,
+      "sha256": "35aeffbe2db5aa446072cee50fcee48b7fa9e2fc51ca37c0cc7d7d0bc39d952e"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib/1.9.0/kotlin-stdlib-1.9.0.pom": {
+      "bytes": 1552,
+      "sha256": "37752263f62cc3e3250856e288ee4a73d4102d726a77627034f94806c8c10aca"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib/2.2.0/kotlin-stdlib-2.2.0.jar": {
+      "bytes": 1750373,
+      "sha256": "65d12d85a3b865c160db9147851712a64b10dadd68b22eea22a95bf8a8670dca"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib/2.2.10/kotlin-stdlib-2.2.10.jar": {
+      "bytes": 1750374,
+      "sha256": "9c67cc79efd6b9215b49d2a4308f5f3433537376c7c88e89bdd6729bd096e61a"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib/2.2.10/kotlin-stdlib-2.2.10.module": {
+      "bytes": 12430,
+      "sha256": "db78df08283591cb67c8b9d2796109eb52b6088d4dfe102b545f20118249713f"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib/2.2.10/kotlin-stdlib-2.2.10.pom": {
+      "bytes": 2322,
+      "sha256": "454ba507a3d36b4ac253df6df96f8739bd26ea19df3f332b10b13f2c5715f787"
+    },
+    "org/jetbrains/kotlin/kotlin-stdlib/2.3.20/kotlin-stdlib-2.3.20.jar": {
+      "bytes": 1804720,
+      "sha256": "0ae12504a5040ebaf37703908483420d1a5624dd1d93f357665f8c77c848a01e"
+    },
+    "org/jetbrains/kotlin/kotlin-serialization-compiler-plugin-embeddable/2.3.20/kotlin-serialization-compiler-plugin-embeddable-2.3.20.jar": {
+      "bytes": 568281,
+      "sha256": "178edb62cda3e255fc80e270656f2848b6e0752f7b4b4c27e4a88cc537bea674"
+    },
+    "org/jetbrains/kotlin/kotlin-serialization/2.3.20/kotlin-serialization-2.3.20-gradle813.jar": {
+      "bytes": 6586,
+      "sha256": "fb84eef558f1e4dc628b58009c290a254d5cd34c11cc46da9764c6e18d33cedb"
+    },
+    "org/jetbrains/kotlin/kotlin-scripting-jvm/2.3.20/kotlin-scripting-jvm-2.3.20.jar": {
+      "bytes": 135462,
+      "sha256": "7047ce0353f49125c3c746792d4f76c3265d7b72fe62694b7eec075bba02528c"
+    },
+    "org/jetbrains/kotlin/kotlin-scripting-compiler-impl-embeddable/2.3.20/kotlin-scripting-compiler-impl-embeddable-2.3.20.jar": {
+      "bytes": 196824,
+      "sha256": "806fd63b3bcec5e6b5eeb1a0843d6ab094d55786a8465e474a2439295a1c0a25"
+    },
+    "org/jetbrains/kotlin/kotlin-scripting-compiler-embeddable/2.3.20/kotlin-scripting-compiler-embeddable-2.3.20.jar": {
+      "bytes": 677673,
+      "sha256": "bd55f8f61bd41cec529656c2d47784bcba5ac260e94f4156c272c314966eef59"
+    },
+    "org/jetbrains/kotlin/kotlin-scripting-common/2.3.20/kotlin-scripting-common-2.3.20.jar": {
+      "bytes": 201202,
+      "sha256": "b4c239d87b23be182f05bf57cf5e81f95d70bf7ef4a989eb98b73389c6ebc89f"
+    },
+    "org/jetbrains/kotlin/kotlin-script-runtime/2.3.20/kotlin-script-runtime-2.3.20.jar": {
+      "bytes": 44972,
+      "sha256": "6fcdb7da6e65cf8cc43e5aabab94bdcc48825e7933686f8a1bf694eb88f8e00e"
+    },
+    "org/jetbrains/kotlin/kotlin-reflect/1.6.10/kotlin-reflect-1.6.10.jar": {
+      "bytes": 3038560,
+      "sha256": "3277ac102ae17aad10a55abec75ff5696c8d109790396434b496e75087854203"
+    },
+    "org/jetbrains/kotlin/kotlin-reflect/1.8.21/kotlin-reflect-1.8.21.jar": {
+      "bytes": 3180995,
+      "sha256": "8a6cd5a3cf092acee274ce2c444dc36eefdb631579859dd4d857b3309a529c91"
+    },
+    "org/jetbrains/kotlin/kotlin-reflect/1.8.21/kotlin-reflect-1.8.21.pom": {
+      "bytes": 1376,
+      "sha256": "39d78db33222cdbb32b618c7c5223d4457cc19742856d116a85090e4a96f623a"
+    },
+    "org/jetbrains/kotlin/kotlin-reflect/2.2.0/kotlin-reflect-2.2.0.jar": {
+      "bytes": 3298629,
+      "sha256": "230d91c2e410e3cfca3a4dc73d255455f62ff52aac091a33397a6e30bde91bf7"
+    },
+    "org/jetbrains/kotlin/kotlin-reflect/2.2.10/kotlin-reflect-2.2.10.jar": {
+      "bytes": 3298629,
+      "sha256": "c48db4f8cd1bfd67f72d59255065fb41bfda43ca2942dac4d9deb897aa126ba4"
+    },
+    "org/jetbrains/kotlin/kotlin-reflect/2.2.10/kotlin-reflect-2.2.10.pom": {
+      "bytes": 1372,
+      "sha256": "ae46614906414404cefc41a467435205d6dee67a2390598328a639ad2bacbd11"
+    },
+    "org/jetbrains/kotlin/kotlin-parcelize-runtime/1.9.22/kotlin-parcelize-runtime-1.9.22.jar": {
+      "bytes": 7000,
+      "sha256": "f0077f35ec828e148ac92d0c6aa141a732b5eb7a4a391679aeefa59fa9a1a5cc"
+    },
+    "org/jetbrains/kotlin/kotlin-native-utils/2.3.20/kotlin-native-utils-2.3.20.jar": {
+      "bytes": 404600,
+      "sha256": "4319c2764795efbdff2b78ee95455157d7af0b9155698baa1ba52a6abe3abf2d"
+    },
+    "org/jetbrains/kotlin/kotlin-klib-commonizer-api/2.3.20/kotlin-klib-commonizer-api-2.3.20.jar": {
+      "bytes": 73550,
+      "sha256": "be9377485412d00f01e78299cb30be4802591c2730342b6ebdafc0894f752743"
+    },
+    "org/jetbrains/kotlin/kotlin-gradle-plugin-idea-proto/2.3.20/kotlin-gradle-plugin-idea-proto-2.3.20.jar": {
+      "bytes": 2695003,
+      "sha256": "e4289cbf9ff49407f041ddc6336e1b577a6ca4cf2be1d2a31338271c13eed3ed"
+    },
+    "org/jetbrains/kotlin/kotlin-gradle-plugin-idea/2.3.20/kotlin-gradle-plugin-idea-2.3.20.jar": {
+      "bytes": 94795,
+      "sha256": "952e73948e2a20d398c26b87a6bb70ccf66418fbaf1527c3515b188ea9d4bd60"
+    },
+    "org/jetbrains/kotlin/kotlin-gradle-plugin-api/2.3.20/kotlin-gradle-plugin-api-2.3.20-gradle813.jar": {
+      "bytes": 296819,
+      "sha256": "c9bc17df69bf39907c597c1e19bec4b479c75aac75fbfd6321e3445b49712e88"
+    },
+    "org/jetbrains/kotlin/kotlin-gradle-plugin-annotations/2.3.20/kotlin-gradle-plugin-annotations-2.3.20.jar": {
+      "bytes": 4689,
+      "sha256": "e1662ed747322b63f61d4fadd99ab78104c45eaf09c11a789862415e81c18dc4"
+    },
+    "org/jetbrains/kotlin/kotlin-gradle-plugin/2.3.20/kotlin-gradle-plugin-2.3.20-gradle813.jar": {
+      "bytes": 25259835,
+      "sha256": "46e16ee26594f480fecb92c96daae37530e835026b78e37ef3251e957f03f6fb"
+    },
+    "org/jetbrains/kotlin/kotlin-daemon-embeddable/2.3.20/kotlin-daemon-embeddable-2.3.20.jar": {
+      "bytes": 368343,
+      "sha256": "8870bab840b8087c96c4ddc06088b4aedf5131c408af3674306304f1f96af3f4"
+    },
+    "org/jetbrains/kotlin/kotlin-daemon-client/2.3.20/kotlin-daemon-client-2.3.20.jar": {
+      "bytes": 243178,
+      "sha256": "c71a7c1be8fbff04e0af45c9ee8cb7a61d8953bca6b8bf225a5719c725a90b44"
+    },
+    "org/jetbrains/kotlin/kotlin-compose-compiler-plugin-embeddable/2.3.20/kotlin-compose-compiler-plugin-embeddable-2.3.20.jar": {
+      "bytes": 941028,
+      "sha256": "e1024c542f1d021e170cd040e4e1730f2fd76ce8ed76fc9e3496988ca643a2e0"
+    },
+    "org/jetbrains/kotlin/kotlin-compiler-runner/2.3.20/kotlin-compiler-runner-2.3.20.jar": {
+      "bytes": 20147,
+      "sha256": "c069f30a403be70c8152f8aa9f25eccba188eead54263ae02af14421437a2208"
+    },
+    "org/jetbrains/kotlin/kotlin-compiler-embeddable/2.3.20/kotlin-compiler-embeddable-2.3.20.jar": {
+      "bytes": 59718536,
+      "sha256": "976f989d0b5f5d80e8e8a8ad4b73da0bfc27fdd965b9fa38362b2be79ecc1337"
+    },
+    "org/jetbrains/kotlin/kotlin-build-tools-impl/2.3.20/kotlin-build-tools-impl-2.3.20.jar": {
+      "bytes": 1460858,
+      "sha256": "9681bc2164a8bd9f6ddf4c085cf4a836b92d27506667d73bab9f6d855336c910"
+    },
+    "org/jetbrains/kotlin/kotlin-build-tools-cri-impl/2.3.20/kotlin-build-tools-cri-impl-2.3.20.jar": {
+      "bytes": 571402,
+      "sha256": "54eced630f28124ccfe2e464e6cacc281e528a8a50a89725721554c9693548fe"
+    },
+    "org/jetbrains/kotlin/kotlin-build-tools-compat/2.3.20/kotlin-build-tools-compat-2.3.20.jar": {
+      "bytes": 107581,
+      "sha256": "44c307b4edd4cac51f960a8134112d664c93076700cda5e866e94d9a4296340e"
+    },
+    "org/jetbrains/kotlin/kotlin-build-tools-api/2.3.20/kotlin-build-tools-api-2.3.20.jar": {
+      "bytes": 168792,
+      "sha256": "22f1ab223854b949099f6b259cef541d5b58a3643df9a49c4577c63c416e843b"
+    },
+    "org/jetbrains/kotlin/kotlin-build-statistics/2.3.20/kotlin-build-statistics-2.3.20.jar": {
+      "bytes": 245539,
+      "sha256": "a6d27b3c83617652dd065606f98cf59cfbe263f8c20ebe4ebd5a6f2689eb0d4f"
+    },
+    "org/jetbrains/kotlin/kotlin-android-extensions-runtime/1.9.22/kotlin-android-extensions-runtime-1.9.22.jar": {
+      "bytes": 9709,
+      "sha256": "f00537c7023e604933f6a9563b1bb3b83e61fbfd2cc3d0e9900d616bab6862a4"
+    },
+    "org/jetbrains/kotlin/fus-statistics-gradle-plugin/2.3.20/fus-statistics-gradle-plugin-2.3.20-gradle813.jar": {
+      "bytes": 86425,
+      "sha256": "a4f10a3f0ea5ddd1f555a4f706e09ea7f552b3c8522bb1006361dd306e35e76a"
+    },
+    "org/jetbrains/kotlin/compose-compiler-gradle-plugin/2.3.20/compose-compiler-gradle-plugin-2.3.20-gradle813.jar": {
+      "bytes": 103024,
+      "sha256": "ba8adc34e77818eead592f45d0723ae7044b889ddd291335b8ce56973273f8c5"
+    },
+    "org/jetbrains/kotlin/abi-tools-api/2.3.20/abi-tools-api-2.3.20.jar": {
+      "bytes": 13887,
+      "sha256": "53685f5783b0490683898d755abae4d418b6e83ba06134858afddcb5945899e9"
+    },
+    "org/jetbrains/compose/ui/ui-util-desktop/1.10.3/ui-util-desktop-1.10.3.jar": {
+      "bytes": 18548,
+      "sha256": "7bfc93a8cad2974cdfd5a2c817e3083e0e3c48ef99e4dbba51eb98a14c92ed2d"
+    },
+    "org/jetbrains/compose/ui/ui-unit-desktop/1.10.3/ui-unit-desktop-1.10.3.jar": {
+      "bytes": 85587,
+      "sha256": "f0f3439928b3d9132f07cb2d7a86091696372ebc8354d16b48830b6ce15e8161"
+    },
+    "org/jetbrains/compose/ui/ui-tooling-preview-desktop/1.10.3/ui-tooling-preview-desktop-1.10.3.jar": {
+      "bytes": 21697,
+      "sha256": "b5fa6fbbeea5f896ad2a8e7703bd7eb574d3a1b5ab6d44dbe0a07536bd6af6c4"
+    },
+    "org/jetbrains/compose/ui/ui-text-desktop/1.10.3/ui-text-desktop-1.10.3.jar": {
+      "bytes": 718171,
+      "sha256": "fbca4db945be286b84f75c0c9c784218470bebefa831f73f08edfb3294b6c8e8"
+    },
+    "org/jetbrains/compose/ui/ui-graphics-desktop/1.10.3/ui-graphics-desktop-1.10.3.jar": {
+      "bytes": 628505,
+      "sha256": "9fa604364dc4de23d3f8101f2f5968afa742d847105a5e2c41b6a0aa9123f11b"
+    },
+    "org/jetbrains/compose/ui/ui-geometry-desktop/1.10.3/ui-geometry-desktop-1.10.3.jar": {
+      "bytes": 57759,
+      "sha256": "cdbfdabccac8abef2d9bc0420ec0c4be7a880f6d26b2d1cc4e2317c0d252ee27"
+    },
+    "org/jetbrains/compose/ui/ui-desktop/1.10.3/ui-desktop-1.10.3.jar": {
+      "bytes": 3396265,
+      "sha256": "ec8887c03a333fa374d0b4c46bb9fb700937857f4088eaea4c4cc0ec835f7498"
+    },
+    "org/jetbrains/compose/ui/ui-backhandler-desktop/1.10.3/ui-backhandler-desktop-1.10.3.jar": {
+      "bytes": 21557,
+      "sha256": "1babf68f5a05cbe1ba8cf934f0e575bb0d0b184444514e6aa7ec1f8004c9ce33"
+    },
+    "org/jetbrains/compose/runtime/runtime-saveable-desktop/1.10.3/runtime-saveable-desktop-1.10.3.jar": {
+      "bytes": 434,
+      "sha256": "eb7132b55de2b0913736fdff4705022803e455810f018efecc9eb3230936520a"
+    },
+    "org/jetbrains/compose/runtime/runtime-desktop/1.10.3/runtime-desktop-1.10.3.jar": {
+      "bytes": 416,
+      "sha256": "05f5570c0a7ea8addd6fe9507a70f293efa7f1450d8b9b16dc3c8fee21cc6127"
+    },
+    "org/jetbrains/compose/material/material-ripple-desktop/1.10.3/material-ripple-desktop-1.10.3.jar": {
+      "bytes": 73535,
+      "sha256": "3257697a1a58188ec3dc31f31867f1c38209900b87df1261ebac9e6a1387db83"
+    },
+    "org/jetbrains/compose/material/material-desktop/1.10.3/material-desktop-1.10.3.jar": {
+      "bytes": 1473852,
+      "sha256": "ee4afa33a2411e06cf1bec689667767ffb991ff02269e040a4ef64e76e392119"
+    },
+    "org/jetbrains/compose/hot-reload/hot-reload-gradle-plugin/1.0.0/hot-reload-gradle-plugin-1.0.0.jar": {
+      "bytes": 1874255,
+      "sha256": "3551b2a31d84ecf95ad140cfdc5b04b3b6b506bf1566187adef9b91a05c66b04"
+    },
+    "org/jetbrains/compose/gradle-plugin-internal-jdk-version-probe/1.10.3/gradle-plugin-internal-jdk-version-probe-1.10.3.jar": {
+      "bytes": 2907,
+      "sha256": "93e712459cb6e7ea28759c50745b96b9f0a9cbd36e102a6451ba6a3202c34643"
+    },
+    "org/jetbrains/compose/gradle-plugin-internal-jdk-version-probe/1.10.3/gradle-plugin-internal-jdk-version-probe-1.10.3.module": {
+      "bytes": 3746,
+      "sha256": "3127fcb0980c77aeff0959fc28aa5e5484e2d41035ca3b9e229420ba82c22e16"
+    },
+    "org/jetbrains/compose/gradle-plugin-internal-jdk-version-probe/1.10.3/gradle-plugin-internal-jdk-version-probe-1.10.3.pom": {
+      "bytes": 1784,
+      "sha256": "a2cbf1d985356a91018b6d4617f42b361b35434d67ebbe47dc302b59b12df340"
+    },
+    "org/jetbrains/compose/foundation/foundation-layout-desktop/1.10.3/foundation-layout-desktop-1.10.3.jar": {
+      "bytes": 558602,
+      "sha256": "8d8e00062a83a147409f42f91798394c3c221d22877953eff7d0a81767b5d0fc"
+    },
+    "org/jetbrains/compose/foundation/foundation-desktop/1.10.3/foundation-desktop-1.10.3.jar": {
+      "bytes": 4314315,
+      "sha256": "3a9b7bfae72f1a92a8123d3290bb7d7f61d92e5cde877af5373c3e5c2caceb2b"
+    },
+    "org/jetbrains/compose/desktop/desktop-jvm/1.10.3/desktop-jvm-1.10.3.jar": {
+      "bytes": 4856,
+      "sha256": "fdb63de4c9bdc6570c5355eeb0f013d4635effda42907c2d084acc77e08d4f8a"
+    },
+    "org/jetbrains/compose/compose-gradle-plugin/1.10.3/compose-gradle-plugin-1.10.3.jar": {
+      "bytes": 3866550,
+      "sha256": "778f268133333488560d81bccda555035b882efd9e2827d691c9c694968f2f6b"
+    },
+    "org/jetbrains/compose/animation/animation-desktop/1.10.3/animation-desktop-1.10.3.jar": {
+      "bytes": 374782,
+      "sha256": "1881c5575440055d54a679418f7ad7e86c0349743389360bed0f6a36af16ba34"
+    },
+    "org/jetbrains/compose/animation/animation-core-desktop/1.10.3/animation-core-desktop-1.10.3.jar": {
+      "bytes": 383171,
+      "sha256": "41c0220ddbc55cb897feb0d5816b748f9c11162171f12743c04b50d0d84db628"
+    },
+    "org/jetbrains/annotations/13.0/annotations-13.0.jar": {
+      "bytes": 17536,
+      "sha256": "ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478"
+    },
+    "org/jetbrains/annotations/23.0.0/annotations-23.0.0.jar": {
+      "bytes": 29371,
+      "sha256": "7b0f19724082cbfcbc66e5abea2b9bc92cf08a1ea11e191933ed43801eb3cd05"
+    },
+    "org/jetbrains/androidx/savedstate/savedstate-compose-desktop/1.3.6/savedstate-compose-desktop-1.3.6.jar": {
+      "bytes": 438,
+      "sha256": "0f3d045c5fd7e1301ab6c38cd0778067b0484cf39acac1233be71a723a6a8075"
+    },
+    "org/jetbrains/androidx/lifecycle/lifecycle-runtime-compose-desktop/2.9.6/lifecycle-runtime-compose-desktop-2.9.6.jar": {
+      "bytes": 452,
+      "sha256": "31c3c4b6dea38f078c46829dee2c43abba2bf8757b7ee8a0f660f31217364898"
+    },
+    "org/hamcrest/hamcrest-parent/1.3/hamcrest-parent-1.3.pom": {
+      "bytes": 1972,
+      "sha256": "6d535f94efb663bdb682c9f27a50335394688009642ba7a9677504bc1be4129b"
+    },
+    "org/hamcrest/hamcrest-library/1.3/hamcrest-library-1.3.jar": {
+      "bytes": 53070,
+      "sha256": "711d64522f9ec410983bd310934296da134be4254a125080a0416ec178dfad1c"
+    },
+    "org/hamcrest/hamcrest-library/1.3/hamcrest-library-1.3.pom": {
+      "bytes": 820,
+      "sha256": "1ceb4bfb0f098ae29b935044b2363e11323313fe3ed2055df8b79737d5056277"
+    },
+    "org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar": {
+      "bytes": 45024,
+      "sha256": "66fdef91e9739348df7a096aa384a5685f4e875584cce89386a7a47251c4d8e9"
+    },
+    "net/java/dev/jna/jna-platform/5.18.1/jna-platform-5.18.1.jar": {
+      "bytes": 1380744,
+      "sha256": "ad14c1b1ec4f43d396231219dfa635ebf828f738eac9f890ea1bc07795892d9a"
+    },
+    "net/java/dev/jna/jna-platform/5.18.1/jna-platform-5.18.1.pom": {
+      "bytes": 2251,
+      "sha256": "39d538a9599a4474770838865ed42cfa3e6b3d13086cb1e577b8bb43148d1a65"
+    },
+    "net/java/dev/jna/jna-platform/5.6.0/jna-platform-5.6.0.jar": {
+      "bytes": 2735878,
+      "sha256": "9ecea8bf2b1b39963939d18b70464eef60c508fed8820f9dcaba0c35518eabf7"
+    },
+    "net/java/dev/jna/jna/5.18.1/jna-5.18.1.jar": {
+      "bytes": 2002994,
+      "sha256": "260c4b1e22b1db9e110ee441c4f13ce115f841fa48c41d78750986214b395557"
+    },
+    "net/java/dev/jna/jna/5.18.1/jna-5.18.1.pom": {
+      "bytes": 2030,
+      "sha256": "98b62ae6ff280d747fb359fc42e48fed113d45bc3729a823dc30b8308a806645"
+    },
+    "net/java/dev/jna/jna/5.6.0/jna-5.6.0.jar": {
+      "bytes": 1509440,
+      "sha256": "5557e235a8aa2f9766d5dc609d67948f2a8832c2d796cea9ef1d6cbe0b3b7eaf"
+    },
+    "junit/junit/4.13.2/junit-4.13.2.jar": {
+      "bytes": 384581,
+      "sha256": "8e495b634469d64fb8acfa3495a065cbacc8a0fff55ce1e31007be4c16dc57d3"
+    },
+    "com/squareup/retrofit2/retrofit/2.11.0/retrofit-2.11.0.jar": {
+      "bytes": 131868,
+      "sha256": "9f4fbbce70728584fbeed38d4061f36d4477e89bca74b4e2ac8aeb6819b0fe43"
+    },
+    "com/squareup/retrofit2/converter-kotlinx-serialization/2.11.0/converter-kotlinx-serialization-2.11.0.jar": {
+      "bytes": 10773,
+      "sha256": "4853591a285de90dac3b0ac98d3cbb7325dc37afe675b7dd6990431963067256"
+    },
+    "com/squareup/okio/okio-jvm/3.6.0/okio-jvm-3.6.0.jar": {
+      "bytes": 359580,
+      "sha256": "67543f0736fc422ae927ed0e504b98bc5e269fda0d3500579337cb713da28412"
+    },
+    "com/squareup/okio/okio-jvm/3.9.0/okio-jvm-3.9.0.jar": {
+      "bytes": 372089,
+      "sha256": "ddc386ff14bd25d5c934167196eaf45b18de4f28e1c55a4db37ae594cbfd37e4"
+    },
+    "com/squareup/okhttp3/okhttp-sse/4.12.0/okhttp-sse-4.12.0.jar": {
+      "bytes": 13065,
+      "sha256": "bff4fbcaef7aac2d910d4ff46dafaa4e6d15da127df6bac97216da46943a7d4c"
+    },
+    "com/squareup/okhttp3/okhttp/4.12.0/okhttp-4.12.0.jar": {
+      "bytes": 789531,
+      "sha256": "b1050081b14bb7a3a7e55a4d3ef01b5dcfabc453b4573a4fc019767191d5f4e0"
+    },
+    "com/squareup/okhttp3/mockwebserver/4.12.0/mockwebserver-4.12.0.jar": {
+      "bytes": 74739,
+      "sha256": "6784673687f4ac8f21679b9d4bc7cdb46e1a1ce1be9d3133b36bede59a741561"
+    },
+    "com/squareup/okhttp3/mockwebserver/4.12.0/mockwebserver-4.12.0.module": {
+      "bytes": 4742,
+      "sha256": "93e4696552118b6425462aed936edfd320c9fcedef0a82d5741c0a7d53c0cf74"
+    },
+    "com/squareup/okhttp3/mockwebserver/4.12.0/mockwebserver-4.12.0.pom": {
+      "bytes": 2000,
+      "sha256": "ed28edc919b887e11741d931be686a256f3c30ab8616d5a909de799d637206ef"
+    },
+    "com/squareup/okhttp3/logging-interceptor/4.12.0/logging-interceptor-4.12.0.jar": {
+      "bytes": 15735,
+      "sha256": "f3e8d5f0903c250c2b55d2f47fcfe008e80634385da8385161c7a63aaed0c74c"
+    },
+    "com/squareup/javawriter/2.5.0/javawriter-2.5.0.jar": {
+      "bytes": 12781,
+      "sha256": "fcfb09fb0ea0aa97d3cfe7ea792398081348e468f126b3603cb3803f240197f0"
+    },
+    "com/squareup/javapoet/1.13.0/javapoet-1.13.0.jar": {
+      "bytes": 106068,
+      "sha256": "4c7517e848a71b36d069d12bb3bf46a70fd4cda3105d822b0ed2e19c00b69291"
+    },
+    "com/google/j2objc/j2objc-annotations/2.8/j2objc-annotations-2.8.jar": {
+      "bytes": 9301,
+      "sha256": "f02a95fa1a5e95edb3ed859fd0fb7df709d121a35290eff8b74dce2ab7f4d6ed"
+    },
+    "com/google/j2objc/j2objc-annotations/3.0.0/j2objc-annotations-3.0.0.jar": {
+      "bytes": 12467,
+      "sha256": "88241573467ddca44ffd4d74aa04c2bbfd11bf7c17e0c342c94c9de7a70a7c64"
+    },
+    "com/google/errorprone/error_prone_parent/2.23.0/error_prone_parent-2.23.0.pom": {
+      "bytes": 12812,
+      "sha256": "f5470a4b3104fe309fbe94a80d16c3c54d20f748f4c5de4f68a428688f30cbd4"
+    },
+    "com/google/errorprone/error_prone_parent/2.30.0/error_prone_parent-2.30.0.pom": {
+      "bytes": 13083,
+      "sha256": "5e8834ccc0e5ed0c72f306c250b518e6ad10d075a9b7b910cf695cba1ee02a2d"
+    },
+    "com/google/errorprone/error_prone_annotations/2.23.0/error_prone_annotations-2.23.0.jar": {
+      "bytes": 16829,
+      "sha256": "ec6f39f068b6ff9ac323c68e28b9299f8c0a80ca512dccb1d4a70f40ac3ec054"
+    },
+    "com/google/errorprone/error_prone_annotations/2.23.0/error_prone_annotations-2.23.0.pom": {
+      "bytes": 1832,
+      "sha256": "d5abb17f231b63bf009358fa640281b744810cb9587e5994977834959c07dbd8"
+    },
+    "com/google/errorprone/error_prone_annotations/2.28.0/error_prone_annotations-2.28.0.jar": {
+      "bytes": 19370,
+      "sha256": "f3fc8a3a0a4020706a373b00e7f57c2512dd26d1f83d28c7d38768f8682b231e"
+    },
+    "com/google/errorprone/error_prone_annotations/2.30.0/error_prone_annotations-2.30.0.jar": {
+      "bytes": 19367,
+      "sha256": "144f3aefbd6e27daec55d3753b2c6b13c1afdaf0cf04816cdb564588ed92f1bd"
+    },
+    "com/google/errorprone/error_prone_annotations/2.30.0/error_prone_annotations-2.30.0.pom": {
+      "bytes": 4252,
+      "sha256": "f713849c23b34953e854565dce8aa795cae0c1416611b720c21461322c795f86"
+    },
+    "com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar": {
+      "bytes": 19936,
+      "sha256": "766ad2a0783f2687962c8ad74ceecc38a28b9f72a2d085ee438b7813e928d0c7"
+    },
+    "com/composables/icons-lucide-cmp-jvm/2.2.1/icons-lucide-cmp-jvm-2.2.1.jar": {
+      "bytes": 5758205,
+      "sha256": "4bf2c5219e2e0031d21f4b6fa72183e805c62cf28ae9e3f5b8c51992c33dda35"
+    },
+    "com/composables/icons-lucide-cmp-jvm/2.2.1/icons-lucide-cmp-jvm-2.2.1.pom": {
+      "bytes": 2153,
+      "sha256": "388cccb683c94c020b928f6310d12d2c4bb472ad15132fc430247b976cc8c34c"
+    },
+    "androidx/tracing/tracing/1.1.0/tracing-1.1.0.module": {
+      "bytes": 2822,
+      "sha256": "b1fed4309623b6f20bc817d8fbd70e4ea7085e40647694cd399ae58d2f0049e3"
+    },
+    "androidx/tracing/tracing/1.1.0/tracing-1.1.0.pom": {
+      "bytes": 1717,
+      "sha256": "f1db502b5d539d94dfb6c659deb76872b1e9d8266d7aa4083868a29c33c22917"
+    },
+    "androidx/test/services/storage/1.6.0/storage-1.6.0.pom": {
+      "bytes": 1400,
+      "sha256": "8e5d72e2bceef6ef807bc38834dbc7aa53177fd20da349f53dce5a4f2a028bbf"
+    },
+    "androidx/test/runner/1.7.0/runner-1.7.0.pom": {
+      "bytes": 1915,
+      "sha256": "622831c6d31666fb3438cb0d2ee1fbbbc78cabcd49717699578d92550062207f"
+    },
+    "androidx/test/monitor/1.8.0/monitor-1.8.0.pom": {
+      "bytes": 1582,
+      "sha256": "681cf08c41700c73b146953867c0ac826da9c2a810bd2a4a8f878ea11c64d40c"
+    },
+    "androidx/test/ext/junit/1.3.0/junit-1.3.0.pom": {
+      "bytes": 2100,
+      "sha256": "92af7f253e5eabe2caec5c56f308312653d123042b22754d6ff664e1752dcf3f"
+    },
+    "androidx/test/espresso/espresso-idling-resource/3.7.0/espresso-idling-resource-3.7.0.pom": {
+      "bytes": 1061,
+      "sha256": "72c5f3dff213bd143cdfa2eb416d1bde1ced6656d9c54b69efca8f74a2cc831d"
+    },
+    "androidx/test/espresso/espresso-core/3.7.0/espresso-core-3.7.0.pom": {
+      "bytes": 3775,
+      "sha256": "b6e7f43cb396b89a4ce329a7e5acef79d375203a87a11a7639d18c0e6de50b56"
+    },
+    "androidx/test/core/1.7.0/core-1.7.0.pom": {
+      "bytes": 2522,
+      "sha256": "b97dd112cd684ad3686f5ccf581b92b106ca76565cf02ccfece060af3bc50743"
+    },
+    "androidx/savedstate/savedstate-desktop/1.3.3/savedstate-desktop-1.3.3.jar": {
+      "bytes": 80175,
+      "sha256": "c5c89062ba8402b8f8657efd54db1ff192f91ca95fae59c3b418fbc477c3e3ea"
+    },
+    "androidx/savedstate/savedstate-compose-desktop/1.3.3/savedstate-compose-desktop-1.3.3.jar": {
+      "bytes": 15498,
+      "sha256": "4a94787a6e5bcfe143390a4f2737d4425d2ea867f2b34a847de6cda3c6ccc58a"
+    },
+    "androidx/navigationevent/navigationevent-desktop/1.0.2/navigationevent-desktop-1.0.2.jar": {
+      "bytes": 41775,
+      "sha256": "43deeb5774fd737fa945e09a47f93b6f1a508d17fac8f3b65f1c863e7f7d0660"
+    },
+    "androidx/lifecycle/lifecycle-viewmodel-savedstate-desktop/2.9.4/lifecycle-viewmodel-savedstate-desktop-2.9.4.jar": {
+      "bytes": 36160,
+      "sha256": "3e0b44e2514eafdd6938d5457d9f46e4785077c45d3b4364b5c23c4dcb93efd3"
+    },
+    "androidx/lifecycle/lifecycle-viewmodel-desktop/2.9.4/lifecycle-viewmodel-desktop-2.9.4.jar": {
+      "bytes": 56060,
+      "sha256": "98f816be6869407c87d46058756f97780fa6c6cf61acdba97216f413731af15d"
+    },
+    "androidx/lifecycle/lifecycle-runtime-desktop/2.9.4/lifecycle-runtime-desktop-2.9.4.jar": {
+      "bytes": 47399,
+      "sha256": "2fb49f76d1021792fb359e0a9246c1509f2f5b555f0a46591d24d58deb68bd5c"
+    },
+    "androidx/lifecycle/lifecycle-runtime-compose-desktop/2.9.4/lifecycle-runtime-compose-desktop-2.9.4.jar": {
+      "bytes": 43088,
+      "sha256": "d25c083df93da718a1876a3293bd15f7dc7a811e998735943bce590683a57835"
+    },
+    "androidx/lifecycle/lifecycle-common-jvm/2.10.0/lifecycle-common-jvm-2.10.0.jar": {
+      "bytes": 60791,
+      "sha256": "15943082d87bcd78830398fa377f2c8b12643de290d0906ed8e49a2d335ddb54"
+    },
+    "androidx/lifecycle/lifecycle-common-jvm/2.9.4/lifecycle-common-jvm-2.9.4.jar": {
+      "bytes": 60804,
+      "sha256": "37d89b2101f074ac6c260917dabb185607645ee200aa3018c7c5bde70edcf184"
+    },
+    "androidx/lifecycle/lifecycle-common-java8/2.10.0/lifecycle-common-java8-2.10.0.jar": {
+      "bytes": 4839,
+      "sha256": "497dd84de9f2fd46324f25f9a3af032d3a23d087e87af515c4b19435f6d6a651"
+    },
+    "androidx/lifecycle/lifecycle-common/2.3.1/lifecycle-common-2.3.1.module": {
+      "bytes": 3140,
+      "sha256": "5fb7c8514d8c56cada5e29ef89dc0289e71942ab4cb0b2e6dca137b9dcb8fdd4"
+    },
+    "androidx/lifecycle/lifecycle-common/2.3.1/lifecycle-common-2.3.1.pom": {
+      "bytes": 1719,
+      "sha256": "8cd23d889a14095c6ce16840d29b1a6388fa5e115144c1309d4d6d469c1bc351"
+    },
+    "androidx/datastore/datastore-preferences-proto/1.1.4/datastore-preferences-proto-1.1.4.jar": {
+      "bytes": 25751,
+      "sha256": "63686a612f39b8ca603bebe3376d55fb6c9ee28a4a5173efa49c89cbcca8a127"
+    },
+    "androidx/datastore/datastore-preferences-external-protobuf/1.1.4/datastore-preferences-external-protobuf-1.1.4.jar": {
+      "bytes": 1048830,
+      "sha256": "fcb3f373cf743426c85ebb0d3cc644aefaf26f39b7fa55bb90238d41b689eca7"
+    },
+    "androidx/datastore/datastore-preferences-core-jvm/1.1.4/datastore-preferences-core-jvm-1.1.4.jar": {
+      "bytes": 33570,
+      "sha256": "cb39e1223b4324d730c573a2bcea3a35309ebd9358fbe630899705a3fbcacaf6"
+    },
+    "androidx/datastore/datastore-core-okio-jvm/1.1.4/datastore-core-okio-jvm-1.1.4.jar": {
+      "bytes": 30276,
+      "sha256": "291506b4fce398249793e327207635bd4df25181d9539808d7181a4abd0875f5"
+    },
+    "androidx/databinding/databinding-compiler-common/9.0.1/databinding-compiler-common-9.0.1.jar": {
+      "bytes": 835647,
+      "sha256": "df9cde52bdb7f3b655372ec13fe2d057ba7336a4ec54f0c7b6c67da7a7521c36"
+    },
+    "androidx/databinding/databinding-common/9.0.1/databinding-common-9.0.1.jar": {
+      "bytes": 16827,
+      "sha256": "66cab82639dac0f6c2433464c093b074d608c4bb887ec38a9b8bc4ac98126732"
+    },
+    "androidx/concurrent/concurrent-futures-ktx/1.2.0/concurrent-futures-ktx-1.2.0.jar": {
+      "bytes": 15903,
+      "sha256": "e1f3e17bb4358ccd6c77ca45f70635c9aba237261f19eaa4f64a0218c00e2a3e"
+    },
+    "androidx/concurrent/concurrent-futures-ktx/1.2.0/concurrent-futures-ktx-1.2.0.module": {
+      "bytes": 6079,
+      "sha256": "823f469acd984adfd30b3d0a577eb4f7796a03742a526ef70c1583b594b43b80"
+    },
+    "androidx/concurrent/concurrent-futures-ktx/1.2.0/concurrent-futures-ktx-1.2.0.pom": {
+      "bytes": 2516,
+      "sha256": "7869d39aa7a7754a4f311771abfd9d95ccbd7ffb27e970f8cb15fdf5b5355b6d"
+    },
+    "androidx/concurrent/concurrent-futures/1.1.0/concurrent-futures-1.1.0.jar": {
+      "bytes": 25987,
+      "sha256": "0ce067c514a0d1049d1bebdf709e344ed3266fe9744275682937cdcb13334e9e"
+    },
+    "androidx/concurrent/concurrent-futures/1.2.0/concurrent-futures-1.2.0.jar": {
+      "bytes": 26311,
+      "sha256": "4810315a798690b5d3bb40c92bcd41c045fd2c36bbfc50b27cbac3d6a0eda190"
+    },
+    "androidx/concurrent/concurrent-futures/1.2.0/concurrent-futures-1.2.0.module": {
+      "bytes": 5448,
+      "sha256": "afd7094d3a07422be2e991bc87048542ae9724a5c42bd54b5cae3029c7970a1d"
+    },
+    "androidx/concurrent/concurrent-futures/1.2.0/concurrent-futures-1.2.0.pom": {
+      "bytes": 2265,
+      "sha256": "6be9a98d6cd75a787eeae2a1a0a3440ebe1ab4639740df9ec028094ab59b622f"
+    },
+    "androidx/compose/ui/ui-test-junit4-android/1.10.6/ui-test-junit4-android-1.10.6.module": {
+      "bytes": 20334,
+      "sha256": "6c8d5aadafcae1fa08d6c65a60b255d43877284410ed9440323fd3db00ab3818"
+    },
+    "androidx/compose/ui/ui-test-junit4-android/1.10.6/ui-test-junit4-android-1.10.6.pom": {
+      "bytes": 7654,
+      "sha256": "b32ce0b4835f555267b7f767854067d1d2323668001e7d9a27cca4ea3da6d5fb"
+    },
+    "androidx/compose/ui/ui-test-junit4/1.10.6/ui-test-junit4-1.10.6.module": {
+      "bytes": 26415,
+      "sha256": "20f15f8da1afcd20b1dd546e05e031d59adacb191d13495b7a8ac6bd674d0f37"
+    },
+    "androidx/compose/ui/ui-test-junit4/1.10.6/ui-test-junit4-1.10.6.pom": {
+      "bytes": 5522,
+      "sha256": "bcbf9917134086db5a138139ab23a5bef5458b7a08f836a3d010bef17ff4737d"
+    },
+    "androidx/compose/ui/ui-test-android/1.10.6/ui-test-android-1.10.6.module": {
+      "bytes": 21319,
+      "sha256": "0358dd9373fc8a5940a09ac7024a996c149b3820177ae75844f2caeefb9864b9"
+    },
+    "androidx/compose/ui/ui-test-android/1.10.6/ui-test-android-1.10.6.pom": {
+      "bytes": 8120,
+      "sha256": "e8df602ca7da43a41e111a78ea616856dc8a9e9429966b8132c928ee878def8d"
+    },
+    "androidx/compose/ui/ui-test/1.10.6/ui-test-1.10.6.module": {
+      "bytes": 28401,
+      "sha256": "4fbf76558656a29fd734dbeae5dbad6b4ed807c21943bcc7198dbd0db5ae5d9c"
+    },
+    "androidx/compose/ui/ui-test/1.10.6/ui-test-1.10.6.pom": {
+      "bytes": 6426,
+      "sha256": "63e5f9919808498db733172116f81a09a7c8417e70c2a4dfd3159e6be680a8ed"
+    },
+    "androidx/compose/runtime/runtime-saveable-desktop/1.10.5/runtime-saveable-desktop-1.10.5.jar": {
+      "bytes": 53379,
+      "sha256": "ef24e24cc8c9c3b9871007fbdf589ed9aaaecf95979a66b7484806f9f0e24d91"
+    },
+    "androidx/compose/runtime/runtime-retain-desktop/1.10.5/runtime-retain-desktop-1.10.5.jar": {
+      "bytes": 52893,
+      "sha256": "463ee9c1e93d1b913458bfecc96d128a3574a802f41c8c9781d7320c3b55ed8b"
+    },
+    "androidx/compose/runtime/runtime-desktop/1.10.5/runtime-desktop-1.10.5.jar": {
+      "bytes": 1470711,
+      "sha256": "b195860542f612de0512b54a75353e0f6d58815f0c9530a03bc5b0e734474829"
+    },
+    "androidx/compose/runtime/runtime-annotation-jvm/1.10.5/runtime-annotation-jvm-1.10.5.jar": {
+      "bytes": 9387,
+      "sha256": "f89dda8bcd73876d0fc16568844b2bd79443ee7ca62810874d25c7dcaa394bd6"
+    },
+    "androidx/collection/collection-ktx/1.5.0/collection-ktx-1.5.0.jar": {
+      "bytes": 4799,
+      "sha256": "939b4a8697640e77d83e4e8b4c4a9d18f8130198c5961194af8dd9db9dc7c353"
+    },
+    "androidx/collection/collection-jvm/1.5.0/collection-jvm-1.5.0.jar": {
+      "bytes": 877998,
+      "sha256": "70b35924e4babcdffa37d0e575ee039c56a2d97123342624c48b603233704341"
+    },
+    "androidx/arch/core/core-common/2.2.0/core-common-2.2.0.jar": {
+      "bytes": 11657,
+      "sha256": "65308a06b1c00ee186cb9e19321383f043b993813f1522c47f4a3e3303bdba41"
+    },
+    "androidx/annotation/annotation-jvm/1.9.1/annotation-jvm-1.9.1.jar": {
+      "bytes": 60577,
+      "sha256": "1e343917ebf27ba96fe4dc52b1cad7fd32b738fbc6355bb6cd5b3b305d7212d0"
+    },
+    "androidx/annotation/annotation/1.7.0/annotation-1.7.0.module": {
+      "bytes": 15363,
+      "sha256": "530708656d380605077ea8bca9ae1372fbd1af38e375f411d4e43263bd510c3c"
+    },
+    "androidx/annotation/annotation/1.7.0/annotation-1.7.0.pom": {
+      "bytes": 1924,
+      "sha256": "21c618ac8c7092dd95193f05c0b196183a7ce8f1366a7a912c800ebee368a858"
+    }
+  },
+  "totalBytes": 189083802,
+  "dependencyVerification": "UNCHANGED_STRICT_CHECKS_REQUIRED",
+  "dependencyLocksModified": false,
+  "newDownloads": 0
+}

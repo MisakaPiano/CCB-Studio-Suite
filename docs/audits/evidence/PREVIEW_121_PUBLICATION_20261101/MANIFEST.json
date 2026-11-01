@@ -1,0 +1,150 @@
+{
+  "format": 1,
+  "source": "e6cbe7ef6313c1389d48501d948c2d99763f1e56",
+  "files": {
+    "after-update-check.log": {
+      "bytes": 170,
+      "sha256": "2773981a045699b2a37e09ca9ffb526a0cf1aa5f8c64f68c84e74121afe02e24"
+    },
+    "BUILD_RECEIPT.json": {
+      "bytes": 558,
+      "sha256": "eaa66e3e8d7a4dc7c976b715e6dfadffe708eabb94a3cb25615082c3799dcce4"
+    },
+    "cleanup-events.jsonl": {
+      "bytes": 3993,
+      "sha256": "a362601e9069afe0c061ac69a57ceeb71d318456c0039d0fe12264c3906efc98"
+    },
+    "CLOSE_ACK_692f99ab0ba6439fb5d6a922058ebf98.json": {
+      "bytes": 98,
+      "sha256": "8f84a4e75fe7455d012ba890b12f57eb4e33c3ff9c76ba72bf5e4d003118e76c"
+    },
+    "CLOSE_ACK_8421a3fbb81245299dea25b4ccf45abf.json": {
+      "bytes": 98,
+      "sha256": "e1fe7cc6ce9320b01646d1b1da8fea295bf135f8ee7d5876f3a987c6e5d1cfa2"
+    },
+    "compile.log": {
+      "bytes": 1399,
+      "sha256": "2c77790336f215347c908d37a39c211422cde41820fbc97ff5444f4d2d656cd2"
+    },
+    "CURRENT121_PUBLIC.json": {
+      "bytes": 4531,
+      "sha256": "f92b8c390ca2d59d784b8d1b05c7605dc993e553c08fc59de4db73c74646786e"
+    },
+    "dependency-preparation-failure/fixture-cleanup.json": {
+      "bytes": 179,
+      "sha256": "1f6e8c3756f0f2b23193a995c47d36ec37301fe8a455cb93e8ba1e6945a052d2"
+    },
+    "dependency-preparation-failure/gradle.log": {
+      "bytes": 2028,
+      "sha256": "f0b17333dfdfa00d18b36261e39b23c6c5b31d56a2d1c65cc95ff9010d67f096"
+    },
+    "dependency-preparation-failure/source-before.json": {
+      "bytes": 97790,
+      "sha256": "3555ec0ebcf806dcabbffd1c1ee9d868bf07ef15d6f7d01819f0706532f8e40c"
+    },
+    "dependency-preparation-failure/summary.json": {
+      "bytes": 1364,
+      "sha256": "30dc6045c943e3642cd0fa550531ac9b8e1d6652bcae5ee9427b096292d3352e"
+    },
+    "dependency-preparation-failure/test-cases.json": {
+      "bytes": 4,
+      "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+    },
+    "ISOLATED_INSTALL_VERIFICATION.json": {
+      "bytes": 1426,
+      "sha256": "5ae4ef550df7dc26f91bfdf15cfc8baeea27af98ba7e4a5a6280ba442595df14"
+    },
+    "LOCAL_DEPENDENCY_INPUTS.json": {
+      "bytes": 46980,
+      "sha256": "7a3fc15753782c6f17ab68c062d874083a5300a0fae9fe7de81a2cf6abef5e91"
+    },
+    "METADATA_PUBLICATION.json": {
+      "bytes": 1181,
+      "sha256": "f4b84f7df1e3392eb55da6ec7d965293963d0ae9f870f2dd427b42130e8d43c6"
+    },
+    "offline-maintenance-component.png": {
+      "bytes": 18975,
+      "sha256": "d7f321cc3305829ed345464d107e571599d529d7db554e3e005c0507c86e4319"
+    },
+    "PACKAGING_INDEX_FAILURE.json": {
+      "bytes": 313,
+      "sha256": "2822b101978ee69073e07f873cd6a1af12dcc332878aef9c9b696cbf48776ec0"
+    },
+    "PACKAGING_NSIS_INPUT_FAILURE.json": {
+      "bytes": 400,
+      "sha256": "7a2dfe0d810a7d76dd7b353a388f6a6ef5dd5d1479f1e0bf2bd3fb588d0b43ac"
+    },
+    "PREFLIGHT.json": {
+      "bytes": 1304,
+      "sha256": "49d5d616aae527a0e6498a69f6ba4efa84e4c5067e996ddbad50b12e8b9e7b75"
+    },
+    "prior-backend-three-tests.json": {
+      "bytes": 45,
+      "sha256": "08ee7bb499722c41ac178cac7853c1ce87ff1e0140b3511306a8293dd4952e0e"
+    },
+    "PRIVACY_SCOPE.json": {
+      "bytes": 243,
+      "sha256": "5b9de2385fb9b0ced807b17967ce0d9bd6f0312cda0ed62157e45eebbf3c8f49"
+    },
+    "PUBLIC_CHANNEL_VERIFICATION.json": {
+      "bytes": 2004,
+      "sha256": "a80d025655876116acfdc78479dfcc895c56701dd9cc7ed75186ea70ef00eb3c"
+    },
+    "PUBLIC_CLEANUP_OBSERVATION_FAILURE.json": {
+      "bytes": 633,
+      "sha256": "6b4eed931fcd7141fe6cdb50468c7ab99f4dae76034cec76081f1418a6923b36"
+    },
+    "PUBLIC_DRIVER_PREPARATION_FAILURE.json": {
+      "bytes": 244,
+      "sha256": "691cad67915e06fc1d6b4994790b1f8e91c7d9e0844bd2336e5e046b36d22ce5"
+    },
+    "PUBLIC_INSTALLER_BYTE_VERIFICATION.json": {
+      "bytes": 295,
+      "sha256": "d5e636988596ad43aadb1dd28736dc129dc3af2c31b54f719d481a62c790067a"
+    },
+    "RAW_UPDATE_RESULT.json": {
+      "bytes": 785,
+      "sha256": "174b72dea00733eb5e22c1ee8fa9a75fb865203aea651dac8d43bc018ae026af"
+    },
+    "release-check/fixture-cleanup.json": {
+      "bytes": 297,
+      "sha256": "2a45bd6b96214ed86a2935c0405deffaebfda83aca04dac96673d29ae11b7eff"
+    },
+    "release-check/gradle.log": {
+      "bytes": 10492,
+      "sha256": "ff37cba231836e92f35d619b5944c2346693193710dc67f201097d55b9e4f256"
+    },
+    "release-check/source-before.json": {
+      "bytes": 97790,
+      "sha256": "3555ec0ebcf806dcabbffd1c1ee9d868bf07ef15d6f7d01819f0706532f8e40c"
+    },
+    "release-check/studio-desktop-TEST-io.github.misakapiano.ccbstudio.desktop.OfflineMaintenanceUpdateTest.xml": {
+      "bytes": 534,
+      "sha256": "39963abb8d30b20c338ab9c03fbd35cf4f6afec3a968c7af7d9e9e199e9d8693"
+    },
+    "release-check/summary.json": {
+      "bytes": 1324,
+      "sha256": "ac61e42e986004185e173dc0c07b6c4f9238eaeafe23f95818ed176b2eeb40fd"
+    },
+    "release-check/test-cases.json": {
+      "bytes": 230,
+      "sha256": "94b58c371c15cfc222f23ba0a340d73dbfda6e7809def179bd3c92d9f94620ec"
+    },
+    "RELEASE_STATE.json": {
+      "bytes": 1157,
+      "sha256": "fe66018cec107240742f6387f2a33d2cf47c2bad4cbab363cacf402230360c42"
+    },
+    "SOURCE_PUBLICATION.json": {
+      "bytes": 246,
+      "sha256": "bd8652acc9a85a2907f6b24625e50aab774958e6de5e76b5d74f6aa1c95e73f1"
+    },
+    "SOURCE_SNAPSHOT.json": {
+      "bytes": 7984,
+      "sha256": "e537c05f2a1c6893cd9126c7fb3b4da52be3e59efddc2d3f718fe5864c4f707c"
+    },
+    "WORKTREE_INDEX_REPAIRED.json": {
+      "bytes": 157,
+      "sha256": "73ae62bde59429d21d19d42cba36f7063ee10e572fe21f218f5083017ed6abfc"
+    }
+  }
+}
