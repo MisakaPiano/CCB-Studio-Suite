@@ -77,11 +77,12 @@ internal class StudioUpdateController(private val scope:CoroutineScope,cache:Pat
                     "AVAILABLE"->"发现可信候选；尚未下载或安装"
                     "DOWNLOADED_VERIFIED"->"下载完成，安全校验已通过"
                     "UP_TO_DATE"->"已是最新版本"
+                    "LOCAL_MAINTENANCE"->"本机维护版 · 使用离线安装包更新"
                     else->"更新未完成：${result?.get("reason")?.jsonPrimitive?.content?:"未知回执"}"
                 }
                 when(result?.get("status")?.jsonPrimitive?.content){
                     "AVAILABLE","DOWNLOADED_VERIFIED"->{pendingVersion=result?.get("displayVersion")?.jsonPrimitive?.content?:"新版";rememberPending(pendingVersion);if(startup)showStartupNotice=true}
-                    "UP_TO_DATE"->{pendingVersion=null;showStartupNotice=false;rememberPending(null)}
+                    "UP_TO_DATE","LOCAL_MAINTENANCE"->{pendingVersion=null;showStartupNotice=false;rememberPending(null)}
                 }
             } catch(e:CancellationException){message="已取消；当前安装和资料未替换";throw e}
             catch(e:Exception){message="更新未完成：${e.message?.take(240)?:e.javaClass.simpleName}"}
@@ -99,11 +100,12 @@ internal class StudioUpdateController(private val scope:CoroutineScope,cache:Pat
         config["displayVersion"]?.jsonPrimitive?.content?:config["version"]?.jsonPrimitive?.content
     }.getOrNull()?:"开发版本"}
     val focus=remember{FocusRequester()}
+    val localMaintenance=c.result?.get("status")?.jsonPrimitive?.content=="LOCAL_MAINTENANCE"
     LaunchedEffect(Unit){focus.requestFocus()}
     Column(Modifier.fillMaxSize().focusRequester(focus).onPreviewKeyEvent {event->
         if(event.type!=KeyEventType.KeyDown || c.busy || confirm)false
         else when {
-            event.key==Key.F5->{c.check();true}
+            event.key==Key.F5 && !localMaintenance->{c.check();true}
             event.isCtrlPressed && event.key==Key.D && c.result?.get("status")?.jsonPrimitive?.content=="AVAILABLE"->{c.check(true);true}
             event.isCtrlPressed && event.isShiftPressed && event.key==Key.I && c.result?.get("status")?.jsonPrimitive?.content=="DOWNLOADED_VERIFIED" && onInstall!=null->{confirm=true;true}
             else->false
@@ -116,9 +118,11 @@ internal class StudioUpdateController(private val scope:CoroutineScope,cache:Pat
             StudioAction("创建桌面快捷方式",!c.busy){onShortcut("desktop")}
             StudioAction("添加到开始菜单",!c.busy){onShortcut("start")}
         };Text("入口随更新保持有效。右键桌面或开始菜单中的 CCB Studio Suite，可选择固定到任务栏或开始菜单。以前固定的旧版本图标请取消，再从新入口固定一次，以后更新无需重做。",color=Quiet)}
-        Text("更新签名与安装身份由随包固定的信任根验证；资料与下载缓存分别保存。")
-        Text("F5 检查 · Ctrl+D 确认下载 · Ctrl+Shift+I 打开安装确认",color=Quiet)
-        StudioAction("检查更新",!c.busy){c.check()}
+        if(!localMaintenance) {
+            Text("更新签名与安装身份由随包固定的信任根验证；资料与下载缓存分别保存。")
+            Text("F5 检查 · Ctrl+D 确认下载 · Ctrl+Shift+I 打开安装确认",color=Quiet)
+            StudioAction("检查更新",!c.busy){c.check()}
+        }
         Card(backgroundColor=if(c.result?.get("status")?.jsonPrimitive?.content in setOf("DOWNLOADED_VERIFIED","UP_TO_DATE"))MaterialTheme.colors.primary.copy(alpha=0.15f) else MaterialTheme.colors.surface,modifier=Modifier.fillMaxWidth()) {
             Column(Modifier.padding(20.dp),verticalArrangement=Arrangement.spacedBy(12.dp)) {
                 Text(c.message,style=MaterialTheme.typography.h6)
@@ -137,6 +141,7 @@ internal class StudioUpdateController(private val scope:CoroutineScope,cache:Pat
                         Button(onClick={confirm=true},enabled=!c.busy && onInstall!=null){Text("安装并重启")}
                     }
                     "UP_TO_DATE"->Text("当前版本 ${c.result?.get("displayVersion")?.jsonPrimitive?.content.orEmpty()} 与可信更新源一致，无需再次安装。")
+                    "LOCAL_MAINTENANCE"->Text("可继续使用当前版本。后续请使用离线安装包更新。")
                 }
             }
         }
@@ -149,7 +154,7 @@ internal class StudioUpdateController(private val scope:CoroutineScope,cache:Pat
             if(r["status"]?.jsonPrimitive?.content=="AVAILABLE")Button(onClick={c.check(true)},enabled=!c.busy){Text("确认下载并验证")}
         }
         if(c.busy)StudioAction("取消更新操作"){c.job?.cancel()}
-        Text("下载验证后仍需安装、重启和资料核验；任何一步未通过都不会报告更新成功。",color=Quiet)
+        if(!localMaintenance)Text("下载验证后仍需安装、重启和资料核验；任何一步未通过都不会报告更新成功。",color=Quiet)
     }
     if(confirm)AlertDialog(onDismissRequest={confirm=false},title={Text("安装并重启")},text={Column(verticalArrangement=Arrangement.spacedBy(12.dp)) {
         workspacePath?.let{Text("本次更新使用的工作区：$it")}

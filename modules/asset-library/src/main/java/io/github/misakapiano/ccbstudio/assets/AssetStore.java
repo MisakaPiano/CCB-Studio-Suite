@@ -12,7 +12,7 @@ import static java.nio.file.LinkOption.NOFOLLOW_LINKS;
 /** Cooperative single-writer store. A committed records/<UUID>.rec is the logical commit point. */
 public final class AssetStore implements AutoCloseable {
     public enum Kind { ORIGINAL, DERIVED }
-    public enum Io { READ, WRITE, MOVE }
+    public enum Io { READ, WRITE, MOVE, DELETE }
     public enum Point { INTENT, BYTES, SEALED, ASSET, RECORD, INDEX, COMPLETE,
         BACKUP_REGISTERED, BACKUP_FILE, BACKUP_MANIFEST, RESTORE_FILE, RESTORE_COMPLETE,
         MAINTENANCE_INTENT, MAINTENANCE_MOVED, MAINTENANCE_COMPLETE }
@@ -152,7 +152,7 @@ public final class AssetStore implements AutoCloseable {
             var asset = new Asset(request, fingerprint.size(), fingerprint.sha256());
             io.immutable(tx.resolve("seal.rec"), "asset", encodeAsset(asset));
             io.faults.after(Point.SEALED, tx);
-            return finish(asset, tx);
+            return finish(asset, tx, true);
         });
     }
     private Receipt replay(Asset asset, Request request, InputStream input) throws IOException {
@@ -161,7 +161,7 @@ public final class AssetStore implements AutoCloseable {
             throw new StoreException("CONFLICT", "Operation ID already owns different input or association");
         return new Receipt(asset, indexInternal(request.id()).status() == ReadResult.Status.VALID, "Idempotent existing commit");
     }
-    private Receipt finish(Asset asset, Path tx) throws IOException {
+    private Receipt finish(Asset asset, Path tx, boolean newTransaction) throws IOException {
         if (asset.request().parentId() != null) readInternal(asset.request().parentId()).require();
         Path object = objectPath(asset);
         if (StoreIO.regular(object)) verifyFile(object, asset).require();
@@ -178,11 +178,45 @@ public final class AssetStore implements AutoCloseable {
             io.faults.after(Point.INDEX, tx);
             io.immutable(tx.resolve("complete.rec"), "complete", asset.sha256().getBytes(java.nio.charset.StandardCharsets.US_ASCII));
             io.faults.after(Point.COMPLETE, tx);
+            // Only this call's newly committed transaction may discard its redundant
+            // staging payload. Startup/recovery never sweeps historical user files.
+            if (newTransaction && StoreIO.regular(tx.resolve("payload.part"))) try {
+                discardStagingInternal(asset.request().id(), asset.size(), asset.sha256());
+            } catch (IOException maintenance) {
+                return new Receipt(asset, true, "Committed; redundant staging retained for explicit inspection");
+            }
             return new Receipt(asset, true, "");
         } catch (IOException maintenance) {
             readInternal(asset.request().id()).require();
             return new Receipt(asset, false, "Committed; index/completion maintenance requires recovery");
         }
+    }
+    /** Explicit historical cleanup. Never removes a canonical object, relationship,
+     * incomplete transaction, or bytes differing from the caller's reviewed identity. */
+    public long discardVerifiedStaging(UUID id, long size, String sha256) throws IOException {
+        return operation(() -> discardStagingInternal(id, size, sha256));
+    }
+    private Asset verifyStagingProof(UUID id, long size, String sha256) throws IOException {
+        Asset asset = readInternal(id).require();
+        if (asset.size() != size || !asset.sha256().equals(sha256))
+            throw new StoreException("CONFLICT", "Reviewed staging identity changed; retained");
+        Path tx = transaction(id);
+        if (!sameAsset(asset, decodeAssetFile(tx.resolve("seal.rec"), "asset").require())
+                || !sameRequest(asset.request(), decodeRequest(io.read(tx.resolve("request.rec"), "request").require()))
+                || !Arrays.equals(io.read(tx.resolve("complete.rec"), "complete").require(), sha256.getBytes(java.nio.charset.StandardCharsets.US_ASCII)))
+            throw new StoreException("CONFLICT", "Staging cleanup proof changed; retained");
+        return asset;
+    }
+    private long discardStagingInternal(UUID id, long size, String sha256) throws IOException {
+        Asset asset = verifyStagingProof(id, size, sha256);
+        Path staged = transaction(id).resolve("payload.part");
+        if (!StoreIO.regular(staged)) return 0;
+        verifyFile(staged, asset).require();
+        io.faults.before(Io.DELETE, staged);
+        // Recheck both copies and all durable proof after cleanup admission.
+        verifyFile(staged, verifyStagingProof(id, size, sha256)).require();
+        Files.delete(staged);
+        return size;
     }
     private ReadResult<Asset> verifyFile(Path path, Asset asset) {
         try {
@@ -325,7 +359,7 @@ public final class AssetStore implements AutoCloseable {
             var existing = readInternal(id);
             if (existing.status() != ReadResult.Status.MISSING && existing.status() != ReadResult.Status.VALID)
                 return new Recovery(id, existing.status().name(), existing.detail());
-            Receipt receipt = finish(seal.value(), tx);
+            Receipt receipt = finish(seal.value(), tx, false);
             return new Recovery(id, receipt.indexReady() ? "COMPLETED" : "COMMITTED_MAINTENANCE_REQUIRED", receipt.maintenanceDetail());
         } catch (StoreException failure) { return new Recovery(id, failure.code(), failure.getMessage()); }
         catch (IOException | IllegalArgumentException failure) { return new Recovery(id, "READ_ERROR", "Recovery failed; all existing bytes retained"); }

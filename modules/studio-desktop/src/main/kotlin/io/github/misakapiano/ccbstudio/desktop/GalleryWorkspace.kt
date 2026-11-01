@@ -400,12 +400,19 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
 
 @Composable internal fun GalleryImportMenu(c:WorkbenchController) {
     var open by remember{mutableStateOf(false)}
+    var directory by remember{mutableStateOf<java.nio.file.Path?>(null)}
     Box {
         LibraryAction("导入图片 ▾",!c.busy,accessibilityLabel="导入图片"){open=true}
         StudioMenu(open,{open=false}) {
             StudioMenuItem(enabled=!c.busy,onClick={open=false;c.importImages()}){Text("导入图片文件")}
-            StudioMenuItem(enabled=!c.busy,onClick={open=false;c.importImageDirectory()}){Text("导入目录（本层）")}
-            StudioMenuItem(enabled=!c.busy,onClick={open=false;c.importImageDirectory(true)}){Text("导入文件夹及子文件夹（保留结构）")}
+            StudioMenuItem(enabled=!c.busy,onClick={open=false;directory=c.gallery.chooseImportDirectory()}){Text("导入文件夹…")}
         }
+    }
+    directory?.let{path->
+        var recursive by remember(path){mutableStateOf(true)}
+        AlertDialog(onDismissRequest={directory=null},title={Text("导入文件夹")},text={Column(verticalArrangement=Arrangement.spacedBy(8.dp)) {
+            Text(path.toString());StudioSwitch("包含子文件夹",recursive){recursive=!recursive}
+            Text("按文件夹结构建立相册，图库保留原件，源文件不改动。本次导入后不会自动监控这个文件夹。")
+        }},confirmButton={TextButton(enabled=!c.busy,onClick={directory=null;c.importGalleryDirectory(path,recursive)}){Text("开始导入")}},dismissButton={TextButton(onClick={directory=null}){Text("取消")}})
     }
 }

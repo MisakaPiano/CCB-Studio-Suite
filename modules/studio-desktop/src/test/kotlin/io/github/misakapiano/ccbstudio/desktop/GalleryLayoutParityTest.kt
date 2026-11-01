@@ -90,11 +90,11 @@ class GalleryLayoutParityTest {
             snapshot("source-menu");dismiss()
             click("同时包含 ▾");assertEquals(13f,size("包含任一"));snapshot("tag-mode-menu");dismiss()
             click("操作");assertEquals(13f,size("新建虚拟相册…"));snapshot("operations-menu");dismiss()
-            click("导入图片");assertEquals(13f,size("导入目录（本层）"));snapshot("import-menu");dismiss()
+            click("导入图片");assertEquals(13f,size("导入文件夹…"));snapshot("import-menu");dismiss()
             c.view="创作";frames();clickPrefix("生图模型 · ");assertEquals(13f,size("✓ ${c.draft.selectedModel.displayName}"));snapshot("creation-model-menu");dismiss()
             c.view="AI 设计";frames();clickPrefix("设计历史 · ");snapshot("design-history-menu");dismiss()
             c.view="编辑";frames();clickPrefix("编辑工程 · ");assertEquals(13f,size(project.name));snapshot("editor-project-menu");dismiss()
-            c.view="资产管理";c.library.tab="目录入口";frames();clickPrefix("入口类型 · ");assertEquals(13f,size("✓ 图片资产收集"));snapshot("collection-type-menu");dismiss()
+            c.view="资产管理";c.library.tab="目录入口";frames();click("▸ 更多选项");frames();assertTrue(nodes().any{matches(it,"添加Prompt文件夹")});snapshot("collection-options")
             c.library.tab="回收站";frames();click("类型 · 全部 ▾");assertEquals(13f,size("图片"));snapshot("recycle-type-menu");dismiss()
             c.view="账户";frames();clickPrefix("使用独立视觉模型 · ");assertEquals(13f,size(vision.alias));snapshot("account-vision-menu");dismiss()
             c.view="创作";c.batch.shown=true;frames();click("添加 ▾");assertEquals(13f,size("空白分组"));snapshot("batch-add-menu");dismiss();c.batch.shown=false

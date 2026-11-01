@@ -98,7 +98,9 @@ def build(app,runtime,bootstrap,destination,version,metadata_url,targets_url,bui
         '/out:'+str(payload/'updater/CCBStudioLauncher.exe'),str(ROOT/'tools/windows-launcher/Launcher.cs')],check=True)
     shutil.copy2(bootstrap,payload/'update-root.json')
     config=dict(updateStatusUi=1,programRepair=1,format=1,product='ccb-studio-suite',platform='windows-x86_64',version=version,reader=3,sourceSha=sha,metadataUrl=metadata_url,targetsUrl=targets_url,rootSha256=digest(bootstrap),**identity)
-    if internal_source_lock is not None:config['internalSourceSnapshotSha256']=digest(internal_source_lock)
+    if internal_source_lock is not None:
+        config['internalSourceSnapshotSha256']=digest(internal_source_lock)
+        config['updateMode']='offline-maintenance'
     (payload/'update-config.json').write_text(json.dumps(config,indent=2)+'\n',encoding='utf-8')
     manifest=dict(format=1,product=config['product'],platform=config['platform'],channel=config['channel'],version=version,sourceSha=sha,files=[])
     for p in sorted(payload.rglob('*')):

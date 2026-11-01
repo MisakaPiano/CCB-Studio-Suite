@@ -449,21 +449,18 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
                         storageFailed=true
                         gallery.imports=gallery.imports.toMutableList().also{it[offset+index]=GalleryImportResult(displayName,"STORAGE_ERROR · 状态待检查，批次停止")};throw e
                     };accepted+=id;current=id;selection=accepted.toSet()
-                    GalleryImportResult(displayName,"ORIGINAL_RETAINED · 目录副本待完成",id)
+                    GalleryImportResult(displayName,if(input.raster!=null)"IMPORTED_RASTER（新编码PNG，无原始文件字节）"else"IMPORTED_ORIGINAL",id)
                 }else{val e=prepared.exceptionOrNull()!!;GalleryImportResult(displayName,"FAILED · ${if(e is DataProblem)e.status else e.javaClass.simpleName}")}
                 gallery.imports=gallery.imports.toMutableList().also{it[offset+index]=result}
                 currentCoroutineContext().ensureActive()
             }
             if(accepted.isNotEmpty())try{onCommitted(accepted.toList());associationPublished=true}catch(e:Exception){storageFailed=true;throw e}
-            val context=currentCoroutineContext()
-            if(accepted.isNotEmpty())measure("intake-copy") {
-                library.repository.retainIngressBatch(accepted,{context.ensureActive()},{done,total->gallery.importProgress="保存目录副本 $done / $total"})
-                gallery.imports=gallery.imports.mapIndexed{index,it->if(index in offset until offset+entries.size && it.assetId!=null)it.copy(status=if(input.raster!=null)"IMPORTED_RASTER（新编码PNG，无原始文件字节）"else"IMPORTED_ORIGINAL")else it}
-            }
+            // Originals already live in the content-addressed asset store. Directory
+            // and album organization uses the committed IDs, never a second image copy.
         }finally{
             gallery.imports=gallery.imports.mapIndexed{index,it->if(index in offset until offset+entries.size && it.status=="WAITING")it.copy(status="NOT_IMPORTED · 已停止")else it}
             gallery.importProgress="导入结束 · ${accepted.size} / ${entries.size} 原件已入库"
-            if(gallery.imports.subList(offset,offset+entries.size).any{it.assetId==null||it.status.startsWith("ORIGINAL_RETAINED")})problem="部分文件或目录副本未完成；查看逐项结果。已提交原件保留。"
+            if(gallery.imports.subList(offset,offset+entries.size).any{it.assetId==null})problem="部分文件未完成；查看逐项结果。已提交原件保留。"
             withContext(NonCancellable+Dispatchers.IO){if(accepted.isNotEmpty()&&!storageFailed&&!associationPublished)onCommitted(accepted.toList());measure("refresh"){library.refresh()}}
             if(accepted.isNotEmpty()){onAccepted(accepted.toList());view="图库"}
         }
@@ -676,7 +673,7 @@ internal class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
             StudioSwitch("中文注释",translated){c.defaults(translated=!translated)}
             StudioActions {
                 StudioAction("复制正向"){desktopCopyText(c.draft.copyPositivePrompt())}
-                StudioAction("Prompt 资产"){c.view="资产管理"}
+                StudioAction("Prompt 资产"){c.library.tab="Prompt 资产";c.view="资产管理"}
                 StudioAction("粘贴并预览",!c.busy){runCatching{java.awt.Toolkit.getDefaultToolkit().systemClipboard.getData(java.awt.datatransfer.DataFlavor.stringFlavor) as? String}.onSuccess{paste=it}.onFailure{c.problem="剪贴板文字暂不可读取"}}
                 StudioAction("清空 Prompt",!c.busy){clear=true}
             }

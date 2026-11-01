@@ -24,7 +24,7 @@ internal class LibraryController(private val c:WorkbenchController) {
     private fun rememberEdit(edit:Edit){undoEdits=(undoEdits+edit).takeLast(100);redoEdits=emptyList()}
     fun undo(){val edit=undoEdits.lastOrNull()?:return;c.run("撤销 ${edit.label}"){edit.undo();refresh();undoEdits=undoEdits.dropLast(1);redoEdits=redoEdits+edit}}
     fun redo(){val edit=redoEdits.lastOrNull()?:return;c.run("重做 ${edit.label}"){edit.redo();refresh();redoEdits=redoEdits.dropLast(1);undoEdits=undoEdits+edit}}
-    var tab by mutableStateOf("Prompt 资产")
+    var tab by mutableStateOf("目录入口")
     val repository=LibraryRepository(c.workspace)
     var state by mutableStateOf<LibraryState?>(null);private set
     var error by mutableStateOf<String?>(null);private set
@@ -39,6 +39,7 @@ internal class LibraryController(private val c:WorkbenchController) {
     var monitorEpoch by mutableStateOf(0);private set
     var sessionPaused by mutableStateOf(c.pauseCollectionsOnStart);private set
     var collectionBusy by mutableStateOf(false);private set
+    var chooseCollectionDirectory:()->Path?={StudioFileDialogs.folder("选择自动收集的文件夹")}
     fun retryCollections(){repository.load();c.workspace.catalog();collectionBlocked=false;sessionPaused=false;monitorEpoch++}
     private var collectionTask:Job?=null
     suspend fun cancelAndDrain(){collectionTask?.cancelAndJoin()}
@@ -116,6 +117,21 @@ internal class LibraryController(private val c:WorkbenchController) {
         board.add(id);refresh();tab="多 Prompt 参照"
     }
     fun scan(id:String){synchronize(setOf(id),c.scope,automatic=false)}
+    fun registerCollection(path:Path,recursive:Boolean,category:String="images")=c.run("添加自动收集文件夹") {
+        if(repository.load().folders.any{it.category==category && Path.of(it.path)==path.toAbsolutePath().normalize()}) {c.problem="这个文件夹已经在自动收集列表中。";return@run}
+        repository.addFolder(path,category,recursive);refresh();monitorEpoch++
+    }
+    fun setFolderPaused(id:String,paused:Boolean) {
+        collectionTask?.cancel()
+        c.run(if(paused)"暂停文件夹收集"else"继续文件夹收集") {
+            cancelAndDrain();repository.pauseFolder(id,paused);refresh();monitorEpoch++
+            automaticNotice=if(paused)"此文件夹已暂停，图库图片保留"else"此文件夹已开启自动收集"
+        }
+    }
+    fun removeCollection(id:String) {
+        collectionTask?.cancel()
+        c.run("停止文件夹收集") {cancelAndDrain();repository.removeFolder(id);refresh();monitorEpoch++;automaticNotice="已停止收集，图库图片与源文件保留"}
+    }
     fun defaults()=c.run("启用资产收集目录"){repository.defaultFolders();refresh()}
     fun addFolder(category:String,recursive:Boolean){
         StudioFileDialogs.folder("添加只读资产目录入口")?.let{path->c.run("添加资产目录入口"){repository.addFolder(path,category,recursive);refresh()}}
@@ -145,9 +161,9 @@ internal class LibraryController(private val c:WorkbenchController) {
     var tab by library::tab
     if(tab=="回收站"){LibraryArchiveWorkspace(c);return}
     var selected by remember{mutableStateOf<String?>(null)};var name by remember{mutableStateOf("")};var text by remember{mutableStateOf("")}
-    var query by remember{mutableStateOf("")};var category by remember{mutableStateOf("images")};var recursive by remember{mutableStateOf(false)}
+    var query by remember{mutableStateOf("")}
     Column(Modifier.fillMaxSize().padding(16.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(8.dp)) {
-        StudioChips("资产管理",listOf("Prompt 资产","多 Prompt 参照","目录入口","回收站","备份与恢复"),tab,{it}){tab=it}
+        StudioChips("资产管理",listOf("自动收集","Prompt 资产","多 Prompt 参照","回收站","备份与恢复"),if(tab=="目录入口")"自动收集"else tab,{it}){tab=if(it=="自动收集")"目录入口"else it}
         if(tab=="备份与恢复"){LibraryBackupWorkspace(c);return@Column}
         library.error?.let{Text(it,color=MaterialTheme.colors.error);StudioAction("重新读取管理记录"){library.refresh()};return@Column}
         if(tab=="Prompt 资产") {
@@ -179,33 +195,9 @@ internal class LibraryController(private val c:WorkbenchController) {
                 StudioAction("Prompt 移入回收站",!c.busy&&library.archiveError==null&&id !in library.archived){library.archiveRequest=setOf(id)}
             }
         } else if(tab=="多 Prompt 参照") {PromptReferenceBoard(c)} else if(tab=="回收站") {AssetArchiveContents(c)} else {
-            Text("收集目录与不可变资产库分开。同步只读外部目录；外部改动生成新资产版本，移除目录或外部文件不会删除已入库原件。")
-            Text("拖放、剪贴板和普通导入另存到专用 imports 目录；在收集目录放入文件后自动入库。备份恢复到新工作区时，旧外部入口需要重新启用。")
-            val paused=library.sessionPaused || library.state?.preferences?.get("collectionsPaused")=="true"
-            val eligibility=remember(library.state,library.monitorEpoch){runCatching{library.state?.let{library.repository.automaticFolders(it)}.orEmpty()}}
-            if(eligibility.isFailure)Text("本机目录登记不可读取，自动收集已停止；已保存资产和分类可继续使用。",color=MaterialTheme.colors.error)
-            StudioSwitch("暂停目录自动收集",paused){library.pauseCollections(!paused)}
-            if(library.sessionPaused)Text("本次启动已暂停自动收集；可先检查目录入口，再关闭暂停开关。手动同步只处理所选入口。")
-            if(library.automaticNotice.isNotBlank())Text(library.automaticNotice)
-            StudioAction("检查并重试目录自动收集",!c.busy){c.run("检查目录状态"){library.retryCollections();library.refresh()}}
-            StudioAction("启用默认收集目录",!c.busy){library.defaults()}
-            CompactChoice("入口类型",listOf("images","imports","prompts"),category,{when(it){"images"->"图片资产收集";"imports"->"导入图片收集";else->"独立 Prompt 收集"}}){category=it}
-            StudioSwitch("包含子目录",recursive){recursive=!recursive}
-            StudioAction("添加另一个目录指向",!c.busy){library.addFolder(category,recursive)}
-            library.state?.folders.orEmpty().forEach { folder->
-                Text("${folder.category} · ${folder.path}" )
-                StudioActions {
-                    if(folder !in eligibility.getOrDefault(emptyList()))StudioAction("在此工作区启用 ${folder.id.take(8)}",!c.busy && eligibility.isSuccess){c.run("确认重新连接目录"){library.repository.enableHere(folder.id);library.refresh()}}
-                    StudioAction("同步目录 ${folder.id.take(8)}",!c.busy && !library.collectionBusy){library.scan(folder.id)}
-                    StudioAction("打开目录 ${folder.id.take(8)}"){java.awt.Desktop.getDesktop().open(Path.of(folder.path).toFile())}
-                    StudioAction("移除入口 ${folder.id.take(8)}",!c.busy){library.stopCollection();c.run("移除目录入口，保留资产"){library.cancelAndDrain();library.repository.removeFolder(folder.id);library.refresh()}}
-                }
-            }
-            library.scanResults.forEach{Text("${it.path} · ${it.status}")}
-            val missing=library.state?.observations?.values?.count{it.status!="PRESENT"}?:0
-            if(missing>0)Text("$missing 个来源暂不可用；已保存资产仍可用。")
+            CollectionWorkspace(c)
         }
-        StudioAction("查看全部图片资产"){c.view="图库"}
+        if(tab!="目录入口" && tab!="自动收集")StudioAction("查看全部图片资产"){c.view="图库"}
     }
 }
 

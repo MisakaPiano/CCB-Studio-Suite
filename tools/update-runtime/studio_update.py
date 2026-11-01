@@ -28,6 +28,7 @@ class Installed:
     source_sha: str = ''
     github_repository: str = ''
     metadata_branch: str = 'update-metadata'
+    offline_maintenance: bool = False
 
     @staticmethod
     def load(package: Path):
@@ -38,6 +39,10 @@ class Installed:
         for name in ['version','reader']:
             if type(data.get(name)) is not int or data[name]<1:raise UpdateRejected('Invalid installed '+name)
         if data.get('channel') not in ['internal','preview','stable']:raise UpdateRejected('Invalid channel')
+        mode=data.get('updateMode','online')
+        if mode not in ('online','offline-maintenance'):raise UpdateRejected('Invalid update mode')
+        if mode=='offline-maintenance' and not (data['channel']=='internal' and data.get('internalTest') is True):
+            raise UpdateRejected('Offline maintenance requires an explicit internal package')
         for name in ['metadataUrl','targetsUrl']:
             url=urlsplit(data[name])
             internal_loopback=(data.get('internalTest') is True and data['channel']=='internal' and url.scheme=='http' and url.hostname=='127.0.0.1')
@@ -55,7 +60,7 @@ class Installed:
             try:expected=endpoints(repository,data['channel'],branch)
             except ValueError:raise UpdateRejected('Invalid installed GitHub configuration') from None
             if (data['metadataUrl'],data['targetsUrl'])!=expected:raise UpdateRejected('GitHub endpoint identity mismatch')
-        return Installed(data['version'],data['reader'],data['channel'],data['metadataUrl'],data['targetsUrl'],root,source,repository,branch)
+        return Installed(data['version'],data['reader'],data['channel'],data['metadataUrl'],data['targetsUrl'],root,source,repository,branch,mode=='offline-maintenance')
 
 def create_updater(installed,metadata,targets,fetcher=None,progress=None):
     delegate=fetcher or (GitHubFetcher(installed.github_repository,installed.channel,metadata_branch=installed.metadata_branch) if installed.github_repository
@@ -124,6 +129,8 @@ class ProgressFetcher(FetcherInterface):
             self.report({'phase':'VERIFYING','received':received,'total':self.total})
 
 def execute(installed:Installed,cache:Path,download=False,fetcher=None,disk_usage=shutil.disk_usage,progress=None,install_root=None):
+    if installed.offline_maintenance:
+        return {'status':'LOCAL_MAINTENANCE'}
     report=progress or (lambda value:None)
     report({'phase':'CHECKING'})
     with exclusive(cache):

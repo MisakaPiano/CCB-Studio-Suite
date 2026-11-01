@@ -20,6 +20,7 @@ import java.util.UUID
 @Serializable data class PromptAsset(val version:Int=1,val text:String,val origin:String,val createdAt:Long=System.currentTimeMillis(),val sections:List<PromptSection> = emptyList(),val image:PromptImageContext?=null)
 data class FolderScanResult(val path:String,val status:String,val assetId:String?=null)
 data class FolderScanProgress(val completed:Int,val total:Int)
+data class IngressReferenceResult(val albumId:String,val referenced:Int,val removedCopies:Int,val removedBytes:Long)
 
 /** Metadata and prompt revisions use the same transactional asset core and backup path.
  * Headers form a checked append chain. A failed/incomplete write never replaces the last revision. */
@@ -49,6 +50,8 @@ class LibraryRepository(private val workspace:StudioWorkspace,private val fault:
         s.folders.forEach{require(it.category in setOf("images","prompts","imports"));require(it.path.length<=4096)}
         require(s.preferences.all{it.key.length<=100 && it.value.length<=65536})
         s.preferences["collectionBindings"]?.let{raw->val map=documentJson.decodeFromString<Map<String,String>>(raw);require(map.size<=100);map.forEach{(id,path)->UUID.fromString(id);require(path.length<=4096)}}
+        referenceFolders(s).forEach{id->require(s.folders.any{it.id==id && it.category=="imports"})}
+        pausedFolders(s).forEach{id->require(s.folders.any{it.id==id} && id !in referenceFolders(s))}
     }
     fun update(transform:(LibraryState)->LibraryState):LibraryState=workspace.operation {
         val records=records();val old=loadRecords(records);val next=transform(old);validate(next)
@@ -96,6 +99,10 @@ class LibraryRepository(private val workspace:StudioWorkspace,private val fault:
         }
     }
     private fun bindings(state:LibraryState):Map<String,String> = state.preferences["collectionBindings"]?.let{documentJson.decodeFromString<Map<String,String>>(it)}?:emptyMap()
+    private fun referenceFolders(state:LibraryState):Set<String> = state.preferences["referenceOnlyFolders"]?.let{documentJson.decodeFromString<List<String>>(it).also{ids->require(ids.size<=100 && ids.distinct().size==ids.size);ids.forEach(UUID::fromString)}.toSet()}?:emptySet()
+    fun isReferenceFolder(id:String,state:LibraryState=load()):Boolean=id in referenceFolders(state)
+    private fun pausedFolders(state:LibraryState):Set<String> = state.preferences["pausedCollectionFolders"]?.let{documentJson.decodeFromString<List<String>>(it).also{ids->require(ids.size<=100 && ids.distinct().size==ids.size);ids.forEach(UUID::fromString)}.toSet()}?:emptySet()
+    fun isFolderPaused(id:String,state:LibraryState=load()):Boolean=id in pausedFolders(state)
     /** Non-secret local registration identity, deliberately excluded from ordinary backup.
      * A fresh restore at the SAME path must not inherit permission to scan old external paths. */
     private fun localBinding(create:Boolean):String? {
@@ -110,21 +117,33 @@ class LibraryRepository(private val workspace:StudioWorkspace,private val fault:
     private fun bind(state:LibraryState,id:String)=state.copy(preferences=state.preferences+("collectionBindings" to documentJson.encodeToString(bindings(state)+(id to requireNotNull(localBinding(true))))))
     fun automaticFolders(state:LibraryState=load()):List<LibraryFolder> {
         if(state.preferences["collectionsPaused"]=="true")return emptyList()
-        val local=localBinding(false)?:return emptyList();return state.folders.filter{bindings(state)[it.id]==local}
+        val local=localBinding(false)?:return emptyList();return state.folders.filter{bindings(state)[it.id]==local && it.id !in referenceFolders(state) && it.id !in pausedFolders(state)}
     }
     /** An explicit UI action is required after restore/move. Never scan old absolute paths on restore. */
-    fun enableHere(id:String)=update{state->val folder=state.folders.single{it.id==id};safePath(Path.of(folder.path));bind(state,id)}
+    fun enableHere(id:String)=pauseFolder(id,false)
+    /** Per-folder pause also removes the old-reader binding; older clients must
+     * not silently resume a folder whose newer pause preference they ignore. */
+    fun pauseFolder(id:String,paused:Boolean)=update{state->
+        require(id !in referenceFolders(state)){"此目录已改用图库引用，不再扫描副本"}
+        val folder=state.folders.single{it.id==id}
+        val next=if(paused)state.copy(preferences=state.preferences+("collectionBindings" to documentJson.encodeToString(bindings(state)-id))) else {
+            val path=Path.of(folder.path);safePath(path);require(Files.isDirectory(path,LinkOption.NOFOLLOW_LINKS)){"文件夹暂不可用，已保留图库内容"};bind(state,id)
+        }
+        next.copy(preferences=next.preferences+("pausedCollectionFolders" to documentJson.encodeToString((if(paused)pausedFolders(state)+id else pausedFolders(state)-id).toList())))
+    }
     fun pauseCollections(paused:Boolean)=update{it.copy(preferences=it.preferences+("collectionsPaused" to paused.toString()))}
-    fun removeFolder(id:String)=update{it.copy(folders=it.folders.filterNot{f->f.id==id},preferences=it.preferences+("collectionBindings" to documentJson.encodeToString(bindings(it)-id)))}
+    fun removeFolder(id:String)=update{it.copy(folders=it.folders.filterNot{f->f.id==id},preferences=it.preferences+("collectionBindings" to documentJson.encodeToString(bindings(it)-id))+("referenceOnlyFolders" to documentJson.encodeToString((referenceFolders(it)-id).toList()))+("pausedCollectionFolders" to documentJson.encodeToString((pausedFolders(it)-id).toList())))}
     fun defaultFolders():List<Path> {
         val base=workspace.root.resolveSibling(workspace.root.fileName.toString()+"-collections");safePath(base)
         return listOf("images","prompts","imports").map{category->Files.createDirectories(base.resolve(category)).also{p->if(load().folders.none{it.path==p.toString()})addFolder(p,category,false)}}
     }
     /** A visible intake copy is secondary to the already-committed original. Never overwrites a file.
      * The pending observation makes crash/partial-copy status explicit and keeps scans idempotent. */
+    @Deprecated("Legacy copy/recovery compatibility only; gallery imports retain canonical assets and album ID references")
     fun retainIngress(id:String):Path=retainIngressBatch(listOf(id)).single()
     /** Two durable metadata checkpoints for an explicit batch; verified original commits precede
      * this secondary intake copy. Interrupted copies remain COPY_PENDING and never overwrite. */
+    @Deprecated("Legacy copy/recovery compatibility only; never call for new gallery imports")
     fun retainIngressBatch(ids:List<String>,checkCancelled:()->Unit={},progress:(Int,Int)->Unit={_,_->}):List<Path> {
         require(ids.isNotEmpty() && ids.size<=1000 && ids.distinct().size==ids.size)
         checkCancelled()
@@ -132,6 +151,7 @@ class LibraryRepository(private val workspace:StudioWorkspace,private val fault:
         var state=load()
         if(state.folders.none{it.category=="imports" && Path.of(it.path)==base}){addFolder(base,"imports",false);state=load()}
         val folder=state.folders.first{it.category=="imports" && Path.of(it.path)==base}
+        require(folder.id !in referenceFolders(state)){"This folder uses canonical references; no new intake copies"}
         val planned=ids.map{id->
             checkCancelled()
             val asset=workspace.operation{workspace.assets.read(UUID.fromString(id)).require()}
@@ -156,11 +176,83 @@ class LibraryRepository(private val workspace:StudioWorkspace,private val fault:
         }finally{if(completed.isNotEmpty())update{it.copy(observations=it.observations+completed)}}
         return outputs
     }
+    /** Explicit migration, never called by startup/import/scan. Only the exact managed
+     * imports directory is eligible; external source paths and unknown files are retained.
+     * Publish backward-readable album/observation references before retiring any copy. */
+    fun migrateIngressCopiesToReferences(folderId:String,checkCancelled:()->Unit={},beforeDelete:(Path)->Unit={}):IngressReferenceResult=workspace.beginTask().use {
+        checkCancelled()
+        val before=load();val folder=before.folders.single{it.id==folderId}
+        val base=workspace.root.resolveSibling(workspace.root.fileName.toString()+"-collections").resolve("imports")
+        require(folder.category=="imports" && Path.of(folder.path).toAbsolutePath().normalize()==base){"Only the exact managed imports folder is eligible"}
+        safePath(base)
+        val observations=before.observations.filterKeys{it.startsWith(folder.id+":")}
+        require(observations.isNotEmpty()){"No owned import observations"}
+        data class Copy(val key:String,val path:Path,val observation:FolderObservation)
+        val copies=observations.map{(key,o)->
+            val relative=Path.of(key.removePrefix(folder.id+":"))
+            require(relative.nameCount==1 && !relative.isAbsolute && relative.fileName.toString().startsWith(o.assetId+"-")){"Unknown intake path retained"}
+            Copy(key,base.resolve(relative),o)
+        }
+        fun verify(c:Copy) {
+            checkCancelled();safePath(c.path)
+            val a=workspace.operation{workspace.assets.read(UUID.fromString(c.observation.assetId)).require()}
+            require(a.sha256()==c.observation.sha256 && a.size()==c.observation.size){"Original identity differs; copies retained"}
+            if(Files.exists(c.path,LinkOption.NOFOLLOW_LINKS)) {
+                val f=fingerprintFile(c.path,32L*1024*1024)
+                require(f.sha256==a.sha256() && f.size==a.size()){"Intake copy changed; retained"}
+            }
+        }
+        copies.forEach(::verify)
+        // A matching filename/hash alone does not prove that a user-supplied file
+        // was an application copy. Require the historical durable copy intent too.
+        val copyIntents=workspace.operation {
+            val proved=mutableSetOf<String>()
+            for((record,_) in records()) {
+                val historical=documentJson.decodeFromString<LibraryState>(workspace.bytes(record.request().id().toString()).decodeToString(throwOnInvalidSequence=true))
+                validate(historical)
+                copies.filter{historical.observations[it.key]==it.observation.copy(status="COPY_PENDING")}.forEach{proved+=it.key}
+            }
+            proved
+        }
+        require(copies.all{it.key in copyIntents}){"No durable application copy intent; source files retained"}
+        if(Files.exists(base,LinkOption.NOFOLLOW_LINKS))Files.newDirectoryStream(base).use{entries->require(entries.all{p->copies.any{it.path==p}}){"Unknown intake files retained; inspect before migration"}}
+        val albumId=UUID.nameUUIDFromBytes(("ccb-ingress-reference:"+folder.id).toByteArray()).toString()
+        val ids=observations.values.map{it.assetId}.distinct()
+        val priorAlbum=before.virtualAlbums.singleOrNull{it.id==albumId}
+        require(priorAlbum==null || folder.id in referenceFolders(before)){"Album identity conflict"}
+        val album=(priorAlbum?:VirtualAlbum(id=albumId,name="历史导入")).let{it.copy(images=(it.images+ids).distinct())}
+        val committed=update{current->
+            require(current==before){"Library changed; refresh before migration"}
+            current.copy(virtualAlbums=VirtualAlbums.save(current.virtualAlbums,album),
+                observations=current.observations+observations.mapValues{it.value.copy(status="REFERENCE_ONLY")},
+                preferences=current.preferences+("referenceOnlyFolders" to documentJson.encodeToString((referenceFolders(current)+folder.id).toList()))+
+                    ("pausedCollectionFolders" to documentJson.encodeToString((pausedFolders(current)-folder.id).toList()))+
+                    ("collectionBindings" to documentJson.encodeToString(bindings(current)-folder.id)))
+        }
+        fault("INGRESS_REFERENCES_COMMITTED")
+        var removed=0;var bytes=0L
+        for(copy in copies) {
+            checkCancelled()
+            if(!Files.exists(copy.path,LinkOption.NOFOLLOW_LINKS))continue
+            beforeDelete(copy.path)
+            workspace.operation {
+                require(load()==committed){"References changed; copy retained"}
+                verify(copy) // Recheck both canonical and secondary bytes after admission.
+                Files.delete(copy.path)
+            }
+            removed++;bytes+=copy.observation.size
+        }
+        IngressReferenceResult(albumId,ids.size,removed,bytes)
+    }
     /** External IO and progress callbacks must never own the workspace monitor. Commits remain
      * serialized and cancellation is checked between files, after any durable commit settles. */
     fun scan(folderId:String,checkCancelled:()->Unit={},progress:(FolderScanProgress)->Unit={}):List<FolderScanResult> =workspace.beginTask().use {
         checkCancelled()
         val state=load();val folder=state.folders.single{it.id==folderId};val root=Path.of(folder.path);safePath(root)
+        if(folderId in referenceFolders(state))return@use state.observations.filterKeys{it.startsWith(folderId+":")}.map{(key,o)->
+            workspace.operation{val a=workspace.assets.read(UUID.fromString(o.assetId)).require();require(a.sha256()==o.sha256 && a.size()==o.size)}
+            FolderScanResult(key,"REFERENCE_ONLY",o.assetId)
+        }
         if(!Files.isDirectory(root,LinkOption.NOFOLLOW_LINKS)){
             update{it.copy(observations=it.observations.mapValues{(key,value)->if(key.startsWith(folder.id+":"))value.copy(status="SOURCE_MISSING")else value})}
             return@use listOf(FolderScanResult(folder.path,"DIRECTORY_MISSING; retained existing assets"))

@@ -40,7 +40,7 @@ internal class StudioUpdateClient(private val installed:Path,private val cache:P
             }
             require(Files.size(output)<128*1024){"更新回执超过限制"}
             val result=Json.parseToJsonElement(Files.readString(output)).jsonObject
-            require(result["status"]?.jsonPrimitive?.content in setOf("AVAILABLE","UP_TO_DATE","DOWNLOADED_VERIFIED","FAILED")){"更新进程返回未知状态"}
+            require(result["status"]?.jsonPrimitive?.content in setOf("AVAILABLE","UP_TO_DATE","DOWNLOADED_VERIFIED","LOCAL_MAINTENANCE","FAILED")){"更新进程返回未知状态"}
             require(process.exitValue()==0 || result["status"]?.jsonPrimitive?.content=="FAILED"){"更新进程未正常退出"}
             result
         } finally {

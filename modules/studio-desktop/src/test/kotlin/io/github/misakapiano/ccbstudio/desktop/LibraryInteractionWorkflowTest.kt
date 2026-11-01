@@ -201,9 +201,9 @@ class LibraryInteractionWorkflowTest {
         c.view="图库";c.gallery.chooseImportFiles={listOf(input)};c.gallery.chooseImportDirectory={folder}
         val scene=ImageComposeScene(1320,880,coroutineContext=awt){MaterialTheme{Workbench(c,DesktopWindowChrome{},false)}}
         try {
-            scene.frames();scene.click("导入图片");assertTrue(scene.nodes().any{it.matches("导入目录（本层）")});scene.shot("import-files-directory-menu")
+            scene.frames();scene.click("导入图片");assertTrue(scene.nodes().any{it.matches("导入文件夹…")});scene.shot("import-files-directory-menu")
             scene.click("导入图片文件");c.idle();scene.frames();assertEquals(1,c.assets.size)
-            scene.click("导入图片");scene.click("导入目录（本层）");c.idle();scene.frames();assertEquals(2,c.assets.size)
+            scene.click("导入图片");scene.click("导入文件夹…");scene.frames();scene.click("包含子文件夹");scene.click("开始导入");c.idle();scene.frames();assertEquals(2,c.assets.size)
             assertTrue(c.assets.none{it.request().name()=="excluded.png"})
             val ids=c.assets.map{it.request().id().toString()};c.selection=ids.toSet();scene.frames()
             assertTrue(scene.nodes().none{it.matches("✓")});assertTrue(scene.nodes().none{it.matches("选择图库图片 ${ids[0]}")})

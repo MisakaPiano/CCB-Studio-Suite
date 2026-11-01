@@ -61,9 +61,12 @@ class GalleryIngressTest {
             rasterId=c.gallery.imports.single().assetId!!;assertTrue(c.gallery.imports.single().status.startsWith("IMPORTED_RASTER"))
             val saved=EditorRenderer.decode(w.bytes(rasterId));try{assertEquals(raster.getRGB(5,6),saved.getRGB(5,6))}finally{saved.flush();raster.flush()}
             c.gallery.pasteContents={StringSelection("normal text")};assertFalse(c.pasteImages());assertEquals(3,SharedAssets.images(w).size)
-            val intake=c.library.repository.load().folders.single{it.category=="imports"}
-            assertEquals(3,c.library.repository.load().observations.size)
-            (originals+rasterId).forEach{id->val copy=Files.list(Path.of(intake.path)).use{paths->paths.filter{it.fileName.toString().startsWith(id)}.findFirst().orElseThrow()};assertContentEquals(w.bytes(id),Files.readAllBytes(copy))}
+            assertTrue(c.library.repository.load().folders.none{it.category=="imports"})
+            assertTrue(c.library.repository.load().observations.isEmpty())
+            assertFalse(Files.exists(root.resolve("workspace-collections/imports")))
+            val originalHash=sha256(bytes)
+            assertTrue(Files.isRegularFile(w.assets.root().resolve("objects/$originalHash.blob")))
+            assertTrue(Files.list(w.assets.root().resolve("transactions")).use{dirs->dirs.noneMatch{Files.exists(it.resolve("payload.part"))}})
             assertFalse(c.receiveTransfer(StringSelection("drop text"),false))
         }finally{scene.close();c.close();scope.cancel();w.close()}
         StudioWorkspace.openStudio(root.resolve("workspace")).use{reopened->
