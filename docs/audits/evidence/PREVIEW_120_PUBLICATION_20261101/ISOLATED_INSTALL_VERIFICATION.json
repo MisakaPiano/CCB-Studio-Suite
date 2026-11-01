@@ -1,0 +1,70 @@
+{
+  "status": "PASS",
+  "target": "H:\\CCB-Studio-Suite\\.local\\i120\\120-8fccd113aa38",
+  "installerSha256": "43b007db5fe165c9c2c28122614d5c120192ecf5272bc2362927b1ad4b45ad71",
+  "installerExitCode": 0,
+  "verification": {
+    "files": 552,
+    "bytes": 347362073,
+    "manifestSha256": "a697f73ca0f1d8d4ddc3a3244dbcc49445af56eee17d05d88b09963cbdc21df8"
+  },
+  "applicationEquivalence": [
+    {
+      "module": "studio-desktop",
+      "classCount": 1150,
+      "bytecodeIdentical": false,
+      "differences": [
+        "io/github/misakapiano/ccbstudio/desktop/StudioApplicationKt.class",
+        "io/github/misakapiano/ccbstudio/desktop/TypesetWorkspaceKt.class",
+        "io/github/misakapiano/ccbstudio/desktop/GalleryOrganizationKt.class",
+        "io/github/misakapiano/ccbstudio/desktop/GalleryWorkspaceKt.class",
+        "io/github/misakapiano/ccbstudio/desktop/TypesetAutoMaskDialogKt.class",
+        "io/github/misakapiano/ccbstudio/desktop/WorkspaceUiKt.class",
+        "io/github/misakapiano/ccbstudio/desktop/MainKt.class",
+        "io/github/misakapiano/ccbstudio/desktop/GalleryWorkspaceKt$GalleryWorkspace$lambda$46$8$0$5$1$4$0$0$$inlined$items$default$5.class",
+        "io/github/misakapiano/ccbstudio/desktop/LibraryCommandsKt.class"
+      ]
+    },
+    {
+      "module": "studio-core",
+      "classCount": 429,
+      "bytecodeIdentical": false,
+      "differences": [
+        "io/github/misakapiano/ccbstudio/core/JobRecord.class",
+        "io/github/misakapiano/ccbstudio/core/StudioState$$serializer.class",
+        "io/github/misakapiano/ccbstudio/core/StudioState.class",
+        "io/github/misakapiano/ccbstudio/core/BatchArchive$$serializer.class",
+        "io/github/misakapiano/ccbstudio/core/JobRecord$$serializer.class",
+        "io/github/misakapiano/ccbstudio/core/BatchArchive.class"
+      ]
+    },
+    {
+      "module": "image-authority",
+      "classCount": 854,
+      "bytecodeIdentical": false,
+      "differences": [
+        "com/example/chatbar/data/local/entity/AppSettings.class",
+        "com/example/chatbar/domain/image/NovelAiCharacterPromptDraft$$serializer.class",
+        "com/example/chatbar/domain/image/NovelAiCharacterPromptDraft.class",
+        "com/example/chatbar/domain/image/NovelAiStudioDraft.class",
+        "com/example/chatbar/domain/image/NovelAiGuidanceEditorCheckpoint$$serializer.class",
+        "com/example/chatbar/domain/image/NovelAiGenerationRecipe$$serializer.class",
+        "com/example/chatbar/domain/image/NovelAiDesignReply.class",
+        "com/example/chatbar/data/local/entity/AppSettings$$serializer.class",
+        "com/example/chatbar/domain/image/NovelAiGenerationRecipe.class",
+        "com/example/chatbar/domain/image/NovelAiDesignReply$$serializer.class",
+        "com/example/chatbar/domain/image/NovelAiGuidanceEditorCheckpoint.class",
+        "com/example/chatbar/domain/image/NovelAiStudioDraft$$serializer.class"
+      ]
+    },
+    {
+      "module": "asset-library",
+      "classCount": 26,
+      "bytecodeIdentical": true,
+      "differences": []
+    }
+  ],
+  "originalWorkspaceUntouched": true,
+  "dailyInstallationModified": false,
+  "published": false
+}

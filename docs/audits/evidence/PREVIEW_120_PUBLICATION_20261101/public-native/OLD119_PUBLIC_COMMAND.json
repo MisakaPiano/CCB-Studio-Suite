@@ -1,0 +1,14 @@
+{
+  "arguments": [
+    "H:\\CCB-Studio-Suite\\.local\\u120\\install\\119-d9be9d9f90cd\\updater\\python.exe",
+    "-B",
+    "H:\\CCB-Studio-Suite\\.local\\u120\\install\\119-d9be9d9f90cd\\updater\\lib\\studio_update.py",
+    "--package",
+    "H:\\CCB-Studio-Suite\\.local\\u120\\install\\119-d9be9d9f90cd",
+    "--cache",
+    "H:\\CCB-Studio-Suite\\.local\\u120\\install\\data\\runtime\\updates",
+    "--download"
+  ],
+  "noAdapter": true,
+  "rootSha256": "408008d80aeb2dd3844325d74f09da9d248733e220dd88c08cc6299c4a24cc7a"
+}

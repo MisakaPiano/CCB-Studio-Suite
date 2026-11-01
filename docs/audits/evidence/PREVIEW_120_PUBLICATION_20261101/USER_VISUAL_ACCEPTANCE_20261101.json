@@ -1,0 +1,24 @@
+{
+  "format": 1,
+  "clientDate": "2026-11-01",
+  "status": "USER_SCOPED_VISUAL_ACCEPTED",
+  "userStatement": "\u5168\u90e8\u901a\u8fc7\u4e86",
+  "candidate": "H:\\CCB-Studio-Suite\\.local\\gallery-review-candidate-20261101\\program-r2",
+  "sourceSetSha256": "bf2f9a50da30e570b34cbc39084c0fdf2339f63eb882ce6d1c5e18139a13b411",
+  "programManifestSha256": "8826225b461a98bae7ba747c829d63abc2a379349099cd604e7bde383db72caa",
+  "acceptedChecklist": [
+    "Round help button distinct from theme button; spacing comfortable",
+    "Gallery default presentation clearer; advanced filters/archive action/archive entry discoverable",
+    "Editor current-image versus selected-N scope wording and native layout understandable"
+  ],
+  "scope": "Only the three manual visual/clarity checks previously requested; no repeated automatic tests",
+  "preservedLimits": [
+    "Thousand-image and whole-page performance remain UNCONFIRMED_HOLD",
+    "Native automated capture failures and historical test failures retained",
+    "No real-provider or private-library acceptance inferred"
+  ],
+  "newTests": 0,
+  "productionSourceChanged": false,
+  "published": false,
+  "dailyInstallationChanged": false
+}

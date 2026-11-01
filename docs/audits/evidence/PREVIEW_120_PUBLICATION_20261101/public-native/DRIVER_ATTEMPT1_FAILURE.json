@@ -1,0 +1,8 @@
+{
+  "status": "FAILED_RETAINED",
+  "stage": "FIXTURE_ENTRY_SETUP",
+  "reason": "Test driver imported120 create_launcher but invoked119 bundled native launcher; unsupported prepare-shortcut interface",
+  "productionUpdateStarted": false,
+  "original119HelperModified": false,
+  "fix": "Use original119 packaged Python create_launcher in an isolated subprocess; no production source/package changes"
+}

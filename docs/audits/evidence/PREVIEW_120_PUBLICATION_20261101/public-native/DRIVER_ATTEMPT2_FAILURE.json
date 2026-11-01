@@ -1,0 +1,7 @@
+{
+  "status": "FAILED_RETAINED",
+  "stage": "RESUME_MANIFEST_CHECK",
+  "reason": "Attempt1 invoked unsupported119 CLI and created an empty updater/entrypoints.lock; verifier correctly rejected an unexpected installed file",
+  "resolution": "Moved this exactly identified zero-byte fixture-only file into fixed evidence; no deletion and no installed source changes",
+  "allOtherInstalledBytesVerified": true
+}

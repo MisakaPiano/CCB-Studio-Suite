@@ -1,0 +1,202 @@
+{
+  "format": 1,
+  "source": "8fccd113aa387a7adbac6894d3327a8b1d8080e6",
+  "scope": "Preview120 publication; existing candidate acceptance retained with its original limited scope",
+  "entries": [
+    {
+      "path": ".gitattributes",
+      "bytes": 78,
+      "sha256": "d8bf0a9f26cec51e3da3439b1d3d92c85a89fe1dae172dab2fef4a51dc3448bc"
+    },
+    {
+      "path": "app-build/gradle.log",
+      "bytes": 4736,
+      "sha256": "55ec939b9b6cc3d96828c4d972e091ac166644177402b1b44253f014066919f0"
+    },
+    {
+      "path": "app-build/summary.json",
+      "bytes": 1043,
+      "sha256": "4c8cb187440afcad72003bbf22458a17b47efe6eede358e28ae42f26786e8b42"
+    },
+    {
+      "path": "AUDIT_PREP_CHECK_FAILURE.json",
+      "bytes": 456,
+      "sha256": "b3a4d2e3e82090574be0c36d2bf896b142b5d1bca7f160af1990a8225bc23870"
+    },
+    {
+      "path": "BUILD_RECEIPT.json",
+      "bytes": 558,
+      "sha256": "14c2750ead464e187a70b8bd65694f22ed13f0c3d65b22bc77c56c784ac66a87"
+    },
+    {
+      "path": "FINAL_PUBLIC_READBACK.json",
+      "bytes": 973,
+      "sha256": "47328d3d43770df60a8eb482574e5f7ce1030282ebd5b07db6eca408d9644624"
+    },
+    {
+      "path": "IDLE_SCAN.json",
+      "bytes": 103,
+      "sha256": "f2fa74a593b14966805e615ffa00f35f334b64ae018eb3776d3a853505c5df25"
+    },
+    {
+      "path": "INSTALL_MANIFEST.json",
+      "bytes": 102014,
+      "sha256": "a697f73ca0f1d8d4ddc3a3244dbcc49445af56eee17d05d88b09963cbdc21df8"
+    },
+    {
+      "path": "ISOLATED_INSTALL_VERIFICATION.json",
+      "bytes": 3217,
+      "sha256": "14782207a9d2a9049f84fa1bbd32ed850c84d652b4b53cda59d96e3db1939cf7"
+    },
+    {
+      "path": "METADATA_PUBLICATION.json",
+      "bytes": 1181,
+      "sha256": "b4b1e335548af8c85adcf2c0f6d0eb7906a8814b5748a449d9a7b5aeaa2d0244"
+    },
+    {
+      "path": "PACKAGE.json",
+      "bytes": 387,
+      "sha256": "33badd812f781dd28930ede8b762ffc7cde52be533f1870d2b6bffce0a01e89a"
+    },
+    {
+      "path": "PREFLIGHT.json",
+      "bytes": 1304,
+      "sha256": "01ac65bbf856ea8f81c4276c9e6db440bca96c1ab2df97f89e69c463998844d6"
+    },
+    {
+      "path": "public-native/A_READY.json",
+      "bytes": 2408,
+      "sha256": "d051274948a482df485dbbef34b6813e29c9b74dfbf463a0a3cc09138bbbaa26"
+    },
+    {
+      "path": "public-native/after-update-check.log",
+      "bytes": 170,
+      "sha256": "e9c7804b7d2b812e25809fc505d7317275ba42319302b23bf0aa3495b4845050"
+    },
+    {
+      "path": "public-native/B_VERIFIED.json",
+      "bytes": 1546,
+      "sha256": "53e0b07606c1d094bb237b15693d45f571fa6e276b4098ed32f60513350a1179"
+    },
+    {
+      "path": "public-native/cleanup-events.jsonl",
+      "bytes": 510,
+      "sha256": "ffc17d382e4483c57011ade34c67740e4af47e2201f65e7c466451b3218f696b"
+    },
+    {
+      "path": "public-native/cleanup-state.json",
+      "bytes": 269,
+      "sha256": "59c864714669b440b0d692d3c9bdd981d61534002a1dcb78f112b7a674585649"
+    },
+    {
+      "path": "public-native/CURRENT120_PUBLIC.json",
+      "bytes": 5782,
+      "sha256": "9943fa93ced150af5609eebc6187f8879b1b5c3bddd7b86901f56a4b73cfcc98"
+    },
+    {
+      "path": "public-native/DRIVER_ATTEMPT1_FAILURE.json",
+      "bytes": 406,
+      "sha256": "b1e234c3b6079ba02b0ecde26d50eeeb399ff0b5dcffc8b9f7cbeaf0125b5cdc"
+    },
+    {
+      "path": "public-native/DRIVER_ATTEMPT2_FAILURE.json",
+      "bytes": 414,
+      "sha256": "8234b2756000c0b6b9c2e35df53b316bfa9ee8b9a8ed4354e59e620914d12666"
+    },
+    {
+      "path": "public-native/DRIVER_ATTEMPT3_FAILURE.json",
+      "bytes": 448,
+      "sha256": "7b5325e3496bc8887e9e3613bfa609dc7624169478ef478432889c23d3ab054a"
+    },
+    {
+      "path": "public-native/OLD119_PUBLIC_COMMAND.json",
+      "bytes": 536,
+      "sha256": "5ec455a40d3eaef86993584af558f3ab0a3d10f2f411b32c2db9ceec765e7f97"
+    },
+    {
+      "path": "public-native/OLD119_PUBLIC_DOWNLOAD.json",
+      "bytes": 6040,
+      "sha256": "ed37196fb348c75afed1ba128d58f7d07eb08a214eca3cefd5aafb82e3e9b17a"
+    },
+    {
+      "path": "public-native/RAW_UPDATE_RESULT.json",
+      "bytes": 681,
+      "sha256": "1bd8f89d4958f5b220adccce3617ab29b5ca03d83eb3ee8cf4b387d99cfbba2f"
+    },
+    {
+      "path": "public-native/RESULT.json",
+      "bytes": 1923,
+      "sha256": "d09a6d1d6271393d0b018fc36eb97eec97bafab492bc1f54a996ba50a447911b"
+    },
+    {
+      "path": "PUBLIC_CHANNEL_VERIFICATION.json",
+      "bytes": 1923,
+      "sha256": "d09a6d1d6271393d0b018fc36eb97eec97bafab492bc1f54a996ba50a447911b"
+    },
+    {
+      "path": "PUBLIC_INSTALLER_BYTE_VERIFICATION.json",
+      "bytes": 295,
+      "sha256": "d239f7c3d32a71cd3109b142d2b46bffaf19995ebd29bc2d04cd15c81c544039"
+    },
+    {
+      "path": "release-ui/gradle.log",
+      "bytes": 7374,
+      "sha256": "86381c617fa67a0f6714987c29c511ab21418aa48623a95e914cf318f1e739d4"
+    },
+    {
+      "path": "release-ui/summary.json",
+      "bytes": 1271,
+      "sha256": "70bcf098179fb1a87f0f4a0467aac6816bfd23c41959590629dc426fd7d851cc"
+    },
+    {
+      "path": "release-ui/test-cases.json",
+      "bytes": 230,
+      "sha256": "69612915f07a36eb56fecc2c4c52f8cb66b94ecf3b386d98a5fb68ba25a3e763"
+    },
+    {
+      "path": "RELEASE_NOTES.md",
+      "bytes": 2740,
+      "sha256": "f493ab679af4d8de9c58cf40e7753bc29f26301d52efd62d037708197b17e873"
+    },
+    {
+      "path": "RELEASE_STATE.json",
+      "bytes": 1157,
+      "sha256": "dacd08a126106d05ba09b799715c66c11104d80d75290b873477744727be9e9f"
+    },
+    {
+      "path": "RELEASE_UI_VERIFICATION.json",
+      "bytes": 308,
+      "sha256": "536b734f559ba20eaec4124fc0483b074f706f2b8938128912987c4c908bdeb4"
+    },
+    {
+      "path": "signed-public-metadata/1.root.json",
+      "bytes": 1567,
+      "sha256": "408008d80aeb2dd3844325d74f09da9d248733e220dd88c08cc6299c4a24cc7a"
+    },
+    {
+      "path": "signed-public-metadata/snapshot.json",
+      "bytes": 470,
+      "sha256": "112b340e3683fe09c55a37f816d6a4ff4a4f724e90081d56340ac20ba6feb992"
+    },
+    {
+      "path": "signed-public-metadata/targets.json",
+      "bytes": 6180,
+      "sha256": "f8383258665fcf99ee5d91d5c9c6dc177e3f63f31c5ccf794c70690cab3a23d5"
+    },
+    {
+      "path": "signed-public-metadata/timestamp.json",
+      "bytes": 471,
+      "sha256": "0d74019fdd963ae6b197af499ccef6e936166241916b0ab19e1fdd8d6900931c"
+    },
+    {
+      "path": "SOURCE_SNAPSHOT.json",
+      "bytes": 20890,
+      "sha256": "b96aef46b3f708f317e7668f0b3f151cddb00c90677f98949bdcd81b7ed28ae9"
+    },
+    {
+      "path": "USER_VISUAL_ACCEPTANCE_20261101.json",
+      "bytes": 1205,
+      "sha256": "20764310af28faf56bd4584d8fa8428479d9a124f85f5b6ff93b46d9af3cd1f8"
+    }
+  ]
+}

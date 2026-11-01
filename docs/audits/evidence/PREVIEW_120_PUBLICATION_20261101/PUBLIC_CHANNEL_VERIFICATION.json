@@ -1,0 +1,52 @@
+{
+  "status": "PASS",
+  "source": "8fccd113aa387a7adbac6894d3327a8b1d8080e6",
+  "installerSha256": "43b007db5fe165c9c2c28122614d5c120192ecf5272bc2362927b1ad4b45ad71",
+  "version": 120,
+  "oldVersion": 119,
+  "oldInstallerSha256": "b425ae408e3613acac2a0000ead5f04cd02c9831a63d4b288682f5e2f75f1c83",
+  "oldDirectoryRemovedWhileBRunning": true,
+  "bWindows": [
+    {
+      "pid": 107688,
+      "exe": "H:\\CCB-Studio-Suite\\.local\\u120\\install\\120-8fccd113aa38\\CCBStudioSuitePreview.exe"
+    }
+  ],
+  "bProcessStillRunning": true,
+  "bVerification": {
+    "files": 552,
+    "bytes": 347362073,
+    "manifestSha256": "a697f73ca0f1d8d4ddc3a3244dbcc49445af56eee17d05d88b09963cbdc21df8"
+  },
+  "defaultAfter": {
+    "format": 1,
+    "version": 120,
+    "installed": "H:\\CCB-Studio-Suite\\.local\\u120\\install\\120-8fccd113aa38",
+    "data": "H:\\CCB-Studio-Suite\\.local\\u120\\install\\data\\workspace",
+    "runtime": "H:\\CCB-Studio-Suite\\.local\\u120\\install\\data\\runtime",
+    "exeSha256": "8ed180a5a1c3fc94111f7bfebd42851f9bce2992cd48b9857bec97fffc58eb17"
+  },
+  "downloadsRemaining": 0,
+  "installingDirectoriesRemaining": 0,
+  "assetsVerifiedInAck": 2,
+  "syntheticCredentialsVerifiedInAck": 2,
+  "backupRetained": true,
+  "formalRootUnchanged": true,
+  "discovery": "REAL_PUBLIC_SIGNED_TUF_119_TO_120_NO_ADAPTER",
+  "actual119And120ProductionMain": true,
+  "oldHelperSourceUnmodified": true,
+  "forcedTermination": false,
+  "publicRelease": true,
+  "dailyInstallationModified": false,
+  "normalBClose": [
+    {
+      "pid": 107688,
+      "exe": "H:\\CCB-Studio-Suite\\.local\\u120\\install\\120-8fccd113aa38\\CCBStudioSuitePreview.exe"
+    }
+  ],
+  "reopenDefault120": "NOT_REPEATED",
+  "repeatCleanupNoChange": "PRIOR_R2_ACCEPTANCE_NOT_REPEATED",
+  "public119DownloadAndSignature": "PASS",
+  "public120Current": "UP_TO_DATE",
+  "discoveryAdapterUsed": false
+}

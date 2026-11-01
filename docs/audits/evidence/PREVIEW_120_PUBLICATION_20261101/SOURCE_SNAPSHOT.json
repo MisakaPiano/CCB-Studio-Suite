@@ -1,0 +1,287 @@
+{
+  "base": "7e15bc23ce54e9f2cb20b480f0f27ac9984f867d",
+  "sourceCommit": "8fccd113aa387a7adbac6894d3327a8b1d8080e6",
+  "selectedFiles": {
+    "modules/asset-library/src/main/java/io/github/misakapiano/ccbstudio/assets/AssetStore.java": {
+      "workspaceSha256": "be9d2e055973eb8e2cc1e8b01b6af7f6b64223e522c3f33da8fb89cb5b3afa04",
+      "releaseGitSha256": "be9d2e055973eb8e2cc1e8b01b6af7f6b64223e522c3f33da8fb89cb5b3afa04"
+    },
+    "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiCharacterPositionPolicy.kt": {
+      "workspaceSha256": "16d6e71c7ef4f5f138bd4bb7ceb17e73d865eba74501ea33e340b9faeff34cf9",
+      "releaseGitSha256": "6f984ebd15ef3ce6be5a4a1c2a23cb4b2497324c9138a5830eac6e9b27f036bf"
+    },
+    "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiImageModel.kt": {
+      "workspaceSha256": "68ac8a2ed4aadce2992757536059105ed7065004989c0ea8b2a0860ec75aeaad",
+      "releaseGitSha256": "3477434cb3022444d21cbfc076f01d0b3a92a4136fab2635ca24d0bfcd096fb3"
+    },
+    "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiImageService.kt": {
+      "workspaceSha256": "a535f722b82d34cb29573315fde39453c26442d8af637f64e85fb97d40773ac2",
+      "releaseGitSha256": "87ab2a709212dd8fb4acd4f85bc36e5063694e1ca3a5b3d9f9c44f403444bb50"
+    },
+    "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiParameterCompatibility.kt": {
+      "workspaceSha256": "84547daacd233841e8e534609e305887fdf460d4c30969dd636a2b417ee21f11",
+      "releaseGitSha256": "7a13e3395bcc906abc55d31c3b0a3917d4eb415ead7ccae3296b8481a99b1df9"
+    },
+    "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiPngMetadataReader.kt": {
+      "workspaceSha256": "f6f63fb1c7f92b072800b244db7e1f81fd4258dc13d43db904fe7a1deb5e7b21",
+      "releaseGitSha256": "6633d46f033a77a71e0e730b3dffbe64eaef1c29497d37a52650f5544201e6b8"
+    },
+    "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiPromptPlan.kt": {
+      "workspaceSha256": "d5e3fbee8b2627a26a60bfecc4989e441f98e9f579dbe0c49b4ac3c5d52ef8fc",
+      "releaseGitSha256": "af3277776b87acbaf46c6ffd6aa00a4d1091cd06ce83b2ed5125802e4fa3b4d7"
+    },
+    "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiStudioImageImport.kt": {
+      "workspaceSha256": "1134d79fa4872e55f210271b916697eaea8939471e75c5933a0e46a70e5d4c5e",
+      "releaseGitSha256": "07a714efc04731adab724a38ff9f3730e78c360a8398fc4795b072e1e9ae4ae5"
+    },
+    "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiStudioModels.kt": {
+      "workspaceSha256": "87c9aa9d237b3518ccc3489fd31c72efa6a360c2352fd08f699616f9d84617c1",
+      "releaseGitSha256": "31ad159cd18a684b55ab4a8b4b632141f8f10afbeb988756ae78939d3e0e121f"
+    },
+    "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiV5TextPromptPolicy.kt": {
+      "workspaceSha256": "f749ca25581522597561251a4b54f93c040b6041fb162b89bf513fe3ff388c7d",
+      "releaseGitSha256": "357f32819674e88b2d9c083089c0142c37c5f8adda4a75d7a655cf02fabba8a8"
+    },
+    "modules/image-authority/src/test/kotlin/com/example/chatbar/domain/image/NovelAiParameterCompatibilityTest.kt": {
+      "workspaceSha256": "cf38fe022b6e65eee435b31654ac79a007fc4f87f32b8c016e273a18240d5104",
+      "releaseGitSha256": "cf38fe022b6e65eee435b31654ac79a007fc4f87f32b8c016e273a18240d5104"
+    },
+    "modules/image-authority/src/test/resources/nai-parameter-compatibility-fixtures.json": {
+      "workspaceSha256": "cced5b3613d10145173c1e9bdec81e3d01998fd1af3757003bfc1e0361b4726c",
+      "releaseGitSha256": "f9c55a4a6ac2f4df9d6a83666afd0887911458aa4a3954d0bfe8c97a55498aa0"
+    },
+    "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/DesignProvenance.kt": {
+      "workspaceSha256": "332b8a9fd683ba527c9413de543c341bc16513498c369e0f1b0265436f13b9a4",
+      "releaseGitSha256": "0394b8b3a8c3f01ba7bb604a459c0dbafd343a06a4567c4ea228967f5f4c76de"
+    },
+    "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/GalleryHistory.kt": {
+      "workspaceSha256": "4cc16a7bda52c89ef98d6c3e79b710a345e5c8aee9d5fee1baa8844791a40c49",
+      "releaseGitSha256": "4cc16a7bda52c89ef98d6c3e79b710a345e5c8aee9d5fee1baa8844791a40c49"
+    },
+    "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/LibraryDirectoryMonitor.kt": {
+      "workspaceSha256": "11b421760ae5bb8178e4612c4ea73ae2b79f73af1c9589664fb4b5697b708177",
+      "releaseGitSha256": "11b421760ae5bb8178e4612c4ea73ae2b79f73af1c9589664fb4b5697b708177"
+    },
+    "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/RecipeDraftSelection.kt": {
+      "workspaceSha256": "5ff96257bd59571e4f5c31ac6a1e2b680f0cd779a37ab9dd0bd60f10461e6687",
+      "releaseGitSha256": "5ff96257bd59571e4f5c31ac6a1e2b680f0cd779a37ab9dd0bd60f10461e6687"
+    },
+    "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/GalleryFoldAtomicPreferenceTest.kt": {
+      "workspaceSha256": "60837b67bf208c58797df704b22a5d7fc106c42a44312c3c6c94765f411acaad",
+      "releaseGitSha256": "60837b67bf208c58797df704b22a5d7fc106c42a44312c3c6c94765f411acaad"
+    },
+    "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/GenerationDesignLookupScopeTest.kt": {
+      "workspaceSha256": "01902dfc27150f3ab15f771a11e8e2c9b35c78e7bd768d28db26e001e8cd8d54",
+      "releaseGitSha256": "01902dfc27150f3ab15f771a11e8e2c9b35c78e7bd768d28db26e001e8cd8d54"
+    },
+    "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/LibraryMonitorDiscoveryTest.kt": {
+      "workspaceSha256": "f6f3a057d9f3729a76da794cdc30af35af066b59332e716302f274d3baefc513",
+      "releaseGitSha256": "61dbbadccf7d1c004a81c0127d94b19eefaf6035ff8074295cd13a31825e3b96"
+    },
+    "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/NoOpCreationEditTest.kt": {
+      "workspaceSha256": "9275053ceb99bcd2c46a3e85e95234d455b3ff343d09ab6b92506f5fc4e0ce79",
+      "releaseGitSha256": "404be650b283ac71a94855cae8a56cbf5274b910c48f6b4b6cfea4d6f5986a40"
+    },
+    "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/ParameterReplayPersistenceTest.kt": {
+      "workspaceSha256": "674d25c74ef11a4ee89802be65f879b59aa164c4164ebb7a76ab7fc733933bfc",
+      "releaseGitSha256": "5dfb6eed7a1f45f5063dc06ce37ba09d62365ab9c57d9234293689badd52d6ed"
+    },
+    "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioCharacters.kt": {
+      "workspaceSha256": "70231583639b1961a474464864442b3ae29b9594033a0c7945b5e6f4e17d0014",
+      "releaseGitSha256": "70231583639b1961a474464864442b3ae29b9594033a0c7945b5e6f4e17d0014"
+    },
+    "modules/studio-desktop/src/main/kotlin/com/example/chatbar/desktop/DesktopStudioControls.kt": {
+      "workspaceSha256": "4069bdf64ebb22483d0a71edd19195a9313bbe5f1d1f666c973f0d634a32ad2a",
+      "releaseGitSha256": "4069bdf64ebb22483d0a71edd19195a9313bbe5f1d1f666c973f0d634a32ad2a"
+    },
+    "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryAlbums.kt": {
+      "workspaceSha256": "3a26154d6d179893f3ff1ede9753f693cb1351b3dd0c08e5fb7ef4113ba9e6fa",
+      "releaseGitSha256": "3a26154d6d179893f3ff1ede9753f693cb1351b3dd0c08e5fb7ef4113ba9e6fa"
+    },
+    "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryDirectoryImport.kt": {
+      "workspaceSha256": "e66dfdb26e55b9f7319f756265a9f4e594867be7fb26c18ad5fb92feb2e2c1b4",
+      "releaseGitSha256": "6bc917338ab83d866d8851e5a317af2c5aee3448bca2a8aa10b129910d0c6128"
+    },
+    "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryWorkspace.kt": {
+      "workspaceSha256": "7283ba7fc43f39800569d0187828042a0aa2b2f199911128a8f8fe40a9e4dc0c",
+      "releaseGitSha256": "7283ba7fc43f39800569d0187828042a0aa2b2f199911128a8f8fe40a9e4dc0c"
+    },
+    "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/LibraryArchiveWorkspace.kt": {
+      "workspaceSha256": "602a33479ea770801e66377190f39054b2da1ad24f4db1b5c6885d4cc85bc16a",
+      "releaseGitSha256": "602a33479ea770801e66377190f39054b2da1ad24f4db1b5c6885d4cc85bc16a"
+    },
+    "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/LibraryCommands.kt": {
+      "workspaceSha256": "c5a442edf7dbf79ff444df2aeb9cdaede1f09ea087248a63589e0e79b7a6990f",
+      "releaseGitSha256": "c5a442edf7dbf79ff444df2aeb9cdaede1f09ea087248a63589e0e79b7a6990f"
+    },
+    "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioApplication.kt": {
+      "workspaceSha256": "ef859c49a053334286568c2be4891480e4bc7b123a335b7fb27cf96fa76da680",
+      "releaseGitSha256": "ef859c49a053334286568c2be4891480e4bc7b123a335b7fb27cf96fa76da680"
+    },
+    "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioPageHelp.kt": {
+      "workspaceSha256": "04264c476deb6512acd6aeecf775b4d25d2dac7b32d1df6fb0704e3203475757",
+      "releaseGitSha256": "110072a1a674722b1173e9647b3fac1e4eb7d17a53418a654e41ab239d7be8c4"
+    },
+    "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetAutoMaskController.kt": {
+      "workspaceSha256": "c51c9391832d36fa63e1ca19b18617af90a71b872348060c07366fd9b3fb334c",
+      "releaseGitSha256": "c51c9391832d36fa63e1ca19b18617af90a71b872348060c07366fd9b3fb334c"
+    },
+    "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetAutoMaskDialog.kt": {
+      "workspaceSha256": "1e8038e4509c5d95345c4e162d80d795640cabd2d2112e393839986fc28abdf2",
+      "releaseGitSha256": "1e8038e4509c5d95345c4e162d80d795640cabd2d2112e393839986fc28abdf2"
+    },
+    "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetWorkspace.kt": {
+      "workspaceSha256": "9e136fdd9218c78e99b2d68fd3b5591b890f2c2f45467ebee75670c2f53cd341",
+      "releaseGitSha256": "9e136fdd9218c78e99b2d68fd3b5591b890f2c2f45467ebee75670c2f53cd341"
+    },
+    "modules/studio-desktop/src/main/resources/brand/PROVENANCE.json": {
+      "workspaceSha256": "2fcd8da47867376801cf508fe06b683262db645d60f6bf667c362ec1824ff423",
+      "releaseGitSha256": "37e81c8805e6f1f7f7db3b4952fa6a2b87640a4b4bb933b68c0793b39cd89c48"
+    },
+    "modules/studio-desktop/src/main/resources/brand/ccb-blue.ico": {
+      "workspaceSha256": "ae3eec84d89ea8352210b327ae77939507f3e19f8ffaf3a265dbc62a54999547",
+      "releaseGitSha256": "ae3eec84d89ea8352210b327ae77939507f3e19f8ffaf3a265dbc62a54999547"
+    },
+    "modules/studio-desktop/src/main/resources/brand/ccb-blue.png": {
+      "workspaceSha256": "1ed8b9ff2948354e3a4c8e9da9cd8b10ca08a6cf51a2b46b4b791ad79a7346dd",
+      "releaseGitSha256": "1ed8b9ff2948354e3a4c8e9da9cd8b10ca08a6cf51a2b46b4b791ad79a7346dd"
+    },
+    "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryCandidateReviewTest.kt": {
+      "workspaceSha256": "26031c131b860379a53409b68d18930bb9d968256bf73eb6465c73e7f95e5126",
+      "releaseGitSha256": "b55c0d4d911dac6519972edb287bd3d5a05ed9954a5ffc8072c76b22fac30604"
+    },
+    "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryDirectoryImportTest.kt": {
+      "workspaceSha256": "75fd49bafceae28df27a348c45ddfc1b44885f6cfe1aef7bc15e54e120abe26e",
+      "releaseGitSha256": "186a3768aafd38a91e3ffed09396e165f5617bb87181b1a6883a22cdb8005022"
+    },
+    "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryHistoryRouteCacheTest.kt": {
+      "workspaceSha256": "fafab0974d7a313310dd587c3d798806ce046bf5dd97a0ac3d4e11b08e645124",
+      "releaseGitSha256": "7d5e5f958d5b8bf9ecde9bdb90ec885f68af0611bb47c0767f02e14c781dc099"
+    },
+    "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/NativeHistoryScaleProbe.kt": {
+      "workspaceSha256": "a05600659650d3875b1d5a1993285b471b89e355dc77de4e624bf6e811675390",
+      "releaseGitSha256": "fbf2f921a7f4f4c2a7d6c6022e24349d5e52459477e2c9e6088224c4bc8dbd1f"
+    },
+    "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/NativeLockGroupingProbe.kt": {
+      "workspaceSha256": "da0312b710b908d62417c5baea7971a6696353b5efa890daa48b51ea69db64c3",
+      "releaseGitSha256": "37632859ec2532a0bc56839a1d2b5a8ddc7a47d06eb9557c3a488133c5f12432"
+    },
+    "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/NativeRouteVisibilityProbe.kt": {
+      "workspaceSha256": "1daf8ef8ddf9d7d589e765009faf9f6491299c0aab6ae18f264961b4c4ad8345",
+      "releaseGitSha256": "1daf8ef8ddf9d7d589e765009faf9f6491299c0aab6ae18f264961b4c4ad8345"
+    },
+    "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/PreviewContentionWorkflowTest.kt": {
+      "workspaceSha256": "fa8368a61a7e4ca345b984fde0ee8819449d5155643fd5bd68b5755a01f401cd",
+      "releaseGitSha256": "fa8368a61a7e4ca345b984fde0ee8819449d5155643fd5bd68b5755a01f401cd"
+    },
+    "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/PreviewLoadingDiagnosticTest.kt": {
+      "workspaceSha256": "0324710f7b3c94ae4e46ec33be20ecf4629d8c41cd0552c8bda2f2eb4065181c",
+      "releaseGitSha256": "7c4557eeb5e6e1d668be5ca3c3b2836abbbe544919f579cc05c063d97c8ea2bf"
+    },
+    "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/PreviewRouteOverlapTest.kt": {
+      "workspaceSha256": "1109d2608caf1e1ba6e40aeecfa1dd39a22519f1b8eff5e54c4bce7e50a7f0de",
+      "releaseGitSha256": "1109d2608caf1e1ba6e40aeecfa1dd39a22519f1b8eff5e54c4bce7e50a7f0de"
+    },
+    "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/TypesetAutoMaskOneClickTest.kt": {
+      "workspaceSha256": "42d88f3c9915cf30bad04832333f4492ad58938479c12635d600243f14972b11",
+      "releaseGitSha256": "42d88f3c9915cf30bad04832333f4492ad58938479c12635d600243f14972b11"
+    },
+    "tools/Build-InternalInstaller.py": {
+      "workspaceSha256": "dd52043183e700aee532caf44397ab7110f9d3ef37dc60b93c8f15305eacaf46",
+      "releaseGitSha256": "dd52043183e700aee532caf44397ab7110f9d3ef37dc60b93c8f15305eacaf46"
+    },
+    "tools/Check-NaiParameterSource.py": {
+      "workspaceSha256": "38bbeebb4ceeaa976cb4bdebe25583f0ed8f37917ef612883574fd7d032ff976",
+      "releaseGitSha256": "4e9929533694b49e3aabedf18094b13667ddf5bfd2c314c3cbcafff8fde5ae8e"
+    },
+    "tools/Prepare-UpdaterRuntime.py": {
+      "workspaceSha256": "8dd95e25f3b7506cddbbce7c33f74877b9c2c87362ae7fc47ee79ef80a9a2b4e",
+      "releaseGitSha256": "8dd95e25f3b7506cddbbce7c33f74877b9c2c87362ae7fc47ee79ef80a9a2b4e"
+    },
+    "tools/installer_repair_ui.py": {
+      "workspaceSha256": "281ae86df3f2a2686428af90f1b920656cd04ac3b8b060350a7d8ba1b6e22cfb",
+      "releaseGitSha256": "281ae86df3f2a2686428af90f1b920656cd04ac3b8b060350a7d8ba1b6e22cfb"
+    },
+    "tools/internal_installer_inputs.py": {
+      "workspaceSha256": "c53759bd457a2650f7d767dd22120855b2137c237926556a53758f769f9baaec",
+      "releaseGitSha256": "c53759bd457a2650f7d767dd22120855b2137c237926556a53758f769f9baaec"
+    },
+    "tools/update-runtime/apply_update.py": {
+      "workspaceSha256": "76a98f488d6f9544dd91a4649f7b2a3e4aed26009262d49d4e685b60e0498c4b",
+      "releaseGitSha256": "76a98f488d6f9544dd91a4649f7b2a3e4aed26009262d49d4e685b60e0498c4b"
+    },
+    "tools/update-runtime/install_ops.py": {
+      "workspaceSha256": "7652bebd823d4ceb429cdbe9ae39f8d216f8f3ef53b376793b9cd755420c09d9",
+      "releaseGitSha256": "7652bebd823d4ceb429cdbe9ae39f8d216f8f3ef53b376793b9cd755420c09d9"
+    },
+    "tools/update-runtime/repair_install.py": {
+      "workspaceSha256": "b5f3d96adaf6f24cc351318e0292d775093a7c0a2ac98afeda2cc15352fbd15b",
+      "releaseGitSha256": "b5f3d96adaf6f24cc351318e0292d775093a7c0a2ac98afeda2cc15352fbd15b"
+    },
+    "tools/update-runtime/test_install.py": {
+      "workspaceSha256": "b8dd7270860e8bf50a949cfb2be76ea9a6c188cca68d72ef059fee1ef0019c37",
+      "releaseGitSha256": "b8dd7270860e8bf50a949cfb2be76ea9a6c188cca68d72ef059fee1ef0019c37"
+    },
+    "tools/update-runtime/test_internal_inputs.py": {
+      "workspaceSha256": "f7c41ae226f73e4dd0c93de2bc27e399e0f591f108cb55b1b4261e848dde3d5a",
+      "releaseGitSha256": "f7c41ae226f73e4dd0c93de2bc27e399e0f591f108cb55b1b4261e848dde3d5a"
+    },
+    "tools/update-runtime/test_program_repair.py": {
+      "workspaceSha256": "7dd7f9686bde769311ccb7d02cd61b7fa32036885b9b86abff62da0f2f3760cd",
+      "releaseGitSha256": "7dd7f9686bde769311ccb7d02cd61b7fa32036885b9b86abff62da0f2f3760cd"
+    },
+    "tools/update-runtime/test_recovery_integrity.py": {
+      "workspaceSha256": "5021f999aefdb4a442e5d7f7a5833976c7f29459a6d8d5ade4e8386db9f7c158",
+      "releaseGitSha256": "5021f999aefdb4a442e5d7f7a5833976c7f29459a6d8d5ade4e8386db9f7c158"
+    },
+    "tools/update-runtime/test_update_review_boundaries.py": {
+      "workspaceSha256": "34a7f26010dcaaf1e56637ee994d2ce1d2f545086f77db8bd7a54a5434a1e77a",
+      "releaseGitSha256": "34a7f26010dcaaf1e56637ee994d2ce1d2f545086f77db8bd7a54a5434a1e77a"
+    },
+    "tools/update-runtime/test_verification_wait.py": {
+      "workspaceSha256": "0337765ad97936bcff902c36d359f2dfd89aeae8e2606d2e4cb8ab07d6118a72",
+      "releaseGitSha256": "0337765ad97936bcff902c36d359f2dfd89aeae8e2606d2e4cb8ab07d6118a72"
+    },
+    "tools/windows-launcher/Launcher.cs": {
+      "workspaceSha256": "f319fb8a97514c663d3f73cd4bbcdb0b338dca00d3771546252bbb34c8ecc98d",
+      "releaseGitSha256": "e6a9e23d9ba5c6b4cb7ea9a077564e7bcb3ac01b4e75eb5608248e5df2ea3071"
+    }
+  },
+  "gitLineEndingNormalization": [
+    "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiCharacterPositionPolicy.kt",
+    "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiImageModel.kt",
+    "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiImageService.kt",
+    "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiParameterCompatibility.kt",
+    "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiPngMetadataReader.kt",
+    "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiPromptPlan.kt",
+    "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiStudioImageImport.kt",
+    "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiStudioModels.kt",
+    "modules/image-authority/src/main/kotlin/com/example/chatbar/domain/image/NovelAiV5TextPromptPolicy.kt",
+    "modules/image-authority/src/test/resources/nai-parameter-compatibility-fixtures.json",
+    "modules/studio-core/src/main/kotlin/io/github/misakapiano/ccbstudio/core/DesignProvenance.kt",
+    "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/LibraryMonitorDiscoveryTest.kt",
+    "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/NoOpCreationEditTest.kt",
+    "modules/studio-core/src/test/kotlin/io/github/misakapiano/ccbstudio/core/ParameterReplayPersistenceTest.kt",
+    "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryDirectoryImport.kt",
+    "modules/studio-desktop/src/main/kotlin/io/github/misakapiano/ccbstudio/desktop/StudioPageHelp.kt",
+    "modules/studio-desktop/src/main/resources/brand/PROVENANCE.json",
+    "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryCandidateReviewTest.kt",
+    "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryDirectoryImportTest.kt",
+    "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/GalleryHistoryRouteCacheTest.kt",
+    "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/NativeHistoryScaleProbe.kt",
+    "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/NativeLockGroupingProbe.kt",
+    "modules/studio-desktop/src/test/kotlin/io/github/misakapiano/ccbstudio/desktop/PreviewLoadingDiagnosticTest.kt",
+    "tools/Check-NaiParameterSource.py",
+    "tools/windows-launcher/Launcher.cs"
+  ],
+  "sharedDocumentsExcluded": true,
+  "originalBranchUnchanged": true,
+  "originalIndexEmpty": true,
+  "releaseVersion": 120,
+  "published": false,
+  "sourceRoot": "H:\\CCB-Studio-Suite\\.local\\r120",
+  "preparationFailures": [
+    "first long-path worktree creation exit128",
+    "initial exact-byte equivalence assertion rejected Git CRLF/LF normalization; canonical Git source now recorded explicitly"
+  ]
+}

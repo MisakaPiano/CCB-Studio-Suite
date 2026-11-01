@@ -1,0 +1,9 @@
+{
+  "status": "FAILED_RETAINED",
+  "stage": "AUDIT_ONLY_INDEX_PREPARATION",
+  "reason": "git diff --cached --check used original worktreeHEAD instead of release-source parent and inspected unrelated cumulative source whitespace",
+  "fix": "Scope check to explicit new audit paths against8fcc; preserve raw evidence via local -text attributes",
+  "productionSourceChanged": false,
+  "publicInstallerChanged": false,
+  "originalIndexChanged": false
+}

@@ -1,0 +1,8 @@
+{
+  "status": "FAILED_RETAINED",
+  "stage": "A_PROCESS_BINDING",
+  "reason": "Jpackage exposes parent launcher and child JVM with identical exe path; driver incorrectly required one process rather than one leaf JVM",
+  "visibleAppWindows": 1,
+  "productionUpdateStarted": false,
+  "fix": "Bind exact executable leaf process; UI remains selected by actual Sky window; reuse verified download and runningA, no reinstall or repeated download"
+}
