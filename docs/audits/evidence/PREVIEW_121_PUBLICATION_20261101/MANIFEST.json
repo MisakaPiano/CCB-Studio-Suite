@@ -1,7 +1,12 @@
 {
   "format": 1,
   "source": "e6cbe7ef6313c1389d48501d948c2d99763f1e56",
+  "rawEvidencePreserved": true,
   "files": {
+    ".gitattributes": {
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
     "after-update-check.log": {
       "bytes": 170,
       "sha256": "2773981a045699b2a37e09ca9ffb526a0cf1aa5f8c64f68c84e74121afe02e24"
@@ -49,6 +54,14 @@
     "dependency-preparation-failure/test-cases.json": {
       "bytes": 4,
       "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+    },
+    "EVIDENCE_BYTE_PRESERVATION.json": {
+      "bytes": 1691,
+      "sha256": "0304b0e3287781ab1def6796efc5e3feff623ca7ec2eda523fadc166259d9d22"
+    },
+    "FINAL_PUBLIC_READBACK.json": {
+      "bytes": 1022,
+      "sha256": "b002c8e26355aa2ea29df5cdd83c7e590b86d190db1f279a4284dd6bb85f7d0d"
     },
     "ISOLATED_INSTALL_VERIFICATION.json": {
       "bytes": 1426,
@@ -106,6 +119,10 @@
       "bytes": 785,
       "sha256": "174b72dea00733eb5e22c1ee8fa9a75fb865203aea651dac8d43bc018ae026af"
     },
+    "README_PLUGIN_PUBLICATION.json": {
+      "bytes": 208,
+      "sha256": "55b3ab9a6e016502cc75a400fc11777f3a2224fe82a629455412ff5dd86b9e34"
+    },
     "release-check/fixture-cleanup.json": {
       "bytes": 297,
       "sha256": "2a45bd6b96214ed86a2935c0405deffaebfda83aca04dac96673d29ae11b7eff"
@@ -132,7 +149,7 @@
     },
     "RELEASE_STATE.json": {
       "bytes": 1157,
-      "sha256": "fe66018cec107240742f6387f2a33d2cf47c2bad4cbab363cacf402230360c42"
+      "sha256": "976909d11a4d0ff33b1ca97dfc0007f46f21ab838c45dc985a4dc81f7c371108"
     },
     "SOURCE_PUBLICATION.json": {
       "bytes": 246,
