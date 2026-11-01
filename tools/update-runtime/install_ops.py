@@ -69,7 +69,7 @@ def install_candidate(installer,target,custom,installed,cache,data_root,run=None
     expected={k:custom[k] for k in ['product','platform','channel','version','sourceSha']}
     name=str(expected['version'])+'-'+expected['sourceSha'][:12]
     final=installed.parent/name;stage=installed.parent/(name+'.'+uuid.uuid4().hex+'.installing')
-    if final.exists():raise UpdateRejected('Target version directory already exists; inspect retained installation')
+    existing=final.exists()
     for p in [final,stage]:
         if data_root==p or data_root.is_relative_to(p) or p.is_relative_to(data_root) or p==installed:raise UpdateRejected('Program/data directories overlap')
     if disk_usage(installed.parent).free<custom['installedBytes']+64*1024**2:raise UpdateRejected('Insufficient installation space')
@@ -96,6 +96,21 @@ def install_candidate(installer,target,custom,installed,cache,data_root,run=None
             if code!=0:raise UpdateRejected('Installer failed with exit code '+str(code))
         record['verification']=verify_install(stage,expected)
         if record['verification']['bytes']>custom['installedBytes']:raise UpdateRejected('Installed size exceeds authenticated budget')
+        if existing:
+            # The reference manifest comes from the just-authenticated installer,
+            # never from the writable existing directory alone.
+            reference=record['verification']['manifestSha256']
+            try:
+                reused=verify_install(final,expected)
+                if reused['manifestSha256']!=reference:
+                    raise UpdateRejected('Existing target manifest differs from authenticated installer')
+            except (OSError,ValueError) as error:
+                record.update(status='REPAIR_REQUIRED',reason=type(error).__name__,stageRetained=True)
+                atomic_json(journal,record)
+                raise UpdateRejected('Existing target requires package repair; original directory and fresh verified stage retained') from error
+            record.update(status='REUSED_VERIFIED',verification=reused,stageRetained=True)
+            atomic_json(journal,record)
+            return final,journal,record
         os.rename(stage,final)
         try:
             from residue_cleanup import move_program_receipt
@@ -104,6 +119,6 @@ def install_candidate(installer,target,custom,installed,cache,data_root,run=None
         record['status']='INSTALLED_NOT_STARTED';atomic_json(journal,record)
         return final,journal,record
     except Exception as error:
-        record.update(status='FAILED_RETAINED',reason=type(error).__name__)
+        if record.get('status')!='REPAIR_REQUIRED':record.update(status='FAILED_RETAINED',reason=type(error).__name__)
         atomic_json(journal,record)
         raise

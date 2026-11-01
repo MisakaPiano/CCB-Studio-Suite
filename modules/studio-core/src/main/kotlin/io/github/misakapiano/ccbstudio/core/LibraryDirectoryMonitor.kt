@@ -5,7 +5,7 @@ import java.nio.file.attribute.BasicFileAttributes
 import java.util.concurrent.TimeUnit
 
 /** Watches only explicit, same-workspace registrations. No file bytes are read by this monitor.
- * Full reconciliation on overflow/periodically is delegated to the existing bounded import scan. */
+ * Events still require a full import scan. Periodic metadata discovery is not a content audit. */
 class LibraryDirectoryMonitor(private val folders:List<LibraryFolder>,private val reconcileMillis:Long=60000,
     private val beforeNewRegistration:(Path)->Unit={}):AutoCloseable {
     private val service=FileSystems.getDefault().newWatchService()
@@ -13,16 +13,24 @@ class LibraryDirectoryMonitor(private val folders:List<LibraryFolder>,private va
     private val paths=mutableMapOf<Path,WatchKey>()
     private val initial=folders.map{it.id}.toMutableSet()
     private var lastReconcile=System.nanoTime()
-    init { try{register()}catch(e:Exception){service.close();throw e} }
-    private fun register() {
+    private var snapshots=emptyMap<String,Map<String,String>>()
+    init { try{reconcileMetadata()}catch(e:Exception){service.close();throw e} }
+    internal fun reconcileMetadata():Set<String> {
         val directories=linkedMapOf<Path,MutableSet<String>>()
+        val next=linkedMapOf<String,Map<String,String>>()
         for(folder in folders){val root=Path.of(folder.path);safePath(root)
+            val entries=linkedMapOf<String,String>();next[folder.id]=entries
             if(!Files.isDirectory(root,LinkOption.NOFOLLOW_LINKS))continue
             Files.walkFileTree(root,emptySet(),if(folder.recursive)32 else 1,object:SimpleFileVisitor<Path>() {
                 override fun preVisitDirectory(dir:Path,attrs:BasicFileAttributes):FileVisitResult {
                     if(runCatching{safePath(dir)}.isFailure)return FileVisitResult.SKIP_SUBTREE
                     require(directories.size<2000){"Too many watched directories; narrow the selected roots"}
                     directories.getOrPut(dir){mutableSetOf()}.add(folder.id);return FileVisitResult.CONTINUE
+                }
+                override fun visitFile(file:Path,attrs:BasicFileAttributes):FileVisitResult {
+                    require(entries.size<2000){"Too many files; narrow the selected roots"}
+                    entries[root.relativize(file).toString()]="${attrs.fileKey()}|${attrs.size()}|${attrs.lastModifiedTime()}|${attrs.creationTime()}|${attrs.isRegularFile}|${attrs.isSymbolicLink}"
+                    return FileVisitResult.CONTINUE
                 }
             })
         }
@@ -33,6 +41,9 @@ class LibraryDirectoryMonitor(private val folders:List<LibraryFolder>,private va
             val key=paths[path]?:run{beforeNewRegistration(path);path.register(service,StandardWatchEventKinds.ENTRY_CREATE,StandardWatchEventKinds.ENTRY_MODIFY,StandardWatchEventKinds.ENTRY_DELETE).also{paths[path]=it}}
             keys[key]=ids
         }
+        val changed=folders.map{it.id}.filter{snapshots[it]!=next[it]}.toSet()
+        snapshots=next
+        return changed
     }
     fun changes(timeoutMillis:Long=500):Set<String> {
         require(timeoutMillis in 0..1000)
@@ -45,8 +56,9 @@ class LibraryDirectoryMonitor(private val folders:List<LibraryFolder>,private va
             if(!current.reset()){keys.remove(current);result+=ids;refresh=true}
             key=service.poll()
         }
-        if(TimeUnit.NANOSECONDS.toMillis(System.nanoTime()-lastReconcile)>=reconcileMillis){result+=folders.map{it.id};refresh=true;lastReconcile=System.nanoTime()}
-        if(refresh)register()
+        val reconcile=TimeUnit.NANOSECONDS.toMillis(System.nanoTime()-lastReconcile)>=reconcileMillis
+        if(refresh || reconcile)result+=reconcileMetadata()
+        if(reconcile)lastReconcile=System.nanoTime()
         return result
     }
     override fun close(){service.close()}

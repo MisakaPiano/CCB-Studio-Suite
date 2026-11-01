@@ -27,7 +27,7 @@ internal data class GalleryScope(val ids:Set<String>?=null,val label:String="全
 }
 
 /** Same navigation/filter controls for the live library and the archive, with separate preferences. */
-@Composable internal fun GalleryAlbumControls(c:WorkbenchController,g:GalleryViewState=c.gallery,onNavigate:()->Unit={c.selection=emptySet()}) {
+@Composable internal fun GalleryAlbumControls(c:WorkbenchController,g:GalleryViewState=c.gallery,showAdvanced:Boolean=true,onNavigate:()->Unit={c.selection=emptySet()}) {
     val key=if(g.namespace.isBlank())"galleryTagFoldDepths"else g.namespace+".galleryTagFoldDepths"
     LaunchedEffect(c,c.library.state) {
         val state=c.library.state?:return@LaunchedEffect
@@ -43,9 +43,8 @@ internal data class GalleryScope(val ids:Set<String>?=null,val label:String="全
         if(c.busy||g.foldPreferences==null)return
         val depth=g.depth;val preference=NovelAiHistoryFoldPreference(depth,enabled,type)
         val tagDepths=if(tag)g.tagFoldDepths+depth else g.tagFoldDepths-depth
-        c.run("保存相册折叠偏好") {
-            GalleryFoldPreferences(c.library.repository,g.namespace).save(preference,directory)
-            c.library.repository.update{it.copy(preferences=it.preferences+(key to documentJson.encodeToString(tagDepths.sorted())))}
+        c.run("保存相册折叠偏好",refreshAssets=false) {
+            GalleryFoldPreferences(c.library.repository,g.namespace).save(preference,directory,tagDepths)
             g.tagFoldDepths=tagDepths;g.directoryFoldDepths=if(directory)g.directoryFoldDepths.orEmpty()+depth else g.directoryFoldDepths.orEmpty()-depth
             g.foldPreferences=g.foldPreferences.orEmpty()+(depth to preference);c.library.refresh();onNavigate();g.anchor=null
         }
@@ -53,7 +52,7 @@ internal data class GalleryScope(val ids:Set<String>?=null,val label:String="全
     fun sort(value:GallerySort) {
         if(c.busy||g.sortPreferences==null)return
         val identity=g.scope.identity
-        c.run("保存相册默认排序"){GallerySortPreferences(c.library.repository).save(identity,value);g.sortPreferences=g.sortPreferences.orEmpty()+(identity to value);c.library.refresh();g.anchor=null}
+        c.run("保存相册默认排序",refreshAssets=false){GallerySortPreferences(c.library.repository).save(identity,value);g.sortPreferences=g.sortPreferences.orEmpty()+(identity to value);c.library.refresh();g.anchor=null}
     }
     var dateInput by remember(g.scope.identity,g.date){mutableStateOf(g.date)}
     fun applyDate(){runCatching{galleryDateFilter(dateInput)}.onSuccess{g.date=dateInput.trim();g.historyProblem=null;g.anchor=null}.onFailure{g.historyProblem="日期无效，请使用年、年月或年月日"}}
@@ -74,7 +73,7 @@ internal data class GalleryScope(val ids:Set<String>?=null,val label:String="全
         LibraryChoice("",GallerySortField.entries,g.sort.field,{it.label}){sort(g.sort.copy(field=it))}
         LibraryAction("",!c.busy&&g.sortPreferences!=null,icon=if(g.sort.descending)Lucide.ArrowDownWideNarrow else Lucide.ArrowUpNarrowWide,accessibilityLabel=if(g.sort.descending)"降序 ↓"else"升序 ↑"){sort(g.sort.copy(descending=!g.sort.descending))}
         Spacer(Modifier.weight(1f).widthIn(min=8.dp))
-        StudioCompactField("日期（YYYY / YYYY-MM / YYYY-MM-DD）",dateInput,{dateInput=it},Modifier.width(256.dp).onKeyEvent{if(it.type==KeyEventType.KeyDown&&it.key==Key.Enter){applyDate();true}else false},trailing={
+        if(showAdvanced)StudioCompactField("日期（YYYY / YYYY-MM / YYYY-MM-DD）",dateInput,{dateInput=it},Modifier.width(256.dp).onKeyEvent{if(it.type==KeyEventType.KeyDown&&it.key==Key.Enter){applyDate();true}else false},trailing={
             GalleryCalendar(dateInput){picked->dateInput=picked;g.date=picked;g.historyProblem=null}
             LibraryAction("↵",style=StudioActionStyle.TERTIARY,accessibilityLabel="应用日期"){applyDate()}
             LibraryAction("×",style=StudioActionStyle.TERTIARY,accessibilityLabel="清除日期"){g.date="";dateInput="";g.historyProblem=null}

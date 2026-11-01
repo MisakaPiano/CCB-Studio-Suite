@@ -7,6 +7,27 @@ import java.nio.file.Path
 import kotlin.test.*
 
 class TypesetAutoMaskOneClickTest {
+    @Test fun explicitCurrentAndSelectionOverrideSavedRangeAndPreserveOriginal()=runBlocking {
+        val root=Path.of(System.getProperty("preview.test.root")).resolve(newId())
+        val w=StudioWorkspace.openStudio(root.resolve("workspace"));val bytes=EditorRenderer.synthetic(128,64);val id=w.importImage("synthetic.png",bytes)
+        val scope=CoroutineScope(SupervisorJob()+Dispatchers.Default)
+        val c=WorkbenchController(w,scope,DesktopNovelAiInfrastructure(root.resolve("runtime/catalog")),root.resolve("runtime/budget"),admissionOverride=RequestAdmission{error("No services")})
+        try {
+            c.editor.create("explicit range",listOf(id,id,id));idle(c)
+            val a=c.editor.autoMask;a.chooseModel={"synthetic.onnx" to LocalOnnxMaskDetectorTest.syntheticModel()};a.loadModel();idle(c)
+            a.selectedPages=true;a.saveConfiguration();idle(c)
+            val pages=c.editor.document!!.pages;c.editor.selectedPages=pages.map{it.id}.toSet()
+            a.runConfigured(setOf(pages[1].id));idle(c)
+            assertEquals(listOf(0,1,0),c.editor.document!!.pages.map{it.masks.size})
+            c.editor.history();idle(c)
+            a.selectedPages=false;a.saveConfiguration();idle(c)
+            val selected=mutableSetOf(pages[0].id,pages[2].id)
+            a.runConfigured(selected);selected.clear();idle(c)
+            assertEquals(listOf(1,0,1),c.editor.document!!.pages.map{it.masks.size})
+            assertTrue(a.progress.contains("2"));assertContentEquals(bytes,w.bytes(id))
+            c.editor.history();idle(c);assertTrue(c.editor.document!!.pages.all{it.masks.isEmpty()})
+        } finally {c.close();scope.cancel()}
+    }
     private suspend fun idle(c:WorkbenchController){withTimeout(30000){c.active?.join()};assertNull(c.problem,c.problem)}
     @Test fun saveOnceThenRepeatedPagesAndRestartUseLocalModelWithOneUndoAndNoDuplicateMasks()=runBlocking {
         val root=Path.of(System.getProperty("preview.test.root")).resolve(newId());val w=StudioWorkspace.openStudio(root.resolve("workspace"));val bytes=EditorRenderer.synthetic(128,64);val id=w.importImage("synthetic.png",bytes)

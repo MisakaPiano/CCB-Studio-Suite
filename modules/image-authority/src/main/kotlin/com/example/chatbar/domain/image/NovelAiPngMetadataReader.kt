@@ -73,8 +73,8 @@ object NovelAiPngMetadataReader {
         val modelText = (explicitModel ?: root["source"]?.jsonPrimitive?.contentOrNull ?: source).orEmpty().trim().lowercase()
         val model = when {
             "curated" in modelText || "inpainting" in modelText -> null
-            modelText in ENHANCE_V5_SOURCES -> NovelAiImageModel.V5_FULL
-            modelText in ENHANCE_V45_SOURCES -> NovelAiImageModel.V4_5_FULL
+            modelText in ENHANCE_V5_SOURCES || modelText=="novelai diffusion v5" -> NovelAiImageModel.V5_FULL
+            modelText in ENHANCE_V45_SOURCES || modelText=="novelai diffusion v4.5" -> NovelAiImageModel.V4_5_FULL
             else -> null
         } ?: error("无法准确识别受支持的 Full 模型，请使用 Upscale")
         val metadata = root.toStudioMetadata(imagePath, source) ?: error("生成元数据不完整，请使用 Upscale")
@@ -152,7 +152,7 @@ object NovelAiPngMetadataReader {
         imagePath: String,
         source: String? = null
     ): NovelAiStudioPngMetadata? = runCatching {
-        json.parseToJsonElement(comment).jsonObject.toStudioMetadata(imagePath, source)
+        resolveEnhanceActualPrompts(json.parseToJsonElement(comment).jsonObject).toStudioMetadata(imagePath, source)
     }.getOrNull()
 
     private fun JsonObject.toMetadata(imagePath: String): GeneratedImageMetadata? {
@@ -235,13 +235,96 @@ object NovelAiPngMetadataReader {
         }
         val matchedSize = matchStudioSize(width, height)
         val useCustomSize = matchedSize == null && NovelAiStudioSizePolicy.validationError(width, height) == null
-        val modelText = listOfNotNull(
-            this["model"]?.jsonPrimitive?.contentOrNull,
-            this["model_id"]?.jsonPrimitive?.contentOrNull,
-            this["source"]?.jsonPrimitive?.contentOrNull,
-            source
-        ).joinToString(" ")
-        val action = when (this["action"]?.jsonPrimitive?.contentOrNull?.lowercase()) {
+        val explicitModel = this["model"]?.jsonPrimitive?.contentOrNull ?: this["model_id"]?.jsonPrimitive?.contentOrNull
+        val sourceModel = this["source"]?.jsonPrimitive?.contentOrNull ?: source
+        val modelText = (explicitModel ?: sourceModel).orEmpty().trim().lowercase()
+        val model = when {
+            modelText=="nai-diffusion-4-5-full-inpainting" && this["action"]?.jsonPrimitive?.contentOrNull==NovelAiGenerationAction.INPAINT.apiId -> NovelAiImageModel.V4_5_FULL
+            modelText=="nai-diffusion-5-full-inpainting" && this["action"]?.jsonPrimitive?.contentOrNull==NovelAiGenerationAction.INPAINT.apiId -> NovelAiImageModel.V5_FULL
+            modelText in ENHANCE_V5_SOURCES || modelText=="novelai diffusion v5" -> NovelAiImageModel.V5_FULL
+            modelText in ENHANCE_V45_SOURCES || modelText=="novelai diffusion v4.5" -> NovelAiImageModel.V4_5_FULL
+            else -> null
+        }
+        val problems=mutableListOf<String>()
+        fun bool(obj: JsonObject?, key: String, path: String = key): Boolean? {
+            val value=obj?.get(key) ?: return null
+            val primitive=value as? kotlinx.serialization.json.JsonPrimitive
+            val result=primitive?.booleanOrNull?.takeIf { !primitive.isString }
+            if (result == null) problems.add(path)
+            return result
+        }
+        val positiveObject=this["v4_prompt"]?.jsonObjectOrNull()
+        val negativeObject=this["v4_negative_prompt"]?.jsonObjectOrNull()
+        val samplerText=this["sampler"]?.jsonPrimitive?.contentOrNull
+        val sampler=NovelAiSampler.entries.firstOrNull { it.apiId==samplerText }
+        val noiseText=this["noise_schedule"]?.jsonPrimitive?.contentOrNull
+        val noise=NovelAiNoiseSchedule.entries.firstOrNull { it.apiId==noiseText }
+        if (containsKey("noise_schedule") && noise==null) problems.add("noise_schedule")
+        for ((key,valid) in listOf(
+            "steps" to (this["steps"]?.jsonPrimitive?.intOrNull?.let { it in 1..50 } == true),
+            "n_samples" to (this["n_samples"]?.jsonPrimitive?.intOrNull?.let { it in 1..4 } == true),
+            "scale" to (this["scale"]?.jsonPrimitive?.floatOrNull?.let { it.isFinite() && it in 1f..10f } == true),
+            "cfg_rescale" to (this["cfg_rescale"]?.jsonPrimitive?.floatOrNull?.let { it.isFinite() && it in 0f..1f } == true)
+        )) if (containsKey(key) && !valid) problems.add(key)
+        if (matchedSize==null && !useCustomSize) problems.add("dimensions")
+        // Recognized but not configurable in this ordinary Full product path:
+        // reject non-equivalent values rather than silently replacing them.
+        val fixedParameters=mapOf<String,kotlinx.serialization.json.JsonElement>(
+            "params_version" to kotlinx.serialization.json.JsonPrimitive(3),
+            "qualityToggle" to kotlinx.serialization.json.JsonPrimitive(false),
+            "ucPreset" to kotlinx.serialization.json.JsonPrimitive(3),
+            "legacy" to kotlinx.serialization.json.JsonPrimitive(false),
+            "legacy_uc" to kotlinx.serialization.json.JsonPrimitive(false),
+            "legacy_v3_extend" to kotlinx.serialization.json.JsonPrimitive(false),
+            "autoSmea" to kotlinx.serialization.json.JsonPrimitive(false),
+            "sm" to kotlinx.serialization.json.JsonPrimitive(false),
+            "sm_dyn" to kotlinx.serialization.json.JsonPrimitive(false),
+            "dynamic_thresholding" to kotlinx.serialization.json.JsonPrimitive(false),
+            "stream" to kotlinx.serialization.json.JsonPrimitive("msgpack")
+        )
+        fixedParameters.forEach { (key,value) -> if(containsKey(key) && this[key]!=value)problems.add(key) }
+        if(negativeObject?.containsKey("legacy_uc")==true && negativeObject["legacy_uc"]!=kotlinx.serialization.json.JsonPrimitive(false))problems.add("negative.legacy_uc")
+        if(containsKey("uncond_scale") && this["uncond_scale"]?.jsonPrimitive?.floatOrNull!=1f)problems.add("uncond_scale")
+        // No ordinary-product below-sigma control/default mapping is frozen.
+        // Null is unconfigured; do not guess that a numeric value is equivalent.
+        if(containsKey("skip_cfg_below_sigma") && this["skip_cfg_below_sigma"] !is kotlinx.serialization.json.JsonNull)problems.add("skip_cfg_below_sigma")
+        if(containsKey("extra_noise_seed") && this["extra_noise_seed"]!=this["seed"])problems.add("extra_noise_seed")
+        val sigma=this["skip_cfg_above_sigma"]
+        val importedSigma=(sigma as? kotlinx.serialization.json.JsonPrimitive)?.floatOrNull
+        // Preserve explicit numeric sigma as a scalar, not a lossy true/false
+        // conversion. Only newly chosen Variety applies resolution rescaling.
+        val supportedSigma=importedSigma!=null && importedSigma.isFinite() && importedSigma>0f
+        val variety=when {
+            sigma==null -> null
+            sigma is kotlinx.serialization.json.JsonNull -> false
+            supportedSigma -> true
+            else -> { problems.add("skip_cfg_above_sigma"); null }
+        }
+        // A single shared center is represented. Do not silently lose multiple
+        // or different negative centers on import/replay.
+        for (index in 0 until characterCount) {
+            val pos=positiveCharacters?.getOrNull(index)?.jsonObjectOrNull()?.get("centers")?.jsonArrayOrNull()
+            val neg=negativeCharacters?.getOrNull(index)?.jsonObjectOrNull()?.get("centers")?.jsonArrayOrNull()
+            if ((pos?.size ?: 0)>1 || (neg?.size ?: 0)>1 || (neg!=null && neg!=pos)) problems.add("character_centers")
+            if (pos!=null && pos.isNotEmpty() && characters[index].center==null) problems.add("character_centers")
+        }
+        val replay=NovelAiParameterReplay(
+            positiveUseOrder=bool(positiveObject,"use_order","positive.use_order"),
+            negativeUseOrder=bool(negativeObject,"use_order","negative.use_order"),
+            positiveUseCoords=bool(positiveObject,"use_coords","positive.use_coords") ?: bool(this,"use_coords"),
+            negativeUseCoords=bool(negativeObject,"use_coords","negative.use_coords"),
+            preferBrownian=bool(this,"prefer_brownian"),
+            deliberateEulerAncestralBug=bool(this,"deliberate_euler_ancestral_bug"),
+            unsupportedSampler=samplerText?.takeIf { sampler==null },
+            unsupportedModel=(explicitModel ?: sourceModel)?.takeIf { it.isNotBlank() && model==null },
+            unsupportedNoiseSchedule=noiseText?.takeIf { noise==null },
+            problems=problems.toList()
+        )
+        val actionText = (this["action"] as? kotlinx.serialization.json.JsonPrimitive)?.contentOrNull?.lowercase()
+        val unsupportedAction = if (containsKey("action") && actionText !in NovelAiGenerationAction.entries.map { it.apiId }) {
+            actionText ?: this["action"].toString()
+        } else null
+        val action = when (actionText) {
             NovelAiGenerationAction.IMAGE_TO_IMAGE.apiId -> NovelAiGenerationAction.IMAGE_TO_IMAGE
             NovelAiGenerationAction.INPAINT.apiId -> NovelAiGenerationAction.INPAINT
             else -> NovelAiGenerationAction.TEXT_TO_IMAGE
@@ -280,7 +363,7 @@ object NovelAiPngMetadataReader {
                 useCharacterPositions = this["v4_prompt"]?.jsonObjectOrNull()
                     ?.get("use_coords")?.jsonPrimitive?.booleanOrNull
                     ?: this["use_coords"]?.jsonPrimitive?.booleanOrNull ?: false,
-                model = modelText.toNovelAiModelOrNull(),
+                model = model,
                 sizeTier = matchedSize?.first,
                 aspectRatio = matchedSize?.second,
                 customWidth = width.takeIf { useCustomSize },
@@ -289,12 +372,15 @@ object NovelAiPngMetadataReader {
                 steps = this["steps"]?.jsonPrimitive?.intOrNull?.takeIf { it in 1..50 },
                 guidance = this["scale"]?.jsonPrimitive?.floatOrNull?.takeIf { it in 1f..10f },
                 cfgRescale = this["cfg_rescale"]?.jsonPrimitive?.floatOrNull?.takeIf { it in 0f..1f },
-                sampler = this["sampler"]?.jsonPrimitive?.contentOrNull?.let { sampler ->
-                    NovelAiSampler.entries.firstOrNull { it.apiId.equals(sampler, ignoreCase = true) }
-                }
+                sampler = sampler,
+                noiseSchedule = noise,
+                varietyPlus = variety,
+                varietySigma = importedSigma.takeIf { supportedSigma },
+                parameterReplay = replay
             ),
             imageGuidance = NovelAiImportedImageGuidance(
                 action = action,
+                unsupportedAction = unsupportedAction,
                 baseImageBase64 = this["image"]?.jsonPrimitive?.contentOrNull,
                 maskBase64 = this["mask"]?.jsonPrimitive?.contentOrNull,
                 imageToImageStrength = if (action == NovelAiGenerationAction.IMAGE_TO_IMAGE) {
@@ -313,6 +399,8 @@ object NovelAiPngMetadataReader {
             ),
             seed = this["seed"]?.jsonPrimitive?.longOrNull
                 ?.takeIf { it in NovelAiGenerationSettings.MIN_SEED..NovelAiGenerationSettings.MAX_SEED },
+            seedInvalid = containsKey("seed") && (this["seed"]?.jsonPrimitive?.longOrNull?.let {
+                it in NovelAiGenerationSettings.MIN_SEED..NovelAiGenerationSettings.MAX_SEED } != true),
             width = width,
             height = height
         )
@@ -389,15 +477,6 @@ private fun matchStudioSize(width: Int, height: Int): Pair<NovelAiSizeTier, Nove
         }
     }
     return null
-}
-
-private fun String.toNovelAiModelOrNull(): NovelAiImageModel? {
-    val normalized = lowercase()
-    return when {
-        "nai-diffusion-5" in normalized || "diffusion v5" in normalized -> NovelAiImageModel.V5_FULL
-        "nai-diffusion-4" in normalized || "diffusion v4" in normalized -> NovelAiImageModel.V4_5_FULL
-        else -> null
-    }
 }
 
 private fun kotlinx.serialization.json.JsonElement.jsonObjectOrNull(): JsonObject? =

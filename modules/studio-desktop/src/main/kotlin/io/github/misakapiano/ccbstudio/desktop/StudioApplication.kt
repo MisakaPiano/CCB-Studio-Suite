@@ -277,7 +277,9 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
         withContext(Dispatchers.IO){session.update(DesignLineageOperation.EDIT) {old -> (if(old.draft==d)old else old.change(d)).copy(composer=input,attachCurrentPrompt=attached,llmAccountId=l,naiAccountId=n)}}
         state=withContext(Dispatchers.IO){workspace.state};saved=draft==d && composer==input && attach==attached && llmId==l && naiId==n
     }
-    fun run(label:String,body:suspend ()->Unit) {
+    // Only view preferences may reuse the admitted image/document catalog. Mutating commands
+    // keep the default full refresh; original reads and exports still verify their payloads.
+    fun run(label:String,refreshAssets:Boolean=true,body:suspend ()->Unit) {
         if(busy||maintenance)return
         busy=true;activeOperation=label;message=label;problem=null;operationNotice=null
         active=scope.launch(start=CoroutineStart.UNDISPATCHED) {
@@ -288,7 +290,7 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
             finally {withContext(NonCancellable){
                 // Keep the caller context active when IO returns: an intentional cancellation is
                 // not a failed catalog read and must not be reported as workspace corruption.
-                try{withContext(Dispatchers.IO){state=workspace.state;assets=visibleAssets()};modelAccounts.syncSavedProfile()}
+                try{withContext(Dispatchers.IO){state=workspace.state;if(refreshAssets)assets=visibleAssets()};modelAccounts.syncSavedProfile()}
                 catch(e:Exception){problem="工作区需要恢复，已保留现有文件；请停止写入并检查"}
                 if(label=="导入图片"&&gallery.importStartedNanos>0){gallery.importDurationMs=(System.nanoTime()-gallery.importStartedNanos)/1000000;gallery.importStartedNanos=0}
                 activeOperation="";busy=false
@@ -401,30 +403,40 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
         val files=gallery.chooseImportFiles()
         if(files.isNotEmpty())importIngress(GalleryIngress(files=files))
     }
-    fun importImageDirectory() {
+    fun importImageDirectory(recursive:Boolean=false) {
         if(busy||maintenance)return
-        gallery.chooseImportDirectory()?.let{importIngress(GalleryIngress(files=listOf(it),channel="gallery-directory-dialog"),expandDirectories=true)}
+        gallery.chooseImportDirectory()?.let{importGalleryDirectory(it,recursive)}
     }
     fun pasteImages():Boolean=try{if(busy)false else gallery.pasteContents()?.let{receiveTransfer(it,true)}?:false}catch(e:Exception){problem="剪贴板读取失败；现有资料未改变";true}
     fun receiveTransfer(transfer:java.awt.datatransfer.Transferable,paste:Boolean):Boolean=try {
         if(busy)false else galleryTransfer(transfer,paste)?.let{importIngress(it);true}?:false
     }catch(e:Exception){problem="图片传入失败：${e.javaClass.simpleName}；现有资料保留";true}
     fun importIngress(input:GalleryIngress,expandDirectories:Boolean=false,maxImages:Int=1000,onAccepted:(List<String>)->Unit={})=run("导入图片") {
+        importGalleryBatch(input,expandDirectories,maxImages,onAccepted)
+    }
+    internal suspend fun importGalleryBatch(input:GalleryIngress,expandDirectories:Boolean=false,maxImages:Int=1000,
+        onAccepted:(List<String>)->Unit={},reportOffset:Int?=null,onCommitted:(List<String>)->Unit={}) {
         require(input.files.size<=1000 && (input.files.isNotEmpty() xor (input.raster!=null)))
         val accepted=mutableListOf<String>()
-        val timings=linkedMapOf<String,Long>()
+        var storageFailed=false
+        var associationPublished=false
+        val timings=linkedMapOf<String,Long>().also{if(reportOffset!=null)it.putAll(gallery.importTimings)}
         fun <T> measure(stage:String,body:()->T):T {val start=System.nanoTime();try{return body()}finally{timings[stage]=(timings[stage]?:0)+(System.nanoTime()-start)/1000000;gallery.importTimings=timings.toMap()}}
-        gallery.importStartedNanos=System.nanoTime();gallery.importDurationMs=null
+        if(reportOffset==null){gallery.importStartedNanos=System.nanoTime();gallery.importDurationMs=null}
         gallery.importProgress="正在整理导入列表…"
-        val files=if(expandDirectories)animationIngressFiles(input.files)else input.files
+        val files=try{if(expandDirectories)animationIngressFiles(input.files)else input.files}catch(e:IllegalArgumentException){
+            problem="整理导入列表未完成：${e.message?.takeIf{it in setOf("目录项目过多，请选择较小目录","一次最多导入1000张图片")}?:"导入列表校验未通过"}；请使用文件夹分批导入。原文件保留。";return
+        }
         require(files.size.coerceAtLeast(if(input.raster!=null)1 else 0)<=maxImages){"当前批次最多1000张，请先移除部分项目"}
-        if(files.isEmpty()&&input.raster==null){problem="所选目录本层没有支持的图片，未添加；不包含子目录";return@run}
+        if(files.isEmpty()&&input.raster==null){problem="所选目录本层没有支持的图片，未添加；不包含子目录";return}
         val entries=files.map{it.fileName.toString() to it}.ifEmpty{listOf("Clipboard-raster.png" to null)}
-        gallery.imports=entries.map{GalleryImportResult(it.first,"WAITING")}
+        val offset=reportOffset?:0
+        if(reportOffset==null)gallery.imports=entries.map{GalleryImportResult(it.first,"WAITING")}
         try {
             for((index,entry) in entries.withIndex()){
                 currentCoroutineContext().ensureActive()
-                gallery.importProgress="读取并入库 ${index+1} / ${entries.size}"
+                gallery.importProgress="读取并入库 ${offset+index+1} / ${gallery.imports.size}"
+                val displayName=if(reportOffset==null)entry.first else gallery.imports[offset+index].name
                 val prepared=try {
                     val bytes=measure("read"){entry.second?.let{readBounded(it,EditorRenderer.MAX_BYTES)}?:requireNotNull(input.raster)}
                     measure("validate"){EditorRenderer.decode(bytes).flush()}
@@ -434,22 +446,25 @@ internal class WorkbenchController(val workspace:StudioWorkspace,val scope:Corou
                     val receipt=buildJsonObject{put("kind","image-ingress");put("version",1);put("source",if(entry.second==null)"clipboard-raster" else "file");put("channel",input.channel);entry.second?.let{put("sourcePath",it.toAbsolutePath().normalize().toString())};put("createdAt",System.currentTimeMillis())}.toString()
                     // A storage/commit failure stops the batch; never keep writing after uncertain persistence.
                     val id=try{measure("commit"){workspace.importImage(entry.first,prepared.getOrThrow(),receipt)}}catch(e:Exception){
-                        gallery.imports=gallery.imports.toMutableList().also{it[index]=GalleryImportResult(entry.first,"STORAGE_ERROR · 状态待检查，批次停止")};throw e
+                        storageFailed=true
+                        gallery.imports=gallery.imports.toMutableList().also{it[offset+index]=GalleryImportResult(displayName,"STORAGE_ERROR · 状态待检查，批次停止")};throw e
                     };accepted+=id;current=id;selection=accepted.toSet()
-                    GalleryImportResult(entry.first,"ORIGINAL_RETAINED · 目录副本待完成",id)
-                }else{val e=prepared.exceptionOrNull()!!;GalleryImportResult(entry.first,"FAILED · ${if(e is DataProblem)e.status else e.javaClass.simpleName}")}
-                gallery.imports=gallery.imports.toMutableList().also{it[index]=result}
+                    GalleryImportResult(displayName,"ORIGINAL_RETAINED · 目录副本待完成",id)
+                }else{val e=prepared.exceptionOrNull()!!;GalleryImportResult(displayName,"FAILED · ${if(e is DataProblem)e.status else e.javaClass.simpleName}")}
+                gallery.imports=gallery.imports.toMutableList().also{it[offset+index]=result}
+                currentCoroutineContext().ensureActive()
             }
+            if(accepted.isNotEmpty())try{onCommitted(accepted.toList());associationPublished=true}catch(e:Exception){storageFailed=true;throw e}
             val context=currentCoroutineContext()
             if(accepted.isNotEmpty())measure("intake-copy") {
                 library.repository.retainIngressBatch(accepted,{context.ensureActive()},{done,total->gallery.importProgress="保存目录副本 $done / $total"})
-                gallery.imports=gallery.imports.map{if(it.assetId!=null)it.copy(status=if(input.raster!=null)"IMPORTED_RASTER（新编码PNG，无原始文件字节）"else"IMPORTED_ORIGINAL")else it}
+                gallery.imports=gallery.imports.mapIndexed{index,it->if(index in offset until offset+entries.size && it.assetId!=null)it.copy(status=if(input.raster!=null)"IMPORTED_RASTER（新编码PNG，无原始文件字节）"else"IMPORTED_ORIGINAL")else it}
             }
         }finally{
-            gallery.imports=gallery.imports.map{if(it.status=="WAITING")it.copy(status="NOT_IMPORTED · 已停止")else it}
+            gallery.imports=gallery.imports.mapIndexed{index,it->if(index in offset until offset+entries.size && it.status=="WAITING")it.copy(status="NOT_IMPORTED · 已停止")else it}
             gallery.importProgress="导入结束 · ${accepted.size} / ${entries.size} 原件已入库"
-            if(gallery.imports.any{it.assetId==null||it.status.startsWith("ORIGINAL_RETAINED")})problem="部分文件或目录副本未完成；查看逐项结果。已提交原件保留。"
-            withContext(NonCancellable+Dispatchers.IO){measure("refresh"){library.refresh()}}
+            if(gallery.imports.subList(offset,offset+entries.size).any{it.assetId==null||it.status.startsWith("ORIGINAL_RETAINED")})problem="部分文件或目录副本未完成；查看逐项结果。已提交原件保留。"
+            withContext(NonCancellable+Dispatchers.IO){if(accepted.isNotEmpty()&&!storageFailed&&!associationPublished)onCommitted(accepted.toList());measure("refresh"){library.refresh()}}
             if(accepted.isNotEmpty()){onAccepted(accepted.toList());view="图库"}
         }
     }
@@ -557,7 +572,10 @@ internal class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
 @Composable internal fun Workbench(c:WorkbenchController,chrome:DesktopWindowChrome,closing:Boolean) {
     CompositionLocalProvider(androidx.compose.foundation.LocalContextMenuRepresentation provides androidx.compose.foundation.DarkDefaultContextMenuRepresentation){WorkbenchContent(c,chrome,closing)}
 }
+@OptIn(ExperimentalFoundationApi::class)
 @Composable private fun WorkbenchContent(c:WorkbenchController,chrome:DesktopWindowChrome,closing:Boolean) {
+    var pageHelp by remember{mutableStateOf(false)}
+    if(pageHelp)StudioPageHelp(c.view){pageHelp=false}
     LibrarySynchronization(c)
     AssetArchiveConfirmation(c)
     StudioAppearanceDialog(c)
@@ -576,6 +594,16 @@ internal class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
             if(showBrand)Text("Studio Suite",Modifier.width(120.dp),fontSize=14.sp)
             studioRoutes.forEach {label -> StudioRouteButton(label,c.view==label,compact,Modifier.onGloballyPositioned{r.buttons[label]=r.rect(it);r.publish()},pending=label=="更新"&&c.updater.pendingVersion!=null){c.navigate(label);if(label=="更新")c.updater.dismissStartupNotice()} }
             Spacer(Modifier.weight(1f))
+            DisposableEffect(r){onDispose{r.buttons.remove("page-help");r.publish()}}
+            Box(Modifier.onGloballyPositioned{r.buttons["page-help"]=r.rect(it);r.publish()}) {
+                TooltipArea(tooltip={Surface{Text("当前页面使用说明",Modifier.padding(8.dp))}}) {
+                    Box(Modifier.size(30.dp).background(DesktopBootstrapColors.muted,androidx.compose.foundation.shape.CircleShape)
+                        .border(1.dp,DesktopBootstrapColors.border,androidx.compose.foundation.shape.CircleShape)
+                        .semantics{contentDescription="当前页面使用说明"}
+                        .clickable(role=androidx.compose.ui.semantics.Role.Button){pageHelp=true},contentAlignment=Alignment.Center) {Text("?",fontSize=16.sp)}
+                }
+            }
+            Spacer(Modifier.width(12.dp))
             StudioAppearanceTitleButton(r){c.appearance.shown=true}
             listOf(ChromeHit.MINIMIZE,ChromeHit.MAXIMIZE,ChromeHit.CLOSE).forEach {hit ->
                 StudioCaptionButton(hit,native,compact,Modifier.onGloballyPositioned{r.captions[hit]=r.rect(it);r.publish()},chrome::command)
@@ -703,7 +731,7 @@ internal class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
     fun viewerIds(id:String)=(available.map{it.request().id().toString()}+id).distinct()
     val interim by produceState<ImageBitmap?>(null,c.intermediate){value=withContext(Dispatchers.IO){c.intermediate?.let{bytes->runCatching{val decoded=EditorRenderer.decode(bytes);try{decoded.toComposeImageBitmap()}finally{decoded.flush()}}.getOrNull()}}}
     Column(Modifier.fillMaxSize()) {
-        Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically){
+        if(!rail)Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically){
             Text(c.state.generationOrganization.batches.find{it.id==c.state.generationOrganization.currentManual}?.title?:"当前手动批次",Modifier.weight(1f),maxLines=1)
             StudioAction("保存并归档",manualIds.isNotEmpty()&&!c.busy&&!c.batch.state.running){c.generations.openArchive("manual")}
             StudioAction("历史批次"){c.generations.openHistory()}
@@ -723,7 +751,9 @@ internal class WorkbenchChrome(private val chrome:DesktopWindowChrome) {
         val preview:(String)->Unit={path->viewing=viewerIds(path.removePrefix("asset:"));initial=viewing!!.indexOf(path.removePrefix("asset:")).coerceAtLeast(0)}
         if(rail)Box(Modifier.weight(1f)){StudioVerticalFilmstrip(paths,selected,c::readAsset,onPreview=preview,onSelect=select)}
         else StudioFilmstrip(paths,selected,c::readAsset,onPreview=preview,onSelect=select)
-        StatusText("本次手动生成 ${available.size} 张 · 原始字节保全")
+        if(rail)Text("生成 ${available.size} 张",Modifier.fillMaxWidth().padding(vertical=6.dp),color=Quiet,
+            style=MaterialTheme.typography.caption,maxLines=1,textAlign=androidx.compose.ui.text.style.TextAlign.Center)
+        else StatusText("本次手动生成 ${available.size} 张 · 原始字节保全")
     }
     toolImage?.let{(id,bytes)->DesktopImageToolsDialog(bytes,c.picker,{toolImage=null},onProcessedImage={c.saveToolCopy(id,it)})}
     viewing?.let{ids->StudioAssetViewer(c,ids,initial){viewing=null}}

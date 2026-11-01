@@ -255,9 +255,9 @@ class NovelAiImageService(
         settings.validationError(prompt.characterCaptions.size)?.let { error(it) }
         val effectivePrompt = if (enhance != null) prompt else
             NovelAiV5TextPromptPolicy.apply(NovelAiPromptDelimiterPolicy.normalizeForRequest(prompt), settings.model)
-        val negative = if (enhance != null) prompt.negativePrompt else effectivePrompt.effectiveNegativePrompt.trim()
+        val negative = if (enhance != null || prompt.literalNegativePrompt) prompt.negativePrompt else effectivePrompt.effectiveNegativePrompt.trim()
         val useCoordinates = settings.useCharacterPositions && effectivePrompt.characterCaptions.isNotEmpty()
-        fun requestCenter(caption: NovelAiCharacterCaption) = if (useCoordinates) {
+        fun requestCenter(caption: NovelAiCharacterCaption) = if (useCoordinates && !caption.literalCoordinates) {
             NovelAiCharacterPositionPolicy.normalize(caption.center, settings.model)
         } else caption.center
         val characterCaptions = buildJsonArray {
@@ -273,8 +273,8 @@ class NovelAiImageService(
                 put("base_caption", effectivePrompt.baseCaption)
                 put("char_captions", characterCaptions)
             })
-            put("use_coords", useCoordinates)
-            put("use_order", true)
+            put("use_coords", settings.parameterReplay?.positiveUseCoords ?: useCoordinates)
+            put("use_order", settings.parameterReplay?.positiveUseOrder ?: true)
         }
         val v4NegativePrompt = buildJsonObject {
             put("caption", buildJsonObject {
@@ -289,8 +289,8 @@ class NovelAiImageService(
                 })
             })
             put("legacy_uc", false)
-            put("use_coords", useCoordinates)
-            put("use_order", true)
+            put("use_coords", settings.parameterReplay?.negativeUseCoords ?: useCoordinates)
+            put("use_order", settings.parameterReplay?.negativeUseOrder ?: true)
         }
         val requestModel = if (imageGuidance.action == NovelAiGenerationAction.INPAINT) {
             "${settings.model.apiId}-inpainting"
@@ -314,7 +314,7 @@ class NovelAiImageService(
                 put("ucPreset", 3)
                 put("qualityToggle", false)
                 put("negative_prompt", negative)
-                put("noise_schedule", "karras")
+                NovelAiParameterCompatibility.wireNoise(settings)?.let { put("noise_schedule", it) }
                 put("legacy", false)
                 put("legacy_uc", false)
                 put("use_coords", useCoordinates)
@@ -324,16 +324,25 @@ class NovelAiImageService(
                 put("sm_dyn", false)
                 put("dynamic_thresholding", false)
                 put("cfg_rescale", settings.cfgRescale)
-                put("skip_cfg_above_sigma", JsonNull)
-                put("deliberate_euler_ancestral_bug", false)
-                put("prefer_brownian", true)
+                if (settings.model == NovelAiImageModel.V4_5_FULL) {
+                    when {
+                        settings.varietySigma != null -> put("skip_cfg_above_sigma",settings.varietySigma)
+                        settings.varietyPlus && settings.varietyRescale -> put("skip_cfg_above_sigma",NovelAiParameterCompatibility.varietySigma(imageSize.width,imageSize.height))
+                        settings.varietyPlus -> put("skip_cfg_above_sigma",58)
+                        else -> put("skip_cfg_above_sigma",JsonNull)
+                    }
+                }
+                put("deliberate_euler_ancestral_bug", settings.parameterReplay?.deliberateEulerAncestralBug ?: false)
+                put("prefer_brownian", settings.parameterReplay?.preferBrownian ?: true)
                 put("stream", "msgpack")
                 put("v4_prompt", v4Prompt)
                 put("v4_negative_prompt", v4NegativePrompt)
                 if (enhance != null) {
                     require(imageGuidance.action == NovelAiGenerationAction.IMAGE_TO_IMAGE && settings.count == 1)
                     require(!enhance.upscaledEnhance || settings.model == NovelAiImageModel.V5_FULL)
-                    enhance.sourceParameters.forEach { (key, value) -> put(key, value) }
+                    enhance.sourceParameters.forEach { (key, value) ->
+                        if (key != "skip_cfg_above_sigma" || settings.model == NovelAiImageModel.V4_5_FULL) put(key, value)
+                    }
                     put("upscaled_enhance", enhance.upscaledEnhance)
                     put("color_correct", false)
                     put("extra_noise_seed", (settings.seed - 1L) and 0xffff_ffffL)

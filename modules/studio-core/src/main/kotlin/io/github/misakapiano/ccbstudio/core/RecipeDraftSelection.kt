@@ -9,6 +9,7 @@ enum class RecipeDraftField(val label:String) {
     STYLE("画风 Prompt"), BASE("基础 Prompt"), EXTRA("附加 Prompt"), NEGATIVE("负面 Prompt"),
     CHARACTERS("全部角色与位置"), MODEL("模型"), SIZE("图片尺寸"), COUNT("生成数量"),
     STEPS("Steps"), GUIDANCE("Guidance"), RESCALE("CFG Rescale"), SAMPLER("采样器"),
+    NOISE("噪声计划"), VARIETY("Variety+"), PARAMETERS("导入采样兼容参数"),
     SEED("图片 Seed"), POSITIONS("启用角色位置"), IMAGE_GUIDANCE("图像引导")
 }
 
@@ -21,16 +22,29 @@ object RecipeDraftSelection {
         var next=current
         fields.forEach { field -> next=when(field) {
             RecipeDraftField.STYLE->next.copy(stylePrompt=source.stylePrompt)
-            RecipeDraftField.BASE->next.copy(basePrompt=source.basePrompt)
+            RecipeDraftField.BASE->next.copy(basePrompt=source.basePrompt,literalBasePrompt=source.literalBasePrompt)
             RecipeDraftField.EXTRA->next.copy(extraPrompt=source.extraPrompt)
-            RecipeDraftField.NEGATIVE->next.copy(negativePrompt=source.negativePrompt)
+            RecipeDraftField.NEGATIVE->next.copy(negativePrompt=source.negativePrompt,literalNegativePrompt=source.literalNegativePrompt)
             RecipeDraftField.CHARACTERS->next.copy(characters=source.characters)
             RecipeDraftField.IMAGE_GUIDANCE->next.copy(imageGuidance=source.imageGuidance)
             else->next
         } }
         val old=current.activeSettings;val s=source.activeSettings
         fun selected(f:RecipeDraftField)=f in fields
+        var replay=if(selected(RecipeDraftField.PARAMETERS))s.parameterReplay else old.parameterReplay
+        if(selected(RecipeDraftField.SAMPLER) && (replay!=null || s.parameterReplay?.unsupportedSampler!=null))
+            replay=(replay ?: NovelAiParameterReplay()).copy(unsupportedSampler=s.parameterReplay?.unsupportedSampler)
+        if(selected(RecipeDraftField.MODEL) && (replay!=null || s.parameterReplay?.unsupportedModel!=null))
+            replay=(replay ?: NovelAiParameterReplay()).copy(unsupportedModel=s.parameterReplay?.unsupportedModel)
+        if(selected(RecipeDraftField.NOISE) && (replay!=null || s.parameterReplay?.unsupportedNoiseSchedule!=null))
+            replay=(replay ?: NovelAiParameterReplay()).cleared("noise_schedule").copy(unsupportedNoiseSchedule=s.parameterReplay?.unsupportedNoiseSchedule)
         val settings=old.copy(
+            parameterReplay=replay,
+            varietyPlus=if(selected(RecipeDraftField.VARIETY))s.varietyPlus else old.varietyPlus,
+            varietyRescale=if(selected(RecipeDraftField.VARIETY))s.varietyRescale else old.varietyRescale,
+            varietySigma=if(selected(RecipeDraftField.VARIETY))s.varietySigma else old.varietySigma,
+            noiseSource=if(selected(RecipeDraftField.NOISE))s.noiseSource else old.noiseSource,
+            noiseSchedule=if(selected(RecipeDraftField.NOISE))s.noiseSchedule else old.noiseSchedule,
             model=if(selected(RecipeDraftField.MODEL))s.model else old.model,
             sizeTier=if(selected(RecipeDraftField.SIZE))s.sizeTier else old.sizeTier,
             aspectRatio=if(selected(RecipeDraftField.SIZE))s.aspectRatio else old.aspectRatio,

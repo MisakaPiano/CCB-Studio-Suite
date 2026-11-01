@@ -59,10 +59,12 @@ internal class TypesetAutoMaskController(private val c:WorkbenchController,priva
         TypesetEditorExtrasStore.save(c.workspace,extras.copy(autoMask=saved))
         withContext(ui){configured=true;progress="配置已保存，重开后可直接自动打码";onSaved()}
     }
-    fun runConfigured(needsSettings:()->Unit={})=c.run("AI 自动打码") {
+    fun runConfigured(pageIds:Set<String>?=null,needsSettings:()->Unit={}) {
+        val requested=pageIds?.toSet()
+        c.run("AI 自动打码") {
         val saved=try{restoreSaved()}catch(cancelled:CancellationException){throw cancelled}catch(ex:Exception){withContext(ui){needsSettings()};throw ex}
         val style=withContext(ui){if(saved.followTool)e.mask?:e.maskDefault else TypesetMask(effect=saved.effect,strength=saved.strength,opacity=saved.opacity)}
-        val snapshot=inspectSnapshot(style)
+        val snapshot=inspectSnapshot(style,requested)
         var added=0
         val next=snapshot.document.copy(pages=snapshot.document.pages.map{page->
             val masks=page.masks.toMutableList();val ids=TypesetObjects.order(page).toMutableList();var pageAdded=false
@@ -74,15 +76,16 @@ internal class TypesetAutoMaskController(private val c:WorkbenchController,priva
         })
         currentCoroutineContext().ensureActive()
         if(added>0)e.commitAutoMasks(snapshot.projectId,snapshot.document,next)
-        withContext(ui){review=null;selectedRegions=emptySet();progress=if(added>0)"自动打码完成 · 新增 $added 个区域，可撤销"else if(snapshot.results.values.all{it.isEmpty()})"识别完成 · 未检测到所选类别"else"识别完成 · 相同打码已存在，未重复添加";c.operationNotice=progress}
+        withContext(ui){review=null;selectedRegions=emptySet();progress="已处理 ${snapshot.results.size} 张 · "+if(added>0)"新增 $added 个区域，可撤销"else if(snapshot.results.values.all{it.isEmpty()})"未检测到所选类别"else"相同打码已存在，未重复添加";c.operationNotice=progress}
+        }
     }
     fun detect()=c.run("本地 AI 区域识别") {
         val snapshot=inspectSnapshot(e.maskDefault.copy(effect=effect))
         withContext(ui){review=snapshot;selectedRegions=snapshot.results.values.flatten().map{it.id}.toSet();progress="识别完成 · ${selectedRegions.size} 个区域，检查后再应用"}
     }
-    private suspend fun inspectSnapshot(style:TypesetMask):AutoMaskReview {
+    private suspend fun inspectSnapshot(style:TypesetMask,requested:Set<String>?=null):AutoMaskReview {
         e.drain();val source=e.document?:error("尚无编辑工程");val project=e.project?:error("尚无编辑工程");val chosen=model?:error("请先选择本地模型")
-        val ids=if(selectedPages)e.selectedPages.toSet()else setOfNotNull(e.pageId);require(ids.isNotEmpty()&&ids.size<=100){"每次请选择1至100页"}
+        val ids=requested ?: if(selectedPages)e.selectedPages.toSet()else setOfNotNull(e.pageId);require(ids.isNotEmpty()&&ids.size<=100){"每次请选择1至100页"}
         val opts=options;opts.validate();val enabled=classes.toSet();require(enabled.isNotEmpty())
         val pages=source.pages.filter{it.id in ids};require(pages.size==ids.size)
         val results=linkedMapOf<String,List<AutoMaskRegion>>();val context=currentCoroutineContext()

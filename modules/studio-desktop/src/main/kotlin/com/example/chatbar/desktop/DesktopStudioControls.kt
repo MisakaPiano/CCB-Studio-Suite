@@ -215,7 +215,10 @@ internal fun studioAdvancedSummary(s: NovelAiGenerationSettings): String =
 @Composable
 internal fun StudioGenerationModelChoice(draft: NovelAiStudioDraft, edit: ((NovelAiStudioDraft) -> NovelAiStudioDraft) -> Unit) {
     CompactChoice("生图模型", NovelAiImageModel.entries, draft.selectedModel, { it.displayName }) { model ->
-        edit { it.copy(selectedModel = model, followDefaultNovelAiImageModel = false) }
+        edit {
+            val chosen=it.copy(selectedModel=model,followDefaultNovelAiImageModel=false)
+            chosen.withActiveSettings(chosen.activeSettings.copy(parameterReplay=chosen.activeSettings.parameterReplay?.copy(unsupportedModel=null)))
+        }
     }
 }
 
@@ -230,7 +233,7 @@ internal fun StudioGenerationSettings(draft: NovelAiStudioDraft, edit: ((NovelAi
         val size: @Composable () -> Unit = {
             StudioChips("尺寸", NovelAiSizeTier.entries, s.sizeTier.takeUnless { s.usesCustomSize }, { it.displayName }) { value -> change { it.copy(sizeTier = value, customWidth = null, customHeight = null) } }
         }
-        val count: @Composable () -> Unit = { StudioChips("数量", (1..4).toList(), s.count, { it.toString() }) { value -> change { it.copy(count = value) } } }
+        val count: @Composable () -> Unit = { StudioChips("数量", (1..4).toList(), s.count, { it.toString() }) { value -> change { it.copy(count = value,parameterReplay=it.parameterReplay?.cleared("n_samples")) } } }
         if (maxWidth >= 460.dp) Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             Box(Modifier.weight(1f)) { size() }; count()
         } else Column(verticalArrangement = Arrangement.spacedBy(6.dp)) { size(); count() }
@@ -251,19 +254,31 @@ internal fun StudioGenerationSettings(draft: NovelAiStudioDraft, edit: ((NovelAi
         StudioNumericInput("目标图片数", draft.continuousTargetCount.toString(), Modifier.width(80.dp)) { raw -> raw.toIntOrNull()?.takeIf { it > 0 }?.let { value -> edit { it.copy(continuousTargetCount = value) } } }
     }
     }
+    if(draft.literalBasePrompt || draft.literalNegativePrompt || draft.characters.any { it.literalPrompt || it.literalNegative }) StatusText("已导入的文本按原文复用")
     s.validationError(draft.characters.size)?.let { StatusText(it, DesktopBootstrapColors.warning) }
     }
     if (customSize) StudioCustomSizeDialog(s, onClose = { customSize = false }) { width, height ->
-        change { it.copy(customWidth = width, customHeight = height) }; customSize = false
+        change { it.copy(customWidth = width, customHeight = height,parameterReplay=it.parameterReplay?.cleared("dimensions")) }; customSize = false
     }
 }
 
 @Composable
 internal fun StudioAdvancedSettings(s: NovelAiGenerationSettings, change: ((NovelAiGenerationSettings) -> NovelAiGenerationSettings) -> Unit) {
-    StudioSlider("Steps", s.steps.toFloat(), 1f, 50f, 1f, 0) { value -> change { it.copy(steps = value.toInt()) } }
-    StudioSlider("CFG Scale", s.guidance, 1f, 10f, .1f, 1) { value -> change { it.copy(guidance = value) } }
-    StudioSlider("CFG Rescale", s.cfgRescale, 0f, 1f, .05f, 2) { value -> change { it.copy(cfgRescale = value) } }
-    CompactChoice("Sampler", NovelAiSampler.entries, s.sampler, { it.displayName }) { value -> change { it.copy(sampler = value) } }
+    StudioSlider("Steps", s.steps.toFloat(), 1f, 50f, 1f, 0) { value -> change { it.copy(steps = value.toInt(),parameterReplay=it.parameterReplay?.cleared("steps")) } }
+    StudioSlider("CFG Scale", s.guidance, 1f, 10f, .1f, 1) { value -> change { it.copy(guidance = value,parameterReplay=it.parameterReplay?.cleared("scale")) } }
+    StudioSlider("CFG Rescale", s.cfgRescale, 0f, 1f, .05f, 2) { value -> change { it.copy(cfgRescale = value,parameterReplay=it.parameterReplay?.cleared("cfg_rescale")) } }
+    CompactChoice("Sampler", NovelAiSampler.entries, s.sampler, { it.displayName }) { value -> change { it.copy(sampler = value, parameterReplay=it.parameterReplay?.copy(unsupportedSampler=null)) } }
+    if (s.model==NovelAiImageModel.V4_5_FULL) {
+        val choices=NovelAiParameterCompatibility.noises(s.model,s.sampler)
+        if(choices.isNotEmpty()) CompactChoice("噪声计划",choices,
+            s.noiseSchedule ?: if(s.noiseSource==NovelAiNoiseSource.LEGACY) NovelAiNoiseSchedule.KARRAS else NovelAiParameterCompatibility.defaultNoise(s.sampler), {it.apiId}) { value ->
+                change { it.copy(noiseSource=NovelAiNoiseSource.EXPLICIT,noiseSchedule=value,
+                    parameterReplay=it.parameterReplay?.cleared("noise_schedule")?.copy(unsupportedNoiseSchedule=null)) }
+            }
+        StudioSwitch("Variety+",s.varietyPlus) { change { it.copy(varietyPlus=!it.varietyPlus,varietySigma=null,varietyRescale=true,parameterReplay=it.parameterReplay?.cleared("skip_cfg_above_sigma")) } }
+        s.varietySigma?.let { StatusText("导入的 CFG Delay Sigma：$it（按原值使用）") }
+    }
+    if(s.parameterReplay!=null) StatusText("导入参数按原值复用；未支持的字段会阻止发送")
     StudioSwitch("Random Seed", s.seedMode == NovelAiSeedMode.RANDOM) { change { it.copy(seedMode = if (it.seedMode == NovelAiSeedMode.RANDOM) NovelAiSeedMode.FIXED else NovelAiSeedMode.RANDOM) } }
     if (s.seedMode == NovelAiSeedMode.FIXED) Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         StatusText("Seed")

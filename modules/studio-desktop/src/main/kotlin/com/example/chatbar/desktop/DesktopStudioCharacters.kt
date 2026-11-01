@@ -82,11 +82,11 @@ internal fun DesktopCharacterPositions(draft: NovelAiStudioDraft, edit: ((NovelA
     val custom = draft.activeSettings.useCharacterPositions
     fun setCenter(point: DesignedCharacterCenter) {
         val center = NovelAiCharacterPositionPolicy.normalize(point, draft.selectedModel)
-        edit { current -> current.copy(characters = current.characters.map { if (it.id == selected?.id) it.copy(center = center) else it }) }
+        edit { current -> current.copy(characters = current.characters.map { if (it.id == selected?.id) it.copy(center = center, literalCoordinates = false) else it }).withManualCharacterPositions(current.activeSettings.useCharacterPositions) }
     }
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
     StudioChips("定位", listOf(false, true), custom, { if (it) "自定义" else "自动" }) { enabled ->
-        edit { it.withActiveSettings(it.activeSettings.copy(useCharacterPositions = enabled)) }
+        edit { it.withManualCharacterPositions(enabled) }
     }
     StudioChips("启用角色", active.map { it.id }, selected?.id, { id -> "角色 ${draft.characters.indexOfFirst { it.id == id } + 1}" }) { selectedId = it }
     StatusText(if (draft.selectedModel == NovelAiImageModel.V4_5_FULL) "V4.5 · 5 × 5 网格吸附" else "V5 · 连续坐标")
@@ -119,7 +119,7 @@ internal fun DesktopCharacterPositions(draft: NovelAiStudioDraft, edit: ((NovelA
             StudioField("Y %", (center.y * 100).roundToInt().toString()) { text -> text.toFloatOrNull()?.takeIf { it.isFinite() }?.let { setCenter(center.copy(y = it / 100)) } }
         }
     }
-    StudioAction("重置为均匀分布", enabled = custom) { edit { current -> current.copy(characters = current.characters.map { if (it.enabled) it.copy(center = null) else it }) } }
+    StudioAction("重置为均匀分布", enabled = custom) { edit { current -> current.copy(characters = current.characters.map { if (it.enabled) it.copy(center = null, literalCoordinates = false) else it }).withManualCharacterPositions(current.activeSettings.useCharacterPositions) } }
     StatusText("仅调整已启用角色的位置：单个居中，多个从左到右均匀分布。角色提示词不变。")
     }
 }

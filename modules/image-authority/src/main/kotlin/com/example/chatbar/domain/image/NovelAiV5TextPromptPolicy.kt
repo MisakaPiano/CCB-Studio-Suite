@@ -17,7 +17,7 @@ object NovelAiV5TextPromptPolicy {
     )
 
     fun apply(prompt: NovelAiPromptPlan, model: NovelAiImageModel): NovelAiPromptPlan {
-        if (model != NovelAiImageModel.V5_FULL) return prompt
+        if (model != NovelAiImageModel.V5_FULL || prompt.literalBasePrompt) return prompt
         val characterPrompts = prompt.characterCaptions.map { it.prompt }.filter(String::isNotEmpty)
         if (explicitTextBlock.containsMatchIn(prompt.baseCaption) ||
             characterPrompts.any(explicitTextBlock::containsMatchIn)

@@ -41,7 +41,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
     var historyReadOverride:(suspend ()->GalleryHistoryProjection)?=null
     var pasteContents:()->java.awt.datatransfer.Transferable?={java.awt.Toolkit.getDefaultToolkit().systemClipboard.getContents(null)}
     var chooseImportFiles:()->List<java.nio.file.Path> = {StudioFileDialogs.openMany("导入图片",listOf("png","apng","jpg","jpeg","webp","gif","bmp"))}
-    var chooseImportDirectory:()->java.nio.file.Path?={StudioFileDialogs.folder("导入目录本层图片（不含子目录）")}
+    var chooseImportDirectory:()->java.nio.file.Path?={StudioFileDialogs.folder("选择要导入的图片文件夹")}
     var imports by mutableStateOf<List<GalleryImportResult>>(emptyList())
     var copyText:(String)->Unit={java.awt.Toolkit.getDefaultToolkit().systemClipboard.setContents(java.awt.datatransfer.StringSelection(it),null)}
     var query by mutableStateOf("");var source by mutableStateOf("all");var date by mutableStateOf("")
@@ -94,7 +94,21 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
     fun back(){if(depth>0){record();levels=levels.dropLast(1);query=scope.query;date=scope.date;source=scope.source;filterTags=emptyList();anchor=null}}
     fun goLevel(index:Int){if(index in 0 until depth){record();levels=levels.take(index+1);query=scope.query;date=scope.date;source=scope.source;filterTags=emptyList();anchor=null}}
 }
+/** Same verified history projection across gallery/archive routes. Errors/cancellation are not cached.
+ * Identity and invalidation are unchanged: image IDs+SHA and the complete saved job snapshot. */
+@Composable internal fun rememberGalleryHistory(c:WorkbenchController):State<Result<GalleryHistoryProjection>?> {
+    val g=c.gallery
+    val historyIdentity=remember(c.assets,c.state.jobs){GalleryHistoryIdentity(c.assets.map{it.request().id().toString() to it.sha256()},c.state.jobs)}
+    val cached=g.historyCache?.takeIf{it.first==historyIdentity}?.second
+    return produceState<Result<GalleryHistoryProjection>?>(cached?.let{Result.success(it)},historyIdentity) {
+        if(cached!=null){value=Result.success(cached);return@produceState};value=null
+        val result=withContext(Dispatchers.IO){try{Result.success(g.historyReadOverride?.invoke()?:readGalleryHistory(c.workspace))}catch(e:CancellationException){throw e}catch(e:Exception){Result.failure(e)}}
+        currentCoroutineContext().ensureActive();result.getOrNull()?.let{g.historyCache=historyIdentity to it};value=result
+    }
+}
+
 @Composable internal fun GalleryWorkspace(c:WorkbenchController) {
+    var advancedFilters by remember{mutableStateOf(false)}
     val g=c.gallery;val labels=c.library.state?.labels.orEmpty()
     if(c.animation.ids!=null){GalleryAnimationWorkspace(c);return}
     g.metadata?.let{id->MetadataWorkspace(c,id){g.metadata=null};return}
@@ -105,13 +119,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
     val focus=remember{FocusRequester()};var focused by remember{mutableStateOf(false)}
     LaunchedEffect(Unit){focus.requestFocus()}
     val drag=remember{LibraryDragState()};var rootOffset by remember{mutableStateOf(Offset.Zero)};var rootSize by remember{mutableStateOf(androidx.compose.ui.unit.IntSize.Zero)}
-    val historyIdentity=remember(c.assets,c.state.jobs){GalleryHistoryIdentity(c.assets.map{it.request().id().toString() to it.sha256()},c.state.jobs)}
-    val cached=g.historyCache?.takeIf{it.first==historyIdentity}?.second
-    val history by produceState<Result<GalleryHistoryProjection>?>(cached?.let{Result.success(it)},historyIdentity) {
-        if(cached!=null){value=Result.success(cached);return@produceState};value=null
-        val result=withContext(Dispatchers.IO){try{Result.success(g.historyReadOverride?.invoke()?:readGalleryHistory(c.workspace))}catch(e:CancellationException){throw e}catch(e:Exception){Result.failure(e)}}
-        currentCoroutineContext().ensureActive();result.getOrNull()?.let{g.historyCache=historyIdentity to it};value=result
-    }
+    val history by rememberGalleryHistory(c)
     val projection=history?.getOrNull()?:GalleryHistoryProjection(emptyList(),emptyMap())
     val times=remember(c.assets,c.state.jobs){libraryRecordedTimes(c.assets,c.state.jobs)}
     val generated=remember(c.state.jobs){c.state.jobs.flatMap{it.results+it.composedResults}.toSet()}
@@ -209,6 +217,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
                 GalleryImportMenu(c)
                 LibraryAction("粘贴图片",!c.busy){pasteLibrarySelection(c)}
                 GalleryImportReceipt(c)
+                LibraryAction(if(advancedFilters)"收起高级筛选"else"高级筛选与标签",selected=advancedFilters){advancedFilters=!advancedFilters}
                 Spacer(Modifier.weight(1f))
                 GallerySearch(c,Modifier.width(270.dp))
                 GalleryImportHelp(c)
@@ -217,8 +226,12 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
             if(c.busy&&c.activeOperation=="导入图片")StudioActions{StatusText(g.importProgress);LibraryAction("停止导入图片"){c.active?.cancel()}}
             if(c.busy&&c.activeOperation=="复制所选原始文件")LibraryAction("停止复制所选原始文件"){c.active?.cancel()}
             SharedDocumentAssets(c)
-            GalleryAlbumControls(c)
-            LibraryTagFilter(c,g,tagIndex,visibleIds.size)
+            GalleryAlbumControls(c,showAdvanced=advancedFilters)
+            if(g.filterTags.isNotEmpty()||g.date.isNotBlank()||g.source!="all")LibraryBand {
+                Text("标签 ${g.filterTags.size} · 日期 ${g.date.ifBlank{"不限"}} · 匹配 ${visibleIds.size} 项",style=MaterialTheme.typography.caption)
+                if(g.filterTags.isNotEmpty()||g.date.isNotBlank()||g.source!="all")LibraryAction("清除筛选"){g.filterTags=emptyList();g.date="";g.source="all";g.anchor=null}
+            }
+            if(advancedFilters)LibraryTagFilter(c,g,tagIndex,visibleIds.size)
             Divider(color=LibraryLine,thickness=1.dp)
             if(history==null)StatusText("正在核验生成记录，图片原件可查看…")
             else if(history!!.isFailure)StatusText("生成记录不可读取，分组暂不可用；原件保留")
@@ -317,7 +330,6 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
                 LibraryAction("全选",style=StudioActionStyle.TERTIARY){c.selection=visibleIds.toSet()};LibraryAction("反选",style=StudioActionStyle.TERTIARY){c.selection=(c.selection-visibleIds.toSet())+(visibleIds.toSet()-c.selection)};LibraryAction("清空",accessibilityLabel="清空选择"){c.selection=emptySet()}
                 if(c.selection.any{it !in visibleSet})Text("筛选外 ${c.selection.count{it !in visibleSet}}",style=MaterialTheme.typography.caption)
                 LibraryAction("",c.library.canUndo,icon=DesktopAppIcons.Undo,style=StudioActionStyle.TERTIARY,accessibilityLabel="撤销"){c.library.undo()};LibraryAction("",c.library.canRedo,icon=DesktopAppIcons.Redo,style=StudioActionStyle.TERTIARY,accessibilityLabel="重做"){c.library.redo()}
-                LibraryAction("",c.selection.isNotEmpty()&&!c.busy&&c.library.error==null&&c.library.archiveError==null,icon=DesktopAppIcons.Delete,style=StudioActionStyle.TERTIARY,accessibilityLabel="所选资产移入回收站"){remove()}
                 Box {
                     var menu by remember{mutableStateOf(false)}
                     LibraryAction("操作",icon=DesktopAppIcons.More){menu=true}
@@ -340,7 +352,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
                 Spacer(Modifier.weight(1f))
                 LibraryInteractionHelp()
             }
-            GalleryTools(c,drag,{rootOffset},orderedSelection)
+            GalleryTools(c,drag,{rootOffset},orderedSelection,onArchive=::remove)
         }
         val density=androidx.compose.ui.platform.LocalDensity.current
         drag.marquee?.let{rect->Box(Modifier.offset(with(density){rect.left.toDp()},with(density){rect.top.toDp()}).size(with(density){rect.width.toDp()},with(density){rect.height.toDp()}).background(Gold.copy(alpha=.15f)).border(1.dp,SelectionInk))}
@@ -393,6 +405,7 @@ internal class GalleryViewState(val namespace:String="",rootLabel:String="全部
         StudioMenu(open,{open=false}) {
             StudioMenuItem(enabled=!c.busy,onClick={open=false;c.importImages()}){Text("导入图片文件")}
             StudioMenuItem(enabled=!c.busy,onClick={open=false;c.importImageDirectory()}){Text("导入目录（本层）")}
+            StudioMenuItem(enabled=!c.busy,onClick={open=false;c.importImageDirectory(true)}){Text("导入文件夹及子文件夹（保留结构）")}
         }
     }
 }

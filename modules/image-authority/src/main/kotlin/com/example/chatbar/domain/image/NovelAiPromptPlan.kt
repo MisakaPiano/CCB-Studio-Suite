@@ -1,6 +1,8 @@
 package com.example.chatbar.domain.image
 
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.EncodeDefault
+import kotlinx.serialization.ExperimentalSerializationApi
 import com.example.chatbar.domain.prompt.CharacterNaiPromptDefaults
 
 @Serializable
@@ -29,20 +31,27 @@ data class DesignedCharacterCenter(
 )
 
 @Serializable
+@OptIn(ExperimentalSerializationApi::class)
 data class NovelAiCharacterCaption(
     val prompt: String,
     val center: DesignedCharacterCenter,
-    val negativePrompt: String = ""
+    val negativePrompt: String = "",
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val literalPrompt: Boolean = false,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val literalNegative: Boolean = false,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val literalCoordinates: Boolean = false
 )
 
 @Serializable
+@OptIn(ExperimentalSerializationApi::class)
 data class NovelAiPromptPlan(
     val baseCaption: String,
     val characterCaptions: List<NovelAiCharacterCaption>,
     val designed: DesignedImagePrompt? = null,
     val sizePreset: NovelAiImageSizePreset = NovelAiImageSizePreset.PORTRAIT,
     val negativePrompt: String = CharacterNaiPromptDefaults.defaultCharacterNaiNegativePrompt(),
-    val stylePrompt: String = ""
+    val stylePrompt: String = "",
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val literalBasePrompt: Boolean = false,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val literalNegativePrompt: Boolean = false
 ) {
     val effectiveNegativePrompt: String
         get() = CharacterNaiPromptDefaults.effectiveCharacterNaiNegativePrompt(negativePrompt)
@@ -50,14 +59,14 @@ data class NovelAiPromptPlan(
 
 object NovelAiPromptDelimiterPolicy {
     fun normalizeForRequest(prompt: NovelAiPromptPlan): NovelAiPromptPlan = prompt.copy(
-        baseCaption = normalize(prompt.baseCaption),
+        baseCaption = if (prompt.literalBasePrompt) prompt.baseCaption else normalize(prompt.baseCaption),
         characterCaptions = prompt.characterCaptions.map { caption ->
             caption.copy(
-                prompt = normalize(caption.prompt),
-                negativePrompt = normalize(caption.negativePrompt)
+                prompt = if (caption.literalPrompt) caption.prompt else normalize(caption.prompt),
+                negativePrompt = if (caption.literalNegative) caption.negativePrompt else normalize(caption.negativePrompt)
             )
         },
-        negativePrompt = normalize(prompt.negativePrompt)
+        negativePrompt = if (prompt.literalNegativePrompt) prompt.negativePrompt else normalize(prompt.negativePrompt)
     )
 
     fun normalize(text: String): String = text.replace('，', ',')

@@ -237,11 +237,22 @@ public final class AssetStore implements AutoCloseable {
         byte[] wanted = Objects.requireNonNull(project).clone();
         return operation(() -> catalogInternal(wanted));
     }
+    /** Select the entire version family, not just a known version. Every committed envelope
+     * and identity is checked, and all selected payloads are verified. Unrelated payloads
+     * are outside this projection; catalog/backup keep the full-store audit contract. */
+    public List<Asset> catalogProjectPrefix(byte[] projectPrefix) throws IOException {
+        byte[] wanted = Objects.requireNonNull(projectPrefix).clone();
+        if (wanted.length == 0) throw new IllegalArgumentException("Project prefix must not be empty");
+        return operation(() -> catalogInternal(wanted, true));
+    }
     // Only inside an admitted operation; backup must retain its original lifetime registration.
     List<Asset> catalogInternal() throws IOException {
         return catalogInternal(null);
     }
     private List<Asset> catalogInternal(byte[] project) throws IOException {
+        return catalogInternal(project, false);
+    }
+    private List<Asset> catalogInternal(byte[] project, boolean prefix) throws IOException {
         if (!Thread.holdsLock(serial)) throw new IllegalStateException("Catalog requires an admitted serialized operation");
         List<Asset> result = new ArrayList<>();
         for (Path record : StoreIO.entries(root.resolve("records"), "*")) {
@@ -260,7 +271,11 @@ public final class AssetStore implements AutoCloseable {
             else {
                 Asset candidate = decodeAssetFile(record, "asset").require();
                 if (!candidate.request().id().equals(id)) throw new StoreException("CORRUPT", "Record filename/identity mismatch");
-                if (Arrays.equals(candidate.request().project(), project)) result.add(readInternal(id).require());
+                byte[] tag = candidate.request().project();
+                boolean selected = prefix
+                        ? tag.length >= project.length && Arrays.equals(tag, 0, project.length, project, 0, project.length)
+                        : Arrays.equals(tag, project);
+                if (selected) result.add(readInternal(id).require());
             }
         }
         return List.copyOf(result);

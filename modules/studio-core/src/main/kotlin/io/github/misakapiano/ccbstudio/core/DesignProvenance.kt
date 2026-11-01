@@ -77,7 +77,7 @@ class DesignProvenance(private val workspace:StudioWorkspace) {
         workspace.assets.put(AssetStore.Request(id,"generation-design-link.json",AssetStore.Kind.DERIVED,UUID.fromString(application.assetId),job.id.toByteArray(),GENERATION.toByteArray()),ByteArrayInputStream(documentJson.encodeToString(link).toByteArray()))
     }
     fun forGeneration(job:JobRecord):DesignApplicationSnapshot?=workspace.operation {
-        val matches=workspace.catalog().filter{it.request().project().decodeToString().startsWith("CCB_GENERATION_DESIGN_")&&it.request().recipe().decodeToString()==job.id}
+        val matches=workspace.assets.catalogProjectPrefix("CCB_GENERATION_DESIGN_".toByteArray()).filter{it.request().project().decodeToString().startsWith("CCB_GENERATION_DESIGN_")&&it.request().recipe().decodeToString()==job.id}
         require(matches.size<=1){"Conflicting generation provenance retained"}
         val asset=matches.singleOrNull()?:return@operation null
         if(asset.request().project().decodeToString()!=GENERATION)throw DataProblem("UNSUPPORTED_VERSION","Newer generation provenance retained")
@@ -103,6 +103,9 @@ class DesignProvenance(private val workspace:StudioWorkspace) {
             DesignLineageOperation.REDO->if(old.redo.isEmpty())prior else CreationLineage(creationRevision="",creationSha256="",current=redo.last(),undo=(undo+prior?.current).takeLast(30),redo=redo.dropLast(1))
             DesignLineageOperation.PRESERVE->if(historyChanged)null else prior
         }
+        // An unchanged EDIT still validates the complete lineage above. It has no
+        // new state or provenance to commit; preserve the existing durable revision.
+        if(operation==DesignLineageOperation.EDIT && next==old)return@operation
         workspace.save(workspace.state.copy(creation=next))
         // An absent receipt already means unknown for this exact revision. Do not add
         // empty provenance assets for ordinary typing before any design application.

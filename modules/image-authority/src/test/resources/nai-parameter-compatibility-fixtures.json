@@ -1,0 +1,143 @@
+{
+  "format": 1,
+  "checkpoint": "nai-full-parameter-contract-20261030-r1",
+  "cases": [
+    {
+      "id": "legacy-2m",
+      "kind": "settings",
+      "input": {
+        "sampler": "DPM_PLUS_PLUS_2M"
+      },
+      "expected": {
+        "noise_schedule": "karras"
+      }
+    },
+    {
+      "id": "new-2m",
+      "kind": "settings",
+      "input": {
+        "sampler": "DPM_PLUS_PLUS_2M",
+        "noiseSource": "MODEL_DEFAULT"
+      },
+      "expected": {
+        "noise_schedule": "exponential"
+      }
+    },
+    {
+      "id": "v5-explicit-noise",
+      "kind": "settings",
+      "input": {
+        "model": "V5_FULL",
+        "sampler": "DPM_PLUS_PLUS_2M_SDE",
+        "noiseSource": "EXPLICIT",
+        "noiseSchedule": "KARRAS",
+        "varietyPlus": true
+      },
+      "expected": {
+        "sampler": "k_dpmpp_2m_sde",
+        "noise_schedule": "karras"
+      },
+      "absent": [
+        "skip_cfg_above_sigma"
+      ]
+    },
+    {
+      "id": "v45-variety",
+      "kind": "settings",
+      "input": {
+        "varietyPlus": true
+      },
+      "expected": {
+        "skip_cfg_above_sigma": 58
+      }
+    },
+    {
+      "id": "new-ddim-default",
+      "kind": "settings",
+      "input": {
+        "sampler": "DDIM",
+        "noiseSource": "MODEL_DEFAULT"
+      },
+      "expected": {},
+      "absent": [
+        "noise_schedule"
+      ]
+    },
+    {
+      "id": "import-false-true-literal",
+      "kind": "metadata",
+      "input": {
+        "model": "nai-diffusion-4-5-full",
+        "width": 832,
+        "height": 1216,
+        "steps": 28,
+        "sampler": "k_dpmpp_2m_sde",
+        "seed": 9,
+        "prompt": " synthetic\uFF0Cbase ",
+        "uc": "",
+        "prefer_brownian": false,
+        "deliberate_euler_ancestral_bug": true,
+        "v4_negative_prompt": {
+          "caption": {
+            "base_caption": "",
+            "char_captions": []
+          },
+          "use_order": false
+        }
+      },
+      "expected": {
+        "prefer_brownian": false,
+        "deliberate_euler_ancestral_bug": true,
+        "negative_prompt": ""
+      },
+      "expectedNegativeUseOrder": false,
+      "expectedBaseCaption": " synthetic\uFF0Cbase "
+    },
+    {
+      "id": "unsupported-3m",
+      "kind": "metadata",
+      "input": {
+        "model": "nai-diffusion-4-5-full",
+        "width": 832,
+        "height": 1216,
+        "steps": 28,
+        "sampler": "k_dpmpp_3m_sde",
+        "seed": 9,
+        "prompt": "synthetic",
+        "uc": ""
+      },
+      "reject": true,
+      "preservedSampler": "k_dpmpp_3m_sde"
+    },
+    {
+      "id": "unsupported-curated",
+      "kind": "metadata",
+      "input": {
+        "model": "nai-diffusion-5-curated",
+        "width": 832,
+        "height": 1216,
+        "steps": 28,
+        "sampler": "k_dpmpp_2m_sde",
+        "seed": 9,
+        "prompt": "synthetic",
+        "uc": ""
+      },
+      "reject": true
+    },
+    {
+      "id": "new-variety-resolution",
+      "kind": "settings",
+      "input": {
+        "varietyPlus": true,
+        "varietyRescale": true,
+        "noiseSource": "MODEL_DEFAULT",
+        "customWidth": 1664,
+        "customHeight": 1216
+      },
+      "expected": {},
+      "expectedNumbers": {
+        "skip_cfg_above_sigma": 82.024386
+      }
+    }
+  ]
+}

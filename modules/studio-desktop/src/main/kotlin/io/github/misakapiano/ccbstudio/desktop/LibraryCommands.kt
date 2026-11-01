@@ -87,7 +87,7 @@ internal fun runGalleryTool(c:WorkbenchController,tool:String,ids:List<String>) 
     }
 }
 
-@Composable internal fun GalleryTools(c:WorkbenchController,drag:LibraryDragState,rootOffset:()->Offset,selected:List<String>) {
+@Composable internal fun GalleryTools(c:WorkbenchController,drag:LibraryDragState,rootOffset:()->Offset,selected:List<String>,onArchive:()->Unit) {
     var custom by remember{mutableStateOf(false)}
     val raw=c.library.state?.preferences?.get("galleryTools")
     val loaded=remember(raw){runCatching{raw?.let{documentJson.decodeFromString<GalleryToolSettings>(it).also{value->require(value.version==1)}}?:GalleryToolSettings()}}
@@ -107,6 +107,10 @@ internal fun runGalleryTool(c:WorkbenchController,tool:String,ids:List<String>) 
             }
             DisposableEffect(tool.id){onDispose{drag.targets.remove(tool.label)}}
         }}
+        val canArchive=c.selection.isNotEmpty()&&!c.busy&&c.library.error==null&&c.library.archiveError==null
+        // Fixed destructive action: explicit click and existing confirmation, never a drop target.
+        if(setting.tiles)LibraryToolTile("移入回收站","所选资产移入回收站",DesktopAppIcons.Delete,canArchive,false,onArchive)
+        else LibraryAction("移入回收站",canArchive,icon=DesktopAppIcons.Delete,accessibilityLabel="所选资产移入回收站",onClick=onArchive)
         }
         // Fixed entry cannot be hidden, reordered into a destructive action, or used as a delete drop target.
         LibraryAction("回收站 ${c.library.archived.size}",icon=Lucide.ArchiveRestore,accessibilityLabel="资产回收站"){c.library.tab="回收站";c.view="资产管理"}

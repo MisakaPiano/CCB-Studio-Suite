@@ -75,6 +75,32 @@ class InstallTests(unittest.TestCase):
         self.custom['version']=3
         with self.assertRaises(UpdateRejected):install_candidate(self.exe,self.target,self.custom,self.old,self.cache,self.old.parent/'3-bbbbbbbbbbbb',run=self.payload)
 
+    def test_existing_valid_target_is_reused_only_after_authenticated_payload_comparison(self):
+        final,_,_=self.install()
+        before={p.relative_to(final).as_posix():p.read_bytes() for p in final.rglob('*') if p.is_file()}
+        reused,journal,record=self.install()
+        self.assertEqual(reused,final);self.assertEqual(record['status'],'REUSED_VERIFIED')
+        self.assertTrue(Path(record['stage']).is_dir())
+        self.assertEqual(before,{p.relative_to(final).as_posix():p.read_bytes() for p in final.rglob('*') if p.is_file()})
+        self.retained()
+
+    def test_existing_self_consistent_forgery_does_not_override_authenticated_manifest(self):
+        final,_,_=self.install()
+        exe=final/'CCBStudioSuitePreview.exe';exe.write_bytes(b'forged')
+        manifest=final/'INSTALL_MANIFEST.json';m=json.loads(manifest.read_text())
+        m['files'][0]['bytes']=exe.stat().st_size;m['files'][0]['sha256']=hashlib.sha256(exe.read_bytes()).hexdigest()
+        manifest.write_text(json.dumps(m))
+        before=manifest.read_bytes()
+        with self.assertRaisesRegex(UpdateRejected,'requires package repair'):self.install()
+        self.assertEqual(exe.read_bytes(),b'forged');self.assertEqual(manifest.read_bytes(),before)
+        self.retained()
+
+    def test_existing_target_does_not_bypass_installer_authentication(self):
+        final,_,_=self.install();self.exe.write_bytes(b'changed signed payload')
+        called=[]
+        with self.assertRaises(Exception):self.install(lambda *_:called.append(True))
+        self.assertFalse(called);self.assertTrue(final.is_dir());self.retained()
+
     def test_download_stays_immutable_during_executor(self):
         def locked(exe,stage):
             with self.assertRaises(PermissionError):exe.write_bytes(b'changed during execution')

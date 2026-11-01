@@ -1,11 +1,13 @@
 """Build a fresh-directory NSIS installer from an actual Compose application image.
 
 Internal by default; explicit preview profile supported. Never publishes a release.
-Payloads never include data roots. Existing destinations are rejected, not overlaid.
+Payloads never include data roots. Program repair uses a fresh verified sibling; old files remain.
 """
-import argparse,hashlib,json,re,shutil,subprocess,os
+import argparse,hashlib,json,re,shutil,subprocess,os,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(ROOT/'tools'))
+from installer_repair_ui import header as repair_header,prepare as repair_prepare,finish as repair_finish
 
 def digest(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def quote(s):
@@ -44,29 +46,41 @@ def release_identity(version,metadata_url,targets_url,profile=None):
         raise ValueError('Preview endpoints must match pinned GitHub repository')
     return dict(profile,internalTest=False)
 
-def build(app,runtime,bootstrap,destination,version,metadata_url,targets_url,build_evidence,profile=None,consume_app_image=False):
+def build(app,runtime,bootstrap,destination,version,metadata_url,targets_url,build_evidence,profile=None,consume_app_image=False,internal_source_lock=None,frozen_image_manifest=None):
     identity=release_identity(version,metadata_url,targets_url,profile)
     destination=destination.resolve()
     if not destination.is_relative_to(ROOT/'.local') or destination.exists():raise ValueError('New Suite-local destination required')
-    summary=json.loads((build_evidence/'summary.json').read_text(encoding='utf-8'))
-    if summary['exitCode']!=0 or not summary['sourceStable'] or ':studio-desktop:createDistributable' not in summary['arguments']:raise ValueError('No verified actual app build')
-    source=json.loads((build_evidence/'source-before.json').read_text(encoding='utf-8'))
-    if any(digest(ROOT/p)!=h for p,h in source.items() if p.startswith('modules/')):raise ValueError('Application sources changed since build')
-    # The native launcher is compiled below from this committed packaging source,
-    # independently of the reusable Compose app image. Record its separate input.
-    launcher_source_sha256=digest(ROOT/'tools/windows-launcher/Launcher.cs')
-    app_sha=summary['baseCommit']
-    sha=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
-    # The app image can be reused after an updater-only change; record both origins.
-    tracked=subprocess.check_output(['git','diff','HEAD','--name-only','--','modules','tools/update-runtime','tools/windows-launcher','tools/Build-InternalInstaller.py','tools/Prepare-UpdaterRuntime.py'],cwd=ROOT,text=True)
-    if tracked.strip():raise ValueError('Commit package inputs before building a fixed installer')
+    if (internal_source_lock is None)!=(frozen_image_manifest is None):
+        raise ValueError('Both internal source lock and frozen image manifest are required')
+    if internal_source_lock is not None:
+        if profile is not None or identity['channel']!='internal' or consume_app_image:
+            raise ValueError('Input-lock packaging is internal-only and never consumes the frozen image')
+        from internal_installer_inputs import validate_sources,validate_image
+        validate_sources(ROOT,internal_source_lock)
+        frozen=validate_image(app,frozen_image_manifest);app_sha=frozen['sourceSha']
+        sha=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
+        launcher_source_sha256=digest(ROOT/'tools/windows-launcher/Launcher.cs')
+    else:
+        from internal_installer_inputs import validate_committed_sources
+        committed_head=validate_committed_sources(ROOT)
+        summary=json.loads((build_evidence/'summary.json').read_text(encoding='utf-8'))
+        if summary['exitCode']!=0 or not summary['sourceStable'] or ':studio-desktop:createDistributable' not in summary['arguments']:raise ValueError('No verified actual app build')
+        source=json.loads((build_evidence/'source-before.json').read_text(encoding='utf-8'))
+        if any(digest(ROOT/p)!=h for p,h in source.items() if p.startswith('modules/')):raise ValueError('Application sources changed since build')
+        # The native launcher is compiled below from this committed packaging source,
+        # independently of the reusable Compose app image. Record its separate input.
+        launcher_source_sha256=digest(ROOT/'tools/windows-launcher/Launcher.cs')
+        app_sha=summary['baseCommit']
+        sha=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
+        # The app image can be reused after an updater-only change; record both origins.
+        if sha!=committed_head:raise ValueError('Package source HEAD changed during preparation')
     if not re.fullmatch('[0-9a-f]{40}',sha) or version<1:raise ValueError('Invalid identity')
     if not (app/'CCBStudioSuitePreview.exe').is_file():raise ValueError('Actual app launcher missing')
     receipt=json.loads((runtime/'RUNTIME_MANIFEST.json').read_text(encoding='utf-8'))
     for item in receipt['files']:
         p=runtime/item['path']
         if p.stat().st_size!=item['bytes'] or digest(p)!=item['sha256']:raise ValueError('Runtime changed: '+item['path'])
-    for name in ['studio_update.py','github_transport.py','apply_update.py','install_ops.py','residue_cleanup.py','owned_files.py']:
+    for name in ['studio_update.py','github_transport.py','apply_update.py','install_ops.py','repair_install.py','residue_cleanup.py','owned_files.py']:
         if digest(runtime/'lib'/name)!=digest(ROOT/'tools/update-runtime'/name):raise ValueError('Runtime source is stale: '+name)
     destination.mkdir(parents=True)
     payload=destination/'payload'
@@ -78,12 +92,13 @@ def build(app,runtime,bootstrap,destination,version,metadata_url,targets_url,bui
     else:shutil.copytree(app,payload)
     shutil.copytree(runtime,payload/'updater',ignore=shutil.ignore_patterns('__pycache__'))
     compiler=Path(os.environ.get('WINDIR','C:/Windows'))/'Microsoft.NET/Framework64/v4.0.30319/csc.exe'
-    subprocess.run([str(compiler),'/nologo','/target:winexe','/platform:x64','/optimize+',
+    subprocess.run([str(compiler),'/nologo','/codepage:65001','/target:winexe','/platform:x64','/optimize+',
         '/reference:System.Windows.Forms.dll','/reference:System.Web.Extensions.dll',
         '/win32icon:'+str(ROOT/'modules/studio-desktop/src/main/resources/brand/ccb-blue.ico'),
         '/out:'+str(payload/'updater/CCBStudioLauncher.exe'),str(ROOT/'tools/windows-launcher/Launcher.cs')],check=True)
     shutil.copy2(bootstrap,payload/'update-root.json')
-    config=dict(format=1,product='ccb-studio-suite',platform='windows-x86_64',version=version,reader=3,sourceSha=sha,metadataUrl=metadata_url,targetsUrl=targets_url,rootSha256=digest(bootstrap),**identity)
+    config=dict(updateStatusUi=1,programRepair=1,format=1,product='ccb-studio-suite',platform='windows-x86_64',version=version,reader=3,sourceSha=sha,metadataUrl=metadata_url,targetsUrl=targets_url,rootSha256=digest(bootstrap),**identity)
+    if internal_source_lock is not None:config['internalSourceSnapshotSha256']=digest(internal_source_lock)
     (payload/'update-config.json').write_text(json.dumps(config,indent=2)+'\n',encoding='utf-8')
     manifest=dict(format=1,product=config['product'],platform=config['platform'],channel=config['channel'],version=version,sourceSha=sha,files=[])
     for p in sorted(payload.rglob('*')):
@@ -106,7 +121,9 @@ def build(app,runtime,bootstrap,destination,version,metadata_url,targets_url,bui
             f'VIAddVersionKey "FileVersion" "0.2.{version}.0"',
             f'Name "{label}"','OutFile '+quote(destination/'studio-installer.exe'),
             f'InstallDir "$LOCALAPPDATA\\CCBStudioSuite\\applications\\{version}-{sha[:12]}"',
-            'Page directory','Page instfiles','Section "Install"']
+            ]
+    script+=repair_header()+['Page directory','Page instfiles','Section "Install"']
+    script+=repair_prepare()
     script+=path_preflight(payload)
     script+=['IfFileExists "$INSTDIR" occupied','IfFileExists "$INSTDIR\\*.*" occupied']
     previous=None
@@ -119,8 +136,10 @@ def build(app,runtime,bootstrap,destination,version,metadata_url,targets_url,bui
             script+=['SetOutPath "$INSTDIR'+suffix+'"','IfErrors failed'];previous=parent
         script+=['ClearErrors','File '+quote(p),'IfErrors failed']
     script+=['SetOutPath "$INSTDIR"','WriteUninstaller "$INSTDIR\\Uninstall.exe"','IfErrors failed',
-             'FileOpen $0 "$INSTDIR\\INSTALL_COMPLETE" w','IfErrors failed',f'FileWrite $0 "{version}:{sha}"','FileClose $0','SetErrorLevel 0','Goto done',
-             'occupied:','SetErrorLevel 17','Quit','failed:','SetErrorLevel 18','Quit',
+             'FileOpen $0 "$INSTDIR\\INSTALL_COMPLETE" w','IfErrors failed',f'FileWrite $0 "{version}:{sha}"','FileClose $0']
+    script+=repair_finish()
+    script+=['SetErrorLevel 0','Goto done',
+             'occupied:','IfSilent +2','MessageBox MB_OK|MB_ICONSTOP "目录已存在。请重新运行安装包并选择修复已有程序，或选择新的安装目录。"','SetErrorLevel 17','Quit','failed:','IfSilent +2','MessageBox MB_OK|MB_ICONSTOP "安装或修复未完成。现有程序和资料已保留，请保留回执，不要删除资料目录。"','SetErrorLevel 18','Quit',
              'path_too_long:','IfSilent +2','MessageBox MB_OK|MB_ICONSTOP "Installation path is too long. Choose a shorter folder. No files were installed."',
              'SetErrorLevel 19','Quit','done:','SectionEnd',
              'UninstPage uninstConfirm','UninstPage instfiles','Section "Uninstall"']
@@ -134,8 +153,11 @@ def build(app,runtime,bootstrap,destination,version,metadata_url,targets_url,bui
     nsi=destination/'installer.nsi';nsi.write_text('\n'.join(script)+'\n',encoding='utf-8-sig')
     with (destination/'compile.log').open('wb') as log:
         result=subprocess.run([str(compiler),'/NOCONFIG',str(nsi)],stdout=log,stderr=subprocess.STDOUT)
+    if internal_source_lock is not None:validate_sources(ROOT,internal_source_lock);validate_image(app,frozen_image_manifest)
+    elif validate_committed_sources(ROOT)!=committed_head:raise ValueError('Package source HEAD changed during packaging')
     if digest(ROOT/'tools/windows-launcher/Launcher.cs')!=launcher_source_sha256:raise ValueError('Native launcher source changed during packaging')
     report=dict(task='UX-R4',status='BUILT' if result.returncode==0 else 'FAILED',sourceSha=sha,appBuildSourceSha=app_sha,nativeLauncherSourceSha256=launcher_source_sha256,version=version,channel=identity['channel'],displayVersion=identity['displayVersion'],compiler='NSIS3.13',exitCode=result.returncode,files=len(manifest['files']),installed='NOT TESTED')
+    if internal_source_lock is not None:report.update(internalSourceSnapshotSha256=digest(internal_source_lock),frozenImageManifestSha256=digest(frozen_image_manifest),uncommittedInputs=True,publicReleaseAllowed=False)
     if result.returncode==0:report.update(bytes=(destination/'studio-installer.exe').stat().st_size,sha256=digest(destination/'studio-installer.exe'))
     (destination/'BUILD_RECEIPT.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8');print(json.dumps(report))
     if result.returncode:raise RuntimeError('NSIS compiler failed; inspect retained compile.log')
@@ -146,6 +168,8 @@ if __name__=='__main__':
     for name in ['app','runtime','bootstrap','destination','build-evidence']:p.add_argument('--'+name,required=True,type=Path)
     p.add_argument('--version',required=True,type=int);p.add_argument('--metadata-url',required=True);p.add_argument('--targets-url',required=True)
     p.add_argument('--release-profile',type=Path,help='Explicit preview JSON profile; omission keeps internal channel')
+    p.add_argument('--internal-source-lock',type=Path,help='Internal-only exact current source snapshot; public/default packaging remains commit-gated')
+    p.add_argument('--frozen-image-manifest',type=Path,help='Internal-only exact reusable application image identity')
     p.add_argument('--consume-app-image',action='store_true',help='Move only the exact disposable Suite build image into candidate payload instead of duplicating it')
     a=p.parse_args();build(a.app,a.runtime,a.bootstrap,a.destination,a.version,a.metadata_url,a.targets_url,a.build_evidence,
-                          json.loads(a.release_profile.read_text(encoding='utf-8')) if a.release_profile else None,a.consume_app_image)
+                          json.loads(a.release_profile.read_text(encoding='utf-8')) if a.release_profile else None,a.consume_app_image,a.internal_source_lock,a.frozen_image_manifest)

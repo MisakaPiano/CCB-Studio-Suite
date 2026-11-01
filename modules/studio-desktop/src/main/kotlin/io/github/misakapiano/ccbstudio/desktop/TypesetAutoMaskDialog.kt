@@ -17,8 +17,7 @@ import com.example.chatbar.desktop.*
             EditorCommand("使用内置模型",!c.busy){a.useBundledModel()}
             EditorCommand("选择本地 ONNX 模型",!c.busy){a.loadModel()}
             Text(a.model?.name?:"尚未选择模型",style=MaterialTheme.typography.caption)
-            StudioSwitch("识别所选页",a.selectedPages){if(!c.busy)a.selectedPages=!a.selectedPages}
-            Text(if(a.selectedPages)"执行时处理勾选页，一次完成后可整体撤销"else"执行时只处理当前图片",style=MaterialTheme.typography.caption)
+            Text("处理范围在编辑工具栏直接选择：当前图／所选N张；所选指编辑队列勾选页，每次最多100张。",style=MaterialTheme.typography.caption)
             EditorRow{
                 Box(Modifier.weight(1f)){NumberField("置信度",kotlin.math.round(a.options.confidence.toDouble()*1000)/1000,.05..1.0){if(!c.busy)a.options=a.options.copy(confidence=it.toFloat())}}
                 Box(Modifier.weight(1f)){NumberField("重叠合并阈值",kotlin.math.round(a.options.iou.toDouble()*1000)/1000,.05..1.0){if(!c.busy)a.options=a.options.copy(iou=it.toFloat())}}

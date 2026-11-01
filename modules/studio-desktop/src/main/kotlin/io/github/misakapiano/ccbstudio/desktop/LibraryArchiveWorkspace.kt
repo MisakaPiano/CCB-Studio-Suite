@@ -48,12 +48,12 @@ import kotlinx.coroutines.*
     }
     val ids=remember(visible){visible.map{it.request().id().toString()}}
     val visibleSet=remember(ids){ids.toSet()}
-    val history by produceState<GalleryHistoryProjection?>(null,c.state.jobs,c.assets){value=withContext(Dispatchers.IO){runCatching{readGalleryHistory(c.workspace)}.getOrNull()}}
+    val history by rememberGalleryHistory(c)
     val albums=remember(ids,assets,history,g.fold,g.directoryFold,g.tagFold,labels,l.state?.folders){
         when {
             g.fold.enabled&&g.tagFold->galleryTagAlbums(ids,labels)
             g.fold.enabled&&g.directoryFold->galleryDirectoryAlbums(ids,assets,l.state?.folders.orEmpty())
-            else->galleryAlbums(ids,history?:GalleryHistoryProjection(emptyList(),emptyMap()),g.fold.type.takeIf{g.fold.enabled})
+            else->galleryAlbums(ids,history?.getOrNull()?:GalleryHistoryProjection(emptyList(),emptyMap()),g.fold.type.takeIf{g.fold.enabled})
         }
     }
     fun select(id:String,control:Boolean=false,shift:Boolean=false){l.archiveSelection=selectLibraryRange(ids,l.archiveSelection,id,g.anchor,control,shift);if(!shift)g.anchor=id;current=id;focus.requestFocus()}

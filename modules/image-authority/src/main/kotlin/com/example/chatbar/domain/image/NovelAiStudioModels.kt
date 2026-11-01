@@ -3,6 +3,8 @@ package com.example.chatbar.domain.image
 import com.example.chatbar.domain.prompt.CharacterNaiPromptDefaults
 import java.util.UUID
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.EncodeDefault
+import kotlinx.serialization.ExperimentalSerializationApi
 
 @Serializable
 enum class NovelAiSampler(val apiId: String, val displayName: String) {
@@ -11,6 +13,7 @@ enum class NovelAiSampler(val apiId: String, val displayName: String) {
     DPM_PLUS_PLUS_2S_ANCESTRAL("k_dpmpp_2s_ancestral", "DPM++ 2S Ancestral"),
     DPM_PLUS_PLUS_2M("k_dpmpp_2m", "DPM++ 2M"),
     DPM_PLUS_PLUS_SDE("k_dpmpp_sde", "DPM++ SDE"),
+    DPM_PLUS_PLUS_2M_SDE("k_dpmpp_2m_sde", "DPM++ 2M SDE"),
     DDIM("ddim_v3", "DDIM")
 }
 
@@ -28,6 +31,7 @@ enum class NovelAiAspectRatio(val displayName: String) {
 }
 
 @Serializable
+@OptIn(ExperimentalSerializationApi::class)
 data class NovelAiGenerationSettings(
     val model: NovelAiImageModel = NovelAiImageModel.V4_5_FULL,
     val sizeTier: NovelAiSizeTier = NovelAiSizeTier.NORMAL,
@@ -41,7 +45,13 @@ data class NovelAiGenerationSettings(
     val cfgRescale: Float = 0f,
     val customWidth: Int? = null,
     val customHeight: Int? = null,
-    val useCharacterPositions: Boolean = false
+    val useCharacterPositions: Boolean = false,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val varietyPlus: Boolean = false,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val varietyRescale: Boolean = false,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val varietySigma: Float? = null,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val noiseSource: NovelAiNoiseSource = NovelAiNoiseSource.LEGACY,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val noiseSchedule: NovelAiNoiseSchedule? = null,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val parameterReplay: NovelAiParameterReplay? = null
 ) {
     val usesCustomSize: Boolean get() = customWidth != null || customHeight != null
     val maxAllowedBaseSeed: Long get() = MAX_SEED - (count.coerceIn(1, 4) - 1L)
@@ -84,6 +94,10 @@ data class NovelAiGenerationSettings(
     }
 
     fun validationError(characterCount: Int): String? = when {
+        parameterReplay?.validationError() != null -> parameterReplay.validationError()
+        NovelAiParameterCompatibility.noiseError(this) != null -> NovelAiParameterCompatibility.noiseError(this)
+        varietySigma != null && (!varietySigma.isFinite() || varietySigma <= 0f) -> "Variety sigma 必须是有效正数"
+        varietySigma != null && !varietyPlus -> "显式 Variety sigma 与关闭的开关冲突"
         sizeValidationError() != null -> sizeValidationError()
         count !in 1..4 -> "生成数量必须在 1–4 之间"
         steps !in 1..50 -> "Steps 必须在 1–50 之间"
@@ -120,13 +134,17 @@ data class NovelAiGenerationSettings(
 }
 
 @Serializable
+@OptIn(ExperimentalSerializationApi::class)
 data class NovelAiCharacterPromptDraft(
     val id: String = UUID.randomUUID().toString(),
     val prompt: String = "",
     val negativePrompt: String = "",
     val negativeExpanded: Boolean = false,
     val center: DesignedCharacterCenter? = null,
-    val enabled: Boolean = true
+    val enabled: Boolean = true,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val literalPrompt: Boolean = false,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val literalNegative: Boolean = false,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val literalCoordinates: Boolean = false
 )
 
 @Serializable
@@ -152,6 +170,7 @@ fun NovelAiPositivePromptSnapshot.toPromptPlan(): NovelAiPromptPlan = NovelAiPro
 )
 
 @Serializable
+@OptIn(ExperimentalSerializationApi::class)
 data class NovelAiStudioDraft(
     val stylePrompt: String = "",
     val basePrompt: String = "",
@@ -173,14 +192,16 @@ data class NovelAiStudioDraft(
     /** true 时跟随已导入角色卡与全局配置；selectedModel 缓存当前生效值。 */
     val followDefaultNovelAiImageModel: Boolean = false,
     val selectedModel: NovelAiImageModel = NovelAiImageModel.V4_5_FULL,
-    val v45Settings: NovelAiGenerationSettings = NovelAiGenerationSettings(model = NovelAiImageModel.V4_5_FULL),
-    val v5Settings: NovelAiGenerationSettings = NovelAiGenerationSettings(model = NovelAiImageModel.V5_FULL),
+    val v45Settings: NovelAiGenerationSettings = NovelAiGenerationSettings(model = NovelAiImageModel.V4_5_FULL, noiseSource = NovelAiNoiseSource.MODEL_DEFAULT, varietyRescale = true),
+    val v5Settings: NovelAiGenerationSettings = NovelAiGenerationSettings(model = NovelAiImageModel.V5_FULL, noiseSource = NovelAiNoiseSource.MODEL_DEFAULT, varietyRescale = true),
     val outputExpanded: Boolean = true,
     val negativeExpanded: Boolean = false,
     val advancedExpanded: Boolean = false,
     val aiPanelExpanded: Boolean = false,
     val conversionSnapshot: NovelAiPositivePromptSnapshot? = null,
     val imageGuidance: NovelAiImageGuidanceDraft = NovelAiImageGuidanceDraft(),
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val literalBasePrompt: Boolean = false,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val literalNegativePrompt: Boolean = false,
     val contentRevision: Long = 0L,
     val promptContentRevision: Long = 0L,
     val updatedAt: Long = System.currentTimeMillis()
@@ -220,6 +241,7 @@ data class NovelAiStudioUndoDraft(val draft: NovelAiStudioDraft? = null)
 data class NovelAiGuidanceEditorCheckpoint(val guidance: NovelAiImageGuidanceDraft? = null)
 
 @Serializable
+@OptIn(ExperimentalSerializationApi::class)
 data class NovelAiGenerationRecipe(
     val stylePrompt: String = "",
     val basePrompt: String = "",
@@ -227,6 +249,8 @@ data class NovelAiGenerationRecipe(
     val characters: List<NovelAiCharacterPromptDraft> = emptyList(),
     val negativePrompt: String = CharacterNaiPromptDefaults.defaultCharacterNaiNegativePrompt(),
     val naturalLanguageMode: Boolean = false,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val literalBasePrompt: Boolean = false,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val literalNegativePrompt: Boolean = false,
     val settings: NovelAiGenerationSettings = NovelAiGenerationSettings(),
     val imageGuidance: NovelAiImageGuidanceDraft = NovelAiImageGuidanceDraft()
 )
@@ -320,6 +344,8 @@ fun NovelAiStudioDraft.applyHistoryRecipe(
         extraPrompt = recipe.extraPrompt,
         characters = recipe.characters,
         negativePrompt = recipe.negativePrompt,
+        literalBasePrompt = recipe.literalBasePrompt,
+        literalNegativePrompt = recipe.literalNegativePrompt,
         followDefaultNovelAiImageModel = false,
         selectedModel = recipe.settings.model,
         conversionSnapshot = null,
@@ -331,6 +357,8 @@ fun NovelAiStudioDraft.applyHistoryRecipe(
         extraPrompt = recipe.extraPrompt,
         characters = recipe.characters,
         negativePrompt = recipe.negativePrompt,
+        literalBasePrompt = recipe.literalBasePrompt,
+        literalNegativePrompt = recipe.literalNegativePrompt,
         followDefaultNovelAiImageModel = false,
         selectedModel = recipe.settings.model,
         conversionSnapshot = null,
@@ -348,6 +376,8 @@ fun NovelAiStudioDraft.toRecipe(settings: NovelAiGenerationSettings = activeSett
         extraPrompt = extraPrompt,
         characters = characters,
         negativePrompt = negativePrompt,
+        literalBasePrompt = literalBasePrompt,
+        literalNegativePrompt = literalNegativePrompt,
         settings = settings,
         imageGuidance = imageGuidance.toHistoryRecipe()
     )
@@ -382,7 +412,7 @@ fun NovelAiStudioDraft.copyPositivePrompt(): String {
 }
 
 fun NovelAiStudioDraft.effectiveBasePrompt(): String =
-    NovelAiPromptComposition.prependStylePrompt(
+    if (literalBasePrompt && stylePrompt.isEmpty() && extraPrompt.isEmpty()) basePrompt else NovelAiPromptComposition.prependStylePrompt(
         stylePrompt,
         NovelAiPromptComposition.prependStylePrompt(basePrompt, extraPrompt)
     )

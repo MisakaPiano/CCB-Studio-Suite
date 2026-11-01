@@ -27,10 +27,15 @@ fun NovelAiStudioDraft.toPromptPlan(): NovelAiPromptPlan {
             NovelAiCharacterCaption(
                 prompt = character.prompt,
                 center = character.center ?: NovelAiPromptDesigner.fallbackCenter(index, characters.size),
-                negativePrompt = character.negativePrompt
+                negativePrompt = character.negativePrompt,
+                literalPrompt = character.literalPrompt,
+                literalNegative = character.literalNegative,
+                literalCoordinates = character.literalCoordinates
             )
         },
         sizePreset = NovelAiImageSizePreset.PORTRAIT,
-        negativePrompt = negativePrompt
+        negativePrompt = negativePrompt,
+        literalBasePrompt = literalBasePrompt,
+        literalNegativePrompt = literalNegativePrompt
     )
 }

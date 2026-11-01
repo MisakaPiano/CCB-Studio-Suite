@@ -54,9 +54,14 @@ fun galleryAlbums(ids:List<String>,history:GalleryHistoryProjection,type:NovelAi
 
 /** Verified receipt projection only. Unreadable receipts never become empty, matchable recipes. */
 fun readGalleryHistory(workspace:StudioWorkspace):GalleryHistoryProjection=workspace.operation {
+    val jobs=workspace.state.jobs
+    // No result references means no generation history to project. This is not a store audit:
+    // catalog/open/read/export/backup retain their original payload-integrity checks.
+    if(jobs.none{it.results.isNotEmpty() || it.composedResults.isNotEmpty()})
+        return@operation GalleryHistoryProjection(emptyList(),emptyMap())
     val assets=SharedAssets.images(workspace).associateBy{it.request().id().toString()}
     val origins=mutableMapOf<String,BatchResultOrigin>();val entries=mutableListOf<NovelAiGenerationHistoryEntry>();val unavailable=mutableMapOf<String,String>()
-    workspace.state.jobs.forEach { job->
+    jobs.forEach { job->
         val ids=(job.results+job.composedResults).filter{it in assets}.distinct()
         if(ids.isNotEmpty())try {
             val raw=job.receipt(workspace)
@@ -102,9 +107,11 @@ class GalleryFoldPreferences(private val library:LibraryRepository,private val n
         require(values.size<=32 && values.all{it.depth in 0..31} && values.distinctBy{it.depth}.size==values.size)
         return values.associateBy{it.depth}
     }
-    fun save(value:NovelAiHistoryFoldPreference,directory:Boolean=false) {
+    fun save(value:NovelAiHistoryFoldPreference,directory:Boolean=false,tagDepths:Set<Int>?=null) {
         require(value.depth in 0..31)
+        require(tagDepths==null || (tagDepths.size<=32 && tagDepths.all{it in 0..31}))
         library.update{state->val values=load(state)+(value.depth to value);val directories=if(directory)directoryDepths(state)+value.depth else directoryDepths(state)-value.depth
-            state.copy(preferences=state.preferences+(key("historyFoldPreferences") to documentJson.encodeToString(values.values.sortedBy{it.depth}))+(key("galleryDirectoryFoldDepths") to documentJson.encodeToString(directories.sorted())))}
+            state.copy(preferences=state.preferences+(key("historyFoldPreferences") to documentJson.encodeToString(values.values.sortedBy{it.depth}))+(key("galleryDirectoryFoldDepths") to documentJson.encodeToString(directories.sorted()))+
+                (tagDepths?.let{mapOf(key("galleryTagFoldDepths") to documentJson.encodeToString(it.sorted()))}?:emptyMap()))}
     }
 }

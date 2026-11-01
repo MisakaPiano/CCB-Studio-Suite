@@ -140,7 +140,10 @@ import kotlin.math.*
                         EditorCommand("添加文字",source!=null&&!c.busy&&e.document!!.mode=="editor",TypesetIcons.Text){source?.let{e.addText(it.width,it.height)}}
                     }
                 }
-                if(e.document!!.mode=="editor")EditorCommand("AI 自动打码",!c.busy,TypesetIcons.AutoMask){e.autoMask.runConfigured{autoMaskInfo=true}}
+                if(e.document!!.mode=="editor") {
+                    EditorCommand("自动打码·当前图",!c.busy&&e.pageId!=null,TypesetIcons.AutoMask){e.autoMask.runConfigured(setOfNotNull(e.pageId)){autoMaskInfo=true}}
+                    EditorCommand("自动打码·所选 ${e.selectedPages.size} 张",!c.busy&&e.selectedPages.size in 1..100,TypesetIcons.AutoMask){e.autoMask.runConfigured(e.selectedPages){autoMaskInfo=true}}
+                }
                 EditorCommand("AI 打码设置",!c.busy,DesktopAppIcons.Settings){autoMaskInfo=true}
                 if(c.busy&&c.activeOperation=="AI 自动打码")EditorCommand("取消 AI 识别"){c.active?.cancel()}
             }

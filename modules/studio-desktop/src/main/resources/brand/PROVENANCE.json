@@ -1,19 +1,110 @@
 {
-  "sourceRepository": "MisakaPiano/ChatChatBar-Desktop",
-  "sourceCommit": "5ef95428421f7c693b010ac88f51d470804ab07a",
-  "sourcePath": "app/desktopApp/src/main/resources/brand/ccb.png",
+  "sourceRepository": "SaltyFishOTL/ChatChatBar",
+  "sourceCommit": "550409689df8c51f459fb50b4e04c8ac2fa4bf35",
+  "sourcePath": "app/app/src/main/res/drawable/ic_launcher_foreground.png",
   "sourceSha256": "7aa9ee4daed5e84e202515ba2fd45be31b3f9128427078c73e8af21b53df103f",
-  "authorization": "Direct user request: every Suite window uses CCB logo recolored blue instead of green. No Desktop asset modified.",
-  "editMethod": "Built-in imagegen color variant, transparent PNG; standard ICO encoding at 16,24,32,48,64,128,256 pixels. Not claimed pixel-identical recoloring.",
-  "prompt": "Replace green/mint/turquoise regions and CCB letters with blue shades, preserving elephant silhouette, white speech bubble, letters CCB, eyes, white areas and transparent background. No redesign or extra elements.",
+  "sourceGitBlob": "26ed3fd33a76d55dca2f54810452e0a79575bdfb",
+  "authorization": "Direct human user request in Work: only change hue, no other changes; all imagegen redraws rejected.",
+  "editMethod": "Fixed original PNG: HSV +55 degrees on alpha>0, original hue90..190, G>R and S>0; retain S,V, round RGB to 8-bit; no redraw, alpha edit, crop, resize or white removal. PNG copied byte-for-byte; ICO uses standard Lanczos scaling to required sizes only.",
   "outputs": {
-    "ccb-blue.ico": {
-      "bytes": 101220,
-      "sha256": "472c0a1aeafdb2f83ba0aad6f28e09fe21725aa78ce4e043ca0e8497bf553ee4"
-    },
     "ccb-blue.png": {
-      "bytes": 1329421,
-      "sha256": "24aaebf9efb0ff7faa91da0d0edc1460c5e4ce126364d301a2bdc725032467c7"
+      "bytes": 65078,
+      "sha256": "1ed8b9ff2948354e3a4c8e9da9cd8b10ca08a6cf51a2b46b4b791ad79a7346dd"
+    },
+    "ccb-blue.ico": {
+      "bytes": 83069,
+      "sha256": "ae3eec84d89ea8352210b327ae77939507f3e19f8ffaf3a265dbc62a54999547"
     }
-  }
+  },
+  "pixelVerification": {
+    "size": [
+      320,
+      320
+    ],
+    "selectedPixels": 54597,
+    "changedPixels": 54597,
+    "alphaChangedPixels": 0,
+    "nonTargetChangedPixels": 0,
+    "pureWhitePixels": 18837,
+    "pureWhiteChangedPixels": 0,
+    "rightRegionWhitePixelsUnchanged": 4877,
+    "redPixelsIncludingEyesUnchanged": 2443,
+    "icoFrames": [
+      {
+        "size": [
+          16,
+          16
+        ],
+        "rgbaMatchesStandardResize": true
+      },
+      {
+        "size": [
+          24,
+          24
+        ],
+        "rgbaMatchesStandardResize": true
+      },
+      {
+        "size": [
+          32,
+          32
+        ],
+        "rgbaMatchesStandardResize": true
+      },
+      {
+        "size": [
+          48,
+          48
+        ],
+        "rgbaMatchesStandardResize": true
+      },
+      {
+        "size": [
+          64,
+          64
+        ],
+        "rgbaMatchesStandardResize": true
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "rgbaMatchesStandardResize": true
+      },
+      {
+        "size": [
+          256,
+          256
+        ],
+        "rgbaMatchesStandardResize": true
+      }
+    ]
+  },
+  "history": [
+    {
+      "status": "SUPERSEDED_USER_REJECTED_REDRAW",
+      "record": {
+        "sourceRepository": "MisakaPiano/ChatChatBar-Desktop",
+        "sourceCommit": "5ef95428421f7c693b010ac88f51d470804ab07a",
+        "sourcePath": "app/desktopApp/src/main/resources/brand/ccb.png",
+        "sourceSha256": "7aa9ee4daed5e84e202515ba2fd45be31b3f9128427078c73e8af21b53df103f",
+        "authorization": "Direct user request: every Suite window uses CCB logo recolored blue instead of green. No Desktop asset modified.",
+        "editMethod": "Built-in imagegen color variant, transparent PNG; standard ICO encoding at 16,24,32,48,64,128,256 pixels. Not claimed pixel-identical recoloring.",
+        "prompt": "Replace green/mint/turquoise regions and CCB letters with blue shades, preserving elephant silhouette, white speech bubble, letters CCB, eyes, white areas and transparent background. No redesign or extra elements.",
+        "outputs": {
+          "ccb-blue.ico": {
+            "bytes": 101220,
+            "sha256": "472c0a1aeafdb2f83ba0aad6f28e09fe21725aa78ce4e043ca0e8497bf553ee4"
+          },
+          "ccb-blue.png": {
+            "bytes": 1329421,
+            "sha256": "24aaebf9efb0ff7faa91da0d0edc1460c5e4ce126364d301a2bdc725032467c7"
+          }
+        }
+      }
+    }
+  ],
+  "rejectedArtwork": "All four imagegen drafts including ccb-blue-fixed.png are not used.",
+  "deployment": "Resource integration only. Existing builds, installed apps, user exports and review candidates unchanged; next build required."
 }
